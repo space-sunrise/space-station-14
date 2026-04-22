@@ -264,30 +264,7 @@ public sealed class ThirstSystem : EntitySystem
             DoContinuousThirstEffects(uid, thirst);
 
             // Sunrise-Start
-            var hasMangleness = _damageable.HasMangleness(uid);
-
-            if (hasMangleness != thirst.HadMangleness)
-            {
-                thirst.HadMangleness = hasMangleness;
-                DirtyField(uid, thirst, nameof(ThirstComponent.HadMangleness));
-                UpdateEffects(uid, thirst);
-            }
-
-            if (hasMangleness)
-            {
-                if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay && _timing.IsFirstTimePredicted)
-                {
-                    var heal = new DamageSpecifier();
-                    heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingOkay);
-                    _damageable.TryChangeDamage(uid, heal, true, false);
-                }
-                else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty && _timing.IsFirstTimePredicted)
-                {
-                    var heal = new DamageSpecifier();
-                    heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingThirsty);
-                    _damageable.TryChangeDamage(uid, heal, true, false);
-                }
-            }
+            TickManglenessRecovery(uid, thirst);
             // Sunrise-End
 
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
@@ -297,6 +274,34 @@ public sealed class ThirstSystem : EntitySystem
 
             thirst.CurrentThirstThreshold = calculatedThirstThreshold;
             UpdateEffects(uid, thirst);
+        }
+    }
+
+    private void TickManglenessRecovery(EntityUid uid, ThirstComponent thirst)
+    {
+        var hasMangleness = _damageable.HasMangleness(uid);
+
+        if (hasMangleness != thirst.HadMangleness)
+        {
+            thirst.HadMangleness = hasMangleness;
+            DirtyField(uid, thirst, nameof(ThirstComponent.HadMangleness));
+            UpdateEffects(uid, thirst);
+        }
+
+        if (hasMangleness)
+        {
+            if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay && _timing.IsFirstTimePredicted)
+            {
+                var heal = new DamageSpecifier();
+                heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingOkay);
+                _damageable.TryChangeDamage(uid, heal, true, false);
+            }
+            else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty && _timing.IsFirstTimePredicted)
+            {
+                var heal = new DamageSpecifier();
+                heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingThirsty);
+                _damageable.TryChangeDamage(uid, heal, true, false);
+            }
         }
     }
 }

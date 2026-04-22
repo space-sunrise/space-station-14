@@ -177,6 +177,7 @@ public sealed class HungerSystem : EntitySystem
         {
             // Sunrise-Start
             // component.ActualDecayRate = component.BaseDecayRate * modifier;
+            var preservedHunger = GetHunger(component); // Preserve hunger value before changing decay rate
             var sunriseModifier = modifier;
             if (_damageable.HasMangleness(uid))
             {
@@ -189,7 +190,7 @@ public sealed class HungerSystem : EntitySystem
             component.ActualDecayRate = component.BaseDecayRate * sunriseModifier;
             // Sunrise-End
             DirtyField(uid, component, nameof(HungerComponent.ActualDecayRate));
-            SetAuthoritativeHungerValue((uid, component), GetHunger(component));
+            SetAuthoritativeHungerValue((uid, component), preservedHunger);
         }
 
         component.LastThreshold = component.CurrentThreshold;
@@ -328,6 +329,34 @@ public sealed class HungerSystem : EntitySystem
                 }
             }
             // Sunrise-End
+        }
+    }
+
+    private void TickManglenessRecovery(EntityUid uid, HungerComponent hunger)
+    {
+        var hasMangleness = _damageable.HasMangleness(uid);
+
+        if (hasMangleness != hunger.HadMangleness)
+        {
+            hunger.HadMangleness = hasMangleness;
+            DirtyField(uid, hunger, nameof(HungerComponent.HadMangleness));
+            DoHungerThresholdEffects(uid, hunger, force: true);
+        }
+
+        if (hasMangleness)
+        {
+            if (hunger.CurrentThreshold >= HungerThreshold.Okay)
+            {
+                var heal = new DamageSpecifier();
+                heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingOkay);
+                _damageable.TryChangeDamage(uid, heal, true, false);
+            }
+            else if (hunger.CurrentThreshold == HungerThreshold.Peckish)
+            {
+                var heal = new DamageSpecifier();
+                heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingPeckish);
+                _damageable.TryChangeDamage(uid, heal, true, false);
+            }
         }
     }
 }

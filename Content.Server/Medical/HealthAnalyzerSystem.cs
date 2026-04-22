@@ -86,7 +86,7 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             thirstLevel = (thirst.CurrentThirst / 600.0f) * 100.0f;
         }
 
-        // Sunrise edit start - новый триггер
+        // Sunrise edit start - add new EntityAnalyzedEvent trigger
         RaiseLocalEvent(target, new EntityAnalyzedEvent());
         // Sunrise edit end
 
