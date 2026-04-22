@@ -291,7 +291,7 @@
 
 - type: entity
   parent: [ ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseTSFContraband ]
-  id: ClothingOuterArmorTSFanother
+  id: ClothingOuterArmorEventTSF
   name: heavy vest
   description: heavy vest for TSF Squad
   components:
