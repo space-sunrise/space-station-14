@@ -26,9 +26,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    // Sunrise edit start
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    // Sunrise edit end
+    [Dependency] private readonly SharedMapSystem _map = default!; // Sunrise edit
 
     /// <summary>
     /// Minimum moles of a gas to be sent to the client.
@@ -88,6 +86,8 @@ public sealed class GasAnalyzerSystem : EntitySystem
                 : null;
             Dirty(entity);
         }
+        // always run the analyzer, regardless of weather or not there is a target
+        // since we can always show the local environment.
         ActivateAnalyzer(entity, args.User, target);
         // Sunrise edit end
         args.Handled = true;
@@ -208,11 +208,6 @@ public sealed class GasAnalyzerSystem : EntitySystem
             {
                 var tile = _map.CoordinatesToTile(clickLoc.EntityId, grid, clickLoc);
                 tileMixture = _atmo.GetTileMixture(clickLoc.EntityId, gridXform.MapUid, tile, true);
-            }
-            else
-            {
-                // Clicked coordinates are not on a grid — nothing to sample. Fallback to analyzer's tile.
-                tileMixture = _atmo.GetContainingMixture(uid, true);
             }
         }
         else
