@@ -99,3 +99,12 @@ ent-SpawnPointRoboticist = roboticist
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointSecurityPilot = security pilot
     .desc = { ent-SpawnPointJobBase.desc }
+
+ent-SpawnPointCBURNAgent = CBURN agent
+    .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointCBURNAgentEVA = CBURN agent (EVA)
+    .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointCBURNLeader = CBURN leader
+    .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointDeathSquad = death squad
+    .desc = { ent-SpawnPointJobBase.desc }

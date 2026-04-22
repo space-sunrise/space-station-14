@@ -101,3 +101,12 @@ ent-SpawnPointRoboticist = робототехник
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointSecurityPilot = пилот СБ
     .desc = { ent-SpawnPointJobBase.desc }
+
+ent-SpawnPointCBURNAgent = агент РХБЗЗ
+    .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointCBURNAgentEVA = агент РХБЗЗ (EVA)
+    .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointCBURNLeader = лидер РХБЗЗ
+    .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointDeathSquad = агент эскадрона смерти
+    .desc = { ent-SpawnPointJobBase.desc }
