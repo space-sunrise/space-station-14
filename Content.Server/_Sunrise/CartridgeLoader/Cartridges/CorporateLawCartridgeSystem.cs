@@ -1,18 +1,20 @@
 using Content.Server.CartridgeLoader;
+using Content.Server._Sunrise.Laws.Systems;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared._Sunrise.Laws;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CartridgeLoader;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
 public sealed class CorporateLawCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private readonly StationCorporateLawSystem _stationLaw = default!;
+
+    private static readonly Color MitigatingColor = Color.FromHex("#00ff9d");
+    private static readonly Color AggravatingColor = Color.FromHex("#ff4d4d");
 
     public override void Initialize()
     {
@@ -22,9 +24,11 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
 
     private void OnUiReady(Entity<CorporateLawCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        var lawsetId = _config.GetCVar(SunriseCCVars.CorporateLawSet);
-        if (!_prototype.TryIndex<CorporateLawsetPrototype>(lawsetId, out var lawset))
+        var lawsetComp = _stationLaw.GetStationLawset(args.Loader);
+        if (lawsetComp == null)
             return;
+
+        var lawset = lawsetComp.Value.Comp;
 
         var sections = new List<LawSection>();
 
@@ -82,12 +86,12 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
 
             if (mitEntries.Count > 0)
             {
-                sections.Add(new LawSection(Loc.GetString("sunrise-records-mitigating-circumstances"), Color.FromHex("#00ff9d"), mitEntries));
+                sections.Add(new LawSection(Loc.GetString("sunrise-records-mitigating-circumstances"), MitigatingColor, mitEntries));
             }
 
             if (aggEntries.Count > 0)
             {
-                sections.Add(new LawSection(Loc.GetString("sunrise-records-aggravating-circumstances"), Color.FromHex("#ff4d4d"), aggEntries));
+                sections.Add(new LawSection(Loc.GetString("sunrise-records-aggravating-circumstances"), AggravatingColor, aggEntries));
             }
         }
 

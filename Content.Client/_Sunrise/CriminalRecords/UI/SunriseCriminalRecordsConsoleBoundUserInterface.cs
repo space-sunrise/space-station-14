@@ -1,6 +1,8 @@
+using System.Linq;
 using Content.Shared._Sunrise.CriminalRecords;
-using Robust.Client.GameObjects;
+using Content.Shared._Sunrise.Laws;
 using Robust.Client.UserInterface;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.CriminalRecords.UI;
 
@@ -37,9 +39,13 @@ public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserI
         SendMessage(new SunriseCriminalRecordsCreateCaseMessage());
     }
 
-    public void UpdateCase(uint caseId, List<string> laws, List<string> circumstances, string? notes)
+    public void UpdateCase(uint caseId, List<ProtoId<CorporateLawPrototype>> laws, List<ProtoId<CorporateLawPrototype>> circumstances, string? notes)
     {
-        SendMessage(new SunriseCriminalRecordsUpdateCaseMessage(caseId, laws, circumstances, notes));
+        SendMessage(new SunriseCriminalRecordsUpdateCaseMessage(
+            caseId,
+            laws,
+            circumstances,
+            notes));
     }
 
     public void CloseCase(uint caseId)

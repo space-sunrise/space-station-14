@@ -1,4 +1,6 @@
 using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
+using Content.Shared._Sunrise.Laws;
 
 namespace Content.Shared._Sunrise.CriminalRecords;
 
@@ -14,14 +16,16 @@ public enum CriminalCaseStatus : byte
 [Serializable, NetSerializable]
 public sealed class CriminalCase
 {
-    [ViewVariables]
     public uint Id;
 
     [ViewVariables]
-    public List<string> Laws = new();
+    public NetEntity? OriginStation;
 
     [ViewVariables]
-    public List<string> Circumstances = new();
+    public List<ProtoId<CorporateLawPrototype>> Laws = new();
+
+    [ViewVariables]
+    public List<ProtoId<CorporateLawPrototype>> Circumstances = new();
 
     [ViewVariables]
     public CriminalCaseStatus Status = CriminalCaseStatus.Open;

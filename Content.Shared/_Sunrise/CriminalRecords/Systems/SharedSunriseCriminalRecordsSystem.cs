@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Sunrise.Laws;
+using Content.Shared._Sunrise.Laws.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.CriminalRecords.Systems;
@@ -7,11 +8,23 @@ namespace Content.Shared._Sunrise.CriminalRecords.Systems;
 public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedStationCorporateLawSystem _corporateLawSystem = default!;
 
     public int CalculateSentence(CriminalCase @case, List<CriminalCase> allCases)
     {
-        if (!_prototypeManager.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-            return 0;
+        // Use the shared law system for robust resolution with fallbacks
+        _corporateLawSystem.GetEffectiveLawset(@case.OriginStation, out var provisions, out var articles, out var circumstances, out var threshold);
+
+        return CalculateSentence(@case, allCases, provisions, circumstances, articles);
+    }
+
+    private int CalculateSentence(
+        CriminalCase @case,
+        List<CriminalCase> allCases,
+        List<ProtoId<CorporateLawPrototype>> provisions,
+        List<ProtoId<CorporateLawPrototype>> circumstances,
+        List<ProtoId<CorporateLawSectionPrototype>> articles)
+    {
 
         // 1. Group articles by section and find maximum for each
         var sectionMaxes = new Dictionary<string, int>();
@@ -19,23 +32,32 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
 
         foreach (var lawId in @case.Laws)
         {
-            if (!_prototypeManager.TryIndex<CorporateLawPrototype>(lawId, out var law))
+            if (!_prototypeManager.TryIndex(lawId, out var law))
+                continue;
+
+            // --- FILTER: Check if law is in the provided provisions or articles ---
+            bool isValid = provisions.Contains(lawId);
+            string sectionId = "unknown";
+
+            foreach (var s in articles)
+            {
+                if (!_prototypeManager.TryIndex(s, out var section) || !section.Entries.Contains(lawId))
+                    continue;
+                sectionId = s;
+                isValid = true;
+                break;
+            }
+
+            if (!isValid)
                 continue;
 
             heaviestArticleBase = Math.Max(heaviestArticleBase, law.BaseSentence);
 
-            // Find section
-            string sectionId = "unknown";
-            foreach (var s in lawset.Articles)
+            if (sectionId != "unknown")
             {
-                if (!_prototypeManager.TryIndex<CorporateLawSectionPrototype>(s, out var section) || !section.Entries.Contains(lawId))
-                    continue;
-                sectionId = s;
-                break;
+                if (!sectionMaxes.TryGetValue(sectionId, out var currentMax) || law.BaseSentence > currentMax)
+                    sectionMaxes[sectionId] = law.BaseSentence;
             }
-
-            if (!sectionMaxes.TryGetValue(sectionId, out var currentMax) || law.BaseSentence > currentMax)
-                sectionMaxes[sectionId] = law.BaseSentence;
         }
 
         // 2. Sum up section maxes and apply cap
@@ -50,6 +72,10 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
         // Circumstances
         foreach (var circId in @case.Circumstances)
         {
+            // --- FILTER: Check if circumstance is in the provided list ---
+            if (!circumstances.Contains(circId))
+                continue;
+
             if (_prototypeManager.TryIndex<CorporateLawPrototype>(circId, out var law))
                 multiplierFactor *= law.SentenceMultiplier;
         }

@@ -331,6 +331,14 @@
     fireCost: 250
   - type: Appearance
   - type: AmmoCounter
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 20
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 20
+        staminaMultiplier: 8
 
 - type: entity
   id: WeaponMechCombatMissileRack8Frag
@@ -372,6 +380,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/ump45-1.ogg
       params:
         volume: -1
+  
   - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavy127mm
     fireCost: 9
@@ -379,3 +388,11 @@
   - type: AmmoCounter
   - type: StaticPrice
     price: 5000
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 20
+        staminaMultiplier: 8
+      Felinid:
+        knockback: 20
+        staminaMultiplier: 8

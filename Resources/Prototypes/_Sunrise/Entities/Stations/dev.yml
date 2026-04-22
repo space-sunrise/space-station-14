@@ -6,7 +6,7 @@
   - BaseStationJobsSpawning
   - BaseStationAllEventsEligible
   - BaseStationAlertLevels
-  - BaseStationNanotrasen 
+  - BaseStationNanotrasen
   components:
   - type: Transform
 
@@ -33,5 +33,6 @@
   - BaseStationMeteorSwarmTarget
   - BaseStationRandomXenoArtifact
   - BaseStationCriminalRecords
+  - BaseStationCorporateLaw
   components:
   - type: Transform

@@ -2,20 +2,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         HorizontalExpand="True"
         MinWidth="400"
-        MinHeight="32"
         ToggleMode="False"
         StyleClasses="ButtonSquare">
-    <BoxContainer Orientation="Horizontal" Margin="8 2" SeparationOverride="12" MouseFilter="Ignore">
-        <BoxContainer Orientation="Horizontal" MinWidth="120" SeparationOverride="8" MouseFilter="Ignore">
-            <Label Name="CaseIdLabel" StyleClasses="LabelHeading" VerticalAlignment="Center" MouseFilter="Ignore"/>
-            <Label Name="StatusLabel" StyleClasses="LabelSecondaryColor" VerticalAlignment="Center" MouseFilter="Ignore"/>
-        </BoxContainer>
+    <PanelContainer Name="MainPanel" MouseFilter="Ignore" HorizontalExpand="True">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="0" MouseFilter="Ignore">
+            <!-- Left Color Strip -->
+            <PanelContainer Name="LateralStrip" MinWidth="4" MaxWidth="4" VerticalExpand="True" MouseFilter="Ignore"/>
+            
+            <BoxContainer Orientation="Horizontal" Margin="8 6" SeparationOverride="12" MouseFilter="Ignore" HorizontalExpand="True">
+                <!-- Case Info Column -->
+                <BoxContainer Orientation="Vertical" MinWidth="110" SeparationOverride="0" MouseFilter="Ignore" VerticalAlignment="Center">
+                    <Label Name="CaseIdLabel" StyleClasses="LabelHeading" MouseFilter="Ignore"/>
+                    <Label Name="StatusLabel" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore" Margin="0 -2 0 0"/>
+                </BoxContainer>
 
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center" MouseFilter="Ignore">
-            <Label Name="LawsSummaryLabel" ClipText="True" MouseFilter="Ignore"/>
-            <BoxContainer Name="CircumstancesContainer" Orientation="Vertical" MouseFilter="Ignore"/>
-        </BoxContainer>
+                <!-- Laws & Circumstances Main Column -->
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" MouseFilter="Ignore" VerticalAlignment="Center">
+                    <RichTextLabel Name="LawsRichLabel" MouseFilter="Ignore" VerticalExpand="False"/>
+                    <BoxContainer Name="StatsContainer" Orientation="Horizontal" SeparationOverride="8" MouseFilter="Ignore">
+                        <Label Name="MitigatingPercentLabel" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore" Visible="False"/>
+                        <Label Name="AggravatingPercentLabel" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore" Visible="False"/>
+                    </BoxContainer>
+                    <!-- Hidden legacy container for safety, though we use percentages now -->
+                    <BoxContainer Name="CircumstancesContainer" Orientation="Vertical" MouseFilter="Ignore" Visible="False"/>
+                </BoxContainer>
 
-        <Label Text="→" VerticalAlignment="Center" Margin="4 0" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore"/>
-    </BoxContainer>
+                <!-- Right Sentencing Column -->
+                <BoxContainer Name="SentenceContainer" Orientation="Vertical" MinWidth="80" VerticalAlignment="Center" MouseFilter="Ignore">
+                     <Label Name="SentenceTitleLabel" Text="{Loc 'sunrise-records-sentence-header'}" StyleClasses="LabelSecondaryColor" HorizontalAlignment="Right" MouseFilter="Ignore"/>
+                     <Label Name="SentenceValueLabel" StyleClasses="LabelHeading" HorizontalAlignment="Right" MouseFilter="Ignore"/>
+                </BoxContainer>
+
+                <Label Text="{Loc 'sunrise-records-case-list-arrow'}" VerticalAlignment="Center" Margin="4 0" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore"/>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
 </Button>

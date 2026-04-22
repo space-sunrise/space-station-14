@@ -1,15 +1,15 @@
 using System.Linq;
+using Content.Server._Sunrise.Laws.Systems;
 using Content.Server.Access.Systems;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Sunrise.CriminalRecords;
 using Content.Shared._Sunrise.CriminalRecords.Components;
+using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.DeviceLinking;
 using Content.Server.DeviceLinking.Systems;
-using Content.Server._Sunrise.CriminalRecords.Components;
-using Content.Shared._Sunrise.Laws;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access;
 using Robust.Server.GameObjects;
@@ -29,8 +29,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     [Dependency] private readonly PrisonLockerSystem _locker = default!;
     [Dependency] private readonly PrisonTimerSystem _timer = default!;
     [Dependency] private readonly PrisonCellDoorSystem _door = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly StationCorporateLawSystem _stationLaw = default!;
 
     private const int NumCells = 10;
     private readonly List<int> _toRemove = new();
@@ -134,7 +134,6 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             if (cellIndex >= 0)
                 SendCellSignals(uid, cellIndex, true, accessId, TimeSpan.FromMinutes(@case.CalculatedSentence));
 
-            Dirty(station, sunriseRecord);
             UpdateUserInterface(uid, component);
         }
     }
@@ -187,7 +186,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
         {
             var changed = false;
             _toRemove.Clear();
-            var threshold = GetPermanentThreshold();
+            var threshold = GetPermanentThreshold(uid);
             foreach (var entry in component.ActiveIncarcerations)
             {
                 var cellIdx = entry.Key;
@@ -215,12 +214,6 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
         }
     }
 
-    private int GetPermanentThreshold()
-    {
-        if (_proto.TryIndex<CorporateLawsetPrototype>("StandardCorporateLaw", out var lawset))
-            return lawset.PermanentSentenceThreshold;
-        return 50;
-    }
 
     private void FinishIncarceration(EntityUid uid, PrisonerManagementConsoleComponent component, int cellIndex, ActiveIncarceration incar)
     {
@@ -232,7 +225,6 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
                 if (@case != null)
                 {
                     @case.Status = CriminalCaseStatus.Finished;
-                    Dirty(incar.RecordKey.OriginStation, sunrise);
                 }
             }
         }
@@ -316,7 +308,17 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             }
         }
 
-        var state = new PrisonerManagementConsoleState(waiting, inProgress, finished, cellOccupied, cellEquipped, GetPermanentThreshold());
+        var state = new PrisonerManagementConsoleState(waiting, inProgress, finished, cellOccupied, cellEquipped, GetPermanentThreshold(uid));
         _ui.SetUiState(uid, PrisonerManagementConsoleKey.Key, state);
+    }
+
+    private int GetPermanentThreshold(EntityUid console)
+    {
+        var lawset = _stationLaw.GetStationLawset(console);
+        if (lawset != null)
+            return lawset.Value.Comp.PermanentSentenceThreshold;
+
+        // Fallback
+        return 50;
     }
 }

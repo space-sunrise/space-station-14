@@ -7,6 +7,11 @@
   components:
   - type: Sprite
     state: mecha_drill
+  # Sunrise-start
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+    heldPrefix: drill
+  # Sunrise-end
   - type: Tag
     tags:
     - Pickaxe
@@ -33,6 +38,11 @@
   components:
   - type: Sprite
     state: mecha_diamond_drill
+  # Sunrise-start
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+    heldPrefix: ddrill
+  # Sunrise-end
   - type: Tag
     tags:
     - Pickaxe
