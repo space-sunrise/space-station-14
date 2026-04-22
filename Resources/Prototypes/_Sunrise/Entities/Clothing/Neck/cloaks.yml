@@ -312,6 +312,17 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: ClothingClothingNeckCLoakTSF
+  name: tsf overcoat
+  description: Some tsf item
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/tsfdetective.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/tsfdetective.rsi
+
+- type: entity
+  parent: ClothingNeckBase
   id: ClothingNeckCloakContrib
   name: Contributors cloak
   description: This cat hold up this station.

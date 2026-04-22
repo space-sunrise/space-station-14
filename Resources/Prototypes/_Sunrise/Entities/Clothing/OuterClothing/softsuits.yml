@@ -288,3 +288,32 @@
     sprite: _Sunrise/Clothing/OuterClothing/Armor/tsfleader.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Armor/tsfleader.rsi
+
+- type: entity
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase]
+  id: ClothingOuterArmorTSFanother
+  name: heavvy vest
+  description: heavvy vest for NTRG Sqaud
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/tsfarmor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/tsfarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.50
+        Heat: 0.60
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1
