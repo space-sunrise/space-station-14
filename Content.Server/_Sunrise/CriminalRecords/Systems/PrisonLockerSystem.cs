@@ -1,4 +1,5 @@
 using Content.Shared.Access.Components;
+using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Shared._Sunrise.CriminalRecords.Components;
 using Content.Shared.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
@@ -47,6 +48,22 @@ public sealed class PrisonLockerSystem : EntitySystem
         }
     }
 
+    public void UnlockLocker(EntityUid uid)
+    {
+        if (TryComp<AccessReaderComponent>(uid, out var reader))
+        {
+            _accessReader.SetActive((uid, reader), false);
+
+            if (TryComp<PrisonLockerComponent>(uid, out var locker))
+            {
+                if (!string.IsNullOrEmpty(locker.AccessId))
+                    _accessReader.TryRemoveAccess((uid, reader), new ProtoId<AccessLevelPrototype>(locker.AccessId));
+
+                locker.AccessId = string.Empty;
+            }
+        }
+    }
+
     private void OnSignalReceived(Entity<PrisonLockerComponent> ent, ref SignalReceivedEvent args)
     {
         if (args.Port == "PrisonLockerLock")
@@ -56,8 +73,7 @@ public sealed class PrisonLockerSystem : EntitySystem
         }
         else if (args.Port == "PrisonLockerUnlock")
         {
-            // For now, we don't allow remote unlocking of the entire access reader.
-            // Security can always open it locally.
+            UnlockLocker(ent.Owner);
         }
     }
 

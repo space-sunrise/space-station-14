@@ -18,7 +18,7 @@ public sealed partial class ToolTileCompatibleComponent : Component
     /// The time it takes to modify the tile.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan Delay = TimeSpan.FromSeconds(0); // Sunrise-Edit
+    public TimeSpan Delay = TimeSpan.FromSeconds(0.1f); // Sunrise-Edit
 
     /// <summary>
     /// Whether or not the tile being modified must be unobstructed
