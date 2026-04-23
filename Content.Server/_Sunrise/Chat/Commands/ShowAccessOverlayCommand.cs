@@ -1,33 +1,35 @@
-using Content.Client._Sunrise.Sandbox.Transparency.Systems;
+using Content.Server.Administration;
+using Content.Shared._Sunrise.Misc.Events;
+using Content.Shared.Administration;
 using Robust.Shared.Console;
 
-namespace Content.Client._Sunrise.Sandbox;
+namespace Content.Server._Sunrise.Chat.Commands;
 
 /// <summary>
 /// Console command that toggles the mapping transparency overlay for mapper admins.
 /// </summary>
-public sealed class ShowMappingTransparencyCommand : LocalizedEntityCommands
+[AdminCommand(AdminFlags.Admin)]
+public sealed class ShowAccessOverlayCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly MappingTransparencySystem _mappingTransparency = default!;
-
     /// <summary>
     /// Gets the console verb used to toggle the overlay.
     /// </summary>
-    public override string Command => "showmappingtransparency";
+    public override string Command => "showaccessoverlay";
 
     /// <summary>
     /// Toggles the mapping transparency overlay and reports the resulting state to the caller.
     /// </summary>
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_mappingTransparency.TrySetEnabled(!_mappingTransparency.Enabled))
+        if (shell.Player == null)
         {
             shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-denied"));
             return;
         }
 
-        shell.WriteLine(LocalizationManager.GetString(_mappingTransparency.Enabled
-            ? $"cmd-{Command}-status-on"
-            : $"cmd-{Command}-status-off"));
+        var ev = new ToggleAccessOverlayEvent();
+        EntityManager.EntityNetManager.SendSystemNetworkMessage(ev, shell.Player.Channel);
+
+        shell.WriteLine(LocalizationManager.GetString($"cmd-{Command}-status"));
     }
 }
