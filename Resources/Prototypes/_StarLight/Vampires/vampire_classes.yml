@@ -2,7 +2,7 @@
   id: Hemomancer
   tooltip: vampire-class-hemomancer-tooltip
   icon:
-    sprite: _Starlight/Vampire/Haemomancer.rsi
+    sprite: _Starlight/Vampire/haemomancer.rsi
     state: claws
   classComponent: Hemomancer
   actions:
@@ -18,7 +18,7 @@
   id: Umbrae
   tooltip: vampire-class-umbrae-tooltip
   icon:
-    sprite: _Starlight/Vampire/Umbrae.rsi
+    sprite: _Starlight/Vampire/umbrae.rsi
     state: cloak_of_darkness
   classComponent: Umbrae
   actions:
@@ -34,7 +34,7 @@
   id: Gargantua
   tooltip: vampire-class-gargantua-tooltip
   icon:
-    sprite: _Starlight/Vampire/Gargantua.rsi
+    sprite: _Starlight/Vampire/gargantua.rsi
     state: blood_swell
   classComponent: Gargantua
   actions:
@@ -49,7 +49,7 @@
   id: Dantalion
   tooltip: vampire-class-dantalion-tooltip
   icon:
-    sprite: _Starlight/Vampire/Dantalion.rsi
+    sprite: _Starlight/Vampire/dantalion.rsi
     state: enthrall
   classComponent: Dantalion
   actions:

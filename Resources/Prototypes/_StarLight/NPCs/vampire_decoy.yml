@@ -11,7 +11,7 @@
   components:
   - type: Transform
   - type: Sprite
-    sprite: _Starlight/Vampire/Dantalion.rsi
+    sprite: _Starlight/Vampire/dantalion.rsi
     state: decoy
   - type: Physics
     bodyType: KinematicController

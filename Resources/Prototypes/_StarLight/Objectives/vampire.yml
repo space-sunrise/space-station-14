@@ -192,7 +192,7 @@
     difficulty: 0.1
     unique: false
     icon:
-      sprite: /Textures/_Starlight/Vampire/Dantalion.rsi
+      sprite: /Textures/_Starlight/Vampire/dantalion.rsi
       state: thralls_up
   - type: FreeObjective
   - type: TargetObjective
