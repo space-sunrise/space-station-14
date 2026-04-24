@@ -7,6 +7,7 @@ public sealed class CarryingSlowdownSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
@@ -26,11 +27,11 @@ public sealed class CarryingSlowdownSystem : EntitySystem
     }
 
     /// <summary>
-    /// Sets the movement speed modifiers for carrying slowdown
+    /// Sets the movement speed modifiers for carrying slowdown.
     /// </summary>
-    /// <param name="uid">Entity that will receive the slowdown</param>
-    /// <param name="walkSpeedModifier">Modifier for walking speed</param>
-    /// <param name="sprintSpeedModifier">Modifier for sprint speed</param>
+    /// <param name="uid">Entity that will receive the slowdown.</param>
+    /// <param name="walkSpeedModifier">Modifier for walking speed.</param>
+    /// <param name="sprintSpeedModifier">Modifier for sprinting speed.</param>
     [PublicAPI]
     public void SetModifier(EntityUid uid, float walkSpeedModifier = 1f, float sprintSpeedModifier = 1f)
     {

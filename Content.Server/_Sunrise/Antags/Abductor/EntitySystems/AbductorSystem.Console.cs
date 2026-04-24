@@ -159,7 +159,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         var target = GetEntity(ent.Comp.Target.Value);
 
-        if (HasComp<CarryingComponent>(target))
+        if (HasComp<ActiveCarrierComponent>(target))
         {
             _popupSystem.PopupCursor(Loc.GetString("need-stop-carry"), args.Actor, PopupType.MediumCaution);
             return;

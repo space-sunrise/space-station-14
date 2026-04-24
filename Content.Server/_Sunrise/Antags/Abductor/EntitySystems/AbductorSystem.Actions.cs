@@ -102,7 +102,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
             EnsureComp<AbductorScientistComponent>(ev.Performer, out scientistComp);
 
-        if (HasComp<CarryingComponent>(ev.Performer))
+        if (HasComp<ActiveCarrierComponent>(ev.Performer))
         {
             _popupSystem.PopupEntity(Loc.GetString("need-stop-carry"), ev.Performer, ev.Performer, PopupType.MediumCaution);
             return;

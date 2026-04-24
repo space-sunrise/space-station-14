@@ -13,17 +13,18 @@ public sealed class CarryingSystem : SharedCarryingSystem
 
     private const float MultiplierDivisor = 2f;
 
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BeingCarriedComponent, MoveInputEvent>(OnMoveInput);
+        SubscribeLocalEvent<ActiveCanBeCarriedComponent, MoveInputEvent>(OnMoveInput);
     }
 
     /// <summary>
     /// Try to escape via the escape inventory system.
     /// </summary>
-    private void OnMoveInput(Entity<BeingCarriedComponent> ent, ref MoveInputEvent args)
+    private void OnMoveInput(Entity<ActiveCanBeCarriedComponent> ent, ref MoveInputEvent args)
     {
         if (!TryComp<CanEscapeInventoryComponent>(ent, out var escape))
             return;

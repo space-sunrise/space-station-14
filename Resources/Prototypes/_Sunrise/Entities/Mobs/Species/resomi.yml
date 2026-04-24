@@ -98,7 +98,7 @@
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
-  - type: Carriable
+  - type: CanBeCarried
     requiresNestingMob: true
   - type: InteractionPopup
     successChance: 0.9

@@ -216,7 +216,6 @@
     minds:
     - Xeno
   - type: FootprintEmitter
-  - type: Carriable
 
 - type: entity
   parent: BaseSpeciesDummy

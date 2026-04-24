@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.Movement.Carrying.Slowdown;
+using Content.Shared._Sunrise.Movement.Carrying.Slowdown;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Coordinates;
 using Content.Shared.Hands.EntitySystems;
@@ -14,6 +14,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
@@ -34,28 +35,47 @@ public abstract partial class SharedCarryingSystem
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     #region Start carrying
 
+    /// <summary>
+    /// Tries to start carrying a target entity.
+    /// </summary>
+    /// <param name="carrier">Entity that should carry the target.</param>
+    /// <param name="target">Entity that should be carried.</param>
+    /// <returns>True if carrying was started successfully.</returns>
     [PublicAPI]
-    public bool TryStartCarry(EntityUid carrier, Entity<CarriableComponent?> target)
+    public bool TryStartCarry(Entity<CarrierComponent?> carrier, Entity<CanBeCarriedComponent?> target)
     {
-        if (!Resolve(target, ref target.Comp, false))
+        if (!Resolve(carrier, ref carrier.Comp, false) ||
+            !Resolve(target, ref target.Comp, false))
             return false;
 
         if (!CanCarry(carrier, target))
             return false;
 
-        StartCarry(carrier, target!);
+        StartCarry(carrier!, target!);
         return true;
     }
 
-    protected bool CanCarry(EntityUid carrier, Entity<CarriableComponent?> target)
+    /// <summary>
+    /// Checks whether the carrier is currently allowed to carry the target.
+    /// </summary>
+    /// <param name="carrier">Entity that wants to carry the target.</param>
+    /// <param name="target">Entity that would be carried.</param>
+    /// <returns>True if the carry action can be started.</returns>
+    protected bool CanCarry(Entity<CarrierComponent?> carrier, Entity<CanBeCarriedComponent?> target)
     {
-        if (carrier == target.Owner)
+        if (carrier.Owner == target.Owner)
             return false;
 
-        if (!Resolve(target, ref target.Comp, false))
+        if (!Resolve(carrier, ref carrier.Comp, false) ||
+            !Resolve(target, ref target.Comp, false))
+            return false;
+
+        if (!_whitelist.CheckBoth(target.Owner, carrier.Comp.TargetBlacklist, carrier.Comp.TargetWhitelist) ||
+            !_whitelist.CheckBoth(carrier.Owner, target.Comp.CarrierBlacklist, target.Comp.CarrierWhitelist))
             return false;
 
         var targetEv = new StartBeingCarryAttemptEvent(carrier);
@@ -64,64 +84,73 @@ public abstract partial class SharedCarryingSystem
             return false;
 
         var carrierEv = new StartCarryAttemptEvent(target);
-        RaiseLocalEvent(target, ref carrierEv);
+        RaiseLocalEvent(carrier, ref carrierEv);
         if (carrierEv.Cancelled)
             return false;
 
         if (!HasComp<MapGridComponent>(Transform(carrier).ParentUid))
             return false;
 
-        if (HasComp<BeingCarriedComponent>(carrier) || HasComp<BeingCarriedComponent>(target))
+        if (HasComp<ActiveCanBeCarriedComponent>(carrier) || HasComp<ActiveCanBeCarriedComponent>(target))
             return false;
 
-        if (_hands.CountFreeHands(carrier) < target.Comp.FreeHandsRequired)
+        if (_hands.CountFreeHands(carrier.Owner) < target.Comp.FreeHandsRequired)
             return false;
 
-        if (!_interaction.InRangeUnobstructed(carrier, target.Owner, CarryInteractionRange))
+        if (!_interaction.InRangeUnobstructed(carrier.Owner, target.Owner, carrier.Comp.InteractionRange))
             return false;
 
-        if (!_mobState.IsAlive(carrier))
+        if (!_mobState.IsAlive(carrier.Owner))
             return false;
 
         return true;
     }
 
-    private void StartCarry(EntityUid carrier, Entity<CarriableComponent> target)
+    private void StartCarry(Entity<CarrierComponent> carrier, Entity<CanBeCarriedComponent> target)
     {
-        if (HasComp<BeingCarriedComponent>(carrier))
-            TryDropCarried(carrier);
+        var carrierUid = carrier.Owner;
+        var targetUid = target.Owner;
+
+        if (HasComp<ActiveCanBeCarriedComponent>(carrierUid))
+            TryDropCarried(carrierUid);
 
         if (TryComp<PullableComponent>(target, out var pullable))
-            _pulling.TryStopPull(target, pullable, carrier);
+            _pulling.TryStopPull(targetUid, pullable, carrierUid);
 
-        _transform.AttachToGridOrMap(carrier);
-        _transform.SetCoordinates(target, carrier.ToCoordinates());
-        _transform.SetParent(target, carrier);
+        _transform.AttachToGridOrMap(carrierUid);
+        _transform.SetCoordinates(targetUid, carrierUid.ToCoordinates());
+        _transform.SetParent(targetUid, carrierUid);
 
         for (var i = 0; i < target.Comp.FreeHandsRequired; i++)
         {
-            _virtualItem.TrySpawnVirtualItemInHand(target, carrier);
+            _virtualItem.TrySpawnVirtualItemInHand(targetUid, carrierUid);
         }
 
-        var carryingComp = EnsureComp<CarryingComponent>(carrier);
-        ApplyCarrySlowdown(carrier, target);
-        var carriedComp = EnsureComp<BeingCarriedComponent>(target);
-        EnsureComp<KnockedDownComponent>(target);
+        var activeCarrier = EnsureComp<ActiveCarrierComponent>(carrierUid);
+        ApplySlowdown(carrier, target);
+        var activeCanBeCarried = EnsureComp<ActiveCanBeCarriedComponent>(targetUid);
+        EnsureComp<KnockedDownComponent>(targetUid);
 
-        carryingComp.Target = target;
-        carriedComp.Carrier = carrier;
+        activeCarrier.Target = targetUid;
+        activeCanBeCarried.Carrier = carrierUid;
+        Dirty(carrierUid, activeCarrier);
         Dirty(target);
-        Dirty(target, carriedComp);
+        Dirty(targetUid, activeCanBeCarried);
 
-        _actionBlocker.UpdateCanMove(target);
+        _actionBlocker.UpdateCanMove(targetUid);
     }
 
     #endregion
 
     #region Drop carryied
 
+    /// <summary>
+    /// Tries to drop this entity from its current carrier.
+    /// </summary>
+    /// <param name="ent">Entity currently being carried.</param>
+    /// <returns>True if the carried entity was dropped.</returns>
     [PublicAPI]
-    public bool TryDropCarriedByTarget(Entity<BeingCarriedComponent?> ent)
+    public bool TryDropCarriedByTarget(Entity<ActiveCanBeCarriedComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -132,8 +161,13 @@ public abstract partial class SharedCarryingSystem
         return TryDropCarried(ent.Comp.Carrier.Value);
     }
 
+    /// <summary>
+    /// Tries to drop the entity currently carried by this carrier.
+    /// </summary>
+    /// <param name="ent">Entity currently carrying another entity.</param>
+    /// <returns>True if a carried entity was dropped.</returns>
     [PublicAPI]
-    public bool TryDropCarried(Entity<CarryingComponent?> ent)
+    public bool TryDropCarried(Entity<ActiveCarrierComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -148,9 +182,9 @@ public abstract partial class SharedCarryingSystem
     private void DropCarried(EntityUid carrier, EntityUid target)
     {
         RemComp<KnockedDownComponent>(target);
-        RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recusrively fire that event
+        RemComp<ActiveCarrierComponent>(carrier); // get rid of this first so we don't recusrively fire that event
         RemComp<CarryingSlowdownComponent>(carrier);
-        RemComp<BeingCarriedComponent>(target);
+        RemComp<ActiveCanBeCarriedComponent>(target);
 
         _actionBlocker.UpdateCanMove(target);
         _virtualItem.DeleteInHandsMatching(carrier, target);
@@ -168,17 +202,28 @@ public abstract partial class SharedCarryingSystem
 
     #region Other APIs
 
-    protected void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
+    /// <summary>
+    /// Applies movement slowdown to the carrier based on carried entity and mass ratio.
+    /// </summary>
+    /// <param name="carrier">Entity that receives the slowdown.</param>
+    /// <param name="carried">Entity being carried.</param>
+    protected void ApplySlowdown(Entity<CarrierComponent> carrier, Entity<CanBeCarriedComponent> carried)
     {
-        var massRatio = MassContest(carrier, carried);
+        var massRatio = MassContest(carrier.Owner, carried.Owner);
         var mobState = TryComp<MobStateComponent>(carried, out var mobStateComp)
             ? mobStateComp.CurrentState
             : MobState.Invalid;
 
-        var modifier = CalculateCarrySlowdownModifier(mobState, massRatio);
-        _slowdown.SetModifier(carrier, modifier, modifier);
+        var modifier = CalculateSpeedModifier(mobState, massRatio, carrier.Comp, carried.Comp);
+        _slowdown.SetModifier(carrier.Owner, modifier, modifier);
     }
 
+    /// <summary>
+    /// Calculates the mass ratio between two entities.
+    /// </summary>
+    /// <param name="roller">Entity whose mass is compared against the target.</param>
+    /// <param name="target">Entity used as the mass comparison target.</param>
+    /// <returns>Mass ratio of roller to target, or 1 if either mass cannot be read safely.</returns>
     protected float MassContest(Entity<PhysicsComponent?> roller, Entity<PhysicsComponent?> target)
     {
         if (!Resolve(roller, ref roller.Comp, false) || !Resolve(target, ref target.Comp, false))
@@ -190,38 +235,63 @@ public abstract partial class SharedCarryingSystem
         return roller.Comp.FixturesMass / target.Comp.FixturesMass;
     }
 
-    protected static float CalculateCarryThrowSpeed(float baseThrowSpeed, float massRatio)
+    /// <summary>
+    /// Calculates throw speed for a carried entity.
+    /// </summary>
+    /// <param name="baseThrowSpeed">Original throw speed from the throw action.</param>
+    /// <param name="massRatio">Mass ratio between the carrier and carried entity.</param>
+    /// <param name="carrier">Carrier configuration used for throw speed limits.</param>
+    /// <returns>Final throw speed clamped to carrier limits.</returns>
+    protected static float CalculateThrowSpeed(float baseThrowSpeed, float massRatio, CarrierComponent carrier)
     {
-        var massModifier = MathF.Pow(MathF.Max(massRatio, 0f), CarryThrowMassExponent);
-        var speed = baseThrowSpeed * CarryThrowSpeedModifier * massModifier;
-        return Math.Clamp(speed, MinCarryThrowSpeed, MaxCarryThrowSpeed);
+        var massModifier = MathF.Pow(MathF.Max(massRatio, 0f), carrier.ThrowMassExponent);
+        var speed = baseThrowSpeed * carrier.ThrowSpeedModifier * massModifier;
+        return Math.Clamp(speed, carrier.MinThrowSpeed, carrier.MaxThrowSpeed);
     }
 
-    protected static float CalculateCarryThrowDistance(float throwSpeed)
+    /// <summary>
+    /// Calculates throw distance for a carried entity.
+    /// </summary>
+    /// <param name="throwSpeed">Final throw speed.</param>
+    /// <param name="carrier">Carrier configuration used for throw distance limits.</param>
+    /// <returns>Final throw distance clamped to carrier limits.</returns>
+    protected static float CalculateThrowDistance(float throwSpeed, CarrierComponent carrier)
     {
-        var distance = throwSpeed * throwSpeed / CarryThrowGravity;
-        return Math.Clamp(distance, MinCarryThrowDistance, MaxCarryThrowDistance);
+        var distance = throwSpeed * throwSpeed / carrier.ThrowGravity;
+        return Math.Clamp(distance, carrier.MinThrowDistance, carrier.MaxThrowDistance);
     }
 
-    protected static float CalculateCarrySlowdownModifier(MobState mobState, float massRatio)
+    /// <summary>
+    /// Calculates the movement speed modifier applied while carrying an entity.
+    /// </summary>
+    /// <param name="mobState">Current mob state of the carried entity.</param>
+    /// <param name="massRatio">Mass ratio between the carrier and carried entity.</param>
+    /// <param name="carrier">Carrier configuration used for mass slowdown limits.</param>
+    /// <param name="carried">Carried entity configuration used for base slowdown values.</param>
+    /// <returns>Final movement speed modifier clamped to carrier limits.</returns>
+    protected static float CalculateSpeedModifier(
+        MobState mobState,
+        float massRatio,
+        CarrierComponent carrier,
+        CanBeCarriedComponent carried)
     {
         var baseModifier = mobState is MobState.Critical or MobState.Dead
-            ? IncapacitatedCarrySlowdownModifier
-            : DefaultCarrySlowdownModifier;
+            ? carried.IncapacitatedCarrierSpeedModifier
+            : carried.CarrierSpeedModifier;
 
-        var massModifier = CalculateCarrySlowdownMassModifier(massRatio);
+        var massModifier = CalculateMassSpeedModifier(massRatio, carrier);
         var modifier = baseModifier * massModifier;
 
-        return Math.Clamp(modifier, MinimumSpeedModifier, 1f);
+        return Math.Clamp(modifier, carrier.MinSpeedModifier, 1f);
     }
 
-    private static float CalculateCarrySlowdownMassModifier(float massRatio)
+    private static float CalculateMassSpeedModifier(float massRatio, CarrierComponent carrier)
     {
         if (massRatio <= 0f)
-            return MinCarrySlowdownMassModifier;
+            return carrier.MinMassSlowdownModifier;
 
-        var modifier = 1f + MathF.Log2(massRatio) * CarrySlowdownMassInfluence;
-        return Math.Clamp(modifier, MinCarrySlowdownMassModifier, MaxCarrySlowdownMassModifier);
+        var modifier = 1f + MathF.Log2(massRatio) * carrier.MassSlowdownInfluence;
+        return Math.Clamp(modifier, carrier.MinMassSlowdownModifier, carrier.MaxMassSlowdownModifier);
     }
 
     private void ShowCarryPopup(string locString, Filter filter, PopupType type, EntityUid carrier, EntityUid target)

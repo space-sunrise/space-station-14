@@ -46,7 +46,7 @@ public abstract class SharedNestingSystem : EntitySystem
         SubscribeLocalEvent<NestingMobComponent, NestingPickupDoAfterEvent>(OnPickupDoAfter);
         SubscribeLocalEvent<NestingContainerComponent, GetVerbsEvent<AlternativeVerb>>(AddInsertAltVerb);
         SubscribeLocalEvent<NestingContainerComponent, NestingInsertDoAfter>(OnInsertingDoAfter);
-        SubscribeLocalEvent<CarriableComponent, StartBeingCarryAttemptEvent>(OnCanCarry);
+        SubscribeLocalEvent<CanBeCarriedComponent, StartBeingCarryAttemptEvent>(OnCanCarry);
     }
 
     private void OnInteractAttempt(Entity<NestingMobComponent> ent, ref InteractionAttemptEvent args)
@@ -217,7 +217,7 @@ public abstract class SharedNestingSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnCanCarry(EntityUid uid, CarriableComponent component, StartBeingCarryAttemptEvent args)
+    private void OnCanCarry(EntityUid uid, CanBeCarriedComponent component, StartBeingCarryAttemptEvent args)
     {
         if (!HasComp<NestingMobComponent>(args.Carrier))
             args.Cancelled = true;
