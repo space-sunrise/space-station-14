@@ -35,6 +35,13 @@ public sealed class CarryingSlowdownSystem : EntitySystem
     [PublicAPI]
     public void SetModifier(EntityUid uid, float walkSpeedModifier = 1f, float sprintSpeedModifier = 1f)
     {
+        if (MathHelper.CloseTo(walkSpeedModifier, 1f) && MathHelper.CloseTo(sprintSpeedModifier, 1f))
+        {
+            RemComp<CarryingSlowdownComponent>(uid);
+            _movementSpeed.RefreshMovementSpeedModifiers(uid);
+            return;
+        }
+
         var comp = EnsureComp<CarryingSlowdownComponent>(uid);
         comp.WalkModifier = walkSpeedModifier;
         comp.SprintModifier = sprintSpeedModifier;

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared._Sunrise.Movement.Carrying;
 using Robust.Client.GameObjects;
@@ -25,7 +26,7 @@ public sealed class CarryingSystem : SharedCarryingSystem
     {
         base.Shutdown();
 
-        foreach (var uid in _visualStates.Keys)
+        foreach (var uid in _visualStates.Keys.ToArray())
         {
             RestoreCarriedVisual(uid);
         }

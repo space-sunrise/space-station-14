@@ -70,11 +70,12 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
             var target = comp.Target.Value;
             var expectedCoordinates = GetCarriedCoordinates(uid);
-            if (!expectedCoordinates.TryDistance(EntityManager, Transform(target).Coordinates, out var distance))
-                continue;
 
-            if (distance > carrier.MaxSeparation)
+            if (!expectedCoordinates.TryDistance(EntityManager, Transform(target).Coordinates, out var distance)
+                || distance > carrier.MaxSeparation)
+            {
                 DropCarried(uid, target);
+            }
         }
     }
 
@@ -99,6 +100,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
             },
             Text = Loc.GetString("carry-verb"),
             Priority = 2,
+            Icon = ent.Comp.VerbIcon,
         };
         args.Verbs.Add(verb);
     }
@@ -166,11 +168,8 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void OnParentChanged(Entity<ActiveCarrierComponent> ent, ref EntParentChangedMessage args)
     {
-        var xform = Transform(ent);
-        if (xform.ParentUid == args.OldParent)
-            return;
-
         // Do not drop the carried entity if the new parent is a grid
+        var xform = args.Transform;
         if (xform.ParentUid == xform.GridUid)
             return;
 
@@ -268,7 +267,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var mod = MassContest(carrier.Owner, carried.Owner);
 
-        if (mod != 0)
+        if (mod > 0)
             length /= mod;
 
         if (!HasComp<KnockedDownComponent>(carried))

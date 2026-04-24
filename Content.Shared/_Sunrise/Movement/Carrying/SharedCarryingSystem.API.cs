@@ -70,12 +70,27 @@ public abstract partial class SharedCarryingSystem
         if (carrier.Owner == target.Owner)
             return false;
 
+        if (!HasComp<MapGridComponent>(Transform(carrier).ParentUid))
+            return false;
+
+        if (HasComp<ActiveCanBeCarriedComponent>(carrier) || HasComp<ActiveCanBeCarriedComponent>(target))
+            return false;
+
         if (!Resolve(carrier, ref carrier.Comp, false) ||
             !Resolve(target, ref target.Comp, false))
             return false;
 
-        if (!_whitelist.CheckBoth(target.Owner, carrier.Comp.TargetBlacklist, carrier.Comp.TargetWhitelist) ||
-            !_whitelist.CheckBoth(carrier.Owner, target.Comp.CarrierBlacklist, target.Comp.CarrierWhitelist))
+        if (!_whitelist.CheckBoth(target, carrier.Comp.TargetBlacklist, carrier.Comp.TargetWhitelist) ||
+            !_whitelist.CheckBoth(carrier, target.Comp.CarrierBlacklist, target.Comp.CarrierWhitelist))
+            return false;
+
+        if (!_mobState.IsAlive(carrier.Owner))
+            return false;
+
+        if (_hands.CountFreeHands(carrier.Owner) < target.Comp.FreeHandsRequired)
+            return false;
+
+        if (!_interaction.InRangeUnobstructed(carrier.Owner, target.Owner, carrier.Comp.InteractionRange))
             return false;
 
         var targetEv = new StartBeingCarryAttemptEvent(carrier);
@@ -88,21 +103,6 @@ public abstract partial class SharedCarryingSystem
         if (carrierEv.Cancelled)
             return false;
 
-        if (!HasComp<MapGridComponent>(Transform(carrier).ParentUid))
-            return false;
-
-        if (HasComp<ActiveCanBeCarriedComponent>(carrier) || HasComp<ActiveCanBeCarriedComponent>(target))
-            return false;
-
-        if (_hands.CountFreeHands(carrier.Owner) < target.Comp.FreeHandsRequired)
-            return false;
-
-        if (!_interaction.InRangeUnobstructed(carrier.Owner, target.Owner, carrier.Comp.InteractionRange))
-            return false;
-
-        if (!_mobState.IsAlive(carrier.Owner))
-            return false;
-
         return true;
     }
 
@@ -111,7 +111,7 @@ public abstract partial class SharedCarryingSystem
         var carrierUid = carrier.Owner;
         var targetUid = target.Owner;
 
-        if (HasComp<ActiveCanBeCarriedComponent>(carrierUid))
+        if (HasComp<ActiveCarrierComponent>(carrierUid))
             TryDropCarried(carrierUid);
 
         if (TryComp<PullableComponent>(target, out var pullable))
@@ -122,7 +122,6 @@ public abstract partial class SharedCarryingSystem
         activeCarrier.Target = targetUid;
         activeCanBeCarried.Carrier = carrierUid;
         Dirty(carrierUid, activeCarrier);
-        Dirty(target);
         Dirty(targetUid, activeCanBeCarried);
 
         ApplySlowdown(carrier, target);
@@ -145,7 +144,7 @@ public abstract partial class SharedCarryingSystem
 
     #endregion
 
-    #region Drop carryied
+    #region Drop carried
 
     /// <summary>
     /// Tries to drop this entity from its current carrier.
@@ -244,18 +243,18 @@ public abstract partial class SharedCarryingSystem
     /// <summary>
     /// Calculates the mass ratio between two entities.
     /// </summary>
-    /// <param name="roller">Entity whose mass is compared against the target.</param>
+    /// <param name="carrier">Entity whose mass is compared against the target.</param>
     /// <param name="target">Entity used as the mass comparison target.</param>
     /// <returns>Mass ratio of roller to target, or 1 if either mass cannot be read safely.</returns>
-    protected float MassContest(Entity<PhysicsComponent?> roller, Entity<PhysicsComponent?> target)
+    protected float MassContest(Entity<PhysicsComponent?> carrier, Entity<PhysicsComponent?> target)
     {
-        if (!Resolve(roller, ref roller.Comp, false) || !Resolve(target, ref target.Comp, false))
+        if (!Resolve(carrier, ref carrier.Comp, false) || !Resolve(target, ref target.Comp, false))
             return 1f;
 
-        if (MathHelper.CloseTo(target.Comp.FixturesMass, 0f) || MathHelper.CloseTo(roller.Comp.FixturesMass, 0f))
+        if (MathHelper.CloseTo(target.Comp.FixturesMass, 0f) || MathHelper.CloseTo(carrier.Comp.FixturesMass, 0f))
             return 1f;
 
-        return roller.Comp.FixturesMass / target.Comp.FixturesMass;
+        return carrier.Comp.FixturesMass / target.Comp.FixturesMass;
     }
 
     /// <summary>

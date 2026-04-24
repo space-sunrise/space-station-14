@@ -217,7 +217,7 @@ public abstract class SharedNestingSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnCanCarry(EntityUid uid, CanBeCarriedComponent component, StartBeingCarryAttemptEvent args)
+    private void OnCanCarry(EntityUid uid, CanBeCarriedComponent component, ref StartBeingCarryAttemptEvent args)
     {
         if (!HasComp<NestingMobComponent>(args.Carrier))
             args.Cancelled = true;

@@ -54,7 +54,7 @@ public sealed class HumanoidPhysicalStatsSystem : EntitySystem
         if (MathF.Abs(defaultWeight) < 0.0001f)
             return 1f;
 
-        return MathF.Max(0f, GetProfileWeight(species, width, height) / defaultWeight);
+        return MathF.Max(0.01f, GetProfileWeight(species, width, height) / defaultWeight);
     }
 
     private static float GetProfileWeight(SpeciesPrototype species, float width, float height)

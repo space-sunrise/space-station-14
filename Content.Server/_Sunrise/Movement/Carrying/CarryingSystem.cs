@@ -22,7 +22,7 @@ public sealed class CarryingSystem : SharedCarryingSystem
     }
 
     /// <summary>
-    /// Try to escape via the escape inventory system.
+    /// Attempts to escape being carried when the carried entity provides movement input
     /// </summary>
     private void OnMoveInput(Entity<ActiveCanBeCarriedComponent> ent, ref MoveInputEvent args)
     {

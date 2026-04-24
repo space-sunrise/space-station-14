@@ -1,5 +1,6 @@
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Movement.Carrying;
 
@@ -59,4 +60,8 @@ public sealed partial class CanBeCarriedComponent : Component
     /// </summary>
     [DataField]
     public float IncapacitatedPickupTimeMultiplier = 0.5f;
+
+    [DataField]
+    public SpriteSpecifier VerbIcon =
+        new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/pickup.svg.192dpi.png"));
 }
