@@ -119,34 +119,33 @@ public sealed partial class HungerComponent : Component
 
     // Sunrise-Start
     /// <summary>
-    /// Mangleness healing amount when hunger level is Okay or higher. Negative values indicate healing (damage recovery signal).
+    /// Mangleness healing amount when hunger level is Okay or higher. Negative values indicate healing.
     /// </summary>
     [DataField]
-    public float ManglenessHealingOkay = -0.04f;
+    public float ManglenessHealingOkay = -0.015f;
 
     /// <summary>
-    /// Mangleness healing amount when hunger level is Peckish. Negative values indicate healing (damage recovery signal).
+    /// Mangleness healing amount when hunger level is Peckish. Negative values indicate healing.
     /// </summary>
     [DataField]
-    public float ManglenessHealingPeckish = -0.02f;
+    public float ManglenessHealingPeckish = -0.0075f;
 
     /// <summary>
-    /// Mangleness decay rate multiplier applied to BaseDecayRate when entity has Mangleness damage and hunger level is Okay or higher.
+    /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Okay or higher.
     /// </summary>
     [DataField]
     public float ManglenessDecayMultOkay = 4.0f;
 
     /// <summary>
-    /// Mangleness decay rate multiplier applied to BaseDecayRate when entity has Mangleness damage and hunger level is Peckish.
+    /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Peckish.
     /// </summary>
     [DataField]
     public float ManglenessDecayMultPeckish = 2.0f;
 
     /// <summary>
-    /// Tracks whether the entity previously had active Mangleness damage to detect transitions for threshold effects.
+    /// Tracks whether the entity previously had active Mangleness damage. Used to trigger threshold updates when state changes.
     /// </summary>
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public bool HadMangleness;
     // Sunrise-End
 

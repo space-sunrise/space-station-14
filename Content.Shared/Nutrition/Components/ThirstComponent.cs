@@ -78,13 +78,13 @@ public sealed partial class ThirstComponent : Component
     /// Mangleness healing amount when thirst level is Okay or higher. Negative values indicate healing (damage recovery signal).
     /// </summary>
     [DataField]
-    public float ManglenessHealingOkay = -0.04f;
+    public float ManglenessHealingOkay = -0.015f;
 
     /// <summary>
     /// Mangleness healing amount when thirst level is Thirsty. Negative values indicate healing (damage recovery signal).
     /// </summary>
     [DataField]
-    public float ManglenessHealingThirsty = -0.02f;
+    public float ManglenessHealingThirsty = -0.0075f;
 
     /// <summary>
     /// Mangleness decay rate multiplier applied to BaseDecayRate when entity has Mangleness damage and thirst level is OverHydrated.
