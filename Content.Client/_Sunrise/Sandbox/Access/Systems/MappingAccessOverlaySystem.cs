@@ -210,6 +210,11 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
             _outlineOverlay?.Dispose();
             _readerResolver?.Dispose();
             _tightBounds?.ClearCache();
+
+            _overlay = null;
+            _outlineOverlay = null;
+            _readerResolver = null;
+            _tightBounds = null;
         }
 
         UpdateUi();

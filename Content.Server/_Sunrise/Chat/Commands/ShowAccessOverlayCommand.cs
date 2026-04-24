@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server._Sunrise.Chat.Commands;
 
 /// <summary>
-/// Console command that toggles the mapping transparency overlay for mapper admins.
+/// Console command that toggles the access overlay for admins.
 /// </summary>
 [AdminCommand(AdminFlags.Admin)]
 public sealed class ShowAccessOverlayCommand : LocalizedEntityCommands
@@ -17,7 +17,7 @@ public sealed class ShowAccessOverlayCommand : LocalizedEntityCommands
     public override string Command => "showaccessoverlay";
 
     /// <summary>
-    /// Toggles the mapping transparency overlay and reports the resulting state to the caller.
+    /// Toggles the overlay and reports the resulting state to the caller.
     /// </summary>
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {

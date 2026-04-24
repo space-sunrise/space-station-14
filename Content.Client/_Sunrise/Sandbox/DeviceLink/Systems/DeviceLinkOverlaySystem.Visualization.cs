@@ -5,7 +5,7 @@ using Robust.Shared.Random;
 
 namespace Content.Client._Sunrise.Sandbox.DeviceLink.Systems;
 
-public sealed class DeviceLinkingVisualizationSystem : EntitySystem
+public sealed partial class DeviceLinkOverlaySystem
 {
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -26,43 +26,44 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
         Color.BlueViolet,
     ];
 
-    public override void Initialize()
-    {
-        base.Initialize();
+    private DeviceLinkDebugOverlay? _overlay;
 
+    private void InitializeVisualization()
+    {
         SubscribeNetworkEvent<DeviceLinkOverlayDataEvent>(OnDebugOverlayData);
-        SubscribeNetworkEvent<DeviceLinkOverlayToggledEvent>(OnOverlayToggled);
     }
 
-    public override void Shutdown()
+    private void ShutdownVisualization()
     {
-        base.Shutdown();
-
         RemoveOverlay();
     }
 
-    private void OnOverlayToggled(DeviceLinkOverlayToggledEvent args)
+    private void ToggleOverlay()
     {
-        if (args.IsEnabled)
-            _overlayMan.AddOverlay(new DeviceLinkDebugOverlay());
+        if (Enabled)
+        {
+            _overlay = new();
+            _overlayMan.AddOverlay(_overlay);
+        }
         else
+        {
             RemoveOverlay();
+        }
     }
 
     private void RemoveOverlay()
     {
-        Rays.Clear();
         SourceColors.Clear();
 
         _overlayMan.RemoveOverlay<DeviceLinkDebugOverlay>();
+        _overlay?.Dispose();
+        _overlay = null;
     }
 
     private void OnDebugOverlayData(DeviceLinkOverlayDataEvent args)
     {
         if (!_overlayMan.HasOverlay<DeviceLinkDebugOverlay>())
             return;
-
-        Rays.Clear();
 
         foreach (var ray in args.Rays)
         {
@@ -85,8 +86,6 @@ public sealed class DeviceLinkingVisualizationSystem : EntitySystem
 
             if (entities.Count == 0)
                 continue;
-
-            Rays.TryAdd(source, entities);
 
             if (!SourceColors.ContainsKey(source))
                 SourceColors.Add(source, _random.Pick(RayColors));

@@ -79,6 +79,7 @@ public sealed class MappingTransparencySystem : EntitySystem
             _overlay.ResetTransparency();
             _overlayMan.RemoveOverlay(_overlay);
             _overlay.Dispose();
+            _overlay = null;
         }
 
         _admin.AdminStatusUpdated -= OnAdminStatusUpdated;
