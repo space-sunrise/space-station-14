@@ -59,10 +59,4 @@ public sealed partial class CanBeCarriedComponent : Component
     /// </summary>
     [DataField]
     public float IncapacitatedPickupTimeMultiplier = 0.5f;
-
-    /// <summary>
-    /// If true, only mobs with NestingMobComponent can carry this entity.
-    /// </summary>
-    [DataField]
-    public bool RequiresNestingMob;
 }
