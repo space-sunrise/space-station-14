@@ -5,7 +5,7 @@ namespace Content.Shared._Sunrise.Movement.Carrying;
 /// <summary>
 /// Stores the carrier of an entity being carried.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class ActiveCanBeCarriedComponent : Component
 {
     /// <summary>

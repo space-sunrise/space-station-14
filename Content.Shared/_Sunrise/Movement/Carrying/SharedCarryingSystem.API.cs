@@ -1,6 +1,5 @@
 using Content.Shared._Sunrise.Movement.Carrying.Slowdown;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Coordinates;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -33,6 +32,7 @@ public abstract partial class SharedCarryingSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
@@ -117,27 +117,30 @@ public abstract partial class SharedCarryingSystem
         if (TryComp<PullableComponent>(target, out var pullable))
             _pulling.TryStopPull(targetUid, pullable, carrierUid);
 
-        _transform.AttachToGridOrMap(carrierUid);
-        _transform.SetCoordinates(targetUid, carrierUid.ToCoordinates());
-        _transform.SetParent(targetUid, carrierUid);
-
-        for (var i = 0; i < target.Comp.FreeHandsRequired; i++)
-        {
-            _virtualItem.TrySpawnVirtualItemInHand(targetUid, carrierUid);
-        }
-
         var activeCarrier = EnsureComp<ActiveCarrierComponent>(carrierUid);
-        ApplySlowdown(carrier, target);
         var activeCanBeCarried = EnsureComp<ActiveCanBeCarriedComponent>(targetUid);
-        EnsureComp<KnockedDownComponent>(targetUid);
-
         activeCarrier.Target = targetUid;
         activeCanBeCarried.Carrier = carrierUid;
         Dirty(carrierUid, activeCarrier);
         Dirty(target);
         Dirty(targetUid, activeCanBeCarried);
 
+        ApplySlowdown(carrier, target);
+
+        _standing.Down(targetUid, playSound: false, dropHeldItems: false);
+        var knockedDown = EnsureComp<KnockedDownComponent>(targetUid);
+        _stun.SetAutoStand((targetUid, knockedDown));
+
+        _transform.AttachToGridOrMap(carrierUid);
+        UpdateCarriedTransform(carrierUid, targetUid);
+
+        for (var i = 0; i < target.Comp.FreeHandsRequired; i++)
+        {
+            _virtualItem.TrySpawnVirtualItemInHand(targetUid, carrierUid);
+        }
+
         _actionBlocker.UpdateCanMove(targetUid);
+        OnCarryStarted(carrierUid, targetUid);
     }
 
     #endregion
@@ -181,6 +184,8 @@ public abstract partial class SharedCarryingSystem
 
     private void DropCarried(EntityUid carrier, EntityUid target)
     {
+        OnCarryDropped(carrier, target);
+
         RemComp<KnockedDownComponent>(target);
         RemComp<ActiveCarrierComponent>(carrier); // get rid of this first so we don't recusrively fire that event
         RemComp<CarryingSlowdownComponent>(carrier);
@@ -201,6 +206,24 @@ public abstract partial class SharedCarryingSystem
     #endregion
 
     #region Other APIs
+
+    /// <summary>
+    /// Called after carrying state and transform are fully initialized.
+    /// </summary>
+    /// <param name="carrier">Entity that started carrying.</param>
+    /// <param name="target">Entity that started being carried.</param>
+    protected virtual void OnCarryStarted(EntityUid carrier, EntityUid target)
+    {
+    }
+
+    /// <summary>
+    /// Called before carrying state components are removed.
+    /// </summary>
+    /// <param name="carrier">Entity that was carrying the target.</param>
+    /// <param name="target">Entity that is being dropped.</param>
+    protected virtual void OnCarryDropped(EntityUid carrier, EntityUid target)
+    {
+    }
 
     /// <summary>
     /// Applies movement slowdown to the carrier based on carried entity and mass ratio.

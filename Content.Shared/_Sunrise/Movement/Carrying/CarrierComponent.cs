@@ -34,6 +34,12 @@ public sealed partial class CarrierComponent : Component
     public float MaxSeparation = 0.1f;
 
     /// <summary>
+    /// Vertical world offset from carrier center where the carried entity is held.
+    /// </summary>
+    [DataField]
+    public float CarriedOffset = 0.3f;
+
+    /// <summary>
     /// Base duration of the pickup action before mass and target state modifiers are applied.
     /// </summary>
     [DataField]

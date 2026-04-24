@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Coordinates;
 using Content.Shared.DoAfter;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Popups;
@@ -15,6 +16,8 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Buckle.Components;
+using Robust.Shared.Map;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Movement.Carrying;
 
@@ -22,8 +25,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
-
-    private EntityQuery<StandingStateComponent> _standingStateQuery;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -33,10 +35,16 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         SubscribeLocalEvent<CanBeCarriedComponent, GetVerbsEvent<AlternativeVerb>>(AddCarryVerb);
         SubscribeLocalEvent<CanBeCarriedComponent, CarryDoAfterEvent>(OnDoAfter);
 
+        SubscribeLocalEvent<CarrierComponent, ComponentShutdown>(OnCarrierShutdown);
+
         SubscribeLocalEvent<ActiveCarrierComponent, BeforeThrowEvent>(OnBeforeThrow);
         SubscribeLocalEvent<ActiveCarrierComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<ActiveCarrierComponent, EntParentChangedMessage>(OnParentChanged);
         SubscribeLocalEvent<ActiveCarrierComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<ActiveCarrierComponent, MoveEvent>(OnCarrierMove);
+        SubscribeLocalEvent<ActiveCarrierComponent, DownedEvent>(OnCarrierDowned);
+        SubscribeLocalEvent<ActiveCarrierComponent, PullStartedMessage>(OnCarrierPullStarted);
+        SubscribeLocalEvent<ActiveCarrierComponent, PullStoppedMessage>(OnCarrierPullStopped);
 
         SubscribeLocalEvent<ActiveCanBeCarriedComponent, UpdateCanMoveEvent>(OnMoveAttempt);
         SubscribeLocalEvent<ActiveCanBeCarriedComponent, StandAttemptEvent>(OnStandAttempt);
@@ -45,8 +53,6 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         SubscribeLocalEvent<ActiveCanBeCarriedComponent, StartClimbEvent>(OnStartClimb);
         SubscribeLocalEvent<ActiveCanBeCarriedComponent, BuckledEvent>(OnBuckleChange);
         SubscribeLocalEvent<ActiveCanBeCarriedComponent, InteractionAttemptEvent>(OnInteractionAttempt);
-
-        _standingStateQuery = GetEntityQuery<StandingStateComponent>();
     }
 
     #region Update
@@ -56,28 +62,16 @@ public abstract partial class SharedCarryingSystem : EntitySystem
     {
         base.Update(frametime);
 
-        var query = EntityQueryEnumerator<ActiveCarrierComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var xform))
+        var query = EntityQueryEnumerator<ActiveCarrierComponent, CarrierComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var carrier))
         {
             if (comp.Target == null)
                 continue;
 
             var target = comp.Target.Value;
-            if (_standingStateQuery.TryComp(uid, out var standing) && !standing.Standing)
-            {
-                _popup.PopupClient(Loc.GetString("carry-lying-cancel"), target, uid, PopupType.MediumCaution);
-                DropCarried(uid, target);
+            var expectedCoordinates = GetCarriedCoordinates(uid);
+            if (!expectedCoordinates.TryDistance(EntityManager, Transform(target).Coordinates, out var distance))
                 continue;
-            }
-
-            if (!xform.Coordinates.TryDistance(EntityManager, Transform(target).Coordinates, out var distance))
-                continue;
-
-            if (!TryComp<CarrierComponent>(uid, out var carrier))
-            {
-                DropCarried(uid, target);
-                continue;
-            }
 
             if (distance > carrier.MaxSeparation)
                 DropCarried(uid, target);
@@ -118,6 +112,18 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnCarrierShutdown(Entity<CarrierComponent> ent, ref ComponentShutdown args)
+    {
+        if (_timing.ApplyingState)
+            return;
+
+        if (!TryComp<ActiveCarrierComponent>(ent, out var activeCarrier) || activeCarrier.Target == null)
+            return;
+
+        var target = activeCarrier.Target.Value;
+        DropCarried(ent.Owner, target);
+    }
+
     private void OnBeforeThrow(Entity<ActiveCarrierComponent> ent, ref BeforeThrowEvent args)
     {
         if (args.Direction == Vector2.Zero)
@@ -152,7 +158,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void OnVirtualItemDeleted(Entity<ActiveCarrierComponent> ent, ref VirtualItemDeletedEvent args)
     {
-        if (!HasComp<CanBeCarriedComponent>(args.BlockingEntity))
+        if (ent.Comp.Target != args.BlockingEntity)
             return;
 
         TryDropCarried(ent.AsNullable());
@@ -174,6 +180,35 @@ public abstract partial class SharedCarryingSystem : EntitySystem
     private void OnMobStateChanged(Entity<ActiveCarrierComponent> ent, ref MobStateChangedEvent args)
     {
         TryDropCarried(ent.AsNullable());
+    }
+
+    private void OnCarrierMove(Entity<ActiveCarrierComponent> ent, ref MoveEvent args)
+    {
+        if (ent.Comp.Target == null)
+            return;
+
+        var target = ent.Comp.Target.Value;
+        UpdateCarriedTransform(ent.Owner, target);
+    }
+
+    private void OnCarrierDowned(Entity<ActiveCarrierComponent> ent, ref DownedEvent args)
+    {
+        if (ent.Comp.Target == null)
+            return;
+
+        var target = ent.Comp.Target.Value;
+        _popup.PopupClient(Loc.GetString("carry-lying-cancel"), target, ent.Owner, PopupType.MediumCaution);
+        DropCarried(ent.Owner, target);
+    }
+
+    private void OnCarrierPullStarted(Entity<ActiveCarrierComponent> ent, ref PullStartedMessage args)
+    {
+        RefreshCarriedTransform(ent);
+    }
+
+    private void OnCarrierPullStopped(Entity<ActiveCarrierComponent> ent, ref PullStoppedMessage args)
+    {
+        RefreshCarriedTransform(ent);
     }
 
     private void OnMoveAttempt(Entity<ActiveCanBeCarriedComponent> ent, ref UpdateCanMoveEvent args)
@@ -214,7 +249,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var targetParent = Transform(args.Target.Value).ParentUid;
 
-        if (args.Target.Value != ent.Comp.Carrier && targetParent != ent.Comp.Carrier && targetParent != ent.Owner)
+        if (args.Target.Value != ent.Owner &&
+            args.Target.Value != ent.Comp.Carrier &&
+            targetParent != ent.Comp.Carrier &&
+            targetParent != ent.Owner)
             args.Cancelled = true;
     }
 
@@ -259,5 +297,24 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         ShowCarryPopup("carry-starting", Filter.Entities(carrier), PopupType.Medium, carrier, carried);
         ShowCarryPopup("carry-started", Filter.Entities(carried), PopupType.Medium, carrier, carried);
         ShowCarryPopup("carry-observed", Filter.PvsExcept(carrier).RemoveWhereAttachedEntity(e => e == carried.Owner), PopupType.MediumCaution, carrier, carried);
+    }
+
+    private static EntityCoordinates GetCarriedCoordinates(EntityUid carrier)
+    {
+        return carrier.ToCoordinates();
+    }
+
+    private void RefreshCarriedTransform(Entity<ActiveCarrierComponent> ent)
+    {
+        if (ent.Comp.Target == null)
+            return;
+
+        UpdateCarriedTransform(ent.Owner, ent.Comp.Target.Value);
+    }
+
+    private void UpdateCarriedTransform(EntityUid carrier, EntityUid target)
+    {
+        var carrierRotation = _transform.GetWorldRotation(carrier);
+        _transform.SetCoordinates(target, Transform(target), GetCarriedCoordinates(carrier), rotation: Angle.Zero - carrierRotation);
     }
 }
