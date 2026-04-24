@@ -1,6 +1,6 @@
 using Content.Shared._Sunrise.Movement.Carrying;
 using Content.Shared.DoAfter;
-using Content.Shared.Hands.Components;sss
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
