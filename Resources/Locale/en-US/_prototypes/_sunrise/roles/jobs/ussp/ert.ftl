@@ -61,3 +61,17 @@ ent-RandomHumanoidSpawnerERTMedicalGamma = ERT medic
 ent-RandomHumanoidSpawnerERTMedicalGammaLock = { ent-RandomHumanoidSpawnerERTMedicalGamma }
     .suffix = ERTRole, Gamma, Lock
     .desc = { ent-RandomHumanoidSpawnerERTLeaderRed.desc }
+
+job-name-cburn-eva = Centcomm Quarantine Officer (EVA)
+job-description-cburn-eva = Go to the station and eliminate any and all biological hazards. Now in space!
+job-name-cburn-leader = Centcomm Quarantine Leader
+job-description-cburn-leader = Lead your team of quarantine officers to eliminate any and all biological hazards.
+
+job-name-blueshield-operative = BlueShield Operative
+job-name-ntrleader = NTR Leader
+job-name-ntrguard = NTR Guard
+
+job-name-ussp-crew = USSP Crew
+job-name-ussp-officer = USSP Officer
+job-name-ussp-soldier = USSP Soldier
+job-name-ussp-captain = USSP Captain
