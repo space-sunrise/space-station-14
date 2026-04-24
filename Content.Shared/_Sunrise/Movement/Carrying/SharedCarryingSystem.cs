@@ -23,15 +23,21 @@ public abstract partial class SharedCarryingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
 
-    private const float CarryThrowGravity = 18f;
-    private const float MinCarryThrowSpeed = 2f;
-    private const float MaxCarryThrowSpeed = 8f;
-    private const float MinCarryThrowDistance = 0.5f;
-    private const float MaxCarryThrowDistance = 4f;
+    private const float CarryThrowGravity = 8f;
+    private const float CarryThrowSpeedModifier = 0.36f;
+    private const float CarryThrowMassExponent = 0.25f;
+    private const float MinCarryThrowSpeed = 1f;
+    private const float MaxCarryThrowSpeed = 4.5f;
+    private const float MinCarryThrowDistance = 0.25f;
+    private const float MaxCarryThrowDistance = 2f;
     private const float CarryDistanceThreshold = 0.1f;
     private const float BaseCarryTime = 1f;
     private const float MaxCarryTime = 5f;
-    private const float SlowdownCoefficient = 0.15f;
+    private const float DefaultCarrySlowdownModifier = 0.6f;
+    private const float IncapacitatedCarrySlowdownModifier = 0.8f;
+    private const float CarrySlowdownMassInfluence = 0.1f;
+    private const float MinCarrySlowdownMassModifier = 0.5f;
+    private const float MaxCarrySlowdownMassModifier = 1.2f;
     private const float MinimumSpeedModifier = 0.1f;
     private const float CarryInteractionRange = 0.75f;
 

@@ -2,16 +2,15 @@ using Content.Shared._Sunrise.Humanoid.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
+using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Humanoid;
 
 public sealed class HumanoidPhysicalStatsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public override void Initialize()

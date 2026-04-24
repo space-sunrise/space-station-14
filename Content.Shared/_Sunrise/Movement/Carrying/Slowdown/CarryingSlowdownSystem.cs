@@ -38,5 +38,7 @@ public sealed class CarryingSlowdownSystem : EntitySystem
         comp.WalkModifier = walkSpeedModifier;
         comp.SprintModifier = sprintSpeedModifier;
         Dirty(uid, comp);
+
+        _movementSpeed.RefreshMovementSpeedModifiers(uid);
     }
 }

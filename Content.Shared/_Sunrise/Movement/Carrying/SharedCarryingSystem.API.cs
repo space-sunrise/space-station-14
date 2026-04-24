@@ -5,6 +5,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -169,13 +171,12 @@ public abstract partial class SharedCarryingSystem
     protected void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
     {
         var massRatio = MassContest(carrier, carried);
+        var mobState = TryComp<MobStateComponent>(carried, out var mobStateComp)
+            ? mobStateComp.CurrentState
+            : MobState.Invalid;
 
-        // Формула замедления: чем меньше соотношение масс, тем больше замедление
-        // При равных массах (ratio = 1) модификатор = 0.85
-        var massRatioSq = Math.Pow(massRatio, 2);
-        var modifier = 1d - (SlowdownCoefficient / massRatioSq);
-        modifier = Math.Max(MinimumSpeedModifier, modifier);
-        _slowdown.SetModifier(carrier, (float)modifier, (float)modifier);
+        var modifier = CalculateCarrySlowdownModifier(mobState, massRatio);
+        _slowdown.SetModifier(carrier, modifier, modifier);
     }
 
     protected float MassContest(Entity<PhysicsComponent?> roller, Entity<PhysicsComponent?> target)
@@ -191,7 +192,8 @@ public abstract partial class SharedCarryingSystem
 
     protected static float CalculateCarryThrowSpeed(float baseThrowSpeed, float massRatio)
     {
-        var speed = baseThrowSpeed * MathF.Sqrt(MathF.Max(massRatio, 0f));
+        var massModifier = MathF.Pow(MathF.Max(massRatio, 0f), CarryThrowMassExponent);
+        var speed = baseThrowSpeed * CarryThrowSpeedModifier * massModifier;
         return Math.Clamp(speed, MinCarryThrowSpeed, MaxCarryThrowSpeed);
     }
 
@@ -199,6 +201,27 @@ public abstract partial class SharedCarryingSystem
     {
         var distance = throwSpeed * throwSpeed / CarryThrowGravity;
         return Math.Clamp(distance, MinCarryThrowDistance, MaxCarryThrowDistance);
+    }
+
+    protected static float CalculateCarrySlowdownModifier(MobState mobState, float massRatio)
+    {
+        var baseModifier = mobState is MobState.Critical or MobState.Dead
+            ? IncapacitatedCarrySlowdownModifier
+            : DefaultCarrySlowdownModifier;
+
+        var massModifier = CalculateCarrySlowdownMassModifier(massRatio);
+        var modifier = baseModifier * massModifier;
+
+        return Math.Clamp(modifier, MinimumSpeedModifier, 1f);
+    }
+
+    private static float CalculateCarrySlowdownMassModifier(float massRatio)
+    {
+        if (massRatio <= 0f)
+            return MinCarrySlowdownMassModifier;
+
+        var modifier = 1f + MathF.Log2(massRatio) * CarrySlowdownMassInfluence;
+        return Math.Clamp(modifier, MinCarrySlowdownMassModifier, MaxCarrySlowdownMassModifier);
     }
 
     private void ShowCarryPopup(string locString, Filter filter, PopupType type, EntityUid carrier, EntityUid target)
