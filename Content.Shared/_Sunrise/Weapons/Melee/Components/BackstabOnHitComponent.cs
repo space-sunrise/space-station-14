@@ -1,6 +1,5 @@
 using Content.Shared.Damage;
 using Content.Shared.Random;
-using Content.Shared._Sunrise.Weapons.Melee.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Weapons.Melee.Components;
