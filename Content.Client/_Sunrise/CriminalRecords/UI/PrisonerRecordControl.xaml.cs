@@ -24,6 +24,8 @@ public sealed partial class PrisonerRecordControl : Control
     public int PermanentThreshold = 50;
 
     public Action? OnActionPressed;
+    public Action? OnEscapePressed;
+    public Action? OnParolePressed;
 
     public PrisonerRecordControl()
     {
@@ -32,6 +34,8 @@ public sealed partial class PrisonerRecordControl : Control
         _timing = IoCManager.Resolve<IGameTiming>();
 
         ActionButton.OnPressed += _ => OnActionPressed?.Invoke();
+        EscapeButton.OnPressed += _ => OnEscapePressed?.Invoke();
+        ParoleButton.OnPressed += _ => OnParolePressed?.Invoke();
     }
 
     public void SetupWaiting(PrisonerRecordInfo record)
@@ -41,9 +45,14 @@ public sealed partial class PrisonerRecordControl : Control
         CaseLabel.Text = Loc.GetString("prisoner-management-case-id", ("case", record.CaseId));
         PositionLabel.Visible = false;
         TimeLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
-            Loc.GetString("prisoner-management-waiting-info", ("time", record.Sentence))));
+            record.IsWarning 
+                ? Loc.GetString("prisoner-management-warning")
+                : Loc.GetString("prisoner-management-waiting-info", ("time", record.Sentence))));
         
         ActionButton.Text = Loc.GetString("prisoner-management-start");
+        ActionButton.Visible = true;
+        EscapeButton.Visible = false;
+        ParoleButton.Visible = false;
         ButtonContainer.Visible = true;
         _startTime = null;
         _lastSeconds = -1;
@@ -58,7 +67,11 @@ public sealed partial class PrisonerRecordControl : Control
         _sentenceMinutes = incar.Sentence;
 
         CaseLabel.Text = Loc.GetString("prisoner-management-case-id", ("case", _caseId ?? 0));
-        ButtonContainer.Visible = false;
+        ButtonContainer.Visible = true;
+        ActionButton.Visible = false;
+        EscapeButton.Visible = true;
+        ParoleButton.Visible = true;
+        
         _lastSeconds = -1;
         _isCountdownFinished = false;
 
@@ -84,7 +97,9 @@ public sealed partial class PrisonerRecordControl : Control
         CaseLabel.Text = Loc.GetString("prisoner-management-case-id", ("case", record.CaseId));
         PositionLabel.Visible = false;
         TimeLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
-            Loc.GetString("prisoner-management-finished-info")));
+            record.IsWarning
+                ? Loc.GetString("prisoner-management-warning")
+                : Loc.GetString(record.IsParoled ? "prisoner-management-paroled-info" : "prisoner-management-finished-info")));
         
         ButtonContainer.Visible = false;
         _startTime = null;

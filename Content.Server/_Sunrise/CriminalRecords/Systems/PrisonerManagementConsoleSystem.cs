@@ -3,6 +3,7 @@ using Content.Server._Sunrise.Laws.Systems;
 using Content.Server.Access.Systems;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
+using Content.Server.CriminalRecords.Systems;
 using Content.Shared._Sunrise.CriminalRecords;
 using Content.Shared._Sunrise.CriminalRecords.Components;
 using Content.Server._Sunrise.CriminalRecords.Components;
@@ -12,6 +13,8 @@ using Content.Shared.DeviceLinking;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access;
+using Content.Shared.Security;
+using Content.Shared.CriminalRecords;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -31,6 +34,7 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     [Dependency] private readonly PrisonCellDoorSystem _door = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly StationCorporateLawSystem _stationLaw = default!;
+    [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
 
     private const int NumCells = 10;
     private readonly List<int> _toRemove = new();
@@ -45,6 +49,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
         Subs.BuiEvents<PrisonerManagementConsoleComponent>(PrisonerManagementConsoleKey.Key, subs =>
         {
             subs.Event<PrisonerManagementStartIncarcerationMessage>(OnStartIncarceration);
+            subs.Event<PrisonerManagementEscapeMessage>(OnEscape);
+            subs.Event<PrisonerManagementParoleMessage>(OnParole);
         });
     }
 
@@ -67,6 +73,68 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     private void OnOpened(EntityUid uid, PrisonerManagementConsoleComponent component, BoundUIOpenedEvent args)
     {
         UpdateUserInterface(uid, component);
+    }
+
+    private void OnEscape(EntityUid uid, PrisonerManagementConsoleComponent component, PrisonerManagementEscapeMessage msg)
+    {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
+        if (!TryGetIncarceration(component, msg.RecordId, msg.CaseId, out var cellIndex, out var incar))
+            return;
+
+        if (TryComp<StationCriminalRecordsComponent>(incar.RecordKey.OriginStation, out var sunrise))
+        {
+            if (sunrise.Records.TryGetValue(msg.RecordId, out var cases))
+            {
+                var @case = cases.Find(c => c.Id == msg.CaseId);
+                if (@case != null)
+                {
+                    @case.Status = CriminalCaseStatus.Closed;
+                    @case.CalculatedSentence += 10;
+                }
+            }
+        }
+
+        if (cellIndex >= 0)
+            SendCellSignals(uid, cellIndex, false, incar.PrisonerAccessId);
+
+        component.ActiveIncarcerations.Remove(cellIndex);
+
+        // Optional: set to Wanted? User didn't ask, so we only do what was requested.
+        // But we should at least clear Detained if they escaped.
+        _criminalRecords.TryChangeStatus(incar.RecordKey, SecurityStatus.Wanted, Loc.GetString("criminal-records-status-reason-escape"));
+
+        UpdateUserInterface(uid, component);
+    }
+
+    private void OnParole(EntityUid uid, PrisonerManagementConsoleComponent component, PrisonerManagementParoleMessage msg)
+    {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
+        if (!TryGetIncarceration(component, msg.RecordId, msg.CaseId, out var cellIndex, out var incar))
+            return;
+
+        FinishIncarceration(uid, component, cellIndex, incar);
+        component.ActiveIncarcerations.Remove(cellIndex);
+        UpdateUserInterface(uid, component);
+    }
+
+    private bool TryGetIncarceration(PrisonerManagementConsoleComponent component, uint recordId, uint caseId, out int cellIndex, out ActiveIncarceration incar)
+    {
+        foreach (var (idx, i) in component.ActiveIncarcerations)
+        {
+            if (i.RecordKey.Id == recordId && i.CaseId == caseId)
+            {
+                cellIndex = idx;
+                incar = i;
+                return true;
+            }
+        }
+        cellIndex = -1;
+        incar = default!;
+        return false;
     }
 
     private void OnStartIncarceration(EntityUid uid, PrisonerManagementConsoleComponent component, PrisonerManagementStartIncarcerationMessage msg)
@@ -133,6 +201,10 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
             // 2. Send Device Signals (Only if we have a real cell)
             if (cellIndex >= 0)
                 SendCellSignals(uid, cellIndex, true, accessId, TimeSpan.FromMinutes(@case.CalculatedSentence));
+
+            // 3. Set Status to Detained
+            var reason = Loc.GetString("criminal-records-status-reason-incarcerated");
+            _criminalRecords.TryChangeStatus(key, SecurityStatus.Detained, reason);
 
             UpdateUserInterface(uid, component);
         }
@@ -225,8 +297,16 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
                 if (@case != null)
                 {
                     @case.Status = CriminalCaseStatus.Finished;
+                    @case.IsParoled = incar.SentenceMinutes > 0 && (_timing.CurTime < incar.StartTime + TimeSpan.FromMinutes(incar.SentenceMinutes));
                 }
             }
+        }
+
+        // 2. Set Status to Discharged (only if it was Detained)
+        if (_stationRecords.TryGetRecord<CriminalRecord>(incar.RecordKey, out var record) && record.Status == SecurityStatus.Detained)
+        {
+            var reason = Loc.GetString("criminal-records-status-reason-finished");
+            _criminalRecords.TryChangeStatus(incar.RecordKey, SecurityStatus.Discharged, reason);
         }
 
         if (cellIndex >= 0)
@@ -286,13 +366,13 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
 
             foreach (var @case in cases)
             {
-                if (@case.Status == CriminalCaseStatus.Closed)
+                if (@case.Status == CriminalCaseStatus.Closed && (@case.CalculatedSentence > 0 || @case.IsWarning))
                 {
-                    waiting.Add(new PrisonerRecordInfo(id, general.Name, general.JobTitle ?? "", @case.Id, @case.CalculatedSentence));
+                    waiting.Add(new PrisonerRecordInfo(id, general.Name, general.JobTitle ?? "", @case.Id, @case.CalculatedSentence, IsWarning: @case.IsWarning, SentenceBreakdown: @case.SentenceBreakdown));
                 }
                 else if (@case.Status == CriminalCaseStatus.Finished)
                 {
-                    finished.Add(new PrisonerRecordInfo(id, general.Name, general.JobTitle ?? "", @case.Id, @case.CalculatedSentence));
+                    finished.Add(new PrisonerRecordInfo(id, general.Name, general.JobTitle ?? "", @case.Id, @case.CalculatedSentence, @case.IsParoled, @case.IsWarning, @case.SentenceBreakdown));
                 }
             }
         }

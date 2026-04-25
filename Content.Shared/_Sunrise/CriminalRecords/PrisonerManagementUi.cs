@@ -37,7 +37,15 @@ public sealed class PrisonerManagementConsoleState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public record struct PrisonerRecordInfo(uint RecordId, string Name, string Job, uint CaseId, int Sentence);
+public record struct PrisonerRecordInfo(
+    uint RecordId, 
+    string Name, 
+    string Job, 
+    uint CaseId, 
+    int Sentence, 
+    bool IsParoled = false, 
+    bool IsWarning = false,
+    List<string>? SentenceBreakdown = null);
 
 [Serializable, NetSerializable]
 public record struct IncarcerationInfo(uint RecordId, string Name, uint CaseId, int CellIndex, TimeSpan StartTime, int Sentence);

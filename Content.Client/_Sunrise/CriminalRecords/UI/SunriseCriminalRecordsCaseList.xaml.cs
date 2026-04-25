@@ -122,15 +122,20 @@ public sealed partial class SunriseCriminalRecordsCaseControl : Button
         // --- Sentence ---
         var total = @case.CalculatedSentence;
 
-        if (total >= threshold)
+        if (@case.IsWarning)
         {
-            SentenceValueLabel.Text = Loc.GetString("sunrise-records-sentence-life").ToUpperInvariant();
-            SentenceValueLabel.FontColorOverride = Color.Red;
+            SentenceValueLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("prisoner-management-warning").ToUpperInvariant()));
+        }
+        else if (total >= threshold)
+        {
+            SentenceValueLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("sunrise-records-sentence-life").ToUpperInvariant()));
         }
         else
         {
-            SentenceValueLabel.Text = Loc.GetString("sunrise-records-sentence-total-short", ("total", (object) total)).ToUpperInvariant();
-            SentenceValueLabel.FontColorOverride = Color.White;
+            SentenceValueLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("sunrise-records-sentence-total-short", ("total", (object) total)).ToUpperInvariant()));
         }
         SentenceContainer.Visible = true;
 

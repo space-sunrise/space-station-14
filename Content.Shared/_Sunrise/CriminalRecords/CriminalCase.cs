@@ -34,6 +34,15 @@ public sealed class CriminalCase
     public string? Notes;
 
     [ViewVariables]
+    public bool IsParoled;
+
+    [ViewVariables]
+    public bool IsWarning;
+
+    [ViewVariables]
+    public List<string> SentenceBreakdown = new();
+
+    [ViewVariables]
     public TimeSpan CreationTime;
 
     /// <summary>

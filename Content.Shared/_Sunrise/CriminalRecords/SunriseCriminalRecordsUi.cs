@@ -2,6 +2,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 using Content.Shared.StationRecords;
 using Content.Shared._Sunrise.Laws;
+using Content.Shared.Security;
 
 namespace Content.Shared._Sunrise.CriminalRecords;
 
@@ -73,6 +74,11 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
     /// <summary>The DNA of the selected person.</summary>
     public readonly string? DNA;
 
+    /// <summary>The current security status of the person.</summary>
+    public readonly SecurityStatus Status;
+    /// <summary>The reason for the current security status.</summary>
+    public readonly string? StatusReason;
+
     public SunriseCriminalRecordsConsoleState(
         Dictionary<uint, string> records,
         string? selectedName,
@@ -86,7 +92,9 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
         string? gender = null,
         string? species = null,
         string? fingerprints = null,
-        string? dna = null)
+        string? dna = null,
+        SecurityStatus status = SecurityStatus.None,
+        string? statusReason = null)
     {
         Records = new Dictionary<uint, string>(records);
         SelectedName = selectedName;
@@ -102,6 +110,8 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
         Species = species;
         Fingerprints = fingerprints;
         DNA = dna;
+        Status = status;
+        StatusReason = statusReason;
     }
 }
 
@@ -147,6 +157,21 @@ public sealed class SunriseCriminalRecordsCloseCaseMessage : BoundUserInterfaceM
     public readonly uint CaseId;
 
     public SunriseCriminalRecordsCloseCaseMessage(uint caseId)
+    {
+        CaseId = caseId;
+    }
+}
+
+/// <summary>
+///     BUI message to reopen a closed criminal case.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SunriseCriminalRecordsReopenCaseMessage : BoundUserInterfaceMessage
+{
+    /// <summary>The ID of the case to reopen.</summary>
+    public readonly uint CaseId;
+
+    public SunriseCriminalRecordsReopenCaseMessage(uint caseId)
     {
         CaseId = caseId;
     }
@@ -209,5 +234,54 @@ public sealed class SunriseCriminalRecordsSelectRecordMessage : BoundUserInterfa
     public SunriseCriminalRecordsSelectRecordMessage(uint? recordId)
     {
         RecordId = recordId;
+    }
+}
+
+/// <summary>
+///     BUI message to change a person's security status.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SunriseCriminalRecordsChangeStatusMessage : BoundUserInterfaceMessage
+{
+    public readonly SecurityStatus Status;
+    public readonly string? Reason;
+
+    public SunriseCriminalRecordsChangeStatusMessage(SecurityStatus status, string? reason)
+    {
+        Status = status;
+        Reason = reason;
+    }
+}
+
+/// <summary>
+///     BUI message to report a prisoner escape.
+///     Increases sentence and resets incarceration.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class PrisonerManagementEscapeMessage : BoundUserInterfaceMessage
+{
+    public readonly uint RecordId;
+    public readonly uint CaseId;
+
+    public PrisonerManagementEscapeMessage(uint recordId, uint caseId)
+    {
+        RecordId = recordId;
+        CaseId = caseId;
+    }
+}
+
+/// <summary>
+///     BUI message to grant early parole to a prisoner.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class PrisonerManagementParoleMessage : BoundUserInterfaceMessage
+{
+    public readonly uint RecordId;
+    public readonly uint CaseId;
+
+    public PrisonerManagementParoleMessage(uint recordId, uint caseId)
+    {
+        RecordId = recordId;
+        CaseId = caseId;
     }
 }

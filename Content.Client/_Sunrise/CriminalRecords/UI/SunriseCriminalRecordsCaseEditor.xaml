@@ -29,6 +29,9 @@
                 <PanelContainer Name="ReadOnlyContent" Margin="0 4" Visible="False">
                     <BoxContainer Orientation="Vertical" Margin="8 12" SeparationOverride="12">
                         <BoxContainer Name="ReadOnlyList" Orientation="Vertical" SeparationOverride="4"/>
+                        
+                        <PanelContainer Name="BreakdownDivider" StyleClasses="LowDivider" MinHeight="1" Margin="0 12 0 4" Visible="False"/>
+                        <RichTextLabel Name="BreakdownLabel" HorizontalExpand="True" Visible="False"/>
                     </BoxContainer>
                 </PanelContainer>
             </BoxContainer>
@@ -43,15 +46,16 @@
                 <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8">
                     <Label Text="{Loc 'sunrise-records-notes'}" StyleClasses="LabelHeading"/>
                     <PanelContainer StyleClasses="LowDivider" MinHeight="1"/>
-                    <TextEdit Name="NotesInput" HorizontalExpand="True" MinHeight="80" VerticalExpand="True"/>
+                    <TextEdit Name="NotesInput" HorizontalExpand="True" MinHeight="50" VerticalExpand="True"/>
 
-                    <Label Name="SentenceLabel" StyleClasses="LabelBig" HorizontalAlignment="Center" Margin="0 8 0 0"/>
+                    <RichTextLabel Name="SentenceLabel" HorizontalAlignment="Center" Margin="0 8 0 0"/>
                 </BoxContainer>
             </PanelContainer>
 
             <!-- Actions -->
             <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="12" Margin="0 4">
                 <Button Name="BackButton" Text="{Loc 'sunrise-records-back-to-cases'}" StyleClasses="ButtonSquare"/>
+                <Button Name="ReopenButton" Text="{Loc 'sunrise-records-reopen-case'}" StyleClasses="ButtonSquare" Visible="False"/>
                 <Button Name="FinalizeButton" Text="{Loc 'sunrise-records-finalize-case'}" StyleClasses="ButtonSquare"/>
             </BoxContainer>
         </BoxContainer>

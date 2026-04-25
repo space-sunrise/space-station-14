@@ -68,6 +68,7 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
         if (_detailsControl == null)
         {
             _detailsControl = new SunriseCriminalRecordsDetailsControl();
+            _detailsControl.OnStatusChanged += (status, reason) => _owner?.ChangeStatus(status, reason);
             MainContentContainer.AddChild(_detailsControl);
         }
 
@@ -117,6 +118,7 @@ public sealed partial class SunriseCriminalRecordsWindow : DefaultWindow
         if (activeCase != null)
         {
             _caseEditor.OnFinalize = () => _owner?.CloseCase(activeCase.Id);
+            _caseEditor.OnReopen = () => _owner?.ReopenCase(activeCase.Id);
             _caseEditor.Setup(activeCase, state.Cases);
         }
         else
