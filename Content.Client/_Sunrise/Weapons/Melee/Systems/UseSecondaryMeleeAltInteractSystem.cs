@@ -31,6 +31,7 @@ public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
         _redirectQuery = GetEntityQuery<UseSecondaryMeleeAltInteractComponent>();
 
         CommandBinds.Builder
+            // Let normal secondary-use interaction resolve first so this redirect only applies to melee-combat handling.
             .BindAfter(EngineKeyFunctions.UseSecondary,
                 new PointerInputCmdHandler(OnUseSecondary, handle: true, outsidePrediction: true),
                 typeof(SharedInteractionSystem))
