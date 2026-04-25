@@ -30,14 +30,14 @@ public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
         _handsQuery = GetEntityQuery<HandsComponent>();
         _redirectQuery = GetEntityQuery<UseSecondaryMeleeAltInteractComponent>();
 
-        CommandBinds.Builder
-            // Let normal secondary-use interaction resolve first so this redirect only applies to melee-combat handling.
-            // This routing runs after normal interaction binding and outside prediction because it only decides
-            // whether RMB should become an alt-interact request for the held melee weapon on the local client.
-            .BindAfter(EngineKeyFunctions.UseSecondary,
-                new PointerInputCmdHandler(OnUseSecondary, handle: true, outsidePrediction: true),
+         CommandBinds.Builder
+             // Let normal secondary-use interaction resolve first so this redirect only applies to melee-combat handling.
+             // This routing runs after normal interaction binding and outside prediction because it only decides
+             // whether RMB should become an alt-interact request for the held melee weapon on the local client.
+             .BindAfter(EngineKeyFunctions.UseSecondary,
+                new PointerInputCmdHandler(OnUseSecondary, true, true),
                 typeof(SharedInteractionSystem))
-            .Register<UseSecondaryMeleeAltInteractSystem>();
+             .Register<UseSecondaryMeleeAltInteractSystem>();
     }
 
     private bool OnUseSecondary(in PointerInputCmdHandler.PointerInputCmdArgs args)
