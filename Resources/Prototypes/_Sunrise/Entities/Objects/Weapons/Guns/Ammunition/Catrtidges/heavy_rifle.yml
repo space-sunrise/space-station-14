@@ -178,7 +178,7 @@
 
 - type: entity
   id: CartridgeRifleHeavy127mm
-  name: cartridge (12,7)
+  name: cartridge (12,7mm)
   parent: BaseCartridgeRifleHeavy
   components:
   - type: CartridgeAmmo
