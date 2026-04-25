@@ -998,16 +998,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: SunriseMultiTileAirtightBlocker
-  entities:
-  - uid: 3
-    components:
-    - type: Transform
-      anchored: True
-      pos: 0.5,1.5
-      parent: 1
-    - type: Airtight
-      airBlocked: True
 - proto: TableGlass
   entities:
   - uid: 119

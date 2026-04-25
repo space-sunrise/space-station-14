@@ -4429,16 +4429,6 @@ entities:
     - type: Transform
       pos: 15.5,-6.5
       parent: 1
-- proto: SunriseMultiTileAirtightBlocker
-  entities:
-  - uid: 22
-    components:
-    - type: Transform
-      anchored: True
-      pos: 19.5,-1.5
-      parent: 1
-    - type: Airtight
-      airBlocked: True
 - proto: Syringe
   entities:
   - uid: 540
