@@ -55,6 +55,8 @@ uplink-pistol-magnum-magazine-name = Магазин (.45 магнум SP)
 uplink-pistol-magnum-magazine-desc = 7-зарядный однорядный магазин для пистолета. Содержит патроны SP. Совместим с "Диглом".
 uplink-pistol-magnum-magazine-ap-name = Магазин (.45 магнум бронебойные)
 uplink-pistol-magnum-magazine-ap-desc = 7-зарядный однорядный магазин для пистолета. Содержит бронебойные патроны. Совместим с "Диглом".
+uplink-pistol-stechkin-magazine-name = пистолетный магазин .40
+uplink-pistol-stechkin-magazine-desc = Пистолетный магазин на 10 патронов, совместим с пистолетами серии Стечкин.
 uplink-pistol-magazine-c40r-desc = Магазин ПП на 24 патрона. Совместим с C-40r.
 uplink-skm28-ammo-desc = Винтовочный магазин на 20 патронов. Совместим с SKM-28.
 uplink-skm24-ammo-desc = Винтовочный магазин на 30 патронов 7,62x39. Совместим с SKM-24.
@@ -196,6 +198,8 @@ uplink-anomaly-auto-injector-popup-pending = Кожа не поддаётся и
 uplink-anomaly-auto-injector-popup-infected = Кожа не поддаётся инъекции!
 uplink-xeno-artifact-throwing-auto-injector-name = Метательный автоинъектор артефакта
 uplink-xeno-artifact-throwing-auto-injector-desc = Метательно-складное устройство одноразового применения. При попадании в живое существо вонзается и вживляет частицы артефакта. Не действует на синтетиков.
+uplink-roboticist-nuclear-operative-id-card-name = Оперативная ID-карта робототехника
+uplink-roboticist-nuclear-operative-id-card-desc = ID-карта робототехника со штатными доступами профессии и дополнительным доступом Синдиката.
 
 ## Mechs equipment
 

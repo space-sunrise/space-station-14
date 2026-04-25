@@ -223,6 +223,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> RoadmapId =
         CVarDef.Create("roadmap.id", "SunriseRoadmap");
 
+    /// <summary>
+    /// Roadmap text hashset - to show roadmap to player when we change something.
+    /// </summary>
+    public static readonly CVarDef<string> RoadmapLastSeenHash =
+        CVarDef.Create("roadmap.last_seen_hash", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /**
      * Lobby Changelog
      */
@@ -432,29 +438,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> PlayHeartBeatSound =
         CVarDef.Create("heartbeat.play_sound", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /*
-     * Random items-artifacts
-     */
-
-    /// <summary>
-    /// Включены ли артефакты-предметы? Переключение этого в моменты игры динамически включает и выключает фичу
-    /// </summary>
-    public static readonly CVarDef<bool> EnableRandomArtifacts =
-        CVarDef.Create("random_artifacts.enable", false, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Соотношение артефактов-предметов к обычным предметам.
-    /// </summary>
-    public static readonly CVarDef<float> ItemToArtifactRatio =
-        CVarDef.Create("random_artifacts.ratio", 0.55f, CVar.SERVER | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Включён ли узел артефакта, который превращает ближайшие предметы в случайные.
-    /// При отключении уже сгенерированные узлы активируются без эффекта.
-    /// </summary>
-    public static readonly CVarDef<bool> ArtifactRandomTransformationEnabled =
-        CVarDef.Create("artifact.random_transformation.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
-
     /// <summary>
     /// Вроде все очевидно
     /// </summary>
@@ -596,4 +579,10 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> PhotoCaptureEnabled =
         CVarDef.Create("photo.capture_enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// The ID of the corporate law set prototype to use in the PDA application.
+    /// </summary>
+    public static readonly CVarDef<string> CorporateLawSet =
+        CVarDef.Create("sunrise.corporate_law_set", "StandardCorporateLaw", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

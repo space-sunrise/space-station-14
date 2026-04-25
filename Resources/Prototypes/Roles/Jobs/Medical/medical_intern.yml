@@ -13,6 +13,10 @@
   supervisors: job-supervisors-medicine
   canBeAntag: false
   displayWeight: 0  # Sunrise-Edit
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-medical-trainee
+  # Sunrise-End
   access:
   - Medical
   - Maintenance

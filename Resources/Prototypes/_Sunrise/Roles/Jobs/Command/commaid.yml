@@ -16,6 +16,9 @@
   canBeAntag: true
   displayWeight: 0
   weight: 5
+  alternativeTitles:
+  - job-alt-title-valet
+  - job-alt-title-butler
   access:
   - Command
   - Service

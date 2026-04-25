@@ -23,6 +23,8 @@ public sealed class PryingSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
+    private static readonly TimeSpan InstantUnpoweredDoorPryThreshold = TimeSpan.FromSeconds(4); // Sunrise-Edit
+
     public override void Initialize()
     {
         base.Initialize();
@@ -134,7 +136,14 @@ public sealed class PryingSystem : EntitySystem
         var modEv = new GetPryTimeModifierEvent(user);
 
         RaiseLocalEvent(target, ref modEv);
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, modEv.BaseTime * modEv.PryTimeModifier / toolModifier, new DoorPryDoAfterEvent(), target, target, tool)
+        // Sunrise-Start - skip redundant short pry doafters
+        var pryDelay = modEv.BaseTime * modEv.PryTimeModifier / toolModifier;
+
+        if (HasComp<PryUnpoweredComponent>(target) && pryDelay < InstantUnpoweredDoorPryThreshold)
+            pryDelay = TimeSpan.Zero;
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, pryDelay, new DoorPryDoAfterEvent(), target, target, tool)
+        // Sunrise-End
         {
             BreakOnDamage = true,
             BreakOnMove = true,

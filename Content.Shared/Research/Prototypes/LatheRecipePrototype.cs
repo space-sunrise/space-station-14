@@ -41,6 +41,13 @@ namespace Content.Shared.Research.Prototypes
         /// </summary>
         [DataField]
         public EntProtoId? Result;
+        // Sunrise-Start
+        [DataField]
+        public bool PrintTicket = false;
+
+        [DataField]
+        public EntProtoId TicketProtoId = "SalvageTicket";
+        // Sunrise-End
 
         [DataField]
         public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2>? ResultReagents;

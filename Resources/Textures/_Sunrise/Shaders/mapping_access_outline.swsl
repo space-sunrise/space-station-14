@@ -1,0 +1,29 @@
+light_mode unshaded;
+
+uniform highp float outline_width;
+uniform highp vec4 outline_color;
+
+void fragment()
+{
+    highp float center = texture2D(TEXTURE, UV).a;
+
+    if (center > 0.001)
+    {
+        COLOR = vec4(0.0);
+        return;
+    }
+
+    highp vec2 ps = TEXTURE_PIXEL_SIZE;
+    highp float maxa = 0.0;
+
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(0.0, -outline_width) * ps).a);
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(-outline_width, -outline_width) * ps).a);
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(outline_width, -outline_width) * ps).a);
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(-outline_width, 0.0) * ps).a);
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(outline_width, 0.0) * ps).a);
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(0.0, outline_width) * ps).a);
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(-outline_width, outline_width) * ps).a);
+    maxa = max(maxa, texture2D(TEXTURE, UV + vec2(outline_width, outline_width) * ps).a);
+
+    COLOR = vec4(outline_color.rgb, outline_color.a * maxa);
+}

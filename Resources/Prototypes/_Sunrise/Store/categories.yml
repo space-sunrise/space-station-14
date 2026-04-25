@@ -271,3 +271,28 @@
   id: UplinkPirateExchanger
   name: store-category-exchanger
   priority: 1
+
+- type: storeCategory
+  id: SalvageEquipment
+  name: store-category-salvage-equipment
+  priority: 0
+
+- type: storeCategory
+  id: SalvageWeapons
+  name: store-category-salvage-weapons
+  priority: 1
+
+- type: storeCategory
+  id: SalvageConsumeables
+  name: store-category-salvage-consumeables
+  priority: 2
+
+- type: storeCategory
+  id: MiningEquipment
+  name: store-category-mining-equipment
+  priority: 0
+
+- type: storeCategory
+  id: MiningConsumeables
+  name: store-category-mining-consumeables
+  priority: 1

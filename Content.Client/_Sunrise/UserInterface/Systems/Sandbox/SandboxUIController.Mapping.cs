@@ -1,4 +1,5 @@
-using Content.Client._Sunrise.Sandbox;
+using Content.Client._Sunrise.Sandbox.Access.Systems;
+using Content.Client._Sunrise.Sandbox.Transparency.Systems;
 using Robust.Client.UserInterface;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
@@ -7,7 +8,7 @@ namespace Content.Client.UserInterface.Systems.Sandbox;
 public sealed partial class SandboxUIController
 {
     /*
-     * Mapping-specific sandbox button wiring and visibility helpers.
+     * Sunrise-specific sandbox button wiring and visibility helpers.
      */
     [UISystemDependency] private readonly MappingAccessOverlaySystem _mappingAccess = default!;
     [UISystemDependency] private readonly MappingTransparencySystem _mappingTransparency = default!;
@@ -24,6 +25,8 @@ public sealed partial class SandboxUIController
         _window.ToggleMappingTransparencyButton.Visible = _mappingTransparency.CanEnable;
         _window.ToggleMappingTransparencyButton.Pressed = _mappingTransparency.Enabled;
         _window.ToggleMappingTransparencyButton.OnPressed += _ => _sandbox.ToggleMappingTransparency();
+
+        InitializeDeviceLinkWindow();
     }
 
     /// <summary>

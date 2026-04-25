@@ -1,0 +1,14 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                Name="MainPanel"
+                HorizontalExpand="True"
+                Margin="0 1"
+                MouseFilter="Stop">
+    <PanelContainer Name="BackgroundPanel">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="12" Margin="0 4" MouseFilter="Ignore">
+            <PanelContainer Name="LateralStrip" MinWidth="4" MaxWidth="4" VerticalExpand="True" MouseFilter="Ignore"/>
+            <CheckBox Name="SelectionCheckBox" VerticalAlignment="Center" MouseFilter="Stop" Margin="8 0 0 0"/>
+            <Label Name="LawTitleLabel" VerticalAlignment="Center" ClipText="True" HorizontalExpand="True" MouseFilter="Ignore"/>
+        </BoxContainer>
+    </PanelContainer>
+</PanelContainer>
