@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.Jump;
+using Content.Shared._Sunrise.Standing.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
@@ -11,9 +12,9 @@ using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Sunrise.SunriseStanding;
+namespace Content.Shared._Sunrise.Standing.Systems;
 
-public sealed class SunriseStandingStateSystem : EntitySystem
+public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
 {
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
@@ -22,7 +23,6 @@ public sealed class SunriseStandingStateSystem : EntitySystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
 
     private readonly EntProtoId _fallStatusEffectKey = "StatusEffectFall";
-    public const float FallModifier = 0.2f;
 
     public override void Initialize()
     {
@@ -30,11 +30,16 @@ public sealed class SunriseStandingStateSystem : EntitySystem
 
         SubscribeLocalEvent<CanFallComponent, KnockedDownEvent>(OnDown);
         SubscribeLocalEvent<CanFallComponent, MoveInputEvent>(OnMoveInput);
+
+        InitializeCrawlingFootstepModifier();
+        InitializePronePulling();
     }
+
     private void OnMoveInput(Entity<CanFallComponent> ent, ref MoveInputEvent args)
     {
         ent.Comp.IsMoving = args.Entity.Comp.HeldMoveButtons != MoveButtons.None;
     }
+
     private void OnDown(Entity<CanFallComponent> ent, ref KnockedDownEvent ev)
     {
         if (_gravity.IsWeightless(ent.Owner))
@@ -80,7 +85,7 @@ public sealed class SunriseStandingStateSystem : EntitySystem
         var throwing = xform.LocalRotation.ToWorldVec() * ent.Comp.FallDistance;
         var direction = xform.Coordinates.Offset(throwing); // to make the character jump in the direction he's looking
 
-        _throwing.TryThrow(ent, direction, ent.Comp.FallVelocity);
+        _throwing.TryThrow(ent, direction, ent.Comp.FallVelocity, doSpin: false);
 
         _statusEffects.TryAddStatusEffectDuration(ent,
             _fallStatusEffectKey,
