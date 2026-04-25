@@ -142,7 +142,8 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         {
             if (_useSecondaryAltInteractQuery.HasComp(weaponUid)) // Sunrise-Edit
             {
-                // Clear any held attack state so RMB press is treated purely as alt-interact for this weapon.
+                // The dedicated secondary-use handler sends the alt-interact request on button press.
+                // This early return only suppresses held-RMB wide attacks and clears any stale melee attack state.
                 if (weapon.Attacking)
                     RaisePredictiveEvent(new StopAttackEvent(GetNetEntity(weaponUid)));
                 return;

@@ -32,6 +32,7 @@ public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
 
         CommandBinds.Builder
             // Let normal secondary-use interaction resolve first so this redirect only applies to melee-combat handling.
+            // We handle the press here and outside prediction because the redirect is an immediate input routing decision.
             .BindAfter(EngineKeyFunctions.UseSecondary,
                 new PointerInputCmdHandler(OnUseSecondary, handle: true, outsidePrediction: true),
                 typeof(SharedInteractionSystem))
