@@ -16,9 +16,12 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
 
     protected override void OnBackstabBonusApplied(Entity<BackstabOnHitComponent> ent, EntityUid target)
     {
-        if (ent.Comp.PopupMessages is not { } popupTable ||
-            !_prototype.TryIndex(popupTable, out WeightedRandomPrototype? popupWeights))
+        if (ent.Comp.PopupMessages is not { } popupTable)
+            return;
+
+        if (!_prototype.TryIndex(popupTable, out WeightedRandomPrototype? popupWeights))
         {
+            Log.Warning($"Missing weighted popup prototype {popupTable} on {ToPrettyString(ent.Owner)}.");
             return;
         }
 

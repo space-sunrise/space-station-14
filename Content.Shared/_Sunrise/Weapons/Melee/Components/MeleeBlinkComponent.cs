@@ -3,6 +3,9 @@ using Content.Shared.Damage;
 namespace Content.Shared._Sunrise.Weapons.Melee.Components;
 
 [RegisterComponent]
+/// <summary>
+/// Configures a charge-based short-range melee blink that moves the user in the direction they are facing.
+/// </summary>
 public sealed partial class MeleeBlinkComponent : Component
 {
     /// <summary>

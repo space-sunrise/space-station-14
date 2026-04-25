@@ -5,6 +5,9 @@ using Content.Shared.Maps;
 
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
+/// <summary>
+/// Applies landing-tile knockdowns after a melee blink finishes.
+/// </summary>
 public sealed class MeleeBlinkKnockdownSystem : EntitySystem
 {
     [Dependency] private readonly StunSystem _stun = default!;

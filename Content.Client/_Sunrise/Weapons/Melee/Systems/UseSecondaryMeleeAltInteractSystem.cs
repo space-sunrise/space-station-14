@@ -12,6 +12,9 @@ using Robust.Shared.Input.Binding;
 
 namespace Content.Client._Sunrise.Weapons.Melee.Systems;
 
+/// <summary>
+/// Converts combat-mode secondary use presses into alt-interacts for melee weapons that opt into the behavior.
+/// </summary>
 public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
 {
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;

@@ -21,6 +21,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
+/// <summary>
+/// Handles reusable melee blink verbs, cooldowns, charges, and landing resolution for blink-enabled weapons.
+/// </summary>
 public sealed class MeleeBlinkSystem : EntitySystem
 {
     [Dependency] private readonly BiocodeSystem _biocode = default!;
