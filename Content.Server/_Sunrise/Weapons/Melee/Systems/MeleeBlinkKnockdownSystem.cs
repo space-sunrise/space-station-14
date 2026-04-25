@@ -26,7 +26,7 @@ public sealed class MeleeBlinkKnockdownSystem : EntitySystem
             if (entity == args.User)
                 continue;
 
-            // Match blink-style impact handling so landing on top of a target always knocks them down.
+            // Match blink-style impact handling by attempting a forced knockdown on entities occupying the landing tile.
             _stun.TryKnockdown(entity, ent.Comp.KnockdownDuration, force: true);
         }
     }

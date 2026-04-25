@@ -32,7 +32,8 @@ public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
 
         CommandBinds.Builder
             // Let normal secondary-use interaction resolve first so this redirect only applies to melee-combat handling.
-            // We handle the press here and outside prediction because the redirect is an immediate input routing decision.
+            // This routing runs after normal interaction binding and outside prediction because it only decides
+            // whether RMB should become an alt-interact request for the held melee weapon on the local client.
             .BindAfter(EngineKeyFunctions.UseSecondary,
                 new PointerInputCmdHandler(OnUseSecondary, handle: true, outsidePrediction: true),
                 typeof(SharedInteractionSystem))
