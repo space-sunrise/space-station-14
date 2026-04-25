@@ -1,17 +1,18 @@
 using System.Numerics;
+using Content.Server.Charges;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.Biocode;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
+using Content.Shared._Sunrise.Weapons.Melee.Events;
 using Content.Shared.Charges.Components;
-using Content.Shared.Charges.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
-using Content.Shared.Stunnable;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
+using Robust.Server.Containers;
+using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
@@ -20,18 +21,20 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
-public sealed class SwitchbladeTeleporterSystem : EntitySystem
+/// <summary>
+/// Handles reusable melee blink verbs, cooldowns, charges, and landing resolution for blink-enabled weapons.
+/// </summary>
+public sealed class MeleeBlinkSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly BiocodeSystem _biocode = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly ChargesSystem _charges = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
     private const string SourceEffectPrototype = "TeleportEffectSource";
     private const string TargetEffectPrototype = "TeleportEffectTarget";
@@ -43,51 +46,48 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SwitchbladeTeleporterComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
-        SubscribeLocalEvent<SwitchbladeTeleporterComponent, GetVerbsEvent<ActivationVerb>>(OnGetActivationVerb);
+        SubscribeLocalEvent<MeleeBlinkComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
+        SubscribeLocalEvent<MeleeBlinkComponent, GetVerbsEvent<ActivationVerb>>(OnGetActivationVerb);
     }
 
-    private void OnGetAlternativeVerb(Entity<SwitchbladeTeleporterComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetAlternativeVerb(Entity<MeleeBlinkComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        args.Verbs.Add(CreateTeleportVerb<AlternativeVerb>(ent, args.User));
+        args.Verbs.Add(CreateBlinkVerb<AlternativeVerb>(ent, args.User));
     }
 
-    private void OnGetActivationVerb(Entity<SwitchbladeTeleporterComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
+    private void OnGetActivationVerb(Entity<MeleeBlinkComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        args.Verbs.Add(CreateTeleportVerb<ActivationVerb>(ent, args.User));
+        args.Verbs.Add(CreateBlinkVerb<ActivationVerb>(ent, args.User));
     }
 
-    /// <summary>
-    /// Creates a teleport verb of type <typeparamref name="T"/> that uses the shared cooldown, charge and biocode checks.
-    /// </summary>
-    private T CreateTeleportVerb<T>(Entity<SwitchbladeTeleporterComponent> ent, EntityUid user) where T : Verb, new()
+    private T CreateBlinkVerb<T>(Entity<MeleeBlinkComponent> ent, EntityUid user) where T : Verb, new()
     {
-        var canTeleport = CanTeleport(ent, user, out var disabledMessage, quiet: true);
+        var canBlink = CanBlink(ent, user, out var disabledMessage, quiet: true);
         return new T
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
-            Disabled = !canTeleport,
+            Disabled = !canBlink,
             Message = disabledMessage,
-            Act = () => TryTeleport(ent, user, quiet: false),
+            Act = () => TryBlink(ent, user, quiet: false),
         };
     }
 
-    private bool TryTeleport(Entity<SwitchbladeTeleporterComponent> ent, EntityUid user, bool quiet = false)
+    private bool TryBlink(Entity<MeleeBlinkComponent> ent, EntityUid user, bool quiet = false)
     {
-        if (!CanTeleport(ent, user, out _, quiet))
+        if (!CanBlink(ent, user, out _, quiet))
             return false;
 
-        DoTeleport((ent.Owner, ent.Comp), user);
+        DoBlink(ent, user);
         return true;
     }
 
-    private bool CanTeleport(Entity<SwitchbladeTeleporterComponent> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
+    private bool CanBlink(Entity<MeleeBlinkComponent> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
     {
         disabledMessage = null;
 
@@ -134,9 +134,6 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
         return true;
     }
 
-    /// <summary>
-    /// Checks whether the item is carried by the user, either via direct parenting or anywhere in the user's container chain.
-    /// </summary>
     private bool IsCarriedByUser(EntityUid item, EntityUid user)
     {
         if (Transform(item).ParentUid == user)
@@ -154,7 +151,7 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
         return false;
     }
 
-    private void DoTeleport(Entity<SwitchbladeTeleporterComponent> ent, EntityUid user)
+    private void DoBlink(Entity<MeleeBlinkComponent> ent, EntityUid user)
     {
         if (TryComp<UseDelayComponent>(ent.Owner, out var useDelay))
             _useDelay.TryResetDelay((ent.Owner, useDelay), true, GetTeleportDelayId(useDelay));
@@ -162,15 +159,15 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
         if (TryComp<LimitedChargesComponent>(ent.Owner, out var charges))
             _charges.TryUseCharge((ent.Owner, charges));
 
-        Teleport(user, ent.Comp);
+        Blink(user, ent);
     }
 
-    private void Teleport(EntityUid user, SwitchbladeTeleporterComponent comp)
+    private void Blink(EntityUid user, Entity<MeleeBlinkComponent> ent)
     {
         var pre = Transform(user).Coordinates;
 
-        var random = comp.RandomDistanceValue > 0 ? _random.Next(0, comp.RandomDistanceValue + 1) : 0;
-        var dist = comp.TeleportationValue + random;
+        var random = ent.Comp.RandomDistanceValue > 0 ? _random.Next(0, ent.Comp.RandomDistanceValue + 1) : 0;
+        var dist = ent.Comp.TeleportationValue + random;
         var dir = Transform(user).LocalRotation.ToWorldVec().Normalized();
         var target = pre.Offset(dir * new Vector2(dist, dist));
 
@@ -181,22 +178,22 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
 
         if (IsSpotFree(user, target))
         {
-            ApplyLanding(user, target, comp);
+            ApplyLanding(ent.Owner, user, target, ent.Comp);
             return;
         }
 
         if (TryFindSafeTile(user, target, out var safe))
         {
-            ApplyLanding(user, safe!.Value, comp);
-            ApplyBlockedDamage(user, comp);
+            ApplyLanding(ent.Owner, user, safe.Value, ent.Comp);
+            ApplyBlockedDamage(user, ent.Comp);
             return;
         }
 
         _transform.SetCoordinates(user, pre);
-        ApplyBlockedDamage(user, comp);
+        ApplyBlockedDamage(user, ent.Comp);
     }
 
-    private void ApplyBlockedDamage(EntityUid user, SwitchbladeTeleporterComponent comp)
+    private void ApplyBlockedDamage(EntityUid user, MeleeBlinkComponent comp)
     {
         if (comp.DamageOnBlocked is { } dmg && HasComp<DamageableComponent>(user))
             _damage.TryChangeDamage(user, dmg);
@@ -263,9 +260,6 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Resolves the teleporter cooldown entry, falling back to the default use delay when no custom teleport delay is configured.
-    /// </summary>
     private static string GetTeleportDelayId(UseDelayComponent component)
     {
         return component.Delays?.ContainsKey(TeleportDelayId) == true
@@ -273,19 +267,8 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
             : UseDelaySystem.DefaultId;
     }
 
-    private void ApplyLanding(EntityUid user, EntityCoordinates where, SwitchbladeTeleporterComponent comp)
+    private void ApplyLanding(EntityUid weapon, EntityUid user, EntityCoordinates where, MeleeBlinkComponent comp)
     {
-        if (comp.KnockdownDuration is { } duration)
-        {
-            foreach (var entity in _turf.GetEntitiesInTile(where, LookupFlags.Dynamic))
-            {
-                if (entity == user)
-                    continue;
-
-                _stun.TryKnockdown(entity, duration);
-            }
-        }
-
         var landing = where;
         if (comp.LandingRandomOffset > 0f)
         {
@@ -299,12 +282,13 @@ public sealed class SwitchbladeTeleporterSystem : EntitySystem
         }
 
         _transform.SetCoordinates(user, landing);
+
+        var landed = new MeleeBlinkLandedEvent(user, landing);
+        RaiseLocalEvent(weapon, ref landed);
+
         Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(landing));
     }
 
-    /// <summary>
-    /// Determines whether an entity should block teleport landing by checking for hard impassable physics and an anchored transform.
-    /// </summary>
     private bool IsBlockingEntity(EntityUid uid)
     {
         if (!TryComp<PhysicsComponent>(uid, out var physics) ||

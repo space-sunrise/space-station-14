@@ -1,5 +1,7 @@
 using Content.Shared.Damage;
+using Content.Shared.Random;
 using Content.Shared._Sunrise.Weapons.Melee.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Weapons.Melee.Components;
 
@@ -14,17 +16,8 @@ public sealed partial class BackstabOnHitComponent : Component
     public DamageSpecifier BonusDamage = new();
 
     /// <summary>
-    /// Optional localized popup identifiers loaded from the <c>popupMessages</c> <see cref="DataFieldAttribute"/>.
-    /// The server shows one of these messages to every connected player after a successful non-wide backstab.
+    /// Optional weighted popup table used to select a localized backstab message.
     /// </summary>
     [DataField]
-    public List<LocId> PopupMessages = [];
-
-    /// <summary>
-    /// Optional weights loaded from the <c>popupWeights</c> <see cref="DataFieldAttribute"/>.
-    /// Entries map by index to <see cref="PopupMessages"/>; when the counts differ, the list is empty,
-    /// or every weight is non-positive, popup selection falls back to an unweighted random pick.
-    /// </summary>
-    [DataField]
-    public List<float> PopupWeights = [];
+    public ProtoId<WeightedRandomPrototype>? PopupMessages;
 }

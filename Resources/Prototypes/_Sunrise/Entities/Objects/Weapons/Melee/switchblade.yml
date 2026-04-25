@@ -40,14 +40,7 @@
       bonusDamage:
         types:
           Slash: 12
-      popupMessages:
-        - backstab-popup-message-1
-        - backstab-popup-message-2
-        - backstab-popup-message-3
-      popupWeights:
-        - 0.9
-        - 0.075
-        - 0.025
+      popupMessages: SunriseBackstabPopupMessages
   - type: ItemToggleSize
     activatedSize: Small
     activatedShape:
@@ -64,18 +57,26 @@
           False: { state: switchblade }
   # Prevents spamming use to reset the swing delay.
   # Also provides the teleporter cooldown via the TeleportDelay entry.
-  - type: SwitchbladeTeleporter
+  - type: MeleeBlink
     randomDistanceValue: 1
     teleportationValue: 4
-    knockdownDuration: 1
     landingRandomOffset: 0
     damageOnBlocked:
       types:
         Cellular: 1
-  - type: DisableMeleeWideAttack
+  - type: MeleeBlinkKnockdown
+    knockdownDuration: 1
+  - type: UseSecondaryMeleeAltInteract
   - type: AutoRecharge
     rechargeDuration: 15
   - type: LimitedCharges
     maxCharges: 2
   - type: ThrowingAngle
     angle: 180
+
+- type: weightedRandom
+  id: SunriseBackstabPopupMessages
+  weights:
+    backstab-popup-message-1: 0.9
+    backstab-popup-message-2: 0.075
+    backstab-popup-message-3: 0.025

@@ -26,7 +26,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
-using Content.Shared._Sunrise.Weapons.Melee.Components;
+using Content.Shared._Sunrise.Weapons.Melee.Events; // Sunrise-Edit
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
@@ -227,10 +227,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             || HasComp<MechPilotComponent>(args.SenderSession.AttachedEntity)
             || !TryGetWeapon(args.SenderSession.AttachedEntity.Value, out var weaponUid, out var weapon)
             || weaponUid != GetEntity(msg.Weapon))
-            return;
-
-        // Sunrise-Edit
-        if (HasComp<DisableMeleeWideAttackComponent>(weaponUid))
             return;
 
         AttemptAttack(args.SenderSession.AttachedEntity.Value, weaponUid, weapon, msg, args.SenderSession);

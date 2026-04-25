@@ -9,12 +9,17 @@ namespace Content.Shared.Weapons.Melee.Events;
 ///     Raised directed on the melee weapon entity used to attack something in combat mode,
 ///     whether through a click attack or wide attack.
 /// </summary>
-public sealed class MeleeHitEvent : HandledEntityEventArgs
+public sealed class MeleeHitEvent(
+    List<EntityUid> HitEntities,
+    EntityUid User,
+    EntityUid Weapon,
+    DamageSpecifier BaseDamage,
+    Vector2? Direction) : HandledEntityEventArgs
 {
     /// <summary>
     ///     The base amount of damage dealt by the melee hit.
     /// </summary>
-    public readonly DamageSpecifier BaseDamage;
+    public readonly DamageSpecifier BaseDamage = BaseDamage;
 
     /// <summary>
     ///     Modifier sets to apply to the hit event when it's all said and done.
@@ -33,7 +38,7 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
     /// <summary>
     ///     A list containing every hit entity. Can be zero.
     /// </summary>
-    public IReadOnlyList<EntityUid> HitEntities;
+    public IReadOnlyList<EntityUid> HitEntities = HitEntities;
 
     /// <summary>
     ///     Used to define a new hit sound in case you want to override the default GenericHit.
@@ -44,18 +49,18 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
     /// <summary>
     /// The user who attacked with the melee weapon.
     /// </summary>
-    public readonly EntityUid User;
+    public readonly EntityUid User = User;
 
     /// <summary>
     /// The melee weapon used.
     /// </summary>
-    public readonly EntityUid Weapon;
+    public readonly EntityUid Weapon = Weapon;
 
     /// <summary>
     /// The direction of the attack.
     /// If null, it was a click-attack.
     /// </summary>
-    public readonly Vector2? Direction;
+    public readonly Vector2? Direction = Direction;
 
     /// <summary>
     /// Check if this is true before attempting to do something during a melee attack other than changing/adding bonus damage. <br/>
@@ -65,15 +70,6 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
     /// Examining melee weapons calls this event, but with <see cref="IsHit"/> set to false.
     /// </remarks>
     public bool IsHit = true;
-
-    public MeleeHitEvent(List<EntityUid> hitEntities, EntityUid user, EntityUid weapon, DamageSpecifier baseDamage, Vector2? direction)
-    {
-        HitEntities = hitEntities;
-        User = user;
-        Weapon = weapon;
-        BaseDamage = baseDamage;
-        Direction = direction;
-    }
 }
 
 /// <summary>
@@ -81,19 +77,6 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
 /// </summary>
 [ByRefEvent]
 public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damage, List<DamageModifierSet> Modifiers, EntityUid User, bool ResistanceBypass = false);
-
-// Sunrise-Edit
-/// <summary>
-/// Raised on a melee weapon so subscribers can add hit-specific bonus damage on top of the already computed base damage.
-/// Handlers should mutate <see cref="BonusDamage"/> additively and may skip their modifier when <see cref="IsWideAttack"/> is true.
-/// </summary>
-[ByRefEvent]
-public record struct GetMeleeHitBonusDamageEvent(
-    EntityUid Weapon,
-    EntityUid User,
-    EntityUid Target,
-    DamageSpecifier BonusDamage,
-    bool IsWideAttack);
 
 /// <summary>
 /// Raised on a melee weapon to calculate the attack rate.

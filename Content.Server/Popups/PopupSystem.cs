@@ -26,21 +26,6 @@ namespace Content.Server.Popups
             RaiseNetworkEvent(new PopupCursorEvent(message, type), recipient);
         }
 
-        /// <summary>
-        /// Shows a cursor popup to every player matched by the supplied filter.
-        /// </summary>
-        /// <param name="message">The message to display.</param>
-        /// <param name="filter">The set of recipients that should receive the popup.</param>
-        /// <param name="recordReplay">Whether to record the popup for replays.</param>
-        /// <param name="type">Used to customize how this popup should appear visually.</param>
-        public void PopupCursor(string? message, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
-        {
-            if (message == null)
-                return;
-
-            RaiseNetworkEvent(new PopupCursorEvent(message, type), filter, recordReplay);
-        }
-
         public override void PopupCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
         {
             if (message == null)
