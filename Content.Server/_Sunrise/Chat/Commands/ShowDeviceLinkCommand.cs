@@ -3,7 +3,7 @@ using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
-namespace Content.Server._Sunrise.Commands;
+namespace Content.Server._Sunrise.Chat.Commands;
 
 /// <summary>
 ///     Toggles the display of connected device links.
@@ -17,10 +17,13 @@ public sealed class ShowDeviceLinkCommand : LocalizedEntityCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        var session = shell.Player;
-        if (session == null)
+        if (shell.Player == null)
+        {
+            shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-denied"));
             return;
+        }
 
-        _deviceLinking.ToggleDebugView(session);
+        _deviceLinking.ToggleDebugView(shell.Player);
+        shell.WriteLine(LocalizationManager.GetString($"cmd-{Command}-status"));
     }
 }
