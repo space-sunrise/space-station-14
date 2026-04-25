@@ -40,7 +40,7 @@ public sealed partial class DeviceLinkOverlaySystem
 
     private void ToggleOverlay()
     {
-        if (Enabled)
+        if (_overlay == null)
         {
             _overlay = new();
             _overlayMan.AddOverlay(_overlay);
@@ -62,8 +62,10 @@ public sealed partial class DeviceLinkOverlaySystem
 
     private void OnDebugOverlayData(DeviceLinkOverlayDataEvent args)
     {
-        if (!_overlayMan.HasOverlay<DeviceLinkDebugOverlay>())
+        if (_overlay == null)
             return;
+
+        Rays.Clear();
 
         foreach (var ray in args.Rays)
         {
@@ -89,6 +91,8 @@ public sealed partial class DeviceLinkOverlaySystem
 
             if (!SourceColors.ContainsKey(source))
                 SourceColors.Add(source, _random.Pick(RayColors));
+
+            Rays[source] = entities;
         }
     }
 }
