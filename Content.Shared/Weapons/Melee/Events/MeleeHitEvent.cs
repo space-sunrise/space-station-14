@@ -10,16 +10,16 @@ namespace Content.Shared.Weapons.Melee.Events;
 ///     whether through a click attack or wide attack.
 /// </summary>
 public sealed class MeleeHitEvent(
-    List<EntityUid> hitEntities,
-    EntityUid user,
-    EntityUid weapon,
-    DamageSpecifier baseDamage,
-    Vector2? direction) : HandledEntityEventArgs
+    List<EntityUid> HitEntities,
+    EntityUid User,
+    EntityUid Weapon,
+    DamageSpecifier BaseDamage,
+    Vector2? Direction) : HandledEntityEventArgs
 {
     /// <summary>
     ///     The base amount of damage dealt by the melee hit.
     /// </summary>
-    public readonly DamageSpecifier BaseDamage = baseDamage;
+    public readonly DamageSpecifier BaseDamage = BaseDamage;
 
     /// <summary>
     ///     Modifier sets to apply to the hit event when it's all said and done.
@@ -38,7 +38,7 @@ public sealed class MeleeHitEvent(
     /// <summary>
     ///     A list containing every hit entity. Can be zero.
     /// </summary>
-    public IReadOnlyList<EntityUid> HitEntities = hitEntities;
+    public IReadOnlyList<EntityUid> HitEntities = HitEntities;
 
     /// <summary>
     ///     Used to define a new hit sound in case you want to override the default GenericHit.
@@ -49,18 +49,18 @@ public sealed class MeleeHitEvent(
     /// <summary>
     /// The user who attacked with the melee weapon.
     /// </summary>
-    public readonly EntityUid User = user;
+    public readonly EntityUid User = User;
 
     /// <summary>
     /// The melee weapon used.
     /// </summary>
-    public readonly EntityUid Weapon = weapon;
+    public readonly EntityUid Weapon = Weapon;
 
     /// <summary>
     /// The direction of the attack.
     /// If null, it was a click-attack.
     /// </summary>
-    public readonly Vector2? Direction = direction;
+    public readonly Vector2? Direction = Direction;
 
     /// <summary>
     /// Check if this is true before attempting to do something during a melee attack other than changing/adding bonus damage. <br/>

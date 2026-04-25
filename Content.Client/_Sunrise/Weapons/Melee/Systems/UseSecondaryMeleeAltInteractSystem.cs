@@ -28,7 +28,9 @@ public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
         _redirectQuery = GetEntityQuery<UseSecondaryMeleeAltInteractComponent>();
 
         CommandBinds.Builder
-            .BindAfter(EngineKeyFunctions.UseSecondary, new PointerInputCmdHandler(OnUseSecondary, true, true), typeof(SharedInteractionSystem))
+            .BindAfter(EngineKeyFunctions.UseSecondary,
+                new PointerInputCmdHandler(OnUseSecondary, handle: true, outsidePrediction: true),
+                typeof(SharedInteractionSystem))
             .Register<UseSecondaryMeleeAltInteractSystem>();
     }
 
