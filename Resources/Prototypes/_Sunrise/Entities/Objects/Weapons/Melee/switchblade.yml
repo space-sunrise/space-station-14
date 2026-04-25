@@ -21,6 +21,7 @@
       types:
         Slash: 10
   - type: MeleeWeapon
+    autoAttack: true
     wideAnimationRotation: -135
     attackRate: 2
     damage:
@@ -55,21 +56,15 @@
         enum.ToggleableVisuals.Layer:
           True: { state: icon }
           False: { state: switchblade }
-  # Prevents spamming use to reset the swing delay.
-  # Also provides the teleporter cooldown via the TeleportDelay entry.
-  - type: UseDelay
-    delays:
-      TeleportDelay: !type:UseDelayInfo
-        length: 15
   - type: MeleeBlink
-    randomDistanceValue: 1
-    teleportationValue: 4
+    randomDistanceValue: 0
+    teleportationValue: 5
     landingRandomOffset: 0
     damageOnBlocked:
       types:
         Cellular: 1
   - type: MeleeBlinkKnockdown
-    knockdownDuration: 1
+    knockdownDuration: 2
   - type: UseSecondaryMeleeAltInteract
   - type: AutoRecharge
     rechargeDuration: 15
@@ -77,7 +72,6 @@
     maxCharges: 2
   - type: ThrowingAngle
     angle: 180
-
 - type: weightedRandom
   id: SunriseBackstabPopupMessages
   weights:
