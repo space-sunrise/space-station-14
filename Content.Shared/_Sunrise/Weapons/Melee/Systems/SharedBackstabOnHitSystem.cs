@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Systems;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
+using Content.Shared._Sunrise.Weapons.Melee.Events;
 using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Shared._Sunrise.Weapons.Melee.Systems;

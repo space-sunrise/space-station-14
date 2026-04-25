@@ -1,0 +1,29 @@
+using Content.Server.Stunnable;
+using Content.Shared._Sunrise.Weapons.Melee.Components;
+using Content.Shared._Sunrise.Weapons.Melee.Events;
+using Content.Shared.Maps;
+
+namespace Content.Server._Sunrise.Weapons.Melee.Systems;
+
+public sealed class MeleeBlinkKnockdownSystem : EntitySystem
+{
+    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<MeleeBlinkKnockdownComponent, MeleeBlinkLandedEvent>(OnBlinkLanded);
+    }
+
+    private void OnBlinkLanded(Entity<MeleeBlinkKnockdownComponent> ent, ref MeleeBlinkLandedEvent args)
+    {
+        foreach (var entity in _turf.GetEntitiesInTile(args.Coordinates, LookupFlags.Dynamic))
+        {
+            if (entity == args.User)
+                continue;
+
+            _stun.TryKnockdown(entity, ent.Comp.KnockdownDuration, force: true);
+        }
+    }
+}
