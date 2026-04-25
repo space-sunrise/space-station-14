@@ -184,7 +184,7 @@ public sealed class MeleeBlinkSystem : EntitySystem
 
         if (TryFindSafeTile(user, target, out var safe))
         {
-            ApplyLanding(ent.Owner, user, safe.Value, ent.Comp);
+            ApplyLanding(ent.Owner, user, safe, ent.Comp);
             ApplyBlockedDamage(user, ent.Comp);
             return;
         }
@@ -222,7 +222,7 @@ public sealed class MeleeBlinkSystem : EntitySystem
         return true;
     }
 
-    private bool TryFindSafeTile(EntityUid user, EntityCoordinates origin, out EntityCoordinates? result)
+    private bool TryFindSafeTile(EntityUid user, EntityCoordinates origin, out EntityCoordinates result)
     {
         var mapId = _transform.GetMapId(user);
 
@@ -235,7 +235,7 @@ public sealed class MeleeBlinkSystem : EntitySystem
             }
         }
 
-        result = null;
+        result = default;
         return false;
     }
 
@@ -269,17 +269,7 @@ public sealed class MeleeBlinkSystem : EntitySystem
 
     private void ApplyLanding(EntityUid weapon, EntityUid user, EntityCoordinates where, MeleeBlinkComponent comp)
     {
-        var landing = where;
-        if (comp.LandingRandomOffset > 0f)
-        {
-            var angle = Angle.FromDegrees(_random.Next(0, 360));
-            var dist = _random.NextFloat(0f, comp.LandingRandomOffset);
-            var offset = angle.ToWorldVec() * dist;
-            var candidate = where.Offset(offset);
-
-            if (IsSpotFree(user, candidate))
-                landing = candidate;
-        }
+        var landing = ResolveLandingCoordinates(user, where, comp);
 
         _transform.SetCoordinates(user, landing);
 
@@ -287,6 +277,21 @@ public sealed class MeleeBlinkSystem : EntitySystem
         RaiseLocalEvent(weapon, ref landed);
 
         Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(landing));
+    }
+
+    private EntityCoordinates ResolveLandingCoordinates(EntityUid user, EntityCoordinates where, MeleeBlinkComponent comp)
+    {
+        if (comp.LandingRandomOffset <= 0f)
+            return where;
+
+        var angle = Angle.FromDegrees(_random.Next(0, 360));
+        var dist = _random.NextFloat(0f, comp.LandingRandomOffset);
+        var offset = angle.ToWorldVec() * dist;
+        var candidate = where.Offset(offset);
+
+        return IsSpotFree(user, candidate)
+            ? candidate
+            : where;
     }
 
     private bool IsBlockingEntity(EntityUid uid)
