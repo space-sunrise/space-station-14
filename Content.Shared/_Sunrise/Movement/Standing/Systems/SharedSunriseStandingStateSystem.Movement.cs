@@ -49,40 +49,11 @@ public abstract partial class SharedSunriseStandingStateSystem
 
     public void CancelProneCrawlActivePull(Entity<ActiveProneCrawlMovementComponent> ent)
     {
-        var changed = false;
-
-        if (ent.Comp.PullStartTime != TimeSpan.Zero)
-        {
-            ent.Comp.PullStartTime = TimeSpan.Zero;
-            changed = true;
-        }
-
-        if (ent.Comp.PullEndTime != TimeSpan.Zero)
-        {
-            ent.Comp.PullEndTime = TimeSpan.Zero;
-            changed = true;
-        }
-
-        if (ent.Comp.PullDirection != Vector2.Zero)
-        {
-            ent.Comp.PullDirection = Vector2.Zero;
-            changed = true;
-        }
-
-        if (ent.Comp.PullVelocity != Vector2.Zero)
-        {
-            ent.Comp.PullVelocity = Vector2.Zero;
-            changed = true;
-        }
-
-        if (ent.Comp.IsPulling)
-        {
-            ent.Comp.IsPulling = false;
-            changed = true;
-        }
-
-        if (changed)
-            Dirty(ent);
+        Reset(ent, ref ent.Comp.PullStartTime, TimeSpan.Zero, nameof(ActiveProneCrawlMovementComponent.PullStartTime));
+        Reset(ent, ref ent.Comp.PullEndTime,   TimeSpan.Zero, nameof(ActiveProneCrawlMovementComponent.PullEndTime));
+        Reset(ent, ref ent.Comp.PullDirection, Vector2.Zero,  nameof(ActiveProneCrawlMovementComponent.PullDirection));
+        Reset(ent, ref ent.Comp.PullVelocity,  Vector2.Zero,  nameof(ActiveProneCrawlMovementComponent.PullVelocity));
+        Reset(ent, ref ent.Comp.IsPulling,     false,         nameof(ActiveProneCrawlMovementComponent.IsPulling));
     }
 
     private void Reset<T>(Entity<ActiveProneCrawlMovementComponent> ent, ref T field, T value, string name)
