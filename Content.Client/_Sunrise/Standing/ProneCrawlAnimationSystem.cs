@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared._Sunrise.Standing;
 using Content.Shared._Sunrise.Standing.Components;
+using Content.Shared.Stunnable;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
@@ -11,12 +12,8 @@ namespace Content.Client._Sunrise.Standing;
 public sealed class ProneCrawlAnimationSystem : EntitySystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
-
-    private const string AnimationKey = "prone-crawl-pull";
-    private const float PullBackDistance = 0.08f;
-    private static readonly Vector2 PullScaleMultiplier = new(1.05f, 0.95f);
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -29,26 +26,29 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
 
     private void OnPullStarted(Entity<ActiveProneCrawlMovementComponent> ent, ref ProneCrawlPullStartedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted || !TryComp<SpriteComponent>(ent, out var sprite))
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        if (!TryComp<SpriteComponent>(ent, out var sprite) || !TryComp<CrawlerComponent>(ent, out var crawl))
             return;
 
         var animationState = EnsureComp<ProneCrawlAnimationComponent>(ent);
         CaptureRestState(animationState, sprite.Offset, sprite.Scale);
         var animationPlayer = EnsureComp<AnimationPlayerComponent>(ent.Owner);
 
-        if (_animation.HasRunningAnimation(ent.Owner, animationPlayer, AnimationKey))
+        if (_animation.HasRunningAnimation(ent.Owner, animationPlayer, crawl.AnimationKey))
         {
-            _animation.Stop((ent.Owner, animationPlayer), AnimationKey);
+            _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
             RestoreAnimationState((ent.Owner, animationState), sprite);
         }
         else
             RestoreAnimationState((ent.Owner, animationState), sprite);
 
         var duration = MathF.Max(0.05f, (float) args.Duration.TotalSeconds);
-        var backOffset = animationState.BaseOffset - args.Direction * PullBackDistance;
+        var backOffset = animationState.BaseOffset - args.Direction * crawl.AnimationPullBackDistance;
         var stretchedScale = new Vector2(
-            animationState.BaseScale.X * PullScaleMultiplier.X,
-            animationState.BaseScale.Y * PullScaleMultiplier.Y);
+            animationState.BaseScale.X * crawl.AnimationPullScaleMultiplier.X,
+            animationState.BaseScale.Y * crawl.AnimationPullScaleMultiplier.Y);
 
         var animation = new Animation
         {
@@ -64,7 +64,7 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
                     {
                         new AnimationTrackProperty.KeyFrame(animationState.BaseOffset, 0f),
                         new AnimationTrackProperty.KeyFrame(backOffset, duration * 0.35f, Easings.OutQuad),
-                        new AnimationTrackProperty.KeyFrame(animationState.BaseOffset, duration, Easings.InQuad)
+                        new AnimationTrackProperty.KeyFrame(animationState.BaseOffset, duration, Easings.InQuad),
                     }
                 },
                 new AnimationTrackComponentProperty
@@ -76,18 +76,21 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
                     {
                         new AnimationTrackProperty.KeyFrame(animationState.BaseScale, 0f),
                         new AnimationTrackProperty.KeyFrame(stretchedScale, duration * 0.35f, Easings.OutQuad),
-                        new AnimationTrackProperty.KeyFrame(animationState.BaseScale, duration, Easings.InQuad)
+                        new AnimationTrackProperty.KeyFrame(animationState.BaseScale, duration, Easings.InQuad),
                     }
                 }
             }
         };
 
-        _animation.Play((ent.Owner, animationPlayer), animation, AnimationKey);
+        _animation.Play((ent.Owner, animationPlayer), animation, crawl.AnimationKey);
     }
 
     private void OnAnimationCompleted(Entity<ProneCrawlAnimationComponent> ent, ref AnimationCompletedEvent args)
     {
-        if (args.Key != AnimationKey || !TryComp<SpriteComponent>(ent, out var sprite))
+        if (!TryComp<CrawlerComponent>(ent, out var crawl))
+            return;
+
+        if (args.Key != crawl.AnimationKey || !TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
         RestoreAnimationState((ent.Owner, ent.Comp), sprite);
@@ -95,6 +98,9 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
 
     private void OnMovementShutdown(Entity<ActiveProneCrawlMovementComponent> ent, ref ComponentShutdown args)
     {
+        if (!TryComp<CrawlerComponent>(ent, out var crawl))
+            return;
+
         if (!TryComp<ProneCrawlAnimationComponent>(ent, out var animationState) ||
             !TryComp<SpriteComponent>(ent, out var sprite))
         {
@@ -102,9 +108,9 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         }
 
         if (TryComp<AnimationPlayerComponent>(ent, out var animationPlayer) &&
-            _animation.HasRunningAnimation(ent.Owner, animationPlayer, AnimationKey))
+            _animation.HasRunningAnimation(ent.Owner, animationPlayer, crawl.AnimationKey))
         {
-            _animation.Stop((ent.Owner, animationPlayer), AnimationKey);
+            _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
         }
 
         RestoreAnimationState((ent.Owner, animationState), sprite);
@@ -117,7 +123,7 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         _sprite.SetScale((ent.Owner, sprite), ent.Comp.BaseScale);
     }
 
-    internal static void CaptureRestState(ProneCrawlAnimationComponent component, Vector2 offset, Vector2 scale)
+    private void CaptureRestState(ProneCrawlAnimationComponent component, Vector2 offset, Vector2 scale)
     {
         if (component.BaseStateCaptured)
             return;

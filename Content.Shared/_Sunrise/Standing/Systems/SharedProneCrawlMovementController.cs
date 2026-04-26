@@ -129,7 +129,7 @@ public sealed class SharedProneCrawlMovementController : VirtualController
         Vector2 wishDir,
         TimeSpan currentTime)
     {
-        var pullDuration = ent.Comp2.CrawlPullDuration;
+        var pullDuration = ent.Comp2.PullDuration;
         if (pullDuration <= TimeSpan.Zero)
             return false;
 
@@ -137,7 +137,7 @@ public sealed class SharedProneCrawlMovementController : VirtualController
         if (desiredSpeed <= 0.001f)
             return false;
 
-        var pullDistance = MathF.Min(ent.Comp2.CrawlPullDistance, desiredSpeed * (float) pullDuration.TotalSeconds);
+        var pullDistance = MathF.Min(ent.Comp2.PullDistance, desiredSpeed * (float) pullDuration.TotalSeconds);
         if (pullDistance <= 0.001f)
             return false;
 
@@ -146,7 +146,7 @@ public sealed class SharedProneCrawlMovementController : VirtualController
 
         ent.Comp1.PullStartTime = currentTime;
         ent.Comp1.PullEndTime = currentTime + pullDuration;
-        ent.Comp1.NextPullTime = ent.Comp1.PullEndTime + ent.Comp2.CrawlPullPause;
+        ent.Comp1.NextPullTime = ent.Comp1.PullEndTime + ent.Comp2.PullPause;
         ent.Comp1.PullDirection = direction;
         ent.Comp1.PullVelocity = velocity;
         ent.Comp1.IsPulling = true;
@@ -154,17 +154,24 @@ public sealed class SharedProneCrawlMovementController : VirtualController
 
         var pullStarted = new ProneCrawlPullStartedEvent(direction, pullDuration);
         RaiseLocalEvent(ent.Owner, ref pullStarted);
-        PlayPullSound((ent.Owner, ent.Comp2));
+        PlayPullStartSound((ent.Owner, ent.Comp2));
         return true;
     }
 
-    private void PlayPullSound(Entity<CrawlerComponent> ent)
+    private void PlayPullStartSound(Entity<CrawlerComponent> ent)
     {
-        var sound = ent.Comp.CrawlPullSound ?? ent.Comp.CrawlingSound;
-        if (sound == null)
+        if (ent.Comp.PullStartSound == null)
             return;
 
-        _audio.PlayPredicted(sound, ent.Owner, ent.Owner);
+        _audio.PlayPredicted(ent.Comp.PullStartSound, ent.Owner, ent.Owner);
+    }
+
+    private void PlayPullEndSound(Entity<CrawlerComponent> ent)
+    {
+        if (ent.Comp.PullEndSound == null)
+            return;
+
+        _audio.PlayPredicted(ent.Comp.PullEndSound, ent.Owner, ent.Owner);
     }
 
     private void ApplyPullVelocity(Entity<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent, PhysicsComponent> ent)
@@ -184,6 +191,7 @@ public sealed class SharedProneCrawlMovementController : VirtualController
         ent.Comp1.IsPulling = false;
         ent.Comp1.PullVelocity = Vector2.Zero;
         Dirty(ent.Owner, ent.Comp1);
+        PlayPullEndSound((ent.Owner, ent.Comp2));
     }
 
     private void StopProneCrawl(
