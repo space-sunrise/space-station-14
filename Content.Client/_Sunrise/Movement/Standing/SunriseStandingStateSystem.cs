@@ -86,6 +86,8 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
     {
         if (_spriteQuery.TryComp(ent.Owner, out var sprite))
             RestoreProneCrawlVisuals((ent.Owner, sprite));
+        else
+            RemComp<ProneCrawlVisualsComponent>(ent.Owner);
     }
 
     private bool TryGetActiveProneCrawlVisuals(
