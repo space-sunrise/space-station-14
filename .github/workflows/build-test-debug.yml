@@ -5,12 +5,12 @@ on:
     branches: [ master ]
   merge_group:
   pull_request:
-    types: [ opened, reopened, synchronize, converted_to_draft, ready_for_review ]
+    types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master ]
 
 jobs:
   build:
-    if: github.actor != 'Sunrise-Bot'
+    if: github.actor != 'Sunrise-Bot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Master
