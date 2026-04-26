@@ -1,4 +1,4 @@
-namespace Content.Client._Sunrise.Standing;
+namespace Content.Client._Sunrise.Movement.Standing;
 
 [RegisterComponent, Access(typeof(SunriseStandingStateSystem))]
 public sealed partial class ProneCrawlVisualsComponent : Component

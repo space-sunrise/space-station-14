@@ -1,4 +1,4 @@
-using Content.Shared._Sunrise.Standing;
+using Content.Shared._Sunrise.Movement.Standing;
 
 namespace Content.Shared._Sunrise.Abilities.Resomi;
 

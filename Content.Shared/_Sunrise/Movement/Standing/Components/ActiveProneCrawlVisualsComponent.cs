@@ -1,7 +1,7 @@
-using Content.Shared._Sunrise.Standing.Systems;
+using Content.Shared._Sunrise.Movement.Standing.Systems;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Sunrise.Standing.Components;
+namespace Content.Shared._Sunrise.Movement.Standing.Components;
 
 /// <summary>
 /// Marks entities that should update prone crawl visuals on rotation changes.

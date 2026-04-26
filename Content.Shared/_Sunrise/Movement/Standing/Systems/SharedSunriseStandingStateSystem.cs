@@ -1,5 +1,5 @@
 using Content.Shared._Sunrise.Jump;
-using Content.Shared._Sunrise.Standing.Components;
+using Content.Shared._Sunrise.Movement.Standing.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
@@ -12,7 +12,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Sunrise.Standing.Systems;
+namespace Content.Shared._Sunrise.Movement.Standing.Systems;
 
 public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
 {
@@ -49,6 +49,16 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
         TryFall(ent);
     }
 
+    /// <summary>
+    /// Checks whether the entity can enter the falling state.
+    /// Returns false when the entity is weightless, has no movement input, is auto-standing,
+    /// actively leaping, lacks enough stamina, has the jump status effect, or when
+    /// <see cref="FallAttemptEvent"/> is cancelled.
+    /// </summary>
+    /// <param name="ent">Entity with the fall configuration to check.</param>
+    /// <param name="autoStand">Prevents falling while the caller is auto-standing the entity.</param>
+    /// <param name="quiet">Suppresses predicted failure popups when true.</param>
+    /// <returns>True when all checks pass and the entity can fall; otherwise false.</returns>
     public bool CanFall(Entity<CanFallComponent> ent, bool autoStand, bool quiet = false)
     {
         if (_gravity.IsWeightless(ent.Owner) || !HasMovementInput(ent) || autoStand)
@@ -88,6 +98,14 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
                mover.HasDirectionalMovement;
     }
 
+    /// <summary>
+    /// Attempts to make the entity fall by throwing it with <see cref="ThrowingSystem.TryThrow"/>
+    /// using <see cref="CanFallComponent.FallDistance"/> and <see cref="CanFallComponent.FallVelocity"/>,
+    /// adding the fall status effect for <see cref="CanFallComponent.Duration"/>, and dealing stamina
+    /// damage equal to <c>stamina.CritThreshold * ent.Comp.StaminaDamage</c> with resistance ignored.
+    /// </summary>
+    /// <param name="ent">Entity with the fall configuration to execute.</param>
+    /// <returns>True when the fall side effects were applied; false when the entity has no <see cref="StaminaComponent"/>.</returns>
     public bool TryFall(Entity<CanFallComponent> ent)
     {
         if (!TryComp<StaminaComponent>(ent, out var stamina))

@@ -18,7 +18,6 @@
   special:
   - !type:AddComponentSpecial
     components:
-    # Sunrise added start
     - type: Crawler
       animationPullScaleMultiplier: 1.15, 0.9
       pullStartSound:
@@ -33,7 +32,7 @@
           volume: -2
           maxDistance: 6
           variation: 0.1
-  # Sunrise added end
+    # Sunrise added end
 
 - type: startingGear
   id: PassengerGear

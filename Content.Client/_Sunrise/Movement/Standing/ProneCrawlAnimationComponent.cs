@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace Content.Client._Sunrise.Standing;
+namespace Content.Client._Sunrise.Movement.Standing;
 
 [RegisterComponent, Access(typeof(ProneCrawlAnimationSystem))]
 public sealed partial class ProneCrawlAnimationComponent : Component

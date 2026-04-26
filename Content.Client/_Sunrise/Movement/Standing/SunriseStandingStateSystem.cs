@@ -1,14 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Client.Rotation;
-using Content.Shared._Sunrise.Standing.Components;
-using Content.Shared._Sunrise.Standing.Systems;
+using Content.Shared._Sunrise.Movement.Standing.Components;
+using Content.Shared._Sunrise.Movement.Standing.Systems;
 using Content.Shared.Rotation;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
 using Robust.Client.GameObjects;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
-namespace Content.Client._Sunrise.Standing;
+namespace Content.Client._Sunrise.Movement.Standing;
 
 public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSystem
 {
@@ -41,23 +41,23 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
         SubscribeLocalEvent<ActiveProneCrawlVisualsComponent, ComponentShutdown>(OnProneCrawlVisualsShutdown);
     }
 
-    private void OnAppearanceChanged(EntityUid uid, StandingStateComponent component, ref AppearanceChangeEvent args)
+    private void OnAppearanceChanged(Entity<StandingStateComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        var drawDepth = !component.Standing ? (int)DrawDepth.SmallMobs : (int)DrawDepth.Mobs;
+        var drawDepth = !ent.Comp.Standing ? (int)DrawDepth.SmallMobs : (int)DrawDepth.Mobs;
 
-        _sprite.SetDrawDepth((uid, args.Sprite), drawDepth);
+        var sprite = (ent, args.Sprite);
+        _sprite.SetDrawDepth(sprite, drawDepth);
 
-        if (!TryGetActiveProneCrawlVisuals(uid, out var rotationVisuals))
+        if (!TryGetActiveProneCrawlVisuals(ent, out var rotationVisuals))
         {
-            RestoreProneCrawlVisuals((uid, args.Sprite));
+            RestoreProneCrawlVisuals(sprite);
             return;
         }
 
-        if (_transformQuery.TryComp(uid, out var xform))
-            ApplyProneCrawlVisuals((uid, args.Sprite), xform.LocalRotation, rotationVisuals);
+        ApplyProneCrawlVisuals(sprite, Transform(ent).LocalRotation, rotationVisuals);
     }
 
     private void OnProneCrawlVisualsStartup(Entity<ActiveProneCrawlVisualsComponent> ent, ref ComponentStartup args)
@@ -131,6 +131,10 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
 
     private void ApplyProneCrawlDirectionOverride(Entity<SpriteComponent> ent, Direction direction)
     {
+        // Intentionally capture the current DirectionOverride, including overrides from systems like
+        // ClickableSystem or HolopadSystem, into a fresh ProneCrawlVisualsComponent. RestoreProneCrawlVisuals
+        // uses the stored HadDirectionOverride/DirectionOverride values, then removes the temporary component
+        // with RemComp<ProneCrawlVisualsComponent> so the prone override cannot stick across repeated entries.
         if (!TryComp<ProneCrawlVisualsComponent>(ent.Owner, out var proneCrawlVisuals))
         {
             proneCrawlVisuals = EnsureComp<ProneCrawlVisualsComponent>(ent.Owner);

@@ -1,13 +1,13 @@
 using System.Numerics;
-using Content.Shared._Sunrise.Standing;
-using Content.Shared._Sunrise.Standing.Components;
+using Content.Shared._Sunrise.Movement.Standing;
+using Content.Shared._Sunrise.Movement.Standing.Components;
 using Content.Shared.Stunnable;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
 using Robust.Shared.Timing;
 
-namespace Content.Client._Sunrise.Standing;
+namespace Content.Client._Sunrise.Movement.Standing;
 
 public sealed class ProneCrawlAnimationSystem : EntitySystem
 {
@@ -37,12 +37,9 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         var animationPlayer = EnsureComp<AnimationPlayerComponent>(ent.Owner);
 
         if (_animation.HasRunningAnimation(ent.Owner, animationPlayer, crawl.AnimationKey))
-        {
             _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
-            RestoreAnimationState((ent.Owner, animationState), sprite);
-        }
-        else
-            RestoreAnimationState((ent.Owner, animationState), sprite);
+
+        RestoreAnimationState((ent.Owner, animationState), sprite);
 
         var duration = MathF.Max(0.05f, (float) args.Duration.TotalSeconds);
         var backOffset = animationState.BaseOffset - args.Direction * crawl.AnimationPullBackDistance;

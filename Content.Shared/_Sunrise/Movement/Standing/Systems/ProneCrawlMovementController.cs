@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared._Sunrise.Standing.Components;
+using Content.Shared._Sunrise.Movement.Standing.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
@@ -12,25 +12,23 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Sunrise.Standing.Systems;
+namespace Content.Shared._Sunrise.Movement.Standing.Systems;
 
-public sealed class SharedProneCrawlMovementController : VirtualController
+public sealed class ProneCrawlMovementController : VirtualController
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedSunriseStandingStateSystem _sunriseStanding = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<PullableComponent> _pullableQuery;
     private EntityQuery<StandingStateComponent> _standingQuery;
 
     public override void Initialize()
     {
-        UpdatesAfter.Add(typeof(SharedMoverController));
         base.Initialize();
+        UpdatesAfter.Add(typeof(SharedMoverController));
 
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _pullableQuery = GetEntityQuery<PullableComponent>();
         _standingQuery = GetEntityQuery<StandingStateComponent>();
     }
@@ -39,12 +37,9 @@ public sealed class SharedProneCrawlMovementController : VirtualController
     {
         base.UpdateBeforeSolve(prediction, frameTime);
 
-        var query = EntityQueryEnumerator<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent>();
-        while (query.MoveNext(out var uid, out var proneMovement, out var crawler, out var mover))
+        var query = EntityQueryEnumerator<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent, PhysicsComponent>();
+        while (query.MoveNext(out var uid, out var proneMovement, out var crawler, out var mover, out var physics))
         {
-            if (!_physicsQuery.TryComp(uid, out var physics))
-                continue;
-
             if (prediction && !physics.Predict)
                 continue;
 

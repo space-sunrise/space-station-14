@@ -4,7 +4,7 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Pulling.Events;
 using Content.Shared.Standing;
 
-namespace Content.Shared._Sunrise.Standing.Systems;
+namespace Content.Shared._Sunrise.Movement.Standing.Systems;
 
 public abstract partial class SharedSunriseStandingStateSystem
 {

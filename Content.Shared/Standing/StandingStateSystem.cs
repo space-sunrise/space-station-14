@@ -1,4 +1,4 @@
-using Content.Shared._Sunrise.Standing.Systems;
+using Content.Shared._Sunrise.Movement.Standing.Systems;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
