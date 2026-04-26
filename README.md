@@ -17,7 +17,7 @@
 [![GitHub](https://img.shields.io/github/stars/space-sunrise/space-station-14?style=social)](https://github.com/space-sunrise/space-station-14)
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/space-sunrise/sunrise-station?utm_source=oss&utm_medium=github&utm_campaign=space-sunrise%2Fsunrise-station&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
-# Space Station 14 - SUNRISE
+# Space Station 14 - SUNRISE :trollface:
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/space-sunrise/space-station-14)
 ![GitHub Issues](https://img.shields.io/github/issues/space-sunrise/space-station-14)
