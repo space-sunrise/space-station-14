@@ -75,4 +75,42 @@ public abstract partial class SharedSunriseStandingStateSystem
         if (changed)
             Dirty(ent);
     }
+
+    public void CancelProneCrawlActivePull(Entity<ActiveProneCrawlMovementComponent> ent)
+    {
+        var changed = false;
+
+        if (ent.Comp.PullStartTime != TimeSpan.Zero)
+        {
+            ent.Comp.PullStartTime = TimeSpan.Zero;
+            changed = true;
+        }
+
+        if (ent.Comp.PullEndTime != TimeSpan.Zero)
+        {
+            ent.Comp.PullEndTime = TimeSpan.Zero;
+            changed = true;
+        }
+
+        if (ent.Comp.PullDirection != Vector2.Zero)
+        {
+            ent.Comp.PullDirection = Vector2.Zero;
+            changed = true;
+        }
+
+        if (ent.Comp.PullVelocity != Vector2.Zero)
+        {
+            ent.Comp.PullVelocity = Vector2.Zero;
+            changed = true;
+        }
+
+        if (ent.Comp.IsPulling)
+        {
+            ent.Comp.IsPulling = false;
+            changed = true;
+        }
+
+        if (changed)
+            Dirty(ent);
+    }
 }

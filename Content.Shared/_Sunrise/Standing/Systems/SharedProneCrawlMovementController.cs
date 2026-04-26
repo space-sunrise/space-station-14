@@ -69,7 +69,7 @@ public sealed class SharedProneCrawlMovementController : VirtualController
 
         if (wishDir == Vector2.Zero)
         {
-            StopProneCrawl(ent, resetCooldown: true);
+            StopProneCrawl(ent, resetCooldown: false);
             return;
         }
 
@@ -203,6 +203,8 @@ public sealed class SharedProneCrawlMovementController : VirtualController
 
         if (resetCooldown)
             _sunriseStanding.ResetProneCrawlMovementState((ent.Owner, ent.Comp1));
+        else
+            _sunriseStanding.CancelProneCrawlActivePull((ent.Owner, ent.Comp1));
     }
 
     private void SuspendProneCrawl(
