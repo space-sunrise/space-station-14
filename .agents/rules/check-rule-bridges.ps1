@@ -1,11 +1,11 @@
 param(
-    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\\..")).Path
+    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 )
 
 $ErrorActionPreference = "Stop"
 
-$sourceRoot = Join-Path $RepoRoot ".agent/rules"
-$codexBridgeRoot = Join-Path $RepoRoot ".agents/rules"
+$sourceRoot = Join-Path $RepoRoot ".agents/rules"
+$antigravityBridgeRoot = Join-Path $RepoRoot ".agent/rules"
 $claudeBridgeRoot = Join-Path $RepoRoot ".claude/rules"
 $cursorBridgeRoot = Join-Path $RepoRoot ".cursor/rules"
 $githubBridgeRoot = Join-Path $RepoRoot ".github/rules"
@@ -38,8 +38,8 @@ function Get-RuleData {
 if (-not (Test-Path $sourceRoot)) {
     throw "Source rules path not found: $sourceRoot"
 }
-if (-not (Test-Path $codexBridgeRoot)) {
-    throw "Codex bridge rules path not found: $codexBridgeRoot"
+if (-not (Test-Path $antigravityBridgeRoot)) {
+    throw "Antigravity bridge rules path not found: $antigravityBridgeRoot"
 }
 if (-not (Test-Path $claudeBridgeRoot)) {
     throw "Claude bridge rules path not found: $claudeBridgeRoot"
@@ -54,10 +54,9 @@ if (-not (Test-Path $githubBridgeRoot)) {
 $errors = New-Object System.Collections.Generic.List[string]
 
 $sourceRules = Get-ChildItem $sourceRoot -File -Filter "*.md" |
-    Where-Object { $_.Name -ne "README.md" } |
-    Sort-Object Name
-$codexBridgeRules = Get-ChildItem $codexBridgeRoot -File -Filter "*.md" |
     Where-Object { $_.Name -ne "AUTHORING_POLICY.md" } |
+    Sort-Object Name
+$antigravityBridgeRules = Get-ChildItem $antigravityBridgeRoot -File -Filter "*.md" |
     Sort-Object Name
 $claudeBridgeRules = Get-ChildItem $claudeBridgeRoot -File -Filter "*.md" |
     Sort-Object Name
@@ -67,7 +66,7 @@ $githubBridgeRules = Get-ChildItem $githubBridgeRoot -File -Filter "*.md" |
     Sort-Object Name
 
 $sourceNames = @($sourceRules.Name)
-$codexBridgeNames = @($codexBridgeRules.Name)
+$antigravityBridgeNames = @($antigravityBridgeRules.Name)
 $claudeBridgeNames = @($claudeBridgeRules.Name)
 $cursorBridgeNames = @($cursorBridgeRules.Name)
 $githubBridgeNames = @($githubBridgeRules.Name)
@@ -75,13 +74,13 @@ $githubBridgeNames = @($githubBridgeRules.Name)
 foreach ($source in $sourceRules) {
     $name = $source.Name
     $sourceRuleMd = $source.FullName
-    $codexBridgeRuleMd = Join-Path $codexBridgeRoot $name
+    $antigravityBridgeRuleMd = Join-Path $antigravityBridgeRoot $name
     $claudeBridgeRuleMd = Join-Path $claudeBridgeRoot $name
     $cursorBridgeRuleMd = Join-Path $cursorBridgeRoot $name
     $githubBridgeRuleMd = Join-Path $githubBridgeRoot $name
 
-    if (-not (Test-Path $codexBridgeRuleMd)) {
-        $errors.Add("Missing Codex bridge rule for '$name'.")
+    if (-not (Test-Path $antigravityBridgeRuleMd)) {
+        $errors.Add("Missing Antigravity bridge rule for '$name'.")
     }
     if (-not (Test-Path $claudeBridgeRuleMd)) {
         $errors.Add("Missing Claude bridge rule for '$name'.")
@@ -92,43 +91,41 @@ foreach ($source in $sourceRules) {
     if (-not (Test-Path $githubBridgeRuleMd)) {
         $errors.Add("Missing GitHub Copilot bridge rule for '$name'.")
     }
-    if ((-not (Test-Path $codexBridgeRuleMd)) -or (-not (Test-Path $claudeBridgeRuleMd)) -or (-not (Test-Path $cursorBridgeRuleMd)) -or (-not (Test-Path $githubBridgeRuleMd))) {
+    if ((-not (Test-Path $antigravityBridgeRuleMd)) -or (-not (Test-Path $claudeBridgeRuleMd)) -or (-not (Test-Path $cursorBridgeRuleMd)) -or (-not (Test-Path $githubBridgeRuleMd))) {
         continue
     }
 
     $sourceData = Get-RuleData -RulePath $sourceRuleMd
-    $codexData = Get-RuleData -RulePath $codexBridgeRuleMd
+    $antigravityData = Get-RuleData -RulePath $antigravityBridgeRuleMd
     $claudeData = Get-RuleData -RulePath $claudeBridgeRuleMd
     $cursorData = Get-RuleData -RulePath $cursorBridgeRuleMd
     $githubData = Get-RuleData -RulePath $githubBridgeRuleMd
 
-    $expectedSourceRule = "../../../.agent/rules/$name"
-    $expectedCodexBridgeRef = "../../../.agents/rules/$name"
-    $expectedClaudeBridgeRef = "../../../.claude/rules/$name"
+    $expectedSourceRule = "../../../.agents/rules/$name"
 
-    if ($codexData.trigger -ne $sourceData.trigger) {
-        $errors.Add("Codex bridge trigger mismatch for '$name'.")
+    if ($antigravityData.trigger -ne $sourceData.trigger) {
+        $errors.Add("Antigravity bridge trigger mismatch for '$name'.")
     }
-    if ($codexData.source_rule -ne $expectedSourceRule) {
+    if ($antigravityData.source_rule -ne $expectedSourceRule) {
         $errors.Add(
-            "Codex bridge source_rule mismatch for '$name': '$($codexData.source_rule)'"
+            "Antigravity bridge source_rule mismatch for '$name': '$($antigravityData.source_rule)'"
         )
     }
-    if ($codexData.body -notmatch [regex]::Escape($expectedSourceRule)) {
-        $errors.Add("Codex bridge reference mismatch for '$name'.")
+    if ($antigravityData.body -notmatch [regex]::Escape($expectedSourceRule)) {
+        $errors.Add("Antigravity bridge reference mismatch for '$name'.")
     }
 
     if ($claudeData.trigger -ne $sourceData.trigger) {
         $errors.Add("Claude bridge trigger mismatch for '$name'.")
     }
-    if ($claudeData.body -notmatch [regex]::Escape($expectedCodexBridgeRef)) {
+    if ($claudeData.body -notmatch [regex]::Escape($expectedSourceRule)) {
         $errors.Add("Claude bridge reference mismatch for '$name'.")
     }
 
     if ($cursorData.trigger -ne $sourceData.trigger) {
         $errors.Add("Cursor bridge trigger mismatch for '$name'.")
     }
-    if ($cursorData.body -notmatch [regex]::Escape($expectedClaudeBridgeRef)) {
+    if ($cursorData.body -notmatch [regex]::Escape($expectedSourceRule)) {
         $errors.Add("Cursor bridge reference mismatch for '$name'.")
     }
 
@@ -145,33 +142,33 @@ foreach ($source in $sourceRules) {
     }
 }
 
-foreach ($codexBridgeName in $codexBridgeNames) {
-    if ($sourceNames -notcontains $codexBridgeName) {
-        $errors.Add("Codex bridge rule exists without source rule: '$codexBridgeName'.")
+foreach ($bridgeName in $antigravityBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("Antigravity bridge rule exists without source rule: '$bridgeName'.")
     }
 }
 
-foreach ($claudeBridgeName in $claudeBridgeNames) {
-    if ($sourceNames -notcontains $claudeBridgeName) {
-        $errors.Add("Claude bridge rule exists without source rule: '$claudeBridgeName'.")
+foreach ($bridgeName in $claudeBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("Claude bridge rule exists without source rule: '$bridgeName'.")
     }
 }
 
-foreach ($cursorBridgeName in $cursorBridgeNames) {
-    if ($sourceNames -notcontains $cursorBridgeName) {
-        $errors.Add("Cursor bridge rule exists without source rule: '$cursorBridgeName'.")
+foreach ($bridgeName in $cursorBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("Cursor bridge rule exists without source rule: '$bridgeName'.")
     }
 }
 
-foreach ($githubBridgeName in $githubBridgeNames) {
-    if ($sourceNames -notcontains $githubBridgeName) {
-        $errors.Add("GitHub Copilot bridge rule exists without source rule: '$githubBridgeName'.")
+foreach ($bridgeName in $githubBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("GitHub Copilot bridge rule exists without source rule: '$bridgeName'.")
     }
 }
 
 foreach ($sourceName in $sourceNames) {
-    if ($codexBridgeNames -notcontains $sourceName) {
-        $errors.Add("Source rule missing in Codex bridge tree: '$sourceName'.")
+    if ($antigravityBridgeNames -notcontains $sourceName) {
+        $errors.Add("Source rule missing in Antigravity bridge tree: '$sourceName'.")
     }
     if ($claudeBridgeNames -notcontains $sourceName) {
         $errors.Add("Source rule missing in Claude bridge tree: '$sourceName'.")
@@ -194,7 +191,7 @@ if ($errors.Count -gt 0) {
 
 Write-Host "Rule bridge check passed:"
 Write-Host "- source rules: $($sourceRules.Count)"
-Write-Host "- codex bridges: $($codexBridgeRules.Count)"
+Write-Host "- antigravity bridges: $($antigravityBridgeRules.Count)"
 Write-Host "- claude bridges: $($claudeBridgeRules.Count)"
 Write-Host "- cursor bridges: $($cursorBridgeRules.Count)"
 Write-Host "- github copilot bridges: $($githubBridgeRules.Count)"

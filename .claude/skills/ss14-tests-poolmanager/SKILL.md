@@ -5,7 +5,7 @@ description: An in-depth guide to the SS14 integration test framework: PoolManag
 
 # Claude Bridge
 
-Canonical bridge skill file:
-../../../.agent/skills/ss14-tests-poolmanager/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-tests-poolmanager/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

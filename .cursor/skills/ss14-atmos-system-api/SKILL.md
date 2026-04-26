@@ -5,7 +5,7 @@ description: Gives a complete practical analysis of the AtmosSystem API in Space
 
 # Cursor Bridge
 
-Canonical bridge skill file:
-../../../.claude/skills/ss14-atmos-system-api/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-atmos-system-api/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

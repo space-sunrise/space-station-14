@@ -5,7 +5,7 @@ description: A guide to working with localization files (.ftl) and strings in Sp
 
 # Claude Bridge
 
-Canonical bridge skill file:
-../../../.agent/skills/ss14-localization-strings/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-localization-strings/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

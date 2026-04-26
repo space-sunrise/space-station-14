@@ -5,7 +5,7 @@ description: Guide to working with Space Station 14 forks with project-folder pa
 
 # Cursor Bridge
 
-Canonical bridge skill file:
-../../../.claude/skills/ss14-upstream-maintenance/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-upstream-maintenance/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.
