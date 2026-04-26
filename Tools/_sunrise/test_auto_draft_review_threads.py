@@ -25,9 +25,11 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
 
     def test_sync_step_prefers_pat_before_default_github_token(self):
         self.assertIn(
-            "github-token: ${{ secrets.AUTO_DRAFT_TOKEN || secrets.PAT || secrets.GITHUB_TOKEN }}",
+            "github-token: ${{ secrets.AUTO_DRAFT_TOKEN || secrets.GITHUB_TOKEN }}",
             self.workflow,
         )
+        self.assertIn("AUTO_DRAFT_TOKEN_CONFIGURED: ${{ secrets.AUTO_DRAFT_TOKEN != '' }}", self.workflow)
+        self.assertIn("function requireDraftMutationToken(number)", self.workflow)
 
     def test_auto_draft_comment_is_created_after_successful_draft_conversion(self):
         blocking_branch = re.search(
@@ -38,10 +40,12 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
 
         self.assertIsNotNone(blocking_branch)
         body = blocking_branch.group("body")
+        require_token_position = body.index("requireDraftMutationToken(number);")
         convert_position = body.index("await convertToDraft(pullRequest.id);")
         label_position = body.index("await addLabel(number, markerLabel);")
         comment_position = body.index("await upsertAutoDraftComment(number, blockingThreads, blockingReviews);")
 
+        self.assertLess(require_token_position, convert_position)
         self.assertLess(convert_position, label_position)
         self.assertLess(convert_position, comment_position)
 

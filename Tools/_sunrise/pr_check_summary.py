@@ -132,7 +132,7 @@ def main() -> int:
         upsert_comment(client, pr_number, body)
     except RuntimeError as error:
         print(error, file=sys.stderr)
-        return 0
+        return 1
 
     print(f"Updated PR check summary comment for #{pr_number} at {head_sha}.")
     return 0
