@@ -46,7 +46,7 @@ public abstract class SharedNestingSystem : EntitySystem
         SubscribeLocalEvent<NestingMobComponent, NestingPickupDoAfterEvent>(OnPickupDoAfter);
         SubscribeLocalEvent<NestingContainerComponent, GetVerbsEvent<AlternativeVerb>>(AddInsertAltVerb);
         SubscribeLocalEvent<NestingContainerComponent, NestingInsertDoAfter>(OnInsertingDoAfter);
-        // SubscribeLocalEvent<CanBeCarriedComponent, StartBeingCarryAttemptEvent>(OnCanCarry);
+        SubscribeLocalEvent<NestingMobComponent, StartBeingCarryAttemptEvent>(OnStartBeingCarryAttempt);
     }
 
     private void OnInteractAttempt(Entity<NestingMobComponent> ent, ref InteractionAttemptEvent args)
@@ -217,13 +217,11 @@ public abstract class SharedNestingSystem : EntitySystem
         args.Handled = true;
     }
 
-    /* Я не понял зачем это нужно и что эта система делает, плохой нейминг и отсутствие документации сыграло плохую шутку этой фиче
-    private void OnCanCarry(EntityUid uid, CanBeCarriedComponent component, ref StartBeingCarryAttemptEvent args)
+    private void OnStartBeingCarryAttempt(Entity<NestingMobComponent> ent, ref StartBeingCarryAttemptEvent args)
     {
         if (!HasComp<NestingMobComponent>(args.Carrier))
             args.Cancelled = true;
     }
-    */
 }
 
 [Serializable, NetSerializable]
