@@ -32,9 +32,9 @@ public enum SunriseCriminalRecordsUIState : byte
 public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
 {
     /// <summary>
-    ///     List of all station records (Id -> Name).
+    ///     List of all station records with metadata for search.
     /// </summary>
-    public readonly Dictionary<uint, string> Records;
+    public readonly List<SunriseCriminalRecordListing> Records;
 
     /// <summary>
     ///     List of criminal cases for the currently selected record.
@@ -80,7 +80,7 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
     public readonly string? StatusReason;
 
     public SunriseCriminalRecordsConsoleState(
-        Dictionary<uint, string> records,
+        List<SunriseCriminalRecordListing> records,
         string? selectedName,
         List<CriminalCase> cases,
         uint? selectedStationRecord,
@@ -96,7 +96,7 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
         SecurityStatus status = SecurityStatus.None,
         string? statusReason = null)
     {
-        Records = new Dictionary<uint, string>(records);
+        Records = new List<SunriseCriminalRecordListing>(records);
         SelectedName = selectedName;
         Cases = new List<CriminalCase>(cases);
         SelectedStationRecord = selectedStationRecord;
@@ -243,7 +243,9 @@ public sealed class SunriseCriminalRecordsSelectRecordMessage : BoundUserInterfa
 [Serializable, NetSerializable]
 public sealed class SunriseCriminalRecordsChangeStatusMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The new security status to apply.</summary>
     public readonly SecurityStatus Status;
+    /// <summary>The reason for the status change.</summary>
     public readonly string? Reason;
 
     public SunriseCriminalRecordsChangeStatusMessage(SecurityStatus status, string? reason)
@@ -260,7 +262,9 @@ public sealed class SunriseCriminalRecordsChangeStatusMessage : BoundUserInterfa
 [Serializable, NetSerializable]
 public sealed class PrisonerManagementEscapeMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The station record ID of the prisoner.</summary>
     public readonly uint RecordId;
+    /// <summary>The ID of the case during which the escape occurred.</summary>
     public readonly uint CaseId;
 
     public PrisonerManagementEscapeMessage(uint recordId, uint caseId)
@@ -276,7 +280,9 @@ public sealed class PrisonerManagementEscapeMessage : BoundUserInterfaceMessage
 [Serializable, NetSerializable]
 public sealed class PrisonerManagementParoleMessage : BoundUserInterfaceMessage
 {
+    /// <summary>The station record ID of the prisoner.</summary>
     public readonly uint RecordId;
+    /// <summary>The ID of the case for which parole is being granted.</summary>
     public readonly uint CaseId;
 
     public PrisonerManagementParoleMessage(uint recordId, uint caseId)
@@ -285,3 +291,16 @@ public sealed class PrisonerManagementParoleMessage : BoundUserInterfaceMessage
         CaseId = caseId;
     }
 }
+
+/// <summary>
+///     A simplified record entry for the main list view.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed record SunriseCriminalRecordListing(
+    uint Id, 
+    string Name, 
+    string? DNA, 
+    string? Fingerprints, 
+    string? Species, 
+    string? Gender,
+    string? JobTitle);

@@ -89,7 +89,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
         if (@case.SentenceBreakdown != null && @case.SentenceBreakdown.Count > 0)
         {
-            var msg = string.Join("\n", @case.SentenceBreakdown);
+            var msg = FormatBreakdown(@case.SentenceBreakdown);
             BreakdownLabel.SetMessage(FormattedMessage.FromMarkupPermissive(msg));
             BreakdownLabel.Visible = true;
             BreakdownDivider.Visible = true;
@@ -102,7 +102,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
 
         NotesInput.Editable = !_isReadOnly;
         FinalizeButton.Disabled = _isReadOnly;
-        ReopenButton.Visible = @case.Status == CriminalCaseStatus.Closed || (@case.Status == CriminalCaseStatus.Finished && @case.CalculatedSentence == 0);
+        ReopenButton.Visible = @case.Status == CriminalCaseStatus.Closed || (@case.Status == CriminalCaseStatus.Finished && @case.IsWarning);
 
         if (isSameCase && !isStatusChanged)
         {
@@ -449,5 +449,23 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             return section.Color ?? Color.White;
 
         return Color.White;
+    }
+
+    private string FormatBreakdown(List<SentenceBreakdownEntry> entries)
+    {
+        var lines = new List<string>();
+        foreach (var entry in entries)
+        {
+            if (entry.Args != null)
+            {
+                var args = entry.Args.Select(x => (x.Key, x.Value)).ToArray();
+                lines.Add(Loc.GetString(entry.LocId, args));
+            }
+            else
+            {
+                lines.Add(Loc.GetString(entry.LocId));
+            }
+        }
+        return string.Join("\n", lines);
     }
 }

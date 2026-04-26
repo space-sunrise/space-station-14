@@ -1,6 +1,8 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 using Content.Shared._Sunrise.Laws;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Content.Shared._Sunrise.CriminalRecords;
 
@@ -11,6 +13,21 @@ public enum CriminalCaseStatus : byte
     Closed,
     Incarcerated,
     Finished
+}
+
+[Serializable, NetSerializable]
+public sealed class SentenceBreakdownEntry
+{
+    public string LocId = string.Empty;
+    public Dictionary<string, object>? Args;
+
+    public SentenceBreakdownEntry() { }
+
+    public SentenceBreakdownEntry(string locId, params (string, object)[] args)
+    {
+        LocId = locId;
+        Args = args.ToDictionary(x => x.Item1, x => x.Item2);
+    }
 }
 
 [Serializable, NetSerializable]
@@ -40,7 +57,7 @@ public sealed class CriminalCase
     public bool IsWarning;
 
     [ViewVariables]
-    public List<string> SentenceBreakdown = new();
+    public List<SentenceBreakdownEntry> SentenceBreakdown = new();
 
     [ViewVariables]
     public TimeSpan CreationTime;

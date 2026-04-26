@@ -28,6 +28,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
     private const int MaxLaws = 20;
     private const int MaxCircumstances = 10;
     private const int MaxNotesLength = 2048;
+    private const int MaxStatusReasonLength = 512;
 
     public override void Initialize()
     {
@@ -143,7 +144,11 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         if (component.SelectedKey == null)
             return;
 
-        _criminalRecords.TryChangeStatus(component.SelectedKey.Value, msg.Status, msg.Reason);
+        if (msg.Reason?.Length > MaxStatusReasonLength)
+            return;
+
+        var name = EntityManager.GetComponent<MetaDataComponent>(msg.Actor).EntityName;
+        _criminalRecords.TryChangeStatus(component.SelectedKey.Value, msg.Status, msg.Reason, initiatorName: name);
         UpdateUserInterface(uid, component);
     }
 
@@ -228,30 +233,43 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
     private void OnReopenCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsReopenCaseMessage msg)
     {
-        if (!CheckAccess(uid, msg.Actor))
-            return;
+        if (TryReopenCase(uid, component, msg.Actor, msg.CaseId))
+            UpdateUserInterface(uid, component);
+    }
 
-        if (component.SelectedKey == null || msg.CaseId != component.SelectedCaseId)
-            return;
+    public bool TryReopenCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, EntityUid actor, uint caseId)
+    {
+        if (!CanReopenCase(uid, component, actor, caseId, out var @case, out var cases))
+            return false;
 
-        if (TryComp<StationCriminalRecordsComponent>(component.SelectedKey.Value.OriginStation, out var records))
-        {
-            if (records.Records.TryGetValue(component.SelectedKey.Value.Id, out var cases))
-            {
-                var @case = cases.Find(c => c.Id == msg.CaseId);
+        @case.Status = CriminalCaseStatus.Open;
+        @case.CalculatedSentence = CalculateSentence(@case, cases);
+        return true;
+    }
 
-                // Allow reopening if closed (waiting for incarceration) or finished (but only if it's a warning or zero sentence)
-                // Actually, the user says "для закрытых дел у которых не начался срок"
-                // Closed means it's waiting for incarceration.
-                // Finished for a warning also counts as "haven't started a sentence".
-                if (@case != null && (@case.Status == CriminalCaseStatus.Closed || (@case.Status == CriminalCaseStatus.Finished && @case.CalculatedSentence == 0)))
-                {
-                    @case.Status = CriminalCaseStatus.Open;
-                }
-            }
-        }
+    public bool CanReopenCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, EntityUid actor, uint caseId, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out CriminalCase? @case, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out List<CriminalCase>? cases)
+    {
+        @case = null;
+        cases = null;
 
-        UpdateUserInterface(uid, component);
+        if (!CheckAccess(uid, actor))
+            return false;
+
+        if (component.SelectedKey == null)
+            return false;
+
+        if (!TryComp<StationCriminalRecordsComponent>(component.SelectedKey.Value.OriginStation, out var records))
+            return false;
+
+        if (!records.Records.TryGetValue(component.SelectedKey.Value.Id, out cases))
+            return false;
+
+        @case = cases.Find(c => c.Id == caseId);
+        if (@case == null)
+            return false;
+
+        // Allow reopening if closed (waiting for incarceration) or finished (but only if it's a warning)
+        return @case.Status == CriminalCaseStatus.Closed || (@case.Status == CriminalCaseStatus.Finished && @case.IsWarning);
     }
 
     private bool CheckAccess(EntityUid console, EntityUid? user)
@@ -269,7 +287,22 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         if (!TryComp<StationRecordsComponent>(station, out var stationRecordsComp))
             return;
 
-        var records = _stationRecords.BuildListing((station.Value, stationRecordsComp), null);
+        var listingRecords = new List<SunriseCriminalRecordListing>();
+        foreach (var (id, _) in _stationRecords.BuildListing((station.Value, stationRecordsComp), null))
+        {
+            var key = new StationRecordKey(id, station.Value);
+            if (_stationRecords.TryGetRecord<GeneralStationRecord>(key, out var general))
+            {
+                listingRecords.Add(new SunriseCriminalRecordListing(
+                    id, 
+                    general.Name, 
+                    general.DNA, 
+                    general.Fingerprint, 
+                    general.Species, 
+                    general.Gender.ToString(),
+                    general.JobTitle));
+            }
+        }
 
         string? selectedName = null;
         string? jobTitle = null;
@@ -313,7 +346,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         }
 
         var state = new SunriseCriminalRecordsConsoleState(
-            records,
+            listingRecords,
             selectedName,
             cases,
             component.SelectedKey?.Id,

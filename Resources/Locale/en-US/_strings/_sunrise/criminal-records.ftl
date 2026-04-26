@@ -35,10 +35,12 @@ sunrise-records-breakdown-cap = Cap (1.5x Cat {$cat}): {$cap} min.
 sunrise-records-breakdown-perma-sum = Base (Cat 6): {$sum} min.
 sunrise-records-breakdown-warning = [color=yellow]{$id}: Warning (first violation)[/color]
 sunrise-records-breakdown-recidivism = [color=orange]{$id} Recidivism: +15%[/color]
+sunrise-records-breakdown-escape-penalty = [color=red]Escape Penalty: +{$penalty} min.[/color]
 sunrise-records-breakdown-modifier = [color=cyan]{$id}: {$percent}%[/color]
 sunrise-records-person-age = Age:
 sunrise-records-person-dna = DNA:
 sunrise-records-person-gender = Gender:
+sunrise-records-person-species = Species:
 sunrise-records-person-fingerprints = Fingerprints:
 sunrise-records-status-open = Open
 sunrise-records-status-incarcerated = Incarcerated
@@ -72,7 +74,6 @@ prisoner-management-countdown-finished = [color=green]Sentence Served[/color]
 prisoner-management-paroled-info = [color=green]Paroled[/color]
 
 prisoner-management-escape = ESCAPE
-prisoner-management-escape-confirm = ATTENTION: This will reset the current incarceration, free the cell, and increase the sentence by 10 minutes. Confirm escape?
 prisoner-management-parole = PAROLE
 
 job-prisoner-title = Prisoner

@@ -2,8 +2,8 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
         <!-- Person Info Header -->
-        <PanelContainer StyleClasses="Menu_Background_Light" Margin="0 0 0 12">
-            <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="6">
+        <PanelContainer StyleClasses="Menu_Background_Light" Margin="0">
+            <BoxContainer Orientation="Vertical" Margin="8 4" SeparationOverride="4">
                 <!-- Identity Section -->
                 <BoxContainer Orientation="Vertical" SeparationOverride="2">
                     <BoxContainer Orientation="Horizontal">
@@ -27,6 +27,10 @@
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'sunrise-records-person-gender'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
                         <Label Name="GenderLabel" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'sunrise-records-person-species'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
+                        <Label Name="SpeciesLabel" />
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'sunrise-records-person-dna'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>

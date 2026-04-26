@@ -38,7 +38,7 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
         out bool isWarning)
     {
         isWarning = false;
-        @case.SentenceBreakdown ??= new List<string>();
+        @case.SentenceBreakdown ??= new List<SentenceBreakdownEntry>();
         @case.SentenceBreakdown.Clear();
 
         if (@case.Laws.Count == 0)
@@ -52,12 +52,14 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
         }
 
         // --- Grouping by "line" (ArtCode % 100) ---
-        // We include all laws, but the most severe category for each "line" wins.
+        // We include only valid numeric laws, but the most severe category for each "line" wins.
         var effectiveCharges = lawProtos
-            .GroupBy(l => int.TryParse(l.LawIdentifier, out int code) ? code % 100 : -1)
+            .Select(l => (Law: l, Code: int.TryParse(l.LawIdentifier, out var c) ? (int?) c : null))
+            .Where(x => x.Code != null)
+            .GroupBy(x => x.Code!.Value % 100)
             .Select(group => group
-                .OrderByDescending(l => int.TryParse(l.LawIdentifier, out int code) ? code / 100 : 0)
-                .First())
+                .OrderByDescending(x => x.Code!.Value / 100)
+                .First().Law)
             .ToList();
 
         // --- WARNING SYSTEM: 1xx and 2xx blocks ---
@@ -78,7 +80,7 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
                     if (!blockViolatedBefore)
                     {
                         isWarning = true;
-                        @case.SentenceBreakdown.Add(Loc.GetString("sunrise-records-breakdown-warning", ("id", law.LawIdentifier)));
+                        @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-warning", ("id", law.LawIdentifier!)));
                         continue;
                     }
                 }
@@ -96,20 +98,20 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
         float cappedBase = 0;
         if (normalCharges.Count > 0)
         {
-            int highestCategory = normalCharges.Max(l => int.Parse(l.LawIdentifier!) / 100);
+            int highestCategory = normalCharges.Max(l => int.TryParse(l.LawIdentifier, out int c) ? c / 100 : 0);
             int highestCategoryMax = CategoryRanges.TryGetValue(highestCategory, out var range) ? range.Max : 0;
             float cap = highestCategoryMax * 1.5f;
             int baseSum = normalCharges.Sum(l => l.BaseSentence);
             cappedBase = Math.Min(baseSum, cap);
 
-            @case.SentenceBreakdown.Add(Loc.GetString("sunrise-records-breakdown-base-sum", ("sum", baseSum)));
+            @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-base-sum", ("sum", baseSum)));
             if (baseSum > cap)
-                @case.SentenceBreakdown.Add(Loc.GetString("sunrise-records-breakdown-cap", ("cat", highestCategory), ("cap", cap)));
+                @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-cap", ("cat", highestCategory), ("cap", cap)));
         }
 
         int permaBaseSum = permaCharges.Sum(l => l.BaseSentence);
         if (permaCharges.Count > 0)
-            @case.SentenceBreakdown.Add(Loc.GetString("sunrise-records-breakdown-perma-sum", ("sum", permaBaseSum)));
+            @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-perma-sum", ("sum", permaBaseSum)));
 
         float totalBase = cappedBase + permaBaseSum;
 
@@ -122,12 +124,12 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
             {
                 float p = (law.SentenceMultiplier - 1.0f) * 100f;
                 globalModifierPercent += p;
-                @case.SentenceBreakdown.Add(Loc.GetString("sunrise-records-breakdown-modifier", ("id", Loc.GetString(law.Title)), ("percent", p.ToString("+0;-0"))));
+                @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-modifier", ("id", Loc.GetString(law.Title)), ("percent", p.ToString("+0;-0"))));
             }
         }
 
         var pastLaws = allCases
-            .Where(c => c.Id != @case.Id)
+            .Where(c => c.Id != @case.Id && (c.Status == CriminalCaseStatus.Finished || c.Status == CriminalCaseStatus.Incarcerated || c.Status == CriminalCaseStatus.Closed))
             .SelectMany(c => c.Laws)
             .ToHashSet();
 
@@ -139,7 +141,7 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
             {
                 lawRecidivismPercent = 15f;
                 var lawName = law.LawIdentifier ?? Loc.GetString(law.Title);
-                @case.SentenceBreakdown.Add(Loc.GetString("sunrise-records-breakdown-recidivism", ("id", lawName)));
+                @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-recidivism", ("id", lawName)));
             }
 
             float totalLawPercent = globalModifierPercent + lawRecidivismPercent;

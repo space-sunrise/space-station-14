@@ -35,10 +35,12 @@ sunrise-records-breakdown-cap = Лимит (1.5x Кат. {$cat}): {$cap} мин.
 sunrise-records-breakdown-perma-sum = База (Кат. 6): {$sum} мин.
 sunrise-records-breakdown-warning = [color=yellow]{$id}: Предупреждение (первое нарушение)[/color]
 sunrise-records-breakdown-recidivism = [color=orange]{$id} Рецидив: +15%[/color]
+sunrise-records-breakdown-escape-penalty = [color=red]Штраф за побег: +{$penalty} мин.[/color]
 sunrise-records-breakdown-modifier = [color=cyan]{$id}: {$percent}%[/color]
 sunrise-records-person-age = Возраст:
 sunrise-records-person-dna = ДНК:
 sunrise-records-person-gender = Гендер:
+sunrise-records-person-species = Раса:
 sunrise-records-person-fingerprints = Отпечатки:
 sunrise-records-status-open = Открыто
 sunrise-records-status-incarcerated = В исполнении
@@ -72,7 +74,6 @@ prisoner-management-countdown-finished = [color=green]Срок отбыт[/color
 prisoner-management-paroled-info = [color=green]Освобождён по УДО[/color]
 
 prisoner-management-escape = ПОБЕГ
-prisoner-management-escape-confirm = ВНИМАНИЕ: Это сбросит текущее заключение, освободит камеру и увеличит срок на 10 минут. Подтвердить побег?
 prisoner-management-parole = УДО
 
 job-prisoner-title = Заключенный

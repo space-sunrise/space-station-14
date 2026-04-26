@@ -11,6 +11,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.DeviceLinking;
 using Content.Server.DeviceLinking.Systems;
+using Content.Shared._Sunrise.CriminalRecords.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access;
 using Content.Shared.Security;
@@ -35,8 +36,10 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly StationCorporateLawSystem _stationLaw = default!;
     [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
+    [Dependency] private readonly SharedSunriseCriminalRecordsSystem _sunriseCriminalRecords = default!;
 
     private const int NumCells = 10;
+    private const int EscapePenalty = 10;
     private readonly List<int> _toRemove = new();
 
     public override void Initialize()
@@ -91,7 +94,8 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
                 if (@case != null)
                 {
                     @case.Status = CriminalCaseStatus.Closed;
-                    @case.CalculatedSentence += 10;
+                    @case.CalculatedSentence = _sunriseCriminalRecords.CalculateSentence(@case, cases) + EscapePenalty;
+                    @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-escape-penalty", ("penalty", EscapePenalty)));
                 }
             }
         }
@@ -366,13 +370,28 @@ public sealed partial class PrisonerManagementConsoleSystem : EntitySystem
 
             foreach (var @case in cases)
             {
-                if (@case.Status == CriminalCaseStatus.Closed && (@case.CalculatedSentence > 0 || @case.IsWarning))
+                if (@case.Status == CriminalCaseStatus.Closed && @case.CalculatedSentence > 0)
                 {
-                    waiting.Add(new PrisonerRecordInfo(id, general.Name, general.JobTitle ?? "", @case.Id, @case.CalculatedSentence, IsWarning: @case.IsWarning, SentenceBreakdown: @case.SentenceBreakdown));
+                    waiting.Add(new PrisonerRecordInfo(
+                        RecordId: id,
+                        Name: general.Name,
+                        Job: general.JobTitle ?? "",
+                        CaseId: @case.Id,
+                        Sentence: @case.CalculatedSentence,
+                        IsWarning: @case.IsWarning,
+                        SentenceBreakdown: @case.SentenceBreakdown));
                 }
                 else if (@case.Status == CriminalCaseStatus.Finished)
                 {
-                    finished.Add(new PrisonerRecordInfo(id, general.Name, general.JobTitle ?? "", @case.Id, @case.CalculatedSentence, @case.IsParoled, @case.IsWarning, @case.SentenceBreakdown));
+                    finished.Add(new PrisonerRecordInfo(
+                        RecordId: id,
+                        Name: general.Name,
+                        Job: general.JobTitle ?? "",
+                        CaseId: @case.Id,
+                        Sentence: @case.CalculatedSentence,
+                        IsParoled: @case.IsParoled,
+                        IsWarning: @case.IsWarning,
+                        SentenceBreakdown: @case.SentenceBreakdown));
                 }
             }
         }
