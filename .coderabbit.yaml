@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: ru-RU
+tone_instructions: "Before reviewing, detect the PR author's language from the title, description, and comments. Write the review in that language; if unclear, use Russian."
 
 knowledge_base:
   learnings:
@@ -60,7 +61,7 @@ reviews:
       instructions: |
         Apply `ss14-naming-conventions` and `ss14-localization-strings` as strict review criteria for locale files.
         Require explicit `OOC:` markers for out-of-character hints, controls, or gameplay instructions.
-        If a rendered text line starts with `[`, require proper Fluent escaping for the leading tag instead of treating it as valid unescaped syntax.
+        Require Fluent escaping for a leading tag only when an FTL value starts on an indented multiline continuation line after an empty assignment, for example `key =` followed by `    [bold]...`. Do not flag inline values such as `key = [bold]...[/bold]`, including when they later continue onto additional indented lines.
         Use `## Group Name` headers sparingly and only as real FTL comment headers that improve grouping; do not ask for decorative or excessive headers.
         Flag duplicate keys in touched locale files because Fluent override order is easy to miss in review.
         Keep comments in the locale of the file when practical, and do not complain about a leading UTF-8 BOM by itself.
@@ -138,6 +139,7 @@ reviews:
           - non-English YAML fallback `name` / `description`, including Cyrillic fallback text
           - FTL entity keys not starting with `ent-`
           - non-entity FTL keys not using `kebab-case`
+          - multiline FTL values whose first content line is an indented continuation line starting with an unescaped tag, for example `key =` followed by `    [bold]...`; inline `key = [bold]...[/bold]`, even with later continuation lines, is valid for this rule
           - broad direct rewrites of vanilla prototypes where a parent-based `_Sunrise` override plus `Resources/migration.yml` is the expected upstream-friendly pattern
           Do not fail a PR only because an FTL comment is written in the locale of the file, do not require block edit markers when a single-line `Sunrise-Edit` comment is sufficient for a one-line content change, and do not fail or comment solely because a text file starts with a UTF-8 BOM (`U+FEFF`).
           Pass only if none of these problems appear in the changed `.yml`, `.yaml`, or `.ftl` files.
