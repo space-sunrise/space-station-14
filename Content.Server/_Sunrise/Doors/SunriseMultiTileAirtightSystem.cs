@@ -182,10 +182,10 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
             if (!_blockerQuery.HasComp(blocker))
                 continue;
 
-            if (IsManagedByOtherDoor(blocker, sourceDoor))
+            if (TerminatingOrDeleted(blocker))
                 continue;
 
-            if (TerminatingOrDeleted(blocker))
+            if (IsManagedByOtherDoor(blocker, sourceDoor))
                 continue;
 
             Del(blocker);
