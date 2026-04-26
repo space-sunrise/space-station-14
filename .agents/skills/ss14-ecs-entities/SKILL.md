@@ -1,6 +1,6 @@
 ---
 name: SS14 ECS Entities
-description: Working with entities in Space Station 14 — EntityUid, Entity<T>, component operations, containers, network identity, and entity lifecycle
+description: Working with entities in Space Station 14 — EntityUid, Entity<T>, implicit Entity<T>-as-EntityUid usage, component operations, containers, network identity, and entity lifecycle
 ---
 
 # Entity - entities in ECS
@@ -40,6 +40,32 @@ MyComponent comp = ent.Comp;
 // Deconstruction
 var (entityUid, component) = ent;
 ```
+
+### Entity\<T\> can be passed as EntityUid
+
+`Entity<T>` has an implicit conversion to `EntityUid`. If an API accepts `EntityUid`, pass the
+`Entity<T>` value directly instead of writing `.Owner`. Use `.Owner` only when you explicitly need
+to store, compare, serialize, or pass around a standalone `EntityUid`.
+
+```csharp
+Entity<MyComponent> ent = (uid, comp);
+
+// ✅ Preferred: no redundant Owner access.
+Transform(ent);
+Dirty(ent);
+QueueDel(ent);
+_audio.PlayPvs(sound, ent);
+
+// ❌ Avoid this when the target API already accepts EntityUid.
+Transform(ent.Owner);
+Dirty(ent.Owner, ent.Comp);
+QueueDel(ent.Owner);
+_audio.PlayPvs(sound, ent.Owner);
+```
+
+When both entity and component are available, keep the tuple shape through the call chain. This
+preserves component context and avoids noisy code that repeatedly unwraps and re-wraps the same
+entity identifier.
 
 ###Entity\<T?\> - nullable option
 
