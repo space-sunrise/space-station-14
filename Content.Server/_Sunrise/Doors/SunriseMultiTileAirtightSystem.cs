@@ -23,9 +23,9 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     private const string BlockerPrototype = "SunriseMultiTileAirtightBlocker";
 
     private EntityQuery<AirtightComponent> _airtightQuery;
+    private EntityQuery<SunriseMultiTileAirtightBlockerComponent> _blockerQuery;
     private EntityQuery<DoorComponent> _doorQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
-    private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
     private readonly List<EntityUid> _anchoredEntities = new();
@@ -35,9 +35,9 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
         base.Initialize();
 
         _airtightQuery = GetEntityQuery<AirtightComponent>();
+        _blockerQuery = GetEntityQuery<SunriseMultiTileAirtightBlockerComponent>();
         _doorQuery = GetEntityQuery<DoorComponent>();
         _gridQuery = GetEntityQuery<MapGridComponent>();
-        _metaQuery = GetEntityQuery<MetaDataComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, MapInitEvent>(OnMapInit);
@@ -179,10 +179,13 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
 
         foreach (var blocker in _anchoredEntities)
         {
-            if (!IsBlockerPrototype(blocker))
+            if (!_blockerQuery.HasComp(blocker))
                 continue;
 
             if (IsManagedByOtherDoor(blocker, sourceDoor))
+                continue;
+
+            if (TerminatingOrDeleted(blocker))
                 continue;
 
             Del(blocker);
@@ -205,11 +208,6 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
         }
 
         return false;
-    }
-
-    private bool IsBlockerPrototype(EntityUid uid)
-    {
-        return _metaQuery.TryGetComponent(uid, out var meta) && meta.EntityPrototype?.ID == BlockerPrototype;
     }
 
     private static EntityCoordinates GetTileCenter(EntityUid gridUid, MapGridComponent grid, Vector2i tile)

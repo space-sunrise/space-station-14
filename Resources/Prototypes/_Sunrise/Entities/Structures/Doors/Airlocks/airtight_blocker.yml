@@ -4,6 +4,7 @@
   save: false
   categories: [ HideSpawnMenu ]
   components:
+  - type: SunriseMultiTileAirtightBlocker
   - type: Airtight
     airBlocked: false
     noAirWhenFullyAirBlocked: false
