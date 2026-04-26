@@ -20,6 +20,7 @@ FailureDetails = pr_check_summary.FailureDetails
 build_comment = pr_check_summary.build_comment
 find_first_failure_index = pr_check_summary.find_first_failure_index
 extract_failure_details = pr_check_summary.extract_failure_details
+extract_error_text = pr_check_summary.extract_error_text
 latest_tracked_runs = pr_check_summary.latest_tracked_runs
 get_jobs_for_run = pr_check_summary.get_jobs_for_run
 rows_for_workflow = pr_check_summary.rows_for_workflow
@@ -459,6 +460,28 @@ class PrCheckSummaryTests(unittest.TestCase):
         ]
 
         self.assertEqual(2, find_first_failure_index(lines))
+
+    def test_extract_error_text_prefers_explicit_markers_over_mid_line_error_noise(self):
+        lines = [
+            "Restored without error.",
+            "Build still running.",
+            "##[error]Actual compiler error",
+        ]
+
+        text = extract_error_text(lines, 0, len(lines))
+
+        self.assertEqual("##[error]Actual compiler error", text)
+
+    def test_extract_error_text_fallback_requires_error_prefix(self):
+        lines = [
+            "Restored without error.",
+            "Build still running.",
+            "error: Actual compiler error",
+        ]
+
+        text = extract_error_text(lines, 0, len(lines))
+
+        self.assertEqual("error: Actual compiler error", text)
 
     def test_paginate_follows_link_header_next_url(self):
         case = self

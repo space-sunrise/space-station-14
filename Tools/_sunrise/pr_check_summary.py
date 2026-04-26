@@ -22,7 +22,6 @@ COMMENT_SOFT_LIMIT = 62000
 MAX_ERROR_CHARS = 9000
 MAX_LOG_CHARS = 12000
 
-PENDING_STATUSES = {"queued", "in_progress", "requested", "pending", "waiting"}
 SUCCESS_CONCLUSIONS = {"success", "skipped", "neutral"}
 FAILURE_CONCLUSIONS = {"failure", "cancelled", "timed_out", "action_required", "startup_failure"}
 PAGINATED_RESPONSE_KEYS = ("workflow_runs", "jobs", "items", "check_runs", "artifacts")
@@ -430,7 +429,7 @@ def status_from_run(run: dict[str, Any]) -> str:
     status = run.get("status")
     conclusion = run.get("conclusion")
 
-    if status in PENDING_STATUSES or status != "completed":
+    if status != "completed":
         return "in_progress"
     if conclusion in SUCCESS_CONCLUSIONS:
         return "success"
@@ -539,7 +538,7 @@ def extract_error_text(lines: list[str], first_failure: int, end: int) -> str:
             include_next = True
             continue
 
-        if "::error" in clean or "##[error]" in clean or re.search(r"\berror\b", clean, re.IGNORECASE):
+        if "::error" in clean or "##[error]" in clean or re.search(r"^\s*error(?:[:\s]|$)", clean, re.IGNORECASE):
             captured.append(clean)
 
     if not captured and window:

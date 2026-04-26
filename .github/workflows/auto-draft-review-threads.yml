@@ -7,6 +7,8 @@ on:
     types: [submitted, edited, dismissed]
   pull_request_review_comment:
     types: [created, edited, deleted]
+  pull_request_review_thread:
+    types: [resolved, unresolved]
   workflow_dispatch:
     inputs:
       pr-number:
@@ -14,8 +16,8 @@ on:
         required: false
         type: number
   schedule:
-    # GitHub Actions does not expose pull_request_review_thread as a workflow event.
-    # This catches resolved/unresolved thread state changes within a few minutes.
+    # Fallback for thread state changes if GitHub Actions does not dispatch
+    # pull_request_review_thread for this repository.
     - cron: "2/5 * * * *"
 
 permissions:
@@ -24,8 +26,8 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.event_name == 'schedule' && 'scheduled-scan' || github.event_name == 'workflow_dispatch' && 'manual-dispatch' || format('pr-{0}', github.event.pull_request.number) }}
+  cancel-in-progress: ${{ github.event_name == 'schedule' }}
 
 jobs:
   sync-draft-state:
@@ -120,7 +122,9 @@ jobs:
               const hasMarker = labels.has(markerLabel);
               const allTrackedFeedbackResolved = blockingThreads.length === 0 && blockingReviews.length === 0;
               const hasTrustedApproval = approvingReviews.length > 0;
-              const shouldMarkReady = allTrackedFeedbackResolved || hasTrustedApproval;
+              const shouldMarkReady =
+                allTrackedFeedbackResolved ||
+                (hasTrustedApproval && blockingReviews.length === 0 && blockingThreads.length === 0);
               const hasBlockingFeedback = !shouldMarkReady && (blockingThreads.length > 0 || blockingReviews.length > 0);
 
               core.info(
@@ -149,6 +153,10 @@ jobs:
                   await upsertAutoDraftComment(number, blockingThreads, blockingReviews);
                   core.info(`#${number}: already auto-drafted.`);
                 } else {
+                  const deletedComments = await deleteAutoDraftComments(number);
+                  if (deletedComments > 0) {
+                    core.info(`#${number}: removed stale auto-draft comment(s) from manual draft.`);
+                  }
                   core.info(`#${number}: already draft without marker; leaving it as a manual draft.`);
                 }
 
@@ -157,14 +165,22 @@ jobs:
 
               if (shouldMarkReady && pullRequest.isDraft && hasMarker) {
                 await markReadyForReview(pullRequest.id);
-                await removeLabel(number, markerLabel);
-                core.info(`#${number}: tracked review feedback is released by resolve or approval, marked ready for review.`);
+                await cleanupAutoDraftState(number);
+                core.info(`#${number}: tracked review feedback is no longer blocking, marked ready for review and removed auto-draft state.`);
                 return;
               }
 
-              if (!pullRequest.isDraft && hasMarker) {
-                await removeLabel(number, markerLabel);
-                core.info(`#${number}: removed stale auto-draft marker.`);
+              if (!pullRequest.isDraft) {
+                const deletedComments = await cleanupAutoDraftState(number, hasMarker);
+                if (hasMarker || deletedComments > 0) {
+                  core.info(`#${number}: removed stale auto-draft state.`);
+                }
+                return;
+              }
+
+              const deletedComments = await deleteAutoDraftComments(number);
+              if (deletedComments > 0) {
+                core.info(`#${number}: removed stale auto-draft comment(s) from manual draft.`);
               }
             }
 
@@ -484,7 +500,10 @@ jobs:
 
             function getApprovingReviews(trustedReviews) {
               return trustedReviews
-                .filter((review) => review.state === "APPROVED")
+                .filter((review) => {
+                  const login = review.author?.login?.toLowerCase();
+                  return review.state === "APPROVED" && login && !aiReviewers.has(login);
+                })
                 .map(reviewToLogItem);
             }
 
@@ -562,15 +581,23 @@ jobs:
               }
             }
 
+            async function cleanupAutoDraftState(number, shouldRemoveLabel = true) {
+              if (shouldRemoveLabel) {
+                await removeLabel(number, markerLabel);
+              }
+
+              return await deleteAutoDraftComments(number);
+            }
+
             async function upsertAutoDraftComment(number, blockingThreads, blockingReviews) {
               const body = buildAutoDraftComment(blockingThreads, blockingReviews);
-              const comments = await github.paginate(github.rest.issues.listComments, {
-                owner,
-                repo,
-                issue_number: number,
-                per_page: 100,
-              });
-              const existing = comments.find((comment) => comment.body?.includes(commentMarker));
+              const comments = await listAutoDraftComments(number);
+              const existing = comments[comments.length - 1];
+              const staleComments = comments.slice(0, -1);
+
+              for (const comment of staleComments) {
+                await deleteComment(comment);
+              }
 
               if (existing) {
                 await github.rest.issues.updateComment({
@@ -587,6 +614,35 @@ jobs:
                 repo,
                 issue_number: number,
                 body,
+              });
+            }
+
+            async function deleteAutoDraftComments(number) {
+              const comments = await listAutoDraftComments(number);
+
+              for (const comment of comments) {
+                await deleteComment(comment);
+              }
+
+              return comments.length;
+            }
+
+            async function listAutoDraftComments(number) {
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner,
+                repo,
+                issue_number: number,
+                per_page: 100,
+              });
+
+              return comments.filter((comment) => comment.body?.includes(commentMarker));
+            }
+
+            async function deleteComment(comment) {
+              await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: comment.id,
               });
             }
 
@@ -610,9 +666,9 @@ jobs:
 
               return [
                 commentMarker,
-                `[RU]: PR автоматически переведен в черновик (draft), потому что есть ${threadTextRu} или ${reviewTextRu} от ревьювера с правом записи/ИИ. Чтобы снова открыть PR для ревью или мержа, достаточно либо нажать Resolve conversation у всех ревью-комментариев, либо получить approve от ревьювера с правом записи/ИИ.`,
+                `[RU]: PR автоматически переведен в черновик (draft), потому что есть ${threadTextRu} или ${reviewTextRu} от ревьювера с правом записи/ИИ. Чтобы снова открыть PR для ревью или мержа, закрой все отслеживаемые замечания; approve от ревьювера с правом записи учитывается только если больше нет активных блокирующих ревью или обсуждений.`,
                 "",
-                `[EN]: This PR was automatically converted to draft because it has ${threadTextEn} or ${reviewTextEn} from a reviewer with write access/AI. To make it ready for review or merge again, either resolve all review conversations or get an approval from a reviewer with write access/AI.`,
+                `[EN]: This PR was automatically converted to draft because it has ${threadTextEn} or ${reviewTextEn} from a reviewer with write access/AI. To make it ready for review or merge again, resolve all tracked feedback; approval from a reviewer with write access only releases the draft when no active blocking reviews or conversations remain.`,
               ].join("\n");
             }
 
