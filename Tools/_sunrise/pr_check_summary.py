@@ -25,6 +25,7 @@ MAX_LOG_CHARS = 12000
 PENDING_STATUSES = {"queued", "in_progress", "requested", "pending", "waiting"}
 SUCCESS_CONCLUSIONS = {"success", "skipped", "neutral"}
 FAILURE_CONCLUSIONS = {"failure", "cancelled", "timed_out", "action_required", "startup_failure"}
+PAGINATED_RESPONSE_KEYS = ("workflow_runs", "jobs", "items", "check_runs", "artifacts")
 
 
 @dataclass
@@ -114,21 +115,26 @@ def main() -> int:
         print("GITHUB_TOKEN, GITHUB_REPOSITORY and GITHUB_EVENT_PATH are required.", file=sys.stderr)
         return 1
 
-    with open(event_path, "r", encoding="utf-8") as f:
+    with open(event_path, encoding="utf-8") as f:
         payload = json.load(f)
 
     client = GitHubClient(token, repository)
-    pull_request = resolve_pull_request(client, payload, event_name, args.pr_number)
+    try:
+        pull_request = resolve_pull_request(client, payload, event_name, args.pr_number)
 
-    if pull_request is None:
-        print("No matching open pull request found, skipping.")
+        if pull_request is None:
+            print("No matching open pull request found, skipping.")
+            return 0
+
+        pr_number = pull_request["number"]
+        head_sha = pull_request["head"]["sha"]
+        rows = collect_check_rows(client, head_sha)
+        body = build_comment(pr_number, head_sha, rows)
+        upsert_comment(client, pr_number, body)
+    except RuntimeError as error:
+        print(error, file=sys.stderr)
         return 0
 
-    pr_number = pull_request["number"]
-    head_sha = pull_request["head"]["sha"]
-    rows = collect_check_rows(client, head_sha)
-    body = build_comment(pr_number, head_sha, rows)
-    upsert_comment(client, pr_number, body)
     print(f"Updated PR check summary comment for #{pr_number} at {head_sha}.")
     return 0
 
@@ -152,8 +158,9 @@ class GitHubClient:
         params: dict[str, Any] | None = None,
         body: dict[str, Any] | None = None,
         accept: str = "application/vnd.github+json",
+        return_headers: bool = False,
     ) -> Any:
-        url = f"{GITHUB_API_URL}{path}"
+        url = path if urllib.parse.urlparse(path).scheme else f"{GITHUB_API_URL}{path}"
         if params:
             query = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
             if query:
@@ -169,53 +176,39 @@ class GitHubClient:
         try:
             with urllib.request.urlopen(request) as response:
                 raw = response.read()
+                response_headers = response.headers
         except urllib.error.HTTPError as error:
             details = error.read().decode("utf-8", "replace")
             raise RuntimeError(f"GitHub API {method} {path} failed: {error.code} {details}") from error
 
+        result = None
         if not raw:
-            return None
-        return json.loads(raw.decode("utf-8"))
+            return (result, response_headers) if return_headers else result
+
+        result = json.loads(raw.decode("utf-8"))
+        return (result, response_headers) if return_headers else result
 
     def paginate(self, path: str, *, params: dict[str, Any] | None = None) -> list[Any]:
-        params = dict(params or {})
-        params.setdefault("per_page", 100)
-        page = 1
+        request_params = dict(params or {})
+        request_params.setdefault("per_page", 100)
+        request_path: str | None = path
         results: list[Any] = []
 
-        while True:
-            params["page"] = page
-            data = self.request("GET", path, params=params)
-            if isinstance(data, dict):
-                page_items = data.get("workflow_runs") or data.get("jobs") or data.get("items") or []
-            else:
-                page_items = data or []
+        while request_path:
+            data, headers = self.request("GET", request_path, params=request_params, return_headers=True)
+            page_items = paginated_items(data)
 
             results.extend(page_items)
-            if len(page_items) < params["per_page"]:
-                break
-            page += 1
+            request_path = next_link_from_headers(headers)
+            request_params = None
 
         return results
 
     def download_job_log(self, job_id: int) -> str:
         url = f"{GITHUB_API_URL}/repos/{self.repository}/actions/jobs/{job_id}/logs"
         request = urllib.request.Request(url, method="GET", headers=self.headers("application/vnd.github+json"))
-        opener = urllib.request.build_opener(NoRedirectHandler)
-
-        try:
-            with opener.open(request) as response:
-                data = response.read()
-        except urllib.error.HTTPError as error:
-            if error.code in {301, 302, 303, 307, 308}:
-                location = error.headers.get("Location")
-                if not location:
-                    raise RuntimeError(f"GitHub job log redirect for {job_id} did not include Location.") from error
-                with urllib.request.urlopen(location) as response:
-                    data = response.read()
-            else:
-                details = error.read().decode("utf-8", "replace")
-                raise RuntimeError(f"GitHub job log download failed for {job_id}: {error.code} {details}") from error
+        with urllib.request.urlopen(request) as response:
+            data = response.read()
 
         if data.startswith(b"PK"):
             with zipfile.ZipFile(io.BytesIO(data)) as archive:
@@ -236,9 +229,32 @@ class GitHubClient:
         }
 
 
-class NoRedirectHandler(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self, req, fp, code, msg, headers, newurl):
-        return None
+def paginated_items(data: Any) -> list[Any]:
+    if isinstance(data, dict):
+        for key in PAGINATED_RESPONSE_KEYS:
+            if key in data:
+                return data[key] or []
+        keys = ", ".join(PAGINATED_RESPONSE_KEYS)
+        raise RuntimeError(f"GitHub paginated response did not contain any known collection key: {keys}.")
+
+    return data or []
+
+
+def next_link_from_headers(headers: Any) -> str | None:
+    link_header = headers.get("Link") or headers.get("link") or ""
+    for part in link_header.split(","):
+        segments = [segment.strip() for segment in part.split(";")]
+        if len(segments) < 2:
+            continue
+
+        if 'rel="next"' not in segments[1:]:
+            continue
+
+        url = segments[0]
+        if url.startswith("<") and url.endswith(">"):
+            return url[1:-1]
+
+    return None
 
 
 def resolve_pull_request(
@@ -428,7 +444,7 @@ def status_for_missing_job(run: dict[str, Any]) -> str:
         return "in_progress"
     if run.get("conclusion") in SUCCESS_CONCLUSIONS:
         return "success"
-    return "in_progress"
+    return "skipped"
 
 
 def is_failed_job(job: dict[str, Any]) -> bool:
@@ -462,7 +478,7 @@ def find_first_failure_index(lines: list[str]) -> int:
         re.compile(r"##\[error\]"),
         re.compile(r"\bFAILED\b"),
         re.compile(r"\bFailed!\s+-\s+Failed:"),
-        re.compile(r"\berror\b", re.IGNORECASE),
+        re.compile(r"^\s*error(?:[:\s]|$)", re.IGNORECASE),
     )
 
     for index, line in enumerate(lines):
@@ -601,7 +617,7 @@ def build_comment(
         if omitted:
             body += f"\n\n_Ещё {omitted} падений не поместились в комментарий. Полный вывод доступен по ссылкам в таблице._"
 
-        return body.strip() + "\n"
+        return trim_comment(body.strip() + "\n")
     else:
         lines.extend(["", "Падений в актуальных запусках пока нет."])
 
@@ -672,6 +688,8 @@ def status_icon(status: str) -> str:
         return "✅"
     if status == "failure":
         return "❌"
+    if status in {"missing", "skipped"}:
+        return "➖"
     return "⏳"
 
 

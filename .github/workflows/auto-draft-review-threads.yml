@@ -24,7 +24,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.inputs['pr-number'] || 'all' }}
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
     env:
       AUTO_DRAFT_LABEL: "auto-draft: unresolved review"
       AUTO_DRAFT_COMMENT_MARKER: "<!-- auto-draft-review-threads -->"
-      AI_REVIEWERS: "coderabbitai,coderabbitai[bot],github-copilot[bot],copilot-pull-request-reviewer[bot],copilot"
+      AI_REVIEWERS: "coderabbitai[bot],github-copilot[bot],copilot-pull-request-reviewer[bot]"
     steps:
       - name: Sync draft state
         uses: actions/github-script@v7
@@ -83,9 +83,9 @@ jobs:
             function getTargetPullRequestNumber() {
               const input = context.payload.inputs?.["pr-number"];
               const payloadNumber = context.payload.pull_request?.number;
-              const raw = input || payloadNumber;
+              const raw = input ?? payloadNumber;
 
-              if (!raw) {
+              if (raw === null || raw === undefined) {
                 return null;
               }
 
@@ -231,7 +231,7 @@ jobs:
                             isResolved
                             isOutdated
                             path
-                            comments(first: 100) {
+                            comments(first: 1) {
                               nodes {
                                 url
                                 author {
@@ -352,6 +352,13 @@ jobs:
                   continue;
                 }
 
+                if (ownersForPattern.every((owner) => owner.includes("/"))) {
+                  core.warning(
+                    `CODEOWNERS rule "${pattern}" only lists team owners (${ownersForPattern.join(", ")}). ` +
+                      "Team-only CODEOWNERS rules cannot be matched to review comment authors with the default GITHUB_TOKEN.",
+                  );
+                }
+
                 rules.push({
                   pattern,
                   owners: ownersForPattern,
@@ -425,17 +432,10 @@ jobs:
                 }
 
                 const codeOwners = new Set(getOwnersForPath(thread.path, codeOwnerRules));
-                const blockingComment = thread.comments.nodes.find((comment) => {
-                  const login = comment.author?.login?.toLowerCase();
-                  if (!login) {
-                    return false;
-                  }
+                const blockingComment = thread.comments.nodes[0];
+                const login = blockingComment?.author?.login?.toLowerCase();
 
-                  return aiReviewers.has(login) || codeOwners.has(login);
-                });
-
-                if (blockingComment) {
-                  const login = blockingComment.author.login.toLowerCase();
+                if (login && (aiReviewers.has(login) || codeOwners.has(login))) {
                   blocking.push({
                     path: thread.path,
                     author: blockingComment.author.login,

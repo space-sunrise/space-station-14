@@ -5,7 +5,7 @@ on:
     branches: [ master, staging, stable ]
   merge_group:
   pull_request:
-    types: [ opened, reopened, synchronize, converted_to_draft, ready_for_review ]
+    types: [ opened, reopened, synchronize ]
 
 jobs:
   build:
