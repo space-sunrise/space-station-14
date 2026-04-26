@@ -1,6 +1,6 @@
 - type: entity
   parent: [ClothingEyesBase, BaseSalvageContraband]
-  id: ClothingEyesGlassesSalvageMercenary
+  id: ClothingEyesGlassesSalvageMerc
   name: scrapper glasses
   description: Glasses made for salvaging. They provide protection from welding and flashes.
   components:
@@ -74,7 +74,7 @@
 
 - type: entity
   parent: [ClothingHeadHelmetArmoredBase, BaseSalvageContraband]
-  id: ClothingHeadHelmetSalvageMerc
+  id: ClothingHeadHelmetArmoredSalvageMerc
   name: scrapper helmet
   description: A durable, lightweight helmet favored by salvagers.
   components:

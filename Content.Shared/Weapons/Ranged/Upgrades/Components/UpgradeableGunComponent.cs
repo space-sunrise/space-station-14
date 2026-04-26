@@ -32,5 +32,5 @@ public sealed partial class UpgradeableGunComponent : Component
     /// The maximum amount of upgrades this gun can hold.
     /// </summary>
     [DataField]
-    public int MaxUpgradeCount = 3; // Sunrose-edit
+    public int MaxUpgradeCount = 3; // Sunrise-edit
 }
