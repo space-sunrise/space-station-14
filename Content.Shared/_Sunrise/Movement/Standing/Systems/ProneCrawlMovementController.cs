@@ -26,8 +26,8 @@ public sealed class ProneCrawlMovementController : VirtualController
 
     public override void Initialize()
     {
-        base.Initialize();
         UpdatesAfter.Add(typeof(SharedMoverController));
+        base.Initialize();
 
         _pullableQuery = GetEntityQuery<PullableComponent>();
         _standingQuery = GetEntityQuery<StandingStateComponent>();
@@ -62,22 +62,24 @@ public sealed class ProneCrawlMovementController : VirtualController
             return;
         }
 
+        var currentTime = _timing.CurTime;
+
+        if (ent.Comp1.IsPulling)
+        {
+            if (currentTime < ent.Comp1.PullEndTime)
+            {
+                ApplyPullVelocity(ent);
+                return;
+            }
+
+            FinishPull(ent);
+        }
+
         if (wishDir == Vector2.Zero)
         {
             StopProneCrawl(ent, resetCooldown: false);
             return;
         }
-
-        var currentTime = _timing.CurTime;
-
-        if (ent.Comp1.IsPulling && currentTime < ent.Comp1.PullEndTime)
-        {
-            ApplyPullVelocity(ent);
-            return;
-        }
-
-        if (ent.Comp1.IsPulling)
-            FinishPull(ent);
 
         if (currentTime < ent.Comp1.NextPullTime)
         {
