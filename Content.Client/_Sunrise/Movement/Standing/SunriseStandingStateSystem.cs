@@ -62,32 +62,32 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
 
     private void OnProneCrawlVisualsStartup(Entity<ActiveProneCrawlVisualsComponent> ent, ref ComponentStartup args)
     {
-        TryApplyActiveProneCrawlVisuals(ent.Owner);
+        TryApplyActiveProneCrawlVisuals(ent);
     }
 
     private void OnMove(Entity<ActiveProneCrawlVisualsComponent> ent, ref MoveEvent args)
     {
         if (args.OldRotation.Equals(args.NewRotation) ||
-            !TryGetActiveProneCrawlVisuals(ent.Owner, out var rotationVisuals) ||
-            !_spriteQuery.TryComp(ent.Owner, out var sprite))
+            !TryGetActiveProneCrawlVisuals(ent, out var rotationVisuals) ||
+            !_spriteQuery.TryComp(ent, out var sprite))
         {
             return;
         }
 
-        ApplyProneCrawlVisuals((ent.Owner, sprite), args.NewRotation, rotationVisuals, false);
+        ApplyProneCrawlVisuals((ent, sprite), args.NewRotation, rotationVisuals, false);
     }
 
     private void OnThrownItemStartup(Entity<ThrownItemComponent> ent, ref ComponentStartup args)
     {
-        TryApplyActiveProneCrawlVisuals(ent.Owner);
+        TryApplyActiveProneCrawlVisuals(ent);
     }
 
     private void OnProneCrawlVisualsShutdown(Entity<ActiveProneCrawlVisualsComponent> ent, ref ComponentShutdown args)
     {
-        if (_spriteQuery.TryComp(ent.Owner, out var sprite))
-            RestoreProneCrawlVisuals((ent.Owner, sprite));
+        if (_spriteQuery.TryComp(ent, out var sprite))
+            RestoreProneCrawlVisuals((ent, sprite));
         else
-            RemComp<ProneCrawlVisualsComponent>(ent.Owner);
+            RemComp<ProneCrawlVisualsComponent>(ent);
     }
 
     private bool TryGetActiveProneCrawlVisuals(
@@ -126,20 +126,16 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
         var rotation = GetProneCrawlRotation(direction);
 
         if (animate)
-            _rotationVisualizer.AnimateSpriteRotation(ent.Owner, ent.Comp, rotation, rotationVisuals.AnimationTime);
+            _rotationVisualizer.AnimateSpriteRotation(ent, ent, rotation, rotationVisuals.AnimationTime);
         else
             _sprite.SetRotation(ent.AsNullable(), rotation);
     }
 
     private void ApplyProneCrawlDirectionOverride(Entity<SpriteComponent> ent, Direction direction)
     {
-        // Intentionally capture the current DirectionOverride, including overrides from systems like
-        // ClickableSystem or HolopadSystem, into a fresh ProneCrawlVisualsComponent. RestoreProneCrawlVisuals
-        // uses the stored HadDirectionOverride/DirectionOverride values, then removes the temporary component
-        // with RemComp<ProneCrawlVisualsComponent> so the prone override cannot stick across repeated entries.
         if (!TryComp<ProneCrawlVisualsComponent>(ent.Owner, out var proneCrawlVisuals))
         {
-            proneCrawlVisuals = EnsureComp<ProneCrawlVisualsComponent>(ent.Owner);
+            proneCrawlVisuals = EnsureComp<ProneCrawlVisualsComponent>(ent);
             proneCrawlVisuals.HadDirectionOverride = ent.Comp.EnableDirectionOverride;
             proneCrawlVisuals.DirectionOverride = ent.Comp.DirectionOverride;
         }
@@ -150,12 +146,12 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
 
     private void RestoreProneCrawlVisuals(Entity<SpriteComponent> ent)
     {
-        if (!TryComp<ProneCrawlVisualsComponent>(ent.Owner, out var proneCrawlVisuals))
+        if (!TryComp<ProneCrawlVisualsComponent>(ent, out var proneCrawlVisuals))
             return;
 
         ent.Comp.EnableDirectionOverride = proneCrawlVisuals.HadDirectionOverride;
         ent.Comp.DirectionOverride = proneCrawlVisuals.DirectionOverride;
-        RemComp<ProneCrawlVisualsComponent>(ent.Owner);
+        RemComp<ProneCrawlVisualsComponent>(ent);
     }
 
     private static Angle GetProneCrawlRotation(Direction direction)

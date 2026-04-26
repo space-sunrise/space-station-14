@@ -30,13 +30,13 @@ public sealed partial class ActiveProneCrawlMovementComponent : Component
     /// Direction chosen for the current prone pull.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public Vector2 PullDirection = Vector2.Zero;
+    public Vector2 PullDirection;
 
     /// <summary>
     /// Velocity applied during the current prone pull.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public Vector2 PullVelocity = Vector2.Zero;
+    public Vector2 PullVelocity;
 
     /// <summary>
     /// Whether the entity is currently in the active part of the pull.

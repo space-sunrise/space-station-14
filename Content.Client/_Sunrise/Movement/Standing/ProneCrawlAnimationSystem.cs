@@ -97,14 +97,8 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
 
     private void OnMovementShutdown(Entity<ActiveProneCrawlMovementComponent> ent, ref ComponentShutdown args)
     {
-        if (!TryComp<CrawlerComponent>(ent, out var crawl))
+        if (!TryComp<CrawlerComponent>(ent, out var crawl) || !TryComp<ProneCrawlAnimationComponent>(ent, out var animationState))
             return;
-
-        if (!TryComp<ProneCrawlAnimationComponent>(ent, out var animationState) ||
-            !TryComp<SpriteComponent>(ent, out var sprite))
-        {
-            return;
-        }
 
         if (TryComp<AnimationPlayerComponent>(ent, out var animationPlayer) &&
             _animation.HasRunningAnimation(ent.Owner, animationPlayer, crawl.AnimationKey))
@@ -112,7 +106,9 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
             _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
         }
 
-        RestoreAnimationState((ent.Owner, animationState), sprite);
+        if (TryComp<SpriteComponent>(ent, out var sprite))
+            RestoreAnimationState((ent.Owner, animationState), sprite);
+
         RemComp<ProneCrawlAnimationComponent>(ent.Owner);
     }
 
