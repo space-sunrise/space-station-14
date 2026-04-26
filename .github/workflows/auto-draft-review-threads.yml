@@ -45,6 +45,7 @@ jobs:
       AUTO_DRAFT_LABEL: "auto-draft: unresolved review"
       AUTO_DRAFT_COMMENT_MARKER: "<!-- auto-draft-review-threads -->"
       AI_REVIEWERS: "coderabbitai[bot],github-copilot[bot],copilot-pull-request-reviewer[bot]"
+      AI_REVIEWER_APPS: "coderabbitai"
     steps:
       - name: Sync draft state
         uses: actions/github-script@v7
@@ -56,6 +57,12 @@ jobs:
             const commentMarker = process.env.AUTO_DRAFT_COMMENT_MARKER;
             const aiReviewers = new Set(
               (process.env.AI_REVIEWERS || "")
+                .split(",")
+                .map((login) => login.trim().toLowerCase())
+                .filter(Boolean),
+            );
+            const aiReviewerApps = new Set(
+              (process.env.AI_REVIEWER_APPS || "")
                 .split(",")
                 .map((login) => login.trim().toLowerCase())
                 .filter(Boolean),
@@ -252,6 +259,7 @@ jobs:
                                 url
                                 author {
                                   login
+                                  __typename
                                 }
                                 authorAssociation
                               }
@@ -298,6 +306,7 @@ jobs:
                             authorCanPushToRepository
                             author {
                               login
+                              __typename
                             }
                           }
                         }
@@ -439,6 +448,19 @@ jobs:
               return value.replace(/[\\^$+?.()|[\]{}]/g, "\\$&");
             }
 
+            function isAiReviewer(author) {
+              const login = author?.login?.toLowerCase();
+              if (!login) {
+                return false;
+              }
+
+              if (aiReviewers.has(login)) {
+                return true;
+              }
+
+              return author?.__typename?.toLowerCase() === "bot" && aiReviewerApps.has(login);
+            }
+
             function getBlockingThreads(pullRequest, codeOwnerRules) {
               const blocking = [];
 
@@ -450,12 +472,13 @@ jobs:
                 const codeOwners = new Set(getOwnersForPath(thread.path, codeOwnerRules));
                 const blockingComment = thread.comments.nodes[0];
                 const login = blockingComment?.author?.login?.toLowerCase();
+                const isAi = isAiReviewer(blockingComment?.author);
 
-                if (login && (aiReviewers.has(login) || codeOwners.has(login))) {
+                if (login && (isAi || codeOwners.has(login))) {
                   blocking.push({
                     path: thread.path,
                     author: blockingComment.author.login,
-                    source: aiReviewers.has(login) ? "AI reviewer" : "CODEOWNER",
+                    source: isAi ? "AI reviewer" : "CODEOWNER",
                     url: blockingComment.url,
                   });
                 }
@@ -478,7 +501,7 @@ jobs:
                   continue;
                 }
 
-                const trustedReviewer = review.authorCanPushToRepository || aiReviewers.has(login);
+                const trustedReviewer = review.authorCanPushToRepository || isAiReviewer(review.author);
                 if (!trustedReviewer) {
                   continue;
                 }
@@ -502,16 +525,15 @@ jobs:
               return trustedReviews
                 .filter((review) => {
                   const login = review.author?.login?.toLowerCase();
-                  return review.state === "APPROVED" && login && !aiReviewers.has(login);
+                  return review.state === "APPROVED" && login && !isAiReviewer(review.author);
                 })
                 .map(reviewToLogItem);
             }
 
             function reviewToLogItem(review) {
-              const login = review.author.login.toLowerCase();
               return {
                 author: review.author.login,
-                source: aiReviewers.has(login) ? "AI reviewer" : "writer",
+                source: isAiReviewer(review.author) ? "AI reviewer" : "writer",
                 url: review.url,
               };
             }
