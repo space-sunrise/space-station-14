@@ -1,0 +1,8 @@
+- type: entity
+  parent: BoxFolderNuclearCodes
+  id: SunriseBoxFolderNuclearCodesStation
+  suffix: Station Only
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: NukeCodePaperStation

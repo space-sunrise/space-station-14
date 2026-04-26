@@ -241,7 +241,7 @@
           Heat: 1
   # Sunrise-Start
     - type: Reflect
-      reflectProb: 0.25
+      reflectProb: 0.2
       reflects:
       - Energy
   # Sunrise-End
@@ -268,7 +268,7 @@
           Piercing: 1
   # Sunrise-Start
     - type: Reflect
-      reflectProb: 0.1
+      reflectProb: 0.05
       spread: 180
       soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
       reflects:
@@ -571,25 +571,16 @@
                   max: 5
 
 - type: entity
+  name: energy shield
   parent: [BaseItem, BaseSyndicateContraband]
   id: EnergyShield
-  name: energy shield
   description: Exotic energy shield, when folded, can even fit in your pocket.
   components:
-    - type: EnergySword
     - type: ItemToggle
       soundActivate:
         path: /Audio/Weapons/ebladeon.ogg
       soundDeactivate:
         path: /Audio/Weapons/ebladeoff.ogg
-      deactivateUnequippedHand: true
-      # Sunrise-Start
-      predictable: false
-      soundFailToActivate:
-        path: /Audio/Machines/button.ogg
-        params:
-          variation: 0.250
-      # Sunrise-End
     - type: ItemToggleActiveSound
       activeSound:
         path: /Audio/Weapons/ebladehum.ogg
@@ -628,10 +619,10 @@
       enabled: false
       radius: 1.5
       energy: 2
-      color: white
+      color: blue
     - type: ItemTogglePointLight
     - type: Reflect
-      reflectProb: 1 # Sunrise-edit
+      reflectProb: 0.95
       reflects:
         - Energy
     - type: Blocking
@@ -651,46 +642,34 @@
           Heat: 1
           Piercing: 1
     - type: Appearance
-    - type: Damageable
+    - type: Damageable # Sunrise-Edit: keep shield damage container on Damageable
       damageContainer: Shield
-#    - type: ExaminableDamage # Sunrise-edit
-#      messages: EnergyShieldMessages
-#    - type: Destructible # Sunrise-edit
-#      thresholds:
-#        - trigger:
-#            !type:DamageTrigger
-#            damage: 180
-#          behaviors:
-#            - !type:DoActsBehavior
-#              acts: [ "Destruction" ]
-#        - trigger:
-#            !type:DamageTrigger
-#            damage: 100
-#          behaviors:
-#            - !type:DoActsBehavior
-#              acts: [ "Destruction" ]
-#            - !type:PlaySoundBehavior
-#              sound:
-#                collection: GlassBreak
-#            - !type:SpawnEntitiesBehavior
-#              spawn:
-#                BrokenEnergyShield:
-#                  min: 1
-#                  max: 1
+    - type: ExaminableDamage
+      messages: EnergyShieldMessages
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 180
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                BrokenEnergyShield:
+                  min: 1
+                  max: 1
     - type: StaticPrice
-      price: 7000
-    # Sunrise-Start
-    - type: BatterySelfRecharger
-      autoRechargeRate: 50
-      autoRechargePauseTime: 10
-    - type: EnergyShield
-      energyCostPerDamage: 15
-    - type: ExaminableBattery
-    - type: Battery
-      maxCharge: 1500
-      startingCharge: 1500
-    - type: EmpImmune
-    # Sunrise-End
+      price: 350
 
 - type: entity
   name: broken energy shield

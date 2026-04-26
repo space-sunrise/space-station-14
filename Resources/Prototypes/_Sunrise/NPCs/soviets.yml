@@ -1275,6 +1275,7 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
+  - type: MechVulnerableToEMP
   - type: NoSlip
   - type: Loadout
     prototypes:
@@ -1423,6 +1424,7 @@
   id: MobSovietT3Mech
   components:
   - type: NoSlip
+  - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionActivateSmokeGrenadeImplant

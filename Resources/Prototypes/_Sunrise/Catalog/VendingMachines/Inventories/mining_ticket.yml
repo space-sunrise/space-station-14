@@ -42,7 +42,8 @@
 
 - type: listing
   id: VendorMiningMechMiningPod
-  productEntity: MechMiningPod
+  productEntity: MechMiningPodFlatpack
+  icon: { sprite: _Sunrise/Objects/Specific/Mech/mining_pod.rsi, state: mining_pod }
   cost:
     SalvageTicket: 800
   categories:
@@ -75,6 +76,22 @@
   productEntity: ClothingOuterHardsuitSpaceHazard
   cost:
     SalvageTicket: 50
+  categories:
+  - MiningEquipment
+
+- type: listing
+  id: VendorMiningClothingEyesGlassesWelding
+  productEntity: ClothingEyesGlassesWelding
+  cost:
+    SalvageTicket: 200
+  categories:
+  - MiningEquipment
+
+- type: listing
+  id: VendorMiningClothingEyesGlassesMeson
+  productEntity: ClothingEyesGlassesMeson
+  cost:
+    SalvageTicket: 500
   categories:
   - MiningEquipment
 
@@ -120,7 +137,7 @@
   id: VendorMiningPKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 175
   categories:
   - MiningEquipment
   conditions:
@@ -131,7 +148,7 @@
   id: VendorMiningPKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 175
   categories:
   - MiningEquipment
   conditions:
@@ -142,7 +159,7 @@
   id: VendorMiningPKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 175
   categories:
   - MiningEquipment
   conditions:
@@ -198,7 +215,7 @@
   id: VendorMiningWeaponPlasmaCutter
   productEntity: WeaponPlasmaCutter
   cost:
-    SalvageTicket: 800
+    SalvageTicket: 666
   categories:
   - MiningEquipment
 
