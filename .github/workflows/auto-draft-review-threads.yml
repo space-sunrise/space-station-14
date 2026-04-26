@@ -118,9 +118,9 @@ jobs:
               const approvingReviews = getApprovingReviews(trustedReviews);
               const labels = new Set(pullRequest.labels.nodes.map((label) => label.name));
               const hasMarker = labels.has(markerLabel);
-              const allTrackedThreadsResolved = blockingThreads.length === 0;
+              const allTrackedFeedbackResolved = blockingThreads.length === 0 && blockingReviews.length === 0;
               const hasTrustedApproval = approvingReviews.length > 0;
-              const shouldMarkReady = allTrackedThreadsResolved || hasTrustedApproval;
+              const shouldMarkReady = allTrackedFeedbackResolved || hasTrustedApproval;
               const hasBlockingFeedback = !shouldMarkReady && (blockingThreads.length > 0 || blockingReviews.length > 0);
 
               core.info(
