@@ -11,6 +11,8 @@ from pathlib import Path
 from unittest import mock
 
 MODULE_PATH = Path(__file__).with_name("pr_check_summary.py")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "pr-check-summary.yml"
 SPEC = importlib.util.spec_from_file_location("pr_check_summary", MODULE_PATH)
 pr_check_summary = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(pr_check_summary)
@@ -72,6 +74,12 @@ class RecordingClient:
 
 
 class PrCheckSummaryTests(unittest.TestCase):
+    def test_workflow_requests_write_permission_for_pr_comments(self):
+        workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("issues: write", workflow)
+        self.assertIn("pull-requests: write", workflow)
+
     def test_build_comment_renders_status_table_and_failure_details(self):
         rows = [
             CheckRow("YAML Linter", "success", "https://example.test/yaml"),
@@ -529,7 +537,7 @@ class PrCheckSummaryTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "paginated response"):
             UnknownCollectionClient().paginate("/repos/space-sunrise/sunrise-station/unknown")
 
-    def test_main_prints_runtime_error_and_keeps_workflow_green(self):
+    def test_main_prints_runtime_error_and_fails_workflow(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             event_path = Path(temp_dir) / "event.json"
             event_path.write_text(json.dumps({"pull_request": {"number": 42}}), encoding="utf-8")
@@ -555,7 +563,7 @@ class PrCheckSummaryTests(unittest.TestCase):
             ):
                 exit_code = pr_check_summary.main()
 
-        self.assertEqual(0, exit_code)
+        self.assertEqual(1, exit_code)
         self.assertIn("GitHub API exploded", stderr.getvalue())
 
     def test_build_comment_trims_failed_rows_branch(self):

@@ -42,6 +42,7 @@ jobs:
     env:
       AUTO_DRAFT_LABEL: "auto-draft: unresolved review"
       AUTO_DRAFT_COMMENT_MARKER: "<!-- auto-draft-review-threads -->"
+      AUTO_DRAFT_TOKEN_CONFIGURED: ${{ secrets.AUTO_DRAFT_TOKEN != '' }}
       AI_REVIEWERS: "coderabbitai[bot],github-copilot[bot],copilot-pull-request-reviewer[bot]"
       AI_REVIEWER_APPS: "coderabbitai"
     steps:
@@ -50,12 +51,13 @@ jobs:
         with:
           # The default GITHUB_TOKEN can add labels/comments here, but may be
           # unable to call convertPullRequestToDraft in this repository.
-          github-token: ${{ secrets.AUTO_DRAFT_TOKEN || secrets.PAT || secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.AUTO_DRAFT_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const markerLabel = process.env.AUTO_DRAFT_LABEL;
             const commentMarker = process.env.AUTO_DRAFT_COMMENT_MARKER;
+            const draftMutationTokenConfigured = process.env.AUTO_DRAFT_TOKEN_CONFIGURED === "true";
             const aiReviewers = new Set(
               (process.env.AI_REVIEWERS || "")
                 .split(",")
@@ -151,6 +153,7 @@ jobs:
 
               if (hasBlockingFeedback) {
                 if (!pullRequest.isDraft) {
+                  requireDraftMutationToken(number);
                   await convertToDraft(pullRequest.id);
                   await addLabel(number, markerLabel);
                   await upsertAutoDraftComment(number, blockingThreads, blockingReviews);
@@ -170,6 +173,7 @@ jobs:
               }
 
               if (shouldMarkReady && pullRequest.isDraft && hasMarker) {
+                requireDraftMutationToken(number);
                 await markReadyForReview(pullRequest.id);
                 await cleanupAutoDraftState(number);
                 core.info(`#${number}: tracked review feedback is no longer blocking, marked ready for review and removed auto-draft state.`);
@@ -547,6 +551,17 @@ jobs:
               }
 
               return owners;
+            }
+
+            function requireDraftMutationToken(number) {
+              if (draftMutationTokenConfigured) {
+                return;
+              }
+
+              throw new Error(
+                `#${number}: AUTO_DRAFT_TOKEN repository secret is required to change draft state. ` +
+                  "The default GITHUB_TOKEN can manage labels/comments here, but cannot call draft-state GraphQL mutations in this repository.",
+              );
             }
 
             async function addLabel(number, label) {
