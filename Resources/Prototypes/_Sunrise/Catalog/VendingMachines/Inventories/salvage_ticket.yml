@@ -35,7 +35,7 @@
   cost:
     SalvageTicket: 700
   categories:
-  - SalvageEquipment
+  - SalvageMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -96,7 +96,7 @@
   id: VendorSalvageClothingEyesGlassesMeson
   productEntity: ClothingEyesGlassesMeson
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 400
   categories:
   - SalvageEquipment
 
@@ -134,7 +134,7 @@
   id: VendorSalvagePKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - SalvageEquipment
   conditions:
@@ -145,7 +145,7 @@
   id: VendorSalvagePKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - SalvageEquipment
   conditions:
@@ -156,7 +156,7 @@
   id: VendorSalvagePKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - SalvageEquipment
   conditions:
@@ -169,7 +169,7 @@
   cost:
     SalvageTicket: 400
   categories:
-  - SalvageEquipment
+  - SalvageMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -180,7 +180,7 @@
   cost:
     SalvageTicket: 600
   categories:
-  - SalvageEquipment
+  - SalvageMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -209,7 +209,119 @@
   categories:
   - SalvageEquipment
 
+- type: listing
+  id: VendorSalvageClothingOuterVestWebSalvageMerc
+  productEntity: ClothingOuterVestWebSalvageMerc
+  cost:
+    SalvageTicket: 200
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingHeadHelmetSalvageMerc
+  productEntity: ClothingHeadHelmetArmoredSalvageMerc
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingUniformJumpsuitSalvageMercWhite
+  productEntity: ClothingUniformJumpsuitSalvageMercWhite
+  cost:
+    SalvageTicket: 25
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingUniformJumpsuitSalvageMercGreen
+  productEntity: ClothingUniformJumpsuitSalvageMercGreen
+  cost:
+    SalvageTicket: 25
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingUniformJumpsuitSalvageMercBrown
+  productEntity: ClothingUniformJumpsuitSalvageMercBrown
+  cost:
+    SalvageTicket: 25
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingHeadHatBeretSalvageMercPurple
+  productEntity: ClothingHeadHatBeretSalvageMercPurple
+  cost:
+    SalvageTicket: 25
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingHeadHatBeretSalvageMercGreen
+  productEntity: ClothingHeadHatBeretSalvageMercGreen
+  cost:
+    SalvageTicket: 25
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingHeadHatBeretSalvageMercBrown
+  productEntity: ClothingHeadHatBeretSalvageMercBrown
+  cost:
+    SalvageTicket: 25
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingEyesGlassesSalvageMerc
+  productEntity: ClothingEyesGlassesSalvageMerc
+  cost:
+    SalvageTicket: 500
+  categories:
+  - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingShoesBootsSalvageMerc
+  productEntity: ClothingShoesBootsSalvageMerc
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageEquipment
+
 # weapons
+- type: listing
+  id: VendorSalvageWeaponProtoKineticAccelerator
+  productEntity: WeaponProtoKineticAccelerator
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageWeapons
+
+- type: listing
+  id: VendorSalvageWeaponProtoKineticShotgun
+  productEntity: WeaponProtoKineticShotgun
+  cost:
+    SalvageTicket: 125
+  categories:
+  - SalvageWeapons
+
+- type: listing
+  id: VendorSalvageWeaponProtoKineticRepeater
+  productEntity: WeaponProtoKineticRepeater
+  cost:
+    SalvageTicket: 125
+  categories:
+  - SalvageWeapons
+
+- type: listing
+  id: VendorSalvageWeaponProtoKineticHeavy
+  productEntity: WeaponProtoKineticHeavy
+  cost:
+    SalvageTicket: 200
+  categories:
+  - SalvageWeapons
+
 - type: listing
   id: VendorSalvageWeaponLaserLNT620
   productEntity: WeaponLaserLNT620
@@ -239,7 +351,7 @@
   icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi, state: icon }
   productEntity: CrateShelfMosin
   cost:
-    SalvageTicket: 150
+    SalvageTicket: 220
   categories:
   - SalvageWeapons
 
