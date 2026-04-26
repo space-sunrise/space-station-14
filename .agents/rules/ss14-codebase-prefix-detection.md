@@ -18,22 +18,24 @@ Don't start editing vanilla files until these three values ​​are defined.
 
 ## 2. How to determine the current fork
 
-Define a fork in this order:
+Define a fork by collecting all concrete signals before choosing:
 
-1. First look at git remote slug (`origin`, then `upstream`, then the rest remote).
-2. Then look at the name of the repository root folder and the path of the working directory.
-3. Then look at which forked project folder is actually present in the code base (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`).
-4. Then look at the nearest existing edit markers in the adjacent code.
+1. Git remote repository slug: the last repository name in the remote URL, for example `project-fire` in `space-sunrise/project-fire`.
+2. The name of the repository root folder and the path of the working directory.
+3. Which forked project folder is actually present in the code base (`_Sunrise`, `_Scp`, `_Fish`, `_Lust`) near the files being changed.
+4. The nearest existing edit markers in the adjacent code.
+
+Do not infer the fork from the GitHub organization or owner name alone. `space-sunrise` is an organization name, not proof that the codebase is Sunrise. If the repository slug is `project-fire` or the active project folder is `_Scp`, select Fire even when the owner is `space-sunrise`.
 
 If the signals diverge:
 
-1. Priority goes to git remote and the actual project folder.
-2. If remote points to an alias/mirror, but folder and existing tokens are unambiguous, use an actual local fork.
+1. Priority goes to the exact repository slug and the actual project folder used by the code being changed.
+2. If an exact fork signal exists (`project-fire`, `_Scp`, Fire markers), it overrides generic Sunrise-looking signals such as the organization name, an old root folder name, or a mirror remote.
 3. Do not mix markers from different forks within the same task.
 
 ## 3. Correspondence map
 
-Select the first line that matches `repo slug`, the name of the root folder, alias, or an actual fork folder:
+Select the first line that matches the exact repository slug, the name of the root folder, alias, actual fork folder, or local edit markers. Repository slug means the repository name itself, not the organization/owner part of the URL.
 
 | Match | Prefix | Project folder | Single-line marker | Block markers | Note |
 | --- | --- | --- | --- | --- | --- |

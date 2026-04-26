@@ -10,6 +10,8 @@ This skill describes the standards and patterns adopted in Space Station 14 fork
 
 Before making changes, first determine the active codebase prefix, project folder and edit markers using the `ss14-codebase-prefix-detection` rule.
 
+After the active fork is determined, keep all new fork-owned code in that fork's project folder. Do not switch folders because the touched behavior is vanilla, inherited from another fork, or looks "not fork-specific". For Fire, the correct folder is `_Scp`; new code, prototypes and assets for Fire go there even when the hook or parent prototype lives in vanilla or in a Sunrise-looking repository mirror.
+
 ## ⚠️ Golden rule
 
 > [!IMPORTANT]
@@ -28,6 +30,8 @@ To clearly separate vanilla code from our modifications, a special project folde
 1. **New files:** Completely new systems, components, prototypes.
 2. **Partial classes:** Extensions of vanilla classes (see below).
 3. **Assets:** New sprites, sounds, textures.
+
+The selected project folder is a consequence of the active fork, not of the subsystem being touched. If the active fork is Fire, write new project code under `_Scp`. Do not move new files to `_Sunrise` just because the repository owner is `space-sunrise`, the original code came from Sunrise, or the change is a vanilla hook.
 
 > [!TIP]
 > **Isolation principle:**
