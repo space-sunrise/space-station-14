@@ -32,13 +32,13 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         if (!TryComp<SpriteComponent>(ent, out var sprite) || !TryComp<CrawlerComponent>(ent, out var crawl))
             return;
 
-        var animationState = EnsureComp<ProneCrawlAnimationComponent>(ent);
-        CaptureRestState(animationState, sprite.Offset, sprite.Scale);
         var animationPlayer = EnsureComp<AnimationPlayerComponent>(ent.Owner);
 
         if (_animation.HasRunningAnimation(ent.Owner, animationPlayer, crawl.AnimationKey))
             _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
 
+        var animationState = EnsureComp<ProneCrawlAnimationComponent>(ent);
+        CaptureRestState(animationState, sprite.Offset, sprite.Scale);
         RestoreAnimationState((ent.Owner, animationState), sprite);
 
         var duration = MathF.Max(0.05f, (float) args.Duration.TotalSeconds);
