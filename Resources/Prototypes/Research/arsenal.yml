@@ -12,6 +12,9 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
+  - WeaponProtoKineticHeavy # Sunrise-Add
+  - WeaponProtoKineticRepeater # Sunrise-Add
+  - WeaponProtoKineticShotgun # Sunrise-Add
   - MechEquipmentKineticAccelerator # Sunrise-Add
   - BorgModuleMiningCombat # Sunrise-Add
   # These are roundstart but not replenishable for salvage

@@ -35,7 +35,7 @@
   cost:
     SalvageTicket: 700
   categories:
-  - MiningEquipment
+  - MiningMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -47,7 +47,7 @@
   cost:
     SalvageTicket: 800
   categories:
-  - MiningEquipment
+  - MiningMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -172,7 +172,7 @@
   cost:
     SalvageTicket: 400
   categories:
-  - MiningEquipment
+  - MiningMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -183,7 +183,7 @@
   cost:
     SalvageTicket: 400
   categories:
-  - MiningEquipment
+  - MiningMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -194,7 +194,7 @@
   cost:
     SalvageTicket: 900
   categories:
-  - MiningEquipment
+  - MiningMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -206,7 +206,7 @@
   cost:
     SalvageTicket: 600
   categories:
-  - MiningEquipment
+  - MiningMech
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1

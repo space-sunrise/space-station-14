@@ -1402,3 +1402,28 @@
     damage: 9
 
 # endregion Rubber Bullets
+
+# region PKA bullets
+- type: entity
+  id: BulletKineticWeak
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 9
+        Structural: 6
+  - type: TimedDespawn
+    lifetime: 0.22 # roughly 5.5 tiles
+
+- type: entity
+  id: BulletKineticWeakSpread
+  categories: [ HideSpawnMenu ]
+  parent: BulletKineticWeak
+  components:
+  - type: ProjectileSpread
+    proto: BulletKineticWeak
+    count: 4
+    spread: 20
+# end region PKA
