@@ -1,0 +1,145 @@
+- type: entity
+  name: proto-kinetic shotgun
+  id: WeaponProtoKineticShotgun
+  parent: [ BaseGunWieldable, WeaponProtoKineticAcceleratorBase, BaseSalvageMiningContraband ]
+  description: Fires a spread of low-damage kinetic bolts that are half as effective for mining.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_shotgun.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_shotgun.rsi
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticWeakSpread
+  - type: GunRequiresWield
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_shotgun.rsi
+    shape:
+    - 0,0,2,1
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+
+- type: entity
+  name: proto-kinetic repeater
+  id: WeaponProtoKineticRepeater
+  parent: [ BaseItem, BaseSalvageMiningContraband ]
+  description: Fires a barrage of medium-damage kinetic bolts at a short range.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_repeater.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_repeater.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 2.5
+    burstFireRate: 6
+    selectedMode: Burst
+    burstCooldown: 1.5
+    availableModes:
+    - SemiAuto
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+    projectileSpeed: 25
+    angleDecay: 5
+    minAngle: 5
+    angleIncrease: 5
+    maxAngle: 25
+    bigTrigger: true
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticWeak
+    capacity: 3
+    count: 3
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_repeater.rsi
+    storedOffset: -1,0
+    shape:
+    - 0,0,1,1
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+
+- type: entity
+  name: portable proto-kinetic "Matter Dematerializer"
+  id: WeaponProtoKineticHeavy
+  parent: [ BaseItem, BaseSalvageMiningContraband ]
+  description: A stationary salvager mining turret converted into a portable variant. Extremely heavy and exceptionally effective at excavating asteroids or the faces of anyone who interferes.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_heavy_big.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_heavy.rsi
+    size: Ginormous
+  - type: Gun
+    projectileSpeed: 18
+    fireRate: 2
+    selectedMode: FullAuto
+    angleDecay: 45
+    minAngle: 5
+    maxAngle: 15
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      params:
+        variation: 0.12
+    bigTrigger: true
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: MultiHandedItem
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticShuttle
+    capacity: 5
+    count: 5
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
