@@ -407,11 +407,7 @@ class PrCheckSummaryTests(unittest.TestCase):
             pr_check_summary.urllib.request,
             "urlopen",
             return_value=FakeResponse(buffer.getvalue()),
-        ) as urlopen, mock.patch.object(
-            pr_check_summary.urllib.request,
-            "build_opener",
-            side_effect=AssertionError("download_job_log should use the default urlopen redirect handling"),
-        ):
+        ) as urlopen:
             text = GitHubClient("token", "space-sunrise/sunrise-station").download_job_log(123)
 
         self.assertEqual("first log\nsecond log", text)
@@ -421,6 +417,16 @@ class PrCheckSummaryTests(unittest.TestCase):
             "https://api.github.com/repos/space-sunrise/sunrise-station/actions/jobs/123/logs",
             request.full_url,
         )
+
+    def test_download_job_log_decodes_plain_text_logs(self):
+        with mock.patch.object(
+            pr_check_summary.urllib.request,
+            "urlopen",
+            return_value=FakeResponse(b"first log\nsecond log"),
+        ):
+            text = GitHubClient("token", "space-sunrise/sunrise-station").download_job_log(123)
+
+        self.assertEqual("first log\nsecond log", text)
 
     def test_status_helpers_cover_run_job_and_missing_job_states(self):
         run_cases = [

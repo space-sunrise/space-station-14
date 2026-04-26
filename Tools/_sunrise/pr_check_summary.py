@@ -687,7 +687,7 @@ def status_icon(status: str) -> str:
         return "✅"
     if status == "failure":
         return "❌"
-    if status in {"missing", "skipped"}:
+    if status == "skipped":
         return "➖"
     return "⏳"
 

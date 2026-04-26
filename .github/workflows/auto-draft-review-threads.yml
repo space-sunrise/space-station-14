@@ -7,8 +7,6 @@ on:
     types: [submitted, edited, dismissed]
   pull_request_review_comment:
     types: [created, edited, deleted]
-  pull_request_review_thread:
-    types: [resolved, unresolved]
   workflow_dispatch:
     inputs:
       pr-number:
@@ -16,8 +14,8 @@ on:
         required: false
         type: number
   schedule:
-    # Fallback for thread state changes if GitHub Actions does not dispatch
-    # pull_request_review_thread for this repository.
+    # Fallback for review thread resolved/unresolved changes because GitHub
+    # Actions does not support pull_request_review_thread as a workflow trigger.
     - cron: "2/5 * * * *"
 
 permissions:
@@ -129,9 +127,7 @@ jobs:
               const hasMarker = labels.has(markerLabel);
               const allTrackedFeedbackResolved = blockingThreads.length === 0 && blockingReviews.length === 0;
               const hasTrustedApproval = approvingReviews.length > 0;
-              const shouldMarkReady =
-                allTrackedFeedbackResolved ||
-                (hasTrustedApproval && blockingReviews.length === 0 && blockingThreads.length === 0);
+              const shouldMarkReady = allTrackedFeedbackResolved || hasTrustedApproval;
               const hasBlockingFeedback = !shouldMarkReady && (blockingThreads.length > 0 || blockingReviews.length > 0);
 
               core.info(
@@ -688,9 +684,9 @@ jobs:
 
               return [
                 commentMarker,
-                `[RU]: PR автоматически переведен в черновик (draft), потому что есть ${threadTextRu} или ${reviewTextRu} от ревьювера с правом записи/ИИ. Чтобы снова открыть PR для ревью или мержа, закрой все отслеживаемые замечания; approve от ревьювера с правом записи учитывается только если больше нет активных блокирующих ревью или обсуждений.`,
+                `[RU]: PR автоматически переведен в черновик (draft), потому что есть ${threadTextRu} или ${reviewTextRu} от ревьювера с правом записи/ИИ. Чтобы снова открыть PR для ревью или мержа, закрой все отслеживаемые замечания или получи approve от ревьювера с правом записи.`,
                 "",
-                `[EN]: This PR was automatically converted to draft because it has ${threadTextEn} or ${reviewTextEn} from a reviewer with write access/AI. To make it ready for review or merge again, resolve all tracked feedback; approval from a reviewer with write access only releases the draft when no active blocking reviews or conversations remain.`,
+                `[EN]: This PR was automatically converted to draft because it has ${threadTextEn} or ${reviewTextEn} from a reviewer with write access/AI. To make it ready for review or merge again, resolve all tracked feedback or get approval from a reviewer with write access.`,
               ].join("\n");
             }
 
