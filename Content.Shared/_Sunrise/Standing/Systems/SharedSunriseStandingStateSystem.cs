@@ -32,54 +32,66 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
         SubscribeLocalEvent<CanFallComponent, MoveInputEvent>(OnMoveInput);
 
         InitializeCrawlingFootstepModifier();
+        InitializeProneCrawlMovement();
         InitializePronePulling();
     }
 
     private void OnMoveInput(Entity<CanFallComponent> ent, ref MoveInputEvent args)
     {
-        ent.Comp.IsMoving = args.Entity.Comp.HeldMoveButtons != MoveButtons.None;
+        ent.Comp.IsMoving = args.HasDirectionalMovement;
     }
 
     private void OnDown(Entity<CanFallComponent> ent, ref KnockedDownEvent ev)
     {
-        if (_gravity.IsWeightless(ent.Owner))
+        if (!CanFall(ent, autoStand: false))
             return;
 
-        if (!ent.Comp.IsMoving)
-            return;
-
-        Fall(ent);
+        TryFall(ent);
     }
 
-    public void Fall(Entity<CanFallComponent> ent)
+    public bool CanFall(Entity<CanFallComponent> ent, bool autoStand, bool quiet = false)
     {
+        if (_gravity.IsWeightless(ent.Owner) || !HasMovementInput(ent) || autoStand)
+            return false;
+
         if (HasComp<ActiveLeaperComponent>(ent))
-            return;
+            return false;
 
         if (!TryComp<StaminaComponent>(ent, out var stamina))
-            return;
+            return false;
 
         var threshold = stamina.CritThreshold * (1 - ent.Comp.MinimumStamina);
 
         if (stamina.StaminaDamage >= threshold)
         {
-            _popup.PopupPredicted(Loc.GetString("cant-fall-no-stamina"), null, ent, ent);
-            return;
+            if (!quiet)
+                _popup.PopupPredicted(Loc.GetString("cant-fall-no-stamina"), null, ent, ent);
+
+            return false;
         }
 
         if (_statusEffects.HasEffectComp<JumpStatusEffectComponent>(ent))
-            return;
+            return false;
 
         var ev = new FallAttemptEvent();
         RaiseLocalEvent(ent, ref ev);
-        if (ev.Cancelled)
-            return;
 
-        if (!TryComp<KnockedDownComponent>(ent, out var knockedDown))
-            return;
+        return !ev.Cancelled;
+    }
 
-        if (knockedDown.AutoStand)
-            return;
+    private bool HasMovementInput(Entity<CanFallComponent> ent)
+    {
+        if (ent.Comp.IsMoving)
+            return true;
+
+        return TryComp<InputMoverComponent>(ent.Owner, out var mover) &&
+               mover.HasDirectionalMovement;
+    }
+
+    public bool TryFall(Entity<CanFallComponent> ent)
+    {
+        if (!TryComp<StaminaComponent>(ent, out var stamina))
+            return false;
 
         var xform = Transform(ent);
         var throwing = xform.LocalRotation.ToWorldVec() * ent.Comp.FallDistance;
@@ -92,5 +104,6 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
             ent.Comp.Duration);
 
         _stamina.TakeStaminaDamage(ent, stamina.CritThreshold * ent.Comp.StaminaDamage, null, ent, ent, ignoreResist: true);
+        return true;
     }
 }
