@@ -5,7 +5,6 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
@@ -22,7 +21,7 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
 
-    private readonly EntProtoId _fallStatusEffectKey = "StatusEffectFall";
+    private static readonly EntProtoId FallStatusEffectKey = "StatusEffectFall";
 
     public override void Initialize()
     {
@@ -43,9 +42,6 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
 
     private void OnDown(Entity<CanFallComponent> ent, ref KnockedDownEvent ev)
     {
-        if (!CanFall(ent, autoStand: false))
-            return;
-
         TryFall(ent);
     }
 
@@ -105,9 +101,12 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
     /// damage equal to <c>stamina.CritThreshold * ent.Comp.StaminaDamage</c> with resistance ignored.
     /// </summary>
     /// <param name="ent">Entity with the fall configuration to execute.</param>
-    /// <returns>True when the fall side effects were applied; false when the entity has no <see cref="StaminaComponent"/>.</returns>
+    /// <returns>True when the fall side effects were applied; false when <see cref="CanFall"/> rejects the action.</returns>
     public bool TryFall(Entity<CanFallComponent> ent)
     {
+        if (!CanFall(ent, autoStand: false))
+            return false;
+
         if (!TryComp<StaminaComponent>(ent, out var stamina))
             return false;
 
@@ -118,7 +117,7 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
         _throwing.TryThrow(ent, direction, ent.Comp.FallVelocity, doSpin: false);
 
         _statusEffects.TryAddStatusEffectDuration(ent,
-            _fallStatusEffectKey,
+            FallStatusEffectKey,
             ent.Comp.Duration);
 
         _stamina.TakeStaminaDamage(ent, stamina.CritThreshold * ent.Comp.StaminaDamage, null, ent, ent, ignoreResist: true);

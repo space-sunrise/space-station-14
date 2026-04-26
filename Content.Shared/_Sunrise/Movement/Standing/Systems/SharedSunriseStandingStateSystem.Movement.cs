@@ -37,6 +37,16 @@ public abstract partial class SharedSunriseStandingStateSystem
         RemCompDeferred<ActiveProneCrawlMovementComponent>(ent);
     }
 
+    /// <summary>
+    /// Fully clears prone-crawl pull state for <see cref="ProneCrawlMovementController.StopProneCrawl"/>
+    /// and <see cref="ProneCrawlMovementController.SuspendProneCrawl"/>, including the next pull cooldown.
+    /// Resets <see cref="ActiveProneCrawlMovementComponent.PullStartTime"/>,
+    /// <see cref="ActiveProneCrawlMovementComponent.PullEndTime"/>,
+    /// <see cref="ActiveProneCrawlMovementComponent.NextPullTime"/>,
+    /// <see cref="ActiveProneCrawlMovementComponent.PullDirection"/>,
+    /// <see cref="ActiveProneCrawlMovementComponent.PullVelocity"/> and
+    /// <see cref="ActiveProneCrawlMovementComponent.IsPulling"/>.
+    /// </summary>
     public void ResetProneCrawlMovementState(Entity<ActiveProneCrawlMovementComponent> ent)
     {
         Reset(ent, ref ent.Comp.PullStartTime, TimeSpan.Zero, nameof(ActiveProneCrawlMovementComponent.PullStartTime));
@@ -47,6 +57,15 @@ public abstract partial class SharedSunriseStandingStateSystem
         Reset(ent, ref ent.Comp.IsPulling,     false,         nameof(ActiveProneCrawlMovementComponent.IsPulling));
     }
 
+    /// <summary>
+    /// Cancels the active prone-crawl pull for <see cref="ProneCrawlMovementController.StopProneCrawl"/>
+    /// while preserving <see cref="ActiveProneCrawlMovementComponent.NextPullTime"/> as the current cooldown.
+    /// Resets <see cref="ActiveProneCrawlMovementComponent.PullStartTime"/>,
+    /// <see cref="ActiveProneCrawlMovementComponent.PullEndTime"/>,
+    /// <see cref="ActiveProneCrawlMovementComponent.PullDirection"/>,
+    /// <see cref="ActiveProneCrawlMovementComponent.PullVelocity"/> and
+    /// <see cref="ActiveProneCrawlMovementComponent.IsPulling"/>.
+    /// </summary>
     public void CancelProneCrawlActivePull(Entity<ActiveProneCrawlMovementComponent> ent)
     {
         Reset(ent, ref ent.Comp.PullStartTime, TimeSpan.Zero, nameof(ActiveProneCrawlMovementComponent.PullStartTime));

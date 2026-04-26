@@ -15,6 +15,8 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
+    private const float PullBackPeak = 0.35f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -60,7 +62,7 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
                     KeyFrames =
                     {
                         new AnimationTrackProperty.KeyFrame(animationState.BaseOffset, 0f),
-                        new AnimationTrackProperty.KeyFrame(backOffset, duration * 0.35f, Easings.OutQuad),
+                        new AnimationTrackProperty.KeyFrame(backOffset, duration * PullBackPeak, Easings.OutQuad),
                         new AnimationTrackProperty.KeyFrame(animationState.BaseOffset, duration, Easings.InQuad),
                     }
                 },
@@ -72,7 +74,7 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
                     KeyFrames =
                     {
                         new AnimationTrackProperty.KeyFrame(animationState.BaseScale, 0f),
-                        new AnimationTrackProperty.KeyFrame(stretchedScale, duration * 0.35f, Easings.OutQuad),
+                        new AnimationTrackProperty.KeyFrame(stretchedScale, duration * PullBackPeak, Easings.OutQuad),
                         new AnimationTrackProperty.KeyFrame(animationState.BaseScale, duration, Easings.InQuad),
                     }
                 }

@@ -185,7 +185,8 @@ public sealed class ProneCrawlMovementController : VirtualController
     {
         ent.Comp1.IsPulling = false;
         ent.Comp1.PullVelocity = Vector2.Zero;
-        Dirty(ent.Owner, ent.Comp1);
+        DirtyField(ent.Owner, ent.Comp1, nameof(ActiveProneCrawlMovementComponent.IsPulling));
+        DirtyField(ent.Owner, ent.Comp1, nameof(ActiveProneCrawlMovementComponent.PullVelocity));
         PlayPullEndSound((ent.Owner, ent.Comp2));
     }
 

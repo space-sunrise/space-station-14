@@ -53,6 +53,9 @@ public abstract partial class SharedSunriseStandingStateSystem
 
     private void RestoreCrawlingFootstepModifier(Entity<CrawlingFootstepModifierComponent> ent)
     {
+        if (TerminatingOrDeleted(ent.Owner))
+            return;
+
         if (ent.Comp.HadFootstepSoundTag && !_tag.HasTag(ent, FootstepSoundTag))
         {
             _tag.AddTag(ent, FootstepSoundTag);
