@@ -80,7 +80,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      800: Dead
+      700: Dead
   - type: Stamina
     baseCritThreshold: 500
     stunTime: 2
@@ -135,11 +135,11 @@
     - id: ClothingUniformJumpsuitGalaxyRed
       prob: 0.75
     - id: PKAUpgradeDamage
-      prob: 2
+      prob: 0.2
     - id: PKAUpgradeFireRate
-      prob: 2
+      prob: 0.2
     - id: PKAUpgradeRange
-      prob: 2
+      prob: 0.2
     - id: PowerCellAntiqueProto
       prob: 1
     - id: ArtifactFragment
@@ -147,7 +147,7 @@
     - id: ComplexXenoArtifactItem
       prob: 0.5
     - id: MedipenCombatInjector
-      prob: 5
+      prob: 0.2
     - id: LeftArmCyberGorillaUpgraded
       prob: 0.15
     - id: CultPylon
@@ -196,29 +196,29 @@
       prob: 0.1
     # Weapons
     - id: WeaponLaserGun
-      prob: 0.05
+      prob: 0.1
     - id: WeaponSubMachineGunPPSH
-      prob: 0.05
+      prob: 0.1
     - id: WeaponSniperDragunov
-      prob: 0.05
+      prob: 0.1
     - id: WeaponLightMachineGunDP28
-      prob: 0.05
+      prob: 0.1
     - id: Musket
-      prob: 0.05
+      prob: 0.5
     - id: WeaponRevolverPirate
-      prob: 0.05
+      prob: 0.5
     - id: WeaponPistolFlintlock
-      prob: 0.05
+      prob: 0.5
     - id: WeaponShotgunGA12
-      prob: 0.05
+      prob: 0.5
     - id: WeaponPistolM1984
-      prob: 0.05
+      prob: 0.1
     - id: ClothingHandsPowerGlovesNoUplink
-      prob: 0.05
+      prob: 0.1
     - id: WeaponMeleeMoltenCollider
-      prob: 0.05
+      prob: 0.1
     - id: WeaponMeleeMoltenAmputator
-      prob: 0.05
+      prob: 0.1
     - id: WeaponProtoKineticHeavy
       prob: 0.5
     - id: EnergyShield
@@ -226,7 +226,7 @@
     - id: WeaponShotgunCycler
       prob: 0.05
     - id: HyperEutacticBlade
-      prob: 0.05
+      prob: 0.1
     # Boss lunch
     - id: MaterialGoliathHide1
       prob: 0.25

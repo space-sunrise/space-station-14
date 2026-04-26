@@ -562,7 +562,7 @@
   - type: GatheringProjectile
   # Sunrise-Start
   - type: StaminaDamageOnCollide
-    damage: 6
+    damage: 10
   # Sunrise-End
 
 - type: entity
@@ -597,7 +597,7 @@
     scale: 0.7
     shape: Circle
   - type: StaminaDamageOnCollide
-    damage: 5
+    damage: 6
   # Sunrise-End
 
 - type: entity
