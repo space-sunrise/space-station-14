@@ -34,7 +34,7 @@ sunrise-records-breakdown-base-sum = Base sum (Cat 1-5): {$sum} min.
 sunrise-records-breakdown-cap = Cap (1.5x Cat {$cat}): {$cap} min.
 sunrise-records-breakdown-perma-sum = Base (Cat 6): {$sum} min.
 sunrise-records-breakdown-warning = [color=yellow]{$id}: Warning (first violation)[/color]
-sunrise-records-breakdown-recidivism = [color=orange]{$id} Recidivism: +15%[/color]
+sunrise-records-breakdown-recidivism = [color=orange]{$id}: Recidivism {$percent}%[/color]
 sunrise-records-breakdown-escape-penalty = [color=red]Escape Penalty: +{$penalty} min.[/color]
 sunrise-records-breakdown-modifier = [color=cyan]{$id}: {$percent}%[/color]
 sunrise-records-person-age = Age:

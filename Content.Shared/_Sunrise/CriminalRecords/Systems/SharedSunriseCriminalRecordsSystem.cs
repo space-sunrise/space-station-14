@@ -141,7 +141,7 @@ public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
             {
                 lawRecidivismPercent = 15f;
                 var lawName = law.LawIdentifier ?? Loc.GetString(law.Title);
-                @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-recidivism", ("id", lawName)));
+                @case.SentenceBreakdown.Add(new SentenceBreakdownEntry("sunrise-records-breakdown-recidivism", ("id", lawName), ("percent", lawRecidivismPercent.ToString("+0;-0"))));
             }
 
             float totalLawPercent = globalModifierPercent + lawRecidivismPercent;
