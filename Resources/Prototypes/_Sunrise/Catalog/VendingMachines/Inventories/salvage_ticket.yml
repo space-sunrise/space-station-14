@@ -96,7 +96,7 @@
   id: VendorSalvageClothingEyesGlassesMeson
   productEntity: ClothingEyesGlassesMeson
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 400
   categories:
   - SalvageEquipment
 
@@ -134,7 +134,7 @@
   id: VendorSalvagePKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - SalvageEquipment
   conditions:
@@ -145,7 +145,7 @@
   id: VendorSalvagePKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - SalvageEquipment
   conditions:
@@ -156,7 +156,7 @@
   id: VendorSalvagePKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - SalvageEquipment
   conditions:
@@ -277,7 +277,7 @@
   id: VendorSalvageClothingEyesGlassesSalvageMercenary
   productEntity: ClothingEyesGlassesSalvageMercenary
   cost:
-    SalvageTicket: 90
+    SalvageTicket: 500
   categories:
   - SalvageEquipment
 
@@ -347,18 +347,15 @@
   - SalvageWeapons
 
 - type: listing
-<<<<<<< Updated upstream
   id: VendorSalvageCrateShelfMosin
   icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi, state: icon }
   productEntity: CrateShelfMosin
   cost:
-    SalvageTicket: 150
+    SalvageTicket: 220
   categories:
   - SalvageWeapons
 
 - type: listing
-=======
->>>>>>> Stashed changes
   id: VendorSalvageWeaponShotgunGA12
   productEntity: WeaponShotgunGA12
   cost:

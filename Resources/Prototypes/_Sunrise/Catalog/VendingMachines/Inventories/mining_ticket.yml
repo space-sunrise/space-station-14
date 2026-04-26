@@ -137,7 +137,7 @@
   id: VendorMiningPKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - MiningEquipment
   conditions:
@@ -148,7 +148,7 @@
   id: VendorMiningPKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - MiningEquipment
   conditions:
@@ -159,7 +159,7 @@
   id: VendorMiningPKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 175
+    SalvageTicket: 200
   categories:
   - MiningEquipment
   conditions:
