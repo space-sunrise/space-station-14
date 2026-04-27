@@ -12,6 +12,12 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 public sealed partial class CanDualWieldComponent : Component
 {
     /// <summary>
+    ///     The number of hands an entity must have to be able to dual-wield.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int HandsRequired = 2;
+
+    /// <summary>
     ///     The alert shown while this weapon is being dual-wielded.
     /// </summary>
     [DataField]

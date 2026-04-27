@@ -5,7 +5,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -17,8 +16,6 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 /// </summary>
 public sealed class SharedDualWieldSystem : EntitySystem
 {
-    private const int DualWieldHandsRequired = 2;
-
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -83,9 +80,6 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (ent.Comp.Count != DualWieldHandsRequired)
-            return false;
-
         foreach (var handName in _hands.EnumerateHands(ent))
         {
             var held = _hands.GetHeldItem(ent, handName);
@@ -109,7 +103,19 @@ public sealed class SharedDualWieldSystem : EntitySystem
             }
         }
 
-        return leftGun != null && rightGun != null;
+        if (leftGun == null || rightGun == null)
+            return false;
+
+        if (!TryComp<CanDualWieldComponent>(leftGun.Value, out var leftDualWield))
+            return false;
+
+        if (!TryComp<CanDualWieldComponent>(rightGun.Value, out var rightDualWield))
+            return false;
+
+        if (leftDualWield.HandsRequired != rightDualWield.HandsRequired)
+            return false;
+
+        return ent.Comp.Count == leftDualWield.HandsRequired;
     }
 
     private void EnableDualWield(Entity<HandsComponent?> ent, EntityUid? leftGun, EntityUid? rightGun)
