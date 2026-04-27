@@ -615,7 +615,7 @@
             Cellular: -0.3
             Radiation: 0.15
             Caustic: 0.15
-            Mangleness: 0.045 # Sunrise-Edit # 15% of 0.3 cellular healing
+            Mangleness: 0.003 # Sunrise-Edit # 1% of 0.3 cellular healing
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
