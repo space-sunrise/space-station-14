@@ -21,10 +21,14 @@ COMMENT_MARKER = "<!-- sunrise-pr-check-summary -->"
 COMMENT_SOFT_LIMIT = 62000
 MAX_ERROR_CHARS = 9000
 MAX_LOG_CHARS = 12000
+LOG_CONTEXT_BEFORE_LINES = 240
 
 SUCCESS_CONCLUSIONS = {"success", "skipped", "neutral"}
 FAILURE_CONCLUSIONS = {"failure", "cancelled", "timed_out", "action_required", "startup_failure"}
 PAGINATED_RESPONSE_KEYS = ("workflow_runs", "jobs", "items", "check_runs", "artifacts")
+REDIRECT_STATUS_CODES = {301, 302, 303, 307, 308}
+USER_AGENT = "sunrise-pr-check-summary"
+ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 
 
 @dataclass
@@ -206,26 +210,56 @@ class GitHubClient:
     def download_job_log(self, job_id: int) -> str:
         url = f"{GITHUB_API_URL}/repos/{self.repository}/actions/jobs/{job_id}/logs"
         request = urllib.request.Request(url, method="GET", headers=self.headers("application/vnd.github+json"))
-        with urllib.request.urlopen(request) as response:
-            data = response.read()
+        data = self.download_job_log_data(request)
 
-        if data.startswith(b"PK"):
-            with zipfile.ZipFile(io.BytesIO(data)) as archive:
-                chunks = []
-                for name in archive.namelist():
-                    with archive.open(name) as f:
-                        chunks.append(f.read().decode("utf-8", "replace"))
-                return "\n".join(chunks)
+        return decode_job_log_data(data)
 
-        return data.decode("utf-8", "replace")
+    def download_job_log_data(self, request: urllib.request.Request) -> bytes:
+        opener = urllib.request.build_opener(NoRedirectHandler)
+
+        try:
+            with opener.open(request) as response:
+                return response.read()
+        except urllib.error.HTTPError as error:
+            if error.code not in REDIRECT_STATUS_CODES:
+                raise
+
+            redirect_url = error.headers.get("Location")
+            if not redirect_url:
+                raise RuntimeError(f"GitHub job log redirect did not include Location header: {error.code}") from error
+
+            redirect_request = urllib.request.Request(
+                redirect_url,
+                method="GET",
+                headers={"User-Agent": USER_AGENT},
+            )
+            with urllib.request.urlopen(redirect_request) as response:
+                return response.read()
 
     def headers(self, accept: str) -> dict[str, str]:
         return {
             "Authorization": f"Bearer {self.token}",
             "Accept": accept,
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "sunrise-pr-check-summary",
+            "User-Agent": USER_AGENT,
         }
+
+
+class NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: N802
+        return None
+
+
+def decode_job_log_data(data: bytes) -> str:
+    if data.startswith(b"PK"):
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
+            chunks = []
+            for name in archive.namelist():
+                with archive.open(name) as f:
+                    chunks.append(f.read().decode("utf-8", "replace"))
+            return "\n".join(chunks)
+
+    return data.decode("utf-8", "replace")
 
 
 def paginated_items(data: Any) -> list[Any]:
@@ -475,24 +509,30 @@ def find_first_failure_index(lines: list[str]) -> int:
         re.compile(r"^\s*Failed\s+[\w.]+"),
         re.compile(r"::error\b"),
         re.compile(r"##\[error\]"),
-        re.compile(r"\bFAILED\b"),
+        re.compile(r"\bFAILED\b", re.IGNORECASE),
+        re.compile(r"\bFinal attempt failed\b", re.IGNORECASE),
+        re.compile(r"\bAttempt\s+\d+\s+failed\b", re.IGNORECASE),
+        re.compile(r"\bChild_process exited with error code\b", re.IGNORECASE),
         re.compile(r"\bFailed!\s+-\s+Failed:"),
         re.compile(r"^\s*error(?:[:\s]|$)", re.IGNORECASE),
     )
 
     for index, line in enumerate(lines):
-        if any(pattern.search(line) for pattern in patterns):
+        clean = strip_actions_noise(line)
+        if any(pattern.search(clean) for pattern in patterns):
             return index
 
     return max(0, len(lines) - 80)
 
 
 def find_log_start(lines: list[str], first_failure: int) -> int:
+    context_start = max(0, first_failure - LOG_CONTEXT_BEFORE_LINES)
+
     for index in range(first_failure, -1, -1):
         line = lines[index]
         if " Run " in line or line.startswith("Run ") or "dotnet test" in line:
-            return index
-    return max(0, first_failure - 80)
+            return max(index, context_start)
+    return context_start
 
 
 def find_failure_end(lines: list[str], first_failure: int) -> int:
@@ -540,6 +580,14 @@ def extract_error_text(lines: list[str], first_failure: int, end: int) -> str:
 
         if "::error" in clean or "##[error]" in clean or re.search(r"^\s*error(?:[:\s]|$)", clean, re.IGNORECASE):
             captured.append(clean)
+            continue
+
+        if re.search(
+            r"\b(Final attempt failed|Attempt\s+\d+\s+failed|Child_process exited with error code|Failed!\s+-\s+Failed:)",
+            clean,
+            re.IGNORECASE,
+        ):
+            captured.append(clean)
 
     if not captured and window:
         captured = [strip_actions_noise(line) for line in window[:80] if strip_actions_noise(line)]
@@ -568,7 +616,8 @@ def extract_failed_test_names(lines: list[str]) -> list[str]:
 
 
 def strip_actions_noise(line: str) -> str:
-    return re.sub(r"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d+Z\s+", "", line).rstrip()
+    clean = re.sub(r"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d+Z\s+", "", line)
+    return ANSI_ESCAPE_RE.sub("", clean).rstrip()
 
 
 def build_comment(

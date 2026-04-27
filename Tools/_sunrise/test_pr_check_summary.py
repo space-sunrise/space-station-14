@@ -37,8 +37,9 @@ JobConfig = pr_check_summary.JobConfig
 
 
 class FakeResponse:
-    def __init__(self, data: bytes):
+    def __init__(self, data: bytes, *, headers=None):
         self.data = data
+        self.headers = headers or {}
 
     def __enter__(self):
         return self
@@ -71,6 +72,16 @@ class RecordingClient:
                 raise response
             return response
         return None
+
+
+class StaticOpener:
+    def __init__(self, data: bytes):
+        self.data = data
+        self.requests = []
+
+    def open(self, request):
+        self.requests.append(request)
+        return FakeResponse(self.data)
 
 
 class PrCheckSummaryTests(unittest.TestCase):
@@ -148,6 +159,46 @@ class PrCheckSummaryTests(unittest.TestCase):
         self.assertIn("Run Content.IntegrationTests", details.log_text)
         self.assertIn("Stack Trace:", details.log_text)
         self.assertNotIn("dotnet-trx", details.log_text)
+
+    def test_extract_failure_details_strips_ansi_and_keeps_nearby_context(self):
+        log_text = "\n".join(
+            [
+                "2026-04-26T21:11:26.7728404Z ##[group]Run nick-fields/retry@v3",
+                "2026-04-26T21:11:26.8450827Z ##[group]Attempt 1",
+                *(f"2026-04-26T21:12:{index:02d}.0000000Z noisy line {index}" for index in range(160)),
+                "2026-04-26T21:19:17.0000000Z \x1b[31mFailed Content.IntegrationTests.SomeBrokenTest [42 ms]\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31mError Message:\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31m Expected true but was false.\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31mStack Trace:\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z    at Content.IntegrationTests.SomeBrokenTest()",
+                "2026-04-26T21:20:23.7092796Z 👉 Run 58 tests in ~ 8 minutes ❌",
+            ]
+        )
+
+        details = extract_failure_details("Integration Tests (shard 4)", log_text)
+
+        self.assertIn("Content.IntegrationTests.SomeBrokenTest", details.test_names)
+        self.assertIn("Failed Content.IntegrationTests.SomeBrokenTest", details.error_text)
+        self.assertIn("Expected true but was false.", details.error_text)
+        self.assertNotIn("\x1b", details.error_text)
+        self.assertNotIn("noisy line 0", details.log_text)
+        self.assertIn("noisy line 159", details.log_text)
+        self.assertIn("Stack Trace:", details.log_text)
+
+    def test_extract_failure_details_reports_retry_action_failure(self):
+        log_text = "\n".join(
+            [
+                "2026-04-26T21:11:26.8450827Z ##[group]Attempt 1",
+                "2026-04-26T21:20:23.7092796Z 👉 Run 58 tests in ~ 8 minutes ❌",
+                "2026-04-26T21:20:23.7093917Z    ❌ 1 failed",
+                "2026-04-26T21:20:23.8000000Z Final attempt failed. Child_process exited with error code 1",
+            ]
+        )
+
+        details = extract_failure_details("Integration Tests (shard 4)", log_text)
+
+        self.assertIn("Final attempt failed. Child_process exited with error code 1", details.error_text)
+        self.assertIn("1 failed", details.log_text)
 
     def test_latest_run_prefers_new_in_progress_rerun_over_old_failure(self):
         runs = [
@@ -405,33 +456,65 @@ class PrCheckSummaryTests(unittest.TestCase):
 
         self.assertIsNone(pull_request)
 
-    def test_download_job_log_uses_default_urlopen_and_extracts_zip_logs(self):
+    def test_download_job_log_extracts_zip_logs(self):
         buffer = io.BytesIO()
         with zipfile.ZipFile(buffer, "w") as archive:
             archive.writestr("1_build.txt", "first log")
             archive.writestr("2_test.txt", "second log")
 
-        with mock.patch.object(
-            pr_check_summary.urllib.request,
-            "urlopen",
-            return_value=FakeResponse(buffer.getvalue()),
-        ) as urlopen:
+        opener = StaticOpener(buffer.getvalue())
+
+        with mock.patch.object(pr_check_summary.urllib.request, "build_opener", return_value=opener):
             text = GitHubClient("token", "space-sunrise/sunrise-station").download_job_log(123)
 
         self.assertEqual("first log\nsecond log", text)
-        request = urlopen.call_args.args[0]
+        request = opener.requests[0]
         self.assertIsInstance(request, urllib.request.Request)
         self.assertEqual(
             "https://api.github.com/repos/space-sunrise/sunrise-station/actions/jobs/123/logs",
             request.full_url,
         )
 
-    def test_download_job_log_decodes_plain_text_logs(self):
-        with mock.patch.object(
-            pr_check_summary.urllib.request,
-            "urlopen",
-            return_value=FakeResponse(b"first log\nsecond log"),
+    def test_download_job_log_follows_redirect_without_github_authorization_header(self):
+        redirect_url = "https://actions-results.example.test/logs.txt"
+
+        class RedirectOpener:
+            def __init__(self):
+                self.requests = []
+
+            def open(self, request):
+                self.requests.append(request)
+                raise urllib.error.HTTPError(
+                    request.full_url,
+                    302,
+                    "Found",
+                    {"Location": redirect_url},
+                    None,
+                )
+
+        opener = RedirectOpener()
+
+        def urlopen(request):
+            headers = {key.lower(): value for key, value in request.header_items()}
+            self.assertEqual(redirect_url, request.full_url)
+            self.assertNotIn("authorization", headers)
+            self.assertEqual("sunrise-pr-check-summary", headers["user-agent"])
+            return FakeResponse(b"first log\nsecond log")
+
+        with (
+            mock.patch.object(pr_check_summary.urllib.request, "build_opener", return_value=opener),
+            mock.patch.object(pr_check_summary.urllib.request, "urlopen", side_effect=urlopen),
         ):
+            text = GitHubClient("token", "space-sunrise/sunrise-station").download_job_log(123)
+
+        api_headers = {key.lower(): value for key, value in opener.requests[0].header_items()}
+        self.assertEqual("Bearer token", api_headers["authorization"])
+        self.assertEqual("first log\nsecond log", text)
+
+    def test_download_job_log_decodes_plain_text_logs(self):
+        opener = StaticOpener(b"first log\nsecond log")
+
+        with mock.patch.object(pr_check_summary.urllib.request, "build_opener", return_value=opener):
             text = GitHubClient("token", "space-sunrise/sunrise-station").download_job_log(123)
 
         self.assertEqual("first log\nsecond log", text)
