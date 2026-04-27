@@ -99,6 +99,9 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     /// </summary>
     private void RefreshGeometry(Entity<SunriseMultiTileAirtightComponent> ent)
     {
+        if (Paused(ent))
+            return;
+
         DeleteBlockers(ent);
 
         if (!_xformQuery.TryGetComponent(ent.Owner, out var xform))
