@@ -164,7 +164,11 @@ public sealed class SharedDualWieldSystem : EntitySystem
             return;
 
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
-        args.FireRate *= (1f - ent.Comp.DualWieldFireRatePenalty);
+        // Clamp penalty to [0, 0.99] so FireRate can never reach zero or go negative.
+        var clampedPenalty = Math.Clamp(ent.Comp.DualWieldFireRatePenalty, 0f, 0.99f);
+        args.FireRate *= (1f - clampedPenalty);
+        // Safety floor: keep fire rate positive so downstream logic never divides by zero.
+        args.FireRate = MathF.Max(args.FireRate, 0.1f);
         args.CameraRecoilScalar *= (1f + ent.Comp.DualWieldRecoilPenalty);
     }
 
