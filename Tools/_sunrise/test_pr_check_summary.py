@@ -119,7 +119,7 @@ class PrCheckSummaryTests(unittest.TestCase):
         self.assertIn("<summary>❌ Integration Tests (shard 3)</summary>", body)
         self.assertIn("Content.IntegrationTests.DeleteEntityTest", body)
         self.assertIn("Expected entity to be deleted.", body)
-        self.assertIn("<summary>Лог от запуска до падения</summary>", body)
+        self.assertIn("<summary>Лог перед падением</summary>", body)
 
     def test_build_comment_omits_failure_details_for_restarted_pending_job(self):
         rows = [
@@ -164,8 +164,9 @@ class PrCheckSummaryTests(unittest.TestCase):
         log_text = "\n".join(
             [
                 "2026-04-26T21:11:26.7728404Z ##[group]Run nick-fields/retry@v3",
+                "2026-04-26T21:11:26.7731075Z   command: dotnet test -- NUnit.MapWarningTo=Failed NUnit.Where=\"$FILTER\"",
                 "2026-04-26T21:11:26.8450827Z ##[group]Attempt 1",
-                *(f"2026-04-26T21:12:{index:02d}.0000000Z noisy line {index}" for index in range(160)),
+                *(f"2026-04-26T21:12:{index:02d}.0000000Z noisy line {index}" for index in range(300)),
                 "2026-04-26T21:19:17.0000000Z \x1b[31mFailed Content.IntegrationTests.SomeBrokenTest [42 ms]\x1b[0m",
                 "2026-04-26T21:19:17.0000000Z \x1b[31mError Message:\x1b[0m",
                 "2026-04-26T21:19:17.0000000Z \x1b[31m Expected true but was false.\x1b[0m",
@@ -182,8 +183,44 @@ class PrCheckSummaryTests(unittest.TestCase):
         self.assertIn("Expected true but was false.", details.error_text)
         self.assertNotIn("\x1b", details.error_text)
         self.assertNotIn("noisy line 0", details.log_text)
-        self.assertIn("noisy line 159", details.log_text)
+        self.assertNotIn("NUnit.MapWarningTo=Failed", details.error_text)
+        self.assertNotIn("NUnit.MapWarningTo=Failed", details.log_text)
+        self.assertIn("noisy line 299", details.log_text)
         self.assertIn("Stack Trace:", details.log_text)
+
+    def test_extract_failure_details_prefers_assertion_tail_over_retry_failure(self):
+        log_text = "\n".join(
+            [
+                "2026-04-26T21:11:26.7728404Z ##[group]Run nick-fields/retry@v3",
+                "2026-04-26T21:11:26.7731075Z   command: dotnet test -- NUnit.MapWarningTo=Failed NUnit.Where=\"$FILTER\"",
+                "2026-04-26T21:11:26.8450827Z ##[group]Attempt 1",
+                *(f"2026-04-26T21:12:{index:02d}.0000000Z noisy line {index}" for index in range(300)),
+                "2026-04-26T21:19:17.0000000Z \x1b[31mFailed Content.IntegrationTests.AssertBrokenTest [42 ms]\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31mError Message:\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31m NUnit.Framework.AssertionException : Assert.That(actual, Is.True)\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31m Expected: True\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31m But was:  False\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z \x1b[31mStack Trace:\x1b[0m",
+                "2026-04-26T21:19:17.0000000Z    at Content.IntegrationTests.AssertBrokenTest() in Tests.cs:line 10",
+                "2026-04-26T21:20:23.7092796Z 👉 Run 58 tests in ~ 8 minutes ❌",
+                "2026-04-26T21:20:23.7093917Z    ❌ 1 failed",
+                "2026-04-26T21:20:23.8000000Z Final attempt failed. Child_process exited with error code 1",
+            ]
+        )
+
+        details = extract_failure_details("Integration Tests (shard 4)", log_text)
+
+        self.assertIn("Content.IntegrationTests.AssertBrokenTest", details.test_names)
+        self.assertIn("NUnit.Framework.AssertionException", details.error_text)
+        self.assertIn("Assert.That(actual, Is.True)", details.error_text)
+        self.assertIn("Stack Trace:", details.error_text)
+        self.assertNotIn("Final attempt failed", details.error_text)
+        self.assertNotIn("noisy line 0", details.log_text)
+        self.assertNotIn("noisy line 50", details.log_text)
+        self.assertIn("noisy line 299", details.log_text)
+        self.assertIn("at Content.IntegrationTests.AssertBrokenTest()", details.log_text)
+        self.assertNotIn("Final attempt failed", details.log_text)
+        self.assertNotIn("\x1b", details.log_text)
 
     def test_extract_failure_details_reports_retry_action_failure(self):
         log_text = "\n".join(

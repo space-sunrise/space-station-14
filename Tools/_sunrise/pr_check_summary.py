@@ -29,6 +29,12 @@ PAGINATED_RESPONSE_KEYS = ("workflow_runs", "jobs", "items", "check_runs", "arti
 REDIRECT_STATUS_CODES = {301, 302, 303, 307, 308}
 USER_AGENT = "sunrise-pr-check-summary"
 ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
+FAILED_TEST_RE = re.compile(r"^\s*Failed\s+[\w.`+\-/]+(?:\.[\w.`+\-/]+)*")
+ASSERTION_FAILURE_PATTERNS = (
+    re.compile(r"\bNUnit\.Framework\.AssertionException\b"),
+    re.compile(r"\bAssert\.", re.IGNORECASE),
+    re.compile(r"^\s*(Expected:|But was:)", re.IGNORECASE),
+)
 
 
 @dataclass
@@ -486,16 +492,21 @@ def is_failed_job(job: dict[str, Any]) -> bool:
 
 def extract_failure_details(job_name: str, log_text: str) -> FailureDetails:
     lines = log_text.splitlines()
-    first_failure = find_first_failure_index(lines)
-    start = find_log_start(lines, first_failure)
+    assertion_failure = find_assertion_failure_index(lines)
+    first_failure = (
+        find_test_failure_start(lines, assertion_failure)
+        if assertion_failure is not None
+        else find_first_failure_index(lines)
+    )
     end = find_failure_end(lines, first_failure)
+    start = find_log_start(lines, first_failure, end)
 
     error_text = extract_error_text(lines, first_failure, end)
     if not error_text:
         error_text = f"{job_name} завершился с ошибкой, но явный блок ошибки в логе не найден."
 
     test_names = extract_failed_test_names(lines)
-    log_excerpt = "\n".join(lines[start:end])
+    log_excerpt = "\n".join(strip_actions_noise(line) for line in lines[start:end])
 
     return FailureDetails(
         error_text=truncate(error_text, MAX_ERROR_CHARS),
@@ -506,10 +517,10 @@ def extract_failure_details(job_name: str, log_text: str) -> FailureDetails:
 
 def find_first_failure_index(lines: list[str]) -> int:
     patterns = (
-        re.compile(r"^\s*Failed\s+[\w.]+"),
+        FAILED_TEST_RE,
         re.compile(r"::error\b"),
         re.compile(r"##\[error\]"),
-        re.compile(r"\bFAILED\b", re.IGNORECASE),
+        re.compile(r"^\s*(Build\s+)?FAILED\b", re.IGNORECASE),
         re.compile(r"\bFinal attempt failed\b", re.IGNORECASE),
         re.compile(r"\bAttempt\s+\d+\s+failed\b", re.IGNORECASE),
         re.compile(r"\bChild_process exited with error code\b", re.IGNORECASE),
@@ -525,8 +536,30 @@ def find_first_failure_index(lines: list[str]) -> int:
     return max(0, len(lines) - 80)
 
 
-def find_log_start(lines: list[str], first_failure: int) -> int:
-    context_start = max(0, first_failure - LOG_CONTEXT_BEFORE_LINES)
+def find_assertion_failure_index(lines: list[str]) -> int | None:
+    for index in range(len(lines) - 1, -1, -1):
+        clean = strip_actions_noise(lines[index])
+        if any(pattern.search(clean) for pattern in ASSERTION_FAILURE_PATTERNS):
+            return index
+
+    return None
+
+
+def find_test_failure_start(lines: list[str], assertion_failure: int) -> int:
+    for index in range(assertion_failure, max(-1, assertion_failure - 120), -1):
+        if FAILED_TEST_RE.search(strip_actions_noise(lines[index])):
+            return index
+
+    for index in range(assertion_failure, max(-1, assertion_failure - 40), -1):
+        if "Error Message:" in strip_actions_noise(lines[index]):
+            return index
+
+    return assertion_failure
+
+
+def find_log_start(lines: list[str], first_failure: int, end: int | None = None) -> int:
+    context_end = end if end is not None else first_failure
+    context_start = max(0, context_end - LOG_CONTEXT_BEFORE_LINES)
 
     for index in range(first_failure, -1, -1):
         line = lines[index]
@@ -540,15 +573,31 @@ def find_failure_end(lines: list[str], first_failure: int) -> int:
         return len(lines)
 
     for index in range(first_failure + 1, len(lines)):
-        line = lines[index]
+        line = strip_actions_noise(lines[index])
         if index - first_failure > 220:
+            return index
+        if is_failure_block_boundary(line):
             return index
         if " Run dotnet tool install -g dotnet-trx" in line:
             return index
-        if re.search(r"^\d{4}-\d\d-\d\dT.*\s(Post|Run|Complete|Cleanup)\s", line):
+        if re.search(r"^\d{4}-\d\d-\d\dT.*\s(Post|Run|Complete|Cleanup)\s", lines[index]):
             return index
 
     return len(lines)
+
+
+def is_failure_block_boundary(line: str) -> bool:
+    if line.startswith("👉 Run "):
+        return True
+    if re.search(r"^\s*[✅❌❔]\s+\d+\s+", line):
+        return True
+    if re.search(r"^\s*Final attempt failed\b", line, re.IGNORECASE):
+        return True
+    if re.search(r"^\s*Attempt\s+\d+\s+failed\b", line, re.IGNORECASE):
+        return True
+    if re.search(r"^\s*##\[group\]Run\s+", line):
+        return True
+    return False
 
 
 def extract_error_text(lines: list[str], first_failure: int, end: int) -> str:
@@ -568,7 +617,7 @@ def extract_error_text(lines: list[str], first_failure: int, end: int) -> str:
             captured.append(clean)
             continue
 
-        if re.search(r"^\s*Failed\s+[\w.]+", clean):
+        if FAILED_TEST_RE.search(clean):
             captured.append(clean)
             include_next = True
             continue
@@ -701,7 +750,7 @@ def failure_details_block(row: CheckRow) -> str:
             [
                 "",
                 "<details>",
-                "<summary>Лог от запуска до падения</summary>",
+                "<summary>Лог перед падением</summary>",
                 "",
                 f"<pre>{html.escape(row.failure.log_text)}</pre>",
                 "</details>",
