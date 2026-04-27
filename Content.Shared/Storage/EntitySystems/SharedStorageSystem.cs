@@ -740,7 +740,7 @@ public abstract class SharedStorageSystem : EntitySystem
                 LogImpact.Low,
                 $"{ToPrettyString(player):player} is attempting to take {ToPrettyString(item):item} out of {ToPrettyString(storage):storage}");
 
-            if (_sharedHandsSystem.TryPickupAnyHand(player, item, handsComp: player.Comp)
+            if (_sharedHandsSystem.TryPickupAnyHand(player, item, handsComp: player.Comp, ignoreDelay: true) // Sunrise-Edit
                 && storage.Comp.StorageRemoveSound != null
                 && !_tag.HasTag(player, storage.Comp.SilentStorageUserTag))
             {

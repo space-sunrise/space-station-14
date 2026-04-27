@@ -187,7 +187,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             return null;
 
         // try to place bulb in hands
-        _handsSystem.PickupOrDrop(userUid, bulb);
+        _handsSystem.PickupOrDrop(userUid, bulb, ignoreDelay: true); // Sunrise-Edit
 
         return bulb;
     }

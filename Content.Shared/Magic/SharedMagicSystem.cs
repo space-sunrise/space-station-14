@@ -493,7 +493,7 @@ public abstract class SharedMagicSystem : EntitySystem
             foreach (var spawn in EntitySpawnCollection.GetSpawns(spawns, _random))
             {
                 var spawned = Spawn(spawn, mapCoords);
-                _hands.PickupOrDrop(ent, spawned);
+                _hands.PickupOrDrop(ent, spawned, ignoreDelay: true); // Sunrise-Edit
             }
         }
 
