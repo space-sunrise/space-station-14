@@ -182,7 +182,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Sunrise edit start - dual-wield shot alternation
         var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield);
 
-        // Validate msg.Gun against the actually used weapon to reject stale/incorrect requests
+        // In dual-wield mode, accept the request if msg.Gun is either of the two registered
+        // dual-wield guns (not necessarily the queue-selected one). Outside dual-wield the
+        // request must match the active gun exactly.
         var requestedGun = GetEntity(msg.Gun);
         if (isDualWield)
         {
@@ -221,7 +223,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             // has passed. This guarantees strictly alternating shots and prevents both guns
             // from firing on the same tick.
             var nextGunUid = dualWield.GunQueue[0];
-            if (TryComp<GunComponent>(nextGunUid, out var nextGun))
+            if (gun.FireRateModified > 0f && TryComp<GunComponent>(nextGunUid, out var nextGun))
             {
                 var halfInterval = TimeSpan.FromSeconds(0.5 / gun.FireRateModified);
                 var earliest = Timing.CurTime + halfInterval;
@@ -288,21 +290,36 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Sunrise edit start - dual-wield alternating gun selection via queue
         if (TryComp<DualWieldComponent>(entity, out var dualWield))
         {
+            EntityUid? foundGunEntity = null;
+            GunComponent? foundGunComp = null;
+            var staleRemoved = false;
+
             for (var i = 0; i < dualWield.GunQueue.Count; i++)
             {
                 if (TryComp<GunComponent>(dualWield.GunQueue[i], out var dwGunComp))
                 {
-                    gunEntity = dualWield.GunQueue[i];
-                    gunComp = dwGunComp;
-                    return true;
+                    foundGunEntity = dualWield.GunQueue[i];
+                    foundGunComp = dwGunComp;
+                    break;
                 }
 
-                // Stale entity – remove from queue
+                // Stale entity – remove from queue and continue searching.
                 dualWield.GunQueue.RemoveAt(i);
+                staleRemoved = true;
                 i--;
             }
 
-            // Queue is empty – dual-wield is no longer valid
+            if (foundGunEntity != null)
+            {
+                // Dirty once after all stale entries are removed, not inside the loop.
+                if (staleRemoved)
+                    Dirty(entity, dualWield);
+                gunEntity = foundGunEntity.Value;
+                gunComp = foundGunComp!; // foundGunComp is always assigned alongside foundGunEntity
+                return true;
+            }
+
+            // Queue is empty – dual-wield is no longer valid.
             RemComp<DualWieldComponent>(entity);
         }
         // Sunrise edit end
