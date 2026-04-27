@@ -44,6 +44,12 @@
     - proto: MobCarpMagic
       cost: 5 # Sunrise-Edit
       prob: 0.1
+    - proto: MobSharkDragon
+      cost: 5
+      prob: 0.1
+    - proto: MobCarpRainbowDragon
+      cost: 5
+      prob: 0.1
     # Sunrise-End
     - proto: MobCarpRainbow # carp version of rouny...
       cost: 3

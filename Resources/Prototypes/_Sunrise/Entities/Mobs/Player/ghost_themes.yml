@@ -7,6 +7,41 @@
     state: animated
 
 - type: ghostTheme
+  id: Clown
+  name: ghost-theme-clown
+  sprite:
+    sprite: _Starlight/Mobs/Customization/GhostThemes/clown.rsi
+    state: clown
+
+- type: ghostTheme
+  id: Moth
+  name: ghost-theme-moth
+  sprite:
+    sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+    state: ghost-moff
+
+- type: ghostTheme
+  id: Scurret
+  name: ghost-theme-scurret
+  sprite:
+    sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+    state: ghost-scurret
+
+- type: ghostTheme
+  id: Mothroach
+  name: ghost-theme-mothroach
+  sprite:
+    sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+    state: ghost-mothroach
+
+- type: ghostTheme
+  id: IanCute
+  name: ghost-theme-ian-cute
+  sprite:
+    sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+    state: ghost-ian_cute
+
+- type: ghostTheme
   id: Gold
   name: ghost-theme-gold
   color: "#fff8"
@@ -411,4 +446,4 @@
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/draedon.rsi
     state: draedon_animated
-  scale: 0.5, 0.5
+  scale: 0.35, 0.35

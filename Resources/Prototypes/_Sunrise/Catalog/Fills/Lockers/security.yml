@@ -44,11 +44,11 @@
         children:
         - id: WeaponLauncherRL5
         - id: CartridgeRocketFrag
-          prob: 0.4
+          prob: 0.75
         - id: CartridgeRocketFrag
-          prob: 0.25
+          prob: 0.5
         - id: CartridgeRocket
-          prob: 0.1
+          prob: 0.25
 
 - type: entity
   parent: GunSafeSuperweaponBaseSecure
@@ -714,19 +714,21 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 70
+      weight: 60
       children:
       - id: GunSafeRifleLecter
     - !type:GroupSelector
-      weight: 20
+      weight: 40
       children:
       - id: GunSafeRifleAKMU
       - id: GunSafeRifleLecterMk2
+      - id: GunSafeRifleM16A4
+      - id: GunSafeRifleFamas
+      - id: GunSafeSuperDMR
     - !type:GroupSelector
       weight: 5
       children:
-      - id: GunSafeRifleM16A4
-      - id: GunSafeRifleFamas
+      - id: GunSafeSuperDMRElite
     - id: SpawnerSafeLethal
       weight: 5
 
@@ -753,17 +755,15 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 70
+      weight: 60
       children:
       - id: GunSafeSubMachineGunDrozd
     - !type:GroupSelector
-      weight: 20
+      weight: 40
       children:
+      - id: GunSafeSubMachineGunMP5
       - id: GunSafeSubMachineGunDrozdMk2
       - id: GunSafeSubMachineGunWt550
-    - !type:GroupSelector
-      weight: 5
-      children:
       - id: GunSafeSubMachineGunMP7
       - id: GunSafeSubMachineGunSP91RC
       - id: GunSafeSubMachineGunVector
@@ -793,13 +793,13 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 80
+      weight: 70
       children:
       - id: GunSafeSuperweaponLWAP
       - id: GunSafeSuperweaponSmartGun
       - id: GunSafeSuperweaponRocketLauncher
     - !type:GroupSelector
-      weight: 20
+      weight: 30
       children:
       - id: GunSafeSuperDMR
       - id: GunSafeRifleM52

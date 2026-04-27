@@ -67,7 +67,7 @@ public abstract class ClothingSystem : EntitySystem
                 if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
                     continue;
 
-                _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
+                _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt, ignoreDelay: true); // Sunrise-Edit
             }
             else
             {
@@ -129,7 +129,7 @@ public abstract class ClothingSystem : EntitySystem
             return;
         args.Handled = _invSystem.TryUnequip(args.User, target, args.Slot, clothing: ent.Comp, predicted: true, checkDoafter: false, triggerHandContact: true);
         if (args.Handled)
-            _handsSystem.TryPickup(args.User, ent);
+            _handsSystem.TryPickup(args.User, ent, ignoreDelay: true); // Sunrise-Edit
     }
 
     private void OnItemStripped(Entity<ClothingComponent> ent, ref BeforeItemStrippedEvent args)

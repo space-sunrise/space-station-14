@@ -53,7 +53,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         _container.EmptyContainer(component.KeyContainer, reparent: false);
         foreach (var ent in contained)
         {
-            _hands.PickupOrDrop(args.User, ent, dropNear: true);
+            _hands.PickupOrDrop(args.User, ent, dropNear: true, ignoreDelay: true); // Sunrise-Edit
         }
 
         _popup.PopupPredicted(Loc.GetString("encryption-keys-all-extracted"), uid, args.User);

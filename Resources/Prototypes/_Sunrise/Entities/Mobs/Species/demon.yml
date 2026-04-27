@@ -71,7 +71,6 @@
             state: jumpsuit-female
   - type: Perishable
   - type: FootprintEmitter
-  - type: Carriable
 
 - type: entity
   save: false

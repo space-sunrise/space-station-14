@@ -4,7 +4,7 @@ on:
   push:
     branches: [ staging, trying ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, reopened, synchronize]
     paths:
       - '**.yml'
       - '**.ftl'
@@ -13,7 +13,6 @@ jobs:
   validate_ymls:
     name: Validate Locales
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
     steps:
       - uses: actions/checkout@v3.6.0
       - name: Set up Python

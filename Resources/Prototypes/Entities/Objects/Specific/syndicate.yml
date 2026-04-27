@@ -148,7 +148,7 @@
   components:
   - type: Store
     balance:
-      Telecrystal: 70 #Sunrise edit
+      Telecrystal: 65 #Sunrise edit
   - type: Tag
     tags:
     - LoneOpsUplink #Sunrise added
