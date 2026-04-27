@@ -151,7 +151,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.2
+            Mangleness: 0.05 # a little bit
       # Sunrise-End
       # Main effects
       - !type:MovementSpeedModifier
