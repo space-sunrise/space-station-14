@@ -38,7 +38,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnHandUnequipped(Entity<HandsComponent> ent, ref DidUnequipHandEvent args)
@@ -46,7 +46,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnHandCountChanged(Entity<HandsComponent> ent, ref HandCountChangedEvent args)
@@ -54,12 +54,12 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnDualWieldShutdown(Entity<DualWieldComponent> ent, ref ComponentShutdown args)
     {
-        _alerts.ClearAlert(ent.Owner, DualWieldAlertId);
+        _alerts.ClearAlert(ent, DualWieldAlertId);
         RefreshDualWieldGuns(ent.Comp.LeftGun, ent.Comp.RightGun);
     }
 
@@ -124,7 +124,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         dualWield.GunQueue = new List<EntityUid> { leftGun, rightGun };
         Dirty(ent, dualWield);
 
-        _alerts.ShowAlert(ent.Owner, DualWieldAlertId, severity: 0);
+        _alerts.ShowAlert(ent, DualWieldAlertId, severity: 0);
         RefreshDualWieldGuns(leftGun, rightGun);
     }
 
@@ -140,7 +140,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (!TryComp<DualWieldComponent>(wielder, out var dualWield))
             return;
 
-        if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
+        if (dualWield.LeftGun != ent && dualWield.RightGun != ent)
             return;
 
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);
