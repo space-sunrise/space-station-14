@@ -90,7 +90,7 @@ public sealed class BinSystem : EntitySystem
         if (!TryRemoveFromBin(uid, toGrab, component))
             return;
 
-        _hands.TryPickupAnyHand(args.User, toGrab.Value);
+        _hands.TryPickupAnyHand(args.User, toGrab.Value, ignoreDelay: true); // Surnise-Edit
         _admin.Add(LogType.Pickup, LogImpact.Low,
             $"{ToPrettyString(uid):player} removed {ToPrettyString(toGrab.Value)} from bin {ToPrettyString(uid)}.");
         args.Handled = true;

@@ -94,7 +94,7 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                     Assert.That(interactHand);
                 });
 
-                Assert.That(handSys.TryPickup(user, item));
+                Assert.That(handSys.TryPickup(user, item, ignoreDelay: true)); // Surnise-Edit
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
                 Assert.That(interactUsing);
@@ -161,7 +161,7 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                     Assert.That(interactHand, Is.False);
                 });
 
-                Assert.That(handSys.TryPickup(user, item));
+                Assert.That(handSys.TryPickup(user, item, ignoreDelay: true)); // Surnise-Edit
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
                 Assert.That(interactUsing, Is.False);
@@ -227,7 +227,7 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                     Assert.That(interactHand);
                 });
 
-                Assert.That(handSys.TryPickup(user, item));
+                Assert.That(handSys.TryPickup(user, item, ignoreDelay: true)); // Surnise-Edit
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
                 Assert.That(interactUsing);
@@ -293,7 +293,7 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                     Assert.That(interactHand, Is.False);
                 });
 
-                Assert.That(handSys.TryPickup(user, item));
+                Assert.That(handSys.TryPickup(user, item, ignoreDelay: true)); // Surnise-Edit
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
                 Assert.That(interactUsing, Is.False);
@@ -378,7 +378,7 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                     Assert.That(interactHand);
                 });
 
-                Assert.That(handSys.TryPickup(user, item));
+                Assert.That(handSys.TryPickup(user, item, ignoreDelay: true)); // Surnise-Edit
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
                 Assert.That(interactUsing, Is.False);

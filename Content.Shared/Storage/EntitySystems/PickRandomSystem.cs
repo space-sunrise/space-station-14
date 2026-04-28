@@ -67,6 +67,6 @@ public sealed class PickRandomSystem : EntitySystem
         _container.AttachParentToContainerOrGrid((picked, Transform(picked)));
 
         // TODO: try to put in hands, failing that put it on the storage
-        _hands.TryPickupAnyHand(user, picked);
+        _hands.TryPickupAnyHand(user, picked, ignoreDelay: true); // Surnise-Edit
     }
 }

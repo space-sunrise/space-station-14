@@ -117,15 +117,16 @@ public abstract partial class SharedHandsSystem
             {
                 if (_prototype.TryIndex(item.Size, out var size))
                 {
-                    delay = Math.Max(0.1f, size.Weight / 16.0f);
+                    delay = Math.Max(0.1f, size.Weight / 32.0f);
                 }
             }
 
             var args = new DoAfterArgs(EntityManager, uid, delay, new PickupDoAfterEvent(itemNet, handId), uid, target: entity)
             {
-                BreakOnMove = true,
+                BreakOnMove = false,
                 BreakOnDamage = false,
                 BreakOnHandChange = false,
+                Hidden = true,
                 NeedHand = true
             };
 

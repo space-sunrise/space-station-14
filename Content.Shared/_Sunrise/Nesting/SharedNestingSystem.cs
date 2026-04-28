@@ -213,7 +213,7 @@ public abstract class SharedNestingSystem : EntitySystem
             return;
         }
 
-        _hands.TryPickup(args.Args.User, args.Args.Target.Value, emptyHand, checkActionBlocker: false, handsComp: hands);
+        _hands.TryPickup(args.Args.User, args.Args.Target.Value, emptyHand, checkActionBlocker: false, handsComp: hands, ignoreDelay: true); // Surnise-Edit
         args.Handled = true;
     }
 

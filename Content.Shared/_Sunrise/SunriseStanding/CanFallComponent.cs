@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Sunrise.Movement.Standing.Components;
+namespace Content.Shared._Sunrise.SunriseStanding;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CanFallComponent : Component

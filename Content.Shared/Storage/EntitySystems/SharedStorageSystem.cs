@@ -823,7 +823,7 @@ public abstract class SharedStorageSystem : EntitySystem
             return;
         }
 
-        if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false))
+        if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false, ignoreDelay: true)) // Surnise-Edit
             return;
 
         // Validate the target storage

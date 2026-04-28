@@ -12,6 +12,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Clothing.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
@@ -121,7 +122,9 @@ public sealed class SunriseThrownItemDamageSystem : EntitySystem
 
         if (HasComp<MobStateComponent>(args.Target) || isStructure)
         {
-            if (physics != null)
+            var canImpact = weight >= 4;
+
+            if (physics != null && canImpact)
             {
                 if (velocity.LengthSquared() > 0.1f)
                 {
@@ -168,7 +171,7 @@ public sealed class SunriseThrownItemDamageSystem : EntitySystem
                         _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
 
                         // Re-throw with the new direction and speed
-                        _throwing.TryThrow(uid, bounceDir * 10f, speed, user: args.Target);
+                        _throwing.TryThrow(uid, bounceDir * MathF.Max(1f, speed * 0.5f), speed, user: args.Target);
                     }
                 }
                 else
@@ -176,7 +179,7 @@ public sealed class SunriseThrownItemDamageSystem : EntitySystem
                     _thrown.StopThrow(uid, args.Component);
                 }
             }
-            else
+            else if (HasComp<MobStateComponent>(args.Target))
             {
                 _thrown.StopThrow(uid, args.Component);
             }

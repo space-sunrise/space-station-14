@@ -22,10 +22,7 @@ public sealed partial class SunriseThrownItemDamageComponent : Component
     public int KnockdownWeightThreshold = 16;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan KnockdownDuration = TimeSpan.FromSeconds(1);
-
-    [DataField, AutoNetworkedField]
-    public float BounceMultiplier = -1.0f;
+    public TimeSpan KnockdownDuration = TimeSpan.FromSeconds(0.5f);
 
     [DataField, AutoNetworkedField]
     public int StructureDamageWeightThreshold = 8;
