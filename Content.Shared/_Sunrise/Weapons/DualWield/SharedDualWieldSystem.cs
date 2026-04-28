@@ -44,7 +44,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent());
     }
 
     private void OnHandCountChanged(Entity<HandsComponent> ent, ref HandCountChangedEvent args)
@@ -57,7 +57,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void OnDualWieldShutdown(Entity<DualWieldComponent> ent, ref ComponentShutdown args)
     {
-        ClearDualWieldAlerts(ent.Owner, ent.Comp.LeftGun, ent.Comp.RightGun);
+        ClearDualWieldAlerts(ent, ent.Comp.LeftGun, ent.Comp.RightGun);
         RefreshDualWieldGuns(ent.Comp.LeftGun, ent.Comp.RightGun);
     }
 
@@ -65,7 +65,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
     {
         if (!TryGetBothDualWieldGuns(ent, out var leftGun, out var rightGun))
         {
-            DisableDualWield(ent.Owner);
+            DisableDualWield(ent);
             return;
         }
 
@@ -83,8 +83,6 @@ public sealed class SharedDualWieldSystem : EntitySystem
         foreach (var handName in _hands.EnumerateHands(ent))
         {
             var held = _hands.GetHeldItem(ent, handName);
-            if (held == null)
-                continue;
 
             if (!HasComp<CanDualWieldComponent>(held.Value))
                 continue;
@@ -120,26 +118,21 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void EnableDualWield(Entity<HandsComponent?> ent, EntityUid? leftGun, EntityUid? rightGun)
     {
-        if (leftGun == null || rightGun == null)
-        {
-            DisableDualWield(ent.Owner);
-            return;
-        }
 
         if (TryComp<DualWieldComponent>(ent.Owner, out var existingDualWield) &&
             existingDualWield.LeftGun == leftGun &&
             existingDualWield.RightGun == rightGun)
             return;
 
-        DisableDualWield(ent.Owner);
+        DisableDualWield(ent);
 
-        var dualWield = EnsureComp<DualWieldComponent>(ent.Owner);
+        var dualWield = EnsureComp<DualWieldComponent>(ent);
         dualWield.LeftGun = leftGun.Value;
         dualWield.RightGun = rightGun.Value;
         dualWield.GunQueue = new List<EntityUid> { leftGun.Value, rightGun.Value };
-        Dirty(ent.Owner, dualWield);
+        Dirty(ent, dualWield);
 
-        ShowDualWieldAlert(ent.Owner, leftGun.Value, rightGun.Value);
+        ShowDualWieldAlert(ent, leftGun.Value, rightGun.Value);
         RefreshDualWieldGuns(leftGun, rightGun);
     }
 
