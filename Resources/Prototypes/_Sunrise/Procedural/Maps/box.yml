@@ -228,6 +228,7 @@
   id: BoxMaintRoomMarker5x5
   parent: BaseRoomMarker
   name: Box maints interior 5x5
+  suffix: 5x5
   components:
   - type: RoomFill
     rotation: false
@@ -250,6 +251,7 @@
   id: BoxMaintRoomMarker3x3
   parent: BaseRoomMarker
   name: Box maints interior 3x3
+  suffix: 3x3
   components:
   - type: RoomFill
     rotation: false
@@ -272,6 +274,7 @@
   id: BoxMaintRoomMarker4x4
   parent: BaseRoomMarker
   name: Box maints interior 4x4
+  suffix: 4x4
   components:
   - type: RoomFill
     rotation: false
@@ -295,6 +298,7 @@
   id: BoxMaintRoomMarker13x10
   parent: BaseRoomMarker
   name: Box maints interior 13x10
+  suffix: 13x10
   components:
   - type: RoomFill
     rotation: false
