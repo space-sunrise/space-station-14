@@ -39,7 +39,7 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
         if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key))
             return;
 
-        if (!TryComp<DamageableComponent>(target, out var damageableComponent)) // Sunrise
+        if (!TryComp<DamageableComponent>(target, out var damageableComponent)) // Sunrise-Edit
             return;
 
         var bodyTemperature = float.NaN;
@@ -69,10 +69,10 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             bleeding = bloodstream.BleedAmount > 0;
         }
         // Collect hunger and thirst data as percentages
-        // SUNRISE edit start - collect hunger and thirst levels
+        // Sunrise-Start - collect hunger and thirst levels
         float? hungerLevel = null;
         float? thirstLevel = null;
-        // SUNRISE edit end
+        // Sunrise-End
 
         if (TryComp<HungerComponent>(target, out var hunger))
         {
@@ -86,9 +86,9 @@ public sealed class HealthAnalyzerSystem : AbstractAnalyzerSystem<HealthAnalyzer
             thirstLevel = (thirst.CurrentThirst / 600.0f) * 100.0f;
         }
 
-        // Sunrise edit start - add new EntityAnalyzedEvent trigger
+        // Sunrise-Start - add new EntityAnalyzedEvent trigger
         RaiseLocalEvent(target, new EntityAnalyzedEvent());
-        // Sunrise edit end
+        // Sunrise-End
 
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
