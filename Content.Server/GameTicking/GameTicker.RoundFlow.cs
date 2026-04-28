@@ -226,7 +226,7 @@ namespace Content.Server.GameTicking
                 }
 
                 _metaData.SetEntityName(mapUid, proto.MapName);
-                var g = new List<EntityUid> { grid.Value };
+                var g = new List<EntityUid> { grid.Value.Owner };
                 RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
                 return g;
             }
@@ -242,8 +242,8 @@ namespace Content.Server.GameTicking
             }
 
             mapId = map.Value.Comp.MapId;
-            _metaData.SetEntityName(map.Value, proto.MapName);
-            var gridUids = grids.Select(x => x).ToList();
+            _metaData.SetEntityName(map.Value.Owner, proto.MapName);
+            var gridUids = grids.Select(x => x.Owner).ToList();
             RaiseLocalEvent(new PostGameMapLoad(proto, mapId, gridUids, stationName));
             return gridUids;
         }
@@ -276,7 +276,7 @@ namespace Content.Server.GameTicking
                 }
 
                 _metaData.SetEntityName(mapUid, proto.MapName);
-                var g = new List<EntityUid> { grid.Value };
+                var g = new List<EntityUid> { grid.Value.Owner };
                 RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
                 return g;
             }
@@ -293,8 +293,8 @@ namespace Content.Server.GameTicking
                 throw new Exception($"Failed to load map");
             }
 
-            _metaData.SetEntityName(map.Value, proto.MapName);
-            var gridUids = grids.Select(x => x).ToList();
+            _metaData.SetEntityName(map.Value.Owner, proto.MapName);
+            var gridUids = grids.Select(x => x.Owner).ToList();
             RaiseLocalEvent(new PostGameMapLoad(proto, mapId, gridUids, stationName));
             return gridUids;
         }
@@ -326,7 +326,7 @@ namespace Content.Server.GameTicking
                     throw new Exception($"Failed to load game-map grid {ev.GameMap.ID}");
                 }
 
-                var g = new List<EntityUid> { grid.Value };
+                var g = new List<EntityUid> { grid.Value.Owner };
                 // TODO MAP LOADING use a new event?
                 RaiseLocalEvent(new PostGameMapLoad(proto, targetMap, g, stationName));
                 return g;
@@ -342,7 +342,7 @@ namespace Content.Server.GameTicking
                 throw new Exception($"Failed to load map");
             }
 
-            var gridUids = grids.Select(x => x).ToList();
+            var gridUids = grids.Select(x => x.Owner).ToList();
 
             // TODO MAP LOADING use a new event?
             RaiseLocalEvent(new PostGameMapLoad(proto, targetMap, gridUids, stationName));

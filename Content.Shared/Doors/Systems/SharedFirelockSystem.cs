@@ -83,14 +83,14 @@ public abstract class SharedFirelockSystem : EntitySystem
         if (ent.Comp.Temperature)
         {
             _popupSystem.PopupClient(Loc.GetString("firelock-component-is-holding-fire-message"),
-                ent,
+                ent.Owner,
                 user,
                 PopupType.MediumCaution);
         }
         else if (ent.Comp.Pressure)
         {
             _popupSystem.PopupClient(Loc.GetString("firelock-component-is-holding-pressure-message"),
-                ent,
+                ent.Owner,
                 user,
                 PopupType.MediumCaution);
         }
@@ -107,7 +107,7 @@ public abstract class SharedFirelockSystem : EntitySystem
 
     protected virtual void OnComponentStartup(Entity<FirelockComponent> ent, ref ComponentStartup args)
     {
-        UpdateVisuals(ent,ent.Comp, args);
+        UpdateVisuals(ent.Owner,ent.Comp, args);
     }
 
     private void UpdateVisuals(EntityUid uid, FirelockComponent component, EntityEventArgs args) => UpdateVisuals(uid, component);

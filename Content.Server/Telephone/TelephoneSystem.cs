@@ -69,7 +69,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         if (!IsTelephonePowered(entity) ||
             !IsTelephoneEngaged(entity) ||
             entity.Comp.Muted ||
-            !_interaction.InRangeUnobstructed(args.Source, entity, 0))
+            !_interaction.InRangeUnobstructed(args.Source, entity.Owner, 0))
         {
             args.Cancel();
         }
@@ -77,7 +77,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
 
     private void OnListen(Entity<TelephoneComponent> entity, ref ListenEvent args)
     {
-        if (args.Source == entity)
+        if (args.Source == entity.Owner)
             return;
 
         // Ignore background chatter from non-player entities
@@ -105,7 +105,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         RaiseLocalEvent(args.MessageSource, nameEv);
 
         // Determine if speech should be relayed via the telephone itself or a designated speaker
-        var speaker = entity.Comp.Speaker != null ? entity.Comp.Speaker.Value : entity;
+        var speaker = entity.Comp.Speaker != null ? entity.Comp.Speaker.Value.Owner : entity.Owner;
 
         var name = Loc.GetString("chat-telephone-name-relay",
             ("originalName", nameEv.VoiceName),

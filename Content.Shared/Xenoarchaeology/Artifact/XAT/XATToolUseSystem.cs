@@ -27,7 +27,7 @@ public sealed class XATToolUseSystem : BaseXATSystem<XATToolUseComponent>
         if (args.Cancelled)
             return;
 
-        if (GetEntity(args.Node) != node)
+        if (GetEntity(args.Node) != node.Owner)
             return;
 
         Trigger(artifact, node);

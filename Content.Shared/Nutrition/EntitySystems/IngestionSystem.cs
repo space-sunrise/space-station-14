@@ -142,7 +142,7 @@ public sealed partial class IngestionSystem : EntitySystem
         if (TryComp<DrainableSolutionComponent>(entity, out var existingDrainable))
             entity.Comp.Solution = existingDrainable.Solution;
         else
-            _solutionContainer.EnsureSolution(entity, entity.Comp.Solution, out _);
+            _solutionContainer.EnsureSolution(entity.Owner, entity.Comp.Solution, out _);
 
         UpdateAppearance(entity);
 
@@ -244,7 +244,7 @@ public sealed partial class IngestionSystem : EntitySystem
     private void OnTryIngest(Entity<BodyComponent> entity, ref AttemptIngestEvent args)
     {
         var food = args.Ingested;
-        var forceFed = args.User != entity;
+        var forceFed = args.User != entity.Owner;
 
         if (!_body.TryGetBodyOrganEntityComps<StomachComponent>(entity!, out var stomachs))
             return;
@@ -314,13 +314,13 @@ public sealed partial class IngestionSystem : EntitySystem
         if (!_body.TryGetBodyOrganEntityComps<StomachComponent>(entity!, out var stomachs))
             return;
 
-        var forceFed = args.User != entity;
+        var forceFed = args.User != entity.Owner;
 
         var highestAvailable = FixedPoint2.Zero;
         Entity<StomachComponent>? stomachToUse = null;
         foreach (var ent in stomachs)
         {
-            var owner = ent;
+            var owner = ent.Owner;
             if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref ent.Comp1.Solution, out var stomachSol))
                 continue;
 
@@ -377,7 +377,7 @@ public sealed partial class IngestionSystem : EntitySystem
         var afterEv = new IngestedEvent(args.User, entity, split, forceFed);
         RaiseLocalEvent(food, ref afterEv);
 
-        _stomach.TryTransferSolution(stomachToUse.Value, split, stomachToUse);
+        _stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse);
 
         if (!afterEv.Destroy)
         {
@@ -454,7 +454,7 @@ public sealed partial class IngestionSystem : EntitySystem
 
         _audio.PlayPredicted(entity.Comp.UseSound ?? edible.UseSound, args.Target, args.User);
 
-        var flavors = _flavorProfile.GetLocalizedFlavorsMessage(entity, args.Target, args.Split);
+        var flavors = _flavorProfile.GetLocalizedFlavorsMessage(entity.Owner, args.Target, args.Split);
 
         if (args.ForceFed)
         {
@@ -470,7 +470,7 @@ public sealed partial class IngestionSystem : EntitySystem
         }
         else
         {
-            _popup.PopupPredicted(Loc.GetString(edible.Message, ("food", entity), ("flavors", flavors)),
+            _popup.PopupPredicted(Loc.GetString(edible.Message, ("food", entity.Owner), ("flavors", flavors)),
                 Loc.GetString(edible.OtherMessage),
                 args.User,
                 args.User);
@@ -524,7 +524,7 @@ public sealed partial class IngestionSystem : EntitySystem
     {
         var user = args.User;
 
-        if (entity == user || !args.CanInteract || !args.CanAccess)
+        if (entity.Owner == user || !args.CanInteract || !args.CanAccess)
             return;
 
         if (!TryGetIngestionVerb(user, entity, entity.Comp.Edible, out var verb))

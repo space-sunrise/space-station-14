@@ -242,8 +242,8 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
         // Remove out-of-range ambiences
         foreach (var (ent, sound) in _playingSounds)
         {
-            //var entity = comp;
-            var owner = ent;
+            //var entity = comp.Owner;
+            var owner = ent.Owner;
             var comp = ent.Comp;
 
             if (comp.Enabled &&
@@ -290,7 +290,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
 
             foreach (var (_, sourceEntity) in sourceList)
             {
-                var uid = sourceEntity;
+                var uid = sourceEntity.Owner;
                 var comp = sourceEntity.Comp;
 
                 if (_playingSounds.ContainsKey(sourceEntity) ||

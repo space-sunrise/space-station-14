@@ -50,8 +50,8 @@ namespace Content.IntegrationTests.Tests
                     mapSystem.CreateMap(out var mapId);
                     var grid = mapManager.CreateGridEntity(mapId);
                     // TODO: Fix this better in engine.
-                    mapSystem.SetTile(grid, grid.Comp, Vector2i.Zero, new Tile(1));
-                    var coord = new EntityCoordinates(grid, 0, 0);
+                    mapSystem.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(1));
+                    var coord = new EntityCoordinates(grid.Owner, 0, 0);
                     entityMan.SpawnEntity(protoId, coord);
                 }
             });
@@ -175,7 +175,7 @@ namespace Content.IntegrationTests.Tests
                 {
                     mapSys.CreateMap(out var mapId);
                     var grid = mapManager.CreateGridEntity(mapId);
-                    var ent = sEntMan.SpawnEntity(protoId, new EntityCoordinates(grid, 0.5f, 0.5f));
+                    var ent = sEntMan.SpawnEntity(protoId, new EntityCoordinates(grid.Owner, 0.5f, 0.5f));
                     foreach (var (_, component) in sEntMan.GetNetComponents(ent))
                     {
                         sEntMan.Dirty(ent, component);

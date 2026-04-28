@@ -16,7 +16,7 @@ public sealed partial class ImplanterSystem
 
     private void OnImplantedInit(Entity<ImplantedComponent> ent, ref ComponentInit args)
     {
-        ent.Comp.ImplantContainer = _container.EnsureContainer<Container>(ent, ImplanterComponent.ImplantSlotId);
+        ent.Comp.ImplantContainer = _container.EnsureContainer<Container>(ent.Owner, ImplanterComponent.ImplantSlotId);
         ent.Comp.ImplantContainer.OccludesLight = false;
     }
 

@@ -165,10 +165,10 @@ namespace Content.Server.PDA
 
         private void OnNotification(Entity<PdaComponent> ent, ref CartridgeLoaderNotificationSentEvent args)
         {
-            _ringer.RingerPlayRingtone(ent);
+            _ringer.RingerPlayRingtone(ent.Owner);
 
             if (!_containerSystem.TryGetContainingContainer((ent, null, null), out var container)
-                || !TryComp<ActorComponent>(container, out var actor))
+                || !TryComp<ActorComponent>(container.Owner, out var actor))
                 return;
 
             var message = FormattedMessage.EscapeText(args.Message);
@@ -241,7 +241,7 @@ namespace Content.Server.PDA
             if (!PdaUiKey.Key.Equals(args.UiKey))
                 return;
 
-            UpdatePdaUi(ent, ent.Comp);
+            UpdatePdaUi(ent.Owner, ent.Comp);
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaRequestUpdateInterfaceMessage msg)

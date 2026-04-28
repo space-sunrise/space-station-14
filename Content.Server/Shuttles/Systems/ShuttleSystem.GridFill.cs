@@ -82,7 +82,7 @@ public sealed partial class ShuttleSystem
     {
         spawned = EntityUid.Invalid;
 
-        if (!_gridQuery.Resolve(targetGrid, ref targetGrid.Comp))
+        if (!_gridQuery.Resolve(targetGrid.Owner, ref targetGrid.Comp))
         {
             return false;
         }
@@ -108,9 +108,9 @@ public sealed partial class ShuttleSystem
         var spawnedGrid = _mapManager.CreateGridEntity(mapId);
 
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
-        _dungeon.GenerateDungeon(dungeonProto, spawnedGrid, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);
+        _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);
 
-        spawned = spawnedGrid;
+        spawned = spawnedGrid.Owner;
         return true;
     }
 

@@ -821,7 +821,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         {
             foreach (var button in _container.GetButtons())
             {
-                if (button.Action == uid)
+                if (button.Action?.Owner == uid)
                     button.UpdateIcons();
             }
         }
@@ -867,7 +867,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         {
             foreach (var button in _container.GetButtons())
             {
-                if (button.Action == oldAction)
+                if (button.Action?.Owner == oldAction)
                     button.UpdateIcons();
             }
         }

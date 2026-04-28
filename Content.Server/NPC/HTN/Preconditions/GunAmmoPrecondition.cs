@@ -18,7 +18,7 @@ public sealed partial class GunAmmoPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         var gunSystem = _entManager.System<GunSystem>();
 
         if (!gunSystem.TryGetGun(owner, out var gunUid, out _))

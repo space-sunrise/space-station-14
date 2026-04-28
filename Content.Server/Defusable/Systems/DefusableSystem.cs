@@ -239,8 +239,8 @@ public sealed class DefusableSystem : SharedDefusableSystem
         if (comp is not { Activated: true, DelayWireUsed: false })
             return;
 
-        _trigger.TryDelay(wire, TimeSpan.FromSeconds(30));
-        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-chirp", ("name", wire)), wire);
+        _trigger.TryDelay(wire.Owner, TimeSpan.FromSeconds(30));
+        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-chirp", ("name", wire.Owner)), wire.Owner);
         comp.DelayWireUsed = true;
     }
 
@@ -249,7 +249,7 @@ public sealed class DefusableSystem : SharedDefusableSystem
         if (comp is not { Activated: true, ProceedWireCut: false })
             return true;
 
-        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-proceed-pulse", ("name", wire)), wire);
+        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-proceed-pulse", ("name", wire.Owner)), wire.Owner);
         SetDisplayTime(comp, false);
 
         comp.ProceedWireCut = true;
@@ -261,10 +261,10 @@ public sealed class DefusableSystem : SharedDefusableSystem
         if (comp is { Activated: true, ProceedWireUsed: false })
         {
             comp.ProceedWireUsed = true;
-            _trigger.TryDelay(wire, TimeSpan.FromSeconds(-15));
+            _trigger.TryDelay(wire.Owner, TimeSpan.FromSeconds(-15));
         }
 
-        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-proceed-pulse", ("name", wire)), wire);
+        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-proceed-pulse", ("name", wire.Owner)), wire.Owner);
     }
 
     public bool ActivateWireCut(EntityUid user, Wire wire, DefusableComponent comp)
@@ -273,10 +273,10 @@ public sealed class DefusableSystem : SharedDefusableSystem
 
         if (comp.Activated)
         {
-            TryDefuseBomb(wire, comp);
+            TryDefuseBomb(wire.Owner, comp);
 
             _adminLogger.Add(LogType.Explosion, LogImpact.High,
-                $"{ToPrettyString(user):user} has defused {ToPrettyString(wire):entity}!");
+                $"{ToPrettyString(user):user} has defused {ToPrettyString(wire.Owner):entity}!");
         }
 
         return true;
@@ -291,14 +291,14 @@ public sealed class DefusableSystem : SharedDefusableSystem
         {
             if (!comp.ActivatedWireUsed)
             {
-                _trigger.TryDelay(wire, TimeSpan.FromSeconds(30));
-                _popup.PopupEntity(Loc.GetString("defusable-popup-wire-chirp", ("name", wire)), wire);
+                _trigger.TryDelay(wire.Owner, TimeSpan.FromSeconds(30));
+                _popup.PopupEntity(Loc.GetString("defusable-popup-wire-chirp", ("name", wire.Owner)), wire.Owner);
                 comp.ActivatedWireUsed = true;
             }
         }
         else
         {
-            TryStartCountdown(wire, user, comp);
+            TryStartCountdown(wire.Owner, user, comp);
         }
     }
 
@@ -306,7 +306,7 @@ public sealed class DefusableSystem : SharedDefusableSystem
     {
         if (comp.Activated)
         {
-            TryDetonateBomb(wire, user, comp);
+            TryDetonateBomb(wire.Owner, user, comp);
         }
         else
         {
@@ -329,7 +329,7 @@ public sealed class DefusableSystem : SharedDefusableSystem
     {
         if (comp.Activated)
         {
-            TryDetonateBomb(wire, user, comp);
+            TryDetonateBomb(wire.Owner, user, comp);
         }
     }
 
@@ -339,8 +339,8 @@ public sealed class DefusableSystem : SharedDefusableSystem
             return true;
 
         SetBolt(comp, true);
-        _audio.PlayPvs(comp.BoltSound, wire);
-        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-bolt-pulse", ("name", wire)), wire);
+        _audio.PlayPvs(comp.BoltSound, wire.Owner);
+        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-bolt-pulse", ("name", wire.Owner)), wire.Owner);
 
         return true;
     }
@@ -351,15 +351,15 @@ public sealed class DefusableSystem : SharedDefusableSystem
             return true;
 
         SetBolt(comp, false);
-        _audio.PlayPvs(comp.BoltSound, wire);
-        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-bolt-pulse", ("name", wire)), wire);
+        _audio.PlayPvs(comp.BoltSound, wire.Owner);
+        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-bolt-pulse", ("name", wire.Owner)), wire.Owner);
 
         return true;
     }
 
     public void BoltWirePulse(EntityUid user, Wire wire, DefusableComponent comp)
     {
-        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-bolt-pulse", ("name", wire)), wire);
+        _popup.PopupEntity(Loc.GetString("defusable-popup-wire-bolt-pulse", ("name", wire.Owner)), wire.Owner);
     }
 
     #endregion

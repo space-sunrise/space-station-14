@@ -75,7 +75,7 @@ public sealed partial class CloningSystem
         if (TryComp<PaperComponent>(args.CloneUid, out var clonePaperComp))
         {
             _paper.SetContent((args.CloneUid, clonePaperComp), ent.Comp.Content);
-            _paper.CopyStamps(ent, (args.CloneUid, clonePaperComp));
+            _paper.CopyStamps(ent.AsNullable(), (args.CloneUid, clonePaperComp));
         }
     }
 
@@ -101,7 +101,7 @@ public sealed partial class CloningSystem
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;
 
-        _vocal.CopyComponent(ent, args.CloneUid);
+        _vocal.CopyComponent(ent.AsNullable(), args.CloneUid);
     }
 
     private void OnCloneStorage(Entity<StorageComponent> ent, ref CloningEvent args)
@@ -109,7 +109,7 @@ public sealed partial class CloningSystem
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;
 
-        _storage.CopyComponent(ent, args.CloneUid);
+        _storage.CopyComponent(ent.AsNullable(), args.CloneUid);
     }
 
     private void OnCloneInventory(Entity<InventoryComponent> ent, ref CloningEvent args)
@@ -117,7 +117,7 @@ public sealed partial class CloningSystem
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;
 
-        _inventory.CopyComponent(ent, args.CloneUid);
+        _inventory.CopyComponent(ent.AsNullable(), args.CloneUid);
     }
 
     private void OnCloneInventory(Entity<MovementSpeedModifierComponent> ent, ref CloningEvent args)
@@ -125,6 +125,6 @@ public sealed partial class CloningSystem
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;
 
-        _movementSpeedModifier.CopyComponent(ent, args.CloneUid);
+        _movementSpeedModifier.CopyComponent(ent.AsNullable(), args.CloneUid);
     }
 }

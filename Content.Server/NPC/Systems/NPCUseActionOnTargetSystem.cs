@@ -36,7 +36,7 @@ public sealed class NPCUseActionOnTargetSystem : EntitySystem
         _actions.SetEventTarget(action, target);
 
         // NPC is serverside, no prediction :(
-        _actions.PerformAction(user, action, predicted: false);
+        _actions.PerformAction(user.Owner, action, predicted: false);
         return true;
     }
 

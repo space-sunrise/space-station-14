@@ -111,7 +111,7 @@ public sealed class SharpSystem : EntitySystem
             foreach (var proto in spawnEntities)
             {
                 // distribute the spawned items randomly in a small radius around the origin
-                popupEnt = SpawnInContainerOrDrop(proto, container, container.ID);
+                popupEnt = SpawnInContainerOrDrop(proto, container.Owner, container.ID);
             }
         }
         else

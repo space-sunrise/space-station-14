@@ -51,7 +51,7 @@ public sealed partial class PickAccessibleComponentOperator : HTNOperator
         }
 
         var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!blackboard.TryGetValue<EntityCoordinates>(NPCBlackboard.OwnerCoordinates, out var coordinates, _entManager))
         {

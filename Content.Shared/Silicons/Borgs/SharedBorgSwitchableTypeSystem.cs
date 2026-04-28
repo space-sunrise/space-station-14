@@ -55,7 +55,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
 
     private void OnShutdown(Entity<BorgSwitchableTypeComponent> ent, ref ComponentShutdown args)
     {
-        _actionsSystem.RemoveAction(ent, ent.Comp.SelectTypeAction);
+        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.SelectTypeAction);
     }
 
     private void OnSelectBorgTypeAction(Entity<BorgSwitchableTypeComponent> ent, ref BorgToggleSelectTypeEvent args)
@@ -65,7 +65,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
 
         args.Handled = true;
 
-        _userInterface.TryToggleUi((ent, null), BorgSwitchableTypeUiKey.SelectBorgType, actor.PlayerSession);
+        _userInterface.TryToggleUi((ent.Owner, null), BorgSwitchableTypeUiKey.SelectBorgType, actor.PlayerSession);
     }
 
     private void SelectTypeMessageHandler(Entity<BorgSwitchableTypeComponent> ent, ref BorgSelectTypeMessage args)
@@ -89,11 +89,11 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
     {
         ent.Comp.SelectedBorgType = borgType;
 
-        _actionsSystem.RemoveAction(ent, ent.Comp.SelectTypeAction);
+        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.SelectTypeAction);
         ent.Comp.SelectTypeAction = null;
         Dirty(ent);
 
-        _userInterface.CloseUi((ent, null), BorgSwitchableTypeUiKey.SelectBorgType);
+        _userInterface.CloseUi((ent.Owner, null), BorgSwitchableTypeUiKey.SelectBorgType);
 
         UpdateEntityAppearance(ent);
     }
@@ -112,8 +112,8 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
     {
         if (TryComp(entity, out InteractionPopupComponent? popup))
         {
-            _interactionPopup.SetInteractSuccessString((entity, popup), prototype.PetSuccessString);
-            _interactionPopup.SetInteractFailureString((entity, popup), prototype.PetFailureString);
+            _interactionPopup.SetInteractSuccessString((entity.Owner, popup), prototype.PetSuccessString);
+            _interactionPopup.SetInteractFailureString((entity.Owner, popup), prototype.PetFailureString);
         }
 
         if (TryComp(entity, out FootstepModifierComponent? footstepModifier))

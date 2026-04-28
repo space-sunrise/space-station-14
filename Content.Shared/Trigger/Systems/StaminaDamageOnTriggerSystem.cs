@@ -10,9 +10,9 @@ public sealed class StaminaDamageOnTriggerSystem : XOnTriggerSystem<StaminaDamag
     protected override void OnTrigger(Entity<StaminaDamageOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
         var ev = new BeforeStaminaDamageOnTriggerEvent(ent.Comp.Stamina, target);
-        RaiseLocalEvent(ent, ref ev);
+        RaiseLocalEvent(ent.Owner, ref ev);
 
-        _stamina.TakeStaminaDamage(target, ev.Stamina, source: args.User, with: ent, ignoreResist: ent.Comp.IgnoreResistances);
+        _stamina.TakeStaminaDamage(target, ev.Stamina, source: args.User, with: ent.Owner, ignoreResist: ent.Comp.IgnoreResistances);
 
         args.Handled = true;
     }

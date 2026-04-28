@@ -185,7 +185,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
     // Sunrise-End
     private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionContainerChangedEvent args)
     {
-        if (!SolutionContainer.TryGetSolution(ent, ent.Comp.SolutionName, out _, out var solution))
+        if (!SolutionContainer.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var solution))
             return;
 
         ent.Comp.Progress.Clear();
@@ -215,22 +215,22 @@ public abstract class SharedAbsorbentSystem : EntitySystem
 
     public void Mop(Entity<AbsorbentComponent> absorbEnt, EntityUid user, EntityUid target)
     {
-        if (!SolutionContainer.TryGetSolution(absorbEnt, absorbEnt.Comp.SolutionName, out var absorberSoln))
+        if (!SolutionContainer.TryGetSolution(absorbEnt.Owner, absorbEnt.Comp.SolutionName, out var absorberSoln))
             return;
 
         // Use the non-optional form of IsDelayed to safe the TryComp in Mop
         if (TryComp<UseDelayComponent>(absorbEnt, out var useDelay)
-            && _useDelay.IsDelayed((absorbEnt, useDelay)))
+            && _useDelay.IsDelayed((absorbEnt.Owner, useDelay)))
             return;
 
         // Try to slurp up the puddle.
         // We're then done if our mop doesn't use absorber solutions, since those don't need refilling.
-        if (TryPuddleInteract((absorbEnt, absorbEnt.Comp, useDelay), absorberSoln.Value, user, target)
+        if (TryPuddleInteract((absorbEnt.Owner, absorbEnt.Comp, useDelay), absorberSoln.Value, user, target)
             || !absorbEnt.Comp.UseAbsorberSolution)
             return;
 
         // If it's refillable try to transfer
-        TryRefillableInteract((absorbEnt, absorbEnt.Comp, useDelay), absorberSoln.Value, user, target);
+        TryRefillableInteract((absorbEnt.Owner, absorbEnt.Comp, useDelay), absorberSoln.Value, user, target);
     }
 
     /// <summary>

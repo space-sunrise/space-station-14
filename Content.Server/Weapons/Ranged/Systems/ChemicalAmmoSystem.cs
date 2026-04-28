@@ -17,7 +17,7 @@ namespace Content.Server.Weapons.Ranged.Systems
 
         private void OnFire(Entity<ChemicalAmmoComponent> entity, ref AmmoShotEvent args)
         {
-            if (!_solutionContainerSystem.TryGetSolution(entity, entity.Comp.SolutionName, out var ammoSoln, out var ammoSolution))
+            if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var ammoSoln, out var ammoSolution))
                 return;
 
             var projectiles = args.FiredProjectiles;

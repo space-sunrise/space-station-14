@@ -93,7 +93,7 @@ namespace Content.Server.Shuttles.Systems
             foreach (var entity in _dockingBoltSet)
             {
                 _doorSystem.TryClose(entity);
-                _doorSystem.SetBoltsDown((entity, entity.Comp2), enabled);
+                _doorSystem.SetBoltsDown((entity.Owner, entity.Comp2), enabled);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Content.Server.Shuttles.Systems
             if (TryComp<DoorComponent>(entity, out var door) && TryComp<AirtightComponent>(entity, out var airtight))
             {
                 var isOpen = door.State == DoorState.Open || door.State == DoorState.Opening;
-                _airtightSystem.SetAirblocked((entity, airtight), !isOpen);
+                _airtightSystem.SetAirblocked((entity.Owner, airtight), !isOpen);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Content.Server.Shuttles.Systems
                 if (!entity.Comp.Docked)
                 {
                     var isOpen = args.State == DoorState.Open || args.State == DoorState.Opening;
-                    _airtightSystem.SetAirblocked((entity, airtight), !isOpen);
+                    _airtightSystem.SetAirblocked((entity.Owner, airtight), !isOpen);
                 }
             }
         }
@@ -191,7 +191,7 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnStartup(Entity<DockingComponent> entity, ref ComponentStartup args)
         {
-            var uid = entity;
+            var uid = entity.Owner;
             var component = entity.Comp;
 
             // Use startup so transform already initialized
@@ -225,7 +225,7 @@ namespace Content.Server.Shuttles.Systems
                 if (TryComp<DoorComponent>(entity, out var door) && TryComp<AirtightComponent>(entity, out var airtight))
                 {
                     var isOpen = door.State == DoorState.Open || door.State == DoorState.Opening;
-                    _airtightSystem.SetAirblocked((entity, airtight), !isOpen);
+                    _airtightSystem.SetAirblocked((entity.Owner, airtight), !isOpen);
                 }
             }
             // Sunrise-End
@@ -233,7 +233,7 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnDockingReAnchor(Entity<DockingComponent> entity, ref ReAnchorEvent args)
         {
-            var uid = entity;
+            var uid = entity.Owner;
             var component = entity.Comp;
 
             if (!component.Docked)
@@ -252,8 +252,8 @@ namespace Content.Server.Shuttles.Systems
         /// </summary>
         public void Dock(Entity<DockingComponent> dockA, Entity<DockingComponent> dockB)
         {
-            var dockAUid = dockA;
-            var dockBUid = dockB;
+            var dockAUid = dockA.Owner;
+            var dockBUid = dockB.Owner;
 
             if (dockBUid.GetHashCode() < dockAUid.GetHashCode())
             {
@@ -407,8 +407,8 @@ namespace Content.Server.Shuttles.Systems
             if (otherUid == null)
                 return;
 
-            Cleanup(dock, dock);
-            OnUndock(dock);
+            Cleanup(dock.Owner, dock);
+            OnUndock(dock.Owner);
             OnUndock(otherUid.Value);
             _console.RefreshShuttleConsoles();
         }

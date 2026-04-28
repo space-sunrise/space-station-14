@@ -30,7 +30,7 @@ namespace Content.Server.NodeContainer.NodeGroups
         {
             base.Initialize(sourceNode, entMan);
 
-            Grid = entMan.GetComponent<TransformComponent>(sourceNode).GridUid;
+            Grid = entMan.GetComponent<TransformComponent>(sourceNode.Owner).GridUid;
 
             if (Grid == null)
             {

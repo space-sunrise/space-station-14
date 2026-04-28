@@ -45,9 +45,9 @@ public sealed class RemoveActionCommand : LocalizedEntityCommands
             return;
         }
 
-        _actions.SetTemporary(ent, true);
+        _actions.SetTemporary(ent.Owner, true);
 
-        _actions.RemoveAction(ent);
+        _actions.RemoveAction(ent.Owner);
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -73,7 +73,7 @@ public sealed class RemoveActionCommand : LocalizedEntityCommands
             foreach (var action in actions)
             {
                 var hint = Loc.GetString("cmd-rmaction-action-info", ("action", action));
-                options.Add(new CompletionOption(action.ToString(), hint));
+                options.Add(new CompletionOption(action.Owner.ToString(), hint));
             }
 
             return CompletionResult.FromHintOptions(options, Loc.GetString("cmd-rmaction-action-completion"));

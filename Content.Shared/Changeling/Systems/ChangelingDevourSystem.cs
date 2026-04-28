@@ -60,7 +60,7 @@ public sealed class ChangelingDevourSystem : EntitySystem
     {
         if (ent.Comp.ChangelingDevourActionEntity != null)
         {
-            _actionsSystem.RemoveAction(ent, ent.Comp.ChangelingDevourActionEntity);
+            _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ChangelingDevourActionEntity);
         }
     }
 
@@ -128,7 +128,7 @@ public sealed class ChangelingDevourSystem : EntitySystem
         args.Handled = true;
         var target = args.Target;
 
-        if (target == ent)
+        if (target == ent.Owner)
             return; // don't eat yourself
 
         if (HasComp<RottingComponent>(target))
@@ -159,8 +159,8 @@ public sealed class ChangelingDevourSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.None,
         });
 
-        var selfMessage = Loc.GetString("changeling-devour-begin-windup-self", ("user", Identity.Entity(ent, EntityManager)));
-        var othersMessage = Loc.GetString("changeling-devour-begin-windup-others", ("user", Identity.Entity(ent, EntityManager)));
+        var selfMessage = Loc.GetString("changeling-devour-begin-windup-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
+        var othersMessage = Loc.GetString("changeling-devour-begin-windup-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
         _popupSystem.PopupPredicted(
             selfMessage,
             othersMessage,
@@ -180,8 +180,8 @@ public sealed class ChangelingDevourSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var selfMessage = Loc.GetString("changeling-devour-begin-consume-self", ("user", Identity.Entity(ent, EntityManager)));
-        var othersMessage = Loc.GetString("changeling-devour-begin-consume-others", ("user", Identity.Entity(ent, EntityManager)));
+        var selfMessage = Loc.GetString("changeling-devour-begin-consume-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
+        var othersMessage = Loc.GetString("changeling-devour-begin-consume-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
         _popupSystem.PopupPredicted(
             selfMessage,
             othersMessage,
@@ -200,7 +200,7 @@ public sealed class ChangelingDevourSystem : EntitySystem
 
         ent.Comp.NextTick = curTime + ent.Comp.DamageTimeBetweenTicks;
 
-        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent):player} began to devour {ToPrettyString(args.Target):player} identity");
+        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} began to devour {ToPrettyString(args.Target):player} identity");
 
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
             ent,
@@ -233,7 +233,7 @@ public sealed class ChangelingDevourSystem : EntitySystem
 
         if (!_mobState.IsDead((EntityUid)target))
         {
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent):player}  unsuccessfully devoured {ToPrettyString(args.Target):player}'s identity");
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player}  unsuccessfully devoured {ToPrettyString(args.Target):player}'s identity");
             _popupSystem.PopupClient(Loc.GetString("changeling-devour-consume-failed-not-dead"), args.User, args.User, PopupType.Medium);
             return;
         }
@@ -252,7 +252,7 @@ public sealed class ChangelingDevourSystem : EntitySystem
             && HasComp<HumanoidAppearanceComponent>(target)
             && TryComp<ChangelingIdentityComponent>(args.User, out var identityStorage))
         {
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent):player}  successfully devoured {ToPrettyString(args.Target):player}'s identity");
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player}  successfully devoured {ToPrettyString(args.Target):player}'s identity");
             _changelingIdentitySystem.CloneToPausedMap((ent, identityStorage), target.Value);
 
             if (_inventorySystem.TryGetSlotEntity(target.Value, "jumpsuit", out var item)
@@ -273,6 +273,6 @@ public sealed class ChangelingDevourSystem : EntitySystem
             PredictedSpawnNextToOrDrop(proto, victim);
         }
 
-        PredictedQueueDel(item);
+        PredictedQueueDel(item.Owner);
     }
 }

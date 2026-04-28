@@ -57,10 +57,10 @@ public sealed class ItemToggleSystem : EntitySystem
     // Sunrise-Start
     private void OnItemToggleHandUnequipped(Entity<ItemToggleComponent> ent, ref GotUnequippedHandEvent args)
     {
-        if (!ent.Comp.Activated || ent != args.Unequipped || !ent.Comp.DeactivateUnequippedHand)
+        if (!ent.Comp.Activated || ent.Owner != args.Unequipped || !ent.Comp.DeactivateUnequippedHand)
             return;
 
-        Toggle((ent, ent.Comp), args.User, predicted: ent.Comp.Predictable);
+        Toggle((ent.Owner, ent.Comp), args.User, predicted: ent.Comp.Predictable);
     }
     // Sunrise-End
 
@@ -84,15 +84,15 @@ public sealed class ItemToggleSystem : EntitySystem
             return;
 
         // Sunrise-Start
-        if (HasComp<ItemComponent>(ent) && TryComp<HandsComponent>(args.User, out var handsComp))
+        if (HasComp<ItemComponent>(ent.Owner) && TryComp<HandsComponent>(args.User, out var handsComp))
         {
             if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
                 return;
-            if (itemInHand != ent)
+            if (itemInHand != ent.Owner)
                 return;
         }
 
-        if (TryComp<BiocodeComponent>(ent, out var biocodedComponent))
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
                 return;
@@ -114,15 +114,15 @@ public sealed class ItemToggleSystem : EntitySystem
         if (!ent.Comp.CanActivateInhand) // Верб позволяет активировать в руке ПНВ и термалы, а нам это не нужно
             return;
 
-        if (HasComp<ItemComponent>(ent) && TryComp<HandsComponent>(args.User, out var handsComp))
+        if (HasComp<ItemComponent>(ent.Owner) && TryComp<HandsComponent>(args.User, out var handsComp))
         {
             if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
                 return;
-            if (itemInHand != ent)
+            if (itemInHand != ent.Owner)
                 return;
         }
 
-        if (TryComp<BiocodeComponent>(ent, out var biocodedComponent))
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
                 return;
@@ -132,7 +132,7 @@ public sealed class ItemToggleSystem : EntitySystem
         if (ent.Comp.Activated)
         {
             var ev = new ItemToggleDeactivateAttemptEvent(args.User);
-            RaiseLocalEvent(ent, ref ev);
+            RaiseLocalEvent(ent.Owner, ref ev);
 
             if (ev.Cancelled)
                 return;
@@ -140,7 +140,7 @@ public sealed class ItemToggleSystem : EntitySystem
         else
         {
             var ev = new ItemToggleActivateAttemptEvent(args.User);
-            RaiseLocalEvent(ent, ref ev);
+            RaiseLocalEvent(ent.Owner, ref ev);
 
             if (ev.Cancelled)
                 return;
@@ -151,7 +151,7 @@ public sealed class ItemToggleSystem : EntitySystem
             Text = !ent.Comp.Activated ? Loc.GetString(ent.Comp.VerbToggleOn) : Loc.GetString(ent.Comp.VerbToggleOff),
             Act = () =>
             {
-                Toggle((ent, ent.Comp), user, predicted: ent.Comp.Predictable);
+                Toggle((ent.Owner, ent.Comp), user, predicted: ent.Comp.Predictable);
             }
         });
     }
@@ -166,11 +166,11 @@ public sealed class ItemToggleSystem : EntitySystem
         {
             if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
                 return;
-            if (itemInHand != ent)
+            if (itemInHand != ent.Owner)
                 return;
         }
 
-        if (TryComp<BiocodeComponent>(ent, out var biocodedComponent))
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
                 return;
@@ -178,7 +178,7 @@ public sealed class ItemToggleSystem : EntitySystem
         // Sunrise-End
 
         args.Handled = true;
-        Toggle((ent, ent.Comp), args.User, predicted: ent.Comp.Predictable);
+        Toggle((ent.Owner, ent.Comp), args.User, predicted: ent.Comp.Predictable);
     }
 
     /// <summary>
@@ -214,7 +214,7 @@ public sealed class ItemToggleSystem : EntitySystem
         if (!_query.Resolve(ent, ref ent.Comp, false))
             return false;
 
-        var uid = ent;
+        var uid = ent.Owner;
         var comp = ent.Comp;
         if (comp.Activated)
             return true;
@@ -261,7 +261,7 @@ public sealed class ItemToggleSystem : EntitySystem
         if (!_query.Resolve(ent, ref ent.Comp, false))
             return false;
 
-        var uid = ent;
+        var uid = ent.Owner;
         var comp = ent.Comp;
         if (!comp.Activated)
             return true;
@@ -401,7 +401,7 @@ public sealed class ItemToggleSystem : EntitySystem
     /// </summary>
     private void OnIsHotEvent(Entity<ItemToggleHotComponent> ent, ref IsHotEvent args)
     {
-        args.IsHot |= IsActivated(ent);
+        args.IsHot |= IsActivated(ent.Owner);
     }
 
     /// <summary>

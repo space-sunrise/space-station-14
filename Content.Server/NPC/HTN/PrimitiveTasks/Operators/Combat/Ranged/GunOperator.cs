@@ -63,7 +63,7 @@ public sealed partial class GunOperator : HTNOperator, IHtnConditionalShutdown
     {
         base.Startup(blackboard);
 
-        var ranged = _entManager.EnsureComponent<NPCRangedCombatComponent>(blackboard.GetValue<EntityUid>(NPCBlackboard));
+        var ranged = _entManager.EnsureComponent<NPCRangedCombatComponent>(blackboard.GetValue<EntityUid>(NPCBlackboard.Owner));
         ranged.Target = blackboard.GetValue<EntityUid>(TargetKey);
         ranged.UseOpaqueForLOSChecks = UseOpaqueForLOSChecks;
 
@@ -80,7 +80,7 @@ public sealed partial class GunOperator : HTNOperator, IHtnConditionalShutdown
 
     public void ConditionalShutdown(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         _entManager.System<SharedCombatModeSystem>().SetInCombatMode(owner, false);
         _entManager.RemoveComponent<NPCRangedCombatComponent>(owner);
         blackboard.Remove<EntityUid>(TargetKey);
@@ -89,7 +89,7 @@ public sealed partial class GunOperator : HTNOperator, IHtnConditionalShutdown
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         base.Update(blackboard, frameTime);
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         HTNOperatorStatus status;
 
         if (_entManager.TryGetComponent<NPCRangedCombatComponent>(owner, out var combat) &&

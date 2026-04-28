@@ -199,7 +199,7 @@ public abstract class SharedRoleSystem : EntitySystem
     /// </returns>>
     private bool MindRolesUpdate(Entity<MindComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent.Owner, ref ent.Comp))
             return false;
 
         //get the most important/latest mind role
@@ -208,7 +208,7 @@ public abstract class SharedRoleSystem : EntitySystem
         if (ent.Comp.RoleType == roleType && ent.Comp.Subtype == subtype)
             return false;
 
-        SetRoleType(ent, roleType, subtype);
+        SetRoleType(ent.Owner, roleType, subtype);
         return true;
     }
 
@@ -291,7 +291,7 @@ public abstract class SharedRoleSystem : EntitySystem
         if (typeof(T) == typeof(MindRoleComponent))
             throw new InvalidOperationException();
 
-        if (!Resolve(mind, ref mind.Comp))
+        if (!Resolve(mind.Owner, ref mind.Comp))
             return false;
 
         var delete = new List<EntityUid>();
@@ -357,7 +357,7 @@ public abstract class SharedRoleSystem : EntitySystem
     /// <returns>True if the role existed and was removed</returns>
     public bool MindRemoveRole(Entity<MindComponent?> mind, EntProtoId<MindRoleComponent> protoId)
     {
-        if (!Resolve(mind, ref mind.Comp))
+        if (!Resolve(mind.Owner, ref mind.Comp))
             return false;
 
         // If there were no matches and thus no mind role entity names, we'll need the protoId, to report what role failed to be removed
@@ -388,12 +388,12 @@ public abstract class SharedRoleSystem : EntitySystem
     /// </summary>
     private bool MindRemoveRoleDo(Entity<MindComponent?> mind, List<EntityUid> delete, string? logName = "")
     {
-        if (!Resolve(mind, ref mind.Comp))
+        if (!Resolve(mind.Owner, ref mind.Comp))
             return false;
 
         if (delete.Count <= 0)
         {
-            Log.Warning($"Failed to remove mind role {logName} from {ToPrettyString(mind)} : mind does not have this role ");
+            Log.Warning($"Failed to remove mind role {logName} from {ToPrettyString(mind.Owner)} : mind does not have this role ");
             return false;
         }
 
@@ -404,7 +404,7 @@ public abstract class SharedRoleSystem : EntitySystem
 
         var update = MindRolesUpdate(mind);
 
-        var message = new RoleRemovedEvent(mind, mind.Comp, update);
+        var message = new RoleRemovedEvent(mind.Owner, mind.Comp, update);
         RaiseLocalEvent(mind, message, true);
 
         _adminLogger.Add(LogType.Mind,
@@ -426,7 +426,7 @@ public abstract class SharedRoleSystem : EntitySystem
         [NotNullWhen(true)] out Entity<MindRoleComponent, T>? role) where T : IComponent
     {
         role = null;
-        if (!Resolve(mind, ref mind.Comp))
+        if (!Resolve(mind.Owner, ref mind.Comp))
             return false;
 
         foreach (var roleEnt in mind.Comp.MindRoleContainer.ContainedEntities)
@@ -548,7 +548,7 @@ public abstract class SharedRoleSystem : EntitySystem
     {
         var roleInfo = new List<RoleInfo>();
 
-        if (!Resolve(mind, ref mind.Comp))
+        if (!Resolve(mind.Owner, ref mind.Comp))
             return roleInfo;
 
         foreach (var role in mind.Comp.MindRoleContainer.ContainedEntities)
@@ -634,7 +634,7 @@ public abstract class SharedRoleSystem : EntitySystem
 
     private (bool Antag, bool ExclusiveAntag) CheckAntagonistStatus(Entity<MindComponent?> mind)
     {
-        if (!Resolve(mind, ref mind.Comp))
+        if (!Resolve(mind.Owner, ref mind.Comp))
             return (false, false);
 
         var antagonist = false;

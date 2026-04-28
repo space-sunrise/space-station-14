@@ -124,7 +124,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (entity is not null)
         {
             DebugTools.Assert(TryGetSolution(container, name, out var debugEnt)
-                              && debugEnt.Value == entity.Value);
+                              && debugEnt.Value.Owner == entity.Value.Owner);
             return true;
         }
 
@@ -235,7 +235,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
     public IEnumerable<(string? Name, Entity<SolutionComponent> Solution)> EnumerateSolutions(Entity<SolutionContainerManagerComponent?> container, bool includeSelf = true)
     {
         if (includeSelf && TryComp(container, out SolutionComponent? solutionComp))
-            yield return (null, (container, solutionComp));
+            yield return (null, (container.Owner, solutionComp));
 
         if (!Resolve(container, ref container.Comp, logMissing: false))
             yield break;
@@ -816,7 +816,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         foreach (var name in containers)
         {
             // The actual solution entity should be directly held within the corresponding slot.
-            ContainerSystem.EnsureContainer<ContainerSlot>(entity, $"solution@{name}", containerManager);
+            ContainerSystem.EnsureContainer<ContainerSlot>(entity.Owner, $"solution@{name}", containerManager);
         }
     }
 
@@ -827,7 +827,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
     {
         if (!args.IsInDetailsRange ||
             !CanSeeHiddenSolution(entity, args.Examiner) ||
-            !TryGetSolution(entity, entity.Comp.Solution, out _, out var solution))
+            !TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
             return;
 
         using (args.PushGroup(nameof(ExaminableSolutionComponent)))
@@ -1010,7 +1010,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (entity.Comp.HeldOnly && !Hands.IsHolding(examiner, entity, out _))
             return false;
 
-        if (!entity.Comp.ExaminableWhileClosed && Openable.IsClosed(entity, predicted: true))
+        if (!entity.Comp.ExaminableWhileClosed && Openable.IsClosed(entity.Owner, predicted: true))
             return false;
 
         return true;
@@ -1100,7 +1100,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
 
         foreach (var (name, prototype) in prototypes)
         {
-            EnsureSolutionEntity((entity, entity.Comp), name, out _, out _, prototype.MaxVolume, prototype);
+            EnsureSolutionEntity((entity.Owner, entity.Comp), name, out _, out _, prototype.MaxVolume, prototype);
         }
 
         entity.Comp.Solutions = null;
@@ -1208,13 +1208,13 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
 
     private Entity<SolutionComponent, ContainedSolutionComponent> SpawnSolutionUninitialized(ContainerSlot container, string name, FixedPoint2 maxVol, Solution prototype)
     {
-        var coords = new EntityCoordinates(container, Vector2.Zero);
+        var coords = new EntityCoordinates(container.Owner, Vector2.Zero);
         var uid = EntityManager.CreateEntityUninitialized(null, coords, null);
 
         var solution = new SolutionComponent() { Solution = prototype };
         AddComp(uid, solution);
 
-        var relation = new ContainedSolutionComponent() { Container = container, ContainerName = name };
+        var relation = new ContainedSolutionComponent() { Container = container.Owner, ContainerName = name };
         AddComp(uid, relation);
 
         MetaDataSys.SetEntityName(uid, $"solution - {name}", raiseEvents: false);

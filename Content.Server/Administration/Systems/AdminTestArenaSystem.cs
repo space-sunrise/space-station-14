@@ -45,9 +45,9 @@ public sealed class AdminTestArenaSystem : EntitySystem
         ArenaMap[admin.UserId] = mapUid;
         _metaDataSystem.SetEntityName(mapUid, $"ATAM-{admin.Name}");
 
-        ArenaGrid[admin.UserId] = grid.Value;
-        _metaDataSystem.SetEntityName(grid.Value, $"ATAG-{admin.Name}");
+        ArenaGrid[admin.UserId] = grid.Value.Owner;
+        _metaDataSystem.SetEntityName(grid.Value.Owner, $"ATAG-{admin.Name}");
 
-        return (mapUid, grid.Value);
+        return (mapUid, grid.Value.Owner);
     }
 }

@@ -98,7 +98,7 @@ public sealed class RoboticsConsoleSystem : SharedRoboticsConsoleSystem
         if (!ent.Comp.AllowBorgControl)
             return;
 
-        if (_lock.IsLocked(ent))
+        if (_lock.IsLocked(ent.Owner))
             return;
 
         if (!ent.Comp.Cyborgs.TryGetValue(args.Address, out var data))
@@ -118,7 +118,7 @@ public sealed class RoboticsConsoleSystem : SharedRoboticsConsoleSystem
         if (!ent.Comp.AllowBorgControl)
             return;
 
-        if (_lock.IsLocked(ent))
+        if (_lock.IsLocked(ent.Owner))
             return;
 
         var now = _timing.CurTime;
@@ -146,6 +146,6 @@ public sealed class RoboticsConsoleSystem : SharedRoboticsConsoleSystem
     private void UpdateUserInterface(Entity<RoboticsConsoleComponent> ent)
     {
         var state = new RoboticsConsoleState(ent.Comp.Cyborgs, ent.Comp.AllowBorgControl);
-        _ui.SetUiState(ent, RoboticsConsoleUiKey.Key, state);
+        _ui.SetUiState(ent.Owner, RoboticsConsoleUiKey.Key, state);
     }
 }

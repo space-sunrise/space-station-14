@@ -73,7 +73,7 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
     /// </summary>
     private void OnAfterInteract(Entity<TAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !ValidScanTarget(args.Target) || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Target == null || !args.CanReach || !ValidScanTarget(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         _audio.PlayPredicted(uid.Comp.ScanningBeginSound, uid, null);
@@ -94,7 +94,7 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
 
     private void OnDoAfter(Entity<TAnalyzerComponent> uid, ref TAnalyzerDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         if (!uid.Comp.Silent)
@@ -111,7 +111,7 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
     private void OnInsertedIntoContainer(Entity<TAnalyzerComponent> uid, ref EntGotInsertedIntoContainerMessage args)
     {
         if (uid.Comp.ScannedEntity is { })
-            _toggle.TryDeactivate(uid);
+            _toggle.TryDeactivate(uid.Owner);
     }
 
     /// <summary>
@@ -129,7 +129,7 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
     private void OnDropped(Entity<TAnalyzerComponent> uid, ref DroppedEvent args)
     {
         if (uid.Comp.ScannedEntity is { })
-            _toggle.TryDeactivate(uid);
+            _toggle.TryDeactivate(uid.Owner);
     }
 
     private void OpenUserInterface(EntityUid user, EntityUid analyzer)
@@ -150,7 +150,7 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
         //Link the analyzer to the scanned entity
         analyzer.Comp.ScannedEntity = target;
 
-        _toggle.TryActivate(analyzer);
+        _toggle.TryActivate(analyzer.Owner);
 
         UpdateScannedUser(analyzer, target, true);
     }
@@ -165,7 +165,7 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
         //Unlink the analyzer
         analyzer.Comp.ScannedEntity = null;
 
-        _toggle.TryDeactivate(analyzer);
+        _toggle.TryDeactivate(analyzer.Owner);
 
         UpdateScannedUser(analyzer, target, false);
     }

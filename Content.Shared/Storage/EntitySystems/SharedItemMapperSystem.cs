@@ -87,7 +87,7 @@ public abstract class SharedItemMapperSystem : EntitySystem
     /// <see cref="EntityWhitelist">Whitelist</see> in <see cref="ItemMapperComponent.MapLayers"/> to string.
     /// </param>
     /// <param name="showLayers">list of <paramref name="itemMapper"/> layers that should be visible</param>
-    /// <returns>false if <c>msg.Container</c> is not a storage, true otherwise.</returns>
+    /// <returns>false if <c>msg.Container.Owner</c> is not a storage, true otherwise.</returns>
     private bool TryGetLayers(EntityUid uid, ItemMapperComponent itemMapper, out List<string> showLayers)
     {
         var containedLayers = _container.GetAllContainers(uid)

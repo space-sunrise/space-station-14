@@ -20,7 +20,7 @@ public sealed class ActionGrantSystem : EntitySystem
     private void OnItemGet(Entity<ItemActionGrantComponent> ent, ref GetItemActionsEvent args)
     {
 
-        if (!TryComp(ent, out ActionGrantComponent? grant))
+        if (!TryComp(ent.Owner, out ActionGrantComponent? grant))
             return;
 
         if (ent.Comp.ActiveIfWorn && (args.SlotFlags == null || args.SlotFlags == SlotFlags.POCKET))
@@ -37,7 +37,7 @@ public sealed class ActionGrantSystem : EntitySystem
         foreach (var action in ent.Comp.Actions)
         {
             EntityUid? actionEnt = null;
-            _actions.AddAction(ent, ref actionEnt, action);
+            _actions.AddAction(ent.Owner, ref actionEnt, action);
 
             if (actionEnt != null)
                 ent.Comp.ActionEntities.Add(actionEnt.Value);
@@ -48,7 +48,7 @@ public sealed class ActionGrantSystem : EntitySystem
     {
         foreach (var actionEnt in ent.Comp.ActionEntities)
         {
-            _actions.RemoveAction(ent, actionEnt);
+            _actions.RemoveAction(ent.Owner, actionEnt);
         }
     }
 }

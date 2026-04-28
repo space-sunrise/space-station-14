@@ -26,7 +26,7 @@ public sealed class XAEChargeBatterySystem : BaseXAESystem<XAEChargeBatteryCompo
         _lookup.GetEntitiesInRange(args.Coordinates, ent.Comp.Radius, _batteryEntities);
         foreach (var battery in _batteryEntities)
         {
-            _battery.SetCharge(battery, battery.Comp.MaxCharge);
+            _battery.SetCharge(battery.AsNullable(), battery.Comp.MaxCharge);
         }
     }
 }

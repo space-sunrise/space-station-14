@@ -179,7 +179,7 @@ public partial class RadiationSystem
         // the ray will be updated with each grid that has some blockers
         foreach (var grid in _grids)
         {
-            ray = Gridcast((grid, grid.Comp, Transform(grid)), ref ray, saveVisitedTiles, source.Transform, destTrs);
+            ray = Gridcast((grid.Owner, grid.Comp, Transform(grid)), ref ray, saveVisitedTiles, source.Transform, destTrs);
 
             // looks like last grid blocked all radiation
             // we can return right now
@@ -202,7 +202,7 @@ public partial class RadiationSystem
         var blockers = saveVisitedTiles ? new List<(Vector2i, float)>() : null;
 
         // if grid doesn't have resistance map just apply distance penalty
-        var gridUid = grid;
+        var gridUid = grid.Owner;
         if (!_resistanceQuery.TryGetComponent(gridUid, out var resistance))
             return ray;
         var resistanceMap = resistance.ResistancePerTile;
@@ -213,11 +213,11 @@ public partial class RadiationSystem
         // If ever grids are allowed to overlap, this might no longer be true. In that case, this should precompute and cache
         // inverse world matrices.
 
-        Vector2 srcLocal = sourceTrs.ParentUid == grid
+        Vector2 srcLocal = sourceTrs.ParentUid == grid.Owner
             ? sourceTrs.LocalPosition
             : Vector2.Transform(ray.Source, grid.Comp2.InvLocalMatrix);
 
-        Vector2 dstLocal = destTrs.ParentUid == grid
+        Vector2 dstLocal = destTrs.ParentUid == grid.Owner
             ? destTrs.LocalPosition
             : Vector2.Transform(ray.Destination, grid.Comp2.InvLocalMatrix);
 

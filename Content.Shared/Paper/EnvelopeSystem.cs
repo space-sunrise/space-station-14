@@ -27,11 +27,11 @@ public sealed class EnvelopeSystem : EntitySystem
     {
         if (ent.Comp.State == EnvelopeComponent.EnvelopeState.Sealed)
         {
-            args.PushMarkup(Loc.GetString("envelope-sealed-examine", ("envelope", ent)));
+            args.PushMarkup(Loc.GetString("envelope-sealed-examine", ("envelope", ent.Owner)));
         }
         else if (ent.Comp.State == EnvelopeComponent.EnvelopeState.Torn)
         {
-            args.PushMarkup(Loc.GetString("envelope-torn-examine", ("envelope", ent)));
+            args.PushMarkup(Loc.GetString("envelope-torn-examine", ("envelope", ent.Owner)));
         }
     }
 
@@ -47,7 +47,7 @@ public sealed class EnvelopeSystem : EntitySystem
         args.Verbs.Add(new AlternativeVerb()
         {
             Text = Loc.GetString(ent.Comp.State == EnvelopeComponent.EnvelopeState.Open ? "envelope-verb-seal" : "envelope-verb-tear"),
-            IconEntity = GetNetEntity(ent),
+            IconEntity = GetNetEntity(ent.Owner),
             Act = () =>
             {
                 TryStartDoAfter(ent, user, ent.Comp.State == EnvelopeComponent.EnvelopeState.Open ? ent.Comp.SealDelay : ent.Comp.TearDelay);
@@ -70,7 +70,7 @@ public sealed class EnvelopeSystem : EntitySystem
         if (ent.Comp.EnvelopeDoAfter.HasValue)
             return;
 
-        var doAfterEventArgs = new DoAfterArgs(EntityManager, user, delay, new EnvelopeDoAfterEvent(), ent, ent)
+        var doAfterEventArgs = new DoAfterArgs(EntityManager, user, delay, new EnvelopeDoAfterEvent(), ent.Owner, ent.Owner)
         {
             BreakOnDamage = true,
             NeedHand = true,
@@ -91,18 +91,18 @@ public sealed class EnvelopeSystem : EntitySystem
 
         if (ent.Comp.State == EnvelopeComponent.EnvelopeState.Open)
         {
-            _audioSystem.PlayPredicted(ent.Comp.SealSound, ent, args.User);
+            _audioSystem.PlayPredicted(ent.Comp.SealSound, ent.Owner, args.User);
             ent.Comp.State = EnvelopeComponent.EnvelopeState.Sealed;
-            Dirty(ent, ent.Comp);
+            Dirty(ent.Owner, ent.Comp);
         }
         else if (ent.Comp.State == EnvelopeComponent.EnvelopeState.Sealed)
         {
-            _audioSystem.PlayPredicted(ent.Comp.TearSound, ent, args.User);
+            _audioSystem.PlayPredicted(ent.Comp.TearSound, ent.Owner, args.User);
             ent.Comp.State = EnvelopeComponent.EnvelopeState.Torn;
-            Dirty(ent, ent.Comp);
+            Dirty(ent.Owner, ent.Comp);
 
-            if (_itemSlotsSystem.TryGetSlot(ent, ent.Comp.SlotId, out var slotComp))
-                _itemSlotsSystem.TryEjectToHands(ent, slotComp, args.User);
+            if (_itemSlotsSystem.TryGetSlot(ent.Owner, ent.Comp.SlotId, out var slotComp))
+                _itemSlotsSystem.TryEjectToHands(ent.Owner, slotComp, args.User);
         }
     }
 }

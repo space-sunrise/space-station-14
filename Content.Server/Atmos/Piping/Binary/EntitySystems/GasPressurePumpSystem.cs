@@ -31,7 +31,7 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
     {
         if (!ent.Comp.Enabled
             || !_power.IsPowered(ent)
-            || !_nodeContainer.TryGetNodes(ent, ent.Comp.InletName, ent.Comp.OutletName, out PipeNode? inlet, out PipeNode? outlet))
+            || !_nodeContainer.TryGetNodes(ent.Owner, ent.Comp.InletName, ent.Comp.OutletName, out PipeNode? inlet, out PipeNode? outlet))
         {
             _ambientSoundSystem.SetAmbience(ent, false);
             return;

@@ -79,7 +79,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             return (false, null);
         }
 
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!_entManager.TryGetComponent<TransformComponent>(owner, out var xform) ||
             !_entManager.TryGetComponent<PhysicsComponent>(owner, out var body))
@@ -111,7 +111,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
         }
 
         var path = await _pathfind.GetPath(
-            blackboard.GetValue<EntityUid>(NPCBlackboard),
+            blackboard.GetValue<EntityUid>(NPCBlackboard.Owner),
             xform.Coordinates,
                 targetCoordinates,
             range,
@@ -140,7 +140,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
         // Need to remove the planning value for execution.
         blackboard.Remove<EntityCoordinates>(NPCBlackboard.OwnerCoordinates);
         var targetCoordinates = blackboard.GetValue<EntityCoordinates>(TargetKey);
-        var uid = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var uid = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         // Re-use the path we may have if applicable.
         var comp = _steering.Register(uid, targetCoordinates);
@@ -165,7 +165,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!_entManager.TryGetComponent<NPCSteeringComponent>(owner, out var steering))
             return HTNOperatorStatus.Failed;
@@ -202,6 +202,6 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
             blackboard.Remove<EntityCoordinates>(TargetKey);
         }
 
-        _steering.Unregister(blackboard.GetValue<EntityUid>(NPCBlackboard));
+        _steering.Unregister(blackboard.GetValue<EntityUid>(NPCBlackboard.Owner));
     }
 }

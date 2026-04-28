@@ -39,7 +39,7 @@ public sealed class ClickableSystem : EntitySystem
     /// <returns>True if the click worked, false otherwise.</returns>
     public bool CheckClick(Entity<ClickableComponent?, SpriteComponent, TransformComponent?, FadingSpriteComponent?> entity, Vector2 worldPos, IEye eye, bool excludeFaded, out int drawDepth, out uint renderOrder, out float bottom)
     {
-        if (!_clickableQuery.Resolve(entity, ref entity.Comp1, false))
+        if (!_clickableQuery.Resolve(entity.Owner, ref entity.Comp1, false))
         {
             drawDepth = default;
             renderOrder = default;
@@ -47,7 +47,7 @@ public sealed class ClickableSystem : EntitySystem
             return false;
         }
 
-        if (!_xformQuery.Resolve(entity, ref entity.Comp3))
+        if (!_xformQuery.Resolve(entity.Owner, ref entity.Comp3))
         {
             drawDepth = default;
             renderOrder = default;
@@ -55,7 +55,7 @@ public sealed class ClickableSystem : EntitySystem
             return false;
         }
 
-        if (excludeFaded && _fadingSpriteQuery.Resolve(entity, ref entity.Comp4, false))
+        if (excludeFaded && _fadingSpriteQuery.Resolve(entity.Owner, ref entity.Comp4, false))
         {
             drawDepth = default;
             renderOrder = default;
@@ -77,7 +77,7 @@ public sealed class ClickableSystem : EntitySystem
         drawDepth = sprite.DrawDepth;
         renderOrder = sprite.RenderOrder;
         var (spritePos, spriteRot) = _transforms.GetWorldPositionRotation(transform);
-        var spriteBB = _sprites.CalculateBounds((entity, sprite), spritePos, spriteRot, eye.Rotation);
+        var spriteBB = _sprites.CalculateBounds((entity.Owner, sprite), spritePos, spriteRot, eye.Rotation);
         bottom = Matrix3Helpers.CreateRotation(eye.Rotation).TransformBox(spriteBB).Bottom;
 
         Matrix3x2.Invert(sprite.LocalMatrix, out var invSpriteMatrix);
@@ -92,7 +92,7 @@ public sealed class ClickableSystem : EntitySystem
         var localPos = Vector2.Transform(Vector2.Transform(worldPos, entityXform), invSpriteMatrix);
 
         // Check explicitly defined click-able bounds
-        if (CheckDirBound((entity, entity.Comp1, entity.Comp2), relativeRotation, localPos))
+        if (CheckDirBound((entity.Owner, entity.Comp1, entity.Comp2), relativeRotation, localPos))
             return true;
 
         // Next check each individual sprite layer using automatically computed click maps.

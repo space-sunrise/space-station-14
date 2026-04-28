@@ -16,15 +16,15 @@ public abstract partial class SharedBorgSystem
     /// </summary>
     public bool CanActivate(Entity<BorgChassisComponent> chassis)
     {
-        if (!_powerCell.HasDrawCharge(chassis))
+        if (!_powerCell.HasDrawCharge(chassis.Owner))
             return false;
 
         // TODO: Replace this with something else, only the client's own mind is networked to them,
         // so this will always be false for the minds of other clients.
-        if (!_mind.TryGetMind(chassis, out _, out _))
+        if (!_mind.TryGetMind(chassis.Owner, out _, out _))
             return false;
 
-        if (_mobState.IsIncapacitated(chassis))
+        if (_mobState.IsIncapacitated(chassis.Owner))
             return false;
 
         return true;
@@ -62,19 +62,19 @@ public abstract partial class SharedBorgSystem
         Dirty(chassis);
 
         if (active)
-            InstallAllModules(chassis);
+            InstallAllModules(chassis.AsNullable());
         else
-            DisableAllModules(chassis);
+            DisableAllModules(chassis.AsNullable());
 
-        _powerCell.SetDrawEnabled(chassis, active);
+        _powerCell.SetDrawEnabled(chassis.Owner, active);
         _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis);
 
         var sound = active ? chassis.Comp.ActivateSound : chassis.Comp.DeactivateSound;
         // If a user is given predict the audio for them, if not keep it unpredicted.
         if (user != null)
-            _audio.PlayPredicted(sound, chassis, user);
+            _audio.PlayPredicted(sound, chassis.Owner, user);
         else if (_net.IsServer)
-            _audio.PlayPvs(sound, chassis);
+            _audio.PlayPvs(sound, chassis.Owner);
     }
 
     /// <summary>
@@ -134,9 +134,9 @@ public abstract partial class SharedBorgSystem
         if (module.Comp.Installed)
             return;
 
-        module.Comp.InstalledEntity = borg;
+        module.Comp.InstalledEntity = borg.Owner;
         Dirty(module);
-        var ev = new BorgModuleInstalledEvent(borg);
+        var ev = new BorgModuleInstalledEvent(borg.Owner);
         RaiseLocalEvent(module, ref ev);
     }
 
@@ -153,7 +153,7 @@ public abstract partial class SharedBorgSystem
 
         module.Comp.InstalledEntity = null;
         Dirty(module);
-        var ev = new BorgModuleUninstalledEvent(borg);
+        var ev = new BorgModuleUninstalledEvent(borg.Owner);
         RaiseLocalEvent(module, ref ev);
     }
 
@@ -210,13 +210,13 @@ public abstract partial class SharedBorgSystem
 
         if (chassis.Comp.ModuleContainer.ContainedEntities.Count >= chassis.Comp.MaxModules)
         {
-            _popup.PopupClient(Loc.GetString("borg-module-too-many"), chassis, user);
+            _popup.PopupClient(Loc.GetString("borg-module-too-many"), chassis.Owner, user);
             return false;
         }
 
         if (_whitelist.IsWhitelistFail(chassis.Comp.ModuleWhitelist, module))
         {
-            _popup.PopupClient(Loc.GetString("borg-module-whitelist-deny"), chassis, user);
+            _popup.PopupClient(Loc.GetString("borg-module-whitelist-deny"), chassis.Owner, user);
             return false;
         }
 
@@ -230,7 +230,7 @@ public abstract partial class SharedBorgSystem
                 if (containedItemModuleComp.Hands.Count == itemModuleComp.Hands.Count &&
                     containedItemModuleComp.Hands.All(itemModuleComp.Hands.Contains))
                 {
-                    _popup.PopupClient(Loc.GetString("borg-module-duplicate"), chassis, user);
+                    _popup.PopupClient(Loc.GetString("borg-module-duplicate"), chassis.Owner, user);
                     return false;
                 }
             }
@@ -264,7 +264,7 @@ public abstract partial class SharedBorgSystem
         if (!Resolve(chassis, ref chassis.Comp))
             return;
 
-        if (!Resolve(module, ref module.Comp) || !module.Comp.Installed || module.Comp.InstalledEntity != chassis)
+        if (!Resolve(module, ref module.Comp) || !module.Comp.Installed || module.Comp.InstalledEntity != chassis.Owner)
         {
             Log.Error($"{ToPrettyString(chassis)} attempted to select uninstalled module {ToPrettyString(module)}");
             return;
@@ -282,14 +282,14 @@ public abstract partial class SharedBorgSystem
             return;
         }
 
-        if (chassis.Comp.SelectedModule == module)
+        if (chassis.Comp.SelectedModule == module.Owner)
             return;
 
         UnselectModule(chassis);
 
         var ev = new BorgModuleSelectedEvent(chassis);
         RaiseLocalEvent(module, ref ev);
-        chassis.Comp.SelectedModule = module;
+        chassis.Comp.SelectedModule = module.Owner;
         Dirty(chassis);
     }
 

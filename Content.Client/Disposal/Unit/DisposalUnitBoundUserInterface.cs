@@ -50,14 +50,14 @@ namespace Content.Client.Disposal.Unit
 
             var disposalSystem = EntMan.System<DisposalUnitSystem>();
 
-            _disposalUnitWindow.Title = EntMan.GetComponent<MetaDataComponent>(entity).EntityName;
+            _disposalUnitWindow.Title = EntMan.GetComponent<MetaDataComponent>(entity.Owner).EntityName;
 
-            var state = disposalSystem.GetState(entity, entity.Comp);
+            var state = disposalSystem.GetState(entity.Owner, entity.Comp);
 
             _disposalUnitWindow.UnitState.Text = Loc.GetString($"disposal-unit-state-{state}");
             _disposalUnitWindow.Power.Pressed = EntMan.System<PowerReceiverSystem>().IsPowered(Owner);
             _disposalUnitWindow.Engage.Pressed = entity.Comp.Engaged;
-            _disposalUnitWindow.FullPressure = disposalSystem.EstimatedFullPressure(entity, entity.Comp);
+            _disposalUnitWindow.FullPressure = disposalSystem.EstimatedFullPressure(entity.Owner, entity.Comp);
         }
     }
 }

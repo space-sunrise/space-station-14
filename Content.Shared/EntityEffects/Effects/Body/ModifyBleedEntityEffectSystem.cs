@@ -14,7 +14,7 @@ public sealed partial class ModifyBleedEntityEffectSystem : EntityEffectSystem<B
 
     protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<ModifyBleed> args)
     {
-        _bloodstream.TryModifyBleedAmount(entity, args.Effect.Amount * args.Scale);
+        _bloodstream.TryModifyBleedAmount(entity.AsNullable(), args.Effect.Amount * args.Scale);
     }
 }
 

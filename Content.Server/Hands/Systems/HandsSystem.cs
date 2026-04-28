@@ -83,7 +83,7 @@ namespace Content.Server.Hands.Systems
             if (ent.Comp.DisableExplosionRecursion)
                 return;
 
-            foreach (var held in EnumerateHeld(ent))
+            foreach (var held in EnumerateHeld(ent.AsNullable()))
             {
                 args.Contents.Add(held);
             }
@@ -122,7 +122,7 @@ namespace Content.Server.Hands.Systems
                 _ => throw new ArgumentOutOfRangeException(nameof(args.Part.Comp.Symmetry))
             };
 
-            AddHand(ent, args.Slot, location);
+            AddHand(ent.AsNullable(), args.Slot, location);
         }
 
         private void HandleBodyPartRemoved(EntityUid uid, HandsComponent component, ref BodyPartRemovedEvent args)
@@ -203,7 +203,7 @@ namespace Content.Server.Hands.Systems
 
             foreach (var hand in entity.Comp.Hands.Keys)
             {
-                if (!TryGetHeldItem(entity, hand, out var heldEntity))
+                if (!TryGetHeldItem(entity.AsNullable(), hand, out var heldEntity))
                     continue;
 
                 var throwAttempt = new FellDownThrowAttemptEvent(entity);
@@ -212,7 +212,7 @@ namespace Content.Server.Hands.Systems
                 if (throwAttempt.Cancelled)
                     continue;
 
-                if (!TryDrop(entity, hand, checkActionBlocker: false))
+                if (!TryDrop(entity.AsNullable(), hand, checkActionBlocker: false))
                     continue;
 
                 // Rotate the item's throw vector a bit for each item

@@ -132,7 +132,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
     private void OnGetFootstepSound(Entity<PuddleComponent> entity, ref GetFootstepSoundEvent args)
     {
-        if (!_solutionContainerSystem.ResolveSolution(entity, entity.Comp.SolutionName, ref entity.Comp.Solution,
+        if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution,
                 out var solution))
             return;
 
@@ -154,7 +154,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
             }
 
             if (_evaporationQuery.HasComp(entity) &&
-                _solutionContainerSystem.ResolveSolution(entity, entity.Comp.SolutionName,
+                _solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName,
                     ref entity.Comp.Solution, out var solution))
             {
                 if (CanFullyEvaporate(solution))
@@ -172,14 +172,14 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private void OnAnchorChanged(Entity<PuddleComponent> entity, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
-            PredictedQueueDel(entity);
+            PredictedQueueDel(entity.Owner);
     }
 
     // Workaround for https://github.com/space-wizards/space-station-14/pull/35314
     private void OnEntRemoved(Entity<PuddleComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         // Make sure the removed entity was our contained solution and clear our cached reference
-        if (args.Entity == ent.Comp.Solution)
+        if (args.Entity == ent.Comp.Solution?.Owner)
             ent.Comp.Solution = null;
     }
 

@@ -60,7 +60,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
     {
         if (!entity.Comp.SolutionOnBody)
         {
-            _solutionContainerSystem.EnsureSolution(entity, entity.Comp.SolutionName, out _);
+            _solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName, out _);
         }
         else if (_organQuery.CompOrNull(entity)?.Body is { } body)
         {

@@ -42,7 +42,7 @@ public sealed partial class CargoSystem
 
             // todo cannot be fucking asked to figure out device linking rn but this shouldn't just default to the first port.
             if (!TryGetLinkedConsole((uid, tele), out var console) ||
-                console.Value != args.OrderConsole)
+                console.Value.Owner != args.OrderConsole.Owner)
                 continue;
 
             for (var i = 0; i < args.Order.OrderQuantity; i++)

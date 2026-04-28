@@ -120,10 +120,10 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     private void OnEntRemoved(Entity<BloodstreamComponent> entity, ref EntRemovedFromContainerMessage args)
     {
         // Make sure the removed entity was our contained solution and set it to null
-        if (args.Entity == entity.Comp.BloodSolution)
+        if (args.Entity == entity.Comp.BloodSolution?.Owner)
             entity.Comp.BloodSolution = null;
 
-        if (args.Entity == entity.Comp.TemporarySolution)
+        if (args.Entity == entity.Comp.TemporarySolution?.Owner)
             entity.Comp.TemporarySolution = null;
     }
 
@@ -194,7 +194,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         var oldBleedAmount = ent.Comp.BleedAmount;
         var total = bloodloss.GetTotal();
         var totalFloat = total.Float();
-        TryModifyBleedAmount(ent, totalFloat);
+        TryModifyBleedAmount(ent.AsNullable(), totalFloat);
 
         /// Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
         /// The crit chance is currently the bleed rate modifier divided by 25.
@@ -207,7 +207,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         var prob = Math.Clamp(totalFloat / 25, 0, 1);
         if (totalFloat > 0 && rand.Prob(prob))
         {
-            TryBleedOut(ent, total / 5);
+            TryBleedOut(ent.AsNullable(), total / 5);
             _audio.PlayPredicted(ent.Comp.InstantBloodSound, ent, args.Origin);
         }
 
@@ -233,38 +233,38 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         if (ent.Comp.BleedAmount > ent.Comp.MaxBleedAmount * 0.75f)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-massive-bleeding", ("target", ent)));
+            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-massive-bleeding", ("target", ent.Owner)));
         }
         // Shows bleeding message when bleeding above half the max rate, but less than massively.
         else if (ent.Comp.BleedAmount > ent.Comp.MaxBleedAmount * 0.5f)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-strong-bleeding", ("target", ent)));
+            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-strong-bleeding", ("target", ent.Owner)));
         }
         // Shows bleeding message when bleeding above 0.25x the max rate, but less than half the max.
         else if (ent.Comp.BleedAmount > ent.Comp.MaxBleedAmount * 0.25f)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-bleeding", ("target", ent)));
+            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-bleeding", ("target", ent.Owner)));
         }
         // Shows bleeding message when bleeding below 0.25x the max cap
         else if (ent.Comp.BleedAmount > 0)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-slight-bleeding", ("target", ent)));
+            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-slight-bleeding", ("target", ent.Owner)));
         }
 
         // If the mob's blood level is below the damage threshhold, the pale message is added.
-        if (GetBloodLevel(ent) < ent.Comp.BloodlossThreshold)
+        if (GetBloodLevel(ent.AsNullable()) < ent.Comp.BloodlossThreshold)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-looks-pale", ("target", ent)));
+            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-looks-pale", ("target", ent.Owner)));
         }
     }
 
     private void OnBeingGibbed(Entity<BloodstreamComponent> ent, ref BeingGibbedEvent args)
     {
-        SpillAllSolutions(ent);
+        SpillAllSolutions(ent.AsNullable());
     }
 
     private void OnApplyMetabolicMultiplier(Entity<BloodstreamComponent> ent, ref ApplyMetabolicMultiplierEvent args)
@@ -275,12 +275,12 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
     private void OnRejuvenate(Entity<BloodstreamComponent> ent, ref RejuvenateEvent args)
     {
-        TryModifyBleedAmount(ent, -ent.Comp.BleedAmount);
+        TryModifyBleedAmount(ent.AsNullable(), -ent.Comp.BleedAmount);
 
-        if (SolutionContainer.ResolveSolution(ent, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution))
+        if (SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution))
         {
             SolutionContainer.RemoveAllSolution(ent.Comp.BloodSolution.Value);
-            TryModifyBloodLevel(ent, ent.Comp.BloodReferenceSolution.Volume);
+            TryModifyBloodLevel(ent.AsNullable(), ent.Comp.BloodReferenceSolution.Volume);
         }
     }
 
@@ -302,7 +302,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     public float GetBloodLevel(Entity<BloodstreamComponent?> entity)
     {
         if (!Resolve(entity, ref entity.Comp)
-            || !SolutionContainer.ResolveSolution(entity, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution)
+            || !SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution)
             || entity.Comp.BloodReferenceSolution.Volume == 0)
         {
             return 0.0f;
@@ -337,7 +337,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     public bool TryAddToBloodstream(Entity<BloodstreamComponent?> ent, Solution solution)
     {
         if (!Resolve(ent, ref ent.Comp, logMissing: false)
-            || !SolutionContainer.ResolveSolution(ent, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution))
+            || !SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution))
             return false;
 
         if (SolutionContainer.TryAddSolution(ent.Comp.BloodSolution.Value, solution))
@@ -355,7 +355,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     public Solution? FlushChemicals(Entity<BloodstreamComponent?> ent, FixedPoint2 quantity, ProtoId<ReagentPrototype>? excludedReagent = null )
     {
         if (!Resolve(ent, ref ent.Comp, logMissing: false)
-            || !SolutionContainer.ResolveSolution(ent, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution))
+            || !SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution))
             return null;
 
         var flushedSolution = new Solution();
@@ -401,7 +401,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     public bool TryRegulateBloodLevel(Entity<BloodstreamComponent?> ent, FixedPoint2 amount, float referenceFactor = 1f)
     {
         if (!Resolve(ent, ref ent.Comp, logMissing: false)
-            || !SolutionContainer.ResolveSolution(ent, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution)
+            || !SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution)
             || amount == 0)
             return false;
 
@@ -439,10 +439,10 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         RaiseLocalEvent(entity, ref ev);
 
         // Blood is removed from the bloodstream at a 1-1 rate with the bleed amount
-        TryBleedOut(entity, ev.BleedAmount);
+        TryBleedOut(entity.AsNullable(), ev.BleedAmount);
 
         // Bleed rate is reduced by the bleed reduction amount in the bloodstream component.
-        TryModifyBleedAmount(entity, -ev.BleedReductionAmount);
+        TryModifyBleedAmount(entity.AsNullable(), -ev.BleedReductionAmount);
     }
 
     /// <summary>
@@ -451,7 +451,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     public bool TryBleedOut(Entity<BloodstreamComponent?> ent, FixedPoint2 amount)
     {
         if (!Resolve(ent, ref ent.Comp, logMissing: false)
-            || !SolutionContainer.ResolveSolution(ent, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution)
+            || !SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution)
             || amount <= 0)
         {
             return false;
@@ -459,14 +459,14 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
         var leakedBlood = SolutionContainer.SplitSolution(ent.Comp.BloodSolution.Value, amount);
 
-        if (!SolutionContainer.ResolveSolution(ent, ent.Comp.BloodTemporarySolutionName, ref ent.Comp.TemporarySolution, out var tempSolution))
+        if (!SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodTemporarySolutionName, ref ent.Comp.TemporarySolution, out var tempSolution))
             return true;
 
         tempSolution.AddSolution(leakedBlood, PrototypeManager);
 
         if (tempSolution.Volume > ent.Comp.BleedPuddleThreshold)
         {
-            _puddle.TrySpillAt(ent, tempSolution, out _, sound: false);
+            _puddle.TrySpillAt(ent.Owner, tempSolution, out _, sound: false);
 
             tempSolution.RemoveAllSolution();
         }
@@ -490,11 +490,11 @@ public abstract class SharedBloodstreamSystem : EntitySystem
         DirtyField(ent, ent.Comp, nameof(BloodstreamComponent.BleedAmount));
 
         if (ent.Comp.BleedAmount == 0)
-            _alertsSystem.ClearAlert(ent, ent.Comp.BleedingAlert);
+            _alertsSystem.ClearAlert(ent.Owner, ent.Comp.BleedingAlert);
         else
         {
             var severity = (short)Math.Clamp(Math.Round(ent.Comp.BleedAmount, MidpointRounding.ToZero), 0, 10);
-            _alertsSystem.ShowAlert(ent, ent.Comp.BleedingAlert, severity);
+            _alertsSystem.ShowAlert(ent.Owner, ent.Comp.BleedingAlert, severity);
         }
 
         return true;
@@ -511,14 +511,14 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
         var tempSol = new Solution();
 
-        if (SolutionContainer.ResolveSolution(ent, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution))
+        if (SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution))
         {
             tempSol.MaxVolume += bloodSolution.MaxVolume;
             tempSol.AddSolution(bloodSolution, PrototypeManager);
             SolutionContainer.RemoveAllSolution(ent.Comp.BloodSolution.Value);
         }
 
-        if (SolutionContainer.ResolveSolution(ent, ent.Comp.BloodTemporarySolutionName, ref ent.Comp.TemporarySolution, out var tempSolution))
+        if (SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodTemporarySolutionName, ref ent.Comp.TemporarySolution, out var tempSolution))
         {
             tempSol.MaxVolume += tempSolution.MaxVolume;
             tempSol.AddSolution(tempSolution, PrototypeManager);
@@ -547,7 +547,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             return;
         }
 
-        if (!SolutionContainer.ResolveSolution(ent, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution))
+        if (!SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution))
         {
             ent.Comp.BloodReferenceSolution = reagents.Clone();
             DirtyField(ent, ent.Comp, nameof(BloodstreamComponent.BloodReferenceSolution));

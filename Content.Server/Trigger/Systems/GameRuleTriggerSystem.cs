@@ -31,7 +31,7 @@ public sealed class GameRuleTriggerSystem : EntitySystem
 
         _adminLogger.Add(LogType.EventStarted,
             $"{ToPrettyString(args.User):entity} added a game rule [{ent.Comp.GameRule}]" +
-            $" via a trigger on {ToPrettyString(ent):entity}.");
+            $" via a trigger on {ToPrettyString(ent.Owner):entity}.");
 
         if (ent.Comp.StartRule && _ticker.RunLevel == GameRunLevel.InRound)
         {

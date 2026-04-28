@@ -19,7 +19,7 @@ public sealed partial class BuckledPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         return IsBuckled && _buckle.IsBuckled(owner) ||
                !IsBuckled && !_buckle.IsBuckled(owner);

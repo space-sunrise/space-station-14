@@ -54,7 +54,7 @@ namespace Content.Server.Forensics
             var soln = GetSolutionsDNA(ev.Solution);
             if (soln.Count > 0)
             {
-                var comp = EnsureComp<ForensicsComponent>(ent);
+                var comp = EnsureComp<ForensicsComponent>(ent.Owner);
                 foreach (string dna in soln)
                 {
                     comp.DNAs.Add(dna);
@@ -70,18 +70,18 @@ namespace Content.Server.Forensics
         private void OnFingerprintInit(Entity<FingerprintComponent> ent, ref MapInitEvent args)
         {
             if (ent.Comp.Fingerprint == null)
-                RandomizeFingerprint((ent, ent.Comp));
+                RandomizeFingerprint((ent.Owner, ent.Comp));
         }
 
         private void OnDNAInit(Entity<DnaComponent> ent, ref MapInitEvent args)
         {
             if (ent.Comp.DNA == null)
-                RandomizeDNA((ent, ent.Comp));
+                RandomizeDNA((ent.Owner, ent.Comp));
             else
             {
                 // If set manually (for example by cloning) we also need to inform the bloodstream of the correct DNA string so it can be updated
-                var ev = new GenerateDnaEvent { Owner = ent, DNA = ent.Comp.DNA };
-                RaiseLocalEvent(ent, ref ev);
+                var ev = new GenerateDnaEvent { Owner = ent.Owner, DNA = ent.Comp.DNA };
+                RaiseLocalEvent(ent.Owner, ref ev);
             }
         }
 
@@ -328,8 +328,8 @@ namespace Content.Server.Forensics
             ent.Comp.DNA = GenerateDNA();
             Dirty(ent);
 
-            var ev = new GenerateDnaEvent { Owner = ent, DNA = ent.Comp.DNA };
-            RaiseLocalEvent(ent, ref ev);
+            var ev = new GenerateDnaEvent { Owner = ent.Owner, DNA = ent.Comp.DNA };
+            RaiseLocalEvent(ent.Owner, ref ev);
         }
 
         public override void RandomizeFingerprint(Entity<FingerprintComponent?> ent)

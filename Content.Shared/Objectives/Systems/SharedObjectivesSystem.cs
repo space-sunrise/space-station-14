@@ -98,7 +98,7 @@ public abstract class SharedObjectivesSystem : EntitySystem
     /// </summary>
     public bool TryCreateObjective(Entity<MindComponent> mind, EntProtoId proto, [NotNullWhen(true)] out EntityUid? objective)
     {
-        objective = TryCreateObjective(mind, mind.Comp, proto);
+        objective = TryCreateObjective(mind.Owner, mind.Comp, proto);
         return objective != null;
     }
 

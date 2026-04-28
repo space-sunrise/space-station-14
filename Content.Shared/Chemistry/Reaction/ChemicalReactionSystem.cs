@@ -280,7 +280,7 @@ namespace Content.Shared.Chemistry.Reaction
                     return;
             }
 
-            Log.Error($"{nameof(Solution)} {soln} could not finish reacting in under {MaxReactionIterations} loops.");
+            Log.Error($"{nameof(Solution)} {soln.Owner} could not finish reacting in under {MaxReactionIterations} loops.");
         }
     }
 

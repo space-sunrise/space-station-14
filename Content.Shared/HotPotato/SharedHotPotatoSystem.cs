@@ -39,8 +39,8 @@ public abstract class SharedHotPotatoSystem : EntitySystem
     {
         EnsureComp<ActiveHotPotatoComponent>(ent);
         ent.Comp.CanTransfer = false;
-        _ambientSound.SetAmbience(ent, true);
-        _damageOnHolding.SetEnabled(ent, true);
+        _ambientSound.SetAmbience(ent.Owner, true);
+        _damageOnHolding.SetEnabled(ent.Owner, true);
         Dirty(ent);
     }
 
@@ -55,11 +55,11 @@ public abstract class SharedHotPotatoSystem : EntitySystem
             if (!TryComp<HandsComponent>(hitEntity, out var hands))
                 continue;
 
-            if (!_hands.IsHolding((hitEntity, hands), ent, out _) && _hands.TryForcePickupAnyHand(hitEntity, ent, handsComp: hands))
+            if (!_hands.IsHolding((hitEntity, hands), ent.Owner, out _) && _hands.TryForcePickupAnyHand(hitEntity, ent.Owner, handsComp: hands))
             {
                 _popup.PopupPredicted(
                     Loc.GetString("hot-potato-passed", ("from", Identity.Entity(args.User, EntityManager)), ("to", Identity.Entity(hitEntity, EntityManager))),
-                    ent,
+                    ent.Owner,
                     args.User,
                     PopupType.Medium);
                 break;
@@ -67,7 +67,7 @@ public abstract class SharedHotPotatoSystem : EntitySystem
 
             _popup.PopupClient(
                 Loc.GetString("hot-potato-failed", ("to", Identity.Entity(hitEntity, EntityManager))),
-                ent,
+                ent.Owner,
                 args.User,
                 PopupType.Medium);
 

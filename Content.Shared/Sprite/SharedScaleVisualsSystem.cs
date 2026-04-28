@@ -17,7 +17,7 @@ public abstract class SharedScaleVisualsSystem : EntitySystem
 
     private void OnMapInit(Entity<ScaleVisualsComponent> ent, ref MapInitEvent args)
     {
-        SetSpriteScale(ent, ent.Comp.Scale);
+        SetSpriteScale(ent.Owner, ent.Comp.Scale);
     }
 
     private void OnComponentShutdown(Entity<ScaleVisualsComponent> ent, ref ComponentShutdown args)
@@ -27,9 +27,9 @@ public abstract class SharedScaleVisualsSystem : EntitySystem
 
     protected virtual void ResetScale(Entity<ScaleVisualsComponent> ent)
     {
-        _appearance.RemoveData(ent, ScaleVisuals.Scale);
-        var ev = new ScaleEntityEvent(ent, Vector2.One);
-        RaiseLocalEvent(ent, ref ev);
+        _appearance.RemoveData(ent.Owner, ScaleVisuals.Scale);
+        var ev = new ScaleEntityEvent(ent.Owner, Vector2.One);
+        RaiseLocalEvent(ent.Owner, ref ev);
     }
 
     /// <summary>

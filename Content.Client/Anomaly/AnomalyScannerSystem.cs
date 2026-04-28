@@ -34,7 +34,7 @@ public sealed class AnomalyScannerSystem : SharedAnomalyScannerSystem
 
     private void OnComponentInit(Entity<AnomalyScannerScreenComponent> ent, ref ComponentInit args)
     {
-        if(!_sprite.TryGetLayer(ent, AnomalyScannerVisualLayers.Base, out var layer, true))
+        if(!_sprite.TryGetLayer(ent.Owner, AnomalyScannerVisualLayers.Base, out var layer, true))
             return;
 
         // Allocate the OwnedTexture
@@ -104,7 +104,7 @@ public sealed class AnomalyScannerSystem : SharedAnomalyScannerSystem
         }
         catch (IndexOutOfRangeException)
         {
-            Log.Warning($"Bar dimensions out of bounds with the texture on entity {ent}");
+            Log.Warning($"Bar dimensions out of bounds with the texture on entity {ent.Owner}");
         }
     }
 }

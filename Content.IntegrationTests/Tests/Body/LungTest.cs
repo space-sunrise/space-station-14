@@ -76,7 +76,7 @@ namespace Content.IntegrationTests.Tests.Body
             {
                 mapSys.CreateMap(out var mapId);
                 Assert.That(mapLoader.TryLoadGrid(mapId, testMapName, out var gridEnt));
-                grid = gridEnt!.Value;
+                grid = gridEnt!.Value.Owner;
             });
 
             Assert.That(grid, Is.Not.Null, $"Test blueprint {testMapName} not found.");
@@ -151,7 +151,7 @@ namespace Content.IntegrationTests.Tests.Body
             {
                 mapSys.CreateMap(out var mapId);
                 Assert.That(mapLoader.TryLoadGrid(mapId, testMapName, out var gridEnt));
-                grid = gridEnt!.Value;
+                grid = gridEnt!.Value.Owner;
             });
 
             Assert.That(grid, Is.Not.Null, $"Test blueprint {testMapName} not found.");

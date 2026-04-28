@@ -41,11 +41,11 @@ public sealed partial class ListenWireAction : BaseToggleWireAction
     }
     public override StatusLightState? GetLightState(Wire wire)
     {
-        if (GetValue(wire))
+        if (GetValue(wire.Owner))
             return StatusLightState.On;
         else
         {
-            if (TimeoutKey != null && _wires.HasData(wire, TimeoutKey))
+            if (TimeoutKey != null && _wires.HasData(wire.Owner, TimeoutKey))
                 return StatusLightState.BlinkingSlow;
             return StatusLightState.Off;
         }
@@ -70,22 +70,22 @@ public sealed partial class ListenWireAction : BaseToggleWireAction
 
     public override void Pulse(EntityUid user, Wire wire)
     {
-        if (!GetValue(wire) || !IsPowered(wire))
+        if (!GetValue(wire.Owner) || !IsPowered(wire.Owner))
             return;
 
         var chars = Loc.GetString("wire-listen-pulse-characters").ToCharArray();
         var noiseMsg = _chat.BuildGibberishString(chars, NoiseLength);
 
-        if (!EntityManager.TryGetComponent<RadioMicrophoneComponent>(wire, out var radioMicroPhoneComp))
+        if (!EntityManager.TryGetComponent<RadioMicrophoneComponent>(wire.Owner, out var radioMicroPhoneComp))
             return;
 
-        if (!EntityManager.TryGetComponent<VoiceOverrideComponent>(wire, out var voiceOverrideComp))
+        if (!EntityManager.TryGetComponent<VoiceOverrideComponent>(wire.Owner, out var voiceOverrideComp))
             return;
 
         // The reason for the override is to make the voice sound like its coming from electrity rather than the intercom.
         voiceOverrideComp.NameOverride = Loc.GetString("wire-listen-pulse-identifier");
         voiceOverrideComp.Enabled = true;
-        _radio.SendRadioMessage(wire, noiseMsg, _protoMan.Index<RadioChannelPrototype>(radioMicroPhoneComp.BroadcastChannel), wire);
+        _radio.SendRadioMessage(wire.Owner, noiseMsg, _protoMan.Index<RadioChannelPrototype>(radioMicroPhoneComp.BroadcastChannel), wire.Owner);
         voiceOverrideComp.Enabled = false;
 
         base.Pulse(user, wire);

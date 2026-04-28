@@ -171,14 +171,14 @@ namespace Content.Server.Kitchen.EntitySystems
         private void OnInteractUsing(Entity<ReagentGrinderComponent> entity, ref InteractUsingEvent args)
         {
             var heldEnt = args.Used;
-            var inputContainer = _containerSystem.EnsureContainer<Container>(entity, SharedReagentGrinder.InputContainerId);
+            var inputContainer = _containerSystem.EnsureContainer<Container>(entity.Owner, SharedReagentGrinder.InputContainerId);
 
             if (!HasComp<ExtractableComponent>(heldEnt))
             {
                 if (!HasComp<FitsInDispenserComponent>(heldEnt))
                 {
                     // This is ugly but we can't use whitelistFailPopup because there are 2 containers with different whitelists.
-                    _popupSystem.PopupEntity(Loc.GetString("reagent-grinder-component-cannot-put-entity-message"), entity, args.User);
+                    _popupSystem.PopupEntity(Loc.GetString("reagent-grinder-component-cannot-put-entity-message"), entity.Owner, args.User);
                 }
 
                 // Entity did NOT pass the whitelist for grind/juice.
@@ -237,15 +237,15 @@ namespace Content.Server.Kitchen.EntitySystems
 
         private void OnStartMessage(Entity<ReagentGrinderComponent> entity, ref ReagentGrinderStartMessage message)
         {
-            if (!this.IsPowered(entity, EntityManager) || HasComp<ActiveReagentGrinderComponent>(entity))
+            if (!this.IsPowered(entity.Owner, EntityManager) || HasComp<ActiveReagentGrinderComponent>(entity))
                 return;
 
-            DoWork(entity, entity.Comp, message.Program);
+            DoWork(entity.Owner, entity.Comp, message.Program);
         }
 
         private void OnEjectChamberAllMessage(Entity<ReagentGrinderComponent> entity, ref ReagentGrinderEjectChamberAllMessage message)
         {
-            var inputContainer = _containerSystem.EnsureContainer<Container>(entity, SharedReagentGrinder.InputContainerId);
+            var inputContainer = _containerSystem.EnsureContainer<Container>(entity.Owner, SharedReagentGrinder.InputContainerId);
 
             if (HasComp<ActiveReagentGrinderComponent>(entity) || inputContainer.ContainedEntities.Count <= 0)
                 return;
@@ -264,7 +264,7 @@ namespace Content.Server.Kitchen.EntitySystems
             if (HasComp<ActiveReagentGrinderComponent>(entity))
                 return;
 
-            var inputContainer = _containerSystem.EnsureContainer<Container>(entity, SharedReagentGrinder.InputContainerId);
+            var inputContainer = _containerSystem.EnsureContainer<Container>(entity.Owner, SharedReagentGrinder.InputContainerId);
             var ent = GetEntity(message.EntityId);
 
             if (_containerSystem.Remove(ent, inputContainer))
@@ -315,7 +315,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
         private void ClickSound(Entity<ReagentGrinderComponent> reagentGrinder)
         {
-            _audioSystem.PlayPvs(reagentGrinder.Comp.ClickSound, reagentGrinder, AudioParams.Default.WithVolume(-2f));
+            _audioSystem.PlayPvs(reagentGrinder.Comp.ClickSound, reagentGrinder.Owner, AudioParams.Default.WithVolume(-2f));
         }
 
         private Solution? GetGrindSolution(EntityUid uid)

@@ -172,7 +172,7 @@ public sealed class SalvageJobBoardSystem : EntitySystem
         if (TryComp<StationBankAccountComponent>(ent, out var stationBankAccount))
         {
             _cargo.UpdateBankAccount(
-                (ent, stationBankAccount),
+                (ent.Owner, stationBankAccount),
                 jobProto.Reward,
                 _cargo.CreateAccountDistribution((ent,  stationBankAccount)));
         }
@@ -244,7 +244,7 @@ public sealed class SalvageJobBoardSystem : EntitySystem
         if (args.UiKey is not SalvageJobBoardUiKey.Key)
             return;
 
-        if (_station.GetOwningStation(ent) is not { } station ||
+        if (_station.GetOwningStation(ent.Owner) is not { } station ||
             !TryComp<SalvageJobsDataComponent>(station, out var jobData))
             return;
 
@@ -289,6 +289,6 @@ public sealed class SalvageJobBoardSystem : EntitySystem
             GetRankProgression(stationEnt),
             GetAvailableJobs(stationEnt));
 
-        _ui.SetUiState(ent, SalvageJobBoardUiKey.Key, state);
+        _ui.SetUiState(ent.Owner, SalvageJobBoardUiKey.Key, state);
     }
 }

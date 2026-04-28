@@ -97,7 +97,7 @@ public sealed class SpaceNinjaSystem : SharedSpaceNinjaSystem
             && ninja.Suit != null
             && _powerCell.TryGetBatteryFromSlot(ninja.Suit.Value, out var battery))
         {
-            batteryUid = battery.Value;
+            batteryUid = battery.Value.Owner;
             batteryComp = battery.Value.Comp;
             return true;
         }
@@ -145,12 +145,12 @@ public sealed class SpaceNinjaSystem : SharedSpaceNinjaSystem
 
     private void OnThreatCalledIn(Entity<SpaceNinjaComponent> ent, ref ThreatCalledInEvent args)
     {
-        _codeCondition.SetCompleted(ent, ent.Comp.TerrorObjective);
+        _codeCondition.SetCompleted(ent.Owner, ent.Comp.TerrorObjective);
     }
 
     private void OnCriminalRecordsHacked(Entity<SpaceNinjaComponent> ent, ref CriminalRecordsHackedEvent args)
     {
-        _codeCondition.SetCompleted(ent, ent.Comp.MassArrestObjective);
+        _codeCondition.SetCompleted(ent.Owner, ent.Comp.MassArrestObjective);
     }
 
     /// <summary>
@@ -158,6 +158,6 @@ public sealed class SpaceNinjaSystem : SharedSpaceNinjaSystem
     /// </summary>
     public void DetonatedSpiderCharge(Entity<SpaceNinjaComponent> ent)
     {
-        _codeCondition.SetCompleted(ent, ent.Comp.SpiderChargeObjective);
+        _codeCondition.SetCompleted(ent.Owner, ent.Comp.SpiderChargeObjective);
     }
 }

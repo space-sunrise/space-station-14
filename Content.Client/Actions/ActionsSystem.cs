@@ -71,7 +71,7 @@ namespace Content.Client.Actions
         public override void UpdateAction(Entity<ActionComponent> ent)
         {
             // TODO: Decouple this.
-            ent.Comp.IconColor = _sharedCharges.GetCurrentCharges(ent) == 0 ? ent.Comp.DisabledIconColor : ent.Comp.OriginalIconColor;
+            ent.Comp.IconColor = _sharedCharges.GetCurrentCharges(ent.Owner) == 0 ? ent.Comp.DisabledIconColor : ent.Comp.OriginalIconColor;
             base.UpdateAction(ent);
             if (_playerManager.LocalEntity != ent.Comp.AttachedEntity)
                 return;
@@ -139,7 +139,7 @@ namespace Content.Client.Actions
 
         protected override void ActionAdded(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
         {
-            if (_playerManager.LocalEntity != performer)
+            if (_playerManager.LocalEntity != performer.Owner)
                 return;
 
             OnActionAdded?.Invoke(action);
@@ -148,7 +148,7 @@ namespace Content.Client.Actions
 
         protected override void ActionRemoved(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
         {
-            if (_playerManager.LocalEntity != performer)
+            if (_playerManager.LocalEntity != performer.Owner)
                 return;
 
             OnActionRemoved?.Invoke(action);

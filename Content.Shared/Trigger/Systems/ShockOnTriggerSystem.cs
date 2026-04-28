@@ -15,10 +15,10 @@ public sealed class ShockOnTriggerSystem : XOnTriggerSystem<ShockOnTriggerCompon
         if (ent.Comp.TargetContainer)
         {
             // shock whoever is wearing this clothing item
-            if (!_container.TryGetContainingContainer(ent, out var container))
+            if (!_container.TryGetContainingContainer(ent.Owner, out var container))
                 return;
 
-            target = container;
+            target = container.Owner;
         }
 
         _electrocution.TryDoElectrocution(target, null, ent.Comp.Damage, ent.Comp.Duration, true, ignoreInsulation: true);

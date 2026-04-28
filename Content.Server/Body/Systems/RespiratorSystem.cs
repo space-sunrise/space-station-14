@@ -155,7 +155,7 @@ public sealed class RespiratorSystem : EntitySystem
         };
         RaiseLocalEvent(entity, ref ev);
 
-        ev.Gas ??= _atmosSys.GetContainingMixture(entity, excite: true);
+        ev.Gas ??= _atmosSys.GetContainingMixture(entity.Owner, excite: true);
 
         if (ev.Gas is null)
             return;
@@ -181,7 +181,7 @@ public sealed class RespiratorSystem : EntitySystem
 
         if (ev.Gas is null)
         {
-            ev.Gas = _atmosSys.GetContainingMixture(entity, excite: true);
+            ev.Gas = _atmosSys.GetContainingMixture(entity.Owner, excite: true);
 
             // Walls and grids without atmos comp return null. I guess it makes sense to not be able to exhale in walls,
             // but this also means you cannot exhale on some grids.
@@ -231,7 +231,7 @@ public sealed class RespiratorSystem : EntitySystem
         };
         RaiseLocalEvent(ent, ref ev);
 
-        ev.Gas ??= _atmosSys.GetContainingMixture(ent, excite: true);
+        ev.Gas ??= _atmosSys.GetContainingMixture(ent.Owner, excite: true);
 
         // If there's no air to breathe or we can't metabolize it then internals should be on.
         return ev.Gas is not null && CanMetabolizeInhaledAir(ent, ev.Gas);
@@ -274,7 +274,7 @@ public sealed class RespiratorSystem : EntitySystem
         var saturation = 0f;
         foreach (var organ in organs)
         {
-            saturation += GetSaturation(solution, organ, out var toxic);
+            saturation += GetSaturation(solution, organ.Owner, out var toxic);
             if (!toxic)
                 continue;
 
@@ -391,7 +391,7 @@ public sealed class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles == 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} started suffocating");
 
-        _damageableSys.ChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false, ignoreResistances: true);
+        _damageableSys.ChangeDamage(ent.Owner, ent.Comp.Damage, interruptsDoAfters: false, ignoreResistances: true);
 
         if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
             return;
@@ -405,7 +405,7 @@ public sealed class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles >= 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} stopped suffocating");
 
-        _damageableSys.ChangeDamage(ent, ent.Comp.DamageRecovery);
+        _damageableSys.ChangeDamage(ent.Owner, ent.Comp.DamageRecovery);
 
         var ev = new StopSuffocatingEvent();
         RaiseLocalEvent(ent, ref ev);
@@ -417,7 +417,7 @@ public sealed class RespiratorSystem : EntitySystem
         var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
         foreach (var entity in organs)
         {
-            _alertsSystem.ShowAlert(ent, entity.Comp1.Alert);
+            _alertsSystem.ShowAlert(ent.Owner, entity.Comp1.Alert);
         }
     }
 
@@ -427,7 +427,7 @@ public sealed class RespiratorSystem : EntitySystem
         var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
         foreach (var entity in organs)
         {
-            _alertsSystem.ClearAlert(ent, entity.Comp1.Alert);
+            _alertsSystem.ClearAlert(ent.Owner, entity.Comp1.Alert);
         }
     }
 

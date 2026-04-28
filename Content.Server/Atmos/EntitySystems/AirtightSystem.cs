@@ -124,7 +124,7 @@ namespace Content.Server.Atmos.EntitySystems
         {
             var query = GetEntityQuery<AirtightComponent>();
             _explosionSystem.UpdateAirtightMap(grid, pos, grid);
-            _atmosphereSystem.InvalidateTile(grid, pos);
+            _atmosphereSystem.InvalidateTile(grid.Owner, pos);
         }
 
         private AtmosDirection Rotate(AtmosDirection myDirection, Angle myAngle)

@@ -25,7 +25,7 @@ namespace Content.Server.Power.Nodes
             {
                 if (node is CableTerminalNode
                     && dir != Direction.Invalid
-                    && xformQuery.GetComponent(node).LocalRotation.GetCardinalDir().GetOpposite() == dir)
+                    && xformQuery.GetComponent(node.Owner).LocalRotation.GetCardinalDir().GetOpposite() == dir)
                     yield return node;
             }
         }

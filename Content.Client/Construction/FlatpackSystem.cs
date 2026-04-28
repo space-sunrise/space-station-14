@@ -44,6 +44,6 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
         }
 
         if (color != null)
-            _sprite.LayerSetColor((ent, args.Sprite), FlatpackVisualLayers.Overlay, color.Value);
+            _sprite.LayerSetColor((ent.Owner, args.Sprite), FlatpackVisualLayers.Overlay, color.Value);
     }
 }

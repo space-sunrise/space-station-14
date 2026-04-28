@@ -136,14 +136,14 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
         foreach (var grid in _grids)
         {
-            EntManager.TryGetComponent(grid, out IFFComponent? iffComp);
+            EntManager.TryGetComponent(grid.Owner, out IFFComponent? iffComp);
 
-            if (grid != GridEntity && !_shuttles.CanDraw(grid, iffComp: iffComp))
+            if (grid.Owner != GridEntity && !_shuttles.CanDraw(grid.Owner, iffComp: iffComp))
                 continue;
 
-            var curGridToWorld = _xformSystem.GetWorldMatrix(grid);
+            var curGridToWorld = _xformSystem.GetWorldMatrix(grid.Owner);
             var curGridToView = curGridToWorld * worldToSelectedDock * selectedDockToView;
-            var color = _shuttles.GetIFFColor(grid, grid == GridEntity, component: iffComp);
+            var color = _shuttles.GetIFFColor(grid.Owner, grid.Owner == GridEntity, component: iffComp);
 
             DrawGrid(handle, curGridToView, grid, color);
 
@@ -230,7 +230,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                  * We don't want to draw stuff far away that's docked because it will just overlap our buttons
                  */
 
-                var canDraw = grid == GridEntity;
+                var canDraw = grid.Owner == GridEntity;
                 _dockButtons.TryGetValue(dock, out var dockButton);
 
                 // Rate limit

@@ -50,7 +50,7 @@ public sealed class LubedSystem : EntitySystem
         if (ent.Comp.SlipsLeft <= 0)
         {
             RemComp<LubedComponent>(ent);
-            _nameMod.RefreshNameModifiers(ent);
+            _nameMod.RefreshNameModifiers(ent.Owner);
             return;
         }
 

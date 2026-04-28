@@ -19,7 +19,7 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
 
     protected override void UpdateUi(Entity<GasPressurePumpComponent> ent)
     {
-        if (UserInterfaceSystem.TryGetOpenUi(ent, GasPressurePumpUiKey.Key, out var bui))
+        if (UserInterfaceSystem.TryGetOpenUi(ent.Owner, GasPressurePumpUiKey.Key, out var bui))
         {
             bui.Update();
         }

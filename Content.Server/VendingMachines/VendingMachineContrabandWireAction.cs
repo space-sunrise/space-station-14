@@ -23,7 +23,7 @@ public sealed partial class VendingMachineContrabandWireAction : BaseToggleWireA
 
     public override StatusLightState? GetLightState(Wire wire)
     {
-        if (EntityManager.TryGetComponent(wire, out VendingMachineComponent? vending))
+        if (EntityManager.TryGetComponent(wire.Owner, out VendingMachineComponent? vending))
         {
             return vending.Contraband
                 ? StatusLightState.BlinkingSlow

@@ -67,7 +67,7 @@ namespace Content.Shared.Friction
 
             foreach (var ent in PhysicsSystem.AwakeBodies)
             {
-                var uid = ent;
+                var uid = ent.Owner;
                 var body = ent.Comp1;
 
                 // Only apply friction when it's not a mob (or the mob doesn't have control)

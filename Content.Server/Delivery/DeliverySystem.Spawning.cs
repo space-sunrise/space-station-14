@@ -30,7 +30,7 @@ public sealed partial class DeliverySystem
 
     protected override void SpawnDeliveries(Entity<DeliverySpawnerComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent.Owner, ref ent.Comp))
             return;
 
         var coords = Transform(ent).Coordinates;
@@ -103,7 +103,7 @@ public sealed partial class DeliverySystem
         {
             var spawnerStation = _station.GetOwningStation(spawnerUid);
 
-            if (spawnerStation != ent)
+            if (spawnerStation != ent.Owner)
                 continue;
 
             if (!_power.IsPowered(spawnerUid))
@@ -121,7 +121,7 @@ public sealed partial class DeliverySystem
     private void AddDeliveriesToSpawner(Entity<DeliverySpawnerComponent> ent, int amount)
     {
         ent.Comp.ContainedDeliveryAmount += Math.Clamp(amount, 0, ent.Comp.MaxContainedDeliveryAmount - ent.Comp.ContainedDeliveryAmount);
-        _audio.PlayPvs(ent.Comp.SpawnSound, ent);
+        _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
         UpdateDeliverySpawnerVisuals(ent, ent.Comp.ContainedDeliveryAmount);
         Dirty(ent);
     }

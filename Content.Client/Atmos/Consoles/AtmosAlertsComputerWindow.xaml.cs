@@ -64,7 +64,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
         // Pass the owner to nav map
         _owner = owner;
-        NavMap = _owner;
+        NavMap.Owner = _owner;
 
         // Set nav map colors
         NavMap.WallColor = _wallColor;

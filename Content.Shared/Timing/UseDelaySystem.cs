@@ -67,7 +67,7 @@ public sealed class UseDelaySystem : EntitySystem
     /// </remarks>
     public bool SetLength(Entity<UseDelayComponent?> ent, TimeSpan length, string id = DefaultId)
     {
-        EnsureComp<UseDelayComponent>(ent, out var comp);
+        EnsureComp<UseDelayComponent>(ent.Owner, out var comp);
 
         if (comp.Delays.TryGetValue(id, out var entry))
         {
@@ -90,7 +90,7 @@ public sealed class UseDelaySystem : EntitySystem
     /// </summary>
     public bool IsDelayed(Entity<UseDelayComponent?> ent, string id = DefaultId)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
         if (!ent.Comp.Delays.TryGetValue(id, out var entry))
@@ -120,7 +120,7 @@ public sealed class UseDelaySystem : EntitySystem
     /// <returns></returns>
     public bool TryGetDelayInfo(Entity<UseDelayComponent?> ent, [NotNullWhen(true)] out UseDelayInfo? info, string id = DefaultId)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
         {
             info = null;
             return false;
@@ -153,7 +153,7 @@ public sealed class UseDelaySystem : EntitySystem
     /// Otherwise reset it and return true.</param>
     public bool TryResetDelay(Entity<UseDelayComponent> ent, bool checkDelayed = false, string id = DefaultId)
     {
-        if (checkDelayed && IsDelayed((ent, ent.Comp), id))
+        if (checkDelayed && IsDelayed((ent.Owner, ent.Comp), id))
             return false;
 
         if (!ent.Comp.Delays.TryGetValue(id, out var entry))

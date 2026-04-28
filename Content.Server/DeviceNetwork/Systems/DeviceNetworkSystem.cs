@@ -346,14 +346,14 @@ namespace Content.Server.DeviceNetwork.Systems
 
             foreach (var connection in connections)
             {
-                if (connection == packet.Sender)
+                if (connection.Owner == packet.Sender)
                     continue;
 
                 BeforePacketSentEvent beforeEv = new(packet.Sender, xform, senderPos, connection.NetIdEnum.ToString(), packet.Frequency);
-                RaiseLocalEvent(connection, beforeEv, false);
+                RaiseLocalEvent(connection.Owner, beforeEv, false);
 
                 if (!beforeEv.Cancelled)
-                    RaiseLocalEvent(connection, packet, false);
+                    RaiseLocalEvent(connection.Owner, packet, false);
                 else
                     beforeEv.Uncancel();
             }

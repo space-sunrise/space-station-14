@@ -140,12 +140,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
             foreach (var grid in _mapManager.GetAllGrids(mapId))
             {
-                if (!_fixturesQuery.TryGetComponent(grid, out var fixtures))
+                if (!_fixturesQuery.TryGetComponent(grid.Owner, out var fixtures))
                     continue;
 
                 // Don't want shuttles flying around now do we.
-                _shuttles.Disable(grid);
-                var pTransform = _physics.GetPhysicsTransform(grid);
+                _shuttles.Disable(grid.Owner);
+                var pTransform = _physics.GetPhysicsTransform(grid.Owner);
 
                 foreach (var fixture in fixtures.Fixtures.Values)
                 {

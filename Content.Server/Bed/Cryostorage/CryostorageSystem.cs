@@ -122,7 +122,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     private void UpdateCryostorageUIState(Entity<CryostorageComponent> ent)
     {
         var state = new CryostorageBuiState(GetAllContainedData(ent));
-        _ui.SetUiState(ent, CryostorageUIKey.Key, state);
+        _ui.SetUiState(ent.Owner, CryostorageUIKey.Key, state);
     }
 
     private void OnPlayerSpawned(Entity<CryostorageContainedComponent> ent, ref PlayerSpawnCompleteEvent args)
@@ -171,7 +171,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         var cryostorageEnt = ent.Comp.Cryostorage;
 
         var station = _station.GetOwningStation(ent);
-        var name = Name(ent);
+        var name = Name(ent.Owner);
 
         if (!TryComp<CryostorageComponent>(cryostorageEnt, out var cryostorageComponent))
             return;
@@ -241,7 +241,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         //     Loc.GetString(
         //         "earlyleave-cryo-announcement",
         //         ("character", name),
-        //         ("entity", ent), // gender things for supporting downstreams with other languages
+        //         ("entity", ent.Owner), // gender things for supporting downstreams with other languages
         //         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))
         //     ), Loc.GetString("earlyleave-cryo-sender"),
         //     playDefault: false,

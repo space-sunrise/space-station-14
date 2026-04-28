@@ -78,14 +78,14 @@ public sealed class GlueSystem : EntitySystem
             return false;
         }
 
-        if (HasComp<ItemComponent>(target) && _solutionContainer.TryGetSolution(entity, entity.Comp.Solution, out var solutionEntity, out _))
+        if (HasComp<ItemComponent>(target) && _solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out var solutionEntity, out _))
         {
             var quantity = _solutionContainer.RemoveReagent(solutionEntity.Value, entity.Comp.Reagent, entity.Comp.ConsumptionUnit);
             if (quantity > 0)
             {
-                _audio.PlayPredicted(entity.Comp.Squeeze, entity, actor);
+                _audio.PlayPredicted(entity.Comp.Squeeze, entity.Owner, actor);
                 _popup.PopupClient(Loc.GetString("glue-success", ("target", target)), actor, actor, PopupType.Medium);
-                _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(actor):actor} glued {ToPrettyString(target):subject} with {ToPrettyString(entity):tool}");
+                _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(actor):actor} glued {ToPrettyString(target):subject} with {ToPrettyString(entity.Owner):tool}");
                 var gluedComp = EnsureComp<GluedComponent>(target);
                 gluedComp.Duration = quantity.Double() * entity.Comp.DurationPerUnit;
                 Dirty(target, gluedComp);
@@ -116,7 +116,7 @@ public sealed class GlueSystem : EntitySystem
 
     private void OnGluedInit(Entity<GluedComponent> entity, ref ComponentInit args)
     {
-        _nameMod.RefreshNameModifiers(entity);
+        _nameMod.RefreshNameModifiers(entity.Owner);
     }
 
     private void OnHandPickUp(Entity<GluedComponent> entity, ref GotEquippedHandEvent args)
@@ -129,7 +129,7 @@ public sealed class GlueSystem : EntitySystem
         var comp = EnsureComp<UnremoveableComponent>(entity);
         comp.DeleteOnDrop = false;
         entity.Comp.Until = _timing.CurTime + entity.Comp.Duration;
-        Dirty(entity, comp);
+        Dirty(entity.Owner, comp);
         Dirty(entity);
     }
 

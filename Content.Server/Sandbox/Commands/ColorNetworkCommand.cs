@@ -75,10 +75,10 @@ namespace Content.Server.Sandbox.Commands
 
             foreach (var x in group.Nodes)
             {
-                if (!EntityManager.TryGetComponent(x, out AtmosPipeColorComponent? atmosPipeColorComponent))
+                if (!EntityManager.TryGetComponent(x.Owner, out AtmosPipeColorComponent? atmosPipeColorComponent))
                     continue;
 
-                _pipeColorSystem.SetColor(x, atmosPipeColorComponent, color);
+                _pipeColorSystem.SetColor(x.Owner, atmosPipeColorComponent, color);
             }
         }
     }

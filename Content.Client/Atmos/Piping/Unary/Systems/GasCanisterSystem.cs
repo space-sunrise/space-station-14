@@ -16,7 +16,7 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
 
     private void OnGasState(Entity<GasCanisterComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (UI.TryGetOpenUi<GasCanisterBoundUserInterface>(ent, GasCanisterUiKey.Key, out var bui))
+        if (UI.TryGetOpenUi<GasCanisterBoundUserInterface>(ent.Owner, GasCanisterUiKey.Key, out var bui))
         {
             bui.Update<GasCanisterBoundUserInterfaceState>();
         }

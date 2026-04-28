@@ -186,7 +186,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
 
         // The loaded template map may already have this marker (e.g. from prior load/reuse),
         // so we must not hard-fail on duplicate component add.
-        comp = EnsureComp<DungeonAtlasTemplateComponent>(map.Value); // Sunrise-Edit
+        comp = EnsureComp<DungeonAtlasTemplateComponent>(map.Value.Owner); // Sunrise-Edit
         comp.Path = proto.AtlasPath;
         return map.Value.Comp.MapId;
     }

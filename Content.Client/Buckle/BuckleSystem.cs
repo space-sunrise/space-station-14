@@ -89,7 +89,7 @@ internal sealed class BuckleSystem : SharedBuckleSystem
         if (!TryComp<SpriteComponent>(args.Strap, out var strapSprite))
             return;
 
-        if (!TryComp<SpriteComponent>(ent, out var buckledSprite))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
 
         var angle = _xformSystem.GetWorldRotation(args.Strap) + _eye.CurrentEye.Rotation; // Get true screen position, or close enough
@@ -98,7 +98,7 @@ internal sealed class BuckleSystem : SharedBuckleSystem
             return;
 
         ent.Comp.OriginalDrawDepth ??= buckledSprite.DrawDepth;
-        _sprite.SetDrawDepth((ent, buckledSprite), strapSprite.DrawDepth - 1);
+        _sprite.SetDrawDepth((ent.Owner, buckledSprite), strapSprite.DrawDepth - 1);
     }
 
     /// <summary>
@@ -106,13 +106,13 @@ internal sealed class BuckleSystem : SharedBuckleSystem
     /// </summary>
     private void OnUnbuckledEvent(Entity<BuckleComponent> ent, ref UnbuckledEvent args)
     {
-        if (!TryComp<SpriteComponent>(ent, out var buckledSprite))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
 
         if (!ent.Comp.OriginalDrawDepth.HasValue)
             return;
 
-        _sprite.SetDrawDepth((ent, buckledSprite), ent.Comp.OriginalDrawDepth.Value);
+        _sprite.SetDrawDepth((ent.Owner, buckledSprite), ent.Comp.OriginalDrawDepth.Value);
         ent.Comp.OriginalDrawDepth = null;
     }
 

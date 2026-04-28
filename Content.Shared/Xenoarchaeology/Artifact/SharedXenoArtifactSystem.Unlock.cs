@@ -54,7 +54,7 @@ public abstract partial class SharedXenoArtifactSystem
 
         if (!HasUnlockedPredecessor((artifact.Value, artiComp), ent)
             // unlocked final nodes should not listen for unlocking
-            || (!ent.Comp.Locked && GetSuccessorNodes((artifact.Value, artiComp), (ent, ent.Comp)).Count == 0)
+            || (!ent.Comp.Locked && GetSuccessorNodes((artifact.Value, artiComp), (ent.Owner, ent.Comp)).Count == 0)
             )
             return false;
 
@@ -92,7 +92,7 @@ public abstract partial class SharedXenoArtifactSystem
         if (_net.IsServer)
         {
             _popup.PopupEntity(Loc.GetString(unlockAttemptResultMsg), ent);
-            _audio.PlayPvs(soundEffect, ent);
+            _audio.PlayPvs(soundEffect, ent.Owner);
         }
 
         RemComp(ent, unlockingComponent);
@@ -157,7 +157,7 @@ public abstract partial class SharedXenoArtifactSystem
     private void OnUnlockingStarted(Entity<XenoArtifactUnlockingComponent> ent, ref MapInitEvent args)
     {
         var unlockingStartedEvent = new ArtifactUnlockingStartedEvent();
-        RaiseLocalEvent(ent, ref unlockingStartedEvent);
+        RaiseLocalEvent(ent.Owner, ref unlockingStartedEvent);
     }
 
     private void RaiseUnlockingFinished(
@@ -166,7 +166,7 @@ public abstract partial class SharedXenoArtifactSystem
     )
     {
         var unlockingFinishedEvent = new ArtifactUnlockingFinishedEvent(node);
-        RaiseLocalEvent(ent, ref unlockingFinishedEvent);
+        RaiseLocalEvent(ent.Owner, ref unlockingFinishedEvent);
     }
 
 }

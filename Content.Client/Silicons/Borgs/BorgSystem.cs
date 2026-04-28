@@ -35,7 +35,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
     public override void UpdateUI(Entity<BorgChassisComponent?> chassis)
     {
-        if (_ui.TryGetOpenUi(chassis, BorgUiKey.Key, out var bui))
+        if (_ui.TryGetOpenUi(chassis.Owner, BorgUiKey.Key, out var bui))
             bui.Update();
     }
 
@@ -44,7 +44,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
         if (args.Sprite == null)
             return;
 
-        UpdateBorgAppearance((chassis, chassis.Comp, args.Component, args.Sprite));
+        UpdateBorgAppearance((chassis.Owner, chassis.Comp, args.Component, args.Sprite));
     }
 
     protected override void OnInserted(Entity<BorgChassisComponent> chassis, ref EntInsertedIntoContainerMessage args)
@@ -53,9 +53,9 @@ public sealed partial class BorgSystem : SharedBorgSystem
             return;
 
         base.OnInserted(chassis, ref args);
-        UpdateUI(chassis);
+        UpdateUI(chassis.AsNullable());
         UpdateBorgAppearance((chassis, chassis.Comp));
-        UpdateBatteryAlert((chassis, chassis.Comp, null));
+        UpdateBatteryAlert((chassis.Owner, chassis.Comp, null));
     }
 
     protected override void OnRemoved(Entity<BorgChassisComponent> chassis, ref EntRemovedFromContainerMessage args)
@@ -64,9 +64,9 @@ public sealed partial class BorgSystem : SharedBorgSystem
             return;
 
         base.OnRemoved(chassis, ref args);
-        UpdateUI(chassis);
+        UpdateUI(chassis.AsNullable());
         UpdateBorgAppearance((chassis, chassis.Comp));
-        UpdateBatteryAlert((chassis, chassis.Comp, null));
+        UpdateBatteryAlert((chassis.Owner, chassis.Comp, null));
     }
 
     private void UpdateBorgAppearance(Entity<BorgChassisComponent?, AppearanceComponent?, SpriteComponent?> ent)
@@ -74,20 +74,20 @@ public sealed partial class BorgSystem : SharedBorgSystem
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, ref ent.Comp3))
             return;
 
-        if (_appearance.TryGetData<MobState>(ent, MobStateVisuals.State, out var state, ent.Comp2))
+        if (_appearance.TryGetData<MobState>(ent.Owner, MobStateVisuals.State, out var state, ent.Comp2))
         {
             if (state != MobState.Alive)
             {
-                _sprite.LayerSetVisible((ent, ent.Comp3), BorgVisualLayers.Light, false);
+                _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, false);
                 return;
             }
         }
 
-        if (!_appearance.TryGetData<bool>(ent, BorgVisuals.HasPlayer, out var hasPlayer, ent.Comp2))
+        if (!_appearance.TryGetData<bool>(ent.Owner, BorgVisuals.HasPlayer, out var hasPlayer, ent.Comp2))
             hasPlayer = false;
 
-        _sprite.LayerSetVisible((ent, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
-        _sprite.LayerSetRsiState((ent, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
+        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)

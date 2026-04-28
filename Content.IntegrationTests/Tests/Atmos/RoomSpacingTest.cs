@@ -58,7 +58,7 @@ public sealed class RoomSpacingTest : AtmosTest
         {
             for (var i = 0; i < 50; i++)
             {
-                SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid, SAtmos.AtmosTickRate);
+                SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid.Owner, SAtmos.AtmosTickRate);
             }
         });
 
@@ -111,7 +111,7 @@ public sealed class RoomSpacingTest : AtmosTest
         {
             for (var i = 0; i < 50; i++)
             {
-                SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid, SAtmos.AtmosTickRate);
+                SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid.Owner, SAtmos.AtmosTickRate);
             }
         });
 

@@ -242,7 +242,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     {
         entry = default;
 
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent.Owner, ref ent.Comp))
             return false;
 
         // Sunrise-Start

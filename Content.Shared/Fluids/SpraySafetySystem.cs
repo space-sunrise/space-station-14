@@ -35,7 +35,7 @@ public sealed class SpraySafetySystem : EntitySystem
 
     private void OnSprayAttempt(Entity<SpraySafetyComponent> ent, ref SprayAttemptEvent args)
     {
-        if (_toggle.IsActivated(ent) || args.Cancelled)
+        if (_toggle.IsActivated(ent.Owner) || args.Cancelled)
             return;
 
         args.Cancel();

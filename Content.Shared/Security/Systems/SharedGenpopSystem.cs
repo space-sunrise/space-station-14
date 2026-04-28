@@ -59,7 +59,7 @@ public abstract class SharedGenpopSystem : EntitySystem
         // Instead, we just fill in the spot temporarily til the checks pass.
         ent.Comp.LinkedId = EntityUid.Invalid;
 
-        _lock.Lock(ent, null);
+        _lock.Lock(ent.Owner, null);
         _entityStorage.CloseStorage(ent);
 
         CreateId(ent, args.Name, args.Sentence, args.Crime);
@@ -87,7 +87,7 @@ public abstract class SharedGenpopSystem : EntitySystem
 
         // my heart yearns for this to be predicted but for some reason opening an entitystorage via
         // verb does not predict it properly.
-        _userInterface.TryOpenUi(ent, GenpopLockerUiKey.Key, user);
+        _userInterface.TryOpenUi(ent.Owner, GenpopLockerUiKey.Key, user);
     }
 
     private void OnLockToggleAttempt(Entity<GenpopLockerComponent> ent, ref LockToggleAttemptEvent args)
@@ -199,8 +199,8 @@ public abstract class SharedGenpopSystem : EntitySystem
         MetaDataSystem.SetEntityDescription(ent, Loc.GetString("genpop-locker-desc-default"), metaData);
 
         ent.Comp.LinkedId = null;
-        _lock.Unlock(ent, user);
-        _entityStorage.OpenStorage(ent);
+        _lock.Unlock(ent.Owner, user);
+        _entityStorage.OpenStorage(ent.Owner);
 
         if (TryComp<ExpireIdCardComponent>(ent.Comp.LinkedId, out var expire))
             IdCard.ExpireId((ent.Comp.LinkedId.Value, expire));

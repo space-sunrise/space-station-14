@@ -51,7 +51,7 @@ public sealed class StunSystem : SharedStunSystem
         if (!TryComp<SpriteComponent>(entity, out var sprite))
             return;
 
-        var spriteEntity = (entity, sprite);
+        var spriteEntity = (entity.Owner, sprite);
 
         _spriteSystem.LayerMapReserve(spriteEntity, StunVisualLayers.StamCrit);
         _spriteSystem.LayerSetVisible(spriteEntity, StunVisualLayers.StamCrit, false);

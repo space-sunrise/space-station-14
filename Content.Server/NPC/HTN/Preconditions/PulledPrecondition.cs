@@ -20,7 +20,7 @@ public sealed partial class PulledPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         return IsPulled && _pulling.IsPulled(owner) ||
                !IsPulled && !_pulling.IsPulled(owner);

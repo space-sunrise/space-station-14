@@ -239,14 +239,14 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             }
         }
 
-        if (_antag.AllAntagsAlive(ent))
+        if (_antag.AllAntagsAlive(ent.Owner))
         {
             SetWinType(ent, WinType.OpsMinor);
             ent.Comp.WinConditions.Add(WinCondition.AllNukiesAlive);
             return;
         }
 
-        ent.Comp.WinConditions.Add(_antag.AnyAliveAntags(ent)
+        ent.Comp.WinConditions.Add(_antag.AnyAliveAntags(ent.Owner)
             ? WinCondition.SomeNukiesAlive
             : WinCondition.AllNukiesDead);
 
@@ -409,7 +409,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             if (!_tag.HasTag(uid, NukeOpsUplinkTagPrototype))
                 continue;
 
-            if (GetOutpost(nukieRule) is not { } outpost)
+            if (GetOutpost(nukieRule.Owner) is not { } outpost)
                 continue;
 
             if (Transform(uid).MapID != Transform(outpost).MapID) // Will receive bonus TC only on their start outpost
@@ -592,7 +592,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         var query = EntityQueryEnumerator<NukeOpsShuttleComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.AssociatedRule == ent)
+            if (comp.AssociatedRule == ent.Owner)
                 return uid;
         }
 

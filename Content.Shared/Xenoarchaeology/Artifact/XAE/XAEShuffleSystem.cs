@@ -36,7 +36,7 @@ public sealed class XAEShuffleSystem : BaseXAESystem<XAEShuffleComponent>
 
         List<Entity<TransformComponent>> toShuffle = new();
         _entities.Clear();
-        _lookup.GetEntitiesInRange(ent, ent.Comp.Radius, _entities, LookupFlags.Dynamic | LookupFlags.Sundries);
+        _lookup.GetEntitiesInRange(ent.Owner, ent.Comp.Radius, _entities, LookupFlags.Dynamic | LookupFlags.Sundries);
         foreach (var entity in _entities)
         {
             if (!_mobState.HasComponent(entity))

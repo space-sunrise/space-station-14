@@ -58,7 +58,7 @@ public sealed class CursedMaskSystem : SharedCursedMaskSystem
 
         ent.Comp.HasNpc = !EnsureComp<HTNComponent>(wearer, out var htn);
         htn.RootTask = new HTNCompoundTask { Task = TakeoverRootTask };
-        htn.Blackboard.SetValue(NPCBlackboard, wearer);
+        htn.Blackboard.SetValue(NPCBlackboard.Owner, wearer);
         _npc.WakeNPC(wearer, htn);
         _htn.Replan(htn);
     }

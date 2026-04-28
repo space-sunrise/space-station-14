@@ -181,7 +181,7 @@ public sealed class PowerChargeSystem : EntitySystem
     private void UpdateUI(Entity<PowerChargeComponent, ApcPowerReceiverComponent> ent, float chargeRate)
     {
         var (_, component, powerReceiver) = ent;
-        if (!_uiSystem.IsUiOpen(ent, component.UiKey))
+        if (!_uiSystem.IsUiOpen(ent.Owner, component.UiKey))
             return;
 
         var chargeTarget = chargeRate < 0 ? 0 : component.MaxCharge;
@@ -217,7 +217,7 @@ public sealed class PowerChargeSystem : EntitySystem
         );
 
         _uiSystem.SetUiState(
-            ent,
+            ent.Owner,
             component.UiKey,
             state);
 

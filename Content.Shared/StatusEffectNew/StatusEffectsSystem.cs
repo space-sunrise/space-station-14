@@ -117,7 +117,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
     private void OnRejuvenate(Entity<RejuvenateRemovedStatusEffectComponent> ent,
         ref StatusEffectRelayedEvent<RejuvenateEvent> args)
     {
-        PredictedQueueDel(ent);
+        PredictedQueueDel(ent.Owner);
     }
 
     /// <summary>

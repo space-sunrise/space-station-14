@@ -44,7 +44,7 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
 
     protected override void UpdateUi(Entity<SprayPainterComponent> ent)
     {
-        if (_ui.TryGetOpenUi(ent, SprayPainterUiKey.Key, out var bui))
+        if (_ui.TryGetOpenUi(ent.Owner, SprayPainterUiKey.Key, out var bui))
             bui.Update();
     }
 

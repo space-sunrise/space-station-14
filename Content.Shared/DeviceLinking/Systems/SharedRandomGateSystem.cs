@@ -27,9 +27,9 @@ public abstract class SharedRandomGateSystem : EntitySystem
 
     private void UpdateUI(Entity<RandomGateComponent> ent)
     {
-        if (!_ui.HasUi(ent, RandomGateUiKey.Key))
+        if (!_ui.HasUi(ent.Owner, RandomGateUiKey.Key))
             return;
 
-        _ui.SetUiState(ent, RandomGateUiKey.Key, new RandomGateBoundUserInterfaceState(ent.Comp.SuccessProbability));
+        _ui.SetUiState(ent.Owner, RandomGateUiKey.Key, new RandomGateBoundUserInterfaceState(ent.Comp.SuccessProbability));
     }
 }

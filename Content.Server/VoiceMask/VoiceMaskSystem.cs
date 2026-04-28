@@ -84,8 +84,8 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     {
         if (args.Locked)
             _actions.RemoveAction(ent.Comp.ActionEntity);
-        else if (_container.TryGetContainingContainer(ent, out var container))
-            _actions.AddAction(container, ref ent.Comp.ActionEntity, ent.Comp.Action, ent);
+        else if (_container.TryGetContainingContainer(ent.Owner, out var container))
+            _actions.AddAction(container.Owner, ref ent.Comp.ActionEntity, ent.Comp.Action, ent);
     }
 
     #region User inputs from UI
@@ -156,7 +156,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     private void UpdateUI(Entity<VoiceMaskComponent> entity)
     {
         if (_uiSystem.HasUi(entity, VoiceMaskUIKey.Key))
-            _uiSystem.SetUiState(entity, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceId, entity.Comp.VoiceMaskSpeechVerb));
+            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceId, entity.Comp.VoiceMaskSpeechVerb));
     }
     #endregion
 

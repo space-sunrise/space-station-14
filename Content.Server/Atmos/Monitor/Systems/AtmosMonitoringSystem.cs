@@ -63,7 +63,7 @@ public sealed class AtmosMonitorSystem : EntitySystem
     private void OnAtmosDeviceTileChangedEvent(Entity<AtmosMonitorComponent> ent, ref AtmosDeviceTileChangedEvent args)
     {
         if (!ent.Comp.MonitorsPipeNet)
-            ent.Comp.TileGas = _atmosphereSystem.GetContainingMixture(ent, true);
+            ent.Comp.TileGas = _atmosphereSystem.GetContainingMixture(ent.Owner, true);
     }
 
     private void OnAtmosDeviceLeaveAtmosphere(EntityUid uid, AtmosMonitorComponent atmosMonitor, ref AtmosDeviceDisabledEvent args)

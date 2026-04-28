@@ -28,9 +28,9 @@ public sealed partial class ArcadeOverflowWireAction : BaseToggleWireAction
 
     public override StatusLightState? GetLightState(Wire wire)
     {
-        if (EntityManager.HasComponent<SpaceVillainArcadeComponent>(wire))
+        if (EntityManager.HasComponent<SpaceVillainArcadeComponent>(wire.Owner))
         {
-            return !GetValue(wire)
+            return !GetValue(wire.Owner)
                 ? StatusLightState.BlinkingSlow
                 : StatusLightState.On;
         }

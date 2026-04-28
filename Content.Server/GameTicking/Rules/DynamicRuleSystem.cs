@@ -66,7 +66,7 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
     /// </summary>
     private IEnumerable<EntProtoId> GetRuleSpawns(Entity<DynamicRuleComponent> entity)
     {
-        UpdateBudget((entity, entity.Comp));
+        UpdateBudget((entity.Owner, entity.Comp));
         var ctx = new EntityTableContext(new Dictionary<string, object>
         {
             { HasBudgetCondition.BudgetContextKey, entity.Comp.Budget },
@@ -143,7 +143,7 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
         if (!Resolve(entity, ref entity.Comp))
             return null;
 
-        UpdateBudget((entity, entity.Comp));
+        UpdateBudget((entity.Owner, entity.Comp));
         return entity.Comp.Budget;
     }
 
@@ -152,7 +152,7 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
         if (!Resolve(entity, ref entity.Comp))
             return null;
 
-        UpdateBudget((entity, entity.Comp));
+        UpdateBudget((entity.Owner, entity.Comp));
         entity.Comp.Budget += amount;
         return entity.Comp.Budget;
     }
@@ -172,7 +172,7 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
         if (!Resolve(entity, ref entity.Comp))
             return new List<EntProtoId>();
 
-        return GetRuleSpawns((entity, entity.Comp));
+        return GetRuleSpawns((entity.Owner, entity.Comp));
     }
 
     public IEnumerable<EntityUid> ExecuteNow(Entity<DynamicRuleComponent?> entity)
@@ -180,7 +180,7 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
         if (!Resolve(entity, ref entity.Comp))
             return new List<EntityUid>();
 
-        return Execute((entity, entity.Comp));
+        return Execute((entity.Owner, entity.Comp));
     }
 
     public IEnumerable<EntityUid> Rules(Entity<DynamicRuleComponent?> entity)

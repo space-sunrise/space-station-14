@@ -26,7 +26,7 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
         if (args.Current is not VendingMachineComponentState state)
             return;
 
-        var uid = entity;
+        var uid = entity.Owner;
         var component = entity.Comp;
 
         component.Contraband = state.Contraband;
@@ -77,7 +77,7 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
         if (!Resolve(entity, ref entity.Comp))
             return;
 
-        if (UISystem.TryGetOpenUi<VendingMachineBoundUserInterface>(entity,
+        if (UISystem.TryGetOpenUi<VendingMachineBoundUserInterface>(entity.Owner,
                 VendingMachineUiKey.Key,
                 out var bui))
         {
@@ -154,9 +154,9 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
         if (string.IsNullOrEmpty(state))
             return;
 
-        _sprite.LayerSetVisible(sprite, layer, true);
-        _sprite.LayerSetAutoAnimated(sprite, layer, true);
-        _sprite.LayerSetRsiState(sprite, layer, state);
+        _sprite.LayerSetVisible(sprite.AsNullable(), layer, true);
+        _sprite.LayerSetAutoAnimated(sprite.AsNullable(), layer, true);
+        _sprite.LayerSetRsiState(sprite.AsNullable(), layer, state);
     }
 
     private void PlayAnimation(EntityUid uid, VendingMachineVisualLayers layer, string? state, float animationTime, SpriteComponent sprite)
@@ -199,9 +199,9 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
 
     private void HideLayer(VendingMachineVisualLayers layer, Entity<SpriteComponent> sprite)
     {
-        if (!_sprite.LayerMapTryGet(sprite, layer, out var actualLayer, false))
+        if (!_sprite.LayerMapTryGet(sprite.AsNullable(), layer, out var actualLayer, false))
             return;
 
-        _sprite.LayerSetVisible(sprite, actualLayer, false);
+        _sprite.LayerSetVisible(sprite.AsNullable(), actualLayer, false);
     }
 }

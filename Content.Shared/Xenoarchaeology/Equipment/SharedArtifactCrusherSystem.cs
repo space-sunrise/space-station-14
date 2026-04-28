@@ -89,7 +89,7 @@ public abstract class SharedArtifactCrusherSystem : EntitySystem
             entityStorageComp.Contents.ContainedEntities.Count == 0)
             return;
 
-        if (!_power.IsPowered(ent))
+        if (!_power.IsPowered(ent.Owner))
             return;
 
         var user = args.User;

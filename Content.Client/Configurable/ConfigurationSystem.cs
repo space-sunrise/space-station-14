@@ -15,7 +15,7 @@ public sealed class ConfigurationSystem : SharedConfigurationSystem
 
     private void OnConfigurationState(Entity<ConfigurationComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (_uiSystem.TryGetOpenUi<ConfigurationBoundUserInterface>(ent,
+        if (_uiSystem.TryGetOpenUi<ConfigurationBoundUserInterface>(ent.Owner,
                 ConfigurationComponent.ConfigurationUiKey.Key,
                 out var bui))
         {

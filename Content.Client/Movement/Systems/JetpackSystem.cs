@@ -68,7 +68,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
         var uidXform = Transform(uid);
         // Don't show particles unless the user is moving.
         if (Container.TryGetContainingContainer((uid, uidXform, null), out var container) &&
-            TryComp<PhysicsComponent>(container, out var body) &&
+            TryComp<PhysicsComponent>(container.Owner, out var body) &&
             body.LinearVelocity.LengthSquared() < 1f)
         {
             return;

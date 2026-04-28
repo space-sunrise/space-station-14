@@ -207,7 +207,7 @@ public sealed partial class NpcFactionSystem : EntitySystem
             return hostiles;
 
         // ignore anything from enemy faction that we are explicitly friendly towards
-        var faction = (ent, ent.Comp2);
+        var faction = (ent.Owner, ent.Comp2);
         return hostiles
             .Union(GetHostiles(faction))
             .Where(target => !IsIgnored(faction, target));
@@ -226,13 +226,13 @@ public sealed partial class NpcFactionSystem : EntitySystem
         var xform = Transform(entity);
         foreach (var ent in _lookup.GetEntitiesInRange<NpcFactionMemberComponent>(_xform.GetMapCoordinates((entity, xform)), range))
         {
-            if (ent == entity)
+            if (ent.Owner == entity)
                 continue;
 
             if (!factions.Overlaps(ent.Comp.Factions))
                 continue;
 
-            yield return ent;
+            yield return ent.Owner;
         }
     }
 

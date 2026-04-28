@@ -23,7 +23,7 @@ public sealed class ExtraHandsEquipmentSystem : EntitySystem
         foreach (var (handName, hand) in ent.Comp.Hands)
         {
             // add the NetEntity id to the container name to prevent multiple items with this component from conflicting
-            var handId = $"{GetNetEntity(ent).Id}-{handName}";
+            var handId = $"{GetNetEntity(ent.Owner).Id}-{handName}";
             _hands.AddHand((args.Equipee, handsComp), handId, hand.Location);
         }
     }
@@ -36,7 +36,7 @@ public sealed class ExtraHandsEquipmentSystem : EntitySystem
         foreach (var handName in ent.Comp.Hands.Keys)
         {
             // add the NetEntity id to the container name to prevent multiple items with this component from conflicting
-            var handId = $"{GetNetEntity(ent).Id}-{handName}";
+            var handId = $"{GetNetEntity(ent.Owner).Id}-{handName}";
             _hands.RemoveHand((args.Equipee, handsComp), handId);
         }
     }

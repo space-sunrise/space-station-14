@@ -228,7 +228,7 @@ namespace Content.Server.Medical.BiomassReclaimer
             var inventory = _inventory.GetHandOrInventoryEntities(toProcess);
             foreach (var item in inventory)
             {
-                _transform.DropNextTo(item, ent);
+                _transform.DropNextTo(item, ent.Owner);
             }
 
             QueueDel(toProcess);

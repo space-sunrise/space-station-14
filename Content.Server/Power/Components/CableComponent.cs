@@ -42,7 +42,7 @@ public sealed partial class CableComponent : Component
 public readonly struct CableAnchorStateChangedEvent
 {
     public readonly TransformComponent Transform;
-    public EntityUid Entity => Transform;
+    public EntityUid Entity => Transform.Owner;
     public bool Anchored => Transform.Anchored;
 
     /// <summary>

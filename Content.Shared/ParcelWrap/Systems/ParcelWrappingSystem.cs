@@ -48,9 +48,9 @@ public sealed partial class ParcelWrappingSystem : EntitySystem
     {
         return
             // Wrapping cannot wrap itself
-            wrapper != target &&
+            wrapper.Owner != target &&
             // Wrapper should never be empty, but may as well make sure.
-            !_charges.IsEmpty(wrapper) &&
+            !_charges.IsEmpty(wrapper.Owner) &&
             _whitelist.CheckBoth(target, wrapper.Comp.Blacklist, wrapper.Comp.Whitelist);
     }
 }

@@ -36,7 +36,7 @@ namespace Content.Server.Nutrition.EntitySystems
             if (!HasComp<SolutionContainerManagerComponent>(entity))
                 return;
 
-            if (_solutionContainerSystem.TryGetSolution(entity, entity.Comp.Solution, out _, out var solution))
+            if (_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
                 UpdateTags(entity, solution);
         }
 
@@ -44,11 +44,11 @@ namespace Content.Server.Nutrition.EntitySystems
         {
             if (solution.Volume <= 0)
             {
-                _tagSystem.AddTag(entity, TrashTag);
+                _tagSystem.AddTag(entity.Owner, TrashTag);
                 return;
             }
 
-            _tagSystem.RemoveTag(entity, TrashTag);
+            _tagSystem.RemoveTag(entity.Owner, TrashTag);
         }
     }
 }

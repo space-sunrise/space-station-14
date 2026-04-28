@@ -58,17 +58,17 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
     private void OnStrapped(Entity<CanSleepOnBuckleComponent> bed, ref StrappedEvent args)
     {
         var canSleep = EnsureComp<CanSleepComponent>(args.Buckle);
-        _actionsSystem.AddAction(args.Buckle, ref canSleep.SleepAction, SleepingSystem.SleepActionId, args.Buckle);
+        _actionsSystem.AddAction(args.Buckle.Owner, ref canSleep.SleepAction, SleepingSystem.SleepActionId, args.Buckle.Owner);
     }
 
     private void OnUnstrapped(Entity<CanSleepOnBuckleComponent> bed, ref UnstrappedEvent args)
     {
-        if (!TryComp<CanSleepComponent>(args.Buckle, out var canSleep))
+        if (!TryComp<CanSleepComponent>(args.Buckle.Owner, out var canSleep))
             return;
 
-        RemComp<CanSleepComponent>(args.Buckle);
-        _actionsSystem.RemoveAction(args.Buckle, canSleep.SleepAction);
-        _sleepingSystem.TryWaking(args.Buckle);
+        RemComp<CanSleepComponent>(args.Buckle.Owner);
+        _actionsSystem.RemoveAction(args.Buckle.Owner, canSleep.SleepAction);
+        _sleepingSystem.TryWaking(args.Buckle.Owner);
         if (canSleep.SleepAction != null)
             _actConts.RemoveAction(canSleep.SleepAction.Value);
     }
@@ -77,7 +77,7 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
     // Sunrise-Edit
     // private void OnHealMapInit(Entity<HealOnBuckleComponent> ent, ref MapInitEvent args)
     // {
-    //     _actConts.EnsureAction(ent, ref ent.Comp.SleepAction, SleepingSystem.SleepActionId);
+    //     _actConts.EnsureAction(ent.Owner, ref ent.Comp.SleepAction, SleepingSystem.SleepActionId);
     //     Dirty(ent);
     // }
 
@@ -91,10 +91,10 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
     {
         // Sunrise-Edit
         // If the entity being unbuckled is terminating, we shouldn't try to act upon it, as some components may be gone
-        //if (!Terminating(args.Buckle))
+        //if (!Terminating(args.Buckle.Owner))
         //{
-        //    _actionsSystem.RemoveAction(args.Buckle, bed.Comp.SleepAction);
-        //    _sleepingSystem.TryWaking(args.Buckle);
+        //    _actionsSystem.RemoveAction(args.Buckle.Owner, bed.Comp.SleepAction);
+        //    _sleepingSystem.TryWaking(args.Buckle.Owner);
         //}
         RemComp<HealOnBuckleHealingComponent>(bed);
     }
@@ -120,7 +120,7 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
             return;
 
         ent.Comp.Multiplier = 1f / ent.Comp.Multiplier;
-        UpdateMetabolisms(ent);
+        UpdateMetabolisms(ent.Owner);
         Dirty(ent);
 
         args.Handled = true;
@@ -128,7 +128,7 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
 
     private void OnPowerChanged(Entity<StasisBedComponent> ent, ref PowerChangedEvent args)
     {
-        UpdateMetabolisms(ent);
+        UpdateMetabolisms(ent.Owner);
     }
 
     private void OnStasisGetMetabolicMultiplier(Entity<StasisBedBuckledComponent> ent, ref GetMetabolicMultiplierEvent args)

@@ -79,10 +79,10 @@ public abstract partial class SharedStationAiSystem
             RaiseLocalEvent(ent, ref ev);
         }
 
-        if (_containers.TryGetContainingContainer(ent, out var container) &&
-             TryComp<StationAiHolderComponent>(container, out var holder))
+        if (_containers.TryGetContainingContainer(ent.Owner, out var container) &&
+             TryComp<StationAiHolderComponent>(container.Owner, out var holder))
         {
-            UpdateAppearance((container, holder));
+            UpdateAppearance((container.Owner, holder));
         }
     }
 
@@ -116,7 +116,7 @@ public abstract partial class SharedStationAiSystem
         }
 
         // This data is handled manually in the client StationAiSystem
-        _appearance.SetData(entity, StationAiVisualLayers.Icon, stateData);
+        _appearance.SetData(entity.Owner, StationAiVisualLayers.Icon, stateData);
     }
 
     /// <summary>

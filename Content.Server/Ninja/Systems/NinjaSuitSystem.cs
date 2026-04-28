@@ -43,12 +43,12 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
         _ninja.SetSuitPowerAlert(user);
 
         // raise event to let ninja components get starting battery
-        _ninja.GetNinjaBattery(user, out var uid, out var _);
+        _ninja.GetNinjaBattery(user.Owner, out var uid, out var _);
 
         if (uid is not { } battery_uid)
             return;
 
-        var ev = new NinjaBatteryChangedEvent(battery_uid, ent);
+        var ev = new NinjaBatteryChangedEvent(battery_uid, ent.Owner);
         RaiseLocalEvent(ent, ref ev);
         RaiseLocalEvent(user, ref ev);
     }

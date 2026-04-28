@@ -33,7 +33,7 @@ public sealed class HolidaySystem : EntitySystem
 
         var path = SpriteSpecifierSerializer.TextureRoot / rsistring;
         if (_rescache.TryGetResource(path, out RSIResource? rsi))
-            _sprite.SetBaseRsi((ent, args.Sprite), rsi.RSI);
+            _sprite.SetBaseRsi((ent.Owner, args.Sprite), rsi.RSI);
     }
 
     // Sunrise-Start

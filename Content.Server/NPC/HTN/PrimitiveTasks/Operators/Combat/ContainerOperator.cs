@@ -24,12 +24,12 @@ public sealed partial class ContainerOperator : HTNOperator
     public override void Startup(NPCBlackboard blackboard)
     {
         base.Startup(blackboard);
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!_container.TryGetOuterContainer(owner, _transformQuery.GetComponent(owner), out var outerContainer) && outerContainer == null)
             return;
 
-        var target = outerContainer;
+        var target = outerContainer.Owner;
         blackboard.SetValue(TargetKey, target);
     }
 

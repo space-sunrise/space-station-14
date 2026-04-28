@@ -156,7 +156,7 @@ namespace Content.Server.Mapping
             shell.ExecuteCommand("changecvar shuttle.auto_call_time 0");
 
             if (grid != null)
-                _mappingSystem.ToggleAutosave(grid.Value, toLoad ?? "NEWGRID");
+                _mappingSystem.ToggleAutosave(grid.Value.Owner, toLoad ?? "NEWGRID");
             else
                 _mappingSystem.ToggleAutosave(mapId, toLoad ?? "NEWMAP");
 

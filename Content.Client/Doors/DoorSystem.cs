@@ -87,35 +87,35 @@ public sealed class DoorSystem : SharedDoorSystem
             state = DoorState.Closed;
 
         if (AppearanceSystem.TryGetData<string>(entity, PaintableVisuals.Prototype, out var prototype, args.Component))
-            UpdateSpriteLayers((entity, args.Sprite), prototype);
+            UpdateSpriteLayers((entity.Owner, args.Sprite), prototype);
 
         if (_animationSystem.HasRunningAnimation(entity, DoorComponent.AnimationKey))
-            _animationSystem.Stop(entity, DoorComponent.AnimationKey);
+            _animationSystem.Stop(entity.Owner, DoorComponent.AnimationKey);
 
         // We are checking beforehand since some doors may not have an emagging visual layer, and we don't want LayerSetVisible to throw an error.
-        if (_sprite.TryGetLayer(entity, DoorVisualLayers.BaseEmagging, out var _, false))
-            _sprite.LayerSetVisible(entity, DoorVisualLayers.BaseEmagging, state == DoorState.Emagging);
+        if (_sprite.TryGetLayer(entity.Owner, DoorVisualLayers.BaseEmagging, out var _, false))
+            _sprite.LayerSetVisible(entity.Owner, DoorVisualLayers.BaseEmagging, state == DoorState.Emagging);
 
         UpdateAppearanceForDoorState(entity, args.Sprite, state);
     }
 
     private void UpdateAppearanceForDoorState(Entity<DoorComponent> entity, SpriteComponent sprite, DoorState state)
     {
-        _sprite.SetDrawDepth((entity, sprite), state is DoorState.Open ? entity.Comp.OpenDrawDepth : entity.Comp.ClosedDrawDepth);
+        _sprite.SetDrawDepth((entity.Owner, sprite), state is DoorState.Open ? entity.Comp.OpenDrawDepth : entity.Comp.ClosedDrawDepth);
 
         switch (state)
         {
             case DoorState.Open:
                 foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
                 {
-                    _sprite.LayerSetRsiState((entity, sprite), layer, layerState);
+                    _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
                 }
 
                 return;
             case DoorState.Closed:
                 foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
                 {
-                    _sprite.LayerSetRsiState((entity, sprite), layer, layerState);
+                    _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
                 }
 
                 return;
@@ -139,7 +139,7 @@ public sealed class DoorSystem : SharedDoorSystem
                 return;
             case DoorState.Emagging:
                 // We are checking beforehand since some doors may not have an emagging visual layer.
-                if (_sprite.TryGetLayer(entity, DoorVisualLayers.BaseEmagging, out var _, false))
+                if (_sprite.TryGetLayer(entity.Owner, DoorVisualLayers.BaseEmagging, out var _, false))
                     _animationSystem.Play(entity, (Animation)entity.Comp.EmaggingAnimation, DoorComponent.AnimationKey);
 
                 return;
@@ -154,6 +154,6 @@ public sealed class DoorSystem : SharedDoorSystem
         if (!target.TryGetComponent(out SpriteComponent? targetSprite, _componentFactory))
             return;
 
-        _sprite.SetBaseRsi(sprite, targetSprite.BaseRSI);
+        _sprite.SetBaseRsi(sprite.AsNullable(), targetSprite.BaseRSI);
     }
 }

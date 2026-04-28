@@ -200,7 +200,7 @@ namespace Content.Server.Atmos.EntitySystems
                 }
             }
 
-            UpdateAirtightData(ent, ent.Comp1, ent.Comp3, tile);
+            UpdateAirtightData(ent.Owner, ent.Comp1, ent.Comp3, tile);
 
             if (mapAtmosphere)
             {
@@ -265,7 +265,7 @@ namespace Content.Server.Atmos.EntitySystems
                 tile.ArchivedCycle = 0;
                 tile.LastShare = 0f;
                 tile.Hotspot = new Hotspot();
-                NotifyDeviceTileChanged((ent, ent.Comp1, ent.Comp3), tile.GridIndices);
+                NotifyDeviceTileChanged((ent.Owner, ent.Comp1, ent.Comp3), tile.GridIndices);
                 return;
             }
 
@@ -279,7 +279,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             // Since we assigned the tile a new GasMixture we need to tell any devices
             // on this tile that the reference has changed.
-            NotifyDeviceTileChanged((ent, ent.Comp1, ent.Comp3), tile.GridIndices);
+            NotifyDeviceTileChanged((ent.Owner, ent.Comp1, ent.Comp3), tile.GridIndices);
         }
 
         private void QueueRunTiles(

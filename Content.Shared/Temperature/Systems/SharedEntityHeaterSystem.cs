@@ -73,7 +73,7 @@ public abstract partial class SharedEntityHeaterSystem : EntitySystem
         Dirty(ent);
 
         // Only show the glowing heating element layer if there's power
-        if (_receiver.IsPowered(ent))
+        if (_receiver.IsPowered(ent.Owner))
             _appearance.SetData(ent, EntityHeaterVisuals.Setting, setting);
     }
 

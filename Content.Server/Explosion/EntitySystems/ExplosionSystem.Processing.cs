@@ -239,7 +239,7 @@ public sealed partial class ExplosionSystem
         // heat the atmosphere
         if (temperature != null)
         {
-            _atmosphere.HotspotExpose(grid, tile, temperature.Value, currentIntensity, cause, true);
+            _atmosphere.HotspotExpose(grid.Owner, tile, temperature.Value, currentIntensity, cause, true);
         }
 
         // Walls and reinforced walls will break into girders. These girders will also be considered turf-blocking for
@@ -317,7 +317,7 @@ public sealed partial class ExplosionSystem
         var gridBox = Box2.FromDimensions(tile * DefaultTileSize, new Vector2(DefaultTileSize, DefaultTileSize));
         var worldBox = spaceMatrix.TransformBox(gridBox);
         var list = new List<(EntityUid, TransformComponent)>();
-        var state = (list, processed, invSpaceMatrix, lookup, EntityManager.TransformQuery, gridBox, _transformSystem);
+        var state = (list, processed, invSpaceMatrix, lookup.Owner, EntityManager.TransformQuery, gridBox, _transformSystem);
 
         // get entities:
         lookup.Comp.DynamicTree.QueryAabb(ref state, SpaceQueryCallback, worldBox, true);
@@ -906,9 +906,9 @@ sealed class Explosion
 
         foreach (var (grid, list) in _tileUpdateDict)
         {
-            if (list.Count > 0 && _entMan.EntityExists(grid))
+            if (list.Count > 0 && _entMan.EntityExists(grid.Owner))
             {
-                _mapSystem.SetTiles(grid, grid, list);
+                _mapSystem.SetTiles(grid.Owner, grid, list);
             }
         }
         _tileUpdateDict.Clear();

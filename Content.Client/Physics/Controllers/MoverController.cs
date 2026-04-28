@@ -35,7 +35,7 @@ public sealed class MoverController : SharedMoverController
     private void OnUpdatePredicted(Entity<InputMoverComponent> entity, ref UpdateIsPredictedEvent args)
     {
         // Enable prediction if an entity is controlled by the player
-        if (entity == _playerManager.LocalEntity)
+        if (entity.Owner == _playerManager.LocalEntity)
             args.IsPredicted = true;
     }
 
@@ -61,7 +61,7 @@ public sealed class MoverController : SharedMoverController
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref LocalPlayerAttachedEvent args)
     {
-        PhysicsSystem.UpdateIsPredicted(entity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
         PhysicsSystem.UpdateIsPredicted(entity.Comp.RelayEntity);
         if (MoverQuery.TryGetComponent(entity.Comp.RelayEntity, out var inputMover))
             SetMoveInput((entity.Comp.RelayEntity, inputMover), MoveButtons.None);
@@ -69,7 +69,7 @@ public sealed class MoverController : SharedMoverController
 
     private void OnRelayPlayerDetached(Entity<RelayInputMoverComponent> entity, ref LocalPlayerDetachedEvent args)
     {
-        PhysicsSystem.UpdateIsPredicted(entity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
         PhysicsSystem.UpdateIsPredicted(entity.Comp.RelayEntity);
         if (MoverQuery.TryGetComponent(entity.Comp.RelayEntity, out var inputMover))
             SetMoveInput((entity.Comp.RelayEntity, inputMover), MoveButtons.None);
@@ -120,8 +120,8 @@ public sealed class MoverController : SharedMoverController
         base.SetSprinting(entity, subTick, walking);
 
         if (walking && _cfg.GetCVar(CCVars.ToggleWalk))
-            _alerts.ShowAlert(entity, WalkingAlert, showCooldown: false, autoRemove: false);
+            _alerts.ShowAlert(entity.Owner, WalkingAlert, showCooldown: false, autoRemove: false);
         else
-            _alerts.ClearAlert(entity, WalkingAlert);
+            _alerts.ClearAlert(entity.Owner, WalkingAlert);
     }
 }

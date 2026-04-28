@@ -135,14 +135,14 @@ public sealed partial class StoreSystem : EntitySystem
     /// </summary>
     public bool TryAddCurrency(Entity<CurrencyComponent?> currency, Entity<StoreComponent?> store)
     {
-        if (!Resolve(currency, ref currency.Comp))
+        if (!Resolve(currency.Owner, ref currency.Comp))
             return false;
 
-        if (!Resolve(store, ref store.Comp))
+        if (!Resolve(store.Owner, ref store.Comp))
             return false;
 
         var value = currency.Comp.Price;
-        if (TryComp(currency, out StackComponent? stack) && stack.Count != 1)
+        if (TryComp(currency.Owner, out StackComponent? stack) && stack.Count != 1)
         {
             value = currency.Comp.Price
                 .ToDictionary(v => v.Key, p => p.Value * stack.Count);
@@ -155,7 +155,7 @@ public sealed partial class StoreSystem : EntitySystem
         // same tick
         currency.Comp.Price.Clear();
         if (stack != null)
-            _stack.SetCount((currency, stack), 0);
+            _stack.SetCount((currency.Owner, stack), 0);
 
         QueueDel(currency);
         return true;
@@ -192,7 +192,7 @@ public sealed partial class StoreSystem : EntitySystem
 
     private void OnIntrinsicStoreAction(Entity<StoreComponent> ent, ref IntrinsicStoreActionEvent args)
     {
-        ToggleUi(args.Performer, ent, ent.Comp);
+        ToggleUi(args.Performer, ent.Owner, ent.Comp);
     }
 
 }

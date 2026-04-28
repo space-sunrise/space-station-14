@@ -257,12 +257,12 @@ public sealed partial class StatusEffectsSystem
         {
             if (effect.Comp2.EndEffectTime == null)
             {
-                time = (effect, null);
+                time = (effect.Owner, null);
                 return true;
             }
 
             if (effect.Comp2.EndEffectTime > time.EndEffectTime)
-                time = (effect, effect.Comp2.EndEffectTime);
+                time = (effect.Owner, effect.Comp2.EndEffectTime);
         }
         return true;
     }

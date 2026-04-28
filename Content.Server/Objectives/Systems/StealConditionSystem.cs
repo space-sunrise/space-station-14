@@ -87,9 +87,9 @@ public sealed class StealConditionSystem : EntitySystem
             ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", localizedName), ("count", condition.Comp.CollectionSize))
             : Loc.GetString(condition.Comp.DescriptionText, ("itemName", localizedName));
 
-        _metaData.SetEntityName(condition, title, args.Meta);
-        _metaData.SetEntityDescription(condition, description, args.Meta);
-        _objectives.SetIcon(condition, group.Sprite, args.Objective);
+        _metaData.SetEntityName(condition.Owner, title, args.Meta);
+        _metaData.SetEntityDescription(condition.Owner, description, args.Meta);
+        _objectives.SetIcon(condition.Owner, group.Sprite, args.Objective);
     }
     private void OnGetProgress(Entity<StealConditionComponent> condition, ref ObjectiveGetProgressEvent args)
     {
@@ -112,7 +112,7 @@ public sealed class StealConditionSystem : EntitySystem
             var areasQuery = AllEntityQuery<StealAreaComponent, TransformComponent>();
             while (areasQuery.MoveNext(out var uid, out var area, out var xform))
             {
-                if (!area.Owners.Contains(mind))
+                if (!area.Owners.Contains(mind.Owner))
                     continue;
 
                 _nearestEnts.Clear();

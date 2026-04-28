@@ -428,7 +428,7 @@ public sealed class AtmosMonitoringConsoleSystem : SharedAtmosMonitoringConsoleS
             if (node is not PipeNode { } pipeNode)
                 continue;
 
-            if (!showAbsentConnections && !pipeNode.ReachableNodes.Any(x => x != uid))
+            if (!showAbsentConnections && !pipeNode.ReachableNodes.Any(x => x.Owner != uid))
                 continue;
 
             var netId = GetPipeNodeNetId(pipeNode);

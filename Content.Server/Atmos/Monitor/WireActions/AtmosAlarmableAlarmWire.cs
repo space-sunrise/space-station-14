@@ -22,7 +22,7 @@ public sealed partial class AtmosMonitorDeviceNetWire : ComponentWireAction<Atmo
 
     public override StatusLightState? GetLightState(Wire wire, AtmosAlarmableComponent comp)
     {
-        if (!_atmosAlarmableSystem.TryGetHighestAlert(wire, out var alarm, comp))
+        if (!_atmosAlarmableSystem.TryGetHighestAlert(wire.Owner, out var alarm, comp))
         {
             alarm = AtmosAlarmType.Normal;
         }
@@ -54,6 +54,6 @@ public sealed partial class AtmosMonitorDeviceNetWire : ComponentWireAction<Atmo
     public override void Pulse(EntityUid user, Wire wire, AtmosAlarmableComponent comp)
     {
         if (_alarmOnPulse)
-            _atmosAlarmableSystem.ForceAlert(wire, AtmosAlarmType.Danger, comp);
+            _atmosAlarmableSystem.ForceAlert(wire.Owner, AtmosAlarmType.Danger, comp);
     }
 }

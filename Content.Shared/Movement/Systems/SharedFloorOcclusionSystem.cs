@@ -20,12 +20,12 @@ public abstract class SharedFloorOcclusionSystem : EntitySystem
         var other = args.OtherEntity;
 
         if (!TryComp<FloorOcclusionComponent>(other, out var occlusion) ||
-            occlusion.Colliding.Contains(entity))
+            occlusion.Colliding.Contains(entity.Owner))
         {
             return;
         }
 
-        occlusion.Colliding.Add(entity);
+        occlusion.Colliding.Add(entity.Owner);
         Dirty(other, occlusion);
         SetEnabled((other, occlusion));
     }
@@ -37,7 +37,7 @@ public abstract class SharedFloorOcclusionSystem : EntitySystem
         if (!TryComp<FloorOcclusionComponent>(other, out var occlusion))
             return;
 
-        if (!occlusion.Colliding.Remove(entity))
+        if (!occlusion.Colliding.Remove(entity.Owner))
             return;
 
         Dirty(other, occlusion);

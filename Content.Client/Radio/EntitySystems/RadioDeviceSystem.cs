@@ -18,7 +18,7 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnAfterHandleState(Entity<IntercomComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (_ui.TryGetOpenUi<IntercomBoundUserInterface>(ent, IntercomUiKey.Key, out var bui))
+        if (_ui.TryGetOpenUi<IntercomBoundUserInterface>(ent.Owner, IntercomUiKey.Key, out var bui))
             bui.Update(ent);
     }
 }

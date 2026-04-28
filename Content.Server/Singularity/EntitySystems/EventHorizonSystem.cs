@@ -105,7 +105,7 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
 
         // Handle singularities some admin smited into a locker.
         if (_containerSystem.TryGetContainingContainer((uid, xform, null), out var container)
-        && !AttemptConsumeEntity(uid, container, eventHorizon))
+        && !AttemptConsumeEntity(uid, container.Owner, eventHorizon))
         {
             // Locker is indestructible. Consume everything else in the locker instead of magically teleporting out.
             ConsumeEntitiesInContainer(uid, container, eventHorizon, container);
@@ -218,7 +218,7 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
                 if (_containerSystem.Insert(entity, target_container))
                     break;
 
-                _containerSystem.TryGetContainingContainer((target_container, null, null), out target_container);
+                _containerSystem.TryGetContainingContainer((target_container.Owner, null, null), out target_container);
             }
 
             // If we couldn't or there was no container to insert into just dump them to the map/grid.
@@ -296,7 +296,7 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
     [Obsolete("Use the Entity<T> overload")]
     public bool CanConsumeTile(EntityUid hungry, TileRef tile, MapGridComponent grid, EventHorizonComponent eventHorizon)
     {
-        return CanConsumeTile((hungry, eventHorizon), tile, (grid, grid));
+        return CanConsumeTile((hungry, eventHorizon), tile, (grid.Owner, grid));
     }
 
     /// <summary>
@@ -316,8 +316,8 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
 
         foreach (var grid in grids)
         {
-            // TODO: Remover grid when this iterator returns entityuids as well.
-            AttemptConsumeTiles(uid, _mapSystem.GetTilesIntersecting(grid, grid.Comp, circle), grid, grid, eventHorizon);
+            // TODO: Remover grid.Owner when this iterator returns entityuids as well.
+            AttemptConsumeTiles(uid, _mapSystem.GetTilesIntersecting(grid.Owner, grid.Comp, circle), grid, grid, eventHorizon);
         }
     }
 
@@ -464,7 +464,7 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
         if (comp.BeingConsumedByAnotherEventHorizon)
             return;
 
-        var containerEntity = args.Args.Container;
+        var containerEntity = args.Args.Container.Owner;
         if (!Exists(containerEntity))
             return;
         if (AttemptConsumeEntity(uid, containerEntity, comp))

@@ -46,7 +46,7 @@ public sealed class NameIdentifierSystem : SharedNameIdentifierSystem
             ids.Add(random);
         }
 
-        _nameModifier.RefreshNameModifiers(ent);
+        _nameModifier.RefreshNameModifiers(ent.Owner);
     }
 
     /// <summary>
@@ -115,7 +115,7 @@ public sealed class NameIdentifierSystem : SharedNameIdentifierSystem
             : $"({uniqueName})";
 
         Dirty(ent);
-        _nameModifier.RefreshNameModifiers(ent);
+        _nameModifier.RefreshNameModifiers(ent.Owner);
     }
 
     private void InitialSetupPrototypes()

@@ -29,13 +29,13 @@ public sealed partial class PuddleSystem
 
     private void SpillOnLand(Entity<SpillableComponent> entity, ref LandEvent args)
     {
-        if (!entity.Comp.SpillWhenThrown || Openable.IsClosed(entity))
+        if (!entity.Comp.SpillWhenThrown || Openable.IsClosed(entity.Owner))
             return;
 
-        if (TrySplashSpillAt(entity, Transform(entity).Coordinates, out _, out var solution) && args.User != null)
+        if (TrySplashSpillAt(entity.Owner, Transform(entity).Coordinates, out _, out var solution) && args.User != null)
         {
             AdminLogger.Add(LogType.Landed,
-                $"{ToPrettyString(entity):entity} spilled a solution {SharedSolutionContainerSystem.ToPrettyString(solution):solution} on landing");
+                $"{ToPrettyString(entity.Owner):entity} spilled a solution {SharedSolutionContainerSystem.ToPrettyString(solution):solution} on landing");
         }
     }
 
@@ -45,7 +45,7 @@ public sealed partial class PuddleSystem
             return;
 
         //solution gone by other means before doafter completes
-        if (!_solutionContainerSystem.TryGetDrainableSolution(entity, out var soln, out var solution) || solution.Volume == 0)
+        if (!_solutionContainerSystem.TryGetDrainableSolution(entity.Owner, out var soln, out var solution) || solution.Volume == 0)
             return;
 
         var puddleSolution = _solutionContainerSystem.SplitSolution(soln.Value, solution.Volume);

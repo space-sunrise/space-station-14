@@ -109,7 +109,7 @@ public sealed partial class AtmosphereSystem
 
         // Force Invalidate & update air on all tiles
         Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent> grid =
-            new(ent, ent.Comp1, Comp<GasTileOverlayComponent>(ent), ent.Comp2, Transform(ent));
+            new(ent.Owner, ent.Comp1, Comp<GasTileOverlayComponent>(ent), ent.Comp2, Transform(ent));
 
         RebuildGridTiles(grid);
 
@@ -183,9 +183,9 @@ public sealed partial class AtmosphereSystem
         if (playerMap == null)
             return CompletionResult.FromOptions(options);
 
-        foreach (var grid in _mapManager.GetAllGrids(playerMap.Value).OrderBy(o => o))
+        foreach (var grid in _mapManager.GetAllGrids(playerMap.Value).OrderBy(o => o.Owner))
         {
-            var uid = grid;
+            var uid = grid.Owner;
             if (!TryComp(uid, out TransformComponent? gridXform))
                 continue;
 

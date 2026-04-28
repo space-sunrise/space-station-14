@@ -17,7 +17,7 @@ public abstract partial class SharedStationSystem
     private void OnTrackerMapInit(Entity<StationTrackerComponent> ent, ref MapInitEvent args)
     {
         _meta.AddFlag(ent, MetaDataFlags.ExtraTransformEvents);
-        UpdateStationTracker(ent);
+        UpdateStationTracker(ent.AsNullable());
     }
 
     private void OnTrackerRemove(Entity<StationTrackerComponent> ent, ref ComponentRemove args)

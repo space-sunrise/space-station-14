@@ -23,7 +23,7 @@ public sealed class OreSiloSystem : SharedOreSiloSystem
 
     protected override void UpdateOreSiloUi(Entity<OreSiloComponent> ent)
     {
-        if (!_userInterface.IsUiOpen(ent, OreSiloUiKey.Key))
+        if (!_userInterface.IsUiOpen(ent.Owner, OreSiloUiKey.Key))
             return;
         _clientLookup.Clear();
         _clientInformation.Clear();
@@ -45,7 +45,7 @@ public sealed class OreSiloSystem : SharedOreSiloSystem
 
             var netEnt = GetNetEntity(client);
             var name = Identity.Name(client, EntityManager);
-            var beacon = _navMap.GetNearestBeaconString(client, onlyName: true);
+            var beacon = _navMap.GetNearestBeaconString(client.Owner, onlyName: true);
 
             var txt = Loc.GetString("ore-silo-ui-itemlist-entry",
                 ("name", name),
@@ -73,7 +73,7 @@ public sealed class OreSiloSystem : SharedOreSiloSystem
             _clientInformation.Add((netEnt, txt, beacon));
         }
 
-        _userInterface.SetUiState(ent, OreSiloUiKey.Key, new OreSiloBuiState(_clientInformation));
+        _userInterface.SetUiState(ent.Owner, OreSiloUiKey.Key, new OreSiloBuiState(_clientInformation));
     }
 
     public override void Update(float frameTime)

@@ -22,7 +22,7 @@ public abstract partial class SharedBorgSystem
 
     private void OnMMIInit(Entity<MMIComponent> ent, ref ComponentInit args)
     {
-        _itemSlots.AddItemSlot(ent, ent.Comp.BrainSlotId, ent.Comp.BrainSlot);
+        _itemSlots.AddItemSlot(ent.Owner, ent.Comp.BrainSlotId, ent.Comp.BrainSlot);
     }
 
     private void OnMMIEntityInserted(Entity<MMIComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -37,23 +37,23 @@ public abstract partial class SharedBorgSystem
 
         if (_mind.TryGetMind(brain, out var mindId, out var mindComp))
         {
-            _mind.TransferTo(mindId, ent, true, mind: mindComp);
+            _mind.TransferTo(mindId, ent.Owner, true, mind: mindComp);
 
             if (!_roles.MindHasRole<SiliconBrainRoleComponent>(mindId))
                 _roles.MindAddRole(mindId, SiliconBrainRole, silent: true);
         }
 
-        _appearance.SetData(ent, MMIVisuals.BrainPresent, true);
+        _appearance.SetData(ent.Owner, MMIVisuals.BrainPresent, true);
     }
 
     private void OnMMIMindAdded(Entity<MMIComponent> ent, ref MindAddedMessage args)
     {
-        _appearance.SetData(ent, MMIVisuals.HasMind, true);
+        _appearance.SetData(ent.Owner, MMIVisuals.HasMind, true);
     }
 
     private void OnMMIMindRemoved(Entity<MMIComponent> ent, ref MindRemovedMessage args)
     {
-        _appearance.SetData(ent, MMIVisuals.HasMind, false);
+        _appearance.SetData(ent.Owner, MMIVisuals.HasMind, false);
     }
 
     private void OnMMILinkedRemoved(Entity<MMIComponent> ent, ref EntRemovedFromContainerMessage args)

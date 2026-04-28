@@ -24,7 +24,7 @@ public sealed class TransformableContainerSystem : EntitySystem
 
     private void OnMapInit(Entity<TransformableContainerComponent> entity, ref MapInitEvent args)
     {
-        var meta = MetaData(entity);
+        var meta = MetaData(entity.Owner);
         if (string.IsNullOrEmpty(entity.Comp.InitialDescription))
         {
             entity.Comp.InitialDescription = meta.EntityDescription;
@@ -33,7 +33,7 @@ public sealed class TransformableContainerSystem : EntitySystem
 
     private void OnSolutionChange(Entity<TransformableContainerComponent> entity, ref SolutionContainerChangedEvent args)
     {
-        if (!_solutionsSystem.TryGetFitsInDispenser(entity, out _, out var solution))
+        if (!_solutionsSystem.TryGetFitsInDispenser(entity.Owner, out _, out var solution))
             return;
 
         //Transform container into initial state when emptied
@@ -55,13 +55,13 @@ public sealed class TransformableContainerSystem : EntitySystem
         if (!string.IsNullOrWhiteSpace(reagentId?.Prototype)
             && _prototypeManager.TryIndex(reagentId.Value.Prototype, out ReagentPrototype? proto))
         {
-            var metadata = MetaData(entity);
-            _metadataSystem.SetEntityDescription(entity, proto.LocalizedDescription, metadata);
+            var metadata = MetaData(entity.Owner);
+            _metadataSystem.SetEntityDescription(entity.Owner, proto.LocalizedDescription, metadata);
             entity.Comp.CurrentReagent = proto;
             entity.Comp.Transformed = true;
         }
 
-        _nameMod.RefreshNameModifiers(entity);
+        _nameMod.RefreshNameModifiers(entity.Owner);
     }
 
     private void OnRefreshNameModifiers(Entity<TransformableContainerComponent> entity, ref RefreshNameModifiersEvent args)
@@ -79,11 +79,11 @@ public sealed class TransformableContainerSystem : EntitySystem
 
         var metadata = MetaData(entity);
 
-        _nameMod.RefreshNameModifiers(entity);
+        _nameMod.RefreshNameModifiers(entity.Owner);
 
         if (!string.IsNullOrEmpty(entity.Comp.InitialDescription))
         {
-            _metadataSystem.SetEntityDescription(entity, entity.Comp.InitialDescription, metadata);
+            _metadataSystem.SetEntityDescription(entity.Owner, entity.Comp.InitialDescription, metadata);
         }
     }
 }

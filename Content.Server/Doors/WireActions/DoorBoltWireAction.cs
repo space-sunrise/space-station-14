@@ -18,24 +18,24 @@ public sealed partial class DoorBoltWireAction : ComponentWireAction<DoorBoltCom
 
     public override bool Cut(EntityUid user, Wire wire, DoorBoltComponent airlock)
     {
-        EntityManager.System<DoorSystem>().SetBoltWireCut((wire, airlock), true);
-        if (!airlock.BoltsDown && IsPowered(wire))
-            EntityManager.System<DoorSystem>().SetBoltsDown((wire, airlock), true, user);
+        EntityManager.System<DoorSystem>().SetBoltWireCut((wire.Owner, airlock), true);
+        if (!airlock.BoltsDown && IsPowered(wire.Owner))
+            EntityManager.System<DoorSystem>().SetBoltsDown((wire.Owner, airlock), true, user);
 
         return true;
     }
 
     public override bool Mend(EntityUid user, Wire wire, DoorBoltComponent door)
     {
-        EntityManager.System<DoorSystem>().SetBoltWireCut((wire, door), false);
+        EntityManager.System<DoorSystem>().SetBoltWireCut((wire.Owner, door), false);
         return true;
     }
 
     public override void Pulse(EntityUid user, Wire wire, DoorBoltComponent door)
     {
-        if (IsPowered(wire))
-            EntityManager.System<DoorSystem>().SetBoltsDown((wire, door), !door.BoltsDown);
+        if (IsPowered(wire.Owner))
+            EntityManager.System<DoorSystem>().SetBoltsDown((wire.Owner, door), !door.BoltsDown);
         else if (!door.BoltsDown)
-            EntityManager.System<DoorSystem>().SetBoltsDown((wire, door), true);
+            EntityManager.System<DoorSystem>().SetBoltsDown((wire.Owner, door), true);
     }
 }

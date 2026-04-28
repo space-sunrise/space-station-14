@@ -14,7 +14,7 @@ public abstract class SharedLightCycleSystem : EntitySystem
 
     protected virtual void OnCycleMapInit(Entity<LightCycleComponent> ent, ref MapInitEvent args)
     {
-        if (TryComp(ent, out MapLightComponent? mapLight))
+        if (TryComp(ent.Owner, out MapLightComponent? mapLight))
         {
             ent.Comp.OriginalColor = mapLight.AmbientLightColor;
             Dirty(ent);
@@ -23,10 +23,10 @@ public abstract class SharedLightCycleSystem : EntitySystem
 
     private void OnCycleShutdown(Entity<LightCycleComponent> ent, ref ComponentShutdown args)
     {
-        if (TryComp(ent, out MapLightComponent? mapLight))
+        if (TryComp(ent.Owner, out MapLightComponent? mapLight))
         {
             mapLight.AmbientLightColor = ent.Comp.OriginalColor;
-            Dirty(ent, mapLight);
+            Dirty(ent.Owner, mapLight);
         }
     }
 

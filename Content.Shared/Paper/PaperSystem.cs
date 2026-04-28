@@ -127,14 +127,14 @@ public sealed partial class PaperSystem : EntitySystem
                     return;
                 }
 
-                var ev = new PaperWriteAttemptEvent(entity);
+                var ev = new PaperWriteAttemptEvent(entity.Owner);
                 RaiseLocalEvent(args.User, ref ev);
                 if (ev.Cancelled)
                 {
                     if (ev.FailReason is not null)
                     {
                         var fileWriteMessage = Loc.GetString(ev.FailReason);
-                        _popupSystem.PopupClient(fileWriteMessage, entity, args.User);
+                        _popupSystem.PopupClient(fileWriteMessage, entity.Owner, args.User);
                     }
 
                     args.Handled = true;
@@ -145,7 +145,7 @@ public sealed partial class PaperSystem : EntitySystem
                 RaiseLocalEvent(args.Used, ref writeEvent);
 
                 entity.Comp.Mode = PaperAction.Write;
-                _uiSystem.OpenUi(entity, PaperUiKey.Key, args.User);
+                _uiSystem.OpenUi(entity.Owner, PaperUiKey.Key, args.User);
                 UpdateUserInterface(entity);
             }
             args.Handled = true;
@@ -187,7 +187,7 @@ public sealed partial class PaperSystem : EntitySystem
         if (!TryValidateWriteTool(entity, args.Actor))
             return;
 
-        var ev = new PaperWriteAttemptEvent(entity);
+        var ev = new PaperWriteAttemptEvent(entity.Owner);
         RaiseLocalEvent(args.Actor, ref ev);
         if (ev.Cancelled)
             return;
@@ -308,7 +308,7 @@ public sealed partial class PaperSystem : EntitySystem
 
     private void UpdateUserInterface(Entity<PaperComponent> entity)
     {
-        _uiSystem.SetUiState(entity, PaperUiKey.Key, GetPaperUiState(entity));
+        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, GetPaperUiState(entity));
     }
 
     partial void InitializeTemplateFieldSupport();

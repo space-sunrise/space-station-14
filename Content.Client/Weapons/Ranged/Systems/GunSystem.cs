@@ -481,7 +481,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         Recoil(user, direction, gun.CameraRecoilScalarModified);
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
-                        //    Del(cartridge);
+                        //    Del(cartridge.Owner);
                     }
                     else
                     {

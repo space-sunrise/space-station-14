@@ -172,7 +172,7 @@ public sealed class DrainSystem : SharedDrainSystem
                 {
                     // Queue the solution deletion if it's empty. EvaporationSystem might also do this
                     // but queuedelete should be pretty safe.
-                    if (!_solutionContainerSystem.ResolveSolution(puddle, puddle.Comp.SolutionName, ref puddle.Comp.Solution, out var puddleSolution))
+                    if (!_solutionContainerSystem.ResolveSolution(puddle.Owner, puddle.Comp.SolutionName, ref puddle.Comp.Solution, out var puddleSolution))
                     {
                         QueueDel(puddle);
                         continue;
@@ -202,7 +202,7 @@ public sealed class DrainSystem : SharedDrainSystem
     {
         if (!args.IsInDetailsRange ||
             !HasComp<SolutionContainerManagerComponent>(entity) ||
-            !_solutionContainerSystem.ResolveSolution(entity, DrainComponent.SolutionName, ref entity.Comp.Solution, out var drainSolution))
+            !_solutionContainerSystem.ResolveSolution(entity.Owner, DrainComponent.SolutionName, ref entity.Comp.Solution, out var drainSolution))
         {
             return;
         }

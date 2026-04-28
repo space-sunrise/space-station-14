@@ -28,7 +28,7 @@ public sealed class XAEPolymorphSystem : BaseXAESystem<XAEPolymorphComponent>
         _lookup.GetEntitiesInRange(args.Coordinates, ent.Comp.Range, _humanoids);
         foreach (var comp in _humanoids)
         {
-            var target = comp;
+            var target = comp.Owner;
             if (!_mob.IsAlive(target))
                 continue;
 

@@ -276,7 +276,7 @@ namespace Content.Server.NodeContainer.EntitySystems
             {
                 foreach (var node in group.Nodes)
                 {
-                    entities.Add(node);
+                    entities.Add(node.Owner);
                 }
             }
 
@@ -349,7 +349,7 @@ namespace Content.Server.NodeContainer.EntitySystems
 
         private IEnumerable<Node> GetCompatibleNodes(Node node, EntityQuery<TransformComponent> xformQuery, EntityQuery<NodeContainerComponent> nodeQuery)
         {
-            var xform = xformQuery.GetComponent(node);
+            var xform = xformQuery.GetComponent(node.Owner);
             TryComp<MapGridComponent>(xform.GridUid, out var grid);
 
             if (!node.Connectable(EntityManager, xform))
@@ -360,7 +360,7 @@ namespace Content.Server.NodeContainer.EntitySystems
                 DebugTools.Assert(reachable != node, "GetReachableNodes() should not include self.");
 
                 if (reachable.NodeGroupID == node.NodeGroupID
-                    && reachable.Connectable(EntityManager, xformQuery.GetComponent(reachable)))
+                    && reachable.Connectable(EntityManager, xformQuery.GetComponent(reachable.Owner)))
                 {
                     yield return reachable;
                 }
@@ -429,7 +429,7 @@ namespace Content.Server.NodeContainer.EntitySystems
                     Name = n.Name,
                     NetId = n.NetId,
                     Reachable = n.ReachableNodes.Select(r => r.NetId).ToArray(),
-                    Entity = GetNetEntity(n),
+                    Entity = GetNetEntity(n.Owner),
                     Type = n.GetType().Name
                 }).ToArray(),
                 DebugData = group.GetDebugData()

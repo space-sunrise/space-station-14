@@ -123,7 +123,7 @@ public abstract partial class SharedXenoArtifactSystem
         _adminLogger.Add(
             LogType.ArtifactNode,
             LogImpact.Low,
-            $"{ToPrettyString(artifact)} node {ToPrettyString(node)} got activated at {coordinates}"
+            $"{ToPrettyString(artifact.Owner)} node {ToPrettyString(node)} got activated at {coordinates}"
         );
         if (consumeDurability)
         {

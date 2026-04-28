@@ -19,7 +19,7 @@ public sealed class NameModifierSystem : EntitySystem
     private void OnEntityRenamed(Entity<NameModifierComponent> ent, ref EntityRenamedEvent args)
     {
         SetBaseName(ent, args.NewName);
-        RefreshNameModifiers((ent, ent.Comp));
+        RefreshNameModifiers((ent.Owner, ent.Comp));
     }
 
     private void SetBaseName(Entity<NameModifierComponent> entity, string name)

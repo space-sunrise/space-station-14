@@ -26,7 +26,7 @@ public sealed class RandomTriggerOnTriggerSystem : XOnTriggerSystem<RandomTrigge
         var keyOut = _prototypeManager.Index(ent.Comp.RandomKeyOut).Pick(rand);
 
         // Prevent recursive triggers
-        if (target == ent && ent.Comp.KeysIn.Contains(keyOut))
+        if (target == ent.Owner && ent.Comp.KeysIn.Contains(keyOut))
         {
             Log.Warning($"{ToPrettyString(ent)} attempted to recursively trigger itself using RandomTriggerOnTriggerComponent.");
             return;

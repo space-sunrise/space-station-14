@@ -40,12 +40,12 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
 
     private void HandleProjectileHit(Entity<SolutionInjectOnProjectileHitComponent> entity, ref ProjectileHitEvent args)
     {
-        DoInjection((entity, entity.Comp), args.Target, args.Shooter);
+        DoInjection((entity.Owner, entity.Comp), args.Target, args.Shooter);
     }
 
     private void HandleEmbed(Entity<SolutionInjectOnEmbedComponent> entity, ref EmbedEvent args)
     {
-        DoInjection((entity, entity.Comp), args.Embedded, args.Shooter);
+        DoInjection((entity.Owner, entity.Comp), args.Embedded, args.Shooter);
     }
 
     private void HandleMeleeHit(Entity<MeleeChemicalInjectorComponent> entity, ref MeleeHitEvent args)
@@ -53,12 +53,12 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         // MeleeHitEvent is weird, so we have to filter to make sure we actually
         // hit something and aren't just examining the weapon.
         if (args.IsHit)
-            TryInjectTargets((entity, entity.Comp), args.HitEntities, args.User);
+            TryInjectTargets((entity.Owner, entity.Comp), args.HitEntities, args.User);
     }
 
     private void OnInjectOverTime(Entity<SolutionInjectWhileEmbeddedComponent> entity, ref InjectOverTimeEvent args)
     {
-        DoInjection((entity, entity.Comp), args.EmbeddedIntoUid);
+        DoInjection((entity.Owner, entity.Comp), args.EmbeddedIntoUid);
     }
 
     private void DoInjection(Entity<BaseSolutionInjectOnEventComponent> injectorEntity, EntityUid target, EntityUid? source = null)
@@ -86,7 +86,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             return false;
 
         // Get the solution to inject
-        if (!_solutionContainer.TryGetSolution(injector, injector.Comp.Solution, out var injectorSolution))
+        if (!_solutionContainer.TryGetSolution(injector.Owner, injector.Comp.Solution, out var injectorSolution))
             return false;
 
         // Build a list of bloodstreams to inject into
@@ -102,7 +102,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             {
                 // Only show popup to attacker
                 if (source != null)
-                    _popup.PopupEntity(Loc.GetString(injector.Comp.BlockedByHardsuitPopupMessage, ("weapon", injector), ("target", target)), target, source.Value, PopupType.SmallCaution);
+                    _popup.PopupEntity(Loc.GetString(injector.Comp.BlockedByHardsuitPopupMessage, ("weapon", injector.Owner), ("target", target)), target, source.Value, PopupType.SmallCaution);
 
                 continue;
             }
@@ -150,7 +150,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             // Take our portion of the adjusted solution for this target
             var individualInjection = solutionToInject.SplitSolution(volumePerBloodstream);
             // Inject our portion into the target's bloodstream
-            if (_bloodstream.TryAddToBloodstream(targetBloodstream, individualInjection))
+            if (_bloodstream.TryAddToBloodstream(targetBloodstream.AsNullable(), individualInjection))
                 anySuccess = true;
         }
 

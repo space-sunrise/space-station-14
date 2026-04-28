@@ -38,7 +38,7 @@ public abstract class TileAtmosphereTest : AtmosTest
 
         await Pair.Server.WaitPost(() =>
         {
-            SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid, SAtmos.AtmosTickRate);
+            SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid.Owner, SAtmos.AtmosTickRate);
         });
 
         var mix1 = SAtmos.GetTileMixture(point1);

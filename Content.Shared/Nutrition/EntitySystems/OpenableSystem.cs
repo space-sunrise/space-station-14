@@ -45,7 +45,7 @@ public sealed partial class OpenableSystem : EntitySystem
 
     private void OnMapInit(Entity<OpenableComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.Opened && _lock.IsLocked(ent))
+        if (ent.Comp.Opened && _lock.IsLocked(ent.Owner))
             Log.Error($"Entity {ent} spawned locked open, this is a prototype mistake.");
     }
 #else
@@ -123,7 +123,7 @@ public sealed partial class OpenableSystem : EntitySystem
     private void OnTransferAttempt(Entity<OpenableComponent> ent, ref SolutionTransferAttemptEvent args)
     {
         if (!ent.Comp.Opened)
-            args.Cancel(Loc.GetString(ent.Comp.ClosedPopup, ("owner", ent)));
+            args.Cancel(Loc.GetString(ent.Comp.ClosedPopup, ("owner", ent.Owner)));
     }
 
     private void OnAttemptShake(Entity<OpenableComponent> entity, ref AttemptShakeEvent args)

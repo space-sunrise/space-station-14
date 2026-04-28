@@ -23,13 +23,13 @@ public sealed partial class GunSystem
 
     private void OnSolutionMapInit(Entity<SolutionAmmoProviderComponent> entity, ref MapInitEvent args)
     {
-        UpdateSolutionShots(entity, entity.Comp);
+        UpdateSolutionShots(entity.Owner, entity.Comp);
     }
 
     private void OnSolutionChanged(Entity<SolutionAmmoProviderComponent> entity, ref SolutionContainerChangedEvent args)
     {
         if (args.Solution.Name == entity.Comp.SolutionId)
-            UpdateSolutionShots(entity, entity.Comp, args.Solution);
+            UpdateSolutionShots(entity.Owner, entity.Comp, args.Solution);
     }
 
     protected override void UpdateSolutionShots(EntityUid uid, SolutionAmmoProviderComponent component, Solution? solution = null)

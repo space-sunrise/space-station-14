@@ -47,7 +47,7 @@ public sealed partial class SpeakOperator : HTNOperator
                 throw new ArgumentOutOfRangeException(nameof(Speech));
         }
 
-        var speaker = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var speaker = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         _chat.TrySendInGameICMessage(
             speaker,
             Loc.GetString(speechLocId),

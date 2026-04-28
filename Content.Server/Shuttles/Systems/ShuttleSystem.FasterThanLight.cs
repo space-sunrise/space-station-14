@@ -434,7 +434,7 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private void UpdateFTLStarting(Entity<FTLComponent, ShuttleComponent> entity)
     {
-        var uid = entity;
+        var uid = entity.Owner;
         var comp = entity.Comp1;
         var xform = _xformQuery.GetComponent(entity);
         // Sunrise-Edit
@@ -456,7 +456,7 @@ public sealed partial class ShuttleSystem
         if (fromMapUid != null && TryComp(comp.StartupStream, out AudioComponent? startupAudio))
         {
             var clippedAudio = _audio.PlayStatic(_startupSound, Filter.Broadcast(),
-                new EntityCoordinates(fromMapUid.Value, _mapSystem.GetGridPosition(entity)), true, startupAudio.Params);
+                new EntityCoordinates(fromMapUid.Value, _mapSystem.GetGridPosition(entity.Owner)), true, startupAudio.Params);
 
             _audio.SetPlaybackPosition(clippedAudio, entity.Comp1.StartupTime);
             if (clippedAudio != null)
@@ -465,7 +465,7 @@ public sealed partial class ShuttleSystem
 
         // Sunrise-Start
         var yOffset = 0f;
-        if (HasComp<SunriseArrivalsShuttleComponent>(entity))
+        if (HasComp<SunriseArrivalsShuttleComponent>(entity.Owner))
             yOffset = 10000f;
         // Sunrise-End
 
@@ -475,8 +475,8 @@ public sealed partial class ShuttleSystem
         // Setting the entity to map directly may run grid traversal (at least at time of writing this).
         var oldMapUid = xform.MapUid;
         var oldGridMatrix = _transform.GetWorldMatrix(xform);
-        _transform.SetCoordinates(entity, ftlStart);
-        LeaveNoFTLBehind((entity, xform), oldGridMatrix, oldMapUid);
+        _transform.SetCoordinates(entity.Owner, ftlStart);
+        LeaveNoFTLBehind((entity.Owner, xform), oldGridMatrix, oldMapUid);
 
         // Reset rotation so they always face the same direction.
         xform.LocalRotation = Angle.Zero;
@@ -524,7 +524,7 @@ public sealed partial class ShuttleSystem
         // к докам и меняет угол поворота. А вот брошеная сущность все еще летит
         // в том направлении когда шаттл был в фтл зоне,
         // как итог полет будет не назад или вперед а в бок.
-        var xform = _xformQuery.GetComponent(entity);
+        var xform = _xformQuery.GetComponent(entity.Owner);
         DoTheDinosaur(xform, Direction.North.ToVec());
         // Sunrise-End
 
@@ -533,7 +533,7 @@ public sealed partial class ShuttleSystem
             comp.VisualizerEntity = SpawnAttachedTo(entity.Comp1.VisualizerProto, entity.Comp1.TargetCoordinates);
             DebugTools.Assert(Transform(comp.VisualizerEntity.Value).ParentUid == entity.Comp1.TargetCoordinates.EntityId);
             var visuals = Comp<FtlVisualizerComponent>(comp.VisualizerEntity.Value);
-            visuals.Grid = entity;
+            visuals.Grid = entity.Owner;
             Dirty(comp.VisualizerEntity.Value, visuals);
             _transform.SetLocalRotation(comp.VisualizerEntity.Value, entity.Comp1.TargetAngle);
             _pvs.AddGlobalOverride(comp.VisualizerEntity.Value);
@@ -542,7 +542,7 @@ public sealed partial class ShuttleSystem
         _thruster.DisableLinearThrusters(shuttle);
         _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.South);
 
-        _console.RefreshShuttleConsoles(entity);
+        _console.RefreshShuttleConsoles(entity.Owner);
     }
 
     /// <summary>
@@ -550,7 +550,7 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private void UpdateFTLArriving(Entity<FTLComponent, ShuttleComponent> entity)
     {
-        var uid = entity;
+        var uid = entity.Owner;
         var xform = _xformQuery.GetComponent(uid);
         var body = _physicsQuery.GetComponent(uid);
         var comp = entity.Comp1;
@@ -739,7 +739,7 @@ public sealed partial class ShuttleSystem
 
         _noFtls.Clear();
         var oldGridRotation = oldGridMatrix.Rotation();
-        _lookup.GetGridEntities(grid, _noFtls);
+        _lookup.GetGridEntities(grid.Owner, _noFtls);
 
         foreach (var childUid in _noFtls)
         {
@@ -747,7 +747,7 @@ public sealed partial class ShuttleSystem
                 continue;
 
             // If we're not parented directly to the grid the matrix may be wrong.
-            var relative = _physics.GetRelativePhysicsTransform(childUid, (grid, grid.Comp));
+            var relative = _physics.GetRelativePhysicsTransform(childUid.Owner, (grid.Owner, grid.Comp));
 
             _transform.SetCoordinates(
                 childUid,
@@ -860,7 +860,7 @@ public sealed partial class ShuttleSystem
         // Set position
         var mapCoordinates = _transform.ToMapCoordinates(config.Coordinates);
         var mapUid = _mapSystem.GetMap(mapCoordinates.MapId);
-        _transform.SetCoordinates(shuttle, shuttle.Comp, new EntityCoordinates(mapUid, mapCoordinates.Position), rotation: config.Angle + _transform.GetWorldRotation(config.Coordinates.EntityId));
+        _transform.SetCoordinates(shuttle.Owner, shuttle.Comp, new EntityCoordinates(mapUid, mapCoordinates.Position), rotation: config.Angle + _transform.GetWorldRotation(config.Coordinates.EntityId));
 
         // Connect everything
         foreach (var (dockAUid, dockBUid, dockA, dockB) in config.Docks)
@@ -870,11 +870,11 @@ public sealed partial class ShuttleSystem
 
         // Sunrise-Start
         if (deletedTrash &&
-            TryComp<FixturesComponent>(shuttle, out var fixtures) &&
-            TryComp<MapGridComponent>(shuttle, out var shuttleGrid))
+            TryComp<FixturesComponent>(shuttle.Owner, out var fixtures) &&
+            TryComp<MapGridComponent>(shuttle.Owner, out var shuttleGrid))
         {
-            var xform = Transform(shuttle);
-            var transform = _physics.GetPhysicsTransform(shuttle, xform);
+            var xform = Transform(shuttle.Owner);
+            var transform = _physics.GetPhysicsTransform(shuttle.Owner, xform);
             foreach (var fixture in fixtures.Fixtures.Values)
             {
                 if (!fixture.Hard)
@@ -886,7 +886,7 @@ public sealed partial class ShuttleSystem
                 _mapManager.FindGridsIntersecting(shuttle.Comp.MapID, aabb, ref grids, includeMap: false);
                 foreach (var grid in grids)
                 {
-                    if (grid == config.TargetGrid || grid == shuttle)
+                    if (grid.Owner == config.TargetGrid || grid.Owner == shuttle.Owner)
                         continue;
 
                     QueueDel(grid);
@@ -1071,7 +1071,7 @@ public sealed partial class ShuttleSystem
     /// </summary>
     public bool TryFTLProximity(Entity<TransformComponent?> shuttle, EntityCoordinates targetCoordinates)
     {
-        if (!Resolve(shuttle, ref shuttle.Comp) ||
+        if (!Resolve(shuttle.Owner, ref shuttle.Comp) ||
             _transform.GetMap(targetCoordinates)?.IsValid() != true)
         {
             return false;

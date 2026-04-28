@@ -23,19 +23,19 @@ public sealed class ClientInnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
         if (ent.Comp.FallbackSprite is null)
             return;
 
-        var index = _sprite.LayerMapReserve((ent, sprite), ent.Comp.LayerMap);
+        var index = _sprite.LayerMapReserve((ent.Owner, sprite), ent.Comp.LayerMap);
 
         if (TryComp<HumanoidAppearanceComponent>(ent, out var humanoidAppearance) &&
             ent.Comp.SpeciesSprites.TryGetValue(humanoidAppearance.Species, out var speciesSprite))
         {
-            _sprite.LayerSetSprite((ent, sprite), index, speciesSprite);
+            _sprite.LayerSetSprite((ent.Owner, sprite), index, speciesSprite);
         }
         else
         {
-            _sprite.LayerSetSprite((ent, sprite), index, ent.Comp.FallbackSprite);
+            _sprite.LayerSetSprite((ent.Owner, sprite), index, ent.Comp.FallbackSprite);
         }
 
-        _sprite.LayerSetVisible((ent, sprite), index, true);
+        _sprite.LayerSetVisible((ent.Owner, sprite), index, true);
         sprite.LayerSetShader(index, "unshaded");
     }
 
@@ -44,7 +44,7 @@ public sealed class ClientInnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
         if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        var index = _sprite.LayerMapGet((ent, sprite), ent.Comp.LayerMap);
-        _sprite.LayerSetVisible((ent, sprite), index, false);
+        var index = _sprite.LayerMapGet((ent.Owner, sprite), ent.Comp.LayerMap);
+        _sprite.LayerSetVisible((ent.Owner, sprite), index, false);
     }
 }

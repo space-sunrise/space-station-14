@@ -37,7 +37,7 @@ public sealed class TippyOnTriggerSystem : EntitySystem
         }
         else
         {
-            var target = ent.Comp.TargetUser ? args.User : ent;
+            var target = ent.Comp.TargetUser ? args.User : ent.Owner;
             if (!TryComp<ActorComponent>(target, out var actor))
                 return;
 

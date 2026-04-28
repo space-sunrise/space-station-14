@@ -79,8 +79,8 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
             _role.MindHasRole<RoleBriefingComponent>(mindId, out var briefingComp);
             if (vampireRole is not null && briefingComp is null)
             {
-                AddComp<RoleBriefingComponent>(vampireRole.Value);
-                Comp<RoleBriefingComponent>(vampireRole.Value).Briefing = briefing;
+                AddComp<RoleBriefingComponent>(vampireRole.Value.Owner);
+                Comp<RoleBriefingComponent>(vampireRole.Value.Owner).Briefing = briefing;
             }
         }
         // vampire stuff
@@ -143,10 +143,10 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
 
         foreach (var vamp in EntityQuery<VampireComponent>())
         {
-            if (!_mind.TryGetMind(vamp, out var mindId, out var mind))
+            if (!_mind.TryGetMind(vamp.Owner, out var mindId, out var mind))
                 continue;
 
-            if (!TryComp<MetaDataComponent>(vamp, out var metaData))
+            if (!TryComp<MetaDataComponent>(vamp.Owner, out var metaData))
                 continue;
 
             if (vamp.TotalBloodDrank > mostDrained)

@@ -345,20 +345,20 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             IFFComponent? iffComp = null;
 
             // Rudimentary IFF for now, if IFF hiding on then we don't show on the map at all
-            if (grid != _shuttleEntity &&
+            if (grid.Owner != _shuttleEntity &&
                 EntManager.TryGetComponent(grid, out iffComp) &&
                 (iffComp.Flags & IFFFlags.Hide) != 0x0)
             {
                 continue;
             }
 
-            var gridColor = _shuttles.GetIFFColor(grid, self: _shuttleEntity == grid, component: iffComp);
+            var gridColor = _shuttles.GetIFFColor(grid, self: _shuttleEntity == grid.Owner, component: iffComp);
 
             var existingVerts = _verts.GetOrNew(gridColor);
             var existingEdges = _edges.GetOrNew(gridColor);
 
-            var gridPhysics = _physicsQuery.GetComponent(grid);
-            var (gridPos, gridRot) = _xformSystem.GetWorldPositionRotation(grid);
+            var gridPhysics = _physicsQuery.GetComponent(grid.Owner);
+            var (gridPos, gridRot) = _xformSystem.GetWorldPositionRotation(grid.Owner);
             gridPos = Maps.GetGridPosition((grid, gridPhysics), gridPos, gridRot);
 
             var gridRelativePos = Vector2.Transform(gridPos, matty);

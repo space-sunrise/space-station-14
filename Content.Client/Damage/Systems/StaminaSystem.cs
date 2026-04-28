@@ -80,7 +80,7 @@ public sealed partial class StaminaSystem : SharedStaminaSystem
         if(!Resolve(entity, ref entity.Comp2))
             return;
 
-        _animation.Stop(entity, StaminaAnimationKey);
+        _animation.Stop(entity.Owner, StaminaAnimationKey);
         entity.Comp1.StartOffset = entity.Comp2.Offset;
     }
 
@@ -92,7 +92,7 @@ public sealed partial class StaminaSystem : SharedStaminaSystem
         // stop looping if we're below the threshold
         if (entity.Comp.AnimationThreshold > entity.Comp.StaminaDamage)
         {
-            _animation.Stop(entity, StaminaAnimationKey);
+            _animation.Stop(entity.Owner, StaminaAnimationKey);
             _sprite.SetOffset((entity, sprite), entity.Comp.StartOffset);
             return;
         }
@@ -115,7 +115,7 @@ public sealed partial class StaminaSystem : SharedStaminaSystem
         var jitter = entity.Comp1.JitterAmplitudeMin + step * entity.Comp1.JitterAmplitudeMod;
         var breathing = entity.Comp1.BreathingAmplitudeMin + step * entity.Comp1.BreathingAmplitudeMod;
 
-        _animation.Play(entity,
+        _animation.Play(entity.Owner,
             _stun.GetFatigueAnimation(entity.Comp2,
                 frequency,
                 entity.Comp1.Jitters,

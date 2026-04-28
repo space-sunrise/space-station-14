@@ -135,15 +135,15 @@ public abstract partial class SharedBuckleSystem
         if (ent.Comp.BuckledTo != null)
         {
             // Sunrise-Start
-            if (CanUnbuckle((ent, ent.Comp), args.User, false))
+            if (CanUnbuckle((ent.Owner, ent.Comp), args.User, false))
             {
-                if (ent == args.User)
+                if (ent.Owner == args.User)
                 {
                     args.Handled = TryUnbuckle(ent!, args.User, popup: true);
                 }
                 else
                 {
-                    var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.UnbuckleDoafterTime, new UnbuckleDoAfterEvent(), ent, ent)
+                    var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.UnbuckleDoafterTime, new UnbuckleDoAfterEvent(), ent.Owner, ent.Owner)
                     {
                         BreakOnMove = true,
                         BreakOnDamage = true,

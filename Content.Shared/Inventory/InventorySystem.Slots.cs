@@ -37,7 +37,7 @@ public partial class InventorySystem : EntitySystem
     public bool TryGetInventoryEntity<T>(Entity<InventoryComponent?> entity, out Entity<T?> target)
         where T : IComponent, IClothingSlots
     {
-        if (TryGetContainerSlotEnumerator(entity, out var containerSlotEnumerator))
+        if (TryGetContainerSlotEnumerator(entity.Owner, out var containerSlotEnumerator))
         {
             while (containerSlotEnumerator.NextItem(out var item, out var slot))
             {
@@ -107,7 +107,7 @@ public partial class InventorySystem : EntitySystem
         for (var i = 0; i < ent.Comp.Containers.Length; i++)
         {
             var slot = ent.Comp.Slots[i];
-            var container = _containerSystem.EnsureContainer<ContainerSlot>(ent, slot.Name);
+            var container = _containerSystem.EnsureContainer<ContainerSlot>(ent.Owner, slot.Name);
             container.OccludesLight = false;
             ent.Comp.Containers[i] = container;
         }
@@ -174,7 +174,7 @@ public partial class InventorySystem : EntitySystem
 
     public bool TryGetContainerSlotEnumerator(Entity<InventoryComponent?> entity, out InventorySlotEnumerator containerSlotEnumerator, SlotFlags flags = SlotFlags.All)
     {
-        if (!Resolve(entity, ref entity.Comp, false))
+        if (!Resolve(entity.Owner, ref entity.Comp, false))
         {
             containerSlotEnumerator = default;
             return false;
@@ -186,7 +186,7 @@ public partial class InventorySystem : EntitySystem
 
     public InventorySlotEnumerator GetSlotEnumerator(Entity<InventoryComponent?> entity, SlotFlags flags = SlotFlags.All)
     {
-        if (!Resolve(entity, ref entity.Comp, false))
+        if (!Resolve(entity.Owner, ref entity.Comp, false))
             return InventorySlotEnumerator.Empty;
 
         return new InventorySlotEnumerator(entity.Comp, flags);

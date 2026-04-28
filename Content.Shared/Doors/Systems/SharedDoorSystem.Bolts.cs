@@ -87,7 +87,7 @@ public abstract partial class SharedDoorSystem
         bool predicted = false
     )
     {
-        if (!_powerReceiver.IsPowered(ent))
+        if (!_powerReceiver.IsPowered(ent.Owner))
             return false;
         if (ent.Comp.BoltsDown == value)
             return false;
@@ -98,7 +98,7 @@ public abstract partial class SharedDoorSystem
 
         // used to reset the auto-close timer after unbolting
         var ev = new DoorBoltsChangedEvent(value);
-        RaiseLocalEvent(ent, ev);
+        RaiseLocalEvent(ent.Owner, ev);
 
         var sound = value ? ent.Comp.BoltDownSound : ent.Comp.BoltUpSound;
         if (predicted)

@@ -39,7 +39,7 @@ public sealed class DamageOnHoldingSystem : EntitySystem
                 continue;
             if (_container.TryGetContainingContainer((uid, null, null), out var container))
             {
-                _damageableSystem.TryChangeDamage(container, component.Damage, origin: uid);
+                _damageableSystem.TryChangeDamage(container.Owner, component.Damage, origin: uid);
             }
             component.NextDamage = _timing.CurTime + TimeSpan.FromSeconds(component.Interval);
         }

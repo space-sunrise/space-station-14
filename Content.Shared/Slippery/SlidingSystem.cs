@@ -114,7 +114,7 @@ public sealed class SlidingSystem : EntitySystem
         if (count > 0)
         {
             entity.Comp1.FrictionModifier = friction / count;
-            Dirty(entity, entity.Comp1);
+            Dirty(entity.Owner, entity.Comp1);
             return true;
         }
 

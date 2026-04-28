@@ -19,6 +19,6 @@ public sealed class ItemTogglePrefixSystem : EntitySystem
 
     private void OnToggled(Entity<ItemTogglePrefixComponent> ent, ref ItemToggledEvent args)
     {
-        _item.SetHeldPrefix(ent, args.Activated ? ent.Comp.PrefixOn : ent.Comp.PrefixOff);
+        _item.SetHeldPrefix(ent.Owner, args.Activated ? ent.Comp.PrefixOn : ent.Comp.PrefixOff);
     }
 }

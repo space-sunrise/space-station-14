@@ -53,7 +53,7 @@ public sealed partial class SalvageSystem
         {
             var station = _station.GetOwningStation(uid, xform);
 
-            if (station != component)
+            if (station != component.Owner)
                 continue;
 
             _ui.SetUiState((uid, uiComp), SalvageConsoleUiKey.Expedition, state);
@@ -74,6 +74,6 @@ public sealed partial class SalvageSystem
             state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>());
         }
 
-        _ui.SetUiState(component, SalvageConsoleUiKey.Expedition, state);
+        _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
     }
 }

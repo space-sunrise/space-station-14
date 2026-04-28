@@ -53,7 +53,7 @@ public sealed class MailingUnitBoundUserInterface : BoundUserInterface
             return;
 
         // TODO: This should be decoupled from disposals
-        if (EntMan.TryGetComponent(entity, out DisposalUnitComponent? disposals))
+        if (EntMan.TryGetComponent(entity.Owner, out DisposalUnitComponent? disposals))
         {
             var disposalSystem = EntMan.System<DisposalUnitSystem>();
 

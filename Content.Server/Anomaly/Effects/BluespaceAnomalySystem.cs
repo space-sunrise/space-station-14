@@ -38,7 +38,7 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         // otherwise borg brains get removed from their body, or PAIs from a PDA
         var mobs = new HashSet<Entity<MobStateComponent>>();
         _lookup.GetEntitiesInRange(xform.Coordinates, range, mobs, flags: LookupFlags.Uncontained);
-        var allEnts = new ValueList<EntityUid>(mobs.Select(m => m)) { uid };
+        var allEnts = new ValueList<EntityUid>(mobs.Select(m => m.Owner)) { uid };
         var coords = new ValueList<Vector2>();
         foreach (var ent in allEnts)
         {
@@ -64,7 +64,7 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         _lookup.GetEntitiesInRange(xform.Coordinates, component.MaxShuffleRadius, mobs, flags: LookupFlags.Uncontained);
         foreach (var comp in mobs)
         {
-            var ent = comp;
+            var ent = comp.Owner;
             var randomX = _random.NextFloat(gridBounds.Left, gridBounds.Right);
             var randomY = _random.NextFloat(gridBounds.Bottom, gridBounds.Top);
 

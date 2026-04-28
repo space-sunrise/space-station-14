@@ -21,25 +21,25 @@ public sealed partial class ModifyKnockdownEntityEffectSystem : EntityEffectSyst
         {
             case StatusEffectMetabolismType.Update:
                 if (args.Effect.Crawling)
-                    _stun.TryCrawling(entity, time, drop: args.Effect.Drop);
+                    _stun.TryCrawling(entity.Owner, time, drop: args.Effect.Drop);
                 else
-                    _stun.TryKnockdown(entity, time, drop: args.Effect.Drop);
+                    _stun.TryKnockdown(entity.Owner, time, drop: args.Effect.Drop);
                 break;
             case StatusEffectMetabolismType.Add:
                 if (args.Effect.Crawling)
-                    _stun.TryCrawling(entity, time, false, drop: args.Effect.Drop);
+                    _stun.TryCrawling(entity.Owner, time, false, drop: args.Effect.Drop);
                 else
-                    _stun.TryKnockdown(entity, time, false, drop: args.Effect.Drop);
+                    _stun.TryKnockdown(entity.Owner, time, false, drop: args.Effect.Drop);
                 break;
             case StatusEffectMetabolismType.Remove:
-                _stun.AddKnockdownTime(entity, - time ?? TimeSpan.Zero);
+                _stun.AddKnockdownTime(entity.Owner, - time ?? TimeSpan.Zero);
                 break;
             case StatusEffectMetabolismType.Set:
                 if (args.Effect.Crawling)
-                    _stun.TryCrawling(entity, drop: args.Effect.Drop);
+                    _stun.TryCrawling(entity.Owner, drop: args.Effect.Drop);
                 else
-                    _stun.TryKnockdown(entity, time, drop: args.Effect.Drop);
-                _stun.SetKnockdownTime(entity, time ?? TimeSpan.Zero);
+                    _stun.TryKnockdown(entity.Owner, time, drop: args.Effect.Drop);
+                _stun.SetKnockdownTime(entity.Owner, time ?? TimeSpan.Zero);
                 break;
         }
     }

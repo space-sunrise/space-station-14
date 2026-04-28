@@ -82,7 +82,7 @@ public abstract class SharedFlashSystem : EntitySystem
         args.Handled = true;
         foreach (var target in args.HitEntities)
         {
-            Flash(target, args.User, ent, ent.Comp.MeleeDuration, ent.Comp.SlowTo, melee: true, stunDuration: ent.Comp.MeleeStunDuration);
+            Flash(target, args.User, ent.Owner, ent.Comp.MeleeDuration, ent.Comp.SlowTo, melee: true, stunDuration: ent.Comp.MeleeStunDuration);
         }
     }
 
@@ -92,7 +92,7 @@ public abstract class SharedFlashSystem : EntitySystem
             return;
 
         args.Handled = true;
-        FlashArea(ent, args.User, ent.Comp.Range, ent.Comp.AoeFlashDuration, ent.Comp.SlowTo, true, ent.Comp.Probability);
+        FlashArea(ent.Owner, args.User, ent.Comp.Range, ent.Comp.AoeFlashDuration, ent.Comp.SlowTo, true, ent.Comp.Probability);
     }
 
     // needed for the flash lantern and interrogator lamp
@@ -102,7 +102,7 @@ public abstract class SharedFlashSystem : EntitySystem
         if (!args.IsOn || !UseFlash(ent, null))
             return;
 
-        FlashArea(ent, null, ent.Comp.Range, ent.Comp.AoeFlashDuration, ent.Comp.SlowTo, true, ent.Comp.Probability);
+        FlashArea(ent.Owner, null, ent.Comp.Range, ent.Comp.AoeFlashDuration, ent.Comp.SlowTo, true, ent.Comp.Probability);
     }
 
     /// <summary>
@@ -111,25 +111,25 @@ public abstract class SharedFlashSystem : EntitySystem
     /// <returns>False if no charges are left or the flash is currently in use.</returns>
     private bool UseFlash(Entity<FlashComponent> ent, EntityUid? user)
     {
-        if (_useDelay.IsDelayed(ent))
+        if (_useDelay.IsDelayed(ent.Owner))
             return false;
 
-        if (TryComp<LimitedChargesComponent>(ent, out var charges)
-            && _sharedCharges.IsEmpty((ent, charges)))
+        if (TryComp<LimitedChargesComponent>(ent.Owner, out var charges)
+            && _sharedCharges.IsEmpty((ent.Owner, charges)))
             return false;
 
-        _sharedCharges.TryUseCharge((ent, charges));
-        _audio.PlayPredicted(ent.Comp.Sound, ent, user);
+        _sharedCharges.TryUseCharge((ent.Owner, charges));
+        _audio.PlayPredicted(ent.Comp.Sound, ent.Owner, user);
 
-        var active = EnsureComp<ActiveFlashComponent>(ent);
+        var active = EnsureComp<ActiveFlashComponent>(ent.Owner);
         active.ActiveUntil = _timing.CurTime + ent.Comp.FlashingTime;
-        Dirty(ent, active);
-        _appearance.SetData(ent, FlashVisuals.Flashing, true);
+        Dirty(ent.Owner, active);
+        _appearance.SetData(ent.Owner, FlashVisuals.Flashing, true);
 
-        if (_sharedCharges.IsEmpty((ent, charges)))
+        if (_sharedCharges.IsEmpty((ent.Owner, charges)))
         {
-            _appearance.SetData(ent, FlashVisuals.Burnt, true);
-            _tag.AddTag(ent, TrashTag);
+            _appearance.SetData(ent.Owner, FlashVisuals.Burnt, true);
+            _tag.AddTag(ent.Owner, TrashTag);
             _popup.PopupClient(Loc.GetString("flash-component-becomes-empty"), user);
         }
 

@@ -84,12 +84,12 @@ public sealed class PlaceableSurfaceSystem : EntitySystem
 
     private void OnStorageAfterOpen(Entity<PlaceableSurfaceComponent> ent, ref StorageAfterOpenEvent args)
     {
-        SetPlaceable(ent, true, ent.Comp);
+        SetPlaceable(ent.Owner, true, ent.Comp);
     }
 
     private void OnStorageAfterClose(Entity<PlaceableSurfaceComponent> ent, ref StorageAfterCloseEvent args)
     {
-        SetPlaceable(ent, false, ent.Comp);
+        SetPlaceable(ent.Owner, false, ent.Comp);
     }
 
     private void OnGetDumpableVerb(Entity<PlaceableSurfaceComponent> ent, ref GetDumpableVerbEvent args)

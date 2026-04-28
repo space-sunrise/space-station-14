@@ -17,7 +17,7 @@ public sealed partial class DropOperator : HTNOperator
             return HTNOperatorStatus.Finished;
         }
 
-        var owner = blackboard.GetValueOrDefault<EntityUid>(NPCBlackboard, _entManager);
+        var owner = blackboard.GetValueOrDefault<EntityUid>(NPCBlackboard.Owner, _entManager);
         // TODO: Need some sort of interaction cooldown probably.
         var handsSystem = _entManager.System<HandsSystem>();
 

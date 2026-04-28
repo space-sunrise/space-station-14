@@ -459,12 +459,12 @@ namespace Content.IntegrationTests.Tests
                 var memberQuery = entManager.GetEntityQuery<StationMemberComponent>();
 
                 var grids = mapManager.GetAllGrids(mapId).ToList();
-                var gridUids = grids.Select(o => o).ToList();
+                var gridUids = grids.Select(o => o.Owner).ToList();
                 targetGrid = gridUids.First();
 
                 foreach (var grid in grids)
                 {
-                    var gridEnt = grid;
+                    var gridEnt = grid.Owner;
                     if (!memberQuery.HasComponent(gridEnt))
                         continue;
 
@@ -487,8 +487,8 @@ namespace Content.IntegrationTests.Tests
                         $"Failed to load {shuttlePath}");
 
                     Assert.That(
-                        shuttleSystem.TryFTLDock(shuttle!.Value,
-                            entManager.GetComponent<ShuttleComponent>(shuttle!.Value),
+                        shuttleSystem.TryFTLDock(shuttle!.Value.Owner,
+                            entManager.GetComponent<ShuttleComponent>(shuttle!.Value.Owner),
                             targetGrid.Value),
                         $"Unable to dock {shuttlePath} to {mapProto}");
                 }

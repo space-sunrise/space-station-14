@@ -36,12 +36,12 @@ public sealed class CursedEntityStorageSystem : EntitySystem
             lockers.Add((storageUid, storageComp));
         }
 
-        lockers.RemoveAll(e => e == uid);
+        lockers.RemoveAll(e => e.Owner == uid);
 
         if (lockers.Count == 0)
             return;
 
-        var lockerEnt = _random.Pick(lockers);
+        var lockerEnt = _random.Pick(lockers).Owner;
 
         foreach (var entity in storage.Contents.ContainedEntities.ToArray())
         {

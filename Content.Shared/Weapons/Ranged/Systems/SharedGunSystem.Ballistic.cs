@@ -350,7 +350,7 @@ public abstract partial class SharedGunSystem
         if (nextRefillByPause > entity.Comp.NextAutoRefill)
         {
             entity.Comp.NextAutoRefill = nextRefillByPause;
-            DirtyField(entity, nameof(BallisticAmmoSelfRefillerComponent.NextAutoRefill));
+            DirtyField(entity.AsNullable(), nameof(BallisticAmmoSelfRefillerComponent.NextAutoRefill));
         }
     }
 
@@ -395,7 +395,7 @@ public abstract partial class SharedGunSystem
 
         UpdateBallisticAppearance(entity, entity.Comp);
         UpdateAmmoCount(entity);
-        DirtyField(entity, nameof(BallisticAmmoProviderComponent.Entities));
+        DirtyField(entity.AsNullable(), nameof(BallisticAmmoProviderComponent.Entities));
 
         return true;
     }
@@ -415,8 +415,8 @@ public abstract partial class SharedGunSystem
             return;
 
         entity.Comp.UnspawnedCount = count;
-        UpdateBallisticAppearance(entity, entity.Comp);
-        UpdateAmmoCount(entity);
+        UpdateBallisticAppearance(entity.Owner, entity.Comp);
+        UpdateAmmoCount(entity.Owner);
         Dirty(entity);
     }
 

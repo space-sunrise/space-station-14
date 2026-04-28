@@ -169,13 +169,13 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
     private void OnInventoryEjectMessage(Entity<VendingMachineComponent> entity, ref VendingMachineEjectMessage args)
     {
-        if (!_receiver.IsPowered(entity) || Deleted(entity))
+        if (!_receiver.IsPowered(entity.Owner) || Deleted(entity))
             return;
 
         if (args.Actor is not { Valid: true } actor)
             return;
 
-        AuthorizedVend(entity, actor, args.Type, args.ID, entity.Comp);
+        AuthorizedVend(entity.Owner, actor, args.Type, args.ID, entity.Comp);
     }
 
     protected virtual void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
@@ -185,7 +185,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
     private void OnEmpPulse(Entity<VendingMachineComponent> ent, ref EmpPulseEvent args)
     {
-        if (!ent.Comp.Broken && _receiver.IsPowered(ent))
+        if (!ent.Comp.Broken && _receiver.IsPowered(ent.Owner))
         {
             args.Affected = true;
             args.Disabled = true;
@@ -283,14 +283,14 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
     public void Deny(Entity<VendingMachineComponent?> entity, EntityUid? user = null)
     {
-        if (!Resolve(entity, ref entity.Comp))
+        if (!Resolve(entity.Owner, ref entity.Comp))
             return;
 
         if (entity.Comp.Denying)
             return;
 
         entity.Comp.DenyEnd = Timing.CurTime + entity.Comp.DenyDelay;
-        Audio.PlayPredicted(entity.Comp.SoundDeny, entity, user, AudioParams.Default.WithVolume(-2f));
+        Audio.PlayPredicted(entity.Comp.SoundDeny, entity.Owner, user, AudioParams.Default.WithVolume(-2f));
         TryUpdateVisualState(entity);
         Dirty(entity);
     }
@@ -302,7 +302,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     /// </summary>
     public void TryUpdateVisualState(Entity<VendingMachineComponent?> entity)
     {
-        if (!Resolve(entity, ref entity.Comp))
+        if (!Resolve(entity.Owner, ref entity.Comp))
             return;
 
         var finalState = VendingMachineVisualState.Normal;
@@ -318,19 +318,19 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         {
             finalState = VendingMachineVisualState.Deny;
         }
-        else if (!_receiver.IsPowered(entity))
+        else if (!_receiver.IsPowered(entity.Owner))
         {
             finalState = VendingMachineVisualState.Off;
         }
 
         // TODO: You know this should really live on the client with netsync off because client knows the state.
-        if (Light.TryGetLight(entity, out var pointlight))
+        if (Light.TryGetLight(entity.Owner, out var pointlight))
         {
             var lightEnabled = finalState != VendingMachineVisualState.Broken && finalState != VendingMachineVisualState.Off;
-            Light.SetEnabled(entity, lightEnabled, pointlight);
+            Light.SetEnabled(entity.Owner, lightEnabled, pointlight);
         }
 
-        _appearanceSystem.SetData(entity, VendingMachineVisuals.VisualState, finalState);
+        _appearanceSystem.SetData(entity.Owner, VendingMachineVisuals.VisualState, finalState);
     }
 
     /// <summary>

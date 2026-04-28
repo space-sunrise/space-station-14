@@ -128,7 +128,7 @@ public abstract class SharedMobCollisionSystem : EntitySystem
         if (value)
         {
             entity.Comp.BufferAccumulator = BufferTime;
-            DirtyField(entity, entity.Comp, nameof(MobCollisionComponent.BufferAccumulator));
+            DirtyField(entity.Owner, entity.Comp, nameof(MobCollisionComponent.BufferAccumulator));
         }
         else
         {
@@ -138,14 +138,14 @@ public abstract class SharedMobCollisionSystem : EntitySystem
         if (entity.Comp.Colliding != value)
         {
             entity.Comp.Colliding = value;
-            DirtyField(entity, entity.Comp, nameof(MobCollisionComponent.Colliding));
+            DirtyField(entity.Owner, entity.Comp, nameof(MobCollisionComponent.Colliding));
         }
 
         if (!entity.Comp.SpeedModifier.Equals(speedMod))
         {
             entity.Comp.SpeedModifier = speedMod;
-            _moveMod.RefreshMovementSpeedModifiers(entity);
-            DirtyField(entity, entity.Comp, nameof(MobCollisionComponent.SpeedModifier));
+            _moveMod.RefreshMovementSpeedModifiers(entity.Owner);
+            DirtyField(entity.Owner, entity.Comp, nameof(MobCollisionComponent.SpeedModifier));
         }
     }
 
@@ -191,7 +191,7 @@ public abstract class SharedMobCollisionSystem : EntitySystem
             return;
 
         entity.Comp1.Direction = direction;
-        DirtyField(entity, entity.Comp1, nameof(MobCollisionComponent.Direction));
+        DirtyField(entity.Owner, entity.Comp1, nameof(MobCollisionComponent.Direction));
     }
 
     protected bool HandleCollisions(Entity<MobCollisionComponent, PhysicsComponent> entity, float frameTime)
@@ -206,21 +206,21 @@ public abstract class SharedMobCollisionSystem : EntitySystem
         if (ourVelocity == Vector2.Zero && !CfgManager.GetCVar(CCVars.MovementPushingStatic))
             return false;
 
-        var xform = Transform(entity);
+        var xform = Transform(entity.Owner);
 
         if (xform.ParentUid != xform.GridUid && xform.ParentUid != xform.MapUid)
             return false;
 
         var ev = new AttemptMobCollideEvent();
 
-        RaiseLocalEvent(entity, ref ev);
+        RaiseLocalEvent(entity.Owner, ref ev);
 
         if (ev.Cancelled)
             return false;
 
         var (worldPos, worldRot) = _xformSystem.GetWorldPositionRotation(xform);
         var ourTransform = new Transform(worldPos, worldRot);
-        var contacts = Physics.GetContacts(entity);
+        var contacts = Physics.GetContacts(entity.Owner);
         var direction = Vector2.Zero;
         var contactCount = 0;
         var ourMass = physics.FixturesMass;
@@ -231,12 +231,12 @@ public abstract class SharedMobCollisionSystem : EntitySystem
             if (!contact.IsTouching)
                 continue;
 
-            var ourFixture = contact.OurFixture(entity);
+            var ourFixture = contact.OurFixture(entity.Owner);
 
             if (ourFixture.Id != entity.Comp1.FixtureId)
                 continue;
 
-            var other = contact.OtherEnt(entity);
+            var other = contact.OtherEnt(entity.Owner);
 
             if (!MobQuery.TryComp(other, out var otherComp) || !PhysicsQuery.TryComp(other, out var otherPhysics))
                 continue;
@@ -303,7 +303,7 @@ public abstract class SharedMobCollisionSystem : EntitySystem
         }
 
         direction *= frameTime;
-        RaiseCollisionEvent(entity, direction, speedMod);
+        RaiseCollisionEvent(entity.Owner, direction, speedMod);
         return true;
     }
 

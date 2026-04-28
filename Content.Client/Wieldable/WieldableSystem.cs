@@ -25,7 +25,7 @@ public sealed class WieldableSystem : SharedWieldableSystem
 
     public void OnEyeOffsetUnwielded(Entity<CursorOffsetRequiresWieldComponent> entity, ref ItemUnwieldedEvent args)
     {
-        if (!TryComp(entity, out EyeCursorOffsetComponent? cursorOffsetComp))
+        if (!TryComp(entity.Owner, out EyeCursorOffsetComponent? cursorOffsetComp))
             return;
 
         if (_gameTiming.IsFirstTimePredicted)
@@ -37,13 +37,13 @@ public sealed class WieldableSystem : SharedWieldableSystem
 
     public void OnGetEyeOffset(Entity<CursorOffsetRequiresWieldComponent> entity, ref HeldRelayedEvent<GetEyeOffsetRelayedEvent> args)
     {
-        if (!TryComp(entity, out WieldableComponent? wieldableComp))
+        if (!TryComp(entity.Owner, out WieldableComponent? wieldableComp))
             return;
 
         if (!wieldableComp.Wielded)
             return;
 
-        var offset = _eyeOffset.OffsetAfterMouse(entity, null);
+        var offset = _eyeOffset.OffsetAfterMouse(entity.Owner, null);
         if (offset == null)
             return;
 

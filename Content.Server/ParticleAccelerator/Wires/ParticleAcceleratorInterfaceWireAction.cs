@@ -21,7 +21,7 @@ public sealed partial class ParticleAcceleratorKeyboardWireAction : ComponentWir
     {
         controller.InterfaceDisabled = true;
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.UpdateUI(wire, controller);
+        paSystem.UpdateUI(wire.Owner, controller);
         return true;
     }
 
@@ -29,7 +29,7 @@ public sealed partial class ParticleAcceleratorKeyboardWireAction : ComponentWir
     {
         controller.InterfaceDisabled = false;
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.UpdateUI(wire, controller);
+        paSystem.UpdateUI(wire.Owner, controller);
         return true;
     }
 

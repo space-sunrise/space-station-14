@@ -82,7 +82,7 @@ public sealed partial class DeliveryModifierSystem : EntitySystem
 
     private void OnPriorityExamine(Entity<DeliveryPriorityComponent> ent, ref ExaminedEvent args)
     {
-        var trueName = _nameModifier.GetBaseName(ent);
+        var trueName = _nameModifier.GetBaseName(ent.Owner);
         var timeLeft = ent.Comp.DeliverUntilTime - _timing.CurTime;
 
         if (ent.Comp.Delivered)
@@ -117,7 +117,7 @@ public sealed partial class DeliveryModifierSystem : EntitySystem
 
     private void OnFragileExamine(Entity<DeliveryFragileComponent> ent, ref ExaminedEvent args)
     {
-        var trueName = _nameModifier.GetBaseName(ent);
+        var trueName = _nameModifier.GetBaseName(ent.Owner);
 
         if (ent.Comp.Broken)
             args.PushMarkup(Loc.GetString("delivery-fragile-broken-examine", ("type", trueName)));
@@ -150,7 +150,7 @@ public sealed partial class DeliveryModifierSystem : EntitySystem
 
     private void OnExplosiveExamine(Entity<DeliveryBombComponent> ent, ref ExaminedEvent args)
     {
-        var trueName = _nameModifier.GetBaseName(ent);
+        var trueName = _nameModifier.GetBaseName(ent.Owner);
 
         var isPrimed = HasComp<PrimedDeliveryBombComponent>(ent);
 

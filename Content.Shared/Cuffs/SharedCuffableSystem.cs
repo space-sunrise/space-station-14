@@ -209,7 +209,7 @@ namespace Content.Shared.Cuffs
 
         private void OnBuckleAttempt(Entity<CuffableComponent> ent, EntityUid? user, ref bool cancelled, bool buckling, bool popup)
         {
-            if (cancelled || user != ent)
+            if (cancelled || user != ent.Owner)
                 return;
 
             if (!TryComp<HandsComponent>(ent, out var hands) || ent.Comp.CuffedHandCount < hands.Count)
@@ -415,7 +415,7 @@ namespace Content.Shared.Cuffs
                 return;
 
             var dirty = false;
-            var handCount = CompOrNull<HandsComponent>(ent)?.Count ?? 0;
+            var handCount = CompOrNull<HandsComponent>(ent.Owner)?.Count ?? 0;
 
             while (ent.Comp.CuffedHandCount > handCount && ent.Comp.CuffedHandCount > 0)
             {
@@ -424,12 +424,12 @@ namespace Content.Shared.Cuffs
                 var handcuffContainer = ent.Comp.Container;
                 var handcuffEntity = handcuffContainer.ContainedEntities[^1];
 
-                _transform.PlaceNextTo(handcuffEntity, ent);
+                _transform.PlaceNextTo(handcuffEntity, ent.Owner);
             }
 
             if (dirty)
             {
-                UpdateCuffState(ent, ent.Comp);
+                UpdateCuffState(ent.Owner, ent.Comp);
             }
         }
 
@@ -629,7 +629,7 @@ namespace Content.Shared.Cuffs
             if (!Resolve(target, ref target.Comp) || !Resolve(cuff, ref cuff.Comp))
                 return;
 
-            var isOwner = user == target;
+            var isOwner = user == target.Owner;
 
             if (!target.Comp.Container.ContainedEntities.Contains(cuff))
                 Log.Warning("A user is trying to remove handcuffs that aren't in the owner's container. This should never happen!");
@@ -642,7 +642,7 @@ namespace Content.Shared.Cuffs
                 return;
             }
 
-            if (!isOwner && !_interaction.InRangeUnobstructed(user, target))
+            if (!isOwner && !_interaction.InRangeUnobstructed(user, target.Owner))
             {
                 _popup.PopupClient(Loc.GetString("cuffable-component-cannot-remove-cuffs-too-far-message"), user, user);
                 return;
@@ -678,7 +678,7 @@ namespace Content.Shared.Cuffs
 
             _adminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(user):player} is trying to uncuff {ToPrettyString(target):subject}");
 
-            var popupText = user == target
+            var popupText = user == target.Owner
                 ? "cuffable-component-start-uncuffing-self-observer"
                 : "cuffable-component-start-uncuffing-observer";
             _popup.PopupEntity(

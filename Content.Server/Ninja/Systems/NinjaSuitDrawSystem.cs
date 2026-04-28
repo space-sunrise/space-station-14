@@ -79,7 +79,7 @@ public sealed class NinjaSuitDrawSystem : SharedNinjaSuitDrawSystem
 
     private void OnPowerEmpty(Entity<ToggleNinjaSuitDrawComponent> ent, ref NinjaSuitPowerEmptyEvent args)
     {
-        _toggle.TryDeactivate(ent);
+        _toggle.TryDeactivate(ent.Owner);
     }
 
     private void OnClothingEquipped(Entity<NinjaSuitDrawComponent> ent, ref ClothingGotEquippedEvent args)

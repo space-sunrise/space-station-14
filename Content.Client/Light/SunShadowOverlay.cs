@@ -76,7 +76,7 @@ public sealed class SunShadowOverlay : Overlay
 
         foreach (var grid in _grids)
         {
-            if (!_entManager.TryGetComponent(grid, out SunShadowComponent? sun))
+            if (!_entManager.TryGetComponent(grid.Owner, out SunShadowComponent? sun))
             {
                 continue;
             }
@@ -117,7 +117,7 @@ public sealed class SunShadowOverlay : Overlay
 
                     foreach (var ent in _shadows)
                     {
-                        var xform = _entManager.GetComponent<TransformComponent>(ent);
+                        var xform = _entManager.GetComponent<TransformComponent>(ent.Owner);
                         var (worldPos, worldRot) = _xformSys.GetWorldPositionRotation(xform);
                         // Need no rotation on matrix as sun shadow direction doesn't care.
                         var worldMatrix = Matrix3x2.CreateTranslation(worldPos);

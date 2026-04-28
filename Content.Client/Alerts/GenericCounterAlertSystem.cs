@@ -47,10 +47,10 @@ public sealed class GenericCounterAlertSystem : EntitySystem
         {
             for (var i = 0; i < ent.Comp.DigitKeys.Count; i++)
             {
-                if (!_sprite.LayerMapTryGet(ent, ent.Comp.DigitKeys[i], out var layer, false))
+                if (!_sprite.LayerMapTryGet(ent.Owner, ent.Comp.DigitKeys[i], out var layer, false))
                     continue;
 
-                _sprite.LayerSetVisible(ent, layer, i <= digitCount - 1);
+                _sprite.LayerSetVisible(ent.Owner, layer, i <= digitCount - 1);
             }
         }
 
@@ -59,16 +59,16 @@ public sealed class GenericCounterAlertSystem : EntitySystem
 
         for (var i = 0; i < ent.Comp.DigitKeys.Count; i++)
         {
-            if (!_sprite.LayerMapTryGet(ent, ent.Comp.DigitKeys[i], out var layer, false))
+            if (!_sprite.LayerMapTryGet(ent.Owner, ent.Comp.DigitKeys[i], out var layer, false))
                 continue;
 
             var result = amount / (int) Math.Pow(10, i) % 10;
-            _sprite.LayerSetRsiState(ent, layer, result.ToString());
+            _sprite.LayerSetRsiState(ent.Owner, layer, result.ToString());
 
             if (ent.Comp.CenterGlyph)
             {
                 var offset = baseOffset + (digitCount - 1 - i) * ent.Comp.GlyphWidth * (1f / EyeManager.PixelsPerMeter);
-                _sprite.LayerSetOffset(ent, layer, new Vector2(offset, 0));
+                _sprite.LayerSetOffset(ent.Owner, layer, new Vector2(offset, 0));
             }
         }
     }
@@ -81,7 +81,7 @@ public sealed class GenericCounterAlertSystem : EntitySystem
     {
         for (var i = ent.Comp1.DigitKeys.Count - 1; i >= 0; i--)
         {
-            if (_sprite.LayerExists((ent, ent.Comp2), ent.Comp1.DigitKeys[i]))
+            if (_sprite.LayerExists((ent.Owner, ent.Comp2), ent.Comp1.DigitKeys[i]))
                 return i + 1;
         }
 

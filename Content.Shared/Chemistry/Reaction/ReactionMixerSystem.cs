@@ -28,7 +28,7 @@ public sealed partial class ReactionMixerSystem : EntitySystem
         if (!args.Target.HasValue || !args.CanReach || !ent.Comp.MixOnInteract)
             return;
 
-        if (!CanMix(ent, args.Target.Value))
+        if (!CanMix(ent.AsNullable(), args.Target.Value))
             return;
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.TimeToMix, new ReactionMixDoAfterEvent(), ent, args.Target.Value, ent);
@@ -42,21 +42,21 @@ public sealed partial class ReactionMixerSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        if (!TryMix(ent, args.Target.Value))
+        if (!TryMix(ent.AsNullable(), args.Target.Value))
             return;
 
         _popup.PopupClient(
             Loc.GetString(
                 ent.Comp.MixMessage,
                 ("mixed", Identity.Entity(args.Target.Value, EntityManager)),
-                ("mixer", Identity.Entity(ent, EntityManager))),
+                ("mixer", Identity.Entity(ent.Owner, EntityManager))),
             args.User,
             args.User);
     }
 
     private void OnShake(Entity<ReactionMixerComponent> ent, ref ShakeEvent args)
     {
-        TryMix(ent, ent);
+        TryMix(ent.AsNullable(), ent);
     }
 
     /// <summary>

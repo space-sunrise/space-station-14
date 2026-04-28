@@ -28,13 +28,13 @@ public sealed class BlindableSystem : EntitySystem
 
     private void OnRejuvenate(Entity<BlindableComponent> ent, ref RejuvenateEvent args)
     {
-        AdjustEyeDamage((ent, ent.Comp), -ent.Comp.EyeDamage);
+        AdjustEyeDamage((ent.Owner, ent.Comp), -ent.Comp.EyeDamage);
     }
 
     private void OnDamageChanged(Entity<BlindableComponent> ent, ref EyeDamageChangedEvent args)
     {
-        _blurriness.UpdateBlurMagnitude((ent, ent.Comp));
-        _eyelids.UpdateEyesClosable((ent, ent.Comp));
+        _blurriness.UpdateBlurMagnitude((ent.Owner, ent.Comp));
+        _eyelids.UpdateEyesClosable((ent.Owner, ent.Comp));
     }
 
     private void OnGetEyePvsScaleAttemptEvent(Entity<BlindableComponent> ent, ref GetEyePvsScaleAttemptEvent args)
@@ -58,9 +58,9 @@ public sealed class BlindableSystem : EntitySystem
         var old = blindable.Comp.IsBlind;
 
         var forceBlind = false;
-        if(TryComp<BodyComponent>(blindable, out var body))
+        if(TryComp<BodyComponent>(blindable.Owner, out var body))
         {
-            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable, body));
+            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, body));
             forceBlind = eyes.Count == 0;
         }
 
@@ -72,7 +72,7 @@ public sealed class BlindableSystem : EntitySystem
         else
         {
             var ev = new CanSeeAttemptEvent();
-            RaiseLocalEvent(blindable, ev);
+            RaiseLocalEvent(blindable.Owner, ev);
             blindable.Comp.IsBlind = ev.Blind;
         }
 
@@ -80,7 +80,7 @@ public sealed class BlindableSystem : EntitySystem
             return;
 
         var changeEv = new BlindnessChangedEvent(blindable.Comp.IsBlind);
-        RaiseLocalEvent(blindable, ref changeEv);
+        RaiseLocalEvent(blindable.Owner, ref changeEv);
         Dirty(blindable);
     }
 
@@ -105,7 +105,7 @@ public sealed class BlindableSystem : EntitySystem
 
         UpdateIsBlind(blindable);
         var ev = new EyeDamageChangedEvent(blindable.Comp.EyeDamage);
-        RaiseLocalEvent(blindable, ref ev);
+        RaiseLocalEvent(blindable.Owner, ref ev);
     }
     public void SetMinDamage(Entity<BlindableComponent?> blindable, int amount)
     {

@@ -14,6 +14,6 @@ public sealed partial class IsBreathingEntityConditionSystem : EntityConditionSy
     [Dependency] private readonly RespiratorSystem _respirator = default!;
     protected override void Condition(Entity<RespiratorComponent> entity, ref EntityConditionEvent<BreathingCondition> args)
     {
-        args.Result = _respirator.IsBreathing(entity);
+        args.Result = _respirator.IsBreathing(entity.AsNullable());
     }
 }

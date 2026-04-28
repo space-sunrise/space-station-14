@@ -23,7 +23,7 @@ public abstract class SharedGasValveSystem : EntitySystem
     private void OnStartup(Entity<GasValveComponent> ent, ref ComponentStartup args)
     {
         // We call set in startup so it sets the appearance, node state, etc.
-        Set(ent, ent.Comp, ent.Comp.Open);
+        Set(ent.Owner, ent.Comp, ent.Comp.Open);
     }
 
     public virtual void Set(EntityUid uid, GasValveComponent component, bool value)
@@ -47,8 +47,8 @@ public abstract class SharedGasValveSystem : EntitySystem
         if (args.Handled || !args.Complex)
             return;
 
-        Toggle(ent, ent.Comp);
-        _audio.PlayPredicted(ent.Comp.ValveSound, ent, args.User, AudioParams.Default.WithVariation(0.25f));
+        Toggle(ent.Owner, ent.Comp);
+        _audio.PlayPredicted(ent.Comp.ValveSound, ent.Owner, args.User, AudioParams.Default.WithVariation(0.25f));
         args.Handled = true;
     }
 

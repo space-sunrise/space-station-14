@@ -20,10 +20,10 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
     // but since we usually don't add the component dynamically to entities we can keep this unpredicted for now
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)
     {
-        if (!SolutionContainer.EnsureSolution(entity,
+        if (!SolutionContainer.EnsureSolution(entity.Owner,
                 entity.Comp.BloodSolutionName,
                 out var bloodSolution) ||
-            !SolutionContainer.EnsureSolution(entity,
+            !SolutionContainer.EnsureSolution(entity.Owner,
                 entity.Comp.BloodTemporarySolutionName,
                 out var tempSolution))
             return;
@@ -42,7 +42,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
     // forensics is not predicted yet
     private void OnDnaGenerated(Entity<BloodstreamComponent> entity, ref GenerateDnaEvent args)
     {
-        if (SolutionContainer.ResolveSolution(entity, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
+        if (SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
         {
             var data = NewEntityBloodData(entity);
             entity.Comp.BloodReferenceSolution.SetReagentData(data);

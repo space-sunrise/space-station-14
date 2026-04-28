@@ -40,17 +40,17 @@ public sealed class DevourSystem : EntitySystem
     {
         //Devourer doesn't actually chew, since he sends targets right into his stomach.
         //I did it mom, I added ERP content into upstream. Legally!
-        ent.Comp.Stomach = _containerSystem.EnsureContainer<Container>(ent, DevourerComponent.StomachContainerId);
+        ent.Comp.Stomach = _containerSystem.EnsureContainer<Container>(ent.Owner, DevourerComponent.StomachContainerId);
     }
 
     private void OnInit(Entity<DevourerComponent> ent, ref MapInitEvent args)
     {
-        _actionsSystem.AddAction(ent, ref ent.Comp.DevourActionEntity, ent.Comp.DevourAction);
+        _actionsSystem.AddAction(ent.Owner, ref ent.Comp.DevourActionEntity, ent.Comp.DevourAction);
     }
 
     private void OnShutdown(Entity<DevourerComponent> ent, ref ComponentShutdown args)
     {
-        _actionsSystem.RemoveAction(ent, ent.Comp.DevourActionEntity);
+        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.DevourActionEntity);
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public sealed class DevourSystem : EntitySystem
                 case MobState.Critical:
                 case MobState.Dead:
 
-                    _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.DevourTime, new DevourDoAfterEvent(), ent, target: target, used: ent)
+                    _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.DevourTime, new DevourDoAfterEvent(), ent.Owner, target: target, used: ent.Owner)
                     {
                         BreakOnMove = true,
                     });
@@ -80,19 +80,19 @@ public sealed class DevourSystem : EntitySystem
                 case MobState.Invalid:
                 case MobState.Alive:
                 default:
-                    _popupSystem.PopupClient(Loc.GetString("devour-action-popup-message-fail-target-alive"), ent, ent);
+                    _popupSystem.PopupClient(Loc.GetString("devour-action-popup-message-fail-target-alive"), ent.Owner, ent.Owner);
                     break;
             }
 
             return;
         }
 
-        _popupSystem.PopupClient(Loc.GetString("devour-action-popup-message-structure"), ent, ent);
+        _popupSystem.PopupClient(Loc.GetString("devour-action-popup-message-structure"), ent.Owner, ent.Owner);
 
         if (ent.Comp.SoundStructureDevour != null)
-            _audioSystem.PlayPredicted(ent.Comp.SoundStructureDevour, ent, ent, ent.Comp.SoundStructureDevour.Params);
+            _audioSystem.PlayPredicted(ent.Comp.SoundStructureDevour, ent.Owner, ent.Owner, ent.Comp.SoundStructureDevour.Params);
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.StructureDevourTime, new DevourDoAfterEvent(), ent, target: target, used: ent)
+        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.StructureDevourTime, new DevourDoAfterEvent(), ent.Owner, target: target, used: ent.Owner)
         {
             BreakOnMove = true,
         });
@@ -108,7 +108,7 @@ public sealed class DevourSystem : EntitySystem
         // Grant ichor if the devoured thing meets the dragon's food preference
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)args.Args.Target))
         {
-            _bloodstreamSystem.TryAddToBloodstream(ent, ichorInjection);
+            _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
         }
 
         // If the devoured thing meets the stomach whitelist criteria, add it to the stomach
@@ -124,7 +124,7 @@ public sealed class DevourSystem : EntitySystem
             PredictedQueueDel(args.Args.Target.Value);
         }
 
-        _audioSystem.PlayPredicted(ent.Comp.SoundDevour, ent, ent);
+        _audioSystem.PlayPredicted(ent.Comp.SoundDevour, ent.Owner, ent.Owner);
     }
 
     private void OnGibContents(Entity<DevourerComponent> ent, ref BeingGibbedEvent args)

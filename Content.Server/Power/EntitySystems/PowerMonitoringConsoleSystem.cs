@@ -403,13 +403,13 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                     if (sourceNode?.NodeGroup != null)
                     {
                         foreach (var node in sourceNode.NodeGroup.Nodes)
-                            reachableEntities.Add(node);
+                            reachableEntities.Add(node.Owner);
                     }
 
                     if (loadNode?.NodeGroup != null)
                     {
                         foreach (var node in loadNode.NodeGroup.Nodes)
-                            reachableEntities.Add(node);
+                            reachableEntities.Add(node.Owner);
                     }
 
                     UpdateFocusNetwork(uid, cableNetworks, gridUid, mapGrid, reachableEntities);
@@ -528,7 +528,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         foreach (var powerSupplier in netQ.Suppliers)
         {
-            var ent = powerSupplier;
+            var ent = powerSupplier.Owner;
 
             if (uid == ent)
                 continue;
@@ -555,7 +555,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         foreach (var batteryDischarger in netQ.Dischargers)
         {
-            var ent = batteryDischarger;
+            var ent = batteryDischarger.Owner;
 
             if (uid == ent)
                 continue;
@@ -593,7 +593,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         foreach (var batteryCharger in netQ.Chargers)
         {
-            var ent = batteryCharger;
+            var ent = batteryCharger.Owner;
 
             if (!TryComp<PowerNetworkBatteryComponent>(ent, out var entBattery))
                 continue;
@@ -642,7 +642,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         foreach (var powerConsumer in netQ.Consumers)
         {
-            var ent = powerConsumer;
+            var ent = powerConsumer.Owner;
 
             if (uid == ent)
                 continue;
@@ -669,7 +669,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         foreach (var batteryCharger in netQ.Chargers)
         {
-            var ent = batteryCharger;
+            var ent = batteryCharger.Owner;
 
             if (uid == ent)
                 continue;

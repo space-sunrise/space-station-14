@@ -71,10 +71,10 @@ public abstract class SharedEmitSoundSystem : EntitySystem
         if (TryComp<SpamEmitSoundComponent>(entity, out var comp))
         {
             comp.Enabled = args.NewMobState == MobState.Alive;
-            Dirty(entity, comp);
+            Dirty(entity.Owner, comp);
         }
 
-        _ambient.SetAmbience(entity, args.NewMobState != MobState.Dead);
+        _ambient.SetAmbience(entity.Owner, args.NewMobState != MobState.Dead);
     }
 
     private void OnEmitSpawnOnInit(EntityUid uid, EmitSoundOnSpawnComponent component, MapInitEvent args)

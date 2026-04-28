@@ -14,7 +14,7 @@ public sealed partial class TriggerOnActivateImplantSystem : TriggerOnXSystem
 
     private void OnActivateImplant(Entity<TriggerOnActivateImplantComponent> ent, ref ActivateImplantEvent args)
     {
-        Trigger.Trigger(ent, args.Performer, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Performer, ent.Comp.KeyOut);
         args.Handled = true;
     }
 }

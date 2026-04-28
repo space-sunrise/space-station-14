@@ -70,7 +70,7 @@ public abstract class BaseXATSystem<T> : EntitySystem where T : Component
             return;
 
         Log.Debug($"Activated trigger {typeof(T).Name} on node {ToPrettyString(node)} for {ToPrettyString(artifact)}");
-        XenoArtifact.TriggerXenoArtifact(artifact, (node, node.Comp2));
+        XenoArtifact.TriggerXenoArtifact(artifact, (node.Owner, node.Comp2));
     }
 
     /// <summary>

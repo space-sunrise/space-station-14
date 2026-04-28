@@ -122,7 +122,7 @@ public sealed partial class ShuttleConsoleSystem
     /// </summary>
     private void ConsoleFTL(Entity<ShuttleConsoleComponent> ent, EntityCoordinates targetCoordinates, Angle targetAngle, MapId targetMap)
     {
-        var consoleUid = GetDroneConsole(ent);
+        var consoleUid = GetDroneConsole(ent.Owner);
 
         // Sunrise-Start
         if (TryComp<DroneConsoleComponent>(consoleUid, out var droneConsole))
@@ -174,7 +174,7 @@ public sealed partial class ShuttleConsoleSystem
         var tagEv = new FTLTagEvent();
         RaiseLocalEvent(shuttleUid.Value, ref tagEv);
 
-        var ev = new ShuttleConsoleFTLTravelStartEvent(ent);
+        var ev = new ShuttleConsoleFTLTravelStartEvent(ent.Owner);
         RaiseLocalEvent(ref ev);
 
         _shuttle.FTLToCoordinates(shuttleUid.Value, shuttleComp, adjustedCoordinates, targetAngle);

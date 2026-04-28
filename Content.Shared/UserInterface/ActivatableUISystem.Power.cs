@@ -32,7 +32,7 @@ public sealed partial class ActivatableUISystem
             return;
         }
 
-        _uiSystem.CloseUi(ent, activatable.Key);
+        _uiSystem.CloseUi(ent.Owner, activatable.Key);
     }
 
     private void OnBatteryOpened(EntityUid uid, ActivatableUIRequiresPowerCellComponent component, BoundUIOpenedEvent args)
@@ -65,7 +65,7 @@ public sealed partial class ActivatableUISystem
 
         var activatable = Comp<ActivatableUIComponent>(ent);
         if (activatable.Key != null)
-            _uiSystem.CloseUi(ent, activatable.Key);
+            _uiSystem.CloseUi(ent.Owner, activatable.Key);
     }
 
     private void OnBatteryOpenAttempt(EntityUid uid, ActivatableUIRequiresPowerCellComponent component, ActivatableUIOpenAttemptEvent args)

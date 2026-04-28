@@ -82,7 +82,7 @@ namespace Content.Shared.Ghost
         [Obsolete("Use the Entity<GhostComponent?> overload")]
         public void SetCanReturnToBody(GhostComponent component, bool value)
         {
-            SetCanReturnToBody((component, component), value);
+            SetCanReturnToBody((component.Owner, component), value);
         }
 
 

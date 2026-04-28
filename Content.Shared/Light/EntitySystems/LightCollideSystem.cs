@@ -27,18 +27,18 @@ public sealed class LightCollideSystem : EntitySystem
     private void OnCollideShutdown(Entity<LightOnCollideColliderComponent> ent, ref ComponentShutdown args)
     {
         // TODO: Check this on the event.
-        if (TerminatingOrDeleted(ent))
+        if (TerminatingOrDeleted(ent.Owner))
             return;
 
         // Regenerate contacts for everything we were colliding with.
-        var contacts = _physics.GetContacts(ent);
+        var contacts = _physics.GetContacts(ent.Owner);
 
         while (contacts.MoveNext(out var contact))
         {
             if (!contact.IsTouching)
                 continue;
 
-            var other = contact.OtherEnt(ent);
+            var other = contact.OtherEnt(ent.Owner);
 
             if (_lightQuery.HasComp(other))
             {

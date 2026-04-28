@@ -50,7 +50,7 @@ public sealed partial class ExplosionSystem
 
         foreach (var grid in gridData)
         {
-            comp.Tiles.Add(grid.Grid, grid.TileLists);
+            comp.Tiles.Add(grid.Grid.Owner, grid.TileLists);
         }
 
         comp.SpaceTiles = spaceData?.TileLists;

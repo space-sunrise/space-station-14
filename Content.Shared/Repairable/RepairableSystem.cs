@@ -29,7 +29,7 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!TryComp(ent, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
+        if (!TryComp(ent.Owner, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
             return;
 
         if (ent.Comp.DamageValue != null)
@@ -45,11 +45,11 @@ public sealed partial class RepairableSystem : EntitySystem
 
         if (!args.Repeat)
         {
-            var str = Loc.GetString("comp-repairable-repair", ("target", ent), ("tool", args.Used!));
-            _popup.PopupClient(str, ent, args.User);
+            var str = Loc.GetString("comp-repairable-repair", ("target", ent.Owner), ("tool", args.Used!));
+            _popup.PopupClient(str, ent.Owner, args.User);
 
             var ev = new RepairedEvent(ent, args.User);
-            RaiseLocalEvent(ent, ref ev);
+            RaiseLocalEvent(ent.Owner, ref ev);
         }
     }
 
@@ -63,8 +63,8 @@ public sealed partial class RepairableSystem : EntitySystem
     /// <param name="user">who is doing the repair</param>
     private void RepairSomeDamage(Entity<DamageableComponent?> ent, float damageAmount, EntityUid user)
     {
-        var damageChanged = _damageableSystem.HealEvenly(ent, damageAmount, origin: user);
-        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(user):user} repaired {ToPrettyString(ent):target} by {damageChanged.GetTotal()}");
+        var damageChanged = _damageableSystem.HealEvenly(ent.Owner, damageAmount, origin: user);
+        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(user):user} repaired {ToPrettyString(ent.Owner):target} by {damageChanged.GetTotal()}");
     }
 
     /// <summary>
@@ -75,8 +75,8 @@ public sealed partial class RepairableSystem : EntitySystem
     /// <param name="user">who is doing the repair</param>
     private void RepairSomeDamage(Entity<DamageableComponent?> ent, Damage.DamageSpecifier damageAmount, EntityUid user)
     {
-        var damageChanged = _damageableSystem.ChangeDamage(ent, damageAmount, true, false, origin: user);
-        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(user):user} repaired {ToPrettyString(ent):target} by {damageChanged.GetTotal()}");
+        var damageChanged = _damageableSystem.ChangeDamage(ent.Owner, damageAmount, true, false, origin: user);
+        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(user):user} repaired {ToPrettyString(ent.Owner):target} by {damageChanged.GetTotal()}");
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public sealed partial class RepairableSystem : EntitySystem
     private void RepairAllDamage(Entity<DamageableComponent?> ent, EntityUid user)
     {
         _damageableSystem.ClearAllDamage(ent);
-        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(user):user} repaired {ToPrettyString(ent):target} back to full health");
+        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(user):user} repaired {ToPrettyString(ent.Owner):target} back to full health");
     }
 
     private void Repair(Entity<RepairableComponent> ent, ref InteractUsingEvent args)
@@ -96,7 +96,7 @@ public sealed partial class RepairableSystem : EntitySystem
             return;
 
         // Only try repair the target if it is damaged
-        if (!TryComp<DamageableComponent>(ent, out var damageable) || damageable.TotalDamage == 0)
+        if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
             return;
 
         // Sunrise-start
@@ -116,7 +116,7 @@ public sealed partial class RepairableSystem : EntitySystem
         }
 
         // Run the repairing doafter
-        args.Handled = _toolSystem.UseTool(args.Used, args.User, ent, delay, ent.Comp.QualityNeeded, new RepairDoAfterEvent(), ent.Comp.FuelCost);
+        args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairDoAfterEvent(), ent.Comp.FuelCost);
     }
 
         // Sunrise-start

@@ -87,7 +87,7 @@ public sealed class GhostTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(data.ServerSession.ContentData()?.Mind, Is.EqualTo(mind));
+            Assert.That(data.ServerSession.ContentData()?.Mind, Is.EqualTo(mind.Owner));
             Assert.That(data.ServerSession.AttachedEntity, Is.EqualTo(data.SPlayerEnt));
             Assert.That(data.ServerSession.AttachedEntity, Is.EqualTo(mind.Comp.CurrentEntity),
                 "Player is not attached to the mind's current entity.");
@@ -166,7 +166,7 @@ public sealed class GhostTests
         Assert.DoesNotThrowAsync(async () =>
         {
             // Delete the grid
-            await data.Server.WaitPost(() => data.SEntMan.DeleteEntity(data.MapData.Grid));
+            await data.Server.WaitPost(() => data.SEntMan.DeleteEntity(data.MapData.Grid.Owner));
         });
 
         await data.Pair.RunTicksSync(5);

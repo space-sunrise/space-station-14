@@ -79,7 +79,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
             return true;
 
         Metamorf(start, _random.Pick(availableRecipes)); //In general, if there's more than one recipe, the yml-guys screwed up. Maybe some kind of unit test is needed.
-        PredictedQueueDel(start);
+        PredictedQueueDel(start.Owner);
         return true;
     }
 
@@ -93,7 +93,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         if (!_solutionContainer.TryGetSolution(result, start.Comp.Solution, out var resultSoln, out var resultSolution))
             return;
 
-        if (!_solutionContainer.TryGetSolution(start, start.Comp.Solution, out var startSoln, out var startSolution))
+        if (!_solutionContainer.TryGetSolution(start.Owner, start.Comp.Solution, out var startSoln, out var startSolution))
             return;
 
         _solutionContainer.RemoveAllSolution(resultSoln.Value); //Remove all YML reagents
@@ -101,7 +101,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         _solutionContainer.TryAddSolution(resultSoln.Value, startSolution);
 
         MergeFlavorProfiles(start, result);
-        MergeTrash(start, result);
+        MergeTrash(start.Owner, result);
         MergeTags(start, result);
     }
 
@@ -153,15 +153,15 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
             start.Comp.Finished = true;
 
         UpdateFoodName(start);
-        MergeFoodSolutions(start, element);
+        MergeFoodSolutions(start.Owner, element.Owner);
         MergeFlavorProfiles(start, element);
-        MergeTrash(start, element);
+        MergeTrash(start.Owner, element.Owner);
         MergeTags(start, element);
 
         var ev = new FoodSequenceIngredientAddedEvent(start, element, elementProto, user);
         RaiseLocalEvent(start, ev);
 
-        PredictedQueueDel(element);
+        PredictedQueueDel(element.Owner);
         return true;
     }
 
@@ -214,10 +214,10 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         if (!Resolve(element, ref element.Comp, false))
             return;
 
-        if (!_solutionContainer.TryGetSolution(start, start.Comp.Solution, out var startSolutionEntity, out var startSolution))
+        if (!_solutionContainer.TryGetSolution(start.Owner, start.Comp.Solution, out var startSolutionEntity, out var startSolution))
             return;
 
-        if (!_solutionContainer.TryGetSolution(element, element.Comp.Solution, out _, out var elementSolution))
+        if (!_solutionContainer.TryGetSolution(element.Owner, element.Comp.Solution, out _, out var elementSolution))
             return;
 
         startSolution.MaxVolume += elementSolution.MaxVolume;

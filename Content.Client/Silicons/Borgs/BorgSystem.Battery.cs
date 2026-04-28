@@ -27,14 +27,14 @@ public sealed partial class BorgSystem
 
     private void OnPlayerAttached(Entity<BorgChassisComponent> ent, ref LocalPlayerAttachedEvent args)
     {
-        UpdateBatteryAlert((ent, ent.Comp, null));
+        UpdateBatteryAlert((ent.Owner, ent.Comp, null));
     }
 
     private void OnPlayerDetached(Entity<BorgChassisComponent> ent, ref LocalPlayerDetachedEvent args)
     {
         // Remove all borg related alerts.
-        _alerts.ClearAlert(ent, ent.Comp.BatteryAlert);
-        _alerts.ClearAlert(ent, ent.Comp.NoBatteryAlert);
+        _alerts.ClearAlert(ent.Owner, ent.Comp.BatteryAlert);
+        _alerts.ClearAlert(ent.Owner, ent.Comp.NoBatteryAlert);
     }
 
     private void UpdateBatteryAlert(Entity<BorgChassisComponent, PowerCellSlotComponent?> ent)
@@ -42,23 +42,23 @@ public sealed partial class BorgSystem
         if (!Resolve(ent, ref ent.Comp2, false))
             return;
 
-        if (!_powerCell.TryGetBatteryFromSlot((ent, ent.Comp2), out var battery))
+        if (!_powerCell.TryGetBatteryFromSlot((ent.Owner, ent.Comp2), out var battery))
         {
-            _alerts.ShowAlert(ent, ent.Comp1.NoBatteryAlert);
+            _alerts.ShowAlert(ent.Owner, ent.Comp1.NoBatteryAlert);
             return;
         }
 
         // Alert levels from 0 to 10.
-        var chargeLevel = (short)MathF.Round(_battery.GetChargeLevel(battery.Value) * 10f);
+        var chargeLevel = (short)MathF.Round(_battery.GetChargeLevel(battery.Value.AsNullable()) * 10f);
 
         // we make sure 0 only shows if they have absolutely no battery.
         // also account for floating point imprecision
-        if (chargeLevel == 0 && _powerCell.HasDrawCharge((ent, null, ent.Comp2)))
+        if (chargeLevel == 0 && _powerCell.HasDrawCharge((ent.Owner, null, ent.Comp2)))
         {
             chargeLevel = 1;
         }
 
-        _alerts.ShowAlert(ent, ent.Comp1.BatteryAlert, chargeLevel);
+        _alerts.ShowAlert(ent.Owner, ent.Comp1.BatteryAlert, chargeLevel);
     }
 
     // Periodically update the charge indicator.

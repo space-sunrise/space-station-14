@@ -14,6 +14,6 @@ public sealed class TriggerOnToolUseSystem : TriggerOnXSystem
 
     private void OnToolUse(Entity<TriggerOnSimpleToolUsageComponent> ent, ref SimpleToolDoAfterEvent args)
     {
-        Trigger.Trigger(ent, args.User, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
     }
 }

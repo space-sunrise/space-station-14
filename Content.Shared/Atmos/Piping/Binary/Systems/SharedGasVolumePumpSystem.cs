@@ -27,12 +27,12 @@ public abstract class SharedGasVolumePumpSystem : EntitySystem
 
     private void OnInit(Entity<GasVolumePumpComponent> ent, ref ComponentInit args)
     {
-        UpdateAppearance(ent, ent.Comp);
+        UpdateAppearance(ent.Owner, ent.Comp);
     }
 
     private void OnPowerChanged(Entity<GasVolumePumpComponent> ent, ref PowerChangedEvent args)
     {
-        UpdateAppearance(ent, ent.Comp);
+        UpdateAppearance(ent.Owner, ent.Comp);
     }
 
     protected virtual void UpdateUi(Entity<GasVolumePumpComponent> entity)

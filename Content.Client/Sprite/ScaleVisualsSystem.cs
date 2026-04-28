@@ -24,7 +24,7 @@ public sealed class ScaleVisualsSystem : SharedScaleVisualsSystem
         ent.Comp.OriginalScale ??= args.Sprite.Scale;
 
         var vecScale = (Vector2)scale;
-        _sprite.SetScale((ent, args.Sprite), vecScale);
+        _sprite.SetScale((ent.Owner, args.Sprite), vecScale);
     }
 
     // revert to the original scale
@@ -33,6 +33,6 @@ public sealed class ScaleVisualsSystem : SharedScaleVisualsSystem
         base.ResetScale(ent);
 
         if (ent.Comp.OriginalScale != null)
-            _sprite.SetScale(ent, ent.Comp.OriginalScale.Value);
+            _sprite.SetScale(ent.Owner, ent.Comp.OriginalScale.Value);
     }
 }

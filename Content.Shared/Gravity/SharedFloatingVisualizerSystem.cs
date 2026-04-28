@@ -25,7 +25,7 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
 
     protected bool CanFloat(Entity<FloatingVisualsComponent> entity)
     {
-        entity.Comp.CanFloat = _gravity.IsWeightless(entity);
+        entity.Comp.CanFloat = _gravity.IsWeightless(entity.Owner);
         Dirty(entity);
         return entity.Comp.CanFloat;
     }

@@ -27,7 +27,7 @@ public abstract partial class SharedTeleportLocationsSystem : EntitySystem
 
     private void OnUiOpenAttempt(Entity<TeleportLocationsComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (!Delay.IsDelayed(ent, TeleportDelay))
+        if (!Delay.IsDelayed(ent.Owner, TeleportDelay))
             return;
 
         args.Cancel();
@@ -35,7 +35,7 @@ public abstract partial class SharedTeleportLocationsSystem : EntitySystem
 
     protected virtual void OnTeleportToLocationRequest(Entity<TeleportLocationsComponent> ent, ref TeleportLocationDestinationMessage args)
     {
-        if (!TryGetEntity(args.NetEnt, out var telePointEnt) || TerminatingOrDeleted(telePointEnt) || !HasComp<WarpPointComponent>(telePointEnt) || Delay.IsDelayed(ent, TeleportDelay))
+        if (!TryGetEntity(args.NetEnt, out var telePointEnt) || TerminatingOrDeleted(telePointEnt) || !HasComp<WarpPointComponent>(telePointEnt) || Delay.IsDelayed(ent.Owner, TeleportDelay))
             return;
 
         var comp = ent.Comp;
@@ -48,13 +48,13 @@ public abstract partial class SharedTeleportLocationsSystem : EntitySystem
 
         SpawnAtPosition(comp.TeleportEffect, telePointXForm.Coordinates);
 
-        Delay.TryResetDelay(ent, true, id: TeleportDelay);
+        Delay.TryResetDelay(ent.Owner, true, id: TeleportDelay);
 
         if (!ent.Comp.CloseAfterTeleport)
             return;
 
         // Teleport's done, now tell the BUI to close if needed.
-        _ui.CloseUi(ent, TeleportLocationUiKey.Key);
+        _ui.CloseUi(ent.Owner, TeleportLocationUiKey.Key);
 
         // Sunrise-start
         if (comp.DeleteAfterUse)

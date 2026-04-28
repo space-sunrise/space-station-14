@@ -160,7 +160,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         // Sunrise-start
         if (ent.Comp.Configuration.RevertOnDelete)
         {
-            Revert(ent);
+            Revert(ent.AsNullable());
             return;
         }
         // Заглушка-решение. Ишуй оффам отправлен
@@ -437,6 +437,6 @@ public sealed partial class PolymorphSystem : EntitySystem
             return;
 
         if (actions.TryGetValue(id, out var action))
-            _actions.RemoveAction(target, action);
+            _actions.RemoveAction(target.Owner, action);
     }
 }

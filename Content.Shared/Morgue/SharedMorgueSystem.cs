@@ -27,7 +27,7 @@ public abstract class SharedMorgueSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        _appearance.TryGetData<MorgueContents>(ent, MorgueVisuals.Contents, out var contents);
+        _appearance.TryGetData<MorgueContents>(ent.Owner, MorgueVisuals.Contents, out var contents);
 
         var text = contents switch
         {
@@ -42,12 +42,12 @@ public abstract class SharedMorgueSystem : EntitySystem
 
     private void OnClosed(Entity<MorgueComponent> ent, ref StorageAfterCloseEvent args)
     {
-        CheckContents(ent, ent.Comp);
+        CheckContents(ent.Owner, ent.Comp);
     }
 
     private void OnOpened(Entity<MorgueComponent> ent, ref StorageAfterOpenEvent args)
     {
-        CheckContents(ent, ent.Comp);
+        CheckContents(ent.Owner, ent.Comp);
     }
 
     /// <summary>

@@ -54,7 +54,7 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
         if (!TryComp<DeviceLinkSourceComponent>(ent, out var source))
             return;
 
-        var linkedEntities = _deviceLink.GetLinkedSinks((ent, source), ent.Comp.LinkingPort);
+        var linkedEntities = _deviceLink.GetLinkedSinks((ent.Owner, source), ent.Comp.LinkingPort);
 
         foreach (var sink in linkedEntities)
         {
@@ -62,7 +62,7 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
                 continue;
 
             ent.Comp.AnalyzerEntity = sink;
-            analyzer.Console = ent;
+            analyzer.Console = ent.Owner;
             Dirty(ent);
             Dirty(sink, analyzer);
             break;
@@ -121,7 +121,7 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
     {
         analyzer = null;
 
-        var consoleEnt = ent;
+        var consoleEnt = ent.Owner;
         if (!_powerReceiver.IsPowered(consoleEnt))
             return false;
 

@@ -30,7 +30,7 @@ public sealed partial class TargetObjectiveMindFilter : MindFilter
         foreach (var objective in excludedMind.Objectives)
         {
             // if the player has an objective targeting this mind
-            if (entMan.TryGetComponent<TargetObjectiveComponent>(objective, out var kill) && kill.Target == mind)
+            if (entMan.TryGetComponent<TargetObjectiveComponent>(objective, out var kill) && kill.Target == mind.Owner)
             {
                 // remove the mind if this objective is blacklisted
                 if (whitelistSys.IsWhitelistPassOrNull(Blacklist, objective))

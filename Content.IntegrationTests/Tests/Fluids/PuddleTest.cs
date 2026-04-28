@@ -53,7 +53,7 @@ namespace Content.IntegrationTests.Tests.Fluids
             // Remove all tiles
             await server.WaitPost(() =>
             {
-                var tiles = mapSystem.GetAllTiles(grid, grid.Comp);
+                var tiles = mapSystem.GetAllTiles(grid.Owner, grid.Comp);
                 foreach (var tile in tiles)
                 {
                     mapSystem.SetTile(grid, tile.GridIndices, Tile.Empty);
@@ -64,7 +64,7 @@ namespace Content.IntegrationTests.Tests.Fluids
 
             await server.WaitAssertion(() =>
             {
-                var coordinates = grid.ToCoordinates();
+                var coordinates = grid.Owner.ToCoordinates();
                 var solution = new Solution("Water", FixedPoint2.New(20));
 
                 Assert.That(spillSystem.TrySpillAt(coordinates, solution, out _), Is.False);

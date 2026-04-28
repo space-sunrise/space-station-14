@@ -18,7 +18,7 @@ public sealed class ComponentTogglerSystem : EntitySystem
     {
         if (args.Activated)
         {
-            var target = ent.Comp.Parent ? Transform(ent).ParentUid : ent;
+            var target = ent.Comp.Parent ? Transform(ent).ParentUid : ent.Owner;
 
             if (TerminatingOrDeleted(target))
                 return;

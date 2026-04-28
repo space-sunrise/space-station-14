@@ -17,14 +17,14 @@ public sealed partial class SharedVoiceTriggerLockSystem : EntitySystem
 
     private void OnLockToggled(Entity<VoiceTriggerLockComponent> ent, ref LockToggledEvent args)
     {
-        if (!TryComp<TriggerOnVoiceComponent>(ent, out var triggerComp))
+        if (!TryComp<TriggerOnVoiceComponent>(ent.Owner, out var triggerComp))
             return;
 
         triggerComp.ShowVerbs = !args.Locked;
         triggerComp.ShowExamine = !args.Locked;
 
-        _toggle.TryDeactivate(ent, null, true, false);
+        _toggle.TryDeactivate(ent.Owner, null, true, false);
 
-        Dirty(ent, triggerComp);
+        Dirty(ent.Owner, triggerComp);
     }
 }

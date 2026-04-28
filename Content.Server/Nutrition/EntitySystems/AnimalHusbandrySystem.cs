@@ -81,7 +81,7 @@ public sealed class AnimalHusbandrySystem : EntitySystem
 
         foreach (var comp in partners)
         {
-            var partner = comp;
+            var partner = comp.Owner;
             if (TryReproduce(uid, partner, component))
                 return true;
 

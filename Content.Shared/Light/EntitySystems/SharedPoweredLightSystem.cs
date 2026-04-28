@@ -200,7 +200,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         if (light.Comp.LightBulbContainer.ContainedEntity != null)
             return false;
 
-        if (LifeStage(light) >= EntityLifeStage.MapInitialized)
+        if (LifeStage(light.Owner) >= EntityLifeStage.MapInitialized)
             return false;
 
         light.Comp.HasLampOnSpawn = bulb;

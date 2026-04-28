@@ -18,12 +18,12 @@ public sealed class EnvelopeSystem : VisualizerSystem<EnvelopeComponent>
 
     private void UpdateAppearance(Entity<EnvelopeComponent> ent, SpriteComponent? sprite = null)
     {
-        if (!Resolve(ent, ref sprite))
+        if (!Resolve(ent.Owner, ref sprite))
             return;
 
-        SpriteSystem.LayerSetVisible((ent, sprite), EnvelopeVisualLayers.Open, ent.Comp.State == EnvelopeComponent.EnvelopeState.Open);
-        SpriteSystem.LayerSetVisible((ent, sprite), EnvelopeVisualLayers.Sealed, ent.Comp.State == EnvelopeComponent.EnvelopeState.Sealed);
-        SpriteSystem.LayerSetVisible((ent, sprite), EnvelopeVisualLayers.Torn, ent.Comp.State == EnvelopeComponent.EnvelopeState.Torn);
+        SpriteSystem.LayerSetVisible((ent.Owner, sprite), EnvelopeVisualLayers.Open, ent.Comp.State == EnvelopeComponent.EnvelopeState.Open);
+        SpriteSystem.LayerSetVisible((ent.Owner, sprite), EnvelopeVisualLayers.Sealed, ent.Comp.State == EnvelopeComponent.EnvelopeState.Sealed);
+        SpriteSystem.LayerSetVisible((ent.Owner, sprite), EnvelopeVisualLayers.Torn, ent.Comp.State == EnvelopeComponent.EnvelopeState.Torn);
     }
 
     public enum EnvelopeVisualLayers : byte

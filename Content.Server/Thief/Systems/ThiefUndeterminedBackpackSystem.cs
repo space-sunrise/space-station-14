@@ -33,7 +33,7 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
 
     private void OnUIOpened(Entity<ThiefUndeterminedBackpackComponent> backpack, ref BoundUIOpenedEvent args)
     {
-        UpdateUI(backpack, backpack.Comp);
+        UpdateUI(backpack.Owner, backpack.Comp);
     }
 
     private void OnApprove(Entity<ThiefUndeterminedBackpackComponent> backpack, ref ThiefBackpackApproveMessage args)
@@ -43,20 +43,20 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
 
         EntityUid? spawnedStorage = null;
         if (backpack.Comp.SpawnedStoragePrototype != null)
-            spawnedStorage = Spawn(backpack.Comp.SpawnedStoragePrototype, _transform.GetMapCoordinates(backpack));
+            spawnedStorage = Spawn(backpack.Comp.SpawnedStoragePrototype, _transform.GetMapCoordinates(backpack.Owner));
 
         foreach (var i in backpack.Comp.SelectedSets)
         {
             var set = _proto.Index(backpack.Comp.PossibleSets[i]);
             foreach (var item in set.Content)
             {
-                var ent = Spawn(item, _transform.GetMapCoordinates(backpack));
+                var ent = Spawn(item, _transform.GetMapCoordinates(backpack.Owner));
                 if (TryComp<ItemComponent>(ent, out var itemComponent))
                 {
                     if (spawnedStorage != null)
                         _storage.Insert(spawnedStorage.Value, ent, out _, playSound: false);
                     else
-                        _transform.DropNextTo(ent, backpack);
+                        _transform.DropNextTo(ent, backpack.Owner);
                 }
             }
         }
@@ -65,7 +65,7 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
             _hands.TryPickupAnyHand(args.Actor, spawnedStorage.Value);
 
         // Play the sound on coordinates of the backpack/toolbox. The reason being, since we immediately delete it, the sound gets deleted alongside it.
-        _audio.PlayPvs(backpack.Comp.ApproveSound, Transform(backpack).Coordinates);
+        _audio.PlayPvs(backpack.Comp.ApproveSound, Transform(backpack.Owner).Coordinates);
         QueueDel(backpack);
     }
     private void OnChangeSet(Entity<ThiefUndeterminedBackpackComponent> backpack, ref ThiefBackpackChangeSetMessage args)
@@ -74,7 +74,7 @@ public sealed class ThiefUndeterminedBackpackSystem : EntitySystem
         if (!backpack.Comp.SelectedSets.Remove(args.SetNumber))
             backpack.Comp.SelectedSets.Add(args.SetNumber);
 
-        UpdateUI(backpack, backpack.Comp);
+        UpdateUI(backpack.Owner, backpack.Comp);
     }
 
     private void UpdateUI(EntityUid uid, ThiefUndeterminedBackpackComponent? component = null)

@@ -595,7 +595,7 @@ namespace Content.Server.Administration.Systems
             {
                 foreach (var eui in list)
                 {
-                    if (eui.Target == entity)
+                    if (eui.Target == entity.Owner)
                         eui.StateDirty();
                 }
             }

@@ -121,7 +121,7 @@ public abstract partial class SharedStunSystem
         entity.Comp.SpeedModifier = 1f;
 
         _standingState.Stand(entity);
-        Alerts.ClearAlert(entity, KnockdownAlert);
+        Alerts.ClearAlert(entity.Owner, KnockdownAlert);
     }
 
     #endregion
@@ -155,7 +155,7 @@ public abstract partial class SharedStunSystem
         if (entity.Comp.DoAfterId == null)
             return;
 
-        DoAfter.Cancel(entity, entity.Comp.DoAfterId.Value);
+        DoAfter.Cancel(entity.Owner, entity.Comp.DoAfterId.Value);
         entity.Comp.DoAfterId = null;
         DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.DoAfterId));
     }
@@ -238,7 +238,7 @@ public abstract partial class SharedStunSystem
 
         entity.Comp.NextUpdate = time;
         DirtyField(entity, entity.Comp, nameof(KnockedDownComponent.NextUpdate));
-        Alerts.UpdateAlert(entity, KnockdownAlert, null, entity.Comp.NextUpdate);
+        Alerts.UpdateAlert(entity.Owner, KnockdownAlert, null, entity.Comp.NextUpdate);
     }
 
     private void HandleToggleKnockdown(ICommonSession? session)
@@ -264,7 +264,7 @@ public abstract partial class SharedStunSystem
 
         if (!Resolve(entity, ref entity.Comp2, false))
         {
-            TryKnockdown(entity, entity.Comp1.DefaultKnockedDuration, true, false, false);
+            TryKnockdown(entity.Owner, entity.Comp1.DefaultKnockedDuration, true, false, false);
             return;
         }
 
@@ -341,7 +341,7 @@ public abstract partial class SharedStunSystem
         RaiseLocalEvent(entity, ref ev);
 
         if (ev.Autostand != entity.Comp.AutoStand)
-            SetAutoStand((entity, entity.Comp), ev.Autostand);
+            SetAutoStand((entity.Owner, entity.Comp), ev.Autostand);
 
         if (ev.Message != null)
         {
@@ -372,11 +372,11 @@ public abstract partial class SharedStunSystem
         if (!TryStand(entity))
             return true;
 
-        if (!IntersectingStandingColliders(entity))
+        if (!IntersectingStandingColliders(entity.Owner))
             return false;
 
         _popup.PopupClient(Loc.GetString("knockdown-component-stand-no-room"), entity, entity, PopupType.SmallCaution);
-        SetAutoStand(entity);
+        SetAutoStand(entity.Owner);
         return true;
 
     }
@@ -400,10 +400,10 @@ public abstract partial class SharedStunSystem
         if (StandingBlocked((entity, entity.Comp)))
             return;
 
-        if (!_hands.TryGetEmptyHand(entity, out _))
+        if (!_hands.TryGetEmptyHand(entity.Owner, out _))
             return;
 
-        if (!TryForceStand(entity))
+        if (!TryForceStand(entity.Owner))
             return;
 
         // If we have a DoAfter, cancel it
@@ -420,8 +420,8 @@ public abstract partial class SharedStunSystem
             return;
 
         // If we're already trying to stand, or we fail to stand try forcing it
-        if (!TryStanding(entity))
-            ForceStandUp((entity, entity.Comp));
+        if (!TryStanding(entity.Owner))
+            ForceStandUp((entity.Owner, entity.Comp));
 
         args.Handled = true;
     }
@@ -442,7 +442,7 @@ public abstract partial class SharedStunSystem
         }
 
         _popup.PopupClient(Loc.GetString("knockdown-component-pushup-success"), entity, entity);
-        _audio.PlayPredicted(entity.Comp.ForceStandSuccessSound, entity, entity, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
+        _audio.PlayPredicted(entity.Comp.ForceStandSuccessSound, entity.Owner, entity.Owner, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
 
         return true;
     }
@@ -504,7 +504,7 @@ public abstract partial class SharedStunSystem
             return;
 
         if (args.DamageDelta.GetTotal() >= entity.Comp.KnockdownDamageThreshold)
-            RefreshKnockdownTime(entity, entity.Comp.DefaultKnockedDuration);
+            RefreshKnockdownTime(entity.Owner, entity.Comp.DefaultKnockedDuration);
     }
 
     private void OnKnockdownRefresh(Entity<CrawlerComponent> entity, ref KnockedDownRefreshEvent args)

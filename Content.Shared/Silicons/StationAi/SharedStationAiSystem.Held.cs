@@ -48,10 +48,10 @@ public abstract partial class SharedStationAiSystem
 
     private void OnCoreJump(Entity<StationAiHeldComponent> ent, ref JumpToCoreEvent args)
     {
-        if (!TryGetCore(ent, out var core) || core.Comp?.RemoteEntity == null)
+        if (!TryGetCore(ent.Owner, out var core) || core.Comp?.RemoteEntity == null)
             return;
 
-        _xforms.DropNextTo(core.Comp.RemoteEntity.Value, core);
+        _xforms.DropNextTo(core.Comp.RemoteEntity.Value, core.Owner);
     }
 
     /// <summary>
@@ -64,10 +64,10 @@ public abstract partial class SharedStationAiSystem
     {
         held = EntityUid.Invalid;
 
-        if (!Resolve(entity, ref entity.Comp))
+        if (!Resolve(entity.Owner, ref entity.Comp))
             return false;
 
-        if (!_containers.TryGetContainer(entity, StationAiHolderComponent.Container, out var container) ||
+        if (!_containers.TryGetContainer(entity.Owner, StationAiHolderComponent.Container, out var container) ||
             container.ContainedEntities.Count == 0)
             return false;
 
@@ -86,7 +86,7 @@ public abstract partial class SharedStationAiSystem
     {
         held = null;
 
-        return TryComp<StationAiHolderComponent>(entity, out var holder) &&
+        return TryComp<StationAiHolderComponent>(entity.Owner, out var holder) &&
             TryGetHeld((entity, holder), out held);
     }
 
@@ -100,19 +100,19 @@ public abstract partial class SharedStationAiSystem
     {
         if (!_containers.TryGetContainingContainer(entity, out var container) ||
             container.ID != StationAiCoreComponent.Container ||
-            !TryComp(container, out StationAiCoreComponent? coreComp))
+            !TryComp(container.Owner, out StationAiCoreComponent? coreComp))
         {
             core = (EntityUid.Invalid, null);
             return false;
         }
 
-        core = (container, coreComp);
+        core = (container.Owner, coreComp);
         return true;
     }
 
     private void OnHeldRelay(Entity<StationAiHeldComponent> ent, ref AttemptRelayActionComponentChangeEvent args)
     {
-        if (!TryGetCore(ent, out var core))
+        if (!TryGetCore(ent.Owner, out var core))
             return;
 
         args.Target = core.Comp?.RemoteEntity;
@@ -158,11 +158,11 @@ public abstract partial class SharedStationAiSystem
         // Cancel if it's not us or something with a whitelist, or whitelist is disabled.
         args.Cancelled = (!TryComp(args.Target, out StationAiWhitelistComponent? whitelistComponent)
                           || !whitelistComponent.Enabled)
-                         && ent != args.Target
+                         && ent.Owner != args.Target
                          && args.Target != null;
         if (whitelistComponent is { Enabled: false })
         {
-            ShowDeviceNotRespondingPopup(ent);
+            ShowDeviceNotRespondingPopup(ent.Owner);
         }
     }
 
@@ -191,11 +191,11 @@ public abstract partial class SharedStationAiSystem
             {
                 if (isOpen)
                 {
-                    _uiSystem.CloseUi(ent, AiUi.Key, user);
+                    _uiSystem.CloseUi(ent.Owner, AiUi.Key, user);
                 }
                 else
                 {
-                    _uiSystem.OpenUi(ent, AiUi.Key, user);
+                    _uiSystem.OpenUi(ent.Owner, AiUi.Key, user);
                 }
             }
         };

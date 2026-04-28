@@ -33,7 +33,7 @@ public sealed class EscapeInventorySystem : EntitySystem
 
     private void OnRelayMovement(EntityUid uid, CanEscapeInventoryComponent component, ref MoveInputEvent args)
     {
-        if (!_containerSystem.TryGetContainingContainer((uid, null, null), out var container) || !_actionBlockerSystem.CanInteract(uid, container))
+        if (!_containerSystem.TryGetContainingContainer((uid, null, null), out var container) || !_actionBlockerSystem.CanInteract(uid, container.Owner))
             return;
 
         // Make sure there's nothing stopped the removal (like being glued)
@@ -44,15 +44,15 @@ public sealed class EscapeInventorySystem : EntitySystem
         }
 
         // Contested
-        if (_handsSystem.IsHolding(container, uid, out _))
+        if (_handsSystem.IsHolding(container.Owner, uid, out _))
         {
-            AttemptEscape(uid, container, component);
+            AttemptEscape(uid, container.Owner, component);
             return;
         }
 
         // Uncontested
-        if (HasComp<StorageComponent>(container) || HasComp<InventoryComponent>(container) || HasComp<SecretStashComponent>(container))
-            AttemptEscape(uid, container, component);
+        if (HasComp<StorageComponent>(container.Owner) || HasComp<InventoryComponent>(container.Owner) || HasComp<SecretStashComponent>(container.Owner))
+            AttemptEscape(uid, container.Owner, component);
     }
 
     public void AttemptEscape(EntityUid user, EntityUid container, CanEscapeInventoryComponent component, float multiplier = 1f)

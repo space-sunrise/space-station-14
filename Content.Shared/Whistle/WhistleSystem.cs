@@ -54,7 +54,7 @@ public sealed class WhistleSystem : EntitySystem
                 continue;
 
             //We don't want to ping user of whistle
-            if (iterator == owner)
+            if (iterator.Owner == owner)
                 continue;
 
             ExclamateTarget(iterator, component);

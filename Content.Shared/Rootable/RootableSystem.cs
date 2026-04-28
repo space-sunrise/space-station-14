@@ -88,7 +88,7 @@ public sealed class RootableSystem : EntitySystem
     /// </summary>
     private void PuddleReact(Entity<RootableComponent, BloodstreamComponent> ent, Entity<PuddleComponent> puddleEntity)
     {
-        if (!_solutionContainer.ResolveSolution(puddleEntity, puddleEntity.Comp.SolutionName, ref puddleEntity.Comp.Solution, out var solution) ||
+        if (!_solutionContainer.ResolveSolution(puddleEntity.Owner, puddleEntity.Comp.SolutionName, ref puddleEntity.Comp.Solution, out var solution) ||
             solution.Contents.Count == 0)
         {
             return;
@@ -102,7 +102,7 @@ public sealed class RootableSystem : EntitySystem
     /// </summary>
     private void ReactWithEntity(Entity<RootableComponent, BloodstreamComponent> ent, Entity<PuddleComponent> puddleEntity, Solution solution)
     {
-        if (!_solutionContainer.ResolveSolution(ent, ent.Comp2.BloodSolutionName, ref ent.Comp2.BloodSolution, out var bloodSolution) || bloodSolution.AvailableVolume <= 0)
+        if (!_solutionContainer.ResolveSolution(ent.Owner, ent.Comp2.BloodSolutionName, ref ent.Comp2.BloodSolution, out var bloodSolution) || bloodSolution.AvailableVolume <= 0)
             return;
 
         var availableTransfer = FixedPoint2.Min(solution.Volume, ent.Comp1.TransferRate);
@@ -146,7 +146,7 @@ public sealed class RootableSystem : EntitySystem
 
         var actions = new Entity<ActionsComponent?>(ent, comp);
         _actions.RemoveAction(actions, ent.Comp.ActionEntity);
-        _alerts.ClearAlert(ent, ent.Comp.RootedAlert);
+        _alerts.ClearAlert(ent.Owner, ent.Comp.RootedAlert);
     }
 
     private void OnRootableToggle(Entity<RootableComponent> ent, ref ToggleActionEvent args)
@@ -167,21 +167,21 @@ public sealed class RootableSystem : EntitySystem
 
         ent.Comp.Rooted = !ent.Comp.Rooted;
         _movementSpeedModifier.RefreshMovementSpeedModifiers(ent);
-        _gravity.RefreshWeightless(ent);
+        _gravity.RefreshWeightless(ent.Owner);
 
         if (ent.Comp.Rooted)
         {
-            _alerts.ShowAlert(ent, ent.Comp.RootedAlert);
+            _alerts.ShowAlert(ent.Owner, ent.Comp.RootedAlert);
             var curTime = _timing.CurTime;
             if (curTime > ent.Comp.NextUpdate)
                 ent.Comp.NextUpdate = curTime;
         }
         else
         {
-            _alerts.ClearAlert(ent, ent.Comp.RootedAlert);
+            _alerts.ClearAlert(ent.Owner, ent.Comp.RootedAlert);
         }
 
-        _audio.PlayPredicted(ent.Comp.RootSound, ent.ToCoordinates(), ent);
+        _audio.PlayPredicted(ent.Comp.RootSound, ent.Owner.ToCoordinates(), ent);
         Dirty(ent);
 
         return true;
@@ -193,7 +193,7 @@ public sealed class RootableSystem : EntitySystem
             return;
 
         // Do not cancel weightlessness if the person is in off-grid.
-        if (!_gravity.EntityOnGravitySupportingGridOrMap(ent))
+        if (!_gravity.EntityOnGravitySupportingGridOrMap(ent.Owner))
             return;
 
         args.IsWeightless = false;

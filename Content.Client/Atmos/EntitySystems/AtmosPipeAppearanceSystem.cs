@@ -52,7 +52,7 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
             {
                 var layerName = layerKey.ToString() + i.ToString();
 
-                if (!_sprite.LayerMapTryGet(entity, layerName, out var key, false))
+                if (!_sprite.LayerMapTryGet(entity.AsNullable(), layerName, out var key, false))
                     continue;
 
                 var layer = sprite[key];

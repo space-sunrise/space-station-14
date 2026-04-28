@@ -21,7 +21,7 @@ public sealed partial class HasStatusEffectPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         return _statusEffects.HasStatusEffect(owner, StatusEffect);
     }

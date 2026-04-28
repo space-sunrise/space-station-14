@@ -26,13 +26,13 @@ public sealed class MultiHandedItemSystem : EntitySystem
     {
         for (var i = 0; i < ent.Comp.HandsNeeded - 1; i++)
         {
-            _virtualItem.TrySpawnVirtualItemInHand(ent, args.User);
+            _virtualItem.TrySpawnVirtualItemInHand(ent.Owner, args.User);
         }
     }
 
     private void OnUnequipped(Entity<MultiHandedItemComponent> ent, ref GotUnequippedHandEvent args)
     {
-        _virtualItem.DeleteInHandsMatching(args.User, ent);
+        _virtualItem.DeleteInHandsMatching(args.User, ent.Owner);
     }
 
     private void OnAttemptPickup(Entity<MultiHandedItemComponent> ent, ref GettingPickedUpAttemptEvent args)
@@ -46,15 +46,15 @@ public sealed class MultiHandedItemSystem : EntitySystem
             _popup.PopupPredictedCursor(
                 Loc.GetString("multi-handed-item-pick-up-fail",
                     ("number", ent.Comp.HandsNeeded - 1),
-                    ("item", ent)),
+                    ("item", ent.Owner)),
                 args.User);
     }
 
     private void OnVirtualItemDeleted(Entity<MultiHandedItemComponent> ent, ref VirtualItemDeletedEvent args)
     {
-        if (args.BlockingEntity != ent || _timing.ApplyingState)
+        if (args.BlockingEntity != ent.Owner || _timing.ApplyingState)
             return;
 
-        _hands.TryDrop(args.User, ent);
+        _hands.TryDrop(args.User, ent.Owner);
     }
 }

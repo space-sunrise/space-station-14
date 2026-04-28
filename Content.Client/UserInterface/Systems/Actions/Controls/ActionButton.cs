@@ -205,7 +205,7 @@ public sealed class ActionButton : Control, IEntityControl
             return null;
 
         var ev = new ExaminedEvent(desc, Action.Value, _player.LocalEntity.Value, true, !desc.IsEmpty);
-        _entities.EventBus.RaiseLocalEvent(Action.Value, ev);
+        _entities.EventBus.RaiseLocalEvent(Action.Value.Owner, ev);
 
         var newDesc = ev.GetTotalMessage();
 
@@ -426,7 +426,7 @@ public sealed class ActionButton : Control, IEntityControl
         }
 
         // if it's toggled on, always show the toggled on style (currently same as depressed style)
-        if (action.Toggled || _controller.SelectingTargetFor == Action)
+        if (action.Toggled || _controller.SelectingTargetFor == Action?.Owner)
         {
             // when there's a toggle sprite, we're showing that sprite instead of highlighting this slot
             SetOnlyStylePseudoClass(action.IconOn != null

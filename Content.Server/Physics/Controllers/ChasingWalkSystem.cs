@@ -76,7 +76,7 @@ public sealed class ChasingWalkSystem : VirtualController
             return;
 
         //In the case of finding required components, we choose a random one of them and remember its uid.
-        component.ChasingEntity = _random.Pick(_potentialChaseTargets);
+        component.ChasingEntity = _random.Pick(_potentialChaseTargets).Owner;
         component.Speed = _random.NextFloat(component.MinSpeed, component.MaxSpeed);
     }
 

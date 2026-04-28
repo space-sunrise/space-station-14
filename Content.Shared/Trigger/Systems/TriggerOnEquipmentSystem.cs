@@ -30,7 +30,7 @@ public sealed class TriggerOnEquipmentSystem : TriggerOnXSystem
         if ((ent.Comp.SlotFlags & args.SlotFlags) == 0)
             return;
 
-        Trigger.Trigger(ent, args.Equipment, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Equipment, ent.Comp.KeyOut);
     }
 
     private void OnDidUnequip(Entity<TriggerOnDidUnequipComponent> ent, ref DidUnequipEvent args)
@@ -41,7 +41,7 @@ public sealed class TriggerOnEquipmentSystem : TriggerOnXSystem
         if ((ent.Comp.SlotFlags & args.SlotFlags) == 0)
             return;
 
-        Trigger.Trigger(ent, args.Equipment, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Equipment, ent.Comp.KeyOut);
     }
 
     // Used by entities when they get equipped or unequipped
@@ -53,7 +53,7 @@ public sealed class TriggerOnEquipmentSystem : TriggerOnXSystem
         if ((ent.Comp.SlotFlags & args.SlotFlags) == 0)
             return;
 
-        Trigger.Trigger(ent, args.Equipee, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Equipee, ent.Comp.KeyOut);
     }
 
     private void OnGotUnequipped(Entity<TriggerOnGotUnequippedComponent> ent, ref GotUnequippedEvent args)
@@ -64,6 +64,6 @@ public sealed class TriggerOnEquipmentSystem : TriggerOnXSystem
         if ((ent.Comp.SlotFlags & args.SlotFlags) == 0)
             return;
 
-        Trigger.Trigger(ent, args.Equipee, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Equipee, ent.Comp.KeyOut);
     }
 }

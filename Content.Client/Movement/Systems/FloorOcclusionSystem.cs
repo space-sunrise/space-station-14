@@ -27,27 +27,27 @@ public sealed class FloorOcclusionSystem : SharedFloorOcclusionSystem
 
     private void OnOcclusionAuto(Entity<FloorOcclusionComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        SetShader(ent, ent.Comp.Enabled);
+        SetShader(ent.Owner, ent.Comp.Enabled);
     }
 
     private void OnOcclusionStartup(Entity<FloorOcclusionComponent> ent, ref ComponentStartup args)
     {
-        SetShader(ent, ent.Comp.Enabled);
+        SetShader(ent.Owner, ent.Comp.Enabled);
     }
 
     private void OnOcclusionShutdown(Entity<FloorOcclusionComponent> ent, ref ComponentShutdown args)
     {
-        SetShader(ent, false);
+        SetShader(ent.Owner, false);
     }
 
     protected override void SetEnabled(Entity<FloorOcclusionComponent> entity)
     {
-        SetShader(entity, entity.Comp.Enabled);
+        SetShader(entity.Owner, entity.Comp.Enabled);
     }
 
     private void SetShader(Entity<SpriteComponent?> sprite, bool enabled)
     {
-        if (!_spriteQuery.Resolve(sprite, ref sprite.Comp, false))
+        if (!_spriteQuery.Resolve(sprite.Owner, ref sprite.Comp, false))
             return;
 
         var shader = _proto.Index(HorizontalCut).Instance();

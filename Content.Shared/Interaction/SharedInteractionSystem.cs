@@ -207,11 +207,11 @@ namespace Content.Shared.Interaction
             if (!Resolve(target, ref target.Comp))
                 return false;
 
-            if (user == target)
+            if (user.Owner == target.Owner)
                 return true;
 
             // Fast check: if the user is the parent of the entity (e.g., holding it), we always assume that it is in range
-            if (target.Comp.ParentUid == user)
+            if (target.Comp.ParentUid == user.Owner)
                 return true;
 
             return InRangeAndAccessible(user, target, range) || _ignoreUiRangeQuery.HasComp(user);
@@ -765,7 +765,7 @@ namespace Content.Shared.Interaction
             bool popup = false,
             bool overlapCheck = true)
         {
-            Ignored combinedPredicate = e => e == origin || (predicate?.Invoke(e) ?? false);
+            Ignored combinedPredicate = e => e == origin.Owner || (predicate?.Invoke(e) ?? false);
             var inRange = true;
             MapCoordinates originPos = default;
             var targetPos = _transform.ToMapCoordinates(otherCoordinates);
@@ -1363,7 +1363,7 @@ namespace Content.Shared.Interaction
                 return false;
 
             // we don't check if the user can access the storage entity itself. This should be handed by the UI system.
-            return _ui.IsUiOpen(container, StorageComponent.StorageUiKey.Key, user);
+            return _ui.IsUiOpen(container.Owner, StorageComponent.StorageUiKey.Key, user);
         }
 
         /// <summary>
@@ -1379,7 +1379,7 @@ namespace Content.Shared.Interaction
             if (!_containerSystem.TryGetContainingContainer(target, out var container))
                 return false;
 
-            var wearer = container;
+            var wearer = container.Owner;
             if (!_inventory.TryGetSlot(wearer, container.ID, out var slotDef))
                 return false;
 

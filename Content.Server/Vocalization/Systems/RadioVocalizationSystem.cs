@@ -35,7 +35,7 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
             return;
 
         // set to handled if we succeed in speaking on the radio
-        args.Handled = TrySpeakRadio(entity, args.Message);
+        args.Handled = TrySpeakRadio(entity.Owner, args.Message);
     }
 
     /// <summary>

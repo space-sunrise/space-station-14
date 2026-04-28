@@ -72,15 +72,15 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     private void OnAddHand(Entity<HandsComponent> entity, string name, HandLocation location)
     {
-        if (entity != _player.LocalEntity)
+        if (entity.Owner != _player.LocalEntity)
             return;
-        if (_handsSystem.TryGetHand((entity, entity.Comp), name, out var hand))
+        if (_handsSystem.TryGetHand((entity.Owner, entity.Comp), name, out var hand))
             AddHand(name, hand.Value);
     }
 
     private void OnRemoveHand(Entity<HandsComponent> entity, string name)
     {
-        if (entity != _player.LocalEntity)
+        if (entity.Owner != _player.LocalEntity)
             return;
         RemoveHand(name);
     }
@@ -143,7 +143,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         {
             var handButton = AddHand(name, hand);
 
-            if (_handsSystem.TryGetHeldItem(handsComp, name, out var held) &&
+            if (_handsSystem.TryGetHeldItem(handsComp.AsNullable(), name, out var held) &&
                 _entities.TryGetComponent(held, out VirtualItemComponent? virt))
             {
                 handButton.SetEntity(virt.BlockingEntity);

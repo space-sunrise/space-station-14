@@ -27,7 +27,7 @@ public sealed class AntiGravityClothingSystem : EntitySystem
 
     private void OnIsWeightless(Entity<AntiGravityClothingComponent> ent, ref InventoryRelayedEvent<IsWeightlessEvent> args)
     {
-        if (args.Args.Handled || _standing.IsDown(args))
+        if (args.Args.Handled || _standing.IsDown(args.Owner))
             return;
 
         args.Args.Handled = true;
@@ -54,11 +54,11 @@ public sealed class AntiGravityClothingSystem : EntitySystem
 
     private void OnDowned(Entity<AntiGravityClothingComponent> entity, ref InventoryRelayedEvent<DownedEvent> args)
     {
-        _gravity.RefreshWeightless(args, false);
+        _gravity.RefreshWeightless(args.Owner, false);
     }
 
     private void OnStood(Entity<AntiGravityClothingComponent> entity, ref InventoryRelayedEvent<StoodEvent> args)
     {
-        _gravity.RefreshWeightless(args, true);
+        _gravity.RefreshWeightless(args.Owner, true);
     }
 }

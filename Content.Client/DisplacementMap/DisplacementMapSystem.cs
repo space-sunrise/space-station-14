@@ -74,7 +74,7 @@ public sealed class DisplacementMapSystem : EntitySystem
         // We choose a displacement map from the possible ones, matching the size with the original layer size.
         // If there is no such a map, we use a standard 32 by 32 one
         var displacementDataLayer = data.SizeMaps[EyeManager.PixelsPerMeter];
-        var actualRSI = _sprite.LayerGetEffectiveRsi(sprite, index);
+        var actualRSI = _sprite.LayerGetEffectiveRsi(sprite.AsNullable(), index);
         if (actualRSI is not null)
         {
             if (actualRSI.Size.X != actualRSI.Size.Y)
@@ -95,8 +95,8 @@ public sealed class DisplacementMapSystem : EntitySystem
         // If this throws an error, we're not sorry. Nanotrasen thanks you for your service fixing this bug.
         displacementLayer.CopyToShaderParameters!.LayerKey = key.ToString()!;
 
-        _sprite.AddLayer(sprite, displacementLayer, index);
-        _sprite.LayerMapSet(sprite, displacementKey, index);
+        _sprite.AddLayer(sprite.AsNullable(), displacementLayer, index);
+        _sprite.LayerMapSet(sprite.AsNullable(), displacementKey, index);
 
         return true;
     }
@@ -113,6 +113,6 @@ public sealed class DisplacementMapSystem : EntitySystem
         if (displacementLayerKey is null)
             return;
 
-        _sprite.RemoveLayer(sprite, displacementLayerKey, false);
+        _sprite.RemoveLayer(sprite.AsNullable(), displacementLayerKey, false);
     }
 }

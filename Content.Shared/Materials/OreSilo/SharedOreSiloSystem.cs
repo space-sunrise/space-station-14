@@ -59,7 +59,7 @@ public abstract class SharedOreSiloSystem : EntitySystem
                 inverseMats.Add(mat, -amount);
             }
             _materialStorage.TryChangeMaterialAmount(client, inverseMats, localOnly: true);
-            _materialStorage.TryChangeMaterialAmount(ent, clientMats);
+            _materialStorage.TryChangeMaterialAmount(ent.Owner, clientMats);
 
             ent.Comp.Clients.Add(client);
             Dirty(ent);
@@ -154,13 +154,13 @@ public abstract class SharedOreSiloSystem : EntitySystem
         if (!Resolve(silo, ref silo.Comp1, ref silo.Comp2))
             return false;
 
-        if (!_powerReceiver.IsPowered(silo))
+        if (!_powerReceiver.IsPowered(silo.Owner))
             return false;
 
-        if (_transform.GetGrid(client) != _transform.GetGrid(silo))
+        if (_transform.GetGrid(client) != _transform.GetGrid(silo.Owner))
             return false;
 
-        if (!_transform.InRange((silo, silo.Comp2), client, silo.Comp1.Range))
+        if (!_transform.InRange((silo.Owner, silo.Comp2), client, silo.Comp1.Range))
             return false;
 
         return true;

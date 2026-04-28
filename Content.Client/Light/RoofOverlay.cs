@@ -69,15 +69,15 @@ public sealed class RoofOverlay : Overlay
                 {
                     var grid = _grids[i];
 
-                    if (!_entManager.TryGetComponent(grid, out ImplicitRoofComponent? roof))
+                    if (!_entManager.TryGetComponent(grid.Owner, out ImplicitRoofComponent? roof))
                         continue;
 
-                    var gridMatrix = _xformSystem.GetWorldMatrix(grid);
+                    var gridMatrix = _xformSystem.GetWorldMatrix(grid.Owner);
                     var matty = Matrix3x2.Multiply(gridMatrix, invMatrix);
 
                     worldHandle.SetTransform(matty);
 
-                    var tileEnumerator = _mapSystem.GetTilesEnumerator(grid, grid, bounds);
+                    var tileEnumerator = _mapSystem.GetTilesEnumerator(grid.Owner, grid, bounds);
                     var color = roof.Color;
 
                     while (tileEnumerator.MoveNext(out var tileRef))
@@ -99,16 +99,16 @@ public sealed class RoofOverlay : Overlay
 
                 foreach (var grid in _grids)
                 {
-                    if (!_entManager.TryGetComponent(grid, out RoofComponent? roof))
+                    if (!_entManager.TryGetComponent(grid.Owner, out RoofComponent? roof))
                         continue;
 
-                    var gridMatrix = _xformSystem.GetWorldMatrix(grid);
+                    var gridMatrix = _xformSystem.GetWorldMatrix(grid.Owner);
                     var matty = Matrix3x2.Multiply(gridMatrix, invMatrix);
 
                     worldHandle.SetTransform(matty);
 
-                    var tileEnumerator = _mapSystem.GetTilesEnumerator(grid, grid, bounds);
-                    var roofEnt = (grid, grid.Comp, roof);
+                    var tileEnumerator = _mapSystem.GetTilesEnumerator(grid.Owner, grid, bounds);
+                    var roofEnt = (grid.Owner, grid.Comp, roof);
 
                     // Due to stencilling we essentially draw on unrooved tiles
                     while (tileEnumerator.MoveNext(out var tileRef))

@@ -71,7 +71,7 @@ public sealed class ChargerSystem : EntitySystem
                     if (!_powerCell.TryGetBatteryFromEntityOrSlot(contained, out var battery))
                         continue;
 
-                    var chargePercent = _battery.GetChargeLevel(battery.Value) * 100;
+                    var chargePercent = _battery.GetChargeLevel(battery.Value.AsNullable()) * 100;
                     args.PushMarkup(Loc.GetString("charger-content", ("chargePercent", (int)chargePercent)));
                 }
             }
@@ -94,7 +94,7 @@ public sealed class ChargerSystem : EntitySystem
 
         AddComp<InsideChargerComponent>(args.Entity);
         if (_powerCell.TryGetBatteryFromEntityOrSlot(args.Entity, out var battery))
-            _battery.RefreshChargeRate(battery.Value);
+            _battery.RefreshChargeRate(battery.Value.AsNullable());
         UpdateStatus(ent);
     }
 
@@ -108,7 +108,7 @@ public sealed class ChargerSystem : EntitySystem
 
         RemComp<InsideChargerComponent>(args.Entity);
         if (_powerCell.TryGetBatteryFromEntityOrSlot(args.Entity, out var battery))
-            _battery.RefreshChargeRate(battery.Value);
+            _battery.RefreshChargeRate(battery.Value.AsNullable());
         UpdateStatus(ent);
     }
 
@@ -171,7 +171,7 @@ public sealed class ChargerSystem : EntitySystem
         if (!chargerComp.Portable && !_receiver.IsPowered(chargerUid))
             return;
 
-        if (_whitelist.IsWhitelistFail(chargerComp.Whitelist, ent))
+        if (_whitelist.IsWhitelistFail(chargerComp.Whitelist, ent.Owner))
             return;
 
         args.NewChargeRate += chargerComp.ChargeRate;
@@ -190,13 +190,13 @@ public sealed class ChargerSystem : EntitySystem
     private void RefreshAllBatteries(Entity<ChargerComponent> ent)
     {
         // try to get contents of the charger
-        if (!_container.TryGetContainer(ent, ent.Comp.SlotId, out var container))
+        if (!_container.TryGetContainer(ent.Owner, ent.Comp.SlotId, out var container))
             return;
 
         foreach (var item in container.ContainedEntities)
         {
             if (_powerCell.TryGetBatteryFromEntityOrSlot(item, out var battery))
-                _battery.RefreshChargeRate(battery.Value);
+                _battery.RefreshChargeRate(battery.Value.AsNullable());
         }
     }
 
@@ -204,25 +204,25 @@ public sealed class ChargerSystem : EntitySystem
     {
         TryComp<AppearanceComponent>(ent, out var appearance);
 
-        if (!_container.TryGetContainer(ent, ent.Comp.SlotId, out var container))
+        if (!_container.TryGetContainer(ent.Owner, ent.Comp.SlotId, out var container))
             return;
 
-        _appearance.SetData(ent, CellVisual.Occupied, container.ContainedEntities.Count != 0, appearance);
+        _appearance.SetData(ent.Owner, CellVisual.Occupied, container.ContainedEntities.Count != 0, appearance);
 
         var status = GetStatus(ent);
         switch (status)
         {
             case CellChargerStatus.Charging:
                 // TODO: If someone ever adds chargers that can charge multiple batteries at once then set this to the total draw rate.
-                _receiver.SetLoad(ent, ent.Comp.ChargeRate);
+                _receiver.SetLoad(ent.Owner, ent.Comp.ChargeRate);
                 break;
             default:
                 // Don't set the load to 0 or the charger will be considered as powered even if the LV connection is unpowered.
                 // TODO: Fix this on an ApcPowerReceiver level.
-                _receiver.SetLoad(ent, ent.Comp.PassiveDraw);
+                _receiver.SetLoad(ent.Owner, ent.Comp.PassiveDraw);
                 break;
         }
-        _appearance.SetData(ent, CellVisual.Light, status, appearance);
+        _appearance.SetData(ent.Owner, CellVisual.Light, status, appearance);
     }
 
     private CellChargerStatus GetStatus(Entity<ChargerComponent> ent)
@@ -230,13 +230,13 @@ public sealed class ChargerSystem : EntitySystem
         if (!ent.Comp.Portable && !Transform(ent).Anchored)
             return CellChargerStatus.Off;
 
-        if (!ent.Comp.Portable && !_receiver.IsPowered(ent))
+        if (!ent.Comp.Portable && !_receiver.IsPowered(ent.Owner))
             return CellChargerStatus.Off;
 
         if (HasComp<EmpDisabledComponent>(ent))
             return CellChargerStatus.Off;
 
-        if (!_container.TryGetContainer(ent, ent.Comp.SlotId, out var container))
+        if (!_container.TryGetContainer(ent.Owner, ent.Comp.SlotId, out var container))
             return CellChargerStatus.Off;
 
         if (container.ContainedEntities.Count == 0)
@@ -246,7 +246,7 @@ public sealed class ChargerSystem : EntitySystem
         if (!_powerCell.TryGetBatteryFromEntityOrSlot(container.ContainedEntities[0], out var battery))
             return CellChargerStatus.Off;
 
-        if (_battery.IsFull(battery.Value))
+        if (_battery.IsFull(battery.Value.AsNullable()))
             return CellChargerStatus.Charged;
 
         return CellChargerStatus.Charging;

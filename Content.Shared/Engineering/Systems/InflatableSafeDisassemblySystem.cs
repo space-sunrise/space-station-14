@@ -29,7 +29,7 @@ public sealed class InflatableSafeDisassemblySystem : EntitySystem
             return;
 
         _popupSystem.PopupPredicted(
-            Loc.GetString("inflatable-safe-disassembly", ("item", args.Used), ("target", ent)),
+            Loc.GetString("inflatable-safe-disassembly", ("item", args.Used), ("target", ent.Owner)),
             ent,
             args.User);
 

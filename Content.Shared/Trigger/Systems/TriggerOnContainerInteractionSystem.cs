@@ -30,7 +30,7 @@ public sealed class TriggerOnContainerInteractionSystem : TriggerOnXSystem
         if (ent.Comp.ContainerId != null && ent.Comp.ContainerId != args.Container.ID)
             return;
 
-        Trigger.Trigger(ent, args.Entity, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Entity, ent.Comp.KeyOut);
     }
 
     private void OnRemovedFromContainer(Entity<TriggerOnRemovedFromContainerComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -41,7 +41,7 @@ public sealed class TriggerOnContainerInteractionSystem : TriggerOnXSystem
         if (ent.Comp.ContainerId != null && ent.Comp.ContainerId != args.Container.ID)
             return;
 
-        Trigger.Trigger(ent, args.Entity, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Entity, ent.Comp.KeyOut);
     }
 
     // Used by entities to trigger when they are inserted into or removed from a container
@@ -53,7 +53,7 @@ public sealed class TriggerOnContainerInteractionSystem : TriggerOnXSystem
         if (ent.Comp.ContainerId != null && ent.Comp.ContainerId != args.Container.ID)
             return;
 
-        Trigger.Trigger(ent, args.Container, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Container.Owner, ent.Comp.KeyOut);
     }
 
     private void OnGotRemovedFromContainer(Entity<TriggerOnGotRemovedFromContainerComponent> ent, ref EntGotRemovedFromContainerMessage args)
@@ -64,6 +64,6 @@ public sealed class TriggerOnContainerInteractionSystem : TriggerOnXSystem
         if (ent.Comp.ContainerId != null && ent.Comp.ContainerId != args.Container.ID)
             return;
 
-        Trigger.Trigger(ent, args.Container, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Container.Owner, ent.Comp.KeyOut);
     }
 }

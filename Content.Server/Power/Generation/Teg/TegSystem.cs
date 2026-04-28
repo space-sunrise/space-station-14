@@ -124,8 +124,8 @@ public sealed class TegSystem : EntitySystem
         if (tegGroup is not { IsFullyBuilt: true })
             return;
 
-        var circA = tegGroup.CirculatorA!;
-        var circB = tegGroup.CirculatorB!;
+        var circA = tegGroup.CirculatorA!.Owner;
+        var circB = tegGroup.CirculatorB!.Owner;
 
         var (inletA, outletA) = GetPipes(circA);
         var (inletB, outletB) = GetPipes(circB);
@@ -239,8 +239,8 @@ public sealed class TegSystem : EntitySystem
 
         if (nodeGroup.IsFullyBuilt)
         {
-            UpdateCirculatorAppearance(nodeGroup.CirculatorA!, powerReceiver.Powered);
-            UpdateCirculatorAppearance(nodeGroup.CirculatorB!, powerReceiver.Powered);
+            UpdateCirculatorAppearance(nodeGroup.CirculatorA!.Owner, powerReceiver.Powered);
+            UpdateCirculatorAppearance(nodeGroup.CirculatorB!.Owner, powerReceiver.Powered);
         }
     }
 
@@ -390,8 +390,8 @@ public sealed class TegSystem : EntitySystem
                     [DeviceNetworkConstants.Command] = DeviceNetworkCommandSyncData,
                     [DeviceNetworkCommandSyncData] = new TegSensorData
                     {
-                        CirculatorA = GetCirculatorSensorData(group.CirculatorA!),
-                        CirculatorB = GetCirculatorSensorData(group.CirculatorB!),
+                        CirculatorA = GetCirculatorSensorData(group.CirculatorA!.Owner),
+                        CirculatorB = GetCirculatorSensorData(group.CirculatorB!.Owner),
                         LastGeneration = component.LastGeneration,
                         PowerOutput = supplier.CurrentSupply,
                         RampPosition = component.RampPosition

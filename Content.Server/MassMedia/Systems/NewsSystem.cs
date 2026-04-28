@@ -134,7 +134,7 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
 
         var article = articles[msg.ArticleNum];
-        if (CanUse(msg.Actor, ent))
+        if (CanUse(msg.Actor, ent.Owner))
         {
             _adminLogger.Add(
                 LogType.Chat, LogImpact.Medium,
@@ -170,7 +170,7 @@ public sealed class NewsSystem : SharedNewsSystem
         if (!ent.Comp.PublishEnabled)
             return;
 
-        if (!CanUse(msg.Actor, ent))
+        if (!CanUse(msg.Actor, ent.Owner))
         {
             _popup.PopupEntity(Loc.GetString("news-write-no-access-popup"), ent, msg.Actor, PopupType.SmallCaution);
             _audio.PlayPvs(ent.Comp.NoAccessSound, ent);
@@ -340,7 +340,7 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
 
         var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent, ent.Comp.DraftPhotoPaths, _photoUploadEnabled);
-        _ui.SetUiState(ent, NewsWriterUiKey.Key, state);
+        _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
     private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
@@ -417,7 +417,7 @@ public sealed class NewsSystem : SharedNewsSystem
         if (!_photoUploadEnabled)
         {
             var emptyPhotosMsg = new NewsWriterPhotosMessage(photos);
-            _ui.ServerSendUiMessage(ent, NewsWriterUiKey.Key, emptyPhotosMsg, msg.Actor);
+            _ui.ServerSendUiMessage(ent.Owner, NewsWriterUiKey.Key, emptyPhotosMsg, msg.Actor);
             _popup.PopupEntity(Loc.GetString("news-write-upload-disabled"), ent, msg.Actor, PopupType.SmallCaution);
             return;
         }
@@ -434,7 +434,7 @@ public sealed class NewsSystem : SharedNewsSystem
         }
 
         var photosMsg = new NewsWriterPhotosMessage(photos);
-        _ui.ServerSendUiMessage(ent, NewsWriterUiKey.Key, photosMsg, msg.Actor);
+        _ui.ServerSendUiMessage(ent.Owner, NewsWriterUiKey.Key, photosMsg, msg.Actor);
     }
 
     #region Discord Hook

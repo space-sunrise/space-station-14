@@ -16,7 +16,7 @@ public sealed class SmartFridgeUISystem : EntitySystem
 
     private void OnSmartFridgeAfterState(Entity<SmartFridgeComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!_uiSystem.TryGetOpenUi<SmartFridgeBoundUserInterface>(ent, SmartFridgeUiKey.Key, out var bui))
+        if (!_uiSystem.TryGetOpenUi<SmartFridgeBoundUserInterface>(ent.Owner, SmartFridgeUiKey.Key, out var bui))
             return;
 
         bui.Refresh();

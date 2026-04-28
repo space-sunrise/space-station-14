@@ -47,7 +47,7 @@ public sealed class LungSystem : EntitySystem
 
     private void OnComponentInit(Entity<LungComponent> entity, ref ComponentInit args)
     {
-        if (_solutionContainerSystem.EnsureSolution(entity, entity.Comp.SolutionName, out var solution))
+        if (_solutionContainerSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName, out var solution))
         {
             solution.MaxVolume = 100.0f;
             solution.CanReact = false; // No dexalin lungs

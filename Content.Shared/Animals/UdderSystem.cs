@@ -43,7 +43,7 @@ public sealed class UdderSystem : EntitySystem
     private void OnEntRemoved(Entity<UdderComponent> entity, ref EntRemovedFromContainerMessage args)
     {
         // Make sure the removed entity was our contained solution
-        if (entity.Comp.Solution == null || args.Entity != entity.Comp.Solution.Value)
+        if (entity.Comp.Solution == null || args.Entity != entity.Comp.Solution.Value.Owner)
             return;
 
         // Cleared our cached reference to the solution entity
@@ -105,7 +105,7 @@ public sealed class UdderSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Args.Used == null)
             return;
 
-        if (!_solutionContainerSystem.ResolveSolution(entity, entity.Comp.SolutionName, ref entity.Comp.Solution, out var solution))
+        if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution, out var solution))
             return;
 
         if (!_solutionContainerSystem.TryGetRefillableSolution(args.Args.Used.Value, out var targetSoln, out var targetSolution))
@@ -115,7 +115,7 @@ public sealed class UdderSystem : EntitySystem
         var quantity = solution.Volume;
         if (quantity == 0)
         {
-            _popupSystem.PopupClient(Loc.GetString("udder-system-dry"), entity, args.Args.User);
+            _popupSystem.PopupClient(Loc.GetString("udder-system-dry"), entity.Owner, args.Args.User);
             return;
         }
 
@@ -125,7 +125,7 @@ public sealed class UdderSystem : EntitySystem
         var split = _solutionContainerSystem.SplitSolution(entity.Comp.Solution.Value, quantity);
         _solutionContainerSystem.TryAddSolution(targetSoln.Value, split);
 
-        _popupSystem.PopupClient(Loc.GetString("udder-system-success", ("amount", quantity), ("target", Identity.Entity(args.Args.Used.Value, EntityManager))), entity,
+        _popupSystem.PopupClient(Loc.GetString("udder-system-success", ("amount", quantity), ("target", Identity.Entity(args.Args.Used.Value, EntityManager))), entity.Owner,
             args.Args.User, PopupType.Medium);
     }
 
@@ -136,7 +136,7 @@ public sealed class UdderSystem : EntitySystem
              !HasComp<RefillableSolutionComponent>(args.Using.Value))
             return;
 
-        var uid = entity;
+        var uid = entity.Owner;
         var user = args.User;
         var used = args.Using.Value;
         AlternativeVerb verb = new()

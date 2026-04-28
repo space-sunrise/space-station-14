@@ -30,7 +30,7 @@ public sealed class XATMagnetSystem : BaseQueryUpdateXATSystem<XATMagnetComponen
     /// <inheritdoc />
     protected override void UpdateXAT(Entity<XenoArtifactComponent> artifact, Entity<XATMagnetComponent, XenoArtifactNodeComponent> node, float frameTime)
     {
-        var coords = Transform(artifact).Coordinates;
+        var coords = Transform(artifact.Owner).Coordinates;
 
         _magbootEntities.Clear();
         _lookup.GetEntitiesInRange(coords, node.Comp1.MagbootsRange, _magbootEntities);

@@ -36,35 +36,35 @@ public sealed partial class LogWireAction : ComponentWireAction<AccessReaderComp
 
     public override bool Cut(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        WiresSystem.TryCancelWireAction(wire, PulseTimeoutKey.Key);
-        EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire, comp), false);
+        WiresSystem.TryCancelWireAction(wire.Owner, PulseTimeoutKey.Key);
+        EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire.Owner, comp), false);
 
         return true;
     }
 
     public override bool Mend(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire, comp), true);
+        EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire.Owner, comp), true);
         return true;
     }
 
     public override void Pulse(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        _access.LogAccess((wire, comp), Loc.GetString(PulseLog));
-        EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire, comp), false);
-        WiresSystem.StartWireAction(wire, PulseTimeout, PulseTimeoutKey.Key, new TimedWireEvent(AwaitPulseCancel, wire));
+        _access.LogAccess((wire.Owner, comp), Loc.GetString(PulseLog));
+        EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire.Owner, comp), false);
+        WiresSystem.StartWireAction(wire.Owner, PulseTimeout, PulseTimeoutKey.Key, new TimedWireEvent(AwaitPulseCancel, wire));
     }
 
     public override void Update(Wire wire)
     {
-        if (!IsPowered(wire))
-            WiresSystem.TryCancelWireAction(wire, PulseTimeoutKey.Key);
+        if (!IsPowered(wire.Owner))
+            WiresSystem.TryCancelWireAction(wire.Owner, PulseTimeoutKey.Key);
     }
 
     private void AwaitPulseCancel(Wire wire)
     {
-        if (!wire.IsCut && EntityManager.TryGetComponent<AccessReaderComponent>(wire, out var comp))
-            EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire, comp), true);
+        if (!wire.IsCut && EntityManager.TryGetComponent<AccessReaderComponent>(wire.Owner, out var comp))
+            EntityManager.System<AccessReaderSystem>().SetLoggingActive((wire.Owner, comp), true);
     }
 
     private enum PulseTimeoutKey : byte

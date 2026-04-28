@@ -51,7 +51,7 @@ public sealed class HandheldGpsStatusControl : Control
         var posText = "Error";
         if (_entMan.TryGetComponent(_parent, out TransformComponent? transComp))
         {
-            var pos = _transform.GetMapCoordinates(_parent, xform: transComp);
+            var pos = _transform.GetMapCoordinates(_parent.Owner, xform: transComp);
             var x = (int)pos.X;
             var y = (int)pos.Y;
             posText = $"({x}, {y})";

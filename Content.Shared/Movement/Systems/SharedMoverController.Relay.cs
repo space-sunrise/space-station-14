@@ -14,12 +14,12 @@ public abstract partial class SharedMoverController
 
     private void OnAfterRelayTargetState(Entity<MovementRelayTargetComponent> entity, ref AfterAutoHandleStateEvent args)
     {
-        PhysicsSystem.UpdateIsPredicted(entity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
     }
 
     private void OnAfterRelayState(Entity<RelayInputMoverComponent> entity, ref AfterAutoHandleStateEvent args)
     {
-        PhysicsSystem.UpdateIsPredicted(entity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public abstract partial class SharedMoverController
 
     private void OnRelayShutdown(Entity<RelayInputMoverComponent> entity, ref ComponentShutdown args)
     {
-        PhysicsSystem.UpdateIsPredicted(entity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
         PhysicsSystem.UpdateIsPredicted(entity.Comp.RelayEntity);
 
         if (TryComp<InputMoverComponent>(entity.Comp.RelayEntity, out var inputMover))
@@ -99,12 +99,12 @@ public abstract partial class SharedMoverController
         if (TryComp(entity.Comp.RelayEntity, out MovementRelayTargetComponent? target) && target.LifeStage <= ComponentLifeStage.Running)
             RemComp(entity.Comp.RelayEntity, target);
 
-        _blocker.UpdateCanMove(entity);
+        _blocker.UpdateCanMove(entity.Owner);
     }
 
     protected virtual void OnTargetRelayShutdown(Entity<MovementRelayTargetComponent> entity, ref ComponentShutdown args)
     {
-        PhysicsSystem.UpdateIsPredicted(entity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
         PhysicsSystem.UpdateIsPredicted(entity.Comp.Source);
 
         if (Timing.ApplyingState)

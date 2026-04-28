@@ -31,7 +31,7 @@ public sealed partial class ArcadePlayerInvincibleWireAction : BaseToggleWireAct
 
     public override StatusLightState? GetLightState(Wire wire)
     {
-        if (EntityManager.TryGetComponent<SpaceVillainArcadeComponent>(wire, out var arcade)
+        if (EntityManager.TryGetComponent<SpaceVillainArcadeComponent>(wire.Owner, out var arcade)
         && arcade.Game != null)
         {
             return arcade.Game.PlayerChar.Invincible || arcade.Game.VillainChar.Invincible

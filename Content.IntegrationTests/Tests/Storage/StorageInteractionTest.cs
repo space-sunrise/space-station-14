@@ -49,12 +49,12 @@ public sealed class StorageInteractionTest : InteractionTest
         var sPda = ToServer(pda);
         Assert.That(sys.IsEntityInContainer(sPda), Is.True);
         Assert.That(sys.TryGetContainingContainer((sPda, null), out var container));
-        Assert.That(container!, Is.EqualTo(SPlayer));
+        Assert.That(container!.Owner, Is.EqualTo(SPlayer));
 
         // Insert the PDA into the backpack
         await Interact();
         Assert.That(sys.TryGetContainingContainer((sPda, null), out container));
-        Assert.That(container!, Is.EqualTo(backpack));
+        Assert.That(container!.Owner, Is.EqualTo(backpack));
 
         // Use "e" / ActivateInWorld to open the PDA UI while it is still in the backpack.
         var ctrl = GetStorageControl(pda);
@@ -67,7 +67,7 @@ public sealed class StorageInteractionTest : InteractionTest
         await ClickControl(ctrl, ContentKeyFunctions.MoveStoredItem);
         await RunTicks(10);
         Assert.That(sys.TryGetContainingContainer((sPda, null), out container));
-        Assert.That(container!, Is.EqualTo(SPlayer));
+        Assert.That(container!.Owner, Is.EqualTo(SPlayer));
 
         // UIs should still be open
         Assert.That(IsUiOpen(StorageComponent.StorageUiKey.Key), Is.True);

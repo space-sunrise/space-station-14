@@ -51,7 +51,7 @@ namespace Content.Server.Power.NodeGroups
             if (EntMan == null)
                 return;
 
-            var battery = EntMan.GetComponent<PowerNetworkBatteryComponent>(discharger);
+            var battery = EntMan.GetComponent<PowerNetworkBatteryComponent>(discharger.Owner);
             DebugTools.Assert(battery.NetworkBattery.LinkedNetworkDischarging == default);
             battery.NetworkBattery.LinkedNetworkDischarging = default;
             Dischargers.Add(discharger);
@@ -64,7 +64,7 @@ namespace Content.Server.Power.NodeGroups
                 return;
 
             // Can be missing if the entity is being deleted, not a big deal.
-            if (EntMan.TryGetComponent(discharger, out PowerNetworkBatteryComponent? battery))
+            if (EntMan.TryGetComponent(discharger.Owner, out PowerNetworkBatteryComponent? battery))
             {
                 // Linked network can be default if it was re-connected twice in one tick.
                 DebugTools.Assert(battery.NetworkBattery.LinkedNetworkDischarging == default || battery.NetworkBattery.LinkedNetworkDischarging == NetworkNode.Id);
@@ -80,7 +80,7 @@ namespace Content.Server.Power.NodeGroups
             if (EntMan == null)
                 return;
 
-            var battery = EntMan.GetComponent<PowerNetworkBatteryComponent>(charger);
+            var battery = EntMan.GetComponent<PowerNetworkBatteryComponent>(charger.Owner);
             DebugTools.Assert(battery.NetworkBattery.LinkedNetworkCharging == default);
             battery.NetworkBattery.LinkedNetworkCharging = default;
             Chargers.Add(charger);
@@ -93,7 +93,7 @@ namespace Content.Server.Power.NodeGroups
                 return;
 
             // Can be missing if the entity is being deleted, not a big deal.
-            if (EntMan.TryGetComponent(charger, out PowerNetworkBatteryComponent? battery))
+            if (EntMan.TryGetComponent(charger.Owner, out PowerNetworkBatteryComponent? battery))
             {
                 // Linked network can be default if it was re-connected twice in one tick.
                 DebugTools.Assert(battery.NetworkBattery.LinkedNetworkCharging == default || battery.NetworkBattery.LinkedNetworkCharging == NetworkNode.Id);

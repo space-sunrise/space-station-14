@@ -134,10 +134,10 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        if (InsertBody(ent, args.Args.Target.Value, ent.Comp))
+        if (InsertBody(ent.Owner, args.Args.Target.Value, ent.Comp))
         {
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                $"{ToPrettyString(args.User)} inserted {ToPrettyString(args.Args.Target.Value)} into {ToPrettyString(ent)}");
+                $"{ToPrettyString(args.User)} inserted {ToPrettyString(args.Args.Target.Value)} into {ToPrettyString(ent.Owner)}");
         }
         args.Handled = true;
     }
@@ -157,7 +157,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         if (args.Handled || !ent.Comp.Locked || ent.Comp.BodyContainer.ContainedEntity == null)
             return;
 
-        args.Handled = _tool.UseTool(args.Used, args.User, ent, ent.Comp.PryDelay, ent.Comp.UnlockToolQuality, new CryoPodPryFinished());
+        args.Handled = _tool.UseTool(args.Used, args.User, ent.Owner, ent.Comp.PryDelay, ent.Comp.UnlockToolQuality, new CryoPodPryFinished());
     }
 
     private void OnCryoPodPryFinished(EntityUid uid, CryoPodComponent cryoPodComponent, CryoPodPryFinished args)
@@ -185,15 +185,15 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         else
         {
             RemComp<ActiveCryoPodComponent>(ent);
-            _ui.CloseUi(ent, HealthAnalyzerUiKey.Key);
+            _ui.CloseUi(ent.Owner, HealthAnalyzerUiKey.Key);
         }
 
-        UpdateAppearance(ent, ent.Comp);
+        UpdateAppearance(ent.Owner, ent.Comp);
     }
 
     private void OnExamined(Entity<CryoPodComponent> entity, ref ExaminedEvent args)
     {
-        var container = _itemSlots.GetItemOrNull(entity, entity.Comp.SolutionContainerName);
+        var container = _itemSlots.GetItemOrNull(entity.Owner, entity.Comp.SolutionContainerName);
         if (args.IsInDetailsRange && container != null && _solutionContainer.TryGetFitsInDispenser(container.Value, out _, out var containerSolution))
         {
             using (args.PushGroup(nameof(CryoPodComponent)))

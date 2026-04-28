@@ -45,7 +45,7 @@ public sealed partial class IngestionSystem
         //Prevents food usage with a wrong utensil
         if (ev.Types != UtensilType.None && (ev.Types & utensil.Comp.Types) == 0)
         {
-            _popup.PopupClient(Loc.GetString("ingestion-try-use-wrong-utensil", ("verb", GetEdibleVerb(target)), ("food", target), ("utensil", utensil)), user, user);
+            _popup.PopupClient(Loc.GetString("ingestion-try-use-wrong-utensil", ("verb", GetEdibleVerb(target)), ("food", target), ("utensil", utensil.Owner)), user, user);
             return true;
         }
 
@@ -73,7 +73,7 @@ public sealed partial class IngestionSystem
             return;
 
         _audio.PlayPredicted(entity.Comp.BreakSound, userUid, userUid, AudioParams.Default.WithVolume(-2f));
-        PredictedDel(entity);
+        PredictedDel(entity.Owner);
     }
 
     /// <summary>

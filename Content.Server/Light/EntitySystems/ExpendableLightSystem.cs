@@ -75,7 +75,7 @@ namespace Content.Server.Light.EntitySystems
                     default:
                     case ExpendableLightState.Fading:
                         component.CurrentState = ExpendableLightState.Dead;
-                        _nameModifier.RefreshNameModifiers(ent);
+                        _nameModifier.RefreshNameModifiers(ent.Owner);
 
                         _tagSystem.AddTag(ent, TrashTag);
 

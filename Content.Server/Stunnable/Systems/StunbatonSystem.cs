@@ -33,8 +33,8 @@ namespace Content.Server.Stunnable.Systems
 
         private void OnStaminaHitAttempt(Entity<StunbatonComponent> entity, ref StaminaDamageOnHitAttemptEvent args)
         {
-            if (!_itemToggle.IsActivated(entity) ||
-            !TryComp<BatteryComponent>(entity, out var battery) || !_battery.TryUseCharge((entity, battery), entity.Comp.EnergyPerUse))
+            if (!_itemToggle.IsActivated(entity.Owner) ||
+            !TryComp<BatteryComponent>(entity.Owner, out var battery) || !_battery.TryUseCharge((entity.Owner, battery), entity.Comp.EnergyPerUse))
             {
                 args.Cancelled = true;
             }
@@ -42,14 +42,14 @@ namespace Content.Server.Stunnable.Systems
 
         private void OnExamined(Entity<StunbatonComponent> entity, ref ExaminedEvent args)
         {
-            var onMsg = _itemToggle.IsActivated(entity)
+            var onMsg = _itemToggle.IsActivated(entity.Owner)
             ? Loc.GetString("comp-stunbaton-examined-on")
             : Loc.GetString("comp-stunbaton-examined-off");
             args.PushMarkup(onMsg);
 
-            if (TryComp<BatteryComponent>(entity, out var battery))
+            if (TryComp<BatteryComponent>(entity.Owner, out var battery))
             {
-                var count = _battery.GetRemainingUses((entity, battery), entity.Comp.EnergyPerUse);
+                var count = _battery.GetRemainingUses((entity.Owner, battery), entity.Comp.EnergyPerUse);
                 args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
             }
         }
@@ -70,7 +70,7 @@ namespace Content.Server.Stunnable.Systems
 
             if (TryComp<RiggableComponent>(entity, out var rig) && rig.IsRigged)
             {
-                _riggableSystem.Explode(entity, _battery.GetCharge((entity, battery)), args.User);
+                _riggableSystem.Explode(entity.Owner, _battery.GetCharge((entity, battery)), args.User);
             }
         }
 
@@ -82,8 +82,8 @@ namespace Content.Server.Stunnable.Systems
                 !TryComp<BatteryComponent>(entity, out var battery))
                 return;
 
-            if (_itemToggle.IsActivated(entity) && riggable.IsRigged)
-                _riggableSystem.Explode(entity, _battery.GetCharge((entity, battery)));
+            if (_itemToggle.IsActivated(entity.Owner) && riggable.IsRigged)
+                _riggableSystem.Explode(entity.Owner, _battery.GetCharge((entity, battery)));
         }
 
         // TODO: Not used anywhere?
@@ -98,10 +98,10 @@ namespace Content.Server.Stunnable.Systems
 
         private void OnChargeChanged(Entity<StunbatonComponent> entity, ref ChargeChangedEvent args)
         {
-            if (TryComp<BatteryComponent>(entity, out var battery) &&
-                _battery.GetCharge((entity, battery)) < entity.Comp.EnergyPerUse)
+            if (TryComp<BatteryComponent>(entity.Owner, out var battery) &&
+                _battery.GetCharge((entity.Owner, battery)) < entity.Comp.EnergyPerUse)
             {
-                _itemToggle.TryDeactivate(entity, predicted: false);
+                _itemToggle.TryDeactivate(entity.Owner, predicted: false);
             }
         }
     }

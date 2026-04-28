@@ -25,18 +25,18 @@ public sealed partial class VendingMachineEjectItemWireAction : ComponentWireAct
 
     public override bool Cut(EntityUid user, Wire wire, VendingMachineComponent vending)
     {
-        _vendingMachineSystem.SetShooting(wire, true, vending);
+        _vendingMachineSystem.SetShooting(wire.Owner, true, vending);
         return true;
     }
 
     public override bool Mend(EntityUid user, Wire wire, VendingMachineComponent vending)
     {
-        _vendingMachineSystem.SetShooting(wire, false, vending);
+        _vendingMachineSystem.SetShooting(wire.Owner, false, vending);
         return true;
     }
 
     public override void Pulse(EntityUid user, Wire wire, VendingMachineComponent vending)
     {
-        _vendingMachineSystem.EjectRandom(wire, true, vendComponent: vending);
+        _vendingMachineSystem.EjectRandom(wire.Owner, true, vendComponent: vending);
     }
 }

@@ -19,7 +19,7 @@ public sealed class MobCollisionSystem : SharedMobCollisionSystem
 
     private void OnServerMobCollision(Entity<MobCollisionComponent> ent, ref MobCollisionMessage args)
     {
-        MoveMob((ent, ent.Comp, Transform(ent)), args.Direction, args.SpeedModifier);
+        MoveMob((ent.Owner, ent.Comp, Transform(ent.Owner)), args.Direction, args.SpeedModifier);
     }
 
     public override void Update(float frameTime)

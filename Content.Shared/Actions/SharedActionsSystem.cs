@@ -580,7 +580,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
 
         // This here is required because of client-side prediction (RaisePredictiveEvent results in event re-use).
         ev.Handled = false;
-        var target = performer;
+        var target = performer.Owner;
         ev.Performer = performer;
         ev.Action = action;
 
@@ -670,7 +670,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
         if (GetAction(action) is not {} ent)
             return false;
 
-        if (ent.Comp.Container != container
+        if (ent.Comp.Container != container.Owner
             || !Resolve(container, ref container.Comp)
             || !container.Comp.Container.Contains(ent))
         {
@@ -842,11 +842,11 @@ public abstract partial class SharedActionsSystem : EntitySystem
         if (GetAction(action) is not {} ent)
             return;
 
-        if (ent.Comp.AttachedEntity != performer)
+        if (ent.Comp.AttachedEntity != performer.Owner)
         {
             DebugTools.Assert(!Resolve(performer, ref performer.Comp, false)
                               || performer.Comp.LifeStage >= ComponentLifeStage.Stopping
-                              || !performer.Comp.Actions.Contains(ent));
+                              || !performer.Comp.Actions.Contains(ent.Owner));
 
             if (!GameTiming.ApplyingState)
                 Log.Error($"Attempted to remove an action {ToPrettyString(ent)} from an entity that it was never attached to: {ToPrettyString(performer)}. Trace: {Environment.StackTrace}");
@@ -861,7 +861,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
             return;
         }
 
-        performer.Comp.Actions.Remove(ent);
+        performer.Comp.Actions.Remove(ent.Owner);
         Dirty(performer, performer.Comp);
         ent.Comp.AttachedEntity = null;
         DirtyField(ent, ent.Comp, nameof(ActionComponent.AttachedEntity));
@@ -923,8 +923,8 @@ public abstract partial class SharedActionsSystem : EntitySystem
             return;
 
         var ev = new AttemptRelayActionComponentChangeEvent();
-        RaiseLocalEvent(ent, ref ev);
-        var target = ev.Target ?? ent;
+        RaiseLocalEvent(ent.Owner, ref ev);
+        var target = ev.Target ?? ent.Owner;
 
         args.Handled = true;
         args.Toggle = true;
@@ -946,7 +946,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
 
         args.Handled = true;
         args.Toggle = true;
-        var target = ent;
+        var target = ent.Owner;
 
         if (!args.Action.Comp.Toggled)
         {
@@ -1131,7 +1131,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
     /// </summary>
     public void SetTemporary(Entity<ActionComponent?> ent, bool temporary)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
         ent.Comp.Temporary = temporary;

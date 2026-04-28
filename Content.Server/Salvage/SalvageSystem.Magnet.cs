@@ -112,7 +112,7 @@ public sealed partial class SalvageSystem
 
                     if (magnet != null)
                     {
-                        Report(magnet.Value, MagnetChannel,
+                        Report(magnet.Value.Owner, MagnetChannel,
                             "salvage-system-announcement-losing",
                             ("timeLeft", (magnetData.EndTime.Value - curTime).Seconds));
                     }
@@ -184,7 +184,7 @@ public sealed partial class SalvageSystem
 
             foreach (var entity in _detachEnts)
             {
-                _transform.SetCoordinates(entity.Entity, new EntityCoordinates(entity.MapUid, entity.LocalPosition));
+                _transform.SetCoordinates(entity.Entity.Owner, new EntityCoordinates(entity.MapUid, entity.LocalPosition));
             }
 
             data.Comp.ActiveEntities = null;
@@ -228,7 +228,7 @@ public sealed partial class SalvageSystem
         {
             var stationUid = _station.GetOwningStation(magnetUid, xform);
 
-            if (stationUid != data)
+            if (stationUid != data.Owner)
                 continue;
 
             return (magnetUid, magnet);
@@ -244,7 +244,7 @@ public sealed partial class SalvageSystem
         if (!TryComp(station, out SalvageMagnetDataComponent? dataComp))
             return;
 
-        _ui.SetUiState(entity, SalvageMagnetUiKey.Key,
+        _ui.SetUiState(entity.Owner, SalvageMagnetUiKey.Key,
             new SalvageMagnetBoundUserInterfaceState(dataComp.Offered)
             {
                 Cooldown = dataComp.OfferCooldown,
@@ -263,7 +263,7 @@ public sealed partial class SalvageSystem
         {
             var station = _station.GetOwningStation(magnetUid, xform);
 
-            if (station != data)
+            if (station != data.Owner)
                 continue;
 
             _ui.SetUiState(magnetUid, SalvageMagnetUiKey.Key,
@@ -296,12 +296,12 @@ public sealed partial class SalvageSystem
         {
             case AsteroidOffering asteroid:
                 var grid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, grid, grid.Comp, Vector2i.Zero, seed);
+                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, grid.Owner, grid.Comp, Vector2i.Zero, seed);
                 break;
             case DebrisOffering debris:
                 var debrisProto = _prototypeManager.Index<DungeonConfigPrototype>(debris.Id);
                 var debrisGrid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(debrisProto, debrisGrid, debrisGrid.Comp, Vector2i.Zero, seed);
+                await _dungeon.GenerateDungeonAsync(debrisProto, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed);
                 break;
             case SalvageOffering wreck:
                 var salvageProto = wreck.SalvageMap;
@@ -322,7 +322,7 @@ public sealed partial class SalvageSystem
 
         if (salvMapXform.ChildCount == 0)
         {
-            Report(magnet, MagnetChannel, "salvage-system-announcement-spawn-no-debris-available");
+            Report(magnet.Owner, MagnetChannel, "salvage-system-announcement-spawn-no-debris-available");
             return;
         }
 
@@ -345,7 +345,7 @@ public sealed partial class SalvageSystem
             }
         }
 
-        var magnetXform = _xformQuery.GetComponent(magnet);
+        var magnetXform = _xformQuery.GetComponent(magnet.Owner);
         var magnetGridUid = magnetXform.GridUid;
         var attachedBounds = new Box2Rotated();
         var mapId = MapId.Nullspace;
@@ -369,7 +369,7 @@ public sealed partial class SalvageSystem
 
         if (!TryGetSalvagePlacementLocation(magnet, mapId, attachedBounds, bounds!.Value, worldAngle, out var spawnLocation, out var spawnAngle))
         {
-            Report(magnet, MagnetChannel, "salvage-system-announcement-spawn-no-debris-available");
+            Report(magnet.Owner, MagnetChannel, "salvage-system-announcement-spawn-no-debris-available");
             _mapSystem.DeleteMap(salvMapXform.MapID);
             return;
         }
@@ -406,7 +406,7 @@ public sealed partial class SalvageSystem
             }
         }
 
-        Report(magnet, MagnetChannel, "salvage-system-announcement-arrived", ("timeLeft", data.Comp.ActiveTime.TotalSeconds));
+        Report(magnet.Owner, MagnetChannel, "salvage-system-announcement-arrived", ("timeLeft", data.Comp.ActiveTime.TotalSeconds));
         _mapSystem.DeleteMap(salvMapXform.MapID);
 
         data.Comp.Announced = false;

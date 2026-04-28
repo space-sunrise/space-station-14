@@ -59,7 +59,7 @@ public sealed class EntityPainter
             return;
         }
 
-        var worldRotation = xformSystem.GetWorldRotation(entity);
+        var worldRotation = xformSystem.GetWorldRotation(entity.Owner);
         foreach (var layer in entity.Sprite.AllLayers)
         {
             if (!layer.Visible)
@@ -120,7 +120,7 @@ public sealed class EntityPainter
             var rect = new Rectangle(x, y, width, height);
             if (!new Rectangle(Point.Empty, image.Size).Contains(rect))
             {
-                Console.WriteLine($"Invalid layer {rsi!.Path}/{layer.RsiState.Name}.png for entity {_sEntityManager.ToPrettyString(entity)} at ({entity.X}, {entity.Y})");
+                Console.WriteLine($"Invalid layer {rsi!.Path}/{layer.RsiState.Name}.png for entity {_sEntityManager.ToPrettyString(entity.Owner)} at ({entity.X}, {entity.Y})");
                 return;
             }
 

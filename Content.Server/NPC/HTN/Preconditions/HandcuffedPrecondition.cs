@@ -13,7 +13,7 @@ public sealed partial class HandcuffedPrecondition : HTNPrecondition
     public override bool IsMet(NPCBlackboard blackboard)
     {
         var cuffable = _entManager.System<CuffableSystem>();
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!_entManager.TryGetComponent<CuffableComponent>(owner, out var cuffComp))
             return false;

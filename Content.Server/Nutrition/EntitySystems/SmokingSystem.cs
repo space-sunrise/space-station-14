@@ -106,7 +106,7 @@ namespace Content.Server.Nutrition.EntitySystems
         {
             if (args.Slot == "mask")
             {
-                _forensics.TransferDna(entity, args.Equipee, false);
+                _forensics.TransferDna(entity.Owner, args.Equipee, false);
             }
         }
 
@@ -150,14 +150,14 @@ namespace Content.Server.Nutrition.EntitySystems
                 // This is awful. I hate this so much.
                 // TODO: Please, someone refactor containers and free me from this bullshit.
                 if (!_container.TryGetContainingContainer((uid, null, null), out var containerManager) ||
-                    !(_inventorySystem.TryGetSlotEntity(containerManager, "mask", out var inMaskSlotUid) && inMaskSlotUid == uid) ||
-                    !TryComp(containerManager, out BloodstreamComponent? bloodstream))
+                    !(_inventorySystem.TryGetSlotEntity(containerManager.Owner, "mask", out var inMaskSlotUid) && inMaskSlotUid == uid) ||
+                    !TryComp(containerManager.Owner, out BloodstreamComponent? bloodstream))
                 {
                     continue;
                 }
 
-                _reactiveSystem.DoEntityReaction(containerManager, inhaledSolution, ReactionMethod.Ingestion);
-                _bloodstreamSystem.TryAddToBloodstream((containerManager, bloodstream), inhaledSolution);
+                _reactiveSystem.DoEntityReaction(containerManager.Owner, inhaledSolution, ReactionMethod.Ingestion);
+                _bloodstreamSystem.TryAddToBloodstream((containerManager.Owner, bloodstream), inhaledSolution);
             }
 
             _timer -= UpdateTimer;

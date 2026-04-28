@@ -38,15 +38,15 @@ public abstract partial class SharedSubdermalImplantSystem : EntitySystem
         if (args.Container.ID != ImplanterComponent.ImplantSlotId)
             return;
 
-        ent.Comp.ImplantedEntity = args.Container;
+        ent.Comp.ImplantedEntity = args.Container.Owner;
         Dirty(ent);
 
         EntityManager.AddComponents(ent.Comp.ImplantedEntity.Value, ent.Comp.ImplantComponents);
         if (ent.Comp.ImplantAction != null)
-            _actions.AddAction(ent.Comp.ImplantedEntity.Value, ref ent.Comp.Action, ent.Comp.ImplantAction, ent);
+            _actions.AddAction(ent.Comp.ImplantedEntity.Value, ref ent.Comp.Action, ent.Comp.ImplantAction, ent.Owner);
 
-        var ev = new ImplantImplantedEvent(ent, ent.Comp.ImplantedEntity.Value);
-        RaiseLocalEvent(ent, ref ev);
+        var ev = new ImplantImplantedEvent(ent.Owner, ent.Comp.ImplantedEntity.Value);
+        RaiseLocalEvent(ent.Owner, ref ev);
     }
 
     private void OnRemoveAttempt(Entity<SubdermalImplantComponent> ent, ref ContainerGettingRemovedAttemptEvent args)
@@ -81,8 +81,8 @@ public abstract partial class SharedSubdermalImplantSystem : EntitySystem
         _actions.RemoveAction(ent.Comp.ImplantedEntity.Value, ent.Comp.Action);
         ent.Comp.Action = null;
 
-        var ev = new ImplantRemovedEvent(ent, ent.Comp.ImplantedEntity.Value);
-        RaiseLocalEvent(ent, ref ev);
+        var ev = new ImplantRemovedEvent(ent.Owner, ent.Comp.ImplantedEntity.Value);
+        RaiseLocalEvent(ent.Owner, ref ev);
 
         ent.Comp.ImplantedEntity = null;
         Dirty(ent);
@@ -144,7 +144,7 @@ public abstract partial class SharedSubdermalImplantSystem : EntitySystem
         var implantedComp = EnsureComp<ImplantedComponent>(target);
 
         implant.Comp.ImplantedEntity = target;
-        _container.Insert(implant, implantedComp.ImplantContainer);
+        _container.Insert(implant.Owner, implantedComp.ImplantContainer);
     }
 
     /// <summary>

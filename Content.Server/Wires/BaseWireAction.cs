@@ -32,7 +32,7 @@ public abstract partial class BaseWireAction : IWireAction
 
     public virtual StatusLightData? GetStatusLightData(Wire wire)
     {
-        if (LightRequiresPower && !IsPowered(wire))
+        if (LightRequiresPower && !IsPowered(wire.Owner))
             return new StatusLightData(Color, StatusLightState.Off, Loc.GetString(Name));
 
         var state = GetLightState(wire);
@@ -66,7 +66,7 @@ public abstract partial class BaseWireAction : IWireAction
     private bool Log(EntityUid user, Wire wire, string verb)
     {
         var player = EntityManager.ToPrettyString(user);
-        var owner = EntityManager.ToPrettyString(wire);
+        var owner = EntityManager.ToPrettyString(wire.Owner);
         var name = Loc.GetString(Name);
         var color = wire.Color.Name();
         var action = GetType().Name;

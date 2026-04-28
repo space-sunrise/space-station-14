@@ -1,7 +1,7 @@
 ﻿namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
 /// <summary>
-/// Raises an <see cref="HTNRaisedEvent"/> on the <see cref="NPCBlackboard">owner</see>. The event will contain
+/// Raises an <see cref="HTNRaisedEvent"/> on the <see cref="NPCBlackboard.Owner">owner</see>. The event will contain
 /// the specified <see cref="Args"/>, and if not null, the value of <see cref="TargetKey"/>.
 /// </summary>
 public sealed partial class RaiseEventForOwnerOperator : HTNOperator
@@ -25,9 +25,9 @@ public sealed partial class RaiseEventForOwnerOperator : HTNOperator
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         _entMan.EventBus.RaiseLocalEvent(
-            blackboard.GetValue<EntityUid>(NPCBlackboard),
+            blackboard.GetValue<EntityUid>(NPCBlackboard.Owner),
             new HTNRaisedEvent(
-                blackboard.GetValue<EntityUid>(NPCBlackboard),
+                blackboard.GetValue<EntityUid>(NPCBlackboard.Owner),
                 TargetKey is { } targetKey ? blackboard.GetValue<EntityUid>(targetKey) : null,
                 Args
             )

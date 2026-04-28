@@ -14,6 +14,6 @@ public sealed partial class TriggerOnSlipSystem : TriggerOnXSystem
 
     private void OnSlip(Entity<TriggerOnSlipComponent> ent, ref SlipEvent args)
     {
-        Trigger.Trigger(ent, args.Slipped, ent.Comp.KeyOut);
+        Trigger.Trigger(ent.Owner, args.Slipped, ent.Comp.KeyOut);
     }
 }

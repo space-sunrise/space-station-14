@@ -42,7 +42,7 @@ public sealed partial class MeleeAttackOperator : HTNOperator
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!_entManager.TryGetComponent<CombatModeComponent>(owner, out var combatMode) ||
             !_melee.TryGetWeapon(owner, out var weaponUid, out var weapon))
@@ -64,7 +64,7 @@ public sealed partial class MeleeAttackOperator : HTNOperator
 
     private void ExitCombatMode(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         _entManager.System<SharedCombatModeSystem>().SetInCombatMode(owner, false);
     }
 }

@@ -32,7 +32,7 @@ public sealed class ProtectedGridSystem : EntitySystem
                 for (var y = 0; y < 8; y++)
                 {
                     var index = new Vector2i(x + chunk.Value.X * 8, y + chunk.Value.Y * 8);
-                    var tile = _map.GetTileRef(ent, grid, index);
+                    var tile = _map.GetTileRef(ent.Owner, grid, index);
 
                     if (tile.Tile.IsEmpty)
                         continue;

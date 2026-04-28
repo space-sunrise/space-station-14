@@ -68,7 +68,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         Entity = uid;
 
         // Pass owner to nav map
-        NavMap = uid;
+        NavMap.Owner = uid;
 
         // Set nav map grid uid
         var stationName = Loc.GetString("power-monitoring-window-unknown-location");

@@ -27,11 +27,11 @@ public sealed class MumbleAccentSystem : EntitySystem
         if (args.Handled || !args.Emote.Category.HasFlag(EmoteCategory.Vocal))
             return;
 
-        if (TryComp<VocalComponent>(ent, out var vocalComp) && vocalComp.EmoteSounds is { } sounds)
+        if (TryComp<VocalComponent>(ent.Owner, out var vocalComp) && vocalComp.EmoteSounds is { } sounds)
         {
             // play a muffled version of the vocal emote
             args.Handled = _chat.TryPlayEmoteSound(
-                ent,
+                ent.Owner,
                 _prototype.Index(sounds),
                 args.Emote,
                 ent.Comp.EmoteAudioParams);

@@ -30,11 +30,11 @@ public abstract partial class BaseToggleWireAction : BaseWireAction
     public override bool Cut(EntityUid user, Wire wire)
     {
         base.Cut(user, wire);
-        ToggleValue(wire, false);
+        ToggleValue(wire.Owner, false);
 
         if (TimeoutKey != null)
         {
-            WiresSystem.TryCancelWireAction(wire, TimeoutKey);
+            WiresSystem.TryCancelWireAction(wire.Owner, TimeoutKey);
         }
 
         return true;
@@ -43,7 +43,7 @@ public abstract partial class BaseToggleWireAction : BaseWireAction
     public override bool Mend(EntityUid user, Wire wire)
     {
         base.Mend(user, wire);
-        ToggleValue(wire, true);
+        ToggleValue(wire.Owner, true);
 
         return true;
     }
@@ -51,19 +51,19 @@ public abstract partial class BaseToggleWireAction : BaseWireAction
     public override void Pulse(EntityUid user, Wire wire)
     {
         base.Pulse(user, wire);
-        ToggleValue(wire, !GetValue(wire));
+        ToggleValue(wire.Owner, !GetValue(wire.Owner));
 
         if (TimeoutKey != null)
         {
-            WiresSystem.StartWireAction(wire, Delay, TimeoutKey, new TimedWireEvent(AwaitPulseCancel, wire));
+            WiresSystem.StartWireAction(wire.Owner, Delay, TimeoutKey, new TimedWireEvent(AwaitPulseCancel, wire));
         }
     }
 
     public override void Update(Wire wire)
     {
-        if (TimeoutKey != null && !IsPowered(wire))
+        if (TimeoutKey != null && !IsPowered(wire.Owner))
         {
-            WiresSystem.TryCancelWireAction(wire, TimeoutKey);
+            WiresSystem.TryCancelWireAction(wire.Owner, TimeoutKey);
         }
     }
 
@@ -71,7 +71,7 @@ public abstract partial class BaseToggleWireAction : BaseWireAction
     {
         if (!wire.IsCut)
         {
-            ToggleValue(wire, !GetValue(wire));
+            ToggleValue(wire.Owner, !GetValue(wire.Owner));
         }
     }
 }

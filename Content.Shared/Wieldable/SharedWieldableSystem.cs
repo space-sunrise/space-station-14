@@ -243,7 +243,7 @@ public abstract class SharedWieldableSystem : EntitySystem
     {
         if (ent.Comp.BlockEquipped)
         {
-            args.Args.Message = Loc.GetString("wieldable-component-blocked-wield", ("blocker", ent), ("item", args.Args.Wielded));
+            args.Args.Message = Loc.GetString("wieldable-component-blocked-wield", ("blocker", ent.Owner), ("item", args.Args.Wielded));
             args.Args.Cancelled = true;
         }
     }
@@ -252,7 +252,7 @@ public abstract class SharedWieldableSystem : EntitySystem
     {
         if (ent.Comp.BlockInHand)
         {
-            args.Args.Message = Loc.GetString("wieldable-component-blocked-wield", ("blocker", ent), ("item", args.Args.Wielded));
+            args.Args.Message = Loc.GetString("wieldable-component-blocked-wield", ("blocker", ent.Owner), ("item", args.Args.Wielded));
             args.Args.Cancelled = true;
         }
     }

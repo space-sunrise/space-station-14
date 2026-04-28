@@ -23,7 +23,7 @@ public sealed class BlurryVisionSystem : EntitySystem
 
     public void UpdateBlurMagnitude(Entity<BlindableComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
         var ev = new GetBlurEvent(ent.Comp.EyeDamage);

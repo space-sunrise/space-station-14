@@ -88,7 +88,7 @@ public sealed class SpraySystem : SharedSpraySystem
 
     public override void Spray(Entity<SprayComponent> entity, MapCoordinates mapcoord, EntityUid? user = null)
     {
-        if (!_solutionContainer.TryGetSolution(entity, SprayComponent.SolutionName, out var soln, out var solution))
+        if (!_solutionContainer.TryGetSolution(entity.Owner, SprayComponent.SolutionName, out var soln, out var solution))
             return;
 
         var ev = new SprayAttemptEvent(user);
@@ -96,7 +96,7 @@ public sealed class SpraySystem : SharedSpraySystem
         if (ev.Cancelled)
         {
             if (ev.CancelPopupMessage != null && user != null)
-                _popupSystem.PopupEntity(Loc.GetString(ev.CancelPopupMessage), entity, user.Value);
+                _popupSystem.PopupEntity(Loc.GetString(ev.CancelPopupMessage), entity.Owner, user.Value);
             return;
         }
 
@@ -106,7 +106,7 @@ public sealed class SpraySystem : SharedSpraySystem
         if (solution.Volume <= 0)
         {
             if (user != null)
-                _popupSystem.PopupEntity(Loc.GetString(entity.Comp.SprayEmptyPopupMessage, ("entity", entity)), entity, user.Value);
+                _popupSystem.PopupEntity(Loc.GetString(entity.Comp.SprayEmptyPopupMessage, ("entity", entity)), entity.Owner, user.Value);
             return;
         }
 
@@ -180,9 +180,9 @@ public sealed class SpraySystem : SharedSpraySystem
 
             _vapor.Start(ent, vaporXform, impulseDirection * diffLength, entity.Comp.SprayVelocity, target, time, user);
 
-            var thingGettingPushed = entity;
+            var thingGettingPushed = entity.Owner;
             if (_container.TryGetOuterContainer(entity, sprayerXform, out var container))
-                thingGettingPushed = container;
+                thingGettingPushed = container.Owner;
 
             if (TryComp<PhysicsComponent>(thingGettingPushed, out var body))
             {

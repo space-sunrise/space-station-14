@@ -32,7 +32,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         var attachedEnt = _player.LocalEntity;
 
-        if (attachedEnt != ent)
+        if (attachedEnt != ent.Owner)
             return;
 
         AddOverlay();
@@ -42,7 +42,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         var attachedEnt = _player.LocalEntity;
 
-        if (attachedEnt != ent)
+        if (attachedEnt != ent.Owner)
             return;
 
         RemoveOverlay();
@@ -81,10 +81,10 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         if (args.Sprite == null)
             return;
 
-        if (_appearance.TryGetData<PrototypeLayerData>(entity, StationAiVisualLayers.Icon, out var layerData, args.Component))
-            _sprite.LayerSetData((entity, args.Sprite), StationAiVisualLayers.Icon, layerData);
+        if (_appearance.TryGetData<PrototypeLayerData>(entity.Owner, StationAiVisualLayers.Icon, out var layerData, args.Component))
+            _sprite.LayerSetData((entity.Owner, args.Sprite), StationAiVisualLayers.Icon, layerData);
 
-        _sprite.LayerSetVisible((entity, args.Sprite), StationAiVisualLayers.Icon, layerData != null);
+        _sprite.LayerSetVisible((entity.Owner, args.Sprite), StationAiVisualLayers.Icon, layerData != null);
     }
 
     public override void Shutdown()

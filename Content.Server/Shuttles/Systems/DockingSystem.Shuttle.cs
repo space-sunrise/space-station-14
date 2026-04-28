@@ -69,7 +69,7 @@ public sealed partial class DockingSystem
         }
 
         // Sunrise-Start
-        if (TryComp<FtlReservationComponent>(gridDockXform, out var reservation))
+        if (TryComp<FtlReservationComponent>(gridDockXform.Owner, out var reservation))
         {
             if (reservation.ReservedBy != shuttleDockXform.GridUid && !ignored)
                 return false;
@@ -190,7 +190,7 @@ public sealed partial class DockingSystem
         if (!string.IsNullOrEmpty(priorityTag))
         {
             var filteredGridDocks = gridDocks
-                .Where(d => TryComp<PriorityDockComponent>(d, out var prio) && prio.Tag == priorityTag)
+                .Where(d => TryComp<PriorityDockComponent>(d.Owner, out var prio) && prio.Tag == priorityTag)
                 .ToList();
 
             if (filteredGridDocks.Count == 0)
@@ -273,7 +273,7 @@ public sealed partial class DockingSystem
 
                     var grids = new List<Entity<MapGridComponent>>();
                     _mapManager.FindGridsIntersecting(targetGridXform.MapID, dockedBounds, ref grids, includeMap: false);
-                    if (grids.Any(o => o != targetGrid && o != targetGridXform.MapUid) && !ignored)
+                    if (grids.Any(o => o.Owner != targetGrid && o.Owner != targetGridXform.MapUid) && !ignored)
                     {
                         continue;
                     }
@@ -417,11 +417,11 @@ public sealed partial class DockingSystem
             // If it's a map check no hard collidable anchored entities overlap
             if (isMap)
             {
-                var localTiles = _mapSystem.GetLocalTilesEnumerator(gridEntity, gridEntity.Comp, aabb);
+                var localTiles = _mapSystem.GetLocalTilesEnumerator(gridEntity.Owner, gridEntity.Comp, aabb);
 
                 while (localTiles.MoveNext(out var tile))
                 {
-                    var anchoredEnumerator = _mapSystem.GetAnchoredEntitiesEnumerator(gridEntity, gridEntity.Comp, tile.GridIndices);
+                    var anchoredEnumerator = _mapSystem.GetAnchoredEntitiesEnumerator(gridEntity.Owner, gridEntity.Comp, tile.GridIndices);
 
                     while (anchoredEnumerator.MoveNext(out var anc))
                     {
@@ -439,7 +439,7 @@ public sealed partial class DockingSystem
             // If it's not a map check it doesn't overlap the grid.
             else
             {
-                if (_mapSystem.GetLocalTilesIntersecting(gridEntity, gridEntity.Comp, aabb).Any())
+                if (_mapSystem.GetLocalTilesIntersecting(gridEntity.Owner, gridEntity.Comp, aabb).Any())
                     return false;
             }
         }

@@ -245,7 +245,7 @@ namespace Content.Client.UserInterface.Controls
                 return;
 
             var sprites = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<SpriteSystem>();
-            sprites.SetColor((ent, ent.Comp1), Color.DarkGray.WithAlpha(0.65f));
+            sprites.SetColor((ent.Owner, ent.Comp1), Color.DarkGray.WithAlpha(0.65f));
         }
 
         private void UpdateButtonTexture()

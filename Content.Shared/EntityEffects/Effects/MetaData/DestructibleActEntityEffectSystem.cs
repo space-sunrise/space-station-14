@@ -15,7 +15,7 @@ public sealed partial class DestructibleActEntityEffectSystem : EntityEffectSyst
             _destructible.BreakEntity(entity);
 
         if ((args.Effect.Acts & ThresholdActs.Destruction) != 0)
-            _destructible.DestroyEntity(entity);
+            _destructible.DestroyEntity(entity.AsNullable());
     }
 }
 

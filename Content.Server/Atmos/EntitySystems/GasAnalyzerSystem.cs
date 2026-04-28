@@ -80,16 +80,16 @@ public sealed class GasAnalyzerSystem : EntitySystem
     /// </summary>
     private void ActivateAnalyzer(Entity<GasAnalyzerComponent> entity, EntityUid user, EntityUid? target = null)
     {
-        if (!_userInterface.TryOpenUi(entity, GasAnalyzerUiKey.Key, user))
+        if (!_userInterface.TryOpenUi(entity.Owner, GasAnalyzerUiKey.Key, user))
             return;
 
         entity.Comp.Target = target;
         entity.Comp.User = user;
         entity.Comp.Enabled = true;
         Dirty(entity);
-        _appearance.SetData(entity, GasAnalyzerVisuals.Enabled, entity.Comp.Enabled);
-        EnsureComp<ActiveGasAnalyzerComponent>(entity);
-        UpdateAnalyzer(entity, entity.Comp);
+        _appearance.SetData(entity.Owner, GasAnalyzerVisuals.Enabled, entity.Comp.Enabled);
+        EnsureComp<ActiveGasAnalyzerComponent>(entity.Owner);
+        UpdateAnalyzer(entity.Owner, entity.Comp);
     }
 
     /// <summary>
@@ -97,15 +97,15 @@ public sealed class GasAnalyzerSystem : EntitySystem
     /// </summary>
     private void DisableAnalyzer(Entity<GasAnalyzerComponent> entity, EntityUid? user = null)
     {
-        _userInterface.CloseUi(entity, GasAnalyzerUiKey.Key, user);
+        _userInterface.CloseUi(entity.Owner, GasAnalyzerUiKey.Key, user);
 
         if (user.HasValue && entity.Comp.Enabled)
             _popup.PopupEntity(Loc.GetString("gas-analyzer-shutoff"), user.Value, user.Value);
 
         entity.Comp.Enabled = false;
         Dirty(entity);
-        _appearance.SetData(entity, GasAnalyzerVisuals.Enabled, entity.Comp.Enabled);
-        RemCompDeferred<ActiveGasAnalyzerComponent>(entity);
+        _appearance.SetData(entity.Owner, GasAnalyzerVisuals.Enabled, entity.Comp.Enabled);
+        RemCompDeferred<ActiveGasAnalyzerComponent>(entity.Owner);
     }
 
     /// <summary>
@@ -113,8 +113,8 @@ public sealed class GasAnalyzerSystem : EntitySystem
     /// </summary>
     private void OnBoundUIClosed(Entity<GasAnalyzerComponent> entity, ref BoundUIClosedEvent args)
     {
-        if (HasComp<ActiveGasAnalyzerComponent>(entity)
-            && !_userInterface.IsUiOpen(entity, args.UiKey))
+        if (HasComp<ActiveGasAnalyzerComponent>(entity.Owner)
+            && !_userInterface.IsUiOpen(entity.Owner, args.UiKey))
         {
             DisableAnalyzer(entity, args.Actor);
         }
@@ -125,8 +125,8 @@ public sealed class GasAnalyzerSystem : EntitySystem
     /// </summary>
     private void OnBoundUIOpened(Entity<GasAnalyzerComponent> entity, ref BoundUIOpenedEvent args)
     {
-        if (!HasComp<ActiveGasAnalyzerComponent>(entity)
-            && _userInterface.IsUiOpen(entity, args.UiKey))
+        if (!HasComp<ActiveGasAnalyzerComponent>(entity.Owner)
+            && _userInterface.IsUiOpen(entity.Owner, args.UiKey))
         {
             ActivateAnalyzer(entity, args.Actor);
         }

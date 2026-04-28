@@ -193,11 +193,11 @@ public sealed partial class InjectorSystem : EntitySystem
     /// </summary>
     private bool TryMobsDoAfter(Entity<InjectorComponent> injector, EntityUid user, EntityUid target)
     {
-        if (_useDelay.IsDelayed(injector) // Check for Delay.
+        if (_useDelay.IsDelayed(injector.Owner) // Check for Delay.
             || !GetMobsDoAfterTime(injector, user, target, out var doAfterTime, out var amount)) // Get the DoAfter time.
             return false;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector, target: target, used: injector)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = false,
@@ -211,7 +211,7 @@ public sealed partial class InjectorSystem : EntitySystem
         if (doAfterTime == TimeSpan.Zero)
             return true;
 
-        if (!_solutionContainer.ResolveSolution(injector, injector.Comp.SolutionName, ref injector.Comp.Solution, out var injectorSolution)
+        if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var injectorSolution)
             || !_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var activeMode))
             return false;
 
@@ -267,7 +267,7 @@ public sealed partial class InjectorSystem : EntitySystem
         doAfterTime = TimeSpan.Zero;
         amount = FixedPoint2.Zero;
 
-        if (!_solutionContainer.ResolveSolution(injector, injector.Comp.SolutionName, ref injector.Comp.Solution, out var injectorSolution)
+        if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var injectorSolution)
             || !_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var activeMode))
             return false;
 
@@ -314,7 +314,7 @@ public sealed partial class InjectorSystem : EntitySystem
         if (!GetContainerDoAfterTime(injector, user, target, out var doAfterTime))
             return false;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector, target: target, used: injector)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = false,
@@ -346,7 +346,7 @@ public sealed partial class InjectorSystem : EntitySystem
         if (!activeMode.Behavior.HasAnyFlag(InjectorBehavior.Draw | InjectorBehavior.Dynamic))
             return true;
 
-        if (!_solutionContainer.ResolveSolution(injector, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution)
+        if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution)
             || solution.AvailableVolume == 0)
         {
             _popup.PopupClient(Loc.GetString("injector-component-cannot-toggle-draw-message"), user, user);
@@ -450,7 +450,7 @@ public sealed partial class InjectorSystem : EntitySystem
     /// <returns>True if the injection was successful, false if not.</returns>
     private bool TryInject(Entity<InjectorComponent> injector, EntityUid user, EntityUid target, Entity<SolutionComponent> targetSolution, bool asRefill)
     {
-        if (!_solutionContainer.ResolveSolution(injector,
+        if (!_solutionContainer.ResolveSolution(injector.Owner,
                 injector.Comp.SolutionName,
                 ref injector.Comp.Solution,
                 out var injectorSolution) || injectorSolution.Volume == 0)
@@ -498,7 +498,7 @@ public sealed partial class InjectorSystem : EntitySystem
             _popup.PopupClient(
                 Loc.GetString(msg,
                     ("target", Identity.Entity(target, EntityManager))),
-                injector,
+                injector.Owner,
                 user);
             return false;
         }
@@ -551,7 +551,7 @@ public sealed partial class InjectorSystem : EntitySystem
     /// <returns>True if the drawing was successful, false if not.</returns>
     private bool TryDraw(Entity<InjectorComponent> injector, EntityUid user, Entity<BloodstreamComponent?> target, Entity<SolutionComponent> targetSolution)
     {
-        if (!_solutionContainer.ResolveSolution(injector, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution) || solution.AvailableVolume == 0)
+        if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution) || solution.AvailableVolume == 0)
         {
             _popup.PopupClient("injector-component-cannot-toggle-draw-message", user, user);
             return false;
@@ -574,21 +574,21 @@ public sealed partial class InjectorSystem : EntitySystem
 
         if (realTransferAmount <= 0)
         {
-            LocId msg = target == user ? "injector-component-target-is-empty-message-self" : "injector-component-target-is-empty-message";
+            LocId msg = target.Owner == user ? "injector-component-target-is-empty-message-self" : "injector-component-target-is-empty-message";
             var targetIdentity = Identity.Entity(target, EntityManager);
-            _popup.PopupClient(Loc.GetString(msg, ("target", targetIdentity)), injector, user);
+            _popup.PopupClient(Loc.GetString(msg, ("target", targetIdentity)), injector.Owner, user);
             return false;
         }
 
         // We have some snowflaked behavior for streams.
         if (target.Comp != null)
         {
-            DrawFromBlood(injector, user, (target, target.Comp), injector.Comp.Solution.Value, realTransferAmount);
+            DrawFromBlood(injector, user, (target.Owner, target.Comp), injector.Comp.Solution.Value, realTransferAmount);
             return true;
         }
 
         // Move units from attackSolution to targetSolution
-        var removedSolution = _solutionContainer.Draw(target, targetSolution, realTransferAmount);
+        var removedSolution = _solutionContainer.Draw(target.Owner, targetSolution, realTransferAmount);
 
         // Add back non-whitelisted reagents to the target solution
         _solutionContainer.TryAddSolution(targetSolution, temporarilyRemovedSolution);
@@ -598,7 +598,7 @@ public sealed partial class InjectorSystem : EntitySystem
             return false;
         }
 
-        LocId msgSuccess = target == user ? "injector-component-draw-success-message-self" : "injector-component-draw-success-message";
+        LocId msgSuccess = target.Owner == user ? "injector-component-draw-success-message-self" : "injector-component-draw-success-message";
         var targetIdentitySuccess = Identity.Entity(target, EntityManager);
         _popup.PopupClient(
             Loc.GetString(msgSuccess, ("amount", removedSolution.Volume), ("target", targetIdentitySuccess)),
@@ -623,13 +623,13 @@ public sealed partial class InjectorSystem : EntitySystem
         Entity<SolutionComponent> injectorSolution,
         FixedPoint2 transferAmount)
     {
-        if (_solutionContainer.ResolveSolution(target, target.Comp.BloodSolutionName, ref target.Comp.BloodSolution))
+        if (_solutionContainer.ResolveSolution(target.Owner, target.Comp.BloodSolutionName, ref target.Comp.BloodSolution))
         {
             var bloodTemp = _solutionContainer.SplitSolution(target.Comp.BloodSolution.Value, transferAmount);
             _solutionContainer.TryAddSolution(injectorSolution, bloodTemp);
         }
 
-        LocId msg = target == user ? "injector-component-draw-success-message-self" : "injector-component-draw-success-message";
+        LocId msg = target.Owner == user ? "injector-component-draw-success-message-self" : "injector-component-draw-success-message";
         var targetIdentity = Identity.Entity(target, EntityManager);
         var finalMessage = Loc.GetString(msg, ("amount", transferAmount), ("target", targetIdentity));
         _popup.PopupClient(finalMessage, target, user);
@@ -652,7 +652,7 @@ public sealed partial class InjectorSystem : EntitySystem
         _useDelay.TryResetDelay(injector);
 
         // Automatically set syringe to draw after completely draining it.
-        if (!_solutionContainer.ResolveSolution(injector, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution)
+        if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution)
             || solution.Volume != 0)
             return;
 
@@ -683,7 +683,7 @@ public sealed partial class InjectorSystem : EntitySystem
         _forensics.TransferDna(injector, target);
 
         // Automatically set the syringe to inject after completely filling it.
-        if (!_solutionContainer.ResolveSolution(injector, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution)
+        if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution)
             || solution.AvailableVolume != 0)
             return;
 
@@ -744,7 +744,7 @@ public sealed partial class InjectorSystem : EntitySystem
         {
             if (!_prototypeManager.Resolve(allowedMode, out var proto)
                 || proto.Behavior.HasFlag(activeProto.Behavior)
-                || !_solutionContainer.ResolveSolution(injector, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution))
+                || !_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution))
                 continue;
 
             if (proto.Behavior.HasFlag(InjectorBehavior.Inject) && solution.Volume == 0)

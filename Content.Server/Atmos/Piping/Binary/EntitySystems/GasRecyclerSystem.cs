@@ -42,7 +42,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             if (!Comp<TransformComponent>(ent).Anchored || !args.IsInDetailsRange) // Not anchored? Out of range? No status.
                 return;
 
-            if (!_nodeContainer.TryGetNode(ent, comp.InletName, out PipeNode? inlet))
+            if (!_nodeContainer.TryGetNode(ent.Owner, comp.InletName, out PipeNode? inlet))
                 return;
 
             using (args.PushGroup(nameof(GasRecyclerComponent)))
@@ -69,7 +69,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
         private void OnUpdate(Entity<GasRecyclerComponent> ent, ref AtmosDeviceUpdateEvent args)
         {
             var comp = ent.Comp;
-            if (!_nodeContainer.TryGetNodes(ent, comp.InletName, comp.OutletName, out PipeNode? inlet, out PipeNode? outlet))
+            if (!_nodeContainer.TryGetNodes(ent.Owner, comp.InletName, comp.OutletName, out PipeNode? inlet, out PipeNode? outlet))
             {
                 _ambientSoundSystem.SetAmbience(ent, false);
                 return;

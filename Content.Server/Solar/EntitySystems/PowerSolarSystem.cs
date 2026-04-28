@@ -121,7 +121,7 @@ namespace Content.Server.Solar.EntitySystems
 
         private void UpdatePanelCoverage(Entity<SolarPanelComponent> panel)
         {
-            var entity = panel;
+            var entity = panel.Owner;
             var xform = Comp<TransformComponent>(entity);
 
             // So apparently, and yes, I *did* only find this out later,

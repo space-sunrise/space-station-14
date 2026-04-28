@@ -55,7 +55,7 @@ public sealed class AmeNodeGroup : BaseNodeGroup
         var xformQuery = _entMan.GetEntityQuery<TransformComponent>();
         foreach (var node in groupNodes)
         {
-            var nodeOwner = node;
+            var nodeOwner = node.Owner;
             if (!shieldQuery.TryGetComponent(nodeOwner, out var shield))
                 continue;
             if (!xformQuery.TryGetComponent(nodeOwner, out var xform))
@@ -86,7 +86,7 @@ public sealed class AmeNodeGroup : BaseNodeGroup
         // Separate to ensure core count is correctly updated.
         foreach (var node in groupNodes)
         {
-            var nodeOwner = node;
+            var nodeOwner = node.Owner;
             if (!controllerQuery.TryGetComponent(nodeOwner, out var controller))
                 continue;
 

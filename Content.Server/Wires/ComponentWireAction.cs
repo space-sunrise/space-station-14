@@ -10,7 +10,7 @@ public abstract partial class ComponentWireAction<TComponent> : BaseWireAction w
     public abstract StatusLightState? GetLightState(Wire wire, TComponent component);
     public override StatusLightState? GetLightState(Wire wire)
     {
-        return EntityManager.TryGetComponent(wire, out TComponent? component)
+        return EntityManager.TryGetComponent(wire.Owner, out TComponent? component)
             ? GetLightState(wire, component)
             : StatusLightState.Off;
     }
@@ -23,19 +23,19 @@ public abstract partial class ComponentWireAction<TComponent> : BaseWireAction w
     {
         base.Cut(user, wire);
         // if the entity doesn't exist, we need to return true otherwise the wire sprite is never updated
-        return EntityManager.TryGetComponent(wire, out TComponent? component) ? Cut(user, wire, component) : true;
+        return EntityManager.TryGetComponent(wire.Owner, out TComponent? component) ? Cut(user, wire, component) : true;
     }
 
     public override bool Mend(EntityUid user, Wire wire)
     {
         base.Mend(user, wire);
-        return EntityManager.TryGetComponent(wire, out TComponent? component) ? Mend(user, wire, component) : true;
+        return EntityManager.TryGetComponent(wire.Owner, out TComponent? component) ? Mend(user, wire, component) : true;
     }
 
     public override void Pulse(EntityUid user, Wire wire)
     {
         base.Pulse(user, wire);
-        if (EntityManager.TryGetComponent(wire, out TComponent? component))
+        if (EntityManager.TryGetComponent(wire.Owner, out TComponent? component))
             Pulse(user, wire, component);
     }
 }

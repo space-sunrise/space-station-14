@@ -157,14 +157,14 @@ public sealed partial class CargoSystem
             return;
 
         if (!_protoMan.Resolve(bounty.Value.Bounty, out var bountyPrototype) ||
-            !IsBountyComplete(container, bountyPrototype))
+            !IsBountyComplete(container.Owner, bountyPrototype))
             return;
 
         database.CheckedBounties.Add(component.Id);
         args.Handled = true;
 
         component.Calculating = true;
-        args.Price = bountyPrototype.Reward - _pricing.GetPrice(container);
+        args.Price = bountyPrototype.Reward - _pricing.GetPrice(container.Owner);
         component.Calculating = false;
     }
 
@@ -454,7 +454,7 @@ public sealed partial class CargoSystem
         bool skipped,
         EntityUid? actor = null)
     {
-        if (!TryGetBountyFromId(ent, dataId, out var data, ent.Comp))
+        if (!TryGetBountyFromId(ent.Owner, dataId, out var data, ent.Comp))
             return false;
 
         return TryRemoveBounty(ent, data.Value, skipped, actor);
@@ -475,7 +475,7 @@ public sealed partial class CargoSystem
                 string? actorName = null;
                 if (actor != null)
                 {
-                    var getIdentityEvent = new TryGetIdentityShortInfoEvent(ent, actor.Value);
+                    var getIdentityEvent = new TryGetIdentityShortInfoEvent(ent.Owner, actor.Value);
                     RaiseLocalEvent(getIdentityEvent);
                     actorName = getIdentityEvent.Title;
                 }

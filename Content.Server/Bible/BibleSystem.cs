@@ -63,13 +63,13 @@ namespace Content.Server.Bible
         private void OnInsertedContainer(EntityUid uid, BibleComponent component, EntGotInsertedIntoContainerMessage args)
         {
             //If an unholy creature picks up the bible, knock them down
-            if (HasComp<UnholyComponent>(args.Container))
+            if (HasComp<UnholyComponent>(args.Container.Owner))
             {
                 Timer.Spawn(500, () =>
                 {
-                    _stun.TryAddParalyzeDuration(args.Container, TimeSpan.FromSeconds(10));
-                    _damageableSystem.TryChangeDamage(args.Container, component.DamageOnUnholyUse);
-                    _audio.PlayPvs(component.SizzleSoundPath, args.Container);
+                    _stun.TryAddParalyzeDuration(args.Container.Owner, TimeSpan.FromSeconds(10));
+                    _damageableSystem.TryChangeDamage(args.Container.Owner, component.DamageOnUnholyUse);
+                    _audio.PlayPvs(component.SizzleSoundPath, args.Container.Owner);
                 });
             }
         }

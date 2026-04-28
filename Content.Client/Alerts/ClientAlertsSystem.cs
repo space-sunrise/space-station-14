@@ -93,7 +93,7 @@ public sealed class ClientAlertsSystem : AlertsSystem
 
     private void UpdateHud(Entity<AlertsComponent> entity)
     {
-        if (_playerManager.LocalEntity == entity)
+        if (_playerManager.LocalEntity == entity.Owner)
             SyncAlerts?.Invoke(this, entity.Comp.Alerts);
     }
 

@@ -430,7 +430,7 @@ public sealed class LockSystem : EntitySystem
 
     private void OnStorageInteractAttempt(Entity<LockedStorageComponent> ent, ref StorageInteractAttemptEvent args)
     {
-        if (IsLocked(ent))
+        if (IsLocked(ent.Owner))
             args.Cancelled = true;
     }
 

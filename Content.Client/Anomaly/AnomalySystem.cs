@@ -84,7 +84,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        _sprite.SetScale((ent, sprite), Vector2.One);
-        _sprite.SetColor((ent, sprite), sprite.Color.WithAlpha(1f));
+        _sprite.SetScale((ent.Owner, sprite), Vector2.One);
+        _sprite.SetColor((ent.Owner, sprite), sprite.Color.WithAlpha(1f));
     }
 }

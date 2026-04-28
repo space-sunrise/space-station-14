@@ -25,12 +25,12 @@ public sealed partial class InFriendlyContainerPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!_container.TryGetContainingContainer(owner, out var container))
             return !IsInFriendlyContainer;
 
-        return IsInFriendlyContainer == IsContainerOrParentFriendly(owner, container);
+        return IsInFriendlyContainer == IsContainerOrParentFriendly(owner, container.Owner);
     }
 
     /// <summary>
@@ -45,6 +45,6 @@ public sealed partial class InFriendlyContainerPrecondition : HTNPrecondition
         if (!_container.TryGetContainingContainer(containerOwner, out var nextContainer))
             return false;
 
-        return IsContainerOrParentFriendly(owner, nextContainer);
+        return IsContainerOrParentFriendly(owner, nextContainer.Owner);
     }
 }

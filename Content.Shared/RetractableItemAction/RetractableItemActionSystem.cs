@@ -36,7 +36,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
     {
         _containers.EnsureContainer<Container>(ent, RetractableItemActionComponent.ContainerId);
 
-        PopulateActionItem(ent);
+        PopulateActionItem(ent.Owner);
     }
 
     private void OnRetractableItemAction(Entity<RetractableItemActionComponent> ent, ref OnRetractableItemActionEvent args)
@@ -44,7 +44,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
         if (_hands.GetActiveHand(args.Performer) is not { } activeHand)
             return;
 
-        if (_actions.GetAction(ent) is not { } action)
+        if (_actions.GetAction(ent.Owner) is not { } action)
             return;
 
         if (action.Comp.AttachedEntity == null)
@@ -54,7 +54,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
             return;
 
         // Don't allow to summon an item if holding an unremoveable item unless that item is summoned by the action.
-        if (_hands.GetActiveItem(ent) != null
+        if (_hands.GetActiveItem(ent.Owner) != null
             && !_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid)
             && !_hands.CanDropHeld(args.Performer, activeHand, false))
         {
@@ -64,11 +64,11 @@ public sealed class RetractableItemActionSystem : EntitySystem
 
         if (_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid))
         {
-            RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent);
+            RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
         }
         else
         {
-            SummonRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, activeHand, ent);
+            SummonRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, activeHand, ent.Owner);
         }
 
         args.Handled = true;
@@ -79,11 +79,11 @@ public sealed class RetractableItemActionSystem : EntitySystem
         if (_actions.GetAction(ent.Comp.SummoningAction) is not { } action)
             return;
 
-        if (!TryComp<RetractableItemActionComponent>(action, out var retract) || retract.ActionItemUid != ent)
+        if (!TryComp<RetractableItemActionComponent>(action, out var retract) || retract.ActionItemUid != ent.Owner)
             return;
 
         // If the item is somehow destroyed, re-add it to the action.
-        PopulateActionItem(action);
+        PopulateActionItem(action.Owner);
     }
 
     private void OnItemHandcuffed(Entity<ActionRetractableItemComponent> ent, ref HeldRelayedEvent<TargetHandcuffedEvent> args)
@@ -97,22 +97,22 @@ public sealed class RetractableItemActionSystem : EntitySystem
         if (_hands.GetActiveHand(action.Comp.AttachedEntity.Value) is not { })
             return;
 
-        RetractRetractableItem(action.Comp.AttachedEntity.Value, ent, action);
+        RetractRetractableItem(action.Comp.AttachedEntity.Value, ent, action.Owner);
     }
 
     private void PopulateActionItem(Entity<RetractableItemActionComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp, false) || TerminatingOrDeleted(ent))
+        if (!Resolve(ent.Owner, ref ent.Comp, false) || TerminatingOrDeleted(ent))
             return;
 
-        if (!PredictedTrySpawnInContainer(ent.Comp.SpawnedPrototype, ent, RetractableItemActionComponent.ContainerId, out var summoned))
+        if (!PredictedTrySpawnInContainer(ent.Comp.SpawnedPrototype, ent.Owner, RetractableItemActionComponent.ContainerId, out var summoned))
             return;
 
         ent.Comp.ActionItemUid = summoned.Value;
 
         // Mark the unremovable item so it can be added back into the action.
         var summonedComp = AddComp<ActionRetractableItemComponent>(summoned.Value);
-        summonedComp.SummoningAction = ent;
+        summonedComp.SummoningAction = ent.Owner;
         Dirty(summoned.Value, summonedComp);
 
         Dirty(ent);

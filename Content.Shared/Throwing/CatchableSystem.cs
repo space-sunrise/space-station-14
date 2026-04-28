@@ -49,7 +49,7 @@ public sealed partial class CatchableSystem : EntitySystem
         if (!_whitelist.IsWhitelistPassOrNull(ent.Comp.CatcherWhitelist, args.Target))
             return;
 
-        var attemptEv = new CatchAttemptEvent(ent, ent.Comp.CatchChance);
+        var attemptEv = new CatchAttemptEvent(ent.Owner, ent.Comp.CatchChance);
         RaiseLocalEvent(args.Target, ref attemptEv);
 
         if (attemptEv.Cancelled)
@@ -62,22 +62,22 @@ public sealed partial class CatchableSystem : EntitySystem
             return;
 
         // Try to catch!
-        if (!_hands.TryPickupAnyHand(args.Target, ent, handsComp: handsComp, animate: false))
+        if (!_hands.TryPickupAnyHand(args.Target, ent.Owner, handsComp: handsComp, animate: false))
             return; // The hands are full!
 
         // Success!
 
         // We picked it up already but we still have to raise the throwing stop (but not the landing) events at the right time,
         // otherwise it will raise the events for that later while still in your hand
-        _thrown.StopThrow(ent, args.Component);
+        _thrown.StopThrow(ent.Owner, args.Component);
 
         // Collisions don't work properly with PopupPredicted or PlayPredicted.
         // So we make this server only.
         if (_net.IsClient)
             return;
 
-        var selfMessage = Loc.GetString("catchable-component-success-self", ("item", ent), ("catcher", Identity.Entity(args.Target, EntityManager)));
-        var othersMessage = Loc.GetString("catchable-component-success-others", ("item", ent), ("catcher", Identity.Entity(args.Target, EntityManager)));
+        var selfMessage = Loc.GetString("catchable-component-success-self", ("item", ent.Owner), ("catcher", Identity.Entity(args.Target, EntityManager)));
+        var othersMessage = Loc.GetString("catchable-component-success-others", ("item", ent.Owner), ("catcher", Identity.Entity(args.Target, EntityManager)));
         _popup.PopupEntity(selfMessage, args.Target, args.Target);
         _popup.PopupEntity(othersMessage, args.Target, Filter.PvsExcept(args.Target), true);
         _audio.PlayPvs(ent.Comp.CatchSuccessSound, args.Target);

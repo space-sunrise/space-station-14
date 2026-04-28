@@ -310,7 +310,7 @@ public sealed class PlantHolderSystem : EntitySystem
             _popup.PopupCursor(Loc.GetString("plant-holder-component-take-sample-message",
                 ("seedName", displayName)), args.User);
 
-            DoScream(entity, component.Seed);
+            DoScream(entity.Owner, component.Seed);
 
             if (_random.Prob(0.3f))
                 component.Sampled = true;
@@ -365,7 +365,7 @@ public sealed class PlantHolderSystem : EntitySystem
 
     private void OnSolutionTransferred(Entity<PlantHolderComponent> ent, ref SolutionTransferredEvent args)
     {
-        _audio.PlayPvs(ent.Comp.WateringSound, ent);
+        _audio.PlayPvs(ent.Comp.WateringSound, ent.Owner);
     }
     private void OnInteractHand(Entity<PlantHolderComponent> entity, ref InteractHandEvent args)
     {

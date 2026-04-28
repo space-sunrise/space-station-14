@@ -96,16 +96,16 @@ public sealed partial class TriggerSystem : EntitySystem
         if (user != null)
         {
             _adminLogger.Add(LogType.Trigger,
-                $"{ToPrettyString(user.Value):user} started a {ent.Comp.Delay} second timer trigger on entity {ToPrettyString(ent):timer}");
+                $"{ToPrettyString(user.Value):user} started a {ent.Comp.Delay} second timer trigger on entity {ToPrettyString(ent.Owner):timer}");
         }
         else
         {
             _adminLogger.Add(LogType.Trigger,
-                $"{ent.Comp.Delay} second timer trigger started on entity {ToPrettyString(ent):timer}");
+                $"{ent.Comp.Delay} second timer trigger started on entity {ToPrettyString(ent.Owner):timer}");
         }
 
         if (ent.Comp.Popup != null)
-            _popup.PopupPredicted(Loc.GetString(ent.Comp.Popup.Value, ("device", ent)), ent, user);
+            _popup.PopupPredicted(Loc.GetString(ent.Comp.Popup.Value, ("device", ent.Owner)), ent.Owner, user);
 
         AddComp<ActiveTimerTriggerComponent>(ent);
         var curTime = _timing.CurTime;
@@ -116,10 +116,10 @@ public sealed partial class TriggerSystem : EntitySystem
         Dirty(ent);
 
         var ev = new ActiveTimerTriggerEvent(user);
-        RaiseLocalEvent(ent, ref ev);
+        RaiseLocalEvent(ent.Owner, ref ev);
 
         if (TryComp<AppearanceComponent>(ent, out var appearance))
-            _appearance.SetData(ent, TriggerVisuals.VisualState, TriggerVisualState.Primed, appearance);
+            _appearance.SetData(ent.Owner, TriggerVisuals.VisualState, TriggerVisualState.Primed, appearance);
 
         return true;
     }
@@ -137,10 +137,10 @@ public sealed partial class TriggerSystem : EntitySystem
             return false; // the timer is not active
 
         RemComp<ActiveTimerTriggerComponent>(ent);
-        if (TryComp<AppearanceComponent>(ent, out var appearance))
-            _appearance.SetData(ent, TriggerVisuals.VisualState, TriggerVisualState.Unprimed, appearance);
+        if (TryComp<AppearanceComponent>(ent.Owner, out var appearance))
+            _appearance.SetData(ent.Owner, TriggerVisuals.VisualState, TriggerVisualState.Unprimed, appearance);
 
-        _adminLogger.Add(LogType.Trigger, $"A timer trigger was stopped before triggering on entity {ToPrettyString(ent):timer}");
+        _adminLogger.Add(LogType.Trigger, $"A timer trigger was stopped before triggering on entity {ToPrettyString(ent.Owner):timer}");
         return true;
     }
 

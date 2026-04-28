@@ -75,7 +75,7 @@ public sealed class MultipartMachineSystem : SharedMultipartMachineSystem
     public bool Rescan(Entity<MultipartMachineComponent> ent, EntityUid? user = null)
     {
         // Get all required transform information to start looking for the other parts based on their offset
-        if (!XformQuery.TryGetComponent(ent, out var xform) || !xform.Anchored)
+        if (!XformQuery.TryGetComponent(ent.Owner, out var xform) || !xform.Anchored)
             return false;
 
         var gridUid = xform.GridUid;
@@ -210,7 +210,7 @@ public sealed class MultipartMachineSystem : SharedMultipartMachineSystem
     {
         // If anchored, perform a rescan of this machine when the component starts so we can immediately
         // jump to an assembled state if needed.
-        if (XformQuery.TryGetComponent(ent, out var xform) && xform.Anchored)
+        if (XformQuery.TryGetComponent(ent.Owner, out var xform) && xform.Anchored)
             Rescan(ent);
     }
 
@@ -240,7 +240,7 @@ public sealed class MultipartMachineSystem : SharedMultipartMachineSystem
     private void OnPartConstructionNodeChanged(Entity<MultipartMachinePartComponent> ent,
         ref AfterConstructionChangeEntityEvent args)
     {
-        if (!XformQuery.TryGetComponent(ent, out var constructXform))
+        if (!XformQuery.TryGetComponent(ent.Owner, out var constructXform))
             return;
 
         _lookupSystem.GetEntitiesInRange(constructXform.Coordinates, MaximumRange, _entitiesInRange);
@@ -270,7 +270,7 @@ public sealed class MultipartMachineSystem : SharedMultipartMachineSystem
     {
         if (!args.Anchored)
         {
-            if (!TryComp<MultipartMachinePartComponent>(ent, out var part) || !part.Master.HasValue)
+            if (!TryComp<MultipartMachinePartComponent>(ent.Owner, out var part) || !part.Master.HasValue)
                 return; // This is not an entity we care about
 
             // This is a machine part that is being unanchored, rescan its machine
@@ -283,13 +283,13 @@ public sealed class MultipartMachineSystem : SharedMultipartMachineSystem
 
         // We're anchoring some construction, we have no idea which machine this might be for
         // so we have to just check everyone in range and perform a rescan.
-        if (!XformQuery.TryGetComponent(ent, out var constructXform))
+        if (!XformQuery.TryGetComponent(ent.Owner, out var constructXform))
             return;
 
         _lookupSystem.GetEntitiesInRange(constructXform.Coordinates, MaximumRange, _entitiesInRange);
         foreach (var machine in _entitiesInRange)
         {
-            if (Rescan(machine) && HasPartEntity(machine, ent))
+            if (Rescan(machine) && HasPartEntity(machine.AsNullable(), ent.Owner))
                 return; // This machine is using this entity so we don't need to go any further
         }
     }

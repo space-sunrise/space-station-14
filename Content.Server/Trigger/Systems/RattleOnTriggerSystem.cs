@@ -31,7 +31,7 @@ public sealed class RattleOnTriggerSystem : EntitySystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent;
+        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
 
         if (target == null)
             return;
@@ -51,7 +51,7 @@ public sealed class RattleOnTriggerSystem : EntitySystem
 
         // Sunrise-Start
         var sentToMessenger = false;
-        if (_messenger.GetServerEntity(_station.GetOwningStation(ent)) is var (server, _) &&
+        if (_messenger.GetServerEntity(_station.GetOwningStation(ent.Owner)) is var (server, _) &&
             _messenger.GetGroupIdByRadioChannel(ent.Comp.RadioChannel) is { } groupId)
         {
             _messenger.SendSystemMessageToGroup(server, groupId, message);
@@ -59,7 +59,7 @@ public sealed class RattleOnTriggerSystem : EntitySystem
         }
 
         if (!sentToMessenger)
-            _radio.SendRadioMessage(ent, message, _prototypeManager.Index(ent.Comp.RadioChannel), ent);
+            _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(ent.Comp.RadioChannel), ent.Owner);
         // Sunrise-End
     }
 }

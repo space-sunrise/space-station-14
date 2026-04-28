@@ -25,12 +25,12 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
 
     private void OnItemToggle(Entity<ItemToggleHotComponent> ent, ref ItemToggledEvent args)
     {
-        SetIgnited(ent, args.Activated);
+        SetIgnited(ent.Owner, args.Activated);
     }
 
     private void OnIgnitionEvent(Entity<IgnitionSourceComponent> ent, ref IgnitionEvent args)
     {
-        SetIgnited((ent, ent.Comp), args.Ignite);
+        SetIgnited((ent.Owner, ent.Comp), args.Ignite);
     }
 
     /// <summary>

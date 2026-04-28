@@ -17,8 +17,8 @@ public sealed partial class PowerCellSystem
             Dirty(ent, ent.Comp);
         }
 
-        if (TryGetBatteryFromSlot(ent, out var battery))
-            _battery.RefreshChargeRate(battery.Value);
+        if (TryGetBatteryFromSlot(ent.Owner, out var battery))
+            _battery.RefreshChargeRate(battery.Value.AsNullable());
     }
 
 

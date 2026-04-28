@@ -200,7 +200,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
                 {
                     role.Value.Comp2.ConvertedCount++;
-                    Dirty(role.Value, role.Value.Comp2);
+                    Dirty(role.Value.Owner, role.Value.Comp2);
                 }
             }
         }

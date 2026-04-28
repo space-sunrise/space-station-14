@@ -23,30 +23,30 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
 
     public override bool Cut(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        WiresSystem.TryCancelWireAction(wire, PulseTimeoutKey.Key);
-        EntityManager.System<AccessReaderSystem>().SetActive((wire, comp), false);
+        WiresSystem.TryCancelWireAction(wire.Owner, PulseTimeoutKey.Key);
+        EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, comp), false);
 
         return true;
     }
 
     public override bool Mend(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        EntityManager.System<AccessReaderSystem>().SetActive((wire, comp), true);
+        EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, comp), true);
 
         return true;
     }
 
     public override void Pulse(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        EntityManager.System<AccessReaderSystem>().SetActive((wire, comp), false);
-        WiresSystem.StartWireAction(wire, _pulseTimeout, PulseTimeoutKey.Key, new TimedWireEvent(AwaitPulseCancel, wire));
+        EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, comp), false);
+        WiresSystem.StartWireAction(wire.Owner, _pulseTimeout, PulseTimeoutKey.Key, new TimedWireEvent(AwaitPulseCancel, wire));
     }
 
     public override void Update(Wire wire)
     {
-        if (!IsPowered(wire))
+        if (!IsPowered(wire.Owner))
         {
-            WiresSystem.TryCancelWireAction(wire, PulseTimeoutKey.Key);
+            WiresSystem.TryCancelWireAction(wire.Owner, PulseTimeoutKey.Key);
         }
     }
 
@@ -54,9 +54,9 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
     {
         if (!wire.IsCut)
         {
-            if (EntityManager.TryGetComponent<AccessReaderComponent>(wire, out var access))
+            if (EntityManager.TryGetComponent<AccessReaderComponent>(wire.Owner, out var access))
             {
-                EntityManager.System<AccessReaderSystem>().SetActive((wire, access), true);
+                EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, access), true);
             }
         }
     }

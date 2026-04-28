@@ -174,7 +174,7 @@ public abstract partial class SharedHandsSystem
     public bool CheckRepickupDuration(Entity<ItemRepickupCooldownComponent?> entity)
     {
         // У сущности просто нет запрашиваемого компонента
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
+        if (!Resolve(entity.Owner, ref entity.Comp, logMissing: false))
             return true;
 
         if (entity.Comp.PrevDrop is not null &&

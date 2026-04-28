@@ -140,7 +140,7 @@ public sealed class DeviceLinkSystem : SharedDeviceLinkSystem
     /// </summary>
     private void OnNewLink(Entity<DeviceLinkSourceComponent> ent, ref NewLinkEvent args)
     {
-        if (args.Source != ent)
+        if (args.Source != ent.Owner)
             return;
 
         // only do anything if a signal is being sent from a port

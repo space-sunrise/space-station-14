@@ -103,7 +103,7 @@ public sealed class MoverController : SharedMoverController
                 && Exists(ent.Comp2.Source)
                 && !_seenMovers.Contains(ent.Comp2.Source))
             {
-                if (ent.Comp2.Source == ent)
+                if (ent.Comp2.Source == ent.Owner)
                 {
                     Log.Error($"Entity {ToPrettyString(ent)} is attempting to relay movement to itself!");
                     break;

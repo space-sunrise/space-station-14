@@ -167,7 +167,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         bool visible,
         SlotFlags? source = null)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
         var dirty = false;
@@ -216,7 +216,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         IEnumerable<HumanoidVisualLayers> layers,
         bool visible)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
         var dirty = false;

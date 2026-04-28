@@ -29,7 +29,7 @@ public sealed class ClientFoodSequenceSystem : SharedFoodSequenceSystem
         //Remove old layers
         foreach (var key in start.Comp.RevealedLayers)
         {
-            _sprite.RemoveLayer((start, sprite), key);
+            _sprite.RemoveLayer((start.Owner, sprite), key);
         }
         start.Comp.RevealedLayers.Clear();
 
@@ -43,20 +43,20 @@ public sealed class ClientFoodSequenceSystem : SharedFoodSequenceSystem
             var keyCode = $"food-layer-{counter}";
             start.Comp.RevealedLayers.Add(keyCode);
 
-            _sprite.LayerMapTryGet((start, sprite), start.Comp.TargetLayerMap, out var index, false);
+            _sprite.LayerMapTryGet((start.Owner, sprite), start.Comp.TargetLayerMap, out var index, false);
 
             if (start.Comp.InverseLayers)
                 index++;
 
-            _sprite.AddBlankLayer((start, sprite), index);
-            _sprite.LayerMapSet((start, sprite), keyCode, index);
-            _sprite.LayerSetSprite((start, sprite), index, state.Sprite);
-            _sprite.LayerSetScale((start, sprite), index, state.Scale);
+            _sprite.AddBlankLayer((start.Owner, sprite), index);
+            _sprite.LayerMapSet((start.Owner, sprite), keyCode, index);
+            _sprite.LayerSetSprite((start.Owner, sprite), index, state.Sprite);
+            _sprite.LayerSetScale((start.Owner, sprite), index, state.Scale);
 
             //Offset the layer
             var layerPos = start.Comp.StartPosition;
             layerPos += (start.Comp.Offset * counter) + state.LocalOffset;
-            _sprite.LayerSetOffset((start, sprite), index, layerPos);
+            _sprite.LayerSetOffset((start.Owner, sprite), index, layerPos);
 
             counter++;
         }

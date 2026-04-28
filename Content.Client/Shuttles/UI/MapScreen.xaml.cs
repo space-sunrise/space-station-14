@@ -313,17 +313,17 @@ public sealed partial class MapScreen : BoxContainer
             _mapHeadings.Add(mapComp.MapId, gridContents);
             foreach (var grid in _mapManager.GetAllGrids(mapComp.MapId))
             {
-                _entManager.TryGetComponent(grid, out IFFComponent? iffComp);
+                _entManager.TryGetComponent(grid.Owner, out IFFComponent? iffComp);
 
                 var gridObj = new GridMapObject()
                 {
-                    Name = _entManager.GetComponent<MetaDataComponent>(grid).EntityName,
-                    Entity = grid,
+                    Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName,
+                    Entity = grid.Owner,
                     HideButton = iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0,
                 };
 
                 // Always show our shuttle immediately
-                if (grid == _shuttleEntity)
+                if (grid.Owner == _shuttleEntity)
                 {
                     AddMapObject(mapComp.MapId, gridObj);
                 }

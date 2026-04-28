@@ -38,7 +38,7 @@ public sealed class InjectorStatusControl : Control
     {
         base.FrameUpdate(args);
 
-        if (!_solutionContainers.TryGetSolution(_parent, _parent.Comp.SolutionName, out _, out var solution)
+        if (!_solutionContainers.TryGetSolution(_parent.Owner, _parent.Comp.SolutionName, out _, out var solution)
             || !_prototypeManager.Resolve(_parent.Comp.ActiveModeProtoId, out var activeMode))
             return;
 

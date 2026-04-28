@@ -242,7 +242,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         // If any grids in range that aren't us then can't FTL.
         foreach (var grid in _grids)
         {
-            if (grid == shuttleUid)
+            if (grid.Owner == shuttleUid)
                 continue;
 
             // Sunrise-Start

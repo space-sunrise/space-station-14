@@ -48,12 +48,12 @@ public sealed partial class SharedJumpAbilitySystem : EntitySystem
 
     private void OnShutdown(Entity<JumpAbilityComponent> entity, ref ComponentShutdown args)
     {
-        _actions.RemoveAction(entity, entity.Comp.ActionEntity);
+        _actions.RemoveAction(entity.Owner, entity.Comp.ActionEntity);
     }
 
     private void OnLeaperCollide(Entity<ActiveLeaperComponent> entity, ref StartCollideEvent args)
     {
-        _stun.TryKnockdown(entity, entity.Comp.KnockdownDuration, force: true);
+        _stun.TryKnockdown(entity.Owner, entity.Comp.KnockdownDuration, force: true);
         RemCompDeferred<ActiveLeaperComponent>(entity);
     }
 
@@ -88,7 +88,7 @@ public sealed partial class SharedJumpAbilitySystem : EntitySystem
         {
             EnsureComp<ActiveLeaperComponent>(entity, out var leaperComp);
             leaperComp.KnockdownDuration = entity.Comp.CollideKnockdown;
-            Dirty(entity, leaperComp);
+            Dirty(entity.Owner, leaperComp);
         }
 
         args.Handled = true;

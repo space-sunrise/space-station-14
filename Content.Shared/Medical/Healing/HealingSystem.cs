@@ -68,21 +68,21 @@ public sealed class HealingSystem : EntitySystem
         if (healing.BloodlossModifier != 0 && bloodstream != null)
         {
             var isBleeding = bloodstream.BleedAmount > 0;
-            _bloodstreamSystem.TryModifyBleedAmount((target, bloodstream), healing.BloodlossModifier);
+            _bloodstreamSystem.TryModifyBleedAmount((target.Owner, bloodstream), healing.BloodlossModifier);
             if (isBleeding != bloodstream.BleedAmount > 0)
             {
-                var popup = (args.User == target)
+                var popup = (args.User == target.Owner)
                     ? Loc.GetString("medical-item-stop-bleeding-self")
-                    : Loc.GetString("medical-item-stop-bleeding", ("target", Identity.Entity(target, EntityManager)));
+                    : Loc.GetString("medical-item-stop-bleeding", ("target", Identity.Entity(target.Owner, EntityManager)));
                 _popupSystem.PopupClient(popup, target, args.User);
             }
         }
 
         // Restores missing blood
         if (healing.ModifyBloodLevel != 0 && bloodstream != null)
-            _bloodstreamSystem.TryModifyBloodLevel((target, bloodstream), healing.ModifyBloodLevel);
+            _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
 
-        if (!_damageable.TryChangeDamage(target, healing.Damage * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
+        if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
             return;
 
         var total = healed.GetTotal();
@@ -126,10 +126,10 @@ public sealed class HealingSystem : EntitySystem
             PredictedQueueDel(args.Used.Value);
         }
 
-        if (target != args.User)
+        if (target.Owner != args.User)
         {
             _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(args.User):user} healed {ToPrettyString(target):target} for {total:damage} damage");
+                $"{ToPrettyString(args.User):user} healed {ToPrettyString(target.Owner):target} for {total:damage} damage");
         }
         else
         {
@@ -137,7 +137,7 @@ public sealed class HealingSystem : EntitySystem
                 $"{ToPrettyString(args.User):user} healed themselves for {total:damage} damage");
         }
 
-        _audio.PlayPredicted(healing.HealingEndSound, target, args.User);
+        _audio.PlayPredicted(healing.HealingEndSound, target.Owner, args.User);
 
         // Logic to determine the whether or not to repeat the healing action
         args.Repeat = HasDamage((args.Used.Value, healing), target) && !dontRepeat;
@@ -145,13 +145,13 @@ public sealed class HealingSystem : EntitySystem
 
         if (!args.Repeat)
         {
-            _popupSystem.PopupClient(Loc.GetString("medical-item-finished-using", ("item", args.Used)), target, args.User);
+            _popupSystem.PopupClient(Loc.GetString("medical-item-finished-using", ("item", args.Used)), target.Owner, args.User);
             return;
         }
 
         // Update our self heal delay so it shortens as we heal more damage.
-        if (args.User == target)
-            args.Args.Delay = healing.Delay * GetScaledHealingPenalty(target, healing.SelfHealPenaltyMultiplier);
+        if (args.User == target.Owner)
+            args.Args.Delay = healing.Delay * GetScaledHealingPenalty(target.Owner, healing.SelfHealPenaltyMultiplier);
     }
 
     private bool HasDamage(Entity<HealingComponent> healing, Entity<DamageableComponent> target)
@@ -170,7 +170,7 @@ public sealed class HealingSystem : EntitySystem
         {
             // Is ent missing blood that we can restore?
             if (healing.Comp.ModifyBloodLevel > 0
-                && _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
+                && _solutionContainerSystem.ResolveSolution(target.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
                 && _bloodstreamSystem.GetBloodLevel((target, bloodstream)) < 1)
             {
                 return true;
@@ -216,29 +216,29 @@ public sealed class HealingSystem : EntitySystem
             return false;
         }
 
-        if (user != target && !_interactionSystem.InRangeUnobstructed(user, target, popup: true))
+        if (user != target.Owner && !_interactionSystem.InRangeUnobstructed(user, target.Owner, popup: true))
             return false;
 
         if (TryComp<StackComponent>(healing, out var stack) && stack.Count < 1)
             return false;
 
         //Sunrise-Start
-        if (TryComp<MobStateComponent>(target, out var state))
+        if (TryComp<MobStateComponent>(target.Owner, out var state))
         {
-            if (!healing.Comp.WorksOnTheDead && _mobStateSystem.IsDead(target, state))
+            if (!healing.Comp.WorksOnTheDead && _mobStateSystem.IsDead(target.Owner, state))
                 return false;
         }
         //Sunrise-End
 
         // Starlight start
-        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing, out var solutionManager))
+        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
         {
             Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(healing, "injector", ref solutionEntity, out var solution))
+            if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))
             {
                 if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
                 {
-                    _popupSystem.PopupEntity(Loc.GetString("medical-item-solution-missing", ("item", healing)), healing, user);
+                    _popupSystem.PopupEntity(Loc.GetString("medical-item-solution-missing", ("item", healing.Owner)), healing.Owner, user);
                     return false;
                 }
             }
@@ -248,17 +248,17 @@ public sealed class HealingSystem : EntitySystem
         // Starlight end
         if (!HasDamage(healing, target!))
         {
-            _popupSystem.PopupClient(Loc.GetString("medical-item-cant-use", ("item", healing)), healing, user);
+            _popupSystem.PopupClient(Loc.GetString("medical-item-cant-use", ("item", healing.Owner)), healing, user);
             return false;
         }
 
         _audio.PlayPredicted(healing.Comp.HealingBeginSound, healing, user);
 
-        var isNotSelf = user != target;
+        var isNotSelf = user != target.Owner;
 
         if (isNotSelf)
         {
-            var msg = Loc.GetString("medical-item-popup-target", ("user", Identity.Entity(user, EntityManager)), ("item", healing));
+            var msg = Loc.GetString("medical-item-popup-target", ("user", Identity.Entity(user, EntityManager)), ("item", healing.Owner));
             _popupSystem.PopupEntity(msg, target, target, PopupType.Medium);
         }
 

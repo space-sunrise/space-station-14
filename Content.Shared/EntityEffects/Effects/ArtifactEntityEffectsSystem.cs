@@ -19,7 +19,7 @@ public sealed partial class ArtifactDurabilityRestoreEntityEffectsSystem : Entit
 
         foreach (var node in _xenoArtifact.GetActiveNodes(entity))
         {
-            _xenoArtifact.AdjustNodeDurability(node, durability);
+            _xenoArtifact.AdjustNodeDurability(node.Owner, durability);
         }
     }
 }

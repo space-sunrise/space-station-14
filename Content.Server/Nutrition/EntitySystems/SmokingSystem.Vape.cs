@@ -40,7 +40,7 @@ namespace Content.Server.Nutrition.EntitySystems
             var exploded = false;
 
             if (!args.CanReach
-                || !_solutionContainerSystem.TryGetRefillableSolution(entity, out _, out var solution)
+                || !_solutionContainerSystem.TryGetRefillableSolution(entity.Owner, out _, out var solution)
                 || !HasComp<BloodstreamComponent>(args.Target)
                 || !_ingestion.HasMouthAvailable(args.Target.Value, args.User)
                 )
@@ -64,7 +64,7 @@ namespace Content.Server.Nutrition.EntitySystems
 
             if (entity.Comp.ExplodeOnUse || _emag.CheckFlag(entity, EmagType.Interaction))
             {
-                _explosionSystem.QueueExplosion(entity, "Default", entity.Comp.ExplosionIntensity, 0.5f, 3, canCreateVacuum: false);
+                _explosionSystem.QueueExplosion(entity.Owner, "Default", entity.Comp.ExplosionIntensity, 0.5f, 3, canCreateVacuum: false);
                 Del(entity);
                 exploded = true;
             }
@@ -80,7 +80,7 @@ namespace Content.Server.Nutrition.EntitySystems
                     if (name.Reagent.Prototype != entity.Comp.SolutionNeeded)
                     {
                         exploded = true;
-                        _explosionSystem.QueueExplosion(entity, "Default", entity.Comp.ExplosionIntensity, 0.5f, 3, canCreateVacuum: false);
+                        _explosionSystem.QueueExplosion(entity.Owner, "Default", entity.Comp.ExplosionIntensity, 0.5f, 3, canCreateVacuum: false);
                         Del(entity);
                         break;
                     }
@@ -110,7 +110,7 @@ namespace Content.Server.Nutrition.EntitySystems
             if (!exploded)
             {
                 var vapeDoAfterEvent = new VapeDoAfterEvent(solution, forced);
-                _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, delay, vapeDoAfterEvent, entity, target: args.Target, used: entity)
+                _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, delay, vapeDoAfterEvent, entity.Owner, target: args.Target, used: entity.Owner)
                 {
                     BreakOnMove = false,
                     BreakOnDamage = true

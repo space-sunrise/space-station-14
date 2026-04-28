@@ -83,7 +83,7 @@ public sealed class SolutionDumpingSystem : EntitySystem
         // Check openness, hands, source being empty, and target being full.
         if (!DragInteractionChecks(args.User,
                 args.Source,
-                ent,
+                ent.Owner,
                 args.SourceSolution,
                 targetSol,
                 out var sourceEnt,

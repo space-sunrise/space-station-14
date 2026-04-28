@@ -122,7 +122,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         if (traitorRole is not null)
         {
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Add traitor briefing components");
-            EnsureComp<RoleBriefingComponent>(traitorRole.Value, out var briefingComp);
+            EnsureComp<RoleBriefingComponent>(traitorRole.Value.Owner, out var briefingComp);
             briefingComp.Briefing = briefing;
         }
         else
@@ -229,7 +229,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
     private List<(EntityUid Id, MindComponent Mind)> GetOtherTraitorMindsAliveAndConnected(MindComponent ourMind, Entity<TraitorRuleComponent> rule)
     {
         var traitors = new List<(EntityUid Id, MindComponent Mind)>();
-        foreach (var mind in _antag.GetAntagMinds(rule))
+        foreach (var mind in _antag.GetAntagMinds(rule.Owner))
         {
             if (mind.Comp == ourMind)
                 continue;

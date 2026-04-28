@@ -23,7 +23,7 @@ public sealed partial class PowerCellSystem
 
     private void RelayToCell<T>(Entity<PowerCellSlotComponent> ent, ref T args) where T : notnull
     {
-        if (!_itemSlots.TryGetSlot(ent, ent.Comp.CellSlotId, out var slot) || !slot.Item.HasValue)
+        if (!_itemSlots.TryGetSlot(ent.Owner, ent.Comp.CellSlotId, out var slot) || !slot.Item.HasValue)
             return;
 
         // Relay the event to the power cell.

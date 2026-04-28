@@ -114,7 +114,7 @@ public abstract partial class SharedGunSystem
             ent.Comp.Capacity = newCapacity;
 
         // Update the ammo counter predictively if the change was predicted. On the server this does nothing.
-        UpdateAmmoCount(ent);
+        UpdateAmmoCount(ent.Owner);
 
         Dirty(ent); // Dirtying will update the client's ammo counter in an AfterAutoHandleStateEvent subscription in case it was not predicted.
 
@@ -122,10 +122,10 @@ public abstract partial class SharedGunSystem
             return;
 
         // Update the visuals.
-        Appearance.SetData(ent, AmmoVisuals.HasAmmo, newShots != 0, appearance);
-        Appearance.SetData(ent, AmmoVisuals.AmmoCount, newShots, appearance);
+        Appearance.SetData(ent.Owner, AmmoVisuals.HasAmmo, newShots != 0, appearance);
+        Appearance.SetData(ent.Owner, AmmoVisuals.AmmoCount, newShots, appearance);
         if (newCapacity > 0) // Don't make the capacity 0 when removing a power cell as this will make it be visualized as full instead of empty.
-            Appearance.SetData(ent, AmmoVisuals.AmmoMax, newCapacity, appearance);
+            Appearance.SetData(ent.Owner, AmmoVisuals.AmmoMax, newCapacity, appearance);
     }
 
     // For server side changes the client's ammo counter needs to be updated as well.

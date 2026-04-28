@@ -115,7 +115,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             if (!TryComp<MicrowaveComponent>(ent, out var microwaveComponent))
                 return;
-            SetAppearance(ent, MicrowaveVisualState.Cooking, microwaveComponent);
+            SetAppearance(ent.Owner, MicrowaveVisualState.Cooking, microwaveComponent);
 
             microwaveComponent.PlayingStream =
                 _audio.PlayPvs(microwaveComponent.LoopingSound, ent, AudioParams.Default.WithLoop(true).WithMaxDistance(5))?.Entity;
@@ -126,14 +126,14 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!TryComp<MicrowaveComponent>(ent, out var microwaveComponent))
                 return;
 
-            SetAppearance(ent, MicrowaveVisualState.Idle, microwaveComponent);
+            SetAppearance(ent.Owner, MicrowaveVisualState.Idle, microwaveComponent);
             microwaveComponent.PlayingStream = _audio.Stop(microwaveComponent.PlayingStream);
         }
 
         private void OnActiveMicrowaveInsert(Entity<ActiveMicrowaveComponent> ent, ref EntInsertedIntoContainerMessage args)
         {
             var microwavedComp = AddComp<ActivelyMicrowavedComponent>(args.Entity);
-            microwavedComp.Microwave = ent;
+            microwavedComp.Microwave = ent.Owner;
         }
 
         private void OnActiveMicrowaveRemove(Entity<ActiveMicrowaveComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -339,10 +339,10 @@ namespace Content.Server.Kitchen.EntitySystems
             _popupSystem.PopupEntity(othersMessage, victim, Filter.PvsExcept(victim), true);
             _popupSystem.PopupEntity(selfMessage, victim, victim);
 
-            _audio.PlayPvs(ent.Comp.ClickSound, ent, AudioParams.Default.WithVolume(-2));
+            _audio.PlayPvs(ent.Comp.ClickSound, ent.Owner, AudioParams.Default.WithVolume(-2));
             ent.Comp.CurrentCookTimerTime = 10;
-            Wzhzhzh(ent, ent.Comp, args.Victim);
-            UpdateUserInterfaceState(ent, ent.Comp);
+            Wzhzhzh(ent.Owner, ent.Comp, args.Victim);
+            UpdateUserInterfaceState(ent.Owner, ent.Comp);
             args.Handled = true;
         }
 
@@ -464,7 +464,7 @@ namespace Content.Server.Kitchen.EntitySystems
             if (ent.Comp.Broken || !_power.IsPowered(ent))
                 return;
 
-            Wzhzhzh(ent, ent.Comp, null);
+            Wzhzhzh(ent.Owner, ent.Comp, null);
         }
 
         public void UpdateUserInterfaceState(EntityUid uid, MicrowaveComponent component)

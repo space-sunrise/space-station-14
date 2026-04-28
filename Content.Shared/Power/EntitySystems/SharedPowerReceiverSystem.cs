@@ -97,7 +97,7 @@ public abstract class SharedPowerReceiverSystem : EntitySystem
     /// </summary>
     public void SetLoad(Entity<SharedApcPowerReceiverComponent?> entity, float load)
     {
-        if (!ResolveApc(entity, ref entity.Comp))
+        if (!ResolveApc(entity.Owner, ref entity.Comp))
             return;
 
         entity.Comp.Load = load;
@@ -108,7 +108,7 @@ public abstract class SharedPowerReceiverSystem : EntitySystem
     /// </summary>
     public bool IsPowered(Entity<SharedApcPowerReceiverComponent?> entity)
     {
-        if (!ResolveApc(entity, ref entity.Comp))
+        if (!ResolveApc(entity.Owner, ref entity.Comp))
             return true;
 
         return entity.Comp.Powered;

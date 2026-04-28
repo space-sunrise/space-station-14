@@ -35,9 +35,9 @@ public sealed class EyeClosingSystem : EntitySystem
 
     private void OnShutdown(Entity<EyeClosingComponent> eyelids, ref ComponentShutdown args)
     {
-        _actionsSystem.RemoveAction(eyelids, eyelids.Comp.EyeToggleActionEntity);
+        _actionsSystem.RemoveAction(eyelids.Owner, eyelids.Comp.EyeToggleActionEntity);
 
-        SetEyelids((eyelids, eyelids.Comp), false);
+        SetEyelids((eyelids.Owner, eyelids.Comp), false);
     }
 
     private void OnToggleAction(Entity<EyeClosingComponent> eyelids, ref ToggleEyesActionEvent args)
@@ -46,12 +46,12 @@ public sealed class EyeClosingSystem : EntitySystem
             return;
 
         args.Handled = true;
-        SetEyelids((eyelids, eyelids.Comp), !eyelids.Comp.EyesClosed);
+        SetEyelids((eyelids.Owner, eyelids.Comp), !eyelids.Comp.EyesClosed);
     }
 
     private void OnHandleState(Entity<EyeClosingComponent> eyelids, ref AfterAutoHandleStateEvent args)
     {
-        DoAudioFeedback((eyelids, eyelids.Comp), eyelids.Comp.EyesClosed);
+        DoAudioFeedback((eyelids.Owner, eyelids.Comp), eyelids.Comp.EyesClosed);
     }
 
     private void OnTrySee(Entity<EyeClosingComponent> eyelids, ref CanSeeAttemptEvent args)
@@ -89,7 +89,7 @@ public sealed class EyeClosingSystem : EntitySystem
         if (eyelids.Comp.EyeToggleActionEntity != null)
             _actionsSystem.SetToggled(eyelids.Comp.EyeToggleActionEntity, eyelids.Comp.EyesClosed);
 
-        _blindableSystem.UpdateIsBlind(eyelids);
+        _blindableSystem.UpdateIsBlind(eyelids.Owner);
 
         DoAudioFeedback(eyelids, eyelids.Comp.EyesClosed);
     }
@@ -117,7 +117,7 @@ public sealed class EyeClosingSystem : EntitySystem
             return;
 
         var ev = new GetBlurEvent(blindable.Comp.EyeDamage);
-        RaiseLocalEvent(blindable, ev);
+        RaiseLocalEvent(blindable.Owner, ev);
 
         if (EntityManager.TryGetComponent<EyeClosingComponent>(blindable, out var eyelids) && !eyelids.NaturallyCreated)
             return;

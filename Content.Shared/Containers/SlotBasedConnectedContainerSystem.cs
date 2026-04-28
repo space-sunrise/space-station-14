@@ -55,7 +55,7 @@ public sealed class SlotBasedConnectedContainerSystem : EntitySystem
         if (!_containers.TryGetContainingContainer((uid, null, null), out var container))
             return false;
 
-        var user = container;
+        var user = container.Owner;
         if (!_inventory.TryGetContainerSlotEnumerator(user, out var enumerator, slotFlag))
             return false;
 

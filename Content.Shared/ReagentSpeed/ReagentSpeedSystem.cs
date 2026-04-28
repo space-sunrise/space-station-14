@@ -15,7 +15,7 @@ public sealed class ReagentSpeedSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return time;
 
-        if (!_solution.TryGetSolution(ent, ent.Comp.Solution, out _, out var solution))
+        if (!_solution.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
             return time;
 
         foreach (var (reagent, fullModifier) in ent.Comp.Modifiers)
