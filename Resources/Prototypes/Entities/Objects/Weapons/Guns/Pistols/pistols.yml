@@ -35,7 +35,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: CanDualWield # Sunrise-Edit
-    dualWieldInaccuracyPenalty: 2
+    dualWieldInaccuracyPenalty: 1
     dualWieldFireRatePenalty: 0.25
     dualWieldRecoilPenalty: 0.25
   - type: ChamberMagazineAmmoProvider
