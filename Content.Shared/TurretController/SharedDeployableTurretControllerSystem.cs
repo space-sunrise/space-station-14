@@ -34,7 +34,7 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
         if (IsUserAllowedAccess(ent, args.Actor))
             ChangeArmamentSetting(ent, args.ArmamentState, args.Actor);
 
-        if (_userInterfaceSystem.TryGetOpenUi(ent.Owner, DeployableTurretControllerUiKey.Key, out var bui))
+        if (_userInterfaceSystem.TryGetOpenUi(ent, DeployableTurretControllerUiKey.Key, out var bui))
             bui.Update<DeployableTurretControllerBoundInterfaceState>();
     }
 
@@ -43,7 +43,7 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
         if (IsUserAllowedAccess(ent, args.Actor))
             ChangeExemptAccessLevels(ent, args.AccessLevels, args.Enabled, args.Actor);
 
-        if (_userInterfaceSystem.TryGetOpenUi(ent.Owner, DeployableTurretControllerUiKey.Key, out var bui))
+        if (_userInterfaceSystem.TryGetOpenUi(ent, DeployableTurretControllerUiKey.Key, out var bui))
             bui.Update<DeployableTurretControllerBoundInterfaceState>();
     }
 

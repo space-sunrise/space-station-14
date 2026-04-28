@@ -22,7 +22,7 @@ public sealed class HellSpawnInvincibilitySystem : SharedHellSpawnInvincibilityS
 
     private void OnMapInit(Entity<HellSpawnInvincibilityComponent> ent, ref MapInitEvent args)
     {
-        _actions.AddAction(ent.Owner, ref ent.Comp.InvincibilityActionEntity, ent.Comp.InvincibilityAction);
+        _actions.AddAction(ent, ref ent.Comp.InvincibilityActionEntity, ent.Comp.InvincibilityAction);
     }
 
     private void OnDamageReceived(Entity<HellSpawnInvincibilityComponent> ent, ref DamageChangedEvent args)
@@ -39,7 +39,7 @@ public sealed class HellSpawnInvincibilitySystem : SharedHellSpawnInvincibilityS
         if (!_actions.ValidAction((ent.Comp.InvincibilityActionEntity.Value, action)))
             return;
 
-        _actions.PerformAction((ent.Owner, null),
+        _actions.PerformAction((ent, null),
             (ent.Comp.InvincibilityActionEntity.Value, action),
             instantAction.Event,
             false);

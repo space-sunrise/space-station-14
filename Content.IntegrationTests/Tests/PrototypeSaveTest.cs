@@ -78,7 +78,7 @@ public sealed class PrototypeSaveTest
         await server.WaitAssertion(() =>
         {
             Assert.That(!mapSystem.IsInitialized(mapId));
-            var testLocation = grid.Owner.ToCoordinates();
+            var testLocation = grid.ToCoordinates();
 
             Assert.Multiple(() =>
             {

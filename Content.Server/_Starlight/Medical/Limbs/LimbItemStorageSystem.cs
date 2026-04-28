@@ -26,7 +26,7 @@ public sealed partial class LimbItemStorageSystem : EntitySystem
     private void OnLimbItemStorageInit(Entity<LimbItemStorageComponent> limb, ref MapInitEvent args)
     {
         if (limb.Comp.ItemEntities?.Count == limb.Comp.Items.Count) return;
-        var container = _container.EnsureContainer<Container>(limb.Owner, limb.Comp.ContainerId, out _);
+        var container = _container.EnsureContainer<Container>(limb, limb.Comp.ContainerId, out _);
 
         limb.Comp.ItemEntities = [.. limb.Comp.Items.Select(EnsureItem)];
 

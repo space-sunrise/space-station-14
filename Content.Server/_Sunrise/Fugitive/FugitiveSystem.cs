@@ -70,9 +70,9 @@ namespace Content.Server._Sunrise.Fugitive
                     continue;
                 _chat.DispatchGlobalAnnouncement(Loc.GetString("station-event-fugitive-hunt-announcement"), sender: Loc.GetString("fugitive-announcement-GALPOL"), colorOverride: Color.Yellow);
 
-                SendFugiReport(cd.Owner);
+                SendFugiReport(cd);
 
-                RemCompDeferred<FugitiveCountdownComponent>(cd.Owner);
+                RemCompDeferred<FugitiveCountdownComponent>(cd);
             }
         }
 
@@ -98,7 +98,7 @@ namespace Content.Server._Sunrise.Fugitive
                     {
                         new StampDisplayInfo { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#BB3232") },
                     });
-                _faxSystem.Receive(fax.Owner, printout, null, fax);
+                _faxSystem.Receive(fax, printout, null, fax);
 
                 wasSent = true;
             }

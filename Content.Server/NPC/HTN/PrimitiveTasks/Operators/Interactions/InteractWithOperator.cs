@@ -47,7 +47,7 @@ public sealed partial class InteractWithOperator : HTNOperator
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         // Handle ongoing doAfter, and store the doAfter.nextId so we can detect if we started one
         ushort nextId = 0;

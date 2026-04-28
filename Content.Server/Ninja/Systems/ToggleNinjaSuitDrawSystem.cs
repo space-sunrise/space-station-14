@@ -33,19 +33,19 @@ public sealed class ToggleNinjaSuitDrawSystem : EntitySystem
             return;
         }
 
-        _suitDraw.SetEnabled((ent, draw), _toggle.IsActivated(ent.Owner));
+        _suitDraw.SetEnabled((ent, draw), _toggle.IsActivated(ent));
     }
 
     private void OnActivateAttempt(Entity<ToggleNinjaSuitDrawComponent> ent, ref ItemToggleActivateAttemptEvent args)
     {
-        if (!_suitDraw.CanDrawPower((ent.Owner, Comp<NinjaSuitDrawComponent>(ent.Owner)))
-            || !_suitDraw.CanUse((ent.Owner, Comp<NinjaSuitDrawComponent>(ent.Owner))))
+        if (!_suitDraw.CanDrawPower((ent, Comp<NinjaSuitDrawComponent>(ent)))
+            || !_suitDraw.CanUse((ent, Comp<NinjaSuitDrawComponent>(ent))))
             args.Cancelled = true;
     }
 
     private void OnToggled(Entity<ToggleNinjaSuitDrawComponent> ent, ref ItemToggledEvent args)
     {
-        var uid = ent.Owner;
+        var uid = ent;
         var draw = Comp<NinjaSuitDrawComponent>(uid);
         _suitDraw.SetEnabled((uid, draw), args.Activated);
     }

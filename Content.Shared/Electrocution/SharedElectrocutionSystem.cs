@@ -38,7 +38,7 @@ namespace Content.Shared.Electrocution
             ent.Comp.Enabled = value;
             Dirty(ent, ent.Comp);
 
-            _appearance.SetData(ent.Owner, ElectrifiedVisuals.IsElectrified, value);
+            _appearance.SetData(ent, ElectrifiedVisuals.IsElectrified, value);
         }
 
         public void SetElectrifiedWireCut(Entity<ElectrifiedComponent> ent, bool value)

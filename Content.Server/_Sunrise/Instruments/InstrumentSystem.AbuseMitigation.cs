@@ -73,7 +73,7 @@ public sealed partial class InstrumentSystem
 
         if (instrument.Handheld
             && (!_container.TryGetContainingContainer((uid, null, null), out var container)
-                || container.Owner != user))
+                || container != user))
         {
             return false;
         }

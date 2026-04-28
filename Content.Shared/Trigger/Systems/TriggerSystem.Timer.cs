@@ -33,7 +33,7 @@ public sealed partial class TriggerSystem
             return;
 
         timerTriggerComp.Delay = TimeSpan.FromSeconds(_random.NextFloat(ent.Comp.Min, ent.Comp.Max));
-        Dirty(ent.Owner, timerTriggerComp);
+        Dirty(ent, timerTriggerComp);
     }
 
     private void OnTimerShutdown(Entity<TimerTriggerComponent> ent, ref ComponentShutdown args)
@@ -52,7 +52,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        args.Handled |= ActivateTimerTrigger(ent.AsNullable(), args.User);
+        args.Handled |= ActivateTimerTrigger(ent, args.User);
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public sealed partial class TriggerSystem
         if (ent.Comp.DelayOptions[^1] <= ent.Comp.Delay)
         {
             ent.Comp.Delay = ent.Comp.DelayOptions[0];
-            _popup.PopupClient(Loc.GetString("timer-trigger-popup-set", ("time", ent.Comp.Delay)), ent.Owner, user);
+            _popup.PopupClient(Loc.GetString("timer-trigger-popup-set", ("time", ent.Comp.Delay)), ent, user);
             return;
         }
 
@@ -133,7 +133,7 @@ public sealed partial class TriggerSystem
             if (option > ent.Comp.Delay)
             {
                 ent.Comp.Delay = option;
-                _popup.PopupClient(Loc.GetString("timer-trigger-popup-set", ("time", option)), ent.Owner, user);
+                _popup.PopupClient(Loc.GetString("timer-trigger-popup-set", ("time", option)), ent, user);
                 return;
             }
         }

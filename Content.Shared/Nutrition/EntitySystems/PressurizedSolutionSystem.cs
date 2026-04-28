@@ -51,7 +51,7 @@ public sealed partial class PressurizedSolutionSystem : EntitySystem
     /// </summary>
     private float SolutionFizzability(Entity<PressurizedSolutionComponent> entity)
     {
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out var _, out var solution))
+        if (!_solutionContainer.TryGetSolution(entity, entity.Comp.Solution, out var _, out var solution))
             return 0;
 
         // An empty solution can't be fizzy
@@ -169,7 +169,7 @@ public sealed partial class PressurizedSolutionSystem : EntitySystem
         if (!CanSpray(entity))
             return false;
 
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out var soln, out var interactions))
+        if (!_solutionContainer.TryGetSolution(entity, entity.Comp.Solution, out var soln, out var interactions))
             return false;
 
         // If the container is openable, open it
@@ -180,7 +180,7 @@ public sealed partial class PressurizedSolutionSystem : EntitySystem
 
         // Spray the solution onto the ground and anyone nearby
         var coordinates = Transform(entity).Coordinates;
-        _puddle.TrySplashSpillAt(entity.Owner, coordinates, out _, out _, sound: false);
+        _puddle.TrySplashSpillAt(entity, coordinates, out _, out _, sound: false);
 
         var drinkName = Identity.Entity(entity, EntityManager);
 

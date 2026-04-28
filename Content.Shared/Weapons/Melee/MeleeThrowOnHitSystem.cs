@@ -28,7 +28,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
     private void OnThrow(Entity<MeleeThrowOnHitComponent> ent, ref ThrownEvent args)
     {
-        if (_delay.IsDelayed(ent.Owner))
+        if (_delay.IsDelayed(ent))
             return;
 
         ent.Comp.HitWhileThrown = false;
@@ -40,8 +40,8 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
     private void OnLand(Entity<MeleeThrowOnHitComponent> ent, ref LandEvent args)
     {
-        if (ent.Comp.HitWhileThrown && !_delay.IsDelayed(ent.Owner))
-            _delay.TryResetDelay(ent.Owner);
+        if (ent.Comp.HitWhileThrown && !_delay.IsDelayed(ent))
+            _delay.TryResetDelay(ent);
 
         ent.Comp.ThrowOnCooldown = true;
         DirtyField(ent, ent.Comp, nameof(MeleeThrowOnHitComponent.ThrowOnCooldown));
@@ -53,7 +53,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
         if (!args.IsHit)
             return;
 
-        if (_delay.IsDelayed(weapon.Owner))
+        if (_delay.IsDelayed(weapon))
             return;
 
         if (args.HitEntities.Count == 0)
@@ -88,12 +88,12 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     private void ThrowOnHitHelper(Entity<MeleeThrowOnHitComponent> ent, EntityUid? user, EntityUid target, Vector2 direction)
     {
         var attemptEvent = new AttemptMeleeThrowOnHitEvent(target, user);
-        RaiseLocalEvent(ent.Owner, ref attemptEvent);
+        RaiseLocalEvent(ent, ref attemptEvent);
 
         if (attemptEvent.Cancelled)
             return;
 
-        var startEvent = new MeleeThrowOnHitStartEvent(ent.Owner, user);
+        var startEvent = new MeleeThrowOnHitStartEvent(ent, user);
         RaiseLocalEvent(target, ref startEvent);
 
         if (ent.Comp.StunTime != null)

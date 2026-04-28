@@ -35,7 +35,7 @@ public sealed partial class HitscanRicochetSystem : EntitySystem
             return;
 
         // If we're at our maximum recursion depth, don't try to pierce
-        if (!_reflectQuery.TryComp(hitscan.Owner, out var reflect) || reflect.CurrentReflections > reflect.MaxReflections)
+        if (!_reflectQuery.TryComp(hitscan, out var reflect) || reflect.CurrentReflections > reflect.MaxReflections)
             return;
 
         var ev = new HitScanRicochetAttemptEvent(hitscan.Comp.Chance, data.HitPosition.Value, data.ShotDirection, false);
@@ -72,7 +72,7 @@ public sealed partial class HitscanRicochetSystem : EntitySystem
         var chance = Math.Clamp(args.Chance * ent.Comp.Chance, 0f, 1f);
         if (chance == 0) return;
 
-        var invMatrix = _transform.GetInvWorldMatrix(ent.Owner);
+        var invMatrix = _transform.GetInvWorldMatrix(ent);
 
         var localFrom = Vector2.Transform(args.Pos, invMatrix);
 
@@ -99,7 +99,7 @@ public sealed partial class HitscanRicochetSystem : EntitySystem
         //    R = D - 2*(D·N)*N
         var reflectedLocal = localDir - (2f * dot * localNormal);
 
-        var matrix = _transform.GetWorldMatrix(ent.Owner);
+        var matrix = _transform.GetWorldMatrix(ent);
         var matrixNoTrans = matrix;
         matrixNoTrans.M31 = 0f;
         matrixNoTrans.M32 = 0f;

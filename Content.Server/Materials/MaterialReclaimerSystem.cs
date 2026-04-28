@@ -62,7 +62,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 
     private void OnPowerChanged(Entity<MaterialReclaimerComponent> entity, ref PowerChangedEvent args)
     {
-        AmbientSound.SetAmbience(entity.Owner, entity.Comp.Enabled && args.Powered);
+        AmbientSound.SetAmbience(entity, entity.Comp.Enabled && args.Powered);
         entity.Comp.Powered = args.Powered;
         Dirty(entity);
     }
@@ -73,7 +73,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             return;
 
         // if we're trying to get a solution out of the reclaimer, don't destroy it
-        if (_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.SolutionContainerId, out _, out var outputSolution) && outputSolution.Contents.Any())
+        if (_solutionContainer.TryGetSolution(entity, entity.Comp.SolutionContainerId, out _, out var outputSolution) && outputSolution.Contents.Any())
         {
             if (TryComp<SolutionContainerManagerComponent>(args.Used, out var managerComponent) &&
                 _solutionContainer.EnumerateSolutions((args.Used, managerComponent)).Any(s => s.Solution.Comp.Solution.AvailableVolume > 0))
@@ -87,7 +87,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             }
         }
 
-        args.Handled = TryStartProcessItem(entity.Owner, args.Used, entity.Comp, args.User);
+        args.Handled = TryStartProcessItem(entity, args.Used, entity.Comp, args.User);
     }
 
     private void OnSuicideByEnvironment(Entity<MaterialReclaimerComponent> entity, ref SuicideByEnvironmentEvent args)
@@ -113,7 +113,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             true);
 
         _body.GibBody(victim, true);
-        _appearance.SetData(entity.Owner, RecyclerVisuals.Bloody, true);
+        _appearance.SetData(entity, RecyclerVisuals.Bloody, true);
         args.Handled = true;
     }
 

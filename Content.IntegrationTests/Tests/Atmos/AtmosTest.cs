@@ -43,11 +43,11 @@ public abstract class AtmosTest : InteractionTest
         RelevantAtmos = (MapData.Grid, SEntMan.GetComponent<GridAtmosphereComponent>(MapData.Grid));
 
         ProcessEnt = new Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent>(
-            MapData.Grid.Owner,
-            SEntMan.GetComponent<GridAtmosphereComponent>(MapData.Grid.Owner),
-            SEntMan.GetComponent<GasTileOverlayComponent>(MapData.Grid.Owner),
-            SEntMan.GetComponent<MapGridComponent>(MapData.Grid.Owner),
-            SEntMan.GetComponent<TransformComponent>(MapData.Grid.Owner));
+            MapData.Grid,
+            SEntMan.GetComponent<GridAtmosphereComponent>(MapData.Grid),
+            SEntMan.GetComponent<GasTileOverlayComponent>(MapData.Grid),
+            SEntMan.GetComponent<MapGridComponent>(MapData.Grid),
+            SEntMan.GetComponent<TransformComponent>(MapData.Grid));
     }
 
     /// <summary>

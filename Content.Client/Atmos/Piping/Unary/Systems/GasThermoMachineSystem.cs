@@ -16,7 +16,7 @@ public sealed class GasThermoMachineSystem : SharedGasThermoMachineSystem
 
     private void OnGasAfterState(Entity<GasThermoMachineComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        DirtyUI(ent.Owner, ent.Comp);
+        DirtyUI(ent, ent.Comp);
     }
 
     protected override void DirtyUI(EntityUid uid, GasThermoMachineComponent? thermoMachine, UserInterfaceComponent? ui = null)

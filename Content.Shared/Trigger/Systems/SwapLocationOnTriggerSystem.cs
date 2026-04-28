@@ -24,7 +24,7 @@ public sealed class SwapLocationOnTriggerSystem : EntitySystem
         // SwapPositions mispredicts at the moment.
         // TODO: Fix this and remove the IsServer check.
         if (_net.IsServer)
-            _transform.SwapPositions(ent.Owner, args.User.Value);
+            _transform.SwapPositions(ent, args.User.Value);
         args.Handled = true;
     }
 }

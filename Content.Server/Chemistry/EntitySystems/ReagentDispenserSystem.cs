@@ -66,7 +66,7 @@ namespace Content.Server.Chemistry.EntitySystems
             var inventory = GetInventory(reagentDispenser);
 
             var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount);
-            _userInterfaceSystem.SetUiState(reagentDispenser.Owner, ReagentDispenserUiKey.Key, state);
+            _userInterfaceSystem.SetUiState(reagentDispenser, ReagentDispenserUiKey.Key, state);
         }
 
         private ContainerInfo? BuildOutputContainerInfo(EntityUid? container)
@@ -87,7 +87,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private List<ReagentInventoryItem> GetInventory(Entity<ReagentDispenserComponent> reagentDispenser)
         {
-            if (!TryComp<StorageComponent>(reagentDispenser.Owner, out var storage))
+            if (!TryComp<StorageComponent>(reagentDispenser, out var storage))
             {
                 return [];
             }
@@ -126,7 +126,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private void OnDispenseReagentMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserDispenseReagentMessage message)
         {
-            if (!TryComp<StorageComponent>(reagentDispenser.Owner, out var storage))
+            if (!TryComp<StorageComponent>(reagentDispenser, out var storage))
             {
                 return;
             }
@@ -158,7 +158,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private void OnEjectReagentMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserEjectContainerMessage message)
         {
-            if (!TryComp<StorageComponent>(reagentDispenser.Owner, out var storage))
+            if (!TryComp<StorageComponent>(reagentDispenser, out var storage))
             {
                 return;
             }
@@ -192,7 +192,7 @@ namespace Content.Server.Chemistry.EntitySystems
         /// </summary>
         private void OnMapInit(Entity<ReagentDispenserComponent> ent, ref MapInitEvent args)
         {
-            _itemSlotsSystem.AddItemSlot(ent.Owner, SharedReagentDispenser.OutputSlotName, ent.Comp.BeakerSlot);
+            _itemSlotsSystem.AddItemSlot(ent, SharedReagentDispenser.OutputSlotName, ent.Comp.BeakerSlot);
         }
     }
 }

@@ -71,7 +71,7 @@ public abstract partial class SharedItemRecallSystem : EntitySystem
 
     private void RecallItem(Entity<RecallMarkerComponent?> ent)
     {
-        if (!Resolve(ent.Owner, ref ent.Comp, false))
+        if (!Resolve(ent, ref ent.Comp, false))
             return;
 
         if (_actions.GetAction(ent.Comp.MarkedByAction) is not {} action)
@@ -98,7 +98,7 @@ public abstract partial class SharedItemRecallSystem : EntitySystem
 
     private void TryMarkItem(Entity<ItemRecallComponent> ent, EntityUid item)
     {
-        if (_actions.GetAction(ent.Owner) is not {} action)
+        if (_actions.GetAction(ent) is not {} action)
             return;
 
         if (action.Comp.AttachedEntity is not {} user)

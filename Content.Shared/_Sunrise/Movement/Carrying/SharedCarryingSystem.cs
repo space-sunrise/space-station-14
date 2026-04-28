@@ -88,7 +88,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        if (!CanCarry(args.User, ent.AsNullable()))
+        if (!CanCarry(args.User, ent))
             return;
 
         var user = args.User;
@@ -96,7 +96,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         {
             Act = () =>
             {
-                StartCarryDoAfter(user, ent.AsNullable());
+                StartCarryDoAfter(user, ent);
             },
             Text = Loc.GetString("carry-verb"),
             Priority = 2,
@@ -110,7 +110,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        TryStartCarry(args.Args.User, ent.AsNullable());
+        TryStartCarry(args.Args.User, ent);
         args.Handled = true;
     }
 
@@ -123,7 +123,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
             return;
 
         var target = activeCarrier.Target.Value;
-        DropCarried(ent.Owner, target);
+        DropCarried(ent, target);
     }
 
     private void OnBeforeThrow(Entity<ActiveCarrierComponent> ent, ref BeforeThrowEvent args)
@@ -139,11 +139,11 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var target = item.BlockingEntity;
         var direction = args.Direction.Normalized();
-        var massRatio = MassContest(ent.Owner, target);
+        var massRatio = MassContest(ent, target);
         var throwSpeed = CalculateThrowSpeed(args.ThrowSpeed, massRatio, carrier);
         var throwDistance = CalculateThrowDistance(throwSpeed, carrier);
 
-        if (!TryDropCarried(ent.AsNullable()))
+        if (!TryDropCarried(ent))
             return;
 
         _throwing.TryThrow(
@@ -163,7 +163,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         if (ent.Comp.Target != args.BlockingEntity)
             return;
 
-        TryDropCarried(ent.AsNullable());
+        TryDropCarried(ent);
     }
 
     private void OnParentChanged(Entity<ActiveCarrierComponent> ent, ref EntParentChangedMessage args)
@@ -173,12 +173,12 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         if (xform.ParentUid == xform.GridUid)
             return;
 
-        TryDropCarried(ent.AsNullable());
+        TryDropCarried(ent);
     }
 
     private void OnMobStateChanged(Entity<ActiveCarrierComponent> ent, ref MobStateChangedEvent args)
     {
-        TryDropCarried(ent.AsNullable());
+        TryDropCarried(ent);
     }
 
     private void OnCarrierMove(Entity<ActiveCarrierComponent> ent, ref MoveEvent args)
@@ -187,7 +187,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
             return;
 
         var target = ent.Comp.Target.Value;
-        UpdateCarriedTransform(ent.Owner, target);
+        UpdateCarriedTransform(ent, target);
     }
 
     private void OnCarrierDowned(Entity<ActiveCarrierComponent> ent, ref DownedEvent args)
@@ -196,8 +196,8 @@ public abstract partial class SharedCarryingSystem : EntitySystem
             return;
 
         var target = ent.Comp.Target.Value;
-        _popup.PopupClient(Loc.GetString("carry-lying-cancel"), target, ent.Owner, PopupType.MediumCaution);
-        DropCarried(ent.Owner, target);
+        _popup.PopupClient(Loc.GetString("carry-lying-cancel"), target, ent, PopupType.MediumCaution);
+        DropCarried(ent, target);
     }
 
     private void OnCarrierPullStarted(Entity<ActiveCarrierComponent> ent, ref PullStartedMessage args)
@@ -233,12 +233,12 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void OnStartClimb(Entity<ActiveCanBeCarriedComponent> ent, ref StartClimbEvent args)
     {
-        TryDropCarriedByTarget(ent.AsNullable());
+        TryDropCarriedByTarget(ent);
     }
 
     private void OnBuckleChange(Entity<ActiveCanBeCarriedComponent> ent, ref BuckledEvent args)
     {
-        TryDropCarriedByTarget(ent.AsNullable());
+        TryDropCarriedByTarget(ent);
     }
 
     private void OnInteractionAttempt(Entity<ActiveCanBeCarriedComponent> ent, ref InteractionAttemptEvent args)
@@ -248,10 +248,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var targetParent = Transform(args.Target.Value).ParentUid;
 
-        if (args.Target.Value != ent.Owner &&
+        if (args.Target.Value != ent &&
             args.Target.Value != ent.Comp.Carrier &&
             targetParent != ent.Comp.Carrier &&
-            targetParent != ent.Owner)
+            targetParent != ent)
             args.Cancelled = true;
     }
 
@@ -265,7 +265,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var length = carrier.Comp.BasePickupTime;
 
-        var mod = MassContest(carrier.Owner, carried.Owner);
+        var mod = MassContest(carrier, carried);
 
         if (mod > 0)
             length /= mod;
@@ -295,7 +295,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         ShowCarryPopup("carry-starting", Filter.Entities(carrier), PopupType.Medium, carrier, carried);
         ShowCarryPopup("carry-started", Filter.Entities(carried), PopupType.Medium, carrier, carried);
-        ShowCarryPopup("carry-observed", Filter.PvsExcept(carrier).RemoveWhereAttachedEntity(e => e == carried.Owner), PopupType.MediumCaution, carrier, carried);
+        ShowCarryPopup("carry-observed", Filter.PvsExcept(carrier).RemoveWhereAttachedEntity(e => e == carried), PopupType.MediumCaution, carrier, carried);
     }
 
     private static EntityCoordinates GetCarriedCoordinates(EntityUid carrier)
@@ -308,7 +308,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         if (ent.Comp.Target == null)
             return;
 
-        UpdateCarriedTransform(ent.Owner, ent.Comp.Target.Value);
+        UpdateCarriedTransform(ent, ent.Comp.Target.Value);
     }
 
     private void UpdateCarriedTransform(EntityUid carrier, EntityUid target)

@@ -19,7 +19,7 @@ public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequir
 
     protected override void OnActivate(Entity<ActivatableUIRequiresPowerComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (args.Cancelled || this.IsPowered(ent.Owner, EntityManager))
+        if (args.Cancelled || this.IsPowered(ent, EntityManager))
         {
             return;
         }

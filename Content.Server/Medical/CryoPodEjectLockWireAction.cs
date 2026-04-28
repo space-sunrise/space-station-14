@@ -19,7 +19,7 @@ public sealed partial class CryoPodEjectLockWireAction : ComponentWireAction<Cry
         if (!cryoPodComponent.PermaLocked)
         {
             cryoPodComponent.Locked = true;
-            EntityManager.Dirty(wire.Owner, cryoPodComponent);
+            EntityManager.Dirty(wire, cryoPodComponent);
         }
 
         return true;
@@ -30,7 +30,7 @@ public sealed partial class CryoPodEjectLockWireAction : ComponentWireAction<Cry
         if (!cryoPodComponent.PermaLocked)
         {
             cryoPodComponent.Locked = false;
-            EntityManager.Dirty(wire.Owner, cryoPodComponent);
+            EntityManager.Dirty(wire, cryoPodComponent);
         }
 
         return true;

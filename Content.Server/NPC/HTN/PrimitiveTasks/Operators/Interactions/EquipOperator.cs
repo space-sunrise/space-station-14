@@ -16,7 +16,7 @@ public sealed partial class EquipOperator : HTNOperator
             return HTNOperatorStatus.Failed;
         }
 
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         var handsSystem = _entManager.System<HandsSystem>();
 
         // TODO: As elsewhere need some generic interaction cooldown system

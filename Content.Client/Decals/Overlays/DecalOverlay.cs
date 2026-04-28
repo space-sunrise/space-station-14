@@ -34,7 +34,7 @@ namespace Content.Client.Decals.Overlays
             if (args.MapId == MapId.Nullspace)
                 return;
 
-            var owner = Grid.Owner;
+            var owner = Grid;
 
             if (!_entManager.TryGetComponent(owner, out DecalGridComponent? decalGrid) ||
                 !_entManager.TryGetComponent(owner, out TransformComponent? xform))

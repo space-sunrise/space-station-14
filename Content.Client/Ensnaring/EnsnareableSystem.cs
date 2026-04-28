@@ -21,11 +21,11 @@ public sealed class EnsnareableSystem : SharedEnsnareableSystem
     {
         base.OnEnsnareInit(ent, ref args);
 
-        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
         // TODO remove this, this should just be in yaml.
-        _sprite.LayerMapReserve((ent.Owner, sprite), EnsnaredVisualLayers.Ensnared);
+        _sprite.LayerMapReserve((ent, sprite), EnsnaredVisualLayers.Ensnared);
     }
 
     private void OnAppearanceChange(EntityUid uid, EnsnareableComponent component, ref AppearanceChangeEvent args)

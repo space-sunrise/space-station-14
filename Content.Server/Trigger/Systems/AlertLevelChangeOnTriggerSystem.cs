@@ -22,7 +22,7 @@ public sealed class AlertLevelChangeOnTriggerSystem : EntitySystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var stationUid = _station.GetOwningStation(ent.Owner);
+        var stationUid = _station.GetOwningStation(ent);
         if (stationUid == null)
             return;
 

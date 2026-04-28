@@ -50,12 +50,12 @@ public sealed class CodeConsoleSystem : EntitySystem
 
     private void OnActivateButtonPressed(Entity<CodeConsoleComponent> ent, ref CodeConsoleActivateButtonMessage args)
     {
-        _audio.PlayPvs(ent.Comp.KeypadPressSound, ent.Owner);
+        _audio.PlayPvs(ent.Comp.KeypadPressSound, ent);
 
         if (ent.Comp.IsLocked)
             return;
 
-        _deviceLink.InvokePort(ent.Owner, ent.Comp.ActivatePort);
+        _deviceLink.InvokePort(ent, ent.Comp.ActivatePort);
     }
 
     private void OnLockButtonPressed(Entity<CodeConsoleComponent> ent, ref CodeConsoleLockButtonMessage args)
@@ -86,7 +86,7 @@ public sealed class CodeConsoleSystem : EntitySystem
 
     private void OnClearButtonPressed(Entity<CodeConsoleComponent> ent, ref CodeConsoleKeypadClearMessage args)
     {
-        _audio.PlayPvs(ent.Comp.KeypadPressSound, ent.Owner);
+        _audio.PlayPvs(ent.Comp.KeypadPressSound, ent);
 
         if (!ent.Comp.IsLocked)
             return;
@@ -99,7 +99,7 @@ public sealed class CodeConsoleSystem : EntitySystem
     {
         if (!ent.Comp.IsLocked)
         {
-            _audio.PlayPvs(ent.Comp.KeypadPressSound, ent.Owner);
+            _audio.PlayPvs(ent.Comp.KeypadPressSound, ent);
             return;
         }
 
@@ -142,22 +142,22 @@ public sealed class CodeConsoleSystem : EntitySystem
             if (ent.Comp.EnteredCode == ent.Comp.Code)
             {
                 ent.Comp.IsLocked = false;
-                _audio.PlayPvs(ent.Comp.AccessGrantedSound, ent.Owner);
+                _audio.PlayPvs(ent.Comp.AccessGrantedSound, ent);
             }
             else
             {
                 if (ent.Comp.EnteredCode.Length == ent.Comp.CodeLength)
-                    _deviceLink.InvokePort(ent.Owner, ent.Comp.WrongCodePort);
+                    _deviceLink.InvokePort(ent, ent.Comp.WrongCodePort);
 
                 ent.Comp.EnteredCode = "";
-                _audio.PlayPvs(ent.Comp.AccessDeniedSound, ent.Owner);
+                _audio.PlayPvs(ent.Comp.AccessDeniedSound, ent);
             }
         }
         else
         {
             ent.Comp.IsLocked = true;
             ent.Comp.EnteredCode = "";
-            _audio.PlayPvs(ent.Comp.KeypadPressSound, ent.Owner);
+            _audio.PlayPvs(ent.Comp.KeypadPressSound, ent);
         }
     }
 
@@ -184,12 +184,12 @@ public sealed class CodeConsoleSystem : EntitySystem
 
         var opts = ent.Comp.KeypadPressSound.Params;
         opts = AudioHelpers.ShiftSemitone(opts, semitoneShift).AddVolume(-5f);
-        _audio.PlayPvs(ent.Comp.KeypadPressSound, ent.Owner, opts);
+        _audio.PlayPvs(ent.Comp.KeypadPressSound, ent, opts);
     }
 
     private void UpdateUserInterface(Entity<CodeConsoleComponent> ent)
     {
-        if (!_ui.HasUi(ent.Owner, CodeConsoleUiKey.Key))
+        if (!_ui.HasUi(ent, CodeConsoleUiKey.Key))
             return;
 
         var state = new CodeConsoleUiState
@@ -199,7 +199,7 @@ public sealed class CodeConsoleSystem : EntitySystem
             MaxCodeLength = ent.Comp.CodeLength
         };
 
-        _ui.SetUiState(ent.Owner, CodeConsoleUiKey.Key, state);
+        _ui.SetUiState(ent, CodeConsoleUiKey.Key, state);
     }
 
     private string GetRandomCode(int codeLength)

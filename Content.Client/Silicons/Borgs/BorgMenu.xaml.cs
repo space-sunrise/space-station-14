@@ -91,7 +91,7 @@ public sealed partial class BorgMenu : FancyWindow
         var chargeFraction = 0f;
 
         if (_powerCell.TryGetBatteryFromSlot(Entity, out var battery))
-            chargeFraction = _battery.GetCharge(battery.Value.AsNullable()) / battery.Value.Comp.MaxCharge;
+            chargeFraction = _battery.GetCharge(battery.Value) / battery.Value.Comp.MaxCharge;
 
         ChargeBar.Value = chargeFraction;
         ChargeLabel.Text = Loc.GetString("borg-ui-charge-label",

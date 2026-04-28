@@ -19,7 +19,7 @@ public sealed class BoundarySystem : EntitySystem
 
     private void OnBoundaryCollide(Entity<BoundaryComponent> ent, ref StartCollideEvent args)
     {
-        var center = _xform.GetWorldPosition(ent.Owner);
+        var center = _xform.GetWorldPosition(ent);
         var otherXform = Transform(args.OtherEntity);
         var collisionPoint = _xform.GetWorldPosition(otherXform);
         var offset = collisionPoint - center;

@@ -24,16 +24,16 @@ public sealed class UIPowerStateSystem : EntitySystem
     {
         if (ent.Comp.Keys is null)
         {
-            if (_ui.IsAnyUiOpen(ent.Owner))
+            if (_ui.IsAnyUiOpen(ent))
                 return;
         }
         else
         {
-            if (_ui.IsUiOpen(ent.Owner, ent.Comp.Keys))
+            if (_ui.IsUiOpen(ent, ent.Comp.Keys))
                 return;
         }
 
-        _powerState.SetWorkingState(ent.Owner, false);
+        _powerState.SetWorkingState(ent, false);
     }
 
     private void OnUiOpened(Entity<UIPowerStateComponent> ent, ref BoundUIOpenedEvent args)
@@ -41,6 +41,6 @@ public sealed class UIPowerStateSystem : EntitySystem
         if (ent.Comp.Keys is not null && !ent.Comp.Keys.Contains(args.UiKey))
             return;
 
-        _powerState.SetWorkingState(ent.Owner, true);
+        _powerState.SetWorkingState(ent, true);
     }
 }

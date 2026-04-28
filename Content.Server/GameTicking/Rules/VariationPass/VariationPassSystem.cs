@@ -22,7 +22,7 @@ public abstract class VariationPassSystem<T> : GameRuleSystem<T>
 
     protected bool IsMemberOfStation(Entity<TransformComponent> ent, ref StationVariationPassEvent args)
     {
-        return Stations.GetOwningStation(ent, ent.Comp) == args.Station.Owner;
+        return Stations.GetOwningStation(ent, ent.Comp) == args.Station;
     }
 
     protected abstract void ApplyVariation(Entity<T> ent, ref StationVariationPassEvent args);

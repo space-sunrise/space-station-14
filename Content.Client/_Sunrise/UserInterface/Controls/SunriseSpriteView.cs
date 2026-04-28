@@ -97,7 +97,7 @@ public class SunriseStaticSpriteView : Control
 
     public void SetEntity(EntityUid uid)
     {
-        if (Entity.Owner == uid)
+        if (Entity == uid)
             return;
 
         if (!_entityMan.TryGetComponent(uid, out SpriteComponent? sprite))
@@ -204,10 +204,10 @@ public class SunriseStaticSpriteView : Control
         sprite = null;
         uid = EntityUid.Invalid;
 
-        if (!_entityMan.EntityExists(Entity.Owner) || _cachedSprite == null)
+        if (!_entityMan.EntityExists(Entity) || _cachedSprite == null)
             return false;
 
-        uid = Entity.Owner;
+        uid = Entity;
         sprite = _cachedSprite;
 
         return true;

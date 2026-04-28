@@ -67,7 +67,7 @@ public sealed class StethoscopeSystem : EntitySystem
         if (!_container.TryGetContainingContainer((ent, null, null), out var container))
             return;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, container.Owner, ent.Comp.Delay, new StethoscopeDoAfterEvent(), ent, target: target, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, container, ent.Comp.Delay, new StethoscopeDoAfterEvent(), ent, target: target, used: ent)
         {
             DuplicateCondition = DuplicateConditions.SameEvent,
             BreakOnMove = true,

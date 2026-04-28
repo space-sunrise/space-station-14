@@ -63,7 +63,7 @@ public sealed class VomitSystem : EntitySystem
         // Empty the stomach out into it
         foreach (var stomach in stomachList)
         {
-            if (_solutionContainer.ResolveSolution(stomach.Owner, StomachSystem.DefaultSolutionName, ref stomach.Comp1.Solution, out var sol))
+            if (_solutionContainer.ResolveSolution(stomach, StomachSystem.DefaultSolutionName, ref stomach.Comp1.Solution, out var sol))
                 _solutionContainer.TryTransferSolution(stomach.Comp1.Solution.Value, args.Sol, sol.AvailableVolume);
         }
 

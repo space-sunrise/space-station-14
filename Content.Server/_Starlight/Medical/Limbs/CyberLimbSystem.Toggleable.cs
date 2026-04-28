@@ -22,7 +22,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
     }
 
     private void IWithActionRemoved(Entity<BodyComponent> ent, ref LimbRemovedEvent<IWithAction> args) 
-        => _actions.RemoveProvidedActions(ent.Owner, args.Limb);
+        => _actions.RemoveProvidedActions(ent, args.Limb);
 
     private void IWithActionAttached(Entity<BodyComponent> ent, ref LimbAttachedEvent<IWithAction> args) 
         => _actions.GrantContainedActions(_slEnt.Entity<ActionsComponent>(ent), _slEnt.Entity<ActionsContainerComponent>(args.Limb));

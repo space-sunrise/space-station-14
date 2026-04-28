@@ -101,7 +101,7 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        var uid = ent.Owner;
+        var uid = ent;
         var component = ent.Comp;
 
         // Behavior for if the disposals bin has items in it

@@ -25,23 +25,23 @@ public sealed partial class TriggerOnStrappedOrBuckledSystem : TriggerOnXSystem
     // Called by objects entities can be buckled to. (Chairs, surgical tables/)
     private void OnStrapped(Entity<TriggerOnStrappedComponent> ent, ref StrappedEvent args)
     {
-        Trigger.Trigger(ent.Owner, args.Strap, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.Strap, ent.Comp.KeyOut);
     }
 
     private void OnUnstrapped(Entity<TriggerOnUnstrappedComponent> ent, ref UnstrappedEvent args)
     {
-        Trigger.Trigger(ent.Owner, args.Strap, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.Strap, ent.Comp.KeyOut);
     }
 
     // Called by entities that are buckled to an object. (Mobs, players.)
     private void OnBuckled(Entity<TriggerOnBuckledComponent> ent, ref BuckledEvent args)
     {
-        Trigger.Trigger(ent.Owner, args.Buckle, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.Buckle, ent.Comp.KeyOut);
     }
 
     private void OnUnbuckled(Entity<TriggerOnUnbuckledComponent> ent, ref UnbuckledEvent args)
     {
-        Trigger.Trigger(ent.Owner, args.Buckle, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.Buckle, ent.Comp.KeyOut);
     }
     #endregion
 }

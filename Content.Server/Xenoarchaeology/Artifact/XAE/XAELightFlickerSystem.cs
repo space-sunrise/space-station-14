@@ -33,7 +33,7 @@ public sealed class XAELightFlickerSystem : BaseXAESystem<XAELightFlickerCompone
     protected override void OnActivated(Entity<XAELightFlickerComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
         _entities.Clear();
-        _lookup.GetEntitiesInRange(ent.Owner, ent.Comp.Radius, _entities, LookupFlags.StaticSundries);
+        _lookup.GetEntitiesInRange(ent, ent.Comp.Radius, _entities, LookupFlags.StaticSundries);
         foreach (var light in _entities)
         {
             if (!_lights.HasComponent(light))

@@ -92,7 +92,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     {
         foreach (var change in ev.Changes)
         {
-            InvalidateTile(ev.Entity.Owner, change.GridIndices);
+            InvalidateTile(ev.Entity, change.GridIndices);
         }
     }
 

@@ -103,7 +103,7 @@ public sealed partial class AtmosphereSystem
         {
             tile.Hotspot.State = 3;
 
-            var gridUid = ent.Owner;
+            var gridUid = ent;
             var tilePos = tile.GridIndices;
 
             // Get the existing decals on the tile

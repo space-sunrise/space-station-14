@@ -59,9 +59,9 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
     {
         ent.Comp.On = !ent.Comp.On;
 
-        UpdateMagbootEffects(ent.Owner, ent, ent.Comp.On);
+        UpdateMagbootEffects(ent, ent, ent.Comp.On);
         _sharedActions.SetToggled(ent.Comp.ToggleActionEntity, ent.Comp.On);
-        _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(ent.Owner);
+        _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(ent);
         Dirty(ent);
     }
 
@@ -87,7 +87,7 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
         }
 
         // do not cancel weightlessness if the person is in off-grid.
-        if (ent.Comp.RequiresGrid && !_gravity.EntityOnGravitySupportingGridOrMap(ent.Owner))
+        if (ent.Comp.RequiresGrid && !_gravity.EntityOnGravitySupportingGridOrMap(ent))
             return;
 
         args.IsWeightless = false;

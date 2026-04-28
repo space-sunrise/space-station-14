@@ -24,9 +24,9 @@ public sealed class ServerHypospraySystem : EntitySystem
     private void OnAfterInject(Entity<InjectorComponent> entity, ref BeforeInjectTargetEvent args)
     {
         // Get the solution that was injected
-        if (_solutionContainers.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var hypoSpraySoln, out _))
+        if (_solutionContainers.TryGetSolution(entity, entity.Comp.SolutionName, out var hypoSpraySoln, out _))
         {
-            _borgHypospray.TryAnnounceInjection(entity.Owner, args.EntityUsingInjector, args.TargetGettingInjected, hypoSpraySoln.Value);
+            _borgHypospray.TryAnnounceInjection(entity, args.EntityUsingInjector, args.TargetGettingInjected, hypoSpraySoln.Value);
         }
     }
 }

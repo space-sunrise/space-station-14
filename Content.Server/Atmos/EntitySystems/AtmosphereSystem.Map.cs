@@ -94,7 +94,7 @@ public partial class AtmosphereSystem
     /// </summary>
     private void RefreshMapAtmosphereTiles(Entity<GridAtmosphereComponent?> grid)
     {
-        if (!Resolve(grid.Owner, ref grid.Comp))
+        if (!Resolve(grid, ref grid.Comp))
             return;
 
         var atmos = grid.Comp;

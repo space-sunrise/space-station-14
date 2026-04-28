@@ -14,7 +14,7 @@ public partial class InventorySystem
     /// </summary>
     public IEnumerable<EntityUid> GetHandOrInventoryEntities(Entity<HandsComponent?, InventoryComponent?> user, SlotFlags flags = SlotFlags.All)
     {
-        if (Resolve(user.Owner, ref user.Comp1, false))
+        if (Resolve(user, ref user.Comp1, false))
         {
             foreach (var held in _handsSystem.EnumerateHeld(user))
             {
@@ -22,7 +22,7 @@ public partial class InventorySystem
             }
         }
 
-        if (!Resolve(user.Owner, ref user.Comp2, false))
+        if (!Resolve(user, ref user.Comp2, false))
             yield break;
 
         var slotEnumerator = new InventorySlotEnumerator(user.Comp2, flags);
@@ -43,7 +43,7 @@ public partial class InventorySystem
             return false;
         }
 
-        return TryGetSlot(container.Owner, container.ID, out slot);
+        return TryGetSlot(container, container.ID, out slot);
     }
 
     /// <summary>

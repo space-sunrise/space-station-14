@@ -16,7 +16,7 @@ public sealed partial class ThirstyPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        if (!blackboard.TryGetValue<EntityUid>(NPCBlackboard.Owner, out var owner, _entManager))
+        if (!blackboard.TryGetValue<EntityUid>(NPCBlackboard, out var owner, _entManager))
         {
             return false;
         }

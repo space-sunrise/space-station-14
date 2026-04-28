@@ -14,12 +14,12 @@ public sealed class JauntSystem : EntitySystem
 
     private void OnInit(Entity<JauntComponent> ent, ref MapInitEvent args)
     {
-        _actions.AddAction(ent.Owner, ref ent.Comp.Action, ent.Comp.JauntAction);
+        _actions.AddAction(ent, ref ent.Comp.Action, ent.Comp.JauntAction);
     }
 
     private void OnShutdown(Entity<JauntComponent> ent, ref ComponentShutdown args)
     {
-        _actions.RemoveAction(ent.Owner, ent.Comp.Action);
+        _actions.RemoveAction(ent, ent.Comp.Action);
     }
 
 }

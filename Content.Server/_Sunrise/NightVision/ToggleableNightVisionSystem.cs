@@ -21,7 +21,7 @@ public sealed class ToggleableNightVisionSystem : EntitySystem
 
     private void OnVisionInit(Entity<ToggleableNightVisionComponent> ent, ref ComponentInit args)
     {
-        _actionsSystem.AddAction(ent.Owner, ref ent.Comp.ActionEntity, ent.Comp.Action);
+        _actionsSystem.AddAction(ent, ref ent.Comp.ActionEntity, ent.Comp.Action);
     }
 
     private void OnVisionShutdown(Entity<ToggleableNightVisionComponent> ent, ref ComponentShutdown args)

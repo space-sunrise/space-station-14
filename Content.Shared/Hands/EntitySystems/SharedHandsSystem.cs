@@ -66,7 +66,7 @@ public abstract partial class SharedHandsSystem
     private void OnMapInit(Entity<HandsComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.ActiveHandId == null)
-            SetActiveHand(ent.AsNullable(), ent.Comp.SortedHands.FirstOrDefault());
+            SetActiveHand(ent, ent.Comp.SortedHands.FirstOrDefault());
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ public abstract partial class SharedHandsSystem
     {
         if (!TryGetActiveItem(entity, out var item))
         {
-            return entity.Owner;
+            return entity;
         }
 
         return item.Value;
@@ -461,10 +461,10 @@ public abstract partial class SharedHandsSystem
         var freeable = 0;
         foreach (var name in hands.Comp.Hands.Keys)
         {
-            if (except != null && GetHeldItem(hands.AsNullable(), name) == except)
+            if (except != null && GetHeldItem(hands, name) == except)
                 continue;
 
-            if (HandIsEmpty(hands.AsNullable(), name) || CanDropHeld(hands, name))
+            if (HandIsEmpty(hands, name) || CanDropHeld(hands, name))
                 freeable++;
         }
 

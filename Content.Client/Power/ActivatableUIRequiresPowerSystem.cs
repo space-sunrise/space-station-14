@@ -13,13 +13,13 @@ public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequir
 
     protected override void OnActivate(Entity<ActivatableUIRequiresPowerComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (args.Cancelled || this.IsPowered(ent.Owner, EntityManager))
+        if (args.Cancelled || this.IsPowered(ent, EntityManager))
         {
             return;
         }
 
         if (!args.Silent)
-            _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent.Owner)), args.User, args.User);
+            _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent)), args.User, args.User);
 
         args.Cancel();
     }

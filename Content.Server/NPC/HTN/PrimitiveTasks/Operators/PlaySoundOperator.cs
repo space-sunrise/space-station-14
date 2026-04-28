@@ -19,7 +19,7 @@ public sealed partial class PlaySoundOperator : HTNOperator
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        var uid = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var uid = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         _audio.PlayPvs(Sound, uid);
 

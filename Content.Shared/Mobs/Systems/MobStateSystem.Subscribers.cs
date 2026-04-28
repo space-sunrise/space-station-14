@@ -55,7 +55,7 @@ public partial class MobStateSystem
     {
         // TODO is this necessary?
         // Shouldn't the interaction have already been blocked by a general interaction check?
-        if (args.User == ent.Owner && IsIncapacitated(ent))
+        if (args.User == ent && IsIncapacitated(ent))
             args.Cancelled = true;
     }
 

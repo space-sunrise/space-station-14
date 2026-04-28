@@ -40,12 +40,12 @@ public sealed class HellSpawnRushSystem : EntitySystem
 
     private void OnInit(Entity<HellSpawnRushComponent> ent, ref MapInitEvent args)
     {
-        _actions.AddAction(ent.Owner, ref ent.Comp.RushActionEntity, ent.Comp.RushAction);
+        _actions.AddAction(ent, ref ent.Comp.RushActionEntity, ent.Comp.RushAction);
     }
 
     private void OnRush(Entity<HellSpawnRushComponent> ent, ref HellSpawnRushActionEvent args)
     {
-        if (_container.IsEntityOrParentInContainer(ent.Owner) || args.Handled)
+        if (_container.IsEntityOrParentInContainer(ent) || args.Handled)
             return;
 
         Rush(args.Performer, args.Target, ent.Comp.Range);
@@ -60,12 +60,12 @@ public sealed class HellSpawnRushSystem : EntitySystem
         if (ent.Comp.DoCameraKickOnLand)
             KickCameras(Transform(ent).Coordinates, ent.Comp.CameraKickRange, ent.Comp.CameraKickback);
 
-        var query = _lookup.GetEntitiesInRange<DamageableComponent>(Transform(ent.Owner).Coordinates, 1.3f);
+        var query = _lookup.GetEntitiesInRange<DamageableComponent>(Transform(ent).Coordinates, 1.3f);
         foreach (var entity in query)
         {
             if (_whitelist.IsWhitelistFail(ent.Comp.Blacklist, entity))
                 continue;
-            _damageable.TryChangeDamage(entity.Owner, ent.Comp.ThrowHitDamageDict);
+            _damageable.TryChangeDamage(entity, ent.Comp.ThrowHitDamageDict);
         }
 
         QueueDel(ent.Comp.RuneUid);

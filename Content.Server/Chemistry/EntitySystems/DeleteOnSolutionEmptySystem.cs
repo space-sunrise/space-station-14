@@ -30,7 +30,7 @@ namespace Content.Server.Chemistry.EntitySystems.DeleteOnSolutionEmptySystem
             if (!TryComp(entity, out SolutionContainerManagerComponent? solutions))
                 return;
 
-            if (_solutionContainerSystem.TryGetSolution((entity.Owner, solutions), entity.Comp.Solution, out _, out var solution))
+            if (_solutionContainerSystem.TryGetSolution((entity, solutions), entity.Comp.Solution, out _, out var solution))
                 if (solution.Volume <= 0)
                     QueueDel(entity);
         }

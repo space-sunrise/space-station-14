@@ -57,8 +57,8 @@ public sealed class DeviceLinkingTest
                         // Create a map for each entity/port combo so they can't interfere
                         mapSys.CreateMap(out var mapId);
                         var grid = mapMan.CreateGridEntity(mapId);
-                        mapSys.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(1));
-                        var coord = new EntityCoordinates(grid.Owner, 0, 0);
+                        mapSys.SetTile(grid, grid.Comp, Vector2i.Zero, new Tile(1));
+                        var coord = new EntityCoordinates(grid, 0, 0);
 
                         // Spawn the sink entity
                         var sinkEnt = server.EntMan.SpawnEntity(proto.ID, coord);

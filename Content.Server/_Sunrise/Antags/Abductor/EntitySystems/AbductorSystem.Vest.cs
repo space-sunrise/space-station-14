@@ -27,7 +27,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void OnToggle(Entity<AbductorVestComponent> ent, ref ToggleActionEvent args)
     {
         if (ent.Comp.CurrentState == AbductorArmorModeType.Combat)
-            _popup.PopupEntity(Loc.GetString("need-switch-mode"), ent.Owner, args.Performer, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("need-switch-mode"), ent, args.Performer, PopupType.MediumCaution);
     }
     private void OnItemSwitch(EntityUid uid, AbductorVestComponent component, ref ItemSwitchedEvent args)
     {

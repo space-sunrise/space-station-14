@@ -95,7 +95,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         if (args.IsHand)
         {
-            StripHand((user, userHands), (strippable.Owner, null), args.Slot, strippable);
+            StripHand((user, userHands), (strippable, null), args.Slot, strippable);
             return;
         }
 
@@ -105,9 +105,9 @@ public abstract class SharedStrippableSystem : EntitySystem
         var hasEnt = _inventorySystem.TryGetSlotEntity(strippable, args.Slot, out var held, inventory);
 
         if (_handsSystem.GetActiveItem((user, userHands)) is { } activeItem && !hasEnt)
-            StartStripInsertInventory((user, userHands), strippable.Owner, activeItem, args.Slot);
+            StartStripInsertInventory((user, userHands), strippable, activeItem, args.Slot);
         else if (hasEnt)
-            StartStripRemoveInventory(user, strippable.Owner, held!.Value, args.Slot);
+            StartStripRemoveInventory(user, strippable, held!.Value, args.Slot);
     }
 
     private void StripHand(
@@ -124,18 +124,18 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (!target.Comp.CanBeStripped)
             return;
 
-        var heldEntity = _handsSystem.GetHeldItem(target.Owner, handId);
+        var heldEntity = _handsSystem.GetHeldItem(target, handId);
 
         // Is the target a handcuff?
         if (TryComp<VirtualItemComponent>(heldEntity, out var virtualItem) &&
-            _cuffableSystem.TryGetAllCuffs(target.Owner, out var cuffs) &&
+            _cuffableSystem.TryGetAllCuffs(target, out var cuffs) &&
             cuffs.Contains(virtualItem.BlockingEntity))
         {
-            _cuffableSystem.TryUncuff(target.Owner, user, virtualItem.BlockingEntity);
+            _cuffableSystem.TryUncuff(target, user, virtualItem.BlockingEntity);
             return;
         }
 
-        if (_handsSystem.GetActiveItem(user.AsNullable()) is { } activeItem && heldEntity == null)
+        if (_handsSystem.GetActiveItem(user) is { } activeItem && heldEntity == null)
             StartStripInsertHand(user, target, activeItem, handId, targetStrippable);
         else if (heldEntity != null)
             StartStripRemoveHand(user, target, heldEntity.Value, handId, targetStrippable);
@@ -574,23 +574,23 @@ public abstract class SharedStrippableSystem : EntitySystem
     {
         var args = ev.DoAfter.Args;
 
-        DebugTools.Assert(entity.Owner == args.User);
+        DebugTools.Assert(entity == args.User);
         DebugTools.Assert(args.Target != null);
         DebugTools.Assert(args.Used != null);
         DebugTools.Assert(ev.Event.SlotOrHandName != null);
 
         if (ev.Event.InventoryOrHand)
         {
-            if ( ev.Event.InsertOrRemove && !CanStripInsertInventory((entity.Owner, entity.Comp), args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName) ||
-                !ev.Event.InsertOrRemove && !CanStripRemoveInventory(entity.Owner, args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName))
+            if ( ev.Event.InsertOrRemove && !CanStripInsertInventory((entity, entity.Comp), args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName) ||
+                !ev.Event.InsertOrRemove && !CanStripRemoveInventory(entity, args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName))
             {
                 ev.Cancel();
             }
         }
         else
         {
-            if ( ev.Event.InsertOrRemove && !CanStripInsertHand((entity.Owner, entity.Comp), args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName) ||
-                !ev.Event.InsertOrRemove && !CanStripRemoveHand(entity.Owner, args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName))
+            if ( ev.Event.InsertOrRemove && !CanStripInsertHand((entity, entity.Comp), args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName) ||
+                !ev.Event.InsertOrRemove && !CanStripRemoveHand(entity, args.Target.Value, args.Used.Value, ev.Event.SlotOrHandName))
             {
                 ev.Cancel();
             }
@@ -602,7 +602,7 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        DebugTools.Assert(entity.Owner == ev.User);
+        DebugTools.Assert(entity == ev.User);
         DebugTools.Assert(ev.Target != null);
         DebugTools.Assert(ev.Used != null);
         DebugTools.Assert(ev.SlotOrHandName != null);
@@ -610,16 +610,16 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (ev.InventoryOrHand)
         {
             if (ev.InsertOrRemove)
-                StripInsertInventory((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName);
+                StripInsertInventory((entity, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName);
             else
-                StripRemoveInventory(entity.Owner, ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
+                StripRemoveInventory(entity, ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
         }
         else
         {
             if (ev.InsertOrRemove)
-                StripInsertHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
+                StripInsertHand((entity, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
             else
-                StripRemoveHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
+                StripRemoveHand((entity, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
         }
     }
 
@@ -672,7 +672,7 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (!HasComp<StrippingComponent>(user))
             return false;
 
-        _ui.OpenUi(target.Owner, StrippingUiKey.Key, user);
+        _ui.OpenUi(target, StrippingUiKey.Key, user);
         return true;
     }
 

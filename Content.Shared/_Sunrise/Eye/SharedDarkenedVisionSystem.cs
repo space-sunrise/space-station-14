@@ -30,12 +30,12 @@ public abstract class SharedDarkenedVisionSystem : EntitySystem
         var ev = new GetVisionDarkeningEvent();
         RaiseLocalEvent(ent, ev);
         if (TryComp<InventoryComponent>(ent, out var inventory))
-            _inventory.RelayEvent((ent.Owner, inventory), ref ev);
+            _inventory.RelayEvent((ent, inventory), ref ev);
 
         ent.Comp.Strength = ev.Strength;
 
         Dirty(ent);
-        _blinding.UpdateIsBlind(ent.Owner);
+        _blinding.UpdateIsBlind(ent);
     }
 
     private void OnTrySee(Entity<DarkenedVisionComponent> ent, ref CanSeeAttemptEvent args)

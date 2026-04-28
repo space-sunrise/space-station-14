@@ -16,7 +16,7 @@ public sealed partial class StationAiFixerConsoleSystem : SharedStationAiFixerCo
 
     private void OnAppearanceChange(Entity<StationAiFixerConsoleComponent> ent, ref AppearanceChangeEvent args)
     {
-        if (_userInterface.TryGetOpenUi(ent.Owner, StationAiFixerConsoleUiKey.Key, out var bui))
+        if (_userInterface.TryGetOpenUi(ent, StationAiFixerConsoleUiKey.Key, out var bui))
         {
             bui?.Update<StationAiFixerConsoleBoundUserInterfaceState>();
         }

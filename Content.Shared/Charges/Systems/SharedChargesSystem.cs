@@ -53,7 +53,7 @@ public abstract class SharedChargesSystem : EntitySystem
 
     private void OnRejuvenate(Entity<LimitedChargesComponent> ent, ref RejuvenateEvent args)
     {
-        ResetCharges(ent.AsNullable());
+        ResetCharges(ent);
     }
 
     private void OnChargesAttempt(Entity<LimitedChargesComponent> ent, ref ActionAttemptEvent args)
@@ -61,7 +61,7 @@ public abstract class SharedChargesSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var charges = GetCurrentCharges((ent.Owner, ent.Comp, null));
+        var charges = GetCurrentCharges((ent, ent.Comp, null));
 
         if (charges <= 0)
         {
@@ -71,13 +71,13 @@ public abstract class SharedChargesSystem : EntitySystem
 
     private void OnChargesPerformed(Entity<LimitedChargesComponent> ent, ref ActionPerformedEvent args)
     {
-        if (HasComp<DeleteWithoutChargesComponent>(ent.Owner) && (ent.Comp.LastCharges - 1 <= 0))
+        if (HasComp<DeleteWithoutChargesComponent>(ent) && (ent.Comp.LastCharges - 1 <= 0))
         {
-            _actionsSystem.RemoveAction(args.Performer, ent.Owner);
+            _actionsSystem.RemoveAction(args.Performer, ent);
             return;
         }
 
-        AddCharges((ent.Owner, ent.Comp), -1);
+        AddCharges((ent, ent.Comp), -1);
     }
 
     private void OnChargesMapInit(Entity<LimitedChargesComponent> ent, ref MapInitEvent args)
@@ -119,7 +119,7 @@ public abstract class SharedChargesSystem : EntitySystem
         if (addCharges == 0)
             return;
 
-        action.Comp1 ??= EnsureComp<LimitedChargesComponent>(action.Owner);
+        action.Comp1 ??= EnsureComp<LimitedChargesComponent>(action);
 
         var lastCharges = GetCurrentCharges(action);
         var charges = lastCharges + addCharges;
@@ -134,7 +134,7 @@ public abstract class SharedChargesSystem : EntitySystem
             action.Comp1.LastCharges = action.Comp1.MaxCharges;
         }
         // If it has auto-recharge then make up the difference.
-        else if (Resolve(action.Owner, ref action.Comp2, false))
+        else if (Resolve(action, ref action.Comp2, false))
         {
             var duration = action.Comp2.RechargeDuration;
             var diff = (_timing.CurTime - action.Comp1.LastUpdate);
@@ -145,7 +145,7 @@ public abstract class SharedChargesSystem : EntitySystem
         }
 
         action.Comp1.LastCharges = Math.Clamp(action.Comp1.LastCharges + addCharges, 0, action.Comp1.MaxCharges);
-        Dirty(action.Owner, action.Comp1);
+        Dirty(action, action.Comp1);
     }
 
     public bool TryUseCharge(Entity<LimitedChargesComponent?> entity)
@@ -177,10 +177,10 @@ public abstract class SharedChargesSystem : EntitySystem
     /// </summary>
     public void ResetCharges(Entity<LimitedChargesComponent?> action)
     {
-        if (!Resolve(action.Owner, ref action.Comp, false))
+        if (!Resolve(action, ref action.Comp, false))
             return;
 
-        var charges = GetCurrentCharges((action.Owner, action.Comp, null));
+        var charges = GetCurrentCharges((action, action.Comp, null));
 
         if (charges == action.Comp.MaxCharges)
             return;
@@ -250,7 +250,7 @@ public abstract class SharedChargesSystem : EntitySystem
     [Pure]
     public TimeSpan GetNextRechargeTime(Entity<LimitedChargesComponent?, AutoRechargeComponent?> entity)
     {
-        if (!Resolve(entity.Owner, ref entity.Comp1, ref entity.Comp2, false))
+        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2, false))
         {
             return TimeSpan.Zero;
         }
@@ -274,7 +274,7 @@ public abstract class SharedChargesSystem : EntitySystem
     [Pure]
     public int GetCurrentCharges(Entity<LimitedChargesComponent?, AutoRechargeComponent?> entity)
     {
-        if (!Resolve(entity.Owner, ref entity.Comp1, false))
+        if (!Resolve(entity, ref entity.Comp1, false))
         {
             // I'm all in favor of nullable ints however null-checking return args against comp nullability is dodgy
             // so we get this.
@@ -283,7 +283,7 @@ public abstract class SharedChargesSystem : EntitySystem
 
         var calculated = 0;
 
-        if (Resolve(entity.Owner, ref entity.Comp2, false) && entity.Comp2.RechargeDuration.TotalSeconds != 0.0)
+        if (Resolve(entity, ref entity.Comp2, false) && entity.Comp2.RechargeDuration.TotalSeconds != 0.0)
         {
             calculated = (int)((_timing.CurTime - entity.Comp1.LastUpdate).TotalSeconds / entity.Comp2.RechargeDuration.TotalSeconds);
         }

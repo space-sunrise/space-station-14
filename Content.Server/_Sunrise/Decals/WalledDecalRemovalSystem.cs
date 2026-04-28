@@ -32,19 +32,19 @@ public sealed class WalledDecalRemovalSystem : EntitySystem
     /// </summary>
     public int RemoveWalledDecals(Entity<MapGridComponent> grid)
     {
-        if (!TryComp<DecalGridComponent>(grid.Owner, out var decalGrid))
+        if (!TryComp<DecalGridComponent>(grid, out var decalGrid))
             return 0;
 
         var wallTiles = new HashSet<Vector2i>();
         var decalsToRemove = new HashSet<uint>();
-        var childEnumerator = Transform(grid.Owner).ChildEnumerator;
+        var childEnumerator = Transform(grid).ChildEnumerator;
 
         while (childEnumerator.MoveNext(out var child))
         {
             if (!TileWallProcessingHelper.IsEligibleWall(EntityManager, _tag, child, out var childTransform))
                 continue;
 
-            wallTiles.Add(_map.GetTileRef(grid.Owner, grid.Comp, childTransform.Coordinates).GridIndices);
+            wallTiles.Add(_map.GetTileRef(grid, grid.Comp, childTransform.Coordinates).GridIndices);
         }
 
         if (wallTiles.Count == 0)
@@ -62,7 +62,7 @@ public sealed class WalledDecalRemovalSystem : EntitySystem
         var removed = 0;
         foreach (var decalId in decalsToRemove)
         {
-            if (_decal.RemoveDecal(grid.Owner, decalId))
+            if (_decal.RemoveDecal(grid, decalId))
                 removed++;
         }
 

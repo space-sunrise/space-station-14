@@ -85,7 +85,7 @@ public sealed partial class BlockGame
             SendHighscoreUpdate();
 
             var ev = new MoodEffectEvent("ArcadePlay"); // Sunrise Edit
-            _entityManager.EventBus.RaiseLocalEvent(meta.Owner, ev); // Sunrise Edit
+            _entityManager.EventBus.RaiseLocalEvent(meta, ev); // Sunrise Edit
         }
         SendMessage(new BlockGameMessages.BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement));
     }

@@ -59,7 +59,7 @@ public sealed class ReflectSystem : EntitySystem
         if (!ent.Comp.InRightPlace)
             return; // only reflect when equipped correctly
 
-        if (TryReflectProjectile(ent, ent.Owner, args.ProjUid))
+        if (TryReflectProjectile(ent, ent, args.ProjUid))
             args.Cancelled = true;
     }
 
@@ -71,7 +71,7 @@ public sealed class ReflectSystem : EntitySystem
         if (!ent.Comp.InRightPlace)
             return; // only reflect when equipped correctly
 
-        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
+        if (TryReflectHitscan(ent, ent, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -83,7 +83,7 @@ public sealed class ReflectSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (TryReflectProjectile(ent, ent.Owner, args.ProjUid))
+        if (TryReflectProjectile(ent, ent, args.ProjUid))
             args.Cancelled = true;
     }
 
@@ -92,7 +92,7 @@ public sealed class ReflectSystem : EntitySystem
         if (args.Reflected)
             return;
 
-        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
+        if (TryReflectHitscan(ent, ent, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -103,7 +103,7 @@ public sealed class ReflectSystem : EntitySystem
     {
         if (!TryComp<ReflectiveComponent>(projectile, out var reflective) ||
             (reflector.Comp.Reflects & reflective.Reflective) == 0x0 ||
-            !_toggle.IsActivated(reflector.Owner) ||
+            !_toggle.IsActivated(reflector) ||
             !_random.Prob(reflector.Comp.ReflectProb) ||
             !TryComp<PhysicsComponent>(projectile, out var physics))
         {
@@ -173,7 +173,7 @@ public sealed class ReflectSystem : EntitySystem
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if ((reflector.Comp.Reflects & hitscanReflectType) == 0x0 ||
-            !_toggle.IsActivated(reflector.Owner) ||
+            !_toggle.IsActivated(reflector) ||
             !_random.Prob(reflector.Comp.ReflectProb))
         {
             newDirection = null;
@@ -245,7 +245,7 @@ public sealed class ReflectSystem : EntitySystem
         // Trust me, universal verb for the potential weapons, armor and walls looks awful.
         var value = MathF.Round(ent.Comp.ReflectProb * 100, 1);
 
-        if (!_toggle.IsActivated(ent.Owner) || value == 0 || ent.Comp.Reflects == ReflectType.None)
+        if (!_toggle.IsActivated(ent) || value == 0 || ent.Comp.Reflects == ReflectType.None)
             return;
 
         var compTypes = ent.Comp.Reflects.ToString().Split(", ");

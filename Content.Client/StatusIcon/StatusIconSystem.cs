@@ -81,7 +81,7 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
         // Sunrise-Edit-End
 
         // Always show our icons to our entity
-        if (viewer == ent.Owner)
+        if (viewer == ent)
             return true;
 
         // Sunrise-Edit-Start

@@ -29,7 +29,7 @@ public sealed class UseDelayOnMeleeHitSystem : EntitySystem
 
     private void TryResetDelay(Entity<UseDelayOnMeleeHitComponent> ent)
     {
-        var uid = ent.Owner;
+        var uid = ent;
 
         if (!TryComp<UseDelayComponent>(uid, out var useDelay))
             return;

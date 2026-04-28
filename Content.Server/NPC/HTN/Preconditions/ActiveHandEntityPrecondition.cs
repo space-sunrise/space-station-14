@@ -11,7 +11,7 @@ public sealed partial class ActiveHandEntityPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        if (!blackboard.TryGetValue(NPCBlackboard.Owner, out EntityUid owner, _entManager) ||
+        if (!blackboard.TryGetValue(NPCBlackboard, out EntityUid owner, _entManager) ||
             !blackboard.TryGetValue(NPCBlackboard.ActiveHand, out string? activeHand, _entManager))
         {
             return false;

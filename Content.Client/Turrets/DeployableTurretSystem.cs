@@ -93,8 +93,8 @@ public sealed partial class DeployableTurretSystem : SharedDeployableTurretSyste
         ent.Comp.VisualState = state;
 
         // Toggle layer visibility
-        _sprite.LayerSetVisible((ent.Owner, sprite), DeployableTurretVisuals.Weapon, (targetState & DeployableTurretState.Deployed) > 0);
-        _sprite.LayerSetVisible((ent.Owner, sprite), PowerDeviceVisualLayers.Powered, HasAmmo(ent) && targetState == DeployableTurretState.Retracted);
+        _sprite.LayerSetVisible((ent, sprite), DeployableTurretVisuals.Weapon, (targetState & DeployableTurretState.Deployed) > 0);
+        _sprite.LayerSetVisible((ent, sprite), PowerDeviceVisualLayers.Powered, HasAmmo(ent) && targetState == DeployableTurretState.Retracted);
 
         // Change the visual state
         switch (targetState)
@@ -108,11 +108,11 @@ public sealed partial class DeployableTurretSystem : SharedDeployableTurretSyste
                 break;
 
             case DeployableTurretState.Deployed:
-                _sprite.LayerSetRsiState((ent.Owner, sprite), DeployableTurretVisuals.Turret, ent.Comp.DeployedState);
+                _sprite.LayerSetRsiState((ent, sprite), DeployableTurretVisuals.Turret, ent.Comp.DeployedState);
                 break;
 
             case DeployableTurretState.Retracted:
-                _sprite.LayerSetRsiState((ent.Owner, sprite), DeployableTurretVisuals.Turret, ent.Comp.RetractedState);
+                _sprite.LayerSetRsiState((ent, sprite), DeployableTurretVisuals.Turret, ent.Comp.RetractedState);
                 break;
         }
     }

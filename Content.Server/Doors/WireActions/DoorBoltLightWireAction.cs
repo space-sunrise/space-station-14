@@ -18,18 +18,18 @@ public sealed partial class DoorBoltLightWireAction : ComponentWireAction<DoorBo
 
     public override bool Cut(EntityUid user, Wire wire, DoorBoltComponent door)
     {
-        EntityManager.System<DoorSystem>().SetBoltLightsEnabled((wire.Owner, door), false);
+        EntityManager.System<DoorSystem>().SetBoltLightsEnabled((wire, door), false);
         return true;
     }
 
     public override bool Mend(EntityUid user, Wire wire, DoorBoltComponent door)
     {
-        EntityManager.System<DoorSystem>().SetBoltLightsEnabled((wire.Owner, door), true);
+        EntityManager.System<DoorSystem>().SetBoltLightsEnabled((wire, door), true);
         return true;
     }
 
     public override void Pulse(EntityUid user, Wire wire, DoorBoltComponent door)
     {
-        EntityManager.System<DoorSystem>().SetBoltLightsEnabled((wire.Owner, door), !door.BoltLightsEnabled);
+        EntityManager.System<DoorSystem>().SetBoltLightsEnabled((wire, door), !door.BoltLightsEnabled);
     }
 }

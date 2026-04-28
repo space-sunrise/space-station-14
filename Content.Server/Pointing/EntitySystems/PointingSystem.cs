@@ -218,10 +218,10 @@ namespace Content.Server.Pointing.EntitySystems
                 var inventoryQuery = GetEntityQuery<InventoryComponent>();
                 foreach (var container in _container.GetContainingContainers(pointed))
                 {
-                    if (inventoryQuery.HasComp(container.Owner))
+                    if (inventoryQuery.HasComp(container))
                     {
                         // We want the innermost inventory, since that's the "owner" of the item
-                        containingInventory = container.Owner;
+                        containingInventory = container;
                         break;
                     }
                 }

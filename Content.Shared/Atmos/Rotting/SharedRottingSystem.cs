@@ -124,7 +124,7 @@ public abstract class SharedRottingSystem : EntitySystem
             return false;
 
         if (_container.TryGetOuterContainer(uid, Transform(uid), out var container) &&
-            HasComp<AntiRottingContainerComponent>(container.Owner))
+            HasComp<AntiRottingContainerComponent>(container))
         {
             return false;
         }

@@ -92,7 +92,7 @@ public sealed partial class InjectSystem
 
     private void OnInserted(EntityUid uid, AmpulaComponent component, EntGotInsertedIntoContainerMessage args)
     {
-        if (!TryComp<InjectComponent>(args.Container.Owner, out var inject)) return;
+        if (!TryComp<InjectComponent>(args.Container, out var inject)) return;
         var action = _actionsSystem.GetAction(inject.ToggleInjectionActionEntity);
 
         if (
@@ -103,8 +103,8 @@ public sealed partial class InjectSystem
         if (!TryComp<MobStateComponent>(action.Value.Comp.AttachedEntity, out var state)) return;
         if (state.CurrentState == MobState.Invalid || state.CurrentState == MobState.Alive) return;
 
-        _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-critical"), args.Container.Owner, PopupType.Medium);
-        Inject(args.Container.Owner, uid);
+        _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-critical"), args.Container, PopupType.Medium);
+        Inject(args.Container, uid);
     }
 
     #endregion

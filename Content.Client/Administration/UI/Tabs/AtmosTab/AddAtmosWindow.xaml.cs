@@ -44,7 +44,7 @@ namespace Content.Client.Administration.UI.Tabs.AtmosTab
 
         private void SubmitButtonOnOnPressed(BaseButton.ButtonEventArgs obj)
         {
-            var selectedGrid = _data[GridOptions.SelectedId].Owner;
+            var selectedGrid = _data[GridOptions.SelectedId];
             IoCManager.Resolve<IClientConsoleHost>().ExecuteCommand($"addatmos {_entities.GetNetEntity(selectedGrid)}");
         }
     }

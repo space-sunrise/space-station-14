@@ -41,7 +41,7 @@ internal sealed class StoreOnCollideSystem : EntitySystem
 
     private void TryStoreTarget(Entity<StoreOnCollideComponent> ent, EntityUid target)
     {
-        var storageEnt = ent.Owner;
+        var storageEnt = ent;
         var comp = ent.Comp;
 
         if (_netMan.IsClient || _gameTiming.ApplyingState)
@@ -56,7 +56,7 @@ internal sealed class StoreOnCollideSystem : EntitySystem
 
     private void TryLockStorage(Entity<StoreOnCollideComponent> ent)
     {
-        var storageEnt = ent.Owner;
+        var storageEnt = ent;
         var comp = ent.Comp;
 
         if (_netMan.IsClient || _gameTiming.ApplyingState)

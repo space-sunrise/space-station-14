@@ -41,7 +41,7 @@ public sealed partial class RotateToTargetOperator : HTNOperator
             return HTNOperatorStatus.Failed;
         }
 
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         if (_rotate.TryRotateTo(owner, rotateTarget, frameTime, Tolerance, rotateSpeed))
         {

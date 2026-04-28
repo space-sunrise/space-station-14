@@ -282,10 +282,10 @@ public sealed partial class ExplosionSystem
         _mapManager.FindGridsIntersecting(epicenter.MapId, box, ref _grids);
         foreach (var grid in _grids)
         {
-            if (TryComp(grid.Owner, out PhysicsComponent? physics) && physics.FixturesMass > mass)
+            if (TryComp(grid, out PhysicsComponent? physics) && physics.FixturesMass > mass)
             {
                 mass = physics.Mass;
-                referenceGrid = grid.Owner;
+                referenceGrid = grid;
             }
         }
 
@@ -302,7 +302,7 @@ public sealed partial class ExplosionSystem
         box = Box2.CenteredAround(epicenter.Position, new Vector2(radius, radius));
         _grids.Clear();
         _mapManager.FindGridsIntersecting(epicenter.MapId, box, ref _grids);
-        var grids = _grids.Select(x => x.Owner).ToList();
+        var grids = _grids.Select(x => x).ToList();
 
         if (referenceGrid != null)
             return (grids, referenceGrid, radius);
@@ -310,10 +310,10 @@ public sealed partial class ExplosionSystem
         // We still don't have are reference grid. So lets also look in the enlarged region
         foreach (var grid in _grids)
         {
-            if (TryComp(grid.Owner, out PhysicsComponent? physics) && physics.Mass > mass)
+            if (TryComp(grid, out PhysicsComponent? physics) && physics.Mass > mass)
             {
                 mass = physics.FixturesMass;
-                referenceGrid = grid.Owner;
+                referenceGrid = grid;
             }
         }
 

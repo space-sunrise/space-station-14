@@ -24,7 +24,7 @@ public abstract class SharedSunShadowSystem : EntitySystem
 
     private void OnCycleMapInit(Entity<SunShadowCycleComponent> ent, ref MapInitEvent args)
     {
-        if (TryComp(ent.Owner, out LightCycleComponent? lightCycle))
+        if (TryComp(ent, out LightCycleComponent? lightCycle))
         {
             ent.Comp.Duration = lightCycle.Duration;
             ent.Comp.Offset = lightCycle.Offset;

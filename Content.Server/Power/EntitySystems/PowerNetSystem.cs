@@ -489,7 +489,7 @@ namespace Content.Server.Power.EntitySystems
 
             foreach (var apc in net.Apcs)
             {
-                var netBattery = batteryQuery.GetComponent(apc.Owner);
+                var netBattery = batteryQuery.GetComponent(apc);
                 netNode.BatterySupplies.Add(netBattery.NetworkBattery.Id);
                 netBattery.NetworkBattery.LinkedNetworkDischarging = netNode.Id;
             }
@@ -510,14 +510,14 @@ namespace Content.Server.Power.EntitySystems
 
             foreach (var charger in net.Chargers)
             {
-                var battery = batteryQuery.GetComponent(charger.Owner);
+                var battery = batteryQuery.GetComponent(charger);
                 netNode.BatteryLoads.Add(battery.NetworkBattery.Id);
                 battery.NetworkBattery.LinkedNetworkCharging = netNode.Id;
             }
 
             foreach (var discharger in net.Dischargers)
             {
-                var battery = batteryQuery.GetComponent(discharger.Owner);
+                var battery = batteryQuery.GetComponent(discharger);
                 netNode.BatterySupplies.Add(battery.NetworkBattery.Id);
                 battery.NetworkBattery.LinkedNetworkDischarging = netNode.Id;
             }

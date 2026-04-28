@@ -76,8 +76,8 @@ public sealed class CloningPodSystem : EntitySystem
 
     private void OnComponentInit(Entity<CloningPodComponent> ent, ref ComponentInit args)
     {
-        ent.Comp.BodyContainer = _containerSystem.EnsureContainer<ContainerSlot>(ent.Owner, "clonepod-bodyContainer");
-        _signalSystem.EnsureSinkPorts(ent.Owner, ent.Comp.PodPort);
+        ent.Comp.BodyContainer = _containerSystem.EnsureContainer<ContainerSlot>(ent, "clonepod-bodyContainer");
+        _signalSystem.EnsureSinkPorts(ent, ent.Comp.PodPort);
     }
 
     internal void TransferMindToClone(EntityUid mindId, MindComponent mind)
@@ -117,7 +117,7 @@ public sealed class CloningPodSystem : EntitySystem
 
         if (args.Anchored)
         {
-            _cloningConsoleSystem.RecheckConnections(ent.Comp.ConnectedConsole.Value, ent.Owner, console.GeneticScanner, console);
+            _cloningConsoleSystem.RecheckConnections(ent.Comp.ConnectedConsole.Value, ent, console.GeneticScanner, console);
             return;
         }
         _cloningConsoleSystem.UpdateUserInterface(ent.Comp.ConnectedConsole.Value, console);
@@ -125,10 +125,10 @@ public sealed class CloningPodSystem : EntitySystem
 
     private void OnExamined(Entity<CloningPodComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !_powerReceiverSystem.IsPowered(ent.Owner))
+        if (!args.IsInDetailsRange || !_powerReceiverSystem.IsPowered(ent))
             return;
 
-        args.PushMarkup(Loc.GetString("cloning-pod-biomass", ("number", _material.GetMaterialAmount(ent.Owner, ent.Comp.RequiredMaterial))));
+        args.PushMarkup(Loc.GetString("cloning-pod-biomass", ("number", _material.GetMaterialAmount(ent, ent.Comp.RequiredMaterial))));
     }
 
     public bool TryCloning(EntityUid uid, EntityUid bodyToClone, Entity<MindComponent> mindEnt, CloningPodComponent? clonePod, float failChanceModifier = 1)
@@ -257,13 +257,13 @@ public sealed class CloningPodSystem : EntitySystem
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 
-        if (_emag.CheckFlag(ent.Owner, EmagType.Interaction))
+        if (_emag.CheckFlag(ent, EmagType.Interaction))
             return;
 
-        if (!this.IsPowered(ent.Owner, EntityManager))
+        if (!this.IsPowered(ent, EntityManager))
             return;
 
-        _popupSystem.PopupEntity(Loc.GetString("cloning-pod-component-upgrade-emag-requirement"), ent.Owner);
+        _popupSystem.PopupEntity(Loc.GetString("cloning-pod-component-upgrade-emag-requirement"), ent);
         args.Handled = true;
     }
 

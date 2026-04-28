@@ -154,7 +154,7 @@ public sealed class PacificatorSystems : EntitySystem
     private void UpdateUI(Entity<Pacificator.PacificatorComponent, ApcPowerReceiverComponent> ent, float chargeRate)
     {
         var (_, component, powerReceiver) = ent;
-        if (!_uiSystem.IsUiOpen(ent.Owner, PacificatorUiKey.Key))
+        if (!_uiSystem.IsUiOpen(ent, PacificatorUiKey.Key))
             return;
 
         var chargeTarget = chargeRate < 0 ? 0 : component.MaxCharge;
@@ -190,7 +190,7 @@ public sealed class PacificatorSystems : EntitySystem
         );
 
         _uiSystem.SetUiState(
-            ent.Owner,
+            ent,
             PacificatorUiKey.Key,
             state);
 
@@ -287,7 +287,7 @@ public sealed class PacificatorSystems : EntitySystem
         if (!ent.Comp.Active)
             return;
 
-        var coords = Transform(ent.Owner).Coordinates;
+        var coords = Transform(ent).Coordinates;
 
         var entities = _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(coords, ent.Comp.Range);
 

@@ -29,7 +29,7 @@ public sealed class XAEDamageInAreaSystem : BaseXAESystem<XAEDamageInAreaCompone
 
         var damageInAreaComponent = ent.Comp;
         _entitiesInRange.Clear();
-        _lookup.GetEntitiesInRange(ent.Owner, damageInAreaComponent.Radius, _entitiesInRange);
+        _lookup.GetEntitiesInRange(ent, damageInAreaComponent.Radius, _entitiesInRange);
         foreach (var entityInRange in _entitiesInRange)
         {
             if (!_random.Prob(damageInAreaComponent.DamageChance))

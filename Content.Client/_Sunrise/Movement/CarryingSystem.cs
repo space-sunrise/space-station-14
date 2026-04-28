@@ -68,7 +68,7 @@ public sealed class CarryingSystem : SharedCarryingSystem
     {
         if (ent.Comp.Carrier is not { } carrier)
         {
-            RestoreCarriedVisual(ent.Owner);
+            RestoreCarriedVisual(ent);
             return;
         }
 
@@ -76,17 +76,17 @@ public sealed class CarryingSystem : SharedCarryingSystem
             !TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        if (!_visualStates.TryGetValue(ent.Owner, out var state))
+        if (!_visualStates.TryGetValue(ent, out var state))
         {
             state = new CarriedVisualState(
                 sprite.Offset,
                 sprite.NoRotation,
                 sprite.EnableDirectionOverride,
                 sprite.DirectionOverride);
-            _visualStates.Add(ent.Owner, state);
+            _visualStates.Add(ent, state);
         }
 
-        _sprite.SetOffset((ent.Owner, sprite), state.Offset + new Vector2(0f, carrierComp.CarriedOffset));
+        _sprite.SetOffset((ent, sprite), state.Offset + new Vector2(0f, carrierComp.CarriedOffset));
         sprite.NoRotation = true;
         sprite.EnableDirectionOverride = true;
         sprite.DirectionOverride = Direction.South;

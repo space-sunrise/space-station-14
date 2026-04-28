@@ -71,6 +71,6 @@ public readonly record struct SolutionRef(Entity<SolutionComponent> Solution)
 {
     public override string ToString()
     {
-        return $"{Solution.Owner} {Solution.Comp.Solution}";
+        return $"{Solution} {Solution.Comp.Solution}";
     }
 }

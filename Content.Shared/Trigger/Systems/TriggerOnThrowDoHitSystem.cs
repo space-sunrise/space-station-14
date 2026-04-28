@@ -14,6 +14,6 @@ public sealed partial class TriggerOnThrowDoHitSystem : TriggerOnXSystem
 
     private void OnHit(Entity<TriggerOnThrowDoHitComponent> ent, ref ThrowDoHitEvent args)
     {
-        Trigger.Trigger(ent.Owner, args.Target, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.Target, ent.Comp.KeyOut);
     }
 }

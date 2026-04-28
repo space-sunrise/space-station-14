@@ -36,7 +36,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
 
     protected override void UpdateUI(Entity<DisposalUnitComponent> entity)
     {
-        if (_uiSystem.TryGetOpenUi<DisposalUnitBoundUserInterface>(entity.Owner, DisposalUnitComponent.DisposalUnitUiKey.Key, out var bui))
+        if (_uiSystem.TryGetOpenUi<DisposalUnitBoundUserInterface>(entity, DisposalUnitComponent.DisposalUnitUiKey.Key, out var bui))
         {
             bui.Refresh(entity);
         }
@@ -120,7 +120,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
             }
         }
         else
-            _animationSystem.Stop(ent.Owner, AnimationKey);
+            _animationSystem.Stop(ent, AnimationKey);
 
         if (!_appearanceSystem.TryGetData<DisposalUnitComponent.HandleState>(ent, DisposalUnitComponent.Visuals.Handle, out var handleState, appearance))
             handleState = DisposalUnitComponent.HandleState.Normal;

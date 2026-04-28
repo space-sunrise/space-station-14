@@ -57,13 +57,13 @@ public abstract partial class SharedStackSystem
     [PublicAPI]
     public void TryMergeToHands(Entity<StackComponent?> item, Entity<HandsComponent?> user)
     {
-        if (!Resolve(user.Owner, ref user.Comp, false))
+        if (!Resolve(user, ref user.Comp, false))
             return;
 
-        if (!Resolve(item.Owner, ref item.Comp, false))
+        if (!Resolve(item, ref item.Comp, false))
         {
             // This isn't even a stack. Just try to pickup as normal.
-            Hands.PickupOrDrop(user.Owner, item.Owner, handsComp: user.Comp);
+            Hands.PickupOrDrop(user, item, handsComp: user.Comp);
             return;
         }
 
@@ -75,7 +75,7 @@ public abstract partial class SharedStackSystem
                 return;
         }
 
-        Hands.PickupOrDrop(user.Owner, item.Owner, handsComp: user.Comp);
+        Hands.PickupOrDrop(user, item, handsComp: user.Comp);
     }
 
     /// <summary>
@@ -98,12 +98,12 @@ public abstract partial class SharedStackSystem
         var merged = false;
         foreach (var recipientStack in intersecting)
         {
-            var otherEnt = recipientStack.Owner;
+            var otherEnt = recipientStack;
             // if you merge a ton of stacks together, you will end up deleting a few by accident.
             if (TerminatingOrDeleted(otherEnt) || EntityManager.IsQueuedForDeletion(otherEnt))
                 continue;
 
-            if (!TryMergeStacks((uid, stack), recipientStack.AsNullable(), out _))
+            if (!TryMergeStacks((uid, stack), recipientStack, out _))
                 continue;
             merged = true;
 
@@ -123,7 +123,7 @@ public abstract partial class SharedStackSystem
     /// <remarks> All setter functions should end up here. </remarks>
     public void SetCount(Entity<StackComponent?> ent, int amount)
     {
-        if (!Resolve(ent.Owner, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp))
             return;
 
         // Do nothing if amount is already the same.
@@ -141,12 +141,12 @@ public abstract partial class SharedStackSystem
         ent.Comp.UiUpdateNeeded = true;
         Dirty(ent);
 
-        Appearance.SetData(ent.Owner, StackVisuals.Actual, ent.Comp.Count);
-        RaiseLocalEvent(ent.Owner, new StackCountChangedEvent(old, ent.Comp.Count));
+        Appearance.SetData(ent, StackVisuals.Actual, ent.Comp.Count);
+        RaiseLocalEvent(ent, new StackCountChangedEvent(old, ent.Comp.Count));
 
         // Queue delete stack if count reaches zero.
         if (ent.Comp.Count <= 0)
-            PredictedQueueDel(ent.Owner);
+            PredictedQueueDel(ent);
     }
 
     /// <inheritdoc cref="SetCount(Entity{StackComponent?}, int)"/>
@@ -170,7 +170,7 @@ public abstract partial class SharedStackSystem
     [PublicAPI]
     public void ReduceCount(Entity<StackComponent?> ent, int amount)
     {
-        if (!Resolve(ent.Owner, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp))
             return;
 
         // Don't reduce unlimited stacks
@@ -188,7 +188,7 @@ public abstract partial class SharedStackSystem
     [PublicAPI]
     public bool TryUse(Entity<StackComponent?> ent, int amount)
     {
-        if (!Resolve(ent.Owner, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp))
             return false;
 
         // We're unlimited and always greater than amount
@@ -213,7 +213,7 @@ public abstract partial class SharedStackSystem
     [PublicAPI]
     public int GetCount(Entity<StackComponent?> ent)
     {
-        return Resolve(ent.Owner, ref ent.Comp, false) ? ent.Comp.Count : 1;
+        return Resolve(ent, ref ent.Comp, false) ? ent.Comp.Count : 1;
     }
 
     /// <summary>

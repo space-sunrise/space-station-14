@@ -127,7 +127,7 @@ public abstract class SharedInternalsSystem : EntitySystem
     private bool StartToggleInternalsDoAfter(EntityUid user, Entity<InternalsComponent> targetEnt, ToggleMode mode)
     {
         // Is the target not you? If yes, use a do-after to give them time to respond.
-        var isUser = user == targetEnt.Owner;
+        var isUser = user == targetEnt;
         var delay = !isUser ? targetEnt.Comp.Delay : TimeSpan.Zero;
 
         return _doAfter.TryStartDoAfter(
@@ -159,12 +159,12 @@ public abstract class SharedInternalsSystem : EntitySystem
 
     private void OnInternalsStartup(Entity<InternalsComponent> ent, ref ComponentStartup args)
     {
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        _alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent));
     }
 
     private void OnInternalsShutdown(Entity<InternalsComponent> ent, ref ComponentShutdown args)
     {
-        _alerts.ClearAlert(ent.Owner, ent.Comp.InternalsAlert);
+        _alerts.ClearAlert(ent, ent.Comp.InternalsAlert);
     }
 
     public void ConnectBreathTool(Entity<InternalsComponent> ent, EntityUid toolEntity)
@@ -174,12 +174,12 @@ public abstract class SharedInternalsSystem : EntitySystem
 
         if (TryComp(toolEntity, out BreathToolComponent? breathTool))
         {
-            breathTool.ConnectedInternalsEntity = ent.Owner;
+            breathTool.ConnectedInternalsEntity = ent;
             Dirty(toolEntity, breathTool);
         }
 
         Dirty(ent);
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        _alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent));
     }
 
     public void DisconnectBreathTool(Entity<InternalsComponent> ent, EntityUid toolEntity, bool forced = false)
@@ -200,7 +200,7 @@ public abstract class SharedInternalsSystem : EntitySystem
             DisconnectTank(ent, forced: forced);
         }
 
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        _alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent));
     }
 
     public void DisconnectTank(Entity<InternalsComponent> ent, bool forced = false)
@@ -210,7 +210,7 @@ public abstract class SharedInternalsSystem : EntitySystem
 
         ent.Comp.GasTankEntity = null;
         Dirty(ent);
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent.Comp));
+        _alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent.Comp));
     }
 
     public bool TryConnectTank(Entity<InternalsComponent> ent, EntityUid tankEntity)
@@ -223,7 +223,7 @@ public abstract class SharedInternalsSystem : EntitySystem
 
         ent.Comp.GasTankEntity = tankEntity;
         Dirty(ent);
-        _alerts.ShowAlert(ent.Owner, ent.Comp.InternalsAlert, GetSeverity(ent));
+        _alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent));
         return true;
     }
 
@@ -294,7 +294,7 @@ public abstract class SharedInternalsSystem : EntitySystem
             }
         }
 
-        foreach (var item in _inventory.GetHandOrInventoryEntities((user.Owner, user.Comp1, user.Comp2)))
+        foreach (var item in _inventory.GetHandOrInventoryEntities((user, user.Comp1, user.Comp2)))
         {
             if (TryComp(item, out gasTank) && _gasTank.CanConnectToInternals((item, gasTank)))
             {

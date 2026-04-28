@@ -70,7 +70,7 @@ public abstract class SharedNinjaGlovesSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        var on = _toggle.IsActivated(ent.Owner) ? "on" : "off";
+        var on = _toggle.IsActivated(ent) ? "on" : "off";
         args.PushText(Loc.GetString($"ninja-gloves-examine-{on}"));
     }
 

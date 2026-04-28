@@ -28,7 +28,7 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
     private void OnSpecificPersonAssigned(Entity<PickSpecificPersonComponent> ent, ref ObjectiveAssignedEvent args)
     {
         // invalid objective prototype
-        if (!TryComp<TargetObjectiveComponent>(ent.Owner, out var target))
+        if (!TryComp<TargetObjectiveComponent>(ent, out var target))
         {
             args.Cancelled = true;
             return;
@@ -51,7 +51,7 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
-        _target.SetTarget(ent.Owner, targetComp.Target.Value);
+        _target.SetTarget(ent, targetComp.Target.Value);
     }
 
     private void OnRandomPersonAssigned(Entity<PickRandomPersonComponent> ent, ref ObjectiveAssignedEvent args)

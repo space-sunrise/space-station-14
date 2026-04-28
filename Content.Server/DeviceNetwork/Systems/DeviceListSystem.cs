@@ -96,7 +96,7 @@ public sealed class DeviceListSystem : SharedDeviceListSystem
 
         foreach (var recipient in args.Recipients)
         {
-            if (component.Devices.Contains(recipient.Owner) == component.IsAllowList)
+            if (component.Devices.Contains(recipient) == component.IsAllowList)
                 filteredRecipients.Add(recipient);
         }
 
@@ -114,8 +114,8 @@ public sealed class DeviceListSystem : SharedDeviceListSystem
 
     public void OnDeviceShutdown(Entity<DeviceListComponent?> list, Entity<DeviceNetworkComponent> device)
     {
-        device.Comp.DeviceLists.Remove(list.Owner);
-        if (!Resolve(list.Owner, ref list.Comp))
+        device.Comp.DeviceLists.Remove(list);
+        if (!Resolve(list, ref list.Comp))
             return;
 
         list.Comp.Devices.Remove(device);

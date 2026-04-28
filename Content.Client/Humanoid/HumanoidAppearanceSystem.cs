@@ -61,9 +61,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // Sunrise-start
         var scale = new Vector2(humanoidAppearance.Width, humanoidAppearance.Height);
 
-        _sprite.SetScale(entity.Owner, scale);
+        _sprite.SetScale(entity, scale);
         // Sunrise-end
-        sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
+        sprite[_sprite.LayerMapReserve((entity, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)
@@ -97,7 +97,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // TODO maybe just remove them altogether?
         foreach (var key in oldLayers)
         {
-            if (_sprite.LayerMapTryGet((entity.Owner, sprite), key, out var index, false))
+            if (_sprite.LayerMapTryGet((entity, sprite), key, out var index, false))
                 sprite[index].Visible = false;
         }
     }
@@ -112,7 +112,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var component = entity.Comp1;
         var sprite = entity.Comp2;
 
-        var layerIndex = _sprite.LayerMapReserve((entity.Owner, sprite), key);
+        var layerIndex = _sprite.LayerMapReserve((entity, sprite), key);
         var layer = sprite[layerIndex];
         layer.Visible = !IsHidden(component, key);
 
@@ -132,7 +132,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             layer.Color = component.SkinColor.WithAlpha(proto.LayerAlpha);
 
         if (proto.BaseSprite != null)
-            _sprite.LayerSetSprite((entity.Owner, sprite), layerIndex, proto.BaseSprite);
+            _sprite.LayerSetSprite((entity, sprite), layerIndex, proto.BaseSprite);
     }
 
     /// <summary>
@@ -322,11 +322,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 continue;
 
             var layerId = $"{marking.MarkingId}-{rsi.RsiState}";
-            if (!_sprite.LayerMapTryGet(spriteEnt.AsNullable(), layerId, out var index, false))
+            if (!_sprite.LayerMapTryGet(spriteEnt, layerId, out var index, false))
                 continue;
 
-            _sprite.LayerMapRemove(spriteEnt.AsNullable(), layerId);
-            _sprite.RemoveLayer(spriteEnt.AsNullable(), index);
+            _sprite.LayerMapRemove(spriteEnt, layerId);
+            _sprite.RemoveLayer(spriteEnt, index);
 
             // If this marking is one that can be displaced, we need to remove the displacement as well; otherwise
             // altering a marking at runtime can lead to the renderer falling over.
@@ -372,7 +372,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var humanoid = entity.Comp1;
         var sprite = entity.Comp2;
 
-        if (!_sprite.LayerMapTryGet((entity.Owner, sprite), markingPrototype.BodyPart, out var targetLayer, false))
+        if (!_sprite.LayerMapTryGet((entity, sprite), markingPrototype.BodyPart, out var targetLayer, false))
             return;
 
         visible &= !IsHidden(humanoid, markingPrototype.BodyPart);
@@ -388,14 +388,14 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
             var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
 
-            if (!_sprite.LayerMapTryGet((entity.Owner, sprite), layerId, out _, false))
+            if (!_sprite.LayerMapTryGet((entity, sprite), layerId, out _, false))
             {
-                var layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, targetLayer + j + 1);
-                _sprite.LayerMapSet((entity.Owner, sprite), layerId, layer);
-                _sprite.LayerSetSprite((entity.Owner, sprite), layerId, rsi);
+                var layer = _sprite.AddLayer((entity, sprite), markingSprite, targetLayer + j + 1);
+                _sprite.LayerMapSet((entity, sprite), layerId, layer);
+                _sprite.LayerSetSprite((entity, sprite), layerId, rsi);
             }
 
-            _sprite.LayerSetVisible((entity.Owner, sprite), layerId, visible);
+            _sprite.LayerSetVisible((entity, sprite), layerId, visible);
 
             if (!visible || setting == null) // this is kinda implied
                 continue;
@@ -406,11 +406,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             // // So if that happens just default to white?
             // if (colors != null && j < colors.Count)
             // {
-            //     _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+            //     _sprite.LayerSetColor((entity, sprite), layerId, colors[j]);
             // }
             // else
             // {
-            //     _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+            //     _sprite.LayerSetColor((entity, sprite), layerId, Color.White);
             // }
 
             ShaderInstance? shaderOverride = null;
@@ -427,27 +427,27 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 instance.ApplyShaderParams(markingEffects[j], new Vector2(texWidth, texHeight));
 
                 sprite.LayerSetShader(layerId, instance);
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                _sprite.LayerSetColor((entity, sprite), layerId, Color.White);
             }
             else
             {
                 if (colors != null && j < colors.Count)
                 {
-                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+                    _sprite.LayerSetColor((entity, sprite), layerId, colors[j]);
                 }
                 else
                 {
-                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                    _sprite.LayerSetColor((entity, sprite), layerId, Color.White);
                 }
             }
             //Sunrise-Edit-End
 
-            var displacementData = GetMarkingDisplacement(entity.Owner, markingPrototype.BodyPart, humanoid);
+            var displacementData = GetMarkingDisplacement(entity, markingPrototype.BodyPart, humanoid);
             if (displacementData != null && markingPrototype.CanBeDisplaced)
             {
                 // TODO: в шейдер нужно ещё вставлять displacementSize, сейчас в нём хардкод 127
                 // TODO: костыль пиздец, когда появится возможность устанавливать 2 шейдера на один леер - удалить эту хуйню (shaderOverride)
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _, shaderOverride); // Sunrise-Edit
+                _displacement.TryAddDisplacement(displacementData, (entity, sprite), targetLayer + j + 1, layerId, out _, shaderOverride); // Sunrise-Edit
             }
         }
     }
@@ -520,11 +520,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         base.SetLayerVisibility(ent, layer, visible, slot, ref dirty);
 
         var sprite = Comp<SpriteComponent>(ent);
-        if (!_sprite.LayerMapTryGet((ent.Owner, sprite), layer, out var index, false))
+        if (!_sprite.LayerMapTryGet((ent, sprite), layer, out var index, false))
         {
             if (!visible)
                 return;
-            index = _sprite.LayerMapReserve((ent.Owner, sprite), layer);
+            index = _sprite.LayerMapReserve((ent, sprite), layer);
         }
 
         var spriteLayer = sprite[index];

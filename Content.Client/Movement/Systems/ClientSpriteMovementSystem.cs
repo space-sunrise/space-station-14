@@ -31,14 +31,14 @@ public sealed class ClientSpriteMovementSystem : SharedSpriteMovementSystem
         {
             foreach (var (layer, state) in ent.Comp.MovementLayers)
             {
-                _sprite.LayerSetData((ent.Owner, sprite), layer, state);
+                _sprite.LayerSetData((ent, sprite), layer, state);
             }
         }
         else
         {
             foreach (var (layer, state) in ent.Comp.NoMovementLayers)
             {
-                _sprite.LayerSetData((ent.Owner, sprite), layer, state);
+                _sprite.LayerSetData((ent, sprite), layer, state);
             }
         }
     }

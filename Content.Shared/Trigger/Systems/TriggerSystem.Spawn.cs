@@ -19,12 +19,12 @@ public sealed partial class TriggerSystem
 
     private void OnSpawnInit(Entity<TriggerOnSpawnComponent> ent, ref MapInitEvent args)
     {
-        Trigger(ent.Owner, null, ent.Comp.KeyOut);
+        Trigger(ent, null, ent.Comp.KeyOut);
     }
 
     private void OnPlayerSpawn(Entity<TriggerOnPlayerSpawnCompleteComponent> ent, ref PlayerSpawnCompleteEvent args)
     {
-        Trigger(ent.Owner, null, ent.Comp.KeyOut);
+        Trigger(ent, null, ent.Comp.KeyOut);
     }
 
     private void HandleSpawnOnTrigger(Entity<SpawnOnTriggerComponent> ent, ref TriggerEvent args)
@@ -32,7 +32,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+        var target = ent.Comp.TargetUser ? args.User : ent;
 
         if (target == null)
             return;
@@ -46,7 +46,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+        var target = ent.Comp.TargetUser ? args.User : ent;
 
         if (target == null)
             return;
@@ -95,7 +95,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+        var target = ent.Comp.TargetUser ? args.User : ent;
 
         if (target == null)
             return;

@@ -17,7 +17,7 @@ public sealed partial class PowerCellSystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (!_itemSlots.TryGetSlot(ent.Owner, ent.Comp.CellSlotId, out var slot))
+        if (!_itemSlots.TryGetSlot(ent, ent.Comp.CellSlotId, out var slot))
         {
             return false;
         }
@@ -39,7 +39,7 @@ public sealed partial class PowerCellSystem
             return false;
         }
 
-        if (!_itemSlots.TryGetSlot(ent.Owner, ent.Comp.CellSlotId, out var slot))
+        if (!_itemSlots.TryGetSlot(ent, ent.Comp.CellSlotId, out var slot))
         {
             battery = null;
             return false;
@@ -67,7 +67,7 @@ public sealed partial class PowerCellSystem
 
         if (TryComp<BatteryComponent>(ent, out var batteryComp))
         {
-            battery = (ent.Owner, batteryComp);
+            battery = (ent, batteryComp);
             return true;
         }
 
@@ -84,7 +84,7 @@ public sealed partial class PowerCellSystem
     {
         if (TryComp<BatteryComponent>(ent, out var batteryComp))
         {
-            battery = (ent.Owner, batteryComp);
+            battery = (ent, batteryComp);
             return true;
         }
         if (TryGetBatteryFromSlot(ent, out battery))
@@ -114,7 +114,7 @@ public sealed partial class PowerCellSystem
             return false;
         }
 
-        if (!_itemSlots.TryEject(ent.Owner, ent.Comp.CellSlotId, user, out battery, excludeUserAudio: true))
+        if (!_itemSlots.TryEject(ent, ent.Comp.CellSlotId, user, out battery, excludeUserAudio: true))
         {
             battery = null;
             return false;
@@ -139,22 +139,22 @@ public sealed partial class PowerCellSystem
                 return false;
 
             if (predicted)
-                _popup.PopupClient(Loc.GetString("power-cell-no-battery"), ent.Owner, user.Value);
+                _popup.PopupClient(Loc.GetString("power-cell-no-battery"), ent, user.Value);
             else
-                _popup.PopupEntity(Loc.GetString("power-cell-no-battery"), ent.Owner, user.Value);
+                _popup.PopupEntity(Loc.GetString("power-cell-no-battery"), ent, user.Value);
 
             return false;
         }
 
-        if (_battery.GetCharge(battery.Value.AsNullable()) < charge)
+        if (_battery.GetCharge(battery.Value) < charge)
         {
             if (user == null)
                 return false;
 
             if (predicted)
-                _popup.PopupClient(Loc.GetString("power-cell-insufficient"), ent.Owner, user.Value);
+                _popup.PopupClient(Loc.GetString("power-cell-insufficient"), ent, user.Value);
             else
-                _popup.PopupEntity(Loc.GetString("power-cell-insufficient"), ent.Owner, user.Value);
+                _popup.PopupEntity(Loc.GetString("power-cell-insufficient"), ent, user.Value);
 
             return false;
         }
@@ -178,9 +178,9 @@ public sealed partial class PowerCellSystem
                 return false;
 
             if (predicted)
-                _popup.PopupClient(Loc.GetString("power-cell-no-battery"), ent.Owner, user.Value);
+                _popup.PopupClient(Loc.GetString("power-cell-no-battery"), ent, user.Value);
             else
-                _popup.PopupEntity(Loc.GetString("power-cell-no-battery"), ent.Owner, user.Value);
+                _popup.PopupEntity(Loc.GetString("power-cell-no-battery"), ent, user.Value);
 
             return false;
         }
@@ -191,9 +191,9 @@ public sealed partial class PowerCellSystem
                 return false;
 
             if (predicted)
-                _popup.PopupClient(Loc.GetString("power-cell-insufficient"), ent.Owner, user.Value);
+                _popup.PopupClient(Loc.GetString("power-cell-insufficient"), ent, user.Value);
             else
-                _popup.PopupEntity(Loc.GetString("power-cell-insufficient"), ent.Owner, user.Value);
+                _popup.PopupEntity(Loc.GetString("power-cell-insufficient"), ent, user.Value);
 
             return false;
         }
@@ -211,7 +211,7 @@ public sealed partial class PowerCellSystem
         if (!TryGetBatteryFromSlot(ent, out var battery))
             return 0;
 
-        return _battery.GetRemainingUses(battery.Value.AsNullable(), cost);
+        return _battery.GetRemainingUses(battery.Value, cost);
     }
 
     /// <summary>
@@ -225,6 +225,6 @@ public sealed partial class PowerCellSystem
         if (!TryGetBatteryFromSlot(ent, out var battery))
             return 0;
 
-        return _battery.GetMaxUses(battery.Value.AsNullable(), cost);
+        return _battery.GetMaxUses(battery.Value, cost);
     }
 }

@@ -41,24 +41,24 @@ public abstract partial class SharedBatterySystem : EntitySystem
         // If we would make it a datafield then the integration tests would complain about modifying it before map init.
         // Don't do this in case the battery is not net synced, because then the client would raise events overwriting the networked server state on spawn.
         if (ent.Comp.NetSyncEnabled)
-            RefreshChargeRate(ent.AsNullable());
+            RefreshChargeRate(ent);
     }
 
     private void OnMapInit(Entity<BatteryComponent> ent, ref MapInitEvent args)
     {
-        SetCharge(ent.AsNullable(), ent.Comp.StartingCharge);
-        RefreshChargeRate(ent.AsNullable());
+        SetCharge(ent, ent.Comp.StartingCharge);
+        RefreshChargeRate(ent);
     }
 
     private void OnRejuvenate(Entity<BatteryComponent> ent, ref RejuvenateEvent args)
     {
-        SetCharge(ent.AsNullable(), ent.Comp.MaxCharge);
+        SetCharge(ent, ent.Comp.MaxCharge);
     }
 
     private void OnEmpPulse(Entity<BatteryComponent> ent, ref EmpPulseEvent args)
     {
         args.Affected = true;
-        UseCharge(ent.AsNullable(), args.EnergyConsumption);
+        UseCharge(ent, args.EnergyConsumption);
     }
 
     private void OnExamine(Entity<BatteryComponent> ent, ref ExaminedEvent args)
@@ -70,7 +70,7 @@ public abstract partial class SharedBatterySystem : EntitySystem
             return;
 
         var chargePercentRounded = 0;
-        var currentCharge = GetCharge(ent.AsNullable());
+        var currentCharge = GetCharge(ent);
         if (ent.Comp.MaxCharge != 0)
             chargePercentRounded = (int)(100 * currentCharge / ent.Comp.MaxCharge);
         args.PushMarkup(
@@ -87,7 +87,7 @@ public abstract partial class SharedBatterySystem : EntitySystem
     /// </summary>
     private void CalculateBatteryPrice(Entity<BatteryComponent> ent, ref PriceCalculationEvent args)
     {
-        args.Price += GetCharge(ent.AsNullable()) * ent.Comp.PricePerJoule;
+        args.Price += GetCharge(ent) * ent.Comp.PricePerJoule;
     }
 
     private void OnChangeCharge(Entity<BatteryComponent> ent, ref ChangeChargeEvent args)
@@ -95,12 +95,12 @@ public abstract partial class SharedBatterySystem : EntitySystem
         if (args.ResidualValue == 0)
             return;
 
-        args.ResidualValue -= ChangeCharge(ent.AsNullable(), args.ResidualValue);
+        args.ResidualValue -= ChangeCharge(ent, args.ResidualValue);
     }
 
     private void OnGetCharge(Entity<BatteryComponent> ent, ref GetChargeEvent args)
     {
-        args.CurrentCharge += GetCharge(ent.AsNullable());
+        args.CurrentCharge += GetCharge(ent);
         args.MaxCharge += ent.Comp.MaxCharge;
     }
 
@@ -146,13 +146,13 @@ public abstract partial class SharedBatterySystem : EntitySystem
         // In case this component is added after the battery component.
         // Don't do this in case the battery is not net synced, because then the client would raise events overwriting the networked server state on spawn.
         if (ent.Comp.NetSyncEnabled)
-            RefreshChargeRate(ent.Owner);
+            RefreshChargeRate(ent);
     }
 
     private void OnRechargerRemove(Entity<BatterySelfRechargerComponent> ent, ref ComponentRemove args)
     {
         // We use ComponentRemove to make sure this component no longer subscribes to the refresh event.
-        RefreshChargeRate(ent.Owner);
+        RefreshChargeRate(ent);
     }
 
     private void OnVisualsChargeChanged(Entity<BatteryVisualsComponent> ent, ref ChargeChangedEvent args)
@@ -165,13 +165,13 @@ public abstract partial class SharedBatterySystem : EntitySystem
         else if (args.CurrentChargeRate < 0f)
             state = BatteryChargingState.Decharging;
 
-        _appearance.SetData(ent.Owner, BatteryVisuals.Charging, state);
+        _appearance.SetData(ent, BatteryVisuals.Charging, state);
     }
 
     private void OnVisualsStateChanged(Entity<BatteryVisualsComponent> ent, ref BatteryStateChangedEvent args)
     {
         // Update the appearance data for the fill level (empty, full, in-between).
         // We have a separate component for this to not duplicate the networking cost unless we actually use it.
-        _appearance.SetData(ent.Owner, BatteryVisuals.State, args.NewState);
+        _appearance.SetData(ent, BatteryVisuals.State, args.NewState);
     }
 }

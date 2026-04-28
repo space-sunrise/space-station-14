@@ -34,7 +34,7 @@ public sealed class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSystem
 
     private void UpdateBuiIfCanGetAnalysisConsoleUi(Entity<AnalysisConsoleComponent> analysisConsole)
     {
-        if (_ui.TryGetOpenUi<AnalysisConsoleBoundUserInterface>(analysisConsole.Owner, ArtifactAnalyzerUiKey.Key, out var bui))
+        if (_ui.TryGetOpenUi<AnalysisConsoleBoundUserInterface>(analysisConsole, ArtifactAnalyzerUiKey.Key, out var bui))
             bui.Update(analysisConsole);
     }
 }

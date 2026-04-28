@@ -21,12 +21,12 @@ public sealed class SealingCabinetSystem : EntitySystem
 
     private void OnOpenAttempt(Entity<SealingCabinetComponent> ent, ref OpenableOpenAttemptEvent args)
     {
-        if (!_cabinet.HasItem(ent.Owner))
+        if (!_cabinet.HasItem(ent))
             return;
 
         args.Cancelled = true;
         if (args.User is {} user)
-            _popup.PopupClient(Loc.GetString(ent.Comp.SealedPopup, ("container", ent.Owner)), ent, user);
+            _popup.PopupClient(Loc.GetString(ent.Comp.SealedPopup, ("container", ent)), ent, user);
     }
 
     private void OnEmagged(Entity<SealingCabinetComponent> ent, ref GotEmaggedEvent args)
@@ -34,7 +34,7 @@ public sealed class SealingCabinetSystem : EntitySystem
         if (!ent.Comp.Emaggable)
             return;
 
-        if (!_cabinet.HasItem(ent.Owner) || !_openable.IsClosed(ent))
+        if (!_cabinet.HasItem(ent) || !_openable.IsClosed(ent))
             return;
 
         _openable.SetOpen(ent, true);

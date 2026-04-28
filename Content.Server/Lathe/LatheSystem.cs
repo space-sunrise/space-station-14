@@ -391,7 +391,7 @@ namespace Content.Server.Lathe
             if (args.NewlyUnlockedRecipes is null)
                 return;
 
-            if (!TryGetAvailableRecipes(ent.Owner, out var potentialRecipes))
+            if (!TryGetAvailableRecipes(ent, out var potentialRecipes))
                 return;
 
             var recipeNames = new List<string>();
@@ -425,7 +425,7 @@ namespace Content.Server.Lathe
 
             foreach (var channel in ent.Comp.Channels)
             {
-                _radio.SendRadioMessage(ent.Owner, message, channel, ent.Owner, escapeMarkup: false);
+                _radio.SendRadioMessage(ent, message, channel, ent, escapeMarkup: false);
             }*/
             //Sunrise-Edit-End
         }

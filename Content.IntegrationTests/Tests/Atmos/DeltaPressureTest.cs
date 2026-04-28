@@ -197,15 +197,15 @@ public sealed class DeltaPressureTest : AtmosTest
 
             await Server.WaitPost(() =>
             {
-                SAtmos.RunProcessingFull(ProcessEnt,ProcessEnt.Owner, SAtmos.AtmosTickRate);
+                SAtmos.RunProcessingFull(ProcessEnt,ProcessEnt, SAtmos.AtmosTickRate);
             });
 
             await Server.WaitPost(() =>
             {
                 // Need to spawn an entity each run to ensure it works for all directions.
-                var uid = SEntMan.SpawnAtPosition("DeltaPressureSolidTest", new EntityCoordinates(ProcessEnt.Owner, Vector2.Zero));
+                var uid = SEntMan.SpawnAtPosition("DeltaPressureSolidTest", new EntityCoordinates(ProcessEnt, Vector2.Zero));
                 dpEnt = new Entity<DeltaPressureComponent>(uid, SEntMan.GetComponent<DeltaPressureComponent>(uid));
-                Assert.That(SAtmos.IsDeltaPressureEntityInList(ProcessEnt.Owner, dpEnt), "Entity was not in processing list when it should have been added!");
+                Assert.That(SAtmos.IsDeltaPressureEntityInList(ProcessEnt, dpEnt), "Entity was not in processing list when it should have been added!");
 
                 var indices = Transform.GetGridOrMapTilePosition(dpEnt);
 
@@ -224,7 +224,7 @@ public sealed class DeltaPressureTest : AtmosTest
             // get jiggy with it! hit that dance white boy!
             await Server.WaitPost(() =>
             {
-                SAtmos.RunProcessingFull(ProcessEnt,ProcessEnt.Owner, SAtmos.AtmosTickRate);
+                SAtmos.RunProcessingFull(ProcessEnt,ProcessEnt, SAtmos.AtmosTickRate);
             });
 
             // need to run some ticks as deleted entities are queued for removal
@@ -259,9 +259,9 @@ public sealed class DeltaPressureTest : AtmosTest
 
         await Server.WaitPost(() =>
         {
-            var uid = SEntMan.SpawnAtPosition("DeltaPressureSolidTestAbsolute", new EntityCoordinates(ProcessEnt.Owner, Vector2.Zero));
+            var uid = SEntMan.SpawnAtPosition("DeltaPressureSolidTestAbsolute", new EntityCoordinates(ProcessEnt, Vector2.Zero));
             dpEnt = new Entity<DeltaPressureComponent>(uid, SEntMan.GetComponent<DeltaPressureComponent>(uid));
-            Assert.That(SAtmos.IsDeltaPressureEntityInList(ProcessEnt.Owner, dpEnt), "Entity was not in processing list when it should have been added!");
+            Assert.That(SAtmos.IsDeltaPressureEntityInList(ProcessEnt, dpEnt), "Entity was not in processing list when it should have been added!");
         });
 
         for (var i = 0; i < Atmospherics.Directions; i++)
@@ -309,9 +309,9 @@ public sealed class DeltaPressureTest : AtmosTest
             await Server.WaitPost(() =>
             {
                 // Spawn fresh entity each iteration to verify all directions work
-                var uid = SEntMan.SpawnAtPosition("DeltaPressureSolidTestAbsolute", new EntityCoordinates(ProcessEnt.Owner, Vector2.Zero));
+                var uid = SEntMan.SpawnAtPosition("DeltaPressureSolidTestAbsolute", new EntityCoordinates(ProcessEnt, Vector2.Zero));
                 dpEnt = new Entity<DeltaPressureComponent>(uid, SEntMan.GetComponent<DeltaPressureComponent>(uid));
-                Assert.That(SAtmos.IsDeltaPressureEntityInList(ProcessEnt.Owner, dpEnt), "Entity was not in processing list when it should have been added!");
+                Assert.That(SAtmos.IsDeltaPressureEntityInList(ProcessEnt, dpEnt), "Entity was not in processing list when it should have been added!");
 
                 var indices = Transform.GetGridOrMapTilePosition(dpEnt);
                 var gridAtmosComp = SEntMan.GetComponent<GridAtmosphereComponent>(ProcessEnt);

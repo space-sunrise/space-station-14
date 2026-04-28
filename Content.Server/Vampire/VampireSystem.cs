@@ -323,7 +323,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
         else
         {
-            if (component.actionEntities.TryGetValue(actionId, out var abilityInfo) && _entityManager.GetEntity(abilityInfo.Owner) == uid)
+            if (component.actionEntities.TryGetValue(actionId, out var abilityInfo) && _entityManager.GetEntity(abilityInfo) == uid)
             {
                 if (TryComp(uid, out ActionsComponent? comp))
                 {
@@ -383,7 +383,7 @@ public sealed partial class VampireSystem : EntitySystem
             UpdateUi(uid, component);
             var ev = new VampireBloodChangedEvent();
             RaiseLocalEvent(uid, ev);
-            TryOpenUi(uid, component.Owner, component);
+            TryOpenUi(uid, component, component);
         }
     }
 

@@ -36,8 +36,8 @@ public sealed class ThermalVisionSystem : EntitySystem
     private void OnPlayerAttached(Entity<ThermalVisionComponent> ent, ref LocalPlayerAttachedEvent args)
     {
         if (_effect == null)
-            AddNightVision(ent.Owner);
-        else if (HasComp<EyeProtectionComponent>(ent.Owner))
+            AddNightVision(ent);
+        else if (HasComp<EyeProtectionComponent>(ent))
             RemoveNightVision();
     }
 
@@ -48,18 +48,18 @@ public sealed class ThermalVisionSystem : EntitySystem
 
     private void OnVisionInit(Entity<ThermalVisionComponent> ent, ref ComponentInit args)
     {
-        if (_player.LocalEntity != ent.Owner)
+        if (_player.LocalEntity != ent)
             return;
 
         if (_effect == null)
-            AddNightVision(ent.Owner);
-        else if (HasComp<EyeProtectionComponent>(ent.Owner))
+            AddNightVision(ent);
+        else if (HasComp<EyeProtectionComponent>(ent))
             RemoveNightVision();
     }
 
     private void OnVisionShutdown(Entity<ThermalVisionComponent> ent, ref ComponentShutdown args)
     {
-        if (_player.LocalEntity != ent.Owner) return;
+        if (_player.LocalEntity != ent) return;
 
         RemoveNightVision();
     }

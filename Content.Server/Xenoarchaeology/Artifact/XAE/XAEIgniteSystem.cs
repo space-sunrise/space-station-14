@@ -34,14 +34,14 @@ public sealed class XAEIgniteSystem : BaseXAESystem<XAEIgniteComponent>
     {
         var component = ent.Comp;
         _entities.Clear();
-        _lookup.GetEntitiesInRange(ent.Owner, component.Range, _entities);
+        _lookup.GetEntitiesInRange(ent, component.Range, _entities);
         foreach (var target in _entities)
         {
             if (!_flammables.TryGetComponent(target, out var fl))
                 continue;
 
             fl.FireStacks += component.FireStack.Next(_random);
-            _flammable.Ignite(target, ent.Owner, fl);
+            _flammable.Ignite(target, ent, fl);
         }
     }
 }

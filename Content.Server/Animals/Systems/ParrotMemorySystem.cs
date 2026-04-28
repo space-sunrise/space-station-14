@@ -63,7 +63,7 @@ public sealed partial class ParrotMemorySystem : SharedParrotMemorySystem
     private void OnListen(Entity<ParrotListenerComponent> entity, ref ListenEvent args)
     {
 
-        TryLearn(entity.Owner, args.Message, args.Source);
+        TryLearn(entity, args.Message, args.Source);
     }
 
     private void OnHeadsetReceive(Entity<ParrotListenerComponent> entity, ref HeadsetRadioReceiveRelayEvent args)
@@ -71,7 +71,7 @@ public sealed partial class ParrotMemorySystem : SharedParrotMemorySystem
         var message = args.RelayedEvent.Message;
         var source = args.RelayedEvent.MessageSource;
 
-        TryLearn(entity.Owner, message, source);
+        TryLearn(entity, message, source);
     }
 
     /// <summary>

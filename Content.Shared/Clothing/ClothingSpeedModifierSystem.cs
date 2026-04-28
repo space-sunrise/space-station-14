@@ -50,7 +50,7 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
         // We'll still set the values in case they're slightly different but within tolerance.
         if (diff && _container.TryGetContainingContainer((uid, null, null), out var container))
         {
-            _movementSpeed.RefreshMovementSpeedModifiers(container.Owner);
+            _movementSpeed.RefreshMovementSpeedModifiers(container);
         }
     }
 
@@ -59,7 +59,7 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
         if (component.RequireActivated && !_toggle.IsActivated(uid))
             return;
 
-        if (component.Standing != null && !_standing.IsMatchingState(args.Owner, component.Standing.Value))
+        if (component.Standing != null && !_standing.IsMatchingState(args, component.Standing.Value))
             return;
 
         args.Args.ModifySpeed(component.WalkModifier, component.SprintModifier);
@@ -120,10 +120,10 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
         // make sentient boots slow or fast too
         _movementSpeed.RefreshMovementSpeedModifiers(ent);
 
-        if (_container.TryGetContainingContainer((ent.Owner, null, null), out var container))
+        if (_container.TryGetContainingContainer((ent, null, null), out var container))
         {
             // inventory system will automatically hook into the event raised by this and update accordingly
-            _movementSpeed.RefreshMovementSpeedModifiers(container.Owner);
+            _movementSpeed.RefreshMovementSpeedModifiers(container);
         }
     }
 }

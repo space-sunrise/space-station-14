@@ -132,9 +132,9 @@ public abstract class SharedAnomalySystem : EntitySystem
         if(!Resolve(ent, ref ent.Comp))
             return;
 
-        AdminLog.Add(LogType.Anomaly, LogImpact.High, $"Anomaly {ToPrettyString(ent.Owner)} began to go supercritical.");
+        AdminLog.Add(LogType.Anomaly, LogImpact.High, $"Anomaly {ToPrettyString(ent)} began to go supercritical.");
         if (_net.IsServer)
-            Log.Info($"Anomaly is going supercritical. Entity: {ToPrettyString(ent.Owner)}");
+            Log.Info($"Anomaly is going supercritical. Entity: {ToPrettyString(ent)}");
 
         Audio.PlayPvs(ent.Comp.SupercriticalSoundAtAnimationStart, ent);
 

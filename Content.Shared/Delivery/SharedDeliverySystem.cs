@@ -143,7 +143,7 @@ public abstract class SharedDeliverySystem : EntitySystem
         {
             Act = () =>
             {
-                _audio.PlayPredicted(ent.Comp.OpenSound, ent.Owner, user);
+                _audio.PlayPredicted(ent.Comp.OpenSound, ent, user);
 
                 if(ent.Comp.ContainedDeliveryAmount == 0)
                 {
@@ -151,7 +151,7 @@ public abstract class SharedDeliverySystem : EntitySystem
                     return;
                 }
 
-                SpawnDeliveries(ent.Owner);
+                SpawnDeliveries(ent);
 
                 UpdateDeliverySpawnerVisuals(ent, ent.Comp.ContainedDeliveryAmount);
             },
@@ -162,10 +162,10 @@ public abstract class SharedDeliverySystem : EntitySystem
     private bool TryUnlockDelivery(Entity<DeliveryComponent> ent, EntityUid user, bool rewardMoney = true, bool force = false)
     {
         // Check fingerprint access if there is a reader on the mail
-        if (!force && !_fingerprintReader.IsAllowed(ent.Owner, user, out _))
+        if (!force && !_fingerprintReader.IsAllowed(ent, user, out _))
             return false;
 
-        var deliveryName = _nameModifier.GetBaseName(ent.Owner);
+        var deliveryName = _nameModifier.GetBaseName(ent);
 
         if (!force)
             _audio.PlayPredicted(ent.Comp.UnlockSound, user, user);
@@ -181,7 +181,7 @@ public abstract class SharedDeliverySystem : EntitySystem
         RaiseLocalEvent(ent, ref ev);
 
         if (rewardMoney)
-            GrantSpesoReward(ent.AsNullable());
+            GrantSpesoReward(ent);
 
         if (!force)
             _popup.PopupPredicted(Loc.GetString("delivery-unlocked-self", ("delivery", deliveryName)),
@@ -192,7 +192,7 @@ public abstract class SharedDeliverySystem : EntitySystem
 
     private void OpenDelivery(Entity<DeliveryComponent> ent, EntityUid user, bool attemptPickup = true, bool force = false)
     {
-        var deliveryName = _nameModifier.GetBaseName(ent.Owner);
+        var deliveryName = _nameModifier.GetBaseName(ent);
 
         _audio.PlayPredicted(ent.Comp.OpenSound, user, user);
 
@@ -209,7 +209,7 @@ public abstract class SharedDeliverySystem : EntitySystem
         EnsureComp<SpaceGarbageComponent>(ent);
         RemCompDeferred<StealTargetComponent>(ent); // opened mail should not count for the objective
 
-        DirtyField(ent.Owner, ent.Comp, nameof(DeliveryComponent.IsOpened));
+        DirtyField(ent, ent.Comp, nameof(DeliveryComponent.IsOpened));
 
         if (!force)
             _popup.PopupPredicted(Loc.GetString("delivery-opened-self", ("delivery", deliveryName)),

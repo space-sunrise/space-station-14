@@ -39,14 +39,14 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
     private void OnWingToggleMapInit(Entity<WingToggleComponent> ent, ref MapInitEvent args)
     {
-        _actions.AddAction(ent.Owner, ref ent.Comp.ActionEntity, ent.Comp.Action, ent.Owner);
+        _actions.AddAction(ent, ref ent.Comp.ActionEntity, ent.Comp.Action, ent);
         UpdateWingToggleAction(ent);
     }
 
     private void OnWingToggleShutdown(Entity<WingToggleComponent> ent, ref ComponentShutdown args)
     {
         if (ent.Comp.ActionEntity != null)
-            _actions.RemoveAction(ent.Owner, ent.Comp.ActionEntity);
+            _actions.RemoveAction(ent, ent.Comp.ActionEntity);
     }
 
     private void OnWingToggleAction(Entity<WingToggleComponent> ent, ref ToggleActionEvent args)
@@ -54,7 +54,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
         if (args.Handled)
             return;
 
-        if (ent.Comp.ActionEntity == null || args.Action.Owner != ent.Comp.ActionEntity.Value)
+        if (ent.Comp.ActionEntity == null || args.Action != ent.Comp.ActionEntity.Value)
             return;
 
         args.Handled = TryToggleWings(ent);
@@ -62,7 +62,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
     public bool TryToggleWings(Entity<WingToggleComponent> ent, HumanoidAppearanceComponent? humanoid = null, bool forceClose = false)
     {
-        if (!Resolve(ent.Owner, ref humanoid, false))
+        if (!Resolve(ent, ref humanoid, false))
             return false;
 
         if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings) || markings.Count == 0)
@@ -94,7 +94,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
             if (desired == current)
                 continue;
 
-            _appearance.SetMarkingId(ent.Owner, MarkingCategories.Tail, i, desired, humanoid: humanoid);
+            _appearance.SetMarkingId(ent, MarkingCategories.Tail, i, desired, humanoid: humanoid);
             changed = true;
         }
 
@@ -107,13 +107,13 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         if (ent.Comp.WingsOpened)
         {
-            EnsureComp<WingFlightComponent>(ent.Owner);
-            EnsureComp<JumpAbilityComponent>(ent.Owner);
+            EnsureComp<WingFlightComponent>(ent);
+            EnsureComp<JumpAbilityComponent>(ent);
         }
         else
         {
-            RemCompDeferred<WingFlightComponent>(ent.Owner);
-            RemCompDeferred<JumpAbilityComponent>(ent.Owner);
+            RemCompDeferred<WingFlightComponent>(ent);
+            RemCompDeferred<JumpAbilityComponent>(ent);
         }
         return true;
     }
@@ -125,7 +125,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         foreach (var slot in ent.Comp.BlockedSlots)
         {
-            if (!_inventory.TryGetSlotEntity(ent.Owner, slot, out var equippedEntity))
+            if (!_inventory.TryGetSlotEntity(ent, slot, out var equippedEntity))
                 continue;
 
             if (ent.Comp.AllowedTag == null || !_tagSystem.HasTag(equippedEntity.Value, ent.Comp.AllowedTag.Value))

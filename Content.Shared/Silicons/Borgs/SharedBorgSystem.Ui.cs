@@ -28,14 +28,14 @@ public abstract partial class SharedBorgSystem
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
-            $"{args.Actor} removed brain {brain} from borg {chassis.Owner}");
+            $"{args.Actor} removed brain {brain} from borg {chassis}");
         _container.Remove(brain, chassis.Comp.BrainContainer);
         _hands.TryPickupAnyHand(args.Actor, brain);
     }
 
     private void OnEjectBatteryBuiMessage(Entity<BorgChassisComponent> chassis, ref BorgEjectBatteryBuiMessage args)
     {
-        if (_powerCell.TryEjectBatteryFromSlot(chassis.Owner, out var powerCell, args.Actor))
+        if (_powerCell.TryEjectBatteryFromSlot(chassis, out var powerCell, args.Actor))
             _hands.TryPickupAnyHand(args.Actor, powerCell.Value);
     }
 
@@ -57,7 +57,7 @@ public abstract partial class SharedBorgSystem
         if (metaData.EntityName.Equals(name, StringComparison.InvariantCulture))
             return;
 
-        _adminLog.Add(LogType.Action, LogImpact.High, $"{args.Actor} set borg \"{chassis.Owner}\"'s name to: {name}");
+        _adminLog.Add(LogType.Action, LogImpact.High, $"{args.Actor} set borg \"{chassis}\"'s name to: {name}");
         _metaData.SetEntityName(chassis, name, metaData);
     }
 
@@ -72,7 +72,7 @@ public abstract partial class SharedBorgSystem
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
-            $"{args.Actor} removed module {module} from borg {chassis.Owner}");
+            $"{args.Actor} removed module {module} from borg {chassis}");
         _container.Remove(module, chassis.Comp.ModuleContainer);
         _hands.TryPickupAnyHand(args.Actor, module);
     }

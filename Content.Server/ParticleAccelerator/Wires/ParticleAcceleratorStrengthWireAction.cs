@@ -22,7 +22,7 @@ public sealed partial class ParticleAcceleratorStrengthWireAction : ComponentWir
     {
         controller.StrengthLocked = true;
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.UpdateUI(wire.Owner, controller);
+        paSystem.UpdateUI(wire, controller);
         return true;
     }
 
@@ -30,13 +30,13 @@ public sealed partial class ParticleAcceleratorStrengthWireAction : ComponentWir
     {
         controller.StrengthLocked = false;
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.UpdateUI(wire.Owner, controller);
+        paSystem.UpdateUI(wire, controller);
         return true;
     }
 
     public override void Pulse(EntityUid user, Wire wire, ParticleAcceleratorControlBoxComponent controller)
     {
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.SetStrength(wire.Owner, (ParticleAcceleratorPowerState) ((int) controller.SelectedStrength + 1), user, controller);
+        paSystem.SetStrength(wire, (ParticleAcceleratorPowerState) ((int) controller.SelectedStrength + 1), user, controller);
     }
 }

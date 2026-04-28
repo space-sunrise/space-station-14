@@ -65,7 +65,7 @@ public sealed class SliceableFoodSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        if (TrySliceFood(entity.Owner, args.User, args.Used))
+        if (TrySliceFood(entity, args.User, args.Used))
             args.Handled = true;
     }
 
@@ -76,7 +76,7 @@ public sealed class SliceableFoodSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2, ref entity.Comp3) || string.IsNullOrEmpty(entity.Comp2.Slice))
             return false;
 
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp3.Solution, out var soln, out var solution))
+        if (!_solutionContainer.TryGetSolution(entity, entity.Comp3.Solution, out var soln, out var solution))
             return false;
 
         if (!TryComp<UtensilComponent>(usedItem, out var utensil) || (utensil.Types & UtensilType.Knife) == 0)
@@ -147,7 +147,7 @@ public sealed class SliceableFoodSystem : EntitySystem
             return;
 
         // Replace all reagents on prototype not just copying poisons (example: slices of eaten pizza should have less nutrition)
-        if (!_solutionContainer.TryGetSolution(slice.Owner, slice.Comp.Solution, out var itsSoln, out var itsSolution))
+        if (!_solutionContainer.TryGetSolution(slice, slice.Comp.Solution, out var itsSoln, out var itsSolution))
             return;
 
         _solutionContainer.RemoveAllSolution(itsSoln.Value);
@@ -164,7 +164,7 @@ public sealed class SliceableFoodSystem : EntitySystem
         // Your food has the edible component
         // The solution listed in the edible component exists
         var foodComp = EnsureComp<EdibleComponent>(entity);
-        _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution, out _);
+        _solutionContainer.EnsureSolution(entity, foodComp.Solution, out _);
     }
 }
 

@@ -19,7 +19,7 @@ public sealed partial class InContainerPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         return IsInContainer && _container.IsEntityInContainer(owner) ||
                !IsInContainer && !_container.IsEntityInContainer(owner);

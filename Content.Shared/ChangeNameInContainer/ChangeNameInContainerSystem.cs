@@ -19,11 +19,11 @@ public sealed partial class ChangeNameInContainerSystem : EntitySystem
     private void OnTransformSpeakerName(Entity<ChangeVoiceInContainerComponent> ent, ref TransformSpeakerNameEvent args)
     {
         if (!_container.TryGetContainingContainer((ent, null, null), out var container)
-            || _whitelist.IsWhitelistFail(ent.Comp.Whitelist, container.Owner))
+            || _whitelist.IsWhitelistFail(ent.Comp.Whitelist, container))
             return;
 
-        args.VoiceName = Name(container.Owner);
-        if (TryComp<SpeechComponent>(container.Owner, out var speechComp))
+        args.VoiceName = Name(container);
+        if (TryComp<SpeechComponent>(container, out var speechComp))
             args.SpeechVerb = speechComp.SpeechVerb;
     }
 

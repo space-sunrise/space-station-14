@@ -64,7 +64,7 @@ namespace Content.Server.NPC.Systems
 
         public void OnNPCStartup(EntityUid uid, HTNComponent component, ComponentStartup args)
         {
-            component.Blackboard.SetValue(NPCBlackboard.Owner, uid);
+            component.Blackboard.SetValue(NPCBlackboard, uid);
         }
 
         public void OnNPCMapInit(EntityUid uid, HTNComponent component, MapInitEvent args)

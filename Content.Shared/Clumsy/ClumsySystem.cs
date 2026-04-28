@@ -95,17 +95,17 @@ public sealed class ClumsySystem : EntitySystem
         args.Cancelled = true; // fail to catch
 
         if (ent.Comp.CatchingFailDamage != null)
-            _damageable.ChangeDamage(ent.Owner, ent.Comp.CatchingFailDamage, origin: args.Item);
+            _damageable.ChangeDamage(ent, ent.Comp.CatchingFailDamage, origin: args.Item);
 
         // Collisions don't work properly with PopupPredicted or PlayPredicted.
         // So we make this server only.
         if (_net.IsClient)
             return;
 
-        var selfMessage = Loc.GetString(ent.Comp.CatchingFailedMessageSelf, ("item", ent.Owner), ("catcher", Identity.Entity(ent.Owner, EntityManager)));
-        var othersMessage = Loc.GetString(ent.Comp.CatchingFailedMessageOthers, ("item", ent.Owner), ("catcher", Identity.Entity(ent.Owner, EntityManager)));
-        _popup.PopupEntity(selfMessage, ent.Owner, ent.Owner);
-        _popup.PopupEntity(othersMessage, ent.Owner, Filter.PvsExcept(ent.Owner), true);
+        var selfMessage = Loc.GetString(ent.Comp.CatchingFailedMessageSelf, ("item", ent), ("catcher", Identity.Entity(ent, EntityManager)));
+        var othersMessage = Loc.GetString(ent.Comp.CatchingFailedMessageOthers, ("item", ent), ("catcher", Identity.Entity(ent, EntityManager)));
+        _popup.PopupEntity(selfMessage, ent, ent);
+        _popup.PopupEntity(othersMessage, ent, Filter.PvsExcept(ent), true);
         _audio.PlayPvs(ent.Comp.ClumsySound, ent);
     }
 
@@ -127,7 +127,7 @@ public sealed class ClumsySystem : EntitySystem
             return;
 
         if (ent.Comp.GunShootFailDamage != null)
-            _damageable.ChangeDamage(ent.Owner, ent.Comp.GunShootFailDamage, origin: ent);
+            _damageable.ChangeDamage(ent, ent.Comp.GunShootFailDamage, origin: ent);
 
         _stun.TryUpdateParalyzeDuration(ent, ent.Comp.GunShootFailStunTime);
 
@@ -160,7 +160,7 @@ public sealed class ClumsySystem : EntitySystem
         var gettingPutOnTableName = Identity.Entity(args.GettingPutOnTable, EntityManager);
         var puttingOnTableName = Identity.Entity(args.PuttingOnTable, EntityManager);
 
-        if (args.PuttingOnTable == ent.Owner)
+        if (args.PuttingOnTable == ent)
         {
             // You are slamming yourself onto the table.
             _popup.PopupPredicted(
@@ -199,7 +199,7 @@ public sealed class ClumsySystem : EntitySystem
         {
             stunTime = bonkComp.BonkTime;
             if (bonkComp.BonkDamage != null)
-                _damageable.ChangeDamage(target.Owner, bonkComp.BonkDamage, true);
+                _damageable.ChangeDamage(target, bonkComp.BonkDamage, true);
         }
 
         _stun.TryUpdateParalyzeDuration(target, stunTime);

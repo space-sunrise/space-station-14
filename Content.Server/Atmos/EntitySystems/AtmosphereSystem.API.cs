@@ -149,7 +149,7 @@ public partial class AtmosphereSystem
     [PublicAPI]
     public void InvalidateTile(Entity<GridAtmosphereComponent?> entity, Vector2i tile)
     {
-        if (_atmosQuery.Resolve(entity.Owner, ref entity.Comp, false))
+        if (_atmosQuery.Resolve(entity, ref entity.Comp, false))
             entity.Comp.InvalidatedCoords.Add(tile);
     }
 
@@ -195,7 +195,7 @@ public partial class AtmosphereSystem
                 if (excite)
                 {
                     AddActiveTile(gridEnt.Comp1, atmosTile);
-                    InvalidateVisuals((gridEnt.Owner, gridEnt.Comp2), tile);
+                    InvalidateVisuals((gridEnt, gridEnt.Comp2), tile);
                 }
             }
         }
@@ -238,7 +238,7 @@ public partial class AtmosphereSystem
     [PublicAPI]
     public GasMixture? GetTileMixture(Entity<TransformComponent?> entity, bool excite = false)
     {
-        if (!Resolve(entity.Owner, ref entity.Comp))
+        if (!Resolve(entity, ref entity.Comp))
             return null;
 
         var indices = _transformSystem.GetGridTilePositionOrDefault(entity);
@@ -268,7 +268,7 @@ public partial class AtmosphereSystem
             if (excite)
             {
                 AddActiveTile(gridEnt.Comp1, tile);
-                InvalidateVisuals((grid.Value.Owner, grid.Value.Comp2), gridTile);
+                InvalidateVisuals((grid.Value, grid.Value.Comp2), gridTile);
             }
 
             return tile.Air;
@@ -604,20 +604,20 @@ public partial class AtmosphereSystem
         }
 
         // Entity should be on the grid it's being added to.
-        Debug.Assert(xform.GridUid == grid.Owner);
+        Debug.Assert(xform.GridUid == grid);
 
         if (!_atmosQuery.Resolve(grid, ref grid.Comp, false))
             return false;
 
-        if (grid.Comp.DeltaPressureEntityLookup.ContainsKey(ent.Owner))
+        if (grid.Comp.DeltaPressureEntityLookup.ContainsKey(ent))
         {
             return false;
         }
 
-        grid.Comp.DeltaPressureEntityLookup[ent.Owner] = grid.Comp.DeltaPressureEntities.Count;
+        grid.Comp.DeltaPressureEntityLookup[ent] = grid.Comp.DeltaPressureEntities.Count;
         grid.Comp.DeltaPressureEntities.Add(ent);
 
-        ent.Comp.GridUid = grid.Owner;
+        ent.Comp.GridUid = grid;
         ent.Comp.InProcessingList = true;
 
         return true;
@@ -636,7 +636,7 @@ public partial class AtmosphereSystem
         if (!_atmosQuery.Resolve(grid, ref grid.Comp, false))
             return false;
 
-        if (!grid.Comp.DeltaPressureEntityLookup.TryGetValue(ent.Owner, out var index))
+        if (!grid.Comp.DeltaPressureEntityLookup.TryGetValue(ent, out var index))
             return false;
 
         var lastIndex = grid.Comp.DeltaPressureEntities.Count - 1;
@@ -647,11 +647,11 @@ public partial class AtmosphereSystem
         {
             var lastEnt = grid.Comp.DeltaPressureEntities[lastIndex];
             grid.Comp.DeltaPressureEntities[index] = lastEnt;
-            grid.Comp.DeltaPressureEntityLookup[lastEnt.Owner] = index;
+            grid.Comp.DeltaPressureEntityLookup[lastEnt] = index;
         }
 
         grid.Comp.DeltaPressureEntities.RemoveAt(lastIndex);
-        grid.Comp.DeltaPressureEntityLookup.Remove(ent.Owner);
+        grid.Comp.DeltaPressureEntityLookup.Remove(ent);
 
         if (grid.Comp.DeltaPressureCursor > grid.Comp.DeltaPressureEntities.Count)
             grid.Comp.DeltaPressureCursor = grid.Comp.DeltaPressureEntities.Count;
@@ -674,7 +674,7 @@ public partial class AtmosphereSystem
         if (!_atmosQuery.Resolve(grid, ref grid.Comp, false))
             return false;
 
-        var contains = grid.Comp.DeltaPressureEntityLookup.ContainsKey(ent.Owner);
+        var contains = grid.Comp.DeltaPressureEntityLookup.ContainsKey(ent);
         Debug.Assert(contains == grid.Comp.DeltaPressureEntities.Contains(ent));
 
         return contains;

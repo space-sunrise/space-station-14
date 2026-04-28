@@ -61,9 +61,9 @@ public sealed partial class DisassembleOnAltVerbSystem : EntitySystem
         if (!_net.IsServer || args.Cancelled) // This is odd but it works :)
             return;
 
-        if (TrySpawnNextTo(entity.Comp.PrototypeToSpawn, entity.Owner, out var spawnedEnt))
+        if (TrySpawnNextTo(entity.Comp.PrototypeToSpawn, entity, out var spawnedEnt))
             _handsSystem.TryPickup(args.User, spawnedEnt.Value);
 
-        QueueDel(entity.Owner);
+        QueueDel(entity);
     }
 }

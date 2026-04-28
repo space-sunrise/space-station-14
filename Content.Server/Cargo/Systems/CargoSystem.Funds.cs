@@ -162,6 +162,6 @@ public sealed partial class CargoSystem
     private void OnFundAllocationBuiOpen(Entity<FundingAllocationConsoleComponent> ent, ref BeforeActivatableUIOpenEvent args)
     {
         if (_station.GetOwningStation(ent) is { } station)
-            _uiSystem.SetUiState(ent.Owner, FundingAllocationConsoleUiKey.Key, new FundingAllocationConsoleBuiState(GetNetEntity(station)));
+            _uiSystem.SetUiState(ent, FundingAllocationConsoleUiKey.Key, new FundingAllocationConsoleBuiState(GetNetEntity(station)));
     }
 }

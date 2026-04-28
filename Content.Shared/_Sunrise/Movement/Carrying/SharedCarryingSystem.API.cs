@@ -67,7 +67,7 @@ public abstract partial class SharedCarryingSystem
     /// <returns>True if the carry action can be started.</returns>
     protected bool CanCarry(Entity<CarrierComponent?> carrier, Entity<CanBeCarriedComponent?> target)
     {
-        if (carrier.Owner == target.Owner)
+        if (carrier == target)
             return false;
 
         if (!HasComp<MapGridComponent>(Transform(carrier).ParentUid))
@@ -84,13 +84,13 @@ public abstract partial class SharedCarryingSystem
             !_whitelist.CheckBoth(carrier, target.Comp.CarrierBlacklist, target.Comp.CarrierWhitelist))
             return false;
 
-        if (!_mobState.IsAlive(carrier.Owner))
+        if (!_mobState.IsAlive(carrier))
             return false;
 
-        if (_hands.CountFreeHands(carrier.Owner) < target.Comp.FreeHandsRequired)
+        if (_hands.CountFreeHands(carrier) < target.Comp.FreeHandsRequired)
             return false;
 
-        if (!_interaction.InRangeUnobstructed(carrier.Owner, target.Owner, carrier.Comp.InteractionRange))
+        if (!_interaction.InRangeUnobstructed(carrier, target, carrier.Comp.InteractionRange))
             return false;
 
         var targetEv = new StartBeingCarryAttemptEvent(carrier);
@@ -108,8 +108,8 @@ public abstract partial class SharedCarryingSystem
 
     private void StartCarry(Entity<CarrierComponent> carrier, Entity<CanBeCarriedComponent> target)
     {
-        var carrierUid = carrier.Owner;
-        var targetUid = target.Owner;
+        var carrierUid = carrier;
+        var targetUid = target;
 
         if (HasComp<ActiveCarrierComponent>(carrierUid))
             TryDropCarried(carrierUid);
@@ -231,13 +231,13 @@ public abstract partial class SharedCarryingSystem
     /// <param name="carried">Entity being carried.</param>
     protected void ApplySlowdown(Entity<CarrierComponent> carrier, Entity<CanBeCarriedComponent> carried)
     {
-        var massRatio = MassContest(carrier.Owner, carried.Owner);
+        var massRatio = MassContest(carrier, carried);
         var mobState = TryComp<MobStateComponent>(carried, out var mobStateComp)
             ? mobStateComp.CurrentState
             : MobState.Invalid;
 
         var modifier = CalculateSpeedModifier(mobState, massRatio, carrier.Comp, carried.Comp);
-        _slowdown.SetModifier(carrier.Owner, modifier, modifier);
+        _slowdown.SetModifier(carrier, modifier, modifier);
     }
 
     /// <summary>

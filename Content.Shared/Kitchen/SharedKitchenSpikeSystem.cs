@@ -108,7 +108,7 @@ public sealed class SharedKitchenSpikeSystem : EntitySystem
         Dirty(ent);
 
         // TODO: Add sprites for different species.
-        _appearanceSystem.SetData(ent.Owner, KitchenSpikeVisuals.Status, KitchenSpikeStatus.Bloody);
+        _appearanceSystem.SetData(ent, KitchenSpikeVisuals.Status, KitchenSpikeStatus.Bloody);
     }
 
     private void OnEntRemovedFromContainer(Entity<KitchenSpikeComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -119,7 +119,7 @@ public sealed class SharedKitchenSpikeSystem : EntitySystem
         RemComp<KitchenSpikeHookedComponent>(args.Entity);
         _damageableSystem.TryChangeDamage(args.Entity, ent.Comp.SpikeDamage, true);
 
-        _appearanceSystem.SetData(ent.Owner, KitchenSpikeVisuals.Status, KitchenSpikeStatus.Empty);
+        _appearanceSystem.SetData(ent, KitchenSpikeVisuals.Status, KitchenSpikeStatus.Empty);
     }
 
     private void OnInteractHand(Entity<KitchenSpikeComponent> ent, ref InteractHandEvent args)
@@ -398,7 +398,7 @@ public sealed class SharedKitchenSpikeSystem : EntitySystem
     {
         // Check if the entity is the target to avoid giving the hooked entity access to everything.
         // If we already have access we don't need to run more code.
-        if (args.Accessible || args.Target != ent.Owner)
+        if (args.Accessible || args.Target != ent)
             return;
 
         var xform = Transform(ent);

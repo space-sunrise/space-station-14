@@ -67,13 +67,13 @@ public sealed class MimePowersSystem : EntitySystem
             Dirty(ent, illiterateComponent);
         }
 
-        _alertsSystem.ShowAlert(ent.Owner, ent.Comp.VowAlert);
+        _alertsSystem.ShowAlert(ent, ent.Comp.VowAlert);
         _actionsSystem.AddAction(ent, ref ent.Comp.InvisibleWallActionEntity, ent.Comp.InvisibleWallAction);
     }
 
     private void OnComponentShutdown(Entity<MimePowersComponent> ent, ref ComponentShutdown args)
     {
-        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.InvisibleWallActionEntity);
+        _actionsSystem.RemoveAction(ent, ent.Comp.InvisibleWallActionEntity);
     }
 
     /// <summary>
@@ -102,8 +102,8 @@ public sealed class MimePowersSystem : EntitySystem
             return;
         }
 
-        var messageSelf = Loc.GetString("mime-invisible-wall-popup-self", ("mime", Identity.Entity(ent.Owner, EntityManager)));
-        var messageOthers = Loc.GetString("mime-invisible-wall-popup-others", ("mime", Identity.Entity(ent.Owner, EntityManager)));
+        var messageSelf = Loc.GetString("mime-invisible-wall-popup-self", ("mime", Identity.Entity(ent, EntityManager)));
+        var messageOthers = Loc.GetString("mime-invisible-wall-popup-others", ("mime", Identity.Entity(ent, EntityManager)));
         _popupSystem.PopupPredicted(messageSelf, messageOthers, ent, ent);
 
         // Make sure we set the invisible wall to despawn properly

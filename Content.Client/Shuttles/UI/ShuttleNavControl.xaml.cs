@@ -196,7 +196,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         // Draw other grids... differently
         foreach (var grid in _grids)
         {
-            var gUid = grid.Owner;
+            var gUid = grid;
             if (gUid == ourGridId || !fixturesQuery.HasComponent(gUid))
                 continue;
 

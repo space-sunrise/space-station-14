@@ -595,10 +595,10 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         Log.Info($"Created transit hub grid {ToPrettyString(uid)} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
-        EnsureComp<ProtectedGridComponent>(uid.Value.Owner);
-        EnsureComp<ArrivalsSourceComponent>(uid.Value.Owner); // Sunrise-edit
-        EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
-        EnsureComp<ImmortalGridComponent>(uid.Value.Owner); // Sunrise-edit
+        EnsureComp<ProtectedGridComponent>(uid.Value);
+        EnsureComp<ArrivalsSourceComponent>(uid.Value); // Sunrise-edit
+        EnsureComp<UnbuildableGridComponent>(uid.Value); // Sunrise-edit
+        EnsureComp<ImmortalGridComponent>(uid.Value); // Sunrise-edit
 
        var template = _random.Pick(component.Biomes);
        var biome = _prototypeManager.Index<BiomeTemplatePrototype>(template);
@@ -638,7 +638,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
     private void AddEmergencyShuttle(Entity<StationEmergencyShuttleComponent?, StationTransitHubComponent?> ent) // Sunrise-edit
     {
-        if (!Resolve(ent.Owner, ref ent.Comp1, ref ent.Comp2))
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2))
             return;
 
         if (!_emergencyShuttleEnabled)
@@ -676,13 +676,13 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         }
 
         ent.Comp1.EmergencyShuttle = shuttle;
-        EnsureComp<ProtectedGridComponent>(shuttle.Value.Owner);
-        EnsureComp<PreventPilotComponent>(shuttle.Value.Owner);
-        EnsureComp<EmergencyShuttleComponent>(shuttle.Value.Owner);
-        EnsureComp<UnbuildableGridComponent>(shuttle.Value.Owner); // Sunrise-edit
+        EnsureComp<ProtectedGridComponent>(shuttle.Value);
+        EnsureComp<PreventPilotComponent>(shuttle.Value);
+        EnsureComp<EmergencyShuttleComponent>(shuttle.Value);
+        EnsureComp<UnbuildableGridComponent>(shuttle.Value); // Sunrise-edit
 
         // var docks = new HashSet<Entity<DockingComponent>>();
-        // _lookup.GetChildEntities(shuttle.Value.Owner, docks);
+        // _lookup.GetChildEntities(shuttle.Value, docks);
         // foreach (var dock in docks)
         // {
         //     var airlock = EnsureComp<AirlockComponent>(dock);

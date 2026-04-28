@@ -152,10 +152,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void OnBeforeActivatableUIOpen(Entity<AbductorHumanObservationConsoleComponent> ent, ref BeforeActivatableUIOpenEvent args)
     {
         if (TryComp<AbductorScientistComponent>(args.User, out var scientistComp))
-            scientistComp.Console = ent.Owner;
+            scientistComp.Console = ent;
 
         if (TryComp<AbductorAgentComponent>(args.User, out var agentComp))
-            agentComp.Console = ent.Owner;
+            agentComp.Console = ent;
 
         var stations = _stationSystem.GetStations();
         var result = new Dictionary<int, StationBeacons>();
@@ -183,7 +183,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             });
         }
 
-        _uiSystem.SetUiState(ent.Owner, AbductorCameraConsoleUIKey.Key, new AbductorCameraConsoleBuiState() { Stations = result });
+        _uiSystem.SetUiState(ent, AbductorCameraConsoleUIKey.Key, new AbductorCameraConsoleBuiState() { Stations = result });
     }
 
     private void SetEye(EntityUid uid, EntityUid eye, AbductorBeaconChosenBuiMsg args)

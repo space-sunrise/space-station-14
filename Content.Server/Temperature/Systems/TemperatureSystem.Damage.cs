@@ -112,7 +112,7 @@ public sealed partial class TemperatureSystem
 
             var diff = Math.Abs(temperature.CurrentTemperature - heatDamageThreshold);
             var tempDamage = c / (1 + a * Math.Pow(Math.E, -heatK * diff)) - y;
-            _damageable.TryChangeDamage(entity.Owner, entity.Comp.HeatDamage * tempDamage * deltaTime.TotalSeconds, ignoreResistances: true, interruptsDoAfters: false);
+            _damageable.TryChangeDamage(entity, entity.Comp.HeatDamage * tempDamage * deltaTime.TotalSeconds, ignoreResistances: true, interruptsDoAfters: false);
         }
         else if (temperature.CurrentTemperature <= coldDamageThreshold)
         {
@@ -125,7 +125,7 @@ public sealed partial class TemperatureSystem
             var diff = Math.Abs(temperature.CurrentTemperature - coldDamageThreshold);
             var tempDamage =
                 Math.Sqrt(diff * (Math.Pow(entity.Comp.DamageCap.Double(), 2) / coldDamageThreshold));
-            _damageable.TryChangeDamage(entity.Owner, entity.Comp.ColdDamage * tempDamage * deltaTime.TotalSeconds, ignoreResistances: true, interruptsDoAfters: false);
+            _damageable.TryChangeDamage(entity, entity.Comp.ColdDamage * tempDamage * deltaTime.TotalSeconds, ignoreResistances: true, interruptsDoAfters: false);
         }
         else if (entity.Comp.TakingDamage)
         {
@@ -142,7 +142,7 @@ public sealed partial class TemperatureSystem
 
         if (!_tempDamageQuery.TryComp(entity, out var thresholds))
         {
-            _alerts.ClearAlertCategory(entity.Owner, TemperatureAlertCategory);
+            _alerts.ClearAlertCategory(entity, TemperatureAlertCategory);
             return;
         }
 
@@ -174,9 +174,9 @@ public sealed partial class TemperatureSystem
         var alertLevel = (short)ContentHelpers.RoundToLevels(tempScale - MinAlertTemperatureScale, 1.00f - MinAlertTemperatureScale, MaxTemperatureAlertSeverity + 1);
 
         if (alertLevel > 0)
-            _alerts.ShowAlert(entity.AsNullable(), type, alertLevel);
+            _alerts.ShowAlert(entity, type, alertLevel);
         else
-            _alerts.ClearAlertCategory(entity.AsNullable(), TemperatureAlertCategory);
+            _alerts.ClearAlertCategory(entity, TemperatureAlertCategory);
     }
 
     private void EnqueueDamage(Entity<TemperatureDamageComponent> ent, ref OnTemperatureChangeEvent args)
@@ -196,7 +196,7 @@ public sealed partial class TemperatureSystem
         var oldThresholds = args.OldParent != null
             ? RecalculateParentThresholds(args.OldParent.Value)
             : (null, null);
-        var xform = Transform(entity.Owner);
+        var xform = Transform(entity);
         var newThresholds = RecalculateParentThresholds(xform.ParentUid);
 
         if (oldThresholds != newThresholds)
@@ -205,12 +205,12 @@ public sealed partial class TemperatureSystem
 
     private void OnParentThresholdStartup(Entity<ContainerTemperatureComponent> entity, ref ComponentStartup args)
     {
-        RecursiveThresholdUpdate(entity.Owner);
+        RecursiveThresholdUpdate(entity);
     }
 
     private void OnParentThresholdShutdown(Entity<ContainerTemperatureComponent> entity, ref ComponentShutdown args)
     {
-        RecursiveThresholdUpdate(entity.Owner);
+        RecursiveThresholdUpdate(entity);
     }
 
     /// <summary>

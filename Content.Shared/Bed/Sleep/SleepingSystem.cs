@@ -87,7 +87,7 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         // TODO is this necessary?
         // Shouldn't the interaction have already been blocked by a general interaction check?
-        if (ent.Owner == args.User)
+        if (ent == args.User)
             args.Cancelled = true;
     }
 
@@ -98,7 +98,7 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnWakeAction(Entity<MobStateComponent> ent, ref WakeActionEvent args)
     {
-        if (TryWakeWithCooldown(ent.Owner))
+        if (TryWakeWithCooldown(ent))
             args.Handled = true;
     }
 
@@ -134,14 +134,14 @@ public sealed partial class SleepingSystem : EntitySystem
                 emitSound.MinInterval = sleepSound.Interval;
                 emitSound.MaxInterval = sleepSound.MaxInterval;
                 emitSound.PopUp = sleepSound.PopUp;
-                Dirty(ent.Owner, emitSound);
+                Dirty(ent, emitSound);
             }
 
             return;
         }
 
-        _stun.TryUnstun(ent.Owner);
-        _standing.Stand(ent.Owner);
+        _stun.TryUnstun(ent);
+        _standing.Stand(ent);
 
         RemComp<SpamEmitSoundComponent>(ent);
     }
@@ -150,18 +150,18 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         var ev = new SleepStateChangedEvent(true);
         RaiseLocalEvent(ent, ref ev);
-        _blindableSystem.UpdateIsBlind(ent.Owner);
+        _blindableSystem.UpdateIsBlind(ent);
         _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
     }
 
     private void OnComponentRemoved(Entity<SleepingComponent> ent, ref ComponentRemove args)
     {
-        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.WakeAction);
+        _actionsSystem.RemoveAction(ent, ent.Comp.WakeAction);
 
         var ev = new SleepStateChangedEvent(false);
         RaiseLocalEvent(ent, ref ev);
 
-        _blindableSystem.UpdateIsBlind(ent.Owner);
+        _blindableSystem.UpdateIsBlind(ent);
     }
 
     private void OnSpeakAttempt(Entity<SleepingComponent> ent, ref SpeakAttemptEvent args)

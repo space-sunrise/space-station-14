@@ -33,7 +33,7 @@ public sealed partial class StandUpOperator : HTNOperator
     public override void Startup(NPCBlackboard blackboard)
     {
         base.Startup(blackboard);
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         if (!_standingQuery.TryGetComponent(owner, out var standing) ||
             standing.Standing)
@@ -50,7 +50,7 @@ public sealed partial class StandUpOperator : HTNOperator
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         if (!_standingQuery.TryGetComponent(owner, out var standing) ||
             standing.Standing)

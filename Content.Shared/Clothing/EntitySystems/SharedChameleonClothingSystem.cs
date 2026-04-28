@@ -179,14 +179,14 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
 
     private void OnVerb(Entity<ChameleonClothingComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || _lock.IsLocked(ent.Owner))
+        if (!args.CanAccess || !args.CanInteract || _lock.IsLocked(ent))
             return;
 
         // Can't pass args from a ref event inside of lambdas
         var user = args.User;
 
         // Sunrise-Start
-        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
+        if (TryComp<BiocodeComponent>(ent, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
                 return;
@@ -197,7 +197,7 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
         {
             Text = Loc.GetString("chameleon-component-verb-text"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
-            Act = () => UI.TryToggleUi(ent.Owner, ChameleonUiKey.Key, user)
+            Act = () => UI.TryToggleUi(ent, ChameleonUiKey.Key, user)
         });
     }
 

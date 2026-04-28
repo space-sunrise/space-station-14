@@ -42,7 +42,7 @@ namespace Content.Server.Nutrition.EntitySystems
             if (!isHotEvent.IsHot)
                 return;
 
-            if (TryTransferReagents(entity, (entity.Owner, smokable)))
+            if (TryTransferReagents(entity, (entity, smokable)))
                 SetSmokableState(entity, SmokableState.Lit, smokable);
             args.Handled = true;
         }
@@ -62,7 +62,7 @@ namespace Content.Server.Nutrition.EntitySystems
             if (!isHotEvent.IsHot)
                 return;
 
-            if (TryTransferReagents(entity, (entity.Owner, smokable)))
+            if (TryTransferReagents(entity, (entity, smokable)))
                 SetSmokableState(entity, SmokableState.Lit, smokable);
             args.Handled = true;
         }
@@ -82,7 +82,7 @@ namespace Content.Server.Nutrition.EntitySystems
             EntityUid contents = entity.Comp.BowlSlot.Item.Value;
 
             if (!TryComp<SolutionContainerManagerComponent>(contents, out var reagents) ||
-                !_solutionContainerSystem.TryGetSolution(smokable.Owner, smokable.Comp.Solution, out var pipeSolution, out _))
+                !_solutionContainerSystem.TryGetSolution(smokable, smokable.Comp.Solution, out var pipeSolution, out _))
                 return false;
 
             foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((contents, reagents)))
@@ -93,7 +93,7 @@ namespace Content.Server.Nutrition.EntitySystems
 
             Del(contents);
 
-            _itemSlotsSystem.SetLock(entity.Owner, entity.Comp.BowlSlot, true); //no inserting more until current runs out
+            _itemSlotsSystem.SetLock(entity, entity.Comp.BowlSlot, true); //no inserting more until current runs out
 
             return true;
         }

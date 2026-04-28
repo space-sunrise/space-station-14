@@ -35,7 +35,7 @@ public sealed partial class BorgSystem
 
             var chargeFraction = 0f;
             if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
-                chargeFraction = _battery.GetChargeLevel(battery.Value.AsNullable());
+                chargeFraction = _battery.GetChargeLevel(battery.Value);
 
             var hpPercent = CalcHP(uid);
 
@@ -95,7 +95,7 @@ public sealed partial class BorgSystem
         if (command == RoboticsConsoleConstants.NET_DISABLE_COMMAND)
             Disable(ent);
         else if (command == RoboticsConsoleConstants.NET_DESTROY_COMMAND)
-            Destroy(ent.Owner);
+            Destroy(ent);
     }
 
     private void Disable(Entity<BorgTransponderComponent, BorgChassisComponent?> ent)
@@ -139,7 +139,7 @@ public sealed partial class BorgSystem
 
         var message = Loc.GetString(ent.Comp.DestroyingPopup, ("name", Name(ent)));
         _popup.PopupEntity(message, ent);
-        _trigger.ActivateTimerTrigger(ent.Owner);
+        _trigger.ActivateTimerTrigger(ent);
 
         // prevent a shitter borg running into people
         RemComp<InputMoverComponent>(ent);

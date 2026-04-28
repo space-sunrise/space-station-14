@@ -21,13 +21,13 @@ public sealed class ItemTogglePointLightSystem : EntitySystem
 
     private void OnLightToggled(Entity<ItemTogglePointLightComponent> ent, ref ItemToggledEvent args)
     {
-        if (!_light.TryGetLight(ent.Owner, out var light))
+        if (!_light.TryGetLight(ent, out var light))
             return;
 
-        _light.SetEnabled(ent.Owner, args.Activated, comp: light);
-        if (TryComp<HandheldLightComponent>(ent.Owner, out var handheldLight))
+        _light.SetEnabled(ent, args.Activated, comp: light);
+        if (TryComp<HandheldLightComponent>(ent, out var handheldLight))
         {
-            _handheldLight.SetActivated(ent.Owner, args.Activated, handheldLight);
+            _handheldLight.SetActivated(ent, args.Activated, handheldLight);
         }
     }
 }

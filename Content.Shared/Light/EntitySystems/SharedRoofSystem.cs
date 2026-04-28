@@ -38,7 +38,7 @@ public abstract class SharedRoofSystem : EntitySystem
         }
 
         _roofSet.Clear();
-        _lookup.GetLocalEntitiesIntersecting(grid.Owner, index, _roofSet);
+        _lookup.GetLocalEntitiesIntersecting(grid, index, _roofSet);
 
         foreach (var isRoofEnt in _roofSet)
         {
@@ -72,7 +72,7 @@ public abstract class SharedRoofSystem : EntitySystem
         }
 
         _roofSet.Clear();
-        _lookup.GetLocalEntitiesIntersecting(grid.Owner, index, _roofSet);
+        _lookup.GetLocalEntitiesIntersecting(grid, index, _roofSet);
 
         foreach (var isRoofEnt in _roofSet)
         {
@@ -125,6 +125,6 @@ public abstract class SharedRoofSystem : EntitySystem
         }
 
         roof.Data[chunkOrigin] = chunkData;
-        Dirty(grid.Owner, roof);
+        Dirty(grid, roof);
     }
 }

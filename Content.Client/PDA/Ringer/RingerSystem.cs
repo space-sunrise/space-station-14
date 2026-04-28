@@ -28,7 +28,7 @@ public sealed class RingerSystem : SharedRingerSystem
     /// <inheritdoc/>
     protected override void UpdateRingerUi(Entity<RingerComponent> ent)
     {
-        if (UI.TryGetOpenUi(ent.Owner, RingerUiKey.Key, out var bui))
+        if (UI.TryGetOpenUi(ent, RingerUiKey.Key, out var bui))
         {
             bui.Update();
         }

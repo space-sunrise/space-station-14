@@ -41,7 +41,7 @@ public sealed class PipeRestrictOverlapSystem : EntitySystem
 
         if (HasComp<AnchorableComponent>(ent) && CheckOverlap(ent))
         {
-            _popup.PopupEntity(Loc.GetString("pipe-restrict-overlap-popup-blocked", ("pipe", ent.Owner)), ent);
+            _popup.PopupEntity(Loc.GetString("pipe-restrict-overlap-popup-blocked", ("pipe", ent)), ent);
             _xform.Unanchor(ent, Transform(ent));
         }
     }
@@ -57,7 +57,7 @@ public sealed class PipeRestrictOverlapSystem : EntitySystem
         var xform = Transform(ent);
         if (CheckOverlap((ent, node, xform)))
         {
-            _popup.PopupEntity(Loc.GetString("pipe-restrict-overlap-popup-blocked", ("pipe", ent.Owner)), ent, args.User);
+            _popup.PopupEntity(Loc.GetString("pipe-restrict-overlap-popup-blocked", ("pipe", ent)), ent, args.User);
             args.Cancel();
         }
     }
@@ -83,7 +83,7 @@ public sealed class PipeRestrictOverlapSystem : EntitySystem
         foreach (var otherEnt in _anchoredEntities)
         {
             // this should never actually happen but just for safety
-            if (otherEnt == ent.Owner)
+            if (otherEnt == ent)
                 continue;
 
             if (!_nodeContainerQuery.TryComp(otherEnt, out var otherComp))

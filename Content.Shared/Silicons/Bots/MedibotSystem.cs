@@ -126,7 +126,7 @@ public sealed class MedibotSystem : EntitySystem
     {
         if (!Resolve(medibot, ref medibot.Comp, false)) return false;
 
-        if (!_interaction.InRangeUnobstructed(medibot.Owner, target)) return false;
+        if (!_interaction.InRangeUnobstructed(medibot, target)) return false;
 
         if (!TryComp<MobStateComponent>(target, out var mobState)) return false;
         if (!TryGetTreatment(medibot.Comp, mobState.CurrentState, out var treatment)) return false;

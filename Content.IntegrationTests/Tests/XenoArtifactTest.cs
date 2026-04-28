@@ -366,8 +366,8 @@ public sealed class XenoArtifactTest
 
             NetEntity[] expectedActiveNodes =
             [
-                entManager.GetNetEntity(node3!.Value.Owner),
-                entManager.GetNetEntity(node5!.Value.Owner)
+                entManager.GetNetEntity(node3!.Value),
+                entManager.GetNetEntity(node5!.Value)
             ];
             Assert.That(artifactEnt.Comp.CachedActiveNodes, Is.SupersetOf(expectedActiveNodes));
             Assert.That(artifactEnt.Comp.CachedActiveNodes, Has.Count.EqualTo(expectedActiveNodes.Length));

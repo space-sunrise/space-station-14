@@ -58,7 +58,7 @@ public abstract class SharedJammerSystem : EntitySystem
 
     private void OnRefreshChargeRate(Entity<RadioJammerComponent> entity, ref RefreshChargeRateEvent args)
     {
-        if (_itemToggle.IsActivated(entity.Owner))
+        if (_itemToggle.IsActivated(entity))
             args.NewChargeRate -= GetCurrentWattage(entity);
     }
 
@@ -87,7 +87,7 @@ public abstract class SharedJammerSystem : EntitySystem
 
                     // If the jammer is off, this won't do anything which is fine.
                     // The range should be updated when it turns on again!
-                    _jammer.TrySetRange(entity.Owner, GetCurrentRange(entity));
+                    _jammer.TrySetRange(entity, GetCurrentRange(entity));
 
                     _popup.PopupClient(Loc.GetString(setting.Message), user, user);
                 },
@@ -103,7 +103,7 @@ public abstract class SharedJammerSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        var powerIndicator = _itemToggle.IsActivated(ent.Owner)
+        var powerIndicator = _itemToggle.IsActivated(ent)
             ? Loc.GetString("radio-jammer-component-examine-on-state")
             : Loc.GetString("radio-jammer-component-examine-off-state");
         args.PushMarkup(powerIndicator);

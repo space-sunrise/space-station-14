@@ -117,9 +117,9 @@ public sealed class AmbientOcclusionOverlay : Overlay
 
                 foreach (var grid in _mapManager.FindGridsIntersecting(mapId, worldBounds))
                 {
-                    var transform = xformSystem.GetWorldMatrix(grid.Owner);
+                    var transform = xformSystem.GetWorldMatrix(grid);
                     var worldToTextureMatrix = Matrix3x2.Multiply(transform, invMatrix);
-                    var tiles = maps.GetTilesEnumerator(grid.Owner, grid, worldBounds);
+                    var tiles = maps.GetTilesEnumerator(grid, grid, worldBounds);
                     worldHandle.SetTransform(worldToTextureMatrix);
                     while (tiles.MoveNext(out var tileRef))
                     {

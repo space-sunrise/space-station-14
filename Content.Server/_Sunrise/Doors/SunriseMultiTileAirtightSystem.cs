@@ -96,7 +96,7 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     {
         DeleteBlockers(ent);
 
-        if (!_xformQuery.TryGetComponent(ent.Owner, out var xform))
+        if (!_xformQuery.TryGetComponent(ent, out var xform))
             return;
 
         if (!xform.Anchored || xform.GridUid is not { } gridUid || !_gridQuery.TryGetComponent(gridUid, out var grid))
@@ -134,11 +134,11 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     {
         bool blocked;
 
-        if (_airtightQuery.TryGetComponent(ent.Owner, out var doorAirtight))
+        if (_airtightQuery.TryGetComponent(ent, out var doorAirtight))
             blocked = doorAirtight.AirBlocked;
         else
         {
-            if (!_doorQuery.TryGetComponent(ent.Owner, out var door))
+            if (!_doorQuery.TryGetComponent(ent, out var door))
                 return;
 
             blocked = door.State is DoorState.Closed or DoorState.Welded;

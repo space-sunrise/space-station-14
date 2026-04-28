@@ -15,7 +15,7 @@ public sealed partial class CreateGasEntityEffectSystem : EntityEffectSystem<Tra
 
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<CreateGas> args)
     {
-        var tileMix = _atmosphere.GetContainingMixture(entity.AsNullable(), false, true);
+        var tileMix = _atmosphere.GetContainingMixture(entity, false, true);
 
         tileMix?.AdjustMoles(args.Effect.Gas, args.Scale * args.Effect.Moles);
     }

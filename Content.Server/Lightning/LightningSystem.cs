@@ -94,11 +94,11 @@ public sealed class LightningSystem : SharedLightningSystem
             if (!_random.Prob(curTarget.Comp.HitProbability)) //Chance to ignore target
                 continue;
 
-            ShootLightning(user, targets[count].Owner, lightningPrototype, triggerLightningEvents);
+            ShootLightning(user, targets[count], lightningPrototype, triggerLightningEvents);
             shooted = true;//starlight
             if (arcDepth - targets[count].Comp.LightningResistance > 0)
             {
-                ShootRandomLightnings(targets[count].Owner, range, 1, lightningPrototype, arcDepth - targets[count].Comp.LightningResistance, triggerLightningEvents);
+                ShootRandomLightnings(targets[count], range, 1, lightningPrototype, arcDepth - targets[count].Comp.LightningResistance, triggerLightningEvents);
             }
             shootedCount++;
         }

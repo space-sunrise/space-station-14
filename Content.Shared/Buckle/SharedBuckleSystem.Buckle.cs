@@ -219,20 +219,20 @@ public abstract partial class SharedBuckleSystem
         {
             old.BuckledEntities.Remove(buckle);
             // Sunrise-Start: Clean up CurrentOffsets when removing buckled entity
-            old.CurrentOffsets.Remove(buckle.Owner);
+            old.CurrentOffsets.Remove(buckle);
             // Sunrise-End
             Dirty(buckle.Comp.BuckledTo.Value, old);
         }
 
-        if (strap is {} strapEnt && Resolve(strapEnt.Owner, ref strapEnt.Comp))
+        if (strap is {} strapEnt && Resolve(strapEnt, ref strapEnt.Comp))
         {
             strapEnt.Comp.BuckledEntities.Add(buckle);
             Dirty(strapEnt);
-            _alerts.ShowAlert(buckle.Owner, strapEnt.Comp.BuckledAlertType);
+            _alerts.ShowAlert(buckle, strapEnt.Comp.BuckledAlertType);
         }
         else
         {
-            _alerts.ClearAlertCategory(buckle.Owner, BuckledAlertCategory);
+            _alerts.ClearAlertCategory(buckle, BuckledAlertCategory);
         }
 
         buckle.Comp.BuckledTo = strap;
@@ -385,7 +385,7 @@ public abstract partial class SharedBuckleSystem
 
     private void Buckle(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap, EntityUid? user)
     {
-        if (user == buckle.Owner)
+        if (user == buckle)
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):player} buckled themselves to {ToPrettyString(strap)}");
         else if (user != null)
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):player} buckled {ToPrettyString(buckle)} to {ToPrettyString(strap)}");
@@ -396,7 +396,7 @@ public abstract partial class SharedBuckleSystem
         Appearance.SetData(strap, StrapVisuals.State, true);
         Appearance.SetData(buckle, BuckleVisuals.Buckled, true);
 
-        _rotationVisuals.SetHorizontalAngle(buckle.Owner, strap.Comp.Rotation);
+        _rotationVisuals.SetHorizontalAngle(buckle, strap.Comp.Rotation);
 
         var xform = Transform(buckle);
         // Sunrise-Start
@@ -411,7 +411,7 @@ public abstract partial class SharedBuckleSystem
             }
         }
 
-        strap.Comp.CurrentOffsets[buckle.Owner] = offset;
+        strap.Comp.CurrentOffsets[buckle] = offset;
 
         var coords = new EntityCoordinates(strap, offset);
         // Sunrise-End
@@ -438,7 +438,7 @@ public abstract partial class SharedBuckleSystem
         if (TryComp<PhysicsComponent>(buckle, out var physics))
             _physics.ResetDynamics(buckle, physics);
 
-        //DebugTools.AssertEqual(xform.ParentUid, strap.Owner);
+        //DebugTools.AssertEqual(xform.ParentUid, strap);
     }
 
     /// <summary>
@@ -461,7 +461,7 @@ public abstract partial class SharedBuckleSystem
 
     public bool TryUnbuckle(Entity<BuckleComponent?> buckle, EntityUid? user, bool popup)
     {
-        if (!Resolve(buckle.Owner, ref buckle.Comp, false))
+        if (!Resolve(buckle, ref buckle.Comp, false))
             return false;
 
         if (!CanUnbuckle(buckle, user, popup, out var strap))
@@ -473,7 +473,7 @@ public abstract partial class SharedBuckleSystem
 
     public void Unbuckle(Entity<BuckleComponent?> buckle, EntityUid? user)
     {
-        if (!Resolve(buckle.Owner, ref buckle.Comp, false))
+        if (!Resolve(buckle, ref buckle.Comp, false))
             return;
 
         if (buckle.Comp.BuckledTo is not { } strap)
@@ -481,7 +481,7 @@ public abstract partial class SharedBuckleSystem
 
         if (!TryComp(strap, out StrapComponent? strapComp))
         {
-            Log.Error($"Encountered buckle {ToPrettyString(buckle.Owner)} with invalid strap entity {ToPrettyString(strap)}");
+            Log.Error($"Encountered buckle {ToPrettyString(buckle)} with invalid strap entity {ToPrettyString(strap)}");
             SetBuckledTo(buckle!, null);
             return;
         }
@@ -491,7 +491,7 @@ public abstract partial class SharedBuckleSystem
 
     private void Unbuckle(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap, EntityUid? user)
     {
-        if (user == buckle.Owner)
+        if (user == buckle)
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} unbuckled themselves from {ToPrettyString(strap):strap}");
         else if (user != null)
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} unbuckled {ToPrettyString(buckle):target} from {ToPrettyString(strap):strap}");
@@ -503,18 +503,18 @@ public abstract partial class SharedBuckleSystem
         var buckleXform = Transform(buckle);
         var oldBuckledXform = Transform(strap);
 
-        if (buckleXform.ParentUid == strap.Owner && !Terminating(oldBuckledXform.ParentUid))
+        if (buckleXform.ParentUid == strap && !Terminating(oldBuckledXform.ParentUid))
         {
-            _transform.PlaceNextTo((buckle, buckleXform), (strap.Owner, oldBuckledXform));
+            _transform.PlaceNextTo((buckle, buckleXform), (strap, oldBuckledXform));
             buckleXform.ActivelyLerping = false;
 
             var oldBuckledToWorldRot = _transform.GetWorldRotation(strap);
             _transform.SetWorldRotationNoLerp((buckle, buckleXform), oldBuckledToWorldRot);
             // Sunrise start
-            if (strap.Comp.CurrentOffsets.TryGetValue(buckle.Owner, out var offset) && offset != Vector2.Zero)
+            if (strap.Comp.CurrentOffsets.TryGetValue(buckle, out var offset) && offset != Vector2.Zero)
                 _transform.SetCoordinates(buckle, buckleXform, oldBuckledXform.Coordinates.Offset(offset));
 
-            strap.Comp.CurrentOffsets.Remove(buckle.Owner);
+            strap.Comp.CurrentOffsets.Remove(buckle);
             // if (strap.Comp.BuckleOffset != Vector2.Zero)
             // {
             //     _transform.SetCoordinates(buckle, buckleXform, oldBuckledXform.Coordinates.Offset(strap.Comp.BuckleOffset));
@@ -522,7 +522,7 @@ public abstract partial class SharedBuckleSystem
             // Sunrise end
         }
 
-        _rotationVisuals.ResetHorizontalAngle(buckle.Owner);
+        _rotationVisuals.ResetHorizontalAngle(buckle);
         Appearance.SetData(strap, StrapVisuals.State, strap.Comp.BuckledEntities.Count != 0);
         Appearance.SetData(buckle, BuckleVisuals.Buckled, false);
 
@@ -548,7 +548,7 @@ public abstract partial class SharedBuckleSystem
     private bool CanUnbuckle(Entity<BuckleComponent?> buckle, EntityUid? user, bool popup, out Entity<StrapComponent> strap)
     {
         strap = default;
-        if (!Resolve(buckle.Owner, ref buckle.Comp))
+        if (!Resolve(buckle, ref buckle.Comp))
             return false;
 
         if (buckle.Comp.BuckledTo is not { } strapUid)
@@ -556,7 +556,7 @@ public abstract partial class SharedBuckleSystem
 
         if (!TryComp(strapUid, out StrapComponent? strapComp))
         {
-            Log.Error($"Encountered buckle {ToPrettyString(buckle.Owner)} with invalid strap entity {ToPrettyString(strap)}");
+            Log.Error($"Encountered buckle {ToPrettyString(buckle)} with invalid strap entity {ToPrettyString(strap)}");
             SetBuckledTo(buckle!, null);
             return false;
         }
@@ -567,10 +567,10 @@ public abstract partial class SharedBuckleSystem
 
         if (user != null)
         {
-            if (!_interaction.InRangeUnobstructed(user.Value, strap.Owner, buckle.Comp.Range, popup: popup))
+            if (!_interaction.InRangeUnobstructed(user.Value, strap, buckle.Comp.Range, popup: popup))
                 return false;
 
-            if (user.Value != buckle.Owner && !ActionBlocker.CanComplexInteract(user.Value))
+            if (user.Value != buckle && !ActionBlocker.CanComplexInteract(user.Value))
                 return false;
         }
 

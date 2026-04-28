@@ -22,7 +22,7 @@ public abstract partial class SharedActionsSystem
 
         var actionDoAfterEvent = new ActionDoAfterEvent(netEnt, originalUseDelay, input);
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, performer, delay, actionDoAfterEvent, ent.Owner, performer)
+        var doAfterArgs = new DoAfterArgs(EntityManager, performer, delay, actionDoAfterEvent, ent, performer)
         {
             AttemptFrequency = ent.Comp.AttemptFrequency,
             Broadcast = ent.Comp.Broadcast,

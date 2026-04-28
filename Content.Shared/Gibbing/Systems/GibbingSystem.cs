@@ -187,7 +187,7 @@ public sealed class GibbingSystem : EntitySystem
         }
 
         if (gibType == GibType.Gib)
-            PredictedQueueDel(gibbable.Owner);
+            PredictedQueueDel(gibbable);
         return true;
     }
 
@@ -216,7 +216,7 @@ public sealed class GibbingSystem : EntitySystem
                 return;
         }
 
-        _transformSystem.DropNextTo(gibbable.Owner, parent);
+        _transformSystem.DropNextTo(gibbable, parent);
         _transformSystem.SetWorldRotation(gibbable, _random.NextAngle());
         droppedEntities.Add(gibbable);
         if (flingEntity)
@@ -292,7 +292,7 @@ public sealed class GibbingSystem : EntitySystem
         var gibbedEvent = new EntityGibbedEvent(gibbable, localGibs);
         RaiseLocalEvent(gibbable, ref gibbedEvent);
         if (deleteTarget)
-            PredictedQueueDel(gibbable.Owner);
+            PredictedQueueDel(gibbable);
         return localGibs;
     }
 

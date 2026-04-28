@@ -76,7 +76,7 @@ public abstract class SharedJetpackSystem : EntitySystem
 
     private void OnJetpackMoved(Entity<JetpackComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
-        if (args.Container.Owner != ent.Comp.JetpackUser)
+        if (args.Container != ent.Comp.JetpackUser)
             SetEnabled(ent, ent.Comp, false, ent.Comp.JetpackUser);
     }
 
@@ -169,7 +169,7 @@ public abstract class SharedJetpackSystem : EntitySystem
         {
             if (!Container.TryGetContainingContainer((uid, null, null), out var container))
                 return;
-            user = container.Owner;
+            user = container;
         }
 
         if (enabled)

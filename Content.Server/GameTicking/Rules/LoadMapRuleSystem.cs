@@ -56,7 +56,7 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
                 return;
             }
 
-            grids = gridSet.Select( x => x.Owner).ToList();
+            grids = gridSet.Select( x => x).ToList();
             mapId = map.Value.Comp.MapId;
         }
         else if (comp.GridPath is { } gPath)
@@ -73,7 +73,7 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
                 return;
             }
 
-            grids = new List<EntityUid> {grid.Value.Owner};
+            grids = new List<EntityUid> {grid.Value};
         }
         else if (comp.PreloadedGrid is {} preloaded)
         {

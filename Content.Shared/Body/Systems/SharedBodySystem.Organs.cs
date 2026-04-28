@@ -127,7 +127,7 @@ public partial class SharedBodySystem
         if (!Containers.TryGetContainingContainer((organId, null, null), out var container))
             return false;
 
-        var parent = container.Owner;
+        var parent = container;
 
         return HasComp<BodyPartComponent>(parent)
             && Containers.Remove(organId, container);
@@ -172,7 +172,7 @@ public partial class SharedBodySystem
 
         var query = GetEntityQuery<T>();
         var list = new List<Entity<T, OrganComponent>>(3);
-        foreach (var organ in GetBodyOrgans(entity.Owner, entity.Comp))
+        foreach (var organ in GetBodyOrgans(entity, entity.Comp))
         {
             if (query.TryGetComponent(organ.Id, out var comp))
                 list.Add((organ.Id, comp, organ.Component));
@@ -195,7 +195,7 @@ public partial class SharedBodySystem
         [NotNullWhen(true)] out List<Entity<T, OrganComponent>>? comps)
         where T : IComponent
     {
-        if (!Resolve(entity.Owner, ref entity.Comp))
+        if (!Resolve(entity, ref entity.Comp))
         {
             comps = null;
             return false;

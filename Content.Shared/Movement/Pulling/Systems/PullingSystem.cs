@@ -155,7 +155,7 @@ public sealed class PullingSystem : EntitySystem
     private void OnBuckled(Entity<PullableComponent> ent, ref StrappedEvent args)
     {
         // Prevent people from pulling the entity they are buckled to
-        if (ent.Comp.Puller == args.Buckle.Owner && !args.Buckle.Comp.PullStrap)
+        if (ent.Comp.Puller == args.Buckle && !args.Buckle.Comp.PullStrap)
             StopPulling(ent, ent);
     }
 
@@ -173,9 +173,9 @@ public sealed class PullingSystem : EntitySystem
     private void OnAfterState(Entity<PullerComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         if (ent.Comp.Pulling == null)
-            RemComp<ActivePullerComponent>(ent.Owner);
+            RemComp<ActivePullerComponent>(ent);
         else
-            EnsureComp<ActivePullerComponent>(ent.Owner);
+            EnsureComp<ActivePullerComponent>(ent);
     }
 
     private void OnDropHandItems(EntityUid uid, PullerComponent pullerComp, DropHandItemsEvent args)
@@ -206,12 +206,12 @@ public sealed class PullingSystem : EntitySystem
         if (!TryComp(ent.Comp.Pulling.Value, out PullableComponent? pulling))
             return;
 
-        TryStopPull(ent.Comp.Pulling.Value, pulling, ent.Owner);
+        TryStopPull(ent.Comp.Pulling.Value, pulling, ent);
     }
 
     private void OnPullableContainerInsert(Entity<PullableComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
-        TryStopPull(ent.Owner, ent.Comp);
+        TryStopPull(ent, ent.Comp);
     }
 
     private void OnModifyUncuffDuration(Entity<PullableComponent> ent, ref ModifyUncuffDurationEvent args)

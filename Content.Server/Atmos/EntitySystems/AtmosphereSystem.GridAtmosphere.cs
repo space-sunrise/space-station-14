@@ -33,7 +33,7 @@ public sealed partial class AtmosphereSystem
     {
         for (var i = 0; i < _currentRunAtmosphere.Count; i++)
         {
-            if (_currentRunAtmosphere[i].Owner != uid)
+            if (_currentRunAtmosphere[i] != uid)
                 continue;
 
             _currentRunAtmosphere.RemoveAt(i);
@@ -165,7 +165,7 @@ public sealed partial class AtmosphereSystem
         TileAtmosphere tile,
         bool activate = false)
     {
-        var uid = ent.Owner;
+        var uid = ent;
         var atmos = ent.Comp1;
         var blockedDirs = tile.AirtightData.BlockedDirections;
         if (activate)

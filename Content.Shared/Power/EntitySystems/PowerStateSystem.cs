@@ -24,7 +24,7 @@ public sealed class PowerStateSystem : EntitySystem
 
     private void OnComponentStartup(Entity<PowerStateComponent> ent, ref ComponentStartup args)
     {
-        SetWorkingState(ent.Owner, ent.Comp.IsWorking);
+        SetWorkingState(ent, ent.Comp.IsWorking);
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ public sealed class PowerStateSystem : EntitySystem
         if (!_powerStateQuery.Resolve(ent, ref ent.Comp))
             return;
 
-        _powerReceiverSystem.SetLoad(ent.Owner, working ? ent.Comp.WorkingPowerDraw : ent.Comp.IdlePowerDraw);
+        _powerReceiverSystem.SetLoad(ent, working ? ent.Comp.WorkingPowerDraw : ent.Comp.IdlePowerDraw);
         ent.Comp.IsWorking = working;
     }
 }

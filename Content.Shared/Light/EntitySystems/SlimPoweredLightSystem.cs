@@ -24,7 +24,7 @@ public sealed class SlimPoweredLightSystem : EntitySystem
         if (_setting)
             return;
 
-        if (args.Enabled && !_receiver.IsPowered(ent.Owner))
+        if (args.Enabled && !_receiver.IsPowered(ent))
             args.Cancelled = true;
     }
 
@@ -42,18 +42,18 @@ public sealed class SlimPoweredLightSystem : EntitySystem
                 return;
         }
 
-        if (!_lights.TryGetLight(ent.Owner, out var light))
+        if (!_lights.TryGetLight(ent, out var light))
             return;
 
         var enabled = ent.Comp.Enabled && args.Powered;
         _setting = true;
-        _lights.SetEnabled(ent.Owner, enabled, light);
+        _lights.SetEnabled(ent, enabled, light);
         _setting = false;
     }
 
     public void SetEnabled(Entity<SlimPoweredLightComponent?> entity, bool enabled)
     {
-        if (!Resolve(entity.Owner, ref entity.Comp, false))
+        if (!Resolve(entity, ref entity.Comp, false))
             return;
 
         if (entity.Comp.Enabled == enabled)
@@ -61,6 +61,6 @@ public sealed class SlimPoweredLightSystem : EntitySystem
 
         entity.Comp.Enabled = enabled;
         Dirty(entity);
-        _lights.SetEnabled(entity.Owner, enabled);
+        _lights.SetEnabled(entity, enabled);
     }
 }

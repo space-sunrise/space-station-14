@@ -94,7 +94,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         {
             RemCompDeferred<ActiveStaminaComponent>(entity);
         }
-        _alerts.ClearAlert(entity.Owner, entity.Comp.StaminaAlert);
+        _alerts.ClearAlert(entity, entity.Comp.StaminaAlert);
     }
 
     private void OnStartup(Entity<StaminaComponent> entity, ref ComponentStartup args)
@@ -124,7 +124,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         }
 
         entity.Comp.StaminaDamage = 0;
-        AdjustStatus(entity.Owner);
+        AdjustStatus(entity);
         RemComp<ActiveStaminaComponent>(entity);
         _status.TryRemoveStatusEffect(entity, StaminaLow);
         UpdateStaminaVisuals(entity);
@@ -449,7 +449,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
                 closest = thres.Key;
         }
 
-        _movementMod.TryUpdateMovementStatus(ent.Owner, status.Value, ent.Comp.StunModifierThresholds[closest]);
+        _movementMod.TryUpdateMovementStatus(ent, status.Value, ent.Comp.StunModifierThresholds[closest]);
     }
 
     [Serializable, NetSerializable]

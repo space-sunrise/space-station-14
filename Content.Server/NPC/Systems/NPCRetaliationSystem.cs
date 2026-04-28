@@ -48,10 +48,10 @@ public sealed class NPCRetaliationSystem : EntitySystem
             return false;
 
         // don't retaliate against the same faction
-        if (_npcFaction.IsEntityFriendly(ent.Owner, target))
+        if (_npcFaction.IsEntityFriendly(ent, target))
             return false;
 
-        _npcFaction.AggroEntity(ent.Owner, target);
+        _npcFaction.AggroEntity(ent, target);
         if (ent.Comp.AttackMemoryLength is {} memoryLength)
             ent.Comp.AttackMemories[target] = _timing.CurTime + memoryLength;
 

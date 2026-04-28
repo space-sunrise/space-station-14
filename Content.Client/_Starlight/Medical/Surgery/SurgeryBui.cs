@@ -107,7 +107,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
         foreach (var part in parts)
         {
-            var netPart = _entities.GetNetEntity(part.Owner);
+            var netPart = _entities.GetNetEntity(part);
             var surgeries = state.Choices[netPart];
             var partName = _entities.GetComponent<MetaDataComponent>(part).EntityName;
             var partButton = new ChoiceControl();
@@ -329,7 +329,7 @@ public sealed class SurgeryBui : BoundUserInterface
             {
                 status = StepStatus.Complete;
             }
-            else if (next.Value.Surgery.Owner != _surgery.Value.Ent)
+            else if (next.Value.Surgery != _surgery.Value.Ent)
             {
                 status = StepStatus.Incomplete;
             }

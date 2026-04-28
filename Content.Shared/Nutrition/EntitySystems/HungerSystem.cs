@@ -121,8 +121,8 @@ public sealed class HungerSystem : EntitySystem
     {
         entity.Comp.LastAuthoritativeHungerChangeTime = _timing.CurTime;
         entity.Comp.LastAuthoritativeHungerValue = ClampHungerWithinThresholds(entity.Comp, value);
-        DirtyField(entity.Owner, entity.Comp, nameof(HungerComponent.LastAuthoritativeHungerChangeTime));
-        DirtyField(entity.Owner, entity.Comp, nameof(HungerComponent.LastAuthoritativeHungerValue));
+        DirtyField(entity, entity.Comp, nameof(HungerComponent.LastAuthoritativeHungerChangeTime));
+        DirtyField(entity, entity.Comp, nameof(HungerComponent.LastAuthoritativeHungerValue));
     }
 
     private void UpdateCurrentThreshold(EntityUid uid, HungerComponent? component = null)

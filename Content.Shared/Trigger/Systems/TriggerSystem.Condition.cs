@@ -43,7 +43,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.Keys.Contains(args.Key))
             return;
 
-        args.Cancelled |= _useDelay.IsDelayed(ent.Owner, ent.Comp.UseDelayId);
+        args.Cancelled |= _useDelay.IsDelayed(ent, ent.Comp.UseDelayId);
     }
 
     private void OnToggleTriggerAttempt(Entity<ToggleTriggerConditionComponent> ent, ref AttemptTriggerEvent args)
@@ -71,7 +71,7 @@ public sealed partial class TriggerSystem
     private void Toggle(Entity<ToggleTriggerConditionComponent> ent, EntityUid user)
     {
         var msg = ent.Comp.Enabled ? ent.Comp.ToggleOff : ent.Comp.ToggleOn;
-        _popup.PopupPredicted(Loc.GetString(msg), ent.Owner, user);
+        _popup.PopupPredicted(Loc.GetString(msg), ent, user);
         ent.Comp.Enabled = !ent.Comp.Enabled;
         Dirty(ent);
     }
@@ -101,7 +101,7 @@ public sealed partial class TriggerSystem
 
         if (ent.Comp.EntityWhitelist != null)
         {
-            if (!_mind.TryGetMind(ent.Owner, out var entMindId, out var entMindComp))
+            if (!_mind.TryGetMind(ent, out var entMindId, out var entMindComp))
             {
                 args.Cancelled = true; // the entity has no mind
                 return;

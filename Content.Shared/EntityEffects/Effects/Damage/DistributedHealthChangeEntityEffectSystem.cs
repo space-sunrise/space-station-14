@@ -21,7 +21,7 @@ public sealed partial class DistributedHealthChangeEntityEffectSystem : EntityEf
     {
         foreach (var (group, amount) in args.Effect.Damage)
         {
-            _damageable.HealDistributed(entity.AsNullable(), amount * args.Scale, group);
+            _damageable.HealDistributed(entity, amount * args.Scale, group);
         }
     }
 }

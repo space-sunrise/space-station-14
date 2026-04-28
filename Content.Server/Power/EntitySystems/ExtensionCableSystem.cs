@@ -70,7 +70,7 @@ namespace Content.Server.Power.EntitySystems
         {
             provider.Comp.Connectable = true;
 
-            foreach (var receiver in FindAvailableReceivers(provider.Owner, provider.Comp.TransferRange))
+            foreach (var receiver in FindAvailableReceivers(provider, provider.Comp.TransferRange))
             {
                 receiver.Comp.Provider?.Comp.LinkedReceivers.Remove(receiver);
                 receiver.Comp.Provider = provider;
@@ -95,13 +95,13 @@ namespace Content.Server.Power.EntitySystems
 
         private void ResetReceivers(Entity<ExtensionCableProviderComponent> provider)
         {
-            var providerId = provider.Owner;
+            var providerId = provider;
             var receivers = provider.Comp.LinkedReceivers.ToArray();
             provider.Comp.LinkedReceivers.Clear();
 
             foreach (var receiver in receivers)
             {
-                var receiverId = receiver.Owner;
+                var receiverId = receiver;
                 receiver.Comp.Provider = null;
                 RaiseLocalEvent(receiverId, new ProviderDisconnectedEvent(provider), broadcast: false);
                 RaiseLocalEvent(providerId, new ReceiverDisconnectedEvent((receiverId, receiver)), broadcast: false);
@@ -111,7 +111,7 @@ namespace Content.Server.Power.EntitySystems
             {
                 // No point resetting what the receiver is doing if it's deleting, plus significant perf savings
                 // in not doing needless lookups
-                var receiverId = receiver.Owner;
+                var receiverId = receiver;
                 if (!EntityManager.IsQueuedForDeletion(receiverId)
                     && MetaData(receiverId).EntityLifeStage <= EntityLifeStage.MapInitialized)
                 {
@@ -174,7 +174,7 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnReceiverStarted(Entity<ExtensionCableReceiverComponent> receiver, ref ComponentStartup args)
         {
-            if (TryComp(receiver.Owner, out PhysicsComponent? physicsComponent))
+            if (TryComp(receiver, out PhysicsComponent? physicsComponent))
             {
                 receiver.Comp.Connectable = physicsComponent.BodyType == BodyType.Static;
             }
@@ -232,7 +232,7 @@ namespace Content.Server.Power.EntitySystems
 
         private void TryFindAndSetProvider(Entity<ExtensionCableReceiverComponent> receiver, TransformComponent? xform = null)
         {
-            var uid = receiver.Owner;
+            var uid = receiver;
             if (!receiver.Comp.Connectable)
                 return;
 

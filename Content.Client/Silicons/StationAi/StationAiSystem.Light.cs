@@ -16,7 +16,7 @@ public sealed partial class StationAiSystem
 
     private void OnLightGetRadial(Entity<ItemTogglePointLightComponent> ent, ref GetStationAiRadialEvent args)
     {
-        if (!TryComp(ent.Owner, out ItemToggleComponent? toggle))
+        if (!TryComp(ent, out ItemToggleComponent? toggle))
             return;
 
         args.Actions.Add(new StationAiRadial()

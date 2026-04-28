@@ -136,9 +136,9 @@ public class DeltaPressureBenchmark
         // Wait a little bit as well.
         // TODO: Unhardcode command magic string when fixgridatmos is an actual command we can ref and not just
         // a stamp-on in AtmosphereSystem.
-        await _pair.WaitCommand("fixgridatmos " + mapdata.Grid.Owner, 1);
+        await _pair.WaitCommand("fixgridatmos " + mapdata.Grid, 1);
 
-        var uid = mapdata.Grid.Owner;
+        var uid = mapdata.Grid;
         _testEnt = new Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent>(
             uid,
             _entMan.GetComponent<GridAtmosphereComponent>(uid),

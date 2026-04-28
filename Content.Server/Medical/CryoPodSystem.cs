@@ -49,7 +49,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
 
         // TODO: This should be a state my dude
         _uiSystem.ServerSendUiMessage(
-            entity.Owner,
+            entity,
             HealthAnalyzerUiKey.Key,
             new HealthAnalyzerScannedUserMessage(GetNetEntity(entity.Comp.BodyContainer.ContainedEntity),
             temp?.CurrentTemperature ?? 0,
@@ -65,7 +65,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
 
     private void OnCryoPodUpdateAtmosphere(Entity<CryoPodComponent> entity, ref AtmosDeviceUpdateEvent args)
     {
-        if (!_nodeContainer.TryGetNode(entity.Owner, entity.Comp.PortName, out PortablePipeNode? portNode))
+        if (!_nodeContainer.TryGetNode(entity, entity.Comp.PortName, out PortablePipeNode? portNode))
             return;
 
         if (!TryComp(entity, out CryoPodAirComponent? cryoPodAir))
@@ -85,10 +85,10 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             return;
 
         args.GasMixtures ??= new List<(string, GasMixture?)>();
-        args.GasMixtures.Add((Name(entity.Owner), cryoPodAir.Air));
+        args.GasMixtures.Add((Name(entity), cryoPodAir.Air));
         // If it's connected to a port, include the port side
         // multiply by volume fraction to make sure to send only the gas inside the analyzed pipe element, not the whole pipe system
-        if (_nodeContainer.TryGetNode(entity.Owner, entity.Comp.PortName, out PipeNode? port) && port.Air.Volume != 0f)
+        if (_nodeContainer.TryGetNode(entity, entity.Comp.PortName, out PipeNode? port) && port.Air.Volume != 0f)
         {
             var portAirLocal = port.Air.Clone();
             portAirLocal.Multiply(port.Volume / port.Air.Volume);
@@ -99,12 +99,12 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
 
     private void OnEjected(Entity<CryoPodComponent> cryoPod, ref EntRemovedFromContainerMessage args)
     {
-        if (TryComp<HealthAnalyzerComponent>(cryoPod.Owner, out var healthAnalyzer))
+        if (TryComp<HealthAnalyzerComponent>(cryoPod, out var healthAnalyzer))
         {
             healthAnalyzer.ScannedEntity = null;
         }
 
         // if body is ejected - no need to display health-analyzer
-        _uiSystem.CloseUi(cryoPod.Owner, HealthAnalyzerUiKey.Key);
+        _uiSystem.CloseUi(cryoPod, HealthAnalyzerUiKey.Key);
     }
 }

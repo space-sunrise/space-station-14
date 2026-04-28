@@ -25,7 +25,7 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
 
     private void OnAccent(Entity<DamagedSiliconAccentComponent> ent, ref AccentGetEvent args)
     {
-        var uid = ent.Owner;
+        var uid = ent;
 
         if (ent.Comp.EnableChargeCorruption)
         {
@@ -36,7 +36,7 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
             }
             else if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
             {
-                currentChargeLevel = _battery.GetChargeLevel(battery.Value.AsNullable());
+                currentChargeLevel = _battery.GetChargeLevel(battery.Value);
             }
             currentChargeLevel = Math.Clamp(currentChargeLevel, 0.0f, 1.0f);
             // Corrupt due to low power (drops characters on longer messages)

@@ -37,7 +37,7 @@ public abstract partial class SharedXenoArtifactSystem
             if (!TryGetNode(ent, i, out var iNode))
                 continue;
 
-            if (node != iNode.Value.Owner)
+            if (node != iNode.Value)
                 continue;
 
             index = i;
@@ -273,10 +273,10 @@ public abstract partial class SharedXenoArtifactSystem
         if (!Resolve(ent, ref ent.Comp) || !Resolve(node, ref node.Comp, false))
             return false;
 
-        node.Comp.Attached = ent.Owner;
+        node.Comp.Attached = ent;
 
         var nodeIdx = GetFreeNodeIndex((ent, ent.Comp));
-        _container.Insert(node.Owner, ent.Comp.NodeContainer);
+        _container.Insert(node, ent.Comp.NodeContainer);
         ent.Comp.NodeVertices[nodeIdx] = GetNetEntity(node);
 
         Dirty(node);
@@ -308,7 +308,7 @@ public abstract partial class SharedXenoArtifactSystem
 
         RemoveAllNodeEdges(ent, idx.Value, dirty: false);
 
-        _container.Remove(node.Owner, ent.Comp.NodeContainer);
+        _container.Remove(node, ent.Comp.NodeContainer);
         node.Comp.Attached = null;
         ent.Comp.NodeVertices[idx.Value] = null;
         if (dirty)

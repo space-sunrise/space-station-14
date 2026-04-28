@@ -73,7 +73,7 @@ public sealed class PrisonLockerSystem : EntitySystem
         }
         else if (args.Port == "PrisonLockerUnlock")
         {
-            UnlockLocker(ent.Owner);
+            UnlockLocker(ent);
         }
     }
 

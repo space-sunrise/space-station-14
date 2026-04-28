@@ -35,11 +35,11 @@ public sealed class SolutionStatusControl : PollingItemStatusControl<SolutionSta
 
     protected override Data PollData()
     {
-        if (!_solutionContainers.TryGetSolution(_parent.Owner, _parent.Comp.Solution, out _, out var solution))
+        if (!_solutionContainers.TryGetSolution(_parent, _parent.Comp.Solution, out _, out var solution))
             return default;
 
         FixedPoint2? transferAmount = null;
-        if (_entityManager.TryGetComponent(_parent.Owner, out SolutionTransferComponent? transfer))
+        if (_entityManager.TryGetComponent(_parent, out SolutionTransferComponent? transfer))
             transferAmount = transfer.TransferAmount;
 
         return new Data(solution.Volume, solution.MaxVolume, transferAmount);

@@ -86,7 +86,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
 
     private void OnCuffedStateChanged(Entity<CuffableComponent> ent, ref CuffedStateChangeEvent args)
     {
-        if (!_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
+        if (!_mind.TryGetMind(ent, out var mindId, out var mind))
             return;
 
         if (!_mind.TryFindObjective((mindId, mind), _stayFreeObjective, out var objectiveUid))
@@ -98,7 +98,7 @@ public sealed class StayFreeConditionSystem : EntitySystem
         // Критически важно использовать единую логику проверки isRestrained:
         // рассинхронизация между иконкой и прогрессом приведёт к багу, когда игрок видит иконку свободного,
         // но прогресс соответствует закованному (или наоборот).
-        if (IsRestrained(ent.Owner))
+        if (IsRestrained(ent))
         {
             ApplyRestrainedIcon(objectiveUid.Value, conditionComp);
             return;

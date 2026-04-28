@@ -235,12 +235,12 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
     private void OnMachineDeconstructed(Entity<IdCardConsoleComponent> entity, ref MachineDeconstructedEvent args)
     {
-        TryDropAndThrowIds(entity.AsNullable());
+        TryDropAndThrowIds(entity);
     }
 
     private void OnDamageChanged(Entity<IdCardConsoleComponent> entity, ref DamageChangedEvent args)
     {
-        if (TryDropAndThrowIds(entity.AsNullable()))
+        if (TryDropAndThrowIds(entity))
             _chat.TrySendInGameICMessage(entity, Loc.GetString("id-card-console-damaged"), InGameICChatType.Speak, true);
     }
 

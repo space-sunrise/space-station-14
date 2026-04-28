@@ -41,18 +41,18 @@ public sealed class CrematoriumSystem : SharedCrematoriumSystem
             true,
             PopupType.LargeCaution);
 
-        if (EntityStorage.CanInsert(victim, ent.Owner))
+        if (EntityStorage.CanInsert(victim, ent))
         {
-            EntityStorage.CloseStorage(ent.Owner);
+            EntityStorage.CloseStorage(ent);
             Standing.Down(victim, false);
-            EntityStorage.Insert(victim, ent.Owner);
+            EntityStorage.Insert(victim, ent);
         }
         else
         {
-            EntityStorage.CloseStorage(ent.Owner);
+            EntityStorage.CloseStorage(ent);
             Del(victim);
         }
-        Cremate(ent.AsNullable());
+        Cremate(ent);
         args.Handled = true;
     }
 }

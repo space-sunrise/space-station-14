@@ -595,8 +595,8 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
 
     public void OnDeviceListShutdown(Entity<NetworkConfiguratorComponent?> conf, Entity<DeviceListComponent> list)
     {
-        list.Comp.Configurators.Remove(conf.Owner);
-        if (Resolve(conf.Owner, ref conf.Comp))
+        list.Comp.Configurators.Remove(conf);
+        if (Resolve(conf, ref conf.Comp))
             conf.Comp.ActiveDeviceList = null;
     }
 
@@ -827,13 +827,13 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
 
     public void OnDeviceShutdown(Entity<NetworkConfiguratorComponent?> conf, Entity<DeviceNetworkComponent> device)
     {
-        device.Comp.Configurators.Remove(conf.Owner);
-        if (!Resolve(conf.Owner, ref conf.Comp))
+        device.Comp.Configurators.Remove(conf);
+        if (!Resolve(conf, ref conf.Comp))
             return;
 
         foreach (var (addr, dev) in conf.Comp.Devices)
         {
-            if (device.Owner == dev)
+            if (device == dev)
                 conf.Comp.Devices.Remove(addr);
         }
 

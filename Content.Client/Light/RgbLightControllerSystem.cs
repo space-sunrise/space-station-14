@@ -210,7 +210,7 @@ namespace Content.Client.Light
         public static Color GetCurrentRgbColor(TimeSpan curTime, TimeSpan offset, Entity<RgbLightControllerComponent> rgb)
         {
             var delta = (float)(curTime - offset).TotalSeconds;
-            var entOffset = Math.Abs(rgb.Owner.Id * 0.09817f);
+            var entOffset = Math.Abs(rgb.Id * 0.09817f);
             var hue = (delta * rgb.Comp.CycleRate + entOffset) % 1;
             return Color.FromHsv(new Vector4(
                 MathF.Abs(hue),

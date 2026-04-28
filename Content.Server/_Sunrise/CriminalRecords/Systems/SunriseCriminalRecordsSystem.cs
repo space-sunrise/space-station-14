@@ -55,7 +55,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
     private void OnRecordEvent<T>(Entity<SunriseCriminalRecordsConsoleComponent> ent, ref T args)
     {
-        UpdateUserInterface(ent.Owner, ent.Comp);
+        UpdateUserInterface(ent, ent.Comp);
     }
 
     private void OnOpened(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, BoundUIOpenedEvent args)

@@ -101,8 +101,8 @@ public sealed partial class ParcelWrappingSystem
     private void WrapInternal(EntityUid user, Entity<ParcelWrapComponent> wrapper, EntityUid target)
     {
         // Consume a `use` on the wrapper, and delete the wrapper if it's empty.
-        _charges.TryUseCharges(wrapper.Owner, 1);
-        if (_charges.IsEmpty(wrapper.Owner))
+        _charges.TryUseCharges(wrapper, 1);
+        if (_charges.IsEmpty(wrapper))
             PredictedQueueDel(wrapper);
 
         // Play a wrapping sound.

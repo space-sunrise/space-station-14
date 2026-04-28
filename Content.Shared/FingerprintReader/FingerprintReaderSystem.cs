@@ -33,7 +33,7 @@ public sealed class FingerprintReaderSystem : EntitySystem
             return;
 
         // If the user has access to this lock, we pass it into the event.
-        if (IsAllowed(ent.Owner, args.User, out var denyReason))
+        if (IsAllowed(ent, args.User, out var denyReason))
             args.HasAccess |= LockTypes.Fingerprint;
         else
             args.DenyReason = denyReason;

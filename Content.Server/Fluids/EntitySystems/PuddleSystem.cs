@@ -59,7 +59,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     private void OnPuddleSpread(Entity<PuddleComponent> entity, ref SpreadNeighborsEvent args)
     {
         // Overflow is the source of the overflowing liquid. This contains the excess fluid above overflow limit (20u)
-        var overflow = GetOverflowSolution(entity.Owner, entity.Comp);
+        var overflow = GetOverflowSolution(entity, entity.Comp);
 
         if (overflow.Volume == FixedPoint2.Zero)
         {
@@ -236,7 +236,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         }
 
         // Add the remainder back
-        if (_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution))
+        if (_solutionContainerSystem.ResolveSolution(entity, entity.Comp.SolutionName, ref entity.Comp.Solution))
         {
             _solutionContainerSystem.TryAddSolution(entity.Comp.Solution.Value, overflow);
         }
@@ -255,11 +255,11 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (!_random.Prob(0.5f))
             return;
 
-        if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution,
+        if (!_solutionContainerSystem.ResolveSolution(entity, entity.Comp.SolutionName, ref entity.Comp.Solution,
                 out var solution))
             return;
 
-        Popups.PopupEntity(Loc.GetString("puddle-component-slipped-touch-reaction", ("puddle", entity.Owner)),
+        Popups.PopupEntity(Loc.GetString("puddle-component-slipped-touch-reaction", ("puddle", entity)),
             args.Slipped, args.Slipped, PopupType.SmallCaution);
 
         // Take 15% of the puddle solution
@@ -382,7 +382,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (!Resolve(entity, ref entity.Comp))
             return false;
 
-        if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var solution))
+        if (!_solutionContainerSystem.TryGetSolution(entity, entity.Comp.SolutionName, out var solution))
             return false;
 
         spilled = solution.Value.Comp.Solution;
@@ -423,7 +423,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         foreach (var ent in reactive)
         {
             // sorry! no overload for returning uid, so .owner must be used
-            var owner = ent.Owner;
+            var owner = ent;
 
             // between 5 and 30%
             var splitAmount = spilled.Volume * _random.NextFloat(0.05f, 0.30f);

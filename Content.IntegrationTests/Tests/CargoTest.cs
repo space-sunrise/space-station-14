@@ -164,7 +164,7 @@ public sealed class CargoTest
         {
             var mapId = testMap.MapId;
             var grid = mapManager.CreateGridEntity(mapId);
-            var coord = new EntityCoordinates(grid.Owner, 0, 0);
+            var coord = new EntityCoordinates(grid, 0, 0);
 
             var sliceableEntityProtos = protoManager.EnumeratePrototypes<EntityPrototype>()
                 .Where(p => !p.Abstract)

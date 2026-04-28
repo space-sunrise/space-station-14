@@ -46,14 +46,14 @@ public abstract partial class SharedSunriseStandingStateSystem
     {
         var crawlingFootstep = EnsureComp<CrawlingFootstepModifierComponent>(ent);
         crawlingFootstep.HadFootstepSoundTag = true;
-        _tag.RemoveTag(ent.Owner, FootstepSoundTag);
+        _tag.RemoveTag(ent, FootstepSoundTag);
 
         Dirty(ent, crawlingFootstep);
     }
 
     private void RestoreCrawlingFootstepModifier(Entity<CrawlingFootstepModifierComponent> ent)
     {
-        if (TerminatingOrDeleted(ent.Owner))
+        if (TerminatingOrDeleted(ent))
             return;
 
         if (ent.Comp.HadFootstepSoundTag && !_tag.HasTag(ent, FootstepSoundTag))

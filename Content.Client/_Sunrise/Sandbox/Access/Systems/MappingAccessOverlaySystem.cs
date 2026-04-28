@@ -158,22 +158,22 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
     private void OnAccessReaderStartup(Entity<AccessReaderComponent> ent, ref ComponentStartup args)
     {
-        _readerResolver?.SyncAccessReaderLookup(ent.Owner, ent.Comp);
+        _readerResolver?.SyncAccessReaderLookup(ent, ent.Comp);
     }
 
     private void OnAccessReaderShutdown(Entity<AccessReaderComponent> ent, ref ComponentShutdown args)
     {
-        _readerResolver?.RemoveAccessReaderLookup(ent.Owner);
+        _readerResolver?.RemoveAccessReaderLookup(ent);
     }
 
     private void OnAccessReaderRemove(Entity<AccessReaderComponent> ent, ref ComponentRemove args)
     {
-        _readerResolver?.RemoveAccessReaderLookup(ent.Owner);
+        _readerResolver?.RemoveAccessReaderLookup(ent);
     }
 
     private void OnAccessReaderChanged(Entity<AccessReaderComponent> ent, ref AccessReaderConfigurationChangedEvent args)
     {
-        _readerResolver?.SyncAccessReaderLookup(ent.Owner, ent.Comp);
+        _readerResolver?.SyncAccessReaderLookup(ent, ent.Comp);
     }
 
     private void SetEnabled(bool enabled)

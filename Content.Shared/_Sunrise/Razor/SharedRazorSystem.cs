@@ -35,7 +35,7 @@ public abstract class SharedRazorSystem : EntitySystem
             return;
 
         UpdateInterface(mirror, args.Target.Value, mirror);
-        _uiSystem.TryOpenUi(mirror.Owner, RazorUiKey.Key, args.User);
+        _uiSystem.TryOpenUi(mirror, RazorUiKey.Key, args.User);
     }
 
     private void OnMirrorRangeCheck(EntityUid uid, RazorComponent component, ref BoundUserInterfaceCheckRangeEvent args)

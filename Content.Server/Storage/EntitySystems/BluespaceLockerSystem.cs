@@ -217,7 +217,7 @@ public sealed class BluespaceLockerSystem : EntitySystem
                 // Add valid candidates till MinBluespaceLinks is met
                 foreach (var storage in storages)
                 {
-                    var potentialLink = storage.Owner;
+                    var potentialLink = storage;
 
                     if (!ValidAutolink(lockerUid, potentialLink, component))
                         continue;

@@ -20,16 +20,16 @@ public abstract partial class SharedXenoArtifactSystem
     private void OnShutdown(Entity<XenoArtifactComponent> ent, ref ComponentShutdown args)
     {
         // Удаляем action
-        if (TryComp<ActionsComponent>(ent.Owner, out var actionsComp))
+        if (TryComp<ActionsComponent>(ent, out var actionsComp))
         {
             foreach (var actionId in actionsComp.Actions)
             {
                 if (_actions.GetAction(actionId) is { } actionEnt &&
-                    TryComp<MetaDataComponent>(actionEnt.Owner, out var meta) &&
+                    TryComp<MetaDataComponent>(actionEnt, out var meta) &&
                     meta.EntityPrototype?.ID != null &&
                     meta.EntityPrototype.ID == ent.Comp.SelfActivateAction)
                 {
-                    _actions.RemoveAction(new Entity<ActionsComponent?>(ent.Owner, actionsComp), actionId);
+                    _actions.RemoveAction(new Entity<ActionsComponent?>(ent, actionsComp), actionId);
                     break;
                 }
             }

@@ -277,7 +277,7 @@ public sealed partial class ZombieSystem
 
         var htn = EnsureComp<HTNComponent>(target);
         htn.RootTask = new HTNCompoundTask() { Task = "SimpleHostileCompound" };
-        htn.Blackboard.SetValue(NPCBlackboard.Owner, target);
+        htn.Blackboard.SetValue(NPCBlackboard, target);
         _npc.SleepNPC(target, htn);
 
         //He's gotta have a mind

@@ -63,7 +63,7 @@ public sealed class BlueprintSystem : EntitySystem
             _popup.PopupPredicted(msg, ent, user);
         }
 
-        _container.Insert(blueprint.Owner, _container.GetContainer(ent, ent.Comp.ContainerId));
+        _container.Insert(blueprint, _container.GetContainer(ent, ent.Comp.ContainerId));
 
         var ev = new TechnologyDatabaseModifiedEvent(blueprint.Comp.ProvidedRecipes.Select(it => it.Id).ToList());
         RaiseLocalEvent(ent, ref ev);

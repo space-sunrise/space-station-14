@@ -49,6 +49,6 @@ public sealed class ArmableSystem : EntitySystem
     {
         if (!args.Activated)
             return;
-        _itemToggle.SetOnActivate(entity.Owner, false);
+        _itemToggle.SetOnActivate(entity, false);
     }
 }

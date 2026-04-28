@@ -27,7 +27,7 @@ public abstract class SharedMagicMirrorSystem : EntitySystem
             return;
 
         UpdateInterface(mirror, args.Target.Value, mirror);
-        UISystem.TryOpenUi(mirror.Owner, MagicMirrorUiKey.Key, args.User);
+        UISystem.TryOpenUi(mirror, MagicMirrorUiKey.Key, args.User);
     }
 
     private void OnMirrorRangeCheck(EntityUid uid, MagicMirrorComponent component, ref BoundUserInterfaceCheckRangeEvent args)

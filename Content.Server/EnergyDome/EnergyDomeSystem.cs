@@ -101,10 +101,10 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     private void OnActivatedInWorld(Entity<EnergyDomeGeneratorComponent> generator, ref ActivateInWorldEvent args)
     {
         // Sunrise-Start
-        if (!_containerSystem.ContainsEntity(args.User, generator.Owner))
+        if (!_containerSystem.ContainsEntity(args.User, generator))
             return;
 
-        if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
+        if (TryComp<BiocodeComponent>(generator, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
                 return;
@@ -130,10 +130,10 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             return;
 
         // Sunrise-Start
-        if (!_containerSystem.ContainsEntity(args.User, generator.Owner))
+        if (!_containerSystem.ContainsEntity(args.User, generator))
             return;
 
-        if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
+        if (TryComp<BiocodeComponent>(generator, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
                 return;
@@ -160,10 +160,10 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_containerSystem.ContainsEntity(args.Performer, generator.Owner))
+        if (!_containerSystem.ContainsEntity(args.Performer, generator))
             return;
 
-        if (TryComp<BiocodeComponent>(generator.Owner, out var biocodedComponent))
+        if (TryComp<BiocodeComponent>(generator, out var biocodedComponent))
         {
             if (!_biocodeSystem.CanUse(args.Performer, biocodedComponent.Factions))
                 return;
@@ -183,7 +183,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     private void OnPowerCellChanged(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellChangedEvent args)
     {
-        if (args.Ejected || !_powerCell.HasDrawCharge(generator.Owner))
+        if (args.Ejected || !_powerCell.HasDrawCharge(generator))
             TurnOff(generator, true);
     }
 
@@ -215,7 +215,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             _powerCell.TryGetBatteryFromSlot(generatorUid, out var cell);
             if (cell != null)
             {
-                _battery.UseCharge(cell.Value.Owner, energyLeak);
+                _battery.UseCharge(cell.Value, energyLeak);
 
                 if (cell.Value.Comp.State == BatteryState.Empty)
                     TurnOff((generatorUid, generatorComp), true);
@@ -250,7 +250,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     public bool AttemptToggle(Entity<EnergyDomeGeneratorComponent> generator, bool status)
     {
-        var parent = Transform(generator.Owner).ParentUid;
+        var parent = Transform(generator).ParentUid;
 
         if (HasComp<ContainerManagerComponent>(Transform(parent).ParentUid))
             return false;
@@ -264,13 +264,13 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
         if (TryComp<PowerCellSlotComponent>(generator, out _))
         {
-            if (!_powerCell.TryGetBatteryFromSlot(generator.Owner, out _))
+            if (!_powerCell.TryGetBatteryFromSlot(generator, out _))
             {
                 Fail(generator, "energy-dome-no-cell");
                 return false;
             }
 
-            if (!_powerCell.HasDrawCharge(generator.Owner))
+            if (!_powerCell.HasDrawCharge(generator))
             {
                 Fail(generator, "energy-dome-no-power");
                 return false;
@@ -325,9 +325,9 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         var protectedComp = EnsureComp<EnergyDomeProtectedUserComponent>(protectedEntity);
         protectedComp.DomeEntity = newDome;
 
-        if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
+        if (TryComp<PowerCellDrawComponent>(generator, out var powerCellDrawComponent))
         {
-            _powerCell.SetDrawEnabled(generator.Owner, true);
+            _powerCell.SetDrawEnabled(generator, true);
         }
 
         generator.Comp.SpawnedDome = newDome;
@@ -365,9 +365,9 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             RemCompDeferred<EnergyDomeProtectedUserComponent>(generator.Comp.DomeParentEntity.Value);
         }
 
-        if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
+        if (TryComp<PowerCellDrawComponent>(generator, out var powerCellDrawComponent))
         {
-            _powerCell.SetDrawEnabled(generator.Owner, false);
+            _powerCell.SetDrawEnabled(generator, false);
         }
 
         _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
@@ -386,7 +386,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     private EntityUid GetProtectedEntity(EntityUid entity)
     {
         return (_container.TryGetOuterContainer(entity, Transform(entity), out var container))
-            ? container.Owner
+            ? container
             : entity;
     }
 }

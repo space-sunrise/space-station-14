@@ -157,6 +157,6 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
         }
 
         var uiState = new DeployableTurretControllerBoundInterfaceState(turretStates);
-        _userInterfaceSystem.SetUiState(ent.Owner, DeployableTurretControllerUiKey.Key, uiState);
+        _userInterfaceSystem.SetUiState(ent, DeployableTurretControllerUiKey.Key, uiState);
     }
 }

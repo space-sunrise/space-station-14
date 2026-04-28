@@ -55,7 +55,7 @@ public sealed class ItemGridPiece : Control, IEntityControl
         _entityManager = entityManager;
         _storageController = UserInterfaceManager.GetUIController<StorageUIController>();
 
-        Entity = entity.Owner;
+        Entity = entity;
         Location = location;
 
         Visible = true;

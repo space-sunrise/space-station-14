@@ -28,7 +28,7 @@ public abstract partial class SharedAtmosphereSystem
 
         if (_internalsQuery.TryComp(old, out var internalsComponent))
         {
-            _internals.DisconnectBreathTool((old.Value, internalsComponent), entity.Owner, forced: forced);
+            _internals.DisconnectBreathTool((old.Value, internalsComponent), entity, forced: forced);
         }
 
         Dirty(entity);

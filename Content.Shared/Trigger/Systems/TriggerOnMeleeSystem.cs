@@ -21,7 +21,7 @@ public sealed class TriggerOnMeleeTriggerSystem : TriggerOnXSystem
     private void OnMissTrigger(Entity<TriggerOnMeleeMissComponent> ent, ref MeleeHitEvent args)
     {
         if (args.HitEntities.Count == 0)
-            Trigger.Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+            Trigger.Trigger(ent, args.User, ent.Comp.KeyOut);
     }
 
     private void OnSwingTrigger(Entity<TriggerOnMeleeSwingComponent> ent, ref MeleeHitEvent args)
@@ -32,7 +32,7 @@ public sealed class TriggerOnMeleeTriggerSystem : TriggerOnXSystem
         else
             target = ent.Comp.TargetIsUser ? args.HitEntities[0] : args.User;
 
-        Trigger.Trigger(ent.Owner, target, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, target, ent.Comp.KeyOut);
     }
 
     private void OnHitTrigger(Entity<TriggerOnMeleeHitComponent> ent, ref MeleeHitEvent args)
@@ -43,14 +43,14 @@ public sealed class TriggerOnMeleeTriggerSystem : TriggerOnXSystem
         if (!ent.Comp.TriggerEveryHit)
         {
             var target = ent.Comp.TargetIsUser ? args.HitEntities[0] : args.User;
-            Trigger.Trigger(ent.Owner, target, ent.Comp.KeyOut);
+            Trigger.Trigger(ent, target, ent.Comp.KeyOut);
             return;
         }
 
         // if TriggerEveryHit
         foreach (var target in args.HitEntities)
         {
-            Trigger.Trigger(ent.Owner, ent.Comp.TargetIsUser ? target : args.User, ent.Comp.KeyOut);
+            Trigger.Trigger(ent, ent.Comp.TargetIsUser ? target : args.User, ent.Comp.KeyOut);
         }
     }
 }

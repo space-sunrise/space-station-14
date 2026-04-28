@@ -119,7 +119,7 @@ public sealed class ConveyorController : SharedConveyorController
     /// </summary>
     protected override void AwakenConveyor(Entity<TransformComponent?> ent)
     {
-        if (!XformQuery.Resolve(ent.Owner, ref ent.Comp))
+        if (!XformQuery.Resolve(ent, ref ent.Comp))
             return;
 
         var xform = ent.Comp;

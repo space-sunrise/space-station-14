@@ -120,7 +120,7 @@ public partial class InventorySystem
             return;
 
         // this copies the by-ref event if it is a struct
-        var ev = new InventoryRelayedEvent<T>(args, inventory.Owner);
+        var ev = new InventoryRelayedEvent<T>(args, inventory);
         var enumerator = new InventorySlotEnumerator(inventory, args.TargetSlots);
         while (enumerator.NextItem(out var item))
         {
@@ -136,7 +136,7 @@ public partial class InventorySystem
         if (args.TargetSlots == SlotFlags.NONE)
             return;
 
-        var ev = new InventoryRelayedEvent<T>(args, inventory.Owner);
+        var ev = new InventoryRelayedEvent<T>(args, inventory);
         var enumerator = new InventorySlotEnumerator(inventory, args.TargetSlots);
         while (enumerator.NextItem(out var item))
         {

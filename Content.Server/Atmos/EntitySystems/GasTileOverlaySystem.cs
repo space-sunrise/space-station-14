@@ -141,7 +141,7 @@ namespace Content.Server.Atmos.EntitySystems
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Invalidate(Entity<GasTileOverlayComponent?> grid, Vector2i index)
         {
-            if (_query.Resolve(grid.Owner, ref grid.Comp))
+            if (_query.Resolve(grid, ref grid.Comp))
                 grid.Comp.InvalidTiles.Add(index);
         }
 

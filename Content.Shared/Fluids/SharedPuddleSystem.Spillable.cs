@@ -106,8 +106,8 @@ public abstract partial class SharedPuddleSystem
                     user,
                     entity.Comp.SpillDelay ?? 0,
                     new SpillDoAfterEvent(),
-                    entity.Owner,
-                    target: entity.Owner)
+                    entity,
+                    target: entity)
                 {
                     BreakOnDamage = true,
                     BreakOnMove = true,
@@ -130,7 +130,7 @@ public abstract partial class SharedPuddleSystem
         // If this also has solution transfer, then assume the transfer amount is how much we want to spill.
         // Otherwise let's say they want to spill a quarter of its max volume.
 
-        if (!_solutionContainerSystem.TryGetDrainableSolution(entity.Owner, out var soln, out var solution))
+        if (!_solutionContainerSystem.TryGetDrainableSolution(entity, out var soln, out var solution))
             return;
 
         var hitCount = args.HitEntities.Count;
@@ -166,20 +166,20 @@ public abstract partial class SharedPuddleSystem
             AdminLogger.Add(LogType.MeleeHit,
                 $"{ToPrettyString(args.User):actor} "
                 + $"splashed {SharedSolutionContainerSystem.ToPrettyString(splitSolution):solution} "
-                + $"from {ToPrettyString(entity.Owner):entity} onto {ToPrettyString(hit):target}");
+                + $"from {ToPrettyString(entity):entity} onto {ToPrettyString(hit):target}");
 
             Reactive.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch);
 
             Popups.PopupClient(Loc.GetString("spill-melee-hit-attacker",
                     ("amount", totalSplit / hitCount),
-                    ("spillable", entity.Owner),
+                    ("spillable", entity),
                     ("target", Identity.Entity(hit, EntityManager, args.User))),
                 hit,
                 args.User);
             Popups.PopupEntity(
                 Loc.GetString("spill-melee-hit-others",
                     ("attacker", Identity.Entity(args.User, EntityManager)),
-                    ("spillable", entity.Owner),
+                    ("spillable", entity),
                     ("target", Identity.Entity(hit, EntityManager))),
                 hit,
                 Filter.PvsExcept(args.User),
@@ -198,7 +198,7 @@ public abstract partial class SharedPuddleSystem
             return;
 
         // Don’t care about empty containers.
-        if (!_solutionContainerSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var solution)
+        if (!_solutionContainerSystem.TryGetSolution(ent, ent.Comp.SolutionName, out _, out var solution)
             || solution.Volume <= 0)
             return;
 

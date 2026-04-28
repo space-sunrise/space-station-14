@@ -28,7 +28,7 @@ public sealed partial class CloseBoltOperator : HTNOperator
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         if (!_entManager.TryGetComponent<HandsComponent>(owner, out var hands))
             return HTNOperatorStatus.Failed;

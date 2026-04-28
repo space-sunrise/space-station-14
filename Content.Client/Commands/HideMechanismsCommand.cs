@@ -29,7 +29,7 @@ public sealed class HideMechanismsCommand : LocalizedEntityCommands
                     break;
                 }
 
-                tempParent = container.Owner;
+                tempParent = container;
             }
         }
     }

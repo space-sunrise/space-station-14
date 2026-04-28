@@ -40,7 +40,7 @@ namespace Content.Shared.Body.Systems
         private void OnEntRemoved(Entity<StomachComponent> ent, ref EntRemovedFromContainerMessage args)
         {
             // Make sure the removed entity was our contained solution
-            if (ent.Comp.Solution is not { } solution || args.Entity != solution.Owner)
+            if (ent.Comp.Solution is not { } solution || args.Entity != solution)
                 return;
 
             // Cleared our cached reference to the solution entity

@@ -28,7 +28,7 @@ public sealed class EnergyShieldSystem : EntitySystem
 
     private void OnDamage(Entity<EnergyShieldComponent> ent, ref DamageChangedEvent args)
     {
-        if (!_itemToggle.IsActivated(ent.Owner))
+        if (!_itemToggle.IsActivated(ent))
             return;
 
         if (args.DamageDelta == null)
@@ -42,12 +42,12 @@ public sealed class EnergyShieldSystem : EntitySystem
             return;
 
         var cost = totalDamage.Float() * ent.Comp.EnergyCostPerDamage;
-        _battery.UseCharge(ent.Owner, cost);
+        _battery.UseCharge(ent, cost);
         _audio.PlayPvs(ent.Comp.AbsorbSound, ent);
 
         if (_battery.GetCharge((ent, battery)) <= 0)
         {
-            _itemToggle.Toggle(ent.Owner);
+            _itemToggle.Toggle(ent);
             _audio.PlayPvs(ent.Comp.ShutdownSound, ent);
         }
     }

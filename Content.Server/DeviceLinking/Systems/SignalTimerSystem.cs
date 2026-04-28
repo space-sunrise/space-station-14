@@ -104,10 +104,10 @@ public sealed class SignalTimerSystem : EntitySystem
         foreach (var timer in _timers)
         {
             // Exploded or the likes.
-            if (!Exists(timer.Owner))
+            if (!Exists(timer))
                 continue;
 
-            Trigger(timer.Owner, timer.Comp);
+            Trigger(timer, timer.Comp);
         }
     }
 

@@ -43,18 +43,18 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         if (TryComp(ent, out BorgTransponderComponent? transponder))
         {
             _borgSystem.SetTransponderSprite(
-                (ent.Owner, transponder),
+                (ent, transponder),
                 new SpriteSpecifier.Rsi(new ResPath("Mobs/Silicon/chassis.rsi"), prototype.SpriteBodyState));
 
             _borgSystem.SetTransponderName(
-                (ent.Owner, transponder),
+                (ent, transponder),
                 Loc.GetString($"borg-type-{borgType}-transponder"));
         }
 
         // Configure modules
         if (TryComp(ent, out BorgChassisComponent? chassis))
         {
-            var chassisEnt = (ent.Owner, chassis);
+            var chassisEnt = (ent, chassis);
             _borgSystem.SetMaxModules(
                 chassisEnt,
                 prototype.ExtraModuleCount + prototype.DefaultModules.Length);
@@ -85,20 +85,20 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         // Configure inventory template (used for hat spacing)
         if (TryComp(ent, out InventoryComponent? inventory))
         {
-            _inventorySystem.SetTemplateId((ent.Owner, inventory), prototype.InventoryTemplateId);
+            _inventorySystem.SetTemplateId((ent, inventory), prototype.InventoryTemplateId);
         }
 
         // Sunrise-Start
-        var borgName = MetaData(ent.Owner).EntityName;
+        var borgName = MetaData(ent).EntityName;
         if (Prototypes.TryIndex<JobPrototype>(prototype.Job, out var jobPrototype))
         {
-            UpdateStationRecord(ent.Owner,
+            UpdateStationRecord(ent,
                 jobPrototype.LocalizedName,
                 jobPrototype);
 
             foreach (var channel in ent.Comp.NotifyChannels)
             {
-                Report(ent.Owner,
+                Report(ent,
                     channel,
                     Loc.GetString("borg-switch-type-notify",
                     ("name", borgName),

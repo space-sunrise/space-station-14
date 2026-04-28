@@ -14,7 +14,7 @@ public sealed class MailingUnitSystem : SharedMailingUnitSystem
 
     private void OnMailingState(Entity<MailingUnitComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (UserInterfaceSystem.TryGetOpenUi<MailingUnitBoundUserInterface>(ent.Owner, MailingUnitUiKey.Key, out var bui))
+        if (UserInterfaceSystem.TryGetOpenUi<MailingUnitBoundUserInterface>(ent, MailingUnitUiKey.Key, out var bui))
         {
             bui.Refresh(ent);
         }

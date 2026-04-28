@@ -34,7 +34,7 @@ namespace Content.Server.Pointing.EntitySystems
             if (angering.Comp.RemainingAnger <= 0)
                 RemComp<PointingArrowAngeringComponent>(angering);
 
-            return angering.Owner;
+            return angering;
         }
 
         private void UpdateAppearance(EntityUid uid, RoguePointingArrowComponent? component = null, TransformComponent? transform = null, AppearanceComponent? appearance = null)

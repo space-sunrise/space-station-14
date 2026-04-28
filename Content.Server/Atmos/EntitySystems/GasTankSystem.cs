@@ -109,7 +109,7 @@ namespace Content.Server.Atmos.EntitySystems
         private void ReleaseGas(Entity<GasTankComponent> gasTank)
         {
             var removed = RemoveAirVolume(gasTank, gasTank.Comp.ValveOutputRate * TimerDelay);
-            var environment = _atmosphereSystem.GetContainingMixture(gasTank.Owner, false, true);
+            var environment = _atmosphereSystem.GetContainingMixture(gasTank, false, true);
             if (environment != null)
             {
                 _atmosphereSystem.Merge(environment, removed);

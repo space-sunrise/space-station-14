@@ -34,14 +34,14 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         if (!TryComp<SpriteComponent>(ent, out var sprite) || !TryComp<CrawlerComponent>(ent, out var crawl))
             return;
 
-        var animationPlayer = EnsureComp<AnimationPlayerComponent>(ent.Owner);
+        var animationPlayer = EnsureComp<AnimationPlayerComponent>(ent);
 
-        if (_animation.HasRunningAnimation(ent.Owner, animationPlayer, crawl.AnimationKey))
-            _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
+        if (_animation.HasRunningAnimation(ent, animationPlayer, crawl.AnimationKey))
+            _animation.Stop((ent, animationPlayer), crawl.AnimationKey);
 
         var animationState = EnsureComp<ProneCrawlAnimationComponent>(ent);
         CaptureRestState(animationState, sprite.Offset, sprite.Scale);
-        RestoreAnimationState((ent.Owner, animationState), sprite);
+        RestoreAnimationState((ent, animationState), sprite);
 
         var duration = MathF.Max(0.05f, (float) args.Duration.TotalSeconds);
         var backOffset = animationState.BaseOffset - args.Direction * crawl.AnimationPullBackDistance;
@@ -81,7 +81,7 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
             }
         };
 
-        _animation.Play((ent.Owner, animationPlayer), animation, crawl.AnimationKey);
+        _animation.Play((ent, animationPlayer), animation, crawl.AnimationKey);
     }
 
     private void OnAnimationCompleted(Entity<ProneCrawlAnimationComponent> ent, ref AnimationCompletedEvent args)
@@ -92,7 +92,7 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         if (args.Key != crawl.AnimationKey || !TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        RestoreAnimationState((ent.Owner, ent.Comp), sprite);
+        RestoreAnimationState((ent, ent.Comp), sprite);
     }
 
     private void OnMovementShutdown(Entity<ActiveProneCrawlMovementComponent> ent, ref ComponentShutdown args)
@@ -101,21 +101,21 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
             return;
 
         if (TryComp<AnimationPlayerComponent>(ent, out var animationPlayer) &&
-            _animation.HasRunningAnimation(ent.Owner, animationPlayer, crawl.AnimationKey))
+            _animation.HasRunningAnimation(ent, animationPlayer, crawl.AnimationKey))
         {
-            _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
+            _animation.Stop((ent, animationPlayer), crawl.AnimationKey);
         }
 
         if (TryComp<SpriteComponent>(ent, out var sprite))
-            RestoreAnimationState((ent.Owner, animationState), sprite);
+            RestoreAnimationState((ent, animationState), sprite);
 
-        RemComp<ProneCrawlAnimationComponent>(ent.Owner);
+        RemComp<ProneCrawlAnimationComponent>(ent);
     }
 
     private void RestoreAnimationState(Entity<ProneCrawlAnimationComponent> ent, SpriteComponent sprite)
     {
-        _sprite.SetOffset((ent.Owner, sprite), ent.Comp.BaseOffset);
-        _sprite.SetScale((ent.Owner, sprite), ent.Comp.BaseScale);
+        _sprite.SetOffset((ent, sprite), ent.Comp.BaseOffset);
+        _sprite.SetScale((ent, sprite), ent.Comp.BaseScale);
     }
 
     private void CaptureRestState(ProneCrawlAnimationComponent component, Vector2 offset, Vector2 scale)

@@ -99,14 +99,14 @@ namespace Content.Client.Verbs
             if (_containers.TryGetContainingContainer((player, null), out var container))
             {
                 // Only include the container contents when clicking near it.
-                if (entities.Contains(container.Owner)
-                    || _containers.TryGetOuterContainer(container.Owner, Transform(container.Owner), out var outer)
-                    && entities.Contains(outer.Owner))
+                if (entities.Contains(container)
+                    || _containers.TryGetOuterContainer(container, Transform(container), out var outer)
+                    && entities.Contains(outer))
                 {
                     // The container itself might be in some other container, so it might not have been added by the
                     // sprite tree lookup.
-                    if (!entities.Contains(container.Owner))
-                        entities.Add(container.Owner);
+                    if (!entities.Contains(container))
+                        entities.Add(container);
 
                     // TODO Context Menu
                     // This might miss entities in some situations. E.g., one of the contained entities entity in it, that

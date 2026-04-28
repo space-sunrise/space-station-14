@@ -244,7 +244,7 @@ public sealed class CrewManifestSystem : EntitySystem
             return;
         }
 
-        if (eui.Owner == owner)
+        if (eui == owner)
         {
             euis.Remove(session);
             eui.Close();

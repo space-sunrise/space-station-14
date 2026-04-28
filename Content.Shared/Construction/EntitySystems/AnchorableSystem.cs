@@ -330,7 +330,7 @@ public sealed partial class AnchorableSystem : EntitySystem
     [Obsolete("Use the Entity<MapGridComponent> version")]
     public bool TileFree(MapGridComponent grid, Vector2i gridIndices, int collisionLayer = 0, int collisionMask = 0)
     {
-        return TileFree((grid.Owner, grid), gridIndices, collisionLayer, collisionMask);
+        return TileFree((grid, grid), gridIndices, collisionLayer, collisionMask);
     }
 
     /// <summary>

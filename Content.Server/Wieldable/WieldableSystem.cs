@@ -34,7 +34,7 @@ public sealed class WieldableSystem : SharedWieldableSystem
     private void OnGetEyePvsScale(Entity<CursorOffsetRequiresWieldComponent> entity,
         ref HeldRelayedEvent<GetEyePvsScaleRelayedEvent> args)
     {
-        if (!TryComp(entity, out EyeCursorOffsetComponent? eyeCursorOffset) || !TryComp(entity.Owner, out WieldableComponent? wieldableComp))
+        if (!TryComp(entity, out EyeCursorOffsetComponent? eyeCursorOffset) || !TryComp(entity, out WieldableComponent? wieldableComp))
             return;
 
         if (!wieldableComp.Wielded)

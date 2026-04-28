@@ -43,11 +43,11 @@ namespace Content.Server.Power.Nodes
                     if (dir == Direction.Invalid)
                     {
                         // On own tile, block direction it faces
-                        terminalDirs |= 1 << (int) xformQuery.GetComponent(node.Owner).LocalRotation.GetCardinalDir();
+                        terminalDirs |= 1 << (int) xformQuery.GetComponent(node).LocalRotation.GetCardinalDir();
                     }
                     else
                     {
-                        var terminalDir = xformQuery.GetComponent(node.Owner).LocalRotation.GetCardinalDir();
+                        var terminalDir = xformQuery.GetComponent(node).LocalRotation.GetCardinalDir();
                         if (terminalDir.GetOpposite() == dir)
                         {
                             // Target tile has a terminal towards us, block the direction.

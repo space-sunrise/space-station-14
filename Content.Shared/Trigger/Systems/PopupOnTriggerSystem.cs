@@ -22,7 +22,7 @@ public sealed class PopupOnTriggerSystem : XOnTriggerSystem<PopupOnTriggerCompon
             {
                 _popup.PopupClient(Loc.GetString(ent.Comp.Text, ("entity", ent), ("user", user)),
                     target,
-                    ent.Comp.UserIsRecipient ? args.User : ent.Owner,
+                    ent.Comp.UserIsRecipient ? args.User : ent,
                     ent.Comp.PopupType);
             }
 
@@ -43,7 +43,7 @@ public sealed class PopupOnTriggerSystem : XOnTriggerSystem<PopupOnTriggerCompon
             _popup.PopupPredicted(Loc.GetString(ent.Comp.Text, ("entity", ent), ("user", user)),
                 Loc.GetString(ent.Comp.OtherText ?? ent.Comp.Text, ("entity", ent), ("user", user)),
                 target,
-                ent.Comp.UserIsRecipient ? args.User : ent.Owner,
+                ent.Comp.UserIsRecipient ? args.User : ent,
                 ent.Comp.PopupType);
         }
 

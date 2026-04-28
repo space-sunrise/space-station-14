@@ -82,7 +82,7 @@ public sealed class TegNodeGroup : BaseNodeGroup
         if (Generator != null)
         {
             // If we have a generator, we can assign CirculatorA and CirculatorB based on relative rotation.
-            var xformGenerator = _entityManager.GetComponent<TransformComponent>(Generator.Owner);
+            var xformGenerator = _entityManager.GetComponent<TransformComponent>(Generator);
             var genDir = xformGenerator.LocalRotation.GetDir();
 
             foreach (var node in groupNodes)
@@ -90,7 +90,7 @@ public sealed class TegNodeGroup : BaseNodeGroup
                 if (node is not TegNodeCirculator circulator)
                     continue;
 
-                var xform = _entityManager.GetComponent<TransformComponent>(node.Owner);
+                var xform = _entityManager.GetComponent<TransformComponent>(node);
                 var dir = xform.LocalRotation.GetDir();
                 if (genDir.GetClockwise90Degrees() == dir)
                 {
@@ -110,10 +110,10 @@ public sealed class TegNodeGroup : BaseNodeGroup
         foreach (var node in groupNodes)
         {
             if (node is TegNodeGenerator generator)
-                tegSystem.UpdateGeneratorConnectivity(generator.Owner, this);
+                tegSystem.UpdateGeneratorConnectivity(generator, this);
 
             if (node is TegNodeCirculator circulator)
-                tegSystem.UpdateCirculatorConnectivity(circulator.Owner, this);
+                tegSystem.UpdateCirculatorConnectivity(circulator, this);
         }
     }
 }
@@ -157,7 +157,7 @@ public sealed partial class TegNodeGenerator : Node
                 if (node is not TegNodeCirculator circulator)
                     continue;
 
-                var entity = node.Owner;
+                var entity = node;
                 var entityXform = xformQuery.GetComponent(entity);
                 var entityDir = entityXform.LocalRotation.GetDir();
 
@@ -199,7 +199,7 @@ public sealed partial class TegNodeCirculator : Node
             if (node is not TegNodeGenerator generator)
                 continue;
 
-            var entity = node.Owner;
+            var entity = node;
             var entityXform = xformQuery.GetComponent(entity);
             var entityDir = entityXform.LocalRotation.GetDir();
 

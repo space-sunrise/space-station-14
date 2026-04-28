@@ -26,7 +26,7 @@ public abstract class SharedEmitterSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null)
             return;
 
-        if (TryComp<LockComponent>(ent.Owner, out var lockComp) && lockComp.Locked)
+        if (TryComp<LockComponent>(ent, out var lockComp) && lockComp.Locked)
             return;
 
         if (ent.Comp.SelectableTypes.Count < 2)
@@ -48,7 +48,7 @@ public abstract class SharedEmitterSystem : EntitySystem
                 {
                     ent.Comp.BoltType = type;
                     Dirty(ent);
-                    _popup.PopupClient(Loc.GetString("emitter-component-type-set", ("type", proto.Name)), ent.Owner);
+                    _popup.PopupClient(Loc.GetString("emitter-component-type-set", ("type", proto.Name)), ent);
                 },
             };
             args.Verbs.Add(v);

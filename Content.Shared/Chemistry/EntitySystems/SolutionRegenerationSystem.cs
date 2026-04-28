@@ -30,7 +30,7 @@ public sealed class SolutionRegenerationSystem : EntitySystem
     private void OnEntRemoved(Entity<SolutionRegenerationComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         // Make sure the removed entity was our contained solution and clear our cached reference
-        if (args.Entity == ent.Comp.SolutionRef?.Owner)
+        if (args.Entity == ent.Comp.SolutionRef)
             ent.Comp.SolutionRef = null;
     }
 

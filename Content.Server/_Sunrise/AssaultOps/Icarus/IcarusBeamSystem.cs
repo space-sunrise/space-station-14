@@ -29,13 +29,13 @@ public sealed class IcarusBeamSystem : EntitySystem
         foreach (var (comp, xform) in query)
         {
             DestroyEntities(comp, xform);
-            BurnEntities(comp.Owner, comp, xform);
+            BurnEntities(comp, comp, xform);
 
             if (comp.DestroyTiles)
                 DestroyTiles(comp, xform);
 
             if (_timing.CurTime > comp.LifetimeEnd)
-                QueueDel(comp.Owner);
+                QueueDel(comp);
         }
     }
 
@@ -137,7 +137,7 @@ public sealed class IcarusBeamSystem : EntitySystem
 
     private bool CanDestroy(IcarusBeamComponent component, EntityUid entity)
     {
-        return entity != component.Owner &&
+        return entity != component &&
                !EntityManager.HasComponent<MapGridComponent>(entity) &&
                !EntityManager.HasComponent<GhostComponent>(entity);
     }

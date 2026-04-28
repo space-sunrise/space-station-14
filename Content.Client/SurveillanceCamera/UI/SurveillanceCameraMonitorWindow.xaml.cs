@@ -76,7 +76,7 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
         Entity = uid;
 
         // Pass owner to nav map
-        NavMap.Owner = uid;
+        NavMap = uid;
 
         if (_entManager.TryGetComponent<TransformComponent>(uid, out var xform))
             NavMap.MapUid = xform.GridUid;

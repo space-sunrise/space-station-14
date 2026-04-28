@@ -45,7 +45,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
             });
     private void AddLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> limb)
     {
-        var hands = EnsureComp<HandsComponent>(body.Owner);
+        var hands = EnsureComp<HandsComponent>(body);
         switch (limb.Comp.PartType)
         {
             case BodyPartType.Arm:
@@ -99,24 +99,24 @@ public sealed partial class LimbSystem : SharedLimbSystem
             {
                 {
                     var eventType = typeof(LimbAttachedEvent<>).MakeGenericType(comp.GetType());
-                    var limbAttachedEvent = Activator.CreateInstance(eventType, [limb.Owner, comp]);
+                    var limbAttachedEvent = Activator.CreateInstance(eventType, [limb, comp]);
 
                     if (limbAttachedEvent != null)
                     {
                         var closedMethod = s_raiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                        closedMethod.Invoke(this, [body.Owner, limbAttachedEvent, false]);
+                        closedMethod.Invoke(this, [body, limbAttachedEvent, false]);
                     }
                 }
 
                 foreach (var face in comp.GetType().GetInterfaces().Where(x => x.IsAssignableTo(typeof(IImplantable))))
                 {
                     var eventType = typeof(LimbAttachedEvent<>).MakeGenericType(face);
-                    var limbAttachedEvent = Activator.CreateInstance(eventType, [limb.Owner, comp]);
+                    var limbAttachedEvent = Activator.CreateInstance(eventType, [limb, comp]);
 
                     if (limbAttachedEvent != null)
                     {
                         var closedMethod = s_raiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                        closedMethod.Invoke(this, [ body.Owner, limbAttachedEvent, false ]);
+                        closedMethod.Invoke(this, [ body, limbAttachedEvent, false ]);
                     }
                 }
             }
@@ -125,7 +125,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
     private void RemoveLimb(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
     {
-        var hands = EnsureComp<HandsComponent>(body.Owner);
+        var hands = EnsureComp<HandsComponent>(body);
         switch (limb.Comp3.PartType)
         {
             case BodyPartType.Arm:
@@ -157,21 +157,21 @@ public sealed partial class LimbSystem : SharedLimbSystem
             {
                 {
                     var eventType = typeof(LimbRemovedEvent<>).MakeGenericType(comp.GetType());
-                    var limbAttachedEvent = Activator.CreateInstance(eventType, limb.Owner, comp);
+                    var limbAttachedEvent = Activator.CreateInstance(eventType, limb, comp);
                     if (limbAttachedEvent != null)
                     {
                         var closedMethod = s_raiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                        closedMethod.Invoke(this, [body.Owner, limbAttachedEvent, false]);
+                        closedMethod.Invoke(this, [body, limbAttachedEvent, false]);
                     }
                 }
                 foreach (var face in comp.GetType().GetInterfaces().Where(x => x.IsAssignableTo(typeof(IImplantable))))
                 {
                     var eventType = typeof(LimbRemovedEvent<>).MakeGenericType(face);
-                    var limbAttachedEvent = Activator.CreateInstance(eventType, limb.Owner, comp);
+                    var limbAttachedEvent = Activator.CreateInstance(eventType, limb, comp);
                     if (limbAttachedEvent != null)
                     {
                         var closedMethod = s_raiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                        closedMethod.Invoke(this, [body.Owner, limbAttachedEvent, false]);
+                        closedMethod.Invoke(this, [body, limbAttachedEvent, false]);
                     }
                 }
             }

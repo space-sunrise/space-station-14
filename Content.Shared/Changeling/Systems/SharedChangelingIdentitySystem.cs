@@ -48,7 +48,7 @@ public abstract class SharedChangelingIdentitySystem : EntitySystem
     private void OnMapInit(Entity<ChangelingIdentityComponent> ent, ref MapInitEvent args)
     {
         // Make a backup of our current identity so we can transform back.
-        var clone = CloneToPausedMap(ent, ent.Owner);
+        var clone = CloneToPausedMap(ent, ent);
         ent.Comp.CurrentIdentity = clone;
     }
 

@@ -113,7 +113,7 @@ public abstract class ClothingSystem : EntitySystem
 
     private void AfterAutoHandleState(Entity<ClothingComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        _itemSys.VisualsChanged(ent.Owner);
+        _itemSys.VisualsChanged(ent);
     }
 
     private void OnEquipDoAfter(Entity<ClothingComponent> ent, ref ClothingEquipDoAfterEvent args)

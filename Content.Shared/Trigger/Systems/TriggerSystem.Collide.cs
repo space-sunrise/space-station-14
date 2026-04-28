@@ -31,7 +31,7 @@ public sealed partial class TriggerSystem
                 if (ent.Comp.MaxTriggers <= 0)
                     RemCompDeferred<TriggerOnCollideComponent>(ent);
             }
-            Trigger(ent.Owner, args.OtherEntity, ent.Comp.KeyOut);
+            Trigger(ent, args.OtherEntity, ent.Comp.KeyOut);
         }
     }
 

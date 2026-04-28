@@ -22,7 +22,7 @@ public abstract class SharedScatteringGrenadeSystem : EntitySystem
 
     private void OnScatteringInit(Entity<ScatteringGrenadeComponent> entity, ref ComponentInit args)
     {
-        entity.Comp.Container = _container.EnsureContainer<Container>(entity.Owner, "cluster-payload");
+        entity.Comp.Container = _container.EnsureContainer<Container>(entity, "cluster-payload");
     }
 
     /// <summary>

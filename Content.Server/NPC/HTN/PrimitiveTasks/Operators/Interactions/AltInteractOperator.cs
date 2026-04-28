@@ -29,7 +29,7 @@ public sealed partial class AltInteractOperator : HTNOperator
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         var target = blackboard.GetValue<EntityUid>(Key);
         var intSystem = _entManager.System<SharedInteractionSystem>();
         var count = 0;

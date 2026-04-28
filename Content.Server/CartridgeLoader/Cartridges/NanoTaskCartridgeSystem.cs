@@ -43,7 +43,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 
     private void OnInteractUsing(Entity<NanoTaskInteractionComponent> ent, ref InteractUsingEvent args)
     {
-        if (!_cartridgeLoader.TryGetProgram<NanoTaskCartridgeComponent>(ent.Owner, out var uid, out var program))
+        if (!_cartridgeLoader.TryGetProgram<NanoTaskCartridgeComponent>(ent, out var uid, out var program))
         {
             return;
         }
@@ -56,7 +56,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
             program.Tasks.Add(new(program.Counter++, printed.Task));
             args.Handled = true;
             Del(args.Used);
-            UpdateUiState(new Entity<NanoTaskCartridgeComponent>(uid.Value, program), ent.Owner);
+            UpdateUiState(new Entity<NanoTaskCartridgeComponent>(uid.Value, program), ent);
         }
     }
 
@@ -133,7 +133,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
                 ent.Comp.NextPrintAllowedAfter = _timing.CurTime + ent.Comp.PrintDelay;
                 var printed = Spawn("PaperNanoTaskItem", Transform(message.Actor).Coordinates);
                 _hands.PickupOrDrop(message.Actor, printed);
-                _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/printer.ogg"), ent.Owner);
+                _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/printer.ogg"), ent);
                 SetupPrintedTask(printed, task.Item);
                 break;
             }

@@ -31,8 +31,8 @@ public sealed class DamagePopupSystem : EntitySystem
                 _ => "Invalid type",
             };
 
-            // Turn this back into (msg, ent.Owner, args.Origin) when shooting gets predicted.
-            _popupSystem.PopupPredicted(msg, ent.Owner, null);
+            // Turn this back into (msg, ent, args.Origin) when shooting gets predicted.
+            _popupSystem.PopupPredicted(msg, ent, null);
         }
     }
 
@@ -43,7 +43,7 @@ public sealed class DamagePopupSystem : EntitySystem
             var next = (DamagePopupType)(((int)ent.Comp.Type + 1) % Enum.GetValues<DamagePopupType>().Length);
             ent.Comp.Type = next;
             Dirty(ent);
-            _popupSystem.PopupPredicted(Loc.GetString("damage-popup-component-switched", ("setting", ent.Comp.Type)), ent.Owner, args.User);
+            _popupSystem.PopupPredicted(Loc.GetString("damage-popup-component-switched", ("setting", ent.Comp.Type)), ent, args.User);
         }
     }
 }

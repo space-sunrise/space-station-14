@@ -38,7 +38,7 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
 
     private void OnSelected(Entity<ChameleonControllerImplantComponent> ent, ref ChameleonControllerSelectedOutfitMessage args)
     {
-        if (!TryComp<SubdermalImplantComponent>(ent, out var implantComp) || implantComp.ImplantedEntity == null || !_delay.TryResetDelay(ent.Owner, true))
+        if (!TryComp<SubdermalImplantComponent>(ent, out var implantComp) || implantComp.ImplantedEntity == null || !_delay.TryResetDelay(ent, true))
             return;
 
         ChangeChameleonClothingToOutfit(implantComp.ImplantedEntity.Value, args.SelectedChameleonOutfit);
@@ -110,7 +110,7 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
 
     private void ChameleonControllerOutfitItemSelected(Entity<ChameleonClothingComponent> ent, ref InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent> args)
     {
-        if (!_inventory.TryGetContainingSlot(ent.Owner, out var slot))
+        if (!_inventory.TryGetContainingSlot(ent, out var slot))
             return;
 
         _chameleonClothingSystem.SetSelectedPrototype(ent, GetGearForSlot(args, slot.Name), component: ent.Comp);

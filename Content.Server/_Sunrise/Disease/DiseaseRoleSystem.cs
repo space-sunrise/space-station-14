@@ -269,7 +269,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         {
             component.Symptoms.Add(args.Symptom, new SymptomData(args.MinLevel, args.MaxLevel));
         }
-        _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
+        _actionsSystem.RemoveAction((uid, null), args.Action);
     }
 
     private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)
@@ -300,7 +300,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         }
 
         // Remove the zombie action after use
-        _actionsSystem.RemoveAction((uid, null), args.Action.Owner);
+        _actionsSystem.RemoveAction((uid, null), args.Action);
     }
 
     private void OnInfectedDeath(MobStateChangedEvent args)

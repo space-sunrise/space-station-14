@@ -26,7 +26,7 @@ namespace Content.Client._Sunrise.Pacificator
             OnButton.OnPressed += _ => _owner.SetPowerSwitch(true);
             OffButton.OnPressed += _ => _owner.SetPowerSwitch(false);
 
-            EntityView.SetEntity(owner.Owner);
+            EntityView.SetEntity(owner);
         }
 
         public void UpdateState(GeneratorState state)

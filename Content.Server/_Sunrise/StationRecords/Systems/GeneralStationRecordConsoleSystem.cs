@@ -44,7 +44,7 @@ public sealed partial class GeneralStationRecordConsoleSystem
 
     private void OnSave(Entity<GeneralStationRecordConsoleComponent> ent, ref SaveStationRecord args)
     {
-        var owning = _station.GetOwningStation(ent.Owner);
+        var owning = _station.GetOwningStation(ent);
 
         if (owning == null)
         {
@@ -110,7 +110,7 @@ public sealed partial class GeneralStationRecordConsoleSystem
             return;
         }
 
-        var owning = _station.GetOwningStation(ent.Owner);
+        var owning = _station.GetOwningStation(ent);
 
         if (owning == null)
         {

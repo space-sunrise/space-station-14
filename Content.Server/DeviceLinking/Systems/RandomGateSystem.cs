@@ -26,7 +26,7 @@ public sealed class RandomGateSystem : SharedRandomGateSystem
         {
             ent.Comp.LastOutput = output;
             Dirty(ent);
-            _deviceLink.SendSignal(ent.Owner, ent.Comp.OutputPort, output);
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPort, output);
         }
     }
 }

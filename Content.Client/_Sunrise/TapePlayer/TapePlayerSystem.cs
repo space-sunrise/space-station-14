@@ -49,7 +49,7 @@ namespace Content.Client._Sunrise.TapePlayer
             if (IsClientSide(ent))
                 return;
 
-            if (!_uiSystem.TryGetOpenUi<TapePlayerBoundUserInterface>(ent.Owner, TapePlayerUiKey.Key, out var bui))
+            if (!_uiSystem.TryGetOpenUi<TapePlayerBoundUserInterface>(ent, TapePlayerUiKey.Key, out var bui))
                 return;
 
             bui.Reload();

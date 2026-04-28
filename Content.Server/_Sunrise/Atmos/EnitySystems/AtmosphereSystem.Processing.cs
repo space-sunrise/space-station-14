@@ -29,7 +29,7 @@ public sealed partial class AtmosphereSystem
             }
         }
 
-        CleanupChargedElectrovaeEntities((ent.Owner, atmosphere));
+        CleanupChargedElectrovaeEntities((ent, atmosphere));
         return true;
     }
 }

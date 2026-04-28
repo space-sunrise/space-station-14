@@ -24,23 +24,23 @@ public sealed class ToggleCellDrawSystem : EntitySystem
 
     private void OnMapInit(Entity<ToggleCellDrawComponent> ent, ref MapInitEvent args)
     {
-        _cell.SetDrawEnabled(ent.Owner, _toggle.IsActivated(ent.Owner));
+        _cell.SetDrawEnabled(ent, _toggle.IsActivated(ent));
     }
 
     private void OnActivateAttempt(Entity<ToggleCellDrawComponent> ent, ref ItemToggleActivateAttemptEvent args)
     {
-        if (!_cell.HasDrawCharge(ent.Owner, user: args.User, predicted: true)
-            || !_cell.HasActivatableCharge(ent.Owner, user: args.User, predicted: true))
+        if (!_cell.HasDrawCharge(ent, user: args.User, predicted: true)
+            || !_cell.HasActivatableCharge(ent, user: args.User, predicted: true))
             args.Cancelled = true;
     }
 
     private void OnToggled(Entity<ToggleCellDrawComponent> ent, ref ItemToggledEvent args)
     {
-        _cell.SetDrawEnabled(ent.Owner, args.Activated);
+        _cell.SetDrawEnabled(ent, args.Activated);
     }
 
     private void OnEmpty(Entity<ToggleCellDrawComponent> ent, ref PowerCellSlotEmptyEvent args)
     {
-        _toggle.TryDeactivate(ent.Owner);
+        _toggle.TryDeactivate(ent);
     }
 }

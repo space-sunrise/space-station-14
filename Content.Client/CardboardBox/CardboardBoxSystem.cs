@@ -52,7 +52,7 @@ public sealed class CardboardBoxSystem : SharedCardboardBoxSystem
 
         foreach (var moverComp in movers)
         {
-            var uid = moverComp.Owner;
+            var uid = moverComp;
             if (uid == mover)
                 continue;
 

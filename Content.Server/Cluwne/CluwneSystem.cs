@@ -51,10 +51,10 @@ public sealed class CluwneSystem : EntitySystem
     {
         if (args.NewMobState == MobState.Dead)
         {
-            RemComp<CluwneComponent>(ent.Owner);
-            RemComp<ClumsyComponent>(ent.Owner);
-            RemComp<AutoEmoteComponent>(ent.Owner);
-            _damageableSystem.TryChangeDamage(ent.Owner, ent.Comp.RevertDamage);
+            RemComp<CluwneComponent>(ent);
+            RemComp<ClumsyComponent>(ent);
+            RemComp<AutoEmoteComponent>(ent);
+            _damageableSystem.TryChangeDamage(ent, ent.Comp.RevertDamage);
         }
     }
 
@@ -73,21 +73,21 @@ public sealed class CluwneSystem : EntitySystem
 
         if (ent.Comp.RandomEmote && ent.Comp.AutoEmoteId != null)
         {
-            EnsureComp<AutoEmoteComponent>(ent.Owner);
-            _autoEmote.AddEmote(ent.Owner, ent.Comp.AutoEmoteId);
+            EnsureComp<AutoEmoteComponent>(ent);
+            _autoEmote.AddEmote(ent, ent.Comp.AutoEmoteId);
         }
 
-        EnsureComp<ClumsyComponent>(ent.Owner);
+        EnsureComp<ClumsyComponent>(ent);
 
-        var transformMessage = Loc.GetString(ent.Comp.TransformMessage, ("target", ent.Owner));
+        var transformMessage = Loc.GetString(ent.Comp.TransformMessage, ("target", ent));
 
-        _popupSystem.PopupEntity(transformMessage, ent.Owner, PopupType.LargeCaution);
-        _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
+        _popupSystem.PopupEntity(transformMessage, ent, PopupType.LargeCaution);
+        _audio.PlayPvs(ent.Comp.SpawnSound, ent);
 
-        _nameMod.RefreshNameModifiers(ent.Owner);
+        _nameMod.RefreshNameModifiers(ent);
 
 
-        _outfitSystem.SetOutfit(ent.Owner, ent.Comp.OutfitId, unremovable: true);
+        _outfitSystem.SetOutfit(ent, ent.Comp.OutfitId, unremovable: true);
     }
 
     /// <summary>
@@ -101,19 +101,19 @@ public sealed class CluwneSystem : EntitySystem
         if (!ent.Comp.RandomEmote)
             return;
 
-        args.Handled = _chat.TryPlayEmoteSound(ent.Owner, EmoteSounds, args.Emote);
+        args.Handled = _chat.TryPlayEmoteSound(ent, EmoteSounds, args.Emote);
 
         if (_robustRandom.Prob(ent.Comp.GiggleRandomChance))
         {
-            _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
-            _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString(ent.Comp.GiggleEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
+            _audio.PlayPvs(ent.Comp.SpawnSound, ent);
+            _chat.TrySendInGameICMessage(ent, Loc.GetString(ent.Comp.GiggleEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
 
         else if (_robustRandom.Prob(ent.Comp.KnockChance))
         {
-            _audio.PlayPvs(ent.Comp.KnockSound, ent.Owner);
-            _stunSystem.TryUpdateParalyzeDuration(ent.Owner, TimeSpan.FromSeconds(ent.Comp.ParalyzeTime));
-            _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString(ent.Comp.KnockEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
+            _audio.PlayPvs(ent.Comp.KnockSound, ent);
+            _stunSystem.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.ParalyzeTime));
+            _chat.TrySendInGameICMessage(ent, Loc.GetString(ent.Comp.KnockEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
     }
 

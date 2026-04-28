@@ -78,7 +78,7 @@ public sealed class ChangelingClonerSystem : EntitySystem
         {
             Text = Loc.GetString("changeling-cloner-component-reset-verb"),
             Disabled = ent.Comp.ClonedBackup == null,
-            Act = () => Reset(ent.AsNullable(), user),
+            Act = () => Reset(ent, user),
             DoContactInteraction = true,
         });
     }
@@ -91,10 +91,10 @@ public sealed class ChangelingClonerSystem : EntitySystem
         switch (ent.Comp.State)
         {
             case ChangelingClonerState.Empty:
-                args.Handled |= TryDraw(ent.AsNullable(), args.Target.Value, args.User);
+                args.Handled |= TryDraw(ent, args.Target.Value, args.User);
                 break;
             case ChangelingClonerState.Filled:
-                args.Handled |= TryInject(ent.AsNullable(), args.Target.Value, args.User);
+                args.Handled |= TryInject(ent, args.Target.Value, args.User);
                 break;
             case ChangelingClonerState.Spent:
             default:
@@ -108,7 +108,7 @@ public sealed class ChangelingClonerSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Target == null)
             return;
 
-        Draw(ent.AsNullable(), args.Target.Value, args.User);
+        Draw(ent, args.Target.Value, args.User);
         args.Handled = true;
     }
 
@@ -117,7 +117,7 @@ public sealed class ChangelingClonerSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Target == null)
             return;
 
-        Inject(ent.AsNullable(), args.Target.Value, args.User);
+        Inject(ent, args.Target.Value, args.User);
         args.Handled = true;
     }
 
@@ -212,12 +212,12 @@ public sealed class ChangelingClonerSystem : EntitySystem
             return;
 
         _adminLogger.Add(LogType.Identity,
-            $"{user} is using {ent.Owner} to draw DNA from {target}.");
+            $"{user} is using {ent} to draw DNA from {target}.");
 
         // Make a copy of the target on a paused map, so that we can apply their components later.
         ent.Comp.ClonedBackup = _changelingIdentity.CloneToPausedMap(settings, target);
         ent.Comp.State = ChangelingClonerState.Filled;
-        _appearance.SetData(ent.Owner, ChangelingClonerVisuals.State, ChangelingClonerState.Filled);
+        _appearance.SetData(ent, ChangelingClonerVisuals.State, ChangelingClonerState.Filled);
         Dirty(ent);
 
         _audio.PlayPredicted(ent.Comp.DrawSound, target, user);
@@ -247,7 +247,7 @@ public sealed class ChangelingClonerSystem : EntitySystem
         if (!ent.Comp.Reusable)
         {
             ent.Comp.State = ChangelingClonerState.Spent;
-            _appearance.SetData(ent.Owner, ChangelingClonerVisuals.State, ChangelingClonerState.Spent);
+            _appearance.SetData(ent, ChangelingClonerVisuals.State, ChangelingClonerState.Spent);
             Dirty(ent);
         }
 
@@ -255,7 +255,7 @@ public sealed class ChangelingClonerSystem : EntitySystem
             return; // the entity is likely out of PVS range on the client
 
         _adminLogger.Add(LogType.Identity,
-            $"{user} is using {ent.Owner} to inject DNA into {target} changing their identity to {ent.Comp.ClonedBackup.Value}.");
+            $"{user} is using {ent} to inject DNA into {target} changing their identity to {ent.Comp.ClonedBackup.Value}.");
 
         // Do the actual transformation.
         _humanoidAppearance.CloneAppearance(ent.Comp.ClonedBackup.Value, target);
@@ -276,7 +276,7 @@ public sealed class ChangelingClonerSystem : EntitySystem
         PredictedQueueDel(ent.Comp.ClonedBackup);
         ent.Comp.ClonedBackup = null;
         ent.Comp.State = ChangelingClonerState.Empty;
-        _appearance.SetData(ent.Owner, ChangelingClonerVisuals.State, ChangelingClonerState.Empty);
+        _appearance.SetData(ent, ChangelingClonerVisuals.State, ChangelingClonerState.Empty);
         Dirty(ent);
 
         if (user == null)

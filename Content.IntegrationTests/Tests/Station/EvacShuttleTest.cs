@@ -109,9 +109,9 @@ public sealed class EvacShuttleTest
         Assert.That(entMan.Count<FTLMapComponent>(), Is.EqualTo(1));
         var ftl = (Entity<FTLMapComponent>) entMan.AllComponentsList<FTLMapComponent>().Single();
         Assert.That(entMan.HasComponent<MapComponent>(ftl));
-        Assert.That(ftl.Owner, Is.Not.EqualTo(centcommMap));
-        Assert.That(ftl.Owner, Is.Not.EqualTo(salternXform.MapUid));
-        Assert.That(shuttleXform.MapUid, Is.EqualTo(ftl.Owner));
+        Assert.That(ftl, Is.Not.EqualTo(centcommMap));
+        Assert.That(ftl, Is.Not.EqualTo(salternXform.MapUid));
+        Assert.That(shuttleXform.MapUid, Is.EqualTo(ftl));
 
         // Shuttle should have arrived at centcomm
         await pair.RunSeconds(shuttleSys.DefaultTravelTime);

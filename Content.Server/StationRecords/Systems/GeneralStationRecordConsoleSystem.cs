@@ -37,7 +37,7 @@ public sealed partial class GeneralStationRecordConsoleSystem : EntitySystem
         if (!ent.Comp.CanDeleteEntries)
             return;
 
-        var owning = _station.GetOwningStation(ent.Owner);
+        var owning = _station.GetOwningStation(ent);
 
         // Sunrise added start
         if (owning == null)

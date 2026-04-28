@@ -45,7 +45,7 @@ public sealed class GridPreloaderSystem : SharedGridPreloaderSystem
         if (ent == null)
             return;
 
-        Del(ent.Value.Owner);
+        Del(ent.Value);
     }
 
     private void OnPostGameMapLoad(PostGameMapLoad ev)

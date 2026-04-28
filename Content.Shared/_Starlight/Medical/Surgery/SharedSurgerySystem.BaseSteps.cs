@@ -78,14 +78,14 @@ public abstract partial class SharedSurgerySystem
     {
         // Check if the entity is the target to avoid giving the hooked entity access to everything.
         // If we already have access we don't need to run more code.
-        if (args.Accessible || args.Target != ent.Owner)
+        if (args.Accessible || args.Target != ent)
             return;
 
         var xform = Transform(ent);
         var root = _containers.GetContainingContainers((ent, xform)).FirstOrDefault(x => x.ID == SharedBodySystem.BodyRootContainerId); //get the root container
         if (root == null)
             return;
-        if (!_interaction.CanAccess(args.User, root.Owner))
+        if (!_interaction.CanAccess(args.User, root))
             return;
 
         args.Accessible = true;
@@ -329,7 +329,7 @@ public abstract partial class SharedSurgerySystem
             if (surgeryStep == step)
                 break;
 
-            if (Prototype(surgery.Owner) is not EntityPrototype surgProto || !IsStepComplete(part, surgProto.ID, surgeryStep))
+            if (Prototype(surgery) is not EntityPrototype surgProto || !IsStepComplete(part, surgProto.ID, surgeryStep))
                 return false;
         }
 

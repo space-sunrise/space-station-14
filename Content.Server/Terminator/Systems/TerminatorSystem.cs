@@ -44,8 +44,8 @@ public sealed class TerminatorSystem : EntitySystem
         _role.MindHasRole<TerminatorRoleComponent>(mindId, out var terminatorRole);
         if (terminatorRole is not null)
         {
-            AddComp<RoleBriefingComponent>(terminatorRole.Value.Owner);
-            Comp<RoleBriefingComponent>(terminatorRole.Value.Owner).Briefing = Loc.GetString("terminator-role-briefing");
+            AddComp<RoleBriefingComponent>(terminatorRole.Value);
+            Comp<RoleBriefingComponent>(terminatorRole.Value).Briefing = Loc.GetString("terminator-role-briefing");
         }
     }
 

@@ -39,10 +39,10 @@ public sealed class PdaAnimationVisualsSystem : VisualizerSystem<PdaAnimationVis
     /// </summary>
     private void ApplyAnimatedState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
-        SpriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, comp.AnimatedState);
-        SpriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, true);
-        SpriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.IdLight, comp.IdInsertedLayerState);
-        SpriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, true);
+        SpriteSystem.LayerSetRsiState(sprite, PdaVisualLayers.Base, comp.AnimatedState);
+        SpriteSystem.LayerSetAutoAnimated(sprite, PdaVisualLayers.Base, true);
+        SpriteSystem.LayerSetRsiState(sprite, PdaVisualLayers.IdLight, comp.IdInsertedLayerState);
+        SpriteSystem.LayerSetVisible(sprite, PdaVisualLayers.IdLight, true);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public sealed class PdaAnimationVisualsSystem : VisualizerSystem<PdaAnimationVis
     private void ApplyStaticState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
         ApplyStaticBaseState(sprite, comp);
-        SpriteSystem.LayerSetVisible(sprite.AsNullable(), PdaVisualLayers.IdLight, false);
+        SpriteSystem.LayerSetVisible(sprite, PdaVisualLayers.IdLight, false);
     }
 
     /// <summary>
@@ -62,8 +62,8 @@ public sealed class PdaAnimationVisualsSystem : VisualizerSystem<PdaAnimationVis
     private void ApplyStaticBaseState(Entity<SpriteComponent> sprite, PdaAnimationVisualsComponent comp)
     {
         var stateName = GetStaticStateName(comp);
-        SpriteSystem.LayerSetRsiState(sprite.AsNullable(), PdaVisualLayers.Base, stateName);
-        SpriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), PdaVisualLayers.Base, false);
+        SpriteSystem.LayerSetRsiState(sprite, PdaVisualLayers.Base, stateName);
+        SpriteSystem.LayerSetAutoAnimated(sprite, PdaVisualLayers.Base, false);
     }
 
     /// <summary>

@@ -46,8 +46,8 @@ namespace Content.Server.Nutrition.EntitySystems
 
             if (Resolve(entity, ref entity.Comp2, false))
             {
-                if (_solutions.TryGetSolution(entity.Owner, entity.Comp2.Solution, out _, out var solution))
-                    _puddle.TrySpillAt(entity.Owner, solution, out _, false);
+                if (_solutions.TryGetSolution(entity, entity.Comp2.Solution, out _, out var solution))
+                    _puddle.TrySpillAt(entity, solution, out _, false);
 
                 _ingestion.SpawnTrash((entity, entity.Comp2));
             }

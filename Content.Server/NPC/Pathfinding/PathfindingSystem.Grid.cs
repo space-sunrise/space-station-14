@@ -280,7 +280,7 @@ public sealed partial class PathfindingSystem
         var gridUid = ev.Component.GridUid;
         var oldGridUid = ev.OldPosition.EntityId == ev.NewPosition.EntityId
             ? gridUid
-            : _transform.GetGrid((ev.Entity.Owner, ev.Component));
+            : _transform.GetGrid((ev.Entity, ev.Component));
 
         if (oldGridUid != null && oldGridUid != gridUid)
         {
@@ -425,7 +425,7 @@ public sealed partial class PathfindingSystem
                 var tilePos = new Vector2i(x, y) + gridOrigin;
                 tilePolys.Clear();
 
-                var tile = _maps.GetTileRef(grid.Owner, grid.Comp, tilePos);
+                var tile = _maps.GetTileRef(grid, grid.Comp, tilePos);
                 var flags = tile.Tile.IsEmpty ? PathfindingBreadcrumbFlag.Space : PathfindingBreadcrumbFlag.None;
                 // var isBorder = x < 0 || y < 0 || x == ChunkSize - 1 || y == ChunkSize - 1;
 
@@ -443,8 +443,8 @@ public sealed partial class PathfindingSystem
 
                     var xform = _xformQuery.GetComponent(ent);
 
-                    if (xform.ParentUid != grid.Owner ||
-                        _maps.LocalToTile(grid.Owner, grid.Comp, xform.Coordinates) != tilePos)
+                    if (xform.ParentUid != grid ||
+                        _maps.LocalToTile(grid, grid.Comp, xform.Coordinates) != tilePos)
                     {
                         continue;
                     }

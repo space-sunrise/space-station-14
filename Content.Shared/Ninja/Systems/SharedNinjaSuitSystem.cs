@@ -116,7 +116,7 @@ public abstract class SharedNinjaSuitSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
-        var uid = ent.Owner;
+        var uid = ent;
         var comp = ent.Comp;
         if (_toggle.TryDeactivate(uid, user) || !disable)
             return;

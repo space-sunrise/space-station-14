@@ -62,7 +62,7 @@ public sealed class RiggableSystem : EntitySystem
 
         if (entity.Comp.IsRigged && !wasRigged)
         {
-            _adminLogger.Add(LogType.Explosion, LogImpact.Medium, $"{ToPrettyString(entity.Owner)} has been rigged up to explode when used.");
+            _adminLogger.Add(LogType.Explosion, LogImpact.Medium, $"{ToPrettyString(entity)} has been rigged up to explode when used.");
         }
     }
 

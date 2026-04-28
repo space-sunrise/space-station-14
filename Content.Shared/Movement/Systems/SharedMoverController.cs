@@ -138,7 +138,7 @@ public abstract partial class SharedMoverController : VirtualController
         Entity<InputMoverComponent> entity,
         float frameTime)
     {
-        var uid = entity.Owner;
+        var uid = entity;
         var mover = entity.Comp;
 
         // If we're a relay then apply all of our data to the parent instead and go next.
@@ -183,7 +183,7 @@ public abstract partial class SharedMoverController : VirtualController
             return;
         }
 
-        if (!XformQuery.TryComp(entity.Owner, out var xform))
+        if (!XformQuery.TryComp(entity, out var xform))
             return;
 
         RelayTargetQuery.TryComp(uid, out var relayTarget);
@@ -383,7 +383,7 @@ public abstract partial class SharedMoverController : VirtualController
 
     public Vector2 GetWishDir(Entity<InputMoverComponent?> mover)
     {
-        if (!MoverQuery.Resolve(mover.Owner, ref mover.Comp, false))
+        if (!MoverQuery.Resolve(mover, ref mover.Comp, false))
             return Vector2.Zero;
 
         return mover.Comp.WishDir;
@@ -484,7 +484,7 @@ public abstract partial class SharedMoverController : VirtualController
     private bool IsAroundCollider(EntityLookupSystem lookupSystem, Entity<PhysicsComponent, MobMoverComponent, TransformComponent> entity)
     {
         var (uid, collider, mover, transform) = entity;
-        var enlargedAABB = _lookup.GetWorldAABB(entity.Owner, transform).Enlarged(mover.GrabRange);
+        var enlargedAABB = _lookup.GetWorldAABB(entity, transform).Enlarged(mover.GrabRange);
 
         _aroundColliderSet.Clear();
         lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet);
@@ -654,7 +654,7 @@ public abstract partial class SharedMoverController : VirtualController
         if (!PhysicsQuery.TryComp(ent, out var physicsComponent))
             return;
 
-        if (physicsComponent.BodyStatus != BodyStatus.OnGround || _gravity.IsWeightless(ent.Owner))
+        if (physicsComponent.BodyStatus != BodyStatus.OnGround || _gravity.IsWeightless(ent))
             args.Modifier *= ent.Comp.BaseWeightlessFriction;
         else
             args.Modifier *= ent.Comp.BaseFriction;

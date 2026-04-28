@@ -72,32 +72,32 @@ public abstract class SharedFlipSystem : EntitySystem
 
     private void OnStartup(Entity<FlipComponent> ent, ref ComponentStartup args)
     {
-        if (!_fixturesQuery.TryGetComponent(ent.Owner, out var fixtures))
+        if (!_fixturesQuery.TryGetComponent(ent, out var fixtures))
             return;
 
         // SUNRISE-TODO: Звук сальто
         //if (_net.IsServer)
-        //    _audioSystem.PlayEntity(FlipSound, Filter.Pvs(ent.Owner), ent.Owner, true, AudioParams.Default.WithVolume(-5f));
+        //    _audioSystem.PlayEntity(FlipSound, Filter.Pvs(ent), ent, true, AudioParams.Default.WithVolume(-5f));
 
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
             ent.Comp.OriginalCollisionLayers[id] = fixture.CollisionLayer;
 
-            _physics.RemoveCollisionLayer(ent.Owner, id, fixture, (int) CollisionGroup.BulletImpassable, manager: fixtures);
-            _physics.RemoveCollisionLayer(ent.Owner, id, fixture, (int) CollisionGroup.Opaque, manager: fixtures);
+            _physics.RemoveCollisionLayer(ent, id, fixture, (int) CollisionGroup.BulletImpassable, manager: fixtures);
+            _physics.RemoveCollisionLayer(ent, id, fixture, (int) CollisionGroup.Opaque, manager: fixtures);
         }
     }
 
     private void OnShutdown(Entity<FlipComponent> ent, ref ComponentShutdown args)
     {
-        if (!_fixturesQuery.TryGetComponent(ent.Owner, out var fixtures))
+        if (!_fixturesQuery.TryGetComponent(ent, out var fixtures))
             return;
 
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
             if (ent.Comp.OriginalCollisionLayers.TryGetValue(id, out var originalLayer))
             {
-                _physics.SetCollisionLayer(ent.Owner, id, fixture, originalLayer, manager: fixtures);
+                _physics.SetCollisionLayer(ent, id, fixture, originalLayer, manager: fixtures);
             }
         }
 

@@ -58,7 +58,7 @@ public sealed class TechnologyDiskSystem : EntitySystem
         ent.Comp.Recipes = [];
         ent.Comp.Recipes.Add(_random.Pick(techs));
         Dirty(ent);
-        _nameModifier.RefreshNameModifiers(ent.Owner);
+        _nameModifier.RefreshNameModifiers(ent);
     }
 
     private void OnAfterInteract(Entity<TechnologyDiskComponent> ent, ref AfterInteractEvent args)
@@ -77,7 +77,7 @@ public sealed class TechnologyDiskSystem : EntitySystem
             }
         }
         _popup.PopupClient(Loc.GetString("tech-disk-inserted"), target, args.User);
-        PredictedQueueDel(ent.Owner);
+        PredictedQueueDel(ent);
         args.Handled = true;
     }
 

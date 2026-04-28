@@ -28,7 +28,7 @@ public sealed partial class HandTriggerSystem : TriggerOnXSystem
         if (_timing.ApplyingState)
             return;
 
-        Trigger.Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.User, ent.Comp.KeyOut);
     }
 
     private void OnGotUnequipped(Entity<TriggerOnGotUnequippedHandComponent> ent, ref GotUnequippedHandEvent args)
@@ -36,7 +36,7 @@ public sealed partial class HandTriggerSystem : TriggerOnXSystem
         if (_timing.ApplyingState)
             return;
 
-        Trigger.Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.User, ent.Comp.KeyOut);
     }
 
     private void OnDidEquip(Entity<TriggerOnDidEquipHandComponent> ent, ref DidEquipHandEvent args)
@@ -44,7 +44,7 @@ public sealed partial class HandTriggerSystem : TriggerOnXSystem
         if (_timing.ApplyingState)
             return;
 
-        Trigger.Trigger(ent.Owner, args.Equipped, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.Equipped, ent.Comp.KeyOut);
     }
 
     private void OnDidUnequip(Entity<TriggerOnDidUnequipHandComponent> ent, ref DidUnequipHandEvent args)
@@ -52,12 +52,12 @@ public sealed partial class HandTriggerSystem : TriggerOnXSystem
         if (_timing.ApplyingState)
             return;
 
-        Trigger.Trigger(ent.Owner, args.Unequipped, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.Unequipped, ent.Comp.KeyOut);
     }
 
     private void OnDropped(Entity<TriggerOnDroppedComponent> ent, ref DroppedEvent args)
     {
         // We don't need the guard statement here because this one is not a container event, but raised directly when interacting.
-        Trigger.Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.User, ent.Comp.KeyOut);
     }
 }

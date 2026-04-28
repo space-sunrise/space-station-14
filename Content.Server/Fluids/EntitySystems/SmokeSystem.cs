@@ -95,7 +95,7 @@ public sealed class SmokeSystem : EntitySystem
         // if we are already in smoke, make sure the thing we are exiting is the current smoke we are in.
         if (_smokeAffectedQuery.TryGetComponent(args.OtherEntity, out var smokeAffectedComponent))
         {
-            if (smokeAffectedComponent.SmokeEntity != entity.Owner)
+            if (smokeAffectedComponent.SmokeEntity != entity)
                 return;
         }
 
@@ -106,7 +106,7 @@ public sealed class SmokeSystem : EntitySystem
 
         foreach (var ent in _physics.GetContactingEntities(args.OtherEntity, body))
         {
-            if (exists && ent == entity.Owner)
+            if (exists && ent == entity)
                 continue;
 
             if (!_smokeQuery.HasComponent(ent))
@@ -123,7 +123,7 @@ public sealed class SmokeSystem : EntitySystem
 
     private void OnSmokeSpread(Entity<SmokeComponent> entity, ref SpreadNeighborsEvent args)
     {
-        if (entity.Comp.SpreadAmount == 0 || !_solutionContainerSystem.ResolveSolution(entity.Owner, SmokeComponent.SolutionName, ref entity.Comp.Solution, out var solution))
+        if (entity.Comp.SpreadAmount == 0 || !_solutionContainerSystem.ResolveSolution(entity, SmokeComponent.SolutionName, ref entity.Comp.Solution, out var solution))
         {
             RemCompDeferred<ActiveEdgeSpreaderComponent>(entity);
             return;
@@ -328,7 +328,7 @@ public sealed class SmokeSystem : EntitySystem
         if (!Resolve(smoke, ref smoke.Comp))
             return;
 
-        if (!_solutionContainerSystem.ResolveSolution(smoke.Owner, SmokeComponent.SolutionName, ref smoke.Comp.Solution, out var solutionArea))
+        if (!_solutionContainerSystem.ResolveSolution(smoke, SmokeComponent.SolutionName, ref smoke.Comp.Solution, out var solutionArea))
             return;
 
         var addSolution = solution.SplitSolution(FixedPoint2.Min(solution.Volume, solutionArea.AvailableVolume));
@@ -340,10 +340,10 @@ public sealed class SmokeSystem : EntitySystem
     private void UpdateVisuals(Entity<SmokeComponent?, AppearanceComponent?> smoke)
     {
         if (!Resolve(smoke, ref smoke.Comp1, ref smoke.Comp2) ||
-            !_solutionContainerSystem.ResolveSolution(smoke.Owner, SmokeComponent.SolutionName, ref smoke.Comp1.Solution, out var solution))
+            !_solutionContainerSystem.ResolveSolution(smoke, SmokeComponent.SolutionName, ref smoke.Comp1.Solution, out var solution))
             return;
 
         var color = solution.GetColor(_prototype);
-        _appearance.SetData(smoke.Owner, SmokeVisuals.Color, color, smoke.Comp2);
+        _appearance.SetData(smoke, SmokeVisuals.Color, color, smoke.Comp2);
     }
 }

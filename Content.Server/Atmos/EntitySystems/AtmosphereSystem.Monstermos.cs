@@ -581,13 +581,13 @@ namespace Content.Server.Atmos.EntitySystems
             var reconsiderAdjacent = false;
 
             var mapGrid = ent.Comp3;
-            foreach (var entity in _map.GetAnchoredEntities(ent.Owner, mapGrid, tile.GridIndices))
+            foreach (var entity in _map.GetAnchoredEntities(ent, mapGrid, tile.GridIndices))
             {
                 if (_firelockQuery.TryGetComponent(entity, out var firelock))
                     reconsiderAdjacent |= _firelockSystem.EmergencyPressureStop(entity, firelock);
             }
 
-            foreach (var entity in _map.GetAnchoredEntities(ent.Owner, mapGrid, other.GridIndices))
+            foreach (var entity in _map.GetAnchoredEntities(ent, mapGrid, other.GridIndices))
             {
                 if (_firelockQuery.TryGetComponent(entity, out var firelock))
                     reconsiderAdjacent |= _firelockSystem.EmergencyPressureStop(entity, firelock);
@@ -601,8 +601,8 @@ namespace Content.Server.Atmos.EntitySystems
             // This ensures that UpdateAdjacentTiles has updated data before updating flags.
             // This allows monstermos' floodfill check that determines if firelocks have dropped
             // to work correctly.
-            UpdateAirtightData(ent.Owner, ent.Comp1, ent.Comp3, tile);
-            UpdateAirtightData(ent.Owner, ent.Comp1, ent.Comp3, other);
+            UpdateAirtightData(ent, ent.Comp1, ent.Comp3, tile);
+            UpdateAirtightData(ent, ent.Comp1, ent.Comp3, other);
 
             UpdateAdjacentTiles(ent, tile);
             UpdateAdjacentTiles(ent, other);

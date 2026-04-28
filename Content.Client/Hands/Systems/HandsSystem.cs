@@ -69,16 +69,16 @@ namespace Content.Client.Hands.Systems
 
             foreach (var handId in oldHands)
             {
-                RemoveHand(ent.AsNullable(), handId);
+                RemoveHand(ent, handId);
             }
 
             foreach (var handId in state.SortedHands.Intersect(newHands))
             {
-                AddHand(ent.AsNullable(), handId, state.Hands[handId]);
+                AddHand(ent, handId, state.Hands[handId]);
             }
             ent.Comp.SortedHands = new (state.SortedHands);
 
-            SetActiveHand(ent.AsNullable(), state.ActiveHandId);
+            SetActiveHand(ent, state.ActiveHandId);
 
             _stripSys.UpdateUi(ent);
         }
@@ -107,7 +107,7 @@ namespace Content.Client.Hands.Systems
 
         public EntityUid? GetActiveHandEntity()
         {
-            return TryGetPlayerHands(out var hands) ? GetActiveItem(hands.Value.AsNullable()) : null;
+            return TryGetPlayerHands(out var hands) ? GetActiveItem(hands.Value) : null;
         }
 
         /// <summary>
@@ -133,8 +133,8 @@ namespace Content.Client.Hands.Systems
             if (hands.ActiveHandId == null)
                 return;
 
-            var pressedEntity = GetHeldItem(ent.AsNullable(), handName);
-            var activeEntity = GetActiveItem(ent.AsNullable());
+            var pressedEntity = GetHeldItem(ent, handName);
+            var activeEntity = GetActiveItem(ent);
 
             if (handName == hands.ActiveHandId && activeEntity != null)
             {
@@ -177,7 +177,7 @@ namespace Content.Client.Hands.Systems
         public void UIInventoryExamine(string handName)
         {
             if (!TryGetPlayerHands(out var hands) ||
-                !TryGetHeldItem(hands.Value.AsNullable(), handName, out var heldEntity))
+                !TryGetHeldItem(hands.Value, handName, out var heldEntity))
             {
                 return;
             }
@@ -192,7 +192,7 @@ namespace Content.Client.Hands.Systems
         public void UIHandOpenContextMenu(string handName)
         {
             if (!TryGetPlayerHands(out var hands) ||
-                !TryGetHeldItem(hands.Value.AsNullable(), handName, out var heldEntity))
+                !TryGetHeldItem(hands.Value, handName, out var heldEntity))
             {
                 return;
             }
@@ -416,7 +416,7 @@ namespace Content.Client.Hands.Systems
             if (ent is not { } hand)
                 return;
 
-            if (_playerManager.LocalEntity != hand.Owner)
+            if (_playerManager.LocalEntity != hand)
                 return;
 
             OnPlayerSetActiveHand?.Invoke(hand.Comp.ActiveHandId);

@@ -99,7 +99,7 @@ public abstract partial class SharedSolutionContainerSystem
     {
         var solution = args.Solution.Comp.Solution;
         var overflow = solution.SplitSolution(args.Overflow);
-        var relayEv = new SolutionContainerOverflowEvent(entity.Owner, solution, overflow)
+        var relayEv = new SolutionContainerOverflowEvent(entity, solution, overflow)
         {
             Handled = args.Handled,
         };
@@ -118,7 +118,7 @@ public abstract partial class SharedSolutionContainerSystem
 
     private void RelaySolutionRefEvent<TEvent>(Entity<ContainedSolutionComponent> entity, ref TEvent @event)
     {
-        var relayEvent = new SolutionRelayEvent<TEvent>(@event, entity.Owner, entity.Comp.ContainerName);
+        var relayEvent = new SolutionRelayEvent<TEvent>(@event, entity, entity.Comp.ContainerName);
         RaiseLocalEvent(entity.Comp.Container, ref relayEvent);
         @event = relayEvent.Event;
     }
@@ -134,7 +134,7 @@ public abstract partial class SharedSolutionContainerSystem
 
     private void RelaySolutionContainerEvent<TEvent>(Entity<SolutionContainerManagerComponent> entity, ref TEvent @event)
     {
-        foreach (var (name, soln) in EnumerateSolutions((entity.Owner, entity.Comp)))
+        foreach (var (name, soln) in EnumerateSolutions((entity, entity.Comp)))
         {
             var relayEvent = new SolutionContainerRelayEvent<TEvent>(@event, soln, name!);
             RaiseLocalEvent(soln, ref relayEvent);

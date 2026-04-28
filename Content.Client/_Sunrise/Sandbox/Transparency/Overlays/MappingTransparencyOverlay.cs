@@ -94,7 +94,7 @@ public sealed class MappingTransparencyOverlay : Overlay
             return;
 
         _cachedBaseAlphas.Add((ent, ent.Comp.Color.A));
-        _sprite.SetColor(ent.AsNullable(), ent.Comp.Color.WithAlpha(targetAlpha));
+        _sprite.SetColor(ent, ent.Comp.Color.WithAlpha(targetAlpha));
     }
 
     private void RestoreTransparency(Entity<SpriteComponent> ent, float baseAlpha)
@@ -102,7 +102,7 @@ public sealed class MappingTransparencyOverlay : Overlay
         if (MathHelper.CloseTo(ent.Comp.Color.A, baseAlpha))
             return;
 
-        _sprite.SetColor(ent.AsNullable(), ent.Comp.Color.WithAlpha(baseAlpha));
+        _sprite.SetColor(ent, ent.Comp.Color.WithAlpha(baseAlpha));
     }
 
     protected override void DisposeBehavior()

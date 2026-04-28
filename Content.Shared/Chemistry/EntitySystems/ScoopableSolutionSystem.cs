@@ -32,7 +32,7 @@ public sealed class ScoopableSolutionSystem : EntitySystem
 
     public bool TryScoop(Entity<ScoopableSolutionComponent> ent, EntityUid beaker, EntityUid user)
     {
-        if (!_solution.TryGetSolution(ent.Owner, ent.Comp.Solution, out var src, out var srcSolution) ||
+        if (!_solution.TryGetSolution(ent, ent.Comp.Solution, out var src, out var srcSolution) ||
             !_solution.TryGetRefillableSolution(beaker, out var target, out _))
             return false;
 
@@ -40,7 +40,7 @@ public sealed class ScoopableSolutionSystem : EntitySystem
         if (scooped == 0)
             return false;
 
-        _popup.PopupClient(Loc.GetString(ent.Comp.Popup, ("scooped", ent.Owner), ("beaker", beaker)), user, user);
+        _popup.PopupClient(Loc.GetString(ent.Comp.Popup, ("scooped", ent), ("beaker", beaker)), user, user);
 
         if (srcSolution.Volume == 0 && ent.Comp.Delete)
         {

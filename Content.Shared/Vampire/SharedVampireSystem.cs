@@ -19,6 +19,6 @@ public sealed class SharedVampireSystem : EntitySystem
     public void SetAlertBloodAmount(VampireAlertComponent component, int amount)
     {
         component.BloodAmount = amount;
-        Dirty(component.Owner, component);
+        Dirty(component, component);
     }
 }

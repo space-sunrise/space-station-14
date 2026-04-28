@@ -28,7 +28,7 @@ public sealed partial class TriggerSystem
         // Re-check for contacts as we cleared them.
         else if (TryComp<PhysicsComponent>(ent, out var body))
         {
-            _physics.RegenerateContacts((ent.Owner, body));
+            _physics.RegenerateContacts((ent, body));
         }
 
         Dirty(ent);
@@ -44,7 +44,7 @@ public sealed partial class TriggerSystem
             return;
 
         _fixture.TryCreateFixture(
-            ent.Owner,
+            ent,
             ent.Comp.Shape,
             TriggerOnProximityComponent.FixtureID,
             hard: false,
@@ -72,7 +72,7 @@ public sealed partial class TriggerSystem
 
     private void SetProximityAppearance(Entity<TriggerOnProximityComponent> ent)
     {
-        _appearance.SetData(ent.Owner, ProximityTriggerVisualState.State, ent.Comp.Enabled ? ProximityTriggerVisuals.Inactive : ProximityTriggerVisuals.Off);
+        _appearance.SetData(ent, ProximityTriggerVisualState.State, ent.Comp.Enabled ? ProximityTriggerVisuals.Inactive : ProximityTriggerVisuals.Off);
     }
 
     private void Activate(Entity<TriggerOnProximityComponent> ent, EntityUid user)
@@ -93,9 +93,9 @@ public sealed partial class TriggerSystem
         ent.Comp.NextVisualUpdate = curTime + ent.Comp.AnimationDuration;
         Dirty(ent);
 
-        _appearance.SetData(ent.Owner, ProximityTriggerVisualState.State, ProximityTriggerVisuals.Active);
+        _appearance.SetData(ent, ProximityTriggerVisualState.State, ProximityTriggerVisuals.Active);
 
-        Trigger(ent.Owner, user, ent.Comp.KeyOut);
+        Trigger(ent, user, ent.Comp.KeyOut);
     }
 
     private void UpdateProximity()

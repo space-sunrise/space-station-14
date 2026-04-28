@@ -120,7 +120,7 @@ public sealed class SuicideSystem : EntitySystem
         var suicideByEnvironmentEvent = new SuicideByEnvironmentEvent(victim);
 
         // Try to suicide by raising an event on the held item
-        if (_hands.TryGetActiveItem(victim.Owner, out var item))
+        if (_hands.TryGetActiveItem(victim, out var item))
         {
             RaiseLocalEvent(item.Value, suicideByEnvironmentEvent);
             if (suicideByEnvironmentEvent.Handled)

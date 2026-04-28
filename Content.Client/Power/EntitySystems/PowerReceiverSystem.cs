@@ -40,7 +40,7 @@ public sealed class PowerReceiverSystem : SharedPowerReceiverSystem
     protected override void RaisePower(Entity<SharedApcPowerReceiverComponent> entity)
     {
         var ev = new PowerChangedEvent(entity.Comp.Powered, 0f);
-        RaiseLocalEvent(entity.Owner, ref ev);
+        RaiseLocalEvent(entity, ref ev);
     }
 
     public override bool ResolveApc(EntityUid entity, [NotNullWhen(true)] ref SharedApcPowerReceiverComponent? component)

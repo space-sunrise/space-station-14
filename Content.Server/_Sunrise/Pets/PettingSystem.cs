@@ -84,7 +84,7 @@ public sealed class PettingSystem : SharedPettingSystem
     /// <param name="args">Ивент типа PetSetAILogicEvent, передающий текущий приказ питомцу</param>
     private void Pet(Entity<PettableOnInteractComponent> pet, ref PetSetAILogicEvent args)
     {
-        UpdatePetOrder(pet.AsNullable(), args.Order, args.Target);
+        UpdatePetOrder(pet, args.Order, args.Target);
     }
 
     /// <summary>
@@ -208,8 +208,8 @@ public sealed class PettingSystem : SharedPettingSystem
     /// </summary>
     private void EnsureFactionComponent(Entity<PettableOnInteractComponent> pet, ref MapInitEvent args)
     {
-        _npcFaction.ClearFactions(pet.Owner);
-        _npcFaction.AddFaction(pet.Owner, pet.Comp.DefaultFaction);
+        _npcFaction.ClearFactions(pet);
+        _npcFaction.AddFaction(pet, pet.Comp.DefaultFaction);
     }
 
     #endregion
@@ -334,7 +334,7 @@ public sealed class PettingSystem : SharedPettingSystem
         if (!action.HasValue)
             return;
 
-        _actions.RemoveAction(master.Owner, action);
+        _actions.RemoveAction(master, action);
         master.Comp.PetActions.Remove(action.Value);
 
         Dirty(master);
@@ -402,9 +402,9 @@ public sealed class PettingSystem : SharedPettingSystem
         if (!Resolve(pet, ref pet.Comp))
             return;
 
-        _npcFaction.ClearFactions(pet.Owner);
+        _npcFaction.ClearFactions(pet);
         var nextFaction = attacking ? pet.Comp.AttackingFaction : pet.Comp.DefaultFaction;
-        _npcFaction.AddFaction(pet.Owner, nextFaction);
+        _npcFaction.AddFaction(pet, nextFaction);
     }
 
     /// <summary>

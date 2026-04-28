@@ -48,7 +48,7 @@ public sealed partial class VocalizationSystem : EntitySystem
     private void TrySpeak(Entity<VocalizerComponent> entity)
     {
         var tryVocalizeEvent = new TryVocalizeEvent();
-        RaiseLocalEvent(entity.Owner, ref tryVocalizeEvent);
+        RaiseLocalEvent(entity, ref tryVocalizeEvent);
 
         // If the event was cancelled, don't speak
         if (tryVocalizeEvent.Cancelled)
@@ -75,7 +75,7 @@ public sealed partial class VocalizationSystem : EntitySystem
         // raise a VocalizeEvent
         // this can be handled by other systems to speak using a method other than local chat
         var vocalizeEvent = new VocalizeEvent(message);
-        RaiseLocalEvent(entity.Owner, ref vocalizeEvent);
+        RaiseLocalEvent(entity, ref vocalizeEvent);
 
         // if the event is handled, don't try speaking
         if (vocalizeEvent.Handled)

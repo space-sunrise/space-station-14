@@ -67,7 +67,7 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
             }
 
             invalidLinks.Clear();
-            sinkComponent.LinkedSources.Add(source.Owner);
+            sinkComponent.LinkedSources.Add(source);
         }
 
         foreach (var sink in invalidSinks)

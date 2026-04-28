@@ -45,7 +45,7 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
 
         // Pass the owner to nav map
         _owner = owner;
-        NavMap.Owner = _owner;
+        NavMap = _owner;
 
         // Set nav map grid uid
         var stationName = Loc.GetString("atmos-monitoring-window-unknown-location");

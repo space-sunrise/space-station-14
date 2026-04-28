@@ -19,7 +19,7 @@ public sealed class PriceGunSystem : SharedPriceGunSystem
 
     protected override bool GetPriceOrBounty(Entity<PriceGunComponent> entity, EntityUid target, EntityUid user)
     {
-        if (!TryComp(entity.Owner, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((entity.Owner, useDelay)))
+        if (!TryComp(entity, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((entity, useDelay)))
             return false;
         // Check if we're scanning a bounty crate
         if (_bountySystem.IsBountyComplete(target, out _))
@@ -40,8 +40,8 @@ public sealed class PriceGunSystem : SharedPriceGunSystem
                 user);
         }
 
-        _audio.PlayPvs(entity.Comp.AppraisalSound, entity.Owner);
-        _useDelay.TryResetDelay((entity.Owner, useDelay));
+        _audio.PlayPvs(entity.Comp.AppraisalSound, entity);
+        _useDelay.TryResetDelay((entity, useDelay));
         return true;
     }
 }

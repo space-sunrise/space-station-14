@@ -21,7 +21,7 @@ public sealed class XAETemperatureSystem : BaseXAESystem<XAETemperatureComponent
         var component = ent.Comp;
         var transform = Transform(ent);
 
-        var center = _atmosphereSystem.GetContainingMixture(ent.Owner, false, true);
+        var center = _atmosphereSystem.GetContainingMixture(ent, false, true);
         if (center == null)
             return;
 

@@ -45,7 +45,7 @@ public sealed class PowerStateTest
 
             mapSys.SetTile(grid, Vector2i.Zero, new Tile(1));
 
-            var ent = entManager.SpawnEntity("PowerStateApcReceiverDummy", grid.Owner.ToCoordinates());
+            var ent = entManager.SpawnEntity("PowerStateApcReceiverDummy", grid.ToCoordinates());
 
             var receiver = entManager.GetComponent<Server.Power.Components.ApcPowerReceiverComponent>(ent);
             var powerState = entManager.GetComponent<PowerStateComponent>(ent);
@@ -89,7 +89,7 @@ public sealed class PowerStateTest
 
             mapSys.SetTile(grid, Vector2i.Zero, new Tile(1));
 
-            var ent = entManager.SpawnEntity("PowerStateApcReceiverDummy", grid.Owner.ToCoordinates());
+            var ent = entManager.SpawnEntity("PowerStateApcReceiverDummy", grid.ToCoordinates());
 
             var receiver = entManager.GetComponent<Server.Power.Components.ApcPowerReceiverComponent>(ent);
             var powerState = entManager.GetComponent<PowerStateComponent>(ent);
@@ -142,7 +142,7 @@ public sealed class PowerStateTest
 
             mapSys.SetTile(grid, Vector2i.Zero, new Tile(1));
 
-            var ent = entManager.SpawnEntity("PowerStateApcReceiverDummy", grid.Owner.ToCoordinates());
+            var ent = entManager.SpawnEntity("PowerStateApcReceiverDummy", grid.ToCoordinates());
 
             var receiver = entManager.GetComponent<Server.Power.Components.ApcPowerReceiverComponent>(ent);
             var powerState = entManager.GetComponent<PowerStateComponent>(ent);

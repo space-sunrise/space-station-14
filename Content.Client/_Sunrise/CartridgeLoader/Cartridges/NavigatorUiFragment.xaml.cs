@@ -27,7 +27,7 @@ public sealed partial class NavigatorUiFragment : BoxContainer
     {
         _owner = owner;
         NavMap = new NavMapControl();
-        NavMap.Owner = owner;
+        NavMap = owner;
         NavMap.HorizontalExpand = true;
         NavMap.VerticalExpand = true;
 

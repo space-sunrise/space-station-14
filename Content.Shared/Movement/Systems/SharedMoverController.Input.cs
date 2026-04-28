@@ -122,7 +122,7 @@ namespace Content.Shared.Movement.Systems
             entity.Comp.RelativeRotation = state.RelativeRotation;
             entity.Comp.TargetRelativeRotation = state.TargetRelativeRotation;
             entity.Comp.CanMove = state.CanMove;
-            entity.Comp.RelativeEntity = EnsureEntity<InputMoverComponent>(state.RelativeEntity, entity.Owner);
+            entity.Comp.RelativeEntity = EnsureEntity<InputMoverComponent>(state.RelativeEntity, entity);
 
             // Reset
             entity.Comp.LastInputTick = GameTick.Zero;
@@ -138,7 +138,7 @@ namespace Content.Shared.Movement.Systems
             {
                 var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons, dir, state.HeldMoveButtons != 0); // Startlight-abductor-edit
                 entity.Comp.HeldMoveButtons = state.HeldMoveButtons;
-                RaiseLocalEvent(entity.Owner, ref moveEvent);
+                RaiseLocalEvent(entity, ref moveEvent);
 
                 var ev = new SpriteMoveEvent(entity.Comp.HasDirectionalMovement);
                 RaiseLocalEvent(entity, ref ev);
@@ -293,7 +293,7 @@ namespace Content.Shared.Movement.Systems
             if (entity.Comp.LifeStage < ComponentLifeStage.Running)
             {
                 entity.Comp.RelativeEntity = relative;
-                Dirty(entity.Owner, entity.Comp);
+                Dirty(entity, entity.Comp);
                 return;
             }
 
@@ -307,7 +307,7 @@ namespace Content.Shared.Movement.Systems
                 entity.Comp.TargetRelativeRotation = Angle.Zero;
                 entity.Comp.RelativeRotation = Angle.Zero;
                 entity.Comp.LerpTarget = TimeSpan.Zero;
-                Dirty(entity.Owner, entity.Comp);
+                Dirty(entity, entity.Comp);
                 return;
             }
 
@@ -317,14 +317,14 @@ namespace Content.Shared.Movement.Systems
                 if (entity.Comp.LerpTarget >= Timing.CurTime)
                 {
                     entity.Comp.LerpTarget = TimeSpan.Zero;
-                    Dirty(entity.Owner, entity.Comp);
+                    Dirty(entity, entity.Comp);
                 }
 
                 return;
             }
 
             entity.Comp.LerpTarget = TimeSpan.FromSeconds(InputMoverComponent.LerpTime) + Timing.CurTime;
-            Dirty(entity.Owner, entity.Comp);
+            Dirty(entity, entity.Comp);
         }
 
         private void OnAnchorState(Entity<InputMoverComponent> entity, ref AnchorStateChangedEvent args)
@@ -380,7 +380,7 @@ namespace Content.Shared.Movement.Systems
 
         private void OnInputInit(Entity<InputMoverComponent> entity, ref ComponentInit args)
         {
-            var xform = Transform(entity.Owner);
+            var xform = Transform(entity);
 
             if (!xform.ParentUid.IsValid())
                 return;

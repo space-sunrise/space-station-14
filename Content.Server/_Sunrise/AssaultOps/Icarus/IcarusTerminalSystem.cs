@@ -145,12 +145,12 @@ public sealed class IcarusTerminalSystem : EntitySystem
         switch (component.Status)
         {
             case IcarusTerminalStatus.AWAIT_DISKS:
-                if (IsAccessGranted(component.Owner))
+                if (IsAccessGranted(component))
                     Authorize(component);
                 break;
             case IcarusTerminalStatus.FIRE_READY:
             {
-                if (!IsAccessGranted(component.Owner))
+                if (!IsAccessGranted(component))
                 {
                     component.Status = IcarusTerminalStatus.AWAIT_DISKS;
                 }
@@ -161,7 +161,7 @@ public sealed class IcarusTerminalSystem : EntitySystem
 
     private void UpdateUserInterface(IcarusTerminalComponent component)
     {
-        _userInterfaceSystem.SetUiState(component.Owner, IcarusTerminalUiKey.Key, new IcarusTerminalUiState(
+        _userInterfaceSystem.SetUiState(component, IcarusTerminalUiKey.Key, new IcarusTerminalUiState(
             component.Status,
             (int) component.RemainingTime,
             (int) component.CooldownTime)
@@ -187,7 +187,7 @@ public sealed class IcarusTerminalSystem : EntitySystem
 
             RaiseLocalEvent(new IcarusActivatedEvent()
             {
-                OwningStation = Transform(component.Owner).GridUid,
+                OwningStation = Transform(component).GridUid,
             });
         }
     }

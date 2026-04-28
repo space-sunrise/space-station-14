@@ -12,7 +12,7 @@ public sealed partial class IsBoltOpenPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         if (!_entManager.TryGetComponent<HandsComponent>(owner, out var hands))
             return false;
 

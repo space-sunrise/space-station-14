@@ -102,6 +102,6 @@ public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantle
 
         //now we need to destroy the gun
         //get the gun entity
-        _entityManager.QueueDeleteEntity(ent.Owner);
+        _entityManager.QueueDeleteEntity(ent);
     }
 }

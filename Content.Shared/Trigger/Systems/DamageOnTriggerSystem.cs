@@ -11,9 +11,9 @@ public sealed class DamageOnTriggerSystem : XOnTriggerSystem<DamageOnTriggerComp
     {
         var damage = new DamageSpecifier(ent.Comp.Damage);
         var ev = new BeforeDamageOnTriggerEvent(damage, target);
-        RaiseLocalEvent(ent.Owner, ref ev);
+        RaiseLocalEvent(ent, ref ev);
 
-        args.Handled |= _damageableSystem.TryChangeDamage(target, ev.Damage, ent.Comp.IgnoreResistances, origin: ent.Owner);
+        args.Handled |= _damageableSystem.TryChangeDamage(target, ev.Damage, ent.Comp.IgnoreResistances, origin: ent);
     }
 }
 

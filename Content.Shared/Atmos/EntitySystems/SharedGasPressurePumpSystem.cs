@@ -63,7 +63,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp2, false))
             return;
 
-        var pumpOn = ent.Comp1.Enabled && _receiver.IsPowered(ent.Owner);
+        var pumpOn = ent.Comp1.Enabled && _receiver.IsPowered(ent);
         _appearance.SetData(ent, PumpVisuals.Enabled, pumpOn, ent.Comp2);
     }
 
@@ -94,7 +94,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
         Dirty(ent);
         UpdateAppearance(ent);
 
-        UserInterfaceSystem.CloseUi(ent.Owner, GasPressurePumpUiKey.Key);
+        UserInterfaceSystem.CloseUi(ent, GasPressurePumpUiKey.Key);
     }
 
     protected virtual void UpdateUi(Entity<GasPressurePumpComponent> ent)

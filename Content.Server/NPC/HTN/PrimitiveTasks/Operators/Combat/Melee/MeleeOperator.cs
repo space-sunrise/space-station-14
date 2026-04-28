@@ -37,7 +37,7 @@ public sealed partial class MeleeOperator : HTNOperator, IHtnConditionalShutdown
     public override void Startup(NPCBlackboard blackboard)
     {
         base.Startup(blackboard);
-        var melee = _entManager.EnsureComponent<NPCMeleeCombatComponent>(blackboard.GetValue<EntityUid>(NPCBlackboard.Owner));
+        var melee = _entManager.EnsureComponent<NPCMeleeCombatComponent>(blackboard.GetValue<EntityUid>(NPCBlackboard));
         melee.MissChance = blackboard.GetValueOrDefault<float>(NPCBlackboard.MeleeMissChance, _entManager);
         melee.Target = blackboard.GetValue<EntityUid>(TargetKey);
     }
@@ -62,7 +62,7 @@ public sealed partial class MeleeOperator : HTNOperator, IHtnConditionalShutdown
 
     public void ConditionalShutdown(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         _entManager.System<SharedCombatModeSystem>().SetInCombatMode(owner, false);
         _entManager.RemoveComponent<NPCMeleeCombatComponent>(owner);
         blackboard.Remove<EntityUid>(TargetKey);
@@ -85,7 +85,7 @@ public sealed partial class MeleeOperator : HTNOperator, IHtnConditionalShutdown
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         base.Update(blackboard, frameTime);
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         HTNOperatorStatus status;
 
         if (_entManager.TryGetComponent<NPCMeleeCombatComponent>(owner, out var combat) &&

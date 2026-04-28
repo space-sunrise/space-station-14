@@ -67,7 +67,7 @@ public sealed class PuddleDebugDebugOverlaySystem : SharedPuddleDebugOverlaySyst
             foreach (var grid in _grids)
             {
                 var data = new List<PuddleDebugOverlayData>();
-                var gridUid = grid.Owner;
+                var gridUid = grid;
 
                 if (!Exists(gridUid))
                     continue;

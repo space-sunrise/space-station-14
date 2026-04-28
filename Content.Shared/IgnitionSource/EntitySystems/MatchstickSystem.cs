@@ -67,7 +67,7 @@ public sealed partial class MatchstickSystem : EntitySystem
 
         _appearance.SetData(ent, SmokingVisuals.Smoking, newState);
 
-        _ignition.SetIgnited(ent.Owner, newState == SmokableState.Lit);
+        _ignition.SetIgnited(ent, newState == SmokableState.Lit);
 
         switch (newState)
         {

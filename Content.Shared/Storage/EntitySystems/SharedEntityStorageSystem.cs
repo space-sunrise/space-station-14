@@ -165,7 +165,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         if (_timing.ApplyingState)
             return; // the component removal is already networked on its own
 
-        if (args.Container.Owner != component.Storage)
+        if (args.Container != component.Storage)
             return;
 
         RemComp(uid, component);
@@ -333,7 +333,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         {
 
             var attemptEvent = new EntityStorageIntoContainerAttemptEvent(outerContainer);
-            RaiseLocalEvent(outerContainer.Owner, ref attemptEvent);
+            RaiseLocalEvent(outerContainer, ref attemptEvent);
             if (!attemptEvent.Cancelled)
             {
                 _container.Insert(toRemove, outerContainer);

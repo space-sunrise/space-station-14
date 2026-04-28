@@ -35,7 +35,7 @@ public sealed class ImpairedMobilitySystem : EntitySystem
     // Applies a speed penalty, but counteracts it if the entity is holding a non-wielded mobility aid.
     private void OnRefreshMovementSpeed(Entity<ImpairedMobilityComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (HasMobilityAid(ent.Owner))
+        if (HasMobilityAid(ent))
             return;
 
         args.ModifySpeed(ent.Comp.SpeedModifier);

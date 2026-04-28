@@ -137,7 +137,7 @@ public abstract class SharedRingerSystem : EntitySystem
             return;
 
         ent.Comp.Unlocked = false;
-        UI.CloseUi(ent.Owner, StoreUiKey.Key);
+        UI.CloseUi(ent, StoreUiKey.Key);
     }
 
     /// <summary>
@@ -170,7 +170,7 @@ public abstract class SharedRingerSystem : EntitySystem
             return;
 
         ent.Comp.NextRingtoneSetTime = curTime + ent.Comp.Cooldown;
-        DirtyField(ent.AsNullable(), nameof(RingerComponent.NextRingtoneSetTime));
+        DirtyField(ent, nameof(RingerComponent.NextRingtoneSetTime));
 
         // Client sent us an updated ringtone so set it to that.
         if (args.Ringtone.Length != RingtoneLength)
@@ -210,12 +210,12 @@ public abstract class SharedRingerSystem : EntitySystem
 
         _popup.PopupPredicted(Loc.GetString("comp-ringer-vibration-popup"),
             ent,
-            ent.Owner,
+            ent,
             Filter.Pvs(ent, 0.05f),
             false,
             PopupType.Medium);
 
-        DirtyFields(ent.AsNullable(),
+        DirtyFields(ent,
             null,
             nameof(RingerComponent.NextNoteTime),
             nameof(RingerComponent.Active),
@@ -231,7 +231,7 @@ public abstract class SharedRingerSystem : EntitySystem
     {
         // Assume validation has already happened.
         ent.Comp.Ringtone = ringtone;
-        DirtyField(ent.AsNullable(), nameof(RingerComponent.Ringtone));
+        DirtyField(ent, nameof(RingerComponent.Ringtone));
         UpdateRingerUi(ent);
     }
 
@@ -249,7 +249,7 @@ public abstract class SharedRingerSystem : EntitySystem
 
         // Close store UI if we're locking
         if (!ent.Comp.Unlocked)
-            UI.CloseUi(ent.Owner, StoreUiKey.Key);
+            UI.CloseUi(ent, StoreUiKey.Key);
 
         return true;
     }

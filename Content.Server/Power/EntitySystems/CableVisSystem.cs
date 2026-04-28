@@ -39,7 +39,7 @@ namespace Content.Server.Power.EntitySystems
                 if (reachable is not CableNode)
                     continue;
 
-                var otherTransform = Transform(reachable.Owner);
+                var otherTransform = Transform(reachable);
                 var otherTile = _map.TileIndicesFor((transform.GridUid.Value, grid), otherTransform.Coordinates);
                 var diff = otherTile - tile;
 

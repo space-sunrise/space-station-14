@@ -84,7 +84,7 @@ public sealed class WarDeclaratorSystem : EntitySystem
     private void UpdateUI(Entity<WarDeclaratorComponent> ent, WarConditionStatus? status = null)
     {
         _userInterfaceSystem.SetUiState(
-            ent.Owner,
+            ent,
             WarDeclaratorUiKey.Key,
             new WarDeclaratorBoundUserInterfaceState(status, ent.Comp.DisableAt, ent.Comp.ShuttleDisabledTime));
     }

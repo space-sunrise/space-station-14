@@ -14,7 +14,7 @@ public sealed partial class PickPathfindPointOperator : HTNOperator
     public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard,
         CancellationToken cancelToken)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         // Find all pathfind points on the same grid and choose to move to it.
         var xform = _entManager.GetComponent<TransformComponent>(owner);

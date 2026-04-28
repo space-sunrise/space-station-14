@@ -151,7 +151,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         if (!TryComp(ent.Comp.Generator, out GatewayGeneratorComponent? generatorComp))
             return;
 
-        if (generatorComp.NextUnlock + _metadata.GetPauseTime(ent.Owner) <= _timing.CurTime)
+        if (generatorComp.NextUnlock + _metadata.GetPauseTime(ent) <= _timing.CurTime)
             return;
 
         args.Cancelled = true;
@@ -189,7 +189,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         // TODO: Dungeon mobs + loot.
 
         // Do markers on the map.
-        if (TryComp(ent.Owner, out BiomeComponent? biomeComp) && generatorComp != null)
+        if (TryComp(ent, out BiomeComponent? biomeComp) && generatorComp != null)
         {
             // - Loot
             var lootLayers = generatorComp.LootLayers.ToList();
@@ -200,7 +200,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
                 var layer = lootLayers[layerIdx];
                 lootLayers.RemoveSwap(layerIdx);
 
-                _biome.AddMarkerLayer(ent.Owner, biomeComp, layer.Id);
+                _biome.AddMarkerLayer(ent, biomeComp, layer.Id);
             }
 
             // - Mobs
@@ -212,7 +212,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
                 var layer = mobLayers[layerIdx];
                 mobLayers.RemoveSwap(layerIdx);
 
-                _biome.AddMarkerLayer(ent.Owner, biomeComp, layer.Id);
+                _biome.AddMarkerLayer(ent, biomeComp, layer.Id);
             }
         }
     }

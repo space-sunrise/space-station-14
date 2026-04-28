@@ -29,7 +29,7 @@ public sealed partial class BandMenu : DefaultWindow
 
     private void OnItemSelected(ItemList.ItemListSelectedEventArgs args)
     {
-        _owner.Instruments.SetMaster(_owner.Owner, (EntityUid)args.ItemList[args.ItemIndex].Metadata!);
+        _owner.Instruments.SetMaster(_owner, (EntityUid)args.ItemList[args.ItemIndex].Metadata!);
         BandList.Clear();
         Timer.Spawn(0, Close);
     }

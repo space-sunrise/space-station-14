@@ -20,7 +20,7 @@ public sealed partial class EvenHealthChangeEntityEffectSystem : EntityEffectSys
     {
         foreach (var (group, amount) in args.Effect.Damage)
         {
-            _damageable.HealEvenly(entity.AsNullable(), amount * args.Scale, group);
+            _damageable.HealEvenly(entity, amount * args.Scale, group);
         }
     }
 }

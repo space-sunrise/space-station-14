@@ -47,7 +47,7 @@ public sealed class XAEPortalSystem : BaseXAESystem<XAEPortalComponent>
             return;
 
         // Manual position swapping, because the portal that opens doesn't trigger a collision, and doesn't teleport targets the first time.
-        _transform.SwapPositions(target, args.Artifact.Owner);
+        _transform.SwapPositions(target, args.Artifact);
 
         _link.TryLink(firstPortal.Value, secondPortal.Value, true);
     }

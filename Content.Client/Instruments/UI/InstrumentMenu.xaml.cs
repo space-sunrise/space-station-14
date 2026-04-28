@@ -206,7 +206,7 @@ namespace Content.Client.Instruments.UI
             container.TryGetContainingContainer((Entity, null, null), out var conMan);
 
             // If the instrument is handheld and we're not holding it, we return.
-            if (instrument.Handheld && (conMan == null || conMan.Owner != localEntity))
+            if (instrument.Handheld && (conMan == null || conMan != localEntity))
                 return false;
 
             if (!_entManager.System<ActionBlockerSystem>().CanInteract(localEntity.Value, Entity))

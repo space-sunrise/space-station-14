@@ -19,7 +19,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
     }
 
     public bool TryGetDrainableSolution(Entity<DrainableSolutionComponent?, SolutionContainerManagerComponent?> entity, [NotNullWhen(true)] out Entity<SolutionComponent>? soln, [NotNullWhen(true)] out Solution? solution)
@@ -30,7 +30,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
     }
 
     public bool TryGetExtractableSolution(Entity<ExtractableComponent?, SolutionContainerManagerComponent?> entity, [NotNullWhen(true)] out Entity<SolutionComponent>? soln, [NotNullWhen(true)] out Solution? solution)
@@ -41,7 +41,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.GrindableSolution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.GrindableSolution, out soln, out solution);
     }
 
     public bool TryGetDumpableSolution(Entity<DumpableSolutionComponent?, SolutionContainerManagerComponent?> entity, [NotNullWhen(true)] out Entity<SolutionComponent>? soln, [NotNullWhen(true)] out Solution? solution)
@@ -52,7 +52,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
     }
 
     public bool TryGetDrawableSolution(Entity<DrawableSolutionComponent?, SolutionContainerManagerComponent?> entity, [NotNullWhen(true)] out Entity<SolutionComponent>? soln, [NotNullWhen(true)] out Solution? solution)
@@ -63,7 +63,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
     }
 
     public bool TryGetInjectableSolution(Entity<InjectableSolutionComponent?, SolutionContainerManagerComponent?> entity, [NotNullWhen(true)] out Entity<SolutionComponent>? soln, [NotNullWhen(true)] out Solution? solution)
@@ -74,7 +74,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
     }
 
     public bool TryGetFitsInDispenser(Entity<FitsInDispenserComponent?, SolutionContainerManagerComponent?> entity, [NotNullWhen(true)] out Entity<SolutionComponent>? soln, [NotNullWhen(true)] out Solution? solution)
@@ -85,7 +85,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
     }
 
     public bool TryGetMixableSolution(Entity<MixableSolutionComponent?, SolutionContainerManagerComponent?> entity, [NotNullWhen(true)] out Entity<SolutionComponent>? soln, [NotNullWhen(true)] out Solution? solution)
@@ -96,7 +96,7 @@ public abstract partial class SharedSolutionContainerSystem
             return false;
         }
 
-        return TryGetSolution((entity.Owner, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
+        return TryGetSolution((entity, entity.Comp2), entity.Comp1.Solution, out soln, out solution);
     }
 
     #endregion Solution Accessors

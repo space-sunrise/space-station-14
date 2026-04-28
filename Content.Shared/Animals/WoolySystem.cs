@@ -35,7 +35,7 @@ public sealed class WoolySystem : EntitySystem
     private void OnEntRemoved(Entity<WoolyComponent> entity, ref EntRemovedFromContainerMessage args)
     {
         // Make sure the removed entity was our contained solution
-        if (entity.Comp.Solution == null || args.Entity != entity.Comp.Solution.Value.Owner)
+        if (entity.Comp.Solution == null || args.Entity != entity.Comp.Solution.Value)
             return;
 
         // Clear our cached reference to the solution entity

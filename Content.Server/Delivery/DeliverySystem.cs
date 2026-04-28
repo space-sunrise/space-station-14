@@ -80,7 +80,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
 
         if (TryComp<FingerprintReaderComponent>(ent, out var reader) && entry.Fingerprint != null)
         {
-            _fingerprintReader.AddAllowedFingerprint((ent.Owner, reader), entry.Fingerprint);
+            _fingerprintReader.AddAllowedFingerprint((ent, reader), entry.Fingerprint);
         }
 
         // Sunrise-Start: Send PDA notification
@@ -169,7 +169,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         _chat.TrySendInGameICMessage(ent, message, InGameICChatType.Speak, hideChat: true);
 
         ent.Comp.WasPenalized = true;
-        DirtyField(ent.Owner, ent.Comp, nameof(DeliveryComponent.WasPenalized));
+        DirtyField(ent, ent.Comp, nameof(DeliveryComponent.WasPenalized));
     }
 
     public override void Update(float frameTime)

@@ -200,7 +200,7 @@ public sealed class RotatableSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
-        _transform.SetLocalRotation(ent.Owner, ent.Comp.LocalRotation + angle);
+        _transform.SetLocalRotation(ent, ent.Comp.LocalRotation + angle);
     }
 
     private void ResetRotation(Entity<TransformComponent?> ent)
@@ -208,6 +208,6 @@ public sealed class RotatableSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
-        _transform.SetLocalRotation(ent.Owner, Angle.Zero);
+        _transform.SetLocalRotation(ent, Angle.Zero);
     }
 }

@@ -23,6 +23,6 @@ public sealed class PaperRandomStorySystem : EntitySystem
         if (!_storyGen.TryGenerateStoryFromTemplate(paperStory.Comp.Template, out var story))
             return;
 
-        _paper.SetContent((paperStory.Owner, paper), story);
+        _paper.SetContent((paperStory, paper), story);
     }
 }

@@ -48,13 +48,13 @@ public sealed class ChameleonProjectorSystem : SharedChameleonProjectorSystem
             return;
 
         ent.Comp.WasVisible = sprite.Visible;
-        _sprite.SetVisible((ent.Owner, sprite), false);
+        _sprite.SetVisible((ent, sprite), false);
     }
 
     private void OnShutdown(Entity<ChameleonDisguisedComponent> ent, ref ComponentShutdown args)
     {
         if (_spriteQuery.TryComp(ent, out var sprite))
-            _sprite.SetVisible((ent.Owner, sprite), ent.Comp.WasVisible);
+            _sprite.SetVisible((ent, sprite), ent.Comp.WasVisible);
     }
 
     private void OnGetFlashEffectTargetEvent(Entity<ChameleonDisguisedComponent> ent, ref GetFlashEffectTargetEvent args)

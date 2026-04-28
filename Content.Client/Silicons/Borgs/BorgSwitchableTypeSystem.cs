@@ -47,7 +47,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         if (TryComp(entity, out BorgChassisComponent? chassis))
         {
             _borgSystem.SetMindStates(
-                (entity.Owner, chassis),
+                (entity, chassis),
                 prototype.SpriteHasMindState,
                 prototype.SpriteNoMindState);
 

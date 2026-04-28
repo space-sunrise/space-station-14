@@ -27,7 +27,7 @@ public sealed class UnsnareOnTriggerSystem : EntitySystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+        var target = ent.Comp.TargetUser ? args.User : ent;
 
         if (target == null)
             return;

@@ -144,7 +144,7 @@ namespace Content.Server.Atmos.EntitySystems
 
                 foreach (var grid in _grids)
                 {
-                    var uid = grid.Owner;
+                    var uid = grid;
 
                     if (!Exists(uid))
                         continue;

@@ -22,7 +22,7 @@ public abstract partial class SharedHandsSystem
         if (!HasComp<KnockedDownComponent>(ent))
             return;
 
-        var hands = GetEmptyHandCount(ent.Owner);
+        var hands = GetEmptyHandCount(ent);
 
         if (hands == 0)
             return;
@@ -32,8 +32,8 @@ public abstract partial class SharedHandsSystem
 
     private void OnKnockedDownRefresh(Entity<HandsComponent> ent, ref KnockedDownRefreshEvent args)
     {
-        var freeHands = CountFreeHands(ent.AsNullable());
-        var totalHands = GetHandCount(ent.AsNullable());
+        var freeHands = CountFreeHands(ent);
+        var totalHands = GetHandCount(ent);
 
         // Can't crawl around without any hands.
         // Entities without the HandsComponent will always have full crawling speed.

@@ -72,7 +72,7 @@ public sealed class LimbDamageSystem : EntitySystem
         //{
         //    if (!TryRemoveLimb(ent, out var part)) return;
         //    Dirty(ent);
-        //    QueueDel(part.Value.Owner);
+        //    QueueDel(part.Value);
         //    args.Cancelled = true;
         //}
     }
@@ -80,31 +80,31 @@ public sealed class LimbDamageSystem : EntitySystem
     //private bool TryRemoveLimb(Entity<BodyComponent> ent, [NotNullWhen(true)] out Entity<BodyPartComponent>? part)
     //{
     //    part = null;
-    //    var root = _body.GetRootPartOrNull(ent.Owner);
+    //    var root = _body.GetRootPartOrNull(ent);
     //    if (root is null) return false;
     //    var parts = _body.GetAllBodyPart(root.Value.Entity, root.Value.BodyPart)
     //        .Where(p => p.Comp.PartType != BodyPartType.Head)
     //        .ToList();
     //    if (parts.Count == 0) return false;
     //    part = _rand.Pick(parts);
-    //    var parentPartAndSlot = _body.GetParentPartAndSlotOrNull(part.Value.Owner);
+    //    var parentPartAndSlot = _body.GetParentPartAndSlotOrNull(part.Value);
     //    if (parentPartAndSlot is null) return false;
     //    var (_, slotId) = parentPartAndSlot.Value;
 
-    //    if (!_containers.TryGetContainingContainer((part.Value.Owner, null, null), out var container)) return false;
-    //    if (!_containers.Remove(part.Value.Owner, container)) return false;
-    //    if (TryComp<CustomLimbComponent>(part.Value.Owner, out var virtualLimb)
+    //    if (!_containers.TryGetContainingContainer((part.Value, null, null), out var container)) return false;
+    //    if (!_containers.Remove(part.Value, container)) return false;
+    //    if (TryComp<CustomLimbComponent>(part.Value, out var virtualLimb)
     //        && virtualLimb.Item.HasValue)
     //    {
-    //        RemoveItemHand(ent.Owner, virtualLimb.Item.Value, BodySystem.GetPartSlotContainerId(slotId));
+    //        RemoveItemHand(ent, virtualLimb.Item.Value, BodySystem.GetPartSlotContainerId(slotId));
 
-    //        var vizualizer = EnsureComp<CustomLimbVisualizerComponent>(ent.Owner);
+    //        var vizualizer = EnsureComp<CustomLimbVisualizerComponent>(ent);
 
     //        var layer = SurgerySystem.GetLayer(slotId);
     //        if (layer is not null)
     //        {
     //            vizualizer.Layers.Remove(layer.Value);
-    //            Dirty(ent.Owner, vizualizer);
+    //            Dirty(ent, vizualizer);
     //        }
     //    }
     //    else
@@ -115,20 +115,20 @@ public sealed class LimbDamageSystem : EntitySystem
     //                foreach (var limbSlotId in part.Value.Comp.Children.Keys)
     //                {
     //                    if (limbSlotId is null) continue;
-    //                    var child = _containers.GetContainer(part.Value.Owner, BodySystem.GetPartSlotContainerId(limbSlotId));
+    //                    var child = _containers.GetContainer(part.Value, BodySystem.GetPartSlotContainerId(limbSlotId));
 
     //                    foreach (var containedEnt in child.ContainedEntities)
     //                    {
     //                        if (TryComp(containedEnt, out BodyPartComponent? innerPart)
     //                            && innerPart.PartType == BodyPartType.Hand)
-    //                            _hands.RemoveHand(ent.Owner, BodySystem.GetPartSlotContainerId(limbSlotId));
+    //                            _hands.RemoveHand(ent, BodySystem.GetPartSlotContainerId(limbSlotId));
     //                    }
     //                }
     //                break;
     //            case BodyPartType.Hand:
-    //                var parentSlot = _body.GetParentPartAndSlotOrNull(part.Value.Owner);
+    //                var parentSlot = _body.GetParentPartAndSlotOrNull(part.Value);
     //                if (parentSlot is not null)
-    //                    _hands.RemoveHand(ent.Owner, BodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
+    //                    _hands.RemoveHand(ent, BodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
     //                break;
     //            case BodyPartType.Leg:
     //            case BodyPartType.Foot:

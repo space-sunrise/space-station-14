@@ -79,7 +79,7 @@ public sealed class StorageSystem : SharedStorageSystem
             var player = _player.LocalEntity;
 
             if (NestedStorage && player != null && ContainerSystem.TryGetContainingContainer((uid, null, null), out var container) &&
-                UI.TryGetOpenUi<StorageBoundUserInterface>(container.Owner, StorageComponent.StorageUiKey.Key, out var containerBui))
+                UI.TryGetOpenUi<StorageBoundUserInterface>(container, StorageComponent.StorageUiKey.Key, out var containerBui))
             {
                 _queuedBuis.Add((containerBui, false));
             }
@@ -88,7 +88,7 @@ public sealed class StorageSystem : SharedStorageSystem
 
     public override void UpdateUI(Entity<StorageComponent?> entity)
     {
-        if (UI.TryGetOpenUi<StorageBoundUserInterface>(entity.Owner, StorageComponent.StorageUiKey.Key, out var sBui))
+        if (UI.TryGetOpenUi<StorageBoundUserInterface>(entity, StorageComponent.StorageUiKey.Key, out var sBui))
         {
             sBui.Refresh();
         }

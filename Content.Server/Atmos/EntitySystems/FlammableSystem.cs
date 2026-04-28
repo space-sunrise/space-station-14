@@ -409,7 +409,7 @@ namespace Content.Server.Atmos.EntitySystems
                 // 100 -> 1, 200 -> 2, 400 -> 3...
                 var fireStackMod = Math.Max(MathF.Log2(deltaTemp / 100) + 1, 0);
                 var fireStackDelta = fireStackMod - flammable.Comp.FireStacks;
-                var flammableEntity = flammable.Owner;
+                var flammableEntity = flammable;
                 if (fireStackDelta > 0)
                 {
                     AdjustFireStacks(flammableEntity, fireStackDelta, flammable);

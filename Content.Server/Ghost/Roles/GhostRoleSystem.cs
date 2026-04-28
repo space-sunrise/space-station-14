@@ -368,10 +368,10 @@ public sealed class GhostRoleSystem : EntitySystem
             return;
 
         _ghostRoles.Remove(comp.Identifier);
-        if (TryComp(role.Owner, out GhostRoleRaffleComponent? raffle))
+        if (TryComp(role, out GhostRoleRaffleComponent? raffle))
         {
             // if a raffle is still running, get rid of it
-            RemoveRaffleAndUpdateEui(role.Owner, raffle);
+            RemoveRaffleAndUpdateEui(role, raffle);
         }
         else
         {
@@ -433,9 +433,9 @@ public sealed class GhostRoleSystem : EntitySystem
         // get raffle or create a new one if it doesn't exist
         var raffle = _ghostRoleRaffles.TryGetValue(identifier, out var raffleEnt)
             ? raffleEnt.Comp
-            : EnsureComp<GhostRoleRaffleComponent>(roleEnt.Owner);
+            : EnsureComp<GhostRoleRaffleComponent>(roleEnt);
 
-        _ghostRoleRaffles.TryAdd(identifier, (roleEnt.Owner, raffle));
+        _ghostRoleRaffles.TryAdd(identifier, (roleEnt, raffle));
 
         if (!raffle.CurrentMembers.Add(player))
         {
@@ -658,7 +658,7 @@ public sealed class GhostRoleSystem : EntitySystem
         _mindSystem.SetUserId(newMind, player.UserId);
         _mindSystem.TransferTo(newMind, mob);
 
-        _roleSystem.MindAddRoles(newMind.Owner, role.MindRoles, newMind.Comp);
+        _roleSystem.MindAddRoles(newMind, role.MindRoles, newMind.Comp);
     }
 
     /// <summary>
@@ -667,7 +667,7 @@ public sealed class GhostRoleSystem : EntitySystem
     public int GetGhostRoleCount()
     {
         var metaQuery = GetEntityQuery<MetaDataComponent>();
-        return _ghostRoles.Count(pair => metaQuery.GetComponent(pair.Value.Owner).EntityPaused == false);
+        return _ghostRoles.Count(pair => metaQuery.GetComponent(pair.Value).EntityPaused == false);
     }
 
     /// <summary>
@@ -965,7 +965,7 @@ public sealed class GhostRoleSystem : EntitySystem
                 return;
         }
 
-        SetMode(entity.Owner, ghostRoleProto, ghostRoleProto.Name, entity.Comp);
+        SetMode(entity, ghostRoleProto, ghostRoleProto.Name, entity.Comp);
     }
 }
 

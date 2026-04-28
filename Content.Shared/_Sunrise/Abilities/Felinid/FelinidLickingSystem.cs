@@ -47,7 +47,7 @@ public sealed class FelinidLickingSystem : EntitySystem
 
     private void OnShutdown(Entity<FelinidLickingComponent> ent, ref ComponentShutdown args)
     {
-        _actions.RemoveAction(ent.Owner, ent.Comp.Action);
+        _actions.RemoveAction(ent, ent.Comp.Action);
     }
 
     private void OnLickingAction(Entity<FelinidLickingComponent> ent, ref LickingWoundsTargetActionEvent args)
@@ -96,7 +96,7 @@ public sealed class FelinidLickingSystem : EntitySystem
 
             if (wasBleeding && bloodstream.BleedAmount <= 0)
             {
-                var popup = ent.Owner == target
+                var popup = ent == target
                     ? Loc.GetString("medical-item-stop-bleeding-self")
                     : Loc.GetString("medical-item-stop-bleeding", ("target", Identity.Entity(target, EntityManager)));
                 _popup.PopupClient(popup, target, ent);
@@ -122,7 +122,7 @@ public sealed class FelinidLickingSystem : EntitySystem
     {
         errorMessage = null;
 
-        if (_standing.IsDown(ent.Owner))
+        if (_standing.IsDown(ent))
             return false;
 
         if (!TryComp<DamageableComponent>(target, out var damageable))

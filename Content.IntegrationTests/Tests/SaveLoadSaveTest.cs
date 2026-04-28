@@ -42,8 +42,8 @@ namespace Content.IntegrationTests.Tests
             {
                 mapSystem.CreateMap(out var mapId0);
                 var grid0 = mapManager.CreateGridEntity(mapId0);
-                entManager.RunMapInit(grid0.Owner, entManager.GetComponent<MetaDataComponent>(grid0));
-                Assert.That(mapLoader.TrySaveGrid(grid0.Owner, rp1));
+                entManager.RunMapInit(grid0, entManager.GetComponent<MetaDataComponent>(grid0));
+                Assert.That(mapLoader.TrySaveGrid(grid0, rp1));
                 mapSystem.CreateMap(out var mapId1);
                 Assert.That(mapLoader.TryLoadGrid(mapId1, rp1, out var grid1));
                 Assert.That(mapLoader.TrySaveGrid(grid1!.Value, rp2));

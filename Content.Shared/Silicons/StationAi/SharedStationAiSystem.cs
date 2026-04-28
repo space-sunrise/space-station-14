@@ -120,7 +120,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         // Admin option to take over the station AI core
         if (_admin.IsAdmin(args.User) &&
-            !TryGetHeld((ent.Owner, ent.Comp), out _))
+            !TryGetHeld((ent, ent.Comp), out _))
         {
             args.Verbs.Add(new Verb()
             {
@@ -130,7 +130,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 {
                     if (_net.IsClient)
                         return;
-                    var brain = SpawnInContainerOrDrop(DefaultAi, ent.Owner, StationAiCoreComponent.Container);
+                    var brain = SpawnInContainerOrDrop(DefaultAi, ent, StationAiCoreComponent.Container);
                     _mind.ControlMob(user, brain);
                 },
                 Impact = LogImpact.High,
@@ -143,7 +143,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             args.Verbs.Add(new Verb()
             {
                 Text = Loc.GetString("station-ai-customization-menu"),
-                Act = () => _uiSystem.TryOpenUi(ent.Owner, StationAiCustomizationUiKey.Key, insertedAi.Value),
+                Act = () => _uiSystem.TryOpenUi(ent, StationAiCustomizationUiKey.Key, insertedAi.Value),
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/emotes.svg.192dpi.png")),
             });
         }
@@ -153,14 +153,14 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     {
         // We don't want to allow entities to access the AI just because the eye is nearby.
         // Only let the AI access entities through the eye.
-        if (args.Accessible || args.User != ent.Owner)
+        if (args.Accessible || args.User != ent)
             return;
 
         args.Handled = true;
 
         // Hopefully AI never needs storage
         if (_containers.TryGetContainingContainer(args.Target, out var targetContainer) ||
-            !_containers.IsInSameOrTransparentContainer(ent.Owner, args.Target, otherContainer: targetContainer))
+            !_containers.IsInSameOrTransparentContainer(ent, args.Target, otherContainer: targetContainer))
             return;
 
         args.Accessible = true;
@@ -247,7 +247,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             return;
 
         // Try to insert our thing into them
-        if (_slots.CanEject(ent.Owner, args.User, ent.Comp.Slot))
+        if (_slots.CanEject(ent, args.User, ent.Comp.Slot))
         {
             if (!_slots.TryInsert(args.Args.Target.Value, targetHolder.Slot, ent.Comp.Slot.Item!.Value, args.User, excludeUserAudio: true))
             {
@@ -261,7 +261,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         // Otherwise try to take from them
         if (_slots.CanEject(args.Args.Target.Value, args.User, targetHolder.Slot))
         {
-            if (!_slots.TryInsert(ent.Owner, ent.Comp.Slot, targetHolder.Slot.Item!.Value, args.User, excludeUserAudio: true))
+            if (!_slots.TryInsert(ent, ent.Comp.Slot, targetHolder.Slot.Item!.Value, args.User, excludeUserAudio: true))
             {
                 return;
             }
@@ -307,7 +307,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             RaiseLocalEvent(held.Value, ref ev);
         }
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, cardHasAi ? intelliComp.UploadTime : intelliComp.DownloadTime, new IntellicardDoAfterEvent(), args.Target, ent.Owner)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, cardHasAi ? intelliComp.UploadTime : intelliComp.DownloadTime, new IntellicardDoAfterEvent(), args.Target, ent)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
@@ -322,12 +322,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     private void OnHolderInit(Entity<StationAiHolderComponent> ent, ref ComponentInit args)
     {
-        _slots.AddItemSlot(ent.Owner, StationAiHolderComponent.Container, ent.Comp.Slot);
+        _slots.AddItemSlot(ent, StationAiHolderComponent.Container, ent.Comp.Slot);
     }
 
     private void OnHolderRemove(Entity<StationAiHolderComponent> ent, ref ComponentRemove args)
     {
-        _slots.RemoveItemSlot(ent.Owner, ent.Comp.Slot);
+        _slots.RemoveItemSlot(ent, ent.Comp.Slot);
     }
 
     private void OnHolderConInsert(Entity<StationAiHolderComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -338,10 +338,10 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (args.Container.ID != ent.Comp.Slot.ID)
             return;
 
-        UpdateAppearance((ent.Owner, ent.Comp));
+        UpdateAppearance((ent, ent.Comp));
 
         if (ent.Comp.RenameOnInsert)
-            _metadata.SetEntityName(ent.Owner, MetaData(args.Entity).EntityName);
+            _metadata.SetEntityName(ent, MetaData(args.Entity).EntityName);
     }
 
     private void OnHolderConRemove(Entity<StationAiHolderComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -352,15 +352,15 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (args.Container.ID != ent.Comp.Slot.ID)
             return;
 
-        UpdateAppearance((ent.Owner, ent.Comp));
+        UpdateAppearance((ent, ent.Comp));
 
         if (ent.Comp.RenameOnInsert)
-            _metadata.SetEntityName(ent.Owner, Prototype(ent.Owner)?.Name ?? string.Empty);
+            _metadata.SetEntityName(ent, Prototype(ent)?.Name ?? string.Empty);
     }
 
     private void OnHolderMapInit(Entity<StationAiHolderComponent> ent, ref MapInitEvent args)
     {
-        UpdateAppearance((ent.Owner, ent.Comp));
+        UpdateAppearance((ent, ent.Comp));
     }
 
     private void OnAiShutdown(Entity<StationAiCoreComponent> ent, ref ComponentShutdown args)
@@ -397,7 +397,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     public virtual void KillHeldAi(Entity<StationAiCoreComponent> ent)
     {
-        if (TryGetHeld((ent.Owner, ent.Comp), out var held))
+        if (TryGetHeld((ent, ent.Comp), out var held))
         {
             _mobState.ChangeMobState(held.Value, MobState.Dead);
         }
@@ -408,7 +408,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (entity.Comp?.Remote == null || entity.Comp.Remote == isRemote)
             return;
 
-        var ent = new Entity<StationAiCoreComponent>(entity.Owner, entity.Comp);
+        var ent = new Entity<StationAiCoreComponent>(entity, entity.Comp);
 
         ent.Comp.Remote = isRemote;
 
@@ -447,7 +447,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         var proto = ent.Comp.RemoteEntityProto;
 
         if (coords == null)
-            coords = Transform(ent.Owner).Coordinates;
+            coords = Transform(ent).Coordinates;
 
         if (!ent.Comp.Remote)
             proto = ent.Comp.PhysicalEntityProto;
@@ -483,7 +483,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (ent.Comp.RemoteEntity == null)
             return;
 
-        if (!_containers.TryGetContainer(ent.Owner, StationAiHolderComponent.Container, out var container) ||
+        if (!_containers.TryGetContainer(ent, StationAiHolderComponent.Container, out var container) ||
             container.ContainedEntities.Count != 1)
         {
             return;
@@ -506,7 +506,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     private EntityUid? GetInsertedAI(Entity<StationAiCoreComponent> ent)
     {
-        if (!_containers.TryGetContainer(ent.Owner, StationAiHolderComponent.Container, out var container) ||
+        if (!_containers.TryGetContainer(ent, StationAiHolderComponent.Container, out var container) ||
             container.ContainedEntities.Count != 1)
         {
             return null;
@@ -554,7 +554,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     protected void UpdateAppearance(Entity<StationAiHolderComponent?> entity)
     {
-        if (!Resolve(entity.Owner, ref entity.Comp, false))
+        if (!Resolve(entity, ref entity.Comp, false))
             return;
 
         var state = StationAiState.Empty;
@@ -569,14 +569,14 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         // If the entity is not an AI core, let generic visualizers handle the appearance update
         if (!TryComp<StationAiCoreComponent>(entity, out var stationAiCore))
         {
-            _appearance.SetData(entity.Owner, StationAiVisualLayers.Icon, state);
+            _appearance.SetData(entity, StationAiVisualLayers.Icon, state);
             return;
         }
 
         // The AI core is empty
         if (state == StationAiState.Empty)
         {
-            _appearance.RemoveData(entity.Owner, StationAiVisualLayers.Icon);
+            _appearance.RemoveData(entity, StationAiVisualLayers.Icon);
             return;
         }
 
@@ -589,7 +589,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 State = _stationAiRebooting.RsiState,
             };
 
-            _appearance.SetData(entity.Owner, StationAiVisualLayers.Icon, rebootingData);
+            _appearance.SetData(entity, StationAiVisualLayers.Icon, rebootingData);
             return;
         }
 
@@ -624,12 +624,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     /// </summary>
     private bool ValidateAi(Entity<StationAiHeldComponent?> entity)
     {
-        if (!Resolve(entity.Owner, ref entity.Comp, false))
+        if (!Resolve(entity, ref entity.Comp, false))
         {
             return false;
         }
 
-        return _blocker.CanComplexInteract(entity.Owner);
+        return _blocker.CanComplexInteract(entity);
     }
 }
 

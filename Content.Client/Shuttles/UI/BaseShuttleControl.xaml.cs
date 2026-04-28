@@ -117,12 +117,12 @@ public partial class BaseShuttleControl : MapGridControl
 
     protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color color, float alpha = 0.01f)
     {
-        var rator = Maps.GetAllTilesEnumerator(grid.Owner, grid.Comp);
+        var rator = Maps.GetAllTilesEnumerator(grid, grid.Comp);
         var tileSize = grid.Comp.TileSize;
 
         // Check if we even have data
         // TODO: Need to prune old grid-data if we don't draw it.
-        var gridData = GridData.GetOrNew(grid.Owner);
+        var gridData = GridData.GetOrNew(grid);
 
         if (gridData.LastBuild < grid.Comp.LastTileModifiedTick)
         {

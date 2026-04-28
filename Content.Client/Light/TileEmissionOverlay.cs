@@ -68,18 +68,18 @@ public sealed class TileEmissionOverlay : Overlay
                 var gridInvMatrix = _xformSystem.GetInvWorldMatrix(grid);
                 var localBounds = gridInvMatrix.TransformBox(bounds);
                 _entities.Clear();
-                _lookup.GetLocalEntitiesIntersecting(grid.Owner, localBounds, _entities);
+                _lookup.GetLocalEntitiesIntersecting(grid, localBounds, _entities);
 
                 if (_entities.Count == 0)
                     continue;
 
-                var gridMatrix = _xformSystem.GetWorldMatrix(grid.Owner);
+                var gridMatrix = _xformSystem.GetWorldMatrix(grid);
 
                 foreach (var ent in _entities)
                 {
                     var xform = _xformQuery.Comp(ent);
 
-                    var tile = _mapSystem.LocalToTile(grid.Owner, grid, xform.Coordinates);
+                    var tile = _mapSystem.LocalToTile(grid, grid, xform.Coordinates);
                     var matty = Matrix3x2.Multiply(gridMatrix, invMatrix);
 
                     worldHandle.SetTransform(matty);

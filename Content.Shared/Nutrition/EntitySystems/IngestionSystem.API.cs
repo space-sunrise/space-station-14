@@ -174,7 +174,7 @@ public sealed partial class IngestionSystem
 
     public FixedPoint2 EdibleVolume(Entity<EdibleComponent> entity)
     {
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
+        if (!_solutionContainer.TryGetSolution(entity, entity.Comp.Solution, out _, out var solution))
             return FixedPoint2.Zero;
 
         return solution.Volume;
@@ -210,7 +210,7 @@ public sealed partial class IngestionSystem
         if (!Resolve(entity, ref entity.Comp))
             return 0f;
 
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
+        if (!_solutionContainer.TryGetSolution(entity, entity.Comp.Solution, out _, out var solution))
             return 0f;
 
         var total = 0f;
@@ -261,7 +261,7 @@ public sealed partial class IngestionSystem
         if (!Resolve(entity, ref entity.Comp))
             return 0f;
 
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
+        if (!_solutionContainer.TryGetSolution(entity, entity.Comp.Solution, out _, out var solution))
             return 0f;
 
         var total = 0f;

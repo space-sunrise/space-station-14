@@ -52,14 +52,14 @@ public abstract partial class SharedBorgSystem
         if (_timing.ApplyingState)
             return; // The changes are already networked with the same game state
 
-        var chassis = args.Container.Owner;
+        var chassis = args.Container;
 
         if (!TryComp<BorgChassisComponent>(chassis, out var chassisComp) ||
             args.Container != chassisComp.ModuleContainer ||
             !chassisComp.Active)
             return;
 
-        InstallModule((chassis, chassisComp), module.AsNullable());
+        InstallModule((chassis, chassisComp), module);
     }
 
     private void OnModuleGotRemoved(Entity<BorgModuleComponent> module, ref EntGotRemovedFromContainerMessage args)
@@ -67,24 +67,24 @@ public abstract partial class SharedBorgSystem
         if (_timing.ApplyingState)
             return; // The changes are already networked with the same game state
 
-        var chassis = args.Container.Owner;
+        var chassis = args.Container;
 
         if (!TryComp<BorgChassisComponent>(chassis, out var chassisComp) ||
             args.Container != chassisComp.ModuleContainer)
             return;
 
-        UninstallModule((chassis, chassisComp), module.AsNullable());
+        UninstallModule((chassis, chassisComp), module);
     }
 
     private void OnSelectableInstalled(Entity<SelectableBorgModuleComponent> module, ref BorgModuleInstalledEvent args)
     {
         var chassis = args.ChassisEnt;
 
-        if (_actions.AddAction(chassis, ref module.Comp.ModuleSwapActionEntity, out var action, module.Comp.ModuleSwapAction, module.Owner))
+        if (_actions.AddAction(chassis, ref module.Comp.ModuleSwapActionEntity, out var action, module.Comp.ModuleSwapAction, module))
         {
             Dirty(module); // for ModuleSwapActionEntity after the action has been spawned
             var actEnt = (module.Comp.ModuleSwapActionEntity.Value, action);
-            _actions.SetEntityIcon(actEnt, module.Owner);
+            _actions.SetEntityIcon(actEnt, module);
             if (TryComp<BorgModuleIconComponent>(module, out var moduleIconComp))
                 _actions.SetIcon(actEnt, moduleIconComp.Icon);
 
@@ -103,17 +103,17 @@ public abstract partial class SharedBorgSystem
             return;
 
         if (chassisComp.SelectedModule == null)
-            SelectModule((chassis, chassisComp), module.Owner);
+            SelectModule((chassis, chassisComp), module);
     }
 
     private void OnSelectableUninstalled(Entity<SelectableBorgModuleComponent> module, ref BorgModuleUninstalledEvent args)
     {
         var chassis = args.ChassisEnt;
-        _actions.RemoveProvidedActions(chassis, module.Owner);
+        _actions.RemoveProvidedActions(chassis, module);
         if (!TryComp<BorgChassisComponent>(chassis, out var chassisComp))
             return;
 
-        if (chassisComp.SelectedModule == module.Owner)
+        if (chassisComp.SelectedModule == module)
             UnselectModule((chassis, chassisComp));
     }
 
@@ -128,25 +128,25 @@ public abstract partial class SharedBorgSystem
         args.Handled = true;
         UnselectModule((chassis, chassisComp));
 
-        if (selected != module.Owner)
+        if (selected != module)
         {
-            SelectModule((chassis, chassisComp), module.Owner);
+            SelectModule((chassis, chassisComp), module);
         }
     }
 
     private void OnProvideItemStartup(Entity<ItemBorgModuleComponent> module, ref ComponentStartup args)
     {
-        _container.EnsureContainer<Container>(module.Owner, module.Comp.HoldingContainer);
+        _container.EnsureContainer<Container>(module, module.Comp.HoldingContainer);
     }
 
     private void OnItemModuleSelected(Entity<ItemBorgModuleComponent> module, ref BorgModuleSelectedEvent args)
     {
-        ProvideItems(args.Chassis, module.AsNullable());
+        ProvideItems(args.Chassis, module);
     }
 
     private void OnItemModuleUnselected(Entity<ItemBorgModuleComponent> module, ref BorgModuleUnselectedEvent args)
     {
-        RemoveProvidedItems(args.Chassis, module.AsNullable());
+        RemoveProvidedItems(args.Chassis, module);
     }
 
     private void ProvideItems(Entity<BorgChassisComponent?> chassis, Entity<ItemBorgModuleComponent?> module)
@@ -165,9 +165,9 @@ public abstract partial class SharedBorgSystem
         for (var i = 0; i < module.Comp.Hands.Count; i++)
         {
             var hand = module.Comp.Hands[i];
-            var handId = $"{GetNetEntity(module.Owner)}-hand-{i}";
+            var handId = $"{GetNetEntity(module)}-hand-{i}";
 
-            _hands.AddHand((chassis.Owner, hands), handId, hand.Hand);
+            _hands.AddHand((chassis, hands), handId, hand.Hand);
             EntityUid? item = null;
 
             if (module.Comp.Spawned)
@@ -213,9 +213,9 @@ public abstract partial class SharedBorgSystem
 
         for (var i = 0; i < module.Comp.Hands.Count; i++)
         {
-            var handId = $"{GetNetEntity(module.Owner)}-hand-{i}";
+            var handId = $"{GetNetEntity(module)}-hand-{i}";
 
-            if (_hands.TryGetHeldItem((chassis.Owner, hands), handId, out var held))
+            if (_hands.TryGetHeldItem((chassis, hands), handId, out var held))
             {
                 RemComp<UnremoveableComponent>(held.Value);
                 _container.Insert(held.Value, container);
@@ -226,7 +226,7 @@ public abstract partial class SharedBorgSystem
                 module.Comp.StoredItems.Remove(handId);
             }
 
-            _hands.RemoveHand((chassis.Owner, hands), handId);
+            _hands.RemoveHand((chassis, hands), handId);
         }
 
         Dirty(module);

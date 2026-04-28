@@ -13,6 +13,6 @@ public sealed partial class TriggerOnEmptyGunshotSystem : TriggerOnXSystem
 
     private void OnEmptyGunShot(Entity<TriggerOnEmptyGunshotComponent> ent, ref OnEmptyGunShotEvent args)
     {
-        Trigger.Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, args.User, ent.Comp.KeyOut);
     }
 }

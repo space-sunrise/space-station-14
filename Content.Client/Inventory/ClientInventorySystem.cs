@@ -118,7 +118,7 @@ namespace Content.Client.Inventory
         {
             base.OnInit(ent, ref args);
 
-            _clothingVisualsSystem.InitClothing(ent.Owner, ent.Comp);
+            _clothingVisualsSystem.InitClothing(ent, ent.Comp);
         }
 
         public override void Shutdown()
@@ -174,10 +174,10 @@ namespace Content.Client.Inventory
             if (!ent.Comp.SlotData.TryAdd(newSlotData.SlotName, newSlotData))
                 return false;
 
-            if (TryGetSlotContainer(ent.Owner, newSlotData.SlotName, out var newContainer, out _))
+            if (TryGetSlotContainer(ent, newSlotData.SlotName, out var newContainer, out _))
                 ent.Comp.SlotData[newSlotData.SlotName].Container = newContainer;
 
-            if (ent.Owner == _playerManager.LocalEntity)
+            if (ent == _playerManager.LocalEntity)
                 OnSlotAdded?.Invoke(newSlotData);
 
             return true;
@@ -188,7 +188,7 @@ namespace Content.Client.Inventory
             if (!ent.Comp.SlotData.Remove(removedSlotData.SlotName))
                 return false;
 
-            if (ent.Owner == _playerManager.LocalEntity)
+            if (ent == _playerManager.LocalEntity)
                 OnSlotRemoved?.Invoke(removedSlotData);
 
             return true;
@@ -255,7 +255,7 @@ namespace Content.Client.Inventory
             // remove slots that are no longer in the new template
             foreach (var slotData in slotDataToRemove)
             {
-                TryRemoveSlotData((ent.Owner, inventorySlots), slotData);
+                TryRemoveSlotData((ent, inventorySlots), slotData);
             }
 
             // update existing slots or add them if they don't exist yet
@@ -264,10 +264,10 @@ namespace Content.Client.Inventory
                 if (inventorySlots.SlotData.TryGetValue(slot.Name, out var slotData))
                     slotData.SlotDef = slot;
                 else
-                    TryAddSlotData((ent.Owner, inventorySlots), (SlotData)slot);
+                    TryAddSlotData((ent, inventorySlots), (SlotData)slot);
             }
 
-            if (ent.Owner == _playerManager.LocalEntity)
+            if (ent == _playerManager.LocalEntity)
                 ReloadInventory(inventorySlots);
         }
 

@@ -165,7 +165,7 @@ public sealed class NPCUtilitySystem : EntitySystem
 
     private float GetScore(NPCBlackboard blackboard, EntityUid targetUid, UtilityConsideration consideration)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         switch (consideration)
         {
             case FoodValueCon:
@@ -227,12 +227,12 @@ public sealed class NPCUtilitySystem : EntitySystem
             {
                 if (_container.TryGetContainingContainer(targetUid, out var container))
                 {
-                    if (container.Owner == owner)
+                    if (container == owner)
                         return 0f;
 
-                    if (TryComp<EntityStorageComponent>(container.Owner, out var storageComponent))
+                    if (TryComp<EntityStorageComponent>(container, out var storageComponent))
                     {
-                        if (storageComponent is { Open: false } && _weldable.IsWelded(container.Owner))
+                        if (storageComponent is { Open: false } && _weldable.IsWelded(container))
                         {
                             return 0.0f;
                         }
@@ -402,7 +402,7 @@ public sealed class NPCUtilitySystem : EntitySystem
 
     private void Add(NPCBlackboard blackboard, HashSet<EntityUid> entities, UtilityQuery query)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         var vision = blackboard.GetValueOrDefault<float>(blackboard.GetVisionRadiusKey(EntityManager), EntityManager);
 
         switch (query)
@@ -435,7 +435,7 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 foreach (var comp in _entitySet)
                 {
-                    var ent = comp.Owner;
+                    var ent = comp;
 
                     if (ent == owner)
                         continue;

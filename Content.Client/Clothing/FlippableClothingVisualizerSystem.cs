@@ -32,7 +32,7 @@ public sealed class FlippableClothingVisualizerSystem : VisualizerSystem<Flippab
 
         if (clothing.MappedLayer == null ||
             !AppearanceSystem.TryGetData<bool>(ent, FoldableSystem.FoldedVisuals.State, out var folding) ||
-            !SpriteSystem.LayerMapTryGet((ent.Owner, sprite), folding ? ent.Comp.FoldingLayer : ent.Comp.UnfoldingLayer, out var idx, false))
+            !SpriteSystem.LayerMapTryGet((ent, sprite), folding ? ent.Comp.FoldingLayer : ent.Comp.UnfoldingLayer, out var idx, false))
             return;
 
         // add each layer to the visuals

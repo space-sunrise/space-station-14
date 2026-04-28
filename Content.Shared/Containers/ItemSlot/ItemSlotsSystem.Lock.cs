@@ -12,7 +12,7 @@ public sealed partial class ItemSlotsSystem
 
     private void OnLockMapInit(Entity<ItemSlotsLockComponent> ent, ref MapInitEvent args)
     {
-        if (!TryComp(ent.Owner, out LockComponent? lockComp))
+        if (!TryComp(ent, out LockComponent? lockComp))
             return;
 
         UpdateLocks(ent, lockComp.Locked);
@@ -27,10 +27,10 @@ public sealed partial class ItemSlotsSystem
     {
         foreach (var slot in ent.Comp.Slots)
         {
-            if (!TryGetSlot(ent.Owner, slot, out var itemSlot))
+            if (!TryGetSlot(ent, slot, out var itemSlot))
                 continue;
 
-            SetLock(ent.Owner, itemSlot, value);
+            SetLock(ent, itemSlot, value);
         }
     }
 }

@@ -87,7 +87,7 @@ public sealed partial class AnomalySynchronizerSystem : EntitySystem
     /// </summary>
     public bool TryAttachNearbyAnomaly(Entity<AnomalySynchronizerComponent> ent, EntityUid? user = null)
     {
-        if (!_power.IsPowered(ent.Owner))
+        if (!_power.IsPowered(ent))
         {
             _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent)), ent, user);
             return false;
@@ -96,7 +96,7 @@ public sealed partial class AnomalySynchronizerSystem : EntitySystem
         var coords = _transform.GetMapCoordinates(ent);
         var anomaly = _entityLookup.GetEntitiesInRange<AnomalyComponent>(coords, ent.Comp.AttachRange).FirstOrDefault();
 
-        if (anomaly.Owner is { Valid: false }) // no anomaly in range
+        if (anomaly is { Valid: false }) // no anomaly in range
         {
             _popup.PopupClient(Loc.GetString("anomaly-sync-no-anomaly"), ent, user);
             return false;

@@ -203,10 +203,10 @@ public sealed class StorageWindow : BaseWindow
         var uiSystem = _entity.System<UserInterfaceSystem>();
 
         if (containerSystem.TryGetContainingContainer(StorageEntity.Value, out var container) &&
-            _entity.TryGetComponent(container.Owner, out StorageComponent? storage) &&
+            _entity.TryGetComponent(container, out StorageComponent? storage) &&
             storage.Container.Contains(StorageEntity.Value) &&
             uiSystem
-                .TryGetOpenUi<StorageBoundUserInterface>(container.Owner,
+                .TryGetOpenUi<StorageBoundUserInterface>(container,
                     StorageComponent.StorageUiKey.Key,
                     out var parentBui))
         {
@@ -285,13 +285,13 @@ public sealed class StorageWindow : BaseWindow
                 var containerSystem = _entity.System<SharedContainerSystem>();
 
                 if (containerSystem.TryGetContainingContainer(StorageEntity.Value, out var container) &&
-                    _entity.TryGetComponent(container.Owner, out StorageComponent? storage) &&
+                    _entity.TryGetComponent(container, out StorageComponent? storage) &&
                     storage.Container.Contains(StorageEntity.Value))
                 {
                     Close();
 
                     if (_entity.System<SharedUserInterfaceSystem>()
-                        .TryGetOpenUi<StorageBoundUserInterface>(container.Owner,
+                        .TryGetOpenUi<StorageBoundUserInterface>(container,
                             StorageComponent.StorageUiKey.Key,
                             out var parentBui))
                     {
@@ -527,7 +527,7 @@ public sealed class StorageWindow : BaseWindow
             {
                 // If parent container nests us then show back button
                 if (containerSystem.TryGetContainingContainer(StorageEntity.Value, out var container) &&
-                    _entity.TryGetComponent(container.Owner, out StorageComponent? storageComp) && storageComp.Container.Contains(StorageEntity.Value))
+                    _entity.TryGetComponent(container, out StorageComponent? storageComp) && storageComp.Container.Contains(StorageEntity.Value))
                 {
                     _backButton.Visible = true;
                 }

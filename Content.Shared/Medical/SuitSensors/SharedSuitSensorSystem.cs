@@ -68,10 +68,10 @@ public abstract class SharedSuitSensorSystem : EntitySystem
     /// <returns>True if the sensor is assigned to a station or assigning it was successful. False otherwise.</returns>
     public bool CheckSensorAssignedStation(Entity<SuitSensorComponent> sensor)
     {
-        if (!sensor.Comp.StationId.HasValue && Transform(sensor.Owner).GridUid == null)
+        if (!sensor.Comp.StationId.HasValue && Transform(sensor).GridUid == null)
             return false;
 
-        sensor.Comp.StationId = _stationSystem.GetOwningStation(sensor.Owner);
+        sensor.Comp.StationId = _stationSystem.GetOwningStation(sensor);
         Dirty(sensor);
         return sensor.Comp.StationId.HasValue;
     }
@@ -79,7 +79,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
     private void OnMapInit(Entity<SuitSensorComponent> ent, ref MapInitEvent args)
     {
         // Fallback
-        ent.Comp.StationId ??= _stationSystem.GetOwningStation(ent.Owner);
+        ent.Comp.StationId ??= _stationSystem.GetOwningStation(ent);
 
         // generate random mode
         if (ent.Comp.RandomMode)
@@ -142,7 +142,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         args.Disabled = true;
 
         ent.Comp.PreviousMode = ent.Comp.Mode;
-        SetSensor(ent.AsNullable(), SuitSensorMode.SensorOff, null);
+        SetSensor(ent, SuitSensorMode.SensorOff, null);
 
         ent.Comp.PreviousControlsLocked = ent.Comp.ControlsLocked;
         ent.Comp.ControlsLocked = true;
@@ -151,7 +151,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
 
     private void OnEmpFinished(Entity<SuitSensorComponent> ent, ref EmpDisabledRemovedEvent args)
     {
-        SetSensor(ent.AsNullable(), ent.Comp.PreviousMode, null);
+        SetSensor(ent, ent.Comp.PreviousMode, null);
         ent.Comp.ControlsLocked = ent.Comp.PreviousControlsLocked;
     }
 
@@ -213,7 +213,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         if (args.Container.ID != ent.Comp.ActivationContainer)
             return;
 
-        ent.Comp.User = args.Container.Owner;
+        ent.Comp.User = args.Container;
         Dirty(ent);
     }
 
@@ -234,7 +234,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             Disabled = ent.Comp.Mode == mode,
             Priority = -(int)mode, // sort them in descending order
             Category = VerbCategory.SetSensor,
-            Act = () => TrySetSensor(ent.AsNullable(), mode, userUid)
+            Act = () => TrySetSensor(ent, mode, userUid)
         };
     }
 
@@ -295,7 +295,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        SetSensor(sensors.AsNullable(), args.Mode, args.User);
+        SetSensor(sensors, args.Mode, args.User);
     }
 
     /// <summary>
@@ -390,7 +390,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             totalDamageThreshold = critThreshold.Value.Int();
 
         // finally, form suit sensor status
-        var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments, sensorMapId); // Sunrise-Edit
+        var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent), userName, userJob, userJobIcon, userJobDepartments, sensorMapId); // Sunrise-Edit
         switch (sensor.Mode)
         {
             case SuitSensorMode.SensorBinary:

@@ -63,12 +63,12 @@ public sealed partial class CopyMachineSystem : EntitySystem
                     continue;
 
                 Log.Warning(
-                    $"Failed to copy stamp '{stamp.StampedName}' from {ToPrettyString(sourcePaperEntity):entity} to {ToPrettyString(paper.Owner):entity}.");
+                    $"Failed to copy stamp '{stamp.StampedName}' from {ToPrettyString(sourcePaperEntity):entity} to {ToPrettyString(paper):entity}.");
             }
         }
 
         if (TryComp<LabelComponent>(sourcePaperEntity, out var sourceLabelComponent) && !string.IsNullOrWhiteSpace(sourceLabelComponent.CurrentLabel))
-            _label.Label(paper.Owner, sourceLabelComponent.CurrentLabel);
+            _label.Label(paper, sourceLabelComponent.CurrentLabel);
 
         return true;
     }

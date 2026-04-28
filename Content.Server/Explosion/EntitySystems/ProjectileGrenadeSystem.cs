@@ -27,7 +27,7 @@ public sealed class ProjectileGrenadeSystem : EntitySystem
 
     private void OnFragInit(Entity<ProjectileGrenadeComponent> entity, ref ComponentInit args)
     {
-        entity.Comp.Container = _container.EnsureContainer<Container>(entity.Owner, "cluster-payload");
+        entity.Comp.Container = _container.EnsureContainer<Container>(entity, "cluster-payload");
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public sealed class ProjectileGrenadeSystem : EntitySystem
         if (args.Key != entity.Comp.TriggerKey)
             return;
 
-        FragmentIntoProjectiles(entity.Owner, entity.Comp);
+        FragmentIntoProjectiles(entity, entity.Comp);
         args.Handled = true;
     }
 

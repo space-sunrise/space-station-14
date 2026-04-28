@@ -30,9 +30,9 @@ public abstract class SharedAbductorSystem : EntitySystem
 
         if (ent.Comp.Console == null)
         {
-            var xform = EnsureComp<TransformComponent>(ent.Owner);
+            var xform = EnsureComp<TransformComponent>(ent);
             var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 5, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault().Owner;
+                .FirstOrDefault();
             if (console != default)
                 ent.Comp.Console = GetNetEntity(console);
         }
@@ -51,9 +51,9 @@ public abstract class SharedAbductorSystem : EntitySystem
             return;
         if (ent.Comp.Console == null)
         {
-            var xform = EnsureComp<TransformComponent>(ent.Owner);
+            var xform = EnsureComp<TransformComponent>(ent);
             var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 5, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault().Owner;
+                .FirstOrDefault();
             if (console != default)
                 ent.Comp.Console = GetNetEntity(console);
         }

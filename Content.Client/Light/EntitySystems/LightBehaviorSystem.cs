@@ -198,7 +198,7 @@ public sealed class LightBehaviorSystem : EntitySystem
             AnimationTracks = { behaviour }
         };
 
-        behaviour.Initialize(entity.Owner, _random, EntityManager);
+        behaviour.Initialize(entity, _random, EntityManager);
 
         var container = new LightBehaviourComponent.AnimationContainer(key, animation, behaviour);
         comp.Animations.Add(container);

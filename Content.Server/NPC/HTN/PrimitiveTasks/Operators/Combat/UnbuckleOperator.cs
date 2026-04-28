@@ -18,7 +18,7 @@ public sealed partial class UnbuckleOperator : HTNOperator
     public override void Startup(NPCBlackboard blackboard)
     {
         base.Startup(blackboard);
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
         _buckle.TryUnbuckle(owner, owner, false);
     }
 

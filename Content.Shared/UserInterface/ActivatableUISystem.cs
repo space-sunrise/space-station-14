@@ -54,7 +54,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
         // TODO BUI
         // set interaction range to zero to avoid constant range checks.
         //
-        // if (ent.Comp.InHandsOnly && _uiSystem.TryGetInterfaceData(ent.Owner, ent.Comp.Key, out var data))
+        // if (ent.Comp.InHandsOnly && _uiSystem.TryGetInterfaceData(ent, ent.Comp.Key, out var data))
         //     data.InteractionRange = 0;
     }
 

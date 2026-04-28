@@ -34,7 +34,7 @@ public abstract partial class SharedBatterySystem
         ent.Comp.LastUpdate = curTime;
         Dirty(ent);
 
-        TrySetChargeCooldown(ent.Owner);
+        TrySetChargeCooldown(ent);
 
         var changedEv = new ChargeChangedEvent(newValue, delta, ent.Comp.ChargeRate, ent.Comp.MaxCharge);
         RaiseLocalEvent(ent, ref changedEv);
@@ -277,7 +277,7 @@ public abstract partial class SharedBatterySystem
 
         ent.Comp.NextAutoRecharge = _timing.CurTime + cooldown;
         Dirty(ent);
-        RefreshChargeRate(ent.Owner); // Apply the new charge rate.
+        RefreshChargeRate(ent); // Apply the new charge rate.
     }
 
     /// <summary>

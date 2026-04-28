@@ -26,18 +26,18 @@ public sealed class MiningScannerSystem : EntitySystem
 
     private void OnInserted(Entity<MiningScannerComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
-        UpdateViewerComponent(args.Container.Owner);
+        UpdateViewerComponent(args.Container);
     }
 
     private void OnRemoved(Entity<MiningScannerComponent> ent, ref EntGotRemovedFromContainerMessage args)
     {
-        UpdateViewerComponent(args.Container.Owner);
+        UpdateViewerComponent(args.Container);
     }
 
     private void OnToggled(Entity<MiningScannerComponent> ent, ref ItemToggledEvent args)
     {
-        if (_container.TryGetContainingContainer((ent.Owner, null, null), out var container))
-            UpdateViewerComponent(container.Owner);
+        if (_container.TryGetContainingContainer((ent, null, null), out var container))
+            UpdateViewerComponent(container);
     }
 
     public void UpdateViewerComponent(EntityUid uid)

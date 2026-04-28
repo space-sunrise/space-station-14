@@ -19,7 +19,7 @@ public sealed class FirelockSystem : SharedFirelockSystem
     protected override void OnComponentStartup(Entity<FirelockComponent> ent, ref ComponentStartup args)
     {
         base.OnComponentStartup(ent, ref args);
-        if (!TryComp<DoorComponent>(ent.Owner, out var door))
+        if (!TryComp<DoorComponent>(ent, out var door))
             return;
 
         door.ClosedSpriteStates.Add((DoorVisualLayers.BaseUnlit, ent.Comp.WarningLightSpriteState));

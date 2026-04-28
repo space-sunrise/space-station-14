@@ -23,7 +23,7 @@ public sealed partial class GasPressureRegulatorSystem : SharedGasPressureRegula
 
     protected override void UpdateUi(Entity<GasPressureRegulatorComponent> ent)
     {
-        if (UserInterfaceSystem.TryGetOpenUi(ent.Owner, GasPressureRegulatorUiKey.Key, out var bui))
+        if (UserInterfaceSystem.TryGetOpenUi(ent, GasPressureRegulatorUiKey.Key, out var bui))
         {
             bui.Update();
         }

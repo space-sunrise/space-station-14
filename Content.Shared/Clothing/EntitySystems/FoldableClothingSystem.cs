@@ -25,7 +25,7 @@ public sealed class FoldableClothingSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!_inventorySystem.TryGetContainingSlot(ent.Owner, out var slot))
+        if (!_inventorySystem.TryGetContainingSlot(ent, out var slot))
             return;
 
         // Cannot fold clothing equipped to a slot if the slot becomes disallowed
@@ -43,20 +43,20 @@ public sealed class FoldableClothingSystem : EntitySystem
 
     private void OnFolded(Entity<FoldableClothingComponent> ent, ref FoldedEvent args)
     {
-        if (!TryComp<ClothingComponent>(ent.Owner, out var clothingComp) ||
-            !TryComp<ItemComponent>(ent.Owner, out var itemComp))
+        if (!TryComp<ClothingComponent>(ent, out var clothingComp) ||
+            !TryComp<ItemComponent>(ent, out var itemComp))
             return;
 
         if (args.IsFolded)
         {
             if (ent.Comp.FoldedSlots.HasValue)
-                _clothingSystem.SetSlots(ent.Owner, ent.Comp.FoldedSlots.Value, clothingComp);
+                _clothingSystem.SetSlots(ent, ent.Comp.FoldedSlots.Value, clothingComp);
 
             if (ent.Comp.FoldedEquippedPrefix != null)
-                _clothingSystem.SetEquippedPrefix(ent.Owner, ent.Comp.FoldedEquippedPrefix, clothingComp);
+                _clothingSystem.SetEquippedPrefix(ent, ent.Comp.FoldedEquippedPrefix, clothingComp);
 
             if (ent.Comp.FoldedHeldPrefix != null)
-                _itemSystem.SetHeldPrefix(ent.Owner, ent.Comp.FoldedHeldPrefix, false, itemComp);
+                _itemSystem.SetHeldPrefix(ent, ent.Comp.FoldedHeldPrefix, false, itemComp);
 
             // This is janky and likely to lead to bugs.
             // I.e., overriding this and resetting it again later will lead to bugs if someone tries to modify clothing
@@ -66,23 +66,23 @@ public sealed class FoldableClothingSystem : EntitySystem
             // Or at the very least it should stash the old layers and restore them when unfolded.
             // TODO CLOTHING fix this.
             if ((ent.Comp.FoldedHideLayers.Count != 0 || ent.Comp.UnfoldedHideLayers.Count != 0) &&
-                TryComp<HideLayerClothingComponent>(ent.Owner, out var hideLayerComp))
+                TryComp<HideLayerClothingComponent>(ent, out var hideLayerComp))
                 hideLayerComp.Slots = ent.Comp.FoldedHideLayers;
         }
         else
         {
             if (ent.Comp.UnfoldedSlots.HasValue)
-                _clothingSystem.SetSlots(ent.Owner, ent.Comp.UnfoldedSlots.Value, clothingComp);
+                _clothingSystem.SetSlots(ent, ent.Comp.UnfoldedSlots.Value, clothingComp);
 
             if (ent.Comp.FoldedEquippedPrefix != null)
-                _clothingSystem.SetEquippedPrefix(ent.Owner, null, clothingComp);
+                _clothingSystem.SetEquippedPrefix(ent, null, clothingComp);
 
             if (ent.Comp.FoldedHeldPrefix != null)
-                _itemSystem.SetHeldPrefix(ent.Owner, null, false, itemComp);
+                _itemSystem.SetHeldPrefix(ent, null, false, itemComp);
 
             // TODO CLOTHING fix this.
             if ((ent.Comp.FoldedHideLayers.Count != 0 || ent.Comp.UnfoldedHideLayers.Count != 0) &&
-                TryComp<HideLayerClothingComponent>(ent.Owner, out var hideLayerComp))
+                TryComp<HideLayerClothingComponent>(ent, out var hideLayerComp))
                 hideLayerComp.Slots = ent.Comp.UnfoldedHideLayers;
         }
     }

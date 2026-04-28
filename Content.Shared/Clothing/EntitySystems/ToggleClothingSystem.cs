@@ -34,7 +34,7 @@ public sealed class ToggleClothingSystem : EntitySystem
 
         _inventory.TryGetSlotEntity(args.User, ent.Comp.TargetSlot, out var equippedItem);
 
-        if (equippedItem != ent.Owner)
+        if (equippedItem != ent)
             args.Cancelled = true;
     }
 
@@ -46,7 +46,7 @@ public sealed class ToggleClothingSystem : EntitySystem
             return;
 
         _actions.AddAction(uid, ref comp.ActionEntity, comp.Action);
-        _actions.SetToggled(comp.ActionEntity, _toggle.IsActivated(ent.Owner));
+        _actions.SetToggled(comp.ActionEntity, _toggle.IsActivated(ent));
         Dirty(uid, comp);
     }
 
@@ -64,12 +64,12 @@ public sealed class ToggleClothingSystem : EntitySystem
 
     private void OnToggleAction(Entity<ToggleClothingComponent> ent, ref ToggleActionEvent args)
     {
-        args.Handled = _toggle.Toggle(ent.Owner, args.Performer);
+        args.Handled = _toggle.Toggle(ent, args.Performer);
     }
 
     private void OnUnequipped(Entity<ToggleClothingComponent> ent, ref ClothingGotUnequippedEvent args)
     {
         if (ent.Comp.DisableOnUnequip)
-            _toggle.TryDeactivate(ent.Owner, args.Wearer);
+            _toggle.TryDeactivate(ent, args.Wearer);
     }
 }

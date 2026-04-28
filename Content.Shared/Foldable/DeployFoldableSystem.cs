@@ -40,7 +40,7 @@ public sealed class DeployFoldableSystem : EntitySystem
             || !_foldable.TrySetFolded(ent, foldable, true))
             return;
 
-        _hands.PickupOrDrop(args.User, ent.Owner);
+        _hands.PickupOrDrop(args.User, ent);
 
         args.Handled = true;
     }
@@ -66,7 +66,7 @@ public sealed class DeployFoldableSystem : EntitySystem
         if (!TryComp<FoldableComponent>(ent, out var foldable))
             return;
 
-        if (!TryComp(ent.Owner, out PhysicsComponent? anchorBody)
+        if (!TryComp(ent, out PhysicsComponent? anchorBody)
             || !_anchorable.TileFree(args.ClickLocation, anchorBody))
         {
             _popup.PopupPredicted(Loc.GetString("foldable-deploy-fail", ("object", ent)), ent, args.User);

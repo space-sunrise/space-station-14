@@ -137,7 +137,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
                 RunMapSaveAutoTileWalls(grid);
 
             if (runRemoveWalledDecals)
-                _walledDecal.RemoveWalledDecals(grid.Owner, grid.Comp);
+                _walledDecal.RemoveWalledDecals(grid, grid.Comp);
 
             if (runVariantize)
                 RunMapSaveAutoVariantize(grid);
@@ -191,7 +191,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
         if (!TryComp<GridAtmosphereComponent>(grid, out var gridAtmosphere))
             return;
 
-        _atmosphere.RebuildGridAtmosphere((grid.Owner, gridAtmosphere, grid.Comp));
+        _atmosphere.RebuildGridAtmosphere((grid, gridAtmosphere, grid.Comp));
     }
 
     private void RunMapSaveAutoTileWalls(Entity<MapGridComponent> grid)
@@ -201,26 +201,26 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
         var underplating = _tileDefinition[TileWallsCommand.TilePrototypeId];
         var underplatingTile = new Tile(underplating.TileId);
-        var childEnumerator = Transform(grid.Owner).ChildEnumerator;
+        var childEnumerator = Transform(grid).ChildEnumerator;
 
         while (childEnumerator.MoveNext(out var child))
         {
             if (!TileWallProcessingHelper.IsEligibleWall(EntityManager, _tag, child, out var childTransform))
                 continue;
 
-            var tile = _map.GetTileRef(grid.Owner, grid.Comp, childTransform.Coordinates);
+            var tile = _map.GetTileRef(grid, grid.Comp, childTransform.Coordinates);
             var tileDefinition = (ContentTileDefinition) _tileDefinition[tile.Tile.TypeId];
 
             if (tileDefinition.ID == TileWallsCommand.TilePrototypeId)
                 continue;
 
-            _map.SetTile(grid.Owner, grid.Comp, childTransform.Coordinates, underplatingTile);
+            _map.SetTile(grid, grid.Comp, childTransform.Coordinates, underplatingTile);
         }
     }
 
     private void RunMapSaveAutoVariantize(Entity<MapGridComponent> grid)
     {
-        foreach (var tile in _map.GetAllTiles(grid.Owner, grid.Comp))
+        foreach (var tile in _map.GetAllTiles(grid, grid.Comp))
         {
             var tileDefinition = _turf.GetContentTileDefinition(tile);
             var variantTile = new Tile(
@@ -229,7 +229,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
                 _tile.PickVariant(tileDefinition),
                 tile.Tile.RotationMirroring);
 
-            _map.SetTile(grid.Owner, grid.Comp, tile.GridIndices, variantTile);
+            _map.SetTile(grid, grid.Comp, tile.GridIndices, variantTile);
         }
     }
 

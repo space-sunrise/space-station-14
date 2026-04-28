@@ -127,7 +127,7 @@ public abstract class SharedGasTankSystem : EntitySystem
         if (internalsUid == null || internalsComp == null)
             return false;
 
-        if (!_delay.TryResetDelay(ent.Owner, checkDelayed: true, id: GasTankDelay))
+        if (!_delay.TryResetDelay(ent, checkDelayed: true, id: GasTankDelay))
             return false;
 
         if (_internals.TryConnectTank((internalsUid.Value, internalsComp), owner))
@@ -159,7 +159,7 @@ public abstract class SharedGasTankSystem : EntitySystem
         internalsComp = default;
 
         // If the gas tank doesn't exist for whatever reason, don't even bother
-        if (TerminatingOrDeleted(ent.Owner))
+        if (TerminatingOrDeleted(ent))
             return false;
 
         user ??= ent.Comp.User;
@@ -172,11 +172,11 @@ public abstract class SharedGasTankSystem : EntitySystem
         }
 
         // Yeah I have no clue what this actually does, I appreciate the lack of comments on the original function
-        if (_containers.TryGetContainingContainer((ent.Owner, Transform(ent.Owner)), out var container))
+        if (_containers.TryGetContainingContainer((ent, Transform(ent)), out var container))
         {
-            if (TryComp<InternalsComponent>(container.Owner, out var containerInternalsComp))
+            if (TryComp<InternalsComponent>(container, out var containerInternalsComp))
             {
-                internalsUid = container.Owner;
+                internalsUid = container;
                 internalsComp = containerInternalsComp;
                 return true;
             }
@@ -192,7 +192,7 @@ public abstract class SharedGasTankSystem : EntitySystem
         if (component.User == null)
             return false;
 
-        if (!forced && !_delay.TryResetDelay(ent.Owner, checkDelayed: true, id: GasTankDelay))
+        if (!forced && !_delay.TryResetDelay(ent, checkDelayed: true, id: GasTankDelay))
             return false;
 
         TryGetInternalsComp(ent, out var internalsUid, out var internalsComp, component.User);
@@ -202,7 +202,7 @@ public abstract class SharedGasTankSystem : EntitySystem
         _actions.SetToggled(component.ToggleActionEntity, false);
 
         // I hate this but actions have no easy way to unify this with usedelay.
-        if (!forced && _delay.TryGetDelayInfo(ent.Owner, out var delayInfo, id: GasTankDelay))
+        if (!forced && _delay.TryGetDelayInfo(ent, out var delayInfo, id: GasTankDelay))
         {
             _actions.SetCooldown(component.ToggleActionEntity, delayInfo.Length);
         }

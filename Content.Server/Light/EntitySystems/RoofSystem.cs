@@ -20,7 +20,7 @@ public sealed class RoofSystem : SharedRoofSystem
 
     private void OnFlagStartup(Entity<SetRoofComponent> ent, ref ComponentStartup args)
     {
-        var xform = Transform(ent.Owner);
+        var xform = Transform(ent);
 
         if (_gridQuery.TryComp(xform.GridUid, out var grid))
         {
@@ -28,6 +28,6 @@ public sealed class RoofSystem : SharedRoofSystem
             SetRoof((xform.GridUid.Value, grid, null), index, ent.Comp.Value);
         }
 
-        QueueDel(ent.Owner);
+        QueueDel(ent);
     }
 }

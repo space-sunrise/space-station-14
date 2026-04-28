@@ -33,7 +33,7 @@ public sealed class CrayonSystem : SharedCrayonSystem
         {
             _crayon = crayon;
             _charges = charges;
-            _capacity = entityManage.GetComponent<LimitedChargesComponent>(_crayon.Owner).MaxCharges;
+            _capacity = entityManage.GetComponent<LimitedChargesComponent>(_crayon).MaxCharges;
             _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
             AddChild(_label);
         }
@@ -45,7 +45,7 @@ public sealed class CrayonSystem : SharedCrayonSystem
             _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("crayon-drawing-label",
                 ("color",_crayon.Comp.Color),
                 ("state",_crayon.Comp.SelectedState),
-                ("charges", _charges.GetCurrentCharges(_crayon.Owner)),
+                ("charges", _charges.GetCurrentCharges(_crayon)),
                 ("capacity", _capacity)));
         }
     }

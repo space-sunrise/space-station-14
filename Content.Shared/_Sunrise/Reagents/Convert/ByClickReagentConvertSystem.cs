@@ -83,7 +83,7 @@ public sealed class ByClickReagentConvertSystem : EntitySystem
         if (!_whitelist.CheckBoth(target, ent.Comp.BlacklistTarget, ent.Comp.WhitelistTarget))
             return false;
 
-        if (_useDelay.IsDelayed(ent.Owner))
+        if (_useDelay.IsDelayed(ent))
             return false;
 
         return true;

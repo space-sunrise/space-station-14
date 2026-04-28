@@ -18,6 +18,6 @@ public sealed partial class TriggerOnIngestedSystem : TriggerOnXSystem
         // Since they are not always equal (feeding someone by force, for example) we use a bool to decide which one is the trigger user.
         var user = ent.Comp.EatingIsUser ? args.Target : args.User;
 
-        Trigger.Trigger(ent.Owner, user, ent.Comp.KeyOut);
+        Trigger.Trigger(ent, user, ent.Comp.KeyOut);
     }
 }

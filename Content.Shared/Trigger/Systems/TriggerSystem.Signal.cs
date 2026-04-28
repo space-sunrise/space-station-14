@@ -17,12 +17,12 @@ public sealed partial class TriggerSystem
 
     private void SignalOnTriggerInit(Entity<SignalOnTriggerComponent> ent, ref ComponentInit args)
     {
-        _deviceLink.EnsureSourcePorts(ent.Owner, ent.Comp.Port);
+        _deviceLink.EnsureSourcePorts(ent, ent.Comp.Port);
     }
 
     private void TriggerOnSignalInit(Entity<TriggerOnSignalComponent> ent, ref ComponentInit args)
     {
-        _deviceLink.EnsureSinkPorts(ent.Owner, ent.Comp.Port);
+        _deviceLink.EnsureSinkPorts(ent, ent.Comp.Port);
     }
 
     private void HandleSignalOnTrigger(Entity<SignalOnTriggerComponent> ent, ref TriggerEvent args)
@@ -30,7 +30,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        _deviceLink.InvokePort(ent.Owner, ent.Comp.Port);
+        _deviceLink.InvokePort(ent, ent.Comp.Port);
         args.Handled = true;
     }
 
@@ -39,6 +39,6 @@ public sealed partial class TriggerSystem
         if (args.Port != ent.Comp.Port)
             return;
 
-        Trigger(ent.Owner, args.Trigger, ent.Comp.KeyOut);
+        Trigger(ent, args.Trigger, ent.Comp.KeyOut);
     }
 }

@@ -53,21 +53,21 @@ public sealed class GridDockSystem : EntitySystem
                     out var rootUid))
                 continue;
 
-            var grid = Comp<MapGridComponent>(rootUid.Value.Owner);
+            var grid = Comp<MapGridComponent>(rootUid.Value);
             var width = grid.LocalAABB.Width;
             var shuttleCenter = grid.LocalAABB.Center;
 
             var coordinates = new EntityCoordinates(ftlMap, new Vector2(index + width / 2f, 0f) - shuttleCenter);
-            _transform.SetCoordinates(rootUid.Value.Owner, coordinates);
+            _transform.SetCoordinates(rootUid.Value, coordinates);
 
             index += width + 5f;
 
-            if (!TryComp<ShuttleComponent>(rootUid.Value.Owner, out var shuttleComp))
+            if (!TryComp<ShuttleComponent>(rootUid.Value, out var shuttleComp))
                 continue;
 
             var gridDocks = _dockSystem.GetDocks(target.Value);
-            var shuttleDocks = _dockSystem.GetDocks(rootUid.Value.Owner);
-            var configs = _dockSystem.GetDockingConfigs(rootUid.Value.Owner, target.Value, shuttleDocks, gridDocks, entry.PriorityTag, ignored: false);
+            var shuttleDocks = _dockSystem.GetDocks(rootUid.Value);
+            var configs = _dockSystem.GetDockingConfigs(rootUid.Value, target.Value, shuttleDocks, gridDocks, entry.PriorityTag, ignored: false);
 
             DockingConfig? chosenConfig = null;
             int maxNewDocks = 0;
@@ -91,7 +91,7 @@ public sealed class GridDockSystem : EntitySystem
                 }
 
                 _shuttles.FTLToDockСonfig(
-                    rootUid.Value.Owner,
+                    rootUid.Value,
                     shuttleComp,
                     chosenConfig,
                     0f,
@@ -101,9 +101,9 @@ public sealed class GridDockSystem : EntitySystem
             }
             else
             {
-                if (_shuttles.TryGetFTLProximity(rootUid.Value.Owner, new EntityCoordinates(target.Value, Vector2.Zero), out var coords, out var targAngle))
+                if (_shuttles.TryGetFTLProximity(rootUid.Value, new EntityCoordinates(target.Value, Vector2.Zero), out var coords, out var targAngle))
                 {
-                    _shuttles.FTLToCoordinates(rootUid.Value.Owner,
+                    _shuttles.FTLToCoordinates(rootUid.Value,
                         shuttleComp,
                         coords,
                         targAngle,

@@ -53,7 +53,7 @@ public sealed class FirestarterSystem : SharedFirestarterSystem
 
         foreach (var flammable in _flammables)
         {
-            var ent = flammable.Owner;
+            var ent = flammable;
             var stackAmount = 2 + (int) (severity / 0.15f);
             _flammable.AdjustFireStacks(ent, stackAmount, flammable);
             _flammable.Ignite(ent, uid, flammable);

@@ -74,7 +74,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
             {
                 Text = Loc.TryGetString(state.Value.Verb, out var title) ? title : state.Value.Verb,
                 Category = VerbCategory.Switch,
-                Act = () => Switch((ent.Owner, ent.Comp), state.Key, user, ent.Comp.Predictable)
+                Act = () => Switch((ent, ent.Comp), state.Key, user, ent.Comp.Predictable)
             });
             addedVerbs++;
         }
@@ -93,7 +93,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
         if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
             return;
 
-        Switch((ent.Owner, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
+        Switch((ent, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
     }
 
     private static string Next(Entity<ItemSwitchComponent> ent)
@@ -124,7 +124,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
         if (!_query.Resolve(ent, ref ent.Comp, false) || !ent.Comp.States.TryGetValue(key, out var state))
             return false;
 
-        var uid = ent.Owner;
+        var uid = ent;
         var comp = ent.Comp;
 
         if (!comp.Predictable && _netManager.IsClient)

@@ -117,7 +117,7 @@ public sealed class PricingSystem : EntitySystem
 
         var price = 0.0;
 
-        foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((entity.Owner, entity.Comp)))
+        foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((entity, entity.Comp)))
         {
             var solution = soln.Comp.Solution;
             foreach (var (reagent, quantity) in solution.Contents)

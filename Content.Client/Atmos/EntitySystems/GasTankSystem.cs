@@ -13,7 +13,7 @@ public sealed class GasTankSystem : SharedGasTankSystem
 
     private void OnGasTankState(Entity<GasTankComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (UI.TryGetOpenUi(ent.Owner, SharedGasTankUiKey.Key, out var bui))
+        if (UI.TryGetOpenUi(ent, SharedGasTankUiKey.Key, out var bui))
         {
             bui.Update<GasTankBoundUserInterfaceState>();
         }
@@ -21,7 +21,7 @@ public sealed class GasTankSystem : SharedGasTankSystem
 
     public override void UpdateUserInterface(Entity<GasTankComponent> ent)
     {
-        if (UI.TryGetOpenUi(ent.Owner, SharedGasTankUiKey.Key, out var bui))
+        if (UI.TryGetOpenUi(ent, SharedGasTankUiKey.Key, out var bui))
         {
             bui.Update<GasTankBoundUserInterfaceState>();
         }

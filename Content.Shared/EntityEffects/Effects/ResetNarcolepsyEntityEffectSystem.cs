@@ -16,7 +16,7 @@ public sealed partial class ResetNarcolepsyEntityEffectSystem : EntityEffectSyst
     {
         var timer = args.Effect.TimerReset * args.Scale;
 
-        _narcolepsy.AdjustNarcolepsyTimer(entity.AsNullable(), timer);
+        _narcolepsy.AdjustNarcolepsyTimer(entity, timer);
     }
 }
 

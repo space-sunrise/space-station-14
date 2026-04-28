@@ -21,7 +21,7 @@ public sealed partial class AdjustAlertEntityEffectSysten : EntityEffectSystem<A
 
         if (clear && time <= TimeSpan.Zero)
         {
-            _alerts.ClearAlert(entity.AsNullable(), type);
+            _alerts.ClearAlert(entity, type);
         }
         else
         {
@@ -30,7 +30,7 @@ public sealed partial class AdjustAlertEntityEffectSysten : EntityEffectSystem<A
             if ((args.Effect.ShowCooldown || clear) && args.Effect.Time >= TimeSpan.Zero)
                 cooldown = (_timing.CurTime, _timing.CurTime + time);
 
-            _alerts.ShowAlert(entity.AsNullable(), type, cooldown: cooldown, autoRemove: clear, showCooldown: args.Effect.ShowCooldown);
+            _alerts.ShowAlert(entity, type, cooldown: cooldown, autoRemove: clear, showCooldown: args.Effect.ShowCooldown);
         }
 
     }

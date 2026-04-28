@@ -23,7 +23,7 @@ public sealed class ReplacementImplantSystem : EntitySystem
 
         foreach (var implant in implantContainer.ContainedEntities)
         {
-            if (implant == ent.Owner)
+            if (implant == ent)
                 continue; // don't delete the replacement
 
             if (_whitelist.IsWhitelistPass(ent.Comp.Whitelist, implant))

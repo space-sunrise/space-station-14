@@ -82,7 +82,7 @@ public sealed class IdentitySystem : EntitySystem
     {
         if (ent.Comp.IdentityEntitySlot is not { } slot)
         {
-            Log.Error($"Uninitialized IdentityEntitySlot for {ToPrettyString(ent.Owner)}.");
+            Log.Error($"Uninitialized IdentityEntitySlot for {ToPrettyString(ent)}.");
             return;
         }
 
@@ -143,7 +143,7 @@ public sealed class IdentitySystem : EntitySystem
         if (ent.Comp.IdentityEntitySlot?.ContainedEntity is not { } ident)
             return;
 
-        var representation = GetIdentityRepresentation(ent.Owner);
+        var representation = GetIdentityRepresentation(ent);
         var name = GetIdentityName(ent, representation);
 
         // Clone the old entity's grammar to the identity entity, for loc purposes.

@@ -80,7 +80,7 @@ public sealed class GasPressureRegulatorSystem : SharedGasPressureRegulatorSyste
     private void OnPressureRegulatorUpdated(Entity<GasPressureRegulatorComponent> ent,
         ref AtmosDeviceUpdateEvent args)
     {
-        if (!_nodeContainer.TryGetNodes(ent.Owner,
+        if (!_nodeContainer.TryGetNodes(ent,
                 ent.Comp.InletName,
                 ent.Comp.OutletName,
                 out PipeNode? inletPipeNode,
@@ -193,7 +193,7 @@ public sealed class GasPressureRegulatorSystem : SharedGasPressureRegulatorSyste
 
         // The regulator has changed state, so we need to dirty all applicable fields *right now* so the UI updates
         // at the same time as everything else.
-        DirtyFields(ent.AsNullable(),
+        DirtyFields(ent,
             null,
             nameof(ent.Comp.InletPressure),
             nameof(ent.Comp.OutletPressure),

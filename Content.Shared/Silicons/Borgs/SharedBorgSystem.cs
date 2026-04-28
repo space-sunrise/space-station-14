@@ -122,13 +122,13 @@ public abstract partial class SharedBorgSystem : EntitySystem
         if (!TryComp<ContainerManagerComponent>(chassis, out var containerManager))
             return;
 
-        chassis.Comp.BrainContainer = _container.EnsureContainer<ContainerSlot>(chassis.Owner, chassis.Comp.BrainContainerId, containerManager);
-        chassis.Comp.ModuleContainer = _container.EnsureContainer<Container>(chassis.Owner, chassis.Comp.ModuleContainerId, containerManager);
+        chassis.Comp.BrainContainer = _container.EnsureContainer<ContainerSlot>(chassis, chassis.Comp.BrainContainerId, containerManager);
+        chassis.Comp.ModuleContainer = _container.EnsureContainer<Container>(chassis, chassis.Comp.ModuleContainerId, containerManager);
     }
 
     private void OnMapInit(Entity<BorgChassisComponent> chassis, ref MapInitEvent args)
     {
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis.Owner);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis);
     }
 
     private void OnItemSlotInsertAttempt(Entity<BorgChassisComponent> chassis, ref ItemSlotInsertAttemptEvent args)
@@ -140,10 +140,10 @@ public abstract partial class SharedBorgSystem : EntitySystem
             !TryComp<WiresPanelComponent>(chassis, out var panelComp))
             return;
 
-        if (!_itemSlots.TryGetSlot(chassis.Owner, cellSlotComp.CellSlotId, out var cellSlot) || cellSlot != args.Slot)
+        if (!_itemSlots.TryGetSlot(chassis, cellSlotComp.CellSlotId, out var cellSlot) || cellSlot != args.Slot)
             return;
 
-        if (!panelComp.Open || args.User == chassis.Owner)
+        if (!panelComp.Open || args.User == chassis)
             args.Cancelled = true;
     }
 
@@ -156,10 +156,10 @@ public abstract partial class SharedBorgSystem : EntitySystem
             !TryComp<WiresPanelComponent>(chassis, out var panel))
             return;
 
-        if (!_itemSlots.TryGetSlot(chassis.Owner, cellSlotComp.CellSlotId, out var cellSlot) || cellSlot != args.Slot)
+        if (!_itemSlots.TryGetSlot(chassis, cellSlotComp.CellSlotId, out var cellSlot) || cellSlot != args.Slot)
             return;
 
-        if (!panel.Open || args.User == chassis.Owner)
+        if (!panel.Open || args.User == chassis)
             args.Cancelled = true;
     }
 
@@ -174,7 +174,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
         if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
         {
-            _mind.TransferTo(mindId, chassis.Owner, mind: mind);
+            _mind.TransferTo(mindId, chassis, mind: mind);
         }
     }
 
@@ -186,7 +186,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
         if (args.Container != chassis.Comp.BrainContainer)
             return;
 
-        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(chassis.Owner, out var mindId, out var mind))
+        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(chassis, out var mindId, out var mind))
         {
             _mind.TransferTo(mindId, args.Entity, mind: mind);
         }
@@ -195,31 +195,31 @@ public abstract partial class SharedBorgSystem : EntitySystem
     private void OnMindAdded(Entity<BorgChassisComponent> chassis, ref MindAddedMessage args)
     {
         // Unpredicted because the event is raised on the server.
-        _popup.PopupEntity(Loc.GetString("borg-mind-added", ("name", Identity.Name(chassis.Owner, EntityManager))), chassis.Owner);
+        _popup.PopupEntity(Loc.GetString("borg-mind-added", ("name", Identity.Name(chassis, EntityManager))), chassis);
 
         TryActivate(chassis);
 
-        _access.SetAccessEnabled(chassis.Owner, true); // Needs a player so that scientists can't drag around an empty borg for free AA.
-        _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, true);
+        _access.SetAccessEnabled(chassis, true); // Needs a player so that scientists can't drag around an empty borg for free AA.
+        _appearance.SetData(chassis, BorgVisuals.HasPlayer, true);
     }
 
     private void OnMindRemoved(Entity<BorgChassisComponent> chassis, ref MindRemovedMessage args)
     {
         // Unpredicted because the event is raised on the server.
-        _popup.PopupEntity(Loc.GetString("borg-mind-removed", ("name", Identity.Name(chassis.Owner, EntityManager))), chassis.Owner);
+        _popup.PopupEntity(Loc.GetString("borg-mind-removed", ("name", Identity.Name(chassis, EntityManager))), chassis);
 
         SetActive(chassis, false);
         // Turn off the light so that the no-player visuals can be seen.
-        if (TryComp<HandheldLightComponent>(chassis.Owner, out var light))
-            _handheldLight.TurnOff((chassis.Owner, light), makeNoise: false); // Already plays a sound when toggling the borg off.
+        if (TryComp<HandheldLightComponent>(chassis, out var light))
+            _handheldLight.TurnOff((chassis, light), makeNoise: false); // Already plays a sound when toggling the borg off.
 
-        _access.SetAccessEnabled(chassis.Owner, false); // Needs a player so that scientists can't drag around an empty borg for free AA.
-        _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, false);
+        _access.SetAccessEnabled(chassis, false); // Needs a player so that scientists can't drag around an empty borg for free AA.
+        _appearance.SetData(chassis, BorgVisuals.HasPlayer, false);
     }
 
     private void OnChassisInteractUsing(Entity<BorgChassisComponent> chassis, ref AfterInteractUsingEvent args)
     {
-        if (!args.CanReach || args.Handled || chassis.Owner == args.User)
+        if (!args.CanReach || args.Handled || chassis == args.User)
             return;
 
         var used = args.Used;
@@ -247,16 +247,16 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
             _container.Insert(used, chassis.Comp.BrainContainer);
             _adminLog.Add(LogType.Action, LogImpact.Medium,
-                $"{args.User} installed brain {used} into borg {chassis.Owner}");
+                $"{args.User} installed brain {used} into borg {chassis}");
             args.Handled = true;
             return;
         }
 
-        if (module != null && CanInsertModule(chassis.AsNullable(), (used, module), args.User))
+        if (module != null && CanInsertModule(chassis, (used, module), args.User))
         {
             InsertModule(chassis, used);
             _adminLog.Add(LogType.Action, LogImpact.Low,
-                $"{args.User} installed module {used} into borg {chassis.Owner}");
+                $"{args.User} installed module {used} into borg {chassis}");
             args.Handled = true;
         }
     }
@@ -281,7 +281,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
     private void OnUIOpenAttempt(Entity<BorgChassisComponent> chassis, ref ActivatableUIOpenAttemptEvent args)
     {
         // Borgs generally can't view their own UI.
-        if (args.User == chassis.Owner && !chassis.Comp.CanOpenSelfUi)
+        if (args.User == chassis && !chassis.Comp.CanOpenSelfUi)
             args.Cancel();
     }
 
@@ -316,16 +316,16 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
     private void OnBrainMindAdded(Entity<BorgBrainComponent> brain, ref MindAddedMessage args)
     {
-        if (!_container.TryGetContainingContainer(brain.Owner, out var container))
+        if (!_container.TryGetContainingContainer(brain, out var container))
             return;
 
-        var borg = container.Owner;
+        var borg = container;
 
         if (!TryComp<BorgChassisComponent>(borg, out var chassisComponent) ||
             container.ID != chassisComponent.BrainContainerId)
             return;
 
-        if (!_mind.TryGetMind(brain.Owner, out var mindId, out var mind) ||
+        if (!_mind.TryGetMind(brain, out var mindId, out var mind) ||
             !_player.TryGetSessionById(mind.UserId, out var session))
             return;
 

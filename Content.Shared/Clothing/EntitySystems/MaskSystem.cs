@@ -85,7 +85,7 @@ public sealed class MaskSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        if (!Resolve(mask.Owner, ref mask.Comp))
+        if (!Resolve(mask, ref mask.Comp))
             return;
 
         if (!force && !mask.Comp.IsToggleable)
@@ -130,7 +130,7 @@ public sealed class MaskSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        if (!Resolve(mask.Owner, ref mask.Comp))
+        if (!Resolve(mask, ref mask.Comp))
             return;
 
         if (mask.Comp.IsToggleable == toggleable)

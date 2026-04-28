@@ -40,12 +40,12 @@ public sealed partial class TestPair
                 $"Failed to load map {testMapPath}.");
             Assert.That(gridSet, Is.Not.Empty, "There were no grids loaded from the map!");
 
-            mapData.MapUid = map!.Value.Owner;
+            mapData.MapUid = map!.Value;
             mapData.MapId = map!.Value.Comp.MapId;
             mapData.Grid = gridSet!.First();
             mapData.GridCoords = new EntityCoordinates(mapData.Grid, 0, 0);
             mapData.MapCoords = new MapCoordinates(0, 0, mapData.MapId);
-            mapData.Tile = mapSys.GetAllTiles(mapData.Grid.Owner, mapData.Grid.Comp).First();
+            mapData.Tile = mapSys.GetAllTiles(mapData.Grid, mapData.Grid.Comp).First();
         });
 
         await RunTicksSync(10);

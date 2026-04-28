@@ -57,14 +57,14 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     {
         if (HasComp<GhostComponent>(args.User)) return;
 
-        _audio.PlayPvs(Const.AudioEvaporate, ent.Owner);
+        _audio.PlayPvs(Const.AudioEvaporate, ent);
 
         float damage = 1;
         if (TryComp<FixturesComponent>(args.User, out var fixture))
             damage = fixture.Fixtures.Select(x => x.Value.Density).Aggregate((i, p) => p + i) / 3;
 
         _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
-        _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
+        _damageable.TryChangeDamage(ent, new(_burn, damage), true);
 
         QueueDel(args.User);
     }
@@ -76,18 +76,18 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         if (HasComp<ProjectileComponent>(args.OtherEntity)
         || HasComp<SingularityComponent>(args.OtherEntity)) return;
 
-        _audio.PlayPvs(Const.AudioEvaporate, ent.Owner);
+        _audio.PlayPvs(Const.AudioEvaporate, ent);
         float damage = 1;
         if (TryComp<FixturesComponent>(args.OtherEntity, out var fixture))
             damage = fixture.Fixtures.Select(x => x.Value.Density).Aggregate((i, p) => p + i) / 3;
 
         _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
-        _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
+        _damageable.TryChangeDamage(ent, new(_burn, damage), true);
 
         QueueDel(args.OtherEntity);
     }
-    private void AddSupermatter(Entity<SupermatterComponent> ent, ref ComponentInit args) => _supermatters.TryAdd(ent.Owner, ent);
-    private void RemoveSupermatter(Entity<SupermatterComponent> ent, ref ComponentShutdown args) => _supermatters.Remove(ent.Owner);
+    private void AddSupermatter(Entity<SupermatterComponent> ent, ref ComponentInit args) => _supermatters.TryAdd(ent, ent);
+    private void RemoveSupermatter(Entity<SupermatterComponent> ent, ref ComponentShutdown args) => _supermatters.Remove(ent);
 
     protected override float Threshold { get; set; } = 1f;
     protected override void AccUpdate()
@@ -113,8 +113,8 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     {
         if (supermatter.Comp.Durability > 0.01) return;
 
-        _cascade.StartCascade(Transform(supermatter.Owner).Coordinates);
-        QueueDel(supermatter.Owner);
+        _cascade.StartCascade(Transform(supermatter).Coordinates);
+        QueueDel(supermatter);
     }
 
     private void NotifyCascad(Entity<SupermatterComponent> supermatter)
@@ -130,8 +130,8 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
 
         if (currentDurability > lastDurability)
         {
-            // _radioSystem.SendRadioMessage(supermatter.Owner, $"The crystal is regenerating. Durability: {currentDurability}%", _engi, supermatter.Owner);
-            if (_messenger.GetServerEntity(_station.GetOwningStation(supermatter.Owner)) is var (server, _) &&
+            // _radioSystem.SendRadioMessage(supermatter, $"The crystal is regenerating. Durability: {currentDurability}%", _engi, supermatter);
+            if (_messenger.GetServerEntity(_station.GetOwningStation(supermatter)) is var (server, _) &&
                 _messenger.GetGroupIdByRadioChannel(_engi.ID) is { } groupId)
             {
                 _messenger.SendSystemMessageToGroup(server, groupId, $"The crystal is regenerating. Durability: {currentDurability}%");
@@ -140,8 +140,8 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         else switch (currentDurability)
             {
                 case > 75:
-                    // _radioSystem.SendRadioMessage(supermatter.Owner, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner);
-                    if (_messenger.GetServerEntity(_station.GetOwningStation(supermatter.Owner)) is var (server, _) &&
+                    // _radioSystem.SendRadioMessage(supermatter, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter);
+                    if (_messenger.GetServerEntity(_station.GetOwningStation(supermatter)) is var (server, _) &&
                         _messenger.GetGroupIdByRadioChannel(_engi.ID) is { } groupId)
                     {
                         _messenger.SendSystemMessageToGroup(server, groupId, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%");
@@ -164,13 +164,13 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void HandleLighting(Entity<SupermatterComponent> supermatter)
     {
         if (supermatter.Comp.AccLighting != 0
-            && _lightning.ShootRandomLightnings(supermatter.Owner, supermatter.Comp.AccLighting.Float(), 1))
+            && _lightning.ShootRandomLightnings(supermatter, supermatter.Comp.AccLighting.Float(), 1))
             supermatter.Comp.AccLighting = 0;
     }
 
     private void HandleRadiation(Entity<SupermatterComponent> supermatter)
     {
-        var radComp = EnsureComp<RadiationSourceComponent>(supermatter.Owner);
+        var radComp = EnsureComp<RadiationSourceComponent>(supermatter);
         radComp.Intensity = supermatter.Comp.AccRadiation.Float();
 
         supermatter.Comp.AccRadiation /= supermatter.Comp.RadiationStability;
@@ -178,7 +178,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
 
     private void HandleGas(Entity<SupermatterComponent> supermatter)
     {
-        var gas = _atmosphere.GetTileMixture(supermatter.Owner, true) ?? new();
+        var gas = _atmosphere.GetTileMixture(supermatter, true) ?? new();
         DamageByPressure(supermatter, gas);
         DamageByTemperature(supermatter, gas);
 
@@ -228,26 +228,26 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void DamageByTemperature(Entity<SupermatterComponent> supermatter, GasMixture gas)
     {
         if (gas.Temperature <= Const.MaxTemperature) return;
-        _audio.PlayPvs(_random.Pick(Const.AudioBurn), supermatter.Owner);
+        _audio.PlayPvs(_random.Pick(Const.AudioBurn), supermatter);
         _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
         DamageSpecifier damage = new(_burn, Const.MaxTemperature - gas.Temperature);
-        _damageable.TryChangeDamage(supermatter.Owner, damage, true);
+        _damageable.TryChangeDamage(supermatter, damage, true);
     }
 
     private void DamageByPressure(Entity<SupermatterComponent> supermatter, GasMixture gas)
     {
         if (gas.Pressure >= Const.MinPressure && gas.Pressure <= Const.MaxPressure) return;
-        _audio.PlayPvs(_random.Pick(Const.AudioCrack), supermatter.Owner);
+        _audio.PlayPvs(_random.Pick(Const.AudioCrack), supermatter);
         _brute ??= _prototypes.Index<DamageGroupPrototype>("Brute");
         DamageSpecifier damage = new(_brute, Math.Max(Const.MinPressure - gas.Pressure, gas.Pressure - Const.MaxPressure) / 100);
-        _damageable.TryChangeDamage(supermatter.Owner, damage, true);
+        _damageable.TryChangeDamage(supermatter, damage, true);
     }
 
     private void HandleDamage(Entity<SupermatterComponent> supermatter)
     {
-        EnsureComp<DamageableComponent>(supermatter.Owner, out var damageable);
+        EnsureComp<DamageableComponent>(supermatter, out var damageable);
         var trueDamage = damageable.TotalDamage * Const.DamageMultiplayer;
-        _damageable.TryChangeDamage(supermatter.Owner, damageable.Damage.Invert(), true);
+        _damageable.TryChangeDamage(supermatter, damageable.Damage.Invert(), true);
 
         supermatter.Comp.AccBreak = MathHelper.Clamp(supermatter.Comp.AccBreak + (trueDamage * Const.BreakPercent), 0, 9999);
         supermatter.Comp.AccHeat = MathHelper.Clamp(supermatter.Comp.AccHeat + (trueDamage * Const.HeatPercent), 0, 9999);

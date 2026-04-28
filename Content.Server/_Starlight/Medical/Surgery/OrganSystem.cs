@@ -62,17 +62,17 @@ public sealed partial class OrganSystem : EntitySystem
 
         var change = _damageableSystem.ChangeDamage(args.Body, ent.Comp.Damage, true, false);
         if (change is not null)
-            _damageableSystem.ChangeDamage(ent.Owner, change.Invert(), true, false);
+            _damageableSystem.ChangeDamage(ent, change.Invert(), true, false);
     }
     private void OnOrganExtracted(Entity<DamageableComponent> ent, ref SurgeryOrganExtracted args)
     {
-        if (!TryComp<OrganDamageComponent>(ent.Owner, out var damageRule)
+        if (!TryComp<OrganDamageComponent>(ent, out var damageRule)
          || damageRule.Damage is null
          || !TryComp<DamageableComponent>(args.Body, out var bodyDamageable)) return;
 
         var change = _damageableSystem.ChangeDamage(args.Body, damageRule.Damage.Invert(), true, false);
         if (change is not null)
-            _damageableSystem.ChangeDamage(ent.Owner, change.Invert(), true, false);
+            _damageableSystem.ChangeDamage(ent, change.Invert(), true, false);
     }
     private void OnTongueImplanted(Entity<OrganTongueComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {

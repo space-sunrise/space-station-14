@@ -87,7 +87,7 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
         }
 
         var items = _helpers.GetAll<ItemComponent>()
-            .Where(e => IsAppropriate(e.Owner))
+            .Where(e => IsAppropriate(e))
             .ToList()
             .ShuffleRobust(_random)
             .TakePercentage(_itemToArtifactRatio);

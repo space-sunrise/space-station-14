@@ -46,8 +46,8 @@ public sealed class CodeEquipmentSystem : EntitySystem
         _loader.TryLoadGrid(map, comp.ShuttlePath, out var shuttleUid, loadOptions);
         if (shuttleUid is null)
             return;
-        comp.Shuttles.Add(shuttleUid.Value.Owner);
-        var gammaArmoryComp = EnsureComp<CodeEquipmentShuttleComponent>(shuttleUid.Value.Owner);
+        comp.Shuttles.Add(shuttleUid.Value);
+        var gammaArmoryComp = EnsureComp<CodeEquipmentShuttleComponent>(shuttleUid.Value);
         gammaArmoryComp.Station = uid;
     }
 

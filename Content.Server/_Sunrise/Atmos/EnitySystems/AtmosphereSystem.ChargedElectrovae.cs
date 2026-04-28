@@ -41,7 +41,7 @@ public sealed partial class AtmosphereSystem
     private void OnRefreshChargeRate(Entity<ChargedElectrovaeAffectedComponent> ent, ref RefreshChargeRateEvent args)
     {
         // Check if entity is in charged electrovae gas
-        var mixture = GetTileMixture((ent.Owner, null));
+        var mixture = GetTileMixture((ent, null));
         if (mixture == null)
             return;
 
@@ -195,7 +195,7 @@ public sealed partial class AtmosphereSystem
         var query = EntityQueryEnumerator<ChargedElectrovaeAffectedComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var transform))
         {
-            if (transform.GridUid != grid.Owner)
+            if (transform.GridUid != grid)
                 continue;
 
             var mixture = GetTileMixture((uid, transform));
@@ -260,7 +260,7 @@ public sealed partial class AtmosphereSystem
         var expansionMultiplier = 1f + (1f - MathF.Exp(-chargedMoles / expansionDecayConstant));
 
         var newMaxCharge = ent.Comp2.OriginalBatteryMaxCharge.Value * expansionMultiplier;
-        _battery.SetMaxCharge((ent.Owner, ent.Comp1), newMaxCharge);
+        _battery.SetMaxCharge((ent, ent.Comp1), newMaxCharge);
     }
 
     /// <summary>
@@ -272,7 +272,7 @@ public sealed partial class AtmosphereSystem
     {
         if (ent.Comp2.OriginalBatteryMaxCharge != null)
         {
-            _battery.SetMaxCharge((ent.Owner, ent.Comp1), ent.Comp2.OriginalBatteryMaxCharge.Value);
+            _battery.SetMaxCharge((ent, ent.Comp1), ent.Comp2.OriginalBatteryMaxCharge.Value);
             ent.Comp2.OriginalBatteryMaxCharge = null;
         }
     }

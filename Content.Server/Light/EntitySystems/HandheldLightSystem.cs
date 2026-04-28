@@ -106,10 +106,10 @@ namespace Content.Server.Light.EntitySystems
             // Curently every single flashlight has the same number of levels for status and that's all it uses the charge for
             // Thus we'll just check if the level changes.
 
-            if (!_powerCell.TryGetBatteryFromSlotOrEntity(ent.Owner, out var battery))
+            if (!_powerCell.TryGetBatteryFromSlotOrEntity(ent, out var battery))
                 return null;
 
-            var currentCharge = _battery.GetCharge(battery.Value.AsNullable());
+            var currentCharge = _battery.GetCharge(battery.Value);
 
             if (MathHelper.CloseToPercent(currentCharge, 0) || ent.Comp.Wattage > currentCharge)
                 return 0;
@@ -194,7 +194,7 @@ namespace Content.Server.Light.EntitySystems
                 return false;
             }
 
-            if (!_powerCell.TryGetBatteryFromSlotOrEntity(uid.Owner, out var battery))
+            if (!_powerCell.TryGetBatteryFromSlotOrEntity(uid, out var battery))
             {
                 _audio.PlayPvs(_audio.ResolveSound(component.TurnOnFailSound), uid);
                 _popup.PopupEntity(Loc.GetString("handheld-light-component-cell-missing-message"), uid, user);
@@ -204,7 +204,7 @@ namespace Content.Server.Light.EntitySystems
             // To prevent having to worry about frame time in here.
             // Let's just say you need a whole second of charge before you can turn it on.
             // Simple enough.
-            if (component.Wattage > _battery.GetCharge(battery.Value.AsNullable()))
+            if (component.Wattage > _battery.GetCharge(battery.Value))
             {
                 _audio.PlayPvs(_audio.ResolveSound(component.TurnOnFailSound), uid);
                 _popup.PopupEntity(Loc.GetString("handheld-light-component-cell-dead-message"), uid, user);
@@ -221,7 +221,7 @@ namespace Content.Server.Light.EntitySystems
         public void TryUpdate(Entity<HandheldLightComponent> uid, float frameTime)
         {
             var component = uid.Comp;
-            if (!_powerCell.TryGetBatteryFromSlotOrEntity(uid.Owner, out var battery))
+            if (!_powerCell.TryGetBatteryFromSlotOrEntity(uid, out var battery))
             {
                 TurnOff(uid, false);
                 return;
@@ -229,7 +229,7 @@ namespace Content.Server.Light.EntitySystems
 
             var appearanceComponent = EntityManager.GetComponentOrNull<AppearanceComponent>(uid);
 
-            var chargeFraction = _battery.GetChargeLevel(battery.Value.AsNullable());
+            var chargeFraction = _battery.GetChargeLevel(battery.Value);
             if (chargeFraction >= 0.30)
             {
                 _appearance.SetData(uid, HandheldLightVisuals.Power, HandheldLightPowerStates.FullPower, appearanceComponent);
@@ -243,7 +243,7 @@ namespace Content.Server.Light.EntitySystems
                 _appearance.SetData(uid, HandheldLightVisuals.Power, HandheldLightPowerStates.Dying, appearanceComponent);
             }
 
-            if (component.Activated && !_battery.TryUseCharge(battery.Value.AsNullable(), component.Wattage * frameTime))
+            if (component.Activated && !_battery.TryUseCharge(battery.Value, component.Wattage * frameTime))
                 TurnOff(uid, false);
 
             UpdateLevel(uid);

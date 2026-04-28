@@ -24,13 +24,13 @@ public sealed class StorageImplantSystem : EntitySystem
         if (_net.IsClient)
             return; // TODO: RandomPredicted and DropNextToPredicted
 
-        if (!_container.TryGetContainer(ent.Owner, StorageComponent.ContainerId, out var storageImplant))
+        if (!_container.TryGetContainer(ent, StorageComponent.ContainerId, out var storageImplant))
             return;
 
         var contained = storageImplant.ContainedEntities.ToArray();
         foreach (var entity in contained)
         {
-            _transform.DropNextTo(entity, ent.Owner);
+            _transform.DropNextTo(entity, ent);
         }
     }
 }

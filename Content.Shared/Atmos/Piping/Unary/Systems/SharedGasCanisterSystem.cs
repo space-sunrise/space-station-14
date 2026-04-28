@@ -33,7 +33,7 @@ public abstract class SharedGasCanisterSystem : EntitySystem
     private void OnCanisterStartup(Entity<GasCanisterComponent> ent, ref ComponentStartup args)
     {
         // Ensure container
-        _slots.AddItemSlot(ent.Owner, ent.Comp.ContainerName, ent.Comp.GasTankSlot);
+        _slots.AddItemSlot(ent, ent.Comp.ContainerName, ent.Comp.GasTankSlot);
     }
 
     private void OnCanisterContainerModified(EntityUid uid, GasCanisterComponent component, ContainerModifiedMessage args)

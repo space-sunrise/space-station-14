@@ -416,9 +416,9 @@ public sealed partial class VampireSystem
         if (HasComp<BibleUserComponent>(target))
         {
             _stun.TryAddParalyzeDuration(vampire, duration ?? TimeSpan.FromSeconds(3));
-            _chat.TryEmoteWithoutChat(vampire.Owner, _prototypeManager.Index<EmotePrototype>(VampireComponent.ScreamEmoteProto), true);
+            _chat.TryEmoteWithoutChat(vampire, _prototypeManager.Index<EmotePrototype>(VampireComponent.ScreamEmoteProto), true);
             if (damage != null)
-                _damageableSystem.TryChangeDamage(vampire.Owner, damage);
+                _damageableSystem.TryChangeDamage(vampire, damage);
             return;
         }
 
@@ -452,13 +452,13 @@ public sealed partial class VampireSystem
     }
     private void BloodSteal(Entity<VampireComponent> vampire)
     {
-        var transform = Transform(vampire.Owner);
+        var transform = Transform(vampire);
 
         var targets = new HashSet<EntityUid>();
 
         foreach (var entity in _entityLookup.GetEntitiesInRange(transform.Coordinates, 3, LookupFlags.Approximate | LookupFlags.Dynamic))
         {
-            if (entity == vampire.Owner)
+            if (entity == vampire)
                 continue;
 
             if (!HasComp<HumanoidAppearanceComponent>(entity))
@@ -532,7 +532,7 @@ public sealed partial class VampireSystem
         if (target == null)
             return false;
 
-        var attempt = new FlashAttemptEvent(target.Value, vampire.Owner, vampire.Owner);
+        var attempt = new FlashAttemptEvent(target.Value, vampire, vampire);
         RaiseLocalEvent(target.Value, ref attempt, true);
 
         if (attempt.Cancelled)
@@ -553,7 +553,7 @@ public sealed partial class VampireSystem
 
         if (_doAfter.TryStartDoAfter(doAfterEventArgs))
         {
-            _popup.PopupEntity(Loc.GetString("vampire-hypnotise-other", ("user", vampire.Owner), ("target", target.Value)), target.Value, Shared.Popups.PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("vampire-hypnotise-other", ("user", vampire), ("target", target.Value)), target.Value, Shared.Popups.PopupType.SmallCaution);
         }
         else
         {
@@ -590,9 +590,9 @@ public sealed partial class VampireSystem
     /// </summary>
     private void OnInsertedIntoContainer(EntityUid uid, VampireDeathsEmbraceComponent component, EntGotInsertedIntoContainerMessage args)
     {
-        if (HasComp<CoffinComponent>(args.Container.Owner))
+        if (HasComp<CoffinComponent>(args.Container))
         {
-            component.HomeCoffin = args.Container.Owner;
+            component.HomeCoffin = args.Container;
             var vhComp = EnsureComp<VampireHealingComponent>(args.Entity);
             vhComp.Healing = component.CoffinHealing;
             _popup.PopupEntity(Loc.GetString("vampire-deathsembrace-bind"), uid, uid);
@@ -688,7 +688,7 @@ public sealed partial class VampireSystem
             RemComp<VampireFangsExtendedComponent>(vampire);
             var popupText = Loc.GetString("vampire-fangs-retracted");
             _admin.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(vampire):user} retracted their fangs");
-            _popup.PopupEntity(popupText, vampire.Owner, vampire.Owner);
+            _popup.PopupEntity(popupText, vampire, vampire);
             return false;
         }
         else
@@ -696,7 +696,7 @@ public sealed partial class VampireSystem
             EnsureComp<VampireFangsExtendedComponent>(vampire);
             var popupText = Loc.GetString("vampire-fangs-extended");
             _admin.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(vampire):user} extended their fangs");
-            _popup.PopupEntity(popupText, vampire.Owner, vampire.Owner);
+            _popup.PopupEntity(popupText, vampire, vampire);
             return true;
         }
     }
@@ -712,7 +712,7 @@ public sealed partial class VampireSystem
         if (!HasComp<TransformComponent>(vampire))
             return false;
 
-        if (!_interaction.InRangeUnobstructed(vampire.Owner, target, popup: true))
+        if (!_interaction.InRangeUnobstructed(vampire, target, popup: true))
             return false;
 
         if (_rotting.IsRotten(target))
@@ -759,7 +759,7 @@ public sealed partial class VampireSystem
         var victimBloodRemaining = targetBloodstream.BloodSolution.Value.Comp.Solution.Volume;
         if (victimBloodRemaining <= 0)
         {
-            _popup.PopupEntity(Loc.GetString("vampire-blooddrink-empty"), entity.Owner, entity.Owner, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("vampire-blooddrink-empty"), entity, entity, PopupType.SmallCaution);
             return;
         }
 
@@ -771,7 +771,7 @@ public sealed partial class VampireSystem
                     objective.BloodDranked = entity.Comp.TotalBloodDrank;
 
         //Slurp
-        _audio.PlayPvs(entity.Comp.BloodDrainSound, entity.Owner, AudioParams.Default.WithVolume(-3f));
+        _audio.PlayPvs(entity.Comp.BloodDrainSound, entity, AudioParams.Default.WithVolume(-3f));
 
         //Spill an extra 5% on the floor
         _blood.TryModifyBloodLevel(args.Target.Value, -(volumeToDrain * 0.05));
@@ -780,7 +780,7 @@ public sealed partial class VampireSystem
         //TODO: Replace with raised event?
         if (HasComp<BibleUserComponent>(args.Target))
         {
-            _damageableSystem.TryChangeDamage(entity.Owner, VampireComponent.HolyDamage, true);
+            _damageableSystem.TryChangeDamage(entity, VampireComponent.HolyDamage, true);
             _popup.PopupEntity(Loc.GetString("vampire-ingest-holyblood"), entity, entity, PopupType.LargeCaution);
             _admin.Add(LogType.Damaged, LogImpact.Low, $"{ToPrettyString(entity):user} attempted to drink {volumeToConsume}u of {ToPrettyString(args.Target):target}'s holy blood");
             return;
@@ -810,18 +810,18 @@ public sealed partial class VampireSystem
     private bool TryIngestBlood(Entity<VampireComponent> vampire, Solution ingestedSolution, bool force = false)
     {
         //Get all stomaches
-        if (TryComp<BodyComponent>(vampire.Owner, out var body) && _body.TryGetBodyOrganEntityComps<StomachComponent>((vampire.Owner, body), out var stomachs))
+        if (TryComp<BodyComponent>(vampire, out var body) && _body.TryGetBodyOrganEntityComps<StomachComponent>((vampire, body), out var stomachs))
         {
             //Pick the first one that has space available
-            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution(stomach.Owner, ingestedSolution, stomach.Comp1));
+            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution(stomach, ingestedSolution, stomach.Comp1));
             if (firstStomach == null)
             {
                 //We are full
-                _popup.PopupEntity(Loc.GetString("vampire-full-stomach"), vampire.Owner, vampire.Owner, PopupType.SmallCaution);
+                _popup.PopupEntity(Loc.GetString("vampire-full-stomach"), vampire, vampire, PopupType.SmallCaution);
                 return false;
             }
             //Fill the stomach with that delicious blood
-            return _stomach.TryTransferSolution(firstStomach.Value.Owner, ingestedSolution, firstStomach.Value.Comp1);
+            return _stomach.TryTransferSolution(firstStomach.Value, ingestedSolution, firstStomach.Value.Comp1);
         }
 
         //No stomach

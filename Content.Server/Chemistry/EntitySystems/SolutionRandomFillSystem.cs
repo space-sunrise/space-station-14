@@ -37,7 +37,7 @@ public sealed class SolutionRandomFillSystem : EntitySystem
             return;
         }
 
-        _solutionsSystem.EnsureSolutionEntity(entity.Owner, entity.Comp.Solution, out var target , pick.quantity);
+        _solutionsSystem.EnsureSolutionEntity(entity, entity.Comp.Solution, out var target , pick.quantity);
         if(target.HasValue)
             _solutionsSystem.TryAddReagent(target.Value, reagent, quantity);
     }

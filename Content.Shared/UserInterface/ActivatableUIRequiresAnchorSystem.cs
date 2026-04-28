@@ -21,7 +21,7 @@ public sealed class ActivatableUIRequiresAnchorSystem : EntitySystem
         if (args.Result == BoundUserInterfaceRangeResult.Fail)
             return;
 
-        if (!Transform(ent.Owner).Anchored)
+        if (!Transform(ent).Anchored)
         {
             args.Result = BoundUserInterfaceRangeResult.Fail;
         }
@@ -32,7 +32,7 @@ public sealed class ActivatableUIRequiresAnchorSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (Transform(ent.Owner).Anchored)
+        if (Transform(ent).Anchored)
             return;
 
         if (ent.Comp.Popup != null && !args.Silent)

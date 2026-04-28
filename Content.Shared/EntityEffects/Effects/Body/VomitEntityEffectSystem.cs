@@ -13,7 +13,7 @@ public sealed partial class VomitEntityEffectSystem : EntityEffectSystem<MetaDat
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<Vomit> args)
     {
-        _vomit.Vomit(entity.Owner, args.Effect.ThirstAmount * args.Scale, args.Effect.HungerAmount * args.Scale);
+        _vomit.Vomit(entity, args.Effect.ThirstAmount * args.Scale, args.Effect.HungerAmount * args.Scale);
     }
 }
 

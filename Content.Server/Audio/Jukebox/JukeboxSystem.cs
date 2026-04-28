@@ -79,7 +79,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     {
         TryUpdateVisualState(entity);
 
-        if (!this.IsPowered(entity.Owner, EntityManager))
+        if (!this.IsPowered(entity, EntityManager))
         {
             Stop(entity);
         }

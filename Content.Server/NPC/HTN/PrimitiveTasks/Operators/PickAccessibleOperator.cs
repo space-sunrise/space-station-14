@@ -36,7 +36,7 @@ public sealed partial class PickAccessibleOperator : HTNOperator
         CancellationToken cancelToken)
     {
         // Very inefficient (should weight each region by its node count) but better than the old system
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         blackboard.TryGetValue<float>(RangeKey, out var maxRange, _entManager);
 

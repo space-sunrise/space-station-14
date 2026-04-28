@@ -182,7 +182,7 @@ namespace Content.Server.Forensics
         {
             UpdateUserInterface(scanner, scanner.Comp);
 
-            _uiSystem.OpenUi(scanner.Owner, ForensicScannerUiKey.Key, user);
+            _uiSystem.OpenUi(scanner, ForensicScannerUiKey.Key, user);
         }
 
         private void OnPrint(EntityUid uid, ForensicScannerComponent component, ForensicScannerPrintMessage args)

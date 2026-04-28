@@ -105,7 +105,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     [Obsolete("Use the Entity<MapGridComponent>? overload")]
     public bool TryGetBiomeTile(Vector2i indices, List<IBiomeLayer> layers, int seed, MapGridComponent? grid, [NotNullWhen(true)] out Tile? tile)
     {
-        return TryGetBiomeTile(indices, layers, seed, grid == null ? null : (grid.Owner, grid), out tile);
+        return TryGetBiomeTile(indices, layers, seed, grid == null ? null : (grid, grid), out tile);
     }
 
     /// <summary>
@@ -155,7 +155,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     [Obsolete("Use the Entity<MapGridComponent>? overload")]
     public bool TryGetTile(Vector2i indices, List<IBiomeLayer> layers, int seed, MapGridComponent? grid, [NotNullWhen(true)] out Tile? tile)
     {
-        return TryGetTile(indices, layers, seed, grid == null ? null : (grid.Owner, grid), out tile);
+        return TryGetTile(indices, layers, seed, grid == null ? null : (grid, grid), out tile);
     }
 
     /// <summary>
@@ -208,7 +208,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     public bool TryGetEntity(Vector2i indices, BiomeComponent component, MapGridComponent grid,
         [NotNullWhen(true)] out string? entity)
     {
-        return TryGetEntity(indices, component, grid == null ? null : (grid.Owner, grid), out entity);
+        return TryGetEntity(indices, component, grid == null ? null : (grid, grid), out entity);
     }
 
     public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, Entity<MapGridComponent>? grid,
@@ -274,7 +274,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, MapGridComponent grid,
         [NotNullWhen(true)] out string? entity)
     {
-        return TryGetEntity(indices, layers, tileRef, seed, grid == null ? null : (grid.Owner, grid), out entity);
+        return TryGetEntity(indices, layers, tileRef, seed, grid == null ? null : (grid, grid), out entity);
     }
 
     /// <summary>
@@ -371,7 +371,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     public bool TryGetDecals(Vector2i indices, List<IBiomeLayer> layers, int seed, MapGridComponent grid,
         [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals)
     {
-        return TryGetDecals(indices, layers, seed, grid == null ? null : (grid.Owner, grid), out decals);
+        return TryGetDecals(indices, layers, seed, grid == null ? null : (grid, grid), out decals);
     }
 
     private FastNoiseLite GetNoise(FastNoiseLite seedNoise, int seed)

@@ -55,12 +55,12 @@ public sealed partial class ChannelsMenu : DefaultWindow
 
     private void OnItemSelected(ItemList.ItemListSelectedEventArgs args)
     {
-        _owner.Instruments.SetFilteredChannel(_owner.Owner, (int)ChannelList[args.ItemIndex].Metadata!, false);
+        _owner.Instruments.SetFilteredChannel(_owner, (int)ChannelList[args.ItemIndex].Metadata!, false);
     }
 
     private void OnItemDeselected(ItemList.ItemListDeselectedEventArgs args)
     {
-        _owner.Instruments.SetFilteredChannel(_owner.Owner, (int)ChannelList[args.ItemIndex].Metadata!, true);
+        _owner.Instruments.SetFilteredChannel(_owner, (int)ChannelList[args.ItemIndex].Metadata!, true);
     }
 
     private void OnAllPressed(BaseButton.ButtonEventArgs obj)
@@ -86,9 +86,9 @@ public sealed partial class ChannelsMenu : DefaultWindow
     /// </summary>
     private ActiveInstrumentComponent ResolveActiveInstrument(InstrumentComponent? comp)
     {
-        comp ??= _entityManager.GetComponent<InstrumentComponent>(_owner.Owner);
+        comp ??= _entityManager.GetComponent<InstrumentComponent>(_owner);
 
-        var instrument = new Entity<InstrumentComponent>(_owner.Owner, comp);
+        var instrument = new Entity<InstrumentComponent>(_owner, comp);
 
         while (true)
         {
@@ -99,13 +99,13 @@ public sealed partial class ChannelsMenu : DefaultWindow
                 _entityManager.GetComponent<InstrumentComponent>((EntityUid)instrument.Comp.Master));
         }
 
-        return _entityManager.GetComponent<ActiveInstrumentComponent>(instrument.Owner);
+        return _entityManager.GetComponent<ActiveInstrumentComponent>(instrument);
     }
 
     public void Populate()
     {
         ChannelList.Clear();
-        var instrument = _entityManager.GetComponent<InstrumentComponent>(_owner.Owner);
+        var instrument = _entityManager.GetComponent<InstrumentComponent>(_owner);
         var activeInstrument = ResolveActiveInstrument(instrument);
 
         for (int i = 0; i < RobustMidiEvent.MaxChannels; i++)

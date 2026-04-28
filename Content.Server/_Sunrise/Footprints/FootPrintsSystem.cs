@@ -79,8 +79,8 @@ public sealed class FootprintSystem : EntitySystem
 
     private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
     {
-        _solution.EnsureSolution(entity.Owner, entity.Comp.FootsSolutionName, out _, FixedPoint2.New(FootsVolume));
-        _solution.EnsureSolution(entity.Owner, entity.Comp.BodySurfaceSolutionName, out _, FixedPoint2.New(BodySurfaceVolume));
+        _solution.EnsureSolution(entity, entity.Comp.FootsSolutionName, out _, FixedPoint2.New(FootsVolume));
+        _solution.EnsureSolution(entity, entity.Comp.BodySurfaceSolutionName, out _, FixedPoint2.New(BodySurfaceVolume));
     }
 
     /// <summary>
@@ -135,7 +135,7 @@ public sealed class FootprintSystem : EntitySystem
         if (!_physicsQuery.TryComp(ent, out var body))
             return;
 
-        if (body.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(ent.Owner))
+        if (body.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(ent))
             return;
 
         var transform = Transform(ent);

@@ -359,10 +359,10 @@ public sealed partial class AdminVerbSystem
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)
                     {
-                        if (HasComp<BrainComponent>(organ.Owner) || HasComp<EyeComponent>(organ.Owner))
+                        if (HasComp<BrainComponent>(organ) || HasComp<EyeComponent>(organ))
                             continue;
 
-                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform));
+                        _transformSystem.PlaceNextTo((organ, organ.Comp1), (args.Target, baseXform));
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-vomit-organs-self"),
@@ -452,7 +452,7 @@ public sealed partial class AdminVerbSystem
                 {
                     foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body)))
                     {
-                        QueueDel(entity.Owner);
+                        QueueDel(entity);
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-stomach-removal-self"),
@@ -475,7 +475,7 @@ public sealed partial class AdminVerbSystem
                 {
                     foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body)))
                     {
-                        QueueDel(entity.Owner);
+                        QueueDel(entity);
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-lung-removal-self"),

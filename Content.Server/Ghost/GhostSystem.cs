@@ -522,7 +522,7 @@ namespace Content.Server.Ghost
             {
                 Log.Warning($"No spawn valid ghost spawn position found for {mind.Comp.CharacterName}"
                     + $" \"{ToPrettyString(mind)}\"");
-                _minds.TransferTo(mind.Owner, null, createGhost: false, mind: mind.Comp);
+                _minds.TransferTo(mind, null, createGhost: false, mind: mind.Comp);
                 return null;
             }
 
@@ -545,9 +545,9 @@ namespace Content.Server.Ghost
             SetCanReturnToBody((ghost, ghostComponent), canReturn);
 
             if (canReturn)
-                _minds.Visit(mind.Owner, ghost, mind.Comp);
+                _minds.Visit(mind, ghost, mind.Comp);
             else
-                _minds.TransferTo(mind.Owner, ghost, mind: mind.Comp);
+                _minds.TransferTo(mind, ghost, mind: mind.Comp);
             Log.Debug($"Spawned ghost \"{ToPrettyString(ghost)}\" for {mind.Comp.CharacterName}.");
 
             // we changed the entity name above

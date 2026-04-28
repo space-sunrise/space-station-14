@@ -27,7 +27,7 @@ public sealed partial class PowerChargeWindow : FancyWindow
         OnButton.OnPressed += _ => bui.SetPowerSwitch(true);
         OffButton.OnPressed += _ => bui.SetPowerSwitch(false);
 
-        EntityView.SetEntity(bui.Owner);
+        EntityView.SetEntity(bui);
     }
 
     public void UpdateState(PowerChargeState state)

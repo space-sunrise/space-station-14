@@ -70,11 +70,11 @@ public sealed partial class PowerCellSystem : EntitySystem
 
         // Set the data to that of the power cell
         if (_appearance.TryGetData(args.Entity, BatteryVisuals.State, out BatteryState state))
-            _appearance.SetData(ent.Owner, BatteryVisuals.State, state);
+            _appearance.SetData(ent, BatteryVisuals.State, state);
 
         // Set the data to that of the power cell
         if (_appearance.TryGetData(args.Entity, BatteryVisuals.Charging, out BatteryChargingState charging))
-            _appearance.SetData(ent.Owner, BatteryVisuals.Charging, charging);
+            _appearance.SetData(ent, BatteryVisuals.Charging, charging);
     }
 
     private void OnCellSlotRemoved(Entity<PowerCellSlotComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -98,8 +98,8 @@ public sealed partial class PowerCellSystem : EntitySystem
             return;
 
         // Set the appearance to empty.
-        _appearance.SetData(ent.Owner, BatteryVisuals.State, BatteryState.Empty);
-        _appearance.SetData(ent.Owner, BatteryVisuals.Charging, BatteryChargingState.Constant);
+        _appearance.SetData(ent, BatteryVisuals.State, BatteryState.Empty);
+        _appearance.SetData(ent, BatteryVisuals.Charging, BatteryChargingState.Constant);
     }
 
 
@@ -115,7 +115,7 @@ public sealed partial class PowerCellSystem : EntitySystem
 
     private void OnCellSlotExamined(Entity<PowerCellSlotComponent> ent, ref ExaminedEvent args)
     {
-        if (TryGetBatteryFromSlot(ent.AsNullable(), out var battery))
+        if (TryGetBatteryFromSlot(ent, out var battery))
             OnBatteryExamined(battery.Value, ref args);
         else
             args.PushMarkup(Loc.GetString("power-cell-component-examine-details-no-battery"));
@@ -124,12 +124,12 @@ public sealed partial class PowerCellSystem : EntitySystem
     private void OnCellExamined(Entity<PowerCellComponent> ent, ref ExaminedEvent args)
     {
         if (TryComp<BatteryComponent>(ent, out var battery))
-            OnBatteryExamined((ent.Owner, battery), ref args);
+            OnBatteryExamined((ent, battery), ref args);
     }
 
     private void OnBatteryExamined(Entity<BatteryComponent> ent, ref ExaminedEvent args)
     {
-        var chargePercent = _battery.GetChargeLevel(ent.AsNullable()) * 100;
+        var chargePercent = _battery.GetChargeLevel(ent) * 100;
         args.PushMarkup(Loc.GetString("power-cell-component-examine-details", ("currentCharge", $"{chargePercent:F0}")));
     }
 
@@ -142,13 +142,13 @@ public sealed partial class PowerCellSystem : EntitySystem
     private void OnDrawStartup(Entity<PowerCellDrawComponent> ent, ref ComponentStartup args)
     {
         if (ent.Comp.Enabled)
-            _battery.RefreshChargeRate(ent.Owner);
+            _battery.RefreshChargeRate(ent);
     }
 
     private void OnDrawRemove(Entity<PowerCellDrawComponent> ent, ref ComponentRemove args)
     {
         // We use ComponentRemove to make sure this component no longer subscribes to the refresh event.
         if (ent.Comp.Enabled)
-            _battery.RefreshChargeRate(ent.Owner);
+            _battery.RefreshChargeRate(ent);
     }
 }

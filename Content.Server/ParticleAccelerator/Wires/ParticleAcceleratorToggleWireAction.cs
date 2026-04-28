@@ -26,7 +26,7 @@ public sealed partial class ParticleAcceleratorPowerWireAction : ComponentWireAc
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
 
         controller.CanBeEnabled = false;
-        paSystem.SwitchOff(wire.Owner, user, controller);
+        paSystem.SwitchOff(wire, user, controller);
         return true;
     }
 
@@ -42,8 +42,8 @@ public sealed partial class ParticleAcceleratorPowerWireAction : ComponentWireAc
         var multipartMachine = EntityManager.System<MultipartMachineSystem>();
 
         if (controller.Enabled)
-            paSystem.SwitchOff(wire.Owner, user, controller);
-        else if (multipartMachine.IsAssembled((wire.Owner, null)))
-            paSystem.SwitchOn(wire.Owner, user, controller);
+            paSystem.SwitchOff(wire, user, controller);
+        else if (multipartMachine.IsAssembled((wire, null)))
+            paSystem.SwitchOn(wire, user, controller);
     }
 }

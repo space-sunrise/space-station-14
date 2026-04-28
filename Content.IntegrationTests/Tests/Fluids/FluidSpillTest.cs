@@ -55,7 +55,7 @@ public sealed class FluidSpill
         {
             mapSystem.CreateMap(out var mapId);
             var grid = mapManager.CreateGridEntity(mapId);
-            gridId = grid.Owner;
+            gridId = grid;
 
             for (var x = 0; x < 3; x++)
             {
@@ -92,7 +92,7 @@ public sealed class FluidSpill
 
 #pragma warning disable NUnit2045 // Interdependent tests
             Assert.That(puddle, Is.Not.Null);
-            Assert.That(puddleSystem.CurrentVolume(puddle!.Value.Owner, puddle), Is.EqualTo(FixedPoint2.New(100)));
+            Assert.That(puddleSystem.CurrentVolume(puddle!.Value, puddle), Is.EqualTo(FixedPoint2.New(100)));
 #pragma warning restore NUnit2045
 
             for (var x = 0; x < 3; x++)

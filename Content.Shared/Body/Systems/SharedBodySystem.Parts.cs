@@ -189,7 +189,7 @@ public partial class SharedBodySystem
         {
             // TODO BODY SYSTEM KILL : remove this when wounding and required parts are implemented properly
             var damage = new DamageSpecifier(Prototypes.Index(BloodlossDamageType), 300);
-            Damageable.ChangeDamage(bodyEnt.Owner, damage);
+            Damageable.ChangeDamage(bodyEnt, damage);
         }
     }
 
@@ -202,7 +202,7 @@ public partial class SharedBodySystem
         if (!Containers.TryGetContainingContainer((uid, null, null), out var container))
             return null;
 
-        var parent = container.Owner;
+        var parent = container;
 
         if (!HasComp<BodyPartComponent>(parent))
             return null;
@@ -223,7 +223,7 @@ public partial class SharedBodySystem
         if (string.IsNullOrEmpty(slotId))
             return null;
 
-        var parent = container.Owner;
+        var parent = container;
 
         if (!TryComp<BodyPartComponent>(parent, out var parentBody)
             || !parentBody.Children.ContainsKey(slotId))
@@ -246,9 +246,9 @@ public partial class SharedBodySystem
         parentComponent = null;
 
         if (Containers.TryGetContainingContainer((partUid, null, null), out var container) &&
-            TryComp(container.Owner, out parentComponent))
+            TryComp(container, out parentComponent))
         {
-            parentUid = container.Owner;
+            parentUid = container;
             return true;
         }
 

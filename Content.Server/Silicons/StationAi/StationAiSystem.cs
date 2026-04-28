@@ -104,7 +104,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         if (hasMind || HasComp<GhostRoleComponent>(brain))
         {
-            var aiBrain = Spawn(_stationAiBrain, Transform(ent.Owner).Coordinates);
+            var aiBrain = Spawn(_stationAiBrain, Transform(ent).Coordinates);
 
             if (hasMind)
             {
@@ -147,7 +147,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             _battery.SetCharge((ent, battery), battery.MaxCharge);
         }
 
-        _damageable.ClearAllDamage(ent.Owner);
+        _damageable.ClearAllDamage(ent);
     }
 
     protected override void OnAiInsert(Entity<StationAiCoreComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -191,7 +191,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         if (TryGetCore(ent, out var aiCore) && aiCore.Comp != null)
         {
-            var aiCoreEnt = (aiCore.Owner, aiCore.Comp);
+            var aiCoreEnt = (aiCore, aiCore.Comp);
 
             if (SetupEye(aiCoreEnt))
                 AttachEye(aiCoreEnt);
@@ -220,7 +220,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!args.Enabled)
             return;
 
-        if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
+        if (!TryGetHeld((ent, ent.Comp), out var held))
             return;
 
         var ev = new ChatNotificationEvent(_aiLosingPowerChatNotificationPrototype, ent);
@@ -242,14 +242,14 @@ public sealed class StationAiSystem : SharedStationAiSystem
     // TODO: This should just read the current damage and charge when speaking instead of updating the component all the time even if we don't even use it.
     private void UpdateDamagedAccent(Entity<StationAiCoreComponent> ent)
     {
-        if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
+        if (!TryGetHeld((ent, ent.Comp), out var held))
             return;
 
         if (!TryComp<DamagedSiliconAccentComponent>(held, out var accent))
             return;
 
         if (TryComp<BatteryComponent>(ent, out var battery))
-            accent.OverrideChargeLevel = _battery.GetChargeLevel((ent.Owner, battery));
+            accent.OverrideChargeLevel = _battery.GetChargeLevel((ent, battery));
 
         if (TryComp<DamageableComponent>(ent, out var damageable))
             accent.OverrideTotalDamage = damageable.TotalDamage;
@@ -265,13 +265,13 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!TryComp<BatteryComponent>(ent, out var battery))
             return;
 
-        if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
+        if (!TryGetHeld((ent, ent.Comp), out var held))
             return;
 
         if (!_proto.TryIndex(_batteryAlert, out var proto))
             return;
 
-        var chargePercent = _battery.GetChargeLevel((ent.Owner, battery));
+        var chargePercent = _battery.GetChargeLevel((ent, battery));
         var chargeLevel = Math.Round(chargePercent * proto.MaxSeverity);
 
         _alerts.ShowAlert(held.Value, _batteryAlert, (short)Math.Clamp(chargeLevel, 0, proto.MaxSeverity));
@@ -293,7 +293,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!TryComp<DestructibleComponent>(ent, out var destructible))
             return;
 
-        if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
+        if (!TryGetHeld((ent, ent.Comp), out var held))
             return;
 
         if (!_proto.TryIndex(_damageAlert, out var proto))
@@ -307,7 +307,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
     private void OnDoAfterAttempt(Entity<StationAiCoreComponent> ent, ref DoAfterAttemptEvent<IntellicardDoAfterEvent> args)
     {
-        if (TryGetHeld((ent.Owner, ent.Comp), out _))
+        if (TryGetHeld((ent, ent.Comp), out _))
             return;
 
         // Prevent AIs from being uploaded into an unpowered or broken AI core.
@@ -328,7 +328,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
     {
         base.KillHeldAi(ent);
 
-        if (TryGetHeld((ent.Owner, ent.Comp), out var held) &&
+        if (TryGetHeld((ent, ent.Comp), out var held) &&
             _mind.TryGetMind(held.Value, out var mindId, out var mind))
         {
             _ghost.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
@@ -340,7 +340,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
     private void OnRejuvenate(Entity<StationAiCoreComponent> ent, ref RejuvenateEvent args)
     {
-        if (TryGetHeld((ent.Owner, ent.Comp), out var held))
+        if (TryGetHeld((ent, ent.Comp), out var held))
         {
             _mobState.ChangeMobState(held.Value, MobState.Alive);
             EnsureComp<StationAiOverlayComponent>(held.Value);
@@ -410,7 +410,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             return false;
 
         if (announce)
-            AnnounceSnip(entity.Owner);
+            AnnounceSnip(entity);
 
         return true;
     }
@@ -421,7 +421,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             return false;
 
         if (announce)
-            AnnounceSnip(entity.Owner);
+            AnnounceSnip(entity);
 
         return true;
     }

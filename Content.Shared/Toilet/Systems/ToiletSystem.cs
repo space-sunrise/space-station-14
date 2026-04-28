@@ -52,7 +52,7 @@ public sealed class ToiletSystem : EntitySystem
             return;
 
         var user = args.User;
-        AlternativeVerb toggleVerb = new() { Act = () => ToggleToiletSeat(ent.AsNullable(), user) };
+        AlternativeVerb toggleVerb = new() { Act = () => ToggleToiletSeat(ent, user) };
 
         if (ent.Comp.ToggleSeat)
         {
@@ -75,7 +75,7 @@ public sealed class ToiletSystem : EntitySystem
             return;
 
         args.Handled = true;
-        ToggleToiletSeat(ent.AsNullable(), args.User);
+        ToggleToiletSeat(ent, args.User);
     }
 
     private void UpdateAppearance(Entity<ToiletComponent> ent)

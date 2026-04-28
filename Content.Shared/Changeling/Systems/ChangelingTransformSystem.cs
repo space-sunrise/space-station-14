@@ -51,7 +51,7 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
     {
         if (ent.Comp.ChangelingTransformActionEntity != null)
         {
-            _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ChangelingTransformActionEntity);
+            _actionsSystem.RemoveAction(ent, ent.Comp.ChangelingTransformActionEntity);
         }
     }
 
@@ -82,8 +82,8 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
-        var selfMessage = Loc.GetString("changeling-transform-attempt-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
-        var othersMessage = Loc.GetString("changeling-transform-attempt-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
+        var selfMessage = Loc.GetString("changeling-transform-attempt-self", ("user", Identity.Entity(ent, EntityManager)));
+        var othersMessage = Loc.GetString("changeling-transform-attempt-others", ("user", Identity.Entity(ent, EntityManager)));
         _popupSystem.PopupPredicted(
             selfMessage,
             othersMessage,
@@ -95,9 +95,9 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
             ent.Comp.CurrentTransformSound = _audio.PlayPvs(ent.Comp.TransformAttemptNoise, ent)?.Entity;
 
         if (TryComp<ChangelingStoredIdentityComponent>(targetIdentity, out var storedIdentity) && storedIdentity.OriginalSession != null)
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} begun an attempt to transform into \"{Name(targetIdentity)}\" ({storedIdentity.OriginalSession:player}) ");
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent):player} begun an attempt to transform into \"{Name(targetIdentity)}\" ({storedIdentity.OriginalSession:player}) ");
         else
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} begun an attempt to transform into \"{Name(targetIdentity)}\"");
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent):player} begun an attempt to transform into \"{Name(targetIdentity)}\"");
 
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(
             EntityManager,
@@ -118,7 +118,7 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
     private void OnTransformSelected(Entity<ChangelingTransformComponent> ent,
         ref ChangelingTransformIdentitySelectMessage args)
     {
-        _uiSystem.CloseUi(ent.Owner, ChangelingTransformUiKey.Key, ent);
+        _uiSystem.CloseUi(ent, ChangelingTransformUiKey.Key, ent);
 
         if (!TryGetEntity(args.TargetIdentity, out var targetIdentity))
             return;
@@ -132,7 +132,7 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
         if (!identity.ConsumedIdentities.Contains(targetIdentity.Value))
             return; // this identity does not belong to this player
 
-        TransformInto(ent.AsNullable(), targetIdentity.Value);
+        TransformInto(ent, targetIdentity.Value);
     }
 
     private void OnSuccessfulTransform(Entity<ChangelingTransformComponent> ent,
@@ -156,9 +156,9 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
         _cloningSystem.CloneComponents(targetIdentity, args.User, settings);
 
         if (TryComp<ChangelingStoredIdentityComponent>(targetIdentity, out var storedIdentity) && storedIdentity.OriginalSession != null)
-            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent.Owner):player} successfully transformed into \"{Name(targetIdentity)}\" ({storedIdentity.OriginalSession:player})");
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} successfully transformed into \"{Name(targetIdentity)}\" ({storedIdentity.OriginalSession:player})");
         else
-            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent.Owner):player} successfully transformed into \"{Name(targetIdentity)}\"");
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} successfully transformed into \"{Name(targetIdentity)}\"");
         _metaSystem.SetEntityName(ent, Name(targetIdentity), raiseEvents: false);
 
         Dirty(ent);
@@ -166,7 +166,7 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
         if (TryComp<ChangelingIdentityComponent>(ent, out var identity)) // in case we ever get changelings that don't store identities
         {
             identity.CurrentIdentity = targetIdentity;
-            Dirty(ent.Owner, identity);
+            Dirty(ent, identity);
         }
     }
 }

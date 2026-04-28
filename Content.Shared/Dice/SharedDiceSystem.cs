@@ -102,7 +102,7 @@ public abstract class SharedDiceSystem : EntitySystem
     private void OnChangeDiceSetValueMessage(Entity<DiceComponent> entity, ref ChangeDiceSetValueMessage args)
     {
         entity.Comp.SetSides((int)args.StartValue, (int)args.EndValue);
-        _popup.PopupPredicted(Loc.GetString("comp-change-dice-sides-amount", ("startAmount", (int)args.StartValue), ("endAmount", (int)args.EndValue)), entity, entity.Owner);
+        _popup.PopupPredicted(Loc.GetString("comp-change-dice-sides-amount", ("startAmount", (int)args.StartValue), ("endAmount", (int)args.EndValue)), entity, entity);
         Dirty(entity);
     }
 }

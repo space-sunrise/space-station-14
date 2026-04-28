@@ -48,7 +48,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxAfterState(Entity<JukeboxComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>(ent.Owner, JukeboxUiKey.Key, out var bui))
+        if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>(ent, JukeboxUiKey.Key, out var bui))
             return;
 
         bui.Reload();
@@ -97,7 +97,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                 break;
 
             case JukeboxVisualState.Select:
-                PlayAnimation(entity.Owner, JukeboxVisualLayers.Base, component.SelectState, 1.0f, entity);
+                PlayAnimation(entity, JukeboxVisualLayers.Base, component.SelectState, 1.0f, entity);
                 break;
         }
     }
@@ -139,8 +139,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         if (string.IsNullOrEmpty(state))
             return;
 
-        _sprite.LayerSetVisible(sprite.AsNullable(), layer, true);
-        _sprite.LayerSetAutoAnimated(sprite.AsNullable(), layer, true);
-        _sprite.LayerSetRsiState(sprite.AsNullable(), layer, state);
+        _sprite.LayerSetVisible(sprite, layer, true);
+        _sprite.LayerSetAutoAnimated(sprite, layer, true);
+        _sprite.LayerSetRsiState(sprite, layer, state);
     }
 }

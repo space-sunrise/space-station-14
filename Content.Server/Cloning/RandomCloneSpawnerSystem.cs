@@ -26,7 +26,7 @@ public sealed class RandomCloneSpawnerSystem : EntitySystem
 
     private void OnMapInit(Entity<RandomCloneSpawnerComponent> ent, ref MapInitEvent args)
     {
-        QueueDel(ent.Owner);
+        QueueDel(ent);
 
         if (!_prototypeManager.TryIndex(ent.Comp.Settings, out var settings))
         {
@@ -42,6 +42,6 @@ public sealed class RandomCloneSpawnerSystem : EntitySystem
         var bodyToClone = _random.Pick(allHumans).Comp.OwnedEntity;
 
         if (bodyToClone != null)
-            _cloning.TryCloning(bodyToClone.Value, _transformSystem.GetMapCoordinates(ent.Owner), settings, out _);
+            _cloning.TryCloning(bodyToClone.Value, _transformSystem.GetMapCoordinates(ent), settings, out _);
     }
 }

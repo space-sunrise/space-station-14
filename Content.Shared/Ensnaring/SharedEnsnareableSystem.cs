@@ -56,7 +56,7 @@ public abstract class SharedEnsnareableSystem : EntitySystem
 
     protected virtual void OnEnsnareInit(Entity<EnsnareableComponent> ent, ref ComponentInit args)
     {
-        ent.Comp.Container = Container.EnsureContainer<Container>(ent.Owner, "ensnare");
+        ent.Comp.Container = Container.EnsureContainer<Container>(ent, "ensnare");
     }
 
     private void OnHandleState(EntityUid uid, EnsnareableComponent component, ref AfterAutoHandleStateEvent args)

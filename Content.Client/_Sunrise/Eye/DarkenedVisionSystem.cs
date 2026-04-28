@@ -45,7 +45,7 @@ public sealed class DarkenedVisionSystem : SharedDarkenedVisionSystem
 
     private void OnStartup(Entity<DarkenedVisionComponent> ent, ref ComponentStartup args)
     {
-        if (_player.LocalEntity == ent.Owner)
+        if (_player.LocalEntity == ent)
         {
             _overlayMan.AddOverlay(_overlay);
             _overlay.DarkenedVision = ent.Comp;
@@ -54,7 +54,7 @@ public sealed class DarkenedVisionSystem : SharedDarkenedVisionSystem
 
     private void OnShutdown(Entity<DarkenedVisionComponent> ent, ref ComponentShutdown args)
     {
-        if (_player.LocalEntity == ent.Owner)
+        if (_player.LocalEntity == ent)
         {
             _overlayMan.RemoveOverlay(_overlay);
             _overlay.DarkenedVision = null;

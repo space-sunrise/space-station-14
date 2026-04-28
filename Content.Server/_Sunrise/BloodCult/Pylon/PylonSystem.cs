@@ -100,7 +100,7 @@ public sealed class PylonSystem : EntitySystem
         var tilesConverted = 0;
         var random = new Random().Next(1, 3);
 
-        var uid = comp.Owner;
+        var uid = comp;
         var gridUid = Transform(uid).GridUid;
         var pylonPos = Transform(uid).Coordinates;
 
@@ -195,7 +195,7 @@ public sealed class PylonSystem : EntitySystem
             if (playerDamageComp == null || playerDamageComp.Damage.GetTotal() == 0)
                 continue;
 
-            var uid = comp.Owner;
+            var uid = comp;
             var pylonXForm = Transform(uid);
             var playerXForm = Transform(playerEntity);
 

@@ -33,7 +33,7 @@ public sealed partial class TriggerSystem
 
     private void OnExamined(Entity<TriggerOnExaminedComponent> ent, ref ExaminedEvent args)
     {
-        Trigger(ent.Owner, args.Examiner, ent.Comp.KeyOut);
+        Trigger(ent, args.Examiner, ent.Comp.KeyOut);
     }
 
     private void OnActivate(Entity<TriggerOnActivateComponent> ent, ref ActivateInWorldEvent args)
@@ -44,7 +44,7 @@ public sealed partial class TriggerSystem
         if (ent.Comp.RequireComplex && !args.Complex)
             return;
 
-        Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger(ent, args.User, ent.Comp.KeyOut);
         args.Handled = true;
     }
 
@@ -53,7 +53,7 @@ public sealed partial class TriggerSystem
         if (args.Handled)
             return;
 
-        Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger(ent, args.User, ent.Comp.KeyOut);
         args.Handled = true;
     }
 
@@ -62,7 +62,7 @@ public sealed partial class TriggerSystem
         if (args.Handled)
             return;
 
-        Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger(ent, args.User, ent.Comp.KeyOut);
         args.Handled = true;
     }
 
@@ -71,7 +71,7 @@ public sealed partial class TriggerSystem
         if (args.Handled)
             return;
 
-        Trigger(ent.Owner, args.Target, ent.Comp.KeyOut);
+        Trigger(ent, args.Target, ent.Comp.KeyOut);
 
         if (ent.Comp.Handle)
             args.Handled = true;
@@ -85,7 +85,7 @@ public sealed partial class TriggerSystem
         if (!_whitelist.CheckBoth(args.Used, ent.Comp.Blacklist, ent.Comp.Whitelist))
             return;
 
-        Trigger(ent.Owner, ent.Comp.TargetUsed ? args.Used : args.User, ent.Comp.KeyOut);
+        Trigger(ent, ent.Comp.TargetUsed ? args.Used : args.User, ent.Comp.KeyOut);
         args.Handled = true;
     }
 
@@ -97,7 +97,7 @@ public sealed partial class TriggerSystem
         if (!_whitelist.CheckBoth(args.Used, ent.Comp.Blacklist, ent.Comp.Whitelist))
             return;
 
-        Trigger(ent.Owner, ent.Comp.TargetUsed ? args.Used : args.Target, ent.Comp.KeyOut);
+        Trigger(ent, ent.Comp.TargetUsed ? args.Used : args.Target, ent.Comp.KeyOut);
 
         if (ent.Comp.Handle)
             args.Handled = true;
@@ -105,12 +105,12 @@ public sealed partial class TriggerSystem
 
     private void OnThrow(Entity<TriggerOnThrowComponent> ent, ref ThrowEvent args)
     {
-        Trigger(ent.Owner, args.Thrown, ent.Comp.KeyOut);
+        Trigger(ent, args.Thrown, ent.Comp.KeyOut);
     }
 
     private void OnThrown(Entity<TriggerOnThrownComponent> ent, ref ThrownEvent args)
     {
-        Trigger(ent.Owner, args.User, ent.Comp.KeyOut);
+        Trigger(ent, args.User, ent.Comp.KeyOut);
     }
 
     private void OnUiOpened(Entity<TriggerOnUiOpenComponent> ent, ref BoundUIOpenedEvent args)
@@ -134,7 +134,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+        var target = ent.Comp.TargetUser ? args.User : ent;
 
         if (!TryComp<ItemToggleComponent>(target, out var itemToggle))
             return;
@@ -153,7 +153,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+        var target = ent.Comp.TargetUser ? args.User : ent;
 
         if (target == null)
             return;
@@ -176,7 +176,7 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
-        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+        var target = ent.Comp.TargetUser ? args.User : ent;
 
         if (target == null)
             return;

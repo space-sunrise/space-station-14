@@ -75,7 +75,7 @@ public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag
     {
         base.KeyBindDown(args);
         // get an entity associated with this element
-        var entity = Sprite?.Owner;
+        var entity = Sprite;
 
         // Deleted() automatically checks for null & existence.
         if (_entityManager.Deleted(entity))

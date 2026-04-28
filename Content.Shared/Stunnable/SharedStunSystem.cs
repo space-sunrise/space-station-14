@@ -235,7 +235,7 @@ public abstract partial class SharedStunSystem : EntitySystem
     /// <param name="force">Should we force the status effect?</param>
     public bool TryKnockdown(Entity<CrawlerComponent?> entity, TimeSpan? time, bool refresh = true, bool autoStand = true, bool drop = true, bool force = false)
     {
-        if (!CanKnockdown(entity.Owner, ref time, ref autoStand, ref drop, force))
+        if (!CanKnockdown(entity, ref time, ref autoStand, ref drop, force))
             return false;
 
         // If the entity can't crawl they also need to be stunned, and therefore we should be using paralysis status effect.

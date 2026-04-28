@@ -40,7 +40,7 @@ public sealed partial class LabelSystem : EntitySystem
             Dirty(ent);
         }
 
-        _nameModifier.RefreshNameModifiers(ent.Owner);
+        _nameModifier.RefreshNameModifiers(ent);
     }
 
     /// <summary>

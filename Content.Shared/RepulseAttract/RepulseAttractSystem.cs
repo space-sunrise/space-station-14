@@ -34,7 +34,7 @@ public sealed class RepulseAttractSystem : EntitySystem
 
     private void OnMeleeAttempt(Entity<RepulseAttractComponent> ent, ref MeleeHitEvent args)
     {
-        if (_delay.IsDelayed(ent.Owner))
+        if (_delay.IsDelayed(ent))
             return;
 
         TryRepulseAttract(ent, args.User);
@@ -51,7 +51,7 @@ public sealed class RepulseAttractSystem : EntitySystem
 
     public bool TryRepulseAttract(Entity<RepulseAttractComponent> ent, EntityUid user)
     {
-        var position = _xForm.GetMapCoordinates(ent.Owner);
+        var position = _xForm.GetMapCoordinates(ent);
         return TryRepulseAttract(position, user, ent.Comp.Speed, ent.Comp.Range, ent.Comp.Whitelist, ent.Comp.CollisionMask);
     }
 

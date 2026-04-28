@@ -25,7 +25,7 @@ namespace Content.Server.Inventory
 
         public void TransferEntityInventories(Entity<InventoryComponent?> source, Entity<InventoryComponent?> target)
         {
-            if (!Resolve(source.Owner, ref source.Comp) || !Resolve(target.Owner, ref target.Comp))
+            if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
                 return;
 
             var enumerator = new InventorySlotEnumerator(source.Comp);

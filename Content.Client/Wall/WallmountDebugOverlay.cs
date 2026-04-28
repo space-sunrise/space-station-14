@@ -32,7 +32,7 @@ public sealed class WallmountDebugOverlay : Overlay
         _lookup.GetEntitiesIntersecting(args.MapId, args.WorldBounds, _intersecting);
         foreach (var ent in _intersecting)
         {
-            var (worldPos, worldRot) = _transform.GetWorldPositionRotation(ent.Owner);
+            var (worldPos, worldRot) = _transform.GetWorldPositionRotation(ent);
             DrawArc(args.WorldHandle, worldPos, SharedInteractionSystem.InteractionRange, worldRot + ent.Comp.Direction, ent.Comp.Arc);
         }
     }

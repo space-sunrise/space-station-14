@@ -120,7 +120,7 @@ public sealed class AlertLevelSystem : EntitySystem
     /// <param name="station">The station entity.</param>
     public string GetDefaultLevel(Entity<AlertLevelComponent?> station)
     {
-        if (!Resolve(station.Owner, ref station.Comp) || station.Comp.AlertLevels == null)
+        if (!Resolve(station, ref station.Comp) || station.Comp.AlertLevels == null)
         {
             return string.Empty;
         }

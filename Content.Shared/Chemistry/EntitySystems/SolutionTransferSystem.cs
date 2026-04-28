@@ -62,7 +62,7 @@ public sealed class SolutionTransferSystem : EntitySystem
             // TODO: remove server check when bui prediction is a thing
             Act = () =>
             {
-                _ui.OpenUi(ent.Owner, TransferAmountUiKey.Key, @event.User);
+                _ui.OpenUi(ent, TransferAmountUiKey.Key, @event.User);
             },
             Priority = 1
         });
@@ -82,9 +82,9 @@ public sealed class SolutionTransferSystem : EntitySystem
             {
                 ent.Comp.TransferAmount = amount;
 
-                _popup.PopupClient(Loc.GetString("comp-solution-transfer-set-amount", ("amount", amount)), ent.Owner, user);
+                _popup.PopupClient(Loc.GetString("comp-solution-transfer-set-amount", ("amount", amount)), ent, user);
 
-                Dirty(ent.Owner, ent.Comp);
+                Dirty(ent, ent.Comp);
             };
 
             // we want to sort by size, not alphabetically by the verb text.
@@ -101,9 +101,9 @@ public sealed class SolutionTransferSystem : EntitySystem
         ent.Comp.TransferAmount = newTransferAmount;
 
         if (message.Actor is { Valid: true } user)
-            _popup.PopupEntity(Loc.GetString("comp-solution-transfer-set-amount", ("amount", newTransferAmount)), ent.Owner, user);
+            _popup.PopupEntity(Loc.GetString("comp-solution-transfer-set-amount", ("amount", newTransferAmount)), ent, user);
 
-        Dirty(ent.Owner, ent.Comp);
+        Dirty(ent, ent.Comp);
     }
 
     private void OnAfterInteract(Entity<SolutionTransferComponent> ent, ref AfterInteractEvent args)
@@ -118,9 +118,9 @@ public sealed class SolutionTransferSystem : EntitySystem
         // In the case where the target has both Refillable and Drainable, Held --> Target takes priority.
 
         if (ent.Comp.CanSend
-            && _drainableQuery.TryComp(ent.Owner, out var heldDrainable)
+            && _drainableQuery.TryComp(ent, out var heldDrainable)
             && _refillableQuery.TryComp(target, out var targetRefillable)
-            && TryGetTransferrableSolutions((ent.Owner, heldDrainable),
+            && TryGetTransferrableSolutions((ent, heldDrainable),
                 (target, targetRefillable),
                 out var ownerSoln,
                 out var targetSoln,
@@ -132,7 +132,7 @@ public sealed class SolutionTransferSystem : EntitySystem
             if (targetRefillable.MaxRefill is {} maxRefill)
                 transferAmount = FixedPoint2.Min(transferAmount, maxRefill);
 
-            var transferData = new SolutionTransferData(args.User, ent.Owner, ownerSoln.Value, target, targetSoln.Value, transferAmount);
+            var transferData = new SolutionTransferData(args.User, ent, ownerSoln.Value, target, targetSoln.Value, transferAmount);
             var transferTime = targetRefillable.RefillTime + heldDrainable.DrainTime;
 
             if (transferTime > TimeSpan.Zero)
@@ -140,7 +140,7 @@ public sealed class SolutionTransferSystem : EntitySystem
                 if (!CanTransfer(transferData))
                     return;
 
-                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, transferTime, new SolutionDrainTransferDoAfterEvent(transferAmount), ent.Owner, target)
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, transferTime, new SolutionDrainTransferDoAfterEvent(transferAmount), ent, target)
                 {
                     BreakOnDamage = true,
                     BreakOnMove = true,
@@ -158,10 +158,10 @@ public sealed class SolutionTransferSystem : EntitySystem
         }
 
         if (ent.Comp.CanReceive
-            && _refillableQuery.TryComp(ent.Owner, out var heldRefillable)
+            && _refillableQuery.TryComp(ent, out var heldRefillable)
             && _drainableQuery.TryComp(target, out var targetDrainable)
             && TryGetTransferrableSolutions((target, targetDrainable),
-                (ent.Owner, heldRefillable),
+                (ent, heldRefillable),
                 out targetSoln,
                 out ownerSoln,
                 out var solution))
@@ -172,7 +172,7 @@ public sealed class SolutionTransferSystem : EntitySystem
             if (heldRefillable.MaxRefill is {} maxRefill) // if the receiver has a smaller transfer limit, use that instead
                 transferAmount = FixedPoint2.Min(transferAmount, maxRefill);
 
-            var transferData = new SolutionTransferData(args.User, target, targetSoln.Value, ent.Owner, ownerSoln.Value, transferAmount);
+            var transferData = new SolutionTransferData(args.User, target, targetSoln.Value, ent, ownerSoln.Value, transferAmount);
             var transferTime = heldRefillable.RefillTime + targetDrainable.DrainTime;
 
             if (transferTime > TimeSpan.Zero)
@@ -180,7 +180,7 @@ public sealed class SolutionTransferSystem : EntitySystem
                 if (!CanTransfer(transferData))
                     return;
 
-                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, transferTime, new SolutionRefillTransferDoAfterEvent(transferAmount), ent.Owner, target)
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, transferTime, new SolutionRefillTransferDoAfterEvent(transferAmount), ent, target)
                 {
                     BreakOnDamage = true,
                     BreakOnMove = true,
@@ -204,7 +204,7 @@ public sealed class SolutionTransferSystem : EntitySystem
         // Have to check again, in case something has changed.
         if (CanSend(ent, target, out var ownerSoln, out var targetSoln))
         {
-            DrainTransfer(new SolutionTransferData(args.User, ent.Owner, ownerSoln.Value, args.Target.Value, targetSoln.Value, args.Amount));
+            DrainTransfer(new SolutionTransferData(args.User, ent, ownerSoln.Value, args.Target.Value, targetSoln.Value, args.Amount));
         }
     }
 
@@ -217,7 +217,7 @@ public sealed class SolutionTransferSystem : EntitySystem
         if (!CanRecieve(ent, target, out var ownerSoln, out var targetSoln, out var solution))
             return;
 
-        RefillTransfer(new SolutionTransferData(args.User, target, targetSoln.Value, ent.Owner, ownerSoln.Value, args.Amount), solution);
+        RefillTransfer(new SolutionTransferData(args.User, target, targetSoln.Value, ent, ownerSoln.Value, args.Amount), solution);
     }
 
     private bool CanSend(Entity<SolutionTransferComponent, DrainableSolutionComponent?> ent,
@@ -228,7 +228,7 @@ public sealed class SolutionTransferSystem : EntitySystem
         drainable = null;
         refillable = null;
 
-        return ent.Comp1.CanReceive && TryGetTransferrableSolutions(ent.Owner, target, out drainable, out refillable, out _);
+        return ent.Comp1.CanReceive && TryGetTransferrableSolutions(ent, target, out drainable, out refillable, out _);
     }
 
     private bool CanRecieve(Entity<SolutionTransferComponent> ent,
@@ -241,7 +241,7 @@ public sealed class SolutionTransferSystem : EntitySystem
         refillable = null;
         solution = null;
 
-        return ent.Comp.CanReceive && TryGetTransferrableSolutions(source, ent.Owner, out drainable, out refillable, out solution);
+        return ent.Comp.CanReceive && TryGetTransferrableSolutions(source, ent, out drainable, out refillable, out solution);
     }
 
     private bool TryGetTransferrableSolutions(Entity<DrainableSolutionComponent?> source,

@@ -25,7 +25,7 @@ public sealed partial class TargetInLOSPrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
 
         if (!blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entManager))
             return false;

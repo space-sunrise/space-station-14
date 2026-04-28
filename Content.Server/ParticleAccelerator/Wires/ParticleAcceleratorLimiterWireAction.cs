@@ -19,7 +19,7 @@ public sealed partial class ParticleAcceleratorLimiterWireAction : ComponentWire
         var result = base.GetStatusLightData(wire);
 
         if (result.HasValue
-        && EntityManager.TryGetComponent<ParticleAcceleratorControlBoxComponent>(wire.Owner, out var controller)
+        && EntityManager.TryGetComponent<ParticleAcceleratorControlBoxComponent>(wire, out var controller)
         && controller.MaxStrength >= ParticleAcceleratorPowerState.Level3)
             result = new(Color.Purple, result.Value.State, result.Value.Text);
 
@@ -35,7 +35,7 @@ public sealed partial class ParticleAcceleratorLimiterWireAction : ComponentWire
     {
         controller.MaxStrength = ParticleAcceleratorPowerState.Level3;
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.UpdateUI(wire.Owner, controller);
+        paSystem.UpdateUI(wire, controller);
         return true;
     }
 
@@ -49,8 +49,8 @@ public sealed partial class ParticleAcceleratorLimiterWireAction : ComponentWire
         // Yes, it's a feature that mending this wire WON'T WORK if the strength wire is also cut.
         // Since that blocks SetStrength().
         var paSystem = EntityManager.System<ParticleAcceleratorSystem>();
-        paSystem.SetStrength(wire.Owner, controller.MaxStrength, user, controller);
-        paSystem.UpdateUI(wire.Owner, controller);
+        paSystem.SetStrength(wire, controller.MaxStrength, user, controller);
+        paSystem.UpdateUI(wire, controller);
         return true;
     }
 

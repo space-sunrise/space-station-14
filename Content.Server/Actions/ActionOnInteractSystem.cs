@@ -156,7 +156,7 @@ public sealed class ActionOnInteractSystem : EntitySystem
         if (!ent.Comp.RequiresCharge)
             return true;
 
-        Entity<LimitedChargesComponent?> charges = ent.Owner;
+        Entity<LimitedChargesComponent?> charges = ent;
         if (_charges.IsEmpty(charges))
             return false;
 

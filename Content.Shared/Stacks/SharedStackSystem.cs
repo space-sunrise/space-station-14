@@ -69,7 +69,7 @@ public abstract partial class SharedStackSystem : EntitySystem
             return;
 
         // Transfer stacks from ground to hand
-        if (!TryMergeStacks((ent.Owner, ent.Comp), (args.Used, recipientStack), out var transferred))
+        if (!TryMergeStacks((ent, ent.Comp), (args.Used, recipientStack), out var transferred))
             return; // if nothing transferred, leave without a pop-up
 
         args.Handled = true;
@@ -109,12 +109,12 @@ public abstract partial class SharedStackSystem : EntitySystem
 
     private void OnStackStarted(Entity<StackComponent> ent, ref ComponentStartup args)
     {
-        if (!TryComp(ent.Owner, out AppearanceComponent? appearance))
+        if (!TryComp(ent, out AppearanceComponent? appearance))
             return;
 
-        Appearance.SetData(ent.Owner, StackVisuals.Actual, ent.Comp.Count, appearance);
-        Appearance.SetData(ent.Owner, StackVisuals.MaxCount, GetMaxCount(ent.Comp), appearance);
-        Appearance.SetData(ent.Owner, StackVisuals.Hide, false, appearance);
+        Appearance.SetData(ent, StackVisuals.Actual, ent.Comp.Count, appearance);
+        Appearance.SetData(ent, StackVisuals.MaxCount, GetMaxCount(ent.Comp), appearance);
+        Appearance.SetData(ent, StackVisuals.Hide, false, appearance);
     }
 
     private void OnStackGetState(Entity<StackComponent> ent, ref ComponentGetState args)
@@ -130,7 +130,7 @@ public abstract partial class SharedStackSystem : EntitySystem
         ent.Comp.MaxCountOverride = cast.MaxCountOverride;
         ent.Comp.Unlimited = cast.Unlimited;
         // This will change the count and call events.
-        SetCount(ent.AsNullable(), cast.Count);
+        SetCount(ent, cast.Count);
     }
 
     private void OnStackExamined(Entity<StackComponent> ent, ref ExaminedEvent args)
@@ -180,7 +180,7 @@ public abstract partial class SharedStackSystem : EntitySystem
 
     private void OnEaten(Entity<StackComponent> eaten, ref IngestedEvent args)
     {
-        ReduceCount(eaten.AsNullable(), 1);
+        ReduceCount(eaten, 1);
     }
 
     private void OnStackAlternativeInteract(Entity<StackComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
