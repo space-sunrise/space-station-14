@@ -38,7 +38,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent);
+        CheckAndUpdateDualWield(ent.AsNullable());
     }
 
     private void OnHandUnequipped(Entity<HandsComponent> ent, ref DidUnequipHandEvent args)
@@ -46,7 +46,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent);
+        CheckAndUpdateDualWield(ent.AsNullable());
     }
 
     private void OnHandCountChanged(Entity<HandsComponent> ent, ref HandCountChangedEvent args)
@@ -54,7 +54,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent);
+        CheckAndUpdateDualWield(ent.AsNullable());
     }
 
     private void OnDualWieldShutdown(Entity<DualWieldComponent> ent, ref ComponentShutdown args)
