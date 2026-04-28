@@ -42,7 +42,7 @@ public sealed class AoEHealSystem : EntitySystem
                          // Если нам важно, то жива ли цель?
                          .Where(target => !aoEHealComponent.AliveTargets || _mobState.IsAlive(target)))
             {
-                if (!aoEHealComponent.HealSelf && target == uid)
+                if (!aoEHealComponent.HealSelf && target.Owner == uid)
                     continue;
 
                 if (aoEHealComponent.Threshold != null && // AoE компоненту важно хилить до какого-то уровня от макс здоровья
@@ -50,7 +50,7 @@ public sealed class AoEHealSystem : EntitySystem
                     target.Comp.Damage.GetTotal() < threshold * (1f - aoEHealComponent.Threshold)) // Не лечим если урона мало
                     continue;
 
-                _damageableSystem.TryChangeDamage(target, aoEHealComponent.Damage);
+                _damageableSystem.TryChangeDamage(target.Owner, aoEHealComponent.Damage);
             }
         }
     }

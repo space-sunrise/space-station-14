@@ -72,7 +72,7 @@ public sealed class PointIconsSystem : EntitySystem
             ? CautionColor
             : BaseColor;
 
-        var tag = Loc.GetString("ent-texture-tag-short", ("id", ent.Id));
+        var tag = Loc.GetString("ent-texture-tag-short", ("id", ent.Owner.Id));
         var wrappedMessage = $"[font size={fontsize}][color=#{fontcolor}]{args.Message + tag}[/color][/font]";
 
         var chatMsg = new ChatMessage(ChatChannel.Emotes,

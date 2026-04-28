@@ -19,7 +19,7 @@ public sealed partial class ArtifactRandomTransformationSystem
         _inventoryItems.Clear();
         foreach (var player in _inventories)
         {
-            var inventorySlots = _inventory.GetSlotEnumerator(player);
+            var inventorySlots = _inventory.GetSlotEnumerator(player.AsNullable());
 
             while (inventorySlots.MoveNext(out var slot))
             {
@@ -36,7 +36,7 @@ public sealed partial class ArtifactRandomTransformationSystem
         _worldItems.Clear();
         foreach (var item in _items)
         {
-            _worldItems.Add(item);
+            _worldItems.Add(item.Owner);
         }
     }
 

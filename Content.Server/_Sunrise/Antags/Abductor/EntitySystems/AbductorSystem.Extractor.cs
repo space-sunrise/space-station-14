@@ -39,13 +39,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         var time = TimeSpan.FromSeconds(2);
 
-        var doAfter = new DoAfterArgs(EntityManager, user, time, new AbductorExtractDoAfterEvent(), ent, target, ent)
+        var doAfter = new DoAfterArgs(EntityManager, user, time, new AbductorExtractDoAfterEvent(), ent, target, ent.Owner)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             DistanceThreshold = 1f
         };
-        _admin.Add(LogType.InteractUsing, LogImpact.Low, $"{ToPrettyString(user)} trying to use extractor {ToPrettyString(ent)} for extracting heart from {ToPrettyString(target)}.");
+        _admin.Add(LogType.InteractUsing, LogImpact.Low, $"{ToPrettyString(user)} trying to use extractor {ToPrettyString(ent.Owner)} for extracting heart from {ToPrettyString(target)}.");
         _doAfter.TryStartDoAfter(doAfter);
     }
 
@@ -56,7 +56,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (!_body.TryGetBodyOrganEntityComps<OrganHeartComponent>(args.Target.Value, out var hearts))
             return;
 
-        _admin.Add(LogType.InteractUsing, LogImpact.Low, $"Heart successfully extracted from {ToPrettyString(args.Target.Value)} using {ToPrettyString(ent)} by {ToPrettyString(args.User)}");
+        _admin.Add(LogType.InteractUsing, LogImpact.Low, $"Heart successfully extracted from {ToPrettyString(args.Target.Value)} using {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}");
         foreach (var heart in hearts)
             _body.RemoveOrgan(heart, _entityManager.GetComponent<OrganComponent>(heart));
     }

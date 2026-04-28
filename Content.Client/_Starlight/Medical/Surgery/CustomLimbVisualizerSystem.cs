@@ -37,7 +37,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
     private void OnChanged(Entity<CustomLimbVisualizerComponent> ent, ref AfterAutoHandleStateEvent _) => OnChanged(ent);
     private void OnChanged(Entity<CustomLimbVisualizerComponent> ent, bool repeat = true)
     {
-        if (!TryComp<SpriteComponent>(ent, out var sprite))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
         var old = ent.Comp.CachedLayers.ToHashSet();

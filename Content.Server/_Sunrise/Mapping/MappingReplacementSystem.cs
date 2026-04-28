@@ -89,7 +89,7 @@ public sealed class MappingReplacementSystem : EntitySystem
         Entity<MapGridComponent> grid)
     {
         var key = GetReplacementKey(msg.EntityTemplateName, replacement);
-        var indices = _map.TileIndicesFor(grid, grid.Comp, coordinates);
+        var indices = _map.TileIndicesFor(grid.Owner, grid.Comp, coordinates);
 
         _anchoredEntities.Clear();
         _map.GetAnchoredEntities(grid, indices, _anchoredEntities);

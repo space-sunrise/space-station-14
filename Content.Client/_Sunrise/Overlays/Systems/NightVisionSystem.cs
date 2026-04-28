@@ -33,22 +33,22 @@ public sealed class NightVisionSystem : EntitySystem
 
     private void OnHandleVisionState(Entity<NightVisionComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        AttemptAddVision(ent, ent.Comp);
+        AttemptAddVision(ent.Owner, ent.Comp);
     }
 
     private void OnPlayerAttached(Entity<NightVisionComponent> ent, ref LocalPlayerAttachedEvent args)
     {
-        AttemptAddVision(ent, ent.Comp);
+        AttemptAddVision(ent.Owner, ent.Comp);
     }
 
     private void OnPlayerDetached(Entity<NightVisionComponent> ent, ref LocalPlayerDetachedEvent args)
     {
-        AttemptRemoveVision(ent, true);
+        AttemptRemoveVision(ent.Owner, true);
     }
 
     private void OnVisionShutdown(Entity<NightVisionComponent> ent, ref ComponentShutdown args)
     {
-        AttemptRemoveVision(ent);
+        AttemptRemoveVision(ent.Owner);
     }
 
     private void AttemptAddVision(EntityUid uid, NightVisionComponent comp)

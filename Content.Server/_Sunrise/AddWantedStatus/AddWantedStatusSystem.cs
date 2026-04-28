@@ -71,7 +71,7 @@ public sealed partial class AddWantedStatusSystem : EntitySystem
 
     private void OnGetItemActions(Entity<AddWantedStatusComponent> ent, ref GetItemActionsEvent args)
     {
-        if (!TryComp<ClothingComponent>(ent, out var comp))
+        if (!TryComp<ClothingComponent>(ent.Owner, out var comp))
             return;
 
         if (comp.Slots != args.SlotFlags)

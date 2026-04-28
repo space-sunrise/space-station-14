@@ -41,7 +41,7 @@ public sealed class VentFleshWormsRule : StationEventSystem<VentFleshWormsRuleCo
             if (spawnAmount-- == 0)
                 break;
 
-            var coords = Transform(location.Item1);
+            var coords = Transform(location.Item1.Owner);
             Spawn(component.SpawnedPrototypeWorm, coords.Coordinates);
         }
     }

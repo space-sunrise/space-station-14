@@ -30,7 +30,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
         {
             var toggleLimbEvent = new ToggleLimbEvent()
             {
-                Performer = ent,
+                Performer = ent.Owner,
             };
             OnLimbToggle((args.Limb, args.Comp), ref toggleLimbEvent);
         }
@@ -47,7 +47,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
         {
             foreach (var item in storage.ItemEntities)
             {
-                var handId = $"{ent}_{item}";
+                var handId = $"{ent.Owner}_{item}";
                 var hands = EnsureComp<HandsComponent>(args.Performer);
                 _hands.AddHand((args.Performer, hands), handId, HandLocation.Functional);
                 _hands.DoPickup(args.Performer, handId, item, hands);
@@ -56,17 +56,17 @@ public sealed partial class CyberLimbSystem : EntitySystem
         }
         else
         {
-            var container = _container.EnsureContainer<Container>(ent, ent.Comp.ContainerId, out _);
+            var container = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId, out _);
             foreach (var item in storage.ItemEntities)
             {
-                var handId = $"{ent}_{item}";
+                var handId = $"{ent.Owner}_{item}";
                 RemComp<UnremoveableComponent>(item);
                 _container.Insert(_slEnt.Entity<TransformComponent, MetaDataComponent, PhysicsComponent>(item), container, force: true);
                 _hands.RemoveHand(args.Performer, handId);
             }
         }
 
-        if (_slEnt.TryEntity<BaseLayerIdComponent, BaseLayerIdToggledComponent, BodyPartComponent>(ent, out var limb, false)
+        if (_slEnt.TryEntity<BaseLayerIdComponent, BaseLayerIdToggledComponent, BodyPartComponent>(ent.Owner, out var limb, false)
             && _slEnt.TryEntity<HumanoidAppearanceComponent>(args.Performer, out var performer, false))
             _limb.ToggleLimbVisual(performer, limb, ent.Comp.Toggled);
 

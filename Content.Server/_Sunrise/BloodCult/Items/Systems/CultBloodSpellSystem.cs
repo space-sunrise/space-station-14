@@ -81,7 +81,7 @@ public sealed class CultBloodSpellSystem : EntitySystem
 
         var otherHand = enumerateHands.FirstOrDefault(hand => hand != currentHand);
 
-        if (otherHand == null || !_handsSystem.CanPickupToHand(args.User, entity, otherHand))
+        if (otherHand == null || !_handsSystem.CanPickupToHand(args.User, entity.Owner, otherHand))
         {
             _popupSystem.PopupEntity($"Рука занята",
                 args.User,
@@ -103,7 +103,7 @@ public sealed class CultBloodSpellSystem : EntitySystem
 
         var otherHand = handsComponent.Hands.FirstOrDefault(h => h.Key != currentHand);
 
-        _handsSystem.TryPickup(args.User, entity, otherHand.Key, checkActionBlocker: false);
+        _handsSystem.TryPickup(args.User, entity.Owner, otherHand.Key, checkActionBlocker: false);
 
         _handsSystem.SetActiveHand(args.User, otherHand.Key);
     }

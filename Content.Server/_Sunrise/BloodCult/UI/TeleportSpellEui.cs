@@ -99,9 +99,9 @@ public sealed class TeleportSpellEui : BaseEui
 
         foreach (var runeComponent in _entityManager.EntityQuery<CultRuneTeleportComponent>())
         {
-            if (runeComponent == new EntityUid(cast.RuneUid))
+            if (runeComponent.Owner == new EntityUid(cast.RuneUid))
             {
-                runeTransform = _entityManager.GetComponent<TransformComponent>(runeComponent);
+                runeTransform = _entityManager.GetComponent<TransformComponent>(runeComponent.Owner);
             }
         }
 

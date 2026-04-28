@@ -35,11 +35,11 @@ public sealed class PrisonCellDoorSystem : EntitySystem
     {
         if (args.Port == "PrisonCellDoorLock")
         {
-            TryLockDoor(ent);
+            TryLockDoor(ent.Owner);
         }
         else if (args.Port == "PrisonCellDoorUnlock")
         {
-            TryUnlockDoor(ent);
+            TryUnlockDoor(ent.Owner);
         }
     }
 

@@ -159,36 +159,36 @@ public partial class InteractionsPanel
         if (target == null)
             return;
 
-        if (!_playerManager.TryGetSessionByEntity(ent, out var userSession))
+        if (!_playerManager.TryGetSessionByEntity(ent.Owner, out var userSession))
             return;
 
         _playerManager.TryGetSessionByEntity(target.Value, out var targetSession);
         var targetIsPlayer = targetSession != null;
 
-        if (IsOnCooldown(ent, args.InteractionId))
+        if (IsOnCooldown(ent.Owner, args.InteractionId))
             return;
 
         if (args is { IsCustom: true, CustomData: not null })
         {
-            HandleCustomInteraction(ent, target.Value, args.InteractionId, args.CustomData, userSession, targetSession, targetIsPlayer);
+            HandleCustomInteraction(ent.Owner, target.Value, args.InteractionId, args.CustomData, userSession, targetSession, targetIsPlayer);
             return;
         }
 
         if (!_prototypeManager.TryIndex<InteractionPrototype>(args.InteractionId, out var interactionPrototype))
             return;
 
-        if (!CheckAllAppearConditions(interactionPrototype, ent, target.Value))
+        if (!CheckAllAppearConditions(interactionPrototype, ent.Owner, target.Value))
             return;
 
         var userPref = _playerCacheManager.GetEmoteVisibility(userSession.UserId);
         var targetPref = _playerCacheManager.GetEmoteVisibility(targetIsPlayer ? targetSession!.UserId : null);
 
         var rawMsg = _random.Pick(interactionPrototype.InteractionMessages);
-        var msg = FormatInteractionMessage(rawMsg, ent, target.Value);
+        var msg = FormatInteractionMessage(rawMsg, ent.Owner, target.Value);
 
         if (userPref && targetPref && targetIsPlayer)
         {
-            _chatSystem.SendInVoiceRange(ChatChannel.Emotes, msg, msg, ent, ChatTransmitRange.Normal, color: Color.Pink);
+            _chatSystem.SendInVoiceRange(ChatChannel.Emotes, msg, msg, ent.Owner, ChatTransmitRange.Normal, color: Color.Pink);
         }
         else
         {
@@ -198,7 +198,7 @@ public partial class InteractionsPanel
             if (targetIsPlayer)
                 filter.AddPlayer(targetSession!);
 
-            _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Emotes, msg, msg, ent, false, true, Color.Pink);
+            _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Emotes, msg, msg, ent.Owner, false, true, Color.Pink);
         }
 
         if (interactionPrototype.InteractionSounds.Count != 0)
@@ -207,7 +207,7 @@ public partial class InteractionsPanel
 
             if (_prototypeManager.TryIndex(rngSound, out var soundProto))
             {
-                _audio.PlayPvs(soundProto.Sound, ent, AudioParams.Default);
+                _audio.PlayPvs(soundProto.Sound, ent.Owner, AudioParams.Default);
             }
         }
 
@@ -218,9 +218,9 @@ public partial class InteractionsPanel
             {
                 if (_random.Prob(interactionPrototype.EffectChance))
                 {
-                    Spawn(effectPrototype.EntityEffect, Transform(ent).Coordinates);
+                    Spawn(effectPrototype.EntityEffect, Transform(ent.Owner).Coordinates);
 
-                    if (ent != target.Value)
+                    if (ent.Owner != target.Value)
                     {
                         Spawn(effectPrototype.EntityEffect, Transform(target.Value).Coordinates);
                     }
@@ -230,11 +230,11 @@ public partial class InteractionsPanel
 
         if (interactionPrototype.Cooldown > TimeSpan.Zero)
         {
-            SetCooldown(ent, args.InteractionId, interactionPrototype.Cooldown);
+            SetCooldown(ent.Owner, args.InteractionId, interactionPrototype.Cooldown);
         }
 
         _log.Add(LogType.Interactions, LogImpact.Medium,
-            $"[InteractionsPanel] {ToPretty(ent)} использует \"{interactionPrototype.ID}\" на {ToPretty(target.Value)}");
+            $"[InteractionsPanel] {ToPretty(ent.Owner)} использует \"{interactionPrototype.ID}\" на {ToPretty(target.Value)}");
     }
 
     private void HandleCustomInteraction(

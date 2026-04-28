@@ -57,7 +57,7 @@ public sealed partial class InjectSystem : EntitySystem
         var removedSolution = _solutions.SplitSolution(solutionEntity.Value, args.ReagentTransfer.Value);
         args.RemovedReagentAmount = removedSolution;
 
-        _solutions.UpdateAppearance((solutionEntity.Value, solutionEntity.Value.Comp));
+        _solutions.UpdateAppearance((solutionEntity.Value.Owner, solutionEntity.Value.Comp));
     }
 
     #endregion

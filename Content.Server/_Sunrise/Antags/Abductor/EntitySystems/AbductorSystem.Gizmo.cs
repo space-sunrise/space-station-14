@@ -48,7 +48,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         {
             console.Target = ent.Comp.Target;
             _popup.PopupEntity(Loc.GetString("abductors-ui-gizmo-transferred"), args.User);
-            _color.RaiseEffect(Color.FromHex("#00BA00"), new List<EntityUid>(2) { ent, args.Target.Value }, Filter.Pvs(args.User, entityManager: EntityManager));
+            _color.RaiseEffect(Color.FromHex("#00BA00"), new List<EntityUid>(2) { ent.Owner, args.Target.Value }, Filter.Pvs(args.User, entityManager: EntityManager));
             UpdateGui(console.Target, (args.Target.Value, console));
             return;
         }
@@ -63,7 +63,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (_tags.HasTag(target, _abductor))
             time = TimeSpan.FromSeconds(0.5);
 
-        var doAfter = new DoAfterArgs(EntityManager, user, time, new AbductorGizmoMarkDoAfterEvent(), ent, target, ent)
+        var doAfter = new DoAfterArgs(EntityManager, user, time, new AbductorGizmoMarkDoAfterEvent(), ent, target, ent.Owner)
         {
             BreakOnMove = true,
             BreakOnDamage = true,

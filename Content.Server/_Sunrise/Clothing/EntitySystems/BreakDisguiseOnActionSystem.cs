@@ -30,7 +30,7 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
         if (!ent.Comp.BreakOnAttacked)
             return;
 
-        TryBreakDisguise(ent, args);
+        TryBreakDisguise(ent, args.Owner);
     }
 
     private void OnMeleeAttack(Entity<BreakDisguiseOnActionComponent> ent, ref InventoryRelayedEvent<MeleeAttackEvent> args)
@@ -38,7 +38,7 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
         if (!ent.Comp.BreakOnMeleeAttack)
             return;
 
-        TryBreakDisguise(ent, args);
+        TryBreakDisguise(ent, args.Owner);
     }
 
     private void OnBeforeGunShot(Entity<BreakDisguiseOnActionComponent> ent, ref InventoryRelayedEvent<SelfBeforeGunShotEvent> args)
@@ -46,7 +46,7 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
         if (!ent.Comp.BreakOnGunShot || args.Args.Cancelled)
             return;
 
-        TryBreakDisguise(ent, args);
+        TryBreakDisguise(ent, args.Owner);
     }
 
     private bool TryBreakDisguise(Entity<BreakDisguiseOnActionComponent> ent, EntityUid wearer)
@@ -59,12 +59,12 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
 
     private bool CanBreakDisguise(Entity<BreakDisguiseOnActionComponent> ent)
     {
-        return _toggle.IsActivated(ent);
+        return _toggle.IsActivated(ent.Owner);
     }
 
     private bool BreakDisguise(Entity<BreakDisguiseOnActionComponent> ent, EntityUid wearer)
     {
-        if (!_toggle.TryDeactivate(ent, wearer, predicted: false))
+        if (!_toggle.TryDeactivate(ent.Owner, wearer, predicted: false))
             return false;
 
         StartCooldown(ent);
@@ -76,7 +76,7 @@ public sealed class BreakDisguiseOnActionSystem : EntitySystem
         if (ent.Comp.Cooldown <= TimeSpan.Zero)
             return;
 
-        if (!TryComp<ToggleClothingComponent>(ent, out var toggleClothing) || toggleClothing.ActionEntity == null)
+        if (!TryComp<ToggleClothingComponent>(ent.Owner, out var toggleClothing) || toggleClothing.ActionEntity == null)
             return;
 
         _actions.SetIfBiggerCooldown(toggleClothing.ActionEntity.Value, ent.Comp.Cooldown);

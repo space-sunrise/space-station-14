@@ -33,7 +33,7 @@ public sealed class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelis
 
         var target = _random.PickAndTake(targets);
 
-        _transform.SwapPositions((player, player.Comp2), target);
+        _transform.SwapPositions((player, player.Comp2), target.AsNullable());
     }
 
     private bool IsAllowedTarget(Entity<TransformComponent> target,

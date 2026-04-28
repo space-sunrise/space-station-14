@@ -27,7 +27,7 @@ namespace Content.Server._Sunrise.Stunnable.Systems
 
         private void OnStaminaHitAttempt(Entity<TelescopicbatonComponent> entity, ref StaminaDamageOnHitAttemptEvent args)
         {
-            if (!_itemToggle.IsActivated(entity))
+            if (!_itemToggle.IsActivated(entity.Owner))
             {
                 args.Cancelled = true;
             }
@@ -35,7 +35,7 @@ namespace Content.Server._Sunrise.Stunnable.Systems
 
         private void OnExamined(Entity<TelescopicbatonComponent> entity, ref ExaminedEvent args)
         {
-            var onMsg = _itemToggle.IsActivated(entity)
+            var onMsg = _itemToggle.IsActivated(entity.Owner)
             ? Loc.GetString("comp-telescopicbaton-examined-on")
             : Loc.GetString("comp-telescopicbaton-examined-off");
             args.PushMarkup(onMsg);
@@ -43,7 +43,7 @@ namespace Content.Server._Sunrise.Stunnable.Systems
 
         private void ToggleDone(Entity<TelescopicbatonComponent> entity, ref ItemToggledEvent args)
         {
-            _item.SetHeldPrefix(entity, args.Activated ? "on" : "off");
+            _item.SetHeldPrefix(entity.Owner, args.Activated ? "on" : "off");
         }
     }
 }

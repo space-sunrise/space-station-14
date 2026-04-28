@@ -107,7 +107,7 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
 
     private void OnTapePlayerPause(Entity<TapePlayerComponent> ent, ref TapePlayerPauseMessage args)
     {
-        _audioSystem.PlayPvs(ent.Comp.ButtonSound, ent);
+        _audioSystem.PlayPvs(ent.Comp.ButtonSound, ent.Owner);
         Audio.SetState(ent.Comp.AudioStream, AudioState.Paused);
     }
 
@@ -135,7 +135,7 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
 
         TryUpdateVisualState(entity);
 
-        if (!this.IsPowered(entity, EntityManager))
+        if (!this.IsPowered(entity.Owner, EntityManager))
         {
             Stop(entity);
         }
@@ -143,7 +143,7 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
 
     private void OnTapePlayerStop(Entity<TapePlayerComponent> ent, ref TapePlayerStopMessage args)
     {
-        _audioSystem.PlayPvs(ent.Comp.ButtonSound, ent);
+        _audioSystem.PlayPvs(ent.Comp.ButtonSound, ent.Owner);
         Stop(ent);
     }
 

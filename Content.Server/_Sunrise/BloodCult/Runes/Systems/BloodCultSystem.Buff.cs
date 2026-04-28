@@ -29,7 +29,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             foreach (var cultist in cultists)
             {
-                var uid = cultist;
+                var uid = cultist.Owner;
 
                 if (HasComp<CultBuffComponent>(uid))
                     continue;
@@ -53,7 +53,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             foreach (var buff in buffs)
             {
-                var uid = buff;
+                var uid = buff.Owner;
                 var remainingTime = buff.BuffTime;
 
                 remainingTime -= TimeSpan.FromSeconds(frameTime);
@@ -95,7 +95,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             foreach (var buff in buffs)
             {
-                var uid = buff;
+                var uid = buff.Owner;
                 var remainingTime = buff.BuffTime;
 
                 if (remainingTime <= TimeSpan.Zero)

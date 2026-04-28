@@ -85,7 +85,7 @@ public sealed partial class AdminVerbSystem
             foreach (var mind in _antag.GetAntagMinds(ruleUid))
             {
                 // Don't assign a kill objective targeting themselves
-                if (mind == targetMindId)
+                if (mind.Owner == targetMindId)
                     continue;
 
                 // Skip if this traitor already has a kill objective on the same target
@@ -93,7 +93,7 @@ public sealed partial class AdminVerbSystem
                     continue;
 
                 // Create the objective through the objective system (validates ObjectiveComponent, runs assignment hooks)
-                if (_objectivesSystem.TryCreateObjective(mind, mind.Comp, AdminBountyKillObjectiveProto) is not { } objectiveUid)
+                if (_objectivesSystem.TryCreateObjective(mind.Owner, mind.Comp, AdminBountyKillObjectiveProto) is not { } objectiveUid)
                     continue;
 
                 // Set the target on the objective (must be done after creation since it's a runtime value)
@@ -106,7 +106,7 @@ public sealed partial class AdminVerbSystem
                 _metaSystem.SetEntityName(objectiveUid, title);
 
                 // Add the objective to the traitor's mind
-                _mindSystem.AddObjective(mind, mind.Comp, objectiveUid);
+                _mindSystem.AddObjective(mind.Owner, mind.Comp, objectiveUid);
 
                 // Notify the traitor if they have a session
                 if (mind.Comp.UserId is { } userId &&

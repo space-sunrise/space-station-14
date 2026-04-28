@@ -18,9 +18,9 @@ public sealed class HellSpawnInvincibilitySystem : SharedHellSpawnInvincibilityS
 
     private void OnToggled(Entity<HellSpawnInvincibilityComponent> ent, ref HellSpawnInvincibilityToggledEvent args)
     {
-        if (!TryComp<AppearanceComponent>(ent, out var appearanceComponent))
+        if (!TryComp<AppearanceComponent>(ent.Owner, out var appearanceComponent))
             return;
-        if (!TryComp<SpriteComponent>(ent, out var spriteComponent))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var spriteComponent))
             return;
 
         if (!spriteComponent.LayerMapTryGet(DamageStateVisualLayers.Base, out var layerIdx))

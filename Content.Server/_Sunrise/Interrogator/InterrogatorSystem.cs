@@ -64,7 +64,7 @@ namespace Content.Server._Sunrise.Interrogator
         {
             if (!TryComp<InterrogatorComponent>(ent, out var interrogatorComponent))
                 return;
-            //SetAppearance(ent, MicrowaveVisualState.Cooking, microwaveComponent);
+            //SetAppearance(ent.Owner, MicrowaveVisualState.Cooking, microwaveComponent);
 
             interrogatorComponent.ExtractionProgress = 0;
             interrogatorComponent.PlayingStream =
@@ -78,7 +78,7 @@ namespace Content.Server._Sunrise.Interrogator
                 return;
 
             interrogatorComponent.ExtractionProgress = 0;
-            //SetAppearance(ent, MicrowaveVisualState.Idle, microwaveComponent);
+            //SetAppearance(ent.Owner, MicrowaveVisualState.Idle, microwaveComponent);
             interrogatorComponent.PlayingStream = _audio.Stop(interrogatorComponent.PlayingStream);
             _audio.PlayPvs(interrogatorComponent.ExtractDoneSound, ent);
         }
@@ -99,15 +99,15 @@ namespace Content.Server._Sunrise.Interrogator
             if (!args.Powered)
             {
                 StopExtracting(entity);
-                EjectBody(entity, entity.Comp);
+                EjectBody(entity.Owner, entity.Comp);
 
-                if (_light.TryGetLight(entity, out var light))
+                if (_light.TryGetLight(entity.Owner, out var light))
                 {
-                    _light.SetEnabled(entity, false, light);
+                    _light.SetEnabled(entity.Owner, false, light);
                 }
             }
 
-            UpdateAppearance(entity, entity.Comp);
+            UpdateAppearance(entity.Owner, entity.Comp);
         }
 
         public override void Update(float frameTime)
@@ -153,7 +153,7 @@ namespace Content.Server._Sunrise.Interrogator
                     foreach (var actionId in actionsComp.Actions)
                     {
                         if (_actions.GetAction(actionId) is { } actionEnt &&
-                            TryComp<MetaDataComponent>(actionEnt, out var meta) &&
+                            TryComp<MetaDataComponent>(actionEnt.Owner, out var meta) &&
                             meta.EntityPrototype?.ID != null &&
                             meta.EntityPrototype.ID == artifactComp.SelfActivateAction)
                         {
@@ -206,10 +206,10 @@ namespace Content.Server._Sunrise.Interrogator
             if (args.Cancelled || args.Handled || args.Args.Target == null)
                 return;
 
-            if (InsertBody(entity, args.Args.Target.Value, entity.Comp))
+            if (InsertBody(entity.Owner, args.Args.Target.Value, entity.Comp))
             {
                 _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                    $"{ToPrettyString(args.User)} inserted {ToPrettyString(args.Args.Target.Value)} into {ToPrettyString(entity)}");
+                    $"{ToPrettyString(args.User)} inserted {ToPrettyString(args.Args.Target.Value)} into {ToPrettyString(entity.Owner)}");
             }
             args.Handled = true;
         }

@@ -57,7 +57,7 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
     /// <returns>True when all checks pass and the entity can fall; otherwise false.</returns>
     public bool CanFall(Entity<CanFallComponent> ent, bool autoStand, bool quiet = false)
     {
-        if (_gravity.IsWeightless(ent) || !HasMovementInput(ent) || autoStand)
+        if (_gravity.IsWeightless(ent.Owner) || !HasMovementInput(ent) || autoStand)
             return false;
 
         if (HasComp<ActiveLeaperComponent>(ent))
@@ -90,7 +90,7 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
         if (ent.Comp.IsMoving)
             return true;
 
-        return TryComp<InputMoverComponent>(ent, out var mover) &&
+        return TryComp<InputMoverComponent>(ent.Owner, out var mover) &&
                mover.HasDirectionalMovement;
     }
 

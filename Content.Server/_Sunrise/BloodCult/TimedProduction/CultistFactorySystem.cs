@@ -42,7 +42,7 @@ public sealed class CultistFactorySystem : EntitySystem
             if (_gameTiming.CurTime > structure.NextTimeUse)
             {
                 structure.Active = true;
-                UpdateAppearance(structure, structure);
+                UpdateAppearance(structure.Owner, structure);
             }
         }
     }

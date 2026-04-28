@@ -19,7 +19,7 @@ public sealed partial class DeconvertCultistEntityEffectSystem : EntityEffectSys
 
     protected override void Effect(Entity<BloodCultistComponent> entity, ref EntityEffectEvent<DeconvertCultist> args)
     {
-        var uid = entity;
+        var uid = entity.Owner;
 
         if (entity.Comp.HolyConvertToken != null)
             return;

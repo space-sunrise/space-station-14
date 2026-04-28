@@ -58,7 +58,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
             }
         }
 
-        _humanoidAppearanceSystem.SetLayersVisibility(new Entity<HumanoidAppearanceComponent>(body, body.Comp2)!, layers, false);
+        _humanoidAppearanceSystem.SetLayersVisibility(new Entity<HumanoidAppearanceComponent>(body.Owner, body.Comp2)!, layers, false);
     }
     public void ToggleLimbVisual(Entity<HumanoidAppearanceComponent> body, Entity<BaseLayerIdComponent, BaseLayerIdToggledComponent, BodyPartComponent> limb, bool toggled)
     {

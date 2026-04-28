@@ -38,7 +38,7 @@ public sealed class GhostPanelAntagonistMarkerPinSystem : EntitySystem
         marker.Description = "ghost-panel-antagonist-zombie-description";
         marker.Priority = 50;
 
-        Dirty(ent, marker);
+        Dirty(ent.Owner, marker);
     }
 
     #endregion
@@ -53,7 +53,7 @@ public sealed class GhostPanelAntagonistMarkerPinSystem : EntitySystem
         marker.Description = "ghost-panel-antagonist-cult-description";
         marker.Priority = 30;
 
-        Dirty(ent, marker);
+        Dirty(ent.Owner, marker);
     }
 
     private void OnCultistDescent(Entity<PentagramComponent> ent, ref ComponentRemove args)

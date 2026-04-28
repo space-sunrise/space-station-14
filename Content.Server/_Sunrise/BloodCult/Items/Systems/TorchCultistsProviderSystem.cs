@@ -102,13 +102,13 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
 
         foreach (var cultist in cultists)
         {
-            if (!TryComp<MetaDataComponent>(cultist, out var meta))
+            if (!TryComp<MetaDataComponent>(cultist.Owner, out var meta))
                 return;
 
-            if (cultist == args.User)
+            if (cultist.Owner == args.User)
                 continue;
 
-            list.Add(meta.ToString(), meta.EntityName);
+            list.Add(meta.Owner.ToString(), meta.EntityName);
         }
 
         if (list.Count == 0)
@@ -135,8 +135,8 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
 
         foreach (var cultist in cultists)
         {
-            if (cultist.ToString() == args.EntUid)
-                entityUid = cultist;
+            if (cultist.Owner.ToString() == args.EntUid)
+                entityUid = cultist.Owner;
         }
 
         if (entityUid == args.Actor && entityUid != null)

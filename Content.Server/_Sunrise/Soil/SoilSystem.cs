@@ -28,7 +28,7 @@ public sealed class SoilSystem : EntitySystem
     private void OnUseInHand(Entity<SoilComponent> ent, ref UseInHandEvent args)
     {
         var xform = Transform(ent);
-        var grid = _transform.GetGrid((ent, xform));
+        var grid = _transform.GetGrid((ent.Owner, xform));
         if (grid == null)
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.PopupStringFailed), ent, args.User, PopupType.SmallCaution);
@@ -43,6 +43,6 @@ public sealed class SoilSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString(ent.Comp.PopupStringSuccess, ("user", userMeta.EntityName), ("name", targetMeta.EntityName)), args.User, PopupType.LargeGreen);
         _stamina.TryTakeStamina(args.User, ent.Comp.StaminaDamage);
 
-        _entity.QueueDeleteEntity(ent);
+        _entity.QueueDeleteEntity(ent.Owner);
     }
 }

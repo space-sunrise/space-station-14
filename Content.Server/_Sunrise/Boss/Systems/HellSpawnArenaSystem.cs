@@ -94,7 +94,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
         var query = EntityQuery<HellSpawnFighterComponent>();
         foreach (var fighter in query)
         {
-            if (!_mobState.IsAlive(fighter))
+            if (!_mobState.IsAlive(fighter.Owner))
                 continue;
             flag = false;
         }
@@ -192,13 +192,13 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
                 if (fighter.TeleportedFromCoordinates == null)
                 {
                     if (consoleEntity != null)
-                        _transform.SetCoordinates(fighter, cnsXform.Coordinates);
+                        _transform.SetCoordinates(fighter.Owner, cnsXform.Coordinates);
                     continue;
                 }
 
-                _transform.SetCoordinates(fighter, fighter.TeleportedFromCoordinates.Value);
-                if (HasComp<HellSpawnFighterComponent>(fighter))
-                    RemComp<HellSpawnFighterComponent>(fighter);
+                _transform.SetCoordinates(fighter.Owner, fighter.TeleportedFromCoordinates.Value);
+                if (HasComp<HellSpawnFighterComponent>(fighter.Owner))
+                    RemComp<HellSpawnFighterComponent>(fighter.Owner);
             }
         }
 
@@ -246,7 +246,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
         if (Status == HellSpawnBossStatus.InProgress)
             return;
         var actorUid = args.Actor;
-        var ownerUid = GetEntity(args);
+        var ownerUid = GetEntity(args.Owner);
         if (!TryComp<HellSpawnConsoleComponent>(ownerUid, out var consoleComponent))
             return;
         consoleComponent.ActivationTime = _timing.CurTime + CooldownLength;
@@ -276,7 +276,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
                 CurrentStatus = Status,
                 ActivationTime = cons.ActivationTime,
             };
-            _ui.SetUiState(cons, HellSpawnArenaUiKey.Key, consoleEv);
+            _ui.SetUiState(cons.Owner, HellSpawnArenaUiKey.Key, consoleEv);
         }
     }
 
@@ -286,7 +286,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
     /// <param name="console">Консоль, которая хочет отправить туда</param>
     public async void Cooldown(Entity<HellSpawnConsoleComponent?> console)
     {
-        if (!Resolve(console, ref console.Comp))
+        if (!Resolve(console.Owner, ref console.Comp))
             return;
 
         if (Status == HellSpawnBossStatus.Idle)
@@ -407,7 +407,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
         var shuttleId = shuttleUids.FirstOrNull();
         if (shuttleId == null)
             return null;
-        var arenaComp = EnsureComp<HellSpawnArenaComponent>(shuttleId.Value);
+        var arenaComp = EnsureComp<HellSpawnArenaComponent>(shuttleId.Value.Owner);
         Arena = shuttleId;
         ArenaMap = map;
         return map;

@@ -14,7 +14,7 @@ public sealed partial class StandingStatePrecondition : HTNPrecondition
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
-        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard);
+        var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
         if (!_entManager.TryGetComponent<StandingStateComponent>(owner, out var standing))
             return false;

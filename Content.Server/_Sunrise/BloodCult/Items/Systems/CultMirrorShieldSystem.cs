@@ -101,7 +101,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
     /// </summary>
     public bool TryBreakShield(Entity<CultMirrorShieldComponent?> entity, DamageSpecifier damage)
     {
-        if (!Resolve(entity, ref entity.Comp))
+        if (!Resolve(entity.Owner, ref entity.Comp))
             return false;
 
         var xform = Transform(entity);
@@ -127,7 +127,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
     /// </summary>
     public void BreakShield(Entity<CultMirrorShieldComponent?> entity)
     {
-        if (!Resolve(entity, ref entity.Comp))
+        if (!Resolve(entity.Owner, ref entity.Comp))
             return;
 
         // Стан хозяина
@@ -139,12 +139,12 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         _audio.PlayPvs(entity.Comp.BreakSound, parent);
 
         // Попап
-        _popup.PopupEntity(Loc.GetString("cultshield-broken", ("name", MetaData(entity).EntityName)),
+        _popup.PopupEntity(Loc.GetString("cultshield-broken", ("name", MetaData(entity.Owner).EntityName)),
             parent,
             PopupType.LargeCaution);
 
         // Удаление щита
-        QueueDel(entity);
+        QueueDel(entity.Owner);
     }
 
     #endregion ShieldBreak
@@ -210,7 +210,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
     /// </summary>
     public void TrySpawnIllusion(Entity<CultMirrorShieldComponent?> entity)
     {
-        if (!Resolve(entity, ref entity.Comp))
+        if (!Resolve(entity.Owner, ref entity.Comp))
             return;
 
         if (_random.NextFloat() > entity.Comp.IllusionChance)
@@ -241,7 +241,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
             return;
 
         var illusionComp = EnsureComp<CultMirrorIllusionComponent>(illusion.Value);
-        illusionComp.ParentShield = entity;
+        illusionComp.ParentShield = entity.Owner;
 
         entity.Comp.Illusions.Add(illusion.Value);
     }

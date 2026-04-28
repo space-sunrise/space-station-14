@@ -38,7 +38,7 @@ public sealed class CarryingSystem : SharedCarryingSystem
         if (ent.Comp.Carrier == null)
             return;
 
-        var multiplier = MassContest(ent.Comp.Carrier.Value, ent) / MultiplierDivisor;
+        var multiplier = MassContest(ent.Comp.Carrier.Value, ent.Owner) / MultiplierDivisor;
         _escapeInventory.AttemptEscape(ent, ent.Comp.Carrier.Value, escape, multiplier);
     }
 }

@@ -16,7 +16,7 @@ public sealed class DiseaseRoleSystem : EntitySystem
     private void OnInfect(ClientInfectEvent ev)
     {
         var target = GetEntity(ev.Infected);
-        var performer = GetEntity(ev);
+        var performer = GetEntity(ev.Owner);
 
         if (!TryComp<HumanoidAppearanceComponent>(target, out var body))
             return;

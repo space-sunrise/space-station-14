@@ -60,7 +60,7 @@ public abstract partial class SharedSunriseStandingStateSystem
         if (ent.Comp.Standing)
             return false;
 
-        var pulling = _pulling.GetPulling(ent);
+        var pulling = _pulling.GetPulling(ent.Owner);
         if (pulling == null || !_pullableQuery.TryComp(pulling.Value, out pullable))
             return false;
 

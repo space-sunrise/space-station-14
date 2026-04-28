@@ -161,14 +161,14 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
     {
         // If a puddle changed, re-check eggs on that tile
         // Skip if entity is being deleted or doesn't have required components
-        if (!TryComp<PuddleComponent>(args.Solution, out var _))
+        if (!TryComp<PuddleComponent>(args.Solution.Owner, out var _))
             return;
 
         // Additional safety check - ensure entity is valid
-        if (TerminatingOrDeleted(args.Solution))
+        if (TerminatingOrDeleted(args.Solution.Owner))
             return;
 
-        var xform = Transform(args.Solution);
+        var xform = Transform(args.Solution.Owner);
         if (xform.GridUid == null)
             return;
         if (!TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))

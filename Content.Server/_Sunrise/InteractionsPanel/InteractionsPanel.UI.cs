@@ -24,7 +24,7 @@ public partial class InteractionsPanel
             return;
 
         var state = PrepareUIState(ent, ent.Comp.CurrentTarget.Value);
-        _ui.SetUiState(ent, InteractionWindowUiKey.Key, state);
+        _ui.SetUiState(ent.Owner, InteractionWindowUiKey.Key, state);
     }
 
     private void OnCheckRange(Entity<InteractionsComponent> ent, ref BoundUserInterfaceCheckRangeEvent args)

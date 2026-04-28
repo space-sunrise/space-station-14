@@ -21,7 +21,7 @@ public abstract class SharedHellSpawnInvincibilitySystem : EntitySystem
 
     private void OnInit(Entity<HellSpawnInvincibilityComponent> ent, ref ComponentInit args)
     {
-        if (TryComp<MovementSpeedModifierComponent>(ent, out var modifierComponent))
+        if (TryComp<MovementSpeedModifierComponent>(ent.Owner, out var modifierComponent))
             ent.Comp.BaseSprintSpeed = modifierComponent.BaseSprintSpeed;
     }
 
@@ -30,8 +30,8 @@ public abstract class SharedHellSpawnInvincibilitySystem : EntitySystem
     {
         if (args.Handled)
             return;
-        AddGodmode(ent);
-        Timer.Spawn(3000, () => RemoveGodmode(ent));
+        AddGodmode(ent.Owner);
+        Timer.Spawn(3000, () => RemoveGodmode(ent.Owner));
         args.Handled = true;
     }
 

@@ -30,7 +30,7 @@ public sealed class BlindInDisposalsSystem : EntitySystem
         if (!HasComp<BlindableComponent>(ent))
             return;
 
-        _blindable.UpdateIsBlind(ent);
+        _blindable.UpdateIsBlind(ent.Owner);
     }
 
     private void OnRemove(Entity<BeingDisposedComponent> ent, ref ComponentRemove args)
@@ -38,7 +38,7 @@ public sealed class BlindInDisposalsSystem : EntitySystem
         if (!HasComp<BlindableComponent>(ent))
             return;
 
-        _blindable.UpdateIsBlind(ent);
+        _blindable.UpdateIsBlind(ent.Owner);
     }
 
     private void OnCanSee(Entity<BeingDisposedComponent> ent, ref CanSeeAttemptEvent args)

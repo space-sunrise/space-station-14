@@ -57,7 +57,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
     private void OnComponentInit(Entity<WingFlightComponent> ent, ref ComponentInit args)
     {
-        _actions.AddAction(ent, ref ent.Comp.ActionEntity, ent.Comp.Action, ent);
+        _actions.AddAction(ent.Owner, ref ent.Comp.ActionEntity, ent.Comp.Action, ent.Owner);
         UpdateActionToggle(ent);
         ent.Comp.CurrentScaleMultiplier = Math.Max(ent.Comp.CurrentScaleMultiplier, ent.Comp.MinScaleMultiplier);
         Dirty(ent);
@@ -66,7 +66,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
     private void OnComponentRemove(Entity<WingFlightComponent> ent, ref ComponentRemove args)
     {
         if (ent.Comp.ActionEntity != null)
-            _actions.RemoveAction(ent, ent.Comp.ActionEntity);
+            _actions.RemoveAction(ent.Owner, ent.Comp.ActionEntity);
 
         SetFlightEnabled(ent, false);
         DisableFlightPassability(ent);
@@ -78,7 +78,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
         if (args.Handled)
             return;
 
-        if (ent.Comp.ActionEntity == null || args.Action != ent.Comp.ActionEntity.Value)
+        if (ent.Comp.ActionEntity == null || args.Action.Owner != ent.Comp.ActionEntity.Value)
             return;
 
         if (ent.Comp.FlightEnabled)
@@ -89,7 +89,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
     private bool EnableFlight(Entity<WingFlightComponent> ent)
     {
-        if (_standing.IsDown(ent))
+        if (_standing.IsDown(ent.Owner))
             return false;
 
         if (!TryComp<StaminaComponent>(ent, out var stamina))

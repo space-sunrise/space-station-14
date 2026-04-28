@@ -170,7 +170,7 @@ public sealed class PaintSystem : SharedPaintSystem
         if (HasComp<HumanoidAppearanceComponent>(target) || HasComp<SubFloorHideComponent>(target))
             return false;
 
-        if (_solutionContainer.TryGetSolution(reagent, reagent.Comp.Solution, out _, out var solution))
+        if (_solutionContainer.TryGetSolution(reagent.Owner, reagent.Comp.Solution, out _, out var solution))
         {
             var quantity = solution.RemoveReagent(reagent.Comp.Reagent, reagent.Comp.ConsumptionUnit);
             if (quantity > 0)// checks quantity of solution is more than 0.

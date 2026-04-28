@@ -43,7 +43,7 @@ public sealed partial class PierceSystem : EntitySystem
             return;
 
         // If we're at our maximum recursion depth, don't try to pierce
-        if (!_reflectQuery.TryComp(hitscan, out var reflect) || reflect.CurrentReflections > reflect.MaxReflections)
+        if (!_reflectQuery.TryComp(hitscan.Owner, out var reflect) || reflect.CurrentReflections > reflect.MaxReflections)
             return;
 
         var ev = new HitScanPierceAttemptEvent(hitscan.Comp.PierceLevel, true);

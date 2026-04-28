@@ -46,7 +46,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     }
     private void OnAbductGetProgress(Entity<AbductConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        args.Progress = AbductProgress(ent, _number.GetTarget(ent));
+        args.Progress = AbductProgress(ent, _number.GetTarget(ent.Owner));
     }
 
     private float AbductProgress(Entity<AbductConditionComponent> ent, int target)
@@ -256,18 +256,18 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         if (computer.Comp.AlienPod == null)
         {
-            var xform = EnsureComp<TransformComponent>(computer);
+            var xform = EnsureComp<TransformComponent>(computer.Owner);
             var alienpad = _entityLookup.GetEntitiesInRange<AbductorAlienPadComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault();
+                .FirstOrDefault().Owner;
             if (alienpad != default)
                 computer.Comp.AlienPod = GetNetEntity(alienpad);
         }
 
         if (computer.Comp.Experimentator == null)
         {
-            var xform = EnsureComp<TransformComponent>(computer);
+            var xform = EnsureComp<TransformComponent>(computer.Owner);
             var experimentator = _entityLookup.GetEntitiesInRange<AbductorExperimentatorComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault();
+                .FirstOrDefault().Owner;
             if (experimentator != default)
                 computer.Comp.Experimentator = GetNetEntity(experimentator);
         }
@@ -284,9 +284,9 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         if (computer.Comp.Dispencer == null)
         {
-            var xform = EnsureComp<TransformComponent>(computer);
+            var xform = EnsureComp<TransformComponent>(computer.Owner);
             var dispencer = _entityLookup.GetEntitiesInRange<AbductorDispencerComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault();
+                .FirstOrDefault().Owner;
             if (dispencer != default)
                 computer.Comp.Dispencer = GetNetEntity(dispencer);
         }
@@ -305,7 +305,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             }
         }
 
-        _uiSystem.SetUiState(computer, AbductorConsoleUIKey.Key, new AbductorConsoleBuiState()
+        _uiSystem.SetUiState(computer.Owner, AbductorConsoleUIKey.Key, new AbductorConsoleBuiState()
         {
             Target = target,
             TargetName = targetName,

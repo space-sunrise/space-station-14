@@ -27,7 +27,7 @@ public sealed class StationCorporateLawSystem : SharedStationCorporateLawSystem
         if (component.Articles.Count > 0 || component.Provisions.Count > 0)
             return;
 
-        if (!HasComp<StationDataComponent>(ent))
+        if (!HasComp<StationDataComponent>(ent.Owner))
             return;
 
         var lawsetId = _config.GetCVar(SunriseCCVars.CorporateLawSet);

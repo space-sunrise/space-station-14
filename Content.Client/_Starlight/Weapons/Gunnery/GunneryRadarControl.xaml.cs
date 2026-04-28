@@ -308,7 +308,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         // ── Draw other grids ───────────────────────────────────────────────
         foreach (var grid in _grids)
         {
-            var gUid = grid;
+            var gUid = grid.Owner;
             if (gUid == ourGridId || !fixturesQuery.HasComponent(gUid))
                 continue;
 

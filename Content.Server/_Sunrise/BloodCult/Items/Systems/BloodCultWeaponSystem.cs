@@ -95,7 +95,7 @@ public sealed class BloodCultWeaponSystem : EntitySystem
             Entity<StomachComponent>? stomachToUse = null;
             foreach (var ent in stomachs)
             {
-                var owner = ent;
+                var owner = ent.Owner;
                 if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref ent.Comp1.Solution, out stomachSol))
                     continue;
 
@@ -109,7 +109,7 @@ public sealed class BloodCultWeaponSystem : EntitySystem
             if (stomachToUse == null || stomachSol == null)
                 return;
 
-            if (_stomachSystem.TryChangeReagent(stomachToUse.Value,
+            if (_stomachSystem.TryChangeReagent(stomachToUse.Value.Owner,
                     component.ConvertedId,
                     component.ConvertedToId))
                 convert = true;

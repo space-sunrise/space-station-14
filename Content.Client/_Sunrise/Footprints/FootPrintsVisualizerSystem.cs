@@ -68,7 +68,7 @@ public sealed class FootprintVisualizerSystem : EntitySystem
     /// </summary>
     private void UpdateFootprintVisuals(Entity<FootprintComponent> ent)
     {
-        if (!_sprite.LayerMapTryGet(ent, FootprintSpriteLayer.MainLayer, out var layer, true))
+        if (!_sprite.LayerMapTryGet(ent.Owner, FootprintSpriteLayer.MainLayer, out var layer, true))
             return;
 
         if (!_appearance.TryGetData<string>(ent, FootprintVisualParameter.VisualState, out var visualState))

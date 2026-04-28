@@ -559,10 +559,10 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                 continue;
             }
 
-            var reaper = Spawn(BloodCultSystem.ReaperConstructPrototypeId, Transform(mobState).Coordinates);
+            var reaper = Spawn(BloodCultSystem.ReaperConstructPrototypeId, Transform(mobState.Owner).Coordinates);
             _mindSystem.TransferTo(mindContainer.Mind.Value, reaper);
 
-            _bodySystem.GibBody(mobState);
+            _bodySystem.GibBody(mobState.Owner);
         }
 
         _roundEndSystem.EndRound();

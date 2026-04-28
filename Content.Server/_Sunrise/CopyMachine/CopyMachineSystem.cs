@@ -105,7 +105,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
     {
         _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.PaperMaterial, ent.Comp.PaperCost);
 
-        if (!_solutionContainer.TryGetSolution(ent, ent.Comp.Solution, out var solutionEntity, out _))
+        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out var solutionEntity, out _))
             return;
 
         var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
@@ -216,7 +216,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
             _pendingUIUpdateQueue.Enqueue(copyMachineUid);
     }
 
-    private void QueueUIUpdate(Entity<CopyMachineComponent> ent) => QueueUIUpdate(ent);
+    private void QueueUIUpdate(Entity<CopyMachineComponent> ent) => QueueUIUpdate(ent.Owner);
 
     private void FlushUIUpdates()
     {
@@ -372,7 +372,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
 
     private bool TryConsumeInkAndPaper(Entity<CopyMachineComponent> ent)
     {
-        if (!_solutionContainer.TryGetSolution(ent, ent.Comp.Solution, out _, out var solution))
+        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
             return false;
 
         var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
@@ -450,7 +450,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
     /// </summary>
     public void UpdateUserInterface(Entity<CopyMachineComponent> ent)
     {
-        if (!_solutionContainer.TryGetSolution(ent, ent.Comp.Solution, out _, out var solution))
+        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
             return;
 
         var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
@@ -478,7 +478,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
             queue: queuedJobs
         );
 
-        _userInterface.SetUiState(ent, CopyMachineUiKey.Key, state);
+        _userInterface.SetUiState(ent.Owner, CopyMachineUiKey.Key, state);
     }
 
     /// <summary>

@@ -209,7 +209,7 @@ public abstract class SharedNestingSystem : EntitySystem
             && _hands.CountFreeHands(args.Args.User) < multiHanded!.HandsNeeded)
         {
             _popup.PopupPredictedCursor(Loc.GetString("multi-handed-item-pick-up-fail",
-                ("number", multiHanded.HandsNeeded - 1), ("item", ent)), args.Args.User);
+                ("number", multiHanded.HandsNeeded - 1), ("item", ent.Owner)), args.Args.User);
             return;
         }
 

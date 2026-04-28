@@ -22,7 +22,7 @@ public sealed partial class HeartbeatSystem
 
         var activeHeartbeat = EnsureComp<ActiveHeartbeatComponent>(ent);
 
-        TryCalculateCurrentState((ent, activeHeartbeat));
+        TryCalculateCurrentState((ent.Owner, activeHeartbeat));
         SetNextTime(activeHeartbeat);
     }
 
@@ -43,7 +43,7 @@ public sealed partial class HeartbeatSystem
     /// <returns></returns>
     private bool TryCalculateCurrentState(Entity<ActiveHeartbeatComponent> ent, DamageableComponent? damageable = null)
     {
-        if (!Resolve(ent, ref damageable))
+        if (!Resolve(ent.Owner, ref damageable))
             return false;
 
         var totalDamage = damageable.TotalDamage.Float();

@@ -111,7 +111,7 @@ public sealed class ProneCrawlMovementController : VirtualController
         if (!_standingQuery.TryComp(ent, out var standing) || standing.Standing)
             return false;
 
-        if (!ent.Comp3.CanMove || _gravity.IsWeightless(ent))
+        if (!ent.Comp3.CanMove || _gravity.IsWeightless(ent.Owner))
             return false;
 
         if (_pullableQuery.TryComp(ent, out var pullable) && pullable.BeingPulled)
@@ -147,11 +147,11 @@ public sealed class ProneCrawlMovementController : VirtualController
         ent.Comp1.PullDirection = direction;
         ent.Comp1.PullVelocity = velocity;
         ent.Comp1.IsPulling = true;
-        Dirty(ent, ent.Comp1);
+        Dirty(ent.Owner, ent.Comp1);
 
         var pullStarted = new ProneCrawlPullStartedEvent(direction, pullDuration);
-        RaiseLocalEvent(ent, ref pullStarted);
-        PlayPullStartSound((ent, ent.Comp2));
+        RaiseLocalEvent(ent.Owner, ref pullStarted);
+        PlayPullStartSound((ent.Owner, ent.Comp2));
         return true;
     }
 
@@ -160,7 +160,7 @@ public sealed class ProneCrawlMovementController : VirtualController
         if (ent.Comp.PullStartSound == null)
             return;
 
-        _audio.PlayPredicted(ent.Comp.PullStartSound, ent, ent);
+        _audio.PlayPredicted(ent.Comp.PullStartSound, ent.Owner, ent.Owner);
     }
 
     private void PlayPullEndSound(Entity<CrawlerComponent> ent)
@@ -168,46 +168,46 @@ public sealed class ProneCrawlMovementController : VirtualController
         if (ent.Comp.PullEndSound == null)
             return;
 
-        _audio.PlayPredicted(ent.Comp.PullEndSound, ent, ent);
+        _audio.PlayPredicted(ent.Comp.PullEndSound, ent.Owner, ent.Owner);
     }
 
     private void ApplyPullVelocity(Entity<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent, PhysicsComponent> ent)
     {
-        PhysicsSystem.SetLinearVelocity(ent, ent.Comp1.PullVelocity, body: ent.Comp4);
-        PhysicsSystem.SetAngularVelocity(ent, 0f, body: ent.Comp4);
+        PhysicsSystem.SetLinearVelocity(ent.Owner, ent.Comp1.PullVelocity, body: ent.Comp4);
+        PhysicsSystem.SetAngularVelocity(ent.Owner, 0f, body: ent.Comp4);
     }
 
     private void ApplyPause(Entity<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent, PhysicsComponent> ent)
     {
-        PhysicsSystem.SetLinearVelocity(ent, Vector2.Zero, body: ent.Comp4);
-        PhysicsSystem.SetAngularVelocity(ent, 0f, body: ent.Comp4);
+        PhysicsSystem.SetLinearVelocity(ent.Owner, Vector2.Zero, body: ent.Comp4);
+        PhysicsSystem.SetAngularVelocity(ent.Owner, 0f, body: ent.Comp4);
     }
 
     private void FinishPull(Entity<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent, PhysicsComponent> ent)
     {
         ent.Comp1.IsPulling = false;
         ent.Comp1.PullVelocity = Vector2.Zero;
-        DirtyField(ent, ent.Comp1, nameof(ActiveProneCrawlMovementComponent.IsPulling));
-        DirtyField(ent, ent.Comp1, nameof(ActiveProneCrawlMovementComponent.PullVelocity));
-        PlayPullEndSound((ent, ent.Comp2));
+        DirtyField(ent.Owner, ent.Comp1, nameof(ActiveProneCrawlMovementComponent.IsPulling));
+        DirtyField(ent.Owner, ent.Comp1, nameof(ActiveProneCrawlMovementComponent.PullVelocity));
+        PlayPullEndSound((ent.Owner, ent.Comp2));
     }
 
     private void StopProneCrawl(
         Entity<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent, PhysicsComponent> ent,
         bool resetCooldown)
     {
-        PhysicsSystem.SetLinearVelocity(ent, Vector2.Zero, body: ent.Comp4);
-        PhysicsSystem.SetAngularVelocity(ent, 0f, body: ent.Comp4);
+        PhysicsSystem.SetLinearVelocity(ent.Owner, Vector2.Zero, body: ent.Comp4);
+        PhysicsSystem.SetAngularVelocity(ent.Owner, 0f, body: ent.Comp4);
 
         if (resetCooldown)
-            _sunriseStanding.ResetProneCrawlMovementState((ent, ent.Comp1));
+            _sunriseStanding.ResetProneCrawlMovementState((ent.Owner, ent.Comp1));
         else
-            _sunriseStanding.CancelProneCrawlActivePull((ent, ent.Comp1));
+            _sunriseStanding.CancelProneCrawlActivePull((ent.Owner, ent.Comp1));
     }
 
     private void SuspendProneCrawl(
         Entity<ActiveProneCrawlMovementComponent, CrawlerComponent, InputMoverComponent, PhysicsComponent> ent)
     {
-        _sunriseStanding.ResetProneCrawlMovementState((ent, ent.Comp1));
+        _sunriseStanding.ResetProneCrawlMovementState((ent.Owner, ent.Comp1));
     }
 }

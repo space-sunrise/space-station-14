@@ -128,12 +128,12 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
         if (animate)
             _rotationVisualizer.AnimateSpriteRotation(ent, ent, rotation, rotationVisuals.AnimationTime);
         else
-            _sprite.SetRotation(ent, rotation);
+            _sprite.SetRotation(ent.AsNullable(), rotation);
     }
 
     private void ApplyProneCrawlDirectionOverride(Entity<SpriteComponent> ent, Direction direction)
     {
-        if (!TryComp<ProneCrawlVisualsComponent>(ent, out var proneCrawlVisuals))
+        if (!TryComp<ProneCrawlVisualsComponent>(ent.Owner, out var proneCrawlVisuals))
         {
             proneCrawlVisuals = EnsureComp<ProneCrawlVisualsComponent>(ent);
             proneCrawlVisuals.HadDirectionOverride = ent.Comp.EnableDirectionOverride;

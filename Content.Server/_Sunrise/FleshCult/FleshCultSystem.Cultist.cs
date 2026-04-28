@@ -348,7 +348,7 @@ public sealed partial class FleshCultSystem
 
             if (cultist.Hunger < 0)
             {
-                // ParasiteComesOut(cultist, cultist);
+                // ParasiteComesOut(cultist.Owner, cultist);
                 cultist.IsTransformationPending = true;
                 ParasiteComesOut(uid, cultist);
                 continue;

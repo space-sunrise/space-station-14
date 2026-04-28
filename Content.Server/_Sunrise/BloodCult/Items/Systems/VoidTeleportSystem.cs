@@ -101,7 +101,7 @@ public sealed class VoidTeleportSystem : EntitySystem
         if (pulled != null)
         {
             _xform.SetCoordinates(pulled.Value, coords);
-            _pulling.TryStopPull(pulled.Value, pulled.Value.Comp);
+            _pulling.TryStopPull(pulled.Value.Owner, pulled.Value.Comp);
 
             if (TryComp<TransformComponent>(pulled.Value, out var pulledTransform))
                 pulledTransform.AttachToGridOrMap();

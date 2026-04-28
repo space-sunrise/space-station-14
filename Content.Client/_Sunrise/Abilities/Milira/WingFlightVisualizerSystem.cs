@@ -36,7 +36,7 @@ public sealed class WingFlightVisualizerSystem : EntitySystem
         if (!ent.Comp.OriginalScale.HasValue)
             ent.Comp.OriginalScale = sprite.Scale;
 
-        ApplyScale((ent, ent.Comp, sprite), immediate: true);
+        ApplyScale((ent.Owner, ent.Comp, sprite), immediate: true);
     }
 
     private void OnState(Entity<WingFlightComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -54,7 +54,7 @@ public sealed class WingFlightVisualizerSystem : EntitySystem
         if (MathHelper.CloseTo(targetScale.Length(), currentScale.Length(), 0.001f))
             return;
 
-        ApplyScale((ent, ent.Comp, sprite), immediate: false);
+        ApplyScale((ent.Owner, ent.Comp, sprite), immediate: false);
     }
 
     private void OnShutdown(Entity<WingFlightComponent> ent, ref ComponentShutdown args)
@@ -67,8 +67,8 @@ public sealed class WingFlightVisualizerSystem : EntitySystem
         if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        _animation.Stop(ent, AnimationKey);
-        _spriteSystem.SetScale((ent, sprite), scale);
+        _animation.Stop(ent.Owner, AnimationKey);
+        _spriteSystem.SetScale((ent.Owner, sprite), scale);
     }
 
     private void ApplyScale(Entity<WingFlightComponent, SpriteComponent> ent, bool immediate)
@@ -78,14 +78,14 @@ public sealed class WingFlightVisualizerSystem : EntitySystem
 
         if (immediate)
         {
-            _spriteSystem.SetScale((ent, ent.Comp2), targetScale);
+            _spriteSystem.SetScale((ent.Owner, ent.Comp2), targetScale);
             return;
         }
 
-        var animationPlayer = EnsureComp<AnimationPlayerComponent>(ent);
+        var animationPlayer = EnsureComp<AnimationPlayerComponent>(ent.Owner);
 
-        if (_animation.HasRunningAnimation(ent, animationPlayer, AnimationKey))
-            _animation.Stop(ent, AnimationKey);
+        if (_animation.HasRunningAnimation(ent.Owner, animationPlayer, AnimationKey))
+            _animation.Stop(ent.Owner, AnimationKey);
 
         var currentScale = ent.Comp2.Scale;
         if (MathHelper.CloseTo(targetScale.Length(), currentScale.Length(), 0.001f))
@@ -110,7 +110,7 @@ public sealed class WingFlightVisualizerSystem : EntitySystem
             }
         };
 
-        _animation.Play((ent, animationPlayer), anim, AnimationKey);
+        _animation.Play((ent.Owner, animationPlayer), anim, AnimationKey);
     }
 }
 

@@ -64,7 +64,7 @@ public sealed partial class PaperSystem
         if (!TryValidateWriteTool(entity, actor))
             return false;
 
-        var ev = new PaperWriteAttemptEvent(entity);
+        var ev = new PaperWriteAttemptEvent(entity.Owner);
         RaiseLocalEvent(actor, ref ev);
 
         return !ev.Cancelled && index >= 0;

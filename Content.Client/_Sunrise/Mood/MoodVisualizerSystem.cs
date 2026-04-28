@@ -24,25 +24,25 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
 
     private void OnShutdown(Entity<MoodVisualsComponent> ent, ref ComponentShutdown args)
     {
-        if (!TryComp<SpriteComponent>(ent, out var sprite))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
-        if (_spriteSystem.LayerMapTryGet((ent, sprite), MoodVisualLayers.Mood, out var layer, false))
-            _spriteSystem.RemoveLayer((ent, sprite), layer);
+        if (_spriteSystem.LayerMapTryGet((ent.Owner, sprite), MoodVisualLayers.Mood, out var layer, false))
+            _spriteSystem.RemoveLayer((ent.Owner, sprite), layer);
     }
 
     private void OnComponentInit(Entity<MoodVisualsComponent> ent, ref ComponentInit args)
     {
-        if (!TryComp<SpriteComponent>(ent, out var sprite))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
-        _spriteSystem.LayerMapReserve((ent, sprite), MoodVisualLayers.Mood);
-        _spriteSystem.LayerSetVisible((ent, sprite), MoodVisualLayers.Mood, false);
+        _spriteSystem.LayerMapReserve((ent.Owner, sprite), MoodVisualLayers.Mood);
+        _spriteSystem.LayerSetVisible((ent.Owner, sprite), MoodVisualLayers.Mood, false);
         sprite.LayerSetShader(MoodVisualLayers.Mood, "unshaded");
         if (ent.Comp.Sprite != null)
-            _spriteSystem.LayerSetSprite((ent, sprite), MoodVisualLayers.Mood, ent.Comp.Sprite);
+            _spriteSystem.LayerSetSprite((ent.Owner, sprite), MoodVisualLayers.Mood, ent.Comp.Sprite);
 
-        if (TryComp<AppearanceComponent>(ent, out var appearance))
+        if (TryComp<AppearanceComponent>(ent.Owner, out var appearance))
             UpdateAppearance(ent, sprite, appearance);
     }
 
@@ -68,22 +68,22 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
             return;
         }
 
-        if (!_appearanceSystem.TryGetData<MoodThreshold>(ent, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
+        if (!_appearanceSystem.TryGetData<MoodThreshold>(ent.Owner, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
         {
-            _spriteSystem.LayerSetVisible((ent, sprite), index, false);
+            _spriteSystem.LayerSetVisible((ent.Owner, sprite), index, false);
             return;
         }
 
         // Проверяем, есть ли состояние спрайта для этого порога настроения
         if (!ent.Comp.MoodStates.TryGetValue(moodThreshold, out var state))
         {
-            _spriteSystem.LayerSetVisible((ent, sprite), index, false);
+            _spriteSystem.LayerSetVisible((ent.Owner, sprite), index, false);
             return;
         }
 
         // Показываем слой спрайта и устанавливаем состояние
-        _spriteSystem.LayerSetVisible((ent, sprite), index, true);
-        _spriteSystem.LayerSetRsiState((ent, sprite), index, state);
+        _spriteSystem.LayerSetVisible((ent.Owner, sprite), index, true);
+        _spriteSystem.LayerSetRsiState((ent.Owner, sprite), index, state);
     }
 }
 

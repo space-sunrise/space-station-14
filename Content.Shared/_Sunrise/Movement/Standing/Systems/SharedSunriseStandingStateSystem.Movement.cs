@@ -22,8 +22,8 @@ public abstract partial class SharedSunriseStandingStateSystem
         if (!_crawlerQuery.HasComp(ent))
             return;
 
-        var movement = EnsureComp<ActiveProneCrawlMovementComponent>(ent);
-        ResetProneCrawlMovementState((ent, movement));
+        var movement = EnsureComp<ActiveProneCrawlMovementComponent>(ent.Owner);
+        ResetProneCrawlMovementState((ent.Owner, movement));
     }
 
     private void OnProneCrawlMovementStood(Entity<StandingStateComponent> ent, ref StoodEvent args)
@@ -32,7 +32,7 @@ public abstract partial class SharedSunriseStandingStateSystem
             return;
 
         if (TryComp<ActiveProneCrawlMovementComponent>(ent, out var movement))
-            ResetProneCrawlMovementState((ent, movement));
+            ResetProneCrawlMovementState((ent.Owner, movement));
 
         RemCompDeferred<ActiveProneCrawlMovementComponent>(ent);
     }
@@ -82,6 +82,6 @@ public abstract partial class SharedSunriseStandingStateSystem
             return;
 
         field = value;
-        DirtyField(ent, ent.Comp, name);
+        DirtyField(ent.Owner, ent.Comp, name);
     }
 }

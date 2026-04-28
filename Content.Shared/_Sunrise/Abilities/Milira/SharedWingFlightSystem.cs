@@ -49,10 +49,10 @@ public abstract class SharedWingFlightSystem : EntitySystem
         ent.Comp.FlightEnabled = enabled;
 
         if (enabled)
-            EnsureComp<ActiveWingFlightComponent>(ent);
+            EnsureComp<ActiveWingFlightComponent>(ent.Owner);
         else
         {
-            RemComp<ActiveWingFlightComponent>(ent);
+            RemComp<ActiveWingFlightComponent>(ent.Owner);
             StartInertia(ent);
         }
 
@@ -66,7 +66,7 @@ public abstract class SharedWingFlightSystem : EntitySystem
     {
         ent.Comp.InertiaActive = true;
         ent.Comp.InertiaEndTime = _timing.CurTime + ent.Comp.InertiaDuration;
-        EnsureComp<ActiveWingFlightComponent>(ent);
+        EnsureComp<ActiveWingFlightComponent>(ent.Owner);
 
         _movement.RefreshFrictionModifiers(ent);
 
@@ -82,9 +82,9 @@ public abstract class SharedWingFlightSystem : EntitySystem
         ent.Comp.InertiaEndTime = null;
 
         if (!ent.Comp.FlightEnabled)
-            RemComp<ActiveWingFlightComponent>(ent);
+            RemComp<ActiveWingFlightComponent>(ent.Owner);
 
-        _movement.RefreshFrictionModifiers(ent);
+        _movement.RefreshFrictionModifiers(ent.Owner);
         Dirty(ent);
     }
 
@@ -137,15 +137,15 @@ public abstract class SharedWingFlightSystem : EntitySystem
     protected void OnDowned(Entity<WingFlightComponent> ent, ref DownedEvent args)
     {
         if (IsFlightOrInertiaActive(ent))
-            _standing.Stand(ent, force: true);
+            _standing.Stand(ent.Owner, force: true);
     }
 
     protected void OnKnockedDown(Entity<WingFlightComponent> ent, ref KnockedDownEvent args)
     {
         if (IsFlightOrInertiaActive(ent))
         {
-            RemComp<KnockedDownComponent>(ent);
-            _standing.Stand(ent, force: true);
+            RemComp<KnockedDownComponent>(ent.Owner);
+            _standing.Stand(ent.Owner, force: true);
         }
     }
 }

@@ -116,7 +116,7 @@ public sealed partial class CrewMonitoringConsoleSystem
     public void ToggleAlert(Entity<CrewMonitoringCorpseAlertComponent> ent)
     {
         ent.Comp.DoCorpseAlert = !ent.Comp.DoCorpseAlert;
-        Dirty(ent, ent.Comp);
-        UpdateUserInterface(ent);
+        Dirty(ent.Owner, ent.Comp);
+        UpdateUserInterface(ent.Owner);
     }
 }

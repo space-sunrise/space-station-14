@@ -19,7 +19,7 @@ public sealed class ToggleableThermalVisionSystem : EntitySystem
 
     private void OnVisionInit(Entity<ToggleableThermalVisionComponent> ent, ref ComponentInit args)
     {
-        _actionsSystem.AddAction(ent, ref ent.Comp.ActionEntity, ent.Comp.Action);
+        _actionsSystem.AddAction(ent.Owner, ref ent.Comp.ActionEntity, ent.Comp.Action);
     }
 
     private void OnVisionShutdown(Entity<ToggleableThermalVisionComponent> ent, ref ComponentShutdown args)

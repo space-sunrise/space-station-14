@@ -40,12 +40,12 @@ public sealed partial class PsychologistSystem : EntitySystem
         {
             if (CompOrNull<SolutionIngestBlockerComponent>(args.Target) != null)
             {
-                _popupSystem.PopupEntity(Loc.GetString("psychologist-alcoholblock-removed", ("target", args.Target)), ent);
+                _popupSystem.PopupEntity(Loc.GetString("psychologist-alcoholblock-removed", ("target", args.Target)), ent.Owner);
                 RemComp<SolutionIngestBlockerComponent>(args.Target.Value);
             }
             else
             {
-                _popupSystem.PopupEntity(Loc.GetString("psychologist-alcoholblock-applied", ("target", args.Target)), ent);
+                _popupSystem.PopupEntity(Loc.GetString("psychologist-alcoholblock-applied", ("target", args.Target)), ent.Owner);
                 AddComp<SolutionIngestBlockerComponent>(args.Target.Value);
             }
         }
@@ -59,14 +59,14 @@ public sealed partial class PsychologistSystem : EntitySystem
             {
                 if (humanoidAppearanceComponent.Species.Id == "Dwarf")
                 {
-                    _popupSystem.PopupEntity(Loc.GetString("psychologist-alcoholblock-dwarf-forbidden"), ent);
+                    _popupSystem.PopupEntity(Loc.GetString("psychologist-alcoholblock-dwarf-forbidden"), ent.Owner);
                     return;
                 }
             }
         }
 
-        if (_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, args.Action.Comp.UseDelay ?? TimeSpan.FromSeconds(30),
-            new DoAfterAlcoholBlockEvent(), eventTarget: args.Target, target: args.Target, used: ent)
+        if (_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, args.Action.Comp.UseDelay ?? TimeSpan.FromSeconds(30),
+            new DoAfterAlcoholBlockEvent(), eventTarget: args.Target, target: args.Target, used: ent.Owner)
         {
             BreakOnMove = true,
             BreakOnDamage = true
@@ -120,7 +120,7 @@ public sealed partial class PsychologistSystem : EntitySystem
     }
     private void onPsychologistBlockAlcohol(Entity<PsychologistBlockAlcoholComponent> ent, ref ComponentStartup args)
     {
-        _actionsSystem.AddAction(ent, "PsychologistAlcoholBlock");
+        _actionsSystem.AddAction(ent.Owner, "PsychologistAlcoholBlock");
     }
 
 }

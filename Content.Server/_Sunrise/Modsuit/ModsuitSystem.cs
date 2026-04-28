@@ -62,7 +62,7 @@ public sealed class ModsuitSystem : SharedModsuitSystem
                 SuitBiocode.DNA = PersonDNA.DNA;
 
             SuitBiocode.IsAuthorized = true;
-            EntityManager.Dirty(SuitBiocode, SuitBiocode);
+            EntityManager.Dirty(SuitBiocode.Owner, SuitBiocode);
 
             comp.RoundStartBiocode = false;
             EntityManager.Dirty(uid, comp);
