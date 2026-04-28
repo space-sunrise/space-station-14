@@ -137,7 +137,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (wielder == EntityUid.Invalid)
             return;
 
-        if (!TryComp<DualWieldComponent>(wielder, out _))
+        if (!TryComp<DualWieldComponent>(wielder, out var dualWield))
+            return;
+
+        if (dualWield.LeftGun != ent.Owner && dualWield.RightGun != ent.Owner)
             return;
 
         args.AngleIncrease *= (1f + ent.Comp.DualWieldInaccuracyPenalty);

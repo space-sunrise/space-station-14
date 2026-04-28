@@ -26,7 +26,7 @@ public abstract partial class SharedGunSystem
         var requestedGun = GetEntity(msg.Gun);
 
         if (isDualWield)
-            return requestedGun == dualWield!.LeftGun || requestedGun == dualWield.RightGun;
+            return dualWield != null && (requestedGun == dualWield.LeftGun || requestedGun == dualWield.RightGun);
 
         return activeGun == requestedGun;
     }

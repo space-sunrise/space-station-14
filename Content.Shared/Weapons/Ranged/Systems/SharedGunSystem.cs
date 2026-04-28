@@ -182,6 +182,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Sunrise edit start - dual-wield shot alternation
         // if (ent != GetEntity(msg.Gun))
         //     return;
+        // In dual-wield mode the active gun (from the queue) may differ from the requested gun,
+        // so we validate against both registered dual-wield guns instead of just the active one.
         if (!TryHandleDualWieldShootRequest(user.Value, ent, msg, out var isDualWield, out var dualWield))
             return;
         // Sunrise edit end
