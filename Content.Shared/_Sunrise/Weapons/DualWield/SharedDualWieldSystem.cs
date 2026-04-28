@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Alert;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -38,7 +37,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnHandUnequipped(Entity<HandsComponent> ent, ref DidUnequipHandEvent args)
@@ -46,7 +45,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnHandCountChanged(Entity<HandsComponent> ent, ref HandCountChangedEvent args)
@@ -54,7 +53,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        CheckAndUpdateDualWield(ent.AsNullable());
+        CheckAndUpdateDualWield(ent);
     }
 
     private void OnDualWieldShutdown(Entity<DualWieldComponent> ent, ref ComponentShutdown args)
@@ -63,7 +62,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         RefreshDualWieldGuns(ent.Comp.LeftGun, ent.Comp.RightGun);
     }
 
-    private void CheckAndUpdateDualWield(Entity<HandsComponent?> ent)
+    private void CheckAndUpdateDualWield(Entity<HandsComponent> ent)
     {
         if (!TryGetBothDualWieldGuns(ent, out var leftGun, out var rightGun))
         {
@@ -74,13 +73,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
         EnableDualWield(ent, leftGun, rightGun);
     }
 
-    private bool TryGetBothDualWieldGuns(Entity<HandsComponent?> ent, out EntityUid leftGun, out EntityUid rightGun)
+    private bool TryGetBothDualWieldGuns(Entity<HandsComponent> ent, out EntityUid leftGun, out EntityUid rightGun)
     {
         leftGun = EntityUid.Invalid;
         rightGun = EntityUid.Invalid;
-
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
 
         foreach (var handName in _hands.EnumerateHands(ent))
         {
@@ -116,7 +112,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         return ent.Comp.Count == leftDualWield.HandsRequired;
     }
 
-    private void EnableDualWield(Entity<HandsComponent?> ent, EntityUid leftGun, EntityUid rightGun)
+    private void EnableDualWield(Entity<HandsComponent> ent, EntityUid leftGun, EntityUid rightGun)
     {
         var dualWield = EnsureComp<DualWieldComponent>(ent);
         dualWield.LeftGun = leftGun;
