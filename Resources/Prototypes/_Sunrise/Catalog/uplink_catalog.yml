@@ -10,6 +10,22 @@
   - UplinkWearables
 
 - type: listing
+  id: UplinkSyndieMoustache
+  name: uplink-syndie-Moustache-name
+  description: uplink-syndie-Moustache-desc
+  icon: { sprite: Clothing/Mask/italian_moustache.rsi, state: icon }
+  productEntity: ClothingMaskFakeMoustache
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SyndieAgentUplink
+
+- type: listing
   id: UplinkClothingEyesGlassesThermal
   name: uplink-thermal-name
   description: uplink-thermal-desc

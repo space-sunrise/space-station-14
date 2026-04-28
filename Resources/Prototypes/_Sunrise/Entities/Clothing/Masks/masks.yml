@@ -285,6 +285,37 @@
     - FaceCovered # INTERACTIONS
 
 - type: entity
+  parent: [ ClothingMaskItalianMoustache, BaseSyndicateContraband ]
+  id: ClothingMaskFakeMoustache
+  suffix: Fake, Syndicate
+  components:
+  - type: Sprite
+    sprite: Clothing/Mask/italian_moustache.rsi
+  - type: Clothing
+    sprite: Clothing/Mask/italian_moustache.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+  - type: VoiceMask
+  - type: UIRequiresLock
+    userInterfaceKeys:
+      - enum.VoiceMaskUIKey.Key
+    accessDeniedSound: null
+    popup: null
+  - type: UserInterface
+    interfaces:
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
+  - type: AddAccentClothing
+    accent: ReplacementAccent
+    replacement: italian
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FaceCovered
+
+- type: entity
   parent: [ ClothingMaskBase, BaseMajorContraband ]
   id: ClothingMaskDogi
   name: samurai mask
