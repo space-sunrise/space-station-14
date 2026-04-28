@@ -755,13 +755,13 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 60
+      weight: 55
       children:
       - id: GunSafeSubMachineGunDrozd
-    - !type:GroupSelector
-      weight: 40
-      children:
       - id: GunSafeSubMachineGunMP5
+    - !type:GroupSelector
+      weight: 45
+      children:
       - id: GunSafeSubMachineGunDrozdMk2
       - id: GunSafeSubMachineGunWt550
       - id: GunSafeSubMachineGunMP7
@@ -793,7 +793,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 65
+      weight: 60
       children:
       - id: GunSafeSuperweaponLWAP
       - id: GunSafeSuperweaponSmartGun
