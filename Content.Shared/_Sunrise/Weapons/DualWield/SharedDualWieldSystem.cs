@@ -78,15 +78,15 @@ public sealed class SharedDualWieldSystem : EntitySystem
         leftGun = EntityUid.Invalid;
         rightGun = EntityUid.Invalid;
 
-        foreach (var handName in _hands.EnumerateHands(ent))
+        foreach (var handName in _hands.EnumerateHands((ent.Owner, ent.Comp)))
         {
-            if (!_hands.TryGetHeldItem(ent, handName, out var held))
+            if (!_hands.TryGetHeldItem((ent.Owner, ent.Comp), handName, out var held))
                 continue;
 
             if (!HasComp<CanDualWieldComponent>(held))
                 continue;
 
-            if (!_hands.TryGetHand(ent, handName, out var hand))
+            if (!_hands.TryGetHand((ent.Owner, ent.Comp), handName, out var hand))
                 continue;
 
             switch (hand.Value.Location)
