@@ -58,7 +58,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void OnDualWieldShutdown(Entity<DualWieldComponent> ent, ref ComponentShutdown args)
     {
-        _alerts.ClearAlert(ent, DualWieldAlertId);
+        _alerts.ClearAlert(ent.Owner, DualWieldAlertId);
         RefreshDualWieldGuns(ent.Comp.LeftGun, ent.Comp.RightGun);
     }
 
@@ -120,7 +120,7 @@ public sealed class SharedDualWieldSystem : EntitySystem
         dualWield.GunQueue = new List<EntityUid> { leftGun, rightGun };
         Dirty(ent, dualWield);
 
-        _alerts.ShowAlert(ent, DualWieldAlertId, severity: 0);
+        _alerts.ShowAlert(ent.Owner, DualWieldAlertId, severity: 0);
         RefreshDualWieldGuns(leftGun, rightGun);
     }
 
