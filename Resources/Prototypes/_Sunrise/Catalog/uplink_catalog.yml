@@ -11,8 +11,8 @@
 
 - type: listing
   id: UplinkSyndieMoustache
-  name: uplink-syndie-Moustache-name
-  description: uplink-syndie-Moustache-desc
+  name: uplink-syndie-moustache-name
+  description: uplink-syndie-moustache-desc
   icon: { sprite: Clothing/Mask/italian_moustache.rsi, state: icon }
   productEntity: ClothingMaskFakeMoustache
   cost:
