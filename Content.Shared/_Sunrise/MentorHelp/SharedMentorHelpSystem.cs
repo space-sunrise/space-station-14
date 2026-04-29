@@ -133,6 +133,7 @@ namespace Content.Shared._Sunrise.MentorHelp
     {
         public int Id { get; init; }
         public NetUserId PlayerId { get; init; }
+        public NetEntity? PlayerEntity { get; init; }
         public string PlayerName { get; init; } = string.Empty;
         public NetUserId? AssignedToUserId { get; init; }
         public string? AssignedToName { get; init; }

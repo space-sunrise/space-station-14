@@ -36,7 +36,7 @@ public sealed partial class MentorHelpSystem
         return ticketDataList;
     }
 
-    private static MentorHelpTicketData CreateTicketData(
+    private MentorHelpTicketData CreateTicketData(
         MentorHelpTicket ticket,
         string playerName,
         string? assignedToName,
@@ -46,6 +46,7 @@ public sealed partial class MentorHelpSystem
         {
             Id = ticket.Id,
             PlayerId = new NetUserId(ticket.PlayerId),
+            PlayerEntity = GetPlayerEntity(ticket.PlayerId),
             PlayerName = playerName,
             AssignedToUserId = ToNetUserId(ticket.AssignedToUserId),
             AssignedToName = assignedToName,
@@ -59,6 +60,19 @@ public sealed partial class MentorHelpSystem
             RoundId = ticket.RoundId,
             HasUnreadMessages = false
         };
+    }
+
+    private NetEntity? GetPlayerEntity(Guid userId)
+    {
+        var netUserId = new NetUserId(userId);
+
+        if (!_playerManager.TryGetSessionById(netUserId, out var session))
+            return null;
+
+        if (session.AttachedEntity is not { Valid: true } attachedEntity)
+            return null;
+
+        return GetNetEntity(attachedEntity);
     }
 
     private async Task<List<MentorHelpMessageData>> GetTicketMessagesDataAsync(int ticketId, bool includeStaffOnly)
