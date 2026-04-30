@@ -15,7 +15,7 @@ public abstract partial class SharedHandsSystem
     {
         SubscribeLocalEvent<HandsComponent, GetEyeOffsetRelayedEvent>(RelayEvent);
         SubscribeLocalEvent<HandsComponent, GetEyePvsScaleRelayedEvent>(RelayEvent);
-        SubscribeLocalEvent<HandsComponent, RefreshMovementSpeedModifiersEvent>(RelayEvent);
+        SubscribeLocalEvent<HandsComponent, RefreshMovementSpeedModifiersEvent>(RelaySunriseMovementSpeedModifiersEvent); // Sunrise-Edit
 
         // By-ref events.
         SubscribeLocalEvent<HandsComponent, ExtinguishEvent>(RefRelayEvent);

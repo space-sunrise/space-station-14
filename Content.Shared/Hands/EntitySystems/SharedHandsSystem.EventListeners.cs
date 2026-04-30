@@ -39,7 +39,7 @@ public abstract partial class SharedHandsSystem
         // Entities without the HandsComponent will always have full crawling speed.
         if (totalHands == 0)
             args.SpeedModifier = 0f;
-        else
+        else if (CanSunriseApplyHeldItemSpeedModifiersWhenDowned(ent)) // Sunrise-Edit
             args.SpeedModifier *= (float)freeHands / totalHands;
     }
 }
