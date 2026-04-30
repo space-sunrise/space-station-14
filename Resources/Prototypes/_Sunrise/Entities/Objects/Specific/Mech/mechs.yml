@@ -632,9 +632,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
     speed: 8
@@ -792,9 +789,6 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
     speed: 8

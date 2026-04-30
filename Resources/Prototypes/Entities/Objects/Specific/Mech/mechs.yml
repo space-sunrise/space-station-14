@@ -272,8 +272,8 @@
       types:
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
-    baseSprintSpeed: 3.75
+    baseWalkSpeed: 2 # Sunrise-edit: starlight parity
+    baseSprintSpeed: 3.6 # Sunrise-edit: starlight parity
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -332,8 +332,8 @@
         Blunt: 20
     bluntStaminaDamageFactor: 1
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2.25
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorMediumNTLoadout ]
@@ -663,7 +663,7 @@
         - HumanoidAppearance
   - type: MeleeThrowOnHit
     distance: 1
-    speed: 8
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -674,7 +674,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseSprintSpeed: 4
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -689,7 +689,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      275: Critical
+      325: Critical
 
 - type: entity
   id: MechGygaxBattery
@@ -733,7 +733,7 @@
         - HumanoidAppearance
   - type: MeleeThrowOnHit
     distance: 1
-    speed: 8
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -765,7 +765,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
+      465: Critical
 
 - type: entity
   id: MechDurandBattery
@@ -808,23 +808,20 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
-    speed: 8
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 50
-        Structural: 350
+        Blunt: 40
+        Structural: 200
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseSprintSpeed: 1.75
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorHeavyNTLoadout ]
@@ -841,7 +838,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      575: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -898,12 +895,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
-    speed: 8
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -931,7 +925,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      700: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -993,12 +987,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
-    speed: 8
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1009,7 +1000,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 3.7
+    baseSprintSpeed: 4.25
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorMediumSyndiLoadout ]
@@ -1017,7 +1008,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.10
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1031,7 +1022,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
+      375: Critical
   - type: AccessReader
     access: [["NuclearOperative"]]
   # Sunrise-End
@@ -1087,23 +1078,20 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
     distance: 1
-    speed: 8
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 80
+        Blunt: 75
         Structural: 400
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseSprintSpeed: 1.75
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorHeavySyndiLoadout ]
@@ -1111,7 +1099,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
