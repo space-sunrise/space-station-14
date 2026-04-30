@@ -10,6 +10,9 @@ namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem
 {
+    /// <summary>
+    /// Sunrise-specific relay gate for held-item movement speed modifiers while downed.
+    /// </summary>
     [Dependency] private readonly IConfigurationManager _sunriseConfig = default!;
     [Dependency] private readonly StandingStateSystem _sunriseStandingState = default!;
 
