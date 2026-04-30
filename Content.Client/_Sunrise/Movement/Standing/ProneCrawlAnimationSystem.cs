@@ -17,6 +17,9 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
 
     private const float PullBackPeak = 0.35f;
 
+    private static readonly Vector2 FallbackOffset = Vector2.Zero;
+    private static readonly Vector2 FallbackScale = Vector2.One;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -40,7 +43,7 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
             _animation.Stop((ent.Owner, animationPlayer), crawl.AnimationKey);
 
         var animationState = EnsureComp<ProneCrawlAnimationComponent>(ent);
-        CaptureRestState(animationState, sprite.Offset, sprite.Scale);
+        CaptureRestState(animationState, sprite, animationPlayer.PlayingAnimationCount == 0);
         RestoreAnimationState((ent.Owner, animationState), sprite);
 
         var duration = MathF.Max(0.05f, (float) args.Duration.TotalSeconds);
@@ -118,13 +121,14 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         _sprite.SetScale((ent.Owner, sprite), ent.Comp.BaseScale);
     }
 
-    private void CaptureRestState(ProneCrawlAnimationComponent component, Vector2 offset, Vector2 scale)
+    private void CaptureRestState(ProneCrawlAnimationComponent component, SpriteComponent sprite, bool useSpriteDefaults = true)
     {
         if (component.BaseStateCaptured)
             return;
 
-        component.BaseOffset = offset;
-        component.BaseScale = scale;
+        // If another animation modified offset or scale we have to use default as fallback.
+        component.BaseOffset = useSpriteDefaults ? sprite.Offset : FallbackOffset;
+        component.BaseScale = useSpriteDefaults ? sprite.Scale : FallbackScale;
         component.BaseStateCaptured = true;
     }
 }

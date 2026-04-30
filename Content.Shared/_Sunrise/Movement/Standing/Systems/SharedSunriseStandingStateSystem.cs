@@ -114,7 +114,7 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
         var throwing = xform.LocalRotation.ToWorldVec() * ent.Comp.FallDistance;
         var direction = xform.Coordinates.Offset(throwing); // to make the character jump in the direction he's looking
 
-        _throwing.TryThrow(ent, direction, ent.Comp.FallVelocity, doSpin: false);
+        _throwing.TryThrow(ent, direction, ent.Comp.FallVelocity, animated: false, doSpin: false);
 
         _statusEffects.TryAddStatusEffectDuration(ent,
             FallStatusEffectKey,
