@@ -23,9 +23,13 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
 
     private static readonly EntProtoId FallStatusEffectKey = "StatusEffectFall";
 
+    private EntityQuery<KnockedDownComponent> _knockedDownQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _knockedDownQuery = GetEntityQuery<KnockedDownComponent>();
 
         SubscribeLocalEvent<CanFallComponent, KnockedDownEvent>(OnDown);
         SubscribeLocalEvent<CanFallComponent, MoveInputEvent>(OnMoveInput);
@@ -49,15 +53,17 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
     /// Checks whether the entity can enter the falling state.
     /// Returns false when the entity is weightless, has no movement input, is auto-standing,
     /// actively leaping, lacks enough stamina, has the jump status effect, or when
-    /// <see cref="FallAttemptEvent"/> is cancelled.
+    /// <see cref="FallAttemptEvent"/> is canceled.
     /// </summary>
     /// <param name="ent">Entity with the fall configuration to check.</param>
-    /// <param name="autoStand">Prevents falling while the caller is auto-standing the entity.</param>
     /// <param name="quiet">Suppresses predicted failure popups when true.</param>
     /// <returns>True when all checks pass and the entity can fall; otherwise false.</returns>
-    public bool CanFall(Entity<CanFallComponent> ent, bool autoStand, bool quiet = false)
+    public bool CanFall(Entity<CanFallComponent> ent, bool quiet = false)
     {
-        if (_gravity.IsWeightless(ent.Owner) || !HasMovementInput(ent) || autoStand)
+        if (_gravity.IsWeightless(ent.Owner) || !HasMovementInput(ent))
+            return false;
+
+        if (!_knockedDownQuery.TryComp(ent, out var knockedDown) || knockedDown.AutoStand)
             return false;
 
         if (HasComp<ActiveLeaperComponent>(ent))
@@ -99,12 +105,13 @@ public abstract partial class SharedSunriseStandingStateSystem : EntitySystem
     /// using <see cref="CanFallComponent.FallDistance"/> and <see cref="CanFallComponent.FallVelocity"/>,
     /// adding the fall status effect for <see cref="CanFallComponent.Duration"/>, and dealing stamina
     /// damage equal to <c>stamina.CritThreshold * ent.Comp.StaminaDamage</c> with resistance ignored.
+    /// Requires an active <see cref="KnockedDownComponent"/> and respects its autostand state.
     /// </summary>
     /// <param name="ent">Entity with the fall configuration to execute.</param>
     /// <returns>True when the fall side effects were applied; false when <see cref="CanFall"/> rejects the action.</returns>
     public bool TryFall(Entity<CanFallComponent> ent)
     {
-        if (!CanFall(ent, autoStand: false))
+        if (!CanFall(ent))
             return false;
 
         if (!TryComp<StaminaComponent>(ent, out var stamina))

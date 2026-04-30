@@ -100,13 +100,8 @@ public sealed class StandingStateSystem : EntitySystem
         // Optional component.
         Resolve(uid, ref appearance, ref hands, false);
 
-        // Sunrise edit start
         if (!standingState.Standing)
-        {
-            _sunriseStanding.RefreshProneCrawlVisualsMarker((uid, standingState), true);
             return true;
-        }
-        // Sunrise edit end
 
         if (!force)
         {
@@ -154,13 +149,8 @@ public sealed class StandingStateSystem : EntitySystem
         // Optional component.
         Resolve(uid, ref appearance, false);
 
-        // Sunrise edit start
         if (standingState.Standing)
-        {
-            _sunriseStanding.RefreshProneCrawlVisualsMarker((uid, standingState), false);
             return true;
-        }
-        // Sunrise edit end
 
         if (!force)
         {

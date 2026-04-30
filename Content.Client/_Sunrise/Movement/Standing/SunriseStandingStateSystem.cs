@@ -6,6 +6,7 @@ using Content.Shared.Rotation;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
 using Robust.Client.GameObjects;
+using Robust.Shared.Timing;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client._Sunrise.Movement.Standing;
@@ -14,6 +15,7 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
 {
     [Dependency] private readonly RotationVisualizerSystem _rotationVisualizer = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private static readonly Angle EastProneCrawlRotation = Angle.FromDegrees(-90);
     private static readonly Angle WestProneCrawlRotation = Angle.FromDegrees(90);
@@ -21,6 +23,7 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
     private EntityQuery<ActiveProneCrawlVisualsComponent> _activeProneCrawlVisualsQuery;
     private EntityQuery<RotationVisualsComponent> _rotationVisualsQuery;
     private EntityQuery<SpriteComponent> _spriteQuery;
+    private EntityQuery<StandingStateComponent> _standingStateQuery;
     private EntityQuery<TransformComponent> _transformQuery;
 
     public override void Initialize()
@@ -30,6 +33,7 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
         _activeProneCrawlVisualsQuery = GetEntityQuery<ActiveProneCrawlVisualsComponent>();
         _rotationVisualsQuery = GetEntityQuery<RotationVisualsComponent>();
         _spriteQuery = GetEntityQuery<SpriteComponent>();
+        _standingStateQuery = GetEntityQuery<StandingStateComponent>();
         _transformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<StandingStateComponent, AppearanceChangeEvent>(
@@ -53,16 +57,16 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
 
         if (!TryGetActiveProneCrawlVisuals(ent, out var rotationVisuals))
         {
-            RestoreProneCrawlVisuals(sprite);
+            RestoreProneCrawlVisuals(sprite, false);
             return;
         }
 
-        ApplyProneCrawlVisuals(sprite, Transform(ent).LocalRotation, rotationVisuals);
+        ApplyProneCrawlVisuals(sprite, Transform(ent).LocalRotation, rotationVisuals, ShouldAnimateProneCrawlVisuals());
     }
 
     private void OnProneCrawlVisualsStartup(Entity<ActiveProneCrawlVisualsComponent> ent, ref ComponentStartup args)
     {
-        TryApplyActiveProneCrawlVisuals(ent);
+        TryApplyActiveProneCrawlVisuals(ent, ShouldAnimateProneCrawlVisuals());
     }
 
     private void OnMove(Entity<ActiveProneCrawlVisualsComponent> ent, ref MoveEvent args)
@@ -79,13 +83,13 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
 
     private void OnThrownItemStartup(Entity<ThrownItemComponent> ent, ref ComponentStartup args)
     {
-        TryApplyActiveProneCrawlVisuals(ent);
+        TryApplyActiveProneCrawlVisuals(ent, ShouldAnimateProneCrawlVisuals());
     }
 
     private void OnProneCrawlVisualsShutdown(Entity<ActiveProneCrawlVisualsComponent> ent, ref ComponentShutdown args)
     {
         if (_spriteQuery.TryComp(ent, out var sprite))
-            RestoreProneCrawlVisuals((ent, sprite));
+            RestoreProneCrawlVisuals((ent, sprite), ShouldSnapStandingRotation(ent));
         else
             RemComp<ProneCrawlVisualsComponent>(ent);
     }
@@ -100,7 +104,7 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
                _rotationVisualsQuery.TryComp(uid, out rotationVisuals);
     }
 
-    private bool TryApplyActiveProneCrawlVisuals(EntityUid uid)
+    private bool TryApplyActiveProneCrawlVisuals(EntityUid uid, bool animate)
     {
         if (!TryGetActiveProneCrawlVisuals(uid, out var rotationVisuals) ||
             !_spriteQuery.TryComp(uid, out var sprite) ||
@@ -109,7 +113,7 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
             return false;
         }
 
-        ApplyProneCrawlVisuals((uid, sprite), xform.LocalRotation, rotationVisuals);
+        ApplyProneCrawlVisuals((uid, sprite), xform.LocalRotation, rotationVisuals, animate);
         return true;
     }
 
@@ -144,7 +148,7 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
         ent.Comp.DirectionOverride = direction;
     }
 
-    private void RestoreProneCrawlVisuals(Entity<SpriteComponent> ent)
+    private void RestoreProneCrawlVisuals(Entity<SpriteComponent> ent, bool restoreStandingRotation)
     {
         if (!TryComp<ProneCrawlVisualsComponent>(ent, out var proneCrawlVisuals))
             return;
@@ -152,6 +156,9 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
         ent.Comp.EnableDirectionOverride = proneCrawlVisuals.HadDirectionOverride;
         ent.Comp.DirectionOverride = proneCrawlVisuals.DirectionOverride;
         RemComp<ProneCrawlVisualsComponent>(ent);
+
+        if (restoreStandingRotation && _rotationVisualsQuery.TryComp(ent, out var rotationVisuals))
+            _sprite.SetRotation(ent.AsNullable(), rotationVisuals.VerticalRotation);
     }
 
     private static Angle GetProneCrawlRotation(Direction direction)
@@ -159,5 +166,20 @@ public sealed class SunriseStandingStateSystem : SharedSunriseStandingStateSyste
         return direction is Direction.East or Direction.NorthEast or Direction.SouthEast
             ? EastProneCrawlRotation
             : WestProneCrawlRotation;
+    }
+
+    private bool IsStanding(EntityUid uid)
+    {
+        return !_standingStateQuery.TryComp(uid, out var standingState) || standingState.Standing;
+    }
+
+    private bool ShouldSnapStandingRotation(EntityUid uid)
+    {
+        return IsStanding(uid) && !ShouldAnimateProneCrawlVisuals();
+    }
+
+    private bool ShouldAnimateProneCrawlVisuals()
+    {
+        return !_timing.ApplyingState && _timing.IsFirstTimePredicted;
     }
 }
