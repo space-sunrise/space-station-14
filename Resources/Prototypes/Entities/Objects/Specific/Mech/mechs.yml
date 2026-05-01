@@ -29,6 +29,11 @@
     speechSounds: Borg
   - type: TTS
     voice: Glados
+  # Sunrise start
+  - type: MeleeThrowOnHit
+    speed: 10
+    distance: 1
+  # Sunrise end
 
 - type: entity
   id: SpecialMech
@@ -319,7 +324,7 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.40
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
@@ -382,7 +387,7 @@
     baseState: clarke
     openState: clarke-open
     brokenState: clarke-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
@@ -451,7 +456,7 @@
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true # Space Honks is real.
     pilotWhitelist:
       components:
@@ -462,6 +467,19 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
+  # sunrise start
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Structural: 2
+    soundHit:
+      path: /Audio/Items/bikehorn.ogg
+  - type: MeleeThrowOnHit
+    speed: 1
+    distance: 2
+  # sunrise end
 
 - type: entity
   parent: MechHonker
@@ -507,7 +525,7 @@
     baseState: hamtr
     openState: hamtr-open
     brokenState: hamtr-broken
-    mechToPilotDamageMultiplier: 0.2
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
@@ -656,14 +674,14 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 10
+    distance: 2.5
+    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -726,14 +744,14 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 10
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -802,15 +820,15 @@
     baseState: marauder
     openState: marauder-open
     brokenState: marauder-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 10
+    distance: 5
+    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -889,15 +907,15 @@
     baseState: seraph
     openState: seraph-open
     brokenState: seraph-broken
-    mechToPilotDamageMultiplier: 0.05
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 10
+    distance: 5
+    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -981,15 +999,15 @@
     baseState: darkgygax
     openState: darkgygax-open
     brokenState: darkgygax-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 10
+    distance: 3
+    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1072,15 +1090,15 @@
     baseState: mauler
     openState: mauler-open
     brokenState: mauler-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 10
+    distance: 5
+    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
