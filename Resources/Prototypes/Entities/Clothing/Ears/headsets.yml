@@ -86,6 +86,7 @@
       key_slots:
       - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
+      - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
   - type: Clothing

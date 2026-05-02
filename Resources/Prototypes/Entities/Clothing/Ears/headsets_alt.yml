@@ -36,6 +36,8 @@
       key_slots:
       - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
+      - EncryptionKeyLaw
+      - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
   - type: Clothing
@@ -50,6 +52,7 @@
     containers:
       key_slots:
       - EncryptionKeyStationMaster
+      - EncryptionKeyLaw
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi # Sunrise-Edit
   - type: Clothing
