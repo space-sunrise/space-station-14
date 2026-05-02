@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Robust.Shared.Utility;
+using Content.Shared.Localizations;
 
 namespace Content.Shared.Localizations
 {
@@ -24,6 +25,23 @@ namespace Content.Shared.Localizations
             @"mm"
         };
 
+        // Sunrise-Start
+        private static ILocValue DeclineWrapper(LocArgs args)
+        {
+            var word = ((LocValueString) args.Args[0]).Value;
+            var caseName = ((LocValueString) args.Args[1]).Value;
+            var result = FluentDecline.Decline(word, caseName);
+            return new LocValueString(result);
+        }
+
+        private static ILocValue GetActionCaseWrapper(LocArgs args)
+        {
+            var action = ((LocValueString) args.Args[0]).Value;
+            var caseName = FluentDecline.GetCaseForAction(action);
+            return new LocValueString(caseName);
+        }
+        // Sunrise-End
+
         public void Initialize()
         {
             var culture = new CultureInfo(Culture);
@@ -44,6 +62,8 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(culture, "NATURALPERCENT", FormatNaturalPercent);
             _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
             _loc.AddFunction(culture, "MANY", FormatMany); // TODO: Temporary fix for MANY() fluent errors. Remove after resolve errors.
+            _loc.AddFunction(culture, "DECLINE", DeclineWrapper); //Sunrise-Edit
+            _loc.AddFunction(culture, "GET_ACTION_CASE", GetActionCaseWrapper); //Sunrise-Edit
 
 
             /*

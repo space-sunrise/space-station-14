@@ -1,4 +1,4 @@
 story-template-generic =
-    This is { INDEFINITE($bookGenre) } { $bookGenre } about { INDEFINITE($char1Adj) } { $char1Adj } { $char1Type } and { INDEFINITE($char2Adj) } { $char2Adj } { $char2Type }. Due to { $event }, they { $actionTrait } { $action } { INDEFINITE($char3Type) } { $char3Type } { $location }.
-    
-    The { $element } is { $elementTrait }.
+    Это { $bookGenre } о { DECLINE($char1Adj, "prepositional") } { DECLINE($char1Type, "prepositional") } и { DECLINE($char2Adj, "prepositional") } { DECLINE($char2Type, "prepositional") }. Из-за { $event }, они { $actionTrait } { $action } { DECLINE($char3Type, GET_ACTION_CASE($action)) } { $location }.
+
+    { $element } { $elementTrait }.

@@ -764,6 +764,10 @@
       Min: 1
       Max: 4
       PotencyDivisor: 25
+  exudeGasses:
+    Gas.Plasma: 0.5
+  consumeGasses:
+    Gas.CarbonDioxide: 0.5
 
 - type: seed
   id: goldenApple
