@@ -105,10 +105,10 @@
     selectedMode: Burst
     angleDecay: 45
     minAngle: 5
-    maxAngle: 15
+    maxAngle: 18
     burstFireRate: 3
     shotsPerBurst: 4
-    burstCooldown: 1.5
+    burstCooldown: 1.6
     availableModes:
     - SemiAuto
     - Burst
