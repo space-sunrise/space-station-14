@@ -31,3 +31,5 @@ ent-ClothingOuterHardsuitChameleon = syndicate chameleon
     .desc = Looking at his material, Sci-fi images inadvertently pop up in your head.
 ent-ClothingOuterHardsuitInfiltration = syndicate infiltration hardsuit
     .desc = The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with stealth in mind.
+ent-ClothingOuterMaidArmorRaid = syndicate elegant raid suit
+    .desc = Flexible and well-armored... a dress? Made for speed and elegance. Men won't wear this... right?

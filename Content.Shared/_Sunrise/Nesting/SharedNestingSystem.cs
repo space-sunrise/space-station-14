@@ -1,4 +1,4 @@
-using Content.Shared._Sunrise.Nesting;
+using Content.Shared._Sunrise.Movement.Carrying;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -10,13 +10,16 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
-using Content.Shared._Sunrise.Carrying;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Nesting;
 
+// TODO: Рефактор:
+// 1. Использовать Entity<T>
+// 2. Нормальное форматирование
+// 3. Нормальный и понятный нейминг + документация
 public abstract class SharedNestingSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
@@ -43,7 +46,7 @@ public abstract class SharedNestingSystem : EntitySystem
         SubscribeLocalEvent<NestingMobComponent, NestingPickupDoAfterEvent>(OnPickupDoAfter);
         SubscribeLocalEvent<NestingContainerComponent, GetVerbsEvent<AlternativeVerb>>(AddInsertAltVerb);
         SubscribeLocalEvent<NestingContainerComponent, NestingInsertDoAfter>(OnInsertingDoAfter);
-        SubscribeLocalEvent<CarriableComponent, CanCarryEvent>(OnCanCarry);
+        SubscribeLocalEvent<NestingMobComponent, StartBeingCarryAttemptEvent>(OnStartBeingCarryAttempt);
     }
 
     private void OnInteractAttempt(Entity<NestingMobComponent> ent, ref InteractionAttemptEvent args)
@@ -214,10 +217,10 @@ public abstract class SharedNestingSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnCanCarry(EntityUid uid, CarriableComponent component, CanCarryEvent args)
+    private void OnStartBeingCarryAttempt(Entity<NestingMobComponent> ent, ref StartBeingCarryAttemptEvent args)
     {
         if (!HasComp<NestingMobComponent>(args.Carrier))
-            args.Cancel();
+            args.Cancelled = true;
     }
 }
 

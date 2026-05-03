@@ -1,6 +1,6 @@
 ---
 name: ss14-graphics-animation-player
-description: Глубокий практический гайд по анимациям сущностей через AnimationPlayerSystem в SS14: lifecycle, API, типы треков, keyframes/interpolation/easing, события завершения, паттерны и анти-паттерны для production-кода.
+description: A deep practical guide to entity animations using the AnimationPlayerSystem in SS14: lifecycle, API, track types, keyframes/interpolation/easing, completion events, patterns and anti-patterns for production code.
 ---
 
 # Cursor Bridge

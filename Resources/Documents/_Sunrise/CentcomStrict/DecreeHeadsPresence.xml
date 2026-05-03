@@ -1,0 +1,38 @@
+﻿<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                    [color=#8D1010]☆★★[/color] [color=#1B2333][bold]ПРИКАЗ[/bold][/color] [color=#8D1010]★★☆[/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / ЦК-КОМ[/bold][/color]        [color=#7A4A00][bold]№ [form="Номер приказа"][/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Объект назначения:[/color] [color=#1B2333][form="Наименование объекта"][/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Приказ о наличии глав станции[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+
+[color=#2D3442][bold][color=#1B2333]Уважаемое Командование[/color][/bold], в рамках [bold][color=#1E4C7A]регулярной проверки Центральным Командованием[/color][/bold] [bold][color=#8D1010]требуется предоставить отчёт[/color][/bold] о наличии действующих глав отделов.[/color]
+
+[bold][color=#7A4A00]В отчёте необходимо указать:[/color][/bold]
+[bold][mono][color=#2D3442]
+ ► [bold][color=#8D1010]Перечень глав отделов:[/color][/bold] действующие руководители по каждому отделу.
+ ► [bold][color=#1E4C7A]Данные по руководителю:[/color][/bold] Имя и Фамилия, должность, статус (в должности / ВрИО / отстранён / переведён / недееспособен / погиб), общее число сотрудников и список по должностям.
+ ► [bold][color=#7A4A00]При выбытии главы:[/color][/bold] указать, что произошло, на кого назначен ВрИО; если ВрИО не назначен — причину отсутствия замещения.
+[/color][/mono][/bold]
+
+[color=#2D3442]Данные должны соответствовать фактическому составу руководства на момент отправки отчёта.[/color]
+
+[bold][color=#7A4A00]Ответственный за предоставление:[/color][/bold] [bold][color=#1E4C7A][form="Должность ответственного"][/color][/bold]
+[bold][color=#7A4A00]Контрольный срок:[/color][/bold] [bold][color=#8D1010][form="Время"][/color][/bold]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
+
+
+
+
+</Document>

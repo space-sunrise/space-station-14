@@ -1,0 +1,41 @@
+- type: constructionGraph
+  id: LeviathanNukeShellDisassembly
+  start: start
+  graph:
+  - node: start
+    entity: CartridgeLeviathan240mmNuke
+    edges:
+    - to: terminal
+      completed:
+      - !type:SpawnPrototype
+        prototype: LeviathanNukeShellStep1OutcomeSpawner
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: damaged75
+    entity: CartridgeLeviathan240mmNukeDamaged75
+    edges:
+    - to: terminal
+      completed:
+      - !type:SpawnPrototype
+        prototype: LeviathanNukeShellStep2OutcomeSpawner
+      - !type:DeleteEntity
+      steps:
+      - tool: Cutting
+        doAfter: 2
+
+  - node: damaged50
+    entity: CartridgeLeviathan240mmNukeDamaged50
+    edges:
+    - to: terminal
+      completed:
+      - !type:SpawnPrototype
+        prototype: LeviathanNukeShellStep3OutcomeSpawner
+      - !type:DeleteEntity
+      steps:
+      - tool: Prying
+        doAfter: 2
+
+  - node: terminal

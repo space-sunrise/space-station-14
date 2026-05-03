@@ -15,7 +15,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency_plasma.yml
         - type: StationJobs
           availableJobs:
             #command
@@ -75,14 +75,15 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
-            SecurityOfficer: [ 6, 8 ]
+            SecurityOfficer: [ 5, 7 ]
             Detective: [ 2, 2 ]
-            Brigmedic: [ 2, 2 ]
+            Brigmedic: [ 1, 2 ]
             SecurityPilot: [ 1, 1 ]
-            SecurityCadet: [ 4, 4 ]
+            SecurityCadet: [ 2, 4 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
+            MiningSpecialist: [ 0, 1 ]
             CargoTechnician: [ 4, 6 ]
             MailCarrier: [ 1, 2 ]
             #civilian

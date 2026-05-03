@@ -83,6 +83,7 @@ namespace Content.Server.Administration.Systems
             AddSmiteVerbs(ev);
             AddTricksVerbs(ev);
             AddAntagVerbs(ev);
+            AddBountySmiteVerb(ev); // Sunrise-Edit
         }
 
         private void AddAdminVerbs(GetVerbsEvent<Verb> args)

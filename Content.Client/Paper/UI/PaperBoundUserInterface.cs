@@ -8,7 +8,7 @@ using static Content.Shared.Paper.PaperComponent;
 namespace Content.Client.Paper.UI;
 
 [UsedImplicitly]
-public sealed class PaperBoundUserInterface : BoundUserInterface
+public sealed partial class PaperBoundUserInterface : BoundUserInterface // Sunrise - edit добавлен partial
 {
     [ViewVariables]
     private PaperWindow? _window;
@@ -23,6 +23,7 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<PaperWindow>();
         _window.OnSaved += InputOnTextEntered;
+        InitializeTemplateFieldSupport(); // Sunrise - add
 
         if (EntMan.TryGetComponent<PaperComponent>(Owner, out var paper))
         {
@@ -50,4 +51,6 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
             _window.Input.CursorPosition = new TextEdit.CursorPos(0, TextEdit.LineBreakBias.Top);
         }
     }
+
+    partial void InitializeTemplateFieldSupport(); // Sunrise - add
 }

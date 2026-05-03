@@ -1,62 +1,62 @@
 # Debug and Validation Guide
 
-## Назначение
+## Purpose
 
-Используй этот файл, когда нужно быстро проверить, почему NPC ведет себя не так, как ожидалось.
+Use this file when you need to quickly check why an NPC is not behaving as expected.
 
-## Базовая отладка поведения
+## Basic behavior debugging
 
-1. Посмотреть домен HTN root/compound:
+1. View the HTN root/compound domain:
 `npcdomain <compoundId>`
-2. Открыть debug UI по NPC:
+2. Open debug UI by NPC:
 `npc`
-3. Включить client overlay HTN:
+3. Enable client overlay HTN:
 `showhtn`
-4. Временно навесить HTN на сущность:
+4. Temporarily attach HTN to the entity:
 `addnpc <entityUid> <rootTask>`
 
-## Что проверять в первую очередь
+## What to check first
 
-1. У сущности есть `HTN` компонент и правильный `rootTask`.
-2. У сущности есть `ActiveNPCComponent` (NPC не “спит”).
-3. Ключи blackboard существуют и имеют верные типы/значения.
-4. Ветка с ожидаемым действием действительно проходит preconditions.
-5. Оператор возвращает адекватный статус (`Continuing/Finished/Failed`).
+1. The entity has a `HTN` component and a valid `rootTask`.
+2. The entity has `ActiveNPCComponent` (NPC is not “sleeping”).
+3. Blackboard keys exist and have the correct types/values.
+4. The branch with the expected action actually goes through preconditions.
+5. The operator returns an adequate status (`Continuing/Finished/Failed`).
 
-## Диагностика “NPC не двигается”
+## Diagnostics “NPC does not move”
 
-1. Проверить наличие `NPCSteeringComponent` во время выполнения movement-задачи.
-2. Проверить pathfinding-флаги и целевые координаты (`TargetCoordinates`, `MovementPathfind`).
-3. Проверить range/LOS условия (`stopOnLineOfSight`, `rangeKey`, preconditions).
-4. Проверить `npc.pathfinding` и `npc.enabled`.
+1. Check for the presence of `NPCSteeringComponent` during the execution of the movement task.
+2. Check pathfinding flags and target coordinates (`TargetCoordinates`, `MovementPathfind`).
+3. Check range/LOS conditions (`stopOnLineOfSight`, `rangeKey`, preconditions).
+4. Check `npc.pathfinding` and `npc.enabled`.
 
-## Диагностика “NPC не атакует”
+## Diagnostics “NPC does not attack”
 
-1. Проверить целевой key (`Target`) после `UtilityOperator`.
-2. Проверить сервисы в боевом примитиве (обновление target).
-3. Проверить боевой runtime-компонент (`NPCMeleeCombatComponent`/`NPCRangedCombatComponent`).
-4. Проверить preconditions по дистанции/LOS/состоянию цели.
-5. Проверить фракции (`NpcFactionMember` + relations).
+1. Check the target key (`Target`) after `UtilityOperator`.
+2. Check the services in the combat primitive (target update).
+3. Check the combat runtime component (`NPCMeleeCombatComponent`/`NPCRangedCombatComponent`).
+4. Check preconditions for distance/LOS/target condition.
+5. Check factions (`NpcFactionMember` + relations).
 
-## Диагностика “план странный/дергается”
+## Diagnostics “the plan is strange/twitching”
 
-1. Проверить слишком частый replan (`PlanCooldown`, `ConstantlyReplan`).
-2. Проверить ветки на конфликтующие preconditions.
-3. Проверить giant-compound с перекрывающимися ветками приоритета.
-4. Проверить, что operator cleanup корректно снимает runtime-state.
+1. Check for too frequent replan (`PlanCooldown`, `ConstantlyReplan`).
+2. Check branches for conflicting preconditions.
+3. Check giant-compound with overlapping priority branches.
+4. Check that operator cleanup correctly removes the runtime-state.
 
-## Валидация изменений
+## Validation of changes
 
-1. Запустить точечный smoke-тест:
-заспавнить NPC, проверить выбор веток и выполнение ключевого сценария.
-2. Прогнать проверку на рекурсивные ловушки в compounds (интеграционный тест NPC recursion).
-3. Прогнать локальные тесты/линтеры, связанные с NPC и прототипами.
-4. Проверить, что изменения не ломают существующие root compounds.
+1. Run a spot smoke test:
+spawn the NPC, check the choice of branches and the execution of the key script.
+2. Run a test for recursive traps in compounds (NPC recursion integration test).
+3. Run local tests/linters related to NPCs and prototypes.
+4. Check that the changes do not break existing root compounds.
 
-## Мини-чеклист перед PR
+## Mini checklist before PR
 
-1. Новый behavior имеет fallback-ветку.
-2. Новый оператор/предусловие имеет ясный shutdown-контракт.
-3. Blackboard-ключи документированы и не конфликтуют по типам.
-4. Для нового utility-профиля есть обоснованный набор considerations.
-5. Есть минимальная проверка в игре или тесте, подтверждающая ожидаемое поведение.
+1. The new behavior has a fallback branch.
+2. The new operator/precondition has a clear shutdown contract.
+3. Blackboard keys are documented and do not conflict by type.
+4. There is a reasonable set of considerations for the new utility profile.
+5. There is a minimum check in the game or test that confirms the expected behavior.

@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Numerics;
 using Content.Shared.Administration.Logs;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
@@ -12,11 +11,10 @@ using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.PaperComponent;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Paper;
 
-public sealed class PaperSystem : EntitySystem
+public sealed partial class PaperSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
@@ -31,8 +29,6 @@ public sealed class PaperSystem : EntitySystem
 
     private static readonly ProtoId<TagPrototype> WriteIgnoreStampsTag = "WriteIgnoreStamps";
     private static readonly ProtoId<TagPrototype> WriteTag = "Write";
-    private static readonly Vector2 DefaultImageScale = new (1f, 1f);
-
     private EntityQuery<PaperComponent> _paperQuery;
 
     public override void Initialize()
@@ -49,6 +45,7 @@ public sealed class PaperSystem : EntitySystem
         SubscribeLocalEvent<RandomPaperContentComponent, MapInitEvent>(OnRandomPaperContentMapInit);
 
         SubscribeLocalEvent<ActivateOnPaperOpenedComponent, PaperWriteEvent>(OnPaperWrite);
+        InitializeTemplateFieldSupport();
 
         _paperQuery = GetEntityQuery<PaperComponent>();
     }
@@ -187,6 +184,9 @@ public sealed class PaperSystem : EntitySystem
 
     private void OnInputTextMessage(Entity<PaperComponent> entity, ref PaperInputTextMessage args)
     {
+        if (!TryValidateWriteTool(entity, args.Actor))
+            return;
+
         var ev = new PaperWriteAttemptEvent(entity.Owner);
         RaiseLocalEvent(args.Actor, ref ev);
         if (ev.Cancelled)
@@ -306,20 +306,12 @@ public sealed class PaperSystem : EntitySystem
         _appearance.SetData(entity, PaperVisuals.Status, status, appearance);
     }
 
-    // Sunrise-Start
-    public void SetImageContent(Entity<PaperComponent> entity, SpriteSpecifier content, Vector2? scale = null)
-    {
-        entity.Comp.ImageContent = content;
-        entity.Comp.ImageScale = scale;
-        Dirty(entity);
-        UpdateUserInterface(entity);
-    }
-    // Sunrise-End
-
     private void UpdateUserInterface(Entity<PaperComponent> entity)
     {
-        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.DefaultColor, entity.Comp.StampedBy, entity.Comp.Mode, entity.Comp.ImageContent, entity.Comp.ImageScale)); // Sunrise-edit
+        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, GetPaperUiState(entity));
     }
+
+    partial void InitializeTemplateFieldSupport();
 }
 
 /// <summary>

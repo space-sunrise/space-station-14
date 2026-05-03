@@ -59,7 +59,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.9
+          radius: 0.8
         density: 300
         mask:
         - FlyingMobMask
@@ -80,9 +80,9 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      750: Dead
+      700: Dead
   - type: Stamina
-    baseCritThreshold: 450
+    baseCritThreshold: 500
     stunTime: 2
   - type: AmbientSound
     sound: /Audio/Ambience/ambiodd.ogg
@@ -123,7 +123,7 @@
       types:
         Blunt: 40
         Slash: 10
-        Structural: 50
+        Structural: 99
   - type: MeleeThrowOnHit
     distance: 2
     speed: 12
@@ -131,17 +131,17 @@
   - type: Butcherable
     spawned:
     - id: ClothingUniformJumpsuitGalaxyBlue
-      prob: 0.5
+      prob: 0.75
     - id: ClothingUniformJumpsuitGalaxyRed
-      prob: 0.5
+      prob: 0.75
     - id: PKAUpgradeDamage
-      prob: 0.25
-    - id: PKAUpgradeFireRate
-      prob: 0.25
-    - id: PKAUpgradeRange
-      prob: 0.25
-    - id: PowerCellAntiqueProto
       prob: 0.2
+    - id: PKAUpgradeFireRate
+      prob: 0.2
+    - id: PKAUpgradeRange
+      prob: 0.2
+    - id: PowerCellAntiqueProto
+      prob: 1
     - id: ArtifactFragment
       amount: 3
     - id: ComplexXenoArtifactItem
@@ -196,33 +196,37 @@
       prob: 0.1
     # Weapons
     - id: WeaponLaserGun
-      prob: 0.05
+      prob: 0.1
     - id: WeaponSubMachineGunPPSH
-      prob: 0.05
+      prob: 0.1
     - id: WeaponSniperDragunov
-      prob: 0.05
+      prob: 0.1
     - id: WeaponLightMachineGunDP28
-      prob: 0.05
+      prob: 0.1
     - id: Musket
-      prob: 0.05
+      prob: 0.5
     - id: WeaponRevolverPirate
-      prob: 0.05
+      prob: 0.5
     - id: WeaponPistolFlintlock
-      prob: 0.05
+      prob: 0.5
     - id: WeaponShotgunGA12
-      prob: 0.05
+      prob: 0.5
     - id: WeaponPistolM1984
-      prob: 0.05
+      prob: 0.1
     - id: ClothingHandsPowerGlovesNoUplink
-      prob: 0.05
+      prob: 0.1
     - id: WeaponMeleeMoltenCollider
-      prob: 0.05
+      prob: 0.1
     - id: WeaponMeleeMoltenAmputator
-      prob: 0.05
+      prob: 0.1
+    - id: WeaponProtoKineticHeavy
+      prob: 0.5
+    - id: EnergyShield
+      prob: 0.9
     - id: WeaponShotgunCycler
       prob: 0.05
     - id: HyperEutacticBlade
-      prob: 0.05
+      prob: 0.1
     # Boss lunch
     - id: MaterialGoliathHide1
       prob: 0.25
