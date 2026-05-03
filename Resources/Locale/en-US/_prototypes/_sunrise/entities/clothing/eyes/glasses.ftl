@@ -18,3 +18,5 @@ ent-ClothingEyesGlassesThermalSec = optical thermal scanner
     .suffix = security
 ent-ClothingEyesStuttering = stuttering glasses
     .desc = Glasses that give the owner knowledge...or stuttering
+ent-ClothingEyesGlassesSalvageMerc = scrapper glasses
+    .desc = Glasses made for salvaging. They provide protection from welding and flashes.

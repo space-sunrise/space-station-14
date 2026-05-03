@@ -1,0 +1,10 @@
+ent-BaseMobClown = aberrant clown
+    .desc = A slippery mass of hilarious matter, animated through honktacular energy.
+ent-MobClownJared = { ent-BaseMobClown }
+    .desc = { ent-BaseMobClown.desc }
+ent-MobClownGolem = { ent-BaseMobClown }
+    .desc = { ent-BaseMobClown.desc }
+ent-MobClownClamp = { ent-BaseMobClown }
+    .desc = { ent-BaseMobClown.desc }
+ent-MobClownLover = { ent-BaseMobClown }
+    .desc = { ent-BaseMobClown.desc }

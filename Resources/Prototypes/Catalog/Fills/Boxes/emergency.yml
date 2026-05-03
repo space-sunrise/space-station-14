@@ -1,5 +1,5 @@
 - type: entity
-  parent: BoxSurvivalBase # Sunrise-Edit
+  parent: BoxSurvivalBase # Sunrise-edit
   id: BoxSurvival
   name: survival box
   description: It's a box with basic internals inside.
@@ -12,7 +12,6 @@
         - id: ClothingMaskBreath
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -33,7 +32,6 @@
         - id: ClothingMaskBreath
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -45,7 +43,7 @@
     currentLabel: reagent-name-nitrogen
 
 - type: entity
-  parent: BoxSurvivalBase # Sunrise-Edit
+  parent: BoxSurvival # Sunrise-edit
   id: BoxSurvivalEngineering
   name: extended-capacity survival box
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
@@ -58,7 +56,6 @@
         - id: ClothingMaskBreath
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -79,7 +76,6 @@
         - id: ClothingMaskBreath
         - id: ExtendedEmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -92,7 +88,7 @@
 
 - type: entity
 
-  parent: BoxSurvivalBase  # sunrise-edit
+  parent: BoxSurvival # Sunrise-edit
   id: BoxSurvivalSecurity
   name: survival box
   description: It's a box with basic internals inside.
@@ -105,7 +101,6 @@
         - id: ClothingMaskGasSecurity
         - id: ExtendedEmergencyOxygenTankFilled #Sunrise-Edit
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -126,7 +121,6 @@
         - id: ClothingMaskGasSecurity
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -139,7 +133,7 @@
 
 - type: entity
 
-  parent: BoxSurvivalBase  # sunrise-edit
+  parent: BoxSurvival # Sunrise-edit
   id: BoxSurvivalMedical
   name: survival box
   description: It's a box with basic internals inside.
@@ -152,7 +146,6 @@
         - id: ClothingMaskBreathMedical
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -173,7 +166,6 @@
         - id: ClothingMaskBreathMedical
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -185,7 +177,7 @@
     currentLabel: reagent-name-nitrogen
 
 - type: entity
-  parent: BoxSurvivalBase # Sunrise-Edit
+  parent: BoxSurvival # Sunrise-edit
   id: BoxHug
   name: box of hugs
   description: A special box for sensitive people.
@@ -204,7 +196,6 @@
         - id: ClothingMaskBreath
         - id: EmergencyFunnyOxygenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -225,7 +216,6 @@
         - id: ClothingMaskBreath
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
         - id: DrinkWaterBottleFull
@@ -244,7 +234,6 @@
         - id: ClothingMaskBreath
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodBreadNutriBatard
         - id: DrinkWaterBottleFull
@@ -261,7 +250,6 @@
         - id: ClothingMaskBreath
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodBreadNutriBatard
         - id: DrinkWaterBottleFull
@@ -273,7 +261,7 @@
     currentLabel: reagent-name-nitrogen
 
 - type: entity
-  parent: BoxSurvivalBase # Sunrise-Edit
+  parent: BoxSurvival # Sunrise-edit
   id: BoxMimeMoth
   suffix: Mime, Emergency moth
   components:
@@ -284,13 +272,12 @@
         - id: ClothingMaskBreath
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodBreadCottonNutriBatard
         - id: DrinkWaterBottleFull
 
 - type: entity
-  parent: BoxSurvivalBase # Sunrise-Edit
+  parent: BoxSurvival # Sunrise-edit
   id: BoxSurvivalSyndicate
   name: extended-capacity survival box
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
@@ -303,7 +290,6 @@
         - id: ClothingMaskGasSyndicate
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
   - type: Sprite
@@ -323,7 +309,6 @@
         - id: ClothingMaskGasSyndicate
         - id: ExtendedEmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-
         - id: Flare
         - id: FoodSnackNutribrick
   - type: Sprite
@@ -340,11 +325,13 @@
   suffix: Military O2
   description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank.
   components:
-  - type: StorageFill
-    contents:
-    - id: DoubleEmergencyOxygenTankFilled
-    - id: EmergencyMedipen
-    - id: Flare
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
   - type: Sprite
     layers:
     - state: internals
@@ -355,11 +342,13 @@
   id: BoxSurvivalMilitaryDoubleNitrogen
   suffix: Military N2
   components:
-  - type: StorageFill
-    contents:
-    - id: DoubleEmergencyNitrogenTankFilled
-    - id: EmergencyMedipen
-    - id: Flare
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
   - type: Sprite
     layers:
     - state: internals

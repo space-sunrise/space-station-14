@@ -200,15 +200,15 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: 0 # Sunrise-Edit
-      lastVisibility: 0 # Sunrise-Edit
+      minVisibility: 0.05
+      lastVisibility: 0.05
   - type: PowerCellDraw
-    drawRate: 20 # Sunrise-edit
+    drawRate: 1.8
   - type: ToggleCellDraw
   # throwing star ability
   - type: ItemCreator
     action: ActionCreateThrowingStar
-    charge: 90 #Sunrise-edit
+    charge: 14.4
     spawnedPrototype: ThrowingStarNinja
     noPowerPopup: ninja-no-power
   # core ninja suit stuff
@@ -235,6 +235,7 @@
     slots:
     - Tail
   # Sunrise-Start
+  - type: EmpImmune
   - type: Tag
     tags:
     - FullBodyOuter

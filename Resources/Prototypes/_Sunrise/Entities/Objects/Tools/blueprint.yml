@@ -136,3 +136,29 @@
   - type: Blueprint
     providedRecipes:
     - ImplanterExtractor
+
+- type: entity
+  parent: BaseBlueprintSunrise
+  id: BlueprintProtoAdrenalImplant
+  name: proto-adrenal implant blueprint
+  description: A blueprint with a schematic of a proto-adrenal implant. It can be inserted into a medical techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ProtoAdrenalImplant
+
+- type: entity
+  parent: BaseBlueprintSunrise
+  id: BlueprintFishXenoReaper
+  name: reaper xenoborg blueprint
+  description: A blueprint with a schematic of an empty reaper xenoborg chassis. It can be inserted into the mothership core.
+  components:
+  - type: Tag
+    tags:
+    - BlueprintAutolathe
+    - SunriseBlueprintXenoborg
+    - Document
+    - Paper
+  - type: Blueprint
+    providedRecipes:
+    - FishXenoReaperRecipe

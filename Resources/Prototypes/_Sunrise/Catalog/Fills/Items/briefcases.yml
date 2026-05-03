@@ -3,11 +3,13 @@
   parent: BriefcaseBrown
   suffix: IAA
   components:
-    - type: StorageFill
-      contents:
-        - id: Paper
-        - id: PenCentcom
-        - id: RubberStampIAA
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+          - id: PenCentcom
+          - id: RubberStampIAA
 
 - type: entity
   id: BriefcaseWeaponC40Filled
@@ -18,8 +20,21 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponSubMachineGunC40rBiocode
+        - id: WeaponSubMachineGunC40r
         - id: MagazineBoxPistol40SP
+
+- type: entity
+  id: BriefcaseWeaponUziFilled
+  parent: BriefcaseWeaponSmall
+  name: secure Uzi case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SunriseWeaponSubMachineGunUzi
+        - id: MagazinePistolSubMachineGun
+          amount: 2
 
 - type: entity
   id: BriefcaseWeaponSIAR52Filled
@@ -52,8 +67,9 @@
         children:
         - id: WeaponSniperDragunov
         - id: MagazineDragunovIncendiary
-        - id: MagazineDragunovUranium
-        - id: MagazineDragunov
+        - id: MagazineDragunovSP
+        - id: MagazineDragunovHP
+        - id: MagazineDragunovFMJ
 
 - type: entity
   id: BriefcaseWeaponM79Filled
@@ -106,5 +122,18 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponShotgunMinotaurBiocode
+        - id: WeaponShotgunMinotaur
         - id: MagazineShotgunXL
+
+- type: entity
+  id: BriefcaseWeaponDeagleFilled
+  parent: BriefcaseWeaponSmall
+  name: secure Deagle case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolDeagle
+        - id: MagazineMagnumAP
+        - id: MagazineMagnumAP

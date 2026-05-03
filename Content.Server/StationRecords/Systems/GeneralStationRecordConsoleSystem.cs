@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Station.Systems;
+using Content.Server._Sunrise.Messenger;
 using Content.Server.StationRecords.Components;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
@@ -11,6 +12,7 @@ public sealed partial class GeneralStationRecordConsoleSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
+    [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
     public override void Initialize()
     {

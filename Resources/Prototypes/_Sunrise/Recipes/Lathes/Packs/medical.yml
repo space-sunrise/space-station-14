@@ -17,6 +17,8 @@
   - CryostasisBeaker
   - BluespaceBeaker
   - SyringeBluespace
+  - VialBluespace
+  - JugBluespace
   - SyringeCryostasis
   - AutoMenderBurn
   - AutoMenderBrute
@@ -30,6 +32,16 @@
 - type: latheRecipePack
   id: SurgeryDynamicSunrise
   recipes:
+  # Base surgery recipes unlocked by SurgeryTech.
+  - BoneSetter
+  - BoneGel
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Saw
+  - Hemostat
+  # SurgeryTechAdvanced unlocks.
+  - Drill
   - RetractorAdvanced
   - ScalpelAdvanced
   - BoneSetterAdvanced
@@ -58,6 +70,8 @@
   #
   - ImplantCaseBulwark
   #
+  - ImplantCaseBonesaw
+  #
   - ImplantCaseGorilla
   #
   - ImplantCaseMantisBladeMaxGuard
@@ -79,3 +93,16 @@
   - ImplantCaseImplantMedical
   - ImplantCaseImplantChemical
   - ImplantCaseImplantSecurity
+  - SadTromboneImplant
+  - BikeHornImplant
+  - LightImplant
+  - TrackingImplant
+  - NutrimentImplant
+  - ReviverImplant
+
+- type: latheRecipePack
+  id: MedicalImplantEmag
+  recipes:
+  - CreepyLaughImplant
+  - ProtoAdrenalImplant
+  - ScramImplantProto

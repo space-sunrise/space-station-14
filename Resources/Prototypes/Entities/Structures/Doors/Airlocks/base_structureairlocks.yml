@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: Airlock
-  parent: BaseStructure
+  parent: [BaseStructure, BaseDeltaPressurePlasma]
   name: airlock
   description: It opens, it closes, and maybe crushes you.
   components:
@@ -205,7 +205,7 @@
 
 - type: entity
   id: AirlockGlass
-  parent: Airlock
+  parent: [Airlock, BaseDeltaPressureReinforcedPlasmaQuarter]
   name: glass airlock
   components:
   - type: MeleeSound

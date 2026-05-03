@@ -1,0 +1,44 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBowWhite
+  name: white bow
+  description: A neat hair bow.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/bow_white.rsi
+    state: icon
+    scale: 0.75, 0.75
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/bow_white.rsi
+    slots:
+    - HEAD
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBowRed
+  name: red bow
+  description: A neat hair bow.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/bow_red.rsi
+    state: icon
+    scale: 0.75, 0.75
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/bow_red.rsi
+    slots:
+    - HEAD
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBowBlack
+  name: black bow
+  description: A neat hair bow.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/bow_black.rsi
+    state: icon
+    scale: 0.75, 0.75
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/bow_black.rsi
+    slots:
+    - HEAD

@@ -1,0 +1,19 @@
+- type: entity
+  parent: ClothingHeadBandBlack
+  id: ClothingHeadBandRandomColorSpawner
+  name: headband
+  suffix: Random color
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - ClothingHeadBandWhite
+    - ClothingHeadBandBlack
+    - ClothingHeadBandBlue
+    - ClothingHeadBandCyan
+    - ClothingHeadBandYellow
+    - ClothingHeadBandGreen
+    - ClothingHeadBandOrange
+    - ClothingHeadBandRed
+    - ClothingHeadBandPurple
+

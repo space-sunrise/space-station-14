@@ -1,39 +1,41 @@
 using System.IO;
+using Content.Shared.CartridgeLoader;
 using System.Linq;
 using System.Numerics;
-using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Client.Viewport;
 using Content.Shared.Mobs.Components;
 using Robust.Client.Graphics;
 using Robust.Client.State;
-using Robust.Shared.Network;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
+using Robust.Client.Utility;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
 public sealed class PhotoCartridgeClientSystem : EntitySystem
 {
-    [Dependency] private readonly IClientNetManager _netManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly IEyeManager _eyeManager = default!;
+    [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
 
     private TimeSpan _nextCaptureTime = TimeSpan.Zero;
     public bool CameraReady => _timing.CurTime >= _nextCaptureTime;
     public float CaptureDistance { get; set; } = 2.0f;
+    public float MinCaptureDistance { get; set; } = 1.0f;
 
     private ISawmill _sawmill = default!;
 
@@ -43,7 +45,6 @@ public sealed class PhotoCartridgeClientSystem : EntitySystem
     public override void Initialize()
     {
         _sawmill = _logManager.GetSawmill("photo.cartridge.client");
-        _netManager.RegisterNetMessage<PdaPhotoCaptureMessage>(accept: NetMessageAccept.Server);
     }
 
     public override void Shutdown()
@@ -92,12 +93,41 @@ public sealed class PhotoCartridgeClientSystem : EntitySystem
 
     public void CaptureAndSendPhoto(EntityUid source)
     {
+        if (TryComp<CartridgeComponent>(source, out var cart) && cart.LoaderUid.HasValue)
+            source = cart.LoaderUid.Value;
+
         if (_timing.CurTime < _nextCaptureTime)
             return;
 
         _nextCaptureTime = _timing.CurTime + TimeSpan.FromSeconds(1.5);
 
         Timer.Spawn(500, () => CaptureInternal(source));
+    }
+
+    public Vector2 GetClampedCapturePosition(EntityUid source, float distance)
+    {
+        var targetPos = GetCameraPosition(source, distance);
+
+        if (_stateManager.CurrentState is not IMainViewportState viewportState)
+            return targetPos;
+
+        var targetScreen = _eyeManager.WorldToScreen(targetPos);
+        var sourcePos = _transformSystem.GetWorldPosition(source);
+        var sourceScreen = _eyeManager.WorldToScreen(sourcePos);
+        var offsetScreen = _eyeManager.WorldToScreen(sourcePos + new Vector2(1, 0));
+        var pixelsPerMeter = (offsetScreen - sourceScreen).Length();
+
+        var size = 3.0f * pixelsPerMeter;
+        var control = (Control)viewportState.Viewport;
+        var vpRect = control.GlobalPixelRect;
+
+        size = Math.Min(size, Math.Min(vpRect.Width, vpRect.Height));
+        var halfSize = size / 2f;
+
+        var clampedX = Math.Clamp(targetScreen.X, vpRect.Left + halfSize, vpRect.Right - halfSize);
+        var clampedY = Math.Clamp(targetScreen.Y, vpRect.Top + halfSize, vpRect.Bottom - halfSize);
+
+        return _eyeManager.ScreenToMap(new Vector2(clampedX, clampedY)).Position;
     }
 
     private void CaptureInternal(EntityUid source)
@@ -108,51 +138,47 @@ public sealed class PhotoCartridgeClientSystem : EntitySystem
             return;
         }
 
-        if (_playerManager.LocalPlayer?.ControlledEntity is not { } player)
+        if (_playerManager.LocalEntity is not { })
             return;
 
-        if (_stateManager.CurrentState is not IMainViewportState viewportState || viewportState.Viewport is not Control control)
+        if (_stateManager.CurrentState is not IMainViewportState viewportState)
             return;
 
         var viewport = viewportState.Viewport.Viewport;
         var sourcePos = _transformSystem.GetWorldPosition(source);
+        var targetPos = GetClampedCapturePosition(source, CaptureDistance);
 
-        var targetPos = GetCameraPosition(source, CaptureDistance);
-        var targetScreen = _eyeManager.WorldToScreen(targetPos);
-
-        var sourceScreen = _eyeManager.WorldToScreen(sourcePos);
-        var offsetScreen = _eyeManager.WorldToScreen(sourcePos + new Vector2(1, 0));
-        var logicalPixelsPerMeter = (offsetScreen - sourceScreen).Length();
+        var center = viewport.WorldToRenderTargetPixels(targetPos);
+        var p1 = viewport.WorldToRenderTargetPixels(sourcePos);
+        var p2 = viewport.WorldToRenderTargetPixels(sourcePos + new Vector2(1, 0));
+        var pixelSize = 3.0f * (p2 - p1).Length();
 
         viewport.Screenshot(img => {
-            var scaleX = (float)img.Width / control.Size.X;
-            var scaleY = (float)img.Height / control.Size.Y;
+            var size = (int)pixelSize;
+            size = Math.Min(size, Math.Min(img.Width, img.Height));
 
-            var texturePixelsPerMeter = logicalPixelsPerMeter * scaleX;
-            var size = (int)(3.0f * texturePixelsPerMeter);
+            var left = (int)(center.X - size / 2f);
+            var top = (int)(center.Y - size / 2f);
 
-            var localTargetLogical = targetScreen - control.GlobalPosition;
-            var centerX = localTargetLogical.X * scaleX;
-            var centerY = localTargetLogical.Y * scaleY;
+            left = Math.Clamp(left, 0, img.Width - size);
+            top = Math.Clamp(top, 0, img.Height - size);
 
-            var x = (int)(centerX - size / 2f);
-            var y = (int)(centerY - size / 2f);
+            if (size <= 0)
+            {
+                img.Dispose();
+                return;
+            }
 
-            x = Math.Clamp(x, 0, img.Width);
-            y = Math.Clamp(y, 0, img.Height);
-            var w = Math.Clamp(size, 1, img.Width - x);
-            var h = Math.Clamp(size, 1, img.Height - y);
-
-            var finalRect = new SixLabors.ImageSharp.Rectangle(x, y, w, h);
-            TakeScreenshot(img, finalRect);
+            var finalRect = new Rectangle(left, top, size, size);
+            TakeScreenshot(source, img, finalRect);
         });
     }
 
-    private void TakeScreenshot<T>(Image<T> screenshot, SixLabors.ImageSharp.Rectangle cropRect) where T : unmanaged, IPixel<T>
+    private void TakeScreenshot<T>(EntityUid source, Image<T> screenshot, Rectangle cropRect) where T : unmanaged, IPixel<T>
     {
         try
         {
-            ProcessCapturedImage(screenshot, cropRect);
+            ProcessCapturedImage(source, screenshot, cropRect);
         }
         catch (Exception ex)
         {
@@ -164,40 +190,48 @@ public sealed class PhotoCartridgeClientSystem : EntitySystem
         }
     }
 
-    private void ProcessCapturedImage<T>(Image<T> image, SixLabors.ImageSharp.Rectangle cropRect) where T : unmanaged, IPixel<T>
+    private void ProcessCapturedImage<T>(EntityUid source, Image<T> image, Rectangle cropRect) where T : unmanaged, IPixel<T>
     {
-        var processed = image.Clone(ctx =>
-        {
-            ctx.Crop(cropRect);
-            ctx.Resize(TargetPhotoWidth, TargetPhotoHeight);
-        });
+        if (cropRect.Width <= 0 || cropRect.Height <= 0)
+            return;
 
-        var width = processed.Width;
-        var height = processed.Height;
+        var rescaled = new Image<T>(TargetPhotoWidth, TargetPhotoHeight);
+        var rescaledSpan = rescaled.GetPixelSpan();
+        var sourceSpan = image.GetPixelSpan();
+
+        float scaleX = (float)cropRect.Width / TargetPhotoWidth;
+        float scaleY = (float)cropRect.Height / TargetPhotoHeight;
+
+        for (int y = 0; y < TargetPhotoHeight; y++)
+        {
+            for (int x = 0; x < TargetPhotoWidth; x++)
+            {
+                int srcX = cropRect.X + (int)(x * scaleX);
+                int srcY = cropRect.Y + (int)(y * scaleY);
+
+                if (srcX >= 0 && srcX < image.Width && srcY >= 0 && srcY < image.Height)
+                {
+                    rescaledSpan[y * TargetPhotoWidth + x] = sourceSpan[srcY * image.Width + srcX];
+                }
+            }
+        }
+
+        var width = rescaled.Width;
+        var height = rescaled.Height;
 
         byte[] imageData;
         using (var memoryStream = new MemoryStream())
         {
-            processed.SaveAsPng(memoryStream);
+            rescaled.SaveAsPng(memoryStream);
             imageData = memoryStream.ToArray();
         }
 
-        processed.Dispose();
-        SendPhotoToServer(imageData, width, height);
+        rescaled.Dispose();
+        SendPhotoToServer(source, imageData, width, height);
     }
 
-    private void SendPhotoToServer(byte[] imageData, int width, int height)
+    private void SendPhotoToServer(EntityUid source, byte[] imageData, int width, int height)
     {
-        if (!_netManager.IsConnected)
-            return;
-
-        var message = new PdaPhotoCaptureMessage
-        {
-            ImageData = imageData,
-            Width = width,
-            Height = height
-        };
-
-        _netManager.ClientSendMessage(message);
+        _netTexturesManager.SendPhotoToServer(_entityManager.GetNetEntity(source), imageData, width, height);
     }
 }

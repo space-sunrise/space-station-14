@@ -2,10 +2,12 @@
 
 guide-entry-ammunition = Боеприпасы
 guide-entry-improvised-grenade-casing = Самодельная граната (корпус)
+guide-entry-detonator-triggers = Взрывной шнур и триггеры
 
 guide-entry-disease = Разумная болезнь
 guide-entry-expeditions = Экспедиции
 guide-entry-expedition-pirates = Пираты
+guide-entry-expedition-soviets = Коммунисты
 guide-entry-expedition-xenos = Ксено
 guide-entry-expedition-carps = Карпы
 

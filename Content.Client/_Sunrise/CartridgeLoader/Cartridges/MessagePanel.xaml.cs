@@ -1,5 +1,5 @@
-using System.Numerics;
 using Content.Client._Sunrise.Messenger;
+using Content.Client._Sunrise.UserInterface.CustomControls;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.Messenger;
@@ -25,7 +25,7 @@ public sealed partial class MessagePanel : PanelContainer
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
 
-    private ClientEmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<ClientEmojiSystem>();
+    private EmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<EmojiSystem>();
     private SpriteSystem GetSpriteSystem() => _entitySystemManager.GetEntitySystem<SpriteSystem>();
 
     /// <summary>
@@ -175,25 +175,7 @@ public sealed partial class MessagePanel : PanelContainer
 
     private void ShowFullImage()
     {
-        if (ImagePreview.Texture == null)
-            return;
-
-        var window = new DefaultWindow
-        {
-            Title = Loc.GetString("messenger-image-preview-title"),
-            MinSize = new Vector2(600, 600)
-        };
-
-        var textureRect = new TextureRect
-        {
-            Texture = ImagePreview.Texture,
-            Stretch = TextureRect.StretchMode.KeepAspect,
-            HorizontalExpand = true,
-            VerticalExpand = true
-        };
-
-        window.Contents.AddChild(textureRect);
-        window.OpenCentered();
+        PhotoPreviewWindow.Open(ImagePreview.Texture);
     }
 
     private void OnResourceLoaded(string resourcePath)
@@ -208,10 +190,9 @@ public sealed partial class MessagePanel : PanelContainer
     {
         try
         {
-            var uploadedPath = _netTexturesManager.GetUploadedPath(imagePath);
-            if (_resourceCache.TryGetResource<TextureResource>(uploadedPath, out var textureResource))
+            if (_netTexturesManager.TryGetTexture(imagePath, out var texture))
             {
-                ImagePreview.Texture = textureResource.Texture;
+                ImagePreview.Texture = texture;
                 ImageButton.Visible = true;
             }
             else

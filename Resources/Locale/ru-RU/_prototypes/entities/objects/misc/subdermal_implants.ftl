@@ -1,4 +1,4 @@
-ent-BaseSubdermalImplant = имплант
+﻿ent-BaseSubdermalImplant = имплант
     .desc = Микрочип, который вживляют под кожу.
 ent-SadTromboneImplant = имплант Грустный тромбон
     .desc = Этот имплант проигрывает грустную мелодию при смерти владельца.

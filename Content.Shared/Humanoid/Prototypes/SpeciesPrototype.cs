@@ -54,7 +54,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     // sprite accessories.
 
     [DataField("sprites")]
-    public string SpriteSet { get; private set; } = default!;
+    public string? SpriteSet { get; private set; }
 
     [DataField(required: true)]
     public List<string> BodyTypes { get; private set; } = default!;

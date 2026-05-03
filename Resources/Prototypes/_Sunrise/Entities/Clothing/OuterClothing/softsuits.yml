@@ -65,7 +65,7 @@
         Blunt: 0.55
         Slash: 0.6
         Piercing: 0.65
-        Heat: 0.4
+        Heat: 0.6
         Radiation: 0.5
         Caustic: 0.5
   - type: ClothingSpeedModifier
@@ -114,11 +114,11 @@
         Slash: 0.75
         Piercing: 0.8
         Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
+        Radiation: 0.7
+        Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: StaminaResistance
     damageCoefficient: 0.8
   - type: ClothingSlowOnDamageModifier
@@ -158,12 +158,12 @@
         Radiation: 0.5
         Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.84
-    sprintModifier: 0.84
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: StaminaResistance
     damageCoefficient: 0.75
   - type: ClothingSlowOnDamageModifier
-    modifier: 0.5
+    modifier: 0.75
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -230,3 +230,61 @@
     - SuitEVA
     - FullBodyOuter
     - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingOuterEVASuitBase, BaseTSFContraband]
+  id: ClothingOuterArmorTSF
+  name: Federation marine combat armor
+  description: A full-body suit of semi-powered assault armor used by the Trans-Solar Marine Corps. Offers excellent protection in all areas without impairing movement.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/tsf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/tsf.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 3
+    unequipDelay: 3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.55
+        Heat: 0.55
+        Caustic: 0
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: EmitSoundOnWearerMove
+    sound:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: Reflect
+    reflectProb: .1
+    spread: 90
+  - type: Tag
+    tags:
+    - SuitEVA
+
+- type: entity
+  parent: ClothingOuterArmorTSF
+  id: ClothingOuterArmorTSFLeader
+  name: Federation marine officer's armor
+  description: A full-body suit of semi-powered assault armor used by the Trans-Solar Marine Corps. Offers excellent protection in all areas without impairing movement. This suit has golden stripes instead of the typical white.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/tsfleader.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/tsfleader.rsi

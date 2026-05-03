@@ -1,6 +1,7 @@
 guide-entry-disease = Разумная болезнь
 guide-entry-expeditions = Экспедиции
 guide-entry-expedition-pirates = Пираты
+guide-entry-expedition-soviets = Коммунисты
 guide-entry-expedition-xenos = Ксено
 guide-entry-expedition-carps = Карпы
 
@@ -51,3 +52,4 @@ guide-entry-sr-rule-cep = Политика эскалации конфликто
 guide-entry-sr-rule-ccp = Политика создания персонажей
 guide-entry-sr-rule-pana = Препятствование аресту неантагонистами
 guide-entry-improvised-grenade-casing = Improvised grenade casing
+guide-entry-detonator-triggers = Explosive cord and triggers

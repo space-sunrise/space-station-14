@@ -257,7 +257,7 @@
     eyes: ClothingEyesHudSyndicate
     back: ClothingBackpackDuffelSyndicate
     outerClothing: ClothingOuterArmorRaidBiocode
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsMagSyndie
     gloves: ClothingHandsGlovesCombatCQC
     ears: ClothingHeadsetAltSyndicateNoKey
     id: SyndiOperativePDA
@@ -270,6 +270,8 @@
     - PinpointerSyndicateNuclear
     - DeathRattleImplanter
     - RadioImplanter
+    - DeathRattleImplanter
+    - ScramImplanterProto
 
 - type: startingGear
   id: SyndicateRaidTeamLeaderGear

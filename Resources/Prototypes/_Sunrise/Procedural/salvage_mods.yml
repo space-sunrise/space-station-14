@@ -1,0 +1,55 @@
+- type: salvageDungeonMod
+  id: ShipWreck
+  desc: salvage-dungeon-mod-soviet-stronghold
+  proto: ShipWreckDungeon
+  biomes:
+    - Grasslands
+  difficulties:
+    - Easy
+    - Challenging
+    - Moderate
+  factions:
+    - PiratesT1
+
+- type: salvageDungeonMod
+  id: SovietStronghold
+  desc: salvage-dungeon-mod-soviet-stronghold
+  proto: SovietDungeonWEH
+  biomes:
+    - Lava
+    - Grasslands
+    - Caves
+  difficulties:
+    - Moderate
+    - Challenging
+    - Difficult
+    - Impossible
+  factions:
+    - Soviets
+
+- type: salvageDungeonMod
+  id: SovietStrongholdClassic
+  desc: salvage-dungeon-mod-soviet-stronghold
+  proto: SovietDungeon
+  biomes:
+    - Lava
+    - Grasslands
+    - Caves
+  difficulties:
+    - Difficult
+    - Impossible
+  factions:
+    - Soviets
+
+- type: salvageDungeonMod
+  id: SyndicateBase
+  desc: salvage-dungeon-mod-syndicate-base
+  proto: SyndicateBase
+  biomes:
+    - Snow
+  difficulties: # Sunrise-Edit
+    - Difficult
+    - Impossible
+  factions:
+    - PiratesT2
+    - PiratesT3

@@ -1891,8 +1891,7 @@ entities:
     - type: AtmosPipeColor
       color: '#FF0000FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 241
   - uid: 224

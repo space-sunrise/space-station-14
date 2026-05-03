@@ -3,6 +3,7 @@ using Content.Server.CriminalRecords.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared._Sunrise.AddWantedStatus;
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
@@ -20,6 +21,7 @@ public sealed partial class AddWantedStatusSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
     public override void Initialize()
     {
@@ -96,6 +98,14 @@ public sealed partial class AddWantedStatusSystem : EntitySystem
             reason = Loc.GetString("wanted-list-unknown-reason-label");
 
         var message = Loc.GetString("criminal-records-console-wanted", [("name", wantedName), ("officer", officer), ("reason", reason), ("job", wantedJobTitle)]);
-        _radio.SendRadioMessage(sender, message, "Security", sender);
+        // _radio.SendRadioMessage(sender, message, "Security", sender);
+
+        // Sunrise-Start
+        if (_messenger.GetServerEntity(_station.GetOwningStation(sender)) is var (server, _) &&
+            _messenger.GetGroupIdByRadioChannel("Security") is { } groupId)
+        {
+            _messenger.SendSystemMessageToGroup(server, groupId, message);
+        }
+        // Sunrise-End
     }
 }

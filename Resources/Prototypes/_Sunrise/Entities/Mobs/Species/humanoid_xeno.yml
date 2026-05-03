@@ -26,10 +26,15 @@
   - type: Temperature
     currentTemperature: 310.15
   - type: TemperatureDamage
-    heatDamageThreshold: 360
-    coldDamageThreshold: -150
+    coldDamage:
+      types:
+        Cold: 0
+    heatDamage:
+      types:
+        Heat: 3
   - type: Speech
     speechVerb: LargeMob
+    allowedEmotes: [ 'Hisses', 'Roars', 'Rumbles', 'Growl' ]
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -39,23 +44,29 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 3
-        Slash: 2
+        Blunt: 5
+        Slash: 5
         Caustic: 1
   - type: LizardAccent
+  - type: VulpaAccent
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
       - ReagentId: FluorosulfuricAcidHumanoidXeno
         Quantity: 300
+  - type: ProtectedFromStepTriggers
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
+  - type: ToggleableNightVision
+    effect: EffectNightVisionXeno
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#44944A"
+  - type: Stamina
+    baseCritThreshold: 125
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -136,7 +147,32 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
     displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
       head:
         sizeMaps:
           32:
@@ -188,7 +224,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
-      hardsuit-body-normal:
+      hardsuit:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
@@ -205,7 +241,6 @@
     minds:
     - Xeno
   - type: FootprintEmitter
-  - type: Carriable
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -233,7 +268,32 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
     displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
       head:
         sizeMaps:
           32:
@@ -285,7 +345,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
-      hardsuit-body-normal:
+      hardsuit:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi

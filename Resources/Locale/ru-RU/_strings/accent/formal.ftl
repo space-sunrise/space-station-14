@@ -4,7 +4,7 @@
 
 # Russian abbreviations moved from chatsanitize
 accent-formal-words-97 = рнд
-accent-formal-words-replace-97 = Научный отдел
+accent-formal-words-replace-97 = научный отдел
 accent-formal-words-98 = сб
 accent-formal-words-replace-98 = служба безопасности
 accent-formal-words-99 = кеп
@@ -79,8 +79,6 @@ accent-formal-words-136 = исны
 accent-formal-words-replace-136 = офицеры исполнительной судебно-надзорной службы
 accent-formal-words-137 = пнт
 accent-formal-words-replace-137 = представитель NanoTrasen
-accent-formal-words-138 = пункт
-accent-formal-words-replace-138 = пунктураз
 accent-formal-words-139 = нио
 accent-formal-words-replace-139 = научный отдел
 accent-formal-words-140 = варденом

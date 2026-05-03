@@ -3,12 +3,14 @@
   parent: SuitStorageBase
   suffix: BlueShield
   components:
-  - type: StorageFill
-    contents:
-    - id: OxygenTankFilled
-    - id: ClothingOuterHardsuitBlueShield
-    - id: ClothingMaskGasBlueShield
-    - id: ClothingShoesBootsMagSec
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitBlueShield
+        - id: ClothingMaskGasBlueShield
+        - id: ClothingShoesBootsMagSec
   - type: AccessReader
     access: [["BlueShield"]]
 
@@ -18,8 +20,10 @@
   parent: SuitStorageBase
   suffix: Security, Sunrise
   components:
-  - type: StorageFill
-    contents:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitSecuritySunrise
         - id: ClothingMaskBreath
@@ -34,37 +38,38 @@
   parent: SuitStorageBase
   suffix: Pirate EVA, Sunrise
   components:
-  - type: StorageFill
-    contents:
-        - id: OxygenTankFilled
-          orGroup: OxygenTankPool
-        - id: DoubleEmergencyOxygenTankFilled
-          prob: 0.5
-          orGroup: OxygenTankPool
-        - id: NitrogenTankFilled
-          orGroup: NitrogenTankPool
-        - id: DoubleEmergencyNitrogenTankFilled
-          prob: 0.5
-          orGroup: NitrogenTankPool
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: OxygenTankFilled
+          - id: DoubleEmergencyOxygenTankFilled
+            weight: 0.5
+        - !type:GroupSelector
+          children:
+          - id: NitrogenTankFilled
+          - id: DoubleEmergencyNitrogenTankFilled
+            weight: 0.5
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagPirate
         - id: CombatMedipen
           prob: 0.5
         - id: JetpackMiniFilled
           prob: 0.3
-        - id: ClothingHeadHelmetPirate
-          orGroup: HelmetPiratePool
-        - id: ClothingHeadHelmetPirateAlt
-          orGroup: HelmetPiratePool
-        - id: ClothingOuterEVASuitPirate
-          prob: 0.5
-          orGroup: SuitPiratePool
-        - id: ClothingOuterEVASuitPirateArmored
-          prob: 0.45
-          orGroup: SuitPiratePool
-        - id: ClothingOuterEVASuitPirateArmoredAlt
-          prob: 0.3
-          orGroup: SuitPiratePool
+        - !type:GroupSelector
+          children:
+          - id: ClothingHeadHelmetPirate
+          - id: ClothingHeadHelmetPirateAlt
+        - !type:GroupSelector
+          children:
+          - id: ClothingOuterEVASuitPirate
+            weight: 0.5
+          - id: ClothingOuterEVASuitPirateArmored
+            weight: 0.45
+          - id: ClothingOuterEVASuitPirateArmoredAlt
+            weight: 0.3
 
 #Pirate hardsuit
 - type: entity
@@ -72,34 +77,34 @@
   parent: SuitStorageBase
   suffix: Pirate, Sunrise
   components:
-  - type: StorageFill
-    contents:
-        - id: OxygenTankFilled
-          orGroup: OxygenTankPool
-        - id: DoubleEmergencyOxygenTankFilled
-          prob: 0.5
-          orGroup: OxygenTankPool
-        - id: NitrogenTankFilled
-          orGroup: NitrogenTankPool
-        - id: DoubleEmergencyNitrogenTankFilled
-          prob: 0.5
-          orGroup: NitrogenTankPool
-        - id: ClothingHeadHelmetPirate
-          orGroup: HelmetPiratePool
-        - id: ClothingHeadHelmetPirateAlt
-          orGroup: HelmetPiratePool
-        - id: ClothingHeadHelmetPirateOld
-          prob: 0.3
-          orGroup: HelmetPiratePool
-        - id: ClothingOuterEVASuitPirateOld
-          prob: 0.3
-          orGroup: SuitPiratePool
-        - id: ClothingOuterEVASuitPirateArmored
-          prob: 0.4
-          orGroup: SuitPiratePool
-        - id: ClothingOuterEVASuitPirateArmoredAlt
-          prob: 0.25
-          orGroup: SuitPiratePool
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: OxygenTankFilled
+          - id: DoubleEmergencyOxygenTankFilled
+            weight: 0.5
+        - !type:GroupSelector
+          children:
+          - id: NitrogenTankFilled
+          - id: DoubleEmergencyNitrogenTankFilled
+            weight: 0.5
+        - !type:GroupSelector
+          children:
+          - id: ClothingHeadHelmetPirate
+          - id: ClothingHeadHelmetPirateAlt
+          - id: ClothingHeadHelmetPirateOld
+            weight: 0.3
+        - !type:GroupSelector
+          children:
+          - id: ClothingOuterEVASuitPirateOld
+            weight: 0.3
+          - id: ClothingOuterEVASuitPirateArmored
+            weight: 0.4
+          - id: ClothingOuterEVASuitPirateArmoredAlt
+            weight: 0.25
         - id: ClothingMaskBreath
         - id: WeaponGrapplingGun
           prob: 0.8
@@ -117,18 +122,20 @@
   parent: SuitStorageBase
   suffix: Pirate Captain, Sunrise
   components:
-  - type: StorageFill
-    contents:
-        - id: OxygenTankFilled
-          orGroup: OxygenTankPool
-        - id: DoubleEmergencyOxygenTankFilled
-          prob: 0.5
-          orGroup: OxygenTankPool
-        - id: NitrogenTankFilled
-          orGroup: NitrogenTankPool
-        - id: DoubleEmergencyNitrogenTankFilled
-          prob: 0.5
-          orGroup: NitrogenTankPool
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: OxygenTankFilled
+          - id: DoubleEmergencyOxygenTankFilled
+            weight: 0.5
+        - !type:GroupSelector
+          children:
+          - id: NitrogenTankFilled
+          - id: DoubleEmergencyNitrogenTankFilled
+            weight: 0.5
         - id: ClothingOuterHardsuitPirateCapSun
         - id: ClothingMaskBreath
         - id: WeaponGrapplingGun

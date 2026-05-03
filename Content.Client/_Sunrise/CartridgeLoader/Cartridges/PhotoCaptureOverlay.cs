@@ -49,7 +49,7 @@ public sealed class PhotoCaptureOverlay : Overlay
         }
 
         var sourcePos = _transformSystem.GetWorldPosition(source.Value);
-        var targetPos = photoSystem.GetCameraPosition(source.Value, photoSystem.CaptureDistance);
+        var targetPos = photoSystem.GetClampedCapturePosition(source.Value, photoSystem.CaptureDistance);
 
         var targetScreen = _eyeManager.WorldToScreen(targetPos);
         var playerScreen = _eyeManager.WorldToScreen(sourcePos);
@@ -58,10 +58,13 @@ public sealed class PhotoCaptureOverlay : Overlay
 
         if (pixelsPerMeter < 1) return;
 
-        var halfSize = (3.0f * pixelsPerMeter) / 2.0f;
-        var rect = new UIBox2(targetScreen.X - halfSize, targetScreen.Y - halfSize, targetScreen.X + halfSize, targetScreen.Y + halfSize);
-
         var vpRect = viewportControl.GlobalPixelRect;
+        var size = 3.0f * pixelsPerMeter;
+
+        size = Math.Min(size, Math.Min(vpRect.Width, vpRect.Height));
+        var halfSize = size / 2.0f;
+
+        var rect = UIBox2.FromDimensions(targetScreen.X - halfSize, targetScreen.Y - halfSize, size, size);
         var color = Color.Black.WithAlpha(0.5f);
 
         screenHandle.DrawRect(new UIBox2(vpRect.Left, vpRect.Top, vpRect.Right, rect.Top), color);

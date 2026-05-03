@@ -46,6 +46,18 @@
     quickEquip: false
     slots:
     - Back
+  # Sunrise start
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 0.6
+    shape: Triangle
+    requireInSpace: true
+  # Sunrise end
   - type: GasTank
     outputPressure: 21.3
     air:
@@ -126,6 +138,16 @@
     sprite: Objects/Tanks/Jetpacks/black.rsi
     slots:
       - Back
+  # Sunrise edit start
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: RadarBlip
+    scale: 0
+    requireInSpace: true
+  # Sunrise edit end
   - type: StaticPrice
     price: 1000
 
@@ -168,6 +190,13 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
+  # Sunrise edit start
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+    requireActivated: false
+  - type: HeldSpeedModifier
+  # Sunrise edit end
 
 # Filled captain
 - type: entity
@@ -240,6 +269,13 @@
     sprite: Objects/Tanks/Jetpacks/security.rsi
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/security.rsi
+  # Sunrise-Start
+  - type: RadarBlip
+    color: "#ff2a00"
+    scale: 0.6
+    shape: Triangle
+    requireInSpace: true
+  # Sunrise-End
 
 #Filled security
 - type: entity
@@ -275,14 +311,6 @@
       - Back
       - suitStorage
       - Belt
-  # Sunrise-Start
-  - type: GasRegeneration
-    airRegenerate:
-      volume: 5
-      temperature: 293.15
-      moles:
-      - 0.0008
-  # Sunrise-End
 
 # Filled void
 - type: entity

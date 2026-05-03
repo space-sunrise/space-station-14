@@ -20,7 +20,7 @@ public sealed partial class MessengerServerSystem
             return;
 
         string? imagePath = null;
-        if (messageData.TryGetValue("image_path", out string? imgPath) && !string.IsNullOrWhiteSpace(imgPath))
+        if (_photoUploadEnabled && messageData.TryGetValue("image_path", out string? imgPath) && !string.IsNullOrWhiteSpace(imgPath))
         {
             imagePath = imgPath;
         }
@@ -31,9 +31,20 @@ public sealed partial class MessengerServerSystem
         if (!component.Users.TryGetValue(args.SenderAddress, out var sender))
             return;
 
+        var currentTime = _timing.CurTime;
+        if (component.LastMessageTime.TryGetValue(sender.UserId, out var lastTime))
+        {
+            if (currentTime - lastTime < component.MessageCooldown)
+            {
+                Sawmill.Debug($"Message from {sender.UserId} rejected due to cooldown");
+                return;
+            }
+        }
+
         UpdateUserInfoFromPda(uid, component, args.SenderAddress, sender);
 
         var timestamp = GetStationTime();
+        component.LastMessageTime[sender.UserId] = currentTime;
 
         if (messageData.TryGetValue("group_id", out string? groupId) && !string.IsNullOrWhiteSpace(groupId))
         {
@@ -229,7 +240,7 @@ public sealed partial class MessengerServerSystem
         if (!component.Users.TryGetValue(senderUserId, out var sender))
             return;
 
-        SendPersonalMessage(uid, component, sender, recipientId, content, timestamp, imagePath);
+        SendPersonalMessage(uid, component, sender, recipientId, content, timestamp, _photoUploadEnabled ? imagePath : null);
     }
 
     /// <summary>
@@ -243,7 +254,82 @@ public sealed partial class MessengerServerSystem
         if (!component.Users.TryGetValue(senderUserId, out var sender))
             return;
 
-        SendGroupMessage(uid, component, sender, groupId, content, timestamp, imagePath);
+        SendGroupMessage(uid, component, sender, groupId, content, timestamp, _photoUploadEnabled ? imagePath : null);
+    }
+
+    /// <summary>
+    /// Отправляет системное сообщение в группу (используется для оповещений департаментов)
+    /// </summary>
+    public void SendSystemMessageToGroup(EntityUid uid, string groupId, string content)
+    {
+        if (!TryComp<MessengerServerComponent>(uid, out var component))
+            return;
+
+        if (!component.Groups.TryGetValue(groupId, out var group))
+            return;
+
+        var timestamp = GetStationTime();
+        var messageId = GetNextMessageId(uid, component);
+        var senderName = Loc.GetString("messenger-system-name");
+        var message = new MessengerMessage("system", senderName, content, timestamp, groupId, null, false, messageId);
+
+        if (!component.MessageHistory.TryGetValue(groupId, out var history))
+        {
+            history = new List<MessengerMessage>();
+            component.MessageHistory[groupId] = history;
+        }
+
+        history.Add(message);
+        TrimMessageHistory(history, component.MaxMessageHistory);
+
+        if (!TryComp<DeviceNetworkComponent>(uid, out var serverDevice))
+            return;
+
+        uint? pdaFrequency = null;
+        if (_prototypeManager.TryIndex(component.PdaFrequencyId, out var pdaFreq))
+        {
+            pdaFrequency = pdaFreq.Frequency;
+        }
+
+        var payload = new NetworkPayload
+        {
+            [DeviceNetworkConstants.Command] = MessengerCommands.CmdMessageReceived,
+            ["sender_id"] = message.SenderId,
+            ["sender_name"] = message.SenderName,
+            ["content"] = message.Content,
+            ["timestamp"] = message.Timestamp.TotalSeconds,
+            ["group_id"] = message.GroupId ?? string.Empty,
+            ["recipient_id"] = message.RecipientId ?? string.Empty,
+            ["is_read"] = message.IsRead,
+            ["message_id"] = message.MessageId,
+            ["sender_job_icon_id"] = string.Empty,
+            ["image_path"] = string.Empty
+        };
+
+        foreach (var memberId in group.Members)
+        {
+            var isMemberChatOpen = component.OpenChats.TryGetValue(memberId, out var memberOpenChatId) && memberOpenChatId == groupId;
+
+            if (!isMemberChatOpen)
+            {
+                if (!component.UnreadCounts.TryGetValue(memberId, out var memberUnreads))
+                {
+                    memberUnreads = new Dictionary<string, int>();
+                    component.UnreadCounts[memberId] = memberUnreads;
+                }
+                memberUnreads.TryGetValue(groupId, out var currentCount);
+                memberUnreads[groupId] = currentCount + 1;
+            }
+
+            if (pdaFrequency.HasValue)
+            {
+                _deviceNetwork.QueuePacket(uid, memberId, payload, frequency: pdaFrequency, network: serverDevice.DeviceNetId);
+            }
+            else
+            {
+                _deviceNetwork.QueuePacket(uid, memberId, payload);
+            }
+        }
     }
 
     /// <summary>
@@ -324,6 +410,81 @@ public sealed partial class MessengerServerSystem
             {
                 _deviceNetwork.QueuePacket(uid, recipientId, deletePayload);
             }
+        }
+    }
+    /// <summary>
+    /// Sends a fake message to a specific user (used for spam).
+    /// </summary>
+    public void SendFakePersonalMessage(EntityUid uid, string recipientId, string senderId, string senderName, string content)
+    {
+        if (!TryComp<MessengerServerComponent>(uid, out var component))
+            return;
+
+        if (!component.Users.ContainsKey(recipientId))
+            return;
+
+        var timestamp = GetStationTime();
+        var messageId = GetNextMessageId(uid, component);
+        var message = new MessengerMessage(senderId, senderName, content, timestamp, null, recipientId, isRead: false, messageId);
+        var chatId = GetPersonalChatId(senderId, recipientId);
+
+        if (!component.MessageHistory.TryGetValue(chatId, out var history))
+        {
+            history = new List<MessengerMessage>();
+            component.MessageHistory[chatId] = history;
+        }
+
+        history.Add(message);
+        TrimMessageHistory(history, component.MaxMessageHistory);
+
+        var isChatOpen = component.OpenChats.TryGetValue(recipientId, out var openChatId) && openChatId == chatId;
+
+        if (isChatOpen)
+        {
+            message.IsRead = true;
+        }
+        else
+        {
+            if (!component.UnreadCounts.TryGetValue(recipientId, out var recipientUnreads))
+            {
+                recipientUnreads = new Dictionary<string, int>();
+                component.UnreadCounts[recipientId] = recipientUnreads;
+            }
+            recipientUnreads.TryGetValue(chatId, out var currentCount);
+            recipientUnreads[chatId] = currentCount + 1;
+        }
+
+        if (!TryComp<DeviceNetworkComponent>(uid, out var serverDevice))
+            return;
+
+        uint? pdaFrequency = null;
+        if (_prototypeManager.TryIndex(component.PdaFrequencyId, out var pdaFreq))
+        {
+            pdaFrequency = pdaFreq.Frequency;
+        }
+
+        var payload = new NetworkPayload
+        {
+            [DeviceNetworkConstants.Command] = MessengerCommands.CmdMessageReceived,
+            ["sender_id"] = message.SenderId,
+            ["sender_name"] = message.SenderName,
+            ["content"] = message.Content,
+            ["timestamp"] = message.Timestamp.TotalSeconds,
+            ["group_id"] = message.GroupId ?? string.Empty,
+            ["recipient_id"] = message.RecipientId ?? string.Empty,
+            ["is_read"] = message.IsRead,
+            ["message_id"] = message.MessageId,
+            ["sender_job_icon_id"] = string.Empty,
+            ["image_path"] = string.Empty
+        };
+
+        if (pdaFrequency.HasValue)
+        {
+            _deviceNetwork.QueuePacket(uid, recipientId, payload, frequency: pdaFrequency, network: serverDevice.DeviceNetId);
+        }
+        else
+        {
+            _deviceNetwork.QueuePacket(uid, recipientId, payload);
         }
     }
 }

@@ -125,3 +125,24 @@
   - type: Construction
     graph: ModularBarrelGraph
     node: shotgun
+
+- type: entity
+  parent: BaseItem
+  id: UnfinishedWeaponRifleForged
+  name: forged AR parts
+  description: Some assembly may be reqiured. Needs welding.
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/big.rsi
+    state: unfinished
+  - type: ToolRefinable
+    refineResult:
+    - id: WeaponRifleSKM24ScrapEmpty
+  - type: Tag
+    tags:
+    - Metal
+  - type: Construction
+    graph: ForgedRifleGraph
+    node: shotgun

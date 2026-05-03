@@ -26,8 +26,14 @@ public sealed class PdaPhotoCaptureMessage : NetMessage
     /// </summary>
     public int Height { get; set; }
 
+    /// <summary>
+    /// Uid of the cartridge loader (PDA) that took the photo
+    /// </summary>
+    public NetEntity LoaderUid { get; set; }
+
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
+        LoaderUid = buffer.ReadNetEntity();
         Width = buffer.ReadInt32();
         Height = buffer.ReadInt32();
         var dataLength = buffer.ReadInt32();
@@ -36,6 +42,7 @@ public sealed class PdaPhotoCaptureMessage : NetMessage
 
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
     {
+        buffer.Write(LoaderUid);
         buffer.Write(Width);
         buffer.Write(Height);
         buffer.Write(ImageData.Length);

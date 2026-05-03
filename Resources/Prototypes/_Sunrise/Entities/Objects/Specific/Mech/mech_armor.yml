@@ -74,9 +74,9 @@
         Structural: 0.15
       flatReductions:
         Blunt: 5
-        Heat: 6
+        Heat: 5
         Slash: 5
-        Piercing: 3
+        Piercing: 1
 
 - type: entity
   id: MechArmorHeavyNT
@@ -91,13 +91,13 @@
         Slash: 0.5
         Piercing: 0.3
         Shock: 3.5
-        Heat: 0.75
+        Heat: 0.7
         Structural: 0.25
       flatReductions:
-        Blunt: 7
-        Heat: 8
-        Slash: 7
-        Piercing: 5
+        Blunt: 10
+        Heat: 5
+        Slash: 10
+        Piercing: 3
 
 - type: entity
   id: MechArmorMediumSyndi
@@ -118,7 +118,7 @@
         Blunt: 5
         Heat: 5
         Slash: 5
-        Piercing: 4
+        Piercing: 1
 
 - type: entity
   id: MechArmorHeavySyndi
@@ -131,15 +131,15 @@
       coefficients:
         Blunt: 0.55
         Slash: 0.55
-        Piercing: 0.35
-        Shock: 3.5
+        Piercing: 0.2
+        Shock: 4
         Heat: 0.75
         Structural: 0.25
       flatReductions:
-        Blunt: 7
-        Heat: 7
-        Slash: 7
-        Piercing: 6
+        Blunt: 10
+        Heat: 5
+        Slash: 10
+        Piercing: 3
 
 - type: startingGear
   id: MechArmorThinLoadout

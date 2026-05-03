@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Radio;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Server.Station.Systems;
@@ -9,6 +10,11 @@ using Content.Shared._Sunrise.Messenger;
 using Content.Shared.Inventory;
 using Robust.Shared.Prototypes;
 using Content.Server.CartridgeLoader;
+using Content.Server.DeviceNetwork.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Random;
+using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Messenger;
 
@@ -25,8 +31,26 @@ public sealed partial class MessengerServerSystem : EntitySystem
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private ISawmill Sawmill { get; set; } = default!;
+    private bool _photoUploadEnabled = true;
+
+    /// <summary>
+    /// Находит GroupId для указанного радиоканала
+    /// </summary>
+    public string? GetGroupIdByRadioChannel(string radioChannelId)
+    {
+        foreach (var proto in _prototypeManager.EnumeratePrototypes<MessengerAutoGroupPrototype>())
+        {
+            if (proto.RadioChannel == radioChannelId)
+                return proto.GroupId;
+        }
+
+        return null;
+    }
 
     public override void Initialize()
     {
@@ -34,11 +58,21 @@ public sealed partial class MessengerServerSystem : EntitySystem
 
         Sawmill = _logManager.GetSawmill("messenger.server");
 
+        _cfg.OnValueChanged(SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
+
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetServerConnectedEvent>(OnServerConnected);
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetServerDisconnectedEvent>(OnServerDisconnected);
         SubscribeLocalEvent<MessengerServerComponent, RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
+
+        InitializeSpam();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateSpam(frameTime);
     }
 
     private void OnRoundRestart(EntityUid uid, MessengerServerComponent component, RoundRestartCleanupEvent args)
@@ -46,6 +80,7 @@ public sealed partial class MessengerServerSystem : EntitySystem
         component.Users.Clear();
         component.Groups.Clear();
         component.MessageHistory.Clear();
+        component.LastMessageTime.Clear();
         component.GroupIdCounter = 0;
         component.MessageIdCounter = 0;
     }
@@ -72,7 +107,7 @@ public sealed partial class MessengerServerSystem : EntitySystem
 
         foreach (var user in component.Users.Values)
         {
-            AddUserToAutoGroups(uid, component, user.UserId, user.Name, user.DepartmentId);
+            AddUserToAutoGroups(uid, component, user.UserId, user.Name, user.DepartmentIds);
         }
     }
 
@@ -160,9 +195,9 @@ public sealed partial class MessengerServerSystem : EntitySystem
     /// <summary>
     /// Получает время станции (обычное время, как в КПК)
     /// </summary>
-    private TimeSpan GetStationTime()
+    public TimeSpan GetStationTime()
     {
-        return (DateTime.UtcNow + TimeSpan.FromHours(3)).TimeOfDay;
+        return (DateTime.UtcNow + TimeSpan.FromHours(3)) - new DateTime(2024, 1, 1);
     }
 
     /// <summary>
@@ -171,5 +206,28 @@ public sealed partial class MessengerServerSystem : EntitySystem
     private long GetNextMessageId(EntityUid uid, MessengerServerComponent component)
     {
         return ++component.MessageIdCounter;
+    }
+
+    /// <summary>
+    /// Находит сущность сервера мессенджера для станции
+    /// </summary>
+    public (EntityUid, MessengerServerComponent)? GetServerEntity(EntityUid? station)
+    {
+        if (station == null)
+            return null;
+
+        var query = EntityQueryEnumerator<MessengerServerComponent, SingletonDeviceNetServerComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var singleton))
+        {
+            if (!_singletonServer.IsActiveServer(uid, singleton))
+                continue;
+
+            if (_stationSystem.GetOwningStation(uid) != station)
+                continue;
+
+            return (uid, comp);
+        }
+
+        return null;
     }
 }

@@ -147,12 +147,21 @@ ignore_list:
   - 'AMLG-90'
   - 'TR-263'
   - 'LAW-12'    # Для ent-WeaponShotgunSPAS12
-  - 'AKM'       # Для ent-WeaponRifleAKM
   - 'MG-342'    # Для ent-WeaponMachineGunMG42
   - 'S-13'
   - 'v3.0.9'
   - 'v0.2.1'
   - 'F₃BZ'
+  - 'Pl₂'
+  - 'H₂'
+  - 'HN₂'
+  - 'PN₂'
+  - 'Z₂'
+  - 'Ha₂'
+  - 'He₂'
+  - 'AN₂'
+  - 'E'
+  - 'E₂'
   - 'Holo Girl'
   - 'BZ'
   - 'NH₃'
@@ -182,7 +191,9 @@ ignore_list:
   - 'Net-ERR*?*%'
   - 'Holo Girl'
   - 'RobustChat'
-  
+  - 'www.wetskrell.nt'
+  - '25-j*%...o1q'
+
 ignore_files:
   - 'italian.ftl'
   - 'russian.ftl'

@@ -48,3 +48,5 @@ ent-ClothingMaskDogi = samurai mask
     .desc = Traditional Japanese mask.
 ent-ClothingMaskFaceCast = face cast
     .desc = It can steal your personality!
+ent-ClothingMaskZombie = zombie mask
+    .desc = "Grrroul..."

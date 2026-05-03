@@ -118,17 +118,33 @@ public sealed partial class MessengerCartridgeSystem
 
             userData.TryGetValue("job_title", out object? jobTitleObj);
             userData.TryGetValue("department_id", out object? departmentIdObj);
+            userData.TryGetValue("department_ids", out object? departmentIdsObj);
             userData.TryGetValue("job_icon_id", out object? jobIconIdObj);
 
             var jobTitle = jobTitleObj?.ToString();
             var departmentId = departmentIdObj?.ToString();
+            var departmentIds = new List<string>();
+            if (departmentIdsObj is List<object> deptList)
+            {
+                departmentIds.AddRange(deptList.Select(d => d.ToString() ?? string.Empty).Where(s => !string.IsNullOrWhiteSpace(s)));
+            }
+            else if (departmentIdsObj is List<string> deptStringList)
+            {
+                departmentIds.AddRange(deptStringList.Where(s => !string.IsNullOrWhiteSpace(s)));
+            }
+
+            if (departmentIds.Count == 0 && departmentId != null && !string.IsNullOrWhiteSpace(departmentId))
+            {
+                departmentIds.Add(departmentId);
+            }
+
             ProtoId<JobIconPrototype>? jobIconId = null;
-            if (jobIconIdObj != null && !string.IsNullOrEmpty(jobIconIdObj.ToString()))
+            if (jobIconIdObj != null && !string.Empty.Equals(jobIconIdObj.ToString()))
             {
                 jobIconId = new ProtoId<JobIconPrototype>(jobIconIdObj.ToString()!);
             }
 
-            users.Add(new MessengerUser(userId, userName, jobTitle, departmentId, jobIconId));
+            users.Add(new MessengerUser(userId, userName, jobTitle, departmentIds, jobIconId));
         }
 
         component.Users = users;
@@ -203,17 +219,6 @@ public sealed partial class MessengerCartridgeSystem
         }
 
         component.Groups = groups;
-
-        foreach (var group in groups)
-        {
-            if (group.Type == MessengerGroupType.Automatic && group.AutoGroupPrototypeId != null)
-            {
-                if (!component.MutedGroupChats.Contains(group.GroupId))
-                {
-                    component.MutedGroupChats.Add(group.GroupId);
-                }
-            }
-        }
 
         if (serverUnreadCounts != null)
         {
@@ -386,8 +391,7 @@ public sealed partial class MessengerCartridgeSystem
                 if (newMessages.Count > 0)
                 {
                     existingMessages.AddRange(newMessages);
-                    existingMessages = existingMessages.OrderBy(m => m.Timestamp)
-                        .ThenBy(m => m.MessageId)
+                    existingMessages = existingMessages.OrderBy(m => m.MessageId)
                         .ThenBy(m => m.SenderId)
                         .ThenBy(m => m.Content)
                         .ToList();
@@ -395,7 +399,7 @@ public sealed partial class MessengerCartridgeSystem
                 component.MessageHistory[chatId] = existingMessages;
             }
             else
-                component.MessageHistory[chatId] = messages.OrderBy(m => m.Timestamp).ThenBy(m => m.MessageId).ThenBy(m => m.SenderId).ThenBy(m => m.Content).ToList();
+                component.MessageHistory[chatId] = messages.OrderBy(m => m.MessageId).ThenBy(m => m.SenderId).ThenBy(m => m.Content).ToList();
         }
 
         UpdateUiState(uid, loaderUid, component);
@@ -512,8 +516,7 @@ public sealed partial class MessengerCartridgeSystem
         if (existingMessage == null)
         {
             history.Add(message);
-            history = history.OrderBy(m => m.Timestamp)
-                .ThenBy(m => m.MessageId)
+            history = history.OrderBy(m => m.MessageId)
                 .ThenBy(m => m.SenderId)
                 .ThenBy(m => m.Content)
                 .ToList();
@@ -538,9 +541,23 @@ public sealed partial class MessengerCartridgeSystem
             component.ServerUnreadCounts[chatId] = currentCount + 1;
         }
 
-        if (!isMuted && !isSender && TryComp<RingerComponent>(loaderUid, out var ringer))
+        if (!isMuted && !isSender)
         {
-            _ringer.RingerPlayRingtone(loaderUid);
+            if (TryComp<RingerComponent>(loaderUid, out var ringer))
+                _ringer.RingerPlayRingtone(loaderUid);
+
+            string notificationMessage;
+            if (isGroupChat)
+            {
+                var groupName = component.Groups.FirstOrDefault(g => g.GroupId == chatId)?.Name ?? chatId ?? string.Empty;
+                notificationMessage = Loc.GetString("messenger-group-notification-message", ("name", groupName));
+            }
+            else
+            {
+                notificationMessage = Loc.GetString("messenger-notification-message", ("name", senderName ?? string.Empty));
+            }
+
+            _cartridgeLoader.SendNotification(loaderUid, Loc.GetString("messenger-program-name"), notificationMessage);
         }
 
         UpdateUiState(uid, loaderUid, component);
@@ -581,11 +598,7 @@ public sealed partial class MessengerCartridgeSystem
         if (isNewInvite)
         {
             component.ActiveInvites.Add(invite);
-
-            if (TryComp<RingerComponent>(loaderUid, out var ringer))
-            {
-                _ringer.RingerPlayRingtone(loaderUid);
-            }
+            _cartridgeLoader.SendNotification(loaderUid, Loc.GetString("messenger-program-name"), Loc.GetString("messenger-invite-notification-message", ("name", groupName ?? string.Empty)));
         }
 
         UpdateUiState(uid, loaderUid, component);
@@ -644,9 +657,10 @@ public sealed partial class MessengerCartridgeSystem
 
         if (addedUserId == component.UserId && !string.IsNullOrEmpty(groupId))
         {
-            if (TryComp<RingerComponent>(loaderUid, out var ringer))
+            var group = component.Groups.FirstOrDefault(g => g.GroupId == groupId);
+            if (group != null)
             {
-                _ringer.RingerPlayRingtone(loaderUid);
+                _cartridgeLoader.SendNotification(loaderUid, Loc.GetString("messenger-program-name"), Loc.GetString("messenger-invite-notification-message", ("name", group.Name)));
             }
         }
 

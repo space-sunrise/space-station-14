@@ -1,0 +1,13 @@
+- type: latheRecipe
+  id: NutrientPasteDispenserSlop
+  result: FoodThaSlop
+  categories:
+    - Food
+  completetime: 3
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: SlopDispenserMachineCircuitboard
+  result: SlopDispenserMachineCircuitboard
