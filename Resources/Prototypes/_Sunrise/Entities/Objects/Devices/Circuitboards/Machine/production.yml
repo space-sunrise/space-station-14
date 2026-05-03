@@ -184,6 +184,9 @@
   components:
   - type: MachineBoard
     prototype: TelecomServerT2
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: service
 
 - type: entity
   id: TelecomServerT3Circuitboard
@@ -192,3 +195,6 @@
   components:
   - type: MachineBoard
     prototype: TelecomServerT3
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: service
