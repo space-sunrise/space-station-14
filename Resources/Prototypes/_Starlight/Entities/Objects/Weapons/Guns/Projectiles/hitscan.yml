@@ -1520,8 +1520,11 @@
     damage:
       types:
         Heat: 60
+        Structural: 60
   - type: HitscanCrawlerTargetEffects
     knockdownDuration: 3
+  - type: HitscanReflect
+    reflectiveType: None
   - type: HitscanStaminaDamage
     staminaDamage: 40
   - type: HitscanBasicVisuals
