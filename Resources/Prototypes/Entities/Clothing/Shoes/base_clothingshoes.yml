@@ -41,7 +41,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
-    - NoPaint
+    - NoPaint # Sunrise-Edit
   - type: ProtectedFromStepTriggers
 
 - type: entity
