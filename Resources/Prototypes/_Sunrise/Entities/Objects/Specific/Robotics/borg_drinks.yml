@@ -1,5 +1,6 @@
 - type: entity
   id: BaseDrinkBorg
+  abstract: true
   components:
   - type: Unremoveable
     deleteOnDrop: true
@@ -7,6 +8,7 @@
 - type: entity
   id: DrinkCoconutWaterJugBorg
   parent: [ DrinkCoconutWaterJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -25,6 +27,7 @@
 - type: entity
   id: DrinkCoffeeJugBorg
   parent: [ DrinkCoffeeJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -43,6 +46,7 @@
 - type: entity
   id: DrinkColaBottleFullBorg
   parent: [ DrinkColaBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -61,6 +65,7 @@
 - type: entity
   id: DrinkCreamCartonXLBorg
   parent: [ DrinkCreamCartonXL, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -79,6 +84,7 @@
 - type: entity
   id: DrinkDrGibbJugBorg
   parent: [ DrinkDrGibbJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -97,6 +103,7 @@
 - type: entity
   id: DrinkEnergyDrinkJugBorg
   parent: [ DrinkEnergyDrinkJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -115,6 +122,7 @@
 - type: entity
   id: DrinkGreenTeaJugBorg
   parent: [ DrinkGreenTeaJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -133,6 +141,7 @@
 - type: entity
   id: DrinkIceJugBorg
   parent: [ DrinkIceJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -151,6 +160,7 @@
 - type: entity
   id: DrinkJuiceLemonBottleFullBorg
   parent: [ DrinkBottlePlasticBaseFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -171,6 +181,7 @@
 - type: entity
   id: DrinkJuiceLimeCartonXLBorg
   parent: [ DrinkJuiceLimeCartonXL, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -189,6 +200,7 @@
 - type: entity
   id: DrinkJuiceOrangeCartonXLBorg
   parent: [ DrinkJuiceOrangeCartonXL, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -207,6 +219,7 @@
 - type: entity
   id: DrinkLemonLimeJugBorg
   parent: [ DrinkLemonLimeJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -225,6 +238,7 @@
 - type: entity
   id: DrinkMilkBottleFullBorg
   parent: [ DrinkBottlePlasticBaseFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -245,6 +259,7 @@
 - type: entity
   id: DrinkRootBeerJugBorg
   parent: [ DrinkRootBeerJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -263,6 +278,7 @@
 - type: entity
   id: DrinkSodaWaterBottleFullBorg
   parent: [ DrinkSodaWaterBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -281,6 +297,7 @@
 - type: entity
   id: DrinkSpaceMountainWindBottleFullBorg
   parent: [ DrinkSpaceMountainWindBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -299,6 +316,7 @@
 - type: entity
   id: DrinkSolDryBottleFullBorg
   parent: [ DrinkBottlePlasticBaseFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -319,6 +337,7 @@
 - type: entity
   id: DrinkSpaceUpBottleFullBorg
   parent: [ DrinkSpaceUpBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -337,6 +356,7 @@
 - type: entity
   id: DrinkSugarJugBorg
   parent: [ DrinkSugarJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -355,6 +375,7 @@
 - type: entity
   id: DrinkTeaJugBorg
   parent: [ DrinkTeaJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -373,6 +394,7 @@
 - type: entity
   id: DrinkTonicWaterBottleFullBorg
   parent: [ DrinkTonicWaterBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -391,6 +413,7 @@
 - type: entity
   id: DrinkWaterMelonJuiceJugBorg
   parent: [ DrinkWaterMelonJuiceJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -411,6 +434,7 @@
 - type: entity
   id: DrinkAbsintheBottleFullBorg
   parent: [ DrinkAbsintheBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -429,6 +453,7 @@
 - type: entity
   id: DrinkAleBottleFullGrowlerBorg
   parent: [ DrinkAleBottleFullGrowler, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -447,6 +472,7 @@
 - type: entity
   id: DrinkBeerGrowlerBorg
   parent: [ DrinkBeerGrowler, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -465,6 +491,7 @@
 - type: entity
   id: DrinkBlueCuracaoBottleFullBorg
   parent: [ DrinkBlueCuracaoBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -483,6 +510,7 @@
 - type: entity
   id: DrinkChampagneBottleFullBorg
   parent: [ DrinkChampagneBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -501,6 +529,7 @@
 - type: entity
   id: DrinkCoffeeLiqueurBottleFullBorg
   parent: [ DrinkCoffeeLiqueurBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -519,6 +548,7 @@
 - type: entity
   id: DrinkCognacBottleFullBorg
   parent: [ DrinkCognacBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -537,6 +567,7 @@
 - type: entity
   id: DrinkGrenadineBottleFullBorg
   parent: [ DrinkGrenadineBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -555,6 +586,7 @@
 - type: entity
   id: DrinkGinBottleFullBorg
   parent: [ DrinkGinBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -573,6 +605,7 @@
 - type: entity
   id: DrinkMeadJugBorg
   parent: [ DrinkMeadJug, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -591,6 +624,7 @@
 - type: entity
   id: DrinkRumBottleFullBorg
   parent: [ DrinkRumBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -609,6 +643,7 @@
 - type: entity
   id: DrinkTequilaBottleFullBorg
   parent: [ DrinkTequilaBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -627,6 +662,7 @@
 - type: entity
   id: DrinkVermouthBottleFullBorg
   parent: [ DrinkVermouthBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -645,6 +681,7 @@
 - type: entity
   id: DrinkVodkaBottleFullBorg
   parent: [ DrinkVodkaBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -663,6 +700,7 @@
 - type: entity
   id: DrinkWhiskeyBottleFullBorg
   parent: [ DrinkWhiskeyBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -681,6 +719,7 @@
 - type: entity
   id: DrinkWineBottleFullBorg
   parent: [ DrinkWineBottleFull, BaseDrinkBorg ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
