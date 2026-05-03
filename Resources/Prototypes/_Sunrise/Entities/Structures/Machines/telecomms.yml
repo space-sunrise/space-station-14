@@ -46,9 +46,6 @@
   id: TelecomServerT3
   name: experimental telecommunication server
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: service
   - type: TelecomServer
     maxBandwidth: 150
     loadDecayRate: 1
