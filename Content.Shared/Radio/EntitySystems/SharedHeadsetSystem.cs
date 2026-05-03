@@ -2,6 +2,7 @@ using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio.Components;
+using Content.Shared._Sunrise.Radio;
 
 namespace Content.Shared.Radio.EntitySystems;
 
@@ -15,7 +16,26 @@ public abstract class SharedHeadsetSystem : EntitySystem
         SubscribeLocalEvent<HeadsetComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<HeadsetComponent, GotUnequippedEvent>(OnGotUnequipped);
         SubscribeLocalEvent<HeadsetComponent, EmpPulseEvent>(OnEmpPulse);
+
+        // Sunrise-Start
+        SubscribeLocalEvent<HeadsetComponent, HeadsetToggleChannelMessage>(OnToggleChannel);
+        SubscribeLocalEvent<HeadsetComponent, HeadsetChangeVolumeMessage>(OnChangeVolume);
+        // Sunrise-End
     }
+
+    // Sunrise-Start
+    private void OnToggleChannel(EntityUid uid, HeadsetComponent component, HeadsetToggleChannelMessage args)
+    {
+        component.EnabledChannels[args.ChannelId] = args.Enabled;
+        Dirty(uid, component);
+    }
+
+    private void OnChangeVolume(EntityUid uid, HeadsetComponent component, HeadsetChangeVolumeMessage args)
+    {
+        component.ChannelVolumes[args.ChannelId] = args.Volume;
+        Dirty(uid, component);
+    }
+    // Sunrise-End
 
     private void OnGetDefault(EntityUid uid, HeadsetComponent component, InventoryRelayedEvent<GetDefaultRadioChannelEvent> args)
     {

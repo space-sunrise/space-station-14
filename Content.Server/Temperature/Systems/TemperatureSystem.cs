@@ -102,7 +102,11 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         // TODO ATMOS: This heat transfer formula is really really wrong, it needs to be pulled out. Pending on HeatContainers.
         var heat = temperatureDelta * (airHeatCapacity * heatCapacity /
                                        (airHeatCapacity + heatCapacity));
-        ChangeHeat(uid, heat * temperature.AtmosTemperatureTransferEfficiency, temperature: temperature);
+        // Sunrise-Start
+        var transfer = heat * temperature.AtmosTemperatureTransferEfficiency;
+        ChangeHeat(uid, transfer, temperature: temperature);
+        _atmosphere.AddHeat(args.GasMixture, -transfer);
+        // Sunrise-End
     }
 
     private void OnInit(Entity<InternalTemperatureComponent> entity, ref MapInitEvent args)

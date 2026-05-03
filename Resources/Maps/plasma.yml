@@ -24940,31 +24940,8 @@ entities:
   entities:
   - uid: 2504
     components:
-    - type: MetaData
-      desc: A suspicious old radio. It doesn't seem to do anything, but you can TELL it's nefarious just by looking at it.
-      name: old radio
     - type: Transform
       parent: 2411
-    - type: Physics
-      canCollide: False
-    - type: RadioMicrophone
-    - type: TelecomExempt
-    - type: RadioSpeaker
-      channels:
-      - Common
-    - type: Speech
-      suffixSpeechVerbs:
-        chat-speech-verb-suffix-exclamation-strong: DefaultExclamationStrong
-        chat-speech-verb-suffix-exclamation: DefaultExclamation
-        chat-speech-verb-suffix-question: DefaultQuestion
-        chat-speech-verb-suffix-stutter: DefaultStutter
-        chat-speech-verb-suffix-mumble: DefaultMumble
-      allowedEmotes: []
-    - type: InsideEntityStorage
-    missingComponents:
-    - UserInterface
-    - ActivatableUI
-    - Store
 - proto: BeachBall
   entities:
   - uid: 640

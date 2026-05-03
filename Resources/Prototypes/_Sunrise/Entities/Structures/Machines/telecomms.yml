@@ -29,3 +29,25 @@
       - EncryptionKeyUSSP
       - EncryptionKeyUSSPSec
       - EncryptionKeyUSSPCom
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerT2
+  name: advanced telecommunication server
+  components:
+  - type: TelecomServer
+    maxBandwidth: 100
+    loadDecayRate: 1
+  - type: Machine
+    board: TelecomServerT2Circuitboard
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerT3
+  name: experimental telecommunication server
+  components:
+  - type: TelecomServer
+    maxBandwidth: 150
+    loadDecayRate: 1
+  - type: Machine
+    board: TelecomServerT3Circuitboard

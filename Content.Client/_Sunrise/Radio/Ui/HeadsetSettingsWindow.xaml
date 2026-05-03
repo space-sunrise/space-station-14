@@ -1,0 +1,11 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                Title="{Loc 'headset-settings-window-title'}"
+                MinSize="300 400">
+    <BoxContainer Orientation="Vertical" Margin="8">
+        <Label Text="{Loc 'headset-settings-channels-label'}" StyleClasses="LabelHeading" Margin="0 0 0 8"/>
+        <ScrollContainer VerticalExpand="True">
+            <BoxContainer Name="ChannelList" Orientation="Vertical" SeparationOverride="4"/>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>

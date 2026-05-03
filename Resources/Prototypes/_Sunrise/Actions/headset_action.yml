@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleHeadset
+  name: action-name-toggle-headset
+  description: action-description-toggle-headset
+  components:
+  - type: Action
+    icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ToggleHeadsetActionEvent

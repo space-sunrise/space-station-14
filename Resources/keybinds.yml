@@ -675,4 +675,7 @@ binds:
 - function: OpenHelpChoice
   type: State
   key: F1
+- function: OpenMessenger
+  type: State
+  key: M
 # Sunrise-End
