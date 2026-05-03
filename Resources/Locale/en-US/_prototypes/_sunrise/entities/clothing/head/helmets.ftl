@@ -22,3 +22,5 @@ ent-ClothingHeadHelmetAbductor = helmet
     .desc = { ent-ClothingHeadHelmetBase.desc }
 ent-ClothingHeadHelmetDogi = kabuto
     .desc = Traditional Japanese helmet.
+ent-ClothingHeadHelmetArmoredSalvageMerc = scrapper helmet
+    .desc = A durable, lightweight helmet favored by salvagers.
