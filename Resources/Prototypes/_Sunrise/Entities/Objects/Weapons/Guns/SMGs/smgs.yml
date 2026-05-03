@@ -145,7 +145,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolHighCapacityFMJ
+        startingItem: MagazinePistolHighCapacitySP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_unload.ogg
         priority: 2
@@ -156,7 +156,7 @@
           - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolFMJ
+        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -446,7 +446,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleFMJ
+        startingItem: MagazineRifleSP
         insertSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
         priority: 2
@@ -455,14 +455,14 @@
           - MagazineRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleFMJ
+        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
           - CartridgeRifle
   - type: MagazineVisuals
     magState: mag
-    steps: 1
+    steps: 5
     zeroVisible: true
   - type: Appearance
 
