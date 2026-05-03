@@ -117,3 +117,9 @@
   abstract: true
   components:
   - type: StationCriminalRecords
+
+- type: entity
+  id: BaseStationCorporateLaw
+  abstract: true
+  components:
+  - type: StationCorporateLaw

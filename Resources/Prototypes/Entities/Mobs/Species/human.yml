@@ -27,6 +27,9 @@
     hideLayersOnEquip:
     - Hair
     - Snout
+    - HeadTop # Sunrise-Edit
+    - Special # Sunrise-Edit
+    - Tail # Sunrise-Edit
     # MARKINGS START
     bodyTypeMarkingsDisplacement:
       body-fat-m:
@@ -546,7 +549,6 @@
 
   # Sunrise-Start
   - type: FootprintEmitter
-  - type: Carriable
   # Sunrise-End
 
 

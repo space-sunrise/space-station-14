@@ -507,8 +507,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
-  - type: Carriable
-    requiresNestingMob: true
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
   - type: FlashModifier

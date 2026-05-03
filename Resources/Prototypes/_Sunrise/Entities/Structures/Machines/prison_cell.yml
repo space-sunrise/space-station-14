@@ -3,6 +3,8 @@
   id: PrisonCellDoor
   components:
   - type: PrisonCellDoor
+  - type: AccessReader
+    access: [["Security"]]
   - type: DeviceLinkSink
     ports:
       - PrisonCellDoorLock
@@ -35,7 +37,7 @@
   components:
   - type: PrisonLocker
   - type: AccessReader
-    access: []
+    access: [["Security"]]
   - type: DeviceLinkSink
     ports:
       - PrisonLockerLock
