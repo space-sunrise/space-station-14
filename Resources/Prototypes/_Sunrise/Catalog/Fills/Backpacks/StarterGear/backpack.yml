@@ -13,6 +13,9 @@
         - id: MagazinePistol40SubMachineGunSP
         - id: MagazineRifleSP
         - id: MagazineLightRifleSP
+        - id: MagazinePistol40SP
+        - id: MagazinePistolHighCapacitySP
+        - id: MagazinePistol
 
 - type: entity
   parent: ClothingBackpackSyndie
@@ -38,5 +41,4 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponSIAR52Biocode
-        - id: MagazinePistolSubMachineGunCaselessExtended
-          amount: 2
+        - id: CaselessAmmoKit
