@@ -15,3 +15,7 @@ ent-SewingPrinterPrisonMachineCircuitboard = prison sewing printer machine board
 
 ent-PirateTechFabCircuitboard = pirate techfab machine board
     .desc = { ent-BaseMachineCircuitboard.desc }
+ent-TelecomServerT2Circuitboard = advanced telecommunication server machine board
+    .desc = { ent-TelecomServerCircuitboard.desc }
+ent-TelecomServerT3Circuitboard = experimental telecommunication server machine board
+    .desc = { ent-TelecomServerCircuitboard.desc }
