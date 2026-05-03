@@ -1471,8 +1471,6 @@ entities:
     - pos: 1.5,8.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 760
     components:
     - pos: 1.5,9.5
@@ -1603,8 +1601,6 @@ entities:
     - pos: 0.5,-12.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 805
     components:
     - pos: 0.5,-13.5
@@ -1795,8 +1791,6 @@ entities:
     - pos: -6.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 843
     components:
     - pos: -5.5,-17.5
@@ -1842,8 +1836,6 @@ entities:
     - pos: -0.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 852
     components:
     - pos: -0.5,-18.5
@@ -1874,15 +1866,11 @@ entities:
     - pos: 4.5,-18.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 858
     components:
     - pos: 2.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 859
     components:
     - pos: 3.5,-17.5
@@ -1893,29 +1881,21 @@ entities:
     - pos: 4.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 861
     components:
     - pos: 9.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 862
     components:
     - pos: 4.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 863
     components:
     - pos: 4.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 864
     components:
     - pos: 9.5,-18.5
@@ -1946,43 +1926,31 @@ entities:
     - pos: 15.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 870
     components:
     - pos: 14.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 871
     components:
     - pos: 13.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 872
     components:
     - pos: 12.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 873
     components:
     - pos: 11.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 874
     components:
     - pos: 10.5,-7.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 875
     components:
     - pos: 10.5,-8.5
@@ -2053,8 +2021,6 @@ entities:
     - pos: -1.5,-7.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 889
     components:
     - pos: -1.5,-8.5
@@ -2160,36 +2126,26 @@ entities:
     - pos: 13.5,-18.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1277
     components:
     - pos: 13.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1278
     components:
     - pos: 13.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1279
     components:
     - pos: 13.5,-21.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1280
     components:
     - pos: 13.5,-22.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
 - proto: CableApcStack
   entities:
   - uid: 1423
@@ -2204,57 +2160,41 @@ entities:
     - pos: 4.5,-25.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 254
     components:
     - pos: 5.5,-24.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 381
     components:
     - pos: 4.5,-24.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 441
     components:
     - pos: 5.5,-25.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1295
     components:
     - pos: 5.5,-23.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1406
     components:
     - pos: 3.5,-23.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1407
     components:
     - pos: 3.5,-25.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1408
     components:
     - pos: 3.5,-24.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1489
     components:
     - pos: 5.5,-19.5
@@ -2265,8 +2205,6 @@ entities:
     - pos: 5.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1491
     components:
     - pos: 5.5,-21.5
@@ -2277,15 +2215,11 @@ entities:
     - pos: 4.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1493
     components:
     - pos: 3.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1494
     components:
     - pos: 3.5,-21.5
@@ -2296,15 +2230,11 @@ entities:
     - pos: 3.5,-22.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1496
     components:
     - pos: 5.5,-22.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
 - proto: CableMV
   entities:
   - uid: 9
@@ -2387,29 +2317,21 @@ entities:
     - pos: 3.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 379
     components:
     - pos: 4.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 451
     components:
     - pos: 4.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 452
     components:
     - pos: 4.5,-16.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 455
     components:
     - pos: 4.5,-13.5
@@ -2685,15 +2607,11 @@ entities:
     - pos: 12.5,-16.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 699
     components:
     - pos: 12.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 701
     components:
     - pos: 0.5,-0.5
@@ -2719,8 +2637,6 @@ entities:
     - pos: 1.5,8.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 746
     components:
     - pos: 1.5,9.5
@@ -2801,8 +2717,6 @@ entities:
     - pos: -6.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1183
     components:
     - pos: -0.5,-17.5
@@ -2818,8 +2732,6 @@ entities:
     - pos: -0.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1186
     components:
     - pos: 3.5,-17.5
@@ -2830,15 +2742,11 @@ entities:
     - pos: 2.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1188
     components:
     - pos: 9.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1189
     components:
     - pos: 9.5,-18.5
@@ -2854,22 +2762,16 @@ entities:
     - pos: 13.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1192
     components:
     - pos: 14.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1193
     components:
     - pos: 15.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1194
     components:
     - pos: 10.5,-8.5
@@ -2880,8 +2782,6 @@ entities:
     - pos: 10.5,-7.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1196
     components:
     - pos: -1.5,-8.5
@@ -2892,15 +2792,11 @@ entities:
     - pos: -1.5,-7.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1198
     components:
     - pos: 0.5,-12.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1481
     components:
     - pos: 5.5,-21.5
@@ -2911,22 +2807,16 @@ entities:
     - pos: 5.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1483
     components:
     - pos: 4.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1484
     components:
     - pos: 4.5,-18.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
 - proto: CableTerminal
   entities:
   - uid: 447
@@ -4653,8 +4543,6 @@ entities:
     - pos: 14.5,-18.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1106
     components:
     - pos: 9.5,10.5
@@ -4684,23 +4572,17 @@ entities:
       pos: 14.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1254
     components:
     - pos: 15.5,-17.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1255
     components:
     - rot: 3.141592653589793 rad
       pos: 15.5,-19.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
 - proto: GasPipeFourway
   entities:
   - uid: 184
@@ -4829,8 +4711,6 @@ entities:
       type: Transform
     - color: '#121BC9FF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 65
     components:
     - rot: 1.5707963267948966 rad
@@ -4862,8 +4742,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 102
     components:
     - rot: 3.141592653589793 rad
@@ -4888,8 +4766,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 117
     components:
     - rot: -1.5707963267948966 rad
@@ -5248,8 +5124,6 @@ entities:
       type: Transform
     - color: '#121BC9FF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 545
     components:
     - pos: 0.5,-15.5
@@ -5410,8 +5284,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 586
     components:
     - rot: 3.141592653589793 rad
@@ -5428,8 +5300,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 588
     components:
     - rot: 3.141592653589793 rad
@@ -5446,8 +5316,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 590
     components:
     - rot: 3.141592653589793 rad
@@ -5472,8 +5340,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 594
     components:
     - rot: 3.141592653589793 rad
@@ -5482,8 +5348,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 597
     components:
     - rot: 1.5707963267948966 rad
@@ -5531,8 +5395,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 606
     components:
     - pos: 5.5,-11.5
@@ -5618,8 +5480,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 618
     components:
     - pos: -4.5,-11.5
@@ -5657,8 +5517,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 627
     components:
     - rot: 3.141592653589793 rad
@@ -5691,8 +5549,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 632
     components:
     - rot: 3.141592653589793 rad
@@ -5967,8 +5823,6 @@ entities:
       pos: 12.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 978
     components:
     - rot: 3.141592653589793 rad
@@ -5977,16 +5831,12 @@ entities:
       type: Transform
     - color: '#121BC9FF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 981
     components:
     - rot: 1.5707963267948966 rad
       pos: 13.5,-18.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 983
     components:
     - rot: 1.5707963267948966 rad
@@ -6017,8 +5867,6 @@ entities:
       pos: 14.5,-20.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1105
     components:
     - rot: 3.141592653589793 rad
@@ -6114,16 +5962,12 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 1257
     components:
     - rot: 3.141592653589793 rad
       pos: 15.5,-18.5
       parent: 2
       type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 1283
     components:
     - rot: 3.141592653589793 rad
@@ -6132,8 +5976,6 @@ entities:
       type: Transform
     - color: '#850D1BFF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 1284
     components:
     - rot: 3.141592653589793 rad
@@ -6281,8 +6123,6 @@ entities:
       type: Transform
     - color: '#121BC9FF'
       type: AtmosPipeColor
-    - enabled: True
-      type: AmbientSound
   - uid: 980
     components:
     - pos: 11.5,-13.5
@@ -6314,8 +6154,6 @@ entities:
       type: Transform
     - open: False
       type: GasValve
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
 - proto: GasVentPump
@@ -6326,8 +6164,6 @@ entities:
       pos: 1.5,-4.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 5
@@ -6336,8 +6172,6 @@ entities:
       pos: 6.5,7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 10
@@ -6349,8 +6183,6 @@ entities:
     - ShutdownSubscribers:
       - 1121
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 12
@@ -6359,8 +6191,6 @@ entities:
       pos: 7.5,-4.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 13
@@ -6369,8 +6199,6 @@ entities:
       pos: -0.5,-1.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 25
@@ -6382,8 +6210,6 @@ entities:
     - ShutdownSubscribers:
       - 1120
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 26
@@ -6395,8 +6221,6 @@ entities:
     - ShutdownSubscribers:
       - 1122
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 28
@@ -6408,8 +6232,6 @@ entities:
     - ShutdownSubscribers:
       - 1124
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 33
@@ -6418,8 +6240,6 @@ entities:
       pos: 4.5,-17.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 38
@@ -6428,8 +6248,6 @@ entities:
       pos: 9.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 112
@@ -6438,8 +6256,6 @@ entities:
       pos: 0.5,-17.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 131
@@ -6451,8 +6267,6 @@ entities:
     - ShutdownSubscribers:
       - 905
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 165
@@ -6461,8 +6275,6 @@ entities:
       pos: 9.5,-1.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 167
@@ -6471,8 +6283,6 @@ entities:
       pos: 9.5,1.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 168
@@ -6481,8 +6291,6 @@ entities:
       pos: 9.5,4.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 299
@@ -6491,8 +6299,6 @@ entities:
       pos: 10.5,7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 470
@@ -6503,8 +6309,6 @@ entities:
     - ShutdownSubscribers:
       - 1155
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 926
@@ -6516,8 +6320,6 @@ entities:
     - ShutdownSubscribers:
       - 1285
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 1116
@@ -6528,8 +6330,6 @@ entities:
     - ShutdownSubscribers:
       - 1119
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 1164
@@ -6541,8 +6341,6 @@ entities:
     - ShutdownSubscribers:
       - 1171
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
   - uid: 1226
@@ -6551,8 +6349,6 @@ entities:
       pos: -6.5,-14.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#121BC9FF'
       type: AtmosPipeColor
 - proto: GasVentScrubber
@@ -6565,8 +6361,6 @@ entities:
     - ShutdownSubscribers:
       - 1124
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 82
@@ -6577,8 +6371,6 @@ entities:
     - ShutdownSubscribers:
       - 1121
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 93
@@ -6587,8 +6379,6 @@ entities:
       pos: 5.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 101
@@ -6597,8 +6387,6 @@ entities:
       pos: 1.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 113
@@ -6609,8 +6397,6 @@ entities:
     - ShutdownSubscribers:
       - 1155
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 121
@@ -6622,8 +6408,6 @@ entities:
     - ShutdownSubscribers:
       - 1122
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 225
@@ -6632,8 +6416,6 @@ entities:
       pos: 7.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 668
@@ -6642,8 +6424,6 @@ entities:
       pos: 9.5,7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 672
@@ -6652,8 +6432,6 @@ entities:
       pos: 9.5,3.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 673
@@ -6662,8 +6440,6 @@ entities:
       pos: 9.5,0.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 674
@@ -6672,8 +6448,6 @@ entities:
       pos: 9.5,-2.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 675
@@ -6682,8 +6456,6 @@ entities:
       pos: -0.5,-2.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 676
@@ -6692,8 +6464,6 @@ entities:
       pos: 1.5,-5.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 677
@@ -6702,8 +6472,6 @@ entities:
       pos: 7.5,-5.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 678
@@ -6715,8 +6483,6 @@ entities:
     - ShutdownSubscribers:
       - 1120
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 774
@@ -6724,8 +6490,6 @@ entities:
     - pos: 7.5,7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 775
@@ -6737,8 +6501,6 @@ entities:
     - ShutdownSubscribers:
       - 905
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 1117
@@ -6749,8 +6511,6 @@ entities:
     - ShutdownSubscribers:
       - 1119
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 1166
@@ -6759,8 +6519,6 @@ entities:
       pos: -6.5,-13.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 1167
@@ -6772,8 +6530,6 @@ entities:
     - ShutdownSubscribers:
       - 1171
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
   - uid: 1281
@@ -6785,8 +6541,6 @@ entities:
     - ShutdownSubscribers:
       - 1285
       type: DeviceNetwork
-    - enabled: False
-      type: AmbientSound
     - color: '#850D1BFF'
       type: AtmosPipeColor
 - proto: GeneratorBasic15kW
@@ -7577,403 +7331,299 @@ entities:
       pos: 7.5,-5.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1199
     components:
     - rot: -1.5707963267948966 rad
       pos: 7.5,2.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1200
     components:
     - pos: 5.5,4.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1201
     components:
     - pos: 2.5,7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1202
     components:
     - rot: 1.5707963267948966 rad
       pos: 1.5,4.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1203
     components:
     - rot: 1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1204
     components:
     - rot: 3.141592653589793 rad
       pos: -0.5,0.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1205
     components:
     - pos: -0.5,3.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1206
     components:
     - rot: 3.141592653589793 rad
       pos: 2.5,-2.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1207
     components:
     - rot: -1.5707963267948966 rad
       pos: 7.5,-1.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1208
     components:
     - rot: 3.141592653589793 rad
       pos: 3.5,-5.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1209
     components:
     - rot: -1.5707963267948966 rad
       pos: 5.5,-8.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1210
     components:
     - rot: 1.5707963267948966 rad
       pos: 3.5,-10.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1211
     components:
     - pos: 6.5,-13.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1212
     components:
     - rot: 3.141592653589793 rad
       pos: 2.5,-14.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1213
     components:
     - pos: -1.5,-13.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1214
     components:
     - rot: 3.141592653589793 rad
       pos: -5.5,-14.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1215
     components:
     - rot: 3.141592653589793 rad
       pos: 9.5,-14.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1216
     components:
     - pos: 13.5,-13.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1217
     components:
     - rot: 1.5707963267948966 rad
       pos: 3.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1218
     components:
     - rot: -1.5707963267948966 rad
       pos: 5.5,-19.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1219
     components:
     - rot: 3.141592653589793 rad
       pos: 8.5,-18.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1220
     components:
     - rot: 1.5707963267948966 rad
       pos: 11.5,-17.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1221
     components:
     - rot: -1.5707963267948966 rad
       pos: 14.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1222
     components:
     - rot: 1.5707963267948966 rad
       pos: -0.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1223
     components:
     - rot: -1.5707963267948966 rad
       pos: 1.5,-18.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1224
     components:
     - rot: 1.5707963267948966 rad
       pos: -5.5,-16.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1225
     components:
     - rot: -1.5707963267948966 rad
       pos: -2.5,-18.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1227
     components:
     - pos: -2.5,-8.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1228
     components:
     - rot: 3.141592653589793 rad
       pos: -5.5,-11.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1229
     components:
     - rot: 1.5707963267948966 rad
       pos: -5.5,-7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1230
     components:
     - rot: -1.5707963267948966 rad
       pos: 1.5,-7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1231
     components:
     - rot: 3.141592653589793 rad
       pos: 0.5,-11.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1232
     components:
     - pos: 0.5,-4.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1233
     components:
     - pos: -0.5,-1.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1234
     components:
     - pos: 10.5,-1.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1235
     components:
     - pos: 10.5,1.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1236
     components:
     - pos: 10.5,4.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1237
     components:
     - rot: 3.141592653589793 rad
       pos: 7.5,6.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1238
     components:
     - rot: 1.5707963267948966 rad
       pos: 9.5,6.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1240
     components:
     - rot: 1.5707963267948966 rad
       pos: 7.5,-7.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1241
     components:
     - rot: 3.141592653589793 rad
       pos: 9.5,-11.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1242
     components:
     - pos: 11.5,-8.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1243
     components:
     - rot: 1.5707963267948966 rad
       pos: 14.5,-8.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1244
     components:
     - rot: -1.5707963267948966 rad
       pos: 15.5,-11.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1245
     components:
     - rot: 1.5707963267948966 rad
       pos: -1.5,6.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1246
     components:
     - rot: 3.141592653589793 rad
       pos: 0.5,9.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1247
     components:
     - rot: 3.141592653589793 rad
       pos: 8.5,9.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1248
     components:
     - rot: 1.5707963267948966 rad
       pos: -0.5,11.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1249
     components:
     - rot: -1.5707963267948966 rad
       pos: 9.5,11.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1250
     components:
     - rot: 3.141592653589793 rad
       pos: 4.5,9.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 1275
     components:
     - rot: 3.141592653589793 rad
       pos: -5.5,-22.5
       parent: 2
       type: Transform
-    - enabled: False
-      type: AmbientSound
 - proto: Protolathe
   entities:
   - uid: 988

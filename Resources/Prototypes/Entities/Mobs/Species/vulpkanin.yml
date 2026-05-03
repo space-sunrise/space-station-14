@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   abstract: true
   save: false
   parent: [BaseMobSpeciesOrganic]
@@ -17,6 +17,13 @@
     state: full
   - type: Body
     prototype: Vulpkanin
+  # Sunrise-start
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatVulpkanin
+      amount: 5
+  # Sunrise-end
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
@@ -136,7 +143,6 @@
             sprite: Mobs/Species/Vulpkanin/displacement.rsi
             state: hair
   # Sunrise-start
-  - type: Carriable
   - type: FootprintEmitter
   # Sunrise-end
   - type: Inventory

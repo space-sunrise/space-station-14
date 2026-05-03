@@ -1,0 +1,4 @@
+# Sunrise-specific contraband severity for Soviet-aligned items.
+- type: contrabandSeverity
+  id: Soviet
+  examineText: contraband-examine-text-Soviet

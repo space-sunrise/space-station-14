@@ -66,6 +66,9 @@
   parent: ToySword
   components:
   - type: Wieldable
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
     layers:
@@ -105,6 +108,40 @@
     node: ToySwordDoubledNode
   - type: FlipOnAttack # Sunrise-Edit
     probability: 0.5 # Sunrise-Edit
+
+- type: entity
+  id: SunriseToyKatana
+  parent: Katana
+  name: toy katana
+  description: A toy katana for harmless sparring and dramatic poses.
+  suffix: Toy
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 5
+  - type: Reflect
+    reflectProb: 0.01
+    spread: 90
+    slotFlags:
+    - NONE
+
+- type: entity
+  id: SunriseToyEnergyKatana
+  parent: EnergyKatana
+  name: toy energy katana
+  description: A toy copy of an energy katana for flashy play duels.
+  suffix: Toy
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 5
+  - type: Reflect
+    reflectProb: 0.01
+    spread: 90
+    slotFlags:
+    - NONE
 
 - type: entity
   id: ToySwordDoubledFake
@@ -218,10 +255,14 @@
       - GasAnalyzer
       - HandLabeler
       - TrashOnSolutionEmpty
-  - type: StorageFill
-    contents:
-      - id: DrinkSpaceLube
-      - id: CrazyGlue
+      - Lube
+      - Glue
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkSpaceLube
+        - id: CrazyGlue
 
 - type: entity
   id: MagazineSMGCap
@@ -394,13 +435,15 @@
   - type: Storage
     grid:
     - 0,0,6,3
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunC20rFake
-      - id: MagazineSMGCap
-        amount: 2
-      - id: MagazineSMGFoam
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunC20rFake
+        - id: MagazineSMGCap
+          amount: 2
+        - id: MagazineSMGFoam
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -412,9 +455,11 @@
   - type: Storage
     grid:
     - 0,0,6,3
-  - type: StorageFill
-    contents:
-      - id: WeaponLightMachineGunL6Fake
-      - id: MagazineCapBox
-        amount: 2
-      - id: MagazineFoamBoxSunrise
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLightMachineGunL6Fake
+        - id: MagazineCapBox
+          amount: 2
+        - id: MagazineFoamBoxSunrise

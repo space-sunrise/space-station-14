@@ -16,6 +16,9 @@ criminal-records-status-detained = Под арестом
 criminal-records-status-suspected = Подозревается
 criminal-records-status-discharged = Освобождён
 criminal-records-status-paroled = Освобождён по УДО
+criminal-records-status-hostile = Враждебный
+criminal-records-status-eliminated = Ликвидирован
+
 criminal-records-console-wanted-reason = Причина розыска
 criminal-records-console-suspected-reason = Причина подозрения
 criminal-records-console-reason = Причина

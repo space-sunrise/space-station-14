@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: Urist McPig
   parent: BaseMobSpeciesOrganic
   id: BaseMobSwine
@@ -62,10 +62,9 @@
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
-    - id: FoodMeat
+    - id: FoodMeatSwine
       amount: 5
   - type: FootprintEmitter
-  - type: Carriable
 
 - type: entity
   save: false

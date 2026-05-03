@@ -7,6 +7,11 @@
   components:
   - type: Sprite
     state: mecha_chainsword
+  # Sunrise-start
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+    heldPrefix: chainsword
+  # Sunrise-end
   - type: MeleeWeapon
     autoAttack: true
     angle: 0

@@ -14,6 +14,11 @@
   - type: Body
     prototype: Tajaran
     requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatTajaran
+      amount: 5
   - type: TajaranAccent
   - type: Hunger
   - type: Speech
@@ -149,7 +154,6 @@
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
   - type: FootprintEmitter
-  - type: Carriable
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
 

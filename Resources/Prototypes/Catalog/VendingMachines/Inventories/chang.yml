@@ -11,4 +11,10 @@
   contrabandInventory:
     FoodBakedDumplings: 2
     FoodSoupMiso: 2
+# Sunrise start
+    FoodRiceBoiled: 2
+    FoodRiceEgg: 2
+    FoodRicePork: 2
+# Sunrise end
 # rice?
+# Yes for rice

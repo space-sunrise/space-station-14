@@ -1,0 +1,27 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="{Loc 'sunrise-criminal-records-title'}"
+               MinWidth="850"
+               MinHeight="800">
+    <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+        <!-- Sidebar: Records List -->
+        <BoxContainer Orientation="Vertical" MinWidth="220" HorizontalExpand="False" Margin="6" SeparationOverride="8">
+            <Label Text="{Loc 'sunrise-records-list-header'}" StyleClasses="LabelHeadingBolder" Margin="4 0"/>
+            <LineEdit Name="SearchInput" PlaceHolder="{Loc 'sunrise-records-search-placeholder'}" Margin="2"/>
+            <PanelContainer StyleClasses="LowDivider" MinHeight="1"/>
+            <ItemList Name="RecordList" VerticalExpand="True"/>
+        </BoxContainer>
+
+        <PanelContainer StyleClasses="LowDivider" MinWidth="2"/>
+
+        <!-- Main Content Area -->
+        <BoxContainer Name="MainContentContainer" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="10">
+            <Label Name="NoSelectionLabel"
+                   Text="{Loc 'sunrise-records-no-selection'}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   VerticalExpand="True"
+                   StyleClasses="LabelSecondaryColor"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

@@ -3,6 +3,7 @@
   parent: [ BaseMechWeaponMelee, DebugMechEquipment ] # Debug equipment dose has all whitelist tags.
   name: debug bam
   suffix: Mech Weapon, DEBUG, Melee
+  categories: [ Debug ] # Sunrise-Add
   description: A robust thing.
   components:
   - type: Sprite

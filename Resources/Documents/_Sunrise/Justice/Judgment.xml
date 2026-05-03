@@ -1,22 +1,36 @@
-<Document>
-[bold]Станция: {stationName}[/bold]
-[bold]Форма {corpString}/ЮР[/bold]
-[head=2]Судебное решение[/head]
+﻿<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#1B2333][bold]РЕШЕНИЕ[/bold][/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / ЮР[/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
 
-[italic]Время от начала смены и дата: {timeString}[/italic]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Судебное решение[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 
-Представитель судебной власти: (ПОЛНОЕ ИМЯ)
+[bold]Решение:[/bold]
+Представитель судебной власти: [form="Имя и Фамилия"]
 В должности: Магистрат
 
-Я, (ПОЛНОЕ ИМЯ), как представитель Судебной системы корпорации {corpString}, именем корпорации {corpString} заключаю, что
+Я, [form="Имя и Фамилия"], как представитель Судебной системы корпорации {corpString}, именем корпорации {corpString} заключаю, что
 
-(ПОЛНОЕ ИМЯ) нарушил XXX статью корпоративного закона корпорации {corpString}.
+[form="Имя и Фамилия"] нарушил XXX статью корпоративного закона корпорации {corpString}.
 
 [bold]Краткое описание дела:[/bold]
 
 [bold]Приговор:[/bold]
 
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
 
-[italic]Место для печатей[/italic]
+
+
 
 </Document>

@@ -219,13 +219,12 @@
   - type: StealCondition
     stealGroup: Hypospray
 
-# Sunrise-Edit
-#- type: entity
-#  parent: BaseCMOStealObjective
-#  id: CMOCrewMonitorStealObjective
-#  components:
-#  - type: StealCondition
-#    stealGroup: HandheldCrewMonitor
+- type: entity
+  parent: BaseCMOStealObjective
+  id: CMOCrewMonitorStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HandheldCrewMonitor
 
 ## rd
 

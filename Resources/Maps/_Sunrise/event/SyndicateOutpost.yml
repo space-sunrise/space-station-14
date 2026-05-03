@@ -441,8 +441,7 @@ entities:
       pos: 4.5,2.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 3
 - proto: APCBasic
@@ -1650,8 +1649,7 @@ entities:
       pos: 2.5,-2.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      configurators: []
       deviceLists:
       - 3
     - type: AtmosPipeColor

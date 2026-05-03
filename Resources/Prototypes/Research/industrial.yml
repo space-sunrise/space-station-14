@@ -17,6 +17,7 @@
   - SheetPlasteel1Lathe
   - ClothingMaskWeldingGas
   - ClothingShoesBootsJump
+  - BorgModuleJetpack # Sunrise-add
 
 - type: technology
   id: SpaceScanning
@@ -44,6 +45,7 @@
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
+  - SMESExtendedMachineCircuitboard # Sunrise-Edit
   - PowerCageMedium
 
 - type: technology
@@ -154,6 +156,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - FireExtinguisherBluespace # Sunrise-add
   technologyPrerequisites:
   - AtmosphericTech
 
@@ -221,5 +224,6 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - PowerCellHyper
+  - SMESSuperExtendedMachineCircuitboard # Sunrise-Edit
   technologyPrerequisites:
   - AdvancedPowercells

@@ -117,7 +117,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatSlime
+    - id: FoodMeatSlimeJelly # Sunrise - edit
       amount: 5
   - type: Respirator
     damage:
@@ -140,7 +140,6 @@
       - "footprint-left-bare-slime"
     rightBareFootState:
       - "footprint-right-bare-slime"
-  - type: Carriable
   # Sunrise edit end.
 
 - type: entity

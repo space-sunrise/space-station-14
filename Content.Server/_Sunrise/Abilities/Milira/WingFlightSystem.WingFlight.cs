@@ -11,6 +11,8 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Toggleable;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared._Sunrise.Abilities.Milira;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -46,6 +48,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
         SubscribeLocalEvent<WingFlightComponent, KnockDownAttemptEvent>(OnKnockDownAttempt);
         SubscribeLocalEvent<WingFlightComponent, DownedEvent>(OnDowned);
         SubscribeLocalEvent<WingFlightComponent, KnockedDownEvent>(OnKnockedDown);
+        SubscribeLocalEvent<WingFlightComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         SubscribeLocalEvent<WingFlightComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<WingFlightComponent, ComponentRemove>(OnComponentRemove);
@@ -89,7 +92,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
         if (_standing.IsDown(ent.Owner))
             return false;
 
-        if (!TryComp<StaminaComponent>(ent.Owner, out var stamina))
+        if (!TryComp<StaminaComponent>(ent, out var stamina))
         {
             Activate(ent, 1f);
             return true;
@@ -98,13 +101,13 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
         var staminaPercent = GetStaminaPercent(stamina);
         if (staminaPercent < ent.Comp.ActivationThreshold)
         {
-            _popup.PopupEntity(Loc.GetString("wing-flight-popup-not-enough-stamina"), ent.Owner, ent.Owner, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("wing-flight-popup-not-enough-stamina"), ent, ent, PopupType.Medium);
             return false;
         }
 
-        if (!_stamina.TryTakeStamina(ent.Owner, ent.Comp.ActivationStaminaDamage, stamina, visual: true))
+        if (!_stamina.TryTakeStamina(ent, ent.Comp.ActivationStaminaDamage, stamina, visual: true))
         {
-            _popup.PopupEntity(Loc.GetString("wing-flight-popup-activation-blocked"), ent.Owner, ent.Owner, PopupType.Small);
+            _popup.PopupEntity(Loc.GetString("wing-flight-popup-activation-blocked"), ent, ent, PopupType.Small);
             return false;
         }
 
@@ -142,7 +145,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
     private void UpdateMarkings(Entity<WingFlightComponent> ent, bool enable)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(ent.Owner, out var humanoid))
+        if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
             return;
 
         if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings) ||
@@ -162,7 +165,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
         ent.Comp.OriginalMarkings.Clear();
 
         var flightSuffix = ent.Comp.Suffix;
-        var openSuffix = TryComp<WingToggleComponent>(ent.Owner, out var toggle) ? toggle.Suffix : null;
+        var openSuffix = TryComp<WingToggleComponent>(ent, out var toggle) ? toggle.Suffix : null;
 
         for (var i = 0; i < markings.Count; i++)
         {
@@ -179,7 +182,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
                 continue;
 
             ent.Comp.OriginalMarkings[i] = current;
-            _appearance.SetMarkingId(ent.Owner, MarkingCategories.Tail, i, desired, humanoid: humanoid);
+            _appearance.SetMarkingId(ent, MarkingCategories.Tail, i, desired, humanoid: humanoid);
         }
 
         ent.Comp.AppliedMarkingOnEnable = ent.Comp.OriginalMarkings.Count > 0;
@@ -201,7 +204,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
             if (markings[index].MarkingId == original)
                 continue;
 
-            _appearance.SetMarkingId(ent.Owner, MarkingCategories.Tail, index, original, humanoid: humanoid);
+            _appearance.SetMarkingId(ent, MarkingCategories.Tail, index, original, humanoid: humanoid);
         }
 
         ent.Comp.OriginalMarkings.Clear();
@@ -244,7 +247,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
                 }
 
                 var staminaCost = ent.Comp.SustainStaminaPerSecond * frameTime;
-                if (!_stamina.TryTakeStamina(ent.Owner, staminaCost, stamina, visual: false))
+                if (!_stamina.TryTakeStamina(ent, staminaCost, stamina, visual: false))
                 {
                     toDisable.Add(ent);
                     SetScaleImmediate(ent, staminaPercent);
@@ -260,7 +263,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
         foreach (var ent in toDisable)
         {
-            _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), ent.Owner, ent.Owner, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("wing-flight-popup-auto-disable"), ent, ent, PopupType.Medium);
             DisableFlight(ent);
         }
     }
@@ -305,16 +308,15 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
     private void EnableFlightPassability(Entity<WingFlightComponent> ent)
     {
-        if (!TryComp(ent.Owner, out PhysicsComponent? physics))
+        if (!TryComp(ent, out PhysicsComponent? physics))
             return;
 
-        EnsureComp<CanMoveInAirComponent>(ent.Owner);
-        _physics.SetBodyStatus(ent.Owner, physics, BodyStatus.InAir);
+        EnsureComp<CanMoveInAirComponent>(ent);
+        _physics.SetBodyStatus(ent, physics, BodyStatus.InAir);
 
-        if (!TryComp(ent.Owner, out FixturesComponent? fixtures))
+        if (!TryComp(ent, out FixturesComponent? fixtures))
             return;
 
-        // Обратный обход фикстур для избежания изменения коллекции во время перечисления
         var fixtureIds = fixtures.Fixtures.Keys.ToArray();
         for (var i = fixtureIds.Length - 1; i >= 0; i--)
         {
@@ -324,16 +326,16 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
             ent.Comp.OriginalCollisionMasks.TryAdd(id, fixture.CollisionMask);
             ent.Comp.OriginalCollisionLayers.TryAdd(id, fixture.CollisionLayer);
-            _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int)CollisionGroup.MidImpassable, manager: fixtures);
+            _physics.RemoveCollisionMask(ent, id, fixture, (int)CollisionGroup.MidImpassable, manager: fixtures);
         }
     }
 
     private void DisableFlightPassability(Entity<WingFlightComponent> ent)
     {
-        RemCompDeferred<CanMoveInAirComponent>(ent.Owner);
+        RemCompDeferred<CanMoveInAirComponent>(ent);
 
         if (TryComp<PhysicsComponent>(ent, out var physics))
-            _physics.SetBodyStatus(ent.Owner, physics, BodyStatus.OnGround);
+            _physics.SetBodyStatus(ent, physics, BodyStatus.OnGround);
 
         if (TryComp<FixturesComponent>(ent, out var fixtures))
         {
@@ -346,14 +348,23 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
                     continue;
 
                 if (ent.Comp.OriginalCollisionMasks.TryGetValue(id, out var mask))
-                    _physics.SetCollisionMask(ent.Owner, id, fixture, mask, manager: fixtures);
+                    _physics.SetCollisionMask(ent, id, fixture, mask, manager: fixtures);
 
                 if (ent.Comp.OriginalCollisionLayers.TryGetValue(id, out var layer))
-                    _physics.SetCollisionLayer(ent.Owner, id, fixture, layer, manager: fixtures);
+                    _physics.SetCollisionLayer(ent, id, fixture, layer, manager: fixtures);
             }
         }
 
         ent.Comp.OriginalCollisionMasks.Clear();
         ent.Comp.OriginalCollisionLayers.Clear();
+    }
+
+    private void OnMobStateChanged(Entity<WingFlightComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (!ent.Comp.FlightEnabled)
+            return;
+
+        if (args.NewMobState == MobState.Critical)
+            DisableFlight(ent);
     }
 }

@@ -294,7 +294,6 @@
   # Sunrise-start
   - type: Body
     prototype: Chiken
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -753,7 +752,6 @@
     factions:
     - Passive
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -1055,7 +1053,6 @@
   - type: Body
     prototype: AnimalHemocyanin
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -1166,7 +1163,6 @@
     rootTask:
       task: RuminantHostileCompound
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -1224,7 +1220,6 @@
     factions:
     - Passive
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -1530,6 +1525,7 @@
   - type: IdExaminable
   - type: Tag
     tags:
+    - MonkeyDeathgasp # Sunrise-edit
     - VimPilot
     - DoorBumpOpener
     - AnomalyHost
@@ -2203,7 +2199,6 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -2503,7 +2498,6 @@
       types:
         Heat : 0.2 #per second, scales with temperature & other constants
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -2676,7 +2670,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Dead
+      50: Dead # Sunrise-Edit
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -2749,7 +2743,6 @@
   - type: CollectiveMind
     minds:
     - Arachnids
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -2864,7 +2857,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        180: Dead
+        90: Dead # Sunrise-Edit
     - type: Spider
       webPrototype: SpiderWebClown
     - type: MeleeWeapon
@@ -2885,7 +2878,7 @@
               Quantity: 50
     - type: MeleeChemicalInjector
       solution: melee
-      transferAmount: 2
+      transferAmount: 5
     # Sunrise edit end
     - type: FootstepModifier
       footstepSoundCollection:
@@ -2961,7 +2954,6 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -3043,7 +3035,6 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -3133,7 +3124,6 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   # Sunrise-end
 
@@ -3204,7 +3194,6 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   # Sunrise-end
 
@@ -3380,7 +3369,6 @@
     baseSprintSpeed: 4
   # Sunrise-start
   - type: NightVision
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -3609,7 +3597,6 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   # Sunrise-end
 
@@ -3667,7 +3654,6 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -3912,7 +3898,6 @@
     # Sunrise-start
   - type: Body
     prototype: ManeaterAnimal
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -4010,7 +3995,6 @@
   - type: CollectiveMind
     minds:
     - Dioneas
-  - type: Carriable
   - type: CanEscapeInventory
 
 - type: entity

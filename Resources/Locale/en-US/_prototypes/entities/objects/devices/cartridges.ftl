@@ -20,3 +20,5 @@ ent-NavigatorCartridge = navigator cartridge
     .desc = A program for viewing the station map for navigation purposes.
 ent-MessengerCartridge = messenger cartridge
     .desc = A program for messaging between PDAs.
+ent-PhotoCartridge = camera cartridge
+    .desc = A program for taking photos and managing a photo gallery.

@@ -17,8 +17,8 @@ public sealed partial class MessengerUi : UIFragment
     public override void Setup(BoundUserInterface userInterface, EntityUid? fragmentOwner)
     {
         _fragment = new MessengerUiFragment();
-        _fragment.OnSendMessage += (recipientId, groupId, content) =>
-            SendMessengerMessage(MessengerUiAction.SendMessage, userInterface, recipientId: recipientId, groupId: groupId, content: content);
+        _fragment.OnSendMessage += (recipientId, groupId, content, imagePath) =>
+            SendMessengerMessage(MessengerUiAction.SendMessage, userInterface, recipientId: recipientId, groupId: groupId, content: content, imagePath: imagePath);
         _fragment.OnCreateGroup += (groupName) =>
             SendMessengerMessage(MessengerUiAction.CreateGroup, userInterface, groupName: groupName);
         _fragment.OnAddToGroup += (groupId, userId) =>
@@ -39,6 +39,8 @@ public sealed partial class MessengerUi : UIFragment
             SendMessengerMessage(MessengerUiAction.DeleteMessage, userInterface, chatId: chatId, messageId: messageId);
         _fragment.OnTogglePin += (chatId) =>
             SendMessengerMessage(MessengerUiAction.TogglePin, userInterface, chatId: chatId);
+        _fragment.OnRequestPhotos += () =>
+            SendMessengerMessage(MessengerUiAction.RequestPhotos, userInterface);
     }
 
     public override void UpdateState(BoundUserInterfaceState state)
@@ -59,9 +61,10 @@ public sealed partial class MessengerUi : UIFragment
         string? userId = null,
         string? chatId = null,
         bool? isMuted = null,
-        long? messageId = null)
+        long? messageId = null,
+        string? imagePath = null)
     {
-        var messengerMessage = new MessengerUiMessageEvent(action, recipientId, groupId, content, groupName, userId, chatId, isMuted, messageId);
+        var messengerMessage = new MessengerUiMessageEvent(action, recipientId, groupId, content, groupName, userId, chatId, isMuted, messageId, imagePath);
         var message = new CartridgeUiMessage(messengerMessage);
         userInterface.SendMessage(message);
     }

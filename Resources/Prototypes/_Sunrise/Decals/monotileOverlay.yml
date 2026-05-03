@@ -3,7 +3,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_n
 
 - type: decal
@@ -11,7 +11,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_s
 
 - type: decal
@@ -19,7 +19,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_w
 
 - type: decal
@@ -27,7 +27,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_e
 
 - type: decal
@@ -35,7 +35,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_nw
 
 - type: decal
@@ -43,7 +43,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_ne
 
 - type: decal
@@ -51,7 +51,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_sw
 
 - type: decal
@@ -59,7 +59,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: monot_se
 
 - type: decal
@@ -67,7 +67,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: cr_monot_nw
 
 - type: decal
@@ -75,7 +75,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: cr_monot_ne
 
 - type: decal
@@ -83,7 +83,7 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: cr_monot_sw
 
 - type: decal
@@ -91,5 +91,5 @@
   tags: ["station", "overlay"]
   defaultCustomColor: true
   sprite:
-    sprite: _Sunrise/Decals/monotileOverlay.rsi
+    sprite: _Sunrise/Decals/monotile_overlay.rsi
     state: cr_monot_se

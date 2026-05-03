@@ -14,7 +14,9 @@ using Robust.Shared.Input;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Linq;
-using Robust.Client.UserInterface.RichText; // Sunrise-Edit
+using Content.Client._Sunrise.Messenger;
+using Content.Shared._Sunrise.Messenger;
+using Robust.Client.UserInterface.RichText;
 using static Robust.Client.UserInterface.Controls.LineEdit;
 
 namespace Content.Client.UserInterface.Systems.Chat.Widgets;
@@ -23,21 +25,6 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
-    // Sunrise-Start
-    // По умолчаюнию разрешены только RichTextEntry.DefaultTags.
-    // Теги ниже нужны для корректного отображения иконок в чате
-    private static readonly Type[] TagsAllowed =
-    [
-        typeof(BoldItalicTag),
-        typeof(BoldTag),
-        typeof(BulletTag),
-        typeof(ColorTag),
-        typeof(HeadingTag),
-        typeof(ItalicTag),
-        typeof(Client._Sunrise.UserInterface.RichText.RadioIconTag),
-    ];
-    // Sunrise-End
-
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ILogManager _log = default!;
 
@@ -70,13 +57,6 @@ public partial class ChatBox : UIWidget
         _controller.RegisterChat(this);
     }
 
-    // Sunrise-Start
-    public void SetChatOpacity()
-    {
-        _controller.SetChatWindowOpacity(_configurationManager.GetCVar(CCVars.ChatWindowOpacity));
-    }
-    // Sunrise-End
-
     private void OnTextEntered(LineEditEventArgs args)
     {
         _controller.SendMessage(this, SelectedChannel);
@@ -97,7 +77,7 @@ public partial class ChatBox : UIWidget
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        AddLine(msg.WrappedMessage, color);
+        AddLine(msg.WrappedMessage, color, msg.Channel); // Sunrise-Edit
     }
 
     private void OnHighlightsUpdated(string highlights)
@@ -140,29 +120,23 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    // Sunrise-Start
-    private void ClearChatContents()
+    public void AddLine(string message, Color color, ChatChannel channel = ChatChannel.None)
     {
-        Contents.Clear();
+        // Sunrise-Start
+        var allowEmoji = SharedEmojiSystem.IsEmojiAllowedInChannel(channel);
+        _emoji ??= _entManager.System<EmojiSystem>();
 
-        foreach (var child in Contents.Children.ToArray())
-        {
-            if (child.Name != "_v_scroll")
-            {
-                Contents.RemoveChild(child);
-            }
-        }
-    }
-    // Sunrise-End
+        if (allowEmoji && SharedEmojiSystem.IsContainsAnyEmoji(message))
+            message = _emoji.ParseEmojis(message);
 
-    public void AddLine(string message, Color color)
-    {
+        var tags = GetAllowedTags(channel, allowEmoji);
+        // Sunrise-End
+
         var formatted = new FormattedMessage(3);
         formatted.PushColor(color);
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
-        Contents.AddMessage(formatted);
-        Contents.SetMessage(^1, formatted, TagsAllowed); // Sunrise-Edit
+        Contents.AddMessage(formatted, tags);
     }
 
     public void Focus(ChatSelectChannel? channel = null)

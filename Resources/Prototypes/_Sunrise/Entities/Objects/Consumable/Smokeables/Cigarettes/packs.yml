@@ -1,0 +1,27 @@
+- type: entity
+  id: CigPackSoviet
+  parent: CigPackBase
+  name: Gerat's sandworm packet
+  description: For when a sandworm has managed to eat your nuclear MRV supply.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Smokeables/Cigarettes/Packs/soviet.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Consumable/Smokeables/Cigarettes/Packs/soviet.rsi
+
+- type: entity
+  id: CigaretteSoviet
+  parent: SoakedCigarette
+  name: Gerat's sandworm cigarette
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 50
+        reagents:
+          - ReagentId: Nicotine
+            Quantity: 10
+          - ReagentId: Omnizine
+            Quantity: 20
+          - ReagentId: Vodkizine
+            Quantity: 20

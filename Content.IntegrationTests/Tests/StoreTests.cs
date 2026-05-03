@@ -84,12 +84,12 @@ public sealed class StoreTests
             var discountComponent = entManager.GetComponent<StoreDiscountComponent>(pda);
             Assert.That(
                 discountComponent.Discounts,
-                Has.Exactly(6).Items,
-                $"After applying discount total discounted items count was expected to be '6' "
+                Has.Exactly(10).Items,
+                $"After applying discount total discounted items count was expected to be '10' "
                 + $"but was actually {discountComponent.Discounts.Count}- this can be due to discount "
                 + $"categories settings (maxItems, weight) not being realistically set, or default "
-                + $"discounted count being changed from '6' in StoreDiscountSystem.InitializeDiscounts."
-            );
+                + $"discounted count being changed from '10' in StoreDiscountSystem.InitializeDiscounts."
+            ); // Sunrise-edit
             var discountedListingItems = storeComponent.FullListingsCatalog
                                                        .Where(x => x.IsCostModified)
                                                        .OrderBy(x => x.ID)

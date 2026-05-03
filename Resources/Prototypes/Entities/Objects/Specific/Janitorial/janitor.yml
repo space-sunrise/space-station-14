@@ -84,7 +84,7 @@
       generated:
         reagents:
         - ReagentId: Water
-          Quantity: 0.5
+          Quantity: 5
     - type: SolutionPurge
       solution: absorbed
       preserve:

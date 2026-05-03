@@ -201,6 +201,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-teamlead-name
@@ -234,6 +238,10 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-infiltrator-name
+      description: ghost-panel-antagonist-infiltrator-description
+      priority: 11
     - type: NukeOperative
     - type: GhostRole
       name: ghost-role-information-syndie-soldier-name
@@ -290,7 +298,6 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
       - Pirate
     - type: PirateIcon
     - type: GhostRole
@@ -303,7 +310,7 @@
         settings: default
     - type: Loadout
       prototypes: [ PirateScoonerEVAGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalScooner ]
     - type: RandomMetadata
       nameSegments: [NamesDeathCommando]
 
@@ -347,7 +354,6 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
       - Pirate
     - type: PirateIcon
     - type: GhostRole
@@ -360,7 +366,7 @@
         settings: default
     - type: Loadout
       prototypes: [ PirateScoonerOldEVAGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalScooner ]
     - type: RandomMetadata
       nameSegments: [NamesDeathCommando]
 
@@ -369,13 +375,16 @@
   id: PirateScoonerReinforcementBase
   suffix: Pirate
   components:
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-pirate-name
+    description: ghost-panel-antagonist-pirate-description
+    priority: 45
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: RandomMetadata
     nameSegments: [NamesDeathCommando]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
   - type: PirateIcon
 
@@ -387,10 +396,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -401,10 +409,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -415,10 +422,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -429,10 +435,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -443,10 +448,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -457,10 +461,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -471,10 +474,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -485,10 +487,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -499,10 +500,9 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate
 
 - type: entity
@@ -513,8 +513,7 @@
   components:
   - type: Loadout
     prototypes: [ PirateScoonerOldEVAGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout: [ RoleSurvivalScooner ]
   - type: NpcFactionMember
     factions:
-    - Syndicate
     - Pirate

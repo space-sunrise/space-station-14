@@ -26,6 +26,8 @@
       - MedTekCartridge
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
+      - CorporateLawCartridge
   - type: PdaAnimationVisuals
     animatedState: pda-space-prison-doctor
     idInsertedLayerState: id_inserted-space-prison

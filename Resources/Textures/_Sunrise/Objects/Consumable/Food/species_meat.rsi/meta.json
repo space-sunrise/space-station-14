@@ -1,0 +1,71 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made for SUNRISE by bulbo44kkey (discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "arkana_meat"
+        },
+        {
+            "name": "demon_meat_baked"
+        },
+        {
+            "name": "diona_roots"
+        },
+        {
+            "name": "felinid_meat"
+        },
+        {
+            "name": "felinid_meat_baked"
+        },
+        {
+            "name": "milira_meat"
+        },
+        {
+            "name": "milira_meat_baked"
+        },
+        {
+            "name": "nian_meat"
+        },
+        {
+            "name": "nian_meat_baked"
+        },
+        {
+            "name": "resomi_meat"
+        },
+        {
+            "name": "resomi_meat_baked"
+        },
+        {
+            "name": "slime_jelly"
+        },
+        {
+            "name": "swine_meat"
+        },
+        {
+            "name": "swine_meat_baked"
+        },
+        {
+            "name": "tajaran_meat"
+        },
+        {
+            "name": "tajaran_meat_baked"
+        },
+        {
+            "name": "unath_meat"
+        },
+        {
+            "name": "unath_meat_baked"
+        },
+        {
+            "name": "vulpkanin_meat"
+        },
+        {
+            "name": "vulpkanin_meat_baked"
+        }
+    ]
+}

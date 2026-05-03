@@ -703,6 +703,38 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("job", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.JobAlternativeTitle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("job_alternative_title_id");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("job_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("title");
+
+                    b.HasKey("Id")
+                        .HasName("PK_job_alternative_title");
+
+                    b.HasIndex("ProfileId", "JobName")
+                        .IsUnique();
+
+                    b.ToTable("job_alternative_title", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.MentorHelpMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -740,6 +772,9 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.HasIndex("TicketId")
                         .HasDatabaseName("IX_mentor_help_messages_ticket_id");
+
+                    b.HasIndex("SentAt", "SenderUserId")
+                        .HasDatabaseName("IX_mentor_help_messages_sent_at_sender_user_id");
 
                     b.ToTable("mentor_help_messages", (string)null);
                 });
@@ -804,6 +839,9 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.HasIndex("Status")
                         .HasDatabaseName("IX_mentor_help_tickets_status");
+
+                    b.HasIndex("ClosedAt", "AssignedToUserId")
+                        .HasDatabaseName("IX_mentor_help_tickets_closed_at_assigned_to_user_id");
 
                     b.ToTable("mentor_help_tickets", (string)null);
                 });
@@ -1484,6 +1522,31 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("trait", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
+                {
+                    b.Property<string>("ScopeId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("scope_id");
+
+                    b.Property<string>("ItemId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("item_id");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_user_id");
+
+                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
+                        .HasName("PK_ui_likes");
+
+                    b.HasIndex("PlayerUserId", "ScopeId")
+                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
+
+                    b.ToTable("ui_likes", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.UploadedResourceLog", b =>
                 {
                     b.Property<int>("Id")
@@ -1814,6 +1877,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_job_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.JobAlternativeTitle", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany("JobAlternativeTitles")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_job_alternative_title_profile_profile_id");
 
                     b.Navigation("Profile");
                 });
@@ -2189,6 +2264,8 @@ namespace Content.Server.Database.Migrations.Sqlite
             modelBuilder.Entity("Content.Server.Database.Profile", b =>
                 {
                     b.Navigation("Antags");
+
+                    b.Navigation("JobAlternativeTitles");
 
                     b.Navigation("Jobs");
 

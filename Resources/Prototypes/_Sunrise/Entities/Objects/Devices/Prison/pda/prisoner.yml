@@ -37,6 +37,8 @@
       - NewsReaderCartridge
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: PlanetPrisonerPDA

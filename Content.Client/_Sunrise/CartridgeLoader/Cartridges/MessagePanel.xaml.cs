@@ -1,4 +1,5 @@
 using Content.Client._Sunrise.Messenger;
+using Content.Client._Sunrise.UserInterface.CustomControls;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.Messenger;
@@ -8,6 +9,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.RichText;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
@@ -21,8 +23,9 @@ public sealed partial class MessagePanel : PanelContainer
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
 
-    private ClientEmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<ClientEmojiSystem>();
+    private EmojiSystem? EmojiSystem => _entitySystemManager.GetEntitySystemOrNull<EmojiSystem>();
     private SpriteSystem GetSpriteSystem() => _entitySystemManager.GetEntitySystem<SpriteSystem>();
 
     /// <summary>
@@ -45,10 +48,36 @@ public sealed partial class MessagePanel : PanelContainer
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
+        _netTexturesManager.ResourceLoaded += OnResourceLoaded;
+        ImageButton.OnPressed += _ => ShowFullImage();
+
+        ImageBorder.PanelOverride = new StyleBoxFlat
+        {
+            BackgroundColor = Color.Transparent,
+            BorderColor = Color.Transparent,
+            BorderThickness = new Thickness(2)
+        };
+
+        ImageButton.OnMouseEntered += _ =>
+        {
+            if (ImageBorder.PanelOverride is StyleBoxFlat style)
+            {
+                style.BorderColor = Color.White.WithAlpha(0.6f);
+            }
+        };
+
+        ImageButton.OnMouseExited += _ =>
+        {
+            if (ImageBorder.PanelOverride is StyleBoxFlat style)
+            {
+                style.BorderColor = Color.Transparent;
+            }
+        };
     }
 
     public event Action<long>? OnDeleteMessage;
     private Button? _deleteButton;
+    private string? _currentImagePath;
 
     public void UpdateMessage(MessengerMessage message, bool isOwnMessage, bool isPersonalChat, string? currentUserId)
     {
@@ -60,6 +89,7 @@ public sealed partial class MessagePanel : PanelContainer
 
         var parsedContent = EmojiSystem?.ParseEmojis(message.Content) ?? message.Content;
         ContentLabel.SetMessage(FormattedMessage.FromMarkupPermissive(parsedContent), MessageTagsAllowed);
+        ContentLabel.Visible = !string.IsNullOrWhiteSpace(message.Content);
 
         if (isOwnMessage && _deleteButton == null)
         {
@@ -115,6 +145,64 @@ public sealed partial class MessagePanel : PanelContainer
         else
         {
             ReadStatusIcon.Visible = false;
+        }
+
+        UpdateImagePreview(message.ImagePath);
+    }
+
+    private void UpdateImagePreview(string? imagePath)
+    {
+        if (string.IsNullOrWhiteSpace(imagePath))
+        {
+            ImageButton.Visible = false;
+            _currentImagePath = null;
+            return;
+        }
+
+        _currentImagePath = imagePath;
+
+        var isAvailable = _netTexturesManager.EnsureResource(imagePath);
+
+        if (isAvailable)
+        {
+            LoadImageTexture(imagePath);
+        }
+        else
+        {
+            ImageButton.Visible = false;
+        }
+    }
+
+    private void ShowFullImage()
+    {
+        PhotoPreviewWindow.Open(ImagePreview.Texture);
+    }
+
+    private void OnResourceLoaded(string resourcePath)
+    {
+        if (_currentImagePath == resourcePath)
+        {
+            LoadImageTexture(resourcePath);
+        }
+    }
+
+    private void LoadImageTexture(string imagePath)
+    {
+        try
+        {
+            if (_netTexturesManager.TryGetTexture(imagePath, out var texture))
+            {
+                ImagePreview.Texture = texture;
+                ImageButton.Visible = true;
+            }
+            else
+            {
+                ImageButton.Visible = false;
+            }
+        }
+        catch
+        {
+            ImageButton.Visible = false;
         }
     }
 

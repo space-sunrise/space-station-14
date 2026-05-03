@@ -1,0 +1,23 @@
+id: ss14-registered-component-must-not-declare-methods
+language: CSharp
+severity: error
+message: "Registered components must stay as data containers. Move logic methods out of `[RegisterComponent]` classes into a system."
+note: "Per `ss14-ecs-components`, behavior should live in systems. Override-based engine hooks and explicit serialization hooks inside a component should stay exceptional and narrowly scoped."
+files:
+  - "Content.*/**/*.cs"
+rule:
+  all:
+    - kind: method_declaration
+    - not:
+        has:
+          kind: modifier
+          regex: '^override$'
+    - not:
+        has:
+          field: name
+          regex: '^(?:AfterDeserialization|BeforeSerialization)$'
+    - inside:
+        all:
+          - kind: class_declaration
+          - regex: '(?s).*\[RegisterComponent(?:[^\]]*)\].*:\s*Component\b.*'
+        stopBy: end

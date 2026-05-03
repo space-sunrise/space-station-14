@@ -64,6 +64,11 @@
   - type: Body
     prototype: Resomi
     requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatResomi
+      amount: 5
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -93,8 +98,6 @@
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
-  - type: Carriable
-    requiresNestingMob: true
   - type: InteractionPopup
     successChance: 0.9
     interactSuccessString: petting-success-monkey

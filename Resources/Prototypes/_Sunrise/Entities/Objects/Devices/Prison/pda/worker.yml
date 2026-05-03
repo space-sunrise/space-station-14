@@ -26,6 +26,8 @@
       - AstroNavCartridge
       - NavigatorCartridge
       - MessengerCartridge
+      - PhotoCartridge
+      - CorporateLawCartridge
   - type: PdaAnimationVisuals
     animatedState: pda-space-prison-worker
     idInsertedLayerState: id_inserted-space-prison

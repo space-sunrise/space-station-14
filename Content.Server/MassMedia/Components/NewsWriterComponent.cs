@@ -34,4 +34,10 @@ public sealed partial class NewsWriterComponent : Component
     /// </summary>
     [DataField, ViewVariables]
     public string DraftContent = "";
+
+    /// <summary>
+    /// This stores the working photo paths of the current article
+    /// </summary>
+    [DataField, ViewVariables]
+    public List<string>? DraftPhotoPaths;
 }

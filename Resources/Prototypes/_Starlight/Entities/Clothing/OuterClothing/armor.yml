@@ -93,3 +93,85 @@
     sprintModifier: 0.85
   - type: ExplosionResistance
     damageCoefficient: 0.85
+
+- type: entity
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSovietContraband]
+  categories: [ HideSpawnMenu ]
+  id: ClothingOuterArmorSovietPlate
+  name: soviet armor vest
+  description: An old Soviet-era flak vest designed to mitigate damage from explosives, with minor penetration resistance. However, it's just a cheap reproduction model. quality may vary.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.60
+        Heat: 0.60
+        Radiation: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.65
+  - type: ClothingSpeedModifier
+    sprintModifier: 0.85
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingOuterArmorSovietPlate
+  id: ClothingOuterArmorSovietPlate1
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.82
+        Slash: 0.82
+        Piercing: 0.62
+        Heat: 0.62
+        Radiation: 0.9
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingOuterArmorSovietPlate
+  id: ClothingOuterArmorSovietPlate2
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.81
+        Slash: 0.83
+        Piercing: 0.67
+        Heat: 0.63
+        Radiation: 0.9
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingOuterArmorSovietPlate
+  id: ClothingOuterArmorSovietPlate3
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.84
+        Slash: 0.82
+        Piercing: 0.65
+        Heat: 0.65
+        Radiation: 0.9
+
+- type: entity
+  parent: ClothingOuterArmorSovietPlate
+  id: ClothingOuterArmorSovietPlateRandomSpawner
+  name: soviet armor vest
+  suffix: Random
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - ClothingOuterArmorSovietPlate
+    - ClothingOuterArmorSovietPlate1
+    - ClothingOuterArmorSovietPlate2
+    - ClothingOuterArmorSovietPlate3

@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformShortDress
+  name: short dress
+  description: A short dress for casual occasions.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Costume/short_dress.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Costume/short_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformShortDressRed
+  name: red short dress
+  description: A short dress for casual occasions.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Costume/short_dress_red.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Costume/short_dress_red.rsi
+

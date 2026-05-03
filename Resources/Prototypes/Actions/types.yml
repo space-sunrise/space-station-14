@@ -148,10 +148,9 @@
     maxCharges: 3
   # Sunrise-Start
   - type: AutoRecharge
-    rechargeDuration: 120
+    rechargeDuration: 300
   # Sunrise-End
   - type: Action
-    useDelay: 5 # Sunrise-Edit
     checkCanInteract: false
     itemIconStyle: BigAction
     priority: -20
@@ -184,7 +183,7 @@
     maxCharges: 3
   # Sunrise-Start
   - type: AutoRecharge
-    rechargeDuration: 120
+    rechargeDuration: 600
   # Sunrise-End
   - type: Action
     checkCanInteract: false
@@ -524,3 +523,5 @@
   - type: Action
     icon: { sprite: Interface/Actions/voice-mask.rsi, state: icon }
     itemIconStyle: BigAction
+
+

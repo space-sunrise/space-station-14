@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Cargo;
@@ -38,6 +39,7 @@ public sealed partial class CargoSystem : SharedCargoSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;

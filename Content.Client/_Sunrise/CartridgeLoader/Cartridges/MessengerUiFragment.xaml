@@ -150,6 +150,12 @@
                     Name="MessageInput"
                     PlaceHolder="{Loc 'messenger-message-placeholder'}" />
                 <Button
+                    Name="PhotoButton"
+                    Text="▣"
+                    SetWidth="30"
+                    Margin="4,0,0,0"
+                    ToolTip="{Loc 'messenger-photo-button-tooltip'}" />
+                <Button
                     Name="EmojiButton"
                     Text="☻"
                     SetWidth="30"

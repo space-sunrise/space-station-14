@@ -1,0 +1,190 @@
+# Shared support groups for the Sunrise loadout pool.
+
+- type: loadoutGroup
+  id: SunriseSurvival
+  name: loadout-group-survival-basic
+  minLimit: 3
+  hidden: true
+  loadouts:
+  - EmergencyNitrogen
+  - EmergencyOxygen
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGas
+  - EmergencyDwarf
+
+- type: loadoutGroup
+  id: SunriseSurvivalClown
+  name: loadout-group-survival-clown
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenClown
+  - EmergencyOxygenClown
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasClown
+  - EmergencyDwarfClown
+
+- type: loadoutGroup
+  id: SunriseSurvivalMime
+  name: loadout-group-survival-mime
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenMime
+  - EmergencyOxygenMime
+  - EmergencySpeciesMothMime
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasMime
+  - EmergencyDwarfMime
+
+- type: loadoutGroup
+  id: SunriseSurvivalExtended
+  name: loadout-group-survival-extended
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenExtended
+  - EmergencyOxygenExtended
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasExtended
+  - EmergencyDwarfExtended
+
+- type: loadoutGroup
+  id: SunriseSurvivalSecurity
+  name: loadout-group-survival-security
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenSecurity
+  - EmergencyOxygenSecurity
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasSecurity
+  - EmergencyDwarfSecurity
+
+- type: loadoutGroup
+  id: SunriseSurvivalMedical
+  name: loadout-group-survival-medical
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenMedical
+  - EmergencyOxygenMedical
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasMedical
+  - EmergencyDwarfMedical
+
+- type: loadoutGroup
+  id: SunriseSurvivalSyndicate
+  name: loadout-group-survival-syndicate
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenSyndicate
+  - EmergencyOxygenSyndicate
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasSyndicate
+  - EmergencyDwarfSyndicate
+
+- type: loadoutGroup
+  id: SunriseTrinkets
+  name: loadout-group-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - FlowerWreath
+  - Hairflower
+  - Headphones
+  - PlushieLizard
+  - PlushieSpaceLizard
+  - ThreeCandles
+  - Lighter
+  - CigPackGreen
+  - CigPackRed
+  - CigPackBlue
+  - CigPackBlack
+  - CigarCase
+  - CigarGold
+  - BoxFolderBaseThreePapers
+  - BoxFolderPlasticClipboardThreePapers
+  - BoxFolderClipboardThreePapers
+  - ClothingWraps
+  - ClothingWrapsHigh
+  - ClothingNeckNanoTrasenPin
+  - ClothingNeckNakamuraPin
+  - ClothingNeckLogistikaPin
+  - ClothingNeckDeForestPin
+  - ClothingNeckDonkPin
+  - ClothingNeckVitezstviPin
+  - ClothingNeckEarthPin
+  - ClothingNeckUSSPPin
+  - ClothingNeckReedIndustriesPin
+  - CorporateLaw
+  - ClothingNeckPlanetPrisonLockdownPin
+  - ClothingNeckPlanetPrisonCellblockPin
+  - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAsexualPin
+  - ClothingNeckAroacePin
+  - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
+  - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
+  - OffsetCane
+  - OffsetCaneWood
+  - OffsetCaneClown
+  - OffsetCaneMime
+  - OffsetCaneNT
+  - Cane
+  - TowelColorWhite
+  - TowelColorGray
+  - TowelColorBlack
+  - TowelColorRed
+  - TowelColorOrange
+  - TowelColorLightBrown
+  - TowelColorYellow
+  - TowelColorDarkGreen
+  - TowelColorGreen
+  - TowelColorLightBlue
+  - TowelColorDarkBlue
+  - TowelColorPurple
+  - TowelColorMaroon
+  - TowelColorMime
+  - TowelColorSilver
+  - TowelColorGold
+
+- type: loadoutGroup
+  id: SunriseGlasses
+  name: loadout-group-glasses
+  minLimit: 0
+  loadouts:
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - GlassesCheapSunglasses
+  - GlassesStuttering
+
+- type: loadoutGroup
+  id: SunriseCaptainJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - SunriseLizardPlushieCaptainLoadout
+
+- type: loadoutGroup
+  id: SunriseGroupSpeciesBreathTool
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathTool

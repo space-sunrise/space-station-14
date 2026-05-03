@@ -3,11 +3,15 @@ using System.Threading;
 using Content.Server.Salvage.Expeditions;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
+using Content.Shared.Procedural; // Sunrise-Edit
+using Content.Shared.Random.Helpers; // Sunrise-Edit
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
+using Content.Server.GameTicking; // Sunrise-Edit
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
+using Robust.Shared.Random; // Sunrise-Edit
 
 namespace Content.Server.Salvage;
 
@@ -17,7 +21,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 3;
+    private const int MissionLimit = 5; // Sunrise-Edit
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -101,6 +105,11 @@ public sealed partial class SalvageSystem
 
     private void UpdateExpeditions()
     {
+        // Sunrise-Start
+        if (_gameTicker.RunLevel != GameRunLevel.InRound)
+            return;
+        // Sunrise-End
+
         var currentTime = _timing.CurTime;
         _salvageQueue.Process();
 
@@ -141,14 +150,25 @@ public sealed partial class SalvageSystem
     private void GenerateMissions(SalvageExpeditionDataComponent component)
     {
         component.Missions.Clear();
+        // Sunrise-Start
+        var roundDuration = _gameTicker.RunLevel == GameRunLevel.InRound
+            ? _gameTicker.RoundDuration()
+            : TimeSpan.Zero;
+        var difficulties = _prototypeManager
+            .EnumeratePrototypes<SalvageDifficultyPrototype>()
+            .Where(d => d.Delay <= roundDuration && d.Probability > 0f)
+            .ToDictionary(d => d.ID, d => d.Probability); 
 
+        if (difficulties.Count == 0)
+            return;
+        // Sunrise-End
         for (var i = 0; i < MissionLimit; i++)
         {
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = "Moderate",
+                Difficulty = _random.Pick(difficulties), // Sunrise-Edit
             };
 
             component.Missions[component.NextIndex++] = mission;

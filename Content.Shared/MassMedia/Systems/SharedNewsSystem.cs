@@ -25,6 +25,9 @@ public struct NewsArticle
 
     [ViewVariables]
     public TimeSpan ShareTime;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<string>? PhotoPaths;
 }
 
 [ByRefEvent]

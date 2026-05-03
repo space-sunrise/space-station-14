@@ -168,10 +168,18 @@ public sealed partial class GeneralStationRecordConsoleSystem
         if (ent.Comp.Silent)
             return;
 
+        // Sunrise-Start
+        var server = _messenger.GetServerEntity(_station.GetOwningStation(ent));
+
         foreach (var channel in ent.Comp.AnnouncementChannels)
         {
-            _radio.SendRadioMessage(ent, message, channel, ent);
+            //_radio.SendRadioMessage(ent, message, channel, ent);
+            if (_messenger.GetGroupIdByRadioChannel(channel) is { } groupId && server != null)
+            {
+                _messenger.SendSystemMessageToGroup(server.Value.Item1, groupId, message);
+            }
         }
+        // Sunrise-End
 
         _audio.PlayPvs(ent.Comp.SuccessfulSound, ent);
     }

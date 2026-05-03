@@ -31,8 +31,8 @@
         acts: [ "Destruction" ]
   - type: Storage
     grid:
-    - 0,0,6,4 # Sunrise edit - миллион одежды не лезет в таком маленький комод
-    maxItemSize: Normal
+    - 0,0,7,4
+    maxItemSize: Large
   - type: ContainerContainer
     containers:
       storagebase: !type:Container

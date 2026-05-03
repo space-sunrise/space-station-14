@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "licence": "CC-BY-SA-4.0",
+    "copyright": "made by bulbo44key (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "spots_body",
+            "directions": 4
+        },
+        {
+            "name": "stripes_body",
+            "directions": 4
+        }
+    ]
+}

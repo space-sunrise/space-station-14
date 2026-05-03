@@ -1987,9 +1987,7 @@ entities:
           - 625
           - 145
     - type: UserInterface
-      actors:
-        enum.StorageUiKey.Key:
-        - invalid
+      actors: {}
     - type: ActiveUserInterface
 - proto: ComputerBroken
   entities:
