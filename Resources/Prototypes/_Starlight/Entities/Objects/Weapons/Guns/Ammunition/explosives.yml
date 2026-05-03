@@ -96,6 +96,18 @@
   - type: StaticPrice
     price: 650
 
+- type: entity
+  parent: Rocket120mmMetla
+  id: Rocket120mmMetlaLongFlight
+  name: 120mm long-flight rocket
+  description: A heavy 120mm rocket for the RCT-120 Metla launcher with extended powered flight time.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocket120mmMetlaLongFlight
+    deleteOnSpawn: true
+  - type: StaticPrice
+    price: 800
+
 # 20-Round Magazine for 120mm Blast Grenades
 - type: entity
   parent: BaseMagazineGrenade
@@ -160,6 +172,19 @@
   id: Bullet60mmRocketStarlight
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rocket60mm
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: SpawnOnDespawn
     prototype: Bullet60mmRocketStarlightSelfExplode
   - type: ContainerContainer
@@ -184,6 +209,14 @@
     turnRate: 180
   - type: TimedDespawn
     lifetime: 15
+
+- type: entity
+  parent: Bullet60mmRocketStarlight
+  id: Bullet60mmRocketStarlightLongFlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 30
 
 - type: entity
   id: Bullet60mmRocketStarlightSelfExplode
@@ -231,10 +264,22 @@
     proto: Bullet60mmRocketStarlight
     deleteOnSpawn: true
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: rpg
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rocket60mm
   - type: StaticPrice
     price: 15
+
+- type: entity
+  parent: Cartridge60mmRocket
+  id: Cartridge60mmRocketLongFlight
+  name: 60mm long-flight rocket
+  description: A 60mm rocket cartridge with extended powered flight time for longer range engagements.
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet60mmRocketStarlightLongFlight
+    deleteOnSpawn: true
+  - type: StaticPrice
+    price: 30
 
 # 30-Round Magazine for 60mm Rockets
 - type: entity
@@ -277,6 +322,19 @@
   - type: StaticPrice
     price: 600
 
+- type: entity
+  parent: Magazine60mmRocket
+  id: Magazine60mmRocketLongFlight
+  suffix: long-flight
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Cartridge60mmRocket
+    proto: Cartridge60mmRocketLongFlight
+    capacity: 16
+
 # - type: entity
 #   parent: Magazine60mmRocket
 #   id: Magazine60mmRocketEmpty
@@ -299,6 +357,18 @@
   id: Bullet50mmRocketStarlight
   categories: [ HideSpawnMenu ]
   components:
+  - type: Explosive
+    maxTileBreak: 0
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: SpawnOnDespawn
     prototype: Bullet50mmRocketStarlightSelfExplode
   - type: Sprite
@@ -340,7 +410,7 @@
     maxIntensity: 2
     intensitySlope: 1
     totalIntensity: 4
-    maxTileBreak: 1
+    maxTileBreak: 0
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container

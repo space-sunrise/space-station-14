@@ -175,7 +175,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -248,7 +248,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleFMJ
+        startingItem: MagazineRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_unload.ogg
         priority: 2
@@ -362,19 +362,22 @@
     shape:
     - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -45
   - type: Gun
-    minAngle: 2
-    maxAngle: 15
-    angleIncrease: 1
-    angleDecay: 15
+    minAngle: 23
+    maxAngle: 90
+    angleIncrease: 1.25
+    angleDecay: 20
     fireRate: 6
-    burstFireRate: 8
-    selectedMode: SemiAuto
+    burstFireRate: 9
+    selectedMode: Burst
     availableModes:
     - Burst
     - SemiAuto
     shotsPerBurst: 3
-    burstCooldown: 0.25
+    burstCooldown: 0.2
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
@@ -575,7 +578,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -639,7 +642,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.005 # Примерно 150-200 патронов
+    dismantleChance: 0.004 # Примерно 150-200 патронов
     selfDamage:
       types:
         Blunt: 5
@@ -657,30 +660,30 @@
       - id: MagazineLightRifleEmpty
         launchAngle: -90
         prob: 1
-      - id: CartridgeLightRifleFMJ
+      - id: CartridgeLightRifleSP
         launchAngle: 45
         prob: 1
-      - id: CartridgeLightRifleFMJ
+      - id: CartridgeLightRifleSP
         launchAngle: -45
-        prob: 0.80
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 75
         prob: 0.75
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -75
+      - id: CartridgeLightRifleSP
+        launchAngle: 75
         prob: 0.5
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 120
-        prob: 0.3
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 120
+      - id: CartridgeLightRifleSP
+        launchAngle: -75
         prob: 0.25
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -120
+      - id: CartridgeLightRifleSP
+        launchAngle: 120
         prob: 0.2
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -120
+      - id: CartridgeLightRifleSP
+        launchAngle: 120
         prob: 0.15
+      - id: CartridgeLightRifleSP
+        launchAngle: -120
+        prob: 0.1
+      - id: CartridgeLightRifleSP
+        launchAngle: -120
+        prob: 0.05
 
 - type: entity
   parent: WeaponRifleSKM24Scrap
@@ -774,7 +777,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleHeavyFMJ
+        startingItem: MagazineRifleHeavySP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 2

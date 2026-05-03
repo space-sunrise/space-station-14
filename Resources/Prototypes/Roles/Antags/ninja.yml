@@ -38,7 +38,6 @@
     - Flare
     # - FoodSnackNutribrick  # Sunrise-Edit
     # - DrinkWaterBottleFull  # Sunrise-Edit
-    - NutrimentImplanter  # Sunrise-Add
     - MedkitCombatFilled  # Sunrise-Add
 
 - type: chameleonOutfit

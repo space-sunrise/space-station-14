@@ -3,52 +3,52 @@ name: SS14 ECS Entities
 description: Working with entities in Space Station 14 — EntityUid, Entity<T>, component operations, containers, network identity, and entity lifecycle
 ---
 
-# Entity — сущности в ECS
+# Entity - entities in ECS
 
-## Что такое Entity
+## What is Entity
 
-Сущность (Entity) — это **уникальный идентификатор** (`EntityUid`), к которому прикрепляются компоненты. Сущность сама по себе не содержит данных и логики — это просто числовой ID. Компоненты определяют свойства сущности, системы определяют её поведение.
+An Entity is a **unique identifier** (`EntityUid`) to which components are attached. The entity itself contains no data or logic - it is simply a numeric ID. Components define the properties of an entity, systems define its behavior.
 
 ## EntityUid
 
-Основной идентификатор сущности — value type, сравнивается по значению:
+The main entity identifier is value type, compared by value:
 
 ```csharp
 EntityUid uid = args.User;
 
-// Проверка валидности
+// Validity check
 if (!uid.IsValid())
     return;
 
-// EntityUid.Invalid — невалидный ID
+// EntityUid.Invalid - invalid ID
 if (uid == EntityUid.Invalid)
     return;
 ```
 
-## Entity\<T\> — тупл сущности и компонента
+## Entity\<T\> - entity and component tuple
 
-`Entity<T>` — основной способ одновременной передачи `EntityUid` и компонента:
+`Entity<T>` is the main way to simultaneously transfer `EntityUid` and a component:
 
 ```csharp
-// Создание
+// Creation
 Entity<MyComponent> ent = (uid, myComp);
 
-// Доступ
+// Access
 EntityUid owner = ent.Owner;
 MyComponent comp = ent.Comp;
 
-// Деконструкция
+// Deconstruction
 var (entityUid, component) = ent;
 ```
 
-### Entity\<T?\> — nullable вариант
+###Entity\<T?\> - nullable option
 
-Используется когда компонент может отсутствовать. Паттерн `Resolve` — система сама получит компонент:
+Used when a component may be missing. Pattern `Resolve` - the system itself will receive the component:
 
 ```csharp
 public void SetSpeed(Entity<MyComponent?> ent, float speed)
 {
-    // Если ent.Comp == null, Resolve попробует получить его
+    // If ent.Comp == null, Resolve will try to get it
     if (!Resolve(ent, ref ent.Comp))
         return;
 
@@ -56,116 +56,116 @@ public void SetSpeed(Entity<MyComponent?> ent, float speed)
     Dirty(ent);
 }
 
-// Вызов — можно передать с или без компонента:
-SetSpeed((uid, myComp), 5f);    // с компонентом
-SetSpeed((uid, null), 5f);       // Resolve сам получит
+// Call - can be passed with or without a component:
+SetSpeed((uid, myComp), 5f);    // with component
+SetSpeed((uid, null), 5f);       // Resolve itself will receive
 ```
 
 ### AsNullable
 
-Преобразование `Entity<T>` в `Entity<T?>`:
+Convert `Entity<T>` to `Entity<T?>`:
 
 ```csharp
 Entity<MyComponent> ent = (uid, comp);
 Entity<MyComponent?> nullable = ent.AsNullable();
 ```
 
-## NetEntity — сетевой идентификатор
+## NetEntity - network identifier
 
-`NetEntity` — это сетевая версия `EntityUid`. Используется при передаче данных по сети:
+`NetEntity` is the network version of `EntityUid`. Used when transmitting data over the network:
 
 ```csharp
-// Конвертация EntityUid → NetEntity (для отправки по сети)
+// Convert EntityUid → NetEntity (for sending over the network)
 NetEntity netEnt = GetNetEntity(uid);
 
-// Конвертация NetEntity → EntityUid (при получении из сети)
+// Convert NetEntity → EntityUid (when received from the network)
 EntityUid uid = GetEntity(netEnt);
 
-// Nullable варианты
+// Nullable options
 EntityUid? uid = GetEntity(netEnt);
 NetEntity? netEnt = GetNetEntity(uid);
 ```
 
-## Создание и удаление сущностей
+## Creating and deleting entities
 
 ```csharp
-// Создание по прототипу
+// Prototyping
 EntityUid newEntity = Spawn("PrototypeName", Transform(uid).Coordinates);
 
-// Создание с позицией
+// Creation with position
 EntityUid newEntity = Spawn("PrototypeName", new EntityCoordinates(mapUid, position));
 
-// Удаление (немедленное)
+// Removal (immediate)
 Del(uid);
 
-// Удаление (отложенное, безопасное в обработчиках событий)
+// Delete (deferred, safe in event handlers)
 QueueDel(uid);
 ```
 
-## Работа с компонентами на сущности
+## Working with components on an entity
 
-### Добавление
+### Addition
 
 ```csharp
-// Добавить компонент (бросит исключение если уже есть)
+// Add a component (throws an exception if it already exists)
 AddComp<MyComponent>(uid);
 
-// Гарантированно получить компонент (добавит если нет)
+// Guaranteed to receive the component (will add if not)
 var comp = EnsureComp<MyComponent>(uid);
 ```
 
-### Получение
+### Receipt
 
 ```csharp
-// Безопасное получение
+// Secure Receipt
 if (TryComp<MyComponent>(uid, out var comp))
 {
-    // comp доступен
+    // comp available
 }
 
-// Гарантированное получение (бросит исключение если нет)
+// Guaranteed receipt (throws exception if not)
 var comp = Comp<MyComponent>(uid);
 ```
 
-### Проверка наличия
+### Availability check
 
 ```csharp
 if (HasComp<MyComponent>(uid))
 {
-    // Компонент есть
+    // There is a component
 }
 ```
 
-### Удаление
+### Removal
 
 ```csharp
-// Немедленное удаление
+// Immediate removal
 RemComp<MyComponent>(uid);
 
-// Отложенное удаление (безопасно в обработчиках событий)
+// Lazy deletion (safe in event handlers)
 RemCompDeferred<MyComponent>(uid);
 ```
 
-## EntityQueryEnumerator — итерация по сущностям
+## EntityQueryEnumerator - iteration through entities
 
-Наиболее эффективный способ найти все сущности с определённым набором компонентов:
+The most efficient way to find all entities with a specific set of components:
 
 ```csharp
-// Один компонент
+// One component
 var query = EntityQueryEnumerator<MyComponent>();
 while (query.MoveNext(out var uid, out var comp))
 {
-    // Обработка каждой сущности с MyComponent
+    // Handling each entity with MyComponent
 }
 
-// Два компонента
+// Two components
 var query = EntityQueryEnumerator<MyComponent, TransformComponent>();
 while (query.MoveNext(out var uid, out var myComp, out var xform))
 {
-    // Только сущности, имеющие ОБА компонента
+    // Only entities that have BOTH components
 }
 
-// Три компонента
+// Three components
 var query = EntityQueryEnumerator<CompA, CompB, CompC>();
 while (query.MoveNext(out var uid, out var a, out var b, out var c))
 {
@@ -173,39 +173,39 @@ while (query.MoveNext(out var uid, out var a, out var b, out var c))
 }
 ```
 
-## Встроенные хелперы EntitySystem
+## Built-in EntitySystem helpers
 
-Каждая система наследует множество удобных методов от `EntitySystem`:
+Each system inherits many convenience methods from `EntitySystem`:
 
 ```csharp
-// Получить TransformComponent
+// Get TransformComponent
 var xform = Transform(uid);
 
-// Получить MetaDataComponent
+// Get MetaDataComponent
 var meta = MetaData(uid);
 
-// Получить прототип сущности
+// Get entity prototype
 var prototypeName = Prototype(uid)?.ID;
 
-// Отладочная строка
+// Debug line
 var debugStr = ToPrettyString(uid);  // → "Scp096 (1234)"
 ```
 
-## Контейнерная система
+## Container system
 
-Сущности могут содержать другие сущности через контейнеры:
+Entities can contain other entities through containers:
 
-### Определение в компоненте
+### Definition in component
 
 ```csharp
 [RegisterComponent]
 public sealed partial class MyContainerComponent : Component
 {
-    // Контейнеры создаются через ContainerContainer в YAML прототипе
+    // Containers are created via ContainerContainer in a YAML prototype
 }
 ```
 
-### Определение в YAML
+### Definition in YAML
 
 ```yaml
 - type: ContainerContainer
@@ -214,72 +214,72 @@ public sealed partial class MyContainerComponent : Component
     storage: !type:Container
 ```
 
-### Работа в системе
+### Working in the system
 
 ```csharp
 [Dependency] private readonly SharedContainerSystem _container = default!;
 
-// Получить контейнер
+// Get container
 if (_container.TryGetContainer(uid, "my_slot", out var container))
 {
-    // Вставить сущность
+    // Insert Entity
     _container.Insert(entityToInsert, container);
 
-    // Извлечь
+    // Extract
     _container.Remove(entityToRemove, container);
 }
 ```
 
-## MetaData — метаинформация сущности
+## MetaData - entity meta information
 
 ```csharp
 var meta = MetaData(uid);
 
-// Имя сущности
+// Entity name
 string name = meta.EntityName;
 
-// Описание
+// Description
 string desc = meta.EntityDescription;
 
-// Флаги
+// Flags
 _meta.AddFlag(uid, MetaDataFlags.PvsPriority, meta);
 _meta.RemoveFlag(uid, MetaDataFlags.PvsPriority, meta);
 ```
 
-## Проверки состояния сущности
+## Entity state checks
 
 ```csharp
-// Существует ли сущность
+// Does the entity exist?
 if (Exists(uid))
 {
     // ...
 }
 
-// Удалена ли сущность
+// Is the entity deleted?
 if (Deleted(uid))
 {
     return;
 }
 
-// Проверка, что сущность ещё на стадии инициализации
+// Checking that the entity is still at the initialization stage
 if (LifeStage(uid) < EntityLifeStage.MapInitialized)
 {
     // ...
 }
 
-// Клиентская ли сущность (не имеет серверного аналога)
+// Is it a client entity (does not have a server counterpart)
 if (IsClientSide(uid))
 {
     // ...
 }
 ```
 
-## Паттерны работы с Entity
+## Patterns for working with Entity
 
-### Передача Entity\<T\> в методы системы
+### Passing Entity\<T\> to system methods
 
 ```csharp
-// Предпочтительный формат публичного API
+// Preferred Public API Format
 public void DoSomething(Entity<MyComponent?> ent, float value)
 {
     if (!Resolve(ent, ref ent.Comp))
@@ -289,7 +289,7 @@ public void DoSomething(Entity<MyComponent?> ent, float value)
     Dirty(ent);
 }
 
-// Внутренний метод — когда компонент гарантированно есть
+// Internal method - when the component is guaranteed to exist
 private void DoInternal(Entity<MyComponent> ent)
 {
     ent.Comp.Value = 42;
@@ -297,25 +297,25 @@ private void DoInternal(Entity<MyComponent> ent)
 }
 ```
 
-### HashSet\<EntityUid\> для отслеживания
+### HashSet\<EntityUid\> to track
 
 ```csharp
-// В компоненте
+// In component
 [AutoNetworkedField]
 public HashSet<EntityUid> TrackedEntities = new();
 
-// В системе
+// In the system
 comp.TrackedEntities.Add(targetUid);
 comp.TrackedEntities.Remove(targetUid);
 Dirty(uid, comp);
 ```
 
-### Проверка с множественными компонентами — паттерн раннего возврата
+### Checking with Multiple Components - Early Return Pattern
 
-**Не нагромождайте условия** в один `if`. Используйте ранний возврат при отсутствии компонента:
+**Do not pile conditions** into one `if`. Use early return when a component is missing:
 
 ```csharp
-// ✅ Правильно — ранний возврат
+// ✅ That's right - early return
 if (!TryComp<MyComponent>(uid, out var myComp))
     return;
 
@@ -325,9 +325,9 @@ if (!TryComp<TransformComponent>(uid, out var xform))
 if (!HasComp<RequiredMarker>(uid))
     return;
 
-// Работа с сущностью — все компоненты гарантированно есть
+// Working with an entity - all components are guaranteed to be present
 
-// ❌ Неправильно — вложенные условия
+// ❌ Incorrect - nested conditions
 if (TryComp<MyComponent>(uid, out var myComp) &&
     TryComp<TransformComponent>(uid, out var xform) &&
     HasComp<RequiredMarker>(uid))
@@ -336,11 +336,11 @@ if (TryComp<MyComponent>(uid, out var myComp) &&
 }
 ```
 
-## Оптимизации работы с сущностями (дополнение)
+## Optimizations for working with entities (addition)
 
-### 1) Для частых проверок используй кешированный `EntityQuery<T>`
+### 1) For frequent checks, use cached `EntityQuery<T>`
 
-Если API системы часто дергает один и тот же компонент, кешируй query в `Initialize()`:
+If the system API often triggers the same component, cache the query in `Initialize()`:
 
 ```csharp
 private EntityQuery<TagComponent> _tagQuery;
@@ -357,17 +357,17 @@ public bool HasTagFast(EntityUid uid, ProtoId<TagPrototype> tag)
 }
 ```
 
-Это уменьшает накладные расходы по сравнению с многократными общими проверками.
+This reduces overhead compared to multiple common checks.
 
-### 2) Удаляй лишние временные компоненты сразу после завершения роли
+### 2) Remove unnecessary temporary components immediately after completing the role
 
 ```csharp
 if (timer.NextTrigger <= curTime)
 {
     Trigger(uid, timer.User, timer.KeyOut);
-    RemComp<ActiveTimerTriggerComponent>(uid); // Сущность больше не активна.
+    RemComp<ActiveTimerTriggerComponent>(uid); // The entity is no longer active.
 }
 ```
 
-Идея простая: у сущности должны оставаться только реально используемые компоненты.  
-Иначе она продолжит попадать в query и увеличивать стоимость перебора.
+The idea is simple: the entity should only have components that are actually used.  
+Otherwise, it will continue to end up in the query and increase the cost of the search.

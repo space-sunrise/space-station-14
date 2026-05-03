@@ -1,0 +1,124 @@
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateShuttleBundle
+  name: shuttle bundle crate
+  description: Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: GyroscopeFlatpack
+        - id: ThrusterFlatpack
+          amount: 4
+        - id: CableMVStack
+        - id: CableHVStack
+        - id: CableApcStack
+          amount: 2
+        - id: Multitool
+        - id: WallmountSubstationElectronics
+        - id: APCElectronics
+        - id: WallmountGeneratorAPUElectronics
+          amount: 2
+        - id: SheetSteel
+        - id: PartRodMetal
+        - id: MicroManipulatorStockPart
+        - id: PowerCellSmall
+        - id: SheetGlass1
+          amount: 2
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateFriendshipBundle
+  name: friendship bundle crate
+  description: Friendship in a crate*. (Some assembly required)
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ShuttleGunFriendshipCircuitboard
+        - id: CableHVStack1
+          amount: 5
+        - id: SheetSteel10
+        - id: SheetSteel1
+          amount: 2
+        - id: MicroManipulatorStockPart
+          amount: 5
+        - id: CableApcStack1
+        - id: RemoteSignaller
+        - id: Multitool
+        - id: GrenadeBlast
+          amount: 6
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateBullfrogBundle
+  name: bullfrog bundle crate
+  description: Bullfrog in a crate*. (Some assembly required)
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ShuttleGunBullfrogCircuitboard
+        - id: CableHVStack1
+          amount: 5
+        - id: SheetSteel10
+        - id: SheetSteel1
+          amount: 2
+        - id: MicroManipulatorStockPart
+          amount: 5
+        - id: CableApcStack1
+        - id: RemoteSignaller
+        - id: Multitool
+        - id: MagazineGrenadeBlast
+          amount: 4
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateLongbowBundle
+  name: longbow bundle crate
+  description: Longbow in a crate*. (Some assembly required)
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ShuttleGunLongbowCircuitboard
+        - id: CableHVStack1
+          amount: 5
+        - id: SheetSteel10
+        - id: SheetSteel1
+          amount: 2
+        - id: MicroManipulatorStockPart
+          amount: 5
+        - id: CableApcStack1
+        - id: RemoteSignaller
+        - id: Multitool
+        - id: MagazineBauer127
+          amount: 6
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateQuadlingBundle
+  name: quadling bundle crate
+  description: Quadling in a crate*. (Some assembly required)
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ShuttleGunQuadlingCircuitboard
+        - id: CableHVStack1
+          amount: 5
+        - id: SheetSteel10
+        - id: SheetSteel1
+          amount: 2
+        - id: MicroManipulatorStockPart
+          amount: 5
+        - id: CableApcStack1
+        - id: RemoteSignaller
+        - id: Multitool
+        - id: MagazineBoxAntiMateriel
+          amount: 4

@@ -27,6 +27,8 @@
     state: human
   sexes:
   - Unsexed
+  - Male
+  - Female
 
 - type: bodyType
   id: HumanoidXenoNormal

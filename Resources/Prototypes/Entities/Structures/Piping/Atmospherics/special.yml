@@ -56,17 +56,3 @@
   - type: Tag
     tags:
       - SpreaderIgnore
-
-# Sunrise-start
-- type: entity
-  id: AtmosDeviceFanDirectionalInvisible
-  parent: AtmosDeviceFanDirectional
-  name: directional Invisible fan
-  placement:
-     mode: SnapgridCenter
-  components:
-  - type: Stealth
-  - type: StealthOnMove
-    passiveVisibilityRate: -10
-    movementVisibilityRate: 1
-# Sunrise-end

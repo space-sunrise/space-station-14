@@ -1553,3 +1553,32 @@
     - state: pirate_jugger
     - state: pirate_jugger_unshaded
       shader: unshaded
+
+- type: entity
+  parent: BasePlushie
+  id: BottleShip
+  name: ship in a bottle
+  description: How did they get it in there?
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/bottleship.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/bottleship.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Effects/glass_smash.ogg

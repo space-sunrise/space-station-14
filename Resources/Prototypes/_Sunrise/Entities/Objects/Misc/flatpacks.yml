@@ -15,3 +15,21 @@
   components:
   - type: Flatpack
     entity: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseFlatpack
+  id: ShuttleGunKineticFlatpack
+  name: PTK-800 "Matter Dematerializer" Flatpack
+  description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
+  components:
+  - type: Flatpack
+    entity: ShuttleGunKinetic
+
+- type: entity
+  parent: BaseFlatpack
+  id: MechMiningPodFlatpack
+  name: Mining Pod flatpack
+  description: A flatpack used for constructing a Mining Pod.
+  components:
+  - type: Flatpack
+    entity: MechMiningPod

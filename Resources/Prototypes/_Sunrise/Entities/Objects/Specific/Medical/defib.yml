@@ -33,8 +33,10 @@
       doAfterDuration: 1.8
       allowUseOnAlive: true
       reagents:
-        Omnizine: 2
-        Epinephrine: 5
+        Omnizine: 1
+        Epinephrine: 15
+        Licoxide: 4
+        Tazinide: 4
     - type: ItemSlots
       slots:
         cell_slot:

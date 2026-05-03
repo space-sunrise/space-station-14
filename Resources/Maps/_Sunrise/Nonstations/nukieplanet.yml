@@ -63,7 +63,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: GRLX-220 "Whiskey Outpost"
+      name: Ядерный оперативный аванпост "Виски"
     - type: Transform
       pos: -0.9923513,-0.44010204
       parent: 1

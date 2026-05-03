@@ -13,6 +13,7 @@ using Content.Shared.Damage.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
+using Robust.Shared.Random; // Sunrise-Edit
 
 namespace Content.Server.Dragon;
 
@@ -27,6 +28,7 @@ public sealed class DragonRiftSystem : EntitySystem
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
@@ -87,8 +89,13 @@ public sealed class DragonRiftSystem : EntitySystem
 
             if (comp.SpawnAccumulator > comp.SpawnCooldown)
             {
+                // Sunrise edit start - allow random spawn prototype selection from configured list
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
-                var ent = Spawn(comp.SpawnPrototype, xform.Coordinates);
+                var spawnPrototype = comp.SpawnPrototypes.Count > 0
+                    ? _random.Pick(comp.SpawnPrototypes)
+                    : comp.SpawnPrototype;
+                var ent = Spawn(spawnPrototype, xform.Coordinates);
+                // Sunrise edit end
 
                 // Update their look to match the leader.
                 if (TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))

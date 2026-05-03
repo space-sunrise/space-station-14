@@ -39,7 +39,7 @@ public abstract partial class SharedTetherGunSystem
             // Launch
             var tethered = component.Tethered;
             StopTether(uid, component, land: false);
-            _throwing.TryThrow(tethered!.Value, args.ClickLocation, component.ThrowForce, playSound: false);
+            _throwing.TryThrow(tethered!.Value, args.ClickLocation, component.ThrowForce, playSound: false, user: args.User); // Sunrise-Edit
 
             _audio.PlayPredicted(component.LaunchSound, uid, null);
         }

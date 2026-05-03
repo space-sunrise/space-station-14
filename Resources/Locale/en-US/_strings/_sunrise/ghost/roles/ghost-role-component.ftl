@@ -47,3 +47,6 @@ job-rules-corporate-aligned = You are {role-type-corporate-aligned-name}.
 job-rules-tsf-aligned = You are {role-type-tsf-aligned-name}.
                         You are to serve the interests of the Trans-Solar Federation.
                         Remember, you do NOT serve the crew.
+ghost-role-information-sentient-carpholo-name = Sentient Holocarp
+ghost-role-information-sentient-carprainbow-name = Sentient Rainbow Carp
+ghost-role-information-sentient-carpshark-name = Sentient Carpshark

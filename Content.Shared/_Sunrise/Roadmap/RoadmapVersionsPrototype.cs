@@ -25,6 +25,9 @@ public partial record struct RoadmapGroup
 [DataDefinition]
 public partial record struct RoadmapGoal
 {
+    [DataField(required: true)]
+    public string Id = string.Empty;
+
     [DataField] public string Name;
 
     [DataField] public string Desc;

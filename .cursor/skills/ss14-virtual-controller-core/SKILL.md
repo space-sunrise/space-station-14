@@ -1,6 +1,6 @@
 ---
 name: ss14-virtual-controller-core
-description: Разбирает архитектуру VirtualController в Space Station 14: цикл UpdateBeforeSolve/UpdateAfterSolve, порядок через UpdatesBefore/UpdatesAfter, prediction-семантику и связь с low-level физикой Box2D (substeps, contacts, solver). Используй, когда нужно глубоко понять систему перед расширением или отладкой.
+description: Parses the VirtualController architecture in Space Station 14: the UpdateBeforeSolve/UpdateAfterSolve cycle, order through UpdatesBefore/UpdatesAfter, prediction semantics and connection with low-level physics Box2D (substeps, contacts, solver). Use when you need to deeply understand the system before expanding or debugging.
 ---
 
 # Cursor Bridge
