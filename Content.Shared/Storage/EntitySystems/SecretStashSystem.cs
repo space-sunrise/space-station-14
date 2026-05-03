@@ -143,7 +143,7 @@ public sealed class SecretStashSystem : EntitySystem
         if (itemInStash == null)
             return false;
 
-        _handsSystem.PickupOrDrop(userUid, itemInStash.Value, handsComp: handsComp, ignoreDelay: true); // Sunrise-Edit
+        _handsSystem.PickupOrDrop(userUid, itemInStash.Value, handsComp: handsComp);
 
         // show success message
         var successMsg = Loc.GetString("comp-secret-stash-action-get-item-found-something",
