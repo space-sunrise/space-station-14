@@ -24,17 +24,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/big.rsi
     state: icon
   product: CrateArmoryShotgunTrenchgun4034Sawn
-  cost: 6500
-  category: cargoproduct-category-name-armory
-  group: market
-
-- type: cargoProduct
-  id: ArmoryShotgunAmmo
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
-    state: lethal
-  product: CrateArmoryShotgunAmmo
-  cost: 1800
+  cost: 7000
   category: cargoproduct-category-name-armory
   group: market
 
@@ -64,6 +54,6 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
     state: icon
   product: CrateArmoryCombatShotgun
-  cost: 9250
+  cost: 9900
   category: cargoproduct-category-name-armory
   group: market

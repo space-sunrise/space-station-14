@@ -1,13 +1,15 @@
-using System.Linq;
 using Content.Shared._Sunrise.CriminalRecords;
-using Content.Shared._Sunrise.CriminalRecords.Components;
+using Content.Shared._Sunrise.Laws;
 using Content.Shared._Sunrise.CriminalRecords.Systems;
 using Content.Shared.StationRecords;
 using Content.Server._Sunrise.CriminalRecords.Components;
 using Content.Server.StationRecords.Systems;
 using Content.Server.Station.Systems;
-using Content.Shared._Sunrise.Laws;
+using Content.Server._Sunrise.Laws.Systems;
 using Content.Shared.Access.Systems;
+using Content.Server.CriminalRecords.Systems;
+using Content.Shared.CriminalRecords;
+using Content.Shared.Security;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -18,14 +20,15 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly StationCorporateLawSystem _stationLaw = default!;
+    [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
 
     private const int MaxLaws = 20;
     private const int MaxCircumstances = 10;
     private const int MaxNotesLength = 2048;
-    private const string StandardLawsetId = "StandardCorporateLaw";
+    private const int MaxStatusReasonLength = 512;
 
     public override void Initialize()
     {
@@ -39,6 +42,8 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             subs.Event<SunriseCriminalRecordsCloseCaseMessage>(OnCloseCase);
             subs.Event<SunriseCriminalRecordsSelectCaseMessage>(OnSelectCase);
             subs.Event<SunriseCriminalRecordsSetUIStateMessage>(OnSetUIState);
+            subs.Event<SunriseCriminalRecordsChangeStatusMessage>(OnChangeStatus);
+            subs.Event<SunriseCriminalRecordsReopenCaseMessage>(OnReopenCase);
         });
 
         SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, BoundUIOpenedEvent>(OnOpened);
@@ -107,14 +112,15 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             var cases = records.Records.GetValueOrDefault(component.SelectedKey.Value.Id, new List<CriminalCase>());
             var nextId = records.NextCaseIds.GetValueOrDefault(component.SelectedKey.Value.Id, 1u);
 
-            var @case = new CriminalCase(nextId, _timing.CurTime);
+            var @case = new CriminalCase(nextId, _timing.CurTime)
+            {
+                OriginStation = GetNetEntity(component.SelectedKey.Value.OriginStation)
+            };
             cases.Add(@case);
             records.Records[component.SelectedKey.Value.Id] = cases;
             records.NextCaseIds[component.SelectedKey.Value.Id] = nextId + 1;
 
             component.SelectedCaseId = nextId;
-
-            Dirty(component.SelectedKey.Value.OriginStation, records);
         }
 
         component.CurrentUIState = SunriseCriminalRecordsUIState.Editor;
@@ -127,6 +133,22 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             return;
 
         component.CurrentUIState = msg.State;
+        UpdateUserInterface(uid, component);
+    }
+    
+    private void OnChangeStatus(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsChangeStatusMessage msg)
+    {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
+        if (component.SelectedKey == null)
+            return;
+
+        if (msg.Reason?.Length > MaxStatusReasonLength)
+            return;
+
+        var name = EntityManager.GetComponent<MetaDataComponent>(msg.Actor).EntityName;
+        _criminalRecords.TryChangeStatus(component.SelectedKey.Value, msg.Status, msg.Reason, initiatorName: name);
         UpdateUserInterface(uid, component);
     }
 
@@ -155,21 +177,19 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                     return;
 
                 // Validate laws and circumstances against lawset
-                if (!_proto.TryIndex<CorporateLawsetPrototype>(StandardLawsetId, out var lawset))
-                    return;
-
-                var validatedLaws = new List<string>();
+                var station = component.SelectedKey.Value.OriginStation;
+                var validatedLaws = new List<ProtoId<CorporateLawPrototype>>();
                 foreach (var lawId in msg.Laws)
                 {
-                    if (!IsLawInLawset(lawId, lawset))
+                    if (!_stationLaw.IsLawInEffectiveLawset(lawId, station))
                         return; // Reject message if any ID is invalid
                     validatedLaws.Add(lawId);
                 }
 
-                var validatedCircs = new List<string>();
+                var validatedCircs = new List<ProtoId<CorporateLawPrototype>>();
                 foreach (var circId in msg.Circumstances)
                 {
-                    if (!IsCircumstanceInLawset(circId, lawset))
+                    if (!_stationLaw.IsCircumstanceInEffectiveLawset(circId, station))
                         return; // Reject message if any ID is invalid
                     validatedCircs.Add(circId);
                 }
@@ -178,7 +198,6 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 @case.Circumstances = validatedCircs;
                 @case.Notes = msg.Notes;
                 @case.CalculatedSentence = CalculateSentence(@case, cases);
-                Dirty(component.SelectedKey.Value.OriginStation, records);
             }
         }
 
@@ -201,9 +220,8 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
 
                 if (@case != null && @case.Status == CriminalCaseStatus.Open)
                 {
-                    @case.Status = CriminalCaseStatus.Closed;
                     @case.CalculatedSentence = CalculateSentence(@case, cases);
-                    Dirty(component.SelectedKey.Value.OriginStation, records);
+                    @case.Status = @case.IsWarning ? CriminalCaseStatus.Finished : CriminalCaseStatus.Closed;
                 }
             }
         }
@@ -211,6 +229,47 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         component.CurrentUIState = SunriseCriminalRecordsUIState.List;
         component.SelectedCaseId = null;
         UpdateUserInterface(uid, component);
+    }
+
+    private void OnReopenCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsReopenCaseMessage msg)
+    {
+        if (TryReopenCase(uid, component, msg.Actor, msg.CaseId))
+            UpdateUserInterface(uid, component);
+    }
+
+    public bool TryReopenCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, EntityUid actor, uint caseId)
+    {
+        if (!CanReopenCase(uid, component, actor, caseId, out var @case, out var cases))
+            return false;
+
+        @case.Status = CriminalCaseStatus.Open;
+        @case.CalculatedSentence = CalculateSentence(@case, cases);
+        return true;
+    }
+
+    public bool CanReopenCase(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, EntityUid actor, uint caseId, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out CriminalCase? @case, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out List<CriminalCase>? cases)
+    {
+        @case = null;
+        cases = null;
+
+        if (!CheckAccess(uid, actor))
+            return false;
+
+        if (component.SelectedKey == null)
+            return false;
+
+        if (!TryComp<StationCriminalRecordsComponent>(component.SelectedKey.Value.OriginStation, out var records))
+            return false;
+
+        if (!records.Records.TryGetValue(component.SelectedKey.Value.Id, out cases))
+            return false;
+
+        @case = cases.Find(c => c.Id == caseId);
+        if (@case == null)
+            return false;
+
+        // Allow reopening if closed (waiting for incarceration) or finished (but only if it's a warning)
+        return @case.Status == CriminalCaseStatus.Closed || (@case.Status == CriminalCaseStatus.Finished && @case.IsWarning);
     }
 
     private bool CheckAccess(EntityUid console, EntityUid? user)
@@ -221,20 +280,6 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         return _accessReader.IsAllowed(user.Value, console);
     }
 
-    private bool IsLawInLawset(string lawId, CorporateLawsetPrototype lawset)
-    {
-        foreach (var sectionId in lawset.Articles)
-        {
-            if (_proto.TryIndex<CorporateLawSectionPrototype>(sectionId, out var section) && section.Entries.Contains(lawId))
-                return true;
-        }
-        return false;
-    }
-
-    private bool IsCircumstanceInLawset(string circId, CorporateLawsetPrototype lawset)
-    {
-        return lawset.Circumstances.Contains(circId);
-    }
 
     private void UpdateUserInterface(EntityUid uid, SunriseCriminalRecordsConsoleComponent component)
     {
@@ -242,7 +287,22 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         if (!TryComp<StationRecordsComponent>(station, out var stationRecordsComp))
             return;
 
-        var records = _stationRecords.BuildListing((station.Value, stationRecordsComp), null);
+        var listingRecords = new List<SunriseCriminalRecordListing>();
+        foreach (var (id, _) in _stationRecords.BuildListing((station.Value, stationRecordsComp), null))
+        {
+            var key = new StationRecordKey(id, station.Value);
+            if (_stationRecords.TryGetRecord<GeneralStationRecord>(key, out var general))
+            {
+                listingRecords.Add(new SunriseCriminalRecordListing(
+                    id, 
+                    general.Name, 
+                    general.DNA, 
+                    general.Fingerprint, 
+                    general.Species, 
+                    general.Gender.ToString(),
+                    general.JobTitle));
+            }
+        }
 
         string? selectedName = null;
         string? jobTitle = null;
@@ -252,6 +312,8 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         string? species = null;
         string? fingerprints = null;
         string? dna = null;
+        SecurityStatus status = SecurityStatus.None;
+        string? statusReason = null;
         List<CriminalCase> cases = new();
 
         if (component.SelectedKey != null)
@@ -268,6 +330,12 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 dna = general.DNA;
             }
 
+            if (_stationRecords.TryGetRecord<CriminalRecord>(component.SelectedKey.Value, out var criminal))
+            {
+                status = criminal.Status;
+                statusReason = criminal.Reason;
+            }
+
             if (TryComp<StationCriminalRecordsComponent>(station.Value, out var criminalRecords))
             {
                 if (criminalRecords.Records.TryGetValue(component.SelectedKey.Value.Id, out var personCases))
@@ -278,7 +346,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         }
 
         var state = new SunriseCriminalRecordsConsoleState(
-            records,
+            listingRecords,
             selectedName,
             cases,
             component.SelectedKey?.Id,
@@ -290,7 +358,9 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             gender,
             species,
             fingerprints,
-            dna);
+            dna,
+            status,
+            statusReason);
         _ui.SetUiState(uid, SunriseCriminalRecordsConsoleKey.Key, state);
     }
 

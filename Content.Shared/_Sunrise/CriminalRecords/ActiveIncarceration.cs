@@ -1,5 +1,6 @@
 using Content.Shared.StationRecords;
 using Robust.Shared.Serialization;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Sunrise.CriminalRecords;
 
@@ -7,17 +8,17 @@ namespace Content.Shared._Sunrise.CriminalRecords;
 public sealed partial class ActiveIncarceration
 {
     [DataField]
-    public StationRecordKey RecordKey;
+    public StationRecordKey RecordKey = default;
 
     [DataField]
-    public uint CaseId;
+    public uint CaseId = 0;
 
     [DataField]
     public string PrisonerAccessId = string.Empty;
 
     [DataField]
-    public TimeSpan StartTime;
+    public TimeSpan StartTime = TimeSpan.Zero;
 
     [DataField]
-    public int SentenceMinutes;
+    public int SentenceMinutes = 0;
 }

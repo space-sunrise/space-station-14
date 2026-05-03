@@ -33,3 +33,5 @@ ent-CornivoreGloves = the crimson  harvest gloves of cornivore
 ent-ClothingHandsTacticalMaidGlovesFake = tactical maid gloves
     .suffix = Fake
     .desc = Tactical maid gloves, every self-respecting maid should be able to discreetly eliminate her goals.
+ent-ClothingHandsSalvageMercGlovesCombat = scrapper combat gloves
+    .desc = High-quality insulated gloves that provide protection while salvaging.

@@ -27,7 +27,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.2
+          radius: 0.3
         density: 50
         mask:
         - MobMask
@@ -1275,6 +1275,18 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MechVulnerableToEMP
   - type: NoSlip
   - type: Loadout
     prototypes:
@@ -1423,6 +1435,7 @@
   id: MobSovietT3Mech
   components:
   - type: NoSlip
+  - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionActivateSmokeGrenadeImplant
@@ -1434,6 +1447,17 @@
   - type: Loadout
     prototypes:
     - MobSovietGearT3Mech
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Sprite
     drawdepth: Mobs
     noRot: true
