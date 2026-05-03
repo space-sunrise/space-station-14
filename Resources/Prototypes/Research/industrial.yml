@@ -45,6 +45,7 @@
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
+  - SMESExtendedMachineCircuitboard # Sunrise-Edit
   - PowerCageMedium
 
 - type: technology
@@ -223,5 +224,6 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - PowerCellHyper
+  - SMESSuperExtendedMachineCircuitboard # Sunrise-Edit
   technologyPrerequisites:
   - AdvancedPowercells

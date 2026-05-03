@@ -200,12 +200,6 @@
   parent: BaseGameRule
   id: DragonSpawn
   components:
-  # Sunrise-start
-  - type: GameRule
-    delay:
-      min: 900
-      max: 900
-  # Sunrise-end
   - type: StationEvent
     weight: 6.5
     earliestStart: 40
@@ -237,12 +231,6 @@
   parent: BaseGameRule
   id: NinjaSpawn
   components:
-  # Sunrise-start
-  - type: GameRule
-    delay:
-      min: 60
-      max: 600
-  # Sunrise-end
   - type: StationEvent
     weight: 6
     duration: null
@@ -512,7 +500,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -567,7 +555,7 @@
   - type: StationEvent
     earliestStart: 90
     minimumPlayers: 40
-    weight: 0 # Sunrise-edit: Нахуя оно блядь вообще надо
+    weight: 0.005 # Sunrise-edit: Нахуя оно блядь вообще надо
     duration: 1
     occursDuringRoundEnd: false
   - type: ZombieRule

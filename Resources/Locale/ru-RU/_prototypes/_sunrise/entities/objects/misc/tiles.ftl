@@ -36,3 +36,5 @@ ent-FloorTileItemWoodChessLight = шахматный светлый деревя
     .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemWoodChessRed = шахматный красный деревянный пол
     .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemLightFancyWood = красивый деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }

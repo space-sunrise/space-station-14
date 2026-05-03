@@ -154,7 +154,6 @@
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
   - type: FootprintEmitter
-  - type: Carriable
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
 
