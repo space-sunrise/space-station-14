@@ -2967,9 +2967,9 @@
     - UplinkImplants
   conditions:
   - !type:StoreWhitelistCondition
-    blacklist:
+    whitelist:
       tags:
-      - NukeOpsUplink
+      - SyndieAgentUplink
   - !type:ListingLimitedStockCondition
     stock: 1
 
