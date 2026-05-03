@@ -1,4 +1,3 @@
-using Content.Shared._Sunrise.Movement.Standing.Systems;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
@@ -17,7 +16,6 @@ public sealed class StandingStateSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedSunriseStandingStateSystem _sunriseStanding = default!; // Sunrise-Edit
 
     // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
     public const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
@@ -100,13 +98,8 @@ public sealed class StandingStateSystem : EntitySystem
         // Optional component.
         Resolve(uid, ref appearance, ref hands, false);
 
-        // Sunrise edit start
         if (!standingState.Standing)
-        {
-            _sunriseStanding.RefreshProneCrawlVisualsMarker((uid, standingState), true);
             return true;
-        }
-        // Sunrise edit end
 
         if (!force)
         {
@@ -120,8 +113,6 @@ public sealed class StandingStateSystem : EntitySystem
         standingState.Standing = false;
         Dirty(uid, standingState);
         RaiseLocalEvent(uid, new DownedEvent(), false);
-
-        _sunriseStanding.RefreshProneCrawlVisualsMarker((uid, standingState), true); // Sunrise-Edit
 
         // Seemed like the best place to put it
         _appearance.SetData(uid, RotationVisuals.RotationState, RotationState.Horizontal, appearance);
@@ -154,13 +145,8 @@ public sealed class StandingStateSystem : EntitySystem
         // Optional component.
         Resolve(uid, ref appearance, false);
 
-        // Sunrise edit start
         if (standingState.Standing)
-        {
-            _sunriseStanding.RefreshProneCrawlVisualsMarker((uid, standingState), false);
             return true;
-        }
-        // Sunrise edit end
 
         if (!force)
         {
@@ -174,8 +160,6 @@ public sealed class StandingStateSystem : EntitySystem
         standingState.Standing = true;
         Dirty(uid, standingState);
         RaiseLocalEvent(uid, new StoodEvent(), false);
-
-        _sunriseStanding.RefreshProneCrawlVisualsMarker((uid, standingState), false); // Sunrise-Edit
 
         _appearance.SetData(uid, RotationVisuals.RotationState, RotationState.Vertical, appearance);
 

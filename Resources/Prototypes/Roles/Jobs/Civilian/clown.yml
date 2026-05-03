@@ -23,20 +23,6 @@
     components:
     # Sunrise added start
     - type: ArtifactFunnyTarget
-    - type: Crawler
-      animationPullScaleMultiplier: 1.15, 0.9
-      pullStartSound:
-        path: /Audio/_Sunrise/Footstep/worm_start.ogg
-        params:
-          volume: -2
-          maxDistance: 6
-          variation: 0.1
-      pullEndSound:
-        path: /Audio/_Sunrise/Footstep/worm_end.ogg
-        params:
-          volume: -2
-          maxDistance: 6
-          variation: 0.1
     # Sunrise added end
     - type: Clumsy
       gunShootFailDamage:
