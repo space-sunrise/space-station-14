@@ -140,6 +140,9 @@
   id: PlantAnalyzer
 
 - type: Tag
+  id: SunriseBlueprintXenoborg
+
+- type: Tag
   id: TrayScanner
 
 # region Cores / power

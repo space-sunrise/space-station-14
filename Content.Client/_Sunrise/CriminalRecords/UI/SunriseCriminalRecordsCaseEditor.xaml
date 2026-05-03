@@ -1,0 +1,63 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="4">
+        <Label Name="EditorHeader" StyleClasses="LabelHeading" Margin="4 0"/>
+
+        <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" SeparationOverride="16" Margin="4">
+
+                <PanelContainer Name="MainEditorPanel" Margin="0">
+                    <BoxContainer Name="EditorContent" Orientation="Vertical" Margin="8 4" SeparationOverride="8">
+                        <!-- Laws Section -->
+                        <BoxContainer Orientation="Vertical" SeparationOverride="8">
+                            <Label Text="{Loc 'sunrise-records-select-laws'}" StyleClasses="LabelHeading"/>
+                            <PanelContainer StyleClasses="LowDivider" MinHeight="1"/>
+                            <BoxContainer Name="LawsContainer" Orientation="Vertical" SeparationOverride="12"/>
+                        </BoxContainer>
+
+                        <!-- Circumstances Section -->
+                        <BoxContainer Orientation="Vertical" SeparationOverride="8">
+                            <Label Text="{Loc 'sunrise-records-circumstances-header'}" StyleClasses="LabelHeading"/>
+                            <PanelContainer StyleClasses="LowDivider" MinHeight="1"/>
+                            <BoxContainer Name="MitigatingContainer" Orientation="Vertical" SeparationOverride="8"/>
+                            <BoxContainer Name="AggravatingContainer" Orientation="Vertical" SeparationOverride="8"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <!-- Simplified Read-Only View -->
+                <PanelContainer Name="ReadOnlyContent" Margin="0 4" Visible="False">
+                    <BoxContainer Orientation="Vertical" Margin="8 4" SeparationOverride="8">
+                        <BoxContainer Name="ReadOnlyList" Orientation="Vertical" SeparationOverride="4"/>
+                        
+                        <PanelContainer Name="BreakdownDivider" StyleClasses="LowDivider" MinHeight="1" Margin="0 12 0 4" Visible="False"/>
+                        <RichTextLabel Name="BreakdownLabel" HorizontalExpand="True" Visible="False"/>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </ScrollContainer>
+
+        <PanelContainer StyleClasses="LowDivider" MinHeight="2"/>
+
+        <!-- Fixed Bottom Block -->
+        <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="4 0">
+            <!-- Summary Card -->
+            <PanelContainer Name="NotesPanel" Margin="0 4">
+                <BoxContainer Orientation="Vertical" Margin="12 4" SeparationOverride="4">
+                    <Label Text="{Loc 'sunrise-records-notes'}" StyleClasses="LabelHeading"/>
+                    <PanelContainer StyleClasses="LowDivider" MinHeight="1"/>
+                    <TextEdit Name="NotesInput" HorizontalExpand="True" MinHeight="50" VerticalExpand="True"/>
+
+                    <RichTextLabel Name="SentenceLabel" HorizontalAlignment="Center" Margin="0 8 0 0"/>
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- Actions -->
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="12" Margin="0">
+                <Button Name="BackButton" Text="{Loc 'sunrise-records-back-to-cases'}" StyleClasses="ButtonSquare"/>
+                <Button Name="ReopenButton" Text="{Loc 'sunrise-records-reopen-case'}" StyleClasses="ButtonSquare" Visible="False"/>
+                <Button Name="FinalizeButton" Text="{Loc 'sunrise-records-finalize-case'}" StyleClasses="ButtonSquare"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</Control>

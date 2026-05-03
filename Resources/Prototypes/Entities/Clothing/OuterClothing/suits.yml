@@ -190,7 +190,7 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.75 # Sunrise-Edit
+        Piercing: 0.8
         Heat: 0.8
   # phase cloak
   - type: ToggleClothing
@@ -200,8 +200,8 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: 0 # Sunrise-Edit
-      lastVisibility: 0 # Sunrise-Edit
+      minVisibility: 0.05
+      lastVisibility: 0.05
   - type: PowerCellDraw
     drawRate: 1.8
   - type: ToggleCellDraw

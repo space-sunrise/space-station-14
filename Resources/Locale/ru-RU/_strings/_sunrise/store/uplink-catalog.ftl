@@ -185,7 +185,8 @@ uplink-reinforcement-radio-syndicate-cyborg-reaper-name = Телепорт по�
 uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Отправляет вам в поддержку борга синдиката.
 
 ## Equipment
-
+uplink-experimental-eshield-name = Экспериментальный энергощит
+uplink-experimental-eshield-desc = Ещё более экзотический энергощит, отражающий почти все лазерные лучи, а также немного защищающий от пуль и других физических атак. Имет встроенную самозаряжающеюся батарею.
 uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произведёный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
@@ -198,6 +199,8 @@ uplink-anomaly-auto-injector-popup-pending = Кожа не поддаётся и
 uplink-anomaly-auto-injector-popup-infected = Кожа не поддаётся инъекции!
 uplink-xeno-artifact-throwing-auto-injector-name = Метательный автоинъектор артефакта
 uplink-xeno-artifact-throwing-auto-injector-desc = Метательно-складное устройство одноразового применения. При попадании в живое существо вонзается и вживляет частицы артефакта. Не действует на синтетиков.
+uplink-roboticist-nuclear-operative-id-card-name = Оперативная ID-карта робототехника
+uplink-roboticist-nuclear-operative-id-card-desc = ID-карта робототехника со штатными доступами профессии и дополнительным доступом Синдиката.
 
 ## Mechs equipment
 

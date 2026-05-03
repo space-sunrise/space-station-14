@@ -262,6 +262,7 @@
     - id: WeaponCrusherGlaive
     - id: ClothingOuterHardsuitSalvage
     - id: ChemistryBottleOmnizine
+    - id: WeaponProtoKineticHeavy # Sunrise Edit
     - !type:GroupSelector
       children:
       - id: JetpackBlueFilled

@@ -1,2 +1,5 @@
 ﻿- type: Tag
   id: Cultist
+
+- type: Tag
+  id: DeconvertedCultist

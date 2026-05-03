@@ -27,7 +27,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Database
 {
-    public abstract class ServerDbBase
+    public abstract partial class ServerDbBase // Sunrise-Edit
     {
         private readonly ISawmill _opsLog;
         public event Action<DatabaseNotification>? OnNotificationReceived;
@@ -2057,7 +2057,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(m => m.TicketId == ticketId)
                 .ToListAsync();
         }
-        # endregion
+        #endregion
         // Sunrise-End
 
         # region IPIntel

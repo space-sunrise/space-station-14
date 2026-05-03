@@ -111,3 +111,15 @@
   abstract: true
   components:
   - type: StationMessengerSpam
+
+- type: entity
+  id: BaseStationCriminalRecords
+  abstract: true
+  components:
+  - type: StationCriminalRecords
+
+- type: entity
+  id: BaseStationCorporateLaw
+  abstract: true
+  components:
+  - type: StationCorporateLaw
