@@ -92,12 +92,24 @@ namespace Content.Shared.Cuffs
             SubscribeLocalEvent<HandcuffComponent, MeleeHitEvent>(OnCuffMeleeHit);
             SubscribeLocalEvent<HandcuffComponent, AddCuffDoAfterEvent>(OnAddCuffDoAfter);
             SubscribeLocalEvent<HandcuffComponent, VirtualItemDeletedEvent>(OnCuffVirtualItemDeleted);
+            SubscribeLocalEvent<CuffableComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt); // Sunrise-Add
+        }
+
+        private void OnPaperWriteAttempt(Entity<CuffableComponent> ent, ref PaperWriteAttemptEvent args)
+        {
+            // Sunrise-Edit-start
+            if (!ent.Comp.CanStillInteract)
+            {
+                args.Cancelled = true;
+                _popup.PopupEntity(Loc.GetString("paper-cuffed-cannot-write"), ent.Owner, ent.Owner);
+            }
+            // Sunrise-Edit-end
         }
 
         private void CheckInteract(Entity<CuffableComponent> ent, ref InteractionAttemptEvent args)
         {
-            if (!ent.Comp.CanStillInteract)
             // Sunrise-Edit-start
+            if (!ent.Comp.CanStillInteract)
             {
                 if (HasComp<PaperComponent>(args.Target))
                     return;
