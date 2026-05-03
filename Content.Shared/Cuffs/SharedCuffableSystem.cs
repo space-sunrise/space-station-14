@@ -37,6 +37,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
+using Content.Shared.Paper; //Sunrise-Add
 
 namespace Content.Shared.Cuffs
 {
@@ -96,7 +97,13 @@ namespace Content.Shared.Cuffs
         private void CheckInteract(Entity<CuffableComponent> ent, ref InteractionAttemptEvent args)
         {
             if (!ent.Comp.CanStillInteract)
+            // Sunrise-Edit-start
+            {
+                if (HasComp<PaperComponent>(args.Target))
+                    return;
                 args.Cancelled = true;
+            }
+            // Sunrise-Edit-end
         }
 
         private void OnUncuffAttempt(ref UncuffAttemptEvent args)
