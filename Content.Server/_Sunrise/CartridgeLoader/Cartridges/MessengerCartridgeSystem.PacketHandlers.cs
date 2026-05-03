@@ -218,18 +218,6 @@ public sealed partial class MessengerCartridgeSystem
             groups.Add(new MessengerGroup(groupId, groupName, new HashSet<string>(membersList ?? new List<string>()), groupType, autoGroupPrototypeId, ownerId));
         }
 
-        var existingGroupIds = component.Groups.Select(g => g.GroupId).ToHashSet();
-        foreach (var group in groups)
-        {
-            if (group.Type == MessengerGroupType.Automatic && group.AutoGroupPrototypeId != null)
-            {
-                if (!existingGroupIds.Contains(group.GroupId) && !component.MutedGroupChats.Contains(group.GroupId))
-                {
-                    component.MutedGroupChats.Add(group.GroupId);
-                }
-            }
-        }
-
         component.Groups = groups;
 
         if (serverUnreadCounts != null)
@@ -403,8 +391,7 @@ public sealed partial class MessengerCartridgeSystem
                 if (newMessages.Count > 0)
                 {
                     existingMessages.AddRange(newMessages);
-                    existingMessages = existingMessages.OrderBy(m => m.Timestamp)
-                        .ThenBy(m => m.MessageId)
+                    existingMessages = existingMessages.OrderBy(m => m.MessageId)
                         .ThenBy(m => m.SenderId)
                         .ThenBy(m => m.Content)
                         .ToList();
@@ -412,7 +399,7 @@ public sealed partial class MessengerCartridgeSystem
                 component.MessageHistory[chatId] = existingMessages;
             }
             else
-                component.MessageHistory[chatId] = messages.OrderBy(m => m.Timestamp).ThenBy(m => m.MessageId).ThenBy(m => m.SenderId).ThenBy(m => m.Content).ToList();
+                component.MessageHistory[chatId] = messages.OrderBy(m => m.MessageId).ThenBy(m => m.SenderId).ThenBy(m => m.Content).ToList();
         }
 
         UpdateUiState(uid, loaderUid, component);
@@ -529,8 +516,7 @@ public sealed partial class MessengerCartridgeSystem
         if (existingMessage == null)
         {
             history.Add(message);
-            history = history.OrderBy(m => m.Timestamp)
-                .ThenBy(m => m.MessageId)
+            history = history.OrderBy(m => m.MessageId)
                 .ThenBy(m => m.SenderId)
                 .ThenBy(m => m.Content)
                 .ToList();

@@ -1,6 +1,6 @@
 ---
 name: ss14-localization-code
-description: Руководство по использованию локализации в C# коде Space Station 14. Описывает ILocalizationManager, LocId и правильные паттерны внедрения зависимостей.
+description: A guide to using localization in Space Station 14 C# code. Describes the ILocalizationManager, LocId, and proper dependency injection patterns.
 ---
 
 # Cursor Bridge

@@ -80,7 +80,7 @@
   - type: GameRule
     minPlayers: 40
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/mothership.yml
+    gridPath: /Maps/_Sunrise/Shuttles/Antag/mothership.yml # Sunrise-Edit
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       MothershipCore: [ MothershipCore ]

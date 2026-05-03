@@ -1,35 +1,35 @@
 ---
 name: SS14 Graphics Overlays
-description: Глубокий практический гайд по overlay-архитектуре SS14: OverlaySpace, lifecycle, связь с шейдерами, ScreenTexture, render targets, stencil-композиция, графические примитивы и оптимизация рендера.
+description: An in-depth practical guide to the SS14 overlay architecture: OverlaySpace, lifecycle, communication with shaders, ScreenTexture, render targets, stencil composition, graphics primitives and render optimization.
 ---
 
-# Оверлеи и графический пайплайн SS14
+# Overlays and graphics pipeline SS14
 
-Этот skill покрывает только overlays: их lifecycle, рендер-проходы, кэширование ресурсов, stencil и примитивы 🙂
-Подробности языка шейдеров и built-in функций смотри в отдельном shader-skill.
+This skill only covers overlays: their lifecycle, render passes, resource caching, stencil and primitives :)
+For details of the shader language and built-in functions, see the separate shader-skill.
 
-## Как overlays реально рендерятся
+## How overlays are actually rendered
 
-1. Менеджер хранит один экземпляр overlay на тип и сортирует их по `ZIndex`.
-2. Для каждого overlay вызывается `BeforeDraw(...)`.
-3. Если `RequestScreenTexture == true`, движок копирует текущий framebuffer в `ScreenTexture` (дорого).
-4. Если `OverwriteTargetFrameBuffer == true`, целевой буфер очищается до рисования.
-5. Вызывается `Draw(...)` в соответствующем пространстве (`ScreenSpace`/`WorldSpace` и др.).
+1. The manager stores one instance of overlay per type and sorts them by `ZIndex`.
+2. For each overlay, `BeforeDraw(...)` is called.
+3. If `RequestScreenTexture == true`, the engine copies the current framebuffer to `ScreenTexture` (expensive).
+4. If `OverwriteTargetFrameBuffer == true`, the target buffer is cleared before drawing.
+5. Call `Draw(...)` in the corresponding space (`ScreenSpace`/`WorldSpace`, etc.).
 
-Вывод:
-- Логику раннего выхода держи в `BeforeDraw`, чтобы не триггерить лишнее копирование экрана.
-- `Draw` должен быть максимально коротким и детерминированным.
+Conclusion:
+- Keep the early exit logic in `BeforeDraw` so as not to trigger unnecessary screen copying.
+- `Draw` should be as short and deterministic as possible.
 
-## Выбор OverlaySpace
+## Select OverlaySpace
 
-- `ScreenSpace`: UI-подобные эффекты поверх мира.
-- `ScreenSpaceBelowWorld`: UI-эффекты под миром.
-- `WorldSpace`: эффекты над миром, часто fullscreen по `WorldBounds`.
-- `WorldSpaceBelowFOV`: эффекты под финальным FOV.
-- `WorldSpaceEntities`: эффекты в том же слое, что сущности.
-- `BeforeLighting`: спец-проходы перед применением буфера света.
+- `ScreenSpace`: UI-like effects on top of the world.
+- `ScreenSpaceBelowWorld`: UI effects under the world.
+- `WorldSpace`: effects over the world, often fullscreen by `WorldBounds`.
+- `WorldSpaceBelowFOV`: effects under the final FOV.
+- `WorldSpaceEntities`: effects on the same layer as entities.
+- `BeforeLighting`: special passes before applying the light buffer.
 
-## Базовый шаблон shader-overlay
+## Basic shader-overlay template
 
 ```csharp
 public sealed class ExampleOverlay : Overlay
@@ -39,7 +39,7 @@ public sealed class ExampleOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        // Ранний выход: не рендерим эффект без нужного состояния.
+        // Early exit: we do not render the effect without the required state.
         return _effectStrength > 0f && args.Viewport.Eye == _playerEye;
     }
 
@@ -52,13 +52,13 @@ public sealed class ExampleOverlay : Overlay
         _shader.SetParameter("Strength", _effectStrength);
 
         args.WorldHandle.UseShader(_shader);
-        args.WorldHandle.DrawRect(args.WorldBounds, Color.White); // fullscreen-проход
-        args.WorldHandle.UseShader(null); // обязательно сбрасывай shader-state
+        args.WorldHandle.DrawRect(args.WorldBounds, Color.White); // fullscreen pass
+        args.WorldHandle.UseShader(null); // be sure to reset shader-state
     }
 }
 ```
 
-## Multi-pass через render target (blur/compose)
+## Multi-pass via render target (blur/compose)
 
 ```csharp
 protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -66,7 +66,7 @@ protected override bool BeforeDraw(in OverlayDrawArgs args)
     var size = (Vector2i) (args.Viewport.Size * _downscale);
     var res = _resources.GetForViewport(args.Viewport, static _ => new CachedResources());
 
-    // Создаем/пересоздаем RT только при изменении размера viewport.
+    // We create/recreate RT only when the viewport size changes.
     if (res.PassA == null || res.PassA.Size != size)
     {
         res.PassA?.Dispose();
@@ -111,62 +111,62 @@ protected override void Draw(in OverlayDrawArgs args)
 }
 ```
 
-## Stencil-композиция: маска + отрисовка
+## Stencil composition: mask + rendering
 
 ```csharp
-// 1) Записываем маску в промежуточный RT.
+// 1) Write the mask to the intermediate RT.
 handle.RenderInRenderTarget(stencilRt, () =>
 {
     handle.SetTransform(localMatrix);
-    handle.DrawRect(maskRegion, Color.White); // область, где эффект должен действовать
+    handle.DrawRect(maskRegion, Color.White); // area where the effect should take effect
 }, Color.Transparent);
 
-// 2) Применяем stencil-mask shader.
+// 2) Apply stencil-mask shader.
 handle.UseShader(_proto.Index(stencilMaskShader).Instance());
 handle.DrawTextureRect(stencilRt.Texture, worldBounds);
 
-// 3) Рисуем финальный слой только в разрешенной stencil-области.
+// 3) Draw the final layer only in the allowed stencil area.
 handle.UseShader(_proto.Index(stencilDrawShader).Instance());
 handle.DrawTextureRect(effectRt.Texture, worldBounds);
 handle.UseShader(null);
 ```
 
-## Примитивы для визуализации и тактики
+## Primitives for visualization and tactics
 
 ```csharp
-// Линия направления.
+// Direction line.
 args.WorldHandle.DrawLine(start, end, Color.Aqua);
 
-// Круг в точке назначения.
+// Circle at destination.
 args.WorldHandle.DrawCircle(end, 0.4f, Color.Red, false);
 ```
 
-Используй это для:
-- тактических индикаторов;
-- отладочных векторов;
-- направляющих/границ зон.
+Use this for:
+- tactical indicators;
+- debugging vectors;
+- guides/zone boundaries.
 
-## Паттерны 😎
+## Patterns 😎
 
-- Проверяй `args.Viewport.Eye` против глаза локального игрока перед дорогим рендером.
-- Держи дорогое условие в `BeforeDraw`, а не в середине `Draw`.
-- Кэшируй per-viewport ресурсы через `OverlayResourceCache<T>`.
-- Пересоздавай RT только на resize или смену формата.
-- Всегда сбрасывай графическое состояние: `UseShader(null)` и при необходимости `SetTransform(Matrix3x2.Identity)`.
-- Управляй порядком эффектов через `ZIndex`, не через «случайный» порядок регистрации.
+- Check `args.Viewport.Eye` against the local player's eye before expensive rendering.
+- Keep the expensive condition in `BeforeDraw`, not in the middle of `Draw`.
+- Cache per-viewport resources via `OverlayResourceCache<T>`.
+- Recreate RT only for resize or format change.
+- Always reset the graphical state: `UseShader(null)` and, if necessary, `SetTransform(Matrix3x2.Identity)`.
+- Control the order of effects through `ZIndex`, not through the “random” registration order.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Запрашивать `ScreenTexture`, если шейдер его не читает.
-- Создавать render target каждый кадр без кэша.
-- Оставлять shader/transform активными после `Draw` и ломать последующие overlay-проходы.
-- Опираться на одинаковый `ZIndex` для строгого порядка наложения.
-- Использовать `WorldAABB` для fullscreen-эффекта там, где нужен корректный вращаемый `WorldBounds` ⚠️
+- Request `ScreenTexture` if the shader doesn't read it.
+- Create a render target every frame without cache.
+- Leave shader/transform active after `Draw` and break subsequent overlay passes.
+- Rely on the same `ZIndex` for strict stacking order.
+- Use `WorldAABB` for a fullscreen effect where you need a correctly rotated `WorldBounds` ⚠️
 
-## Мини-чеклист перед PR
+## Mini checklist before PR
 
-- У overlay есть четкий `OverlaySpace`.
-- Дорогие проверки вынесены в `BeforeDraw`.
-- Все временные RT освобождаются через `Dispose`.
-- Состояние рендера после `Draw` возвращается в нейтральное.
-- Поведение протестировано на нескольких значениях масштаба/зума viewport.
+- The overlay has a clear `OverlaySpace`.
+- Expensive checks are moved to `BeforeDraw`.
+- All temporary RTs are released via `Dispose`.
+- The render state after `Draw` returns to neutral.
+- Behavior tested on several viewport scale/zoom values.

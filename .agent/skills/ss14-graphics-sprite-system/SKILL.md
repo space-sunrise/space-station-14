@@ -1,44 +1,44 @@
 ---
 name: SS14 Graphics SpriteSystem
-description: Глубокий практический гайд по SpriteSystem в Space Station 14: lifecycle, полный API по группам методов, работа со слоями и layer-map, практические паттерны и анти-паттерны. Используй при разработке динамических спрайтов, visualizer-систем и рефакторинге устаревших SpriteComponent-вызовов.
+description: An in-depth practical guide to SpriteSystem in Space Station 14: lifecycle, full API for groups of methods, working with layers and layer-map, practical patterns and anti-patterns. Use it when developing dynamic sprites, visualizer systems and refactoring outdated SpriteComponent calls.
 ---
 
-# SpriteSystem в SS14
+#SpriteSystem in SS14
 
-Этот skill покрывает только `SpriteSystem` и практику его применения в актуальной архитектуре SS14 🙂
-Связанные темы (`GenericVisualizer`, `Appearance`, overlays, shaders, UI) веди в отдельных skill.
+This skill only covers `SpriteSystem` and the practice of its application in the current SS14 architecture :)
+Related topics (`GenericVisualizer`, `Appearance`, overlays, shaders, UI) are covered in separate skills.
 
-## Когда использовать
+## When to use
 
-Используй `SpriteSystem`, когда тебе нужно:
+Use `SpriteSystem` when you need:
 
-- менять внешний вид сущности в рантайме на клиенте;
-- управлять слоями, их видимостью, цветом, смещением, RSI/texture;
-- динамически добавлять/удалять слои;
-- использовать layer map для стабильной адресации слоев по ключу;
-- делать точные визуальные апдейты из visualizer-систем.
+- change the appearance of an entity in runtime on the client;
+- manage layers, their visibility, color, offset, RSI/texture;
+- dynamically add/remove layers;
+- use layer map for stable addressing of layers by key;
+- make accurate visual updates from visualizer systems.
 
-Не тащи сюда логику, которую можно сделать только прототипом (статический `Sprite` без динамики), и не смешивай `SpriteSystem` с сетевой бизнес-логикой.
+Don’t bring logic here that can only be prototyped (static `Sprite` without dynamics), and don’t mix `SpriteSystem` with network business logic.
 
-## Источник истины
+## Source of truth
 
-- Устаревшие примеры на прямых вызовах `SpriteComponent` считай историческими.
+- Consider outdated examples on direct calls to `SpriteComponent` historical.
 
-## Ментальная модель SpriteSystem
+## SpriteSystem mental model
 
-1. Сервер и shared-слой решают состояние геймплея.
-2. Клиент получает данные состояния (часто через appearance/visualizer).
-3. Клиентская система вызывает `SpriteSystem` и меняет только визуальное представление.
-4. Спрайт рендерится из набора слоев (`Layer`) с их параметрами.
-5. Layer map дает стабильные ключи (`Enum`/`string`) вместо "магических" индексов.
+1. The server and shared layer decide the state of the gameplay.
+2. The client receives state data (often via an appearance/visualizer).
+3. The client system calls `SpriteSystem` and changes only the visual appearance.
+4. The sprite is rendered from a set of layers (`Layer`) with their parameters.
+5. Layer map gives stable keys (`Enum`/`string`) instead of "magic" indexes.
 
-Идея: визуал меняется локально, детерминированно и дешево по сети 🙂
+Idea: the visual changes locally, deterministically and cheaply over the network :)
 
-## API-разбор (по группам)
+## API parsing (by groups)
 
 ### 1) Entity-level setters
 
-Используй для свойств всего спрайта:
+Use for properties of the entire sprite:
 
 - `SetScale`, `SetRotation`, `SetOffset`
 - `SetVisible`, `SetDrawDepth`, `SetColor`
@@ -47,10 +47,10 @@ description: Глубокий практический гайд по SpriteSyste
 
 ### 2) Layer CRUD
 
-Создание/удаление слоев:
+Creating/deleting layers:
 
 - `AddBlankLayer`
-- `AddLayer` (из `Layer`, `SpriteSpecifier`, `PrototypeLayerData`)
+- `AddLayer` (from `Layer`, `SpriteSpecifier`, `PrototypeLayerData`)
 - `AddRsiLayer`
 - `AddTextureLayer`
 - `RemoveLayer`
@@ -59,16 +59,16 @@ description: Глубокий практический гайд по SpriteSyste
 
 ### 3) Layer map API
 
-Ключевые операции маппинга:
+Key mapping operations:
 
 - `LayerMapSet`, `LayerMapAdd`
 - `LayerMapRemove`
 - `LayerMapTryGet`, `LayerMapGet`
 - `LayerMapReserve`
 
-Поддерживаются ключи `Enum` и `string`. Для проектного кода обычно выбирай `Enum`.
+The `Enum` and `string` keys are supported. For project code, usually choose `Enum`.
 
-### 4) Layer mutators (основной рабочий набор)
+### 4) Layer mutators (main working set)
 
 - `LayerSetData`
 - `LayerSetSprite`
@@ -94,7 +94,7 @@ description: Глубокий практический гайд по SpriteSyste
 
 ### 6) Bounds / Render / Helpers
 
-- `GetLocalBounds` (для всего спрайта и отдельного слоя)
+- `GetLocalBounds` (for the entire sprite and a separate layer)
 - `CalculateBounds`
 - `RenderSprite`
 - `GetFrame`
@@ -104,52 +104,52 @@ description: Глубокий практический гайд по SpriteSyste
 - `GetState`, `GetTexture`
 - `GetSpriteWorldPosition`, `GetSpriteScreenCoordinates`
 
-### 7) Служебные методы
+### 7) Utility methods
 
 - `ForceUpdate`
-- `SetAutoAnimateSync` (для спрайта/слоя)
+- `SetAutoAnimateSync` (for sprite/layer)
 - `CopySprite`
 - `QueueUpdateIsInert` / `QueueUpdateInert`
 
-### Паттерн перегрузок
+### Overload pattern
 
-Большинство layer-методов имеют варианты:
+Most layer methods have variants:
 
-- по индексу `int`;
-- по ключу `Enum`;
-- по ключу `string`;
-- по объекту `Layer`.
+- by index `int`;
+- by key `Enum`;
+- by key `string`;
+- by object `Layer`.
 
-Правило: в gameplay-коде предпочтительнее `Enum`-ключи через layer map.
+Rule: in gameplay code, `Enum` keys via layer map are preferable.
 
-## Обязательно знать про obsolete-обертки
+## Must know about obsolete wrappers
 
-В `SpriteComponent` есть много устаревших прокси-методов (`[Obsolete]`), которые перенаправляют к `SpriteSystem`.
+`SpriteComponent` has many deprecated proxy methods (`[Obsolete]`) that redirect to `SpriteSystem`.
 
-Почему прямые вызовы `SpriteComponent` - анти-паттерн:
+Why is direct calls to `SpriteComponent` an anti-pattern:
 
-- размывают единый API обновления;
-- усложняют рефакторинг и аудит визуальных изменений;
-- ломают консистентность с современным ECS-стилем в проекте;
-- увеличивают риск тихих регрессий при изменении движка ⚠
+- blurring the unified update API;
+- complicate refactoring and auditing of visual changes;
+- break consistency with the modern ECS style in the project;
+- increase the risk of silent regressions when changing the engine ⚠
 
-Коротко: новый код пишет через `SpriteSystem`, не через старые методы компонента.
+Briefly: new code is written through `SpriteSystem`, not through the old component methods.
 
-## Практические примеры
+## Practical examples
 
-### Пример 1: базовая настройка спрайта сущности
+### Example 1: Basic entity sprite setup
 
 ```csharp
 public void ApplyMachineLook(EntityUid uid, SpriteComponent sprite, bool highlighted)
 {
-    // Меняем только визуальные свойства сущности.
+    // We change only the visual properties of the entity.
     _sprite.SetVisible((uid, sprite), true);
     _sprite.SetDrawDepth((uid, sprite), (int)DrawDepth.Machines);
     _sprite.SetColor((uid, sprite), highlighted ? Color.Cyan : Color.White);
 }
 ```
 
-### Пример 2: резерв слоя по enum-ключу и заполнение данных
+### Example 2: layer reserve by enum key and data filling
 
 ```csharp
 private enum MachineLayerKey : byte
@@ -160,58 +160,58 @@ private enum MachineLayerKey : byte
 
 public void SetStatusLayer(EntityUid uid, SpriteComponent sprite, PrototypeLayerData data)
 {
-    // Гарантируем наличие слоя под ключом.
+    // We guarantee the presence of a layer under the key.
     var index = _sprite.LayerMapReserve((uid, sprite), MachineLayerKey.Status);
 
-    // Обновляем слой целиком через PrototypeLayerData.
+    // We update the entire layer via PrototypeLayerData.
     _sprite.LayerSetData((uid, sprite), index, data);
     _sprite.LayerSetVisible((uid, sprite), index, true);
 }
 ```
 
-### Пример 3: безопасное удаление слоя по ключу
+### Example 3: Safely deleting a layer by key
 
 ```csharp
 public void HideStatusLayer(EntityUid uid, SpriteComponent sprite)
 {
-    // Не считаем отсутствие слоя ошибкой: это нормальный idempotent-поток.
+    // We don’t consider the absence of a layer an error: this is a normal idempotent flow.
     _sprite.RemoveLayer((uid, sprite), MachineLayerKey.Status, logMissing: false);
 }
 ```
 
-### Пример 4: динамическая генерация и очистка текстовых слоев
+### Example 4: Dynamically generating and clearing text layers
 
 ```csharp
 public void RebuildTextLayers(EntityUid uid, SpriteComponent sprite, IReadOnlyList<int> oldLayers, string text)
 {
-    // Сначала очищаем старые временные слои.
+    // First we clear the old temporary layers.
     foreach (var old in oldLayers)
         _sprite.RemoveLayer((uid, sprite), old, logMissing: false);
 
     var x = 0f;
     foreach (var ch in text)
     {
-        // Для каждого символа создаем отдельный слой.
+        // For each symbol we create a separate layer.
         var layer = _sprite.AddRsiLayer((uid, sprite), new RSI.StateId(ch.ToString()), _fontRsi);
         _sprite.LayerSetOffset((uid, sprite), layer, new Vector2(x, 0f));
         _sprite.LayerSetVisible((uid, sprite), layer, true);
 
-        x += 0.5f; // Шаг между символами.
+        x += 0.5f; // Step between characters.
     }
 }
 ```
 
-### Пример 5: направленные смещения слоя
+### Example 5: Directional layer offsets
 
 ```csharp
 public void ApplyDirectionalOffset(EntityUid uid, SpriteComponent sprite, Enum pipeLayerKey, DirectionOffset dirOffset)
 {
-    // Один и тот же слой выглядит по-разному в разных направлениях.
+    // The same layer looks different in different directions.
     _sprite.LayerSetDirOffset((uid, sprite), pipeLayerKey, dirOffset);
 }
 ```
 
-### Пример 6: битовая маска для группы индикаторных слоев
+### Example 6: Bit mask for a group of indicator layers
 
 ```csharp
 [Flags]
@@ -225,57 +225,57 @@ public enum IndicatorBits : byte
 
 public void UpdateIndicators(EntityUid uid, SpriteComponent sprite, IndicatorBits bits)
 {
-    // Каждый флаг управляет своим слоем, без длинных if-цепочек по состояниям.
+    // Each flag controls its own layer, without long if-chains for states.
     _sprite.LayerSetVisible((uid, sprite), "powered",  (bits & IndicatorBits.Powered)  != 0);
     _sprite.LayerSetVisible((uid, sprite), "charging", (bits & IndicatorBits.Charging) != 0);
     _sprite.LayerSetVisible((uid, sprite), "broken",   (bits & IndicatorBits.Broken)   != 0);
 }
 ```
 
-### Пример 7: замена base RSI + draw depth в одном апдейте
+### Example 7: replacing base RSI + draw depth in one update
 
 ```csharp
 public void ApplyStorageVisualMode(EntityUid uid, SpriteComponent sprite, bool opened)
 {
-    // Меняем базовый RSI и глубину отрисовки как один логический апдейт.
+    // We change the base RSI and rendering depth as one logical update.
     _sprite.SetBaseRsi((uid, sprite), opened ? _openedRsi : _closedRsi);
     _sprite.SetDrawDepth((uid, sprite), opened ? (int)DrawDepth.SmallObjects : (int)DrawDepth.Objects);
-    _sprite.ForceUpdate(uid); // Подталкиваем немедленное визуальное обновление.
+    _sprite.ForceUpdate(uid); // Pushing for an immediate visual update.
 }
 ```
 
-## Паттерны 🙂
+## Patterns 🙂
 
-- Используй `LayerMapReserve` + `Enum`-ключи для стабильной адресации слоев.
-- Считай слой минимальной единицей визуального состояния, а не "весь спрайт сразу".
-- Группируй изменения одного визуального события в одном методе.
-- Для временных слоев всегда держи явный цикл очистки.
-- Для сложных индикаторов используй битовые маски, а не каскады булевых полей.
-- Для одинаковых визуальных сущностей копируй слойную конфигурацию через `CopySprite`.
+- Use `LayerMapReserve` + `Enum` keys for stable addressing of layers.
+- Think of a layer as a minimal unit of visual state, not "the whole sprite at once."
+- Group changes to one visual event in one method.
+- For temporary layers, always keep an explicit cleaning cycle.
+- For complex indicators, use bit masks rather than cascades of Boolean fields.
+- For identical visual entities, copy the layer configuration via `CopySprite`.
 
-## Анти-паттерны ❌
+## Anti-patterns ❌
 
-- Прямые устаревшие вызовы `SpriteComponent` вместо `SpriteSystem`.
-- Работа с "магическими индексами" слоев без layer map.
-- Смешивание gameplay-логики и визуального апдейта в одном методе.
-- Частые полные пересборки всех слоев при изменении одного флага.
-- Использование `string`-ключей там, где уже есть `Enum`.
-- Отсутствие обработки `RemoveLayer(..., logMissing: false)` в idempotent-потоках.
+- Direct deprecated calls to `SpriteComponent` instead of `SpriteSystem`.
+- Working with “magic indexes” of layers without a layer map.
+- Mixing gameplay logic and visual update in one method.
+- Frequent complete rebuilds of all layers when changing one flag.
+- Using `string` keys where `Enum` already exists.
+- No processing of `RemoveLayer(..., logMissing: false)` in idempotent threads.
 
-## Чеклист перед изменением ✅
+## Checklist before change ✅
 
-- Ты меняешь визуал через `SpriteSystem`, а не через obsolete API?
-- Ключевые слои доступны по `Enum`/layer map?
-- Для динамических слоев есть симметричная очистка?
-- Локальные апдейты не пересобирают спрайт целиком без причины?
-- Выбран подходящий метод: `LayerSetData` (bulk) или точечный mutator?
-- Изменения не вносят сетевую бизнес-логику в клиентский визуальный код?
+- Do you change the visual through `SpriteSystem`, and not through the obsolete API?
+- Key layers are available via `Enum`/layer map?
+- Is there symmetrical clearing for dynamic layers?
+- Do local updates not rebuild the entire sprite for no reason?
+- Is the appropriate method selected: `LayerSetData` (bulk) or point mutator?
+- The changes do not introduce network business logic into the client visual code?
 
-## Типовые ошибки
+## Common errors
 
-- Слой есть в прототипе, но не зарезервирован/не привязан к ожидаемому ключу.
-- Значение состояния обновилось, но нужный слой остался невидимым.
-- Использован неверный overload (индекс вместо ключа, или наоборот).
-- Временные слои не очищаются и накапливаются между апдейтами.
-- Неверный `DrawDepth` дает "пропадание" объекта за соседними сущностями.
-- Пытаются лечить архитектурную проблему `ForceUpdate`, а не корректным потоком обновления.
+- The layer is in the prototype, but is not reserved/linked to the expected key.
+- The state value was updated, but the desired layer remained invisible.
+- Incorrect overload was used (index instead of key, or vice versa).
+- Temporary layers are not cleared and accumulate between updates.
+- Incorrect `DrawDepth` causes the object to “disappear” behind neighboring entities.
+- Trying to treat an architectural problem with `ForceUpdate` rather than with the correct update flow.

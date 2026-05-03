@@ -1,7 +1,12 @@
+using Content.Shared.Inventory; // Sunrise-Edit
+
 namespace Content.Shared.Weapons.Melee.Events;
 
 /// <summary>
 /// Event raised on the user after attacking with a melee weapon, regardless of whether it hit anything.
 /// </summary>
 [ByRefEvent]
-public record struct MeleeAttackEvent(EntityUid Weapon);
+public record struct MeleeAttackEvent(EntityUid Weapon) : IInventoryRelayEvent // Sunrise-Edit
+{
+    SlotFlags IInventoryRelayEvent.TargetSlots => SlotFlags.WITHOUT_POCKET; // Sunrise-Edit
+}

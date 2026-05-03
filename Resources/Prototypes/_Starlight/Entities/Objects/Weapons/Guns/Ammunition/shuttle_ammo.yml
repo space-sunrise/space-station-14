@@ -557,8 +557,9 @@
   components:
   - type: Construction
     graph: LeviathanNukeShellDisassembly
-    node: nuke
+    node: start
     defaultTarget: terminal
+    deconstructionTarget: terminal
   - type: Destructible
     thresholds:
     - trigger:
@@ -607,6 +608,7 @@
     graph: LeviathanNukeShellDisassembly
     node: damaged75
     defaultTarget: terminal
+    deconstructionTarget: terminal
   - type: Destructible
     thresholds:
     - trigger:
@@ -660,6 +662,7 @@
     graph: LeviathanNukeShellDisassembly
     node: damaged50
     defaultTarget: terminal
+    deconstructionTarget: terminal
   - type: Destructible
     thresholds:
     - trigger:

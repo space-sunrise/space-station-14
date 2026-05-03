@@ -120,7 +120,7 @@
             Toxin: -0.7
             Brute: -0.7
           types:
-            Mangleness: 0.03
+            Mangleness: 0.015
       - !type:ModifyBleed
         amount: -0.15
       - !type:PopupMessage
@@ -181,7 +181,7 @@
         ignoreResistances: true
         damage:
           types:
-            Mangleness: 0.8
+            Mangleness: 0.2
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition

@@ -4,6 +4,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Throwing;
@@ -187,11 +188,37 @@ public abstract partial class SharedTetherGunSystem : EntitySystem
         if (!component.CanTetherAlive && _mob.IsAlive(target))
             return false;
 
-        if (TryComp<StrapComponent>(target, out var strap) && strap.BuckledEntities.Count > 0)
+        // Sunrise-Edit: Prevent moving occupied entities (players in lockers, crates, etc)
+        if (IsOccupied(target))
             return false;
 
         return true;
     }
+
+    // Sunrise-Start
+    private bool IsOccupied(EntityUid uid)
+    {
+        if (TryComp<StrapComponent>(uid, out var strap) && strap.BuckledEntities.Count > 0)
+            return true;
+
+        if (!HasComp<ContainerManagerComponent>(uid))
+            return false;
+
+        foreach (var container in _container.GetAllContainers(uid))
+        {
+            foreach (var ent in container.ContainedEntities)
+            {
+                if (HasComp<MobStateComponent>(ent))
+                    return true;
+
+                if (IsOccupied(ent))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+    // Sunrise-End
 
     protected virtual void StartTether(EntityUid gunUid, BaseForceGunComponent component, EntityUid target, EntityUid? user,
         PhysicsComponent? targetPhysics = null, TransformComponent? targetXform = null)

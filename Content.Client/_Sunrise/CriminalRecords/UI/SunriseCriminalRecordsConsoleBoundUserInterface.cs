@@ -1,0 +1,81 @@
+using System.Linq;
+using Content.Shared._Sunrise.CriminalRecords;
+using Content.Shared._Sunrise.Laws;
+using Content.Shared.Security;
+using Robust.Client.UserInterface;
+using Robust.Shared.Prototypes;
+
+namespace Content.Client._Sunrise.CriminalRecords.UI;
+
+public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserInterface
+{
+    private SunriseCriminalRecordsWindow? _window;
+
+    public SunriseCriminalRecordsConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    {
+    }
+
+    protected override void Open()
+    {
+        base.Open();
+
+        _window = this.CreateWindow<SunriseCriminalRecordsWindow>();
+        _window.Initialize(this);
+        _window.OnClose += Close;
+        _window.OpenCentered();
+    }
+
+    protected override void UpdateState(BoundUserInterfaceState state)
+    {
+        base.UpdateState(state);
+
+        if (state is not SunriseCriminalRecordsConsoleState cast)
+            return;
+
+        _window?.UpdateState(cast);
+    }
+
+    public void CreateCase()
+    {
+        SendMessage(new SunriseCriminalRecordsCreateCaseMessage());
+    }
+
+    public void UpdateCase(uint caseId, List<ProtoId<CorporateLawPrototype>> laws, List<ProtoId<CorporateLawPrototype>> circumstances, string? notes)
+    {
+        SendMessage(new SunriseCriminalRecordsUpdateCaseMessage(
+            caseId,
+            laws,
+            circumstances,
+            notes));
+    }
+
+    public void CloseCase(uint caseId)
+    {
+        SendMessage(new SunriseCriminalRecordsCloseCaseMessage(caseId));
+    }
+
+    public void ReopenCase(uint caseId)
+    {
+        SendMessage(new SunriseCriminalRecordsReopenCaseMessage(caseId));
+    }
+
+    public void SelectRecord(uint? recordId)
+    {
+        SendMessage(new SunriseCriminalRecordsSelectRecordMessage(recordId));
+    }
+
+    public void SelectCase(uint caseId)
+    {
+        SendMessage(new SunriseCriminalRecordsSelectCaseMessage(caseId));
+    }
+
+    public void SetUIState(SunriseCriminalRecordsUIState state)
+    {
+        SendMessage(new SunriseCriminalRecordsSetUIStateMessage(state));
+    }
+
+    public void ChangeStatus(SecurityStatus status, string? reason)
+    {
+        SendMessage(new SunriseCriminalRecordsChangeStatusMessage(status, reason));
+    }
+}

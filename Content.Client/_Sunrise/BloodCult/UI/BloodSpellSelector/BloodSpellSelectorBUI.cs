@@ -56,7 +56,7 @@ public sealed class BloodSpellSelectorBUI : BoundUserInterface
         if (protoMan.TryIndex("BloodSpear", out EntityPrototype? bloodSpear))
         {
             var texture = sprite.GetPrototypeIcon(bloodSpear);
-            var button = _menu.AddButton($"{bloodSpear.Name} (150)", texture.Default);
+            var button = _menu.AddButton($"{bloodSpear.Name} (100)", texture.Default);
 
             button.Controller.OnPressed += _ =>
             {
@@ -70,7 +70,7 @@ public sealed class BloodSpellSelectorBUI : BoundUserInterface
         if (protoMan.TryIndex("BloodBoltBarrage", out EntityPrototype? bloodBoltBarrage))
         {
             var texture = sprite.GetPrototypeIcon(bloodBoltBarrage);
-            var button = _menu.AddButton($"{bloodBoltBarrage.Name} (300)", texture.Default);
+            var button = _menu.AddButton($"{bloodBoltBarrage.Name} (200)", texture.Default);
 
             button.Controller.OnPressed += _ =>
             {

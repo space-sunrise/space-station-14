@@ -11,6 +11,9 @@
   icon: "JobIconMailCarrier"
   supervisors: job-supervisors-qm #job-supervisors-hop
   displayWeight: 30
+  alternativeTitles:
+  - job-alt-title-postman
+  - job-alt-title-courier
   # salary: 1000
   access:
   - Maintenance

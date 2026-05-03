@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.Shuttles.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -63,7 +64,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Space between grids within hyperspace.
     /// </summary>
-    private const float Buffer = 5f;
+    private const float Buffer = 10f; // Sunrise-Edit
 
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
@@ -462,8 +463,13 @@ public sealed partial class ShuttleSystem
                 clippedAudio.Value.Component.Flags |= AudioFlags.NoOcclusion;
         }
 
-        // Offset the start by buffer range just to avoid overlap.
-        var ftlStart = new EntityCoordinates(ftlMap, new Vector2(_index + width / 2f, 0f) - shuttleCenter);
+        // Sunrise-Start
+        var yOffset = 0f;
+        if (HasComp<SunriseArrivalsShuttleComponent>(entity.Owner))
+            yOffset = 10000f;
+        // Sunrise-End
+
+        var ftlStart = new EntityCoordinates(ftlMap, new Vector2(_index + width / 2f, yOffset) - shuttleCenter);
 
         // Store the matrix for the grid prior to movement. This means any entities we need to leave behind we can make sure their positions are updated.
         // Setting the entity to map directly may run grid traversal (at least at time of writing this).
@@ -478,7 +484,12 @@ public sealed partial class ShuttleSystem
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, comp.TravelTime - DefaultArrivalTime);
 
         Enable(uid, component: body);
-        _physics.SetLinearVelocity(uid, new Vector2(0f, 20f), body: body);
+
+        // Sunrise-Start
+        var ftlSpeed = _cfg.GetCVar(SunriseCCVars.FTLSpeed);
+        _physics.SetLinearVelocity(uid, new Vector2(0f, ftlSpeed), body: body);
+        // Sunrise-End
+
         _physics.SetAngularVelocity(uid, 0f, body: body);
 
         _dockSystem.SetDockBolts(uid, true);
@@ -698,14 +709,12 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
+                // Only stun mobs/entities with status effects
                 _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
-                // Sunrise-Start
+                // Sunrise-Start: Throw ALL dynamic entities in the list (including items and structures)
                 if (_physicsQuery.TryGetComponent(child, out var physics))
                 {
-                    if ((physics.BodyType & BodyType.Static) != 0)
-                        continue;
-
                     _throwing.TryThrow(child,
                         throwDirection * _ftlThrowForce,
                         physics,
@@ -716,7 +725,7 @@ public sealed partial class ShuttleSystem
                 }
                 // Sunrise-End
 
-                // If the guy we knocked down is on a spaced tile, throw them too
+                // If the dynamic object is on a spaced tile (lattice/space), throw them too
                 if (grid != null)
                     TossIfSpaced((xform.GridUid.Value, grid, shuttleBody), child);
             }
@@ -750,14 +759,17 @@ public sealed partial class ShuttleSystem
 
     private void KnockOverKids(TransformComponent xform, ref ValueList<EntityUid> toKnock)
     {
-        // Not recursive because probably not necessary? If we need it to be that's why this method is separate.
         var childEnumerator = xform.ChildEnumerator;
         while (childEnumerator.MoveNext(out var child))
         {
-            if (!_buckleQuery.TryGetComponent(child, out var buckle) || buckle.Buckled)
+            // Sunrise-Start: Include items (Dynamic) and players (KinematicController)
+            if (!_physicsQuery.TryGetComponent(child, out var physics) || (physics.BodyType != BodyType.Dynamic && physics.BodyType != BodyType.KinematicController))
                 continue;
 
-            // Sunrise-Start
+            // If it can buckle, it must be unbuckled
+            if (_buckleQuery.TryGetComponent(child, out var buckle) && buckle.Buckled)
+                continue;
+
             if (_movedByPressureQuery.TryComp(child, out var moved) && !moved.Enabled)
                 continue;
             // Sunrise-End
