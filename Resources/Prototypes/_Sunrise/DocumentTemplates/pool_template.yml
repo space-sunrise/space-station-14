@@ -24,13 +24,13 @@
     - EvacuationShuttleRequest
     - ExperimentReport
     - InternalAffairsAgentsReport
+    - InternalAffairsAgentCentcomReport
     - Judgment
     - LetterResignation
     - MarriageCertificate
     - OrderDeprivationAccess
     - OrderDismissal
     - OrderEncouragement
-    - OrderingSpecialEquipment
     - OrderMedicalIntervention
     - OrderParolePrisoner
     - OrderPurchaseResourcesEquipment
@@ -42,12 +42,21 @@
     - PermissionToTravelInCaseOfThreat
     - PrescriptionDrugAuthorization
     - ProductManufacturingOrder
+    - ProductManufacturingOrderScience
+    - ProductManufacturingOrderService
+    - ProductManufacturingOrderMedical
+    - ProductManufacturingOrderEngineering
     - ReportDepartment
     - ReportEmployeePerformance
     - ReportOnEliminationOfViolations
     - ReportOnTheChaptersMeeting
     - ReportStation
+    - ResponseProvideCCReport
+    - ReportDecreeHeadsPresence
     - ReportStudyObject
+    - ReportStudyObjectEngineering
+    - ReportStudyObjectMedical
+    - ReportStudyObjectService
     - RequestCallMembersCentralCommitteeDSO
     - RequestChangeSalary
     - RequestConstructionWork
@@ -72,6 +81,9 @@
     - ApplicationChangePosition
     - ApplicationPetRegistration
     - ReportQilluRepresentative
+    - TrustedStaffDeathNotice
+    - OrderingSpecialEquipmentCentcomStandard
+    - StationGoal
     - ExplanatoryNote
     - ReportCrewAccessChange
     - RequestLegalProtection
@@ -127,6 +139,8 @@
     - OrderEvacuation
     - OrderProvideCCReport
     - DecreeHeadsPresence
+    - DecreeEnhancedControl
+    - CentcomResponse
     - OrderCentcom
     - OrderReport
     - OrderCentcomTransferStationStaff

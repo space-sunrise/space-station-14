@@ -11,7 +11,7 @@
     proto: AntiMaterielBulletTrace
   - type: Sprite
   # sunrise-start
-    scale: 0.75,0.75
+    scale: 0.8,0.8
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
     layers:
     - state: base
@@ -38,7 +38,7 @@
   - type: CartridgeAmmo
     proto: BulletAntiMaterielTracked
   - type: Sprite
-    scale: 0.75,0.75
+    scale: 0.8,0.8
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
     layers:
     - state: base

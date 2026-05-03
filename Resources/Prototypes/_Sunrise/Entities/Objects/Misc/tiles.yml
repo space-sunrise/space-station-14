@@ -1,0 +1,16 @@
+- type: entity
+  name: tiles-light-fancy-wood-floor
+  parent: FloorTileItemBase
+  id: FloorTileItemLightFancyWood
+  components:
+  - type: Sprite
+    sprite: /Textures/_Sunrise/Objects/Misc/tiles.rsi
+    state: light-fancy-wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorLightFancyWood
+  - type: Stack
+    stackType: FloorLightFancyWood

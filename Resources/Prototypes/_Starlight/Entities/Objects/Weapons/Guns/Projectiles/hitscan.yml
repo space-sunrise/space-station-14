@@ -45,7 +45,7 @@
     damage:
       types:
         Piercing: 75
-        Structural: 226
+        Structural: 113
   - type: HitscanStaminaDamage
     staminaDamage: 35
   - type: HitscanPierce
@@ -1005,16 +1005,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: 0.05 # Sunrise-add
     damage:
       types:
         Piercing: 40
         Structural: 15
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 10
   - type: HitscanPierce
     chance: 0.08
-    pierceLevel: Metal # Sunrise-add
   - type: HitscanBasicVisuals
     bullet:
       sprite:

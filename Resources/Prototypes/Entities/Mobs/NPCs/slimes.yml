@@ -26,7 +26,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Dead
+      60: Dead # Sunrise-Edit
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 4
@@ -158,7 +158,6 @@
       Dead:
         Base: blue_adult_slime_dead
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   # Sunrise-end
 
@@ -179,7 +178,6 @@
       raffle:
         settings: short
 # Sunrise-start
-    - type: Carriable
     - type: CanEscapeInventory
     - type: GhostPanelAntagonistMarker
       name: ghost-panel-antagonist-slime-name
@@ -210,7 +208,6 @@
           Caustic: 1
           Poison: 4
 # Sunrise-start
-    - type: Carriable
     - type: CanEscapeInventory
 # Sunrise-end
 
@@ -231,7 +228,6 @@
       raffle:
         settings: short
 # Sunrise-start
-    - type: Carriable
     - type: CanEscapeInventory
     - type: GhostPanelAntagonistMarker
       name: ghost-panel-antagonist-slime-name
@@ -261,7 +257,6 @@
           Structural: 4
           Caustic: 4
 # Sunrise-start
-    - type: Carriable
     - type: CanEscapeInventory
 # Sunrise-end
 
@@ -282,7 +277,6 @@
       raffle:
         settings: short
 # Sunrise-start
-    - type: Carriable
     - type: CanEscapeInventory
     - type: GhostPanelAntagonistMarker
       name: ghost-panel-antagonist-slime-name

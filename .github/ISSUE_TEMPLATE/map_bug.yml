@@ -1,0 +1,44 @@
+name: Ошибка на карте (Mapping Issue)
+description: Сообщить об опечатке в маппинге, отсутствии атмосферы, застревании и т.д.
+labels: ["Mapping", "Bug"]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Спасибо, что сообщаете о проблемах на наших картах! Точные координаты очень помогут нам исправить проблему быстрее.
+- type: input
+  id: map_name
+  attributes:
+    label: Название карты
+    description: На какой карте произошла проблема? (Например "Bagel", "Box", "Delta")
+  validations:
+    required: true
+- type: input
+  id: location
+  attributes:
+    label: Локация (Отдел / Комната)
+    description: Где именно это произошло? (Например "Кабинет СМО", "Теха между Инженерией и РНД")
+  validations:
+    required: true
+- type: textarea
+  id: description
+  attributes:
+    label: В чем заключается ошибка?
+    description: Нет проводов? Разгерметизация со старта? Предмет застрял в стене?
+  validations:
+    required: true
+- type: textarea
+  id: coordinates
+  attributes:
+    label: Координаты или скриншот
+    description: В идеале нажмите F5 (или клавишу для админ-координат, если у вас есть права) и скопируйте их сюда. ИЛИ прикрепите скриншот этого места на карте.
+  validations:
+    required: true
+- type: dropdown
+  id: severity
+  attributes:
+    label: Критичность проблемы
+    options:
+    - Косметическая (неправильный цвет пола)
+    - Мешает играть, но не смертельно (сломан один автомат)
+    - Критическая (разгерметизация всего отсека со старта, нельзя пройти)

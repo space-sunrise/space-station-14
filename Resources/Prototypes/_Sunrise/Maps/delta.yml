@@ -16,7 +16,7 @@
             prefixCreator: 'TG'
         - type: SpawnGridAndDockToStation
           grids:
-          - gridPath: /Maps/_Sunrise/Shuttles/Salvage/nomad.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/Salvage/chisel.yml
             priorityTag: DockMining
           - gridPath: /Maps/_Sunrise/Shuttles/Security/security.yml
             priorityTag: DockSecurity
@@ -72,8 +72,8 @@
             SecurityCadet: [ 2, 4 ] # intern, exclude from dept count
             #supply (9-10)
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 3 ]
-            MiningSpecialist: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 4 ]
+            MiningSpecialist: [ 1, 2 ]
             CargoTechnician: [ 3, 3 ]
             MailCarrier: [ 1, 2 ]
             #civilian (3)

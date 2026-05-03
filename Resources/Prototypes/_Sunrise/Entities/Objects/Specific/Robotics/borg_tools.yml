@@ -63,24 +63,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
+    proto: RedMediumLaser
     fireCost: 100
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
-    - proto: RedLaserBeam
-      fireCost: 100
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue
-        - violet
-        - yellow
-        - red
-        - gamma
-        - delta
-        - epsilon
   - type: BatterySelfRecharger
     autoRechargeRate: 20
   - type: MagazineVisuals
@@ -182,15 +166,13 @@
     solution: hypospray
     generated:
       reagents:
-      - ReagentId: DexalinPlus
+      - ReagentId: Dexalin
         Quantity: 1
   - type: SolutionRegenerationSwitcher
     options:
-    - ReagentId: DexalinPlus
+    - ReagentId: Dexalin
       Quantity: 1
     - ReagentId: Tricordrazine
-      Quantity: 1
-    - ReagentId: Dylovene
       Quantity: 1
     - ReagentId: Bicaridine
       Quantity: 1
@@ -238,10 +220,8 @@
       Quantity: 1
     - ReagentId: Pyrazine
       Quantity: 1
-    - ReagentId: Diphenhydramine
+    - ReagentId: Dylovene
       Quantity: 1
-    - ReagentId: Ambuzol
-      Quantity: 0.1
     - ReagentId: Oculine
       Quantity: 0.1
     - ReagentId: Saline
@@ -472,7 +452,13 @@
   id: WeaponDisablerSMGBorg
   components:
   - type: BatterySelfRecharger
-    autoRechargeRate: 30
+    autoRechargeRate: 25
+  - type: Gun
+    selectedMode: FullAuto
+    fireRate: 4
+  - type: BatteryAmmoProvider
+    proto: BulletDisablerSmg
+    fireCost: 50
 
 - type: entity
   name: cyborg's pulse weapon
@@ -535,7 +521,7 @@
     availableModes:
     - FullAuto
   - type: BatteryAmmoProvider
-    proto: RedLaser # Sunrise-TODO: ????? ????? ???????? ??? ?????? ?????
+    proto: RedMediumLaser # Sunrise-TODO: ????? ????? ???????? ??? ?????? ?????
     fireCost: 50
   - type: Battery
     maxCharge: 10000

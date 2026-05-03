@@ -44,6 +44,9 @@
   name: diona roots
   description: A bundle of roots. Technically edible. Technically.
   components:
+  - type: FlavorProfile
+    flavors:
+      - dionaroots
   - type: Sprite
     sprite: _Sunrise/Objects/Consumable/Food/species_meat.rsi
     state: diona_roots

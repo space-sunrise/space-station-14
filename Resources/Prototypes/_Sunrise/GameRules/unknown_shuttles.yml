@@ -139,3 +139,12 @@
     startAnnouncement: null
   - type: LoadMapRule
     gridPath: "/Maps/_Sunrise/Shuttles/Antag/instigator.yml"
+
+- type: entity
+  id: NukeopsInfiltratorDropShip
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+  - type: LoadMapRule
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/infiltrator_dropship.yml"

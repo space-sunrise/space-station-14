@@ -126,6 +126,9 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.ToggleShadowsButton.Pressed = !_light.DrawShadows;
         _window.ShowMarkersButton.Pressed = _marker.MarkersVisible;
         _window.ShowBbButton.Pressed = (_debugPhysics.Flags & PhysicsDebugFlags.Shapes) != 0x0;
+        // Sunrise added start - sandbox UI extension hook
+        InitializeSunriseWindow();
+        // Sunrise added end
 
         _window.AiOverlayButton.OnPressed += args =>
         {

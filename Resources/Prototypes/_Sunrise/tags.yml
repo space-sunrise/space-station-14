@@ -1,4 +1,4 @@
-# Behavior flags
+# region Behavior flags
 - type: Tag
   id: CantInteract
 
@@ -20,7 +20,10 @@
 - type: Tag
   id: ShowWires
 
-# Uplinks
+- type: Tag
+  id: ForceNoTileWalls
+
+# region Uplinks
 - type: Tag
   id: BlueShield
 
@@ -46,10 +49,10 @@
   id: LoneOpsUplink
 
 - type: Tag
-  id: NTUplink
+  id: NoCommission
 
 - type: Tag
-  id: NoCommission
+  id: NTUplink
 
 - type: Tag
   id: PirateUplink
@@ -60,7 +63,7 @@
 - type: Tag
   id: SyndieAgentUplink
 
-# Species / roles / targets
+# region Species / roles / targets
 - type: Tag
   id: Abductor
 
@@ -71,16 +74,19 @@
   id: CarpRiftHealTarget
 
 - type: Tag
-  id: NpcBoss
-
-- type: Tag
-  id: NpcVeteranLeader
-
-- type: Tag
   id: Felinid
 
 - type: Tag
   id: HumanoidXeno
+
+- type: Tag
+  id: Milira
+
+- type: Tag
+  id: NpcBoss
+
+- type: Tag
+  id: NpcVeteranLeader
 
 - type: Tag
   id: Predator
@@ -91,7 +97,7 @@
 - type: Tag
   id: WingToggleAllowed
 
-# Docks
+# region Docks
 - type: Tag
   id: DockCentComm
 
@@ -107,14 +113,14 @@
 - type: Tag
   id: DockSecurity
 
-# Borg modules
+# region Borg modules
 - type: Tag
   id: BorgModuleERT
 
 - type: Tag
   id: BorgModuleSecurity
 
-# Tools / devices
+# region Tools / devices
 - type: Tag
   id: CreepyLaugh
 
@@ -134,9 +140,12 @@
   id: PlantAnalyzer
 
 - type: Tag
+  id: SunriseBlueprintXenoborg
+
+- type: Tag
   id: TrayScanner
 
-# Cores / power
+# region Cores / power
 - type: Tag
   id: AnomalyCore
 
@@ -146,7 +155,7 @@
 - type: Tag
   id: PowerCellHigh
 
-# Ammo / payloads
+# region Ammo / payloads
 - type: Tag
   id: ArtilleryShell
 
@@ -169,10 +178,10 @@
   id: HandGrenadeAmmo
 
 - type: Tag
-  id: ImprovisedGrenade
+  id: ImprovisedAmmoBox
 
 - type: Tag
-  id: ImprovisedAmmoBox
+  id: ImprovisedGrenade
 
 - type: Tag
   id: ImprovisedGrenadeEmpty
@@ -204,15 +213,12 @@
 - type: Tag
   id: SpeedLoaderShotgun
 
-# Magazines
+# region Magazines
 - type: Tag
   id: HeavyAmmoBelt127
 
 - type: Tag
   id: MagazineACP14
-
-- type: Tag
-  id: MagazinePistolHighCapacityRubber
 
 - type: Tag
   id: MagazineAR18
@@ -233,10 +239,10 @@
   id: MagazineCannonBallMini
 
 - type: Tag
-  id: MagazineChainGun
+  id: MagazineCaselessRifle
 
 - type: Tag
-  id: MagazineCaselessRifle
+  id: MagazineChainGun
 
 - type: Tag
   id: MagazineDeagle
@@ -266,13 +272,13 @@
   id: MagazineLightRiflePan
 
 - type: Tag
+  id: MagazineM28
+
+- type: Tag
   id: MagazineMachineGunHeavyRifle
 
 - type: Tag
   id: MagazineMachineGunMG42
-
-- type: Tag
-  id: MagazineM28
 
 - type: Tag
   id: MagazineMP5
@@ -293,6 +299,9 @@
   id: MagazinePistolDPSubMachineGun
 
 - type: Tag
+  id: MagazinePistolHighCapacityRubber
+
+- type: Tag
   id: MagazinePistolSubMachineGunCap
 
 - type: Tag
@@ -304,7 +313,15 @@
 - type: Tag
   id: MagazineVP78
 
-# Weapons / upgrades
+# region Weapons
+
+- type: Tag
+  id: SyndicateRapier
+
+- type: Tag
+  id: WrappedWeapon
+
+# region Upgrades
 - type: Tag
   id: ArmorBasic
 
@@ -328,9 +345,6 @@
 
 - type: Tag
   id: RiotShieldStrobe
-
-- type: Tag
-  id: SyndicateRapier
 
 - type: Tag
   id: UpgradeDrozd
@@ -368,19 +382,11 @@
 - type: Tag
   id: WeaponPistolG22
 
+# region shuttles
 - type: Tag
-  id: WeaponPistolTec9
+  id: 120mmRocket
 
-- type: Tag
-  id: SunriseWeaponSubMachineGunUzi
-
-- type: Tag
-  id: SunriseWeaponPistolAPS
-
-- type: Tag
-  id: WrappedWeapon
-
-# Clothing / gear
+# region Clothing / gear
 - type: Tag
   id: FullBodyOuter
 
@@ -402,7 +408,7 @@
 - type: Tag
   id: WhitelistChameleonSuit
 
-# Materials / construction
+# region Materials / construction
 - type: Tag
   id: Board
 
@@ -424,7 +430,7 @@
 - type: Tag
   id: Tile
 
-# Mechs
+# region Mechs
 - type: Tag
   id: Clarke
 
@@ -448,7 +454,7 @@
 
 - type: Tag
   id: CombatMech
-# TODO: Make medical mech
+# region TODO: Make medical mech
 
 - type: Tag
   id: DollHouse
@@ -570,18 +576,21 @@
 - type: Tag
   id: SpecialMech
 
-# Misc / fun
+# region Misc / fun
 - type: Tag
   id: BluespaceBox
-
-- type: Tag
-  id: Coin
 
 - type: Tag
   id: ClownKudzu
 
 - type: Tag
+  id: Coin
+
+- type: Tag
   id: Geranium
+
+- type: Tag
+  id: PlushieKalium
 
 - type: Tag
   id: PokerCard
@@ -590,16 +599,10 @@
   id: PokerCardClassic
 
 - type: Tag
-  id: PlushieKalium
-
-- type: Tag
   id: SnapPop
 
 - type: Tag
   id: Sunflower
-
-- type: Tag
-  id: WhiteLily
 
 - type: Tag
   id: Table
@@ -607,15 +610,12 @@
 - type: Tag
   id: ToySword
 
-# Dungeon
+- type: Tag
+  id: WhiteLily
+
+# region Dungeon
 - type: Tag
   id: SalvageSyndicateBase
-
-- type: Tag
-  id: Milira
-
-- type: Tag
-  id: SovietPinsExped
 
 - type: Tag
   id: ShipWreck
@@ -627,9 +627,78 @@
   id: SovietDungeonWEH
 
 - type: Tag
+  id: SovietPinsExped
+
+- type: Tag
+  id: SovietDamagedIDCardExped
+
+- type: Tag
+  id: SovietDamagedIDCardsSoldierExped
+
+- type: Tag
+  id: SovietDamagedIDCardsOfficerExped
+
+- type: Tag
+  id: SovietDamagedIDCardsCaptainExped
+
+- type: Tag
   id: SovietWarehouse
 
-### INTERACTION TAGS ###
+- type: Tag
+  id: SunriseSovietDungeon11x5
+
+- type: Tag
+  id: SunriseSovietDungeon3x5
+
+- type: Tag
+  id: SunriseSovietDungeon5x5
+
+- type: Tag
+  id: SunriseSovietDungeon7x3
+
+- type: Tag
+  id: SunriseSovietDungeon7x7
+
+- type: Tag
+  id: SunriseSovietDungeonGeneral
+
+- type: Tag
+  id: SunriseSovietDungeonWEH11x5
+
+- type: Tag
+  id: SunriseSovietDungeonWEH3x5
+
+- type: Tag
+  id: SunriseSovietDungeonWEH5x5
+
+- type: Tag
+  id: SunriseSovietDungeonWEH7x3
+
+- type: Tag
+  id: SunriseSovietDungeonWEH7x7
+
+- type: Tag
+  id: SunriseSovietDungeonWEHGeneral
+
+- type: Tag
+  id: SunriseSyndicateBase11x5
+
+- type: Tag
+  id: SunriseSyndicateBase3x5
+
+- type: Tag
+  id: SunriseSyndicateBase5x5
+
+- type: Tag
+  id: SunriseSyndicateBase7x3
+
+- type: Tag
+  id: SunriseSyndicateBase7x7
+
+- type: Tag
+  id: SunriseSyndicateBaseGeneral
+
+# region INTERACTION TAG
 # Как одежда закрывает/не закрывает ту или иную область тела
 - type: Tag
   id: CommandSuit
@@ -693,10 +762,6 @@
 - type: Tag
   id: ScurretDeathgasp
 
-# Medicine
+# region Medicine
 - type: Tag
   id: AutoMender  # Используется для whitelist у ClothingBeltMedical =3
-
-# shuttles
-- type: Tag
-  id: 120mmRocket

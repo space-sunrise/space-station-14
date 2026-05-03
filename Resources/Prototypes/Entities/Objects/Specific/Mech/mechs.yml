@@ -190,6 +190,7 @@
     scale: 1.1
     shape: Triangle
     requireInSpace: true
+  - type: CyborgSparkEffect
   # Sunrise-End
   - type: Damageable
     damageContainer: Mech
@@ -649,6 +650,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.85
   - type: Mech
     baseState: base
     openState: base-open
@@ -717,6 +720,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.6
   - type: Mech
     baseState: base
     openState: base-open
@@ -976,6 +981,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.85
   - type: Mech
     baseState: darkgygax
     openState: darkgygax-open
@@ -1068,6 +1075,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.5
   - type: Mech
     baseState: mauler
     openState: mauler-open
@@ -1089,7 +1098,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 50
+        Blunt: 80
         Structural: 400
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
