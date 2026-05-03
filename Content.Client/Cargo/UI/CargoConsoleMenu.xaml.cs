@@ -227,6 +227,7 @@ namespace Content.Client.Cargo.UI
                             "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
                             ("productName", productName),
                             ("orderAmount", order.OrderQuantity),
+                            ("cost", order.Price * order.OrderQuantity), //Sunrise-Add
                             ("orderRequester", order.Requester),
                             ("accountColor", account.Color),
                             ("account", Loc.GetString(account.Code)))
@@ -234,7 +235,10 @@ namespace Content.Client.Cargo.UI
                     Description =
                     {
                         Text = Loc.GetString("cargo-console-menu-order-reason-description",
-                                                        ("reason", order.Reason))
+                                                        ("orderRequester", order.Requester), //Sunrise-Edit
+                                                        ("account", Loc.GetString(account.Code)), //Sunrise-Edit
+                                                        ("accountColor", account.Color), //Sunrise-Edit
+                                                        ("reason", order.Reason)) //Sunrise-Edit
                     }
                 };
                 row.Cancel.OnPressed += (args) => { OnOrderCanceled?.Invoke(args); };
