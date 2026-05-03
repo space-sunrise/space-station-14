@@ -222,6 +222,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink # Sunrise-Add
 
 - type: listing
   id: UplinkC20RBundle
