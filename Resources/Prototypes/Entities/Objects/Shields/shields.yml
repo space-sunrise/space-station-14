@@ -614,6 +614,7 @@
         right:
           - state: inhand-right-shield
             shader: unshaded
+    - type: EnergySword # Sunrise-Edit
     - type: PointLight
       netsync: false
       enabled: false

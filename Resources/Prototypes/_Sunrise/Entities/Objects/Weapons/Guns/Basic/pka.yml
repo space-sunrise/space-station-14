@@ -51,11 +51,11 @@
     - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-    projectileSpeed: 25
+    projectileSpeed: 20
     angleDecay: 5
     minAngle: 5
     angleIncrease: 5
-    maxAngle: 25
+    maxAngle: 30
     bigTrigger: true
   - type: AmmoCounter
   - type: Appearance
@@ -100,8 +100,8 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_heavy.rsi
     size: Ginormous
   - type: Gun
-    projectileSpeed: 18
-    fireRate: 2
+    projectileSpeed: 16
+    fireRate: 1.75
     selectedMode: FullAuto
     angleDecay: 45
     minAngle: 5
@@ -129,8 +129,8 @@
         pitch: 1.2
         variation: 0.08
   - type: HeldSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: MultiHandedItem
   - type: BasicEntityAmmoProvider
     proto: BulletKineticShuttle
