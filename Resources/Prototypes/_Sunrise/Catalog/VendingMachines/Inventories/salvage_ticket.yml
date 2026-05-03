@@ -318,17 +318,23 @@
   id: VendorSalvageWeaponProtoKineticHeavy
   productEntity: WeaponProtoKineticHeavy
   cost:
-    SalvageTicket: 200
+    SalvageTicket: 1200
   categories:
   - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
 
 - type: listing
   id: VendorSalvageWeaponLaserLNT620
   productEntity: WeaponLaserLNT620
   cost:
-    SalvageTicket: 1200
+    SalvageTicket: 800
   categories:
   - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
 
 - type: listing
   id: VendorSalvageWeaponLaserSvalinn
@@ -375,9 +381,12 @@
   id: VendorSalvageWeaponShotgunCycler
   productEntity: WeaponShotgunCycler
   cost:
-    SalvageTicket: 2500
+    SalvageTicket: 2000
   categories:
   - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
 
 # consumables
 - type: listing

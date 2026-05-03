@@ -28,6 +28,7 @@ public abstract partial class SharedHandsSystem
     [Dependency] private readonly SharedVirtualItemSystem _virtualSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] protected readonly SharedDoAfterSystem DoAfter = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public event Action<Entity<HandsComponent>, string, HandLocation>? OnPlayerAddHand;
     public event Action<Entity<HandsComponent>, string>? OnPlayerRemoveHand;
