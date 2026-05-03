@@ -155,7 +155,7 @@ public sealed class RadioSystem : EntitySystem
         var hasActiveServer = HasActiveServer(sourceMapId, channel.ID, out var serverUid);
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
-        if (!sourceServerExempt && serverUid != null && TryComp<TelecomServerComponent>(serverUid, out var server))
+        if (!channel.LongRange && !sourceServerExempt && serverUid != null && TryComp<TelecomServerComponent>(serverUid, out var server))
         {
             _thermalSystem.AddLoad(serverUid.Value, server);
 
@@ -169,7 +169,7 @@ public sealed class RadioSystem : EntitySystem
             content = _thermalSystem.AddStatic(content, Math.Max(loadFactor, tempFactor));
         }
 
-        if (!hasActiveServer && !sourceServerExempt)
+        if (!channel.LongRange && !hasActiveServer && !sourceServerExempt)
             return;
         // Sunrise-End
 

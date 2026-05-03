@@ -19,12 +19,20 @@ public sealed class TelecomThermalSystem : EntitySystem
     [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
     [Dependency] private readonly TemperatureSystem _tempSystem = default!;
 
+    private EntityQuery<AmbientSoundComponent> _ambientQuery;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _ambientQuery = GetEntityQuery<AmbientSoundComponent>();
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<TelecomServerComponent, TemperatureComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var server, out var temp, out var xform))
+        var query = EntityQueryEnumerator<TelecomServerComponent, TemperatureComponent>();
+        while (query.MoveNext(out var uid, out var server, out var temp))
         {
             // 1. Decay load over time
             if (server.CurrentLoad > 0)
@@ -42,7 +50,7 @@ public sealed class TelecomThermalSystem : EntitySystem
             // Exchange heat with atmos (handled automatically by AtmosphereSystem)
 
             // 3. Dynamic ambient sound scaling
-            if (TryComp<AmbientSoundComponent>(uid, out var ambient))
+            if (_ambientQuery.TryGetComponent(uid, out var ambient))
             {
                 var ratio = Math.Clamp((temp.CurrentTemperature - 300f) / (server.MaxTemperature - 300f), 0f, 1.2f);
                 _ambient.SetVolume(uid, -9f + (ratio * 12f), ambient);
@@ -96,18 +104,37 @@ public sealed class TelecomThermalSystem : EntitySystem
         var chance = (factor - 0.3f) * 0.8f;
         var inTag = false;
 
-        foreach (var c in message)
+        var words = message.Split(' ');
+        for (var i = 0; i < words.Length; i++)
         {
-            if (c == '[')
-                inTag = true;
-
-            if (!inTag && _random.Prob(chance))
-                result.Append(_random.Pick(new[] { '#', '*', '$', '!', '&', '?' }));
+            var word = words[i];
+            
+            // "Swallow" whole words at high heat/load (TTS-friendly pause)
+            if (_random.Prob(chance * 0.4f))
+            {
+                result.Append("...");
+            }
             else
-                result.Append(c);
+            {
+                foreach (var c in word)
+                {
+                    if (c == '[') inTag = true;
 
-            if (c == ']')
-                inTag = false;
+                    if (!inTag && _random.Prob(chance))
+                    {
+                        // 40% chance to replace with dot (pause), 60% chance to drop
+                        if (_random.Prob(0.4f))
+                            result.Append('.');
+                    }
+                    else
+                        result.Append(c);
+
+                    if (c == ']') inTag = false;
+                }
+            }
+
+            if (i < words.Length - 1)
+                result.Append(' ');
         }
 
         return result.ToString();

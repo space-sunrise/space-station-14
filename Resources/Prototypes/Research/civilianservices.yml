@@ -190,6 +190,7 @@
   - PushHorn
   - BorgModuleAdvancedClowning
 
+# Sunrise-Start
 - type: technology
   id: AudioVisualCommunicationT2
   name: research-technology-audio-visual-communication-t2
@@ -203,9 +204,11 @@
   - TelecomServerT2Circuitboard
   technologyPrerequisites:
   - AudioVisualCommunication
+# Sunrise-End
 
 # Tier 3
 
+# Sunrise-Start
 - type: technology
   id: AudioVisualCommunicationT3
   name: research-technology-audio-visual-communication-t3
@@ -220,6 +223,7 @@
   - ResearchAndDevelopmentServerMachineCircuitboard
   technologyPrerequisites:
   - AudioVisualCommunicationT2
+# Sunrise-End
 
 - type: technology
   id: QuantumFiberWeaving
