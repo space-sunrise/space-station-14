@@ -11,6 +11,9 @@
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
   displayWeight: 25  # Sunrise
+  # Sunrise-Start
+  # alternativeTitles:
+  # Sunrise-End
   access:
   - Medical
   - Maintenance

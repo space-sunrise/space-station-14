@@ -110,6 +110,40 @@
     probability: 0.5 # Sunrise-Edit
 
 - type: entity
+  id: SunriseToyKatana
+  parent: Katana
+  name: toy katana
+  description: A toy katana for harmless sparring and dramatic poses.
+  suffix: Toy
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 5
+  - type: Reflect
+    reflectProb: 0.01
+    spread: 90
+    slotFlags:
+    - NONE
+
+- type: entity
+  id: SunriseToyEnergyKatana
+  parent: EnergyKatana
+  name: toy energy katana
+  description: A toy copy of an energy katana for flashy play duels.
+  suffix: Toy
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 5
+  - type: Reflect
+    reflectProb: 0.01
+    spread: 90
+    slotFlags:
+    - NONE
+
+- type: entity
   id: ToySwordDoubledFake
   parent: ToySwordDoubled
   components:

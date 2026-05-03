@@ -207,9 +207,8 @@ public sealed partial class MessengerUiFragment : BoxContainer
 
         if (_currentChatId != null && state.MessageHistory.TryGetValue(_currentChatId, out var messages))
         {
-            messages = messages.OrderBy(m => m.Timestamp)
+            messages = messages.OrderBy(m => m.MessageId)
                 .ThenBy(m => m.SenderId)
-                .ThenBy(m => m.Content)
                 .ToList();
 
             if (messages.Count > MaxDisplayedMessages)

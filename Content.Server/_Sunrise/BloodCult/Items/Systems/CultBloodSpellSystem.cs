@@ -331,8 +331,8 @@ public sealed class CultBloodSpellSystem : EntitySystem
                     ref bloodstreamComponent.BloodSolution,
                     out var bloodSolution))
             {
-                var lossBlood = bloodSolution.MaxVolume - bloodSolution.Volume;
-                if (lossBlood > 0)
+                var lossBlood = bloodstreamComponent.BloodReferenceSolution.MaxVolume - bloodSolution.Volume;
+                if (lossBlood > 50)
                 {
                     fillBlood = FixedPoint2.Min(lossBlood, availableCharges / 2);
                     _bloodstreamSystem.TryModifyBloodLevel((target, bloodstreamComponent), fillBlood);

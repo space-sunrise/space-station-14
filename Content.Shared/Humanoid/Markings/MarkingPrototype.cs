@@ -1,13 +1,23 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Markings
 {
     [Prototype]
-    public sealed partial class MarkingPrototype : IPrototype
+    // Sunrise edit start - allow marking prototypes to inherit shared YAML fields
+    public sealed partial class MarkingPrototype : IPrototype, IInheritingPrototype
     {
         [IdDataField]
         public string ID { get; private set; } = "uwu";
+
+        [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<MarkingPrototype>))]
+        public string[]? Parents { get; private set; }
+
+        [NeverPushInheritance]
+        [AbstractDataField]
+        public bool Abstract { get; private set; }
+        // Sunrise edit end
 
         public string Name { get; private set; } = default!;
 

@@ -27,7 +27,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Database
 {
-    public abstract class ServerDbBase
+    public abstract partial class ServerDbBase // Sunrise-Edit
     {
         private readonly ISawmill _opsLog;
         public event Action<DatabaseNotification>? OnNotificationReceived;
@@ -50,6 +50,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
+                .Include(p => p.Profiles).ThenInclude(h => h.JobAlternativeTitles) // Sunrise
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -106,6 +107,7 @@ namespace Content.Server.Database
                 .Include(p => p.Jobs)
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
+                .Include(p => p.JobAlternativeTitles) // Sunrise
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -210,6 +212,13 @@ namespace Content.Server.Database
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
 
+            // Sunrise-Start
+            var jobAltTitles = profile.JobAlternativeTitles.ToDictionary(
+                j => new ProtoId<JobPrototype>(j.JobName),
+                j => new LocId(j.Title)
+            );
+            // Sunrise-End
+
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
                 sex = sexVal;
@@ -299,7 +308,7 @@ namespace Content.Server.Database
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts
-            );
+            ).WithJobAlternativeTitles(jobAltTitles); // Sunrise
         }
 
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
@@ -360,6 +369,14 @@ namespace Content.Server.Database
                 humanoid.TraitPreferences
                         .Select(t => new Trait {TraitName = t})
             );
+
+            // Sunrise-Start
+            profile.JobAlternativeTitles.Clear();
+            profile.JobAlternativeTitles.AddRange(
+                humanoid.JobAlternativeTitles
+                    .Select(j => new JobAlternativeTitle {JobName = j.Key, Title = j.Value.Id})
+            );
+            // Sunrise-End
 
             profile.Loadouts.Clear();
 
@@ -2040,7 +2057,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(m => m.TicketId == ticketId)
                 .ToListAsync();
         }
-        # endregion
+        #endregion
         // Sunrise-End
 
         # region IPIntel

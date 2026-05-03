@@ -15,6 +15,12 @@
   supervisors: job-supervisors-security
   canBeAntag: false
   displayWeight: 0 # Sunrise-Edit
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-security-trainee
+  - job-alt-title-security-rookie
+  - job-alt-title-security-recruit
+  # Sunrise-End
   access:
   - Security
   - Brig
