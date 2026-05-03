@@ -91,4 +91,6 @@
   - EmitterCircuitboard
   - TelecomServerCircuitboard
   - SMESAdvancedMachineCircuitboard
+  - SMESExtendedMachineCircuitboard # Sunrise-Edit
+  - SMESSuperExtendedMachineCircuitboard # Sunrise-Edit
   - HolopadMachineCircuitboard

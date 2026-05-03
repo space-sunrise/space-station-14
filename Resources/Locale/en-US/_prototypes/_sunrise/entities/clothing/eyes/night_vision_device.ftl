@@ -14,3 +14,5 @@ ent-ClothingEyesNVDSyndicate = { ent-ClothingEyesNVD }
 ent-ClothingEyesNVDHandcrafted = { ent-ClothingEyesNVD }
     .suffix = handcrafted
     .desc = { ent-ClothingEyesNVD.desc }
+ent-NVDHandcraftedParts = improvised NVD assembly
+    .desc = A welding mask with attached electronic parts and cable wiring. It still looks unfinished.

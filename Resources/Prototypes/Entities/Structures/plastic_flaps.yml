@@ -1,6 +1,6 @@
 - type: entity
   id: PlasticFlapsBase
-  parent: [BaseDeltaPressureGlass, BaseStructureDynamic] # Sunrise-Edit
+  parent: BaseStructureDynamic
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -32,6 +32,7 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   # Sunrise-Start
+  - type: Airtight
   - type: ExaminableDamage
     messages: WindowMessages
   - type: Repairable
@@ -91,7 +92,7 @@
 
 - type: entity
   id: PlasticFlapsAirtightClear
-  parent: PlasticFlapsBase
+  parent: [BaseDeltaPressureGlass, PlasticFlapsBase] # Sunrise-Edit
   name: airtight plastic flaps
   suffix: Airtight, Clear
   description: Heavy duty, slightly stronger, airtight plastic flaps. Definitely can't get past those. No way.

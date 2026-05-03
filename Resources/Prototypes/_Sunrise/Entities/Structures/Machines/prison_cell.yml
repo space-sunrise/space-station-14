@@ -1,0 +1,106 @@
+- type: entity
+  parent: AirlockSecurityGlassLocked
+  id: PrisonCellDoor
+  components:
+  - type: PrisonCellDoor
+  - type: AccessReader
+    access: [["Security"]]
+  - type: DeviceLinkSink
+    ports:
+      - PrisonCellDoorLock
+      - PrisonCellDoorUnlock
+      - Open
+      - Close
+      - Toggle
+
+- type: entity
+  parent: Screen
+  id: PrisonCellTimer
+  components:
+  - type: PrisonTimer
+  - type: DeviceLinkSink
+    ports:
+      - PrisonTimerSet
+      - PrisonTimerReset
+  - type: TextScreenVisuals
+    textOffset: 0,3
+    rowOffset: 6
+    rows: 2
+    rowLength: 6
+
+- type: entity
+  parent: LockerSecurity
+  id: PrisonCellLocker
+  name: prisoner closet
+  description: It's a secure locker for an inmate's personal belongings during their time in prison.
+  suffix: 1
+  components:
+  - type: PrisonLocker
+  - type: AccessReader
+    access: [["Security"]]
+  - type: DeviceLinkSink
+    ports:
+      - PrisonLockerLock
+      - PrisonLockerUnlock
+  - type: EntityStorageVisuals
+    stateBaseClosed: genpop
+    stateDoorOpen: genpop_open
+    stateDoorClosed: genpop_door_1
+
+# region Number prison locker
+
+- type: entity
+  parent: PrisonCellLocker
+  id: PrisonCellLocker2
+  suffix: 2
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_2
+
+- type: entity
+  parent: PrisonCellLocker
+  id: PrisonCellLocker3
+  suffix: 3
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_3
+
+- type: entity
+  parent: PrisonCellLocker
+  id: PrisonCellLocker4
+  suffix: 4
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_4
+
+- type: entity
+  parent: PrisonCellLocker
+  id: PrisonCellLocker5
+  suffix: 5
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_5
+
+- type: entity
+  parent: PrisonCellLocker
+  id: PrisonCellLocker6
+  suffix: 6
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_6
+
+- type: entity
+  parent: PrisonCellLocker
+  id: PrisonCellLocker7
+  suffix: 7
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_7
+
+- type: entity
+  parent: PrisonCellLocker
+  id: PrisonCellLocker8
+  suffix: 8
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_8

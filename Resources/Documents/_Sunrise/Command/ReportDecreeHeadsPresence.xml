@@ -1,0 +1,42 @@
+<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#1B2333][bold]ОТЧЁТ[/bold][/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / КОМ-ЦК[/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Отчёт о наличии глав станции[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+
+[bold][color=#7A4A00]Главы станции:[/color][/bold]
+[bold][mono][color=#2D3442]
+ ► [bold][color=#7A4A00]Капитан:[/color][/bold] [form="ФИО / ВрИО / отсутствует"]
+ ► [bold][color=#7A4A00]Глава персонала:[/color][/bold] [form="ФИО / ВрИО / отсутствует"]
+ ► [bold][color=#7A4A00]ГСБ:[/color][/bold] [form="ФИО / ВрИО / отсутствует"]
+ ► [bold][color=#7A4A00]НР:[/color][/bold] [form="ФИО / ВрИО / отсутствует"]
+ ► [bold][color=#7A4A00]ГВ:[/color][/bold] [form="ФИО / ВрИО / отсутствует"]
+ ► [bold][color=#7A4A00]СИ:[/color][/bold] [form="ФИО / ВрИО / отсутствует"]
+ ► [bold][color=#7A4A00]КМ:[/color][/bold] [form="ФИО / ВрИО / отсутствует"]
+[/color][/mono][/bold]
+
+[bold][color=#7A4A00]Иные члены командования:[/color][/bold]
+[bold][mono][color=#2D3442]
+ ► [bold][color=#7A4A00]Адъютант:[/color][/bold] [form="ФИО / отсутствует"]
+ ► [bold][color=#7A4A00]Горничная:[/color][/bold] [form="ФИО / отсутствует"]
+ ► [bold][color=#7A4A00]Представитель корпорации:[/color][/bold] [form="ФИО / отсутствует"]
+[/color][/mono][/bold]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
+
+
+
+
+</Document>

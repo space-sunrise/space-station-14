@@ -9,9 +9,9 @@
   - GygaxCentralElectronics
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
-  - PhazonCentralElectronics
-  - PhazonPeripheralsElectronics
-  - PhazonTargetingElectronics
+  # - PhazonCentralElectronics
+  # - PhazonPeripheralsElectronics
+  # - PhazonTargetingElectronics
   - DurandCentralElectronics
   - DurandPeripheralsElectronics
   - DurandTargetingElectronics
@@ -38,6 +38,5 @@
 - type: latheRecipePack
   id: NightVisionDevice
   recipes:
-  - HandCraftedNVD
   - BasicNVD
   - BasicThermals

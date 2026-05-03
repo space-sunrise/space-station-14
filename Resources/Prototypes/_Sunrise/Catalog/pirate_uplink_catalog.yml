@@ -2589,6 +2589,22 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkPirateMechChaingun
+  productEntity: WeaponMechCombatChaingun
+  cost:
+    Doubloon: 21
+  categories:
+  - UplinkPirateMechs
+  restockTime: 1800
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkPirateMechPirateGrapeshot
   productEntity: WeaponMechCombatPirateGrapeshot
   cost:

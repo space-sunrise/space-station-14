@@ -161,6 +161,10 @@
     priority: 15
   - type: TTS # Sunrise-Edit
     voice: PortalGlados # Sunrise-Edit - it is THE mother core
+  - type: BlueprintReceiver # Sunrise-Add
+    whitelist:
+      tags:
+      - SunriseBlueprintXenoborg
   # Sunrise-End
   - type: MothershipCore
   - type: Tag
@@ -199,6 +203,10 @@
     containers:
       cell_slot: !type:ContainerSlot { }
       borg_module: !type:Container { }
+      blueprint: !type:Container # Sunrise-Add
+  - type: EmptyOnMachineDeconstruct # Sunrise-Add
+    containers:
+    - blueprint
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ItemSlots

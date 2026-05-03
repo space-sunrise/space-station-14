@@ -560,6 +560,10 @@
   - type: TimedDespawn
     lifetime: 0.275 # roughly 6.5 tiles
   - type: GatheringProjectile
+  # Sunrise-Start
+  - type: StaminaDamageOnCollide
+    damage: 10
+  # Sunrise-End
 
 - type: entity
   id: BulletKineticShuttle
@@ -578,6 +582,9 @@
       types:
         Blunt: 30
         Structural: 35
+    penetrationThreshold: 80
+    penetrationDamageTypeRequirement:
+    - Structural
   - type: Ammo
     muzzleFlash: HitscanEffect
   - type: TimedDespawn
@@ -586,12 +593,14 @@
     radius: 2.5
     color: white
     energy: 0.5
-  - type: GatheringProjectile
   # Sunrise-Start
+  #- type: GatheringProjectile
   - type: RadarBlip
     color: "#ffdd44"
     scale: 0.7
     shape: Circle
+  - type: StaminaDamageOnCollide
+    damage: 6
   # Sunrise-End
 
 - type: entity

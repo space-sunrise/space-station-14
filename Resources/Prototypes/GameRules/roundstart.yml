@@ -132,7 +132,6 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
-    - Felinid
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
@@ -372,6 +371,11 @@
       fallbackRoles: [ Rev ]
       max: 3
       playerRatio: 15
+      # Sunrise - start
+      blacklist:
+        components:
+        - MindShield
+      # Sunrise - end
       briefing:
         text: head-rev-role-greeting
         color: CornflowerBlue
@@ -391,6 +395,7 @@
       blacklist:
         components:
         - CommandStaff
+        - MindShield # Sunrise-Edit
       briefing:
         text: rev-role-greeting
         color: CornflowerBlue
