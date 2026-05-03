@@ -34,11 +34,14 @@
       containers:
         storagebase: !type:AllSelector
           children:
-            - id: ClothingOuterMaidArmorRaid
+            - id: ClothingOuterMaidArmorRaidBiocode
             - id: ClothingHeadHelmetRaid
             - id: ClothingHandsTacticalMaidGloves
+            - id: ClothingMaskGasSyndicate
             - id: ClothingUnderSocksMurder
             - id: ClothingUniformJumpskirtTacticalMaid
             - id: AmpulaBica
             - id: AmpulaDerm
+            - id: MopItem # He he Ha ha!
+            - id: MopBucketCubeWrapped # He he Ha ha!
 #sunrise-end

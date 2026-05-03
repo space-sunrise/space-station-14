@@ -1,0 +1,13 @@
+id: ss14-event-class-must-end-with-event
+language: CSharp
+severity: error
+message: "Event classes should end with the `Event` suffix."
+note: "Per `ss14-events` and `ss14-naming-conventions`, event classes should advertise their role through the `Event` suffix."
+files:
+  - "Content.*/**/*.cs"
+rule:
+  all:
+    - kind: class_declaration
+    - regex: '(?s).*\bclass\s+\w+\s*:\s*(?:EntityEventArgs|HandledEntityEventArgs|CancellableEntityEventArgs)\b.*'
+    - not:
+        regex: '(?s).*\bclass\s+\w*(?:Event|Message)\s*:\s*(?:EntityEventArgs|HandledEntityEventArgs|CancellableEntityEventArgs)\b.*'

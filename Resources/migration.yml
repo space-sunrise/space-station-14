@@ -997,5 +997,16 @@ WeaponTurretVespera50mm: ShuttleGunVespera50mm
 #2026-04-06
 AirlockExternalGlassShuttleArrivalsLocked: AirlockExternalGlassShuttleArrivalsLockedCentComm
 AirlockExternalGlassShuttleEmergencyLocked: AirlockExternalGlassShuttleEmergencyLockedCentComm
+CriminalRecordsComputerCircuitboard: SunriseCriminalRecordsComputerCircuitboard
+LockerPrisoner: PrisonCellLocker
+LockerPrisoner2: PrisonCellLocker2
+LockerPrisoner3: PrisonCellLocker3
+LockerPrisoner4: PrisonCellLocker4
+LockerPrisoner5: PrisonCellLocker5
+LockerPrisoner6: PrisonCellLocker6
+LockerPrisoner7: PrisonCellLocker7
+LockerPrisoner8: PrisonCellLocker8
+ComputerCriminalRecords: SunriseComputerCriminalRecords
+#2026-04-19
+AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
 # region Sunrise-End
-

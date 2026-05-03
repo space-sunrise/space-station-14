@@ -35,7 +35,7 @@ public sealed partial class HellSpawnRushComponent : Component
         DamageDict = new Dictionary<string, FixedPoint2>
         {
             { "Brute", 50 },
-            { "Structural", 150 }, // this ensures that structures like doors are destroyed
+            { "Structural", 190 }, // this ensures that structures like doors are destroyed
         },
     };
 

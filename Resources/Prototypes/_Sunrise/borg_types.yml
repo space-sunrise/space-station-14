@@ -73,7 +73,10 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - SiliconEmotes
     - EmagImmune
+    - Unimplantable
+    - NoPaint
 
   # Sounds
   footstepCollection:
@@ -124,8 +127,6 @@
     - SoapNT
     - SoapDeluxe
     - SoapHomemade
-  - type: PieThrower
-    pieProtoId: FoodPieBananaCream
   - type: TTS
     voice: NecoArcTwo
 
@@ -235,4 +236,7 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - SiliconEmotes
     - EmagImmune
+    - Unimplantable
+    - NoPaint

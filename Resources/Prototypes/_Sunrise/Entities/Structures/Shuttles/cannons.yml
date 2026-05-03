@@ -43,6 +43,97 @@
     - type: AutoLinkTransmitter
       channel: Ulan
 
+# region---- Launchers ----
+# naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
+# example: EXP-100c "Poppy"
+
+- type: entity
+  id: ShuttleGunBullfrog
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: EXP-3600g "Bullfrog"
+  description: A powerful 40mm stationary automatic grenade launcher. A cartridge is required for use.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/exp_3600.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
+      renderingStrategy: NoRotation
+    - state: bal-127
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 999
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Fixtures # Sunrise-Add
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Gun
+    projectileSpeed: 66
+    fireRate: 1.25
+    maxAngle: 15
+    minAngle: 1
+    angleIncrease: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        variation: 0.05
+        pitch: 0.85
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunBullfrogCircuitboard
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineGrenade
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: GunneryTrackable
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineGrenade
+
 # region ---- Autocannon ----
 # naming: BAL (Ballistic) + calliber + Name
 # example: BAL-152 "Molot"
@@ -728,14 +819,13 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
+      ballistic-ammo: !type:Container
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.45
+          radius: 0.2
         density: 500
         mask:
         - MachineMask

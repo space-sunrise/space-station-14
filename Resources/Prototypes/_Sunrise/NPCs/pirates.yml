@@ -343,6 +343,7 @@
   parent: MobPirateBase
   id: MobPirateBaseT2
   components:
+  - type: NoSlip
   - type: Damageable
     damageModifierSet: MobPirateT2
   - type: GhostRole
@@ -359,6 +360,7 @@
   parent: MobPirateBase
   id: MobPirateBaseT3
   components:
+  - type: NoSlip
   - type: Damageable
     damageModifierSet: MobPirateT3
   - type: GhostRole
@@ -511,6 +513,7 @@
       collection: FootstepCyborgLegs
   - type: Reflect
     reflectProb: 0.1
+  - type: MechVulnerableToEMP
 
 # region Spawners
 - type: entity
@@ -1775,7 +1778,7 @@
   name: Scrap raider
   parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBase]
   id: MobPirateT1SMG
-  description: In a team where everyone is armed with whatever they could grab, he picked up an SMG - and somehow made it work.  
+  description: In a team where everyone is armed with whatever they could grab, he picked up an SMG - and somehow made it work.
   components:
   - type: Tag
     tags:
@@ -2469,6 +2472,7 @@
   parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Mech
   components:
+  - type: MechVulnerableToEMP
   - type: Loadout
     prototypes:
     - MobPirateT2MechGear
@@ -4166,6 +4170,7 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
+  - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     delay: 2
     actions:

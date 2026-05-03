@@ -1,21 +1,28 @@
-<Document>
-[head=2][color=#0b6a8b][bold]Разрешение на утилизацию тела[/bold][/color][/head]
-[color=#0b6a8b][bold]{corpString}[/bold][/color][mono] / МЕД[/mono]
-[color=#666666][bold]Станция:[/bold][/color] {stationName}
-[color=#666666][bold]Время:[/bold][/color] {timeString}
+﻿<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#1B2333][bold]РАЗРЕШЕНИЕ[/bold][/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / МЕД[/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#0b6a8b][bold]Составитель[/bold][/color]
-[mono]ФИО:      [/mono]
-[mono]Должность:[/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Разрешение на утилизацию тела[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#0b6a8b][bold]Содержание[/bold][/color]
+[bold]Содержание:[/bold]
+Я, [form="Имя и Фамилия"], в должности [form="ДОЛЖНОСТЬ"], разрешаю утилизировать тело [form="Имя и Фамилия"], в должности [form="ДОЛЖНОСТЬ"] в связи с невозможностью его реанимации и клонирования.
+Способ утилизации: [form="Способ утилизации"]
 
-Я, (ФИО), в должности (ДОЛЖНОСТЬ), разрешаю утилизировать тело (ФИО), в должности (ДОЛЖНОСТЬ) в связи с невозможностью его реанимации и клонирования.
-Способ утилизации:
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
 
-[color=#666666][italic]Место для печатей[/italic][/color]
+
 
 
 </Document>
