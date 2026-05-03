@@ -1,22 +1,29 @@
-<Document>
-[head=2][color=#8a2db5][bold]Отчёт о внутреннем расследовании[/bold][/color][/head]
-[color=#8a2db5][bold]{corpString}[/bold][/color][mono] / ЮР-КОД[/mono]
-[color=#666666][bold]Станция:[/bold][/color] {stationName}
-[color=#666666][bold]Время:[/bold][/color] {timeString}
+﻿<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#1B2333][bold]ОТЧЁТ[/bold][/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / ЮР-[form="КОД"][/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#8a2db5][bold]Составитель[/bold][/color]
-[mono]ФИО:      [/mono]
-[mono]Должность:[/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Отчёт о внутреннем расследовании[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#8a2db5][bold]Отчёт[/bold][/color]
+[bold]Отчёт:[/bold]
+Я, [form="Имя и Фамилия"], как Агент Внутренних Дел, сообщаю, что в ходе внутренней проверки, запрошенной [form="Имя и Фамилия"], в должности [form="ДОЛЖНОСТЬ"], по причине [form="ПРИЧИНА ПРОВЕРКИ"], были выявлены следующие нарушения:
 
-Я, (ФИО), как Агент Внутренних Дел, сообщаю, что в ходе внутренней проверки, запрошенной (ФИО), в должности (ДОЛЖНОСТЬ), по причине (ПРИЧИНА ПРОВЕРКИ), были выявлены следующие нарушения:
+Также хочу сообщить о следующем: [form="Также хочу сообщить о следующем"]
 
-Также хочу сообщить о следующем:
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
 
-[color=#666666][italic]Место для печатей[/italic][/color]
+
 
 
 </Document>

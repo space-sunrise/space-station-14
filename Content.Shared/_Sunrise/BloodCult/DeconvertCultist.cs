@@ -46,11 +46,10 @@ public sealed partial class DeconvertCultistEntityEffectSystem : EntityEffectSys
 
         cultist.HolyConvertToken = null;
         entityManager.RemoveComponent<BloodCultistComponent>(uid);
-        if (entityManager.HasComponent<SharedPentagramComponent>(uid))
-            entityManager.RemoveComponent<SharedPentagramComponent>(uid);
         if (entityManager.HasComponent<CultMemberComponent>(uid))
             entityManager.RemoveComponent<CultMemberComponent>(uid);
         entityManager.System<TagSystem>().RemoveTag(uid, "Cultist");
+        entityManager.System<TagSystem>().AddTag(uid, "DeconvertedCultist");
     }
 }
 

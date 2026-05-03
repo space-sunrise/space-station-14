@@ -303,7 +303,7 @@ CartridgeRifleRubber: CartridgeRifleSP # Sunrise-Edit
 CartridgeCaselessRifleRubber: CartridgeCaselessRifle
 # Sunrise-Edit
 # MagazinePistolRubber: MagazinePistol
-MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP # Sunrise-Edit
+#MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP # Sunrise-Edit
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
 # Sunrise-Edit
 # MagazineMagnumRubber: MagazineMagnum
@@ -868,6 +868,7 @@ SupermatterSliver: null
 CartridgePistol: null
 AtmosDeviceFanTinyDev: AtmosDeviceFanTiny
 AtmosDeviceFanDirectionalDev: AtmosDeviceFanDirectional
+GasMinerPlasma: null # Temporary Sunrise migration entry until GasMinerPlasma is removed from all maps.
 MagazineBR64Extended: null
 MagazineBR64: null
 MagazineAR18Extended: null
@@ -986,4 +987,26 @@ ClothingOuterSuitAreopagite: null
 SuitStorageBlueshield: SuitStorageBlueShield
 GunSafeIonRifle: GunSafeSuperIonRifle
 GunSafeSMRTGun: GunSafeSuperweaponSmartGun
+ComfyBrownChair: ComfyChairBrown
+#2026-02-28
+CartridgeRifle: CartridgeRifleSP
+MagazinePistolHighCapacity: MagazinePistolHighCapacitySP
+StorageCanisterBase: StorageCanister
+BulletAK570_90mmHE: BulletAK57090mmHE
+WeaponTurretVespera50mm: ShuttleGunVespera50mm
+#2026-04-06
+AirlockExternalGlassShuttleArrivalsLocked: AirlockExternalGlassShuttleArrivalsLockedCentComm
+AirlockExternalGlassShuttleEmergencyLocked: AirlockExternalGlassShuttleEmergencyLockedCentComm
+CriminalRecordsComputerCircuitboard: SunriseCriminalRecordsComputerCircuitboard
+LockerPrisoner: PrisonCellLocker
+LockerPrisoner2: PrisonCellLocker2
+LockerPrisoner3: PrisonCellLocker3
+LockerPrisoner4: PrisonCellLocker4
+LockerPrisoner5: PrisonCellLocker5
+LockerPrisoner6: PrisonCellLocker6
+LockerPrisoner7: PrisonCellLocker7
+LockerPrisoner8: PrisonCellLocker8
+ComputerCriminalRecords: SunriseComputerCriminalRecords
+#2026-04-19
+AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
 # region Sunrise-End

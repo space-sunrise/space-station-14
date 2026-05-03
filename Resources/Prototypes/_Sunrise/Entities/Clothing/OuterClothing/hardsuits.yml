@@ -5,9 +5,9 @@
   description: A lightweight yet strong exosuit used for special cleanup operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn_commander.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn_commander.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURNLeader
 
@@ -125,9 +125,9 @@
   description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_elite.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_elite.rsi
   - type: FireProtection
     reduction: 0.8
   - type: Item
@@ -173,11 +173,11 @@
   description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -211,9 +211,9 @@
   description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -259,9 +259,9 @@
      walkModifier: 0.85
      sprintModifier: 0.85
    - type: Sprite
-     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering_compact.rsi
    - type: Clothing
-     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering_compact.rsi
    - type: ToggleableClothing
      clothingPrototype: ClothingHeadHelmetHardsuitEngineeringCompact
 
@@ -303,7 +303,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitUegParatrooper
 
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: ClothingHardsuitUegParatrooper
   id: ClothingHardsuitUegCap
   name: spacesuit of the commander of space marines
   description: As you look at it, you can imagine the pain, suffering and labor that a paratrooper endured to achieve the honor of wearing this suit. It represents the fear and horror before your eyes. If you have seen the wearer of this suit in person, you should thank him for the freedom and democracy he has given you, glory to the United Government of Earth!
@@ -312,28 +312,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_captain.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_captain.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.02
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.001
-  - type: FireProtection
-    reduction: 0.3
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.2
-        Slash: 0.2
-        Piercing: 0.2
-        Heat: 0.2
-        Radiation: 0.2
-        Caustic: 0.2
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitUegCap
 
@@ -482,10 +460,11 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
   - type: StaticPrice
     price: 0
+
 ## Pirate end
 
 - type: entity
-  parent: ClothingOuterHardsuitEVA
+  parent: [ ClothingOuterHardsuitEVA, BaseChameleon ]
   id: ClothingOuterHardsuitChameleon
   name: syndicate chameleon
   description: Looking at his material, Sci-fi images inadvertently pop up in your head.
@@ -502,6 +481,7 @@
     - type: Biocode
       factions:
       - Syndicate
+      - Pirate
       - Thief
     - type: ChameleonClothing
       slot: [outerClothing]
@@ -522,6 +502,9 @@
           Caustic: 0.5
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetEVA
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
 
 #Syndicate Infiltration Suit
 - type: entity
@@ -546,36 +529,33 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
   - type: StaminaResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
     targetSlot: outerClothing
+  - type: BreakDisguiseOnAction
   - type: ItemToggle
     canActivateInhand: false
   - type: ComponentToggler
     parent: true
     components:
-    # - type: Stealth
-    #   minVisibility: 0.3
-    #   maxVisibility: 0.3
-    #   lastVisibility: 0.3
-    - type: Stealth
-      mirage: false # Sunrise-Edit
-      hadOutline: true
-      examineThreshold: 0.9 # Sunrise-Edit
-    - type: StealthOnMove
-      passiveVisibilityRate: -1
-      movementVisibilityRate: 0.3
+      - type: Stealth
+        mirage: false
+        hadOutline: true
+        examineThreshold: 0.9
+      - type: StealthOnMove
+        passiveVisibilityRate: -1.25
+        movementVisibilityRate: 0.3
   - type: PowerCellDraw
-    drawRate: 2 # 900 seconds on the default cell
+    drawRate: 7 # 500 seconds on PowerCellSyndicate
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -583,6 +563,8 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       cell_slot:
@@ -595,8 +577,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 1
+    sprintModifier: 1
     requireActivated: false
   - type: HeldSpeedModifier
   - type: Tag
@@ -704,6 +686,9 @@
     sprintModifier: 0.9
   - type: Item
     size: Huge
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
@@ -718,6 +703,7 @@
   - type: ContainerContainer
     containers:
       beakerSlot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
   - type: Inject
     openCloseDelay: 1.5
     autoClose: true
@@ -845,3 +831,206 @@
         Caustic: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.5
+
+- type: entity
+  parent: [ BaseTSFContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitTSF
+  name: MARSOC hardsuit
+  description: A suit worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.5
+  - type: FireProtection
+    reduction: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Caustic: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: EmitSoundOnWearerMove
+    sound:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTSF
+
+# Space Hazard Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseMiningContraband]
+  id: ClothingOuterHardsuitSpaceHazard
+  name: space hazard hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Specifically for the dangers of space mining.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/spacehazard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/spacehazard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.2
+        Caustic: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSpaceHazard
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable
+    - WhitelistChameleon
+    - HardsuitSpatio
+
+
+# Mining Specialist Advanced hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  id: ClothingOuterHardsuitAdvancedMining
+  name: advanced mining hardsuit
+  description: An advanced jetpack-equipped hardsuit designed for mining operations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/advmining.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/advmining.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.85
+        Heat: 0.65
+        Cold: 0.65
+        Radiation: 0.2
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAdvancedMining
+  # - type: Jump
+  #   action: JumpJet
+  #   isEquipment: true
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 10
+      temperature: 293.15
+      moles:
+      - 1.025689525
+      - 1.025689525
+  - type: Jetpack
+    moleUsage: 0.00085
+  - type: RadarBlip
+    color: "#4800ff"
+    scale: 0.6
+    shape: Triangle
+    requireInSpace: true
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+
+
+# Mining Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  id: ClothingOuterHardsuitMining
+  name: mining hardsuit
+  description: A special suit that protects against hazardous, low pressure environments encountered during space mining.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/mining.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/mining.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.9
+        Heat: 0.7
+        Cold: 0.7
+        Radiation: 0.3
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.80
+    sprintModifier: 0.80
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMining
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+
+- type: entity
+  parent: [ClothingOuterArmorRaid]
+  id: ClothingOuterMaidArmorRaid
+  name: syndicate elegant raid suit
+  description: A flexible and well-armored... dress? made for speed and elegance. it does not protect its wearer from space.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi
+      layers:
+        - state: icon
+        - state: light-overlay
+          visible: false
+          shader: unshaded
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi

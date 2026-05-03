@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client._Sunrise;
 using Content.Client.Message;
 using Content.Client.RichText;
@@ -163,8 +163,15 @@ public sealed partial class ArticleEditorPanel : Control
     private void UpdatePhotoCountLabel()
     {
         PhotoCountLabel.Text = $"{PhotoPaths.Count}/10";
-        ButtonAddPhoto.Disabled = PhotoPaths.Count >= 10;
+        ButtonAddPhoto.Disabled = PhotoPaths.Count >= 10 || _photoSendingEnabled == false;
         PhotoCountLabel.ModulateSelfOverride = PhotoPaths.Count >= 10 ? Color.Red : null;
+    }
+
+    private bool _photoSendingEnabled = true;
+    public void SetPhotoSendingEnabled(bool enabled)
+    {
+        _photoSendingEnabled = enabled;
+        UpdatePhotoCountLabel();
     }
 
     private sealed class SelectedPhotoControl : Control
@@ -227,9 +234,8 @@ public sealed partial class ArticleEditorPanel : Control
 
         private void UpdateTexture()
         {
-            var uploaded = _netTextures.GetUploadedPath(_path);
-            if (_cache.TryGetResource<TextureResource>(uploaded, out var tex))
-                _textureRect.Texture = tex.Texture;
+            if (_netTextures.TryGetTexture(_path, out var texture))
+                _textureRect.Texture = texture;
         }
 
         protected override void Dispose(bool disposing)

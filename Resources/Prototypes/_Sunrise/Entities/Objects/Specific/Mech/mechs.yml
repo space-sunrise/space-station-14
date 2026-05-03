@@ -15,6 +15,11 @@
   save: false
   abstract: true
   components:
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
   - type: NoSlip
   - type: CanMoveInAir
   - type: Reactive
@@ -24,6 +29,7 @@
     - NanoTrasen
   - type: Mech
     entryDelay: 1
+  - type: MechVulnerableToEMP
   - type: MechAir
   - type: GravityAffected
   - type: AirFilter
@@ -73,8 +79,8 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5
+    baseWalkSpeed: 1
+    baseSprintSpeed: 4
     baseWeightlessModifier: 2
   - type: MovementAlwaysTouching
   - type: Pullable
@@ -213,10 +219,15 @@
       - PowerCageMedium
   - type: AccessReader
     access: [["Security"]]
+  - type: RadarBlip
+    color: "#ff1500"
+    scale: 1.25
+    shape: Triangle
+    requireInSpace: false
 
 - type: entity
   id: MechMiningPod
-  parent: [ BaseMechPod, BaseSalvageSpecialistContraband ]
+  parent: [ BaseMechPod, BaseSalvageContraband ]
   name: Mining Pod
   description: Despite its size, the Mining Pod has incredible survability in space.
   suffix: Filled
@@ -307,6 +318,11 @@
     speechSounds: Borg
   - type: TTS
     voice: Glados
+  - type: RadarBlip
+    color: "#4800ff"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
 
 # region Ripley
 # Ripley Mk-I Hauler
@@ -335,6 +351,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener # No paint unique ripley
+    - FootstepSound
 
 # Ripley MK-II "Death"
 - type: entity
@@ -354,6 +371,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.6
   - type: Mech
     baseState: death
     openState: death-open
@@ -601,6 +620,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.8
   - type: Mech
     baseState: ntgygax
     openState: ntgygax-open
@@ -634,10 +655,8 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorMediumNTLoadout ]
-  # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Tag

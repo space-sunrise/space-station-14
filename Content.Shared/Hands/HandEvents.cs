@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using JetBrains.Annotations;
+using Content.Shared.DoAfter;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -357,4 +358,26 @@ namespace Content.Shared.Hands
             Args = args;
         }
     }
+
+    // Sunrise-start
+    [Serializable, NetSerializable]
+    public sealed partial class PickupDoAfterEvent : DoAfterEvent
+    {
+        [DataField]
+        public NetEntity Item;
+
+        [DataField]
+        public string? HandId;
+
+        public PickupDoAfterEvent() { }
+
+        public PickupDoAfterEvent(NetEntity item, string? handId)
+        {
+            Item = item;
+            HandId = handId;
+        }
+
+        public override DoAfterEvent Clone() => this;
+    }
+    // Sunrise-end
 }

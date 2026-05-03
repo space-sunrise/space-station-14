@@ -1,60 +1,60 @@
 # Custom AI Code Guide
 
-## Назначение
+## Purpose
 
-Используй этот файл, когда прототипов уже недостаточно и нужно писать свой код ИИ.
+Use this file when prototypes are no longer enough and you need to write your own AI code.
 
-## Содержание
+## Content
 
-1. Быстрый выбор extension point
-2. Где писать код
-3. Контракт HTNOperator
-4. Шаблон оператора
-5. Шаблон предусловия
-6. Подключение нового C# к YAML
-7. Практический паттерн “оператор + система”
-8. Анти-паттерны при написании своего AI-кода
+1. Quick selection of extension point
+2. Where to write the code
+3. HTNOperator contract
+4. Statement template
+5. Precondition pattern
+6. Connecting new C# to YAML
+7. Practical pattern “operator + system”
+8. Anti-patterns when writing your AI code
 
-## Быстрый выбор extension point
+## Quick selection of extension point
 
-1. Нужна новая проверка условия:
-добавляй `HTNPrecondition`.
-2. Нужен новый атомарный шаг поведения:
-добавляй `HTNOperator`.
-3. Нужен новый способ выбора целей:
-добавляй `UtilityQuery`/`UtilityConsideration`/`UtilityCurve`.
-4. Нужна тяжелая runtime-логика, тикающая отдельно:
-добавляй/расширяй систему + runtime-компонент, а оператор используй как “шлюз”.
-5. Нужна fork-специфика:
-добавляй код в форковый сегмент (`Content.Server/_Sunrise/...`) и подключай через YAML.
+1. A new condition check is needed:
+add `HTNPrecondition`.
+2. A new atomic behavior step is needed:
+add `HTNOperator`.
+3. We need a new way to select targets:
+add `UtilityQuery`/`UtilityConsideration`/`UtilityCurve`.
+4. We need heavy runtime logic that ticks separately:
+add/expand the system + runtime component, and use the operator as a “gateway”.
+5. Fork specifics are needed:
+add code to the fork segment (`Content.Server/_Sunrise/...`) and connect via YAML.
 
-## Где писать код
+## Where to write code
 
-1. Операторы:
+1. Operators:
 `Content.Server/NPC/HTN/PrimitiveTasks/Operators/**`
-2. Предусловия:
+2. Preconditions:
 `Content.Server/NPC/HTN/Preconditions/**`
 3. Utility API:
 `Content.Server/NPC/Queries/**`
-4. Runtime-системы NPC:
+4. NPC runtime systems:
 `Content.Server/NPC/Systems/**`
-5. Форковые расширения (пример):
+5. Fork extensions (example):
 `Content.Server/_Sunrise/NPC/HTN/**`
 
-## Контракт HTNOperator
+## HTNOperator contract
 
 1. `Initialize(...)`:
-инициализировать зависимости/системы.
+initialize dependencies/systems.
 2. `Plan(...)`:
-проверять валидность шага и опционально возвращать `effects`.
+check the validity of the step and optionally return `effects`.
 3. `Startup(...)`:
-запускать runtime-часть шага.
+run the runtime part of the step.
 4. `Update(...)`:
-возвращать `Continuing`, `Finished` или `Failed`.
+return `Continuing`, `Finished` or `Failed`.
 5. `TaskShutdown(...)`/`PlanShutdown(...)`:
-чистить компоненты/blackboard/state.
+clean components/blackboard/state.
 
-## Шаблон оператора
+## Operator template
 
 ```csharp
 public sealed partial class MyOperator : HTNOperator, IHtnConditionalShutdown
@@ -80,23 +80,23 @@ public sealed partial class MyOperator : HTNOperator, IHtnConditionalShutdown
     public override void Startup(NPCBlackboard blackboard)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        // Запустить runtime-логику или выставить компонент.
+        // Run runtime logic or expose a component.
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
-        // Привести статус runtime-логики к HTNOperatorStatus.
+        // Set the runtime logic status to HTNOperatorStatus.
         return HTNOperatorStatus.Finished;
     }
 
     public void ConditionalShutdown(NPCBlackboard blackboard)
     {
-        // Очистить runtime-компоненты/keys.
+        // Clear runtime components/keys.
     }
 }
 ```
 
-## Шаблон предусловия
+## Precondition template
 
 ```csharp
 public sealed partial class MyPrecondition : HTNPrecondition
@@ -113,26 +113,26 @@ public sealed partial class MyPrecondition : HTNPrecondition
 }
 ```
 
-## Подключение нового C# к YAML
+## Connecting new C# to YAML
 
-1. Создай класс оператора/предусловия в нужном namespace.
-2. Используй его в YAML через `!type:MyOperator` или `!type:MyPrecondition`.
-3. Вставь новый примитив/предусловие в нужный `htnCompound`.
-4. При необходимости расширь `utility_queries.yml`.
+1. Create an operator/precondition class in the desired namespace.
+2. Use it in YAML via `!type:MyOperator` or `!type:MyPrecondition`.
+3. Insert a new primitive/precondition into the desired `htnCompound`.
+4. If necessary, expand `utility_queries.yml`.
 
-## Практический паттерн “оператор + система”
+## Practical pattern “operator + system”
 
-1. В операторе:
-минимум логики, только orchestration и контракт с blackboard.
-2. В системе:
-весь тяжелый runtime, обновление компонентов, работа с физикой/боем/actions.
-3. В shutdown:
-гарантированный cleanup, чтобы NPC не оставлял “висящие” runtime-состояния.
+1. In the operator:
+minimum logic, only orchestration and contract with blackboard.
+2. In the system:
+all the heavy runtime, updating components, working with physics/combat/actions.
+3. In shutdown:
+guaranteed cleanup so that NPCs do not leave “dangling” runtime states.
 
-## Анти-паттерны при написании своего AI-кода
+## Anti-patterns when writing your own AI code
 
-1. Держать сложный mutable-state внутри singleton оператора.
-2. Делать entity side effects в `Plan()` и ломать детерминизм планировщика.
-3. Не обрабатывать `Failed` состояние и получать бесконечный replan-thrash.
-4. Удалять/менять ключи blackboard в неожиданных местах без контракта.
-5. Подменять существующие боевые/steering системы ad-hoc кодом внутри оператора.
+1. Keep a complex mutable-state inside a singleton operator.
+2. Do entity side effects in `Plan()` and break the determinism of the scheduler.
+3. Do not process the `Failed` state and receive an endless replan-thrash.
+4. Delete/change blackboard keys in unexpected places without a contract.
+5. Replace existing combat/steering systems with ad-hoc code within the operator.

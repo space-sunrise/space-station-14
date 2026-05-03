@@ -1,24 +1,26 @@
-﻿using Content.Server.Chat.Systems;
+using Content.Server.Popups;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Popups;
-using Content.Shared.Speech.Muting;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System.Linq;
 
 namespace Content.Server._Sunrise.Chat.Sanitization;
 
 public sealed partial class ChatSanitizationSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    private static readonly Dictionary<NetUserId, List<(string Message, float Time)>> MessageHistory = new();
+    private static readonly EntProtoId SpamMuteStatusEffect = "StatusEffectMuted";
+
+    private readonly Dictionary<NetUserId, List<MessageHistoryEntry>> _messageHistory = new();
 
     private bool _antiSpamEnabled;
     private int _counterShort;
@@ -27,24 +29,17 @@ public sealed partial class ChatSanitizationSystem
     private float _timeShort;
     private float _timeLong;
 
-    private void InitializeAntiSpam()
+    private void InitializeAntiSpam(ConfigurationMultiSubscriptionBuilder cvarSubscriptions)
     {
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartHistoryCleanup);
 
-        // Получаем значения сразу, чтобы система работала при изменении сиваров через конфиг
-        _antiSpamEnabled = _configuration.GetCVar(SunriseCCVars.AntiSpamEnable);
-        _counterShort = _configuration.GetCVar(SunriseCCVars.AntiSpamCounterShort);
-        _counterLong = _configuration.GetCVar(SunriseCCVars.AntiSpamCounterLong);
-        _muteDuration = _configuration.GetCVar(SunriseCCVars.AntiSpamMuteDuration);
-        _timeShort = _configuration.GetCVar(SunriseCCVars.AntiSpamTimeShort);
-        _timeLong = _configuration.GetCVar(SunriseCCVars.AntiSpamTimeLong);
-
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamEnable, val => _antiSpamEnabled = val, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamCounterShort, val => _counterShort = val, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamCounterLong, val => _counterLong = val, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamMuteDuration, val => _muteDuration = val, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamTimeShort, val => _timeShort = val, true);
-        _configuration.OnValueChanged(SunriseCCVars.AntiSpamTimeLong, val => _timeLong = val, true);
+        cvarSubscriptions
+            .OnValueChanged(SunriseCCVars.ChatAntiSpamEnabled, val => _antiSpamEnabled = val, true)
+            .OnValueChanged(SunriseCCVars.ChatAntiSpamShortRepeatLimit, val => _counterShort = val, true)
+            .OnValueChanged(SunriseCCVars.ChatAntiSpamLongRepeatLimit, val => _counterLong = val, true)
+            .OnValueChanged(SunriseCCVars.ChatAntiSpamMuteDuration, val => _muteDuration = val, true)
+            .OnValueChanged(SunriseCCVars.ChatAntiSpamShortWindow, val => _timeShort = val, true)
+            .OnValueChanged(SunriseCCVars.ChatAntiSpamLongWindow, val => _timeLong = val, true);
     }
 
     private void SpamCheck(Entity<ActorComponent> ent, ref TrySendChatMessageEvent args)
@@ -58,15 +53,11 @@ public sealed partial class ChatSanitizationSystem
         var now = (float)_timing.CurTime.TotalSeconds;
         var history = GetMessageHistory(session.UserId);
 
-        CleanOldMessages(history, now);
-        history.Add((args.Message, now));
-
-        var (repeatsShort, repeatsLong) = GetMessageRepeatCounts(history, args.Message, now);
+        CompactHistoryAndCountRepeats(history, args.Message, now, out var repeatsShort, out var repeatsLong);
+        history.Add(new MessageHistoryEntry(args.Message, now));
 
         if (repeatsShort > _counterShort || repeatsLong > _counterLong)
-        {
             ApplyMuteForSpam(ent, ref args, history);
-        }
     }
 
     private bool ShouldSkipSpamCheck(InGameICChatType? type)
@@ -80,42 +71,65 @@ public sealed partial class ChatSanitizationSystem
         return false;
     }
 
-    private static List<(string Message, float Time)> GetMessageHistory(NetUserId userId)
+    private List<MessageHistoryEntry> GetMessageHistory(NetUserId userId)
     {
-        if (MessageHistory.TryGetValue(userId, out var history))
+        if (_messageHistory.TryGetValue(userId, out var history))
             return history;
 
         history = [];
-        MessageHistory[userId] = history;
+        _messageHistory[userId] = history;
 
         return history;
     }
 
-    private void CleanOldMessages(List<(string Message, float Time)> history, float now)
+    private void CompactHistoryAndCountRepeats(
+        List<MessageHistoryEntry> history,
+        string message,
+        float now,
+        out int repeatsShort,
+        out int repeatsLong)
     {
-        history.RemoveAll(m => now - m.Time > _timeLong);
+        repeatsShort = 1;
+        repeatsLong = 1;
+        var writeIndex = 0;
+
+        for (var readIndex = 0; readIndex < history.Count; readIndex++)
+        {
+            var entry = history[readIndex];
+            var age = now - entry.Time;
+
+            if (age > _timeLong)
+                continue;
+
+            history[writeIndex++] = entry;
+
+            if (!entry.Message.Equals(message, StringComparison.Ordinal))
+                continue;
+
+            repeatsLong++;
+            if (age <= _timeShort)
+                repeatsShort++;
+        }
+
+        if (writeIndex < history.Count)
+            history.RemoveRange(writeIndex, history.Count - writeIndex);
     }
 
-    private (int repeatsShort, int repeatsLong) GetMessageRepeatCounts(List<(string Message, float Time)> history, string message, float now)
-    {
-        var repeatsShort = history.Count(m => m.Message == message && now - m.Time <= _timeShort);
-        var repeatsLong = history.Count(m => m.Message == message);
-        return (repeatsShort, repeatsLong);
-    }
-
-    private void ApplyMuteForSpam(EntityUid uid, ref TrySendChatMessageEvent args, List<(string, float)> history)
+    private void ApplyMuteForSpam(EntityUid uid, ref TrySendChatMessageEvent args, List<MessageHistoryEntry> history)
     {
         history.Clear();
-        args.Cancel();
+        args.Cancelled = true;
 
         var message = Loc.GetString("spam-mute-text", ("target", uid));
-        _popup.PopupEntity(message, uid, PopupType.Large);
+        _popup.PopupEntity(message, uid, uid, PopupType.Large);
 
-        _statusEffects.TryAddStatusEffect<MutedComponent>(uid, "Muted", TimeSpan.FromSeconds(_muteDuration), true);
+        _statusEffects.TryUpdateStatusEffectDuration(uid, SpamMuteStatusEffect, TimeSpan.FromSeconds(_muteDuration));
     }
 
-    private static void RoundRestartHistoryCleanup(RoundRestartCleanupEvent ev)
+    private void RoundRestartHistoryCleanup(RoundRestartCleanupEvent ev)
     {
-        MessageHistory.Clear();
+        _messageHistory.Clear();
     }
+
+    private readonly record struct MessageHistoryEntry(string Message, float Time);
 }

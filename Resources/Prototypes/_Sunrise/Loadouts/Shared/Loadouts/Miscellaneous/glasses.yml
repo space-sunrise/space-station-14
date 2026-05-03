@@ -1,0 +1,21 @@
+- type: loadoutEffectGroup
+  id: CheapSunglassesTimer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 108000 #30 hours of bread cooking and Manly Dorf making
+
+- type: loadout
+  id: GlassesCheapSunglasses
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: CheapSunglassesTimer
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: loadout
+  id: GlassesStuttering
+  equipment:
+    eyes: ClothingEyesStuttering

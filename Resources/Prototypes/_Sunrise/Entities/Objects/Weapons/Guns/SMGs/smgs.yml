@@ -145,7 +145,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolHighCapacityFMJ
+        startingItem: MagazinePistolHighCapacitySP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_unload.ogg
         priority: 2
@@ -156,7 +156,7 @@
           - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolFMJ
+        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -351,7 +351,7 @@
 #PPSH
 - type: entity
   name: PPSH 59 SMG
-  parent: [BaseWeaponSubMachineGun, BaseMajorContraband] #, BaseSovietContraband
+  parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
   id: WeaponSubMachineGunPPSH
   description: Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses .35 ammo.
   components:
@@ -369,7 +369,7 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -9
+    minAngle: -11
     maxAngle: -9
   - type: Gun
     minAngle: 21
@@ -419,14 +419,14 @@
     shape:
     - 0,0,4,2
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
   - type: Gun
     minAngle: 10
     maxAngle: 35
@@ -446,7 +446,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleFMJ
+        startingItem: MagazineRifleSP
         insertSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
         priority: 2
@@ -455,14 +455,14 @@
           - MagazineRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleFMJ
+        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
           - CartridgeRifle
   - type: MagazineVisuals
     magState: mag
-    steps: 1
+    steps: 5
     zeroVisible: true
   - type: Appearance
 
@@ -477,14 +477,14 @@
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/aj_100.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
@@ -550,14 +550,14 @@
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus

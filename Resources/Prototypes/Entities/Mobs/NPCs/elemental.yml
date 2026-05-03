@@ -170,7 +170,7 @@
     attackMemoryLength: 10
   - type: NpcFactionMember
     factions:
-      - SimpleNeutral
+      - UraniumCrab # Sunrise-Edit
   - type: RadiationSource
     intensity: 2
     slope: 0.3

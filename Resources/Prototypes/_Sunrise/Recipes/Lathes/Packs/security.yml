@@ -204,11 +204,12 @@
 - type: latheRecipePack
   id: SecurityDynamicSunrise
   recipes:
+    - ComputerGunneryCircuitboard
     - WeaponEnergyGun
     - WeaponMiniEnergyGun
-    - WeaponEnergyGunPistol
-    - WeaponGunLaserCarbineAutomatic
+    - WeaponIonCarbine
     - MagazineBatteryLr30
+    - WeaponSunriseLaserPistol
     - FlareGunSecurityUpgrade
 # Sunrise-TODO: Нужен ребаланс с учетом типов боеприпасов
 #    - BaseMagazinePistolCaselessRifleExtended
@@ -224,16 +225,18 @@
     - ShellBlastArtillery
     - ShellEMPArtillery
     - ShellFlashArtillery
+    - ShellFragArtillery
     - MagazineBauer127
+#    - MagazineBauer127Penetrator
     - RifleHeavyMagazineArtillery
     - MagazineBoxBelt127Artillery
-    - MagazineBauer127Blast
+#    - MagazineBauer127Blast
     - MagazineBauer127Frag
     - MagazineBauer127Emp
     - MagazineBoxBelt127Empty
-    - MagazineBoxBelt127
+#    - MagazineBoxBelt127
     - MagazineBoxBelt127Artillery
-    - MagazineBoxBelt127Blast
+#    - MagazineBoxBelt127Blast
     - MagazineBoxBelt127Frag
     - MagazineBoxBelt127Emp
     #
@@ -312,6 +315,9 @@
     - MagazineRifleHeavyIncendiary
     - MagazineRifleHeavyAP
     - MagazineRifleHeavyUranium
+    - RifleHeavyMagazineFMJ
+    - RifleHeavyMagazineHP
+    - RifleHeavyMagazineSP
   # Shotgun
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
@@ -420,6 +426,7 @@
   - MagazineBoxBelt127Emp
   - ShuttleGunQuadlingCircuitboard
   - ShuttleGunTeslaHyperionCircuitboard
+  - ShuttleGunBullfrogCircuitboard
   # Shotgun Magazine
   - MagazineShotgun
   - MagazineShotgunEmpty

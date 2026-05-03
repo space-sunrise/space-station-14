@@ -58,6 +58,27 @@
 - type: Tag
   id: MagazineSMGPPSH
 
+- type: Tag # Sunrise-Add
+  id: Cartridge75mmDravon
+
+- type: Tag # Sunrise-Add
+  id: Cartridge90mmAK570
+
+- type: Tag # Sunrise-Add
+  id: Cartridge240mmLeviathan
+
+- type: Tag # Sunrise-Add
+  id: MagazineDravon75mm
+
+- type: Tag # Sunrise-Add
+  id: MagazineAK570_90mm
+
+- type: Tag # Sunrise-Add
+  id: Cartridge50mmRocket
+
+- type: Tag # Sunrise-Add
+  id: Magazine50mmRocket
+
 - type: Tag
   id: MagazineSMGUzi
 
@@ -96,3 +117,25 @@
 
 - type: Tag
   id: TiderAnvilParts
+
+- type: Tag
+  id: Cartridge280mmSlug
+
+- type: Tag
+  id: Grenade120mm
+
+- type: Tag
+  id: Cartridge60mmRocket
+
+- type: Tag
+  id: Magazine60mmRocket
+
+- type: Tag
+  id: MagazineGrenade120mm
+
+- type: Tag
+  id: Cartridge20mmAutocannon
+
+- type: Tag
+  id: Stairs
+

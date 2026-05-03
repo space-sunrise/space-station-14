@@ -3,9 +3,11 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.CartridgeLoader;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
 
@@ -25,15 +27,19 @@ public sealed partial class MessengerCartridgeSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly RingerSystem _ringer = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private ISawmill Sawmill { get; set; } = default!;
     private const string MessengerFrequencyId = "Messenger";
+    private bool _photoUploadEnabled = true;
 
     public override void Initialize()
     {
         base.Initialize();
 
         Sawmill = _logManager.GetSawmill("messenger.cartridge");
+
+        _cfg.OnValueChanged(SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
 
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeMessageEvent>(OnUiMessage);
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);

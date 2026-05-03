@@ -1,0 +1,2179 @@
+﻿# Base
+- type: entity
+  abstract: true
+  parent:
+  - MobNonHumanHostileBase
+  - MobHumanoidInvetorySimplified
+  - MobPassiveRegen
+  name: comrade
+  id: MobSovietBase
+  categories: [ Spawner ]
+  components:
+  - type: Climbing
+  # Allows ghosts/admins to quickly warp to soviets from the ghost teleport panel
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-soviet-name
+    description: ghost-panel-antagonist-soviet-description
+    priority: 45
+  - type: GuideHelp
+    guides:
+    - MobsExpeditionGuideSoviets
+  - type: Damageable
+    damageModifierSet: MobPirateT1
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: NpcFactionMember
+    factions:
+    - Soviet
+  - type: NpcVeteranFollower
+  - type: FootprintEmitter
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      130: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TimedDespawn
+    lifetime: 3600
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+  - type: AddComponentsOnTrigger
+    triggerOnce: true
+    removeExisting: true
+    components:
+    - type: TimedDespawn
+      lifetime: 600
+    - type: Strippable
+    - type: Pullable
+  - type: TimedRemoveComponents
+    removeAfter: 0
+    components:
+    - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger
+        damageGroup: Brute
+        damage: 300
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          OrganLootSpawner:
+            min: 1
+            max: 1
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 600
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 75
+      behaviors:
+      - !type:VomitBehavior
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 125
+  - type: Stamina
+    baseCritThreshold: 125
+  - type: DamageStateVisuals
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: Tool
+    speedModifier: 10
+    qualities:
+    - Prying
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 10
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+       type: StrippableBoundUserInterface
+  - type: ToggleableNightVision
+    effect: EffectNightVisionPirate
+  - type: ComplexInteraction
+  - type: TTS
+    voice: Sidorovich
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: GhostRole
+    prob: 0.05
+    makeSentient: true
+    name: ghost-role-information-expedition-soviet-name
+    description: ghost-role-information-expedition-soviet-description
+    rules: ghost-role-information-rules-expedition-soviet-antagonist
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: GhostOnMove
+    mustBeDead: true
+  - type: Puller
+    needsHands: false
+  - type: Speech
+  - type: DatasetVocalizer
+    dataset: SovietChatterNPC
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 120s
+    hideChat: true
+
+# T1 Soldier features
+- type: entity
+  abstract: true
+  name: Private
+  id: SovietSoldierBase
+  description: Low-ranking soldiers armed with a variety of surplus weapons.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirstSovietLow
+    - NamesLast
+    nameFormat: name-format-ert
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+
+- type: entity
+  abstract: true
+  parent: MobSovietBase
+  id: MobSovietVeteranChatterBase
+  components:
+  - type: DatasetVocalizer
+    dataset: SovietChatterNPCVeteran
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 90s
+    hideChat: true
+
+- type: entity
+  abstract: true
+  name: Serzhant
+  parent: SovietSoldierBase
+  id: SovietSerzhantBase
+  description: A Soviet sergeant who leads nearby fighters and coordinates the squad.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
+    - sprite: _RMC14/Objects/Clothing/Back/Backpacks/telephone.rsi
+      state: equipped-BACKPACK
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirstGamma
+    - NamesLast
+    nameFormat: name-format-ert
+  - type: ActionGun
+    action: ActionGunGrenadeExplosiveShrapnel
+    gunProto: GunGrenadeExplosiveShrapnel
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionGunGrenadeExplosiveShrapnel
+      minRange: 4
+      maxRange: 12
+
+# T2 Marine features
+- type: entity
+  parent: ActionGravityJump
+  id: ActionGravityJumpQuick
+  components:
+  - type: Action
+    useDelay: 2
+
+- type: entity
+  id: MobSovietMarineMelee
+  abstract: true
+  components:
+  - type: NoSlip
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      25: 1.15
+      75: 1.25
+  - type: JumpAbility
+    action: ActionGravityJumpQuick
+    jumpDistance: 3
+    jumpSound: /Audio/_Sunrise/Effects/silence.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 2
+      maxRange: 0
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+
+- type: entity
+  id: MobSovietMarineRanged
+  parent: MobSovietMarineMelee
+  abstract: true
+  components:
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      25: 1.1
+      75: 1.2
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+
+# Variations
+#region Tier 1
+# Squad Leader`s
+- type: entity
+  name: serzhant rifle
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietVeteranChatterBase
+  - SovietSerzhantBase
+  id: MobSovietT1SLRifle
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearSKM24SL
+  - type: BatteryAmmoProvider
+    proto: CartridgeLightRifleFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 5
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 30
+    startingCharge: 30
+  - type: Gun
+    showExamineText: false
+    fireRate: 4.5
+    minAngle: 3
+    maxAngle: 25
+    angleIncrease: 4
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - NpcVeteranLeader
+
+- type: entity
+  name: serzhant smg
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietVeteranChatterBase
+  - SovietSerzhantBase
+  id: MobSovietT1SerzhantSMG
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearPPSHSL
+  - type: BatteryAmmoProvider
+    proto: CartridgePistolFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 2
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: Gun
+    showExamineText: false
+    fireRate: 15
+    selectedMode: FullAuto
+    minAngle: 18
+    maxAngle: 30
+    angleIncrease: 2
+    angleDecay: 15
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - NpcVeteranLeader
+
+# regular
+- type: entity
+  name: soviet combat medic
+  parent:
+  - SovietSoldierBase
+  - MobSovietT1SerzhantSMG
+  id: MobSovietT1Medic
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.7
+    baseSprintSpeed: 2.7
+  - type: TTS
+    voice: TfMedic
+  - type: Loadout
+    prototypes:
+    - MobSovietGearT1Medic
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: ShowHealthBars
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
+    - sprite: _Sunrise/Clothing/OuterClothing/Vests/armor_sec_med.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Hands/Gloves/nitrile.rsi
+      state: equipped-HAND
+      color: "#3CB57C"
+  - type: AoEHeal
+    healSelf: false
+    range: 5
+    threshold: 0.9
+    aliveTargets: false
+    damage:
+      groups:
+        Brute: -10
+        Burn: -8
+        Airloss: -10
+        Toxin: -10
+    whitelist:
+      components:
+      - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      healSelf: false
+      range: 5
+      threshold: 0.9
+      aliveTargets: false
+      damage:
+        groups:
+          Brute: -10
+          Burn: -8
+          Airloss: -10
+          Toxin: -10
+      whitelist:
+        components:
+        - NpcVeteranFollower
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+
+- type: entity
+  name: soldier
+  parent:
+  - SovietSoldierBase
+  - MobSovietT1SLRifle
+  id: MobSovietT1SKM
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearSKM24
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+
+- type: entity
+  name: soldier
+  parent:
+  - SovietSoldierBase
+  - MobSovietT1SerzhantSMG
+  id: MobSovietT1PPSH
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearPPSH
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionGunGrenadeExplosiveShrapnel
+      minRange: 9
+      maxRange: 12
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+
+- type: entity
+  name: soldier
+  parent:
+  - MobSovietBase
+  - MobHumanoidHostileAISimpleMelee
+  - SovietSoldierBase
+  id: MobSovietT1Knife
+  components:
+  - type: TTS
+    voice: Forester
+  - type: Loadout
+    prototypes:
+    - MobSovietGearMeleeT1Alt
+
+- type: entity
+  name: soldier
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietBase
+  - SovietSoldierBase
+  id: MobSovietT1Pistol
+  components:
+  - type: TTS
+    voice: Voljin
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedT1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: CartridgePistolFMJ
+    capacity: 11
+    count: 11
+  - type: Gun
+    showExamineText: false
+    minAngle: 10
+    maxAngle: 21
+    angleIncrease: 4
+    angleDecay: 5
+    fireRate: 8
+    availableModes:
+    - SemiAuto
+    useKey: true
+    soundGunshot:
+      collection: m1984
+    soundEmpty:
+      path: /Audio/_RMC14/Weapons/Guns/gun_cmb_click1.ogg
+
+- type: entity
+  name: soldier
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietBase
+  - SovietSoldierBase
+  id: MobSovietT1Dp28
+  components:
+  - type: TTS
+    voice: TfHeavy
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedT1Dp28
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 9
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 47
+    startingCharge: 47
+  - type: Gun
+    showExamineText: false
+    fireRate: 5
+    minAngle: 5
+    maxAngle: 55
+    angleIncrease: 5
+    angleDecay: 15
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp28.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+
+- type: entity
+  name: soldier
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietBase
+  - SovietSoldierBase
+  id: MobSovietT1PKM
+  components:
+  - type: TTS
+    voice: TfHeavy
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedT1PKM
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 2.8
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 4
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 25
+    startingCharge: 25
+  - type: Gun
+    showExamineText: false
+    fireRate: 6.5
+    minAngle: 5
+    maxAngle: 60
+    angleIncrease: 1
+    angleDecay: 20
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: m249 # Sunrise-Edit
+      params:
+        volume: 10
+        pitch: 1.1
+    soundEmpty:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
+
+- type: entity
+  name: soldier
+  parent:
+  - MobSovietT1Dp28
+  id: MobSovietT1RPD
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedT1RPD
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3.5
+  - type: BatteryAmmoProvider
+    proto: CartridgeLightRifleFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 1
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 25
+    startingCharge: 25
+  - type: Gun
+    showExamineText: false
+    fireRate: 7.5
+    minAngle: 5
+    maxAngle: 50
+    angleIncrease: 3
+    angleDecay: 25
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+
+- type: entity
+  name: soldier
+  parent:
+  - SovietSoldierBase
+  - MobSovietT1Mosin
+  id: MobSovietT1MosinAlt2
+  components:
+  - type: TTS
+    voice: TfSniper
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedAltT1
+
+- type: entity
+  name: soldier
+  parent:
+  - MobSovietBase
+  - SovietSoldierBase
+  id: MobSovietT1Mosin
+  description: Low-ranking soldiers armed with a variety of surplus weapons.
+  components:
+  - type: TTS
+    voice: TfSniper
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedAltT1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+    capacity: 5
+    count: 5
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.8
+    minAngle: 2
+    maxAngle: 20
+    angleIncrease: 3
+    angleDecay: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/_Starlight/Weapons/Guns/Gunshots/mosin.ogg
+
+- type: entity
+  name: soldier
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietBase
+  - SovietSoldierBase
+  id: MobSovietT1SMGAlt
+  description: A Soviet drifter armed in light smg.
+  components:
+  - type: TTS
+    voice: TfDemoman
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedSMG
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Head/Hats/ushanka.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
+    - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+      state: wielded-inhand-right
+  - type: BasicEntityAmmoProvider
+    proto: CartridgePistolFMJ
+    capacity: 32
+    count: 32
+  - type: Gun
+    showExamineText: false
+    fireRate: 5
+    selectedMode: FullAuto
+    minAngle: 6
+    maxAngle: 25
+    angleIncrease: 1
+    angleDecay: 10
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+
+- type: entity
+  name: soldier
+  parent: MobSovietT1Mosin
+  id: MobSovietT1MosinAlt
+  description: A Soviet marksman in old civilian winter gear.
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedRifleMosin
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas_white.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Head/Hats/greyflatcap.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
+    - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+      state: wielded-inhand-right
+
+#region Tier 2
+- type: entity
+  name: Marine
+  parent:
+  - MobSovietMarineMelee
+  - MobSovietBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobSovietT2Bottle
+  description: Booze marine with most dangerous weapon. Bottle roze!.
+  components:
+  - type: TTS
+    voice: TfHeavy
+  - type: Loadout
+    prototypes:
+    - MobSovietGearMeleeT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+      state: equipped-HELMET
+
+- type: entity
+  name: Marine
+  parent:
+  - MobSovietMarineMelee
+  - MobSovietBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobSovietT2Finka
+  description: Booze marine with most dangerous weapon. Bottle roze!.
+  components:
+  - type: TTS
+    voice: TfSpy
+  - type: Loadout
+    prototypes:
+    - MobSovietGearMeleeT2Alt
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+      state: equipped-HELMET
+
+- type: entity
+  name: marine
+  parent:
+  - MobSovietMarineMelee
+  - MobMovementSpeedModifierRanged
+  - MobSovietBase
+  id: MobSovietT2Revolver
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  components:
+  - type: TTS
+    voice: Punisher
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+      state: equipped-HELMET
+  - type: BasicEntityAmmoProvider
+    proto: CartridgePistol40SP
+    capacity: 8
+    count: 8
+  - type: Gun
+    showExamineText: false
+    minAngle: 11
+    maxAngle: 25
+    angleIncrease: 3
+    angleDecay: 3
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: marine ranger
+  parent:
+  - MobSovietMarineRanged
+  - MobSovietT3Rifle
+  id: MobSovietT2Rifle
+  description: A marine veteran in battered USSP uniform.
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedRifleSKM24Green
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+
+- type: entity
+  name: marine ranger
+  parent:
+  - MobSovietMarineRanged
+  - MobSovietT3Rifle
+  id: MobSovietT2RifleW
+  description: A marine veteran in an old winter command coat.
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedRifleSKM24W
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+      state: HOS-equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
+      state: equipped-HAND
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+
+
+- type: entity
+  name: marine raider
+  description: A hardened marine veteran who keeps PPSH.
+  parent:
+  - MobSovietMarineRanged
+  - MobSovietBase
+  id: MobSovietT2Raider
+  components:
+  - type: Loadout
+    prototypes:
+    - MobSovietGearT2Raider
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/alcoholichka.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: _Sunrise/Clothing/Head/Hats/beret_atmos.rsi
+      state: equipped-HELMET
+  - type: BatteryAmmoProvider
+    proto: CartridgePistolFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 1
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 12
+    startingCharge: 12
+  - type: Gun
+    showExamineText: false
+    fireRate: 14
+    selectedMode: FullAuto
+    minAngle: 16
+    maxAngle: 30
+    angleIncrease: 1
+    angleDecay: 8
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
+
+#region Tier 3
+
+- type: entity
+  name: marine combat medic
+  description: A hardened marine medic.
+  parent:
+  - MobSovietMarineRanged
+  - MobSovietBase
+  id: MobSovietT3Medic
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 2.8
+  - type: TTS
+    voice: TfMedic
+  - type: Loadout
+    prototypes:
+    - MobSovietGearT3Medic
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: ShowHealthBars
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: _Sunrise/Clothing/OuterClothing/Vests/armor_sec_med.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Hands/Gloves/nitrile.rsi
+      state: equipped-HAND
+      color: "#3CB57C"
+  - type: BatteryAmmoProvider
+    proto: CartridgePistolFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 4
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: Gun
+    showExamineText: false
+    minAngle: 1
+    maxAngle: 16
+    angleIncrease: 2
+    angleDecay: 5
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: AoEHeal
+    healSelf: false
+    range: 7
+    threshold: 0.9
+    damage:
+      groups:
+        Brute: -15
+        Burn: -15
+        Airloss: -15
+        Toxin: -15
+    whitelist:
+      components:
+      - NpcVeteranFollower
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: AoEHeal
+      healSelf: false
+      range: 7
+      threshold: 0.9
+      damage:
+        groups:
+          Brute: -15
+          Burn: -15
+          Airloss: -15
+          Toxin: -15
+      whitelist:
+        components:
+        - NpcVeteranFollower
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
+      minRange: 5
+      maxRange: 12
+
+- type: entity
+  name: marine
+  parent:
+  - MobSovietMarineRanged
+  - MobMovementSpeedModifierRanged
+  - MobSovietBase
+  id: MobSovietT3Shotgun
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  components:
+  - type: TTS
+    voice: TfEngineer
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedAltT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_heavy.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+    - sprite: Objects/Tanks/oxygen.rsi
+      state: equipped-SUITSTORAGE
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgunFlechette
+    capacity: 8
+    count: 8
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: xm1014
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
+      minRange: 5
+      maxRange: 12
+
+- type: entity
+  parent:
+  - MobSovietT3Shotgun
+  id: MobSovietT3ShotgunIncendiary
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgunIncendiary
+    capacity: 8
+    count: 8
+
+- type: entity
+  name: marine ranger
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobSovietVeteranChatterBase
+  id: MobSovietT3Rifle
+  components:
+  - type: NoSlip
+  - type: Tag
+    tags:
+    - NpcVeteranLeader
+    - DoorBumpOpener
+    - FootstepSound
+  - type: Loadout
+    prototypes:
+    - MobSovietGearRangedT3Alt
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
+      state: on-equipped-HELMET
+      shader: unshaded
+  - type: JumpAbility
+    action: ActionGravityJumpQuick
+    jumpDistance: 3
+    jumpSound: /Audio/_Sunrise/Effects/silence.ogg
+  - type: BatteryAmmoProvider
+    proto: CartridgeLightRifleFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 4
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 30
+    startingCharge: 30
+  - type: Gun
+    showExamineText: false
+    fireRate: 5
+    minAngle: 1
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
+    - actionId: ActionScream
+      minRange: 1
+      maxRange: 0
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
+      minRange: 5
+      maxRange: 12
+
+- type: entity
+  name: Molot
+  description: The Light Mech USSP, a communist variant of the Gygax, features light armor and a powerful auto-shotgun gun.
+  parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
+  id: MobSovietT2Mech
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MechVulnerableToEMP
+  - type: NoSlip
+  - type: Loadout
+    prototypes:
+    - MobSovietGearT2Mech
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/gygax.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: molot
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: molot-unshaded
+      shader: unshaded
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: molot
+        BaseUnshaded: molot-unshaded
+      Critical:
+        Base: molot-broken
+      Dead:
+        Base: molot-broken
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
+      301: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: MobSovietT2Rifle
+  - type: GibOnTrigger
+    targetUser: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 350
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.9
+      250: 0.8
+      300: 0.7
+  - type: Stamina
+    baseCritThreshold: 9999
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Repairable
+    fuelCost: 25
+    doAfterDelay: 10
+  - type: BatteryAmmoProvider
+    proto: ShellShotgun
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 2
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 3
+    startingCharge: 3
+  - type: Gun
+    minAngle: -15
+    maxAngle: 25
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
+  - type: Reflect
+    reflectProb: 0.1
+    spread: 360
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+    - Energy
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 1.5
+    energy: 1.5
+    mask: /Textures/Effects/LightMasks/soft_cone.png
+    color: "#FFFF00"
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - Pickaxe
+    - NpcBoss
+  - type: HellSpawnRush
+    blacklist:
+      tags:
+      - Hellspawn
+      - GlassBeaker
+      - DrinkBottle
+      - DrinkCan
+  - type: JumpAbility
+    jumpDistance: 5
+    jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionGravityJump
+      minRange: 5
+      maxRange: 0
+
+#region Tier 4 - Boss
+- type: entity
+  name: Doll House
+  description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
+  parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
+  id: MobSovietT3Mech
+  components:
+  - type: NoSlip
+  - type: MechVulnerableToEMP
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionActivateSmokeGrenadeImplant
+      minRange: 0
+      maxRange: 5
+    - actionId: ActionActivateScramImplant
+      minRange: 0
+      maxRange: 5
+  - type: Loadout
+    prototypes:
+    - MobSovietGearT3Mech
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/durand.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dollhouse
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: dollhouse-unshaded
+      shader: unshaded
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dollhouse
+        BaseUnshaded: dollhouse-unshaded
+      Critical:
+        Base: dollhouse-broken
+      Dead:
+        Base: dollhouse-broken
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Critical
+      401: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnOnTrigger
+    proto: MobSovietT2Rifle
+  - type: GibOnTrigger
+    targetUser: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 450
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.9
+      250: 0.8
+      350: 0.7
+      400: 0.6
+  - type: Stamina
+    baseCritThreshold: 9999
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.25
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Repairable
+    fuelCost: 25
+    doAfterDelay: 10
+  - type: BatteryAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 5
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 40
+    startingCharge: 40
+  - type: Gun
+    minAngle: -15
+    maxAngle: 25
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 360
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 1.5
+    energy: 1.5
+    mask: /Textures/Effects/LightMasks/soft_cone.png
+    color: "#FFFF00"
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Tag
+    tags:
+    - NpcBoss
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - Pickaxe
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.6
+  - type: AutoImplant
+    implants:
+    - SmokeScreenImplant
+    - ScramImplant
+
+- type: entity
+  name: comrade captain
+  parent:
+   - MobHostileBossBase
+   - MobSovietVeteranChatterBase
+  id: MobSovietCaptain
+  description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
+  components:
+  - type: TTS
+    voice: Khajiit
+  - type: Tag
+    tags:
+    - NpcBoss
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+  - type: Loadout
+    prototypes:
+    - MobSovietGearTier4Captain
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Objects/Tanks/oxygen.rsi
+      state: equipped-SUITSTORAGE
+    - sprite: Clothing/Belt/militarywebbing.rsi
+      state: equipped-BELT
+    - sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
+      state: equipped-HELMET
+    - sprite: _Sunrise/Clothing/Neck/Cloaks/securityofficer.rsi
+      state: equipped-NECK
+  - type: BatteryAmmoProvider
+    proto: CartridgeAntiMateriel
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 9
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 8
+    startingCharge: 8
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 3
+    maxAngle: 25
+    angleIncrease: 3
+    angleDecay: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
+      params:
+        volume: -1
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/empty.ogg
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 1.5
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-mercenary-captain-dungeon-name
+    description: ghost-role-information-mercenary-captain-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionSideArmFan
+    gunProto: GunSideArmFan
+  - type: NPCUseActionWhenTargetInRange
+    actions:
+    - actionId: ActionSideArmFan
+      minRange: 0
+      maxRange: 2
+
+# region Mini-boss
+- type: entity
+  abstract: true
+  id: MobSovietBearBase
+  parent: MobBearSpace
+  description: Smells like booze.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Soviet
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: Stamina
+    baseCritThreshold: 250
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Vodka
+        Quantity: 150
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 10
+        Slash: 20
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatBear
+      amount: 6
+    - id: ChemistryBottleOmnizine
+      amount: 1
+
+- type: entity
+  name: soviet bear
+  id: MobSovietBear
+  parent: MobSovietBearBase
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Animals/bear.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bear
+
+- type: entity
+  name: soviet bear
+  id: MobSovietBearAlt
+  parent: MobSovietBearBase
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Animals/bear_soviet.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bear
+
+- type: entity
+  name: soviet space bear
+  id: MobSovietSpaceBear
+  parent: MobSovietBearBase
+
+# expedition spawner
+- type: entity
+  name: soviet spawner T1
+  id: MobSovietT1ExpeditionSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+  - type: RandomSpawner
+    prototypes:
+      - MobSovietT1Knife
+      - MobSovietT1Pistol
+      - MobSovietT1Mosin
+      - MobSovietT1SMGAlt
+      - MobSovietT1MosinAlt
+    rarePrototypes:
+      - SovietSquadInfantry
+      - SovietSquadInfantry2
+      - SovietSquadPatrol
+      - SovietSquadSmg
+      - SovietSquadLmg
+      - SovietSquadMmg
+      - SovietSquadPatrol
+      - MobSovietBear
+      - MobSovietBearAlt
+    rareChance: 0.05
+
+- type: entity
+  name: soviet spawner
+  id: MobSovietExpeditionSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+  - type: RandomSpawner
+    prototypes:
+      - MobSovietT1Knife
+      - MobSovietT1Pistol
+      - MobSovietT1RPD
+      - MobSovietT1Mosin
+      - MobSovietT1SMGAlt
+      - MobSovietT1MosinAlt
+      - MobSovietT2Bottle
+      - MobSovietT2Finka
+      - MobSovietT2Revolver
+      - MobSovietT2Rifle
+      - MobSovietT2RifleW
+      - MobSovietT3Shotgun
+      - MobSovietT3ShotgunIncendiary
+      - MobSovietT3Rifle
+      - MobSovietT2Raider
+    rarePrototypes:
+      - SovietSquadInfantry
+      - SovietSquadInfantry2
+      - SovietSquadAssault
+      - SovietSquadSmg
+      - SovietSquadLmg
+      - SovietSquadMmg
+      - SovietSquadPatrol
+      - SovietSquadLightMechanized
+      - SovietSquadHeavyMechanized
+      - MobSovietT2Mech
+      - MobSovietT3Mech
+      - MobSovietBear
+      - MobSovietBearAlt
+      - MobSovietSpaceBear
+      - MobSovietCaptain
+    rareChance: 0.08
+
+# region Soviet timed squads
+- type: entityTable
+  id: SovietInfantrySquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SerzhantSMG
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1MosinAlt2
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1Mosin
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1MosinAlt2
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1MosinAlt2
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1Medic
+      prob: 1
+
+- type: entity
+  name: soviet infantry squad spawner
+  id: SovietSquadInfantry
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+      state: base
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietInfantrySquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietInfantry2SquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SerzhantSMG
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1Dp28
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1MosinAlt2
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1Mosin
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1MosinAlt2
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1Medic
+      prob: 1
+
+- type: entity
+  name: soviet infantry squad 2 spawner
+  id: SovietSquadInfantry2
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi
+      state: base
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietInfantry2SquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietAssaultSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SLRifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1SKM
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1SKM
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1SKM
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1RPD
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1Medic
+      prob: 1
+
+- type: entity
+  name: soviet assault squad spawner
+  id: SovietSquadAssault
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi
+      state: icon
+    - sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi
+      state: mag-0
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietAssaultSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietSmgSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SerzhantSMG
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1Medic
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1PPSH
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1PPSH
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1PPSH
+      prob: 1
+
+- type: entity
+  name: soviet smg squad spawner
+  id: SovietSquadSmg
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
+      state: base
+    - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
+      state: mag-0
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietSmgSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietLmgSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SLRifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1RPD
+      prob: 1
+
+- type: entity
+  name: soviet light machinegun squad spawner
+  id: SovietSquadLmg
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/big.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietLmgSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietMmgSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SLRifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1PKM
+      prob: 1
+
+- type: entity
+  name: soviet medium machinegun squad spawner
+  id: SovietSquadMmg
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/big.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietMmgSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietPatrolSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT1SLRifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1SKM
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT1SKM
+      prob: 1
+
+- type: entity
+  name: soviet patrol squad spawner
+  id: SovietSquadPatrol
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: Objects/Tools/binoculars.rsi
+      state: icon
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietPatrolSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietLightMechanizedSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT2Mech
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3Rifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3Rifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3Shotgun
+      prob: 1
+
+- type: entity
+  name: soviet light mechanized squad spawner
+  id: SovietSquadLightMechanized
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: Objects/Specific/Mech/gygax.rsi
+      state: molot
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietLightMechanizedSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietHeavyMechanizedSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobSovietT3Mech
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3Medic
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3Rifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3Rifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3Rifle
+      prob: 1
+    - !type:EntSelector
+      id: MobSovietT3ShotgunIncendiary
+      prob: 1
+
+- type: entity
+  name: soviet heavy mechanized squad spawner
+  id: SovietSquadHeavyMechanized
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Sunrise/Structures/Decoration/banner.rsi
+      state: banner_ussp
+    - sprite: Objects/Specific/Mech/durand.rsi
+      state: dollhouse
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: SovietHeavyMechanizedSquadTable
+    deleteSpawnerAfterSpawn: true
+
+# Backward-compat aliases for old Tier 1 IDs used by procedural spawners/maps.
+- type: entity
+  parent: MobSovietT1Knife
+  id: MobSovietKnife
+
+- type: entity
+  parent: MobSovietT1Pistol
+  id: MobSovietPistol
+
+- type: entity
+  parent: MobSovietT1Mosin
+  id: MobSovietMosin
+
+- type: entity
+  parent: MobSovietT1MosinAlt
+  id: MobSovietMosinAlt
+
+

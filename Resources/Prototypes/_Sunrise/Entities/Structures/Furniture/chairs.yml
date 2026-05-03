@@ -3,6 +3,8 @@
   id: ChairCarp
   parent: SeatBase
   description: A luxurious chair, the many purple scales reflect the light in a most pleasing manner.
+  placement:
+    mode: SnapgridCenter
   components:
     - type: Transform
       anchored: true
@@ -16,7 +18,7 @@
 
 - type: entity
   name: comfy brown chair
-  id: ComfyBrownChair
+  id: ComfyChairBrown
   parent: ChairBase
   description: It looks comfy.
   components:
@@ -25,7 +27,7 @@
     state: comfy-brown
   - type: Construction
     graph: Seat
-    node: chairComfyBrown
+    node: chairComfy
 
 - type: entity
   name: grey office chair

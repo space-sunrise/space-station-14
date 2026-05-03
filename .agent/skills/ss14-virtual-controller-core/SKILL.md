@@ -1,83 +1,83 @@
 ---
 name: ss14-virtual-controller-core
-description: Разбирает архитектуру VirtualController в Space Station 14: цикл UpdateBeforeSolve/UpdateAfterSolve, порядок через UpdatesBefore/UpdatesAfter, prediction-семантику и связь с low-level физикой Box2D (substeps, contacts, solver). Используй, когда нужно глубоко понять систему перед расширением или отладкой.
+description: Parses the VirtualController architecture in Space Station 14: the UpdateBeforeSolve/UpdateAfterSolve cycle, order through UpdatesBefore/UpdatesAfter, prediction semantics and connection with low-level physics Box2D (substeps, contacts, solver). Use when you need to deeply understand the system before expanding or debugging.
 ---
 
-# VirtualController: Архитектура и Цикл
+# VirtualController: Architecture and Cycle
 
-Используй этот skill как архитектурный playbook по VirtualController 🙂
-Держи фокус на свежем коде и проверяй актуальность через `git log`/`blame` (cutoff: `2024-02-20`).
+Use this skill as an architectural playbook for VirtualController :)
+Keep your focus on fresh code and check its relevance through `git log`/`blame` (cutoff: `2024-02-20`).
 
-## Что загружать в первую очередь
+## What to download first
 
-1. `references/fresh-pattern-catalog.md` — паттерны с явным статусом свежести (`Использовать` / `Ограниченно`) ✅
-2. `references/rejected-snippets.md` — зоны, которые нельзя брать как эталон ⚠️
-3. `references/docs-context.md` — как безопасно использовать docs
+1. `references/fresh-pattern-catalog.md` - patterns with an obvious freshness status (`Use` / `Limited`) ✅
+2. `references/rejected-snippets.md` - zones that cannot be taken as a standard ⚠️
+3. `references/docs-context.md` - how to use docs safely
 
-## Источник правды
+## Source of truth
 
-1. Кодовая база — основной источник истины.
-2. Документация — вторичный слой (термины, intent, диагностика).
-3. Любой участок старше двух лет или с TODO/проблемным комментарием по теме — не поднимать в эталонные правила.
+1. The codebase is the primary source of truth.
+2. Documentation - secondary layer (terms, intent, diagnostics).
+3. Any site older than two years or with a TODO/problematic comment on the topic should not be included in the reference rules.
 
-## Ментальная модель VirtualController
+## VirtualController mental model
 
-1. `VirtualController` — это `EntitySystem`, который подписывается на `PhysicsUpdateBeforeSolveEvent` и `PhysicsUpdateAfterSolveEvent`.
-2. Порядок вызова контроллера задается через `UpdatesBefore` / `UpdatesAfter`.
-3. Хуки `UpdateBeforeSolve` и `UpdateAfterSolve` вызываются на каждом physics substep.
-4. Параметр `prediction` сообщает, выполняется ли предикт-симуляция на клиенте.
-5. `frameTime` — время одного substep, а не всего тика.
-6. Производительность контроллеров мониторится отдельно через встроенные histograms (`BeforeMonitor` / `AfterMonitor`).
+1. `VirtualController` is `EntitySystem` which subscribes to `PhysicsUpdateBeforeSolveEvent` and `PhysicsUpdateAfterSolveEvent`.
+2. The order of calling the controller is specified via `UpdatesBefore` / `UpdatesAfter`.
+3. Hooks `UpdateBeforeSolve` and `UpdateAfterSolve` are called on each physics substep.
+4. The `prediction` parameter tells whether predict simulation is running on the client.
+5. `frameTime` — time of one substep, not the entire tick.
+6. The performance of controllers is monitored separately through built-in histograms (`BeforeMonitor` / `AfterMonitor`).
 
-## Схема слоев
+## Layer scheme
 
-1. Engine-слой:
-`VirtualController`, `SharedPhysicsSystem`, события before/after solve, solver/contact pipeline, special-casing `KinematicController`.
-2. Shared-слой:
+1. Engine layer:
+`VirtualController`, `SharedPhysicsSystem`, before/after solve events, solver/contact pipeline, special-casing `KinematicController`.
+2. Shared layer:
 `SharedMoverController`, `TileFrictionController`, `SharedConveyorController`, `ClimbSystem`.
-3. Server-слой:
+3. Server layer:
 `PullController`, `RandomWalkController`, `ChasingWalkSystem`, `ChaoticJumpSystem`, `MoverController`, `ConveyorController`.
-4. Client-слой:
-`MoverController`, `ConveyorController`-stub для prediction/network presence, prediction hooks через `UpdateIsPredictedEvent`.
+4. Client layer:
+`MoverController`, `ConveyorController`-stub for prediction/network presence, prediction hooks via `UpdateIsPredictedEvent`.
 
-## Паттерны
+## Patterns
 
-1. Добавляй `UpdatesBefore` / `UpdatesAfter` до `base.Initialize()` — иначе хук-порядок зафиксируется неверно.
-2. В `UpdateBeforeSolve` делай ранние `continue` по `prediction`/`body.Predict`, чтобы не ломать предикт.
-3. Используй `AwakeBodies` как основной набор для per-step физической логики.
-4. Для `KinematicController` применяй ручной damping через helper-методы движения и затем `SetLinearVelocity`/`SetAngularVelocity`.
-5. Для тяжелых вычислений внутри контроллера отделяй фазу расчета (parallel job) от фазы применения результатов (main thread).
-6. Для relay-управления используй API-методы `SetRelay`/`RemoveRelay`, а не ручное добавление/удаление компонентов.
-7. Для container-eject сценариев, где сущность должна сразу оказаться «снаружи», используй `ForciblySetClimbing` как безопасный post-eject переход.
-8. Держи `UpdateBeforeSolve` детерминированным: минимум скрытого состояния, минимум nondeterministic источников.
-9. Для контроля регрессий проверяй physics-мониторы контроллеров до/после изменения.
-10. Для систем движения сохраняй инвариант: mob movement и tile friction должны идти в согласованном порядке.
+1. Add `UpdatesBefore` / `UpdatesAfter` before `base.Initialize()` - otherwise the order hook will be fixed incorrectly.
+2. In `UpdateBeforeSolve` do early `continue` by `prediction`/`body.Predict` so as not to break the predict.
+3. Use `AwakeBodies` as the main set for per-step physical logic.
+4. For `KinematicController`, use manual damping via helper movement methods and then `SetLinearVelocity`/`SetAngularVelocity`.
+5. For heavy calculations inside the controller, separate the calculation phase (parallel job) from the phase of applying the results (main thread).
+6. For relay management, use the `SetRelay`/`RemoveRelay` API methods, rather than manually adding/removing components.
+7. For container-eject scenarios, where the entity must immediately appear “outside”, use `ForciblySetClimbing` as a safe post-eject transition.
+8. Keep `UpdateBeforeSolve` deterministic: minimum hidden state, minimum nondeterministic sources.
+9. To control regressions, check the physics monitors of the controllers before/after the change.
+10. For movement systems, maintain an invariant: mob movement and tile friction must occur in a consistent order.
 
-## Анти-паттерны
+## Anti-patterns
 
-1. Настраивать `UpdatesBefore/UpdatesAfter` после `base.Initialize()`.
-2. Копировать TODO-heavy участки как эталон архитектуры.
-3. Писать контроллер, который зависит от «одного вызова за тик» и игнорирует substeps.
-4. Выполнять дорогие lookup/alloc операции без cache-query в горячем physics loop.
-5. Обходить relay API прямыми `RemComp/EnsureComp` в gameplay-коде.
-6. Считать пустой клиентский `ConveyorController` «лишним» и удалять его из схемы предикта.
-7. Пытаться использовать старые pre-cutoff фрагменты как базу для новых решений.
-8. Лечить mispredict «магическими guard'ами» вместо исправления источника рассинхрона.
-9. Мешать transform-движение и физические импульсы без четкой причинно-следственной модели.
-10. Игнорировать warning-комментарии о хрупкой логике (`slop`, `hack`, `temporary`).
+1. Configure `UpdatesBefore/UpdatesAfter` after `base.Initialize()`.
+2. Copy TODO-heavy sections as an architectural standard.
+3. Write a controller that depends on “one call per tick” and ignores substeps.
+4. Perform expensive lookup/alloc operations without cache-query in a hot physics loop.
+5. Bypass the relay API using direct `RemComp/EnsureComp` in the gameplay code.
+6. Consider the empty client `ConveyorController` “superfluous” and remove it from the predictor scheme.
+7. Try to use old pre-cutoff fragments as a basis for new solutions.
+8. Treat mispredict with “magic guards” instead of correcting the source of desync.
+9. Interfere with transform movement and physical impulses without a clear cause-and-effect model.
+10. Ignore warning comments about fragile logic (`slop`, `hack`, `temporary`).
 
 ## Low-level Box2D/Physics Internals
 
-1. Симуляция идет через `SimulateWorld`: каждый substep поднимает before/after события, затем broadphase/contact/solve.
-2. Контроллеры выполняются до solver-а (`UpdateBeforeSolve`) и после solver-а (`UpdateAfterSolve`) на каждом substep.
-3. `AwakeBodies` — ключевой runtime-набор тел, участвующих в активной симуляции и контроллерах.
-4. Генерация и пересчет контактов построены на broadphase overlap + narrowphase manifold update.
-5. Для `KinematicController` есть отдельные ветки в solver/contact logic, поэтому его нельзя трактовать как обычный `Dynamic`.
-6. Любая логика, меняющая скорости/импульсы в контроллерах, должна учитывать prediction и режим тела.
+1. The simulation goes through `SimulateWorld`: each substep raises before/after events, then broadphase/contact/solve.
+2. Controllers are executed before the solver (`UpdateBeforeSolve`) and after the solver (`UpdateAfterSolve`) on each substep.
+3. `AwakeBodies` - a key runtime set of bodies participating in the active simulation and controllers.
+4. Generation and recalculation of contacts are based on broadphase overlap + narrowphase manifold update.
+5. For `KinematicController` there are separate branches in solver/contact logic, so it cannot be treated as a regular `Dynamic`.
+6. Any logic that changes speeds/pulses in controllers must take into account prediction and body mode.
 
-## Примеры из кода
+## Code examples
 
-### 1) Подписка VirtualController на before/after solve
+### 1) Subscribe VirtualController to before/after solve
 
 ```csharp
 public override void Initialize()
@@ -87,13 +87,13 @@ public override void Initialize()
     var updatesBefore = UpdatesBefore.ToArray();
     var updatesAfter = UpdatesAfter.ToArray();
 
-    // Контроллер получает оба physics-хука в одном order-графе.
+    // The controller receives both physics hooks in one order graph.
     SubscribeLocalEvent<PhysicsUpdateBeforeSolveEvent>(OnBeforeSolve, updatesBefore, updatesAfter);
     SubscribeLocalEvent<PhysicsUpdateAfterSolveEvent>(OnAfterSolve, updatesBefore, updatesAfter);
 }
 ```
 
-### 2) Physics substeps с вызовом контроллеров
+### 2) Physics substeps with calling controllers
 
 ```csharp
 for (int i = 0; i < _substeps; i++)
@@ -110,7 +110,7 @@ for (int i = 0; i < _substeps; i++)
 }
 ```
 
-### 3) Явный order между mover/friction/conveyor
+### 3) Explicit order between mover/friction/conveyor
 
 ```csharp
 public override void Initialize()
@@ -126,7 +126,7 @@ public override void Initialize()
 }
 ```
 
-### 4) Ручной damping для KinematicController
+### 4) Manual damping for KinematicController
 
 ```csharp
 if (body.BodyType == BodyType.KinematicController)
@@ -134,7 +134,7 @@ if (body.BodyType == BodyType.KinematicController)
     var velocity = body.LinearVelocity;
     var angVelocity = body.AngularVelocity;
 
-    // Для этого типа тела friction/solver-путь другой, поэтому демпфируем вручную.
+    // For this type of body, the friction/solver path is different, so we dampen it manually.
     _mover.Friction(0f, frameTime, friction, ref velocity);
     _mover.Friction(0f, frameTime, friction, ref angVelocity);
 
@@ -143,13 +143,13 @@ if (body.BodyType == BodyType.KinematicController)
 }
 ```
 
-### 5) Pull-контроллер с обратным импульсом в особом режиме
+### 5) Pull controller with reverse pulse in special mode
 
 ```csharp
 var impulse = accel * physics.Mass * frameTime;
 PhysicsSystem.ApplyLinearImpulse(pullableEnt, impulse, body: physics);
 
-// В weightless/blocked сценарии добавляем парный импульс, чтобы не терять физический баланс.
+// In weightless/blocked scenarios we add a pair impulse so as not to lose physical balance.
 if (_gravity.IsWeightless(puller) && pullerXform.Comp.GridUid == null || !_actionBlockerSystem.CanMove(puller))
 {
     PhysicsSystem.WakeBody(puller);
@@ -157,18 +157,18 @@ if (_gravity.IsWeightless(puller) && pullerXform.Comp.GridUid == null || !_actio
 }
 ```
 
-### 6) Chasing-контроллер принудительно держит тело «в воздухе»
+### 6) Chasing controller forcibly keeps the body “in the air”
 
 ```csharp
 var delta = targetPos - selfPos;
 var speed = delta.Length() > 0 ? delta.Normalized() * component.Speed : Vector2.Zero;
 
 _physics.SetLinearVelocity(uid, speed);
-// Специальный режим для поведения сущности (например, tesla-подобные объекты).
+// Special mode for entity behavior (for example, tesla-like objects).
 _physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
 ```
 
-### 7) Chaotic jump с raycast-safe смещением
+### 7) Chaotic jump with raycast-safe offset
 
 ```csharp
 var ray = new CollisionRay(startPos, direction.ToVec(), component.CollisionMask);
@@ -176,18 +176,18 @@ var hit = _physics.IntersectRay(mapId, ray, range, uid, returnOnFirstHit: false)
 
 if (hit != null)
 {
-    // Сдвиг от точки столкновения, чтобы не телепортироваться прямо внутрь коллизии.
+    // Shift away from the collision point to avoid teleporting directly into the collision.
     targetPos = hit.Value.HitPos - new Vector2((float)Math.Cos(direction), (float)Math.Sin(direction));
 }
 
 _transform.SetWorldPosition(uid, targetPos);
 ```
 
-## Правило расширения
+## Extension rule
 
-1. Новые контроллеры проектируй как детерминированные substep-проходы с явным prediction-gating.
-2. Порядок контроллеров фиксируй в `Initialize()` до `base.Initialize()`.
-3. Любой заимствованный фрагмент сначала сверяй с `rejected-snippets`.
-4. Любое performance-изменение подтверждай профилированием controller histograms.
+1. Design new controllers as deterministic substep passes with explicit prediction-gating.
+2. Fix the order of controllers in `Initialize()` to `base.Initialize()`.
+3. First check any borrowed fragment with `rejected-snippets`.
+4. Confirm any performance change by profiling controller histograms.
 
-Думай о VirtualController как о physics orchestration-слое, а не как о «еще одном Update()» 😅
+Think of VirtualController as a physics orchestration layer, not as “another Update()” 😅

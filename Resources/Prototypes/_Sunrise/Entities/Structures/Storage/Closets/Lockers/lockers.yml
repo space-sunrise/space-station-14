@@ -24,6 +24,8 @@
     stateDoorClosed: door
   - type: Transform
     anchored: true
+  - type: Physics
+    bodyType: Static
 
 - type: entity
   id: GunSafeBaseSecureSunrise
@@ -218,7 +220,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 900
+        damage: 99999
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -382,16 +384,6 @@
         - id: RadioHandheld
         - id: OreBag
         - id: Nanopaste
-        - id: WeaponProtoKineticAccelerator
-        - id: HandHeldMassScanner
-        - id: EnergyPickaxe
-          prob: 0.2
-        - id: PKAUpgradeRange
-          prob: 0.15
-        - id: PKAUpgradeFireRate
-          prob: 0.15
-        - id: PKAUpgradeDamage
-          prob: 0.15
 
 # Representative
 - type: entity

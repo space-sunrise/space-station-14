@@ -9,8 +9,17 @@
   components:
   - type: Sprite
     sprite: Clothing/Under/Socks/bee.rsi
+    state: icon # Sunrise-Add
   - type: Clothing
     sprite: Clothing/Under/Socks/bee.rsi
+  # Sunrise-Start
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: icon
+      right:
+      - state: icon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingSocksBaseButcherable # Sunrise-end
@@ -20,6 +29,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Under/Socks/coder.rsi
+    state: icon # Sunrise-Add
   - type: Clothing
     sprite: Clothing/Under/Socks/coder.rsi
-
+  # Sunrise-Start
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: icon
+      right:
+      - state: icon
+  # Sunrise-End

@@ -3,232 +3,232 @@ name: SS14 Prediction
 description: Architecture guide for client-side prediction in Space Station 14 — prediction loop, timing properties, predicted entities, state reconciliation, randomness, and common pitfalls
 ---
 
-# Предикшн (Client-Side Prediction) в SS14
+# Prediction (Client-Side Prediction) in SS14
 
-## Зачем нужна предикция
+## Why do we need prediction?
 
-В онлайн-игре между нажатием кнопки и ответом сервера проходит время (RTT). Без предикции игрок бы нажимал «двигаться» и видел результат через 50–200 мс. Предикция решает это: клиент **сразу** применяет действие локально, а потом корректирует результат когда приходит серверное состояние.
+In an online game, there is time (RTT) between pressing a button and the server responding. Without prediction, the player would press “move” and see the result 50–200 ms later. Prediction solves this: the client **immediately** applies the action locally, and then adjusts the result when the server state arrives.
 
-### Цена предикции
+### Price of prediction
 
-- Код должен быть в **Shared** проекте (общий для клиента и сервера)
-- Нужна специальная обработка побочных эффектов (звуки, попапы)
-- Случайность требует детерминированного генератора
-- Ссылочные типы в компонентах должны реализовать `IRobustCloneable`
-- Возможны «мисПредикты» — моменты когда клиент предсказал неправильно
+- The code must be in a **Shared** project (common for client and server)
+- Need special processing of side effects (sounds, pop-ups)
+- Randomness requires a deterministic generator
+- Reference types in components must implement `IRobustCloneable`
+- Possible “mispredicts” - moments when the client predicted incorrectly
 
-## Основной цикл предикции
+## Main prediction loop
 
-Каждый кадр клиент выполняет следующую последовательность:
+Each frame the client executes the following sequence:
 
 ```
 ┌──────────────────────────────────────────────────────┐
 │           ClientGameStateManager.ApplyGameState()     │
 │                                                      │
 │  1. ResetPredictedEntities()                         │
-│     └─ Откатить все предсказанные изменения          │
-│        к последнему подтверждённому серверному        │
-│        состоянию                                     │
+│ └─ Roll back all predicted changes │
+│ to the last confirmed server │
+│ condition │
 │                                                      │
 │  2. ApplyGameState(curState, nextState)               │
-│     └─ Применить новое серверное состояние            │
-│     └─ Создать новые сущности                        │
-│     └─ Обработать входы/выходы PVS                   │
-│     └─ Удалить помеченные сущности                   │
+│ └─ Apply new server state │
+│ └─ Create new entities │
+│ └─ Process PVS inputs/outputs │
+│ └─ Delete marked entities │
 │                                                      │
 │  3. MergeImplicitData()                              │
-│     └─ Создать «фейковые» начальные состояния        │
-│        для новых сущностей (из прототипов)            │
+│ └─ Create “fake” initial states │
+│ for new entities (from prototypes) │
 │                                                      │
 │  4. PredictTicks(predictionTarget)                   │
-│     └─ Проиграть все кандидатные тики заново         │
-│     └─ Применить pending-ввод и события              │
-│     └─ Запустить EntitySystemManager.TickUpdate()    │
+│ └─ Play all candidate ticks again │
+│ └─ Apply pending input and events │
+│ └─ Run EntitySystemManager.TickUpdate() │
 │                                                      │
-│  5. TickUpdate (основной тик текущего кадра)          │
-│     └─ Финальный тик = predictionTarget              │
+│ 5. TickUpdate (main tick of the current frame) │
+│ └─ Final tick = predictionTarget │
 └──────────────────────────────────────────────────────┘
 ```
 
-### Расчёт predictionTarget
+### Calculation of predictionTarget
 
 ```
 predictionTarget = LastProcessedTick + TargetBufferSize + lag_ticks + PredictTickBias
 ```
 
-Где `lag_ticks = ceil(TickRate × ping / TimeScale)`. Клиент предсказывает на столько тиков вперёд, чтобы его ввод успел дойти до сервера и вернуться.
+Where is `lag_ticks = ceil(TickRate × ping / TimeScale)`. The client predicts so many ticks ahead so that its input has time to reach the server and return.
 
-## ResetPredictedEntities: откат предсказаний
+## ResetPredictedEntities: rollback predictions
 
-Перед применением нового серверного состояния **все предсказанные изменения откатываются**. Это происходит через `ClientDirtySystem`:
+Before the new server state is applied, **all predicted changes are rolled back**. This happens via `ClientDirtySystem`:
 
-### Как отслеживаются изменения
+### How changes are tracked
 
-- `ClientDirtySystem` подписывается на `EntityDirtied` событие
-- Когда во время предикции (`InPrediction = true`) изменяется компонент **серверной** сущности (не клиентской), она добавляется в `DirtyEntities`
-- Удалённые компоненты записываются в `RemovedComponents`
+- `ClientDirtySystem` subscribes to the `EntityDirtied` event
+- When a component of a **server** entity (not a client) changes during prediction (`InPrediction = true`), it is added to `DirtyEntities`
+- Deleted components are written to `RemovedComponents`
 
-### Откат включает
+### Rollback includes
 
-1. **Удаление предсказанных сущностей** — все сущности с `PredictedSpawnComponent` удаляются и пересоздаются при повторном прогоне
-2. **Восстановление состояний компонентов** — для каждой «грязной» сущности компоненты сбрасываются к последнему серверному состоянию через `ComponentHandleState`
-3. **Удаление добавленных компонентов** — компоненты, добавленные во время предикции (с `CreationTick > LastRealTick`), удаляются
-4. **Восстановление удалённых компонентов** — компоненты, удалённые во время предикции, пересоздаются с серверным состоянием
-5. **Сброс контактов физики** — `PhysicsSystem.ResetContacts()`
+1. **Deleting predicted entities** - all entities with `PredictedSpawnComponent` are deleted and recreated when running again
+2. **Restoring component states** - for each “dirty” entity, components are reset to the last server state via `ComponentHandleState`
+3. **Removing added components** - components added during prediction (with `CreationTick > LastRealTick`) are deleted
+4. **Recovery of deleted components** - components deleted during prediction are recreated with the server state
+5. **Reset physics contacts** - `PhysicsSystem.ResetContacts()`
 
-## Свойства IGameTiming для предикции
+## IGameTiming properties for prediction
 
 ### IsFirstTimePredicted
 
-Возвращает `true` если текущий тик предсказывается **впервые**. При повторных прогонах (re-prediction) возвращает `false`.
+Returns `true` if the current tick is predicted **for the first time**. For repeated runs (re-prediction), it returns `false`.
 
-**Критически важно для побочных эффектов:**
+**Critical for side effects:**
 
 ```csharp
-// ✅ Правильно — звук играется один раз
+// ✅ Correct - the sound is played once
 if (_timing.IsFirstTimePredicted)
     _audio.PlayPvs(sound, uid);
 
-// ✅ Более правильно - использовать Predicted методы
+// ✅ It’s more correct to use Predicted methods
 _audio.PlayPredicted(sound, source, receiver);
-// source - источник звука
-// receiver - сущность "клиента", которая сделала звук.
-// По умолчанию клиент игрока, который спровоцировал звук продублирует звук(локально и от сервера). Чтобы это избежать передаем спроцировавшего звук игрока в метод
-// Из-за этой особенности иногда Predicted метод может неправильно работать!
+// source - sound source
+// receiver - the “client” entity that made the sound.
+// By default, the player's client that triggered the sound will duplicate the sound (locally and from the server). To avoid this, we pass the player’s sound that was projected to the method
+// Because of this feature, sometimes the Predicted method may not work correctly!
 
-// ❌ Неправильно — звук будет играться при каждом re-prediction!
+// ❌ Incorrect - the sound will be played with every re-prediction!
 _audio.PlayPvs(sound, uid);
 ```
 
 ### InPrediction
 
-`true` когда `CurTick > LastRealTick` **и** `ApplyingState = false`. Означает, что клиент сейчас выполняет предсказание.
+`true` when `CurTick > LastRealTick` **and** `ApplyingState = false`. Indicates that the client is currently making a prediction.
 
 ### ApplyingState
 
-`true` когда клиент применяет серверное состояние (между `ResetPredictedEntities` и началом `PredictTicks`). В этот момент нельзя создавать побочные эффекты.
+`true` when the client applies the server state (between `ResetPredictedEntities` and the beginning of `PredictTicks`). At this point, you cannot create side effects.
 
 ### CurTick vs LastRealTick vs LastProcessedTick
 
-- **CurTick** — текущий тик симуляции. Меняется при предикции
-- **LastRealTick** — последний тик, подтверждённый сервером
-- **LastProcessedTick** — последний тик, для которого было применено серверное состояние
+- **CurTick** — current simulation tick. Changes with prediction
+- **LastRealTick** — last tick confirmed by the server
+- **LastProcessedTick** — the last tick for which the server state was applied
 
-## Предсказанные сущности
+## Foretold entities
 
-### Предсказанное создание (Spawn)
+### Spawn
 
-Используйте специальные методы для создания сущностей на клиенте:
+Use special methods to create entities on the client:
 
 ```csharp
-// Создание сущности с предикцией
+// Creating an Entity with Prediction
 var entity = PredictedSpawn(prototype, coordinates);
 ```
 
-При применении серверного состояния:
-1. Все сущности с `PredictedSpawnComponent` удаляются
-2. Если сервер подтвердил создание, сущность появится из серверного состояния
-3. При следующем прогоне предикции сущность создастся заново
+When applying server state:
+1. All entities with `PredictedSpawnComponent` are deleted
+2. If the server has confirmed the creation, the entity will appear from the server state
+3. The next time the prediction is run, the entity will be created anew
 
-### Предсказанное удаление
+### Predicted removal
 
-Удаление серверных сущностей на клиенте **не поддерживается напрямую**. `ClientDirtySystem` выдаст ошибку, если обнаружит удаление серверной сущности во время предикции:
+Deleting server-side entities on the client is **not directly supported**. `ClientDirtySystem` will throw an error if it detects that a server entity has been deleted during prediction:
 
 ```
-// Это вызовет ошибку:
+// This will throw an error:
 // "Predicting the deletion of a networked entity: ..."
-QueueDel(serverEntity); // ❌ нельзя в предикции!
+QueueDel(serverEntity); // ❌ cannot be predicted!
 ```
 
-Вместо этого используйте паттерн «состояние как компонент» — добавляйте/удаляйте компоненты для изменения состояния сущности.
+Instead, use the state as component pattern - add/remove components to change the state of the entity.
 
-## Предсказанные звуки и попапы
+## Predicted sounds and popups
 
-### Звуки
+### Sounds
 
 ```csharp
-// ✅ Plays once: на клиенте при первом предикте, на сервере для остальных
+// ✅ Plays once: on the client for the first predictor, on the server for the rest
 _audio.PlayPredicted(sound, uid, user);
 
-// ✅ Альтернатива с ручным контролем
+// ✅ Alternative with manual control
 if (_timing.IsFirstTimePredicted)
     _audio.PlayPvs(sound, uid);
 ```
 
-### Попапы
+### Popups
 
 ```csharp
-// ✅ Показывает один раз
+// ✅ Shows once
 _popup.PopupPredicted(message, uid, user, PopupType.Medium);
 
-// ✅ Вариант только для локального игрока
+// ✅ Option for local player only
 if (_timing.IsFirstTimePredicted)
     _popup.PopupEntity(message, uid, user);
 ```
 
-## Предсказанная случайность
+## Predicted randomness
 
-Обычный `IRobustRandom` **не детерминирован** между прогонами предикции. Каждый раз при re-prediction он даст другие числа, что вызовет миспредикт.
+Regular `IRobustRandom` is **not deterministic** between prediction runs. Each time it re-predicts, it will give different numbers, which will cause a misprediction.
 
-### Решения
+### Solutions
 
-#### Проект Sunrise: RandomPredictedSystem
+#### Project Sunrise: RandomPredictedSystem
 
-В проекте Sunrise используется своя система предсказуемого рандома `RandomPredictedSystem` с привязкой к `EntityUid`:
+The Sunrise project uses its own predictable random system `RandomPredictedSystem` linked to `EntityUid`:
 
 ```csharp
-// ✅ Seed привязан к EntityUid + текущему тику
+// ✅ Seed is tied to EntityUid + current tick
 var random = _randomPredicted.NextForEntity(uid, 0, 100);
 
-// ✅ Случайный float
+// ✅ Random float
 var value = _randomPredicted.NextFloatForEntity(uid, 0f, 1f);
 
-// ✅ Проверка вероятности
+// ✅ Probability check
 if (_randomPredicted.ProbForEntity(uid, 0.3f))
-    // 30% шанс
+    // 30% chance
 
-// ✅ Случайный элемент из списка
+// ✅ Random element from the list
 var item = _randomPredicted.PickForEntity(uid, myList);
 ```
 
-Система создаёт `System.Random` с seed, основанным на `EntityUid` и текущем `CurTick`, поэтому при повторных прогонах предикции для того же тика результат будет одинаковым.
+The system creates `System.Random` with a seed based on `EntityUid` and the current `CurTick`, so repeated prediction runs for the same tick will produce the same result.
 
-#### Ванильный подход: ручное создание Random
+#### Vanilla approach: manual creation of Random
 
 ```csharp
-// ✅ Детерминированный seed
+// ✅ Deterministic seed
 var random = new System.Random((int)(uid.Id + _timing.CurTick.Value));
 var result = random.Next(0, 100);
 ```
 
-#### Что НЕ делать
+#### What NOT to do
 
 ```csharp
-// ❌ IRobustRandom — разные результаты при каждом прогоне предикции
+// ❌ IRobustRandom - different results for each prediction run
 var result = _random.Next(0, 100);
 
-// ❌ RobustRandom.NextFloat() — тоже недетерминирован
+// ❌ RobustRandom.NextFloat() - also non-deterministic
 ```
 
-## Shared код для предикции
+## Shared code for prediction
 
-### Почему Shared
+### Why Shared
 
-Предсказанные системы и компоненты **обязаны** находиться в `Content.Shared` (или `Robust.Shared`). Это потому что:
+Predicted systems and components **must** be in `Content.Shared` (or `Robust.Shared`). This is because:
 
-1. Код предикции выполняется **и на клиенте, и на сервере**
-2. Клиент и сервер должны получить **одинаковый результат** при одинаковом вводе
-3. Если код только на сервере, клиент не сможет его предсказать
+1. The prediction code is executed **on both the client and the server**
+2. The client and server should get the **same result** given the same input
+3. If the code is only on the server, the client will not be able to predict it
 
 ### Partial class decomposition
 
-Когда нужна серверная или клиентская специализация:
+When server or client specialization is needed:
 
 ```csharp
 // Content.Shared/MySystem.cs
 public abstract partial class SharedMySystem : EntitySystem
 {
-    // Общая предикшн-логика
+    // General prediction logic
     protected void HandleAction(EntityUid uid, MyComponent comp)
     {
         comp.Value += 1;
@@ -239,148 +239,148 @@ public abstract partial class SharedMySystem : EntitySystem
 // Content.Server/MySystem.cs
 public sealed partial class MySystem : SharedMySystem
 {
-    // Серверная валидация, логирование, авторитетные действия
+    // Server validation, logging, authoritative actions
 }
 
 // Content.Client/MySystem.cs
 public sealed partial class MySystem : SharedMySystem
 {
-    // Клиентские эффекты, UI
+    // Client effects, UI
 }
 ```
 
-## Обработка состояний при предикции
+## Processing states during prediction
 
 ### AutoGenerateComponentState
 
-Атрибут `[AutoGenerateComponentState]` генерирует код для:
-- Сериализации компонента в `IComponentState` (для отправки по сети)
-- Десериализации из `ComponentHandleState` (для применения серверного состояния)
-- Автоматического отката при `ResetPredictedEntities`
+The `[AutoGenerateComponentState]` attribute generates code for:
+- Serialization of the component in `IComponentState` (for sending over the network)
+- Deserialization from `ComponentHandleState` (to apply server state)
+- Automatic rollback at `ResetPredictedEntities`
 
-### Как работает откат
+### How rollback works
 
-1. Компонент помечается как «грязный» во время предикции
-2. При `ResetPredictedEntities` движок находит последнее серверное состояние для этого компонента
-3. Генерирует `ComponentHandleState` и рейзит его как событие
-4. Автосгенерированный обработчик восстанавливает все `[AutoNetworkedField]` поля
-5. `LastModifiedTick` сбрасывается к `LastRealTick`
+1. Component is marked as "dirty" during prediction
+2. At `ResetPredictedEntities` the engine finds the last server state for this component
+3. Generates `ComponentHandleState` and raises it as an event
+4. The auto-generated handler restores all `[AutoNetworkedField]` fields
+5. `LastModifiedTick` is reset to `LastRealTick`
 
 ### NetSync
 
-Поля с `[AutoNetworkedField]` можно дополнительно настроить через `[NetSync]` для управления направлением синхронизации.
+Fields with `[AutoNetworkedField]` can be further configured via `[NetSync]` to control the direction of synchronization.
 
-## Чеклист предикции
+## Prediction checklist
 
-При добавлении предикции к системе:
+When adding prediction to the system:
 
-1. **Компонент в Shared** — с `[NetworkedComponent]`, `[AutoGenerateComponentState]`, `[AutoNetworkedField]` на нужных полях
-2. **Система в Shared** — базовый класс `SharedMySystem` с предикшн-логикой
-3. **`Dirty()` после изменений** — каждое изменение компонента должно сопровождаться `Dirty(uid, comp)`
-4. **Побочные эффекты за `IsFirstTimePredicted`** — звуки, попапы, визуальные эффекты
-5. **Детерминированный рандом** — `RandomPredictedSystem` или seed-based `System.Random`
-6. **`IRobustCloneable` для ссылочных типов** — коллекции, классы в сетевых полях
-7. **Нет удаления серверных сущностей** — используйте компоненты-состояния вместо удаления
-8. **Тестирование с задержкой** — `net.fakelagmin 0.2` + `net.fakelagrand 0.1`
-9. **Тестирование с отключённой предикцией** — `net.predict false`
+1. **Component in Shared** - with `[NetworkedComponent]`, `[AutoGenerateComponentState]`, `[AutoNetworkedField]` on the required fields
+2. **System in Shared** - base class `SharedMySystem` with prediction logic
+3. **`Dirty()` after changes** - each change to a component must be accompanied by `Dirty(uid, comp)`
+4. **Side effects for `IsFirstTimePredicted`** - sounds, popups, visual effects
+5. **Deterministic random** - `RandomPredictedSystem` or seed-based `System.Random`
+6. **`IRobustCloneable` for reference types** - collections, classes in network fields
+7. **No deleting server-side entities** - use state components instead of deleting
+8. **Testing with delay** - `net.fakelagmin 0.2` + `net.fakelagrand 0.1`
+9. **Testing with prediction disabled** - `net.predict false`
 
-## Частые ошибки
+## Frequent errors
 
-### 1. Забыли `Dirty()`
+### 1. Forgot `Dirty()`
 
 ```csharp
-// ❌ Клиент не получит обновление
+// ❌ The client will not receive the update
 comp.Health -= damage;
 
-// ✅ Правильно
+// ✅ Correct
 comp.Health -= damage;
 Dirty(uid, comp);
 ```
 
-### 2. IRobustRandom в предикции
+### 2. IRobustRandom in prediction
 
 ```csharp
-// ❌ Разные результаты при каждом re-prediction
+// ❌ Different results with each re-prediction
 if (_random.Prob(0.5f))
     DoAction();
 
-// ✅ Детерминированный рандом
+// ✅ Deterministic random
 if (_randomPredicted.ProbForEntity(uid, 0.5f))
     DoAction();
 ```
 
-### 3. Побочные эффекты без IsFirstTimePredicted
+### 3. Side effects without IsFirstTimePredicted
 
 ```csharp
-// ❌ Попап покажется множество раз
-_popup.PopupEntity("Удар!", uid);
+// ❌ The popup will appear many times
+_popup.PopupEntity("Hit!", uid);
 
-// ✅ Только один раз
+// ✅ Only once
 if (_timing.IsFirstTimePredicted)
-    _popup.PopupEntity("Удар!", uid);
+    _popup.PopupEntity("Hit!", uid);
 ```
 
-### 4. [NetworkedComponent] на не-Shared компоненте
+### 4. [NetworkedComponent] on a non-Shared component
 
 ```csharp
-// ❌ В Content.Client — молча не работает
+// ❌ In Content.Client - silently does not work
 [RegisterComponent, NetworkedComponent]
 public sealed partial class MyClientComponent : Component { }
 
-// ✅ В Content.Shared — работает корректно
+// ✅ In Content.Shared - works correctly
 [RegisterComponent, NetworkedComponent]
 public sealed partial class MyComponent : Component { }
 ```
 
-### 5. Удаление серверной сущности в предикции
+### 5. Deleting a server entity in prediction
 
 ```csharp
-// ❌ Вызовет ошибку при реконсиляции
+// ❌ Will cause an error during reconciliation
 if (_timing.InPrediction)
     QueueDel(targetUid);
 
-// ✅ Используйте компонент-состояние
+// ✅ Use a state component
 RemComp<AliveComponent>(targetUid);
 ```
 
-### 6. Изменение не-сетевых данных в предикции
+### 6. Changing non-network data in prediction
 
 ```csharp
-// ❌ Поле без [AutoNetworkedField] не откатится
-comp.LocalCounter += 1; // Не сетевое, не откатится!
+// ❌ A field without [AutoNetworkedField] will not be rolled back
+comp.LocalCounter += 1; // Not network, will not roll back!
 
-// ✅ Все предсказанные поля должны быть сетевыми
+// ✅ All predicted fields must be network
 [AutoNetworkedField]
 public int Counter;
 ```
 
-## Тестирование предикции
+## Prediction testing
 
-### Основные CVars
+### Basic CVars
 
 ```
-// В консоли клиента
-net.predict false          // Отключить предикцию — видна реальная задержка
-net.predict true           // Включить обратно
+// In the client console
+net.predict false          // Disable prediction - the real delay is visible
+net.predict true           // Turn back on
 
-// Симуляция задержки
-net.fakelagmin 0.2         // 200мс минимальная задержка
-net.fakelagrand 0.05       // +0-50мс случайной задержки
+// Latency simulation
+net.fakelagmin 0.2         // 200ms minimum latency
+net.fakelagrand 0.05       // +0-50ms random delay
 
-// Симуляция потерь пакетов
-net.fakeloss 0.05          // 5% потери пакетов
+// Packet Loss Simulation
+net.fakeloss 0.05          // 5% packet loss
 ```
 
-### Что проверять
+### What to check
 
-1. С **выключенной предикцией** (`net.predict false`) — правильно ли серверное поведение?
-2. С **задержкой** — нет ли визуальных скачков (snap-back) при миспредикте?
-3. С **потерей пакетов** — не ломается ли синхронизация?
-4. Несколько **быстрых действий подряд** — корректно ли обрабатывается очередь предикции?
+1. With **prediction turned off** (`net.predict false`) - is the server behavior correct?
+2. With **delay** - are there any visual jumps (snap-backs) during a misprediction?
+3. With **packet loss** - does synchronization break?
+4. Several **quick actions in a row** - is the prediction queue processed correctly?
 
-## Связь с другими скиллами
+## Connection with other skills
 
-- **SS14 Netcode Architecture** — как работает сетевой стек, обеспечивающий предикцию
-- **SS14 ECS Components** — атрибуты `[AutoGenerateComponentState]`, `[AutoNetworkedField]`, `Dirty()`
-- **SS14 ECS Systems** — partial class decomposition для Shared/Client/Server систем
-- **SS14 ECS Entities** — `EntityUid` vs `NetEntity`, жизненный цикл сущностей
+- **SS14 Netcode Architecture** - how the network stack that provides prediction works
+- **SS14 ECS Components** - attributes `[AutoGenerateComponentState]`, `[AutoNetworkedField]`, `Dirty()`
+- **SS14 ECS Systems** — partial class decomposition for Shared/Client/Server systems
+- **SS14 ECS Entities** — `EntityUid` vs `NetEntity`, entity life cycle

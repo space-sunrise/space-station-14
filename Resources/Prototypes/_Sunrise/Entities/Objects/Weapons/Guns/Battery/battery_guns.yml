@@ -22,7 +22,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
   - type: BatteryAmmoProvider
     proto: RedLightLaser
-    fireCost: 30
+    fireCost: 50
   - type: ItemSlots
     slots:
       cell_slot:
@@ -34,6 +34,7 @@
           tags:
             - PowerCell
             - PowerCellHigh
+            - PowerCellSmall
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: Appearance
@@ -67,10 +68,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 7
+    fireRate: 6
     minAngle: 1
-    maxAngle: 20
-    angleIncrease: 1.15
+    maxAngle: 15
+    angleIncrease: 0.75
     angleDecay: 10
     selectedMode: FullAuto
     availableModes:
@@ -128,6 +129,7 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 75
       name: energy-gun-lethal
@@ -179,6 +181,7 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 110
       name: energy-gun-lethal
@@ -220,6 +223,7 @@
     fireModes:
     - proto: BulletDisabler
       fireCost: 100
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 175
       conditions:
@@ -291,7 +295,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_pistol.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -310,8 +314,9 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
-      fireCost: 100
+      fireCost: 62.5
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
@@ -362,6 +367,7 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
       fireCost: 100
       name: energy-gun-lethal
@@ -422,8 +428,9 @@
       name: energy-gun-disable
       visualState: disable
       heldPrefix: disabler
+      pacifismAllowedMode: true
     - proto: BulletLaserWindowPiercingMagnum
-      fireCost: 50
+      fireCost: 40
       name: energy-gun-lethal
       visualState: lethal
       heldPrefix: lethal
@@ -443,7 +450,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Pistol.ogg
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_P.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/eg_p.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -501,7 +508,7 @@
     maxCharge: 3000
     startingCharge: 3000
   - type: BatteryAmmoProvider
-    proto: RedLaser
+    proto: RedMediumLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -595,7 +602,7 @@
     maxCharge: 8000
     startingCharge: 8000
   - type: BatteryAmmoProvider
-    proto: RedLaser
+    proto: RedMediumLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -754,8 +761,8 @@
   - type: EmpImmune
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 6
-    pvsIncrease: 0.6
+    maxOffset: 4
+    pvsIncrease: 0.4
   - type: StaticPrice
     price: 3500
 
@@ -826,11 +833,11 @@
     shape:
     - 0,0,5,2
   - type: Gun
-    minAngle: 5
-    maxAngle: 10
-    angleIncrease: 2
-    angleDecay: 8
-    fireRate: 5
+    minAngle: 2
+    maxAngle: 12
+    angleIncrease: 1
+    angleDecay: 10
+    fireRate: 8
     selectedMode: FullAuto
     soundGunshot:
       collection: syndi_plasma
@@ -839,12 +846,12 @@
     availableModes:
     - FullAuto
   - type: BatteryAmmoProvider
-    proto: RedLaserBeam # Sunrise-TODO: Нужен товый прототип для данной пушки
-    fireCost: 25
+    proto: IgnitionRedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
+    fireCost: 20
   - type: MultiHandedItem
   - type: Battery
-    maxCharge: 7500
-    startingCharge: 7500
+    maxCharge: 10000
+    startingCharge: 10000
   - type: EmpImmune
   - type: StaticPrice
     price: 9000
@@ -937,7 +944,7 @@
       magState: kill
       visualState: kill
     - proto: DestroyBeam
-      fireCost: 4000
+      fireCost: 2500
       magState: destroy
       visualState: destroy
   - type: Battery
@@ -991,7 +998,7 @@
       magState: kill
       visualState: kill
     - proto: DestroyBeam
-      fireCost: 4000
+      fireCost: 2500
       magState: destroy
       visualState: destroy
   - type: Battery
@@ -1047,7 +1054,7 @@
       magState: kill
       visualState: kill
     - proto: DestroyBeam
-      fireCost: 4000
+      fireCost: 2500
       magState: destroy
       visualState: destroy
   - type: Battery
@@ -1110,7 +1117,7 @@
       magState: kill
       visualState: kill
     - proto: DestroyBeam
-      fireCost: 4000
+      fireCost: 2500
       magState: destroy
       visualState: destroy
   - type: Battery
@@ -1158,28 +1165,49 @@
 
 - type: entity
   name: xenoborg X-ray cannon
-  parent: [BaseWeaponBattery, BaseXenoborgContraband]
+  parent: [WeaponXrayCannon, BaseXenoborgContraband]
   id: XenoborgXrayGun
   description: Weapon that uses concentrated x-ray energy against its target.
   components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+
+- type: entity
+  name: xenoborg temperature gun
+  parent: [WeaponTemperatureGun, BaseXenoborgContraband]
+  id: XenoborgTemperatureGun
+  description: An advanced gun that shoots body-temperature-changing beams. This one has a self-recharging battery for xenoborg use.
+  components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+
+- type: entity
+  name: laser pistol
+  parent: BaseWeaponBatterySmall
+  id: WeaponSunriseLaserPistol
+  description: A compact laser sidearm with an integrated battery.
+  components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-0
+    - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: BatteryAmmoProvider # Sunrise-Edit
-    proto: CartridgeXrayBeam # Sunrise-Edit
-    fireCost: 100
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sunrise_laser_pistol.rsi
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
     steps: 5
-    zeroVisible: true
+    zeroVisible: false
   - type: Appearance
-  - type: BatterySelfRecharger
-    autoRechargeRate: 30
+  - type: Tag
+    tags:
+    - Sidearm
+    - LaserWeapon

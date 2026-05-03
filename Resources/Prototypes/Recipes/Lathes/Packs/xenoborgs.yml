@@ -33,6 +33,7 @@
   - PowerCellXenoborg
   - XenoborgModuleXrayRecipe
   - XenoborgModuleTurboLaserRecipe
+  - XenoborgModuleTemperatureRecipe
   - BorgChargerCircuitboard
   - MicroManipulatorStockPart
 # Sunrise-End

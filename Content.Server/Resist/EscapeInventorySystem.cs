@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.Movement.Carrying;
 using Content.Server.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.ActionBlocker;
@@ -9,7 +10,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Robust.Shared.Containers;
-using Content.Shared._Sunrise.Carrying;
 
 namespace Content.Server.Resist;
 
@@ -20,7 +20,7 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedCarryingSystem _carryingSystem = default!;
+    [Dependency] private readonly CarryingSystem _carryingSystem = default!;
 
     public override void Initialize()
     {
@@ -82,11 +82,8 @@ public sealed class EscapeInventorySystem : EntitySystem
             return;
 
         // Sunrise-Start
-        if (TryComp<BeingCarriedComponent>(uid, out var carried))
-        {
-            _carryingSystem.DropCarried(carried.Carrier, uid);
+        if (_carryingSystem.TryDropCarriedByTarget(uid))
             return;
-        }
         // Sunrise-End
 
         _containerSystem.AttachParentToContainerOrGrid((uid, Transform(uid)));

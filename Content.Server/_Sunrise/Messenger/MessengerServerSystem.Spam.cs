@@ -10,9 +10,6 @@ namespace Content.Server._Sunrise.Messenger;
 
 public sealed partial class MessengerServerSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-
     private bool _spamEnabled;
     private float _spamMinTime;
     private float _spamMaxTime;
@@ -24,8 +21,8 @@ public sealed partial class MessengerServerSystem
     private void InitializeSpam()
     {
         Subs.CVar(_cfg, SunriseCCVars.MessengerSpamEnabled, OnSpamEnabledChanged, true);
-        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMinTime, OnSpamMinTimeChanged, true);
-        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMaxTime, OnSpamMaxTimeChanged, true);
+        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMinInterval, OnSpamMinTimeChanged, true);
+        Subs.CVar(_cfg, SunriseCCVars.MessengerSpamMaxInterval, OnSpamMaxTimeChanged, true);
         Subs.CVar(_cfg, SunriseCCVars.MessengerSpamPlayerPercentage, OnSpamPlayerPercentageChanged, true);
     }
 

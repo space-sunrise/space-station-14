@@ -1,0 +1,542 @@
+# Corporate Law Prototypes
+
+# Laws: 1xx
+- type: corporateLaw
+  id: Law101
+  lawIdentifier: "101"
+  title: corplaw-art101-title
+  description: corplaw-art101-desc
+  baseSentence: 5
+
+- type: corporateLaw
+  id: Law103
+  lawIdentifier: "103"
+  title: corplaw-art103-title
+  description: corplaw-art103-desc
+  baseSentence: 5
+
+- type: corporateLaw
+  id: Law104
+  lawIdentifier: "104"
+  title: corplaw-art104-title
+  description: corplaw-art104-desc
+  baseSentence: 5
+
+- type: corporateLaw
+  id: Law105
+  lawIdentifier: "105"
+  title: corplaw-art105-title
+  description: corplaw-art105-desc
+  baseSentence: 5
+
+- type: corporateLaw
+  id: Law106
+  lawIdentifier: "106"
+  title: corplaw-art106-title
+  description: corplaw-art106-desc
+  baseSentence: 5
+
+- type: corporateLaw
+  id: Law107
+  lawIdentifier: "107"
+  title: corplaw-art107-title
+  description: corplaw-art107-desc
+  baseSentence: 5
+
+- type: corporateLaw
+  id: Law108
+  lawIdentifier: "108"
+  title: corplaw-art108-title
+  description: corplaw-art108-desc
+  baseSentence: 5
+
+- type: corporateLaw
+  id: Law109
+  lawIdentifier: "109"
+  title: corplaw-art109-title
+  description: corplaw-art109-desc
+  baseSentence: 5
+
+# Laws: 2xx
+- type: corporateLaw
+  id: Law201
+  lawIdentifier: "201"
+  title: corplaw-art201-title
+  description: corplaw-art201-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law202
+  lawIdentifier: "202"
+  title: corplaw-art202-title
+  description: corplaw-art202-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law203
+  lawIdentifier: "203"
+  title: corplaw-art203-title
+  description: corplaw-art203-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law204
+  lawIdentifier: "204"
+  title: corplaw-art204-title
+  description: corplaw-art204-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law205
+  lawIdentifier: "205"
+  title: corplaw-art205-title
+  description: corplaw-art205-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law206
+  lawIdentifier: "206"
+  title: corplaw-art206-title
+  description: corplaw-art206-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law207
+  lawIdentifier: "207"
+  title: corplaw-art207-title
+  description: corplaw-art207-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law208
+  lawIdentifier: "208"
+  title: corplaw-art208-title
+  description: corplaw-art208-desc
+  baseSentence: 10
+
+- type: corporateLaw
+  id: Law209
+  lawIdentifier: "209"
+  title: corplaw-art209-title
+  description: corplaw-art209-desc
+  baseSentence: 10
+
+# Laws: 3xx
+- type: corporateLaw
+  id: Law301
+  lawIdentifier: "301"
+  title: corplaw-art301-title
+  description: corplaw-art301-desc
+  baseSentence: 15
+
+- type: corporateLaw
+  id: Law302
+  lawIdentifier: "302"
+  title: corplaw-art302-title
+  description: corplaw-art302-desc
+  baseSentence: 15
+
+- type: corporateLaw
+  id: Law303
+  lawIdentifier: "303"
+  title: corplaw-art303-title
+  description: corplaw-art303-desc
+  baseSentence: 15
+
+- type: corporateLaw
+  id: Law304
+  lawIdentifier: "304"
+  title: corplaw-art304-title
+  description: corplaw-art304-desc
+  baseSentence: 15
+
+- type: corporateLaw
+  id: Law305
+  lawIdentifier: "305"
+  title: corplaw-art305-title
+  description: corplaw-art305-desc
+  baseSentence: 15
+
+- type: corporateLaw
+  id: Law306
+  lawIdentifier: "306"
+  title: corplaw-art306-title
+  description: corplaw-art306-desc
+  baseSentence: 15
+
+- type: corporateLaw
+  id: Law308
+  lawIdentifier: "308"
+  title: corplaw-art308-title
+  description: corplaw-art308-desc
+  baseSentence: 15
+
+- type: corporateLaw
+  id: Law309
+  lawIdentifier: "309"
+  title: corplaw-art309-title
+  description: corplaw-art309-desc
+  baseSentence: 15
+
+# Laws: 4xx
+- type: corporateLaw
+  id: Law401
+  lawIdentifier: "401"
+  title: corplaw-art401-title
+  description: corplaw-art401-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law402
+  lawIdentifier: "402"
+  title: corplaw-art402-title
+  description: corplaw-art402-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law403
+  lawIdentifier: "403"
+  title: corplaw-art403-title
+  description: corplaw-art403-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law404
+  lawIdentifier: "404"
+  title: corplaw-art404-title
+  description: corplaw-art404-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law405
+  lawIdentifier: "405"
+  title: corplaw-art405-title
+  description: corplaw-art405-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law406
+  lawIdentifier: "406"
+  title: corplaw-art406-title
+  description: corplaw-art406-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law407
+  lawIdentifier: "407"
+  title: corplaw-art407-title
+  description: corplaw-art407-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law408
+  lawIdentifier: "408"
+  title: corplaw-art408-title
+  description: corplaw-art408-desc
+  baseSentence: 20
+
+- type: corporateLaw
+  id: Law409
+  lawIdentifier: "409"
+  title: corplaw-art409-title
+  description: corplaw-art409-desc
+  baseSentence: 20
+
+# Laws: 5xx
+- type: corporateLaw
+  id: Law502
+  lawIdentifier: "502"
+  title: corplaw-art502-title
+  description: corplaw-art502-desc
+  baseSentence: 30
+
+- type: corporateLaw
+  id: Law503
+  lawIdentifier: "503"
+  title: corplaw-art503-title
+  description: corplaw-art503-desc
+  baseSentence: 30
+
+- type: corporateLaw
+  id: Law504
+  lawIdentifier: "504"
+  title: corplaw-art504-title
+  description: corplaw-art504-desc
+  baseSentence: 30
+
+- type: corporateLaw
+  id: Law506
+  lawIdentifier: "506"
+  title: corplaw-art506-title
+  description: corplaw-art506-desc
+  baseSentence: 30
+
+- type: corporateLaw
+  id: Law507
+  lawIdentifier: "507"
+  title: corplaw-art507-title
+  description: corplaw-art507-desc
+  baseSentence: 30
+
+- type: corporateLaw
+  id: Law508
+  lawIdentifier: "508"
+  title: corplaw-art508-title
+  description: corplaw-art508-desc
+  baseSentence: 30
+
+- type: corporateLaw
+  id: Law509
+  lawIdentifier: "509"
+  title: corplaw-art509-title
+  description: corplaw-art509-desc
+  baseSentence: 30
+
+# Laws: 6xx
+- type: corporateLaw
+  id: Law601
+  lawIdentifier: "601"
+  category: Article
+  title: corplaw-art601-title
+  description: corplaw-art601-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law602
+  lawIdentifier: "602"
+  category: Article
+  title: corplaw-art602-title
+  description: corplaw-art602-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law603
+  lawIdentifier: "603"
+  category: Article
+  title: corplaw-art603-title
+  description: corplaw-art603-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law604
+  lawIdentifier: "604"
+  category: Article
+  title: corplaw-art604-title
+  description: corplaw-art604-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law605
+  lawIdentifier: "605"
+  category: Article
+  title: corplaw-art605-title
+  description: corplaw-art605-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law606
+  lawIdentifier: "606"
+  category: Article
+  title: corplaw-art606-title
+  description: corplaw-art606-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law607
+  lawIdentifier: "607"
+  category: Article
+  title: corplaw-art607-title
+  description: corplaw-art607-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law608
+  lawIdentifier: "608"
+  category: Article
+  title: corplaw-art608-title
+  description: corplaw-art608-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law609
+  lawIdentifier: "609"
+  category: Article
+  title: corplaw-art609-title
+  description: corplaw-art609-desc
+  baseSentence: 50
+
+- type: corporateLaw
+  id: Law610
+  lawIdentifier: "610"
+  category: Article
+  title: corplaw-art610-title
+  description: corplaw-art610-desc
+  baseSentence: 50
+
+# General Provisions
+- type: corporateLaw
+  id: ProvisionOPRS
+  category: Provision
+  title: corplaw-oprs-title
+  description: corplaw-oprs-desc
+
+- type: corporateLaw
+  id: ProvisionOPRA
+  category: Provision
+  title: corplaw-opra-title
+  description: corplaw-opra-desc
+
+- type: corporateLaw
+  id: ProvisionSentences
+  category: Provision
+  title: corplaw-sentences-title
+  description: corplaw-sentences-desc
+
+- type: corporateLaw
+  id: ProvisionMitigating
+  category: Provision
+  title: corplaw-mitigating-title
+  description: corplaw-mitigating-desc
+  sentenceMultiplier: 1.0
+
+- type: corporateLaw
+  id: ProvisionAggravating
+  category: Provision
+  title: corplaw-aggravating-title
+  description: corplaw-aggravating-desc
+  sentenceMultiplier: 1.0
+
+# New Circumstances
+- type: corporateLaw
+  id: CircCooperation
+  category: Mitigating
+  title: corplaw-circ-cooperation-title
+  description: corplaw-circ-cooperation-desc
+  sentenceMultiplier: 0.8
+
+- type: corporateLaw
+  id: CircNoIntent
+  category: Mitigating
+  title: corplaw-circ-nointent-title
+  description: corplaw-circ-nointent-desc
+  sentenceMultiplier: 0.9
+
+- type: corporateLaw
+  id: CircAdmission
+  category: Mitigating
+  title: corplaw-circ-admission-title
+  description: corplaw-circ-admission-desc
+  sentenceMultiplier: 0.9
+
+- type: corporateLaw
+  id: CircSelfSurrender
+  category: Mitigating
+  title: corplaw-circ-selfsurrender-title
+  description: corplaw-circ-selfsurrender-desc
+  sentenceMultiplier: 0.7
+
+- type: corporateLaw
+  id: CircNecessity
+  category: Mitigating
+  title: corplaw-circ-necessity-title
+  description: corplaw-circ-necessity-desc
+  sentenceMultiplier: 0.8
+
+- type: corporateLaw
+  id: CircHypnosis
+  category: Mitigating
+  title: corplaw-circ-hypnosis-title
+  description: corplaw-circ-hypnosis-desc
+  sentenceMultiplier: 0.0
+
+- type: corporateLaw
+  id: CircSafetyThreat
+  category: Aggravating
+  title: corplaw-circ-safetythreat-title
+  description: corplaw-circ-safetythreat-desc
+  sentenceMultiplier: 1.2
+
+- type: corporateLaw
+  id: CircIncompetence
+  category: Aggravating
+  title: corplaw-circ-incompetence-title
+  description: corplaw-circ-incompetence-desc
+  sentenceMultiplier: 1.15
+
+- type: corporateLaw
+  id: CircRefusal
+  category: Aggravating
+  title: corplaw-circ-refusal-title
+  description: corplaw-circ-refusal-desc
+  sentenceMultiplier: 1.1
+
+- type: corporateLaw
+  id: CircConsequences
+  category: Aggravating
+  title: corplaw-circ-consequences-title
+  description: corplaw-circ-consequences-desc
+  sentenceMultiplier: 1.2
+
+- type: corporateLaw
+  id: CircOfficialMisconduct
+  category: Aggravating
+  title: corplaw-circ-officialmisconduct-title
+  description: corplaw-circ-officialmisconduct-desc
+  sentenceMultiplier: 1.2
+
+- type: corporateLaw
+  id: CircIntoxication
+  category: Aggravating
+  title: corplaw-circ-intoxication-title
+  description: corplaw-circ-intoxication-desc
+  sentenceMultiplier: 1.15
+
+# Sections
+- type: corporateLawSection
+  id: SectionGeneral
+  title: corplaw-section-general
+  entries: [ProvisionOPRS, ProvisionOPRA, ProvisionSentences]
+
+- type: corporateLawSection
+  id: Section1xx
+  title: corplaw-section-1xx
+  color: "#30d158"
+  entries: [Law101, Law103, Law104, Law105, Law106, Law107, Law108, Law109]
+
+- type: corporateLawSection
+  id: Section2xx
+  title: corplaw-section-2xx
+  color: "#ffd60a"
+  entries: [Law201, Law202, Law203, Law204, Law205, Law206, Law207, Law208, Law209]
+
+- type: corporateLawSection
+  id: Section3xx
+  title: corplaw-section-3xx
+  color: "#ff9f0a"
+  entries: [Law301, Law302, Law303, Law304, Law305, Law306, Law308, Law309]
+
+- type: corporateLawSection
+  id: Section4xx
+  title: corplaw-section-4xx
+  color: "#ff453a"
+  entries: [Law401, Law402, Law403, Law404, Law405, Law406, Law407, Law408, Law409]
+
+- type: corporateLawSection
+  id: Section5xx
+  title: corplaw-section-5xx
+  color: "#bf5af2"
+  entries: [Law502, Law503, Law504, Law506, Law507, Law508, Law509]
+
+- type: corporateLawSection
+  id: Section6xx
+  title: corplaw-section-6xx
+  color: "#ff375f"
+  entries: [Law601, Law602, Law603, Law604, Law605, Law606, Law607, Law608, Law609, Law610]
+
+# Lawsets
+- type: corporateLawset
+  id: StandardCorporateLaw
+  permanentSentenceThreshold: 50
+  provisions: [ProvisionOPRS, ProvisionOPRA, ProvisionSentences]
+  circumstances: [ProvisionMitigating, ProvisionAggravating, CircCooperation, CircNoIntent, CircAdmission, CircSelfSurrender, CircNecessity, CircHypnosis, CircSafetyThreat, CircIncompetence, CircRefusal, CircConsequences, CircOfficialMisconduct, CircIntoxication]
+  articles: [Section1xx, Section2xx, Section3xx, Section4xx, Section5xx, Section6xx]

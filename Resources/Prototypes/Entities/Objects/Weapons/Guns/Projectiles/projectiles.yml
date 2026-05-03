@@ -560,6 +560,10 @@
   - type: TimedDespawn
     lifetime: 0.275 # roughly 6.5 tiles
   - type: GatheringProjectile
+  # Sunrise-Start
+  - type: StaminaDamageOnCollide
+    damage: 10
+  # Sunrise-End
 
 - type: entity
   id: BulletKineticShuttle
@@ -587,6 +591,14 @@
     color: white
     energy: 0.5
   - type: GatheringProjectile
+  # Sunrise-Start
+  - type: RadarBlip
+    color: "#ffdd44"
+    scale: 0.7
+    shape: Circle
+  - type: StaminaDamageOnCollide
+    damage: 6
+  # Sunrise-End
 
 - type: entity
   id: BulletCharge
@@ -1287,6 +1299,12 @@
   - type: Tag
     tags:
       - HideContextMenu
+  # Sunrise-Start
+  - type: RadarBlip
+    color: "#44AAFF"
+    scale: 1.0
+    requireInSpace: true
+  # Sunrise-End
 
 - type: entity
   name: laser bolt

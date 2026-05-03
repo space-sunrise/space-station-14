@@ -175,7 +175,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -248,7 +248,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleFMJ
+        startingItem: MagazineRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_unload.ogg
         priority: 2
@@ -362,19 +362,22 @@
     shape:
     - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -45
   - type: Gun
-    minAngle: 2
-    maxAngle: 15
-    angleIncrease: 1
-    angleDecay: 15
+    minAngle: 23
+    maxAngle: 90
+    angleIncrease: 1.25
+    angleDecay: 20
     fireRate: 6
-    burstFireRate: 8
-    selectedMode: SemiAuto
+    burstFireRate: 9
+    selectedMode: Burst
     availableModes:
     - Burst
     - SemiAuto
     shotsPerBurst: 3
-    burstCooldown: 0.25
+    burstCooldown: 0.2
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
@@ -549,6 +552,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi
     layers:
     - state: icon
@@ -574,7 +578,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -604,6 +608,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Saved is earned. Wood replaced with cheap plastic.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/tiny.rsi
@@ -616,6 +621,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. The favorite color of low-income mercenaries and ordinary USSP members.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
@@ -628,6 +634,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. This specimen has seen some rough stuff...and not just once.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
@@ -635,7 +642,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.005 # Примерно 150-200 патронов
+    dismantleChance: 0.004 # Примерно 150-200 патронов
     selfDamage:
       types:
         Blunt: 5
@@ -653,35 +660,34 @@
       - id: MagazineLightRifleEmpty
         launchAngle: -90
         prob: 1
-      - id: CartridgeLightRifleFMJ
+      - id: CartridgeLightRifleSP
         launchAngle: 45
         prob: 1
-      - id: CartridgeLightRifleFMJ
+      - id: CartridgeLightRifleSP
         launchAngle: -45
-        prob: 0.80
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 75
         prob: 0.75
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -75
+      - id: CartridgeLightRifleSP
+        launchAngle: 75
         prob: 0.5
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 120
-        prob: 0.3
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 120
+      - id: CartridgeLightRifleSP
+        launchAngle: -75
         prob: 0.25
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -120
+      - id: CartridgeLightRifleSP
+        launchAngle: 120
         prob: 0.2
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -120
+      - id: CartridgeLightRifleSP
+        launchAngle: 120
         prob: 0.15
+      - id: CartridgeLightRifleSP
+        launchAngle: -120
+        prob: 0.1
+      - id: CartridgeLightRifleSP
+        launchAngle: -120
+        prob: 0.05
 
 - type: entity
   parent: WeaponRifleSKM24Scrap
   id: WeaponRifleSKM24ScrapEmpty
-  categories: [ HideSpawnMenu ]
   components:
   - type: ItemSlots
     slots:
@@ -708,6 +714,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Spare option if you lost all your telecrystals at the casino.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
@@ -720,6 +727,7 @@
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Money doesn't smell.
   components:
   - type: Sprite
+    scale: 0.9,0.9
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/big.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/tiny.rsi
@@ -769,7 +777,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleHeavyFMJ
+        startingItem: MagazineRifleHeavySP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 2

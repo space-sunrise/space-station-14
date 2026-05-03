@@ -148,6 +148,7 @@
     prototype: ScurretDeathgasp # You monster
   - type: Tag
     tags:
+    - ScurretDeathgasp # Sunrise-edit
     - DoorBumpOpener
     - FootstepSound
     - CanPilot

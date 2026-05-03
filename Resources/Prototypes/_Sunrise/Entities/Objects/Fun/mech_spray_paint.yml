@@ -2,6 +2,7 @@
 - type: entity
   parent: BaseItem
   id: MechPaintBase
+  abstract: true
   name: mech spray paint
   description: A tin of mech spray paint.
   categories: [ HideSpawnMenu ]
@@ -46,9 +47,8 @@
 # Ripley-Aluminizer
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Aluminizer
+  suffix: Ripley, Aluminizer
   id: MechPaintRipleyAluminizer
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
@@ -77,9 +77,8 @@
 # Ripley-Combat Ripley
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Combat Ripley
+  suffix: Ripley, Combat Ripley
   id: MechPaintRipleyCombatRipley
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
@@ -108,9 +107,8 @@
 # Ripley-Firestarter
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Firestarter
+  suffix: Ripley, Firestarter
   id: MechPaintRipleyFirestarter
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
@@ -139,9 +137,8 @@
 # Ripley-Hauler
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Hauler
+  suffix: Ripley, Hauler
   id: MechPaintRipleyHauler
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
@@ -170,9 +167,8 @@
 # Ripley-Reaper
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Reaper
+  suffix: Ripley, Reaper
   id: MechPaintRipleyReaper
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
@@ -201,9 +197,8 @@
 # Ripley-Zairjah
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Ripley, Zairjah
+  suffix: Ripley, Zairjah
   id: MechPaintRipleyZairjah
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
@@ -263,9 +258,8 @@
 # Clarke-Orangey
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Clarke, Orangey
+  suffix: Clarke, Orangey
   id: MechPaintClarkeOrangey
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/clarke.rsi
@@ -294,9 +288,8 @@
 # Gygax-Molot
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Molot
+  suffix: Gygax, Molot
   id: MechPaintGygaxMolot
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
@@ -325,9 +318,8 @@
 # Gygax-Black
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Contraband
+  suffix: Gygax, Contraband
   id: MechPaintGygaxBlack
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
@@ -356,9 +348,8 @@
 # Gygax-White
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Legal
+  suffix: Gygax, Legal
   id: MechPaintGygaxWhite
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
@@ -387,9 +378,8 @@
 #Gygax-Pirate
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Pirate
+  suffix: Gygax, Pirate
   id: MechPaintGygaxPirate
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
@@ -419,9 +409,8 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax
+  suffix: Gygax
   id: MechPaintGygax
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
@@ -450,9 +439,8 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Gygax, Old
+  suffix: Gygax, Old
   id: MechPaintGygaxOld
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
@@ -480,9 +468,8 @@
 #Durand-Old
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand, Old
+  suffix: Durand, Old
   id: MechPaintDurandOld
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: Objects/Fun/spraycans.rsi
@@ -511,9 +498,8 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand, Unathi
+  suffix: Durand, Unathi
   id: MechPaintDurandUnathi
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
@@ -542,9 +528,8 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand , Shire
+  suffix: Durand , Shire
   id: MechPaintDurandShire
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
@@ -573,9 +558,8 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand , Dollhouse
+  suffix: Durand , Dollhouse
   id: MechPaintDurandDollhouse
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
@@ -604,9 +588,8 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Durand , Executor
+  suffix: Durand , Executor
   id: MechPaintDurandExecutor
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
@@ -635,8 +618,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Mauler , Meowler
-  categories: [ Debug ]
+  suffix: Mauler , Meowler
   id: MechPaintMaulerMeowler
   components:
   - type: Sprite
@@ -664,9 +646,8 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG, Dollhouse , Warboss
+  suffix: Dollhouse , Warboss
   id: MechPaintDollHouseWarboss
-  categories: [ Debug ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi

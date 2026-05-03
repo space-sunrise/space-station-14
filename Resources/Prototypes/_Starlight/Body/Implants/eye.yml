@@ -69,6 +69,7 @@
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
+    - type: FlashImmunity
 
 - type: entity
   id: EyeImplantSyndie
