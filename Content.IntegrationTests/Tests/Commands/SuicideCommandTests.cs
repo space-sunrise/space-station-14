@@ -276,7 +276,7 @@ public sealed class SuicideCommandTests
         await server.WaitPost(() =>
         {
             var item = entManager.SpawnEntity("SharpTestObject", transformSystem.GetMapCoordinates(player));
-            Assert.That(handsSystem.TryPickup(player, item, handsComponent.ActiveHandId!));
+            Assert.That(handsSystem.TryPickup(player, item, handsComponent.ActiveHandId!, ignoreDelay: true)); // Surnise-Edit
             entManager.TryGetComponent<ExecutionComponent>(item, out var executionComponent);
             Assert.That(executionComponent, Is.Not.EqualTo(null));
         });
@@ -356,7 +356,7 @@ public sealed class SuicideCommandTests
         await server.WaitPost(() =>
         {
             var item = entManager.SpawnEntity("MixedDamageTestObject", transformSystem.GetMapCoordinates(player));
-            Assert.That(handsSystem.TryPickup(player, item, handsComponent.ActiveHandId!));
+            Assert.That(handsSystem.TryPickup(player, item, handsComponent.ActiveHandId!, ignoreDelay: true)); // Surnise-Edit
             entManager.TryGetComponent<ExecutionComponent>(item, out var executionComponent);
             Assert.That(executionComponent, Is.Not.EqualTo(null));
         });

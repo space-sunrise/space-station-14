@@ -350,7 +350,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         RaiseLocalEvent(item, new DroppedEvent(user), true); // Gas tank internals etc.
 
-        _handsSystem.PickupOrDrop(user, item, animateUser: stealth, animate: !stealth);
+        _handsSystem.PickupOrDrop(user, item, animateUser: stealth, animate: !stealth, ignoreDelay: true); // Sunrise-Edit
         _adminLogger.Add(LogType.Stripping, LogImpact.High, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
     }
 
@@ -564,7 +564,7 @@ public abstract class SharedStrippableSystem : EntitySystem
             return;
 
         _handsSystem.TryDrop(target, item, checkActionBlocker: false);
-        _handsSystem.PickupOrDrop(user, item, animateUser: stealth, animate: !stealth, handsComp: user.Comp);
+        _handsSystem.PickupOrDrop(user, item, animateUser: stealth, animate: !stealth, handsComp: user.Comp, ignoreDelay: true); // Sunrise-Edit
         _adminLogger.Add(LogType.Stripping, LogImpact.High, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
 
         // Hand update will trigger strippable update.

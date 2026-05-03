@@ -62,7 +62,7 @@ public sealed partial class CatchableSystem : EntitySystem
             return;
 
         // Try to catch!
-        if (!_hands.TryPickupAnyHand(args.Target, ent.Owner, handsComp: handsComp, animate: false))
+        if (!_hands.TryPickupAnyHand(args.Target, ent.Owner, handsComp: handsComp, animate: false, ignoreDelay: true)) // Surnise-Edit
             return; // The hands are full!
 
         // Success!

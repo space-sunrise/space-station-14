@@ -5,6 +5,7 @@ using Content.Server.Construction.Commands;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Maps;
+using Content.Shared.Parallax.Biomes;
 using Robust.Shared.Console;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
@@ -35,6 +36,13 @@ public sealed class MappingAutoSaveSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
 
     private PendingAutoSaveConsoleContext? _pendingAutoSaveConsoleContext;
+
+    private const string SaveMapCommandName = "savemap";
+    private const string CleanDeviceLinkCommandName = "cleandevicelinks";
+    private const string FixGridAtmosCommandName = "fixgridatmos";
+    private const string TileWallsCommandName = "tilewalls";
+    private const string RemoveWalledDecalsCommandName = "removewalleddecals";
+    private const string VariantizeCommandName = "variantize";
 
     /// <summary>
     /// Hooks the system into save-command tracking and pre-serialization events.
@@ -70,7 +78,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
     private void OnAnyCommandExecuted(IConsoleShell shell, string name, string argStr, string[] args)
     {
-        if (!string.Equals(name, "savemap", StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(name, SaveMapCommandName, StringComparison.OrdinalIgnoreCase))
             return;
 
         _pendingAutoSaveConsoleContext = null;
@@ -98,7 +106,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
     {
         foreach (var entity in ev.Entities)
         {
-            if (!TryComp(entity, out MapComponent? map))
+            if (!TryComp<MapComponent>(entity, out var map))
                 continue;
 
             RunMapSaveAutoCommands(map);
@@ -140,11 +148,11 @@ public sealed class MappingAutoSaveSystem : EntitySystem
     {
         List<string>? executedCommands = null;
 
-        AddEnabledCommand(SunriseCCVars.MappingAutoCleanDeviceLinks, "cleandevicelinks");
-        AddEnabledCommand(SunriseCCVars.MappingAutoFixGridAtmos, "fixgridatmos");
-        AddEnabledCommand(SunriseCCVars.MappingAutoTileWalls, "tilewalls");
-        AddEnabledCommand(SunriseCCVars.MappingAutoRemoveWalledDecals, "removewalleddecals");
-        AddEnabledCommand(SunriseCCVars.MappingAutoVariantize, "variantize");
+        AddEnabledCommand(SunriseCCVars.MappingAutoCleanDeviceLinks, CleanDeviceLinkCommandName);
+        AddEnabledCommand(SunriseCCVars.MappingAutoFixGridAtmos, FixGridAtmosCommandName);
+        AddEnabledCommand(SunriseCCVars.MappingAutoTileWalls, TileWallsCommandName);
+        AddEnabledCommand(SunriseCCVars.MappingAutoRemoveWalledDecals, RemoveWalledDecalsCommandName);
+        AddEnabledCommand(SunriseCCVars.MappingAutoVariantize, VariantizeCommandName);
 
         return executedCommands is null
             ? null
@@ -180,7 +188,7 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
     private void RunMapSaveAutoFixGridAtmos(Entity<MapGridComponent> grid)
     {
-        if (!TryComp(grid, out GridAtmosphereComponent? gridAtmosphere))
+        if (!TryComp<GridAtmosphereComponent>(grid, out var gridAtmosphere))
             return;
 
         _atmosphere.RebuildGridAtmosphere((grid.Owner, gridAtmosphere, grid.Comp));
@@ -188,6 +196,9 @@ public sealed class MappingAutoSaveSystem : EntitySystem
 
     private void RunMapSaveAutoTileWalls(Entity<MapGridComponent> grid)
     {
+        if (HasComp<BiomeComponent>(grid))
+            return;
+
         var underplating = _tileDefinition[TileWallsCommand.TilePrototypeId];
         var underplatingTile = new Tile(underplating.TileId);
         var childEnumerator = Transform(grid.Owner).ChildEnumerator;

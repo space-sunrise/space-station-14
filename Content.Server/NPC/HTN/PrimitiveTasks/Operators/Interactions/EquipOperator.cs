@@ -20,7 +20,7 @@ public sealed partial class EquipOperator : HTNOperator
         var handsSystem = _entManager.System<HandsSystem>();
 
         // TODO: As elsewhere need some generic interaction cooldown system
-        if (handsSystem.TryPickup(owner, target))
+        if (handsSystem.TryPickup(owner, target, ignoreDelay: true)) // Surnise-Edit
         {
             return HTNOperatorStatus.Finished;
         }

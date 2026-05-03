@@ -51,7 +51,7 @@ public sealed partial class AmpulaSystem : EntitySystem
             return;
 
         if (itemslot.Item != null)
-            _handsSystem.TryPickupAnyHand(args.User, itemslot.Item.Value, handsComp: handscomp);
+            _handsSystem.TryPickupAnyHand(args.User, itemslot.Item.Value, handsComp: handscomp, ignoreDelay: true); // Surnise-Edit
 
         sys.TryInsert(slot.Value, itemslot, args.Used, user);
         args.Handled = true;

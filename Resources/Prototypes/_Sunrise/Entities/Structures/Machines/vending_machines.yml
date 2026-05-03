@@ -111,7 +111,7 @@
     - state: normal-unshaded
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
-  - type: StationAiWhitelist
+  #- type: StationAiWhitelist No more Fun =()
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -211,6 +211,7 @@
     name: vendor-salvage-ticket-machine
     categories:
     - SalvageEquipment
+    - SalvageMech
     - SalvageWeapons
     - SalvageConsumeables
     currencyWhitelist:
@@ -241,6 +242,7 @@
     name: vendor-mining-ticket-machine
     categories:
     - MiningEquipment
+    - MiningMech
     - MiningConsumeables
     currencyWhitelist:
     - SalvageTicket

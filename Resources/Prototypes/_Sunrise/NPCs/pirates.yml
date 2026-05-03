@@ -518,6 +518,7 @@
       collection: FootstepCyborgLegs
   - type: Reflect
     reflectProb: 0.1
+  - type: MechVulnerableToEMP
 
 # region Spawners
 - type: entity
@@ -2476,6 +2477,7 @@
   parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Mech
   components:
+  - type: MechVulnerableToEMP
   - type: Loadout
     prototypes:
     - MobPirateT2MechGear
@@ -4173,6 +4175,7 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
+  - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     delay: 2
     actions:

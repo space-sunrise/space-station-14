@@ -155,7 +155,7 @@ public sealed class SmartEquipSystem : EntitySystem
                 case null:
                     var removing = storage.Container.ContainedEntities[^1];
                     _container.RemoveEntity(slotItem, removing);
-                    _hands.TryPickup(uid, removing, handsComp: hands);
+                    _hands.TryPickup(uid, removing, handsComp: hands, ignoreDelay: true); // Surnise-Edit
                     return;
             }
 
@@ -175,7 +175,7 @@ public sealed class SmartEquipSystem : EntitySystem
             if (stacked != null && !_storage.CanInsert(slotItem, handItem.Value, out _))
             {
                 if (TryComp<StackComponent>(handItem.Value, out var handStack) && handStack.Count > 0)
-                    _hands.TryPickup(uid, handItem.Value, handsComp: hands);
+                    _hands.TryPickup(uid, handItem.Value, handsComp: hands, ignoreDelay: true); // Surnise-Edit
             }
 
             return;
@@ -237,6 +237,6 @@ public sealed class SmartEquipSystem : EntitySystem
         }
 
         _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
-        _hands.TryPickup(uid, slotItem, handsComp: hands);
+        _hands.TryPickup(uid, slotItem, handsComp: hands, ignoreDelay: true); // Surnise-Edit
     }
 }

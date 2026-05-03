@@ -192,7 +192,7 @@ public sealed partial class StoreSystem
             RaiseLocalEvent(product, ref ev);
             // Sunrise-End
 
-            _hands.PickupOrDrop(buyer, product);
+            _hands.PickupOrDrop(buyer, product, ignoreDelay: true); // Sunrise-Edit
 
             HandleRefundComp(uid, component, product);
 
@@ -328,7 +328,7 @@ public sealed partial class StoreSystem
             var amountToSpawn = (int) MathF.Floor((float) (amountRemaining / value));
             var ents = _stack.SpawnMultipleAtPosition(cashId, amountToSpawn, coordinates);
             if (ents.FirstOrDefault() is {} ent)
-                _hands.PickupOrDrop(buyer, ent);
+                _hands.PickupOrDrop(buyer, ent, ignoreDelay: true); // Surnise-Edit
             amountRemaining -= value * amountToSpawn;
         }
 
