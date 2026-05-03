@@ -296,7 +296,6 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -381,7 +380,6 @@
     stealGroup: AnimalMcGriff
   - type: MessyDrinker
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -487,7 +485,6 @@
   - type: MessyDrinker
   # Sunrise-start
   - type: DogVision
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10

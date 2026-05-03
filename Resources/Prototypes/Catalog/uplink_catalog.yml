@@ -144,8 +144,8 @@
 
 - type: listing
   id: UplinkEshield
-  name: uplink-eshield-name
-  description: uplink-eshield-desc
+  name: uplink-experimental-eshield-name # Sunrise-Edit
+  description: uplink-experimental-eshield-desc # Sunrise-Edit
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
   productEntity: EnergyShieldBiocode
   discountCategory: veryRareDiscounts
@@ -189,13 +189,6 @@
     Telecrystal: 10
   categories:
   - UplinkWeaponry
-  #Sunrise-start
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - AssaultOpsUplink
-  #Sunrise-end
 
 - type: listing
   id: UplinkHushpup
@@ -346,6 +339,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink # Sunrise-Edit
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkGrenadeLauncherChinaLake
@@ -1903,16 +1897,6 @@
     - UplinkWearables
 
  # Pointless
-
-- type: listing
-  id: UplinkBarberScissors
-  name: uplink-barber-scissors-name
-  description: uplink-barber-scissors-desc
-  productEntity: BarberScissors
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkPointless
 
 - type: listing
   id: UplinkSnackBox

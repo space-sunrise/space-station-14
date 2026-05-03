@@ -1,0 +1,28 @@
+<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#8D1010]☆[/color] [color=#1B2333][bold]ПРИКАЗ[/bold][/color] [color=#8D1010]☆[/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / ЦК[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold]Представитель {corpString}[/bold][/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Приказ об аннулировании действия права[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+
+[color=#2D3442]Я, [bold][color=#1E4C7A][signature="Имя и Фамилия"][/color][/bold], находясь в должности [bold][color=#1E4C7A][form="Должность"][/color][/bold], аннулирую действие права сотрудника командования [bold][color=#1E4C7A][signature="Имя и Фамилия сотрудника"][/color][/bold], в должности [bold][color=#1E4C7A][form="Должность сотрудника"][/color][/bold], пункта [bold][color=#8D1010][form="Номер пункта"][/color][/bold] «[form="Краткая информация о пункте"]» в Стандартных Рабочих Процедурах раздела «Дозволения», по причине: [bold][color=#8D1010][form="Причина"][/color][/bold].[/color]
+
+[color=#2D3442]Действие права/дозволения заканчивается после штамповки документа печатью Представителя {corpString}, после чего обязуюсь немедленно уведомить Центральное Командование о своём решении.[/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
+
+
+
+
+</Document>

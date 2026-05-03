@@ -10,9 +10,6 @@ namespace Content.Client._Sunrise.UserInterface.Systems.Ghost.Controls;
 
 public sealed partial class SunriseGhostTargetWindow
 {
-    // Символ трех точек, вставляемый в конец обрезанного имени
-    private const string Ellipsis = "...";
-
     /// <summary>
     /// Сортирует антагонистов по их приоритету. Чем ниже цифра приоритета, тем выше в списке
     /// </summary>
@@ -37,25 +34,6 @@ public sealed partial class SunriseGhostTargetWindow
     }
 
     /// <summary>
-    /// Обрезает строку до данного значения. Вместо обрезанного текста ставит троеточие
-    /// </summary>
-    private static string TruncateWithEllipsis(string? input, int maxLength)
-    {
-        if (string.IsNullOrEmpty(input) || maxLength <= 0)
-            return string.Empty;
-
-        if (input.Length <= maxLength)
-            return input;
-
-        if (maxLength <= Ellipsis.Length)
-            return Ellipsis.AsSpan(0, maxLength).ToString();
-
-        var cutLength = maxLength - Ellipsis.Length;
-
-        return string.Concat(input.AsSpan(0, cutLength), Ellipsis);
-    }
-
-    /// <summary>
     /// Создает название для кнопки с игроком. Вставляет перед именем иконку профессии через теги
     /// <remarks>
     /// Кнопка должна поддерживать <see cref="RichTextLabel"/>, чтобы иконка отображалась
@@ -64,7 +42,7 @@ public sealed partial class SunriseGhostTargetWindow
     /// <returns>Сгенерированное название с иконкой</returns>
     private string GeneratePlayerLabel(GhostWarpPlayer warp)
     {
-        var playerName = FormattedMessage.EscapeText(TruncateWithEllipsis(warp.Name, MaxLenght));
+        var playerName = FormattedMessage.EscapeText(UiTextHelper.TruncateWithEllipsis(warp.Name, MaxLenght));
         var jobIcon = _chatIcons.GetJobIcon(warp.JobId, 3);
 
         return $"{jobIcon} {playerName}";
