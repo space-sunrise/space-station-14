@@ -1,6 +1,7 @@
 using Content.Client._Sunrise.Sandbox.Access.Systems;
 using Content.Client._Sunrise.Sandbox.Transparency.Systems;
 using Robust.Client.UserInterface;
+using Robust.Shared.Console;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Content.Client.UserInterface.Systems.Sandbox;
@@ -20,11 +21,11 @@ public sealed partial class SandboxUIController
 
         _window.ToggleMappingAccessButton.Visible = _mappingAccess.CanEnable;
         _window.ToggleMappingAccessButton.Pressed = _mappingAccess.Enabled;
-        _window.ToggleMappingAccessButton.OnPressed += _ => _mappingAccess.TrySetEnabled(!_mappingAccess.Enabled);
+        _window.ToggleMappingAccessButton.OnPressed += _ => ToggleAccessOverlay();
 
         _window.ToggleMappingTransparencyButton.Visible = _mappingTransparency.CanEnable;
         _window.ToggleMappingTransparencyButton.Pressed = _mappingTransparency.Enabled;
-        _window.ToggleMappingTransparencyButton.OnPressed += _ => _sandbox.ToggleMappingTransparency();
+        _window.ToggleMappingTransparencyButton.OnPressed += _ => ToggleMappingTransparency();
 
         InitializeDeviceLinkWindow();
     }
@@ -71,5 +72,18 @@ public sealed partial class SandboxUIController
             return;
 
         _window.ToggleMappingTransparencyButton.Visible = value;
+    }
+
+    /// <summary>
+    /// Toggles the mapper transparency overlay command.
+    /// </summary>
+    public void ToggleMappingTransparency()
+    {
+        _console.ExecuteCommand("showmappingtransparency");
+    }
+
+    public void ToggleAccessOverlay()
+    {
+        _console.ExecuteCommand("showaccessoverlay");
     }
 }

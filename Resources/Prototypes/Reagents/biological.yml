@@ -188,7 +188,7 @@
         damage:
           Burn: -3
           Brute: -3
-          Toxin: -2
+          Toxin: -3 # Sunrise-Edit
       - !type:HealthChange
         damage:
           types:

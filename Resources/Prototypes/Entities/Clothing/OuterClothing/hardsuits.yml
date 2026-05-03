@@ -807,7 +807,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
-    damageCoefficient: 0.1 #Sunrise-edit
+    damageCoefficient: 0.8 #Sunrise-edit
   - type: Pierceable
     level: Rock
   - type: Armor

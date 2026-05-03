@@ -19161,7 +19161,6 @@ entities:
       pos: 11.476501,15.502551
       parent: 2
     - type: Stealth
-      lastVisibility: 1.5
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
