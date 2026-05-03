@@ -549,6 +549,15 @@
 
   # Sunrise-Start
   - type: FootprintEmitter
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+    colorTemperature: true
+    colorCold: true
+    colorHot: true
+    neutralTemp: 310
+    coldThreshold: 260
+    hotThreshold: 360
   # Sunrise-End
 
 

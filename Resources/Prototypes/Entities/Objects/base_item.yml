@@ -54,6 +54,8 @@
     damageTypes:
       types:
         Blunt: 1
+  - type: Temperature
+  - type: AtmosExposed
   # Sunrise end
 
 - type: entity

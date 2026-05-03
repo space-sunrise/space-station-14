@@ -67,26 +67,39 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         var lastTemp = temperature.CurrentTemperature;
         var delta = temperature.CurrentTemperature - temp;
         temperature.CurrentTemperature = temp;
+        Dirty(uid, temperature);
         RaiseLocalEvent(uid, new OnTemperatureChangeEvent(temperature.CurrentTemperature, lastTemp, delta), broadcast: true);
     }
 
     public override void ChangeHeat(EntityUid uid, float heatAmount, bool ignoreHeatResistance = false, TemperatureComponent? temperature = null)
     {
+        ChangeHeatWithReturn(uid, heatAmount, out _, ignoreHeatResistance, temperature);
+    }
+
+    /// <summary>
+    /// Same as ChangeHeat but returns the actual amount of heat applied after modifiers.
+    /// </summary>
+    public bool ChangeHeatWithReturn(EntityUid uid, float heatAmount, out float actualHeat, bool ignoreHeatResistance = false, TemperatureComponent? temperature = null)
+    {
+        actualHeat = heatAmount;
         if (!TemperatureQuery.Resolve(uid, ref temperature, false))
-            return;
+            return false;
 
         if (!ignoreHeatResistance)
         {
             var ev = new ModifyChangedTemperatureEvent(heatAmount);
             RaiseLocalEvent(uid, ev);
             heatAmount = ev.TemperatureDelta;
+            actualHeat = heatAmount;
         }
 
         float lastTemp = temperature.CurrentTemperature;
         temperature.CurrentTemperature += heatAmount / GetHeatCapacity(uid, temperature);
         float delta = temperature.CurrentTemperature - lastTemp;
 
+        Dirty(uid, temperature);
         RaiseLocalEvent(uid, new OnTemperatureChangeEvent(temperature.CurrentTemperature, lastTemp, delta), broadcast: true);
+        return true;
     }
 
     private void OnAtmosExposedUpdate(EntityUid uid, TemperatureComponent temperature, ref AtmosExposedUpdateEvent args)

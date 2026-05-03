@@ -193,6 +193,11 @@
   - type: EncryptionKeyHolder
     keysExtractionMethod: Prying
     keySlots: 10
+  - type: Temperature
+    specificHeat: 25
+    colorTemperature: true
+    colorCold: false
+    hotThreshold: 500
   - type: TelecomServer
   - type: ContainerContainer
     containers:

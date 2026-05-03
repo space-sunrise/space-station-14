@@ -1,7 +1,9 @@
 using Content.Shared.Inventory;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Temperature;
 
+[Serializable, NetSerializable]
 public sealed class ModifyChangedTemperatureEvent : EntityEventArgs, IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
@@ -14,6 +16,7 @@ public sealed class ModifyChangedTemperatureEvent : EntityEventArgs, IInventoryR
     }
 }
 
+[Serializable, NetSerializable]
 public sealed class OnTemperatureChangeEvent : EntityEventArgs
 {
     public readonly float CurrentTemperature;
