@@ -412,10 +412,10 @@
     slots:
     - Back
   - type: Gun
-    fireRate: 0.2
+    fireRate: 0.25
   - type: BatteryAmmoProvider
     proto: SniperBolt
-    fireCost: 100
+    fireCost: 50
   - type: MagazineVisuals
     magState: mag
     steps: 5

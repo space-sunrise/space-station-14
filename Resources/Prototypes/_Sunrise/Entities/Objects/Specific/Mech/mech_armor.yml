@@ -97,7 +97,7 @@
         Blunt: 10
         Heat: 5
         Slash: 10
-        Piercing: 3
+        Piercing: 4
 
 - type: entity
   id: MechArmorMediumSyndi
@@ -139,7 +139,7 @@
         Blunt: 10
         Heat: 5
         Slash: 10
-        Piercing: 3
+        Piercing: 5
 
 - type: startingGear
   id: MechArmorThinLoadout
