@@ -235,9 +235,7 @@ namespace Content.Client.Cargo.UI
                     Description =
                     {
                         Text = Loc.GetString("cargo-console-menu-order-reason-description",
-                                                        ("orderRequester", order.Requester), //Sunrise-Edit
-                                                        ("account", Loc.GetString(account.Code)), //Sunrise-Edit
-                                                        ("accountColor", account.Color), //Sunrise-Edit
+                                                        ("orderRequester", order.Requester), //Sunrise-Add
                                                         ("reason", order.Reason)) //Sunrise-Edit
                     }
                 };
