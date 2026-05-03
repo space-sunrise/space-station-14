@@ -9,16 +9,7 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponRifleBauer127Biocode
-        - id: MagazineBauer127
-          amount: 3
-        - id: MagazineBoxAntiMateriel
-        - id: MagazineBauer127Penetrator
-          amount: 2
-        - id: MagazineBauer127Frag
-          amount: 2
-        - id: MagazineBauer127Blast
-          amount: 2
-        - id: MagazineBauer127Emp
+        - id: AntimaterialAmmoKit
           amount: 2
         - id: ClothingEyesGlassesSniperThermalSyndie
 

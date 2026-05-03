@@ -123,13 +123,13 @@
     cost: 75
 
 - type: entity
-  id: NukeopsInfiltrator
+  id: NukeopsInfiltratorDropShipSoviet
   parent: BaseUnknownShuttleRule
   components:
   - type: StationEvent
     startAnnouncement: null
   - type: LoadMapRule
-    gridPath: "/Maps/_Sunrise/Shuttles/Antag/infiltrator_raid.yml"
+    gridPath: "/Maps/_Sunrise/Shuttles/Antag/infiltrator_dropship_soviet.yml"
 
 - type: entity
   id: NukeopsInstigator
