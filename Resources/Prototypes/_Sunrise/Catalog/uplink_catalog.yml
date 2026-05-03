@@ -1071,6 +1071,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkC40RBundle
@@ -1327,35 +1328,13 @@
       - AssaultOpsUplink
 
 - type: listing
-  id: UplinkClothingOuterArmorRaidTraitor
-  name: uplink-syndie-raid-name
-  description: uplink-syndie-raid-desc
-  icon: { sprite: /Textures/Clothing/OuterClothing/Armor/syndie-raid.rsi, state: icon }
-  productEntity: ClothingBackpackSyndicateRaidBundle
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 5
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkWearables
-  restockTime: 1800
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-      - AssaultOpsUplink
-
-- type: listing
   id: UplinkHardsuitSyndieMedic
   name: uplink-hardsuit-syndie-medic-name
   description: uplink-hardsuit-syndie-medic-desc
   icon: { sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
   productEntity: ClothingOuterHardsuitSyndieMedicBiocode
   cost:
-    Telecrystal: 5
+    Telecrystal: 3
   categories:
   - UplinkWearables
   conditions:
@@ -1783,8 +1762,6 @@
     sprite: _Sunrise/Objects/Misc/bouquet.rsi
     state: item
   productEntity: Bouquet
-  cost:
-    Telecrystal: 0
   categories:
   - UplinkPointless
   conditions:
@@ -1796,8 +1773,6 @@
   name: uplink-barber-scissors-name
   description: uplink-barber-scissors-desc
   productEntity: BarberScissors
-  cost:
-    Telecrystal: 0
   categories:
   - UplinkPointless
   conditions:
@@ -1819,13 +1794,10 @@
   categories:
   - UplinkMechs
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - NukeOpsUplink
-      - LoneOpsUplink
     blacklist:
       components:
       - SurplusBundle
@@ -1844,12 +1816,51 @@
   categories:
   - UplinkMechs
   conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkDarkGygaxLoneOps
+  name: uplink-mech-teleporter-assault-name
+  description: uplink-mech-teleporter-assault-desc
+  icon: { sprite: Objects/Specific/Mech/gygax.rsi, state: darkgygax }
+  productEntity: CrateCybersunDarkGygaxBundle
+  cost:
+    Telecrystal: 30
+  categories:
+  - UplinkMechs
+  conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - NukeOpsUplink
+      - LoneOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkMaulerLoneOps
+  name: uplink-mech-teleporter-heavy-name
+  description: uplink-mech-teleporter-heavy-desc
+  icon: { sprite: Objects/Specific/Mech/mecha.rsi, state: mauler }
+  productEntity: CrateCybersunMaulerBundle
+  cost:
+    Telecrystal: 45
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
       - LoneOpsUplink
     blacklist:
       components:
@@ -1869,13 +1880,10 @@
   categories:
   - UplinkMechs
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - NukeOpsUplink
-      - LoneOpsUplink
     blacklist:
       components:
       - SurplusBundle
@@ -2757,7 +2765,7 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 7
+    Telecrystal: 6
   categories:
   - UplinkWeaponry
   conditions:
@@ -3064,7 +3072,6 @@
     blacklist:
       tags:
       - NukeOpsUplink
-      - LoneOpsUplink
       - AssaultOpsUplink
 
 
@@ -3084,7 +3091,6 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      - LoneOpsUplink
       - AssaultOpsUplink
 
 - type: listing
@@ -3215,7 +3221,7 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 7
+    Telecrystal: 6
   categories:
   - UplinkWeaponry
 
@@ -3248,25 +3254,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - LoneOpsUplink
-      - NukeOpsUplink
-
-- type: listing
-  id: UplinkClothingOuterElegantArmorRaid
-  name: uplink-syndie-maid-raid-name
-  description: uplink-syndie-maid-raid-desc
-  icon: { sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
-  productEntity: ClothingBackpackSyndicateElegantRaidBundle
-  cost:
-    Telecrystal: 9
-  categories:
-  - UplinkPointless
-  restockTime: 1800
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - AssaultOpsUplink
       - LoneOpsUplink
       - NukeOpsUplink
 
