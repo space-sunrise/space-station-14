@@ -371,6 +371,11 @@
       fallbackRoles: [ Rev ]
       max: 3
       playerRatio: 15
+      # Sunrise - start
+      blacklist:
+        components:
+        - MindShield
+      # Sunrise - end
       briefing:
         text: head-rev-role-greeting
         color: CornflowerBlue
@@ -390,6 +395,7 @@
       blacklist:
         components:
         - CommandStaff
+        - MindShield # Sunrise-Edit
       briefing:
         text: rev-role-greeting
         color: CornflowerBlue

@@ -197,7 +197,7 @@ public abstract partial class InteractionTest
         {
             var playerEnt = SEntMan.GetEntity(Player);
 
-            Assert.That(HandSys.TryPickup(playerEnt, item, Hands.ActiveHandId, false, false, false, Hands, ignoreDelay: true)); // Surnise-Edit
+            Assert.That(HandSys.TryPickup(playerEnt, item, Hands.ActiveHandId, false, false, false, Hands));
 
             // turn on welders
             if (enableToggleable && SEntMan.TryGetComponent(item, out itemToggle) && !itemToggle.Activated)
@@ -246,7 +246,7 @@ public abstract partial class InteractionTest
 
         await Server.WaitPost(() =>
         {
-            Assert.That(HandSys.TryPickup(ToServer(Player), uid.Value, Hands.ActiveHandId, false, false, false, Hands, item, ignoreDelay: true)); // Surnise-Edit
+            Assert.That(HandSys.TryPickup(ToServer(Player), uid.Value, Hands.ActiveHandId, false, false, false, Hands, item));
         });
 
         await RunTicks(1);

@@ -5685,3 +5685,34 @@
   id: 1828
   time: '2026-04-29T20:51:28.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4215
+- author: Orvex07
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430 \u0432\u043E\
+      \u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u0441\u0442\u0430\u0442\
+      \u044C \u0440\u0435\u0432\u043E\u043B\u044E\u0446\u0438\u043E\u043D\u0435\u0440\
+      \u043E\u043C \u043F\u0440\u0438 \u043D\u0430\u043B\u0438\u0447\u0438\u0438 \u0438\
+      \u043C\u043F\u043B\u0430\u043D\u0442\u0430 \u0437\u0430\u0449\u0438\u0442\u044B\
+      \ \u0440\u0430\u0437\u0443\u043C\u0430."
+    type: Fix
+  id: 1829
+  time: '2026-05-02T12:58:21.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4317
+- author: Orvex07
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D \u0441\u043F\u0438\
+      \u0441\u043E\u043A \u044D\u043C\u043E\u0446\u0438\u0439 \u0443 \u043A\u0438\u0431\
+      \u043E\u0440\u0433\u043E\u0432 \u0421\u0411 \u0438 \u043C\u0438\u0440\u043E\u0442\
+      \u0432\u043E\u0440\u0446\u0435\u0432"
+    type: Fix
+  id: 1830
+  time: '2026-05-02T12:57:58.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4311
+- author: _3xie_, KaiserMaus
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u0434\u0435\u043A\
+      \u0430\u043B\u0438 \u0431\u0443\u043A\u0432 \u043A\u0438\u0440\u0438\u043B\u0438\
+      \u0446\u0435\u0439."
+    type: Add
+  id: 1831
+  time: '2026-05-02T13:40:07.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4304

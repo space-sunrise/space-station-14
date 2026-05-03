@@ -72,7 +72,10 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - SiliconEmotes
     - EmagImmune
+    - Unimplantable
+    - NoPaint
 
   # Sounds
   footstepCollection:
@@ -231,4 +234,7 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - SiliconEmotes
     - EmagImmune
+    - Unimplantable
+    - NoPaint
