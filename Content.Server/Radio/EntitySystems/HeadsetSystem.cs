@@ -36,31 +36,31 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     }
 
     // Sunrise-Start
-    private void OnToggleAction(EntityUid uid, HeadsetComponent component, ToggleHeadsetActionEvent args)
+    private void OnToggleAction(Entity<HeadsetComponent> ent, ref ToggleHeadsetActionEvent args)
     {
-        if (args.Handled || !component.Enabled)
+        if (args.Handled || !ent.Comp.Enabled)
             return;
 
         if (TryComp<ActorComponent>(args.Performer, out var actor))
         {
-            _ui.TryToggleUi(uid, HeadsetUiKey.Key, actor.PlayerSession);
+            _ui.TryToggleUi(ent.Owner, HeadsetUiKey.Key, actor.PlayerSession);
             args.Handled = true;
         }
     }
 
-    private void OnActivate(EntityUid uid, HeadsetComponent component, ActivateInWorldEvent args)
+    private void OnActivate(Entity<HeadsetComponent> ent, ref ActivateInWorldEvent args)
     {
         if (TryComp<ActorComponent>(args.User, out var actor))
         {
-            _ui.OpenUi(uid, HeadsetUiKey.Key, actor.PlayerSession);
+            _ui.OpenUi(ent.Owner, HeadsetUiKey.Key, actor.PlayerSession);
             args.Handled = true;
         }
     }
     // Sunrise-End
 
-    private void OnKeysChanged(EntityUid uid, HeadsetComponent component, EncryptionChannelsChangedEvent args)
+    private void OnKeysChanged(Entity<HeadsetComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
-        UpdateRadioChannels(uid, component, args.Component);
+        UpdateRadioChannels(ent, ent.Comp, args.Component);
     }
 
     private void UpdateRadioChannels(EntityUid uid, HeadsetComponent headset, EncryptionKeyHolderComponent? keyHolder = null)
@@ -94,23 +94,23 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         }
     }
 
-    protected override void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)
+    protected override void OnGotEquipped(Entity<HeadsetComponent> ent, ref GotEquippedEvent args)
     {
-        base.OnGotEquipped(uid, component, args);
-        if (component.IsEquipped && component.Enabled)
+        base.OnGotEquipped(ent, ref args);
+        if (ent.Comp.IsEquipped && ent.Comp.Enabled)
         {
-            EnsureComp<WearingHeadsetComponent>(args.Equipee).Headset = uid;
-            UpdateRadioChannels(uid, component);
-            _actions.AddAction(args.Equipee, ref component.ToggleActionEntity, component.ToggleAction, uid); // Sunrise-Add
+            EnsureComp<WearingHeadsetComponent>(args.Equipee).Headset = ent;
+            UpdateRadioChannels(ent, ent.Comp);
+            _actions.AddAction(args.Equipee, ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction, ent); // Sunrise-Add
         }
     }
 
-    protected override void OnGotUnequipped(EntityUid uid, HeadsetComponent component, GotUnequippedEvent args)
+    protected override void OnGotUnequipped(Entity<HeadsetComponent> ent, ref GotUnequippedEvent args)
     {
-        base.OnGotUnequipped(uid, component, args);
-        RemComp<ActiveRadioComponent>(uid);
+        base.OnGotUnequipped(ent, ref args);
+        RemComp<ActiveRadioComponent>(ent);
         RemComp<WearingHeadsetComponent>(args.Equipee);
-        _actions.RemoveAction(args.Equipee, component.ToggleActionEntity); // Sunrise-Add
+        _actions.RemoveAction(args.Equipee, ent.Comp.ToggleActionEntity); // Sunrise-Add
     }
 
     public void SetEnabled(EntityUid uid, bool value, HeadsetComponent? component = null)
@@ -148,13 +148,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         }
     }
 
-    private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
+    private void OnHeadsetReceive(Entity<HeadsetComponent> ent, ref RadioReceiveEvent args)
     {
         // Sunrise-Start
-        if (component.EnabledChannels.TryGetValue(args.Channel.ID, out var enabled) && !enabled)
+        if (!ent.Comp.EnabledChannels.GetValueOrDefault(args.Channel.ID, true))
             return;
 
-        if (!_powerCell.TryUseCharge(uid, component.ReceiveChargeCost))
+        if (!_powerCell.TryUseCharge(ent.Owner, ent.Comp.ReceiveChargeCost))
             return;
         // Sunrise-End
 
@@ -162,7 +162,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         // this is currently done this way because receiving radio messages on an entity otherwise requires that entity
         // to have an ActiveRadioComponent
 
-        var parent = Transform(uid).ParentUid;
+        var parent = Transform(ent).ParentUid;
 
         if (parent.IsValid())
         {

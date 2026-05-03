@@ -3,11 +3,14 @@ using Content.Shared._Sunrise.Messenger;
 using Content.Shared.Input;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client._Sunrise.UserInterface.Systems.Messenger;
 
 public sealed class MessengerUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
+    [Dependency] private readonly IEntityNetworkManager _netManager = default!;
+
     public void OnStateEntered(GameplayState state)
     {
         CommandBinds.Builder
@@ -22,7 +25,6 @@ public sealed class MessengerUIController : UIController, IOnStateEntered<Gamepl
 
     private void OnOpenMessenger()
     {
-        var netManager = Robust.Shared.IoC.IoCManager.Resolve<Robust.Shared.GameObjects.IEntityNetworkManager>();
-        netManager.SendSystemNetworkMessage(new OpenMessengerRequestEvent());
+        _netManager.SendSystemNetworkMessage(new OpenMessengerRequestEvent());
     }
 }

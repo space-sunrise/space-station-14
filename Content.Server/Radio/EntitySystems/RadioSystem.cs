@@ -24,6 +24,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Server.Temperature.Systems;
+using Content.Server._Sunrise.Radio;
 using Content.Shared.Audio;
 using Content.Shared.Temperature.Components;
 using Robust.Server.GameObjects;
@@ -43,10 +44,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly TemperatureSystem _temperature = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly TelecomThermalSystem _thermalSystem = default!;
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -159,22 +157,16 @@ public sealed class RadioSystem : EntitySystem
 
         if (!sourceServerExempt && serverUid != null && TryComp<TelecomServerComponent>(serverUid, out var server))
         {
-            // Only heat up and add load if NOT overheated
-            if (!server.Overheated)
-            {
-                server.CurrentLoad += 1.0f;
-                _temperature.ChangeHeat(serverUid.Value, server.HeatPerMessage);
-            }
+            _thermalSystem.AddLoad(serverUid.Value, server);
 
             var loadFactor = Math.Clamp(server.CurrentLoad / server.MaxBandwidth, 0, 1);
             var tempFactor = 0f;
             if (TryComp<TemperatureComponent>(serverUid, out var temp))
             {
-                // Static starts at 310K and reaches maximum at MaxTemperature
                 tempFactor = Math.Clamp((temp.CurrentTemperature - 310f) / (server.MaxTemperature - 310f), 0, 1);
             }
 
-            content = AddStatic(content, Math.Max(loadFactor, tempFactor));
+            content = _thermalSystem.AddStatic(content, Math.Max(loadFactor, tempFactor));
         }
 
         if (!hasActiveServer && !sourceServerExempt)
@@ -321,90 +313,7 @@ public sealed class RadioSystem : EntitySystem
         return GetIdCard(senderUid)?.RadioBold ?? false;
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<TelecomServerComponent>();
-        while (query.MoveNext(out var uid, out var server))
-        {
-            if (server.CurrentLoad > 0)
-            {
-                server.CurrentLoad = Math.Max(0, server.CurrentLoad - server.LoadDecayRate * frameTime);
-            }
-
-            if (TryComp<TemperatureComponent>(uid, out var temp))
-            {
-                if (temp.CurrentTemperature >= server.MaxTemperature)
-                {
-                    if (!server.Overheated)
-                    {
-                        server.Overheated = true;
-                        _appearance.SetData(uid, PowerDeviceVisuals.VisualState, 1);
-                    }
-                }
-                else if (server.Overheated && temp.CurrentTemperature <= server.HysteresisTemperature)
-                {
-                    server.Overheated = false;
-                    _appearance.SetData(uid, PowerDeviceVisuals.VisualState, 0);
-                    server.AlarmTimer = 0;
-                }
-
-                if (server.Overheated)
-                {
-                    server.AlarmTimer -= frameTime;
-                    if (server.AlarmTimer <= 0)
-                    {
-                        if (server.OverheatSound != null)
-                            _audio.PlayPvs(server.OverheatSound, uid);
-
-                        server.AlarmTimer = server.AlarmInterval;
-                    }
-                }
-
-                // Ambient sound scaling based on temperature
-                if (TryComp<AmbientSoundComponent>(uid, out var ambient))
-                {
-                    var tempRatio = Math.Clamp((temp.CurrentTemperature - 300f) / (server.MaxTemperature - 300f), 0, 1.5f);
-
-                    var targetVolume = -9f + (tempRatio * 12f); // From -9 to +3
-                    var targetRange = 5f + (tempRatio * 15f);   // From 5 to 20
-
-                    _ambientSound.SetVolume(uid, targetVolume, ambient);
-                    _ambientSound.SetRange(uid, targetRange, ambient);
-                }
-            }
-            else
-            {
-                server.Overheated = false;
-            }
-        }
-    }
-
-    private string AddStatic(string message, float factor)
-    {
-        if (factor <= 0.3f) return message;
-
-        var result = new System.Text.StringBuilder();
-        var chance = (factor - 0.3f) * 0.8f;
-        var inTag = false;
-
-        foreach (var c in message)
-        {
-            if (c == '[')
-                inTag = true;
-
-            if (!inTag && _random.Prob(chance))
-                result.Append(_random.Pick(new[] { '#', '*', '$', '!', '&', '?' }));
-            else
-                result.Append(c);
-
-            if (c == ']')
-                inTag = false;
-        }
-
-        return result.ToString();
-    }
+    // Sunrise-End
     // Sunrise-End
 
     /// <inheritdoc cref="TelecomServerComponent"/>

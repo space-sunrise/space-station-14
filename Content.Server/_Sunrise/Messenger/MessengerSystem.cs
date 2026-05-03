@@ -1,5 +1,4 @@
 using Content.Server.CartridgeLoader;
-using Content.Server.PDA;
 using Content.Server._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared._Sunrise.Messenger;
 using Content.Shared.Inventory;
@@ -12,7 +11,6 @@ namespace Content.Server._Sunrise.Messenger;
 
 public sealed class MessengerSystem : EntitySystem
 {
-    [Dependency] private readonly PdaSystem _pda = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;

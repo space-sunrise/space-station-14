@@ -47,7 +47,6 @@ public sealed partial class HeadsetSettingsWindow : DefaultWindow
                 Pressed = enabled,
                 VerticalAlignment = VAlignment.Center
             };
-            checkbox.OnToggled += args => OnChannelToggled?.Invoke(channelId, args.Pressed);
 
             var label = new Label
             {
@@ -80,6 +79,11 @@ public sealed partial class HeadsetSettingsWindow : DefaultWindow
                 VerticalAlignment = VAlignment.Center
             };
             slider.OnValueChanged += args => OnVolumeChanged?.Invoke(channelId, args.Value);
+            checkbox.OnToggled += args =>
+            {
+                OnChannelToggled?.Invoke(channelId, args.Pressed);
+                slider.Visible = args.Pressed;
+            };
             row.AddChild(slider);
 
             ChannelList.AddChild(row);

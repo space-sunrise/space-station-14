@@ -32,7 +32,7 @@ public sealed partial class HeadsetComponent : Component
 
     [DataField]
     public float ReceiveChargeCost = 2f;
-    [DataField("toggleAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ToggleAction = "ActionToggleHeadset";
 
     [DataField, AutoNetworkedField]
