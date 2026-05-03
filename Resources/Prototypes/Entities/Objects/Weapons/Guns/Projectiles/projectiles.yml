@@ -560,6 +560,10 @@
   - type: TimedDespawn
     lifetime: 0.275 # roughly 6.5 tiles
   - type: GatheringProjectile
+  # Sunrise-Start
+  - type: StaminaDamageOnCollide
+    damage: 10
+  # Sunrise-End
 
 - type: entity
   id: BulletKineticShuttle
@@ -592,6 +596,8 @@
     color: "#ffdd44"
     scale: 0.7
     shape: Circle
+  - type: StaminaDamageOnCollide
+    damage: 6
   # Sunrise-End
 
 - type: entity

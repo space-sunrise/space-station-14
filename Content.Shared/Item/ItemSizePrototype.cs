@@ -30,6 +30,14 @@ public sealed partial class ItemSizePrototype : IPrototype, IComparable<ItemSize
     [DataField(required: true)]
     public IReadOnlyList<Box2i> DefaultShape = new List<Box2i>();
 
+    // Sunrise-Edit start
+    /// <summary>
+    /// The default damage multiplier for items of this size when thrown.
+    /// </summary>
+    [DataField]
+    public float ThrowDamage = 1.0f;
+    // Sunrise-Edit end
+
     public int CompareTo(ItemSizePrototype? other)
     {
         if (other is not { } otherItemSize)

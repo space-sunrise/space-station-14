@@ -533,6 +533,11 @@
         - proto: MedkitCombatFilled
           prob: 0.1
           cost: 16
+        - proto: ChemistryBottleOmnizine
+          prob: 0.75
+        - proto: PowerCellAntiqueProto
+          prob: 0.75
+          cost: 5
 
 - type: salvageLoot
   id: SalvageLootImpossible
@@ -701,4 +706,6 @@
         - proto: MedkitCombatFilled
           prob: 0.2
           cost: 8
-
+        - proto: ChemistryBottleOmnizine
+        - proto: PowerCellAntiqueProto
+          cost: 5

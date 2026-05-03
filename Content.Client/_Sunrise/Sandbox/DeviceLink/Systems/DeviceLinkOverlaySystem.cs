@@ -7,7 +7,7 @@ namespace Content.Client._Sunrise.Sandbox.DeviceLink.Systems;
 /// <summary>
 /// Tracks the device-link debug overlay state for Sunrise sandbox UI wiring.
 /// </summary>
-public sealed class DeviceLinkOverlaySystem : EntitySystem
+public sealed partial class DeviceLinkOverlaySystem : EntitySystem
 {
     /// <summary>
     /// Gets the console command that toggles the server-driven overlay.
@@ -41,6 +41,8 @@ public sealed class DeviceLinkOverlaySystem : EntitySystem
 
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
         SubscribeNetworkEvent<DeviceLinkOverlayToggledEvent>(OnOverlayToggled);
+
+        InitializeVisualization();
     }
 
     /// <summary>
@@ -48,9 +50,10 @@ public sealed class DeviceLinkOverlaySystem : EntitySystem
     /// </summary>
     public override void Shutdown()
     {
-        _admin.AdminStatusUpdated -= OnAdminStatusUpdated;
-
         base.Shutdown();
+
+        _admin.AdminStatusUpdated -= OnAdminStatusUpdated;
+        ShutdownVisualization();
     }
 
     /// <summary>
@@ -77,5 +80,7 @@ public sealed class DeviceLinkOverlaySystem : EntitySystem
     {
         Enabled = args.IsEnabled;
         StateChanged?.Invoke();
+
+        ToggleOverlay();
     }
 }
