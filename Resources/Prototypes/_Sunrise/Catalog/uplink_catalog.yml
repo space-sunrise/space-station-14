@@ -1768,10 +1768,25 @@
     state: item
   productEntity: Bouquet
   cost:
-    Telecrystal: 1
+    Telecrystal: 0
   categories:
   - UplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
+- type: listing
+  id: UplinkBarberScissors
+  name: uplink-barber-scissors-name
+  description: uplink-barber-scissors-desc
+  productEntity: BarberScissors
+  cost:
+    Telecrystal: 0
+  categories:
+  - UplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 # region Mechs
 
 - type: listing
@@ -3119,7 +3134,7 @@
   icon:
     sprite: /Textures/Objects/Weapons/Melee/e_shield.rsi
     state: eshield-on
-  productEntity: EnergyShieldBiocode
+  productEntity: EnergyShield
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -3230,6 +3245,7 @@
     Telecrystal: 9
   categories:
   - UplinkPointless
+  restockTime: 1800
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
@@ -3261,7 +3277,7 @@
   name: uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name
   description: uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc
   productEntity: ReinforcementRadioSyndicateCyborgChassisSpider
-  icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
+  icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: spider }
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 30
@@ -3315,11 +3331,16 @@
   icon: { sprite: Structures/Shuttles/thruster.rsi, state: base }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 2
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkShuttle
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: SyndicateFriendshipBundle
@@ -3329,11 +3350,16 @@
   icon: { sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi, state: exp-320g }
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkShuttle
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: SyndicateBullfrogBundle
@@ -3343,11 +3369,16 @@
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/exp_3600.rsi, state: bal-127 }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 7
+    Telecrystal: 6
   cost:
-    Telecrystal: 14
+    Telecrystal: 12
   categories:
   - UplinkShuttle
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: SyndicateLongbowBundle
@@ -3357,11 +3388,16 @@
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi, state: bal-127 }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 5
   cost:
-    Telecrystal: 11
+    Telecrystal: 9
   categories:
   - UplinkShuttle
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: SyndicateQuadlingBundle
@@ -3371,9 +3407,13 @@
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_4.rsi, state: bal-127 }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 7
+    Telecrystal: 6
   cost:
-    Telecrystal: 13
+    Telecrystal: 11
   categories:
   - UplinkShuttle
-
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink

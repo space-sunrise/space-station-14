@@ -2,6 +2,9 @@
 
 corplaw-program-name = Корпоративный Закон
 
+# Shown when the PDA is not on a station with StationCorporateLawComponent
+corplaw-no-connection = Нет соединения
+
 # Sections
 corplaw-section-general = Общие положения
 corplaw-section-1xx = 1xx: Мелкие правонарушения

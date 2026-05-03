@@ -1,0 +1,43 @@
+name: Репорт об ошибке
+description: Сообщить о том, что что-то работает неправильно
+labels: ["Bug"]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Спасибо, что помогаете делать Sunrise Station лучше! Пожалуйста, заполните форму максимально подробно.
+- type: textarea
+  id: description
+  attributes:
+    label: Описание бага
+    description: Кратко опишите, что произошло.
+  validations:
+    required: true
+- type: textarea
+  id: reproduction
+  attributes:
+    label: Шаги по воспроизведению
+    description: Что нужно сделать, чтобы баг повторился?
+    placeholder: |
+      1. Зайти за роль X
+      2. Взять предмет Y
+      3. Нажать Z при условии...
+  validations:
+    required: true
+- type: textarea
+  id: expected_behavior
+  attributes:
+    label: Ожидаемое поведение
+    description: Что должно было произойти на самом деле?
+  validations:
+    required: true
+- type: input
+  id: round_id
+  attributes:
+    label: ID раунда (если известно)
+    description: Поможет нам найти логи в базе.
+- type: textarea
+  id: logs
+  attributes:
+    label: Логи или Скриншоты
+    description: Вставьте текст из консоли (F1) или прикрепите медиафайлы.
