@@ -3333,12 +3333,15 @@
     - id: EnergyCutlass
       prob: 0.8
     - id: BrokenEnergyShield
-      prob: 0.9
+      prob: 0.8
       orGroup: EnergyShieldPool
     - id: EnergyShieldBiocode
       prob: 0.5
       orGroup: EnergyShieldPool
     - id: EnergyShield
+      prob: 0.8
+      orGroup: EnergyShieldPool
+    - id: SunriseEnergyShield
       prob: 0.2
       orGroup: EnergyShieldPool
     - id: GrenadeStinger

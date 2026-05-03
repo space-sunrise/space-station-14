@@ -1,7 +1,9 @@
 ﻿vendor-salvage-ticket-machine = тикет-автомат утилизаторов
 vendor-mining-ticket-machine = тикет-автомат шахтеров
 store-category-salvage-equipment = Экипировка
+store-category-salvage-mech = Мехи
 store-category-salvage-weapons = Оружие
 store-category-salvage-consumeables = Расходники
 store-category-mining-equipment = Экипировка
+store-category-mining-mech = Мехи
 store-category-mining-consumeables = Расходники

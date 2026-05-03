@@ -19,6 +19,11 @@
   - type: FlavorProfile #yes not every peice of clothing is edible, but this way every edible piece of clothing should have the flavor without me having to track down what specific clothing can and cannot be eaten.
     flavors:
     - fiber
+  # Sunrise-Start
+  - type: SunriseThrownItemDamage
+    weightMultiplier: 0
+    knockdownWeightThreshold: 40
+  # Sunrise-End
 
 - type: entity
   abstract: true

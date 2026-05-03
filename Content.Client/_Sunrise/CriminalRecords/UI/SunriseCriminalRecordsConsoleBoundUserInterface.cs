@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._Sunrise.CriminalRecords;
 using Content.Shared._Sunrise.Laws;
+using Content.Shared.Security;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
@@ -53,6 +54,11 @@ public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserI
         SendMessage(new SunriseCriminalRecordsCloseCaseMessage(caseId));
     }
 
+    public void ReopenCase(uint caseId)
+    {
+        SendMessage(new SunriseCriminalRecordsReopenCaseMessage(caseId));
+    }
+
     public void SelectRecord(uint? recordId)
     {
         SendMessage(new SunriseCriminalRecordsSelectRecordMessage(recordId));
@@ -68,4 +74,8 @@ public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserI
         SendMessage(new SunriseCriminalRecordsSetUIStateMessage(state));
     }
 
+    public void ChangeStatus(SecurityStatus status, string? reason)
+    {
+        SendMessage(new SunriseCriminalRecordsChangeStatusMessage(status, reason));
+    }
 }

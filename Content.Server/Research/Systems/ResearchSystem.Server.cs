@@ -49,7 +49,7 @@ public sealed partial class ResearchSystem
 
         if (!CanRun(uid))
             return;
-        ModifyServerPoints(uid, GetPointsPerSecond(uid, component) * time, component);
+        ModifyServerResearchPoints(uid, GetPointsPerSecond(uid, component) * time, component); // Sunrise-Edit
     }
 
     /// <summary>
