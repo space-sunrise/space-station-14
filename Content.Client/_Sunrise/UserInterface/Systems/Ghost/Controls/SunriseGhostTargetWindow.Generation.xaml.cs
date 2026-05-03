@@ -117,7 +117,7 @@ public sealed partial class SunriseGhostTargetWindow
             var placeButton = new RichTextButton
             {
                 ModulateSelfOverride = PlaceButtonColor,
-                Text = FormattedMessage.EscapeText(TruncateWithEllipsis(place.Name, MaxLenghtWithoutIcons)),
+                Text = FormattedMessage.EscapeText(UiTextHelper.TruncateWithEllipsis(place.Name, MaxLenghtWithoutIcons)),
                 TextAlign = Label.AlignMode.Right,
                 HorizontalAlignment = HAlignment.Center,
                 VerticalAlignment = VAlignment.Center,
@@ -169,7 +169,7 @@ public sealed partial class SunriseGhostTargetWindow
                 var playerButton = new RichTextButton
                 {
                     ModulateSelfOverride = AntagonistButtonColor,
-                    Text = FormattedMessage.EscapeText(TruncateWithEllipsis(antag.Name, MaxLenghtWithoutIcons)),
+                    Text = FormattedMessage.EscapeText(UiTextHelper.TruncateWithEllipsis(antag.Name, MaxLenghtWithoutIcons)),
                     TextAlign = Label.AlignMode.Right,
                     HorizontalAlignment = HAlignment.Center,
                     VerticalAlignment = VAlignment.Center,

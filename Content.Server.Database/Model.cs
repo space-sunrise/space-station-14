@@ -46,9 +46,12 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        // Sunrise-Start
         public DbSet<AHelpMessage> AHelpMessages { get; set; } = default!;
         public DbSet<MentorHelpTicket> MentorHelpTickets { get; set; } = default!;
         public DbSet<MentorHelpMessage> MentorHelpMessages { get; set; } = default!;
+        public DbSet<UiLike> UiLikes { get; set; } = default!;
+        // Sunrise-End
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -67,6 +70,12 @@ namespace Content.Server.Database
             modelBuilder.Entity<Trait>()
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
+
+            // Sunrise-Start
+            modelBuilder.Entity<JobAlternativeTitle>()
+                .HasIndex(j => new { j.ProfileId, j.JobName })
+                .IsUnique();
+            // Sunrise-End
 
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
@@ -434,6 +443,7 @@ namespace Content.Server.Database
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
+        public List<JobAlternativeTitle> JobAlternativeTitles { get; } = new(); // Sunrise
 
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
@@ -479,6 +489,19 @@ namespace Content.Server.Database
 
         public string TraitName { get; set; } = null!;
     }
+
+    // Sunrise-Start
+    public class JobAlternativeTitle
+{
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+        [MaxLength(128)]
+        public string JobName { get; set; } = null!;
+        [MaxLength(128)]
+        public string Title { get; set; } = null!;
+}
+    // Sunrise-End
 
     #region Loadouts
 
@@ -1366,7 +1389,8 @@ namespace Content.Server.Database
     /// <summary>
     /// Represents a mentor help ticket
     /// </summary>
-    [Table("mentor_help_tickets"), Index(nameof(PlayerId)), Index(nameof(AssignedToUserId)), Index(nameof(Status))]
+    [Table("mentor_help_tickets"), Index(nameof(PlayerId)), Index(nameof(AssignedToUserId)), Index(nameof(Status)),
+        Index(nameof(ClosedAt), nameof(AssignedToUserId))]
     public class MentorHelpTicket
     {
         [Key]
@@ -1430,7 +1454,8 @@ namespace Content.Server.Database
     /// <summary>
     /// Represents a message in a mentor help ticket
     /// </summary>
-    [Table("mentor_help_messages"), Index(nameof(TicketId)), Index(nameof(SentAt))]
+    [Table("mentor_help_messages"), Index(nameof(TicketId)), Index(nameof(SentAt)),
+        Index(nameof(SentAt), nameof(SenderUserId))]
     public class MentorHelpMessage
     {
         [Key]
@@ -1464,5 +1489,19 @@ namespace Content.Server.Database
         /// Whether this message is only visible to mentors/admins
         /// </summary>
         public bool IsStaffOnly { get; set; } = false;
+    }
+
+    [PrimaryKey(nameof(ScopeId), nameof(ItemId), nameof(PlayerUserId))]
+    [Index(nameof(PlayerUserId), nameof(ScopeId))]
+    public sealed class UiLike
+    {
+        [Required, MaxLength(128)]
+        public string ScopeId { get; set; } = string.Empty;
+
+        [Required, MaxLength(128)]
+        public string ItemId { get; set; } = string.Empty;
+
+        [Required]
+        public Guid PlayerUserId { get; set; }
     }
 }

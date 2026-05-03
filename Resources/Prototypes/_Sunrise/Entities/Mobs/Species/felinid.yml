@@ -494,6 +494,7 @@
     groups:
       Flammable: [ Touch ]
       Extinguish: [ Touch ]
+      Acidic: [ Touch, Ingestion ]
     reactions:
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
@@ -506,8 +507,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4.5
-  - type: Carriable
-    requiresNestingMob: true
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
   - type: FlashModifier

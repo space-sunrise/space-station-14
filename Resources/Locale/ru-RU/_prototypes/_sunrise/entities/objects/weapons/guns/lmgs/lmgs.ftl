@@ -1,5 +1,5 @@
 ent-WeaponLightMachineGunMG60 = ПКМ-220
-    .desc = Тяжёлый ручной пулемёт ПKM — надёжный пулемёт Армии СССП. Используется пехотой для подавления противников или, в редких случаях, для стрельбы на ходу. Использует патрон калибра 7,62x39мм
+    .desc = Тяжёлый ручной пулемёт ПKM: надёжный пулемёт Армии СССП. Используется пехотой для подавления противников или, в редких случаях, для стрельбы на ходу. Использует патрон калибра 7,62ммР.
 ent-WeaponLightMachineGunRPD = РПД-Ш
     .desc = РПД-Ш Где "Ш" означает Штурмовой. Вариация Ручного пулемета СССП для Штурмовых операций в космическом пространстве где приклад будет только мешать. Остаётся популярным продуктом на чёрном рынке благодаря своей низкой стоимости. Использует патрон калибра 7,62x39мм
 ent-WeaponMachineGunMG42 = MG-342
@@ -16,3 +16,9 @@ ent-MagazineChainGunRandomSpawner = случайный барабан цепно
     .desc = { ent-MagazineChainGun.desc }
 ent-MagazineChainGunLooseAmmoSpawner = случайные патроны цепного пулемёта
     .desc = { ent-BaseItem.desc }
+ent-MagazineChainGun250 = { ent-MagazineChainGun }
+    .suffix = 250
+    .desc = { ent-MagazineChainGun.desc }
+ent-WeaponLightMachineGunMG60Empty = { ent-WeaponLightMachineGunMG60 }
+    .suffix = Пустой
+    .desc = { ent-WeaponLightMachineGunMG60.desc }

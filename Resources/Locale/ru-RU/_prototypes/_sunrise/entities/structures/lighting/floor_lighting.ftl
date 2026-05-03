@@ -6,3 +6,6 @@ ent-FloorLightEmpty = { ent-AlwaysPoweredFloorLight }
     .suffix = { ent-PoweredlightEmpty.suffix }
 ent-PoweredFloorlight = { ent-AlwaysPoweredFloorLight }
     .desc = { ent-FloorLightEmpty.desc }
+
+ent-PoweredFloorlightAlwaysPowered = { ent-AlwaysPoweredFloorLight }
+    .desc = { ent-FloorLightEmpty.desc }

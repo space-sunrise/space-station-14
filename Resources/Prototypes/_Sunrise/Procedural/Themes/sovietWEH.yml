@@ -1,0 +1,425 @@
+# Rooms
+# - 17x5
+- type: dungeonRoom
+  id: SovietDungeon17x5aWEH
+  size: 17,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,0
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+# - 11x5
+- type: dungeonRoom
+  id: SovietDungeon11x5aWEH
+  size: 11,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,6
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH11x5
+
+- type: dungeonRoom
+  id: SovietDungeon11x5bWEH
+  size: 11,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 12,6
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH11x5
+# - 7x5
+- type: dungeonRoom
+  id: SovietDungeon7x5aWEH
+  size: 7,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,12
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+- type: dungeonRoom
+  id: SovietDungeon7x5bWEH
+  size: 7,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 8,12
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+- type: dungeonRoom
+  id: SovietDungeon7x5cWEH
+  size: 7,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 16,12
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+# - 5x5
+- type: dungeonRoom
+  id: SovietDungeon5x5aWEH
+  size: 5,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,18
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
+
+- type: dungeonRoom
+  id: SovietDungeon5x5bWEH
+  size: 5,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 6,18
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
+
+- type: dungeonRoom
+  id: SovietDungeon5x5cWEH
+  size: 5,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 12,18
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
+
+- type: dungeonRoom
+  id: SovietDungeon5x5dWEH
+  size: 5,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 18,18
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
+
+- type: dungeonRoom
+  id: SovietDungeon5x5eWEH
+  size: 5,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 24,18
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH5x5
+
+# - 7x7
+- type: dungeonRoom
+  id: SovietDungeon7x7aWEH
+  size: 7,7
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,42
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x7
+
+- type: dungeonRoom
+  id: SovietDungeon7x7bWEH
+  size: 7,7
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 8,42
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x7
+
+- type: dungeonRoom
+  id: SovietDungeon7x7cWEH
+  size: 7,7
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 16,42
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x7
+
+
+
+# - 3x5
+- type: dungeonRoom
+  id: SovietDungeon3x5aWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+- type: dungeonRoom
+  id: SovietDungeon3x5bWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 4,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+- type: dungeonRoom
+  id: SovietDungeon3x5cWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 8,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+- type: dungeonRoom
+  id: SovietDungeon3x5dWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 12,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+- type: dungeonRoom
+  id: SovietDungeon3x5eWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 16,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+- type: dungeonRoom
+  id: SovietDungeon3x5fWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 20,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+- type: dungeonRoom
+  id: SovietDungeon3x5gWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 24,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+- type: dungeonRoom
+  id: SovietDungeon3x5hWEH
+  size: 3,5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 28,24
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH3x5
+
+# - 13x3
+- type: dungeonRoom
+  id: SovietDungeon13x3aWEH
+  size: 13,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,30
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+- type: dungeonRoom
+  id: SovietDungeon13x3bWEH
+  size: 13,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 14,30
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+# - 11x3
+- type: dungeonRoom
+  id: SovietDungeon11x3aWEH
+  size: 11,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,34
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+- type: dungeonRoom
+  id: SovietDungeon11x3bWEH
+  size: 11,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 12,34
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+# - 7x3
+- type: dungeonRoom
+  id: SovietDungeon7x3aWEH
+  size: 7,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 0,38
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
+
+- type: dungeonRoom
+  id: SovietDungeon7x3bWEH
+  size: 7,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 8,38
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
+
+- type: dungeonRoom
+  id: SovietDungeon7x3cWEH
+  size: 7,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 16,38
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
+
+- type: dungeonRoom
+  id: SovietDungeon7x3dWEH
+  size: 7,3
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 24,38
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH7x3
+# - 11x5
+- type: dungeonRoom
+  id: SovietDungeon11x5z
+  size: 11, 5
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 18,0
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEH11x5
+# - LargeSovietNukeRoom17x15
+- type: dungeonRoom
+  id: NewSovietDungeon17x15
+  size: 17, 15
+  atlas: /Maps/_Sunrise/Dungeon/sovietWEH.yml
+  offset: 32,34
+  tags:
+    - SovietDungeonWEH
+    - SunriseSovietDungeonWEHGeneral
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  components:
+  - type: RoomFill
+    minSize: 3,3
+    maxSize: 17,15
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEHGeneral
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker11x5
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 11x5
+  components:
+  - type: RoomFill
+    minSize: 11,5
+    maxSize: 11,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH11x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/11x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker7x7
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 7x7
+  components:
+  - type: RoomFill
+    minSize: 7,7
+    maxSize: 7,7
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH7x7
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/7x7.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker5x5
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 5x5
+  components:
+  - type: RoomFill
+    minSize: 5,5
+    maxSize: 5,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH5x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker3x5
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 3x5
+  components:
+  - type: RoomFill
+    minSize: 3,5
+    maxSize: 3,5
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH3x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/3x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: SovietDungeonWEHRoomMarker7x3
+  parent: BaseRoomMarker
+  name: soviet dungeon weh room marker
+  suffix: 7x3
+  components:
+  - type: RoomFill
+    minSize: 7,3
+    maxSize: 7,3
+    roomWhitelist:
+      tags:
+      - SunriseSovietDungeonWEH7x3
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/7x3.rsi
+        state: label
+        color: red

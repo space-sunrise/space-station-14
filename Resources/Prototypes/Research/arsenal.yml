@@ -12,7 +12,10 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
+  - WeaponProtoKineticRepeater # Sunrise-Add
+  - WeaponProtoKineticShotgun # Sunrise-Add
   - MechEquipmentKineticAccelerator # Sunrise-Add
+  - BorgModuleMiningCombat # Sunrise-Add
   # These are roundstart but not replenishable for salvage
 
 - type: technology
@@ -41,6 +44,8 @@
   - MagazineRifleHeavyIncendiary # Sunrise-Add
   - MagazineBoxHeavyRifleIncendiary # Sunrise-Add
   - MagazineRifleBoxIncendiary # Sunrise-Add
+  - MagazineLightRifleBeltBoxIncendiary # Sunrise-Add
+  - SpeedLoaderShotgunIncendiary # Sunrise-Add
   radioChannels: # Sunrise-Add
   - Security
 
@@ -59,6 +64,8 @@
   - WeaponMechCombatFiredartLaser
   - WeaponEnergyGun
   - WeaponMiniEnergyGun
+  - WeaponSunriseLaserPistol
+  - MagazineBatteryLr30
   # Sunrise-End
 
 - type: technology
@@ -110,6 +117,7 @@
   - MagazineBoxHeavyRifleUranium # Sunrise-Add
   - MagazineRifleBoxUranium # Sunrise-Add
   - MagazineLightRifleBeltBoxUranium # Sunrise-Add
+  - SpeedLoaderShotgunUranium # Sunrise-Add
   radioChannels: # Sunrise-Add
   - Security
 
@@ -296,21 +304,24 @@
   - ShellEMPArtillery # Sunrise-Edit
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
-  - ShuttleGunLongbowCircuitboard # Sunrise-start
+  # Sunrise-start
+  - ComputerGunneryCircuitboard
+  - ShuttleGunLongbowCircuitboard
   - ShuttleGunVympelCircuitboard
   - ShuttleGunTeslaOrionCircuitboard
   - ShuttleGunBeamstormMachineGunCircuitboard
   - MagazineBauer127
-  - MagazineBauer127Penetrator
-  - MagazineBauer127Blast
+  #- MagazineBauer127Penetrator # To much
+  #- MagazineBauer127Blast # To much
   - MagazineBauer127Frag
   - MagazineBauer127Emp
   - MagazineBoxBelt127Empty
-  - MagazineBoxBelt127
+  #- MagazineBoxBelt127 # To much
   - MagazineBoxBelt127Artillery
-  - MagazineBoxBelt127Blast
+  #- MagazineBoxBelt127Blast # To much
   - MagazineBoxBelt127Frag
-  - MagazineBoxBelt127Emp # Sunrise-end
+  - MagazineBoxBelt127Emp
+  # Sunrise-end
   technologyPrerequisites:
   - BasicShuttleArmament
   radioChannels: # Sunrise-Add

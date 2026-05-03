@@ -64,7 +64,6 @@
   - type: Damageable
     damageModifierSet: Milira
   - type: FootprintEmitter
-  - type: Carriable
   - type: Tag
     tags:
     - CanPilot

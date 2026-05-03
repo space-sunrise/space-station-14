@@ -4,11 +4,9 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
-using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
@@ -19,24 +17,28 @@ namespace Content.Client._Sunrise.UserInterface.CustomControls;
 
 public sealed class EmojiPickerWindow : DefaultWindow
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private readonly IResourceCache _resource = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     private readonly BoxContainer? _emojiPickerContentContainer;
-    private readonly List<string> _recentEmojis = new();
-    private readonly HashSet<string> _favoriteEmojis = new();
+    private readonly List<string> _recentEmojis = [];
+    private readonly HashSet<EmojiPrototype> _favoriteEmojis = [];
 
     public event Action<string>? OnEmojiSelected;
 
-    private ClientEmojiSystem EmojiSystem => _entitySystemManager.GetEntitySystem<ClientEmojiSystem>();
-    private SpriteSystem SpriteSystem => _entitySystemManager.GetEntitySystem<SpriteSystem>();
+    private readonly EmojiSystem _emoji;
+    private readonly SpriteSystem _sprite;
 
     public EmojiPickerWindow()
     {
         IoCManager.InjectDependencies(this);
 
-        Title = Loc.GetString("messenger-emoji-picker-title");
+        _emoji = _entity.System<EmojiSystem>();
+        _sprite = _entity.System<SpriteSystem>();
+
+        Title = _loc.GetString("messenger-emoji-picker-title");
         MinSize = new Vector2(445, 400);
         Resizable = false;
 
@@ -45,7 +47,7 @@ public sealed class EmojiPickerWindow : DefaultWindow
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             HorizontalExpand = true,
             VerticalExpand = true,
-            Margin = new Thickness(8)
+            Margin = new Thickness(8),
         };
 
         var scrollContainer = new ScrollContainer
@@ -53,14 +55,14 @@ public sealed class EmojiPickerWindow : DefaultWindow
             HorizontalExpand = true,
             VerticalExpand = true,
             HScrollEnabled = false,
-            ReserveScrollbarSpace = true
+            ReserveScrollbarSpace = true,
         };
 
         _emojiPickerContentContainer = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             HorizontalExpand = true,
-            Margin = new Thickness(0, 0, 0, 5)
+            Margin = new Thickness(0, 0, 0, 5),
         };
 
         scrollContainer.AddChild(_emojiPickerContentContainer);
@@ -77,20 +79,18 @@ public sealed class EmojiPickerWindow : DefaultWindow
             return;
 
         _emojiPickerContentContainer.RemoveAllChildren();
-        var allEmojis = EmojiSystem.GetAllEmojis().ToList();
-        var emojiDict = allEmojis.ToDictionary(e => e.Code, e => e);
 
-        BuildRecentEmojisSection(_emojiPickerContentContainer, emojiDict);
-        BuildFavoriteEmojisSection(_emojiPickerContentContainer, allEmojis);
-        BuildAllEmojisSection(_emojiPickerContentContainer, allEmojis);
+        BuildRecentEmojisSection(_emojiPickerContentContainer);
+        BuildFavoriteEmojisSection(_emojiPickerContentContainer);
+        BuildAllEmojisSection(_emojiPickerContentContainer);
     }
 
     private StyleBoxTexture CreateEmojiPanelStyle()
     {
-        var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/rounded_button_bordered.svg.96dpi.png");
+        var panelTex = _resource.GetTexture("/Textures/Interface/Nano/rounded_button_bordered.svg.96dpi.png");
         var panelStyle = new StyleBoxTexture
         {
-            Texture = panelTex
+            Texture = panelTex,
         };
         panelStyle.SetPatchMargin(StyleBox.Margin.All, 5);
         panelStyle.SetContentMarginOverride(StyleBox.Margin.All, 8);
@@ -98,26 +98,26 @@ public sealed class EmojiPickerWindow : DefaultWindow
         return panelStyle;
     }
 
-    private void BuildRecentEmojisSection(BoxContainer contentContainer, Dictionary<string, EmojiPrototype> emojiDict)
+    private void BuildRecentEmojisSection(BoxContainer contentContainer)
     {
         var recentPanel = new PanelContainer
         {
             HorizontalExpand = true,
             Margin = new Thickness(0, 0, 0, 10),
-            PanelOverride = CreateEmojiPanelStyle()
+            PanelOverride = CreateEmojiPanelStyle(),
         };
 
         var recentSection = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
-            HorizontalExpand = true
+            HorizontalExpand = true,
         };
 
         recentSection.AddChild(new Label
         {
-            Text = Loc.GetString("messenger-emoji-recent-title"),
+            Text = _loc.GetString("messenger-emoji-recent-title"),
             StyleClasses = { "Bold" },
-            Margin = new Thickness(0, 0, 0, 4)
+            Margin = new Thickness(0, 0, 0, 4),
         });
 
         if (_recentEmojis.Count > 0)
@@ -125,14 +125,14 @@ public sealed class EmojiPickerWindow : DefaultWindow
             var recentContainer = new GridContainer
             {
                 Columns = 5,
-                HorizontalExpand = true
+                HorizontalExpand = true,
             };
             var recentToShow = _recentEmojis.TakeLast(5).Reverse().ToList();
             foreach (var emojiCode in recentToShow)
             {
-                if (emojiDict.TryGetValue(emojiCode, out var emoji))
+                if (_emoji.Emojis.TryGetValue(emojiCode, out var emoji))
                 {
-                    recentContainer.AddChild(CreateEmojiButton(emoji, false));
+                    recentContainer.AddChild(CreateEmojiButton(emoji));
                 }
             }
             recentSection.AddChild(recentContainer);
@@ -141,34 +141,34 @@ public sealed class EmojiPickerWindow : DefaultWindow
         {
             recentSection.AddChild(new Label
             {
-                Text = Loc.GetString("messenger-emoji-recent-empty-hint"),
-                StyleClasses = { "LabelSubText" }
+                Text = _loc.GetString("messenger-emoji-recent-empty-hint"),
+                StyleClasses = { "LabelSubText" },
             });
         }
         recentPanel.AddChild(recentSection);
         contentContainer.AddChild(recentPanel);
     }
 
-    private void BuildFavoriteEmojisSection(BoxContainer contentContainer, List<EmojiPrototype> allEmojis)
+    private void BuildFavoriteEmojisSection(BoxContainer contentContainer)
     {
         var favoritePanel = new PanelContainer
         {
             HorizontalExpand = true,
             Margin = new Thickness(0, 0, 0, 10),
-            PanelOverride = CreateEmojiPanelStyle()
+            PanelOverride = CreateEmojiPanelStyle(),
         };
 
         var favoriteSection = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
-            HorizontalExpand = true
+            HorizontalExpand = true,
         };
 
         favoriteSection.AddChild(new Label
         {
-            Text = Loc.GetString("messenger-emoji-favorite-title"),
+            Text = _loc.GetString("messenger-emoji-favorite-title"),
             StyleClasses = { "Bold" },
-            Margin = new Thickness(0, 0, 0, 4)
+            Margin = new Thickness(0, 0, 0, 4),
         });
 
         if (_favoriteEmojis.Count > 0)
@@ -176,12 +176,11 @@ public sealed class EmojiPickerWindow : DefaultWindow
             var favoriteContainer = new GridContainer
             {
                 Columns = 5,
-                HorizontalExpand = true
+                HorizontalExpand = true,
             };
-            var favoriteEmojisList = allEmojis.Where(e => _favoriteEmojis.Contains(e.Code)).ToList();
-            foreach (var emoji in favoriteEmojisList)
+            foreach (var emoji in _favoriteEmojis)
             {
-                favoriteContainer.AddChild(CreateEmojiButton(emoji, true));
+                favoriteContainer.AddChild(CreateEmojiButton(emoji));
             }
             favoriteSection.AddChild(favoriteContainer);
         }
@@ -189,46 +188,45 @@ public sealed class EmojiPickerWindow : DefaultWindow
         {
             favoriteSection.AddChild(new Label
             {
-                Text = Loc.GetString("messenger-emoji-favorite-hint"),
+                Text = _loc.GetString("messenger-emoji-favorite-hint"),
                 StyleClasses = { "LabelSubText" },
-                Margin = new Thickness(0, 4, 0, 0)
+                Margin = new Thickness(0, 4, 0, 0),
             });
         }
         favoritePanel.AddChild(favoriteSection);
         contentContainer.AddChild(favoritePanel);
     }
 
-    private void BuildAllEmojisSection(BoxContainer contentContainer, List<EmojiPrototype> allEmojis)
+    private void BuildAllEmojisSection(BoxContainer contentContainer)
     {
         var allPanel = new PanelContainer
         {
             HorizontalExpand = true,
-            PanelOverride = CreateEmojiPanelStyle()
+            PanelOverride = CreateEmojiPanelStyle(),
         };
 
         var allSection = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
-            HorizontalExpand = true
+            HorizontalExpand = true,
         };
 
         allSection.AddChild(new Label
         {
-            Text = Loc.GetString("messenger-emoji-all-title"),
+            Text = _loc.GetString("messenger-emoji-all-title"),
             StyleClasses = { "Bold" },
-            Margin = new Thickness(0, 0, 0, 4)
+            Margin = new Thickness(0, 0, 0, 4),
         });
 
         var allEmojisContainer = new GridContainer
         {
             Columns = 5,
-            HorizontalExpand = true
+            HorizontalExpand = true,
         };
 
-        var nonFavoriteEmojis = allEmojis.Where(e => !_favoriteEmojis.Contains(e.Code)).ToList();
-        foreach (var emoji in nonFavoriteEmojis)
+        foreach (var emoji in _emoji.Emojis.Values)
         {
-            allEmojisContainer.AddChild(CreateEmojiButton(emoji, false));
+            allEmojisContainer.AddChild(CreateEmojiButton(emoji));
         }
 
         allSection.AddChild(allEmojisContainer);
@@ -236,55 +234,48 @@ public sealed class EmojiPickerWindow : DefaultWindow
         contentContainer.AddChild(allPanel);
     }
 
-    private Button CreateEmojiButton(EmojiPrototype emoji, bool isFavorite)
+    private Button CreateEmojiButton(EmojiPrototype emoji)
     {
         var emojiButton = new Button
         {
             MinSize = new Vector2(75, 75),
             MaxSize = new Vector2(75, 75),
-            ToolTip = emoji.Code
+            ToolTip = emoji.Code,
         };
 
-        try
+        var spriteSpec = new SpriteSpecifier.Rsi(new ResPath(emoji.SpritePath), emoji.SpriteState);
+        var state = _sprite.RsiStateLike(spriteSpec);
+
+        emojiButton.Label.Visible = false;
+
+        if (state.IsAnimated)
         {
-            var spriteSpec = new SpriteSpecifier.Rsi(new ResPath(emoji.SpritePath), emoji.SpriteState);
-            var state = SpriteSystem.RsiStateLike(spriteSpec);
-
-            emojiButton.Label.Visible = false;
-
-            if (state.IsAnimated)
+            var animatedRect = new AnimatedTextureRect
             {
-                var animatedRect = new AnimatedTextureRect
-                {
-                    SetWidth = 65,
-                    SetHeight = 65,
-                    HorizontalAlignment = Control.HAlignment.Center,
-                    VerticalAlignment = Control.VAlignment.Center
-                };
-                animatedRect.SetFromSpriteSpecifier(spriteSpec);
-                animatedRect.DisplayRect.HorizontalExpand = true;
-                animatedRect.DisplayRect.VerticalExpand = true;
-                animatedRect.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCentered;
-                emojiButton.AddChild(animatedRect);
-            }
-            else
-            {
-                var texture = SpriteSystem.Frame0(spriteSpec);
-                var textureRect = new TextureRect
-                {
-                    Texture = texture,
-                    SetWidth = 45,
-                    SetHeight = 45,
-                    HorizontalAlignment = Control.HAlignment.Center,
-                    VerticalAlignment = Control.VAlignment.Center,
-                    Stretch = TextureRect.StretchMode.KeepAspectCentered
-                };
-                emojiButton.AddChild(textureRect);
-            }
+                SetWidth = 65,
+                SetHeight = 65,
+                HorizontalAlignment = HAlignment.Center,
+                VerticalAlignment = VAlignment.Center,
+            };
+            animatedRect.SetFromSpriteSpecifier(spriteSpec);
+            animatedRect.DisplayRect.HorizontalExpand = true;
+            animatedRect.DisplayRect.VerticalExpand = true;
+            animatedRect.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCentered;
+            emojiButton.AddChild(animatedRect);
         }
-        catch
+        else
         {
-            emojiButton.Text = emoji.Code;
+            var texture = _sprite.Frame0(spriteSpec);
+            var textureRect = new TextureRect
+            {
+                Texture = texture,
+                SetWidth = 45,
+                SetHeight = 45,
+                HorizontalAlignment = HAlignment.Center,
+                VerticalAlignment = VAlignment.Center,
+                Stretch = TextureRect.StretchMode.KeepAspectCentered,
+            };
+            emojiButton.AddChild(textureRect);
         }
 
         var emojiCode = emoji.Code;
@@ -313,86 +304,87 @@ public sealed class EmojiPickerWindow : DefaultWindow
     {
         _recentEmojis.Remove(emojiCode);
         _recentEmojis.Add(emojiCode);
+
         if (_recentEmojis.Count > 5)
-        {
             _recentEmojis.RemoveAt(0);
-        }
+
         SaveRecentEmojis();
     }
 
     private void ToggleFavoriteEmoji(string emojiCode)
     {
-        if (!_favoriteEmojis.Add(emojiCode))
-        {
-            _favoriteEmojis.Remove(emojiCode);
-        }
+        if (!_emoji.Emojis.TryGetValue(emojiCode, out var proto))
+            return;
+
+        if (!_favoriteEmojis.Add(proto))
+            _favoriteEmojis.Remove(proto);
+
         SaveFavoriteEmojis();
     }
 
     private void LoadSavedEmojis()
     {
-        HashSet<string>? allEmojis = null;
-        try
-        {
-            allEmojis = EmojiSystem.GetAllEmojis().Select(e => e.Code).ToHashSet();
-        }
-        catch { }
+        LoadRecentEmojis();
+        LoadFavoriteEmojis();
+    }
 
-        try
-        {
-            var recentEmojisStr = _configurationManager.GetCVar(SunriseCCVars.MessengerRecentEmojis);
-            if (!string.IsNullOrWhiteSpace(recentEmojisStr))
-            {
-                var emojiCodes = recentEmojisStr.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-                _recentEmojis.Clear();
-                foreach (var code in emojiCodes)
-                {
-                    if (string.IsNullOrWhiteSpace(code) || (allEmojis != null && !allEmojis.Contains(code)))
-                        continue;
-                    _recentEmojis.Add(code);
-                    if (_recentEmojis.Count >= 5) break;
-                }
-            }
-        }
-        catch { _recentEmojis.Clear(); }
+    private void LoadRecentEmojis()
+    {
+        var recentEmojisStr = _cfg.GetCVar(SunriseCCVars.MessengerRecentEmojis);
+        if (string.IsNullOrWhiteSpace(recentEmojisStr))
+            return;
 
-        try
+        var emojiCodes = recentEmojisStr.Split(',',
+            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        _recentEmojis.Clear();
+
+        foreach (var code in emojiCodes)
         {
-            var favoriteEmojisStr = _configurationManager.GetCVar(SunriseCCVars.MessengerFavoriteEmojis);
-            if (!string.IsNullOrWhiteSpace(favoriteEmojisStr))
-            {
-                var emojiCodes = favoriteEmojisStr.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-                _favoriteEmojis.Clear();
-                foreach (var code in emojiCodes)
-                {
-                    if (string.IsNullOrWhiteSpace(code) || (allEmojis != null && !allEmojis.Contains(code)))
-                        continue;
-                    _favoriteEmojis.Add(code);
-                }
-            }
+            if (string.IsNullOrWhiteSpace(code))
+                continue;
+
+            if (!_emoji.Emojis.ContainsKey(code))
+                continue;
+
+            _recentEmojis.Add(code);
+            if (_recentEmojis.Count >= 5)
+                break;
         }
-        catch { _favoriteEmojis.Clear(); }
+    }
+
+    private void LoadFavoriteEmojis()
+    {
+        var favoriteEmojisStr = _cfg.GetCVar(SunriseCCVars.MessengerFavoriteEmojis);
+        if (string.IsNullOrWhiteSpace(favoriteEmojisStr))
+            return;
+
+        var emojiCodes = favoriteEmojisStr.Split(',',
+            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        _favoriteEmojis.Clear();
+
+        foreach (var code in emojiCodes)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+                continue;
+
+            if (!_emoji.Emojis.TryGetValue(code, out var proto))
+                continue;
+
+            _favoriteEmojis.Add(proto);
+        }
     }
 
     private void SaveRecentEmojis()
     {
-        try
-        {
-            var emojiCodesStr = string.Join(",", _recentEmojis);
-            _configurationManager.SetCVar(SunriseCCVars.MessengerRecentEmojis, emojiCodesStr);
-            _configurationManager.SaveToFile();
-        }
-        catch { }
+        var emojiCodesStr = string.Join(",", _recentEmojis);
+        _cfg.SetCVar(SunriseCCVars.MessengerRecentEmojis, emojiCodesStr);
+        _cfg.SaveToFile();
     }
 
     private void SaveFavoriteEmojis()
     {
-        try
-        {
-            var emojiCodesStr = string.Join(",", _favoriteEmojis);
-            _configurationManager.SetCVar(SunriseCCVars.MessengerFavoriteEmojis, emojiCodesStr);
-            _configurationManager.SaveToFile();
-        }
-        catch { }
+        var emojiCodesStr = string.Join(",", _favoriteEmojis.Select(e => e.Code));
+        _cfg.SetCVar(SunriseCCVars.MessengerFavoriteEmojis, emojiCodesStr);
+        _cfg.SaveToFile();
     }
 }

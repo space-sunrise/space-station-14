@@ -1,6 +1,7 @@
-﻿using Content.Shared._Starlight.Medical.Limbs;
+using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -9,12 +10,6 @@ namespace Content.Shared.Starlight;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LimbWithItemsComponent : Component, IImplantable, IWithAction
 {
-    [DataField(readOnly: true, required: true), AutoNetworkedField]
-    public List<EntProtoId> Items;
-
-    [DataField, AutoNetworkedField]
-    public List<EntityUid> ItemEntities = [];
-
     [DataField, AutoNetworkedField]
     public bool EntityIcon { get; set; } = false;
 
@@ -29,4 +24,7 @@ public sealed partial class LimbWithItemsComponent : Component, IImplantable, IW
 
     [DataField, AutoNetworkedField]
     public bool Toggled;
+
+    [DataField, AutoNetworkedField]
+    public string ContainerId = "cyberlimb";
 }

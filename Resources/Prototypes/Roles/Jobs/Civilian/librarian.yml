@@ -6,6 +6,10 @@
   startingGear: LibrarianGear
   icon: "JobIconLibrarian"
   supervisors: job-supervisors-hop
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-archivist
+  # Sunrise-End
   access:
   - Service
   - Maintenance

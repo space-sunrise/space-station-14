@@ -104,6 +104,7 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
+  - type: CanBeCarried # Sunrise-Edit
 
 - type: entity
   save: false

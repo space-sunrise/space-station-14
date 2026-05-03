@@ -4,12 +4,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicRaycast
-    maxDistance: 80.0
+    maxDistance: 45.0
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 20
-        Structural: 13
+        Heat: 10
+        Structural: 10
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -28,13 +28,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.13
+    armorPenetration: -0.1
     damage:
       types:
         Piercing: 25
         Structural: 10
   - type: HitscanStaminaDamage
-    staminaDamage: 5
+    staminaDamage: 15
   - type: HitscanPierce
     chance: 0.40
     deviation: 0.05
@@ -62,12 +62,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.90
+    armorPenetration: -0.75
     damage:
       types:
         Piercing: 30 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 10
+    staminaDamage: 30
   - type: HitscanPierce
     chance: 0.05
     deviation: 0.05
@@ -86,7 +86,7 @@
         Piercing: 20 #- 30%
         Structural: 5
   - type: HitscanStaminaDamage
-    staminaDamage: 3
+    staminaDamage: 10
   - type: HitscanPierce
     chance: 0.8
     deviation: 0.05
@@ -146,10 +146,10 @@
     armorPenetration: 0.69
     damage:
       types:
-        Piercing: 20 #- 30%
+        Piercing: 15 #- 40%
         Structural: 2
   - type: HitscanStaminaDamage
-    staminaDamage: 2
+    staminaDamage: 8
   - type: HitscanPierce
     chance: 0.9
     deviation: 0.05

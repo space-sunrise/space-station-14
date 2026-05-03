@@ -56,8 +56,16 @@
   - PaintRipleyZairjah
   - PaintDurandExecutor
   - PaintDurandShire
+  - PaintDurandOld
   - PaintGygaxOld
   - PaintGygaxWhite
   - PaintClarkeOrangey
   - Nanopaste
   - HandheldRoboAnalyzer
+
+- type: latheRecipePack
+  id: BorgModulesSunrise
+  recipes:
+  - BorgModuleJetpack
+  - BorgModuleMiningCombat
+  - BorgModuleAdvancedCombat

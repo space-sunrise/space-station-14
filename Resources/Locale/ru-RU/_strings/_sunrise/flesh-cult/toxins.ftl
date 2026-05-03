@@ -1,4 +1,4 @@
-reagent-name-carol = ??????
-reagent-desc-carol = ??????
-reagent-name-flesh-acid = ??????
-reagent-desc-flesh-acid = ??????
+reagent-name-carol = карол
+reagent-desc-carol = [ДАННЫЕ ОТСУТСТВУЮТ]
+reagent-name-flesh-acid = кислота плоти
+reagent-desc-flesh-acid = [ДАННЫЕ ОТСУТСТВУЮТ]

@@ -1,0 +1,8 @@
+# Example
+
+- type: roundEndMusicPool
+  id: SunriseRoundEndMusic
+  tracks:
+  - sound:
+      path: /Audio/Lobby/endless_space.ogg
+    weight: 1

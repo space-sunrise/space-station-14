@@ -32,7 +32,7 @@ jobs:
         ssh-key: ${{ secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
 
     - name: Move Sunrise Private files
-      run: python3 Tools/_sunrise/move_private.py --clone-dir "SunrisePrivate" --target-dirs "Resources" "Content.Client" "Content.Server" "Content.Shared"
+      run: python3 Tools/_sunrise/move_private.py --clone-dir "SunrisePrivate" --target-dirs "Resources"
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0

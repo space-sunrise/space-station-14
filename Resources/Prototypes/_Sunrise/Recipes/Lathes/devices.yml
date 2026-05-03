@@ -1,24 +1,12 @@
 - type: latheRecipe
-  id: HandCraftedNVD
-  result: ClothingEyesNVDHandcrafted
-  completetime: 50
-  materials:
-    Steel: 1000
-    Plastic: 400
-    Plasma: 100
-    Uranium: 200
-    Silver: 100
-
-- type: latheRecipe
   id: BasicNVD
   result: ClothingEyesNVD
-  completetime: 60
+  completetime: 15
   materials:
     Steel: 1000
     Plastic: 400
     Silver: 300
     Gold: 50
-    Uranium: 300
 
 - type: latheRecipe
   id: BasicThermals
@@ -46,3 +34,46 @@
   parent: ClothingBackpackHolding
   id: PlantBagOfHolding
   result: PlantBagOfHolding
+
+- type: latheRecipe
+  id: BluespaceAirTank
+  result: BluespaceAirTank
+  completetime: 5
+  materials:
+    Steel: 2000
+    Silver: 750
+    Plasma: 1000
+    Uranium: 200
+
+- type: latheRecipe
+  id: SmallBluespaceAirTank
+  result: SmallBluespaceAirTank
+  completetime: 5
+  materials:
+    Steel: 1000
+    Silver: 750
+    Plasma: 500
+    Uranium: 100
+
+# region PKA
+- type: latheRecipe
+  id: WeaponProtoKineticRepeater
+  result: WeaponProtoKineticRepeater
+  categories:
+  - Weapons
+  completetime: 8
+  materials:
+    Steel: 1250
+    Glass: 500
+    Silver: 250
+
+- type: latheRecipe
+  id: WeaponProtoKineticShotgun
+  result: WeaponProtoKineticShotgun
+  categories:
+  - Weapons
+  completetime: 8
+  materials:
+    Steel: 1250
+    Glass: 500
+    Silver: 250
