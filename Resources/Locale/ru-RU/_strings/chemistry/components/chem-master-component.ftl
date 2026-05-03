@@ -34,3 +34,5 @@ chem-master-window-sort-type-none = Сортировка: Сначала ста�
 chem-master-window-sort-type-alphabetical = Сортировка: По алфавиту
 chem-master-window-sort-type-quantity = Сортировка: По количеству
 chem-master-window-sort-type-latest = Сортировка: Сначала новые
+chem-master-window-patches-label = Пластыри:
+chem-master-window-patches-number-label = Кол-во:

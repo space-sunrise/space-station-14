@@ -134,12 +134,13 @@ namespace Content.Shared.Localizations
         /// </summary>
         public static string FormatListToOr(List<string> list)
         {
+            var or = Loc.GetString("generic-or"); // Russian-Localization Sunrise-Add
             return list.Count switch
             {
                 <= 0 => string.Empty,
                 1 => list[0],
-                2 => $"{list[0]} or {list[1]}",
-                _ => $"{string.Join(", ", list.GetRange(0, list.Count - 1))}, or {list[^1]}"
+                2 => $"{list[0]} {or} {list[1]}", // Russian-Localization Sunrise-Edit
+                _ => $"{string.Join(", ", list.GetRange(0, list.Count - 1))}, {or} {list[^1]}" // Russian-Localization Sunrise-Edit
             };
         }
 
