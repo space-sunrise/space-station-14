@@ -56,7 +56,8 @@
   - type: EncryptionKey
     channels:
     - CentCom
-    - BlueShield # Sunrise-Edit
+    - BlueShield # Sunrise-Add
+    - ERT # Sunrise-Add
     defaultChannel: CentCom
   - type: Sprite
     layers:
