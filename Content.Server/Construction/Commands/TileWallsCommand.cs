@@ -1,6 +1,7 @@
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Maps;
+using Content.Shared.Parallax.Biomes;
 using Content.Shared.Tag;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
@@ -70,6 +71,14 @@ public sealed class TileWallsCommand : IConsoleCommand
             shell.WriteError($"Grid {gridId} doesn't have an associated grid entity.");
             return;
         }
+
+        // Sunrise added start
+        if (_entManager.HasComponent<BiomeComponent>(gridId))
+        {
+            shell.WriteError($"Using {Command} on grid with biome isn't supported. Command will be aborted");
+            return;
+        }
+        // Sunrise added end
 
         var tagSystem = _entManager.EntitySysManager.GetEntitySystem<TagSystem>();
         var underplating = _tileDefManager[TilePrototypeId];

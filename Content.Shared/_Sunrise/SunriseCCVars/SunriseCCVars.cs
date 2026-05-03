@@ -562,7 +562,7 @@ public sealed partial class SunriseCCVars : CVars
     ///     The visual speed of all shuttles when in FTL map.
     /// </summary>
     public static readonly CVarDef<float> FTLSpeed =
-        CVarDef.Create("shuttle.ftl_speed", 300.0f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.ftl_speed", 100.0f, CVar.SERVERONLY);
 
     /**
      * Photo Uploads

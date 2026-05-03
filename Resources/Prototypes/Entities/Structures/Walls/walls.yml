@@ -75,6 +75,7 @@
     tags:
     - Wall
     - Diagonal
+    - ForceNoTileWalls # Sunrise added
   - type: IconSmooth
     mode: Diagonal
     key: walls

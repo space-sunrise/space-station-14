@@ -122,8 +122,8 @@
       min: 2
       max: 3
     meteorsPerWave:
-      min: 1 # Sunrise-Edit
-      max: 3 # Sunrise-Edit
+      min: 3
+      max: 5
 
 - type: entity
   parent: GameRuleMeteorSwarm
@@ -142,8 +142,8 @@
       min: 2
       max: 3
     meteorsPerWave:
-      min: 5 # Sunrise-Edit
-      max: 10 # Sunrise-Edit
+      min: 8
+      max: 12
 
 - type: entity
   parent: GameRuleMeteorSwarm
