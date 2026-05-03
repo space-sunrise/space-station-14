@@ -2492,14 +2492,13 @@
       prob: 0.25
     - id: MaterialGunpowder
       prob: 0.9
-    - id: MaterialGunpowder
-      amount: 5
+    - id: MaterialGunpowder5
       prob: 0.5
-    - id: MaterialGunpowder
-      amount: 10
+    - id: MaterialGunpowder5
+      amount: 2
       prob: 0.25
-    - id: MaterialGunpowder
-      amount: 30
+    - id: MaterialGunpowder5
+      amount: 6
       prob: 0.1
     - id: PipeBombCable
       amount: 2
