@@ -13,4 +13,6 @@ namespace Content.Client._Sunrise.Stylesheets;
 public static class SunriseStyleClass
 {
     public const string StyleClassNoStyle = "NoStyle";  // Sunrise-Edit
+    public const string MappingWidgetPanel = "SunriseMappingWidgetPanel";
+    public const string PrisonerRecordPanel = "PrisonerRecordPanel";
 }

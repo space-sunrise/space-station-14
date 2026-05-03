@@ -1,8 +1,8 @@
 - type: constructionGraph
   id: LeviathanNukeShellDisassembly
-  start: nuke
+  start: start
   graph:
-  - node: nuke
+  - node: start
     entity: CartridgeLeviathan240mmNuke
     edges:
     - to: terminal

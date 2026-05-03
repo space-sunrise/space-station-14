@@ -2,12 +2,11 @@
 
 on:
   pull_request:
-    types: [ opened, reopened, synchronize, ready_for_review ]
+    types: [ opened, reopened, synchronize, converted_to_draft, ready_for_review ]
 
 jobs:
   build:
     name: CRLF Check
-    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4.2.2

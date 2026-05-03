@@ -24,6 +24,10 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
   - type: PointLight
     radius: 1.5
     energy: 4.0

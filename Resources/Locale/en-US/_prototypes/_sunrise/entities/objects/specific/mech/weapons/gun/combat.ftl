@@ -1,6 +1,9 @@
 ent-WeaponMechCombatVindictor = Mounted MG-100 Vindicator Minigun
     .suffix = Mech Weapon, Gun, Combat, Minigun
     .desc = { ent-BaseMechWeaponRange.desc }
+ent-WeaponMechCombatChaingun = Mounted Chaingun
+    .suffix = Mech Weapon, Gun, Combat
+    .desc = { ent-BaseMechWeaponRange.desc }
 ent-WeaponMechCombatMaxim = Mounted Kardashev-Maxim
     .desc = An ancient heavy machine gun given new life as a mech-mounted gun
     .suffix = Mech Weapon, Combat, USSP

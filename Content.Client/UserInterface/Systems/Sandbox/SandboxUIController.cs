@@ -27,7 +27,7 @@ namespace Content.Client.UserInterface.Systems.Sandbox;
 
 // TODO hud refactor should part of this be in engine?
 [UsedImplicitly]
-public sealed class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
+public sealed partial class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
 {
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
@@ -123,6 +123,9 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         _window.ToggleShadowsButton.Pressed = !_light.DrawShadows;
         _window.ShowMarkersButton.Pressed = _marker.MarkersVisible;
         _window.ShowBbButton.Pressed = (_debugPhysics.Flags & PhysicsDebugFlags.Shapes) != 0x0;
+        // Sunrise added start - sandbox UI extension hook
+        InitializeSunriseWindow();
+        // Sunrise added end
 
         _window.AiOverlayButton.OnPressed += args =>
         {

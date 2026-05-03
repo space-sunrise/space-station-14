@@ -573,3 +573,183 @@
     color: "#0bb06e"
     energy: 2
     radius: 7
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitSpaceHazard
+  name: space hazard helmet
+  description: Keeps the cold sulfuric embrace of space out.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/spacehazard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/spacehazard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.6
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitAdvancedMining
+  name: advanced mining hardsuit helmet
+  description: A specially designed helmet for mining operations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/advmining.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-light-vulpkanin
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-light-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-light-dog
+        shader: unshaded
+      head-avali:
+      - state: equipped-head-light-avali
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-vulpkanin
+      - state: equipped-head-unshaded-vulpkanin
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-reptilian
+      - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-dog
+      - state: equipped-head-unshaded-dog
+        shader: unshaded
+      head-avali:
+      - state: equipped-head-avali
+      - state: equipped-head-unshaded-avali
+        shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: PointLight
+    radius: 9
+    energy: 3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMining
+  name: mining hardsuit helmet
+  description: A special helmet designed for work in a hazardous, low pressure environments encountered during space mining. Has dual floodlights.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/mining.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-light-vulpkanin
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-light-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-light-dog
+        shader: unshaded
+      head-avali:
+      - state: equipped-head-light-avali
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-head-vox
+      - state: equipped-head-unshaded-vox
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-vulpkanin
+      - state: equipped-head-unshaded-vulpkanin
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-reptilian
+      - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-dog:
+      - state: equipped-head-dog
+      - state: equipped-head-unshaded-dog
+        shader: unshaded
+      head-avali:
+      - state: equipped-head-avali
+      - state: equipped-head-unshaded-avali
+        shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: PointLight
+    radius: 9
+    energy: 3
+  - type: Tag
+    tags:
+    - CorgiWearable

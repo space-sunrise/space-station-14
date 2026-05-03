@@ -3,11 +3,15 @@
   parent:
   - BaseStation
   - BaseStationNews
+  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
+  - BaseStationDeliveries
   - BaseStationNanotrasen
   - BaseStationSiliconLawCrewsimov
   - PrisonStationAlertLevels
+  - BaseStationCriminalRecords
+  - BaseStationCorporateLaw
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
@@ -33,5 +37,6 @@
   - BaseStationNanotrasen
   - BaseStationDeliveries
   - BaseStationTransitHub
+  - BaseStationCorporateLaw
   components:
   - type: Transform

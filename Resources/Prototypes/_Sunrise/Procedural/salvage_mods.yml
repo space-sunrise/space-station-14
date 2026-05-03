@@ -8,7 +8,6 @@
     - Easy
     - Challenging
     - Moderate
-    - Difficult
   factions:
     - PiratesT1
 
@@ -20,7 +19,6 @@
     - Lava
     - Grasslands
     - Caves
-    - Snow
   difficulties:
     - Moderate
     - Challenging
@@ -28,7 +26,6 @@
     - Impossible
   factions:
     - Soviets
-    - PiratesT1
 
 - type: salvageDungeonMod
   id: SovietStrongholdClassic
@@ -38,26 +35,11 @@
     - Lava
     - Grasslands
     - Caves
-    - Snow
   difficulties:
     - Difficult
     - Impossible
   factions:
     - Soviets
-
-# - type: salvageDungeonMod
-#   id: SovietStrategicResourcesWarehouse
-#   desc: salvage-dungeon-mod-soviet-warehouse
-#   proto: SovietStrategicResourcesWarehouseDungeon
-#   biomes:
-#     - Snow
-#   difficulties:
-#     - Challenging
-#     - Difficult
-#     - Impossible
-#   factions:
-#     - Soviets
-#     - PiratesT3
 
 - type: salvageDungeonMod
   id: SyndicateBase
@@ -69,6 +51,5 @@
     - Difficult
     - Impossible
   factions:
-    - PiratesT1
     - PiratesT2
     - PiratesT3

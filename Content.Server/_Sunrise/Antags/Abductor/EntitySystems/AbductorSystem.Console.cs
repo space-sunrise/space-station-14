@@ -12,8 +12,8 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Server.VendingMachines;
+using Content.Shared._Sunrise.Movement.Carrying;
 using Content.Shared.VendingMachines;
-using Content.Shared._Sunrise.Carrying;
 using Content.Shared.Popups;
 using Content.Shared.Starlight.ItemSwitch;
 using Robust.Shared.Audio;
@@ -159,7 +159,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         var target = GetEntity(ent.Comp.Target.Value);
 
-        if (HasComp<CarryingComponent>(target))
+        if (HasComp<ActiveCarrierComponent>(target))
         {
             _popupSystem.PopupCursor(Loc.GetString("need-stop-carry"), args.Actor, PopupType.MediumCaution);
             return;

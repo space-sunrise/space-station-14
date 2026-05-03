@@ -1,20 +1,24 @@
 <DefaultWindow
     xmlns="https://spacestation14.io"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'copy-machine-menu-title'}"
-    MinSize="500 350"
-    SetSize="750 400">
+    MinSize="700 450"
+    SetSize="980 560">
 
-    <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
+    <SplitContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" SplitWidth="5">
 
         <!-- Левая колонка -->
-        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5" MinWidth="260">
 
             <!-- Поиск -->
-            <LineEdit Name="SearchBar" PlaceHolder="{Loc 'copy-machine-menu-search-placeholder'}" HorizontalExpand="True"/>
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="5" Margin="0 0 0 5">
+                <LineEdit Name="SearchBar" PlaceHolder="{Loc 'copy-machine-menu-search-placeholder'}" HorizontalExpand="True"/>
+
+                <OptionButton Name="CategoryDropdown" MinWidth="220" />
+            </BoxContainer>
 
             <!-- Фильтр -->
-            <OptionButton Name="FilterDropdown" HorizontalExpand="True" MinHeight="30" Prefix=""/>
 
             <!-- Заголовок списка -->
             <Label Text="{Loc 'copy-machine-menu-templates'}" Margin="0 5 0 0" HorizontalAlignment="Center"/>
@@ -22,54 +26,86 @@
             <!-- Список шаблонов -->
             <PanelContainer VerticalExpand="True">
                 <PanelContainer.PanelOverride>
-                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    <gfx:StyleBoxFlat BackgroundColor="#15151A" />
                 </PanelContainer.PanelOverride>
                 <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
-                    <ItemList Name="TemplateList" VerticalExpand="True" HorizontalExpand="True"/>
+                    <ItemList Name="TemplateList" VerticalExpand="True" HorizontalExpand="True" ItemSeparation="2"/>
                 </ScrollContainer>
             </PanelContainer>
 
         </BoxContainer>
 
-        <BoxContainer MinWidth="5"/>
+        <!-- SplitContainer provides resizing handle and spacing -->
 
         <!-- Правая колонка -->
         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="5">
 
-            <!-- Статистика -->
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                <Label Text="{Loc 'copy-machine-menu-paper'}"/>
-                <Label Name="PaperCountLabel" Margin="5 0 10 0"/>
-            </BoxContainer>
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                <Label Text="{Loc 'copy-machine-menu-ink'}"/>
-                <Label Name="InkAmountLabel" Margin="5 0 0 0"/>
-            </BoxContainer>
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                <Label Text="{Loc 'copy-machine-menu-copy-status'}"/>
-                <Label Name="CopyStatusLabel" Margin="5 0 0 0"/>
-            </BoxContainer>
+            <!-- Статистика + кнопки -->
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="10">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="2">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="5">
+                        <Label Text="{Loc 'copy-machine-menu-paper'}"/>
+                        <Control HorizontalExpand="True"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" SeparationOverride="4">
+                            <Label Name="PaperCountLabel"/>
+                            <TextureRect TexturePath="/Textures/Interface/Nano/lined_paper.svg.96dpi.png"
+                                         SetSize="14 14"
+                                         Stretch="KeepAspectCentered"
+                                         VerticalAlignment="Center"
+                                         CanShrink="True"/>
+                        </BoxContainer>
+                    </BoxContainer>
 
-            <!-- Кнопки -->
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 10 0 0">
-                <Button Name="PrintButton" Text="{Loc 'copy-machine-menu-print'}" HorizontalExpand="True"/>
-                <Button Name="CopyButton" Text="{Loc 'copy-machine-menu-copy'}" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="5">
+                        <Label Text="{Loc 'copy-machine-menu-ink'}"/>
+                        <Control HorizontalExpand="True"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" SeparationOverride="4">
+                            <Label Name="InkAmountLabel"/>
+                            <TextureRect TexturePath="/Textures/Interface/eyedropper.svg.png"
+                                         SetSize="14 14"
+                                         Stretch="KeepAspectCentered"
+                                         VerticalAlignment="Center"
+                                         CanShrink="True"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" SeparationOverride="5">
+                    <Button Name="PrintButton" MinSize="56 56" ToolTip="{Loc 'copy-machine-menu-print'}">
+                        <Button.StyleClasses>
+                            <system:String>ButtonSmall</system:String>
+                            <system:String>ButtonSquare</system:String>
+                        </Button.StyleClasses>
+                        <TextureRect Name="PrintIcon" MinSize="40 40" Stretch="KeepCentered" CanShrink="True"/>
+                    </Button>
+                    <Button Name="CopyButton" MinSize="56 56" ToolTip="{Loc 'copy-machine-menu-copy'}">
+                        <Button.StyleClasses>
+                            <system:String>ButtonSmall</system:String>
+                            <system:String>ButtonSquare</system:String>
+                        </Button.StyleClasses>
+                        <TextureRect Name="CopyIcon" MinSize="40 40" Stretch="KeepCentered" CanShrink="True"/>
+                    </Button>
+                </BoxContainer>
             </BoxContainer>
 
             <!-- Текущая задача -->
             <Label Text="{Loc 'copy-machine-menu-current-job'}" Margin="0 10 0 0"/>
-            <Label Name="CurrentJobLabel" Text="..." HorizontalExpand="True"/>
+            <Label Name="CurrentJobLabel" Text="..." HorizontalExpand="True" ClipText="True"/>
 
             <!-- Очередь -->
-            <Label Text="{Loc 'copy-machine-menu-queue'}" Margin="10 5 0 0"/>
+            <Label Text="{Loc 'copy-machine-menu-queue'}" Margin="0 10 0 0"/>
             <PanelContainer VerticalExpand="True">
                 <PanelContainer.PanelOverride>
-                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    <gfx:StyleBoxFlat BackgroundColor="#15151A" />
                 </PanelContainer.PanelOverride>
                 <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
-                    <ItemList Name="QueueList" VerticalExpand="True" HorizontalExpand="True"/>
+                    <BoxContainer Name="QueueContainer"
+                                  Orientation="Vertical"
+                                  VerticalExpand="True"
+                                  HorizontalExpand="True"
+                                  SeparationOverride="2"/>
                 </ScrollContainer>
             </PanelContainer>
         </BoxContainer>
-    </BoxContainer>
+    </SplitContainer>
 </DefaultWindow>
