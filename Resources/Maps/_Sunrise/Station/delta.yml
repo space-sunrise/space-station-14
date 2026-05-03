@@ -33579,7 +33579,7 @@ entities:
   - uid: 149
     components:
     - type: MetaData
-      name: СВТ - Коморка атмосферных техников
+      name: СВТ - Каморка атмосферных техников
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -45.5,31.5
@@ -39640,7 +39640,7 @@ entities:
   - uid: 969
     components:
     - type: MetaData
-      name: ЛКП - Коморка атмосферных техников
+      name: ЛКП - Каморка атмосферных техников
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -45.5,30.5
@@ -39821,7 +39821,7 @@ entities:
   - uid: 987
     components:
     - type: MetaData
-      name: ЛКП - Коморка уборщиков
+      name: ЛКП - Каморка уборщиков
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,53.5
@@ -40071,7 +40071,7 @@ entities:
   - uid: 1008
     components:
     - type: MetaData
-      name: ЛКП - Коморка ведущего инженера
+      name: ЛКП - Каморка ведущего инженера
     - type: Transform
       pos: -44.5,7.5
       parent: 2
@@ -40432,7 +40432,7 @@ entities:
   - uid: 1038
     components:
     - type: MetaData
-      name: ЛКП - Коморка музыканта
+      name: ЛКП - Каморка музыканта
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -26.5,-16.5
@@ -41078,7 +41078,7 @@ entities:
   - uid: 1108
     components:
     - type: MetaData
-      name: ЛКП - Коморка ботаников
+      name: ЛКП - Каморка ботаников
     - type: Transform
       pos: -38.5,48.5
       parent: 2

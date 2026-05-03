@@ -22,7 +22,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
   - type: BatteryAmmoProvider
     proto: RedLightLaser
-    fireCost: 30
+    fireCost: 50
   - type: ItemSlots
     slots:
       cell_slot:
@@ -34,6 +34,7 @@
           tags:
             - PowerCell
             - PowerCellHigh
+            - PowerCellSmall
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: Appearance
@@ -67,10 +68,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 7
+    fireRate: 6
     minAngle: 1
-    maxAngle: 20
-    angleIncrease: 1.15
+    maxAngle: 15
+    angleIncrease: 0.75
     angleDecay: 10
     selectedMode: FullAuto
     availableModes:
