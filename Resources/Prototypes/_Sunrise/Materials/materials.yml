@@ -55,3 +55,11 @@
   - type: Construction
     graph: CrushedPhosphorus
     node: crushed
+
+- type: entity
+  parent: MaterialGunpowder
+  id: MaterialGunpowder5
+  suffix: 5
+  components:
+  - type: Stack
+    count: 5
