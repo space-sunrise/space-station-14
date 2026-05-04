@@ -104,7 +104,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         if (user == args.Target)
         {
-            _popup.PopupEntity(Loc.GetString("ent-SurgeryCantPerformSelf"), user, user); //Sunrise-Edition
+            _popup.PopupEntity(Loc.GetString("ent-SurgeryCantPerformSelf"), user, user); //Sunrise-Edit
         }
 
         args.Handled = true;
