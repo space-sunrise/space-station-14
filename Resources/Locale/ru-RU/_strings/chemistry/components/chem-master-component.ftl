@@ -19,6 +19,13 @@ chem-master-window-buffer-label = буфер:
 chem-master-window-buffer-all-amount = Всё
 chem-master-window-buffer-empty-text = Буфер пуст.
 chem-master-window-buffer-low-text = Недостаточно раствора в буфере
+
+#Surise-start
+chem-master-window-beaker-empty-text = Стакан пуст.
+chem-master-window-beaker-low-text = Недостаточно раствора в стакане.
+chem-master-window-beaker-label = Стакан
+#Surise-end
+
 chem-master-window-transfer-button = Перенести
 chem-master-window-discard-button = Уничтожить
 chem-master-window-packaging-text = Упаковка

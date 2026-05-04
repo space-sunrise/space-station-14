@@ -18,6 +18,9 @@ news-write-ui-create-text = Create
 news-write-ui-cancel-text = Clear
 news-write-ui-save-text = Save
 news-write-ui-preview-text = Preview
+#Sunrise-Edit-Start
+news-write-ui-write-text = Back
+#Sunrise-Edit-End
 news-write-ui-article-count-0 = 0 Articles
 news-write-ui-article-count-text = {$count} Articles
 news-write-ui-footer-text = News#Manager™ Authoring System

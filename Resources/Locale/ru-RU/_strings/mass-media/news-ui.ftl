@@ -18,6 +18,9 @@ news-write-ui-create-text = Создать
 news-write-ui-cancel-text = Отмена
 news-write-ui-save-text = Сохранить
 news-write-ui-preview-text = Предпросмотр
+#Sunrise-Edit-Start
+news-write-ui-write-text = Вернуться
+#Sunrise-Edit-End
 news-write-ui-article-count-0 = 0 статей
 news-write-ui-article-count-text =
     { $count } { $count ->
