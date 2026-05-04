@@ -56,7 +56,7 @@
   result: TelecomServerT2Circuitboard
   materials:
     Steel: 200
-    Glass: 100
+    Glass: 250
     Gold: 100
 
 - type: latheRecipe
@@ -65,7 +65,7 @@
   result: TelecomServerT3Circuitboard
   materials:
     Steel: 300
-    Glass: 200
+    Glass: 250
     Gold: 100
     Silver: 100
 
