@@ -21,3 +21,19 @@ bounty-console-tab-history-label = История
 bounty-console-history-empty-label = История запросов не найдена
 bounty-console-history-notice-completed-label = [color=limegreen]Выполнено[/color]
 bounty-console-history-notice-skipped-label = [color=red]Пропущено[/color] пользователем { $id }
+# Sunrise-start
+cargo-console-menu-tab-title-orders = Заказы
+cargo-console-menu-tab-title-funds = Переводы
+cargo-console-menu-account-action-transfer-limit = [bold]Лимит перевода:[/bold] ${$limit}
+cargo-console-menu-account-action-transfer-limit-unlimited-notifier = [color=gold](Лимит снят!)[/color]
+cargo-console-menu-account-action-select = [bold]Действие со счётом:[/bold]
+cargo-console-menu-account-action-amount = [bold]Сумма:[/bold] $
+cargo-console-menu-account-action-button = Перевести
+cargo-console-menu-toggle-account-lock-button = Переключить лимит перевода
+cargo-console-menu-account-action-option-withdraw = Снять наличные
+cargo-console-menu-account-action-option-transfer = Перевести средства на {$code}
+cargo-console-unlock-approved-order-broadcast = [bold]{$productName} x{$orderAmount}[/bold], стоимостью [bold]{$cost}[/bold], одобрен сотрудником [bold]{$approver}[/bold]
+cargo-console-fund-withdraw-broadcast = [bold]{$name} снял(а) {$amount} $ со счёта {$name1} \[{$code1}\]
+cargo-console-fund-transfer-broadcast = [bold]{$name} перевёл(а) {$amount} $ со счёта {$name1} \[{$code1}\] на счёт {$name2} \[{$code2}\][/bold]
+cargo-console-fund-transfer-user-unknown = Неизвестный
+# Sunrise-End

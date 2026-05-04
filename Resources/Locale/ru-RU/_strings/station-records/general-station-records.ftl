@@ -10,6 +10,10 @@ general-station-record-console-record-fingerprint = Отпечатки паль�
 general-station-record-console-record-dna = ДНК: { $dna }
 general-station-record-for-filter-line-placeholder = Введите текст...
 general-station-record-name-filter = Имя сотрудника
+# Sunrise-Start
+general-station-record-job-filter = Должность
+general-station-record-species-filter = Вид
+# Sunrise-End
 general-station-record-prints-filter = Отпечатки пальцев
 general-station-record-dna-filter = ДНК
 general-station-record-console-search-records = Поиск
