@@ -129,7 +129,7 @@ public sealed partial class RepairableSystem : EntitySystem
 
             foreach (var type in component.Damage.DamageDict)
             {
-                if (damage[type.Key].Value > 0 && type.Key != "Mangleness")
+                if (damage.TryGetValue(type.Key, out var value) && value > 0 && type.Key != "Mangleness" && type.Key != "Deterioration")
                 {
                     return true;
                 }
