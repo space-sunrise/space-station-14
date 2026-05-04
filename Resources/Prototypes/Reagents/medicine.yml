@@ -1066,7 +1066,7 @@
         damage:
           types:
             Caustic: -2 # Sunrise-Edit # 5 per u # Бафф сигината ибо он слабовато лечил, а требовал работы ботаников, которые иногда забивали хрен
-            Mangleness: 0.3 # Sunrise-Edit
+            Mangleness: 0.2 # Sunrise-Edit 10%
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -1334,7 +1334,7 @@
         damage:
           types:
             Shock: -1.5 # 6 per u
-            Mangleness: 0.225 # Sunrise-Edit # 15% of 1.5 shock healing
+            Mangleness: 0.15 # Sunrise-Edit # 10% of 1.5 shock healing
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
