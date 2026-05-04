@@ -6,11 +6,16 @@ lathe-menu-search-designs = Поиск проектов
 lathe-menu-category-all = Всё
 lathe-menu-search-filter = Фильтр
 lathe-menu-amount = Кол-во:
+
+#Sunrise-Edit-Start
 lathe-menu-recipe-count =
     { $count ->
-        [1] { $count } Recipe
-       *[other] { $count } Recipes
+        [1] { $count } Рецепт
+        [few] { $count } Рецепта
+       *[other] { $count } Рецептов
     }
+#Sunrise-Edit-End
+
 lathe-menu-reagent-slot-examine = Сбоку имеется отверстие для мензурки.
 lathe-reagent-dispense-no-container = Жидкость выливается из { $name } на пол!
 lathe-menu-result-reagent-display = { $reagent } ({ $amount }ед.)
