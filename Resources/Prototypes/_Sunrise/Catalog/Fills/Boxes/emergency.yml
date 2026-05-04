@@ -183,8 +183,9 @@
         - id: ClothingMaskGasSyndicate
         - id: DoubleEmergencyOxygenTankFilled
         - id: EmergencyMedipen
-        - id: DrinkWaterBottleFull
-        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: FoodTinMRE
+        - id: Flare
   - type: Sprite
     layers:
     - state: internals
@@ -202,8 +203,9 @@
         - id: ClothingMaskGasSyndicate
         - id: DoubleEmergencyNitrogenTankFilled
         - id: EmergencyMedipen
-        - id: DrinkWaterBottleFull
-        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: FoodTinMRE
+        - id: Flare
   - type: Sprite
     layers:
     - state: internals
@@ -224,8 +226,8 @@
         children:
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkWaterBottleFull
+        - id: FoodTinMRE
+        - id: DrinkMREFlask
         - id: ClothingMaskGasSyndicate
   - type: Sprite
     layers:
@@ -376,7 +378,7 @@
         children:
         - id: ClothingMaskGasSyndicate
         - id: DoubleEmergencyOxygenTankFilled
-        - id: FoodSnackNutribrick
+        - id: FoodTinMRE
         - id: DrinkBeerBottleFull
         - id: EmergencyMedipen
   - type: Sprite
