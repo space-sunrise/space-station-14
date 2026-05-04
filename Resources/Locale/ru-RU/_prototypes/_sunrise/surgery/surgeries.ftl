@@ -70,4 +70,3 @@ ent-SurgeryImplantCavityItem = Имплантация объекта
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryLimbAttachment = Прикрепить конечность
     .desc = Хирургическое прикрепление конечности.
-ent-SurgeryCantPerformSelf = Вы не можете проводить операцию на себе!

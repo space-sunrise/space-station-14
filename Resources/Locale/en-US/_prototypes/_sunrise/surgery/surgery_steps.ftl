@@ -22,4 +22,3 @@ ent-SurgeryStepSutureMuscles = Suture Abdominal Muscles
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepRestoreAbdominalWalls = Restore Abdominal Walls
     .desc = { ent-SurgeryStepBase.desc }
-ent-SurgeryCantPerformSelf = You can't perform surgery on yourself!
