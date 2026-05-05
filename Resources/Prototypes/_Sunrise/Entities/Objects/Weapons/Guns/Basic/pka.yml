@@ -100,14 +100,18 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_heavy.rsi
     size: Ginormous
   - type: Gun
-    projectileSpeed: 16
-    fireRate: 1.75
-    selectedMode: FullAuto
+    projectileSpeed: 15
+    fireRate: 1.4
+    selectedMode: Burst
     angleDecay: 45
     minAngle: 5
-    maxAngle: 15
+    maxAngle: 18
+    burstFireRate: 3
+    shotsPerBurst: 4
+    burstCooldown: 1.6
     availableModes:
-    - FullAuto
+    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
       params:
@@ -122,7 +126,7 @@
           True: { visible: False }
           False: { visible: True }
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1
+    rechargeCooldown: 2
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -134,8 +138,8 @@
   - type: MultiHandedItem
   - type: BasicEntityAmmoProvider
     proto: BulletKineticShuttle
-    capacity: 5
-    count: 5
+    capacity: 9
+    count: 9
   - type: UpgradeableGun
     whitelist:
       tags:

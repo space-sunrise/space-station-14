@@ -30,7 +30,6 @@
   - type: SiliconLawProvider
     laws: PeaceLawset
   - type: Pacified
-  - type: FlashImmunity
   - type: FabricateCookie
     cookieList:
     - FoodBakedCookieOatmeal
@@ -73,7 +72,10 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - SiliconEmotes
     - EmagImmune
+    - Unimplantable
+    - NoPaint
 
   # Sounds
   footstepCollection:
@@ -200,7 +202,6 @@
   - type: ShowCriminalRecordIcons
   - type: ShowMindShieldIcons
   - type: BorgCuffed
-  - type: FlashImmunity
   - type: SiliconLawProvider
     laws: SecurityLawset
   - type: Access
@@ -233,4 +234,7 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - SiliconEmotes
     - EmagImmune
+    - Unimplantable
+    - NoPaint

@@ -107,7 +107,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase]
   id: ClothingOuterCoatPilot
   name: security pilot's jacket
   description: Stylish jacket for a real ace.
@@ -116,13 +116,6 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/pilotcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/pilotcoat.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.75
-        Heat: 0.9
   - type: Tag
     tags:
       - Vest

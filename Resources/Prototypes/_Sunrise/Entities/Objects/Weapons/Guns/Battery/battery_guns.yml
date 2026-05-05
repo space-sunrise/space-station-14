@@ -750,7 +750,7 @@
     - FullAuto
   - type: BatteryAmmoProvider
     proto: RedHeavyLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
-    fireCost: 40
+    fireCost: 50
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -28

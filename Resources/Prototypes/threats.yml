@@ -43,7 +43,7 @@
 - type: ninjaHackingThreat
   id: Infiltrator
   announcement: terror-nukeops-infiltrator
-  rule: NukeopsInfiltrator
+  rule: NukeopsInfiltratorDropShipSoviet
 
 - type: ninjaHackingThreat
   id: InfiltratorDropShip

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "SUNRISE / Flaxor13",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "light-fancy-wood"
+    }
+  ]
+}

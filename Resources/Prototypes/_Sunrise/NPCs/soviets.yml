@@ -1387,7 +1387,7 @@
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1570,7 +1570,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
