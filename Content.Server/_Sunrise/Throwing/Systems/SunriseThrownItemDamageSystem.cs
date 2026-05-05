@@ -149,10 +149,10 @@ public sealed class SunriseThrownItemDamageSystem : EntitySystem
                         // Determine bounce direction using reflection
                         var currentPos = _transform.GetWorldPosition(uid);
                         var targetPos = _transform.GetWorldPosition(args.Target);
-                        var normal = (currentPos - targetPos).Normalized();
-
-                        if (normal.LengthSquared() < 0.01f)
-                            normal = -velocity.Normalized();
+                        var diff = currentPos - targetPos;
+                        var normal = diff.LengthSquared() > 0.0001f
+                            ? diff.Normalized()
+                            : -velocity.Normalized();
 
                         // Reflection formula: R = V - 2(V.N)N
                         // Only reflect if moving towards the target

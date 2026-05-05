@@ -455,7 +455,7 @@
     autoRechargeRate: 25
   - type: Gun
     selectedMode: FullAuto
-    fireRate: 4
+    fireRate: 3.5
   - type: BatteryAmmoProvider
     proto: BulletDisablerSmg
     fireCost: 50

@@ -740,7 +740,7 @@ public abstract class SharedStorageSystem : EntitySystem
                 LogImpact.Low,
                 $"{ToPrettyString(player):player} is attempting to take {ToPrettyString(item):item} out of {ToPrettyString(storage):storage}");
 
-            if (_sharedHandsSystem.TryPickupAnyHand(player, item, handsComp: player.Comp, ignoreDelay: true) // Sunrise-Edit
+            if (_sharedHandsSystem.TryPickupAnyHand(player, item, handsComp: player.Comp)
                 && storage.Comp.StorageRemoveSound != null
                 && !_tag.HasTag(player, storage.Comp.SilentStorageUserTag))
             {
@@ -823,7 +823,7 @@ public abstract class SharedStorageSystem : EntitySystem
             return;
         }
 
-        if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false, ignoreDelay: true)) // Surnise-Edit
+        if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false))
             return;
 
         // Validate the target storage

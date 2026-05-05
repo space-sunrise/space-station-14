@@ -5,21 +5,18 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
-using Robust.Shared.Timing;
-using Content.Shared.DoAfter;
-using Content.Shared._Sunrise.Item;
-using Robust.Shared.Map.Components;
+using Robust.Shared.Timing; // Sunrise-add
+using Content.Shared._Sunrise.Item; // Sunrise-add
 
 namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Sunrise-add
 
     private void InitializePickup()
     {
         SubscribeLocalEvent<HandsComponent, EntInsertedIntoContainerMessage>(HandleEntityInserted);
-        SubscribeLocalEvent<HandsComponent, PickupDoAfterEvent>(OnPickupDoAfter); // Sunrise-add
     }
 
     protected virtual void HandleEntityInserted(EntityUid uid, HandsComponent hands, EntInsertedIntoContainerMessage args)
@@ -55,8 +52,7 @@ public abstract partial class SharedHandsSystem
         bool animateUser = false,
         bool animate = true,
         HandsComponent? handsComp = null,
-        ItemComponent? item = null,
-        bool ignoreDelay = false) // Sunrise-add
+        ItemComponent? item = null)
     {
         if (!Resolve(uid, ref handsComp, false))
             return false;
@@ -64,7 +60,7 @@ public abstract partial class SharedHandsSystem
         if (!TryGetEmptyHand((uid, handsComp), out var hand))
             return false;
 
-        return TryPickup(uid, entity, hand, checkActionBlocker, animateUser, animate, handsComp, item, ignoreDelay); // Sunrise-Edit
+        return TryPickup(uid, entity, hand, checkActionBlocker, animateUser, animate, handsComp, item);
     }
 
     /// <summary>
@@ -78,8 +74,7 @@ public abstract partial class SharedHandsSystem
         bool animateUser = false,
         bool animate = true,
         HandsComponent? handsComp = null,
-        ItemComponent? item = null,
-        bool ignoreDelay = false) // Sunrise-add
+        ItemComponent? item = null)
     {
         if (!Resolve(uid, ref handsComp, false))
             return false;
@@ -94,46 +89,6 @@ public abstract partial class SharedHandsSystem
 
         if (!CanPickupToHand(uid, entity, handId, checkActionBlocker: checkActionBlocker, showPopup: true, handsComp: handsComp, item: item))
             return false;
-
-        // Sunrise-start - pickup delay
-        if (!ignoreDelay && checkActionBlocker && IsOnFloor(entity))
-        {
-            var itemNet = GetNetEntity(entity);
-
-            if (TryComp<DoAfterComponent>(uid, out var doAfterComp))
-            {
-                foreach (var doAfter in doAfterComp.DoAfters.Values)
-                {
-                    if (doAfter.Args.Event is PickupDoAfterEvent pickupEvent && pickupEvent.Item == itemNet)
-                    {
-                        // Already picking up. Do nothing and return true to stop further logic.
-                        return true;
-                    }
-                }
-            }
-
-            var delay = 1.0f;
-            if (Resolve(entity, ref item))
-            {
-                if (_prototype.TryIndex(item.Size, out var size))
-                {
-                    delay = Math.Max(0.1f, size.Weight / 32.0f);
-                }
-            }
-
-            var args = new DoAfterArgs(EntityManager, uid, delay, new PickupDoAfterEvent(itemNet, handId), uid, target: entity)
-            {
-                BreakOnMove = false,
-                BreakOnDamage = false,
-                BreakOnHandChange = false,
-                Hidden = true,
-                NeedHand = true
-            };
-
-            DoAfter.TryStartDoAfter(args);
-            return true;
-        }
-        // Sunrise-end
 
         if (!BeforeDoPickup((uid, handsComp), entity))
             return false;
@@ -183,31 +138,6 @@ public abstract partial class SharedHandsSystem
             return false;
 
         return true;
-    }
-    // Sunrise-end
-
-    // Sunrise-start
-    private void OnPickupDoAfter(EntityUid uid, HandsComponent component, PickupDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Handled)
-            return;
-
-        var entity = GetEntity(args.Item);
-
-        if (!Exists(entity))
-            return;
-
-        TryPickup(uid, entity, args.HandId, handsComp: component, ignoreDelay: true);
-    }
-
-    private bool IsOnFloor(EntityUid entity)
-    {
-        var xform = Transform(entity);
-        if (ContainerSystem.IsEntityInContainer(entity))
-            return false;
-
-        var parent = xform.ParentUid;
-        return HasComp<MapGridComponent>(parent) || HasComp<MapComponent>(parent);
     }
     // Sunrise-end
 
@@ -328,12 +258,11 @@ public abstract partial class SharedHandsSystem
         bool animate = true,
         bool dropNear = false,
         HandsComponent? handsComp = null,
-        ItemComponent? item = null,
-        bool ignoreDelay = false) // Sunrise-add
+        ItemComponent? item = null)
     {
         if (uid == null
             || !Resolve(uid.Value, ref handsComp, false)
-            || !TryPickupAnyHand(uid.Value, entity, checkActionBlocker, animateUser, animate, handsComp, item, ignoreDelay)) // Sunrise-Edit
+            || !TryPickupAnyHand(uid.Value, entity, checkActionBlocker, animateUser, animate, handsComp, item))
         {
             // TODO make this check upwards for any container, and parent to that.
             // Currently this just checks the direct parent, so items can still teleport through containers.
