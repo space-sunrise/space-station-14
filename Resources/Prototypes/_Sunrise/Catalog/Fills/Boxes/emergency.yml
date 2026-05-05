@@ -194,7 +194,7 @@
 - type: entity
   parent: BoxSurvivalSyndicateSunrise
   id: BoxSurvivalSyndicateNitrogenSunrise
-  suffix: Syndicate N2
+  suffix: syndicate, N2
   components:
   - type: EntityTableContainerFill
     containers:
