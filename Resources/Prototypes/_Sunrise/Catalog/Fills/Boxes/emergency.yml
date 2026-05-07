@@ -381,6 +381,7 @@
         - id: FoodTinMRE
         - id: DrinkBeerBottleFull
         - id: EmergencyMedipen
+        - id: Flare
   - type: Sprite
     layers:
     - state: internals
