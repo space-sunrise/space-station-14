@@ -163,7 +163,8 @@ public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Доб�
         // Then, randomly pick a RoleLoadout profile from those specified, and process/equip all LoadoutGroups from it.
         // For non-roundstart mobs there is no SelectedLoadout data, so minValue must be set in each LoadoutGroup to force selection.
         var id = _random.Pick(loadoutGroups);
-        var proto = _protoMan.Index(id);
+        var effectiveId = GetEffectiveRolePrototype(id, _protoMan); // Sunrise-edit
+        var proto = _protoMan.Index(effectiveId); // Sunrise-edit
         var loadout = new RoleLoadout(id);
         // Sunrise-Fix: Я пока-что в душе не ебу как здесь достать спонсорские прототипы, потому []
         loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, [], true);

@@ -171,7 +171,7 @@
 
 - type: entity
   parent: BoxSurvival
-  id: BoxSurvivalSyndicateSunrise
+  id: SunriseBoxSurvivalSyndicate
   name: extended-capacity survival box
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: syndicate
@@ -192,8 +192,8 @@
     - state: extendedtank
 
 - type: entity
-  parent: BoxSurvivalSyndicateSunrise
-  id: BoxSurvivalSyndicateNitrogenSunrise
+  parent: SunriseBoxSurvivalSyndicate
+  id: SunriseBoxSurvivalSyndicateNitrogen
   suffix: syndicate, N2
   components:
   - type: EntityTableContainerFill

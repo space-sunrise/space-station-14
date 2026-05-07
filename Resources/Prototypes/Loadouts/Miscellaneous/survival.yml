@@ -194,7 +194,7 @@
     proto: OxygenBreather
   storage:
     back:
-    - BoxSurvivalSyndicateSunrise # Sunrise-Edit
+    - BoxSurvivalSyndicate
 
 - type: loadout
   id: EmergencyNitrogenSyndicate
@@ -203,7 +203,7 @@
     proto: NitrogenBreather
   storage:
     back:
-    - BoxSurvivalSyndicateNitrogenSunrise # Sunrise-Edit
+    - BoxSurvivalSyndicateNitrogen
 
 # Military / Double Extended
 - type: loadout
