@@ -3113,7 +3113,7 @@
   productEntity: PresentMasksSlipknot
   discountCategory: rareDiscounts
   cost:
-    Telecrystal: 1
+    Telecrystal: 2
   categories:
   - UplinkPointless
 
