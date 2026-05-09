@@ -3107,7 +3107,7 @@
   - UplinkPointless
 
 - type: listing
-  id: slipknotset
+  id: Uplinkslipknotset
   name: uplink-slipknotset-name
   description: uplink-slipknotset-desc
   productEntity: PresentMasksSlipknot

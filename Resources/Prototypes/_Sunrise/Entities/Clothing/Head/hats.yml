@@ -520,6 +520,18 @@
 
 - type: entity
   parent: SunriseClothingHeadHatBattleMasksBase
+  id: ClothingHeadHatRichardSunrise
+  name: Richard
+  description: 'Do you like hurting people?'
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Misc/richard.rsi
+    scale: 0.63, 0.63
+  - type: Clothing
+    sprite: Clothing/Head/Misc/richard.rsi
+
+- type: entity
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatTony
   name: Tony
   description: 'Man, this party sucks, I fucking hate these people'

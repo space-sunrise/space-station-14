@@ -22,7 +22,7 @@
         orGroup: ClothingHeadHat
       - id: ClothingHeadHatSwanOne
         orGroup: ClothingHeadHat
-      - id: ClothingHeadHatRichard
+      - id: ClothingHeadHatRichardSunrise
         orGroup: ClothingHeadHat
     sound:
       path: /Audio/Effects/unwrap.ogg
