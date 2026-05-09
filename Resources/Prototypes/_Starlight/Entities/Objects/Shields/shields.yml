@@ -1,6 +1,6 @@
 - type: entity
   name: paladin shield
-  parent: [ RepairableShield, BaseMajorContraband ] # Sunrise-Edit
+  parent: [ BaseRepairableShield, BaseMajorContraband ] # Sunrise-Edit
   id: PaladinShield
   description: A shield for a true paladin! Good at deflecting hits with swords and absorbing the impact from bats, but not much else.
   components:
