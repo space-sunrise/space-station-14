@@ -164,6 +164,7 @@
     guides:
       - CriminalRecords
   - type: Appearance
+
 - type: entity
   id: HandheldCriminalRecordsMonitor
   parent:
