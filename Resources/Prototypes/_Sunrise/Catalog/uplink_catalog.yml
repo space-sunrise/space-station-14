@@ -3107,6 +3107,17 @@
   - UplinkPointless
 
 - type: listing
+  id: slipknotset
+  name: uplink-slipknotset-name
+  description: uplink-slipknotset-desc
+  productEntity: PresentMasksSlipknot
+  discountCategory: rareDiscounts
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+
+- type: listing
   id: UplinkWeaponPistolTec9
   name: uplink-pistoltec9-name
   description: uplink-pistoltec9-desc
