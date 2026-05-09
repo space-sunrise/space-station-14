@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: CrateFunSprayPaints
   name: spray paint crate
   description: a crate filled with spray paint.
@@ -34,3 +34,30 @@
           amount: 2
         - id: DeathPaintTwo
           amount: 2
+
+- type: entity
+  id: CrateGreytide
+  parent: CrateGenericSteel
+  name: greytide crate
+  description: A crate with greytide things.
+  suffix: DEBUG
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TiderLathe
+        - id: FireBomb
+          amount: 3
+        - id: MaterialCardboard
+        - id: CableApcStack
+        - id: JugWeldingFuel
+        - id: ClothingBackpackDuffelGreytideMaterials
+        - id: ClothingBeltUtilityFilled
+        - id: ToolboxElectricalFilled
+        - id: ToolboxMechanicalFilled
+        - id: ClothingHeadHatWelding
+        - id: BoxLightbulb
+        - id: SheetPlasteel
+        - id: MaterialWoodPlank
+        - id: ModularReceiver
