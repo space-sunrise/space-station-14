@@ -521,7 +521,7 @@
 - type: entity
   parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatRichardSunrise
-  name: Richard
+  name: richard
   description: Do you like hurting people?
   components:
   - type: Sprite
