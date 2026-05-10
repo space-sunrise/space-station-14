@@ -294,7 +294,7 @@
   id: VendorSalvageWeaponProtoKineticAccelerator
   productEntity: WeaponProtoKineticAccelerator
   cost:
-    SalvageTicket: 75
+    SalvageTicket: 60
   categories:
   - SalvageWeapons
 
@@ -302,7 +302,7 @@
   id: VendorSalvageWeaponProtoKineticShotgun
   productEntity: WeaponProtoKineticShotgun
   cost:
-    SalvageTicket: 125
+    SalvageTicket: 120
   categories:
   - SalvageWeapons
 
@@ -310,7 +310,7 @@
   id: VendorSalvageWeaponProtoKineticRepeater
   productEntity: WeaponProtoKineticRepeater
   cost:
-    SalvageTicket: 125
+    SalvageTicket: 120
   categories:
   - SalvageWeapons
 
@@ -318,12 +318,12 @@
   id: VendorSalvageWeaponProtoKineticHeavy
   productEntity: WeaponProtoKineticHeavy
   cost:
-    SalvageTicket: 1200
+    SalvageTicket: 600
   categories:
   - SalvageWeapons
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 5
+    stock: 1
 
 - type: listing
   id: VendorSalvageWeaponLaserLNT620

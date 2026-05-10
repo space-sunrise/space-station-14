@@ -2580,7 +2580,7 @@
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -2685,7 +2685,7 @@
     soundHit:
       collection: MetalThud
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -4285,7 +4285,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:

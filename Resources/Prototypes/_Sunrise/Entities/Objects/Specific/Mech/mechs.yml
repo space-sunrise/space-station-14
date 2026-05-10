@@ -188,7 +188,7 @@
     baseState: sec_pod
     openState: sec_pod_open
     brokenState: sec_pod_broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
@@ -263,7 +263,7 @@
     baseState: mining_pod
     openState: mining_pod_open
     brokenState: mining_pod_broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 4
     airtight: true
     pilotWhitelist:
@@ -377,7 +377,7 @@
     baseState: death
     openState: death-open
     brokenState: death-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     pilotWhitelist:
       components:
@@ -387,8 +387,8 @@
       - IndustrialMech
       - CombatMech
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 2
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -462,7 +462,7 @@
     baseState: paddy
     openState: paddy-open
     brokenState: paddy-broken
-    mechToPilotDamageMultiplier: 0.60
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 4
     #siren: true # Todo: port siren system from starlight
@@ -540,7 +540,7 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     pilotWhitelist:
       components:
@@ -626,18 +626,15 @@
     baseState: ntgygax
     openState: ntgygax-open
     brokenState: ntgygax-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 2.5
+    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -716,7 +713,7 @@
     baseState: phazon
     openState: phazon-open
     brokenState: phazon-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 5
     airtight: true
     pilotWhitelist:
@@ -786,18 +783,15 @@
     baseState: darkdurand
     openState: darkdurand-open
     brokenState: darkdurand-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -870,15 +864,15 @@
     baseState: dollhouse
     openState: dollhouse-open
     brokenState: dollhouse-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 2
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -888,8 +882,8 @@
         Structural: 220
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.75
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: Loadout
     prototypes: [ MechArmorHeavySyndiLoadout ]
   - type: CanMoveInAir
