@@ -54,8 +54,6 @@ public sealed partial class CrewMonitoringConsoleSystem
         {
             if (_prototypeManager.TryIndex(departmentId, out var department))
                 allowedDepartments.Add(Loc.GetString(department.Name));
-            else
-                allowedDepartments.Add(departmentId);
         }
 
         return allowedDepartments;
