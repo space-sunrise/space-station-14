@@ -2,7 +2,7 @@
   id: BibleJunkariat
   parent: Bible
   name: junkariat bible
-  description: The sacred scripture of the God of Junk. The pages are covered in grease stains.
+  description: The history of those who worship junk, recorded on a cassette tape. Somewhat sticky.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Chapel/junkariat_bible.rsi

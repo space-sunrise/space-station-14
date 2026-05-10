@@ -2,7 +2,7 @@
   id: AltarJunkariat
   parent: AltarNanotrasen
   name: junkariat altar
-  description: An altar dedicated to the God of Junk. Smells like rust and engine oil.
+  description: An altar of those who worship junk. Smells like rust and engine oil.
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/Altars/junkariat.rsi
