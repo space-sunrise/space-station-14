@@ -75,8 +75,8 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private bool TryGetBothDualWieldGuns(Entity<HandsComponent> ent, out EntityUid leftGun, out EntityUid rightGun)
     {
-        leftGun = EntityUid.Invalid;
-        rightGun = EntityUid.Invalid;
+        leftGun = default;
+        rightGun = default;
 
         foreach (var handName in _hands.EnumerateHands((ent.Owner, ent.Comp)))
         {
