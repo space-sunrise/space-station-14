@@ -3,7 +3,7 @@ namespace Content.Shared.Medical.CrewMonitoring;
 /// <summary>
 /// Состояние здоровья существа.
 /// </summary>
-public enum HealthState
+public enum CrewMonitoringHealthState
 {
     Unknown,    // нет данных о здоровье (датчики не в health-режиме)
     Healthy,    // 0% – 13.2%
@@ -23,26 +23,26 @@ public static class HealthStateHelper
     /// <param name="damagePercentage">Процент урона (0..∞). null = нет данных о здоровье.</param>
     /// <param name="isAlive">Жив ли существо.</param>
     /// <returns>Состояние здоровья.</returns>
-    public static HealthState GetHealthState(float? damagePercentage, bool isAlive)
+    public static CrewMonitoringHealthState GetHealthState(float? damagePercentage, bool isAlive)
     {
         if (!isAlive)
-            return HealthState.Dead;
+            return CrewMonitoringHealthState.Dead;
 
         if (damagePercentage == null)
-            return HealthState.Unknown;
+            return CrewMonitoringHealthState.Unknown;
 
         float damage = damagePercentage.Value;
 
         if (damage >= 1.0f)
-            return HealthState.Critical;
+            return CrewMonitoringHealthState.Critical;
         if (damage >= 0.83f)
-            return HealthState.Terrible;
+            return CrewMonitoringHealthState.Terrible;
         if (damage >= 0.6f)
-            return HealthState.Bad;
+            return CrewMonitoringHealthState.Bad;
         if (damage >= 0.36f)
-            return HealthState.NotGreat;
+            return CrewMonitoringHealthState.NotGreat;
         if (damage >= 0.132f)
-            return HealthState.Good;
-        return HealthState.Healthy;
+            return CrewMonitoringHealthState.Good;
+        return CrewMonitoringHealthState.Healthy;
     }
 }

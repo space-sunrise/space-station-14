@@ -18,7 +18,11 @@
         type: SunriseCrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
   - type: CrewMonitoringFilter
-    mode: Casualties
+    allowedHealthStates:
+    - Bad
+    - Terrible
+    - Critical
+    - Dead
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

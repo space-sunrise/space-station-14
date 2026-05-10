@@ -216,25 +216,25 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
         }
     }
 
+    private const string HumanCrewMonitoringRsi = "Interface/Alerts/human_crew_monitoring.rsi";
+
     private SpriteSpecifier.Rsi GetIconSpecifier(SuitSensorStatus sensor)
     {
-        if (!sensor.IsAlive)
-            return new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), "dead");
-
         var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
         string rsiState = healthState switch
         {
-            HealthState.Healthy => "health0",
-            HealthState.Good => "health1",
-            HealthState.NotGreat => "health2",
-            HealthState.Bad => "health3",
-            HealthState.Terrible => "health4",
-            HealthState.Critical => "critical",
-            HealthState.Unknown => "alive",
+            CrewMonitoringHealthState.Healthy => "health0",
+            CrewMonitoringHealthState.Good => "health1",
+            CrewMonitoringHealthState.NotGreat => "health2",
+            CrewMonitoringHealthState.Bad => "health3",
+            CrewMonitoringHealthState.Terrible => "health4",
+            CrewMonitoringHealthState.Critical => "critical",
+            CrewMonitoringHealthState.Dead => "dead",
+            CrewMonitoringHealthState.Unknown => "alive",
             _ => "alive"
         };
 
-        return new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_crew_monitoring.rsi"), rsiState);
+        return new SpriteSpecifier.Rsi(new ResPath(HumanCrewMonitoringRsi), rsiState);
     }
 
     private void PopulateDepartmentList(IEnumerable<SuitSensorStatus> departmentSensors)
