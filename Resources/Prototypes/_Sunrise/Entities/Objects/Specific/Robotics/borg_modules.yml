@@ -321,6 +321,16 @@
     icon: { sprite: _Sunrise/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
 
 - type: entity
+  parent: XenoborgModuleHeavyLaser
+  id: XenoborgModuleTemperature
+  name: temperature xenoborg module
+  description: Module with a self-recharging temperature gun.
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: XenoborgTemperatureGun
+
+- type: entity
   id: BorgModulePaperwork
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
   name: paperwork cyborg module

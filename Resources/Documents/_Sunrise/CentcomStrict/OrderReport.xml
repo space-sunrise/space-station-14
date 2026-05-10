@@ -1,0 +1,37 @@
+﻿<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                    [color=#8D1010]☆★★[/color] [color=#1B2333][bold]ПРИКАЗ[/bold][/color] [color=#8D1010]★★☆[/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / ЦК-КОМ[/bold][/color]        [color=#7A4A00][bold]№ [form="Номер приказа"][/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Объект назначения:[/color] [color=#1B2333][form="Наименование объекта"][/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Приказ о составлении отчёта[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+
+[color=#2D3442][bold][color=#1B2333]Уважаемое Командование[/color][/bold], информируем вас, что в связи с [bold][color=#8D1010]усилением бюрократизации[/color][/bold] и [bold][color=#1E4C7A]стандартизацией документооборота[/color][/bold] [bold][color=#8D1010]вам направляется приказ[/color][/bold] о составлении следующего отчёта:[/color]
+
+[bold][mono][color=#2D3442]
+ ► [bold][color=#8D1010]Отчёт:[/color][/bold] [bold][color=#1E4C7A][form="Отчёт"][/color][/bold]
+[/color][/mono][/bold]
+
+[bold][color=#7A4A00]Срок исполнения:[/color][/bold] [bold][color=#8D1010][form="Время"][/color][/bold]
+
+[color=#2D3442]Данный отчёт может быть запрошен ближе к концу смены. От [bold][color=#8D1010]полноты[/color][/bold] и [bold][color=#8D1010]оперативности[/color][/bold] его предоставления зависит заработная плата не только главы, но и всего отдела.[/color]
+
+[bold][color=#7A4A00]Ответственный за исполнение:[/color][/bold] [bold][color=#1E4C7A][form="Должность ответственного"][/color][/bold]
+[bold][color=#7A4A00]Контрольный срок:[/color][/bold] [bold][color=#8D1010][form="Время"][/color][/bold]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
+
+
+
+
+</Document>

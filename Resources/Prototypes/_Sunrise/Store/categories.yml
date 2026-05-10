@@ -278,14 +278,19 @@
   priority: 0
 
 - type: storeCategory
+  id: SalvageMech
+  name: store-category-salvage-mech
+  priority: 1
+
+- type: storeCategory
   id: SalvageWeapons
   name: store-category-salvage-weapons
-  priority: 1
+  priority: 2
 
 - type: storeCategory
   id: SalvageConsumeables
   name: store-category-salvage-consumeables
-  priority: 2
+  priority: 3
 
 - type: storeCategory
   id: MiningEquipment
@@ -293,6 +298,11 @@
   priority: 0
 
 - type: storeCategory
+  id: MiningMech
+  name: store-category-mining-mech
+  priority: 1
+
+- type: storeCategory
   id: MiningConsumeables
   name: store-category-mining-consumeables
-  priority: 1
+  priority: 2

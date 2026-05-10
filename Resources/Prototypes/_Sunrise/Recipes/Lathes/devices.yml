@@ -54,3 +54,26 @@
     Silver: 750
     Plasma: 500
     Uranium: 100
+
+# region PKA
+- type: latheRecipe
+  id: WeaponProtoKineticRepeater
+  result: WeaponProtoKineticRepeater
+  categories:
+  - Weapons
+  completetime: 8
+  materials:
+    Steel: 1250
+    Glass: 500
+    Silver: 250
+
+- type: latheRecipe
+  id: WeaponProtoKineticShotgun
+  result: WeaponProtoKineticShotgun
+  categories:
+  - Weapons
+  completetime: 8
+  materials:
+    Steel: 1250
+    Glass: 500
+    Silver: 250

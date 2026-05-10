@@ -75,6 +75,22 @@
     job: Roboticist
 
 - type: entity
+  parent: RoboticistIDCard
+  id: RoboticistNuclearOperativeIDCard
+  name: roboticist operative ID card
+  description: A roboticist ID card with standard job access and additional Syndicate access.
+  components:
+  - type: Access
+    tags:
+    - Research
+    - Maintenance
+    - NuclearOperative
+    - SyndicateAgent
+  - type: PresetIdCard
+    job: Roboticist
+    setAccess: false
+
+- type: entity
   parent: IDCardStandard
   id: SecurityPilotIDCard
   name: security pilot ID card

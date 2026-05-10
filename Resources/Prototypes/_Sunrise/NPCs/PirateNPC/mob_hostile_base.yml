@@ -334,7 +334,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Respirator
     updateInterval: 99999 # Shouldn't run often, if ever.
     suffocationThreshold: -100 # Should never happen.
@@ -412,7 +411,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Tag
     tags:
     - CanPilot

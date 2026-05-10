@@ -41,20 +41,6 @@
   factions:
     - Soviets
 
-# - type: salvageDungeonMod
-#   id: SovietStrategicResourcesWarehouse
-#   desc: salvage-dungeon-mod-soviet-warehouse
-#   proto: SovietStrategicResourcesWarehouseDungeon
-#   biomes:
-#     - Snow
-#   difficulties:
-#     - Challenging
-#     - Difficult
-#     - Impossible
-#   factions:
-#     - Soviets
-#     - PiratesT3
-
 - type: salvageDungeonMod
   id: SyndicateBase
   desc: salvage-dungeon-mod-syndicate-base

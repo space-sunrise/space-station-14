@@ -6,3 +6,5 @@ ent-ClothingOuterVestSecurityMedic = security medic vest
     .desc = A lightweight vest worn by the Security Medic.
 ent-ClothingOuterVestWebSec = security web vest
     .desc = A high-quality Type I armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating. Comes with a few extra pouches for gear.
+ent-ClothingOuterVestWebSalvageMerc = scrapper web vest
+    .desc = A versatile armored vest, popular among salvagers for its protective yet lightweight design.

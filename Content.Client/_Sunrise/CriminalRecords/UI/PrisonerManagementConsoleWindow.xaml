@@ -1,0 +1,50 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                                    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                                    Title="{Loc 'prisoner-management-title'}"
+             MinSize="1000 600">
+    <BoxContainer Orientation="Horizontal" SeparationOverride="0" Margin="12">
+        <!-- Waiting Block -->
+        <PanelContainer Name="WaitingPanel" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="12" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical" Margin="0 0 0 8">
+                     <Label Text="{Loc 'prisoner-management-waiting'}" StyleClasses="LabelHeadingBolder" HorizontalAlignment="Center"/>
+                     <PanelContainer StyleClasses="LowDivider" MinHeight="2" Margin="10 4 10 0"/>
+                </BoxContainer>
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="WaitingContainer" Orientation="Vertical" SeparationOverride="12" HorizontalExpand="True" Margin="4"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer StyleClasses="LowDivider" MinWidth="2" Margin="8 0"/>
+
+        <!-- In Progress Block -->
+        <PanelContainer Name="InProgressPanel" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="12" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical" Margin="0 0 0 8">
+                    <Label Text="{Loc 'prisoner-management-in-progress'}" StyleClasses="LabelHeadingBolder" HorizontalAlignment="Center"/>
+                    <PanelContainer StyleClasses="LowDivider" MinHeight="2" Margin="10 4 10 0"/>
+                </BoxContainer>
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="InProgressContainer" Orientation="Vertical" SeparationOverride="12" HorizontalExpand="True" Margin="4"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer StyleClasses="LowDivider" MinWidth="2" Margin="8 0"/>
+
+        <!-- Finished Block -->
+        <PanelContainer Name="FinishedPanel" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="12" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical" Margin="0 0 0 8">
+                    <Label Text="{Loc 'prisoner-management-finished'}" StyleClasses="LabelHeadingBolder" HorizontalAlignment="Center"/>
+                    <PanelContainer StyleClasses="LowDivider" MinHeight="2" Margin="10 4 10 0"/>
+                </BoxContainer>
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="FinishedContainer" Orientation="Vertical" SeparationOverride="12" HorizontalExpand="True" Margin="4"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+
+</controls:FancyWindow>

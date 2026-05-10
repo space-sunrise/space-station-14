@@ -35,6 +35,11 @@
   components:
   - type: Sprite
     state: mecha_bananamrtr
+  # Sunrise-start
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
+    heldPrefix: bananamrtr
+  # Sunrise-end
   - type: Gun
     minAngle: 24
     maxAngle: 25

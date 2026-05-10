@@ -4181,8 +4181,6 @@ entities:
       pos: 5.5,-2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: DeviceLinkSource
       linkedPorts:
         559:
@@ -4760,8 +4758,6 @@ entities:
       pos: 4.5,-2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 552
     components:
     - type: Transform

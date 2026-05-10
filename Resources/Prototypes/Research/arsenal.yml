@@ -12,6 +12,8 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
+  - WeaponProtoKineticRepeater # Sunrise-Add
+  - WeaponProtoKineticShotgun # Sunrise-Add
   - MechEquipmentKineticAccelerator # Sunrise-Add
   - BorgModuleMiningCombat # Sunrise-Add
   # These are roundstart but not replenishable for salvage
@@ -62,6 +64,8 @@
   - WeaponMechCombatFiredartLaser
   - WeaponEnergyGun
   - WeaponMiniEnergyGun
+  - WeaponSunriseLaserPistol
+  - MagazineBatteryLr30
   # Sunrise-End
 
 - type: technology
