@@ -521,8 +521,8 @@
 - type: entity
   parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatRichardSunrise
-  name: richard
-  description: Do you like hurting people?
+  name: Richard
+  description: 'Do you like hurting people?'
   components:
   - type: Sprite
     sprite: Clothing/Head/Misc/richard.rsi
@@ -614,17 +614,19 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/mask1.rsi
+
 - type: entity
   parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatMaskN5
   name: mask 5
-  description: I've seen space before..
+  description: I've seen space before...
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/mask5.rsi
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/mask5.rsi
+
 - type: entity
   parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatMaskN6
@@ -648,6 +650,7 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/mask7.rsi
+
 - type: entity
   parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatMaskN8
