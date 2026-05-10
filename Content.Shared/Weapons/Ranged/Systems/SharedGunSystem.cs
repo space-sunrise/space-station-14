@@ -42,7 +42,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
-using Content.Shared._Sunrise.Weapons.DualWield; // Sunrise-Edit
+using Content.Shared._Sunrise.Weapons.DualWield;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
