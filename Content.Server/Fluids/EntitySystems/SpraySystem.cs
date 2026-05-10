@@ -117,7 +117,7 @@ public sealed class SpraySystem : SharedSpraySystem
         var clickMapPos = mapcoord;
 
         var diffPos = clickMapPos.Position - sprayerMapPos.Position;
-        if (diffPos == Vector2.Zero || diffPos == Vector2Helpers.NaN)
+        if (diffPos == Vector2.Zero || !diffPos.IsValid())
             return;
 
         var diffNorm = diffPos.Normalized();

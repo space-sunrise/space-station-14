@@ -28,3 +28,22 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: PlanetPrisonRule
+
+- type: entity
+  id: GreenShitStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: BasicCalmGameRulesTable
+
+- type: entityTable
+  id: BasicCalmGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+      - !type:NestedSelector
+        tableId: BasicCalmEventsTableGreenShit #BasicCalmEventsTable Когда нибудь вернуть
+      - !type:NestedSelector
+        tableId: CargoGiftsTable
+      - !type:NestedSelector
+        tableId: CalmPestEventsTable

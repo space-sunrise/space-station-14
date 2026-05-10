@@ -1,6 +1,7 @@
 using Content.Client._Sunrise.Sandbox.Transparency.Overlays;
 using Content.Client.Administration.Managers;
 using Content.Client.UserInterface.Systems.Sandbox;
+using Content.Shared._Sunrise.Misc.Events;
 using Content.Shared.Administration;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -31,7 +32,7 @@ public sealed class MappingTransparencySystem : EntitySystem
     /// </summary>
     public const int DefaultTransparencyPercent = 70;
 
-    private MappingTransparencyOverlay _overlay = default!;
+    private MappingTransparencyOverlay? _overlay;
 
     /// <summary>
     /// Raised after the overlay state or transparency settings change.
@@ -61,9 +62,9 @@ public sealed class MappingTransparencySystem : EntitySystem
         base.Initialize();
 
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
-        _overlay = new();
-        _overlay.TransparencyPercent = TransparencyPercent;
         UpdateUi();
+
+        SubscribeNetworkEvent<ToggleMappingTransparencyEvent>(OnToggle);
     }
 
     /// <summary>
@@ -71,13 +72,15 @@ public sealed class MappingTransparencySystem : EntitySystem
     /// </summary>
     public override void Shutdown()
     {
-        if (_overlayMan.HasOverlay<MappingTransparencyOverlay>())
+        base.Shutdown();
+
+        if (_overlay != null)
         {
             _overlay.ResetTransparency();
             _overlayMan.RemoveOverlay(_overlay);
+            _overlay.Dispose();
+            _overlay = null;
         }
-
-        base.Shutdown();
 
         _admin.AdminStatusUpdated -= OnAdminStatusUpdated;
     }
@@ -91,6 +94,11 @@ public sealed class MappingTransparencySystem : EntitySystem
             UpdateUi();
             StateChanged?.Invoke();
         }
+    }
+
+    private void OnToggle(ToggleMappingTransparencyEvent ev, EntitySessionEventArgs args)
+    {
+        TrySetEnabled(!Enabled);
     }
 
     /// <summary>
@@ -126,7 +134,7 @@ public sealed class MappingTransparencySystem : EntitySystem
             return;
 
         TransparencyPercent = clamped;
-        _overlay.TransparencyPercent = clamped;
+        _overlay?.TransparencyPercent = clamped;
         StateChanged?.Invoke();
     }
 
@@ -136,13 +144,18 @@ public sealed class MappingTransparencySystem : EntitySystem
 
         if (enabled)
         {
+            _overlay = new();
+            _overlay.TransparencyPercent = TransparencyPercent;
+
             if (!_overlayMan.HasOverlay<MappingTransparencyOverlay>())
                 _overlayMan.AddOverlay(_overlay);
         }
         else
         {
-            _overlay.ResetTransparency();
-            _overlayMan.RemoveOverlay(_overlay);
+            _overlay?.ResetTransparency();
+
+            if (_overlay != null)
+                _overlayMan.RemoveOverlay(_overlay);
         }
 
         UpdateUi();

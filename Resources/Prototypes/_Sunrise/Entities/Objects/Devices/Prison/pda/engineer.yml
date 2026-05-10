@@ -22,6 +22,7 @@
       - NavigatorCartridge
       - MessengerCartridge
       - PhotoCartridge
+      - CorporateLawCartridge
 
 - type: entity
   parent: PrisonEngineerPDA

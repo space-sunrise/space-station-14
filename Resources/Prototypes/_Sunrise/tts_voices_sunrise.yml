@@ -1,5 +1,4 @@
-# VERY IMPORTANT: adapt these voice prototypes when merging into LUST station.
-# There are also typos in speaker: fields here, and they should be left unchanged.
+# VERY IMPORTANT: There are typos in speaker: fields here, and they should be left unchanged.
 
 - type: ttsVoice
   id: BaseSunriseTtsVoiceSunrise

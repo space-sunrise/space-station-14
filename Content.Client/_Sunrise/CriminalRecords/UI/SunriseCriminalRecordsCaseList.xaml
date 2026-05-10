@@ -1,0 +1,12 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <Label Text="{Loc 'sunrise-records-cases-header'}" StyleClasses="LabelHeading" Margin="0 4"/>
+
+        <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+            <BoxContainer Name="CasesContainer" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="6" Margin="4"/>
+        </ScrollContainer>
+
+        <Button Name="CreateCaseButton" Text="{Loc 'sunrise-records-create-case'}" HorizontalAlignment="Center" Margin="0 8"/>
+    </BoxContainer>
+</Control>
