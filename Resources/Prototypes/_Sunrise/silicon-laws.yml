@@ -1,3 +1,34 @@
+# Crewsimov for Borg
+- type: siliconLaw
+  id: CrewsimovStationAi0
+  order: 1
+  lawString: law-crewsimov-station-ai-0
+
+- type: siliconLaw
+  id: CrewsimovAiAssigned2
+  order: 2
+  lawString: law-crewsimov-1
+
+- type: siliconLaw
+  id: CrewsimovAiAssigned3
+  order: 3
+  lawString: law-crewsimov-2
+
+- type: siliconLaw
+  id: CrewsimovAiAssigned4
+  order: 4
+  lawString: law-crewsimov-3
+
+- type: siliconLawset
+  id: CrewsimovAiAssigned
+  name: law-crewsimov-name
+  laws:
+  - CrewsimovStationAi0
+  - CrewsimovAiAssigned2
+  - CrewsimovAiAssigned3
+  - CrewsimovAiAssigned4
+  obeysTo: laws-owner-crew
+
 # ERT laws (not ert directives)
 - type: siliconLawset
   id: ERTStatic
