@@ -13,6 +13,7 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using Robust.Shared.Prototypes;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared._Sunrise.NightVision.Components;
 // Starlight end
 
 namespace Content.Server.GameTicking.Rules;
@@ -116,12 +117,6 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
     }
 
     // SL start
-    private Entity<MindComponent>? FindValidPlayer()
-    {
-        var validPlayers = _mind.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
-        if (validPlayers.Count == 0) return null;
-        return _random.Pick(validPlayers);
-    }
 
     private void TryCopyVampireAbilities(EntityUid original, EntityUid clone)
     {
