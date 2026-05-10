@@ -128,6 +128,9 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> SponsorProjectName =
         CVarDef.Create("sponsor.project_name", string.Empty, CVar.SERVERONLY);
 
+    public static readonly CVarDef<int> SponsorMinPlaytimeHours =
+        CVarDef.Create("sponsor.min_playtime_hours", 0, CVar.SERVERONLY | CVar.ARCHIVE);
+
     /*
      *  Greetings
      */
