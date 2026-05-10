@@ -80,6 +80,8 @@
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   categories: [ HideSpawnMenu ]
   components:
+  - type: Flash
+    flashOnUse: false
   - type: Sprite
     sprite: Objects/Weapons/Melee/flash.rsi
     layers:
