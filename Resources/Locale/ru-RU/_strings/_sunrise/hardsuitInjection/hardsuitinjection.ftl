@@ -41,7 +41,7 @@ ent-AmpulaHyro = {ent-Ampula}
     .suffix = Хироналин
     .desc = {ent-Ampula.desc}
 
-ent-AmpulaBloodloseAspxyxia = {ent-Ampula}
+ent-AmpulaBloodlossAsphyxia = {ent-Ampula}
     .suffix = Артиплазм + Тиреостат
     .desc = {ent-Ampula.desc}
 ent-AmpulaMecha = {ent-Ampula}
@@ -53,7 +53,7 @@ ent-AmpulaPhysical = {ent-Ampula}
 ent-AmpulaCellMang = {ent-Ampula}
     .suffix = Омнизин + Геноциллин
     .desc = {ent-Ampula.desc}
-ent-AmpulaRadiatonPoison = {ent-Ampula}
+ent-AmpulaRadiationPoison = {ent-Ampula}
     .suffix = Дифенгидрамин + Ретроиндралин
     .desc = {ent-Ampula.desc}
 
