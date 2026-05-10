@@ -496,6 +496,10 @@
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
+  - type: Tag # Sunrise-Edit
+    tags:
+    - WhitelistChameleon
+    - TopCovered # INTERACTIONS
   - type: Pierceable
     level: Metal
   - type: Armor

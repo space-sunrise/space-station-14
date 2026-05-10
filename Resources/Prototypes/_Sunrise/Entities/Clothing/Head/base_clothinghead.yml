@@ -13,7 +13,6 @@
     - WhitelistChameleon
     - ClothMade
     - FullCovered
-    - HelmetEVA
   - type: FlashImmunity
   - type: Armor
     modifiers:
