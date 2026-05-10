@@ -153,3 +153,9 @@
   storage:
     back:
     - BibleRatvar
+
+- type: loadout
+  id: BibleJunkariat
+  storage:
+    back:
+    - BibleJunkariat
