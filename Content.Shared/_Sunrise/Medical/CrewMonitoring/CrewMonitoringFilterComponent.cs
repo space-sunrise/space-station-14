@@ -1,66 +1,26 @@
-using Robust.Shared.GameStates;
+using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Medical.CrewMonitoring;
-
-/// <summary>
-/// Режимы фильтрации мониторинга экипажа.
-/// </summary>
-public enum CrewMonitoringFilterMode
-{
-    /// <summary>
-    /// Показывать всех (без фильтрации).
-    /// </summary>
-    All,
-
-    /// <summary>
-    /// Только здоровые (урон 0% – 13.2%).
-    /// </summary>
-    HealthyOnly,
-
-    /// <summary>
-    /// Только состояния "хорошо" и "не очень" (урон 13.2% – 60%).
-    /// </summary>
-    GoodAndNotGreat,
-
-    /// <summary>
-    /// Только состояния "плохо" и "ужасно" (урон 60% – 100%).
-    /// </summary>
-    BadAndTerrible,
-
-    /// <summary>
-    /// Только мёртвые и критические (урон >= 100% + мёртвые).
-    /// </summary>
-    DeadAndCritical,
-
-    /// <summary>
-    /// Все раненые (Good, NotGreat, Bad, Terrible, Critical) – без здоровых и мёртвых.
-    /// </summary>
-    Wounded,
-
-    /// <summary>
-    /// Все пострадавшие (Bad, Terrible, Critical, Dead) – для медиков.
-    /// </summary>
-    Casualties
-}
 
 [RegisterComponent]
 public sealed partial class CrewMonitoringFilterComponent : Component
 {
     /// <summary>
-    /// Режим фильтрации отображаемых существ.
+    /// Разрешённые состояния здоровья. Если пусто – отображаются все.
     /// </summary>
-    [DataField("mode")]
-    public CrewMonitoringFilterMode Mode = CrewMonitoringFilterMode.All;
+    [DataField]
+    public List<CrewMonitoringHealthState> AllowedHealthStates = [];
 
     /// <summary>
     /// Разрешенные отделы. Если пусто – все доступны.
     /// </summary>
-    [DataField("allowedDepartmentIds")]
-    public List<string> AllowedDepartmentIds = new();
+    [DataField]
+    public List<ProtoId<DepartmentPrototype>> AllowedDepartmentIds = [];
 
     /// <summary>
     /// Будут ли отображаться трекеры (импланты).
     /// </summary>
-    [DataField("includeTrackers")]
+    [DataField]
     public bool IncludeTrackers;
 }
