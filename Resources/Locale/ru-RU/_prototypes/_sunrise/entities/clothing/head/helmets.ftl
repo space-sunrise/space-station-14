@@ -34,3 +34,5 @@ ent-ClothingHeadHelmetAbductor = шлем
     .desc = { ent-ClothingHeadHelmetBase.desc }
 ent-ClothingHeadHelmetDogi = кабуто самурая
     .desc = Традиционный Японский шлем. Его козырёк защищает от ударов сверху, а гибкие пластины сикоро прикрывают шею.
+ent-ClothingHeadHelmetArmoredSalvageMerc = шлем мусорщика
+    .desc = Прочный и лёгкий шлем, полюбившийся утилизаторам.

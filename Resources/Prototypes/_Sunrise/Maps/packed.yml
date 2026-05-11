@@ -3,6 +3,7 @@
   mapName: 'Packed'
   mapPath: /Maps/_Sunrise/Station/packed.yml
   minPlayers: 0
+  maxPlayers: 75
   stations:
     Packed:
       stationProto: StandardNanotrasenStation
@@ -23,36 +24,36 @@
             HeadOfPersonnel: [ 1, 1 ]
             ComMaid: [ 1, 1 ]
             #service
-            Bartender: [ 2, 2 ]
+            Bartender: [ 1, 1 ]
             Botanist: [ 2, 2 ]
-            Chef: [ 2, 2 ]
+            Chef: [ 1, 1 ]
             Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
-            Reporter: [ 2, 2 ]
+            Reporter: [ 1, 2 ]
             Barber: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 3, 3 ]
-            StationEngineer: [ 5, 5 ]
-            TechnicalAssistant: [ 3, 3 ]
+            AtmosphericTechnician: [ 2, 2 ]
+            StationEngineer: [ 4, 5 ]
+            TechnicalAssistant: [ 2, 3 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 4, 4 ]
             Paramedic: [ 2, 2 ]
-            MedicalIntern: [ 4, 4 ]
+            MedicalIntern: [ 3, 3 ]
             Psychologist: [ 1, 1 ]
             MedicalPathologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 4, 4 ]
-            Roboticist: [ 3, 3 ]
+            ResearchAssistant: [ 3, 3 ]
+            Roboticist: [ 2, 3 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -61,9 +62,10 @@
             Brigmedic: [ 2, 2 ]
             SecurityPilot: [ 1, 1 ]
             SecurityOfficer: [ 4, 4 ]
-            SecurityCadet: [ 3, 3 ]
+            SecurityCadet: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
+            MiningSpecialist: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             MailCarrier: [ 1, 2 ]
@@ -76,7 +78,7 @@
             BlueShieldOfficer: [ 1, 1 ]
             #law
             IAA: [ 1, 1 ]
-            Lawyer: [ 3, 3 ]
+            Lawyer: [ 2, 2 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 3 ]

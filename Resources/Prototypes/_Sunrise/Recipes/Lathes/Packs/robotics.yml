@@ -29,13 +29,13 @@
   - GygaxLLeg
   - GygaxRArm
   - GygaxRLeg
-  - PhazonHarness
-  - PhazonArmor
-  - PhazonHead
-  - PhazonLArm
-  - PhazonLLeg
-  - PhazonRArm
-  - PhazonRLeg
+  # - PhazonHarness
+  # - PhazonArmor
+  # - PhazonHead
+  # - PhazonLArm
+  # - PhazonLLeg
+  # - PhazonRArm
+  # - PhazonRLeg
   - PowerCageHigh
   - PowerCageMedium
   - MechEquipmentDrill
@@ -46,7 +46,7 @@
   - MechEquipmentHonkerMousetrapMortar
   - WeaponMechCombatDisabler
   - WeaponMechCombatFlashbangLauncher
-  - MechPhasicScanningModule
+  # - MechPhasicScanningModule
   - WeaponMechCombatSolarisLaser
   - WeaponMechCombatFiredartLaser
   - WeaponMechCombatUltraRifle

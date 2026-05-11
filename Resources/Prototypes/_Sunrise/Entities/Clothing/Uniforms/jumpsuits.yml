@@ -552,3 +552,22 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/milirs_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CamoUniformSuit
+  name: camo jumpsuit
+  description: Youd blend in if this was a forest.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Clothing/Uniforms/camo_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Clothing/Uniforms/camo_jumpsuit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
+  - type: StaminaResistance
+    damageCoefficient: 0.9

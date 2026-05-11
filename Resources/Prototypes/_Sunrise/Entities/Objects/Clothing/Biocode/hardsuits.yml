@@ -65,6 +65,17 @@
   - type: FactionClothingBlocker
 
 - type: entity
+  parent: ClothingOuterMaidArmorRaid
+  id: ClothingOuterMaidArmorRaidBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Pirate
+  - type: FactionClothingBlocker
+
+- type: entity
   parent: ClothingOuterHardsuitInfiltration
   id: ClothingOuterHardsuitInfiltrationBiocode
   suffix: BIOCODE

@@ -27,3 +27,10 @@ ent-ClothingHeadHelmetHardsuitInfiltration = шлем скафандра для 
     .desc = { ent-ClothingHeadHardsuitBase.desc }
 ent-ClothingHeadHelmetHardsuitSalvageGoliath = шлем скафандра «Голиаф»
     .desc = Прочный шлем, украшенный глазами голиафа а так же его хитиновым панцирем. похоже фонарик шлема заменен на ПНВ.
+
+ent-ClothingHeadHelmetHardsuitSpaceHazard = шлем шахтёрской опасной среды
+    .desc = Защищает от агрессивной и холодной космической среды.
+ent-ClothingHeadHelmetHardsuitAdvancedMining = шлем продвинутого шахтёрского скафандра
+    .desc = Специализированный шлем для шахтёрских операций.
+ent-ClothingHeadHelmetHardsuitMining = шлем шахтёрского скафандра
+    .desc = Шлем для работы в опасной среде и условиях низкого давления.

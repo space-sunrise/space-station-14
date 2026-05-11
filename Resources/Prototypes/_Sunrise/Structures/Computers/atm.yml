@@ -104,6 +104,11 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: GenericVisualizer
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: base, sprite: _Sunrise/Structures/Machines/atm.rsi }
 
 - type: entity
   parent: [ATMWallmountBase]
@@ -121,3 +126,8 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: panel
       visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: base, sprite: _Sunrise/Structures/Machines/wall_atm.rsi }

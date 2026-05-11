@@ -17,6 +17,8 @@
   icon: JobIconAdjutant
   supervisors: job-supervisors-command
   canBeAntag: true # Sunrise-Edit
+  alternativeTitles:
+  - job-alt-title-secretary
   access:
     - Command
     - Bar

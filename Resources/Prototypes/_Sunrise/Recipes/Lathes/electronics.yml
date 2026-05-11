@@ -24,3 +24,28 @@
   parent: BaseSilverCircuitboardRecipe
   id: MedicalScannerMachineCircuitboard
   result: MedicalScannerMachineCircuitboard
+
+- type: latheRecipe
+  id: SMESExtendedMachineCircuitboard
+  result: SMESExtendedMachineCircuitboard
+  categories:
+  - Machines
+  - Engineering
+  completetime: 4
+  materials:
+    Steel: 500
+    Glass: 500
+    Gold: 200
+
+- type: latheRecipe
+  id: SMESSuperExtendedMachineCircuitboard
+  result: SMESSuperExtendedMachineCircuitboard
+  categories:
+  - Machines
+  - Engineering
+  completetime: 4
+  materials:
+    Steel: 500
+    Glass: 500
+    Gold: 300
+    Silver: 200

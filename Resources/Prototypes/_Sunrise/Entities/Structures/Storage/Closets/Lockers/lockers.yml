@@ -384,16 +384,6 @@
         - id: RadioHandheld
         - id: OreBag
         - id: Nanopaste
-        - id: WeaponProtoKineticAccelerator
-        - id: HandHeldMassScanner
-        - id: EnergyPickaxe
-          prob: 0.2
-        - id: PKAUpgradeRange
-          prob: 0.15
-        - id: PKAUpgradeFireRate
-          prob: 0.15
-        - id: PKAUpgradeDamage
-          prob: 0.15
 
 # Representative
 - type: entity

@@ -11,6 +11,7 @@ using Content.Shared.Inventory;
 using Robust.Shared.Prototypes;
 using Content.Server.CartridgeLoader;
 using Content.Server.DeviceNetwork.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
@@ -57,7 +58,7 @@ public sealed partial class MessengerServerSystem : EntitySystem
 
         Sawmill = _logManager.GetSawmill("messenger.server");
 
-        _cfg.OnValueChanged(Content.Shared._Sunrise.SunriseCCVars.SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
 
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<MessengerServerComponent, DeviceNetServerConnectedEvent>(OnServerConnected);

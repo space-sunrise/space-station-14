@@ -1,0 +1,24 @@
+- type: entity # Starlight
+  id: BigBoxSyndicateBundle
+  parent: BigBox
+  suffix: Syndicate, Filled
+  components:
+  - type: EntityStorage
+    capacity: 13  # Base capacity is 5 but bumped to 13 to fit items
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolStechkin
+        - id: PouchAmmoFilledPistol40
+        - id: CombatKnife
+        - id: CamoUniformSuit
+        - id: ClothingHeadHatSolidHeadband
+        - id: CigPackSyndicate
+        - id: CybersunFlippo
+        - id: ClothingEyesEyepatch
+        - id: ClothingOuterArmorBasicSlim
+        - id: ClothingBeltLightSovietMarineWebbing
+        - id: ClothingHandsGlovesCombatFingerless
+        - id: ClothingShoesBootsCombat
+        - id: BarberScissors

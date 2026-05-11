@@ -697,7 +697,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
         while (requiresMore)
         {
-            var query = BuildLokiQuery(filter, ascending);
+            var query = BuildLokiQuery(filter, ascending, cursor);
             var url = BuildLokiQueryUrl(query, batchLimit, timeRange, ascending);
             var response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)

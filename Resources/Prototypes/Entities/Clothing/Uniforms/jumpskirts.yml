@@ -650,7 +650,7 @@
       sprite: Clothing/Uniforms/Jumpskirt/syndieformaldress.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: ClothingUniformJumpskirtOperative # Sunrise Edit
   id: ClothingUniformJumpskirtTacticalMaid
   name: tactical maid suitskirt
   description: It is assumed that the best maids should have designer suits.

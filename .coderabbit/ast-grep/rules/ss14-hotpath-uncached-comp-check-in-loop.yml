@@ -1,0 +1,27 @@
+id: ss14-hotpath-uncached-comp-check-in-loop
+language: CSharp
+severity: warning
+message: "Repeated `TryComp` / `HasComp` inside a hot loop is a review warning. Consider a cached `EntityQuery<T>` if this path is performance-sensitive."
+note: "Per `ss14-standard-optimizations`, cached queries are preferred over repeated uncached component lookups inside `Update()` and frequent handlers."
+files:
+  - "Content.*/**/*System*.cs"
+rule:
+  all:
+    - kind: invocation_expression
+    - regex: '^(?:[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*\.)?(?:TryComp|HasComp)(?:<|\().*$'
+    - inside:
+        any:
+          - kind: for_statement
+          - kind: foreach_statement
+          - kind: while_statement
+          - kind: do_statement
+        stopBy: end
+    - inside:
+        any:
+          - all:
+              - kind: method_declaration
+              - regex: '(?s).*\bUpdate\s*\(\s*float\s+\w+\s*\).*'
+          - all:
+              - kind: method_declaration
+              - regex: '(?s).*\b(?:On|Handle)\w*\s*\(.*(?:Event|Message)\s+\w+.*\).*'
+        stopBy: end

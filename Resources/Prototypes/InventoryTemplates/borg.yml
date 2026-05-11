@@ -8,6 +8,17 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0.015625, -0.09375
+    # Sunrise-Start
+    blacklist:
+      tags:
+      - SecurityHelmet
+      - HelmetEVA
+      - FullCovered
+      - Helmet
+      - WeldingMask
+      - NightVisionDevice
+      - NVDHandcrafted
+    # Sunrise-End
   # Sunrise-Start
   - name: armor
     slotTexture: outerclothing
@@ -28,7 +39,16 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0.015625, -0.1875
-  # Sunrise-Edit
+  # Sunrise-Start
+    blacklist:
+      tags:
+      - SecurityHelmet
+      - HelmetEVA
+      - FullCovered
+      - Helmet
+      - WeldingMask
+      - NightVisionDevice
+      - NVDHandcrafted
   - name: armor
     slotTexture: outerclothing
     slotFlags: OUTERCLOTHING
@@ -48,7 +68,16 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0.015625, 0
-  # Sunrise-Edit
+  # Sunrise-Start
+    blacklist:
+      tags:
+      - SecurityHelmet
+      - HelmetEVA
+      - FullCovered
+      - Helmet
+      - WeldingMask
+      - NightVisionDevice
+      - NVDHandcrafted
   - name: armor
     slotTexture: outerclothing
     slotFlags: OUTERCLOTHING
@@ -69,7 +98,16 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0, 0.09375
-  # Sunrise-Edit
+  # Sunrise-Start
+    blacklist:
+      tags:
+      - SecurityHelmet
+      - HelmetEVA
+      - FullCovered
+      - Helmet
+      - WeldingMask
+      - NightVisionDevice
+      - NVDHandcrafted
   - name: armor
     slotTexture: outerclothing
     slotFlags: OUTERCLOTHING

@@ -128,7 +128,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
+        - id: WeaponLauncherChinaLake
         - id: GrenadeBlast
           amount: 1
         - id: GrenadeFrag
@@ -153,7 +153,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponLauncherM79Biocode # Sunrise-edit
+        - id: WeaponLauncherM79
         - id: GrenadeBlast
           amount: 1
         - id: GrenadeFrag
@@ -177,7 +177,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponGrenadeLauncherGL70Biocode # Sunrise-edit
+        - id: WeaponGrenadeLauncherGL70
         - id: GrenadeBlast
           amount: 1
         - id: GrenadeFrag

@@ -19,10 +19,10 @@ public sealed partial class CultBloodSpellComponent : Component
     public int BloodOrbMinCost = 50;
 
     [DataField]
-    public int BloodSpearCost = 150;
+    public int BloodSpearCost = 100;
 
     [DataField]
-    public int BloodBoltBarrageCost = 300;
+    public int BloodBoltBarrageCost = 200;
 
     [DataField]
     public EntProtoId BloodSpearSpawnId = "BloodSpear";

@@ -84,6 +84,19 @@
   name: ballistic turret
   abstract: true
   components:
+  # Sunrise-Start
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  # Sunrise-End
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

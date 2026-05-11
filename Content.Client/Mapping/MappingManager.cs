@@ -48,12 +48,20 @@ public sealed class MappingManager : IPostInjectInit
         if (_saveStream != null)
             await _saveStream.DisposeAsync();
 
-        var request = new MappingSaveMapMessage();
-        _net.ClientSendMessage(request);
+        // Sunrise added start - only request server-side map save processing after destination is confirmed
+        _mapData = null;
+        // Sunrise added end
 
         var path = await _file.SaveFile();
         if (path is not { fileStream: var stream })
             return;
+
+        // Sunrise added start - avoid mutating the map on the server when the save dialog is canceled
+        _saveStream = stream;
+
+        var request = new MappingSaveMapMessage();
+        _net.ClientSendMessage(request);
+        // Sunrise added end
 
         if (_mapData != null)
         {
@@ -63,7 +71,5 @@ public sealed class MappingManager : IPostInjectInit
             await stream.DisposeAsync();
             return;
         }
-
-        _saveStream = stream;
     }
 }

@@ -528,9 +528,11 @@ namespace Content.Server.Voting.Managers
 
                 if (eligibility == VoterEligibility.GhostMinimumPlaytime)
                 {
-                    var playtime = _playtimeManager.GetPlayTimes(player);
-                    if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan overallTime) || overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
+                    // Sunrise-Start
+                    if (!TryGetOverallPlaytime(player, out var overallTime) ||
+                        overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
                         return false;
+                    // Sunrise-End
 
                     if ((int)_timing.RealTime.Subtract(ghostComp.TimeOfDeath).TotalSeconds < _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime))
                         return false;
@@ -539,13 +541,37 @@ namespace Content.Server.Voting.Managers
 
             if (eligibility == VoterEligibility.MinimumPlaytime)
             {
-                var playtime = _playtimeManager.GetPlayTimes(player);
-                if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan overallTime) || overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
+                // Sunrise-Start
+                if (!TryGetOverallPlaytime(player, out var overallTime) ||
+                    overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
                     return false;
+                // Sunrise-End
             }
 
             return true;
         }
+
+        // Sunrise added start - safely retrieve playtime without throwing InvalidOperationException
+        /// <summary>
+        /// Safely retrieves the overall playtime for a player.
+        /// Returns false if playtime data has not been loaded from the database yet,
+        /// instead of throwing InvalidOperationException.
+        /// </summary>
+        private bool TryGetOverallPlaytime(ICommonSession player, out TimeSpan overallTime)
+        {
+            overallTime = default;
+
+            try
+            {
+                var playTimes = _playtimeManager.GetPlayTimes(player);
+                return playTimes.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out overallTime);
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+        }
+        // Sunrise added end
 
         public IEnumerable<IVoteHandle> ActiveVotes => _voteHandles.Values;
 

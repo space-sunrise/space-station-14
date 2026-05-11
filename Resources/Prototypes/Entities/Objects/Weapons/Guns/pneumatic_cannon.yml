@@ -118,7 +118,7 @@
     layers:
     - state: piecannon
   - type: Gun
-    fireRate: 2
+    fireRate: 1 # Sunrise-tdit
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -130,7 +130,7 @@
     clumsyProof: true
   - type: BatteryAmmoProvider
     proto: FoodPieBananaCream
-    fireCost: 30
+    fireCost: 45 # Sunrise-edit
   - type: Battery
     maxCharge: 90
     startingCharge: 90

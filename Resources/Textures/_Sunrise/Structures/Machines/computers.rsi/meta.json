@@ -1746,6 +1746,30 @@
             "directions": 4
         },
         {
+            "name": "computer_l",
+            "directions": 4
+        },
+        {
+            "name": "computer_r",
+            "directions": 4
+        },
+        {
+            "name": "computer_l_r",
+            "directions": 4
+        },
+        {
+            "name": "computer_l-broken",
+            "directions": 4
+        },
+        {
+            "name": "computer_r-broken",
+            "directions": 4
+        },
+        {
+            "name": "computer_l_r-broken",
+            "directions": 4
+        },
+        {
             "name": "pirate",
             "directions": 4,
             "delays": [

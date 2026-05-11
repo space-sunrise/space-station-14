@@ -18,7 +18,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.2 #Sunrise-Edit
+            Mangleness: 0.1 #Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -43,7 +43,7 @@
           damage:
             types:
               Radiation: -3
-              Mangleness: 0.5 #Sunrise-Edit
+              Mangleness: 0.25 #Sunrise-Edit
     Poison:
       effects:
         - !type:ModifyStatusEffect
