@@ -38,5 +38,3 @@ ent-AltarFangs = клыкастый алтарь
     .desc = { ent-AltarHeaven.desc }
 ent-AltarBananium = алтарь Хонкоматери
     .desc = Бананиумовый алтарь, посвящённый Хонкоматери.
-ent-AltarJunkariat = алтарь Джанкариата
-    .desc = Алтарь почитающих хлам. Пахнет ржавчиной и машинным маслом.
