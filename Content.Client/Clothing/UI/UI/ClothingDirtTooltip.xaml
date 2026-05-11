@@ -1,0 +1,36 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                MinWidth="150"
+                MaxWidth="220"
+                StyleClasses="tooltipBox">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="6 6 6 6">
+
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <TextureRect Name="ItemIcon" MinSize="22 22" Stretch="KeepAspectCentered"/>
+            <Label Name="ItemName" StyleClasses="tooltipItemName" ClipText="true"
+                   VerticalAlignment="Center"/>
+        </BoxContainer>
+
+        <PanelContainer StyleClasses="tooltipDivider" MinHeight="1"/>
+
+        <!-- общий уровень + полоска -->
+        <BoxContainer Orientation="Vertical" SeparationOverride="3">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+                <Label Text="Загрязнение:" StyleClasses="tooltipLabel"/>
+                <Label Name="DirtPct" HorizontalExpand="true"
+                       HorizontalAlignment="Right" StyleClasses="tooltipValue"/>
+            </BoxContainer>
+            <PanelContainer Name="BarBg" MinHeight="5" StyleClasses="progressBarBackground">
+                <PanelContainer Name="BarFill" HorizontalAlignment="Left"
+                                VerticalAlignment="Stretch"/>
+            </PanelContainer>
+        </BoxContainer>
+
+        <!-- слои - показываем только если больше одного -->
+        <BoxContainer Name="Layers" Orientation="Vertical" SeparationOverride="2" Visible="False"/>
+
+        <PanelContainer Name="HintSep" StyleClasses="tooltipDivider" MinHeight="1" Visible="False"/>
+        <Label Name="Hint" Text="Смыть: вода или мыло." FontColorOverride="#88CCFF"
+               StyleClasses="tooltipHint" WordWrap="true" Visible="False"/>
+
+    </BoxContainer>
+</PanelContainer>
