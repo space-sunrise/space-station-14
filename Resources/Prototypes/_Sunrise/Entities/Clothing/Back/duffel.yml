@@ -186,3 +186,16 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Duffels/black_cap_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelGreytideMaterials
+  name: greytide material duffel bag
+  description: A duffel bag packed with smuggled materials parcels.
+  suffix: DEBUG
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: SmugglerSunriseMaterialsParcel
+        amount: 20
