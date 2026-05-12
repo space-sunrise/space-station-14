@@ -4,7 +4,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Whitelist;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
-using Robust.Shared.Network;
 
 namespace Content.Shared._Sunrise.MindBearer;
 
@@ -87,6 +86,6 @@ public abstract partial class SharedMindBearerSystem : EntitySystem
         _mind.TransferTo(mindId, args.Args.Target.Value);
 
         ent.Comp.UsesLeft--;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(MindBearerComponent.UsesLeft));
     }
 }
