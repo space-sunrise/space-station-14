@@ -950,27 +950,33 @@
     - item: HypoBorgMedical # Sunrise-Edit
     - item: Syringe
     # - item: BorgDropper # Sunrise-Edit
-    - item: BaseChemistryEmptyVial
+    - item: Beaker
       hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
         whitelist:
           components:
           - FitsInDispenser
-    - item: BaseChemistryEmptyVial
+          tags:
+          - ChemDispensable
+    - item: Beaker
       hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
         whitelist:
           components:
           - FitsInDispenser
-    - item: BaseChemistryEmptyVial
+          tags:
+          - ChemDispensable
+    - item: Jug
       hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Jug
         whitelist:
           components:
-          - FitsInDispenser
+          - Jug
+          tags:
+          - ChemDispensable
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -1008,13 +1014,13 @@
           - FitsInDispenser
           tags:
           - ChemDispensable
-    - item: Beaker
+    - item: Jug
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyRepresentative: Jug
         whitelist:
           components:
-          - FitsInDispenser
+          - Jug
           tags:
           - ChemDispensable
   - type: BorgModuleIcon
