@@ -87,7 +87,7 @@
     - type: Tag
       tags:
       - ChemDispensable
-      - Jug
+      - Jug # Sunrise-Edit
     - type: DnaSubstanceTrace
 
 - type: entity

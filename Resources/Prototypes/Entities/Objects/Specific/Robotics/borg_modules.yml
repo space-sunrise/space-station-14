@@ -950,6 +950,7 @@
     - item: HypoBorgMedical # Sunrise-Edit
     - item: Syringe
     # - item: BorgDropper # Sunrise-Edit
+# Sunrise-start
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
@@ -974,9 +975,10 @@
         emptyRepresentative: Jug
         whitelist:
           components:
-          - Jug
+          - FitsInDispenser
           tags:
           - ChemDispensable
+# Sunrise-end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -996,6 +998,7 @@
     - item: Hypospray # Sunrise-Edit
     - item: SyringeBluespace # Sunrise-Edit
    # - item: BorgDropper # Sunrise-Edit
+# Sunrise-start
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
@@ -1020,9 +1023,10 @@
         emptyRepresentative: Jug
         whitelist:
           components:
-          - Jug
+          - FitsInDispenser
           tags:
           - ChemDispensable
+# Sunrise-end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
 
