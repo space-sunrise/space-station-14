@@ -231,6 +231,16 @@
     back:
     - MasterHandheldCamera
 
+- type: loadout
+  id: WeaponEarthGovLaserPistol
+  startingGear: WeaponEarthGovLaserPistol
+
+- type: startingGear
+  id: WeaponEarthGovLaserPistol
+  storage:
+    back:
+    - WeaponEarthGovLaserPistol
+
 ###
 - type: loadout
   id: WeaponTaserBrigmed
