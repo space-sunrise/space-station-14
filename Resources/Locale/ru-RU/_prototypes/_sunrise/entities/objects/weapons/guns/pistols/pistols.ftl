@@ -31,7 +31,7 @@ ent-WeaponRevolverSpearhead = Авангард
 ent-WeaponRevolverSpearheadBlack = Авангард
     .desc = { ent-WeaponRevolverSpearhead.desc }
 ent-WeaponPistolM1984 = D1984
-    .desc = Компактный пистолет, созданный в рамках директивы внутреннего порядка NanoTrasen «N1984». Личное оружие контроля, дисциплины и точного воздействия. Выдаётся отличившимся детективам за надёжность в ходе оперативных расследований. Использует магазины .35 авто.
+    .desc = Компактный пистолет, созданный в рамках директивы внутреннего порядка NanoTrasen «N1984». Личное оружие контроля, дисциплины и точного воздействия. Выдаётся отличившимся детективам за надёжность в ходе оперативных расследований. Использует магазины .40.
 ent-WeaponPistolDeagleGolden = Золотой Десерт Игл
     .desc = Использует патрон "магнум" 45-го калибра. Выгравировано: Все, что у меня осталось от него в памяти — это два позолоченных Desert Eagle 45-го калибра.
 ent-WeaponPistolDeagleGoldenBiocode = { ent-WeaponPistolDeagleGolden }
@@ -40,8 +40,5 @@ ent-WeaponPistolDeagleGoldenBiocode = { ent-WeaponPistolDeagleGolden }
 ent-WeaponPistolTec9 = Tac-Tec
     .desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как СКМ-24.
 
-ent-WeaponSubMachineGunUzi = пистолет-пулемёт Узи
+ent-SunriseWeaponSubMachineGunUzi = Тип U3 Узи
     .desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.
-
-ent-SunriseWeaponPistolAPS = Стечкин АПС
-    .desc = Высококачественное огнестрельное оружие на мощном калибре, созданное для по-настоящему особенных агентов.

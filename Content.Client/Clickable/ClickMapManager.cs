@@ -18,6 +18,21 @@ namespace Content.Client.Clickable
             "/Textures/LobbyScreens",
             "/Textures/Parallaxes",
             "/Textures/Logo",
+
+            // Sunrise added start
+            "/Textures/Tiles",
+            "/Textures/Decals",
+            "/Textures/_Sunrise/Tiles",
+            "/Textures/_Sunrise/Decals",
+            "/Textures/_Starlight/Decals",
+            "/Textures/_Sunrise/Interface",
+            "/Textures/_Starlight/Interface",
+            "/Textures/_Sunrise/LobbyScreens",
+            "/Textures/_Sunrise/Parallaxes",
+            "/Textures/_Sunrise/Logo",
+            "/Textures/_Sunrise/Interactions",
+            "/NetTextures",
+            // Sunrise added end
         };
 
         private const float Threshold = 0.1f;
@@ -41,6 +56,15 @@ namespace Content.Client.Clickable
         {
             if (obj.Atlas is Image<Rgba32> rgba)
             {
+                // Sunrise added start
+                var pathStr = obj.Path.ToString();
+                foreach (var path in IgnoreTexturePaths)
+                {
+                    if (pathStr.StartsWith(path, StringComparison.Ordinal))
+                        return;
+                }
+                // Sunrise added end
+
                 var clickMap = ClickMap.FromImage(rgba, Threshold);
 
                 var rsiData = new RsiClickMapData(clickMap, obj.AtlasOffsets);

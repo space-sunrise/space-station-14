@@ -158,6 +158,10 @@
   id: NukieWar
   background: /NetTextures/Lobby/Arts/nukie-war.webp
 
+- type: lobbyArt
+  id: GiftAnomaly
+  background: /NetTextures/Lobby/Arts/gift-anomaly.webp
+
 # region New Year
 - type: lobbyArt
   id: NewYearNuke

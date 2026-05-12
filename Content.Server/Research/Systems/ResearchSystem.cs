@@ -34,6 +34,7 @@ namespace Content.Server.Research.Systems
             InitializeConsole();
             InitializeSource();
             InitializeServer();
+            InitializePopulationScaling(); // Sunrise-Edit
 
             SubscribeLocalEvent<TechnologyDatabaseComponent, ResearchRegistrationChangedEvent>(OnDatabaseRegistrationChanged);
         }
@@ -94,6 +95,8 @@ namespace Content.Server.Research.Systems
 
         public override void Update(float frameTime)
         {
+            UpdatePopulationScaling(); // Sunrise-Edit
+
             var query = EntityQueryEnumerator<ResearchServerComponent>();
             while (query.MoveNext(out var uid, out var server))
             {

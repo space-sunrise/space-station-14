@@ -353,3 +353,20 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/specopsofficer.rsi
   - type: EncryptionKeyHolder
     keySlots: 6
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetAltRepresentativeNT
+  name: representative over-ear headset
+  description: A headset for a corporate representative, featuring a modified intercom module.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+      - EncryptionKeyLaw
+      - EncryptionKeyBlueShield
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Ears/Headsets/representative.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Ears/Headsets/representative.rsi

@@ -6,6 +6,10 @@
   startingGear: ReporterGear
   icon: "JobIconReporter"
   supervisors: job-supervisors-hop
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-journalist
+  # Sunrise-End
   access:
   - Service
   - Maintenance

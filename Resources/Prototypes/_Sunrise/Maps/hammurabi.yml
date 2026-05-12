@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Hammurabi
   mapName: 'Hammurabi'
-  mapPath: /Maps/_Sunrise/Station/hammurabi.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/hammurabi.yml
   minPlayers: 0
   stations:
     Hammurabi:

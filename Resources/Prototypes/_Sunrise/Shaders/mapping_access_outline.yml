@@ -1,0 +1,7 @@
+- type: shader
+  id: SunriseMappingAccessOutline
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/mapping_access_outline.swsl"
+  params:
+    outline_color: "#7FFFD4D9"
+    outline_width: 1

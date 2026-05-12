@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Arena
   mapName: 'Arena'
-  mapPath: /Maps/_Sunrise/Station/arena.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/arena.yml
   minPlayers: 0
   stations:
     Arena:

@@ -75,27 +75,3 @@
   size: 3,5
   rooms:
     - 0,0,3,5
-
-- type: dungeonRoomPack
-  id: SovietWarehouse50x50
-  size: 50,50
-  rooms:
-    - 0,0,50,50
-
-- type: dungeonRoomPack
-  id: SovietWEH17x15
-  size: 17,15
-  rooms:
-    - 0,0,17,15
-
-- type: dungeonRoomPack
-  id: SovietWEH17x6
-  size: 17,6
-  rooms:
-    - 0,0,17,6
-
-- type: dungeonRoomPack
-  id: SovietWEH12x6
-  size: 11,5
-  rooms:
-    - 0,0,11,5

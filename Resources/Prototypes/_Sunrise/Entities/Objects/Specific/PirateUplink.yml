@@ -137,7 +137,7 @@
       Doubloon: 9999
 
 - type: entity
-  parent: [BaseComputerSunrise, StorePresetPirateUplink]
+  parent: [BaseComputerSunriseUniqueFrame, StorePresetPirateUplink]
   id: ComputerPirateUplink
   name: black market console
   description: An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
@@ -188,7 +188,7 @@
 
 # Exchanger
 - type: entity
-  parent: [BaseComputerSunrise, StorePresetPirateExchanger]
+  parent: [BaseComputerSunriseUniqueFrame, StorePresetPirateExchanger]
   id: ComputerPirateExchanger # Обменник для Пиратской бухты и прочих логовищ
   name: black market exchanger
   description: An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.

@@ -8,5 +8,9 @@
   - type: AccessReader
     access: [["CentralCommand"]]
   - type: Intercom
-    supportedChannels:
-    - Service
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeyCommon

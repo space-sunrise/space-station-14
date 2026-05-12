@@ -181,7 +181,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 30
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -357,6 +357,8 @@
   id: Bullet50mmRocketStarlight
   categories: [ HideSpawnMenu ]
   components:
+  - type: Explosive
+    maxTileBreak: 0
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -408,7 +410,7 @@
     maxIntensity: 2
     intensitySlope: 1
     totalIntensity: 4
-    maxTileBreak: 1
+    maxTileBreak: 0
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container

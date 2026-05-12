@@ -107,7 +107,7 @@
     - NonEnergy
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 2.4
+    attackRate: 2
     autoAttack: false
     damage:
       types:
@@ -123,7 +123,7 @@
   - type: Sharp
   - type: Prying
     speedModifier: 1
-    pryPowered: true
+    pryPowered: false
     useSound: /Audio/Items/jaws_pry.ogg
 
 - type: entity

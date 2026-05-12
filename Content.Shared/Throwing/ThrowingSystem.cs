@@ -6,12 +6,14 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Friction;
+using Content.Shared.Item;
 using Content.Shared.Projectiles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 // Sunrise-Start
@@ -40,6 +42,7 @@ public sealed class ThrowingSystem : EntitySystem
     [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private EntityQuery<AnchorableComponent> _anchorableQuery;
 
@@ -145,7 +148,7 @@ public sealed class ThrowingSystem : EntitySystem
         bool doSpin = true,
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
-        if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
+        if (baseThrowSpeed <= 0 || !direction.IsValid() || direction == Vector2.Zero || friction < 0)
             return;
 
         // Sunrise-Start
@@ -155,6 +158,17 @@ public sealed class ThrowingSystem : EntitySystem
             RaiseLocalEvent(uid, ref ev);
             if (ev.Cancelled)
                 return;
+        }
+        // Sunrise-End
+
+        // Sunrise-Start: Heavy items are harder to throw
+        if (TryComp<ItemComponent>(uid, out var itemComp) && _proto.TryIndex(itemComp.Size, out var sizeProto))
+        {
+            if (sizeProto.Weight > 4)
+            {
+                // Reduction: ~6% per weight point over 4, max 60%
+                baseThrowSpeed *= 1.0f - MathF.Min(0.6f, (sizeProto.Weight - 4) * 0.06f);
+            }
         }
         // Sunrise-End
 

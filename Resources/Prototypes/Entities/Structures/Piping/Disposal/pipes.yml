@@ -60,8 +60,11 @@
   - type: ContainerContainer
     containers:
       DisposalTube: !type:Container
-  - type: PlacementReplacement # Sunrise-Edit
-    key: disposal_pipes
+  # Sunrise edit start - mapping replacement rules
+  - type: MappingReplacement
+    usePrototypeId: true
+    requireSameRotation: true
+  # Sunrise edit end
   - type: StaticPrice
     price: 30
 

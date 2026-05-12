@@ -299,7 +299,7 @@
 - type: guideEntry
   id: PowerStorage
   name: guide-entry-powerstorage
-  text: "/ServerInfo/Guidebook/Engineering/PowerStorage.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/Engineering/PowerStorage.xml" # Sunrise-Edit
 
 - type: guideEntry
   id: Ramping

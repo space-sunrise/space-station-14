@@ -200,7 +200,6 @@
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
   - type: FootprintEmitter
-  - type: Carriable
   # Sunrise edit end 0_0
 
 - type: entity

@@ -113,6 +113,23 @@
   - ClothingHeadHatCapWardenAlt
 
 - type: loadoutGroup
+  id: SunriseSecurityOuterClothing
+  name: loadout-group-security-outerclothing
+  loadouts:
+  - ArmorVest
+  - ArmorVestSlim
+  - SunriseSecurityArmorVestSec
+  - SecurityOfficerWintercoat
+
+- type: loadoutGroup
+  id: SunriseSecurityShoes
+  name: loadout-group-security-shoes
+  loadouts:
+  - JackBoots
+  - SunriseSecurityJackBootsSec
+  - SecurityWinterBoots
+
+- type: loadoutGroup
   id: SunriseWardenOuterClothing
   name: loadout-group-warden-outerclothing
   loadouts:

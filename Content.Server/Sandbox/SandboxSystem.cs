@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Sunrise.Mapping;
 using Content.Server.GameTicking;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
@@ -22,6 +23,7 @@ namespace Content.Server.Sandbox
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IPlacementManager _placementManager = default!;
+        [Dependency] private readonly MappingReplacementSystem _mappingReplacement = default!;
         [Dependency] private readonly IConGroupController _conGroupController = default!;
         [Dependency] private readonly IServerConsoleHost _host = default!;
         [Dependency] private readonly SharedAccessSystem _access = default!;
@@ -59,7 +61,9 @@ namespace Content.Server.Sandbox
             {
                 if (IsSandboxEnabled)
                 {
-                    return true;
+                    // Sunrise edit start - run content-side placement replacement before engine placement
+                    return _mappingReplacement.TryHandlePlacementReplacement(placement);
+                    // Sunrise edit end
                 }
 
                 var channel = placement.MsgChannel;
@@ -67,7 +71,7 @@ namespace Content.Server.Sandbox
 
                 if (_conGroupController.CanAdminPlace(player))
                 {
-                    return true;
+                    return _mappingReplacement.TryHandlePlacementReplacement(placement);
                 }
 
                 return false;

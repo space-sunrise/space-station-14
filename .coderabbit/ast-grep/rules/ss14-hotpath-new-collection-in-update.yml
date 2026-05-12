@@ -1,0 +1,16 @@
+id: ss14-hotpath-new-collection-in-update
+language: CSharp
+severity: warning
+message: "Avoid per-tick `new List<>` / `new HashSet<>` allocation inside `Update()`."
+note: "Per `ss14-standard-optimizations`, reuse buffers or persistent collections when code runs every tick."
+files:
+  - "Content.*/**/*System*.cs"
+rule:
+  all:
+    - kind: object_creation_expression
+    - regex: '^new\s+(?:List|HashSet)<.*$'
+    - inside:
+        all:
+          - kind: method_declaration
+          - regex: '(?s).*\bUpdate\s*\(\s*float\s+\w+\s*\).*'
+        stopBy: end

@@ -9,18 +9,24 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponRifleBauer127Biocode
-        - id: MagazineBauer127
-          amount: 3
-        - id: MagazineBoxAntiMateriel
-        - id: MagazineBauer127Penetrator
-          amount: 2
-        - id: MagazineBauer127Frag
-          amount: 2
-        - id: MagazineBauer127Blast
-          amount: 2
-        - id: MagazineBauer127Emp
+        - id: AntimaterialAmmoKit
           amount: 2
         - id: ClothingEyesGlassesSniperThermalSyndie
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateX4tBundle
+  name: syndicate X-4 bundle
+  description: Contains a lot of X-4 charges.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: X4
+          amount: 8
+        - id: NetworkConfigurator
+        - id: RemoteSignaller
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -457,7 +463,7 @@
         - id: LeftHandCyber
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
+  parent: ClothingBackpackSyndie # Sunrise-Edit
   id: ClothingBackpackDuffelSyndicateFilledInfiltration
   name: infiltration hardsuit bundle
   description: Contains the latest in Syndicate chameleon technology, the infiltration hardsuit.

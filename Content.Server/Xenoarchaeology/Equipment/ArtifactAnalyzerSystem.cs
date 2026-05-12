@@ -43,9 +43,8 @@ public sealed class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSystem
         if (sumResearch <= 0)
             return;
 
-        _research.ModifyServerPoints(server.Value, sumResearch, serverComponent);
+        _research.ModifyServerResearchPoints(server.Value, sumResearch, serverComponent); // Sunrise-Edit
         _audio.PlayPvs(ent.Comp.ExtractSound, artifact.Value);
         _popup.PopupEntity(Loc.GetString("analyzer-artifact-extract-popup"), artifact.Value, PopupType.Large);
     }
 }
-

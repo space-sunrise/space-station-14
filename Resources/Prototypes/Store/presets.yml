@@ -20,6 +20,7 @@
     - UplinkObjectives
     - UplinkLootBoxes # Sunrise-Edit
     - UplinkMechs #Sunrise-added
+    - UplinkShuttle #Sunrise-added
     currencyWhitelist:
     - Telecrystal
     balance:

@@ -9,6 +9,11 @@
   startingGear: MimeGear
   icon: "JobIconMime"
   supervisors: job-supervisors-hop
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-pantomimist
+  - job-alt-title-silence-agent
+  # Sunrise-End
   access:
   - Theatre
   - Maintenance
