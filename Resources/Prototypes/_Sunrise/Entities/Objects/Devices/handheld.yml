@@ -148,13 +148,13 @@
       shader: unshaded
       visible: true
       map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-  - type: CriminalRecordsConsole
+  - type: SunriseCriminalRecordsConsole
   - type: UserInterface
     interfaces:
-      enum.CriminalRecordsConsoleKey.Key:
-        type: CriminalRecordsConsoleBoundUserInterface
+      enum.SunriseCriminalRecordsConsoleKey.Key:
+        type: SunriseCriminalRecordsConsoleBoundUserInterface
   - type: ActivatableUI
-    key: enum.CriminalRecordsConsoleKey.Key
+    key: enum.SunriseCriminalRecordsConsoleKey.Key
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
@@ -164,6 +164,7 @@
     guides:
       - CriminalRecords
   - type: Appearance
+
 - type: entity
   id: HandheldCriminalRecordsMonitor
   parent:
