@@ -232,7 +232,7 @@
 
   defaultModules:
   - BorgModuleStandart
-  - SunriseBorgModuleChemical
+  - SunriseBorgModuleChemical # Sunrise-Edit
   - BorgModuleTopicals
   - BorgModuleRescue
 
