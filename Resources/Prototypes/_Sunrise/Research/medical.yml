@@ -177,7 +177,7 @@
   tier: 2
   cost: 5000
   recipeUnlocks:
-  - BorgModuleAdvancedChemical
+  - SunriseBorgModuleAdvancedChemical
   radioChannels:
   - Medical
 

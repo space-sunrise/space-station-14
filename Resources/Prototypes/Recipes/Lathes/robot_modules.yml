@@ -73,7 +73,7 @@
 - type: latheRecipe
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedChemical
-  result: BorgModuleAdvancedChemical
+  result: SunriseBorgModuleAdvancedChemical # Sunrise-Edit
 
 # Science Modules
 
