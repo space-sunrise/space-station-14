@@ -950,35 +950,27 @@
     - item: HypoBorgMedical # Sunrise-Edit
     - item: Syringe
     # - item: BorgDropper # Sunrise-Edit
-# Sunrise-start
-    - item: Beaker
+    - item: BaseChemistryEmptyVial
       hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: BaseChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
-          tags:
-          - ChemDispensable
-    - item: Beaker
+    - item: BaseChemistryEmptyVial
       hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: BaseChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
-          tags:
-          - ChemDispensable
-    - item: Jug
+    - item: BaseChemistryEmptyVial
       hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Jug
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: BaseChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
-          tags:
-          - ChemDispensable
-# Sunrise-end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -998,7 +990,6 @@
     - item: Hypospray # Sunrise-Edit
     - item: SyringeBluespace # Sunrise-Edit
    # - item: BorgDropper # Sunrise-Edit
-# Sunrise-start
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
@@ -1017,16 +1008,15 @@
           - FitsInDispenser
           tags:
           - ChemDispensable
-    - item: Jug
+    - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Jug
+        emptyRepresentative: Beaker
         whitelist:
           components:
           - FitsInDispenser
           tags:
           - ChemDispensable
-# Sunrise-end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
 
