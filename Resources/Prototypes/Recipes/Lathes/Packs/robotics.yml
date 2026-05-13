@@ -42,7 +42,7 @@
   - BorgModuleAdvancedCleaning
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedClowning
-  - SunriseBorgModuleAdvancedChemical # Sunrise-Edit
+  - BorgModuleAdvancedChemical # Sunrise-Edit
   - BorgModuleAdvancedMining
 
 - type: latheRecipePack
