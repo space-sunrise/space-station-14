@@ -77,14 +77,3 @@
     Steel: 1250
     Glass: 500
     Silver: 250
-
-- type: latheRecipe
-  id: WeaponProtoKineticHeavy
-  result: WeaponProtoKineticHeavy
-  categories:
-  - Weapons
-  completetime: 12
-  materials:
-    Steel: 2000
-    Glass: 1000
-    Silver: 800

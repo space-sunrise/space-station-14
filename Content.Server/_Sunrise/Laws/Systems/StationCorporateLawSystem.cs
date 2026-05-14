@@ -17,12 +17,13 @@ public sealed class StationCorporateLawSystem : SharedStationCorporateLawSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized);
+
+        SubscribeLocalEvent<StationCorporateLawComponent, MapInitEvent>(OnMapInit);
     }
 
-    private void OnStationInitialized(StationInitializedEvent args)
+    private void OnMapInit(EntityUid uid, StationCorporateLawComponent component, MapInitEvent args)
     {
-        InitializeLawset(args.Station);
+        InitializeLawset(uid);
     }
 
     private void InitializeLawset(EntityUid station)
@@ -31,7 +32,12 @@ public sealed class StationCorporateLawSystem : SharedStationCorporateLawSystem
         if (!_proto.TryIndex<CorporateLawsetPrototype>(lawsetId, out var prototype))
             return;
 
-        var component = EnsureComp<StationCorporateLawComponent>(station);
+        if (!TryComp<StationCorporateLawComponent>(station, out var component))
+            return;
+
+        // Sunrise-Edit: Check if already initialized to avoid marking as modified in PrototypeSaveTest
+        if (component.LawsetPrototype == lawsetId)
+            return;
 
         component.Provisions = new List<ProtoId<CorporateLawPrototype>>(prototype.Provisions);
         component.Circumstances = new List<ProtoId<CorporateLawPrototype>>(prototype.Circumstances);

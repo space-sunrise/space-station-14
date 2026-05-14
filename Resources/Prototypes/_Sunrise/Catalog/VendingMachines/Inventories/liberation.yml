@@ -180,7 +180,7 @@
     WeaponGunLaserCarbineAutomatic: 3
     WeaponM1911: 3
     WeaponPDW9: 3
-    WeaponEnergySniper: 3 #LWAP
+    WeaponEnergySniper: 3
     WeaponEnergyMagnum: 3
     WeaponANNIHILATOR: 3
     WeaponToecloner: 3
@@ -208,6 +208,36 @@
     BowImprovised: 3
     WeaponFlareGun: 3
     WeaponImprovisedPneumaticCannon: 3
+    WeaponArcMeleeMoltenCollider: 3
+    WeaponArcMoltenAmputator: 3
+    WeaponDL6902PowerPack: 3
+    WeaponMachineGunLCG: 3
+    WeaponMeleeMimicry: 3
+    WeaponMeleeMoltenAmputator: 3
+    WeaponMeleeMoltenCollider: 3
+    WeaponMeleeMoltenColliderDEBUG: 3
+    WeaponMeleeSwitchblade: 3
+    WeaponPistolDeagleGolden: 3
+    WeaponPistolGoldenMk58: 3
+    WeaponPistolM1911: 3
+    WeaponPistolStechkin: 3
+    WeaponProjectileMoltenAmputator: 3
+    WeaponProtoKineticHeavy: 3
+    WeaponProtoKineticRepeater: 3
+    WeaponProtoKineticShotgun: 3
+    WeaponRifleLarker: 3
+    WeaponRifleSKM24Green: 3
+    WeaponRifleSKM24Nano: 3
+    WeaponRifleSKM24Scrap: 3
+    WeaponRifleSKM24Syndi: 3
+    WeaponRifleSKM24White: 3
+    WeaponRifleSKM28Nano: 3
+    WeaponRifleSKM28Syndi: 3
+    WeaponRifleType88AMR: 3
+    WeaponShotgunSPAS12Rubber: 3
+    WeaponSniperMosinLubed: 3
+    WeaponTurretPirate: 3
+    WeaponTurretPirateDisposable: 3
 
     WeaponMechCombatPulseRifle: 3
     WeaponMechCombatImmolationGun: 3

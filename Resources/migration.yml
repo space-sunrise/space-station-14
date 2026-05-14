@@ -999,15 +999,14 @@ AirlockExternalGlassShuttleArrivalsLocked: AirlockExternalGlassShuttleArrivalsLo
 AirlockExternalGlassShuttleEmergencyLocked: AirlockExternalGlassShuttleEmergencyLockedCentComm
 CriminalRecordsComputerCircuitboard: SunriseCriminalRecordsComputerCircuitboard
 LockerPrisoner: PrisonCellLocker
-LockerPrisoner2: PrisonCellLocker
-LockerPrisoner3: PrisonCellLocker
-LockerPrisoner4: PrisonCellLocker
-LockerPrisoner5: PrisonCellLocker
-LockerPrisoner6: PrisonCellLocker
-LockerPrisoner7: PrisonCellLocker
-LockerPrisoner8: PrisonCellLocker
+LockerPrisoner2: PrisonCellLocker2
+LockerPrisoner3: PrisonCellLocker3
+LockerPrisoner4: PrisonCellLocker4
+LockerPrisoner5: PrisonCellLocker5
+LockerPrisoner6: PrisonCellLocker6
+LockerPrisoner7: PrisonCellLocker7
+LockerPrisoner8: PrisonCellLocker8
 ComputerCriminalRecords: SunriseComputerCriminalRecords
-BrigTimer: PrisonCellTimer
 #2026-04-19
 AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
 # region Sunrise-End

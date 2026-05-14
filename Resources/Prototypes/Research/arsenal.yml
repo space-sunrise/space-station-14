@@ -12,7 +12,6 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
-  - WeaponProtoKineticHeavy # Sunrise-Add
   - WeaponProtoKineticRepeater # Sunrise-Add
   - WeaponProtoKineticShotgun # Sunrise-Add
   - MechEquipmentKineticAccelerator # Sunrise-Add

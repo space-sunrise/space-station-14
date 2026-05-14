@@ -109,7 +109,7 @@
     - type: GhostTakeoverAvailable
     - type: HTN
       rootTask:
-        task: DragonCarpCompound
+        task: SunriseDragonCarpRainbowCompound
     - type: Flammable
       damage:
        types: {}

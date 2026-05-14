@@ -1,0 +1,5 @@
+- type: stack
+  parent: BaseTileStack
+  id: FloorLightFancyWood
+  name: stack-light-fancy-wood
+  spawn: FloorTileItemLightFancyWood
