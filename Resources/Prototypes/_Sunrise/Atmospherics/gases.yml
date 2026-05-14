@@ -54,6 +54,8 @@
   color: '#0054AA'
   reagent: Pluoxium
   pricePerMole: 5
+  gasOverlayTexture: /Textures/_Sunrise/Effects/atmospherics.rsi
+  gasOverlayState: pluoxium
 
 - type: gas
   id: Hydrogen
