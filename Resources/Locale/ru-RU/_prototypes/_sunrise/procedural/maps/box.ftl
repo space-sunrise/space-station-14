@@ -1,4 +1,4 @@
-ent-BoxMaintRoomMarker5x5 = Маркер тех. туннели Бокса
+ent-BoxMaintRoomMarker5x5 = Маркер тех. туннелей Бокса
     .desc = { ent-BaseRoomMarker.desc }
 
 ent-BoxMaintRoomMarker3x3 = { ent-BoxMaintRoomMarker5x5 }
