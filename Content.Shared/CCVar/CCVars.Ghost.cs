@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     /// <summary>
     ///     The time you must spend reading the rules, before the "Request" button is enabled

@@ -4,7 +4,7 @@ using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     /// <summary>
     ///     Delay for auto-orientation. Used for people arriving via arrivals.

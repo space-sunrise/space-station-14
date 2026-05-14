@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     public static readonly CVarDef<bool> LoocEnabled =
         CVarDef.Create("looc.enabled", true, CVar.NOTIFY | CVar.REPLICATED);

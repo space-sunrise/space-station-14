@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     /// <summary>
     ///     Whether or not to record admin chat. If replays are being publicly distributes, this should probably be

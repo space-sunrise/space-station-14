@@ -9,6 +9,7 @@ sandbox-window-spawn-tiles-button = Спавн тайлов
 sandbox-window-spawn-decals-button = Спавн декалей
 sandbox-window-grant-full-access-button = Дать полный доступ
 sandbox-window-ghost-button = Призрак
+sandbox-window-thermal-vision-button = Тепловое зрение
 sandbox-window-toggle-lights-button = Переключить освещение
 sandbox-window-toggle-fov-button = Переключить FOV
 sandbox-window-toggle-shadows-button = Переключить тени

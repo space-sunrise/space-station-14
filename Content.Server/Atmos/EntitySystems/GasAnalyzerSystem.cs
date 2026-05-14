@@ -1,12 +1,10 @@
 using System.Linq;
 using Content.Server.Atmos.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.NodeContainer;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -65,7 +63,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
     private void OnAfterInteract(Entity<GasAnalyzerComponent> entity, ref AfterInteractEvent args)
     {
         var target = args.Target;
-        if (target != null && !_interactionSystem.InRangeUnobstructed((args.User, null), (target.Value, null)))
+        if (target != null && !_interactionSystem.InRangeUnobstructed(args.User, target.Value)) // Sunrise edit
         {
             target = null; // if the target is out of reach, invalidate it
         }
@@ -146,7 +144,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
             // Listen! Even if you don't want the Gas Analyzer to work on moving targets, you should use
             // this code to determine if the object is still generally in range so that the check is consistent with the code
             // in OnAfterInteract() and also consistent with interaction code in general.
-            if (!_interactionSystem.InRangeUnobstructed((component.User, null), (component.Target.Value, null)))
+            if (component.User == null || !_interactionSystem.InRangeUnobstructed(component.User.Value, component.Target.Value))
             {
                 if (component.User is { } userId && component.Enabled)
                     _popup.PopupEntity(Loc.GetString("gas-analyzer-object-out-of-range"), userId, userId);
@@ -159,16 +157,8 @@ public sealed class GasAnalyzerSystem : EntitySystem
 
         // Fetch the environmental atmosphere around the scanner. This must be the first entry
         var tileMixture = _atmo.GetContainingMixture(uid, true);
-        if (tileMixture != null)
-        {
-            gasMixList.Add(new GasMixEntry(Loc.GetString("gas-analyzer-window-environment-tab-label"), tileMixture.Volume, tileMixture.Pressure, tileMixture.Temperature,
-                GenerateGasEntryArray(tileMixture)));
-        }
-        else
-        {
-            // No gases were found
-            gasMixList.Add(new GasMixEntry(Loc.GetString("gas-analyzer-window-environment-tab-label"), 0f, 0f, 0f));
-        }
+        var tileMixtureName = Loc.GetString("gas-analyzer-window-environment-tab-label");
+        gasMixList.Add(GenerateGasMixEntry(tileMixtureName, tileMixture));
 
         var deviceFlipped = false;
         if (component.Target != null)
@@ -192,7 +182,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
                 {
                     if (mixes.Item2 != null)
                     {
-                        gasMixList.Add(new GasMixEntry(mixes.Item1, mixes.Item2.Volume, mixes.Item2.Pressure, mixes.Item2.Temperature, GenerateGasEntryArray(mixes.Item2)));
+                        gasMixList.Add(GenerateGasMixEntry(mixes.Item1, mixes.Item2));
                         validTarget = true;
                     }
                 }
@@ -215,7 +205,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
                             var pipeAir = pipeNode.Air.Clone();
                             pipeAir.Multiply(pipeNode.Volume / pipeNode.Air.Volume);
                             pipeAir.Volume = pipeNode.Volume;
-                            gasMixList.Add(new GasMixEntry(pair.Key, pipeAir.Volume, pipeAir.Pressure, pipeAir.Temperature, GenerateGasEntryArray(pipeAir)));
+                            gasMixList.Add(GenerateGasMixEntry(pair.Key, pipeAir));
                             validTarget = true;
                         }
                     }
@@ -243,6 +233,23 @@ public sealed class GasAnalyzerSystem : EntitySystem
     }
 
     /// <summary>
+    /// Generates a GasMixEntry for a given GasMixture
+    /// </summary>
+    public GasMixEntry GenerateGasMixEntry(string name, GasMixture? mixture)
+    {
+        if (mixture == null)
+            return new GasMixEntry(name, 0, 0, 0);
+
+        return new GasMixEntry(
+            name,
+            mixture.Volume,
+            mixture.Pressure,
+            mixture.Temperature,
+            GenerateGasEntryArray(mixture)
+        );
+    }
+
+    /// <summary>
     /// Generates a GasEntry array for a given GasMixture
     /// </summary>
     private GasEntry[] GenerateGasEntryArray(GasMixture? mixture)
@@ -259,7 +266,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
             if (mixture != null)
             {
                 var gasName = Loc.GetString(gas.Name);
-                gases.Add(new GasEntry(gasName, mixture[i], gas.Color));
+                gases.Add(new GasEntry((Gas)i, mixture[i]));
             }
         }
 

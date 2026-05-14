@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     /// <summary>
     ///     The discord channel ID to send admin chat messages to (also receive them). This requires the Discord Integration to be enabled and configured.

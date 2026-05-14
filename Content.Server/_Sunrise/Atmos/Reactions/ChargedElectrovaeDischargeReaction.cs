@@ -14,6 +14,8 @@ public sealed partial class ChargedElectrovaeDischargeReaction : IGasReactionEff
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        if (mixture.Immutable)
+            return ReactionResult.NoReaction;
         const float intensityDivisor = 2f;
         const float dischargeRate = 0.025f;
 

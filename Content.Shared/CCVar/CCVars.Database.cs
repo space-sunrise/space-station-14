@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
 #if DEBUG
     private const int DefaultSqliteDelay = 1;

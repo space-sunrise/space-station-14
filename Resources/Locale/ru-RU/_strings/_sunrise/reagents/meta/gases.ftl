@@ -29,21 +29,21 @@ reagent-name-anti-nob = анти-ноблиум
 reagent-desc-anti-nob = Мы до сих пор не знаем, что он делает, но он стоит дорого.
 
 reagent-name-electrovae = электровей
-reagent-desc-electrovae = Зловеще гудящий газ. 
+reagent-desc-electrovae = Зловеще гудящий газ.
 
 reagent-name-charged-electrovae = заряженный электровей
 reagent-desc-charged-electrovae = Электрически заряженный газ. Он покалывает кожу.
 
-gases-healium = Хилиум
-gases-bz = БЗ
-gases-nitrium = Нитриум
-gases-pluoxium = Плюоксиум
-gases-hydrogen = Водород
-gases-hyper-noblium = Гипер-Ноблий
-gases-proto-nitrate = Прото-Нитрат
-gases-zauker = Заукер
-gases-halon = Галон
-gases-helium = Гелий
-gases-anti-noblium = Анти-Ноблиум
-gases-electrovae = Электровей
-gases-charged-electrovae = Заряженный Электровей
+gas-healium = Хилиум
+gas-bz = БЗ
+gas-nitrium = Нитриум
+gas-pluoxium = Плюоксиум
+gas-hydrogen = Водород
+gas-hyper-noblium = Гипер-Ноблий
+gas-proto-nitrate = Прото-Нитрат
+gas-zauker = Заукер
+gas-halon = Галон
+gas-helium = Гелий
+gas-anti-noblium = Анти-Ноблиум
+gas-electrovae = Электровей
+gas-charged-electrovae = Заряженный Электровей

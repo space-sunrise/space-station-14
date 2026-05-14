@@ -68,7 +68,13 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 atmosphere.CurrentRunInvalidatedTiles.Clear();
                 atmosphere.CurrentRunInvalidatedTiles.EnsureCapacity(atmosphere.InvalidatedCoords.Count);
-                foreach (var indices in atmosphere.InvalidatedCoords)
+
+                // Sunrise edit:
+                var snapshot = new Vector2i[atmosphere.InvalidatedCoords.Count];
+                atmosphere.InvalidatedCoords.CopyTo(snapshot);
+                atmosphere.InvalidatedCoords.Clear();
+
+                foreach (var indices in snapshot)
                 {
                     var tile = GetOrNewTile(uid, atmosphere, indices, invalidateNew: false);
                     atmosphere.CurrentRunInvalidatedTiles.Enqueue(tile);
@@ -76,7 +82,6 @@ namespace Content.Server.Atmos.EntitySystems
                     // Update tile.IsSpace and tile.MapAtmosphere, and tile.AirtightData.
                     UpdateTileData(ent, mapAtmos, tile);
                 }
-                atmosphere.InvalidatedCoords.Clear();
 
                 if (_simulationStopwatch.Elapsed.TotalMilliseconds >= AtmosMaxProcessTime)
                     return false;
@@ -209,6 +214,9 @@ namespace Content.Server.Atmos.EntitySystems
                     (tile.Air, tile.Space) = GetDefaultMapAtmosphere(mapAtmos);
                     tile.MapAtmosphere = true;
                     ent.Comp1.MapTiles.Add(tile);
+                    // Sunrise edit
+                    UpdateAdjacentTiles(ent, tile, activate: true);
+                    InvalidateVisuals(ent, tile);
                 }
 
                 DebugTools.AssertNotNull(tile.Air);

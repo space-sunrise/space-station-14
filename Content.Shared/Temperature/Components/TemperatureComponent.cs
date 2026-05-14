@@ -1,4 +1,5 @@
 using Content.Shared.Atmos;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Temperature.Components;
 
@@ -6,13 +7,13 @@ namespace Content.Shared.Temperature.Components;
 /// Handles changing temperature,
 /// informing others of the current temperature.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TemperatureComponent : Component
 {
     /// <summary>
     /// Surface temperature which is modified by the environment.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public float CurrentTemperature = Atmospherics.T20C;
 
     /// <summary>

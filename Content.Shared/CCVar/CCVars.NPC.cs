@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     public static readonly CVarDef<int> NPCMaxUpdates =
         CVarDef.Create("npc.max_updates", 512); // Sunrise-Edit

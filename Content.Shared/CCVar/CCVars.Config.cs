@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     // These are server-only for now since I don't foresee a client use yet,
     // and I don't wanna have to start coming up with like .client suffixes and stuff like that.

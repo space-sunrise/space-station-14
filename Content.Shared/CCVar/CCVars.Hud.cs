@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     public static readonly CVarDef<int> HudTheme =
         CVarDef.Create("hud.theme", 0, CVar.ARCHIVE | CVar.CLIENTONLY);

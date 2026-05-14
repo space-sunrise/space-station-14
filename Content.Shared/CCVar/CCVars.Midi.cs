@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     public static readonly CVarDef<int> MaxMidiEventsPerSecond =
         CVarDef.Create("midi.max_events_per_second", 2048, CVar.REPLICATED | CVar.SERVER); // Sunrise edit

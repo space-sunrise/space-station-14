@@ -15,6 +15,8 @@ public sealed partial class ElectrovaeChargeReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        if (mixture.Immutable)
+            return ReactionResult.NoReaction;
         const float minimumMolesToReact = 0.01f;
         const float chargeRateMultiplier = 0.1f;
 

@@ -2,7 +2,7 @@
 
 namespace Content.Shared.CCVar;
 
-public sealed partial class CCVars
+public static partial class CCVars
 {
     /// <summary>
     ///     Whether gas differences will move entities.
@@ -143,7 +143,7 @@ public sealed partial class CCVars
     ///     gases heat up and cool down 64x faster than real life.
     /// </summary>
     public static readonly CVarDef<float> AtmosHeatScale =
-        CVarDef.Create("atmos.heat_scale", 8f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.heat_scale", 1.0f, CVar.SERVER | CVar.REPLICATED); // Sunrise edit
 
     /// <summary>
     ///     Maximum explosion radius for explosions caused by bursting a gas tank ("max caps").
@@ -178,4 +178,7 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<int> DeltaPressureParallelBatchSize =
         CVarDef.Create("atmos.delta_pressure_parallel_batch_size", 10, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> GasOverlayThermalDirtyThreshold =
+        CVarDef.Create("atmos.overlay_thermal_dirty_threshold", 1, CVar.SERVERONLY);
 }
