@@ -43,11 +43,14 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
     private SandboxWindow? _window;
 
     // TODO hud refactor cache
-    private EntitySpawningUIController EntitySpawningController => UIManager.GetUIController<EntitySpawningUIController>();
+    private EntitySpawningUIController EntitySpawningController =>
+        UIManager.GetUIController<EntitySpawningUIController>();
+
     private TileSpawningUIController TileSpawningController => UIManager.GetUIController<TileSpawningUIController>();
     private DecalPlacerUIController DecalPlacerController => UIManager.GetUIController<DecalPlacerUIController>();
 
-    private MenuButton? SandboxButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.SandboxButton;
+    private MenuButton? SandboxButton =>
+        UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.SandboxButton;
 
     public void OnStateEntered(GameplayState state)
     {
@@ -155,6 +158,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.ToggleSubfloorButton.OnPressed += _ => _sandbox.ToggleSubFloor();
         _window.ShowMarkersButton.OnPressed += _ => _sandbox.ShowMarkers();
         _window.ShowBbButton.OnPressed += _ => _sandbox.ShowBb();
+        _window.ThermalVisionButton.OnPressed += _ => _sandbox.ThermalVision(); // Sunrise-edit
     }
 
     private void CheckSandboxVisibility()
@@ -181,6 +185,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         system.SandboxDisabled += CloseAll;
         system.SandboxEnabled += CheckSandboxVisibility;
         system.SandboxDisabled += CheckSandboxVisibility;
+        system.ThermalVisionChanged += OnThermalVisionChanged; // Sunrise-edit
     }
 
     public void OnSystemUnloaded(SandboxSystem system)
@@ -188,6 +193,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         system.SandboxDisabled -= CloseAll;
         system.SandboxEnabled -= CheckSandboxVisibility;
         system.SandboxDisabled -= CheckSandboxVisibility;
+        system.ThermalVisionChanged -= OnThermalVisionChanged; // Sunrise-edit
     }
 
     private void SandboxButtonPressed(ButtonEventArgs args)
@@ -233,5 +239,8 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.ToggleSubfloorButton.Pressed = value;
     }
 
+    public partial void OnThermalVisionChanged(); // Sunrise-edit
+
     #endregion
 }
+
