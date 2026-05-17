@@ -628,7 +628,6 @@
     hands:
     - item: HypoBorgMedical
     - item: Syringe
-    # - item: BorgDropper
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
@@ -672,9 +671,9 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HypoBorgMedicalAdvanced 
-    - item: Hypospray 
-    - item: SyringeBluespace 
+    - item: HypoBorgMedicalAdvanced
+    - item: Hypospray
+    - item: SyringeBluespace
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
