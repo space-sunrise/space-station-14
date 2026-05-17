@@ -38,6 +38,11 @@
     - ActionJumpToCore
     - ActionSurvCameraLights
     - ActionAIViewLaws
+    # Sunrise-AIVoice-Edit-Start
+    - ActionChangeBorgVoice
+  - type: BorgChassis
+  - type: BorgVoice
+    # Sunrise-AIVoice-Edit-End
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -50,6 +55,8 @@
         type: SiliconLawBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
+      enum.BorgVoiceUiKey.Key:
+        type: BorgVoiceBoundUserInterface # Sunrise-AIVoice-Edit
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
