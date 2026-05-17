@@ -47,8 +47,8 @@ public sealed class BorgVoiceSystem : EntitySystem
 
     private void OnBorgVoiceChangeAction(EntityUid uid, BorgVoiceComponent component, BorgVoiceChangeActionEvent args)
     {
-        if (!TryComp<BorgChassisComponent>(uid, out _))
-            return;
+        /*if (!TryComp<BorgChassisComponent>(uid, out _)) Sunrise-AIVoice-Edit
+            return;*/
 
         // Open the voice selection UI
         if (!_uiSystem.HasUi(uid, BorgVoiceUiKey.Key))

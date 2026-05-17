@@ -40,7 +40,6 @@
     - ActionAIViewLaws
     # Sunrise-AIVoice-Edit-Start
     - ActionChangeBorgVoice
-  - type: BorgChassis
   - type: BorgVoice
     # Sunrise-AIVoice-Edit-End
   - type: UserInterface
