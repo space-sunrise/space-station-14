@@ -128,7 +128,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponLauncherChinaLake
+        - id: WeaponLauncherChinaLakeBiocode # Sunrise-edit
         - id: GrenadeBlast
           amount: 1
         - id: GrenadeFrag
