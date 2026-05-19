@@ -103,7 +103,7 @@
       state: generic
   - type: RandomSpawner
     rarePrototypes:
-    - SunriseBorgModuleAdvancedChemical #Sunrise edit
+    - SunriseBorgModuleAdvancedChemical # Sunrise-Edit
     - BorgModuleAdvancedCleaning
     - BorgModuleAdvancedTool
 
