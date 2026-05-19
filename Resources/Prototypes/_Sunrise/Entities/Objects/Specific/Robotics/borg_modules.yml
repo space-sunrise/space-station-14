@@ -672,7 +672,7 @@
   - type: ItemBorgModule
     hands:
     - item: HypoBorgMedicalAdvanced
-    - item: Hypospray
+    - item: Hypospray # Sunrise-Todo: Change to JetInjector
     - item: SyringeBluespace
     - item: Beaker
       hand:
