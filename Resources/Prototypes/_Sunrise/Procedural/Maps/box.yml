@@ -1,0 +1,319 @@
+#5x5
+- type: dungeonRoom
+  id: BoxMaint5x5a
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: -1,0
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5b
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 5,0
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5c
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 11,0
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5d
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: -1,6
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5e
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 5,6
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5f
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 11,6
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5g
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: -1,12
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5h
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 5,12
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+
+- type: dungeonRoom
+  id: BoxMaint5x5i
+  size: 5, 5
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 11,12
+  tags:
+  - BoxMaints
+  - BoxMaint5x5
+#3x3
+- type: dungeonRoom
+  id: BoxMaint3x3a
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: -1,18
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+
+- type: dungeonRoom
+  id: BoxMaint3x3b
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 3,18
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+
+- type: dungeonRoom
+  id: BoxMaint3x3c
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 7,18
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+
+- type: dungeonRoom
+  id: BoxMaint3x3d
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 11,18
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+
+- type: dungeonRoom
+  id: BoxMaint3x3e
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: -1,22
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+
+- type: dungeonRoom
+  id: BoxMaint3x3f
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 3,22
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+
+- type: dungeonRoom
+  id: BoxMaint3x3g
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 7,22
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+
+- type: dungeonRoom
+  id: BoxMaint3x3h
+  size: 3, 3
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 11,22
+  tags:
+  - BoxMaints
+  - BoxMaint3x3
+#4x4
+- type: dungeonRoom
+  id: BoxMaint4x4a
+  size: 4, 4
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: -1,26
+  tags:
+  - BoxMaints
+  - BoxMaint4x4
+
+- type: dungeonRoom
+  id: BoxMaint4x4b
+  size: 4, 4
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 4,26
+  tags:
+  - BoxMaints
+  - BoxMaint4x4
+
+- type: dungeonRoom
+  id: BoxMaint4x4c
+  size: 4, 4
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 9,26
+  tags:
+  - BoxMaints
+  - BoxMaint4x4
+
+- type: dungeonRoom
+  id: BoxMaint4x4d
+  size: 4, 4
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: -1,31
+  tags:
+  - BoxMaints
+  - BoxMaint4x4
+#13x10
+- type: dungeonRoom
+  id: BoxMaint13x10a
+  size: 13, 10
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 17,0
+  tags:
+  - BoxMaints
+  - BoxMaint13x10
+
+- type: dungeonRoom
+  id: BoxMaint13x10b
+  size: 13, 10
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 31,0
+  tags:
+  - BoxMaints
+  - BoxMaint13x10
+
+- type: dungeonRoom
+  id: BoxMaint13x10c
+  size: 13, 10
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 17,11
+  tags:
+  - BoxMaints
+  - BoxMaint13x10
+
+- type: dungeonRoom
+  id: BoxMaint13x10d
+  size: 13, 10
+  atlas: /Maps/_Sunrise/Station/RandomMap/box_random.yml
+  offset: 31,11
+  tags:
+  - BoxMaints
+  - BoxMaint13x10
+
+- type: entity
+  id: BoxMaintRoomMarker5x5
+  parent: BaseRoomMarker
+  name: Box maints interior 5x5
+  suffix: 5x5
+  components:
+  - type: RoomFill
+    rotation: false
+    maxSize: 5, 5
+    roomWhitelist:
+      tags:
+      - BoxMaint5x5
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/5x5.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: BoxMaintRoomMarker3x3
+  parent: BaseRoomMarker
+  name: Box maints interior 3x3
+  suffix: 3x3
+  components:
+  - type: RoomFill
+    rotation: false
+    maxSize: 3, 3
+    roomWhitelist:
+      tags:
+      - BoxMaint3x3
+  - type: Sprite
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/3x3.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/3x3.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: BoxMaintRoomMarker4x4
+  parent: BaseRoomMarker
+  name: Box maints interior 4x4
+  suffix: 4x4
+  components:
+  - type: RoomFill
+    rotation: false
+    maxSize: 4, 4
+    roomWhitelist:
+      tags:
+      - BoxMaint4x4
+  - type: Sprite
+    offset: -0.5, -0.5
+    noRot: true
+    layers:
+      - state: red
+      - sprite: Markers/Outlines/4x4.rsi
+        state: rect
+        color: red
+      - sprite: Markers/Outlines/4x4.rsi
+        state: label
+        color: red
+
+- type: entity
+  id: BoxMaintRoomMarker13x10
+  parent: BaseRoomMarker
+  name: Box maints interior 13x10
+  suffix: 13x10
+  components:
+  - type: RoomFill
+    rotation: false
+    maxSize: 13, 10
+    roomWhitelist:
+      tags:
+      - BoxMaint13x10
+  - type: Sprite
+    offset: 0, -0.5
+    noRot: true
+    layers:
+      - state: red
+      - sprite: _Sunrise/Markers/Outlines/13x10.rsi
+        state: rect
+        color: red
+      - sprite: _Sunrise/Markers/Outlines/13x10.rsi
+        state: label
+        color: red

@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Askall, discord: Askasl",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "fire_icon",
+            "directions": 1
+        }
+    ]
+}

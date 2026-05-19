@@ -8,8 +8,7 @@
   supervisors: job-supervisors-hop
   # Sunrise-Start
   alternativeTitles:
-  - job-alt-title-custodian
-  - job-alt-title-mop-master
+  - job-alt-title-maid
   # Sunrise-End
   access:
   - Service
