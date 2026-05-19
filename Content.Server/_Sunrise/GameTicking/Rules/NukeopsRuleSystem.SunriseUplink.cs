@@ -63,10 +63,10 @@ public sealed partial class NukeopsRuleSystem
             return;
         }
 
+        _ = SetupUplink(args.EntityUid, FighterUplinkTc, true);
+
         if (ent.Comp.UplinkEnt == null)
             return;
-
-        _ = SetupUplink(args.EntityUid, FighterUplinkTc, true);
 
         var giveTcCount = GetCommanderTcPerFighter();
         var commanderStore = EnsureComp<StoreComponent>(ent.Comp.UplinkEnt.Value);
