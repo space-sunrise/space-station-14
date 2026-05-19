@@ -1,7 +1,7 @@
 using Content.Server.Antag;
+using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Paper;
 using Content.Shared.Whitelist;
@@ -19,15 +19,13 @@ public sealed class AntagOnSignSystem : EntitySystem
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
-    private ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        _sawmill = Logger.GetSawmill(SawmillName);
 
         SubscribeLocalEvent<AntagOnSignComponent, PaperSignedEvent>(OnPaperSigned);
         SubscribeLocalEvent<AntagOnSignComponent, PaperWriteEvent>(OnPaperSigned, before: [typeof(ObjectiveOnSignSystem)]);
@@ -69,7 +67,7 @@ public sealed class AntagOnSignSystem : EntitySystem
             var forceMakeAntag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag));
             if (forceMakeAntag == null)
             {
-                _sawmill.Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
+                Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
                 continue;
             }
 
@@ -128,7 +126,7 @@ public sealed class AntagOnSignSystem : EntitySystem
             var forceMakeAntag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag));
             if (forceMakeAntag == null)
             {
-                _sawmill.Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
+                Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
                 continue;
             }
 
