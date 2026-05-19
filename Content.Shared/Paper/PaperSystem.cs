@@ -29,7 +29,6 @@ public sealed partial class PaperSystem : EntitySystem
 
     private static readonly ProtoId<TagPrototype> WriteIgnoreStampsTag = "WriteIgnoreStamps";
     private static readonly ProtoId<TagPrototype> WriteTag = "Write";
-    private static readonly Vector2 DefaultImageScale = new(1f, 1f);
     private EntityQuery<PaperComponent> _paperQuery;
 
     public override void Initialize()

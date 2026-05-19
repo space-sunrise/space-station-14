@@ -67,7 +67,7 @@ public sealed class AntagOnSignSystem : EntitySystem
             var forceMakeAntag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag));
             if (forceMakeAntag == null)
             {
-                Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
+                Log.Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
                 continue;
             }
 
@@ -126,7 +126,7 @@ public sealed class AntagOnSignSystem : EntitySystem
             var forceMakeAntag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag));
             if (forceMakeAntag == null)
             {
-                Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
+                Log.Error("Failed to reflect ForceMakeAntag from AntagSelectionSystem.");
                 continue;
             }
 
