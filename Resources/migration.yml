@@ -1009,4 +1009,7 @@ LockerPrisoner8: PrisonCellLocker8
 ComputerCriminalRecords: SunriseComputerCriminalRecords
 #2026-04-19
 AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
+#2026-05-10 # Sunrise-TODO: Delete this after upstreaming wizards
+ComputerNukieDelivery: SyndicateComputerComms
+HandheldStationMapNukeops: HandheldStationMapUnpowered
 # region Sunrise-End

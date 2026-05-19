@@ -68,16 +68,16 @@
   id: CrateArmoryIK30
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: IK-30 crate
-  description: Contains three IK-30 laser carbine with additional ammunition. Requires Armory access to open.
+  description: Contains two IK-30 laser carbine with additional ammunition. Requires Armory access to open.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
         - id: WeaponGunLaserCarbineSemi
-          amount: 3
+          amount: 2
         - id: MagazineBatteryLr30
-          amount: 3
+          amount: 2
 
 - type: entity
   id: CrateArmoryIK30Magazines

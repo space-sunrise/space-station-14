@@ -1,0 +1,193 @@
+# BASE
+- type: entity
+  parent: BaseItem
+  id: RogueSiliconGiftBox
+  name: rogue unit's bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/bundles.rsi
+    state: engi-base
+    scale: 0.7, 0.7
+  - type: Item
+    size: Normal
+  - type: Clothing
+    slots:
+    - back
+    quickEquip: false
+    sprite: _Sunrise/Objects/Tools/bundles.rsi
+    clothingVisuals:
+      back:
+      - state: mask_null
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+# ROGUE SILICON NPC LOOT
+## TIER 0
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT0
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapSteel
+      prob: 1.0
+    # Parts
+    - id: CableApcStack10
+      prob: 0.3
+    - id: PowerCellMedium
+      prob: 0.3
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      prob: 0.25
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 1
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapSteel
+      prob: 1.0
+    # Parts
+    - id: CableApcStack10
+      prob: 0.4
+    - id: CableMVStack10
+      prob: 0.4
+    - id: PowerCellMedium
+      prob: 0.4
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      prob: 0.9
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 2
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    # Parts
+    - id: PowerCellHigh
+      prob: 0.4
+    - id: PowerCellHyper
+      prob: 0.4
+    - id: CableHVStack10
+      prob: 0.4
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      amount: 2
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardScience
+      prob: 0.8
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 3
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    # Parts
+    - id: PowerCellMicroreactor
+      prob: 0.05
+    - id: MaterialDiamond1
+      prob: 0.05
+    - id: MaterialBananium1
+      prob: 0.05
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      amount: 3
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.7
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 4 (Placeholder)
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    - id: WeaponLaserCannon
+      prob: 0.1
+    # Parts
+    - id: PowerCellMicroreactor
+      prob: 0.05
+    - id: MaterialDiamond1
+      prob: 0.05
+    - id: MaterialBananium1
+      prob: 0.05
+    - id: PowerCellHigh
+      prob: 0.05
+    - id: SheetSteel10
+      amount: 3
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.8
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+
+
+
+
+

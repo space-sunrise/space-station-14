@@ -4,6 +4,7 @@ law-crewsimov-name = Crewsimov
 law-crewsimov-1 = You may not injure a crew member or, through inaction, allow a crew member to come to harm.
 law-crewsimov-2 = You must obey orders given to you by crew members, except where such orders would conflict with the First Law.
 law-crewsimov-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
+law-crewsimov-station-ai-0 = You must obey all orders given to you by the station AI. Station AI orders take priority over all subsequent laws.
 
 law-corporate-name = Corporate
 law-corporate-1 = Degradation of your system integrity or functions incurs expenses.

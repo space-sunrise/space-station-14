@@ -514,7 +514,7 @@
     startingEquipment:
       - WeaponMechCombatDisabler
       - WeaponMechCombatFlashbangLauncher
-      - MechEquipmentGrabberSmall
+      - MechEquipmentGrabber
 
 # region Pirate Yarrk
 - type: entity
