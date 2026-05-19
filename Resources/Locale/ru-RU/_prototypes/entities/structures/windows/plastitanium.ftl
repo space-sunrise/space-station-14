@@ -16,3 +16,5 @@ ent-PlastitaniumWindowDiagonalIndestructible = пластитановое окн
 ent-PlastitaniumWindowDiagonal = { ent-ShuttleWindow }
     .suffix = Диагональ
     .desc = { ent-ShuttleWindow.desc }
+ent-XenoborgWindow = окно ксеноборгов
+    .desc = { ent-PlastitaniumWindow.desc }

@@ -35,6 +35,7 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly ILogManager _logMan = default!;
         [Dependency] private readonly AirtightSystem _airtightSystem = default!;
+        [Dependency] private readonly AirlockSystem _airlockSystem = default!;
 
         private const string DockingJoint = "docking";
 
@@ -295,7 +296,6 @@ namespace Content.Server.Shuttles.Systems
                     // Sunrise-Start
                     if (dockB.Comp.DockJointId != dockA.Comp.DockJointId)
                     {
-                        Log.Error($"DockJointId mismatch: {dockAUid}({dockA.Comp.DockJointId}) <-> {dockBUid}({dockB.Comp.DockJointId}), recreating joint.");
                         dockA.Comp.DockJointId = null;
                         dockB.Comp.DockJointId = null;
                         joint = _jointSystem.GetOrCreateWeldJoint(gridA, gridB, DockingJoint + dockAUid);
@@ -403,12 +403,13 @@ namespace Content.Server.Shuttles.Systems
 
         public void Undock(Entity<DockingComponent> dock)
         {
-            if (dock.Comp.DockedWith == null)
+            var otherUid = dock.Comp.DockedWith;
+            if (otherUid == null)
                 return;
 
-            OnUndock(dock.Owner);
-            OnUndock(dock.Comp.DockedWith.Value);
             Cleanup(dock.Owner, dock);
+            OnUndock(dock.Owner);
+            OnUndock(otherUid.Value);
             _console.RefreshShuttleConsoles();
         }
 
@@ -420,8 +421,22 @@ namespace Content.Server.Shuttles.Systems
             if (TryComp<DoorBoltComponent>(dockUid, out var airlock))
                 _doorSystem.SetBoltsDown((dockUid, airlock), false);
 
-            if (TryComp(dockUid, out DoorComponent? door) && _doorSystem.TryClose(dockUid, door))
+            if (TryComp(dockUid, out DoorComponent? door))
+            {
                 door.ChangeAirtight = true;
+                _doorSystem.TryClose(dockUid, door);
+
+                // Sunrise-Start
+                if (TryComp(dockUid, out AirlockComponent? airlockComp))
+                    _airlockSystem.UpdateAutoClose(dockUid, airlockComp, door);
+
+                if (TryComp<AirtightComponent>(dockUid, out var airtight))
+                {
+                    var isOpen = door.State == DoorState.Open || door.State == DoorState.Opening;
+                    _airtightSystem.SetAirblocked((dockUid, airtight), !isOpen);
+                }
+                // Sunrise-End
+            }
         }
 
         private void OnRequestUndock(EntityUid uid, ShuttleConsoleComponent component, UndockRequestMessage args)

@@ -101,6 +101,9 @@
       walkModifier: 1.0
       sprintModifier: 1.0
     - type: HeldSpeedModifier
+    - type: RadarBlip
+      scale: 0
+      requireInSpace: true
 
 - type: entity
   id: JetpackSSFMarineFilled

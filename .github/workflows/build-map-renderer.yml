@@ -5,12 +5,12 @@ on:
     branches: [ master, staging, stable ]
   merge_group:
   pull_request:
-    types: [ opened, reopened, synchronize, ready_for_review ]
+    types: [ opened, reopened, synchronize ]
     branches: [ master, staging, stable ]
 
 jobs:
   build:
-    if: github.actor != 'Sunrise-Bot' && github.event.pull_request.draft == false
+    if: github.actor != 'Sunrise-Bot'
     strategy:
       matrix:
         os: [ubuntu-latest]

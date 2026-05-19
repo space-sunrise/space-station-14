@@ -15,6 +15,11 @@
   save: false
   abstract: true
   components:
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
   - type: NoSlip
   - type: CanMoveInAir
   - type: Reactive
@@ -24,6 +29,7 @@
     - NanoTrasen
   - type: Mech
     entryDelay: 1
+  - type: MechVulnerableToEMP
   - type: MechAir
   - type: GravityAffected
   - type: AirFilter
@@ -73,8 +79,8 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5
+    baseWalkSpeed: 1
+    baseSprintSpeed: 4
     baseWeightlessModifier: 2
   - type: MovementAlwaysTouching
   - type: Pullable
@@ -182,7 +188,7 @@
     baseState: sec_pod
     openState: sec_pod_open
     brokenState: sec_pod_broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
@@ -213,10 +219,15 @@
       - PowerCageMedium
   - type: AccessReader
     access: [["Security"]]
+  - type: RadarBlip
+    color: "#ff1500"
+    scale: 1.25
+    shape: Triangle
+    requireInSpace: false
 
 - type: entity
   id: MechMiningPod
-  parent: [ BaseMechPod, BaseSalvageSpecialistContraband ]
+  parent: [ BaseMechPod, BaseSalvageContraband ]
   name: Mining Pod
   description: Despite its size, the Mining Pod has incredible survability in space.
   suffix: Filled
@@ -252,7 +263,7 @@
     baseState: mining_pod
     openState: mining_pod_open
     brokenState: mining_pod_broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 4
     airtight: true
     pilotWhitelist:
@@ -307,6 +318,11 @@
     speechSounds: Borg
   - type: TTS
     voice: Glados
+  - type: RadarBlip
+    color: "#4800ff"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: false
 
 # region Ripley
 # Ripley Mk-I Hauler
@@ -335,6 +351,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener # No paint unique ripley
+    - FootstepSound
 
 # Ripley MK-II "Death"
 - type: entity
@@ -354,11 +371,13 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.6
   - type: Mech
     baseState: death
     openState: death-open
     brokenState: death-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     pilotWhitelist:
       components:
@@ -368,8 +387,8 @@
       - IndustrialMech
       - CombatMech
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 2
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -443,7 +462,7 @@
     baseState: paddy
     openState: paddy-open
     brokenState: paddy-broken
-    mechToPilotDamageMultiplier: 0.60
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 4
     #siren: true # Todo: port siren system from starlight
@@ -521,7 +540,7 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     pilotWhitelist:
       components:
@@ -601,22 +620,21 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.8
   - type: Mech
     baseState: ntgygax
     openState: ntgygax-open
     brokenState: ntgygax-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 2.5
+    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -695,7 +713,7 @@
     baseState: phazon
     openState: phazon-open
     brokenState: phazon-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 5
     airtight: true
     pilotWhitelist:
@@ -765,18 +783,15 @@
     baseState: darkdurand
     openState: darkdurand-open
     brokenState: darkdurand-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -849,15 +864,15 @@
     baseState: dollhouse
     openState: dollhouse-open
     brokenState: dollhouse-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 2
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -867,8 +882,8 @@
         Structural: 220
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.75
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: Loadout
     prototypes: [ MechArmorHeavySyndiLoadout ]
   - type: CanMoveInAir

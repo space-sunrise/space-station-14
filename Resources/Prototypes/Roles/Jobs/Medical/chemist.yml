@@ -11,6 +11,10 @@
   icon: "JobIconChemist"
   supervisors: job-supervisors-cmo
   displayWeight: 30  # Sunrise
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-pharmacist
+  # Sunrise-End
   access:
   - Medical
   - Chemistry

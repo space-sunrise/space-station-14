@@ -1,0 +1,17 @@
+<widgets:MappingAccessWidget
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:widgets="clr-namespace:Content.Client._Sunrise.UserInterface.Systems.Sandbox.Widgets"
+    Orientation="Vertical"
+    MinSize="190 0">
+    <PanelContainer StyleClasses="SunriseMappingWidgetPanel">
+        <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="6 5">
+            <Label Name="TitleLabel" Text="{Loc mapping-access-widget-title}" />
+            <CheckBox Name="ElectronicsOnlyCheckBox" Text="{Loc mapping-access-widget-electronics-only}" />
+            <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                <Label Name="BodyFilterLabel" Text="{Loc mapping-access-widget-body-filter}" />
+                <OptionButton Name="BodyFilterOptionButton" HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</widgets:MappingAccessWidget>

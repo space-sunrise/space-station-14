@@ -4,6 +4,9 @@
 ent-Grenade120mmBlast = 120mm blast grenade
     .desc = A devastating 120mm blast grenade designed for the CYERXA cannon system. Three times more powerful than standard blast grenades.
 
+ent-Rocket120mmMetlaLongFlight = 120mm long-flight rocket
+    .desc = A heavy 120mm rocket for the RCT-120 Metla launcher with extended powered flight time.
+
 ent-Magazine120mmGrenadeBlast = 120mm blast grenade magazine
     .desc = A large 20-round magazine loaded with powerful blast grenades for the CYERXA cannon system.
 
@@ -12,6 +15,9 @@ ent-Magazine120mmGrenadeBlastEmpty = 120mm blast grenade magazine (empty)
 
 ent-Cartridge60mmRocket = 60mm rocket
     .desc = A 60mm rocket cartridge designed for the Vanyk-MK2 shuttle cannon system. Smaller and lighter than standard RPG rounds but still packs a punch.
+
+ent-Cartridge60mmRocketLongFlight = 60mm long-flight rocket
+    .desc = A 60mm rocket cartridge with extended powered flight time for longer range engagements.
 
 ent-Magazine60mmRocket = 60mm rocket magazine
     .desc = A high-capacity 16-round magazine loaded with 60mm rockets for the Vanyk-MK2 shuttle cannon system.

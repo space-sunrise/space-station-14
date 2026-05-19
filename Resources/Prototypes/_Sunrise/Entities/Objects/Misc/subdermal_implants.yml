@@ -189,3 +189,56 @@
         Quantity: 3
       - ReagentId: Protein
         Quantity: 4
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantERT
+  name: ert death rattle implant
+  description: This implant will inform the ERT radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: ERT
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantERT
+  name: ert radio implant
+  description: This implant grants access to the ERT channel without a headset. Only authorized for ERT employees.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - ERT
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantDeathSquad
+  name: death squad death rattle implant
+  description: This implant will inform the Death Squad radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: DeathSquad
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantDeathSquad
+  name: death squad radio implant
+  description: This implant grants access to the Death Squad channel without a headset. It is only authorized for Death Squad employees.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - DeathSquad
+  
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DeathRattleImplantTSF
+  name: TSF death rattle implant
+  description: This implant will inform the TSF radio channel should the user fall into critical condition or die.
+  components:
+  - type: RattleOnTrigger
+    radioChannel: TSF

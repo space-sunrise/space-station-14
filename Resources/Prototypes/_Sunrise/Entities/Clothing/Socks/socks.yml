@@ -527,3 +527,15 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Socks/stockings_garter.rsi
     equippedState: equipped-SOCKS
+
+- type: entity
+  parent: [ClothingShoesBase, BaseMinorContraband]
+  id: ClothingUnderSocksMurder
+  name: murder socks
+  description: It's time to MURDER, sisters!!11!
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Socks/murder_stockings.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Socks/murder_stockings.rsi
+    - type: NoSlip

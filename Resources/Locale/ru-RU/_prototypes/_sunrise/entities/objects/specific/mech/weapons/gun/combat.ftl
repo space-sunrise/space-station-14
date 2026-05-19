@@ -28,7 +28,12 @@ ent-WeaponMechCombatUVM31 = UVM-31 "Дрейк"
 ent-WeaponMechCombatDuster = навесной EXP-220 "Дастер"
     .desc = Тяжёлая автопушка, навесная на мех, использует осколочные боеприпасы.
     .suffix = Оружие мехов, Стрелковое, Боевое
-ent-WeaponMechCombatMissileRack8Frag = пусковая ракетная установка BRM-8
+ent-WeaponMechCombatMissileRack8Frag = пусковая ракетная установка BRM-50
     .desc = Трубки должны загружаться снаружи.
     .suffix = Оружие мехов, Стрелковое, Боевое, Ракетница
-
+ent-WeaponMechCombatChaingun = навесная цепная пушка
+    .desc = { ent-BaseMechWeaponRange.desc }
+    .suffix = Оружие мехов, Стрелковое, Боевое
+ent-WeaponMechCombatKord = навесной пулемёт "КОРД"
+    .desc = Скорострельный пулемет под патрон 12,7 x 108 мм.
+    .suffix = Оружие мехов, Стрелковое, Боевое, Корд

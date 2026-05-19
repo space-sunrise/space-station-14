@@ -3,6 +3,8 @@
   id: ChairCarp
   parent: SeatBase
   description: A luxurious chair, the many purple scales reflect the light in a most pleasing manner.
+  placement:
+    mode: SnapgridCenter
   components:
     - type: Transform
       anchored: true

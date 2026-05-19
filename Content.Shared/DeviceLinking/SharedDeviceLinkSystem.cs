@@ -10,7 +10,8 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.DeviceLinking;
 
-public abstract class SharedDeviceLinkSystem : EntitySystem
+// Sunrise-Edit: partial for map save cleanup helpers
+public abstract partial class SharedDeviceLinkSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;

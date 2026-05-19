@@ -1,6 +1,6 @@
 ---
 name: ss14-naming-conventions
-description: Строгий норматив по неймингу в Space Station 14 для C#, YAML prototypes и FTL: имена компонентов/систем/зависимостей, prototype IDs, локализационные ключи, переменные и файлы. Используй при создании или ревью нового кода, прототипов и локализации, когда нужно проверить соответствие naming-стандарту.
+description: Strict naming standards in Space Station 14 for C#, YAML prototypes and FTL: names of components/systems/dependencies, prototype IDs, localization keys, variables and files. Use it when creating or reviewing new code, prototypes and localization, when you need to check compliance with the naming standard.
 ---
 
 # Cursor Bridge

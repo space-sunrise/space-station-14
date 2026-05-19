@@ -19,17 +19,13 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Network;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
-// Sunrise added start - фикс двойных шлюзов
-using Robust.Shared.Physics;
-// Sunrise added end
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Doors.Systems;
 
@@ -616,9 +612,22 @@ public abstract partial class SharedDoorSystem : EntitySystem
             yield break;
         }
 
-        // Шлюзы имеют единственный fixture с единственным child
-        var shape = fixtures.Fixtures.Values.First().Shape;
-        var bounds = shape.ComputeAABB(transform, 0);
+        // Шлюзы могут иметь дополнительные сенсорные fixtures (например, для стыковки),
+        // поэтому берем первую твердую (Hard) fixture для определения границ проверки столкновений.
+        IPhysShape? hardShape = null;
+        foreach (var fixture in fixtures.Fixtures.Values)
+        {
+            if (fixture.Hard)
+            {
+                hardShape = fixture.Shape;
+                break;
+            }
+        }
+
+        if (hardShape == null)
+            yield break;
+
+        var bounds = hardShape.ComputeAABB(transform, 0).Enlarged(-0.05f);
 
         _entityLookup.GetLocalEntitiesIntersecting(xform.GridUid.Value,
               bounds,

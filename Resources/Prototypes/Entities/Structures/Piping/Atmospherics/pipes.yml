@@ -63,6 +63,11 @@
   - type: Physics
     canCollide: false
     bodyType: static
+  # Sunrise edit start - mapping replacement rules
+  - type: MappingReplacement
+    usePrototypeId: true
+    requireSameRotation: true
+  # Sunrise edit end
   - type: StaticPrice
     price: 30
   # Sunrise-start

@@ -132,7 +132,6 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
-    - Felinid
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
@@ -149,7 +148,7 @@
   - type: GameRule
     minPlayers: 50
   - type: LoadMapRule
-    mapPath: /Maps/_Sunrise/Nonstations/nukieplanet.yml
+    mapPath: /Maps/_Sunrise/Nonstations/geigerComplex.yml #/Maps/_Sunrise/Nonstations/nukieplanet.yml # Sunrise-Edit
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -278,8 +277,8 @@
   - type: GameRule
     minPlayers: 5
     delay:
-      min: 600 # Sunrise-Edit
-      max: 900 # Sunrise-Edit
+      min: 300 # Sunrise-Edit
+      max: 600 # Sunrise-Edit
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
@@ -361,8 +360,8 @@
     minPlayers: 45 # Sunrise-Edit
     # Sunrise-Start
     delay:
-      min: 300
-      max: 600
+      min: 180
+      max: 300
     # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
@@ -372,6 +371,11 @@
       fallbackRoles: [ Rev ]
       max: 3
       playerRatio: 15
+      # Sunrise - start
+      blacklist:
+        components:
+        - MindShield
+      # Sunrise - end
       briefing:
         text: head-rev-role-greeting
         color: CornflowerBlue
@@ -385,8 +389,13 @@
     # Sunrise-Start
     - prefRoles: [ Rev ]
       fallbackRoles: [ HeadRev ]
-      max: 40 # Sunrise-Edit
-      playerRatio: 3
+      max: 40
+      playerRatio: 2
+      ignorePrefCheck: true
+      blacklist:
+        components:
+        - CommandStaff
+        - MindShield # Sunrise-Edit
       briefing:
         text: rev-role-greeting
         color: CornflowerBlue
@@ -398,8 +407,8 @@
   - type: SubGamemodes
     rules:
     - id: RevolutionarySmugglerStashSpawn
-      amount: 8
-      maxAmount: 16
+      amount: 9
+      maxAmount: 18
     # Sunrise-End
   - type: DynamicRuleCost
     cost: 200

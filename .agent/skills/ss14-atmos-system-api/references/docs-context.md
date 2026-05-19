@@ -1,26 +1,26 @@
 # Docs Context (Atmos API)
 
-## Что дает docs для API-уровня
+## What does the docs provide for the API level
 
-1. Формулирует ожидаемое поведение устройств: интуитивность, поток от высокого давления к низкому, избегание скрытых implementation details.
-2. Подсвечивает риски update-order зависимостей между устройствами.
-3. Требует документированности public API и математических derivation для сложных формул.
+1. Formulates the expected behavior of devices: intuitiveness, flow from high pressure to low, avoidance of hidden implementation details.
+2. Highlights the risks of update-order dependencies between devices.
+3. Requires documentation of public API and mathematical derivation for complex formulas.
 
-## Полезные страницы и свежесть
+## Useful pages and freshness
 
 1. `Atmospherics` — `2026-02-01`.
 2. `Atmospherics Design Choices` — `2026-02-04`.
 3. `PR Guidelines` — `2026-01-19`.
-4. Proposal-страницы — roadmap, не гарантия реализации.
+4. Proposal pages are a roadmap, not a guarantee of implementation.
 
-## Как применять вместе с кодом
+## How to use with code
 
-1. Берешь API-метод из кода и проверяешь фактическое поведение в потребителях.
-2. Сверяешь с design choices, чтобы не закрепить implementation detail как gameplay-механику.
-3. Если docs обещают больше, чем код делает сейчас, фиксируешь это в `rejected-snippets.md`.
+1. Take the API method from the code and check the actual behavior in the consumers.
+2. Check with design choices so as not to assign implementation detail as gameplay mechanics.
+3. If the docs promise more than the code does now, record it in `rejected-snippets.md`.
 
-## Частые расхождения
+## Frequent discrepancies
 
-1. Proposal-материалы описывают будущие flow-based сценарии, но часть API еще legacy.
-2. Не все исторические public-методы одинаково надежны для новых систем.
-3. Всегда проверяй TODO/возраст строки перед переносом в новый API-шаблон.
+1. Proposal materials describe future flow-based scenarios, but part of the API is still legacy.
+2. Not all historical public methods are equally reliable for new systems.
+3. Always check the TODO/age of a string before moving it to a new API template.

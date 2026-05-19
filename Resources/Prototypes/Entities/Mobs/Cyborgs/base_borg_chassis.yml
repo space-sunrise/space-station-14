@@ -261,6 +261,7 @@
     - CanPilot
     - SiliconEmotes
     - Unimplantable
+    - NoPaint # Sunrise-Add
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -395,6 +396,8 @@
     - HandheldStationMapUnpowered
   - type: BorgCrewManifestViewer
   - type: StationRecordKeyStorage
+  - type: SiliconLawProvider
+    laws: CrewsimovAiAssigned
   # Sunrise-End
 
 - type: entity
@@ -445,6 +448,7 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
+    - NoPaint # Sunrise-Add
   - type: BlockLawChange
   - type: Loadout
     prototypes: [ BorgArmorSiliconLoadoutMk2 ]

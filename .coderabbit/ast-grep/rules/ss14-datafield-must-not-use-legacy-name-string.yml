@@ -1,0 +1,11 @@
+id: ss14-datafield-must-not-use-legacy-name-string
+language: CSharp
+severity: error
+message: "Avoid legacy `[DataField(\"name\")]` usage. Let the YAML field name be derived automatically from the C# member name."
+note: "Per `ss14-ecs-components`, positional string names in `DataField` are a legacy pattern and should not be introduced in new or changed code without a compatibility reason."
+files:
+  - "Content.*/**/*.cs"
+rule:
+  all:
+    - kind: attribute
+    - regex: '(?s)^DataField\(\s*"[^"]+"\s*(?:,.*)?\)$'

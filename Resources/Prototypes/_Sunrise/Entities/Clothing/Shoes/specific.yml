@@ -54,7 +54,7 @@
     sprite: _Sunrise/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
 
 - type: entity
-  parent: ClothingShoesBaseButcherable
+  parent: ClothingShoesWraps
   id: ClothingWraps
   name: wraps
   description: Rugged cloth wraps, often used for protection or support in rough environments.
@@ -82,7 +82,7 @@
       collection: BarestepHard
 
 - type: entity
-  parent: ClothingShoesBaseButcherable
+  parent: ClothingShoesWraps
   id: ClothingWrapsHigh
   name: high wraps
   description: Rugged high cloth wraps, often used for protection or support in rough environments.

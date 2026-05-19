@@ -11,3 +11,5 @@ contraband-examinable-verb-text = Легальность
 contraband-examinable-verb-message = Проверить легальность этого предмета.
 contraband-department-plural = { $department }
 contraband-job-plural = { $job }
+contraband-examine-text-tsf = [color=cyan]Этот предмет является собственностью Транс-Солнечной Федерации![/color]
+contraband-examine-text-soviet = [color=orange]Этот предмет является нелегальной советской контрабандой![/color]

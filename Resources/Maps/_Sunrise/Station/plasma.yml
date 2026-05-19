@@ -14716,7 +14716,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -103.5,-73.5
       parent: 2
-- proto: AirlockExternalGlassShuttleArrivalsLocked
+- proto: AirlockExternalGlassShuttleArrivalsLockedCentComm
   entities:
   - uid: 297
     components:
@@ -14734,7 +14734,7 @@ entities:
       parent: 2
     - type: DeviceLinkSink
       invokeCounter: 1
-- proto: AirlockExternalGlassShuttleEmergencyLocked
+- proto: AirlockExternalGlassShuttleEmergencyLockedCentComm
   entities:
   - uid: 299
     components:

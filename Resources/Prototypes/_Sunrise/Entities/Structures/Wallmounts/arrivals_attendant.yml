@@ -1,0 +1,16 @@
+- type: entity
+  id: SunriseArrivalsAttendant
+  parent: Intercom
+  components:
+  - type: TTS
+    voice: IgnatiaFlootravel
+  - type: SunriseArrivalsAttendant
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: Intercom
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeyCommon

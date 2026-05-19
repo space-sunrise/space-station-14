@@ -9,6 +9,7 @@ using Robust.Shared.Physics.Components;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Threading;
+using Content.Server._Sunrise.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -66,6 +67,14 @@ public sealed partial class DockingSystem
             if (!ignored)
                 return false;
         }
+
+        // Sunrise-Start
+        if (TryComp<FtlReservationComponent>(gridDockXform.Owner, out var reservation))
+        {
+            if (reservation.ReservedBy != shuttleDockXform.GridUid && !ignored)
+                return false;
+        }
+        // Sunrise-End
 
         // First, get the station dock's position relative to the shuttle, this is where we rotate it around
         var stationDockPos = shuttleDockXform.LocalPosition +
@@ -186,7 +195,7 @@ public sealed partial class DockingSystem
 
             if (filteredGridDocks.Count == 0)
             {
-                _logger!.Info($"No docks found with priority tag {priorityTag}, falling back to regular docks");
+                _logger!.Debug($"No docks found with priority tag {priorityTag}, falling back to regular docks");
             }
             else
             {
@@ -351,7 +360,7 @@ public sealed partial class DockingSystem
         }
 
         stopwatch.Stop();
-        _logger!.Info($"GetDockingConfigs completed in {stopwatch.ElapsedMilliseconds}ms. Total iterations: {totalIterations}, Valid iterations: {validIterations}, Priority tag: {priorityTag}");
+        _logger!.Debug($"GetDockingConfigs completed in {stopwatch.ElapsedMilliseconds}ms. Total iterations: {totalIterations}, Valid iterations: {validIterations}, Priority tag: {priorityTag}");
 
         return validDockConfigs.ToList();
     }

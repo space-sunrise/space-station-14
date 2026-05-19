@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Pebble
   mapName: 'Pebble'
-  mapPath: /Maps/_Sunrise/Station/pebble.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/pebble.yml
   minPlayers: 0
   stations:
     PebbleStation:

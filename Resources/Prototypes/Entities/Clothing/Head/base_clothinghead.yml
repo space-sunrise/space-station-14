@@ -262,7 +262,6 @@
     tags:
     - FullCovered # INTERACTIONS
   # SUNRISE EDIT
-
 - type: entity
   abstract: true
   id: ClothingHeadHatHoodWinterBase

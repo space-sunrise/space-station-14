@@ -1,15 +1,15 @@
 # Rejected Snippets (Atmos API)
 
-| Метод/сценарий | Почему отклонен как шаблон | Сигнал |
+| Method/Script | Why rejected as a template | Signal |
 |---|---|---|
-| `GetAdjacentTileMixtures(..., includeBlocked, excite)` | Параметры `includeBlocked` и `excite` сейчас не отрабатываются как ожидается | TODO в методе |
-| `SetSimulatedGrid(...)` | В текущем состоянии фактически не подтвержден рабочий путь через subscribers | TODO о том, что subscribers нет |
-| `GetContainingMixture(...)` (container chain) | Нет рекурсивного подъема по parent-контейнерам, риск неверной среды | TODO о recursive iterate |
-| `ReactTile(...)` как опора новой логики | Старый event-wrapper, слабая практическая ценность для нового API-слоя | База 2022 |
-| `Firelock` pressure-кейс на `GetTileMixtures(...)` | Сильно специализированный и исторический код; не переносить как общий API-паттерн | Основной блок 2022 |
-| Legacy transfer API (`Merge/ReleaseGasTo/PumpGasTo/ScrubInto`) как «новый стиль» | Методы рабочие, но кодовая база историческая; нужен защитный слой и тесты | База 2021-2023 |
-| Прямая мутация map mixture без `SetMap*` | Ломает ожидаемую immutable семантику и refresh map-тайлов | Нарушение контракта Map API |
-| `RealAtmosTime()` как строгий инвариант в новых подсистемах | Старый helper, не должен быть единственным источником временной модели | База 2023 |
-| Client `AtmosphereSystem.OnMapHandleState` как референс «современного» client-api | Слишком старый участок для нового стандарта API-поведения | 2023-06-28 |
-| Большой draw-loop gas overlay как API-пример | Есть TODO и старые блоки; использовать только точечные свежие части | TODO + 2022-2023 |
-| DeltaPressure internal SIMD TODO-блок | Текущий вариант рабочий, но рядом зафиксировано ограничение по batching | TODO о batch operations |
+| `GetAdjacentTileMixtures(..., includeBlocked, excite)` | The parameters `includeBlocked` and `excite` are currently not processed as expected | TODO in method |
+| `SetSimulatedGrid(...)` | In the current state, the working path through subscribers has not actually been confirmed | TODO that there are no subscribers |
+| `GetContainingMixture(...)` (container chain) | No recursive hoisting on parent containers, risk of incorrect environment | TODO about recursive iterate |
+| `ReactTile(...)` as a support for the new logic | Old event-wrapper, weak practical value for the new API layer | Base 2022 |
+| `Firelock` pressure case on `GetTileMixtures(...)` | Highly specialized and historical code; do not port as a general API pattern | Main block 2022 |
+| Legacy transfer API (`Merge/ReleaseGasTo/PumpGasTo/ScrubInto`) as "new style" | The methods are working, but the code base is historical; need a protective layer and tests | Base 2021-2023 |
+| Direct mutation map mixture without `SetMap*` | Breaks the expected immutable semantics and refresh map tiles | Map API Contract Violation |
+| `RealAtmosTime()` as a strict invariant in new subsystems | Old helper, should not be the only source of the temporary model | Base 2023 |
+| Client `AtmosphereSystem.OnMapHandleState` as a reference for the “modern” client-api | Site too old for new standard API behavior | 2023-06-28 |
+| Big draw-loop gas overlay as an API example | There are TODO and old blocks; use only spot fresh parts | TODO+ 2022-2023 |
+| DeltaPressure internal SIMD TODO block | The current option is working, but there is a batching limitation nearby | TODO about batch operations |

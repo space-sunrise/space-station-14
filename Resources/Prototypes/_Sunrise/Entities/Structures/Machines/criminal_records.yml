@@ -1,0 +1,96 @@
+- type: entity
+  parent: BaseComputerAiAccess
+  id: SunriseComputerCriminalRecords
+  name: criminal records computer
+  description: This can be used to check criminal records. Only security can modify them.
+  components:
+  - type: SunriseCriminalRecordsConsole
+  - type: UserInterface
+    interfaces:
+      enum.SunriseCriminalRecordsConsoleKey.Key:
+        type: SunriseCriminalRecordsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.SunriseCriminalRecordsConsoleKey.Key
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: explosive
+    - map: ["computerLayerKeys"]
+      state: security_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#1f8c28"
+  - type: Computer
+    board: SunriseCriminalRecordsComputerCircuitboard
+  - type: AccessReader
+    access: [["Security"]]
+  - type: GuideHelp
+    guides:
+    - CriminalRecords
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerPrisonerManagement
+  name: prisoner management computer
+  description: A terminal for managing station prisoners.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: security
+    - map: ["computerLayerKeys"]
+      state: security_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#1f8c28"
+  - type: AccessReader
+    access: [["Security"]]
+  - type: PrisonerManagementConsole
+  - type: DeviceLinkSource
+    range: 30
+    ports:
+      - Cell1Lock
+      - Cell1Unlock
+      - Cell2Lock
+      - Cell2Unlock
+      - Cell3Lock
+      - Cell3Unlock
+      - Cell4Lock
+      - Cell4Unlock
+      - Cell5Lock
+      - Cell5Unlock
+      - Cell6Lock
+      - Cell6Unlock
+      - Cell7Lock
+      - Cell7Unlock
+      - Cell8Lock
+      - Cell8Unlock
+      - Cell9Lock
+      - Cell9Unlock
+      - Cell10Lock
+      - Cell10Unlock
+  - type: UserInterface
+    interfaces:
+      enum.PrisonerManagementConsoleKey.Key:
+        type: PrisonerManagementConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.PrisonerManagementConsoleKey.Key
+  - type: Computer
+    board: ComputerPrisonerManagementCircuitboard
+

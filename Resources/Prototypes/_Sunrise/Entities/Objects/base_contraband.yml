@@ -7,12 +7,28 @@
     allowedDepartments: [ Security, Science ]
 
 - type: entity
-  id: BaseSalvageSpecialistContraband
+  id: BaseSalvageContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
     allowedJobs: [ SalvageSpecialist ]
+
+- type: entity
+  id: BaseMiningContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ MiningSpecialist ]
+
+- type: entity
+  id: BaseSalvageMiningContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ SalvageSpecialist, MiningSpecialist ]
 
 - type: entity
   id: BaseSovietContraband

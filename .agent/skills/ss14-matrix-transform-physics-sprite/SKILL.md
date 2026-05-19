@@ -1,198 +1,198 @@
 ---
 name: ss14-matrix-transform-physics-sprite
-description: Узкоспециализированный навык по матричным преобразованиям в SS14: world/grid/local/screen конверсии, рендер-матрицы Sprite, физические запросы в broadphase-space, клиентские и серверные цепочки Transform/Physics/Sprite.
+description: Highly specialized skill in matrix transformations in SS14: world/grid/local/screen conversions, Sprite render matrices, broadphase-space physics queries, Transform/Physics/Sprite client and server chains.
 ---
 
-# Матрицы для Transform/Physics/Sprite в SS14
+# Matrices for Transform/Physics/Sprite in SS14
 
-Используй этот skill, когда задача упирается в матрицы и конверсию координатных пространств 🙂
-Фокус только на матричной части `Transform/Physics/Sprite` без дублирования общих тем из других skill.
+Use this skill when the task involves matrices and coordinate space conversion :)
+Focus only on the matrix part of `Transform/Physics/Sprite` without duplicating common topics from other skills.
 
-## Когда применять
+## When to use
 
-Применяй skill, если нужно:
+Use skill if necessary:
 
-- переводить данные между `world/grid/local/screen`;
-- корректно строить/инвертировать матрицы для физики и рендера;
-- конвертировать bounds (`TransformBox`) для broadphase, AO/FOV, docking, UI-навигации;
-- разруливать клиент/сервер различия в матричных цепочках.
+- transfer data between `world/grid/local/screen`;
+- correctly build/invert matrices for physics and rendering;
+- convert bounds (`TransformBox`) for broadphase, AO/FOV, docking, UI navigation;
+- resolve client/server differences in matrix chains.
 
-## Ментальная модель матриц
+## Mental model of matrices
 
-1. Разделяй пространства строго: `world` -> `entity/grid local` -> `sprite/layer local` -> `screen`.
-2. Используй парные операции: `CreateTransform` для прямого хода, `CreateInverseTransform` для обратного.
-3. Для физики сначала выбирай корректный `reference frame` (обычно broadphase/grid), потом конвертируй позицию и угол.
-4. Для рендера учитывай модификаторы спрайта (`NoRotation`, `SnapCardinals`, стратегия слоя), а уже потом вычисляй draw-matrix.
-5. Для направлений обнуляй трансляцию матрицы (`M31/M32 = 0`), иначе ты искажаешь вектор ⚠️
-6. Работай через системные методы (`SharedTransformSystem`, `SharedPhysicsSystem`, `SpriteSystem`), а не обходные ручные вычисления.
+1. Separate spaces strictly: `world` -> `entity/grid local` -> `sprite/layer local` -> `screen`.
+2. Use paired operations: `CreateTransform` for forward movement, `CreateInverseTransform` for reverse movement.
+3. For physics, first select the correct `reference frame` (usually broadphase/grid), then convert the position and angle.
+4. For rendering, take into account the sprite modifiers (`NoRotation`, `SnapCardinals`, layer strategy), and only then calculate the draw-matrix.
+5. For directions, reset the matrix translation (`M31/M32 = 0`), otherwise you distort the vector ⚠️
+6. Work through system methods (`SharedTransformSystem`, `SharedPhysicsSystem`, `SpriteSystem`), rather than manual calculations.
 
-## Паттерны
+## Patterns
 
-1. Используй `Matrix3Helpers.CreateTransform(...)` и `CreateInverseTransform(...)` как каноническую пару прямого/обратного перехода.
-2. В физике получай относительный трансформ через `SharedPhysicsSystem.GetRelativePhysicsTransform(...)` вместо ручного вычитания parent-цепочки.
-3. Пересобирай `SpriteComponent.LocalMatrix` при изменении `Scale/Rotation/Offset` через `SpriteSystem.SetScale/SetRotation/SetOffset`.
-4. В рендере спрайтов готовь отдельные матрицы под стратегии слоя (`Default`, `NoRotation`, `SnapToCardinals`, `UseSpriteStrategy`).
-5. В кликах делай цепочку `world -> entity local -> sprite local -> layer local` через инверсии матриц.
-6. В docking-композиции применяй формулу `inverse(stationDock) * gridDock`, затем `TransformBox` для AABB проверки.
-7. В UI-навигации радаров и карт делай явную цепочку `grid/world -> shuttle -> view`.
-8. В AO/FOV перед query по деревьям/тайлам переводи world-bounds в локальное пространство дерева/сетки через `GetInvWorldMatrix(...).TransformBox(...)`.
-9. В FTL/проксимити расширяй и объединяй world-AABB через `GetWorldMatrix(...).TransformBox(...)`, а не смешивай world/local боксы напрямую.
-10. Для векторов направления (лучи, рикошет) применяй матрицу без трансляции (`M31/M32 = 0`) и нормализуй после преобразования.
-11. Для смешанного клиент/сервер кода держи единый геометрический смысл: одинаковая математика, но разные точки применения.
-12. В сложных циклах сначала вычисляй базовые матрицы один раз, потом только переиспользуй их в итерациях ✅
+1. Use `Matrix3Helpers.CreateTransform(...)` and `CreateInverseTransform(...)` as a canonical forward/backward transition pair.
+2. In physics, get a relative transform through `SharedPhysicsSystem.GetRelativePhysicsTransform(...)` instead of manually subtracting the parent chain.
+3. Rebuild `SpriteComponent.LocalMatrix` when changing `Scale/Rotation/Offset` through `SpriteSystem.SetScale/SetRotation/SetOffset`.
+4. In the sprite renderer, prepare separate matrices for layer strategies (`Default`, `NoRotation`, `SnapToCardinals`, `UseSpriteStrategy`).
+5. In cliques, make a chain `world -> entity local -> sprite local -> layer local` through matrix inversions.
+6. In the docking composition, use the formula `inverse(stationDock) * gridDock`, then `TransformBox` for AABB checking.
+7. In the UI navigation of radars and maps, make an explicit chain `grid/world -> shuttle -> view`.
+8. In AO/FOV, before querying on trees/tiles, transfer world-bounds to the local space of the tree/grid via `GetInvWorldMatrix(...).TransformBox(...)`.
+9. In FTL/proximity, expand and merge world-AABB via `GetWorldMatrix(...).TransformBox(...)`, rather than mixing world/local boxes directly.
+10. For direction vectors (rays, ricochet), use a matrix without translation (`M31/M32 = 0`) and normalize after transformation.
+11. For mixed client/server code, keep a single geometric meaning: the same mathematics, but different points of application.
+12. In complex loops, first calculate the base matrices once, then only reuse them in iterations ✅
 
-## Анти-паттерны
+## Anti-patterns
 
-1. Смешивать `world`, `grid local`, `entity local`, `screen` в одном выражении без явного перехода.
-2. Преобразовывать направления полной матрицей с трансляцией (получишь неверную геометрию).
-3. Игнорировать `NoRotation` и `SnapCardinals` при расчете экранной матрицы спрайта.
-4. Обходить системные API и вручную собирать parent-цепочку матриц там, где есть готовые методы.
-5. Использовать устаревшие компонентные обертки как основной API вместо системных методов.
-6. Инвертировать матрицы в tight-loop без кэширования, если входные параметры в итерации не меняются.
-7. Выполнять broadphase/query в world-space, когда ожидается локальное пространство дерева/сетки.
-8. Клеить слойные `Sprite`-матрицы и физические трансформы без понимания их разных систем отсчета.
-9. Тянуть в этот skill общие темы UI/архитектуры без матричного содержания 🙃
+1. Mix `world`, `grid local`, `entity local`, `screen` in one expression without an explicit transition.
+2. Convert directions using a complete matrix with translation (you will get the wrong geometry).
+3. Ignore `NoRotation` and `SnapCardinals` when calculating the sprite screen matrix.
+4. Bypass system APIs and manually assemble the parent chain of matrices where there are ready-made methods.
+5. Use legacy component wrappers as the main API instead of system methods.
+6. Invert matrices into a tight-loop without caching if the input parameters do not change during the iteration.
+7. Perform broadphase/query in world-space when local tree/grid space is expected.
+8. Glue layer `Sprite` matrices and physical transforms without understanding their different reference systems.
+9. Draw into this skill general UI/architecture topics without matrix content 🙃
 
-## Клиент/Сервер
+## Client/Server
 
-- `Client`: клики, рендер спрайтов, AO/FOV, навигационные UI-виджеты; здесь чаще всего нужны цепочки `world -> local -> screen`.
-- `Server`: docking/FTL/физические проверки; здесь критичны корректные относительные трансформы и `TransformBox` для collision/query.
-- `Shared`: базовые матричные хелперы и унификация геометрии (`CreateTransform`, `CreateInverseTransform`, relative-physics transform).
-- Держи инвариант: математика совпадает между слоями, расходится только контекст применения.
+- `Client`: clicks, sprite rendering, AO/FOV, navigation UI widgets; here the `world -> local -> screen` chains are most often needed.
+- `Server`: docking/FTL/physical checks; Correct relative transforms and `TransformBox` for collision/query are critical here.
+- `Shared`: basic matrix helpers and geometry unification (`CreateTransform`, `CreateInverseTransform`, relative-physics transform).
+- Keep it invariant: mathematics coincides between layers, only the context of application diverges.
 
-## Примеры из кода
+## Code examples
 
-### 1) Движок: `Matrix3Helpers.CreateTransform` + `CreateInverseTransform`
+### 1) Engine: `Matrix3Helpers.CreateTransform` + `CreateInverseTransform`
 
 ```csharp
-// Прямой переход: локальное -> world.
+// Direct transition: local -> world.
 var worldMatrix = Matrix3Helpers.CreateTransform(position, angle, scale);
 
-// Обратный переход: world -> локальное пространство той же сущности.
+// Reverse transition: world -> local space of the same entity.
 var invWorldMatrix = Matrix3Helpers.CreateInverseTransform(position, angle, scale);
 
-// Пример: точку из мира переводим в local.
+// Example: we transfer a point from the world to local.
 var localPoint = Vector2.Transform(worldPoint, invWorldMatrix);
 ```
 
-### 2) Движок: `SharedPhysicsSystem.GetRelativePhysicsTransform(...)`
+### 2) Engine: `SharedPhysicsSystem.GetRelativePhysicsTransform(...)`
 
 ```csharp
-// Получаем broadphase-ориентированный transform, а не считаем руками через parent-цепочку.
+// We get a broadphase-oriented transform, rather than counting it manually through the parent chain.
 var (_, broadphaseRot, _, broadphaseInv) = _transform.GetWorldPositionRotationMatrixWithInv(relativeXform);
 
-// Позиция и угол в локальном пространстве broadphase.
+// Position and angle in local broadphase space.
 var localPos = Vector2.Transform(worldTransform.Position, broadphaseInv);
 var localRot = worldTransform.Quaternion2D.Angle - broadphaseRot;
 var localTransform = new Transform(localPos, localRot);
 ```
 
-### 3) Движок: `SpriteSystem.SetScale/SetRotation/SetOffset`
+### 3) Engine: `SpriteSystem.SetScale/SetRotation/SetOffset`
 
 ```csharp
-// После смены scale/rotation/offset всегда пересобирай LocalMatrix.
+// After changing scale/rotation/offset, always rebuild LocalMatrix.
 sprite.Comp.scale = newScale;
 sprite.Comp.LocalMatrix = Matrix3Helpers.CreateTransform(
     in sprite.Comp.offset,
     in sprite.Comp.rotation,
     in sprite.Comp.scale);
 
-// Так слойный рендер получает согласованную матрицу без "дрейфа".
+// This is how the layer renderer gets a consistent matrix without “drift”.
 ```
 
-### 4) Движок: `SpriteSystem.Render` и layer strategies
+### 4) Engine: `SpriteSystem.Render` and layer strategies
 
 ```csharp
-// Базовая матрица с учетом no-rotation / snap-cardinals.
+// Basic matrix taking into account no-rotation / snap-cardinals.
 var entityMatrix = Matrix3Helpers.CreateTransform(
     worldPosition,
     sprite.Comp.NoRotation ? -eyeRotation : worldRotation - cardinal);
 
-// Для granular rendering заранее считаем отдельные матрицы и выбираем по стратегии слоя.
+// For granular rendering, we calculate individual matrices in advance and choose according to the layer strategy.
 var transformDefault = Matrix3x2.Multiply(sprite.Comp.LocalMatrix,
     Matrix3Helpers.CreateTransform(worldPosition, worldRotation));
 var transformNoRot = Matrix3x2.Multiply(sprite.Comp.LocalMatrix,
     Matrix3Helpers.CreateTransform(worldPosition, -eyeRotation));
 ```
 
-### 5) Upstream (клиент): `ClickableSystem.CheckClick`
+### 5) Upstream (client): `ClickableSystem.CheckClick`
 
 ```csharp
-// 1) Инвертируем спрайтовую локальную матрицу.
+// 1) Invert the sprite local matrix.
 Matrix3x2.Invert(sprite.LocalMatrix, out var invSpriteMatrix);
 
-// 2) Строим inverse-transform сущности с учетом no-rotation/snap-cardinals.
+// 2) We build inverse-transform entities taking into account no-rotation/snap-cardinals.
 var entityInv = Matrix3Helpers.CreateInverseTransform(spritePos, correctedRotation);
 
-// 3) Переводим world-click в local-space спрайта и дальше в layer-space.
+// 3) Translate world-click into local-space of the sprite and then into layer-space.
 var localPos = Vector2.Transform(Vector2.Transform(worldPos, entityInv), invSpriteMatrix);
 ```
 
-### 6) Upstream (сервер): `DockingSystem.CanDock`
+### 6) Upstream (server): `DockingSystem.CanDock`
 
 ```csharp
-// Матрица стыковки: переводим grid-dock в систему shuttle-dock.
+// Docking matrix: convert grid-dock to shuttle-dock system.
 var stationDockMatrix = Matrix3Helpers.CreateInverseTransform(stationDockPos, shuttleDockAngle);
 var gridDockMatrix = Matrix3Helpers.CreateTransform(gridDockLocalPos, gridDockAngle);
 var dockingMatrix = Matrix3x2.Multiply(stationDockMatrix, gridDockMatrix);
 
-// Сразу проверяем новый AABB шаттла в целевом референсе.
+// We immediately check the new shuttle AABB in the target reference.
 var dockedAabb = dockingMatrix.TransformBox(shuttleAabb);
 ```
 
-### 7) Upstream (клиент UI): `ShuttleNavControl.Draw`
+### 7) Upstream (UI client): `ShuttleNavControl.Draw`
 
 ```csharp
-// Цепочка матриц: shuttle-local -> world -> view.
+// Matrix chain: shuttle-local -> world -> view.
 var posMatrix = Matrix3Helpers.CreateTransform(selectedCoordinates.Position, selectedRotation);
 var shuttleToWorld = Matrix3x2.Multiply(posMatrix, controlledEntityWorldMatrix);
 Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
 
-// Для каждой сетки строим world -> shuttle -> view.
+// For each grid we build world -> shuttle -> view.
 var gridToView = Matrix3x2.Multiply(curGridToWorld, worldToShuttle) * shuttleToView;
 ```
 
-### 8) Upstream (клиент): `AmbientOcclusionOverlay.Draw`
+### 8) Upstream (client): `AmbientOcclusionOverlay.Draw`
 
 ```csharp
-// AO-рендеринг идет в render-target, поэтому нужен world -> texture matrix.
+// AO rendering goes to render-target, so you need world -> texture matrix.
 var invMatrix = renderTarget.GetWorldToLocalMatrix(viewportEye, scale);
 
-// Берем world matrix сущности/сетки и домножаем на invMatrix цели.
+// We take the world matrix of the entity/grid and multiply it by the invMatrix of the target.
 var worldMatrix = xformSystem.GetWorldMatrix(entry.Transform);
 var worldToTexture = Matrix3x2.Multiply(worldMatrix, invMatrix);
 
-// Дальше рисуем геометрию уже в корректном texture-space.
+// Next we draw the geometry in the correct texture-space.
 worldHandle.SetTransform(worldToTexture);
 ```
 
-### 9) Fork-unique (клиент): `FieldOfViewSetAlphaOverlay.Draw`
+### 9) Fork-unique (client): `FieldOfViewSetAlphaOverlay.Draw`
 
 ```csharp
-// Для каждой component-tree сначала переводим worldBounds в локальные координаты дерева.
+// For each component-tree, we first translate worldBounds into local tree coordinates.
 var boundsLocalToTree = _xform.GetInvWorldMatrix(treeUid).TransformBox(worldBounds);
 
-// Потом query по AABB выполняется уже в правильном пространстве.
+// Then the query on AABB is executed in the correct space.
 treeComp.Tree.QueryAabb(ref state, QueryCallback, boundsLocalToTree, true);
 ```
 
 ### 10) Fork-unique (shared/server): `HitscanRicochetSystem.OnRicochetPierce`
 
 ```csharp
-// Позицию попадания переводим полной inverse-матрицей.
+// The hit position is translated by a complete inverse matrix.
 var invMatrix = _transform.GetInvWorldMatrix(ent.Owner);
 var localFrom = Vector2.Transform(worldHitPos, invMatrix);
 
-// Направление переводим матрицей БЕЗ трансляции.
+// The direction is translated by the matrix WITHOUT translation.
 var invNoTrans = invMatrix;
 invNoTrans.M31 = 0f;
 invNoTrans.M32 = 0f;
 var localDir = Vector2.Transform(worldDir, invNoTrans).Normalized();
 
-// После вычисления отражения возвращаем направление обратно в world-space,
-// опять же без трансляции.
+// After calculating the reflection, we return the direction back to world-space,
+// again no broadcast.
 ```
 
 ---
 
-Используй этот skill как узкий матричный playbook: бери только свежие и чистые участки, а сомнительные/старые кейсы отправляй в `rejected`.
+Use this skill as a narrow matrix playbook: take only fresh and clean areas, and send questionable/old cases to `rejected`.

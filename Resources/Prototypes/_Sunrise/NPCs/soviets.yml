@@ -22,11 +22,25 @@
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
     damageCoefficient: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: NpcFactionMember
     factions:
     - Soviet
   - type: NpcVeteranFollower
   - type: FootprintEmitter
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -35,6 +49,8 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: TimedDespawn
+    lifetime: 3600
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -48,7 +64,7 @@
     removeExisting: true
     components:
     - type: TimedDespawn
-      lifetime: 180
+      lifetime: 600
     - type: Strippable
     - type: Pullable
   - type: TimedRemoveComponents
@@ -147,7 +163,7 @@
     makeSentient: true
     name: ghost-role-information-expedition-soviet-name
     description: ghost-role-information-expedition-soviet-description
-    rules: ghost-role-information-expedition-soviet-rules
+    rules: ghost-role-information-rules-expedition-soviet-antagonist
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -204,8 +220,8 @@
   components:
   - type: DatasetVocalizer
     dataset: SovietChatterNPCVeteran
-    minVocalizeInterval: 30s
-    maxVocalizeInterval: 60s
+    minVocalizeInterval: 45s
+    maxVocalizeInterval: 90s
     hideChat: true
 
 - type: entity
@@ -215,11 +231,6 @@
   id: SovietSerzhantBase
   description: A Soviet sergeant who leads nearby fighters and coordinates the squad.
   components:
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      110: Critical
-      130: Dead
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -227,7 +238,7 @@
       state: human
     - sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
       state: equipped-INNERCLOTHING
-    - sprite: _Starlight/Objects/Clothing/OuterClothing/Armor/sovietflak.rsi
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
@@ -268,6 +279,7 @@
   id: MobSovietMarineMelee
   abstract: true
   components:
+  - type: NoSlip
   - type: MovementSpeedModifier
     baseSprintSpeed: 4.5
   - type: SlowOnDamage
@@ -275,6 +287,7 @@
       25: 1.15
       75: 1.25
   - type: JumpAbility
+    action: ActionGravityJumpQuick
     jumpDistance: 3
     jumpSound: /Audio/_Sunrise/Effects/silence.ogg
   - type: NPCUseActionWhenTargetInRange
@@ -407,6 +420,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -428,13 +442,14 @@
       state: equipped-HAND
       color: "#3CB57C"
   - type: AoEHeal
+    healSelf: false
     range: 5
     threshold: 0.9
     aliveTargets: false
     damage:
       groups:
-        Brute: -20
-        Burn: -10
+        Brute: -10
+        Burn: -8
         Airloss: -10
         Toxin: -10
     whitelist:
@@ -448,13 +463,14 @@
     triggerOnce: true
     components:
     - type: AoEHeal
+      healSelf: false
       range: 5
       threshold: 0.9
       aliveTargets: false
       damage:
         groups:
-          Brute: -20
-          Burn: -10
+          Brute: -10
+          Burn: -8
           Airloss: -10
           Toxin: -10
       whitelist:
@@ -492,9 +508,6 @@
   - type: Loadout
     prototypes:
     - MobSovietGearPPSH
-  - type: ActionGun
-    action: ActionGunGrenadeExplosiveShrapnel
-    gunProto: GunGrenadeExplosiveShrapnel
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionScream
@@ -670,9 +683,9 @@
     showExamineText: false
     fireRate: 7.5
     minAngle: 5
-    maxAngle: 60
-    angleIncrease: 4
-    angleDecay: 20
+    maxAngle: 50
+    angleIncrease: 3
+    angleDecay: 25
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -772,14 +785,16 @@
     showExamineText: false
     fireRate: 5
     selectedMode: FullAuto
-    minAngle: 2
+    minAngle: 6
     maxAngle: 25
-    angleIncrease: 2
-    angleDecay: 7
+    angleIncrease: 1
+    angleDecay: 10
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
 - type: entity
   name: soldier
@@ -1024,6 +1039,7 @@
       0: Alive
       90: Critical
       100: Dead
+  - type: ShowHealthBars
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1064,14 +1080,15 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: AoEHeal
+    healSelf: false
     range: 7
     threshold: 0.9
     damage:
       groups:
-        Brute: -30
-        Burn: -20
-        Airloss: -20
-        Toxin: -20
+        Brute: -15
+        Burn: -15
+        Airloss: -15
+        Toxin: -15
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1083,20 +1100,18 @@
     triggerOnce: true
     components:
     - type: AoEHeal
+      healSelf: false
       range: 7
       threshold: 0.9
       damage:
         groups:
-          Brute: -30
-          Burn: -20
-          Airloss: -20
-          Toxin: -20
+          Brute: -15
+          Burn: -15
+          Airloss: -15
+          Toxin: -15
       whitelist:
         components:
         - NpcVeteranFollower
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1105,7 +1120,10 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1159,9 +1177,6 @@
       collection: xm1014
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionGravityJumpQuick
@@ -1170,7 +1185,10 @@
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1191,6 +1209,7 @@
   - MobSovietVeteranChatterBase
   id: MobSovietT3Rifle
   components:
+  - type: NoSlip
   - type: Tag
     tags:
     - NpcVeteranLeader
@@ -1211,6 +1230,10 @@
     - sprite: _Sunrise/Clothing/Head/Hardsuits/ussp_light.rsi
       state: on-equipped-HELMET
       shader: unshaded
+  - type: JumpAbility
+    action: ActionGravityJumpQuick
+    jumpDistance: 3
+    jumpSound: /Audio/_Sunrise/Effects/silence.ogg
   - type: BatteryAmmoProvider
     proto: CartridgeLightRifleFMJ
     fireCost: 1
@@ -1231,15 +1254,18 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
-  - type: ActionGun
-    action: ActionGunGrenadeSmoke
-    gunProto: GunGrenadeSmoke
   - type: NPCUseActionWhenTargetInRange
     actions:
+    - actionId: ActionGravityJumpQuick
+      minRange: 4
+      maxRange: 0
     - actionId: ActionScream
       minRange: 1
       maxRange: 0
-    - actionId: ActionGunGrenadeSmoke
+    - actionId: ActionGunGrenadeSmokeSpell
+      minRange: 5
+      maxRange: 12
+    - actionId: ActionGunGrenadeExplosiveShrapnelSpell
       minRange: 5
       maxRange: 12
 
@@ -1249,6 +1275,19 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MechVulnerableToEMP
+  - type: NoSlip
   - type: Loadout
     prototypes:
     - MobSovietGearT2Mech
@@ -1348,7 +1387,7 @@
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1372,7 +1411,6 @@
     - CanPilot
     - Pickaxe
     - NpcBoss
-  - type: Magboots
   - type: HellSpawnRush
     blacklist:
       tags:
@@ -1396,6 +1434,8 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT3Mech
   components:
+  - type: NoSlip
+  - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     actions:
     - actionId: ActionActivateSmokeGrenadeImplant
@@ -1407,6 +1447,17 @@
   - type: Loadout
     prototypes:
     - MobSovietGearT3Mech
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1501,7 +1552,7 @@
     fuelCost: 25
     doAfterDelay: 10
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRSP
+    proto: CartridgeHeavyRifleRFMJ
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 5
@@ -1519,7 +1570,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1545,7 +1596,6 @@
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.6
-  - type: Magboots
   - type: AutoImplant
     implants:
     - SmokeScreenImplant
@@ -1591,18 +1641,18 @@
     proto: CartridgeAntiMateriel
     fireCost: 1
   - type: BatterySelfRecharger
-    autoRechargePauseTime: 15
+    autoRechargePauseTime: 9
     autoRechargeRate: 999
   - type: Battery
-    maxCharge: 7
-    startingCharge: 7
+    maxCharge: 8
+    startingCharge: 8
   - type: Gun
     showExamineText: false
-    fireRate: 0.7
+    fireRate: 1
     minAngle: 3
     maxAngle: 25
     angleIncrease: 3
-    angleDecay: 5
+    angleDecay: 10
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -1614,7 +1664,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/empty.ogg
   - type: EyeCursorOffset
     maxOffset: 5
-    pvsIncrease: 1
+    pvsIncrease: 1.5
   # Ghost role stuff
   - type: GhostRole
     allowMovement: true
@@ -2125,3 +2175,5 @@
 - type: entity
   parent: MobSovietT1MosinAlt
   id: MobSovietMosinAlt
+
+

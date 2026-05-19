@@ -213,6 +213,7 @@
     whitelist:
       tags:
         - ArtilleryShell #Sunrise-edit
+        - Grenade
     capacity: 2
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg

@@ -10,6 +10,42 @@
     {
       "name": "space_artillery",
       "directions": 4
+    },
+    {
+      "name": "mag-0",
+      "directions": 4
+    },
+    {
+      "name": "mag-1",
+      "directions": 4
+    },
+    {
+      "name": "mag-2",
+      "directions": 4
+    },
+    {
+      "name": "mag-3",
+      "directions": 4
+    },
+    {
+      "name": "mag-4",
+      "directions": 4
+    },
+    {
+      "name": "mag-5",
+      "directions": 4
+    },
+    {
+      "name": "mag-6",
+      "directions": 4
+    },
+    {
+      "name": "mag-7",
+      "directions": 4
+    },
+    {
+      "name": "mag-8",
+      "directions": 4
     }
   ]
 }

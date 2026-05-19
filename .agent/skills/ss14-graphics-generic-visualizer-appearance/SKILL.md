@@ -1,69 +1,69 @@
 ---
 name: SS14 Graphics GenericVisualizer Appearance
-description: Практический и архитектурный гайд по связке AppearanceComponent, AppearanceSystem, VisualizerSystem и GenericVisualizer в SS14. Используй при проектировании сетевых визуальных состояний, YAML-визуализаций и клиентских visualizer-систем.
+description: A practical and architectural guide to the combination of AppearanceComponent, AppearanceSystem, VisualizerSystem and GenericVisualizer in SS14. Use it when designing network visual states, YAML visualizations and client visualizer systems.
 ---
 
-# GenericVisualizer и Appearance в SS14
+# GenericVisualizer and Appearance in SS14
 
-Этот skill покрывает только pipeline `Appearance` + `VisualizerSystem` + `GenericVisualizer` 🙂
-Низкоуровневый рендер и детальный `SpriteSystem` API разбирай в отдельном sprite-skill.
+This skill only covers the pipeline `Appearance` + `VisualizerSystem` + `GenericVisualizer` :)
+Low-level rendering and detailed `SpriteSystem` API can be analyzed in a separate sprite-skill.
 
-## Когда выбирать этот skill
+## When to choose this skill
 
-Выбирай его, если задача про:
+Choose it if the task is about:
 
-- репликацию визуального состояния с сервера на клиент;
-- проектирование `Appearance`-ключей и payload-данных;
-- выбор между `GenericVisualizer` и кастомным visualizer;
-- YAML-описание визуализации через `visuals`;
-- обработку `AppearanceChangeEvent`.
+- replication of visual state from server to client;
+- designing `Appearance` keys and payload data;
+- choice between `GenericVisualizer` and custom visualizer;
+- YAML description of visualization via `visuals`;
+- processing `AppearanceChangeEvent`.
 
-## Источник истины и актуальность
+## Source of truth and relevance
 
-- При конфликте документации и кода приоритет у текущего кода.
-- Документация используется как концептуальная опора, но API проверяется по реализации.
-- Практические рекомендации и примеры опираются на свежие паттерны из актуального кода.
+- If there is a conflict between documentation and code, the current code takes precedence.
+- Documentation is used as conceptual support, but the API is verified against implementation.
+- Practical recommendations and examples are based on fresh patterns from current code.
 
-## Архитектура end-to-end
+## End-to-end architecture
 
-1. Серверная логика вычисляет визуальное состояние.
-2. Сервер пишет данные в `AppearanceComponent` через `SharedAppearanceSystem.SetData(...)`.
-3. Данные попадают в component state и сетево синхронизируются.
-4. Клиентский `AppearanceSystem` принимает state, обновляет словарь appearance-данных, ставит апдейт в очередь.
-5. Во время `FrameUpdate` поднимается `AppearanceChangeEvent`.
-6. Клиентские visualizer-системы (`VisualizerSystem<T>`) применяют данные к спрайту.
-7. Если достаточно простого маппинга значений на layer-data, это делает `GenericVisualizerSystem`.
+1. Server logic calculates the visual state.
+2. The server writes data to `AppearanceComponent` through `SharedAppearanceSystem.SetData(...)`.
+3. The data enters the component state and is synchronized over the network.
+4. Client `AppearanceSystem` accepts state, updates the appearance data dictionary, and queues the update.
+5. During `FrameUpdate`, `AppearanceChangeEvent` is raised.
+6. Client visualizer systems (`VisualizerSystem<T>`) apply data to the sprite.
+7. If simple mapping of values ​​on layer-data is enough, `GenericVisualizerSystem` does this.
 
-Идея: сервер передает не "как рисовать", а "что визуально истинно"; клиент решает "как отрисовать" 🙂
+Idea: the server conveys not “how to draw”, but “what is visually true”; the client decides “how to draw” :)
 
-## Enum-контракт: какие enum нужны и в каком порядке
+## Enum contract: which enums are needed and in what order
 
-В этой теме обычно участвуют **два разных enum-контракта**, иногда три:
+This topic usually involves **two different enum contracts**, sometimes three:
 
 1. `AppearanceKey enum` (shared)
-   Это ключи словаря `AppearanceData`.
-   Именно эти enum передаются в `SetData` / `TryGetData` / `RemoveData`.
+   These are the keys of the `AppearanceData` dictionary.
+   It is these enums that are passed to `SetData` / `TryGetData` / `RemoveData`.
 
-2. `LayerKey enum` (клиент + прототипная визуализация)
-   Это ключи слоев спрайта (layer map), по которым ты меняешь `visible/state/color/...`.
-   Эти enum используются в `SpriteSystem` и/или в `GenericVisualizer` YAML как layer key.
+2. `LayerKey enum` (client + prototype visualization)
+   These are the keys of the sprite layers (layer map), by which you change `visible/state/color/...`.
+   These enums are used in `SpriteSystem` and/or in `GenericVisualizer` YAML as layer key.
 
-3. `AppearanceValue enum` (опционально, shared)
-   Это не ключ, а **значение** appearance-данных.
-   Пример: `ChargeState.Empty/Medium/Full`.
+3. `AppearanceValue enum` (optional, shared)
+   This is not a key, but a **value** of appearance data.
+   Example: `ChargeState.Empty/Medium/Full`.
 
-Критически важно: `AppearanceKey enum` и `LayerKey enum` - это разные роли, их нельзя смешивать ⚠
+Critically important: `AppearanceKey enum` and `LayerKey enum` are different roles and should not be mixed ⚠
 
-### Порядок применения в коде и YAML
+### Order of application in code and YAML
 
-1. Описываешь `AppearanceKey enum` в shared-контракте.
-2. Описываешь `LayerKey enum` для адресации слоев.
-3. Сервер пишет значение: `SetData(uid, AppearanceKey.SomeKey, value)`.
-4. Клиент:
-   - либо custom visualizer: читает `AppearanceKey` через `TryGetData`, применяет к `LayerKey` через `SpriteSystem`;
-   - либо GenericVisualizer: YAML маппит `AppearanceKey -> LayerKey -> AppearanceValueString -> PrototypeLayerData`.
+1. Describe `AppearanceKey enum` in the shared contract.
+2. Describe `LayerKey enum` for addressing layers.
+3. The server writes the value: `SetData(uid, AppearanceKey.SomeKey, value)`.
+4. Client:
+   - or custom visualizer: reads `AppearanceKey` via `TryGetData`, applies to `LayerKey` via `SpriteSystem`;
+   - or GenericVisualizer: YAML mappit `AppearanceKey -> LayerKey -> AppearanceValueString -> PrototypeLayerData`.
 
-### Шаблон соответствия
+### Matching pattern
 
 ```yaml
 visuals:
@@ -91,18 +91,18 @@ public enum LockerVisualLayers : byte // 2) LayerKey enum
 }
 
 [Serializable, NetSerializable]
-public enum LockerChargeState : byte // 3) AppearanceValue enum (опционально)
+public enum LockerChargeState : byte // 3) AppearanceValue enum (optional)
 {
     Empty,
     Medium,
     Full,
 }
 
-// Сервер: только AppearanceKey + value
+// Server: AppearanceKey + value only
 _appearance.SetData(uid, LockerVisuals.Open, true, appearance);
 _appearance.SetData(uid, LockerVisuals.ChargeState, LockerChargeState.Full, appearance);
 
-// Клиент (custom visualizer): читает AppearanceKey, применяет к LayerKey
+// Client (custom visualizer): reads AppearanceKey, applies to LayerKey
 if (_appearance.TryGetData(uid, LockerVisuals.Open, out bool open, args.Component))
 {
     _sprite.LayerSetVisible((uid, args.Sprite), LockerVisualLayers.DoorOpen, open);
@@ -110,11 +110,11 @@ if (_appearance.TryGetData(uid, LockerVisuals.Open, out bool open, args.Componen
 }
 ```
 
-## API-разбор
+## API parsing
 
 ## 1) `SharedAppearanceSystem`
 
-Ключевые методы:
+Key methods:
 
 - `SetData(EntityUid, Enum, object, AppearanceComponent?)`
 - `RemoveData(EntityUid, Enum, AppearanceComponent?)`
@@ -122,83 +122,83 @@ if (_appearance.TryGetData(uid, LockerVisuals.Open, out bool open, args.Componen
 - `TryGetData(..., out object?)`
 - `CopyData(Entity<AppearanceComponent?> src, Entity<AppearanceComponent?> dest)`
 - `AppendData(...)`
-- `QueueUpdate(...)` (виртуальный, конкретная реализация зависит от стороны)
+- `QueueUpdate(...)` (virtual, specific implementation depends on the party)
 
-Важно:
+Important:
 
-- В актуальном API ключи appearance-данных - `Enum`.
-- Значения appearance должны быть корректно клонируемыми/сериализуемыми.
+- In the current API, appearance data keys are `Enum`.
+- Appearance values ​​must be correctly cloned/serializable.
 
-## 2) Клиентский `AppearanceSystem`
+## 2) Client `AppearanceSystem`
 
-Что важно знать:
+What is important to know:
 
-- держит очередь обновлений appearance;
-- в `FrameUpdate` вызывает изменение визуала только для актуальных сущностей;
-- формирует и рассылает `AppearanceChangeEvent`;
-- при приеме state сравнивает данные и обновляет словарь;
-- при клонировании appearance-данных требует безопасные типы:
-  - value type, или
-  - `ICloneable`, или
-  - тип, который сериализатор умеет копировать.
+- keeps a queue of appearance updates;
+- in `FrameUpdate` causes a change in the visual only for current entities;
+- generates and sends `AppearanceChangeEvent`;
+- when received, state compares the data and updates the dictionary;
+- when cloning appearance data, it requires safe types:
+  - value type, or
+  - `ICloneable`, or
+  - a type that the serializer can copy.
 
-Если это не выполнено, возможны исключения при применении state ⚠
+If this is not done, exceptions may occur when applying state ⚠
 
-## 3) Серверный `AppearanceSystem`
+## 3) Server `AppearanceSystem`
 
-- Выдает `AppearanceComponentState` для сетевой синхронизации.
-- Не занимается клиентским применением слоев и не должен знать детали рендера.
+- Issues `AppearanceComponentState` for network synchronization.
+- Does not deal with client application of layers and should not know rendering details.
 
 ## 4) `VisualizerSystem<T>`
 
-Контракт:
+Contract:
 
-- наследуешься от `VisualizerSystem<TVisualComponent>`;
-- переопределяешь `OnAppearanceChange(..., ref AppearanceChangeEvent args)`;
-- читаешь appearance-данные и применяешь визуальные изменения на клиенте.
+- inherited from `VisualizerSystem<TVisualComponent>`;
+- redefine `OnAppearanceChange(..., ref AppearanceChangeEvent args)`;
+- read the appearance data and apply visual changes on the client.
 
 ## 5) `GenericVisualizerComponent`
 
-Основная структура:
+Basic structure:
 
-- `visuals`: вложенный словарь формата
+- `visuals`: nested format dictionary
   `AppearanceKey -> LayerKey -> AppearanceValueString -> PrototypeLayerData`.
 
-Следствие:
+Consequence:
 
-- входные значения appearance нормализуются в строку;
-- layer key может быть enum-reference или обычной строкой.
+- appearance input values ​​are normalized to a string;
+- layer key can be an enum-reference or a regular string.
 
 ## 6) `GenericVisualizerSystem`
 
-Алгоритм применения:
+Application algorithm:
 
-1. Идет по описанным `visuals`.
-2. Для каждого appearance-ключа пытается прочитать текущее значение.
-3. Преобразует значение в строку (`ToString()`).
-4. Ищет соответствующий `PrototypeLayerData` в словаре вариантов.
-5. Резервирует/получает слой по ключу.
-6. Применяет `LayerSetData`.
+1. Follows the described `visuals`.
+2. For each appearance key, it tries to read the current value.
+3. Converts the value to a string (`ToString()`).
+4. Looks up the corresponding `PrototypeLayerData` in the variant dictionary.
+5. Reserves/gets a layer by key.
+6. Applies `LayerSetData`.
 
-Практический вывод:
+Practical conclusion:
 
-- `GenericVisualizer` отлично подходит для чистого declarative-мэппинга;
-- для сложных ветвлений, анимаций, взаимодействия с несколькими системами нужен кастомный visualizer.
+- `GenericVisualizer` is great for pure declarative mapping;
+- for complex branches, animations, interaction with multiple systems, you need a custom visualizer.
 
-## Decision Tree: GenericVisualizer или custom visualizer
+## Decision Tree: GenericVisualizer or custom visualizer
 
-1. Нужно только "значение X -> state/visible/color/shader/offset/..." без сложной логики?
-   Используй `GenericVisualizer` ✅
-2. Нужны таймеры, анимации, внешние системные зависимости или сложные вычисления?
-   Пиши custom `VisualizerSystem<T>` ✅
-3. Нужно динамически создавать/удалять много слоев в рантайме?
-   Обычно custom visualizer ✅
-4. Нужна композиция нескольких appearance-ключей с нетривиальными правилами?
-   Обычно custom visualizer ✅
+1. Do you only need "value X -> state/visible/color/shader/offset/..." without complex logic?
+   Use `GenericVisualizer` ✅
+2. Do you need timers, animations, external system dependencies or complex calculations?
+   Write custom `VisualizerSystem<T>` ✅
+3. Do you need to dynamically create/delete many layers at runtime?
+   Usually custom visualizer ✅
+4. Do you need a composition of several appearance keys with non-trivial rules?
+   Usually custom visualizer ✅
 
-## Практические примеры
+## Practical examples
 
-### Пример 1: сервер пишет и очищает appearance-флаг
+### Example 1: the server writes and clears the appearance flag
 
 ```csharp
 [NetSerializable, Serializable]
@@ -209,18 +209,18 @@ public enum LockerVisuals : byte
 
 private void UpdateLockerAppearance(EntityUid uid, AppearanceComponent appearance, bool open)
 {
-    // Сервер сообщает только фактическое визуальное состояние.
+    // The server reports only the actual visual state.
     _appearance.SetData(uid, LockerVisuals.Open, open, appearance);
 
     if (!open)
     {
-        // При необходимости ключ можно явно убрать.
+        // If necessary, the key can be explicitly removed.
         _appearance.RemoveData(uid, LockerVisuals.Open, appearance);
     }
 }
 ```
 
-### Пример 2: клиентский visualizer читает typed-данные
+### Example 2: Client visualizer reads typed data
 
 ```csharp
 protected override void OnAppearanceChange(EntityUid uid, LockerVisualsComponent component, ref AppearanceChangeEvent args)
@@ -228,7 +228,7 @@ protected override void OnAppearanceChange(EntityUid uid, LockerVisualsComponent
     if (args.Sprite == null)
         return;
 
-    // Читаем AppearanceKey enum (LockerVisuals), а применяем LayerKey enum (LockerVisualLayers).
+    // We read AppearanceKey enum (LockerVisuals), and apply LayerKey enum (LockerVisualLayers).
     if (_appearance.TryGetData(uid, LockerVisuals.Open, out bool open, args.Component))
     {
         _sprite.LayerSetVisible((uid, args.Sprite), LockerVisualLayers.DoorOpen, open);
@@ -237,38 +237,38 @@ protected override void OnAppearanceChange(EntityUid uid, LockerVisualsComponent
 }
 ```
 
-### Пример 3: сложный payload в appearance
+### Example 3: complex payload in appearance
 
 ```csharp
 [Serializable, NetSerializable]
 public sealed class ShowLayerData
 {
-    public string Key = string.Empty;   // Ключ целевого слоя.
-    public bool Visible;                // Нужно ли показывать слой.
-    public string? State;               // Необязательное состояние RSI.
+    public string Key = string.Empty;   // Target layer key.
+    public bool Visible;                // Should I show the layer?
+    public string? State;               // Optional RSI state.
 }
 
 private void PushLayerPayload(EntityUid uid, AppearanceComponent appearance, ShowLayerData data)
 {
-    // Сложный payload удобнее, чем набор разрозненных булевых флагов.
+    // A complex payload is more convenient than a set of disparate Boolean flags.
     _appearance.SetData(uid, MapperVisuals.LayerData, data, appearance);
 }
 ```
 
-### Пример 4: перенос визуальных данных между сущностями
+### Example 4: Transferring visual data between entities
 
 ```csharp
 private void CopyAppearance(Entity<AppearanceComponent?> source, Entity<AppearanceComponent?> target)
 {
-    // Полная замена данных назначения.
+    // Complete replacement of destination data.
     _appearance.CopyData(source, target);
 
-    // Либо merge-режим (append) для частичного обогащения.
+    // Or merge mode (append) for partial enrichment.
     // _appearance.AppendData(source, target);
 }
 ```
 
-### Пример 5: YAML-конфиг GenericVisualizer (bool -> слой)
+### Example 5: GenericVisualizer YAML config (bool -> layer)
 
 ```yaml
 - type: GenericVisualizer
@@ -284,7 +284,7 @@ private void CopyAppearance(Entity<AppearanceComponent?> source, Entity<Appearan
           visible: true
 ```
 
-### Пример 6: YAML-конфиг GenericVisualizer (enum value -> state/shader)
+### Example 6: GenericVisualizer YAML config (enum value -> state/shader)
 
 ```yaml
 - type: GenericVisualizer
@@ -301,7 +301,7 @@ private void CopyAppearance(Entity<AppearanceComponent?> source, Entity<Appearan
           color: "#99ff99"
 ```
 
-### Пример 7: когда нужен custom visualizer вместо GenericVisualizer
+### Example 7: when you need a custom visualizer instead of a GenericVisualizer
 
 ```csharp
 protected override void OnAppearanceChange(EntityUid uid, TriggerVisualsComponent component, ref AppearanceChangeEvent args)
@@ -312,46 +312,46 @@ protected override void OnAppearanceChange(EntityUid uid, TriggerVisualsComponen
     if (!_appearance.TryGetData(uid, TriggerVisuals.Active, out bool active, args.Component))
         return;
 
-    // Тут уже не просто маппинг: требуется запуск анимации и доп. логика.
+    // This is no longer just mapping: it requires launching animation and additional functions. logics.
     _sprite.LayerSetRsiState((uid, args.Sprite), TriggerLayers.Core, active ? "active" : "idle");
     _animation.Play(uid, "pulse", active);
 }
 ```
 
-## Паттерны 🙂
+## Patterns 🙂
 
-- Держи ключи appearance в shared-enum, чтобы сервер и клиент говорили на одном контракте.
-- Передавай "узкие" и семантические payload-структуры, а не аморфный набор `object`.
-- Используй `GenericVisualizer`, когда задача реально declarative.
-- Для сложной логики используй custom `VisualizerSystem<T>` и явный `OnAppearanceChange`.
-- Для миграций/трансформаций сущностей применяй `CopyData`/`AppendData`.
-- Явно чисти устаревшие ключи через `RemoveData`, если они больше невалидны.
+- Keep appearance keys in shared-enum so that the server and client speak the same contract.
+- Pass “narrow” and semantic payload structures, rather than an amorphous set of `object`.
+- Use `GenericVisualizer` when the task is really declarative.
+- For complex logic, use custom `VisualizerSystem<T>` and explicit `OnAppearanceChange`.
+- For migrations/transformations of entities, use `CopyData`/`AppendData`.
+- Explicitly clean up stale keys via `RemoveData` if they are no longer valid.
 
-## Анти-паттерны ❌
+## Anti-patterns ❌
 
-- Передавать в appearance не-клонируемые/не-сериализуемые reference-объекты.
-- Использовать строки вместо enum-ключей там, где можно задать shared enum.
-- Передавать `LayerKey enum` в `SetData/TryGetData` вместо `AppearanceKey enum`.
-- Пытаться запихнуть сложные ветвления и анимации в `GenericVisualizer`.
-- Дублировать одинаковую визуальную логику в нескольких несвязанных visualizer-системах.
-- Не удалять устаревшие appearance-ключи и получать "залипший" визуал.
-- Смешивать в одном методе серверный расчет состояния и клиентское применение слоя.
+- Pass non-clonable/non-serializable reference objects to appearance.
+- Use strings instead of enum keys where you can set a shared enum.
+- Pass `LayerKey enum` to `SetData/TryGetData` instead of `AppearanceKey enum`.
+- Trying to stuff complex branches and animations into `GenericVisualizer`.
+- Duplicate the same visual logic in several unrelated visualizer systems.
+- Do not delete outdated appearance keys and get a “stuck” visual.
+- Mix server state calculation and client layer application in one method.
 
-## Чеклист перед изменением ✅
+## Checklist before change ✅
 
-- Контракт ключей и payload-типов описан в shared-части?
-- Значения appearance безопасны для clone/copy/state sync?
-- Выбран правильный инструмент: `GenericVisualizer` или custom visualizer?
-- Обновление/очистка ключей (`SetData`/`RemoveData`) симметричны?
-- Клиентский visualizer идемпотентен и не зависит от случайного порядка событий?
-- Визуальная логика не уехала на сервер и наоборот?
+- Is the contract of keys and payload types described in the shared part?
+- Are appearance values ​​safe for clone/copy/state sync?
+- Have you selected the correct tool: `GenericVisualizer` or custom visualizer?
+- Are keys updated/cleared (`SetData`/`RemoveData`) symmetrical?
+- Is the client visualizer idempotent and does not depend on the random order of events?
+- Visual logic did not go to the server and vice versa?
 
-## Типовые ошибки
+## Common errors
 
-- В YAML-visuals значение ключа не совпадает со строкой `ToString()` реального enum/bool.
-- Перепутаны enum-роли: `AppearanceKey` и `LayerKey` (самая частая ошибка при первом внедрении).
-- Кастомный payload не сериализуется по сети и ломает применение state.
-- Логика читает appearance-ключ, который никогда не выставляется сервером.
-- Визуализатор обновляет не тот слой из-за несогласованных layer-key.
-- `GenericVisualizer` выбран для сценария, где реально нужна анимация/таймеры.
-- Миграция сущности скопировала внешность (`CopyData`), но забыли обновить зависимые клиентские компоненты.
+- In YAML-visuals, the key value does not match the `ToString()` line of the real enum/bool.
+- Enum roles are mixed up: `AppearanceKey` and `LayerKey` (the most common mistake during first implementation).
+- Custom payload is not serialized over the network and breaks the use of state.
+- The logic reads the appearance key, which is never set by the server.
+- The renderer updates the wrong layer due to inconsistent layer-keys.
+- `GenericVisualizer` is selected for a scenario where animation/timers are really needed.
+- Entity migration copied appearance (`CopyData`), but forgot to update dependent client components.

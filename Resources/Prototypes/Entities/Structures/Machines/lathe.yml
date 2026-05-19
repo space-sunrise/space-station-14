@@ -336,9 +336,12 @@
     - BorgModules
     - MechParts
     - MechEquipment
-    - RoboticsDynamicSunrise # Sunrise-Add
-    - MedicalCyberlimbDynamic # Sunrise-Add
-    - MedicalCyberOrgansDynamic # Sunrise-Add
+    # Sunrise-start
+    - BorgModulesSunrise
+    - RoboticsDynamicSunrise
+    - MedicalCyberlimbDynamic
+    - MedicalCyberOrgansDynamic
+    # Sunrise-end
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

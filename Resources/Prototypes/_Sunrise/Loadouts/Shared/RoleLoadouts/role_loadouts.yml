@@ -86,6 +86,7 @@
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldBelt
+  - BlueshieldGun
   - BlueShieldBra
   - BlueShieldPants
   - SunriseTrinkets
@@ -465,6 +466,20 @@
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
   - Contributors
+
+- type: roleLoadout
+  id: SunriseRoleSurvivalSyndicate
+  groups:
+  - SunriseSurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: SunriseRoleSurvivalNukie
+  groups:
+  - SunriseSurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
 
 - type: roleLoadout
   id: JobMiningSpecialist

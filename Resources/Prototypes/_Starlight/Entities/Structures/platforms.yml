@@ -10,6 +10,33 @@
     sprite: _Starlight/Structures/platforms.rsi
   - type: InteractionOutline
   - type: Clickable
+  - type: RCDDeconstructable
+    cost: 5
+    delay: 7
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 175
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   parent: PlatformBase
@@ -32,11 +59,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatform
 
 - type: entity
   parent: PlatformBase
@@ -59,7 +90,7 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
       fix2:
         shape:
           !type:PhysShapeAabb
@@ -68,11 +99,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_corner
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCorner
 
 - type: entity
   parent: PlatformBase
@@ -95,11 +130,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_deco
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerSmall
 
 - type: entity
   parent: Platform
@@ -109,6 +148,10 @@
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_stair
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairRight
 
 - type: entity
   parent: Platform
@@ -118,6 +161,10 @@
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_stair_alt
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairLeft
 
 # New Dark
 
@@ -142,11 +189,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_dark
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformDark
 
 - type: entity
   parent: PlatformBase
@@ -169,7 +220,7 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
       fix2:
         shape:
           !type:PhysShapeAabb
@@ -178,11 +229,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_corner_dark
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerDark
 
 - type: entity
   parent: PlatformBase
@@ -205,11 +260,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_deco_dark
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerSmallDark
 
 - type: entity
   parent: Platform
@@ -219,6 +278,10 @@
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_stair_dark
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairRightDark
 
 - type: entity
   parent: Platform
@@ -228,6 +291,10 @@
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_stair_dark_alt
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairLeftDark
 
 # New Wood
 
@@ -252,11 +319,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_wood
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformWood
 
 - type: entity
   parent: PlatformBase
@@ -279,7 +350,7 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
       fix2:
         shape:
           !type:PhysShapeAabb
@@ -288,11 +359,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_corner_wood
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerWood
 
 - type: entity
   parent: PlatformBase
@@ -315,11 +390,15 @@
         mask:
         - TableMask
         layer:
-        - Impassable
+        - TableLayer
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_deco_wood
+    drawdepth: HighFloorObjects
   - type: Climbable
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformCornerSmallWood
 
 - type: entity
   parent: Platform
@@ -329,6 +408,10 @@
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_stair_wood
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairRightWood
 
 - type: entity
   parent: Platform
@@ -338,3 +421,8 @@
   - type: Sprite
     sprite: _Starlight/Structures/platforms.rsi
     state: platform_stair_wood_alt
+    drawdepth: HighFloorObjects
+  - type: ChildEntities
+    childPrototypes:
+    - prototype: OverlayPlatformStairLeftWood
+

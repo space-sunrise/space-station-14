@@ -484,6 +484,9 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         if (!_mindSystem.TryGetMind(cultist, out var mindId, out var mind))
             return false;
 
+        if (_tagSystem.HasTag(cultist, "DeconvertedCultist"))
+            return false;
+
         _roles.MindAddRole(mindId, _mindRoleCultistPrototypeId);
 
         var isHumanoid = HasComp<HumanoidAppearanceComponent>(cultist);

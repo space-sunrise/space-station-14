@@ -1,33 +1,33 @@
 ---
 name: ss14-events
-description: Руководство по использованию событий в Space Station 14 — строгая таксономия, подписки, приоритизация ссылочных (by-ref) событий и паттерны сетевого взаимодействия.
+description: A guide to using events in Space Station 14 - strict taxonomy, subscriptions, by-ref event prioritization, and networking patterns.
 ---
 
-# 📨 Руководство по Событиям в SS14
+# 📨 SS14 Events Guide
 
-События — это основной способ коммуникации между системами и сущностями в Space Station 14. 🚀 Этот гайд охватывает правильное определение, вызов и обработку событий с соблюдением стандартов движка.
+Events are the primary way of communication between systems and entities in Space Station 14. 🚀 This guide covers how to properly define, raise, and handle events while following engine standards.
 
-## 📝 Определение Событий
+## 📝 Event Definition
 
-### Локальные События (Local Events) 🏠
-Для локальных событий (внутри одного клиента или сервера) используйте простую структуру `struct` или `class`.
-*   **Structs**: Предпочтительны для высокочастотных событий (например, `MoveEvent`, `DamageEvent`) для избежания нагрузки на GC. 🏎️
-*   **Classes**: Используйте для сложных данных или событий, требующих наследования (например, `ExamineEvent`). 📚
-*   **Именование**: Суффикс `Event` обязателен (например, `DoorOpenedEvent`).
+### Local Events 🏠
+For local events (within a single client or server), use a simple `struct` or `class` structure.
+* **Structs**: Preferred for high frequency events (e.g. `MoveEvent`, `DamageEvent`) to avoid GC load. 🏎️
+* **Classes**: Use for complex data or events that require inheritance (e.g. `ExamineEvent`). 📚
+* **Naming**: The `Event` suffix is ​​required (for example, `DoorOpenedEvent`).
 
 ```csharp
-// Простая структура события
+// Simple event structure
 public readonly record struct DoorOpenedEvent(EntityUid User);
 
-// Класс события с выходными данными
+// Event class with output data
 public sealed class ExamineEvent : EntityEventArgs {
     public readonly EntityUid Examined;
     public FormattedMessage Message = new();
 }
 ```
 
-### Сетевые События (Network Events) 🌐
-События, передаваемые по сети, **ОБЯЗАНЫ** наследовать `EntityEventArgs` и быть помечены атрибутами `[Serializable, NetSerializable]`.
+### Network Events 🌐
+Events transmitted over the network **MUST** inherit `EntityEventArgs` and be marked with `[Serializable, NetSerializable]` attributes.
 
 ```csharp
 [Serializable, NetSerializable]
@@ -36,14 +36,14 @@ public sealed class RequestStationNameEvent : EntityEventArgs {
 }
 ```
 
-## 🔗 Подписка на События
+## 🔗 Subscribe to Events
 
-Подписки всегда обрабатываются в `EntitySystem.Initialize()`.
+Subscriptions are always processed in `EntitySystem.Initialize()`.
 
-### 1. Направленная Подписка (`SubscribeLocalEvent`) 🎯
-Используйте, когда хотите слушать событие *на конкретной сущности*, имеющей определенный компонент.
+### 1. Directed Subscription (`SubscribeLocalEvent`) 🎯
+Use when you want to listen to an event *on a specific entity* that has a specific component.
 
-**Современный формат:** Используйте обертку `Entity<T>` для доступа к компоненту и UID одновременно.
+**Modern format:** Use the `Entity<T>` wrapper to access the component and UID at the same time.
 
 ```csharp
 public override void Initialize() {
@@ -52,66 +52,66 @@ public override void Initialize() {
 }
 
 private void OnDoorOpened(Entity<DoorComponent> ent, ref DoorOpenedEvent args) {
-    // ent.Owner - это EntityUid
-    // ent.Comp - это DoorComponent
+    // ent.Owner is the EntityUid
+    // ent.Comp is a DoorComponent
     if (ent.Comp.IsOpen) ...
 }
 ```
 
-### 2. Широковещательная Подписка (`SubscribeEvent`) 📢
-Используйте для глобальных событий, не привязанных к конкретной сущности.
+### 2. Broadcast Subscription (`SubscribeEvent`) 📢
+Use for global events that are not tied to a specific entity.
 
 ```csharp
 SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 ```
 
-### 3. Сетевая Подписка (`SubscribeNetworkEvent`) 📡
-Используйте для обработки событий, отправленных с другой стороны (Клиент -> Сервер или Сервер -> Клиент).
+### 3. Network Subscription (`SubscribeNetworkEvent`) 📡
+Use to process events sent from the other side (Client -> Server or Server -> Client).
 
 ```csharp
 SubscribeNetworkEvent<RequestStationNameEvent>(OnNameRequest);
 ```
 
-## 🧩 Специфичные Паттерны
+## 🧩 Specific Patterns
 
-### 1. Отменяемые События (Cancellable Events) 🚫
-Используются для проверки возможности выполнения действия ("Attempt" events). Любой подписчик может отменить действие.
+### 1. Cancellable Events 🚫
+Used to check whether an action can be performed ("Attempt" events). Any subscriber can cancel the action.
 
-*   **Классы**: Наследуйте от `CancellableEntityEventArgs`.
-*   **Структуры**: Добавьте поле `public bool Cancelled;`.
-*   **Важно**: Всегда передавайте такие события через `ref`, чтобы изменения `Cancelled` были видны вызывающему коду.
+* **Classes**: Inherit from `CancellableEntityEventArgs`.
+* **Structures**: Add the `public bool Cancelled;` field.
+* **Important**: Always pass such events through `ref` so that changes to `Cancelled` are visible to the calling code.
 
-**Использование:**
+**Usage:**
 ```csharp
-// Определение
+// Definition
 public sealed class DisarmAttemptEvent : CancellableEntityEventArgs { }
 ```
 
 ```csharp
-// Подписка (Блокировка действия)
+// Subscription (Lock action)
 private void OnDisarmAttempt(Entity<ScpRestrictionComponent> ent, ref DisarmAttemptEvent args) {
     if (!ent.Comp.CanBeDisarmed)
-        args.Cancel(); // Или args.Cancelled = true;
+        args.Cancel(); // Or args.Cancelled = true;
 }
 ```
 
 ```csharp
-// Вызов (Проверка разрешения)
+// Call (Permission check)
 var attempt = new DisarmAttemptEvent();
 RaiseLocalEvent(target, attempt);
 
 if (attempt.Cancelled)
-    return; // Действие прервано
+    return; // Action interrupted
 ```
 
-### 2. Обработанные События (Handled Events) ✅
-Используются, когда событие должно быть обработано только одной системой (например, взаимодействие с предметом). Если одна система "обработала" (handled) событие, другие не должны выполнять свою логику.
+### 2. Handled Events ✅
+Used when an event must be processed by only one system (for example, interaction with an object). If one system has "handled" an event, the others do not need to execute their logic.
 
-*   **Реализация**: Добавьте поле `public bool Handled;` (или наследуйте `HandledEntityEventArgs` для классов).
+* **Implementation**: Add field `public bool Handled;` (or inherit `HandledEntityEventArgs` for classes).
 
-**Использование:**
+**Usage:**
 ```csharp
-// Определение
+// Definition
 [ByRefEvent]
 public struct InteractEvent {
     public bool Handled;
@@ -119,22 +119,22 @@ public struct InteractEvent {
 ```
 
 ```csharp
-// Подписка
+// Subscription
 private void OnInteract(Entity<MyComponent> ent, ref InteractEvent args) {
-    if (args.Handled) return; // Уже кем-то обработано
+    if (args.Handled) return; // Already processed by someone
 
-    // Выполняем логику
-    args.Handled = true; // Помечаем как обработанное
+    // Executing the logic
+    args.Handled = true; // Mark as processed
 }
 ```
-**Важно**: Паттерн `Handled` отличается от `Cancelled`. `Cancelled` спрашивает разрешения ("Можно ли?"), а `Handled` говорит о факте свершения ("Я это сделал!").
+**Important**: The pattern of `Handled` is different from `Cancelled`. `Cancelled` asks for permission (“Is it possible?”), and `Handled` speaks of the fact of accomplishment (“I did it!”).
 
-## ⚡ Производительность: By-Ref Events
+## ⚡ Performance: By-Ref Events
 
-Для высоконагруженного кода, особенно часто вызываемых событий (физика, движение), используйте **By-Ref** (ссылочные) события. Это избегает копирования больших структур.
+For high-load code, especially frequently triggered events (physics, motion), use **By-Ref** (reference) events. This avoids copying large structures.
 
-### Определение By-Ref События
-Пометьте структуру атрибутом `[ByRefEvent]`.
+### Definition of By-Ref Events
+Mark the structure with the `[ByRefEvent]` attribute.
 
 ```csharp
 [ByRefEvent]
@@ -144,8 +144,8 @@ public struct MoveEvent {
 }
 ```
 
-### Подписка By-Ref
-Вы **ОБЯЗАНЫ** использовать ключевое слово `ref` в сигнатуре обработчика. ⚠️
+### Subscription By-Ref
+You **MUST** use the `ref` keyword in the handler signature. ⚠️
 
 ```csharp
 SubscribeLocalEvent<PhysicsComponent, MoveEvent>(OnMove);
@@ -153,32 +153,32 @@ SubscribeLocalEvent<PhysicsComponent, MoveEvent>(OnMove);
 
 ```csharp
 private void OnMove(Entity<PhysicsComponent> ent, ref MoveEvent args) {
-    // args передается по ссылке, изменения видны везде
+    // args is passed by reference, changes are visible everywhere
 }
 ```
 
-## 📤 Вызов Событий
+## 📤 Calling Events
 
-### Вызов Локальных Событий
-Используйте `RaiseLocalEvent` из `EntitySystem`.
+### Calling Local Events
+Use `RaiseLocalEvent` from `EntitySystem`.
 
 ```csharp
-// По значению (By Value)
+// By Value
 RaiseLocalEvent(uid, new DoorOpenedEvent(user));
 ```
 
 ```csharp
-// По ссылке (By Ref) - автоматически для помеченных [ByRefEvent]
+// By reference (By Ref) - automatically for those marked [ByRefEvent]
 var moveEv = new MoveEvent(oldPos, newPos);
 RaiseLocalEvent(uid, ref moveEv);
 ```
 
-## ❌ Антипаттерны и Частые Ошибки
+## ❌ Antipatterns and Frequent Errors
 
-### 1. 🚫 Устаревшая сигнатура обработчика
-**Ошибка**: Использовать развернутую сигнатуру `(EntityUid uid, Component comp, args)`.
-**Почему**: Это устаревший стиль. Новый стиль с `Entity<T>` чище и удобнее.
-**Правильно**:
+### 1. 🚫 Deprecated handler signature
+**Error**: Use expanded signature `(EntityUid uid, Component comp, args)`.
+**Why**: This is an outdated style. The new style with `Entity<T>` is cleaner and more convenient.
+**Right**:
 ```csharp
 // ✅ GOOD
 private void OnEvent(Entity<MyComponent> ent, ref MyEvent args) { ... }
@@ -189,34 +189,34 @@ private void OnEvent(Entity<MyComponent> ent, ref MyEvent args) { ... }
 private void OnEvent(EntityUid uid, MyComponent component, MyEvent args) { ... }
 ```
 
-### 2. 🚫 Подписка в `OnMapInit` или `Startup`
-**Ошибка**: Подписываться на события внутри методов жизненного цикла компонента.
-**Почему**: Это вызывает утечки памяти и дублирование подписок.
-**Правильно**: Всегда подписывайтесь только в `Initialize()` вашей `EntitySystem`.
+### 2. 🚫 Subscribe to `OnMapInit` or `Startup`
+**Error**: Subscribe to events inside component lifecycle methods.
+**Why**: This causes memory leaks and duplicate subscriptions.
+**Correct**: Always subscribe only to `Initialize()` of your `EntitySystem`.
 
-### 3. 🚫 Использование `CancellableEntityEventArgs` для Structs
-**Ошибка**: Пытаться наследовать структуры от классов или использовать `CancellableEntityEventArgs` без необходимости.
-**Почему**: Это создает лишние аллокации (boxing).
-**Правильно**: Добавьте поле `bool Handled` или `bool Cancelled` прямо в структуру и передавайте её через `ref`.
+### 3. 🚫 Using `CancellableEntityEventArgs` for Structs
+**Error**: Trying to inherit structures from classes or using `CancellableEntityEventArgs` unnecessarily.
+**Why**: This creates unnecessary allocations (boxing).
+**Correct**: Add the `bool Handled` or `bool Cancelled` field directly to the structure and pass it through `ref`.
 
-### 4. 🚫 Тяжелая логика в конструкторах событий
-**Ошибка**: Выполнять сложные вычисления в конструкторе события.
-**Почему**: События создаются часто.
-**Правильно**: Передавайте только готовые данные.
+### 4. 🚫 Heavy logic in event constructors
+**Bug**: Perform complex calculations in event constructor.
+**Why**: Events are created frequently.
+**Correct**: Transfer only ready data.
 
-### 5. 🚫 Забытый `sealed` для классов событий
-**Ошибка**: Создание класса события без `sealed`.
-**Почему**: Мешает JIT-компилятору девиртуализировать вызовы, снижая производительность.
-**Правильно**: Всегда пишите `public sealed class MyEvent`.
+### 5. 🚫 Forgotten `sealed` for event classes
+**Error**: Creating an event class without `sealed`.
+**Why**: Prevents the JIT compiler from devirtualizing calls, reducing performance.
+**Correct**: Always write `public sealed class MyEvent`.
 
-### 6. 🚫 Изменение `ref` аргументов без нужды
-**Ошибка**: Изменять поля в `ref` событии, если вы не являетесь "ответственной" системой.
-**Почему**: Это может сломать логику других систем, которые получат измененное событие.
-**Правильно**: Изменяйте данные только если ваша система должна перехватить или модифицировать результат (например, броня уменьшает урон).
+### 6. 🚫 Changing `ref` arguments unnecessarily
+**Bug**: Change fields in `ref` event if you are not the "responsible" system.
+**Why**: This may break the logic of other systems that receive the modified event.
+**Correct**: Change the data only if your system needs to intercept or modify the result (for example, armor reduces damage).
 
-## Дополнение по производительности: `ByRef record struct`
+## Performance addition: `ByRef record struct`
 
-Для частых локальных событий предпочитай этот формат:
+For frequent local events, prefer this format:
 
 ```csharp
 [ByRefEvent] public record struct ChargedMachineActivatedEvent;
@@ -224,21 +224,21 @@ private void OnEvent(EntityUid uid, MyComponent component, MyEvent args) { ... }
 private void RaiseActivated(EntityUid uid)
 {
     var ev = new ChargedMachineActivatedEvent();
-    RaiseLocalEvent(uid, ref ev); // Важно: ref обязателен.
+    RaiseLocalEvent(uid, ref ev); // Important: ref is required.
 }
 ```
 
-### Почему это полезно
+### Why is this useful?
 
-1. Меньше копирований событий в массовых потоках.
-2. Стабильнее поведение в hot-path по сравнению с тяжёлыми классами-событиями.
+1. Less copying of events in mass flows.
+2. More stable behavior in hot-path compared to heavy event classes.
 
-### Анти-паттерн
+### Anti-pattern
 
 ```csharp
-// ❌ Частое событие как класс + вызов без by-ref:
+// ❌ Frequent event as a class + call without by-ref:
 public sealed class FrequentEvent : EntityEventArgs { }
 RaiseLocalEvent(uid, new FrequentEvent());
 ```
 
-Используй классы там, где это действительно нужно по семантике, а не по привычке.
+Use classes where it is really needed due to semantics, and not out of habit.

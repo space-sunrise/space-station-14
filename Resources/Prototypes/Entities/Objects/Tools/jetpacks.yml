@@ -52,6 +52,11 @@
     sprintModifier: 0.95
     requireActivated: false
   - type: HeldSpeedModifier
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 0.6
+    shape: Triangle
+    requireInSpace: true
   # Sunrise end
   - type: GasTank
     outputPressure: 21.3
@@ -139,6 +144,9 @@
     sprintModifier: 1.0
     requireActivated: false
   - type: HeldSpeedModifier
+  - type: RadarBlip
+    scale: 0
+    requireInSpace: true
   # Sunrise edit end
   - type: StaticPrice
     price: 1000
@@ -261,6 +269,13 @@
     sprite: Objects/Tanks/Jetpacks/security.rsi
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/security.rsi
+  # Sunrise-Start
+  - type: RadarBlip
+    color: "#ff2a00"
+    scale: 0.6
+    shape: Triangle
+    requireInSpace: true
+  # Sunrise-End
 
 #Filled security
 - type: entity

@@ -1,29 +1,29 @@
 # Fresh Pattern Catalog (Audio Core)
 
-| Класс/метод | Паттерн | Почему полезно | Слой | Дата по blame | Статус |
+| Class/method | Pattern | Why is it useful | Layer | Date by blame | Status |
 |---|---|---|---|---|---|
-| `SharedAudioSystem.SetPlaybackPosition(...)` | Сдвиг времени с учетом pause/start и despawn lifetime | Корректный seek без рассинхрона тайминга | Shared | 2024-04-17 | Использовать |
-| `SharedAudioSystem.SetMapAudio(...)` | Пометка map-звука как global + undetachable | Надежный map-wide звук | Shared | 2024-05-01 | Использовать |
-| `SharedAudioSystem.SetGridAudio(...)` | Автонастройка grid-position/range + `NoOcclusion` | Стабильный звук для больших сеток | Shared | 2024-05-29 | Использовать |
-| `SharedAudioSystem.SetState(...)` | Явная state-машина `Playing/Paused/Stopped` | Безопасное управление циклом звука | Shared | 2024-04-17 | Использовать |
-| `SharedAudioSystem.SetupAudio(...)` | Единая фабрика audio-entity + timed despawn + variation | Предсказуемый жизненный цикл | Shared | 2025-02-22 | Использовать |
-| `SharedAudioSystem.ResolveSound(...)` + `GetAudioPath(...)` | Детеминированный resolve path/collection | Одинаковое воспроизведение между клиентами | Shared | 2025-02-22 | Использовать |
-| `AudioSystem.OnAudioState(...)` | Переприменение параметров и seek-логика после state update | Клиентский источник держится в sync | Client | 2025-02-26 | Использовать |
-| `AudioSystem.SetupSource(...)` | Offset-aware start, end-buffer guard, первичная инициализация source | Меньше клипов и ложных стартов | Client | 2024-03-16 | Использовать |
-| `AudioSystem.ProcessStreamOverride` | Single-target hook для полной замены stream processing | Расширяемость без форка ядра | Client | 2025-11-30 | Использовать |
-| `AudioSystem.GetOcclusionOverride` | Single-target hook для custom occlusion | Кастомная акустика карт/режимов | Client | 2025-11-30 | Использовать |
-| `AudioSystem.PlayEntity(AudioStream...)` + immediate `ProcessStream(...)` | Немедленный spatial update после старта stream | Убирает «кривой первый тик» positional-аудио | Client | 2025-09-02 | Использовать |
-| `AudioSystem.PlayStatic(AudioStream...)` + immediate `ProcessStream(...)` | То же для static stream | Стабильный старт статичных потоков | Client | 2025-09-02 | Использовать |
-| `AudioSystem.Limits.TryAudioLimit/RemoveAudioLimit` | Лимит concurrent по ключу звука | Защита от source-budget starvation | Client | 2024-03-14 | Использовать |
-| `BaseAudioSource` NaN gain guard | Явная защита от NaN в gain | Предотвращает взрыв громкости/ошибки AL | Client/OpenAL | 2025-02-26 | Использовать |
-| `BaseAudioSource.SetAuxiliary(...)` + `SetOcclusionEfx(...)` | EFX send + lowpass для окклюзии | Реальная фильтрация, не только громкость | Client/OpenAL | 2025-08-18 | Использовать |
-| `AudioEffect` (`EaxReverb*` bridge) | Полный маппинг reverb-полей в EFX | Тонкая настройка пространства звучания | Client/OpenAL | 2025-08-18 | Использовать |
-| `AuxiliaryAudio.SetEffect(...)` | Привязка/снятие effect на slot | Чистое управление EFX-цепочкой | Client/OpenAL | 2025-08-18 | Использовать |
-| `AudioManager` reload hooks (`/Audio`, `*.ogg/*.wav`) | Горячая перезагрузка аудио-ресурсов | Быстрее итерации и тесты | Client/OpenAL | 2025-03-08 | Использовать |
-| `AudioManager` extension parsing | Нормальная регистрация ALC/AL extensions | Корректный feature-detection | Client/OpenAL | 2025-06-21 | Использовать |
-| `Server AudioSystem.SetMapAudio/SetGridAudio` + global override | PVS override для map/grid special-аудио | Звук слышат нужные клиенты независимо от позиции | Server | 2024-05-01 / 2024-05-29 | Использовать |
-| `Shuttle FTL` (`SetGridAudio`, `SetPlaybackPosition`) | Grid-аудио в фазах FTL + клип-continue на переходе | Плавный переходный саунд | Server/Gameplay | 2024-05-29 | Использовать |
-| `Salvage countdown` (`SetMapAudio`) | Музыка эвакуации как map-аудио | Гарантированное map-wide оповещение | Server/Gameplay | 2024-05-06 | Использовать |
-| `Jukebox` ping-compensated `SetPlaybackPosition` | Компенсация сетевой задержки в seek | Лучшая синхронизация для игроков | Server/Gameplay | 2024-04-17 | Использовать |
-| `ServerGlobalSoundSystem.PlayGlobalOnStation(...)` | Явная станционная аудитория + PVS | Контролируемый global broadcast | Server/Gameplay | 2025-02-23 | Использовать |
-| `SharedGasValveSystem.OnActivate(...)` + `PlayPredicted(...WithVariation)` | Предсказанный интеракционный SFX с вариацией | Отзывчивый UX и меньше «двойных» звуков | Shared/Gameplay | 2025-05-14 | Использовать |
+| `SharedAudioSystem.SetPlaybackPosition(...)` | Time shift taking into account pause/start and despawn lifetime | Correct seek without timing out of sync | Shared | 2024-04-17 | Use |
+| `SharedAudioSystem.SetMapAudio(...)` | Marking a map sound as global + undetachable | Reliable map-wide sound | Shared | 2024-05-01 | Use |
+| `SharedAudioSystem.SetGridAudio(...)` | Auto-tuning grid-position/range + `NoOcclusion` | Consistent sound for large meshes | Shared | 2024-05-29 | Use |
+| `SharedAudioSystem.SetState(...)` | Explicit state machine `Playing/Paused/Stopped` | Safe Sound Loop Control | Shared | 2024-04-17 | Use |
+| `SharedAudioSystem.SetupAudio(...)` | Single factory audio-entity + timed despawn + variation | Predictable life cycle | Shared | 2025-02-22 | Use |
+| `SharedAudioSystem.ResolveSound(...)` + `GetAudioPath(...)` | Determined resolve path/collection | Same playback between clients | Shared | 2025-02-22 | Use |
+| `AudioSystem.OnAudioState(...)` | Reusing parameters and seek logic after state update | Client source is kept in sync | Client | 2025-02-26 | Use |
+| `AudioSystem.SetupSource(...)` | Offset-aware start, end-buffer guard, primary initialization source | Fewer clips and false starts | Client | 2024-03-16 | Use |
+| `AudioSystem.ProcessStreamOverride` | Single-target hook to completely replace stream processing | Extensibility without kernel fork | Client | 2025-11-30 | Use |
+| `AudioSystem.GetOcclusionOverride` | Single-target hook for custom occlusion | Custom acoustics of maps/modes | Client | 2025-11-30 | Use |
+| `AudioSystem.PlayEntity(AudioStream...)` + immediate `ProcessStream(...)` | Immediate spatial update after start stream | Removes the “crooked first tick” of positional audio | Client | 2025-09-02 | Use |
+| `AudioSystem.PlayStatic(AudioStream...)` + immediate `ProcessStream(...)` | Same for static stream | Stable start of static streams | Client | 2025-09-02 | Use |
+| `AudioSystem.Limits.TryAudioLimit/RemoveAudioLimit` | Concurrent limit by sound key | Protection against source-budget starvation | Client | 2024-03-14 | Use |
+| `BaseAudioSource` NaN gain guard | Explicit protection against NaN in gain | Prevents AL volume/error explosion | Client/OpenAL | 2025-02-26 | Use |
+| `BaseAudioSource.SetAuxiliary(...)` + `SetOcclusionEfx(...)` | EFX send + lowpass for occlusion | Real filtering, not just volume | Client/OpenAL | 2025-08-18 | Use |
+| `AudioEffect` (`EaxReverb*` bridge) | Full mapping of reverb fields in EFX | Fine-tuning the sound space | Client/OpenAL | 2025-08-18 | Use |
+| `AuxiliaryAudio.SetEffect(...)` | Bind/unbind effect on slot | Pure EFX chain management | Client/OpenAL | 2025-08-18 | Use |
+| `AudioManager` reload hooks (`/Audio`, `*.ogg/*.wav`) | Hot reload of audio resources | Faster iterations and tests | Client/OpenAL | 2025-03-08 | Use |
+| `AudioManager` extension parsing | Normal registration ALC/AL extensions | Correct feature-detection | Client/OpenAL | 2025-06-21 | Use |
+| `Server AudioSystem.SetMapAudio/SetGridAudio` + global override | PVS override for map/grid special audio | The right customers hear the sound, regardless of position | Server | 2024-05-01 / 2024-05-29 | Use |
+| `Shuttle FTL` (`SetGridAudio`, `SetPlaybackPosition`) | Grid audio in FTL phases + clip-continue on transition | Smooth transitional sound | Server/Gameplay | 2024-05-29 | Use |
+| `Salvage countdown` (`SetMapAudio`) | Evacuation music as map audio | Guaranteed map-wide alert | Server/Gameplay | 2024-05-06 | Use |
+| `Jukebox` ping-compensated `SetPlaybackPosition` | Network delay compensation in seek | Better synchronization for players | Server/Gameplay | 2024-04-17 | Use |
+| `ServerGlobalSoundSystem.PlayGlobalOnStation(...)` | Explicit station audience + PVS | Controlled global broadcast | Server/Gameplay | 2025-02-23 | Use |
+| `SharedGasValveSystem.OnActivate(...)` + `PlayPredicted(...WithVariation)` | Predicted Interaction SFX with Variation | Responsive UX and fewer double sounds | Shared/Gameplay | 2025-05-14 | Use |

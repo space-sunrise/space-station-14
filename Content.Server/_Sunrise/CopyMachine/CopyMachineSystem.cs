@@ -1,5 +1,4 @@
-using System.Linq;
-using System.Numerics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Content.Server.Materials;
 using Content.Server._Sunrise.Documents;
@@ -11,10 +10,8 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
-using Content.Shared.Humanoid;
 using Content.Shared.Materials;
 using Content.Shared.Paper;
-using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -26,327 +23,477 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.CopyMachine;
 
-public sealed class CopyMachineSystem : EntitySystem
+public sealed partial class CopyMachineSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly LabelSystem _labelSystem = default!;
-    [Dependency] private readonly DocumentFormatSystem _docFmt = default!;
+    [Dependency] private readonly LabelSystem _label = default!;
+    [Dependency] private readonly DocumentFormatSystem _documentFormat = default!;
 
-    private readonly Dictionary<string, string> _docCache = new();
+    private readonly Dictionary<string, string> _documentContentByTemplateId = new();
 
-    private static readonly Regex DocRegex =
+    private static readonly Regex DocumentTagRegex =
         new("<Document>(.*?)</Document>", RegexOptions.Singleline | RegexOptions.Compiled);
+
+    private readonly Queue<EntityUid> _pendingUIUpdateQueue = new();
+    private readonly HashSet<EntityUid> _pendingUIUpdateSet = new();
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<CopyMachineComponent, BoundUIOpenedEvent>(OnUiOpened);
-        SubscribeLocalEvent<CopyMachineComponent, CopyMachinePrintMessage>(OnPrintMessage);
-        SubscribeLocalEvent<CopyMachineComponent, CopyMachineCopyMessage>(OnCopyMessage);
+        SubscribeLocalEvent<CopyMachineComponent, CopyMachinePrintMessage>(OnPrintRequested);
+        SubscribeLocalEvent<CopyMachineComponent, CopyMachineCopyMessage>(OnCopyRequested);
+        SubscribeLocalEvent<CopyMachineComponent, CopyMachineCancelJobMessage>(OnCancelJobRequested);
         SubscribeLocalEvent<CopyMachineComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CopyMachineComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
-        SubscribeLocalEvent<CopyMachineComponent, EntInsertedIntoContainerMessage>(OnItemInserted);
-        SubscribeLocalEvent<CopyMachineComponent, EntRemovedFromContainerMessage>(OnItemRemoved);
+        SubscribeLocalEvent<CopyMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInsertedIntoCopySlot);
+        SubscribeLocalEvent<CopyMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemovedFromCopySlot);
         SubscribeLocalEvent<CopyMachineComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
-        SubscribeLocalEvent<CopyMachineComponent, StrappedEvent>(OnStasisStrapped);
-        SubscribeLocalEvent<CopyMachineComponent, UnstrappedEvent>(OnStasisUnstrapped);
+        SubscribeLocalEvent<CopyMachineComponent, StrappedEvent>(OnEntityStrapped);
+        SubscribeLocalEvent<CopyMachineComponent, UnstrappedEvent>(OnEntityUnstrapped);
         SubscribeLocalEvent<CopyMachineComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<CopyMachineComponent, ComponentShutdown>(OnShutdown);
 
         _configManager.OnValueChanged(SunriseCCVars.DocumentTemplatePool, _ =>
         {
-            CacheAllDocuments();
-            RebuildAllPrinters();
+            RebuildDocumentTemplateContentCache();
+            RefreshAllCopyMachineTemplates();
         }, false);
 
-        CacheAllDocuments();
+        RebuildDocumentTemplateContentCache();
     }
 
-    private void CacheAllDocuments()
+    private void OnCancelJobRequested(Entity<CopyMachineComponent> ent, ref CopyMachineCancelJobMessage args)
     {
-        _docCache.Clear();
-
-        var pool = _configManager.GetCVar(SunriseCCVars.DocumentTemplatePool);
-
-        if (!_proto.TryIndex<DocTemplatePoolPrototype>(pool, out var poolProto))
+        if (args.Index < 0 || args.Index >= ent.Comp.JobQueue.Count)
             return;
 
-        foreach (var template in poolProto.Templates)
+        var removed = false;
+        var count = ent.Comp.JobQueue.Count;
+        for (var i = 0; i < count; i++)
         {
-            if (!_proto.TryIndex(template, out var templateProto))
+            var job = ent.Comp.JobQueue.Dequeue();
+            if (i == args.Index)
+            {
+                removed = true;
+                continue;
+            }
+
+            ent.Comp.JobQueue.Enqueue(job);
+        }
+
+        if (removed)
+        {
+            RefundInkAndPaper(ent);
+            QueueUIUpdate(ent);
+        }
+    }
+
+    private void RefundInkAndPaper(Entity<CopyMachineComponent> ent)
+    {
+        _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.PaperMaterial, ent.Comp.PaperCost);
+
+        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out var solutionEntity, out _))
+            return;
+
+        var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
+        _solutionContainer.TryAddReagent(solutionEntity.Value, inkReagentId, ent.Comp.IncCost, out _);
+    }
+
+    private bool TryGetConfiguredTemplatePool([NotNullWhen(true)] out DocTemplatePoolPrototype? templatePoolPrototype)
+    {
+        var templatePoolId = _configManager.GetCVar(SunriseCCVars.DocumentTemplatePool);
+        return _prototypeManager.TryIndex(templatePoolId, out templatePoolPrototype);
+    }
+
+    private void RebuildDocumentTemplateContentCache()
+    {
+        _documentContentByTemplateId.Clear();
+
+        if (!TryGetConfiguredTemplatePool(out var templatePoolPrototype))
+            return;
+
+        foreach (var templateId in templatePoolPrototype.Templates)
+        {
+            if (!_prototypeManager.TryIndex(templateId, out var templatePrototype))
                 continue;
 
-            using var file = _resourceManager.ContentFileReadText(templateProto.Content);
+            using var file = _resourceManager.ContentFileReadText(templatePrototype.Content);
             var fileText = file.ReadToEnd();
-            var match = DocRegex.Match(fileText);
+            var match = DocumentTagRegex.Match(fileText);
             var content = match.Success ? match.Groups[1].Value.Trim() : fileText.Trim();
 
-            _docCache[templateProto.ID] = content;
+            _documentContentByTemplateId[templatePrototype.ID] = content;
         }
     }
 
     // Мгновенная смена шаблонов в принтерах при смене CVar-а
-    private void RebuildAllPrinters()
+    private void RefreshAllCopyMachineTemplates()
     {
-        var query = EntityQueryEnumerator<CopyMachineComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var copyMachineEnumerator = EntityQueryEnumerator<CopyMachineComponent>();
+        while (copyMachineEnumerator.MoveNext(out var copyMachineUid, out var copyMachineComponent))
         {
-            UpdatePrinterTemplates(uid, comp);
+            UpdateAvailableTemplates((copyMachineUid, copyMachineComponent));
         }
     }
 
-    private void UpdatePrinterTemplates(EntityUid uid, CopyMachineComponent comp)
+    private void UpdateAvailableTemplates(Entity<CopyMachineComponent> ent)
     {
-        comp.Templates.Clear();
+        ent.Comp.Templates.Clear();
 
-        var isEmagged = HasComp<EmaggedComponent>(uid);
+        var isEmagged = HasComp<EmaggedComponent>(ent);
 
-        var pool = _configManager.GetCVar(SunriseCCVars.DocumentTemplatePool);
-
-        if (!_proto.TryIndex<DocTemplatePoolPrototype>(pool, out var poolProto))
+        if (!TryGetConfiguredTemplatePool(out var templatePoolPrototype))
             return;
 
-        foreach (var template in poolProto.Templates)
+        foreach (var templateId in templatePoolPrototype.Templates)
         {
-            if (!_proto.TryIndex(template, out var templateProto))
+            if (!_prototypeManager.TryIndex(templateId, out var templatePrototype))
                 continue;
 
-            if (templateProto.IsPublic || isEmagged)
-                comp.Templates.Add(templateProto.ID);
+            if (!IsTemplateCategoryAllowed(ent, templatePrototype.Category))
+                continue;
+
+            if (templatePrototype.IsPublic || isEmagged)
+                ent.Comp.Templates.Add(templatePrototype.ID);
         }
 
-        UpdateUserInterface(uid, comp);
+        QueueUIUpdate(ent);
     }
 
-    private void OnUiOpened(EntityUid uid, CopyMachineComponent comp, BoundUIOpenedEvent args) => UpdateUserInterface(uid, comp);
-    private void OnSolutionChanged(EntityUid uid, CopyMachineComponent comp, SolutionContainerChangedEvent args) => UpdateUserInterface(uid, comp);
-    private void OnItemRemoved(EntityUid uid, CopyMachineComponent comp, EntRemovedFromContainerMessage args) => UpdateUserInterface(uid, comp);
-    private void OnStasisStrapped(EntityUid uid, CopyMachineComponent comp, ref StrappedEvent args) => UpdateUserInterface(uid, comp);
-    private void OnStasisUnstrapped(EntityUid uid, CopyMachineComponent comp, ref UnstrappedEvent args) => UpdateUserInterface(uid, comp);
-    private void OnMaterialAmountChanged(EntityUid uid, CopyMachineComponent comp, ref MaterialAmountChangedEvent args) => UpdateUserInterface(uid, comp);
+    private bool IsTemplateCategoryAllowed(Entity<CopyMachineComponent> ent, ProtoId<DocTemplateCategoryPrototype> categoryId)
+    {
+        if (ent.Comp.TemplateCategoryGroupId is not { } groupId)
+            return true;
 
-    private void OnItemInserted(EntityUid uid, CopyMachineComponent comp, EntInsertedIntoContainerMessage args)
+        return _prototypeManager.TryIndex(groupId, out DocTemplateCategoryGroupPrototype? group) &&
+            group.Categories.Contains(categoryId);
+    }
+
+    private void OnShutdown(Entity<CopyMachineComponent> ent, ref ComponentShutdown args)
+    {
+        _pendingUIUpdateSet.Remove(ent);
+    }
+
+    private void OnUiOpened(Entity<CopyMachineComponent> ent, ref BoundUIOpenedEvent args) => UpdateUserInterface(ent);
+    private void OnSolutionChanged(Entity<CopyMachineComponent> ent, ref SolutionContainerChangedEvent args) => QueueUIUpdate(ent);
+    private void OnEntityRemovedFromCopySlot(Entity<CopyMachineComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         if (args.Container.ID != CopyMachineComponent.CopySlotId)
             return;
 
-        UpdateUserInterface(uid, comp);
+        QueueUIUpdate(ent);
     }
 
-    private void OnPrintMessage(EntityUid uid, CopyMachineComponent comp, CopyMachinePrintMessage msg)
+    private void OnMaterialAmountChanged(Entity<CopyMachineComponent> ent, ref MaterialAmountChangedEvent args) => QueueUIUpdate(ent);
+
+    private void OnEntityInsertedIntoCopySlot(Entity<CopyMachineComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
-        if (comp.JobQueue.Count >= comp.MaxQueueSize)
+        if (args.Container.ID != CopyMachineComponent.CopySlotId)
             return;
 
-        if (!TryConsumeResources(uid, comp))
-            return;
-
-        comp.JobQueue.Enqueue((CopyMachineJobType.Print, msg.TemplateId));
-        UpdateUserInterface(uid, comp);
+        QueueUIUpdate(ent);
     }
 
-    private void OnCopyMessage(EntityUid uid, CopyMachineComponent comp, CopyMachineCopyMessage msg)
+    private void QueueUIUpdate(EntityUid copyMachineUid)
     {
-        if (comp.JobQueue.Count >= comp.MaxQueueSize)
+        if (!_userInterface.IsUiOpen(copyMachineUid, CopyMachineUiKey.Key))
             return;
 
-        if (!TryConsumeResources(uid, comp))
-            return;
-
-        comp.JobQueue.Enqueue((CopyMachineJobType.Copy, null));
-        UpdateUserInterface(uid, comp);
+        if (_pendingUIUpdateSet.Add(copyMachineUid))
+            _pendingUIUpdateQueue.Enqueue(copyMachineUid);
     }
 
-    private void OnMapInit(EntityUid uid, CopyMachineComponent comp, MapInitEvent args)
+    private void QueueUIUpdate(Entity<CopyMachineComponent> ent) => QueueUIUpdate(ent.Owner);
+
+    private void FlushUIUpdates()
     {
-        _itemSlotsSystem.AddItemSlot(uid, CopyMachineComponent.CopySlotId, comp.CopySlot);
-
-        UpdatePrinterTemplates(uid, comp);
-
-        UpdateUserInterface(uid, comp);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        var enumerator = EntityQueryEnumerator<CopyMachineComponent>();
-        var curTime = _timing.CurTime;
-
-        while (enumerator.MoveNext(out var uid, out var comp))
+        while (_pendingUIUpdateQueue.TryDequeue(out var copyMachineUid))
         {
-            if (!comp.IsProcessing && comp.JobQueue.Count > 0)
-            {
-                var (type, templateId) = comp.JobQueue.Dequeue();
-                comp.IsProcessing = true;
-                comp.NextPrintTime = curTime + TimeSpan.FromSeconds(comp.JobDuration);
+            _pendingUIUpdateSet.Remove(copyMachineUid);
 
-                string jobTitle = type == CopyMachineJobType.Print && templateId != null &&
-                                  _proto.TryIndex<DocTemplatePrototype>(templateId, out var proto)
-                    ? Loc.GetString(proto.Name)
-                    : templateId ?? "Документ";
+            if (!_userInterface.IsUiOpen(copyMachineUid, CopyMachineUiKey.Key))
+                continue;
 
-                comp.CurrentJobView = new CopyMachineJobView(jobTitle, type, templateId);
-                UpdateUserInterface(uid, comp);
-                _audioSystem.PlayPvs(comp.PrintSound, uid);
-            }
+            if (!TryComp(copyMachineUid, out CopyMachineComponent? copyMachineComponent))
+                continue;
 
-            if (comp.IsProcessing && curTime >= comp.NextPrintTime)
-            {
-                var jobView = comp.CurrentJobView;
-                if (jobView != null)
-                {
-                    var type = jobView.Type;
-                    var templateId = jobView.TemplateId;
-                    _ = type switch
-                    {
-                        CopyMachineJobType.Print when templateId != null => TryPrintInternal(uid, comp, templateId),
-                        CopyMachineJobType.Copy => TryCopyInternal(uid, comp),
-                        _ => false
-                    };
-                }
-                comp.IsProcessing = false;
-                comp.CurrentJobView = null;
-                comp.NextPrintTime = TimeSpan.Zero;
-                UpdateUserInterface(uid, comp);
-            }
+            UpdateUserInterface(new Entity<CopyMachineComponent>(copyMachineUid, copyMachineComponent));
         }
     }
 
-    private bool TryConsumeResources(EntityUid uid, CopyMachineComponent comp)
+    private void OnPrintRequested(Entity<CopyMachineComponent> ent, ref CopyMachinePrintMessage message)
     {
-        if (!_solution.TryGetSolution(uid, comp.Solution, out _, out var solution))
-            return false;
-
-        if (!solution.TryGetReagentQuantity(new ReagentId(comp.IncReagentProto, null), out var incVolume) || incVolume < comp.IncCost)
-            return false;
-
-        if (!_materialStorage.TryChangeMaterialAmount(uid, comp.PaperMaterial, -comp.PaperCost))
-            return false;
-
-        solution.RemoveReagent(new ReagentId(comp.IncReagentProto, null), comp.IncCost);
-        return true;
+        TryQueueJob(ent, CopyMachineJobType.Print, message.TemplateId);
     }
 
-    private bool TryPrintInternal(EntityUid uid, CopyMachineComponent comp, string templateId)
+    private void OnCopyRequested(Entity<CopyMachineComponent> ent, ref CopyMachineCopyMessage message)
     {
-        var paper = Spawn(comp.PaperProtoId, Transform(uid).Coordinates);
-
-        if (!TryComp<PaperComponent>(paper, out var paperComp) ||
-            !_docCache.TryGetValue(templateId, out var content) ||
-            !_proto.TryIndex<DocTemplatePrototype>(templateId, out var templateProto))
-            return false;
-
-        // ЕДИНАЯ система форматирования документов
-        content = _docFmt.Format(content, uid);
-
-        _paperSystem.SetContent((paper, paperComp), content);
-        if (templateProto.Header != null)
-            _paperSystem.SetImageContent((paper, paperComp), templateProto.Header);
-        return true;
+        TryQueueJob(ent, CopyMachineJobType.Copy, null);
     }
 
-    private bool TryCopyInternal(EntityUid uid, CopyMachineComponent comp)
+    private void OnMapInit(Entity<CopyMachineComponent> ent, ref MapInitEvent args)
     {
-        var paper = Spawn(comp.PaperProtoId, Transform(uid).Coordinates);
-        if (!TryComp<PaperComponent>(paper, out var paperComp))
-            return false;
+        _itemSlots.AddItemSlot(ent, CopyMachineComponent.CopySlotId, ent.Comp.CopySlot);
+        UpdateRunningAppearance(ent, false);
 
-        if (TryComp<StrapComponent>(uid, out var strap) && strap.BuckledEntities.Count != 0)
-        {
-            var buckled = strap.BuckledEntities.First();
-            if (TryComp<HumanoidAppearanceComponent>(buckled, out var humanoidAppearance))
-            {
-                var buttTexture = _proto.TryIndex(humanoidAppearance.Species, out var species) ? species.ButtScan : null;
-                if (buttTexture == null)
-                    return false;
-                _paperSystem.SetImageContent((paper, paperComp), buttTexture, new Vector2(15, 15));
-                paperComp.EditingDisabled = true;
-                return true;
-            }
-        }
+        UpdateAvailableTemplates(ent);
 
-        if (comp.CopySlot.HasItem && TryComp<PaperComponent>(comp.CopySlot.Item, out var srcPaper))
-        {
-            _paperSystem.SetContent((paper, paperComp), srcPaper.Content);
-            if (srcPaper.ImageContent != null)
-                _paperSystem.SetImageContent((paper, paperComp), srcPaper.ImageContent, srcPaper.ImageScale);
-            paperComp.EditingDisabled = srcPaper.EditingDisabled;
-
-            if (srcPaper.StampState != null && srcPaper.StampedBy != null)
-                foreach (var stamp in srcPaper.StampedBy)
-                    _paperSystem.TryStamp((paper, paperComp), stamp, srcPaper.StampState);
-
-            if (TryComp<LabelComponent>(comp.CopySlot.Item, out var srcLabel) && !string.IsNullOrWhiteSpace(srcLabel.CurrentLabel))
-                _labelSystem.Label(paper, srcLabel.CurrentLabel);
-
-            return true;
-        }
-
-        return false;
+        QueueUIUpdate(ent);
     }
 
-    public void UpdateUserInterface(EntityUid uid, CopyMachineComponent comp)
-    {
-        if (!_solution.TryGetSolution(uid, comp.Solution, out _, out var solution))
-            return;
-
-        float incVolume = solution.TryGetReagentQuantity(new ReagentId(comp.IncReagentProto, null), out var inc) ? inc.Value : 0;
-        var availablePaper = _materialStorage.GetMaterialAmount(uid, comp.PaperMaterial);
-
-        var state = new CopyMachineBoundUserInterfaceState(
-            paperCount: availablePaper / 100,
-            inkAmount: incVolume / 100,
-            templates: comp.Templates.Select(t => t.ToString()).ToList(),
-            canCopy: CanCopy(uid, comp),
-            currentJob: comp.CurrentJobView,
-            queue: comp.JobQueue.Select(j =>
-            {
-                string title = j.Type == CopyMachineJobType.Print && j.TemplateId != null &&
-                               _proto.TryIndex<DocTemplatePrototype>(j.TemplateId, out var proto)
-                    ? Loc.GetString(proto.Name)
-                    : j.TemplateId ?? "Документ";
-                return new CopyMachineJobView(title, j.Type, j.TemplateId);
-            }).ToList()
-        );
-
-        _userInterfaceSystem.SetUiState(uid, CopyMachineUiKey.Key, state);
-    }
-
-    public bool CanCopy(EntityUid uid, CopyMachineComponent comp)
-    {
-        var hasCopyPaper = comp.CopySlot.HasItem;
-        var hasBuckleUser = TryComp<StrapComponent>(uid, out var strap) && strap.BuckledEntities.Count != 0 &&
-                            TryComp<HumanoidAppearanceComponent>(strap.BuckledEntities.First(), out _);
-
-        return hasBuckleUser || hasCopyPaper;
-    }
-
-    private void OnEmagged(EntityUid uid, CopyMachineComponent component, ref GotEmaggedEvent args)
+    private void OnEmagged(Entity<CopyMachineComponent> ent, ref GotEmaggedEvent args)
     {
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 
         args.Handled = true;
 
-        component.Templates.Clear();
+        ent.Comp.Templates.Clear();
 
-        foreach (var template in _proto.EnumeratePrototypes<DocTemplatePrototype>())
+        if (!TryGetConfiguredTemplatePool(out var templatePoolPrototype))
+            return;
+
+        foreach (var templateId in templatePoolPrototype.Templates)
         {
-            if (!string.IsNullOrEmpty(template.Component))
-                component.Templates.Add(template.ID);
+            if (!_prototypeManager.TryIndex(templateId, out var templatePrototype))
+                continue;
+
+            if (!IsTemplateCategoryAllowed(ent, templatePrototype.Category))
+                continue;
+
+            ent.Comp.Templates.Add(templatePrototype.ID);
         }
 
-        Dirty(uid, component);
-        UpdateUserInterface(uid, component);
+        Dirty(ent);
+        QueueUIUpdate(ent);
+    }
+
+    private void TryQueueJob(Entity<CopyMachineComponent> ent, CopyMachineJobType jobType, string? templateId)
+    {
+        if (ent.Comp.JobQueue.Count >= ent.Comp.MaxQueueSize)
+            return;
+
+        if (jobType == CopyMachineJobType.Print &&
+            (templateId == null || !CanQueuePrintTemplate(ent, templateId)))
+        {
+            return;
+        }
+
+        if (!TryConsumeInkAndPaper(ent))
+            return;
+
+        ent.Comp.JobQueue.Enqueue((jobType, templateId));
+
+        QueueUIUpdate(ent);
+    }
+
+    private string GetJobDisplayTitle(CopyMachineJobType jobType, string? templateId)
+    {
+        if (jobType == CopyMachineJobType.Print &&
+            templateId != null &&
+            _prototypeManager.TryIndex<DocTemplatePrototype>(templateId, out var templatePrototype))
+        {
+            return Loc.GetString(templatePrototype.Name);
+        }
+
+        return templateId ?? Loc.GetString("copy-machine-default-document-title");
+    }
+
+    private void StartQueuedJob(Entity<CopyMachineComponent> ent, CopyMachineJobType jobType, string? templateId, TimeSpan currentTime)
+    {
+        ent.Comp.IsProcessing = true;
+        ent.Comp.NextPrintTime = currentTime + TimeSpan.FromSeconds(ent.Comp.JobDuration);
+        UpdateRunningAppearance(ent, true);
+
+        ent.Comp.CurrentJobView = new CopyMachineJobView(GetJobDisplayTitle(jobType, templateId), jobType, templateId);
+
+        QueueUIUpdate(ent);
+        _audioSystem.PlayPvs(ent.Comp.PrintSound, ent);
+    }
+
+    private void CompleteCurrentJob(Entity<CopyMachineComponent> ent)
+    {
+        var jobView = ent.Comp.CurrentJobView;
+        if (jobView != null)
+        {
+            var jobType = jobView.Type;
+            var templateId = jobView.TemplateId;
+            _ = jobType switch
+            {
+                CopyMachineJobType.Print when templateId != null => TryPrintFromTemplate(ent, templateId),
+                CopyMachineJobType.Copy => TryCopyFromSlotOrButtScan(ent),
+                _ => false
+            };
+        }
+
+        ent.Comp.IsProcessing = false;
+        ent.Comp.CurrentJobView = null;
+        ent.Comp.NextPrintTime = TimeSpan.Zero;
+        UpdateRunningAppearance(ent, false);
+
+        QueueUIUpdate(ent);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var copyMachineEnumerator = EntityQueryEnumerator<CopyMachineComponent>();
+        var currentTime = _gameTiming.CurTime;
+
+        while (copyMachineEnumerator.MoveNext(out var copyMachineUid, out var copyMachineComponent))
+        {
+            var ent = new Entity<CopyMachineComponent>(copyMachineUid, copyMachineComponent);
+
+            if (!ent.Comp.IsProcessing && ent.Comp.JobQueue.Count > 0)
+            {
+                var (jobType, templateId) = ent.Comp.JobQueue.Dequeue();
+                StartQueuedJob(ent, jobType, templateId, currentTime);
+            }
+
+            if (ent.Comp.IsProcessing && currentTime >= ent.Comp.NextPrintTime)
+                CompleteCurrentJob(ent);
+        }
+
+        FlushUIUpdates();
+    }
+
+    private bool TryConsumeInkAndPaper(Entity<CopyMachineComponent> ent)
+    {
+        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
+            return false;
+
+        var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
+
+        if (!solution.TryGetReagentQuantity(inkReagentId, out var availableInkVolume) || availableInkVolume < ent.Comp.IncCost)
+            return false;
+
+        if (!_materialStorage.TryChangeMaterialAmount(ent, ent.Comp.PaperMaterial, -ent.Comp.PaperCost))
+            return false;
+
+        solution.RemoveReagent(inkReagentId, ent.Comp.IncCost);
+
+        return true;
+    }
+
+    private bool CanQueuePrintTemplate(Entity<CopyMachineComponent> ent, string templateId)
+    {
+        if (!HasAvailableTemplate(ent, templateId))
+            return false;
+
+        if (!_prototypeManager.TryIndex(templateId, out DocTemplatePrototype? templatePrototype))
+            return false;
+
+        if (!IsTemplateCategoryAllowed(ent, templatePrototype.Category))
+            return false;
+
+        if (!templatePrototype.IsPublic && !HasComp<EmaggedComponent>(ent))
+            return false;
+
+        return _documentContentByTemplateId.ContainsKey(templateId);
+    }
+
+    private bool HasAvailableTemplate(Entity<CopyMachineComponent> ent, string templateId)
+    {
+        foreach (var availableTemplateId in ent.Comp.Templates)
+        {
+            if (availableTemplateId == templateId)
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool TryPrintFromTemplate(Entity<CopyMachineComponent> ent, string templateId)
+    {
+        if (!CanQueuePrintTemplate(ent, templateId))
+            return false;
+
+        if (!_documentContentByTemplateId.TryGetValue(templateId, out var templateContent) ||
+            !_prototypeManager.TryIndex<DocTemplatePrototype>(templateId, out var templatePrototype))
+            return false;
+
+        var paperEntity = Spawn(ent.Comp.PaperProtoId, Transform(ent).Coordinates);
+
+        if (!TryComp<PaperComponent>(paperEntity, out var paperComponent))
+        {
+            Log.Error($"{ToPrettyString(ent):entity} spawned '{ent.Comp.PaperProtoId}' without a {nameof(PaperComponent)}.");
+            Del(paperEntity);
+            return false;
+        }
+
+        // ЕДИНАЯ система форматирования документов
+        templateContent = _documentFormat.Format(templateContent, ent);
+
+        _paper.SetContent((paperEntity, paperComponent), templateContent);
+
+        if (templatePrototype.Header != null)
+            _paper.SetImageContent((paperEntity, paperComponent), templatePrototype.Header);
+
+        return true;
+    }
+
+    /// <summary>
+    /// Updates the copy machine UI with the current paper, ink, and queue state.
+    /// </summary>
+    public void UpdateUserInterface(Entity<CopyMachineComponent> ent)
+    {
+        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
+            return;
+
+        var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
+        float availableInkVolume = solution.TryGetReagentQuantity(inkReagentId, out var inkQuantity) ? inkQuantity.Value : 0;
+        var availablePaperAmount = _materialStorage.GetMaterialAmount(ent, ent.Comp.PaperMaterial);
+
+        var availableTemplateIds = new List<string>(ent.Comp.Templates.Count);
+        foreach (var template in ent.Comp.Templates)
+        {
+            availableTemplateIds.Add(template.ToString());
+        }
+
+        var queuedJobs = new List<CopyMachineJobView>(ent.Comp.JobQueue.Count);
+        foreach (var job in ent.Comp.JobQueue)
+        {
+            queuedJobs.Add(new CopyMachineJobView(GetJobDisplayTitle(job.Type, job.TemplateId), job.Type, job.TemplateId));
+        }
+
+        var state = new CopyMachineBoundUserInterfaceState(
+            paperCount: availablePaperAmount / 100,
+            inkAmount: availableInkVolume / 100,
+            templates: availableTemplateIds,
+            canCopy: CanCopy(ent),
+            currentJob: ent.Comp.CurrentJobView,
+            queue: queuedJobs
+        );
+
+        _userInterface.SetUiState(ent.Owner, CopyMachineUiKey.Key, state);
+    }
+
+    /// <summary>
+    /// Checks whether the machine can create a copy from inserted paper or a buckled humanoid.
+    /// </summary>
+    public bool CanCopy(Entity<CopyMachineComponent> ent)
+    {
+        var hasPaperInCopySlot = ent.Comp.CopySlot.HasItem;
+        var hasStrappedHumanoid = TryGetBuckledHumanoidAppearance(ent, out _);
+
+        return hasStrappedHumanoid || hasPaperInCopySlot;
+    }
+
+    private void UpdateRunningAppearance(EntityUid uid, bool isRunning)
+    {
+        _appearance.SetData(uid, CopyMachineVisuals.IsRunning, isRunning);
     }
 }
