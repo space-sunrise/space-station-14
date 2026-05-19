@@ -143,6 +143,9 @@
   id: SunriseBlueprintXenoborg
 
 - type: Tag
+  id: SunriseWallhornElectronics
+
+- type: Tag
   id: TrayScanner
 
 # region Cores / power
@@ -697,6 +700,21 @@
 
 - type: Tag
   id: SunriseSyndicateBaseGeneral
+
+- type: Tag
+  id: BoxMaint5x5
+
+- type: Tag
+  id: BoxMaint3x3
+
+- type: Tag
+  id: BoxMaint4x4
+
+- type: Tag
+  id: BoxMaint13x10
+
+- type: Tag
+  id: BoxMaints
 
 # region INTERACTION TAG
 # Как одежда закрывает/не закрывает ту или иную область тела

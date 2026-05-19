@@ -22,7 +22,32 @@
         orGroup: ClothingHeadHat
       - id: ClothingHeadHatSwanOne
         orGroup: ClothingHeadHat
-      - id: ClothingHeadHatRichard
+      - id: ClothingHeadHatRichardSunrise
+        orGroup: ClothingHeadHat
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: PresentMasksSlipknot
+  parent: [PresentBase, BaseStorageItem]
+  name: present slipknot
+  description: Five masks. Five souls. Numbers 7, 8, 6, 1 and 5 inside a black box — filthy Iowa fury.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Decoration/slipknot.rsi
+    layers:
+      - state: present
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingHeadHatMaskN7
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatMaskN8
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatMaskN6
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatMaskN1
+        orGroup: ClothingHeadHat
+      - id: ClothingHeadHatMaskN5
         orGroup: ClothingHeadHat
     sound:
       path: /Audio/Effects/unwrap.ogg

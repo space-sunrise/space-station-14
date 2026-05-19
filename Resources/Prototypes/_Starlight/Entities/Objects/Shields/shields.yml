@@ -1,6 +1,6 @@
 - type: entity
   name: paladin shield
-  parent: [ RepairableShield, BaseMajorContraband ] # Sunrise-Edit
+  parent: [ BaseRepairableShield, BaseMajorContraband ] # Sunrise-Edit
   id: PaladinShield
   description: A shield for a true paladin! Good at deflecting hits with swords and absorbing the impact from bats, but not much else.
   components:
@@ -78,6 +78,8 @@
     - type: ClothingSpeedModifier
       sprintModifier: 0.95
     - type: HeldSpeedModifier #Sunrise-End
+    - type: StaticPrice
+      price: 560
 
 - type: entity
   name: paladin greatshield
@@ -144,6 +146,8 @@
                 SheetGlass:
                   min: 2
                   max: 3
+    - type: StaticPrice
+      price: 830
 
 - type: entity
   name: forged buckler shield
@@ -202,6 +206,8 @@
                 SheetSteel:
                   min: 1
                   max: 4
+    - type: StaticPrice
+      price: 250
 
 - type: entity
   name: forged tower shield
@@ -255,6 +261,8 @@
                 SheetGlass:
                   min: 1
                   max: 2
+    - type: StaticPrice
+      price: 430
 
 - type: entity
   name: improvised shield
