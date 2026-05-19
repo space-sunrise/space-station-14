@@ -1,10 +1,10 @@
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Sunrise.GhostRole.Components;
+namespace Content.Shared.GhostRole.Components;
 
 [RegisterComponent]
-public sealed partial class SunriseGhostRoleOnEquipComponent : Component
+public sealed partial class GhostRoleOnTriggerComponent : Component
 {
     [DataField]
     public string RoleName = "sunrise-ghost-role-justice-helmet-name";
@@ -18,3 +18,6 @@ public sealed partial class SunriseGhostRoleOnEquipComponent : Component
     [DataField]
     public List<EntProtoId> MindRoles = new() { "MindRoleGhostRoleFreeAgent" };
 }
+
+[RegisterComponent]
+public sealed partial class GhostRoleOnEquipTriggerComponent : Component;
