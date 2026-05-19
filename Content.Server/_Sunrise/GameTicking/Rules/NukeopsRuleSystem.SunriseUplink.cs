@@ -8,10 +8,12 @@ using Content.Shared.Roles.Components;
 using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
 
+#pragma warning disable IDE0130
 namespace Content.Server.GameTicking.Rules;
 
 public sealed partial class NukeopsRuleSystem
 {
+    // Handles Sunrise-specific NukeOps uplink setup and commander TC distribution hooks.
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
 
     [ValidatePrototypeId<AntagPrototype>]
