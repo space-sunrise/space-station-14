@@ -71,9 +71,6 @@
   name: juggernaut
   description: big and scary
   components:
-    - type: FootprintEmitter # Sunrise-Add
-      leftBareFootState: [ footprint-suit-heavy ]
-      rightBareFootState: [ footprint-suit-heavy ]
     - type: Fixtures
       fixtures:
         fix1:
