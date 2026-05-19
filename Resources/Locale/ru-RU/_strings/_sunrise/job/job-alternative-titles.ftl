@@ -27,6 +27,7 @@ job-alt-title-harlequin = арлекин
 job-alt-title-maid = горничная
 job-alt-title-lawyer = юрист
 job-alt-title-archivist = архивариус
+job-alt-title-game-master = игровой мастер
 job-alt-title-pantomimist = пантомим
 job-alt-title-performer = артист
 job-alt-title-bard = бард

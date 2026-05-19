@@ -27,6 +27,7 @@ job-alt-title-harlequin = Harlequin
 job-alt-title-maid = Maid
 job-alt-title-lawyer = Lawyer
 job-alt-title-archivist = Archivist
+job-alt-title-game-master = Game Master
 job-alt-title-pantomimist = Pantomimist
 job-alt-title-performer = Performer
 job-alt-title-bard = Bard
