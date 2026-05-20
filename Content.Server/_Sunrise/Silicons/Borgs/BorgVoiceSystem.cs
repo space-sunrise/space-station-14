@@ -65,8 +65,8 @@ public sealed class BorgVoiceSystem : EntitySystem
 
     private void OnBorgVoiceChangeMessage(EntityUid uid, BorgVoiceComponent component, BorgVoiceChangeMessage args)
     {
-        if (!TryComp<BorgChassisComponent>(uid, out _))
-            return;
+        /*if (!TryComp<BorgChassisComponent>(uid, out _))
+            return;*/
 
         // Get the player session for the actor
         if (!_playerManager.TryGetSessionByEntity(args.Actor, out var session))
