@@ -75,6 +75,7 @@
     tags:
     - Wall
     - Diagonal
+    - ForceNoTileWalls # Sunrise added
   - type: IconSmooth
     mode: Diagonal
     key: walls
@@ -557,7 +558,7 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: WallDiagonalBaseSunrise # Sunrise-Edit
   id: WallPlastitaniumDiagonalIndestructible
   name: plastitanium wall
   suffix: diagonal, indestructible
@@ -719,7 +720,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: WallDiagonalBaseSunrise # Sunrise-Edit
   id: WallReinforcedDiagonal
   name: reinforced wall
   components:
@@ -891,9 +892,12 @@
         shape:
           !type:PolygonShape
           vertices:
-          - "-0.5,-0.5"
-          - "0.5,0.5"
+          # Sunrise-Start
           - "0.5,-0.5"
+          - "-0.5,-0.5"
+          - "-0.5,0.1"
+          - "0.5,0.5"
+          # Sunrise-End
         mask:
         - FullTileMask
         layer:
@@ -1050,7 +1054,7 @@
     base: solid
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: WallDiagonalBaseSunrise # Sunrise-Edit
   id: WallSolidDiagonal
   name: solid wall
   components:
@@ -1244,7 +1248,7 @@
     base: xenoborg
 
 - type: entity
-  parent: WallPlastitaniumDiagonal
+  parent: WallDiagonalBase # Sunrise-Edit
   id: WallXenoborgDiagonal
   name: xenoborg wall
   suffix: diagonal
@@ -1256,6 +1260,24 @@
   - type: Icon
     sprite: Structures/Walls/xenoborg_diagonal.rsi
     state: state0
+  # Sunrise-Start # Copied from WallPlastitaniumDiagonal cause we use WallDiagonalBase
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  # Sunrise-End
 
 - type: entity
   parent: BaseWall
@@ -1453,7 +1475,7 @@
   - type: Appearance
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: WallDiagonalBaseSunrise # Sunrise-Edit
   id: WallMiningDiagonal
   name: mining wall
   components:

@@ -1,15 +1,15 @@
 # Rejected Snippets (Atmos Core)
 
-| Зона | Что найдено | Почему не брать как эталон | Сигнал |
+| Zone | What's found | Why not take it as a standard | Signal |
 |---|---|---|---|
-| `SetSimulatedGrid(...)` | Событийный вызов без фактических подписчиков | Метод присутствует, но практической ценности в текущем коде не подтверждено | TODO о нулевых subscribers + база 2022 |
-| `GetAdjacentTileMixtures(...)` | `includeBlocked` и `excite` не обрабатываются | Поведение параметров не соответствует ожиданиям API | TODO в самом методе |
-| `GetContainingMixture(...)` (container chain) | Нет рекурсивного прохода по parent-контейнерам | Вложенные контейнеры могут дать неполную картину среды | TODO о recursive iterate |
-| `Grid split -> overlay immediate update` | При split заметен визуальный flicker до следующего обновления overlay | Есть незакрытая техническая дыра в момент split | TODO про force update overlay |
-| `GridFixTileVacuum(...)` фрагмент remove+merge | Внутри комментарий о сомнительной операции remove/re-add | Ненадежный участок для копирования паттерна | TODO с явным сомнением автора |
-| `Firelock` specialized pressure logic | Использует атмосферный API, но основная реализация старше cutoff | Можно изучать как legacy-поведение, но не как современный стиль | Основной блок 2022 |
-| `GasTileOverlay.Draw(...)` большая часть цикла | Основной draw-loop старый, рядом TODO по callback | Не использовать как образец нового client-кода | База 2022-2023 + TODO |
-| `SharedGasTileOverlaySystem` fire-color TODO | Логика нуждается в дальнейшей стабилизации для dirty/tolerance | Риск неправильных обновлений по мелким колебаниям температуры | TODO о fire color / tolerance |
-| `AtmosphereSystem.Gases`: `Merge/ReleaseGasTo/PumpGasTo/ScrubInto` | Ключевые реализации исторические | Работают, но не использовать как стиль новой архитектуры без изоляции/тестов | Основные строки 2021-2023 |
-| `LINDA/Superconductivity` public методы | Публичные low-level функции с очень старой базой | Держать как legacy-совместимость, не как опорный шаблон | 2021-2022 |
-| `RealAtmosTime()` | Полезный helper, но базовая реализация старше cutoff | Использовать осторожно и не строить на нем новые инварианты без проверки | База 2023 |
+| `SetSimulatedGrid(...)` | Event call without actual subscribers | The method is present, but its practical value has not been confirmed in the current code | TODO about zero subscribers + base 2022 |
+| `GetAdjacentTileMixtures(...)` | `includeBlocked` and `excite` are not processed | Parameter behavior does not meet API expectations | TODO in the method itself |
+| `GetContainingMixture(...)` (container chain) | No recursive traversal of parent containers | Nested containers may give an incomplete picture of the environment | TODO about recursive iterate |
+| `Grid split -> overlay immediate update` | When split, a visual flicker is visible until the next overlay update | There is an unclosed technical hole at the time of split | TODO about force update overlay |
+| `GridFixTileVacuum(...)` fragment remove+merge | Inside is a comment about the questionable remove/re-add operation | Unreliable area for pattern copying | TODO with obvious doubt from the author |
+| `Firelock` specialized pressure logic | Uses the atmospheric API, but the underlying implementation is older than cutoff | Can be learned as legacy behavior, but not as modern style | Main block 2022 |
+| `GasTileOverlay.Draw(...)` most of the loop | The main draw-loop is old, next to TODO by callback | Do not use as a sample of new client code | Base 2022-2023 + TODO |
+| `SharedGasTileOverlaySystem` fire-color TODO | Logic needs further stabilization for dirty/tolerance | Risk of incorrect updates based on small temperature fluctuations | TODO about fire color / tolerance |
+| `AtmosphereSystem.Gases`: `Merge/ReleaseGasTo/PumpGasTo/ScrubInto` | Key implementations historical | Work, but not used as a new architecture style without isolation/tests | Key Lines 2021-2023 |
+| `LINDA/Superconductivity` public methods | Public low-level functions with a very old base | Keep as legacy compatible, not as reference template | 2021-2022 |
+| `RealAtmosTime()` | Useful helper, but the underlying implementation is older than cutoff | Use carefully and do not build new invariants on it without checking | Base 2023 |

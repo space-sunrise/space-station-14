@@ -1,11 +1,11 @@
 ---
 name: ss14-audio-system-api
-description: Дает практический каталог API AudioSystem в Space Station 14: когда использовать Play/Set/Stop/Resolve методы, как работать с predicted-аудио и фильтрами, и как применять OpenAL EFX (auxiliary/effect/preset) без типичных ошибок.
+description: Gives a practical catalog of the AudioSystem API in Space Station 14: when to use the Play/Set/Stop/Resolve methods, how to work with predicted audio and filters, and how to use OpenAL EFX (auxiliary/effect/preset) without common mistakes.
 ---
 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-audio-system-api/SKILL.md.
+../../../.agent/skills/ss14-audio-system-api/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

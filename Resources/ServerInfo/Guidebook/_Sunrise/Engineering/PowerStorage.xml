@@ -1,0 +1,59 @@
+<Document>
+  # Накопители энергии
+  Из-за [textlink="Разгона сети" link="Ramping"] потребление на станции редко бывает ровным. Накопители сглаживают кратковременные просадки и пики, а также дают запас времени, если генерация временно не покрывает нагрузку.
+
+  У каждого трансформатора ([color=orange]HV[/color], [color=yellow]MV[/color], [color=green]LV[/color]) есть небольшой буфер, но для работы целого сектора станции нужны именно СМЭСы.
+
+  ## Базовый СМЭС
+  Superconducting Magnetic Energy Storage (SMES) принимает [color=orange]HV[/color] через кабельный терминал и выдаёт энергию в сеть кабелем под собой.
+
+  <Box>
+    <GuideEntityEmbed Entity="SMESBasic"/>
+  </Box>
+
+  Терминал разделяет вход и выход, чтобы линии не замкнулись друг на друга.
+
+  <Box HorizontalAlignment="Stretch">
+    <Box>
+      <GuideEntityEmbed Entity="CableTerminal"/>
+    </Box>
+
+    <Box>
+      <GuideEntityEmbed Entity="CableHV" Caption="Выход"/>
+      <GuideEntityEmbed Entity="SMESBasic" Caption="" Margin="0"/>
+      <GuideEntityEmbed Entity="CableTerminal" Caption="" Margin="0" Rotation="270"/>
+      <GuideEntityEmbed Entity="CableHV" Caption="Вход"/>
+    </Box>
+  </Box>
+
+  Базовый СМЭС хранит [color=orange][protodata="SMESBasic" comp="Battery" member="MaxCharge" format="N0"/] Дж[/color] и может отдавать до [color=orange][protodata="SMESBasic" comp="PowerNetworkBattery" member="MaxSupply" format="N0"/] Вт[/color].
+
+  ## Продвинутый СМЭС
+  Усиленный вариант для массивов энергопитания станции и более долгой работы при дефиците генерации.
+
+  <Box>
+    <GuideEntityEmbed Entity="SMESAdvanced"/>
+  </Box>
+
+  Продвинутый СМЭС хранит [color=orange][protodata="SMESAdvanced" comp="Battery" member="MaxCharge" format="N0"/] Дж[/color] и отдаёт до [color=orange][protodata="SMESAdvanced" comp="PowerNetworkBattery" member="MaxSupply" format="N0"/] Вт[/color].
+
+  ## Расширенный СМЭС
+  Крупный Sunrise-накопитель для мощных участков сети.
+
+  <Box>
+    <GuideEntityEmbed Entity="SMESExtended"/>
+  </Box>
+
+  Расширенный СМЭС хранит [color=orange][protodata="SMESExtended" comp="Battery" member="MaxCharge" format="N0"/] Дж[/color] и выдаёт до [color=orange][protodata="SMESExtended" comp="PowerNetworkBattery" member="MaxSupply" format="N0"/] Вт[/color].
+
+  ## Суперрасширенный СМЭС
+  Топовый Sunrise-накопитель для очень тяжёлых сетей и длительного резерва.
+
+  <Box>
+    <GuideEntityEmbed Entity="SMESSuperExtended"/>
+  </Box>
+
+  Суперрасширенный СМЭС хранит [color=orange][protodata="SMESSuperExtended" comp="Battery" member="MaxCharge" format="N0"/] Дж[/color] и выдаёт до [color=orange][protodata="SMESSuperExtended" comp="PowerNetworkBattery" member="MaxSupply" format="N0"/] Вт[/color].
+
+  Даже самые ёмкие СМЭСы не заменяют генерацию: если суммарная нагрузка стабильно выше выработки, батареи всё равно разрядятся.
+</Document>

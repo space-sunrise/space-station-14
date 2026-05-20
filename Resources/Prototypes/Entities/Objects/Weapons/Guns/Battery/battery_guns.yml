@@ -60,12 +60,13 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
   - type: Gun
+    fireRate: 3 # Sunrise-Edit
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
   - type: BatteryAmmoProvider
     proto: RedLaser
-    fireCost: 62.5
+    fireCost: 32.25 # Sunrise-Edit
   - type: StaticPrice
     price: 420
   - type: Tag
@@ -141,6 +142,10 @@
     slots:
     - Belt
     - suitStorage
+  - type: CanDualWield # Sunrise-Edit
+    dualWieldInaccuracyPenalty: 0.25
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
 
 - type: entity
   id: BaseWeaponPowerCellSmall
@@ -157,6 +162,10 @@
     quickEquip: false
     slots:
     - Belt
+  - type: CanDualWield # Sunrise-Edit
+    dualWieldInaccuracyPenalty: 0.25
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
 
 - type: entity
   name: svalinn laser pistol
@@ -301,7 +310,7 @@
     price: 300
   - type: BatteryAmmoProvider
     proto: RedLaserPractice
-    fireCost: 62.5
+    fireCost: 32.25 # Sunrise-Edit
   - type: PacifismAllowedGun
 
 # - type: entity #  Sunrise-Edit Moved to _Sunrise/Entities/Objects/Weapons/Guns/Battery/battery_guns.yml
@@ -450,7 +459,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 40 # Sunrise-Edit
   - type: Tag
     tags:
     - TurretCompatibleWeapon
@@ -592,7 +601,7 @@
     - Antagonists
   - type: PacifismAllowedGun
   # Sunrise - Start
-  - type: StealTarget 
+  - type: StealTarget
     stealGroup: OfficerHandgun
   # Sunrise - End
 
@@ -919,8 +928,8 @@
     heldPrefix: energy
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
-    maxCharge: 480
-    startingCharge: 480
+    maxCharge: 960 # Sunrise-Edit
+    startingCharge: 960 # Sunrise-Edit
 
 - type: entity
   name: energy magnum

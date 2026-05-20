@@ -1,13 +1,16 @@
 - type: latheRecipe
   id: SheetSteel
+  printTicket: true # Sunrise edit
   result: SheetSteel1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawIron: 100
     Coal: 30
 
 - type: latheRecipe
   id: SheetSteel30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket30 # Sunrise edit
   result: SheetSteel
   completetime: 2
   materials:
@@ -16,13 +19,16 @@
 
 - type: latheRecipe
   id: SheetGlass1
+  printTicket: true # Sunrise edit
   result: SheetGlass1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawQuartz: 100
 
 - type: latheRecipe
   id: SheetGlass30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket30 # Sunrise edit
   result: SheetGlass
   completetime: 2
   materials:
@@ -31,9 +37,10 @@
 # This version is for the autolathe
 - type: latheRecipe
   id: SheetRGlass
+  printTicket: true # Sunrise edit
   result: SheetRGlass1
   applyMaterialDiscount: false # obvious dupe capabilities
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     Glass: 100
     Steel: 50
@@ -41,8 +48,9 @@
 # This version is for the ore processor
 - type: latheRecipe
   id: SheetRGlassRaw
+  printTicket: true # Sunrise edit
   result: SheetRGlass1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawQuartz: 100
     RawIron: 50
@@ -50,6 +58,8 @@
 
 - type: latheRecipe
   id: SheetRGlass30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: SheetRGlass
   completetime: 2
   materials:
@@ -59,14 +69,17 @@
 
 - type: latheRecipe
   id: SheetPGlass1
+  printTicket: true # Sunrise edit
   result: SheetPGlass1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawQuartz: 100
     RawPlasma: 100
 
 - type: latheRecipe
   id: SheetPGlass30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: SheetPGlass
   completetime: 2
   materials:
@@ -75,8 +88,9 @@
 
 - type: latheRecipe
   id: SheetRPGlass1
+  printTicket: true # Sunrise edit
   result: SheetRPGlass1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawQuartz: 100
     RawPlasma: 100
@@ -85,6 +99,8 @@
 
 - type: latheRecipe
   id: SheetRPGlass30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: SheetRPGlass
   completetime: 2
   materials:
@@ -95,13 +111,16 @@
 
 - type: latheRecipe
   id: SheetPlasma1
+  printTicket: true # Sunrise edit
   result: SheetPlasma1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawPlasma: 100
 
 - type: latheRecipe
   id: SheetPlasma30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket30 # Sunrise edit
   result: SheetPlasma
   completetime: 2
   materials:
@@ -109,8 +128,9 @@
 
 - type: latheRecipe
   id: SheetPlasteel1
+  printTicket: true # Sunrise edit
   result: SheetPlasteel1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawPlasma: 100
     RawIron: 200 #Twice as durable as steel, Twice the material cost
@@ -118,6 +138,8 @@
 
 - type: latheRecipe
   id: SheetPlasteel30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: SheetPlasteel
   completetime: 5
   materials:
@@ -127,6 +149,8 @@
 
 - type: latheRecipe
   id: SheetUranium30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: SheetUranium
   completetime: 2
   materials:
@@ -134,14 +158,17 @@
 
 - type: latheRecipe
   id: SheetUGlass1
+  printTicket: true # Sunrise edit
   result: SheetUGlass1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawUranium: 100
     RawQuartz: 100
 
 - type: latheRecipe
   id: SheetUGlass30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: SheetUGlass
   completetime: 2
   materials:
@@ -150,8 +177,9 @@
 
 - type: latheRecipe
   id: SheetRUGlass1
+  printTicket: true # Sunrise edit
   result: SheetRUGlass1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawUranium: 100
     RawQuartz: 100
@@ -160,6 +188,8 @@
 
 - type: latheRecipe
   id: SheetRUGlass30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: SheetRUGlass
   completetime: 2
   materials:
@@ -170,6 +200,8 @@
 
 - type: latheRecipe
   id: IngotGold30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: IngotGold
   completetime: 2
   materials:
@@ -177,6 +209,8 @@
 
 - type: latheRecipe
   id: IngotSilver30
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: IngotSilver
   completetime: 2
   materials:
@@ -184,6 +218,7 @@
 
 - type: latheRecipe
   id: MaterialBananium10
+  printTicket: true # Sunrise edit
   result: MaterialBananium
   completetime: 2
   materials:
@@ -191,49 +226,59 @@
 
 - type: latheRecipe
   id: MaterialDiamond
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket50 # Sunrise edit
   result: MaterialDiamond1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawDiamond: 100
 
 - type: latheRecipe
   id: SheetUranium1
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket5 # Sunrise edit
   result: SheetUranium1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawUranium: 100
 
 - type: latheRecipe
   id: IngotGold1
+  printTicket: true # Sunrise edit
   result: IngotGold1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawGold: 100
 
 - type: latheRecipe
   id: IngotSilver1
+  printTicket: true # Sunrise edit
   result: IngotSilver1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawSilver: 100
 
 - type: latheRecipe
   id: SheetPlastic
+  printTicket: true # Sunrise edit
   result: SheetPlastic1
   applyMaterialDiscount: false
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     Plastic: 100
 
 - type: latheRecipe
   id: MaterialBananium1
+  printTicket: true # Sunrise edit
+  ticketProtoId: SalvageTicket10 # Sunrise edit
   result: MaterialBananium1
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     RawBananium: 100
 
 - type: latheRecipe
   id: MaterialSheetMeat
+  printTicket: true # Sunrise edit
   result: MaterialSheetMeat1
   completetime: 6.4
   materials:
@@ -241,6 +286,7 @@
 
 - type: latheRecipe
   id: SheetPaper
+  printTicket: true # Sunrise edit
   result: SheetPaper1
   completetime: 1
   materials:
@@ -257,7 +303,8 @@
   id: MaterialDurathread
   result: MaterialDurathread1
   applyMaterialDiscount: false
-  completetime: 0
+  completetime: 0.15  # Sunrise edit
   materials:
     Cloth: 100
     Plastic: 100
+

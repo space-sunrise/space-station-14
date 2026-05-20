@@ -1,69 +1,69 @@
 ---
 name: ss14-atmos-system-api
-description: Дает полный практический разбор API AtmosSystem в Space Station 14: какие методы для чего использовать, какие из них свежие и безопасные, какие являются legacy/ограниченными, и как правильно комбинировать вызовы в gameplay, устройcтвах и map-level логике.
+description: Gives a complete practical analysis of the AtmosSystem API in Space Station 14: what methods to use for what, which of them are fresh and safe, which ones are legacy/limited, and how to correctly combine calls in gameplay, devices and map-level logic.
 ---
 
-# AtmosSystem: API-практика
+# AtmosSystem: API practice
 
-Используй этот skill, когда нужно быстро выбрать правильный метод AtmosSystem и применить его без регрессий 🙂
+Use this skill when you need to quickly select the right AtmosSystem method and apply it without regressions :)
 
-## Что загружать
+## What to download
 
-1. `references/fresh-pattern-catalog.md` — полный API-реестр с пометкой свежести.
-2. `references/rejected-snippets.md` — методы/сценарии с ограничениями и TODO.
-3. `references/docs-context.md` — связь API-решений с документацией и design intent.
+1. `references/fresh-pattern-catalog.md` - complete API registry with a freshness mark.
+2. `references/rejected-snippets.md` - methods/scenarios with restrictions and TODO.
+3. `references/docs-context.md` - connection of API solutions with documentation and design intent.
 
-## Быстрый выбор метода
+## Quick method selection
 
-1. Нужно получить газ вокруг сущности: `GetContainingMixture(...)`.
-2. Нужен газ конкретного тайла: `GetTileMixture(...)` или пакетно `GetTileMixtures(...)`.
-3. Нужна проверка блокировки воздуха для runtime-логики: `IsTileAirBlockedCached(...)`.
-4. Нужны строго актуальные данные сразу после изменений: `IsTileAirBlocked(...)`.
-5. Нужно зажечь/подогреть атмосферу: `HotspotExpose(...)`.
-6. Нужна регистрация в баротравме: `TryAddDeltaPressureEntity(...)` / `TryRemoveDeltaPressureEntity(...)`.
-7. Нужна map-level атмосфера: `SetMapAtmosphere(...)`, `SetMapGasMixture(...)`, `SetMapSpace(...)`.
-8. Нужна математика переноса газа: `FractionToEqualizePressure(...)` + `MolesToPressureThreshold(...)`.
+1. You need to get gas around the entity: `GetContainingMixture(...)`.
+2. You need gas for a specific tile: `GetTileMixture(...)` or batch `GetTileMixtures(...)`.
+3. We need to check air blocking for runtime logic: `IsTileAirBlockedCached(...)`.
+4. We need strictly current data immediately after the changes: `IsTileAirBlocked(...)`.
+5. It is necessary to light/warm up the atmosphere: `HotspotExpose(...)`.
+6. Registration in barotrauma is required: `TryAddDeltaPressureEntity(...)` / `TryRemoveDeltaPressureEntity(...)`.
+7. We need a map-level atmosphere: `SetMapAtmosphere(...)`, `SetMapGasMixture(...)`, `SetMapSpace(...)`.
+8. We need gas transfer mathematics: `FractionToEqualizePressure(...)` + `MolesToPressureThreshold(...)`.
 
-## Паттерны
+## Patterns
 
-1. Делай атмосферные pre-check через `IsTileSpace + IsTileAirBlockedCached`.
-2. Для огня/взрывов пользуйся `HotspotExpose`, не меняй hotspot вручную.
-3. Для массовых тайловых запросов используй batch-вызов `GetTileMixtures`.
-4. Для device-flow сначала оценивай целевое количество молей, затем переноси объем, затем `Merge`.
-5. Для DeltaPressure держи lifecycle-симметрию: init/add, shutdown/remove, grid-changed remove+add.
-6. После геометрических изменений всегда отправляй `InvalidateTile`.
-7. Map atmosphere меняй через immutable путь (`SetMap*`), а не через ручную мутацию map-mixture.
+1. Do atmospheric pre-check via `IsTileSpace + IsTileAirBlockedCached`.
+2. For fire/explosions use `HotspotExpose`, do not change hotspot manually.
+3. For mass tile requests, use the batch call `GetTileMixtures`.
+4. For device-flow, first estimate the target number of moles, then transfer the volume, then `Merge`.
+5. For DeltaPressure, maintain lifecycle symmetry: init/add, shutdown/remove, grid-changed remove+add.
+6. After geometric changes, always send `InvalidateTile`.
+7. Change Map atmosphere through the immutable path (`SetMap*`), and not through manual mutation map-mixture.
 
-## Анти-паттерны
+## Anti-patterns
 
-1. Полагаться на `GetAdjacentTileMixtures(..., includeBlocked, excite)` как на полностью рабочий API.
-2. Использовать `SetSimulatedGrid` как рабочий переключатель симуляции.
-3. Дергать `IsTileAirBlocked` в tight-loop, когда достаточно cached-версии.
-4. Обходить API и напрямую ковырять коллекции `GridAtmosphereComponent` из gameplay-систем.
-5. Строить новую бизнес-логику на старых LINDA/Superconductivity public-методах без изоляции.
+1. Rely on `GetAdjacentTileMixtures(..., includeBlocked, excite)` as a fully working API.
+2. Use `SetSimulatedGrid` as a working simulation switch.
+3. Set `IsTileAirBlocked` in a tight-loop when the cached version is sufficient.
+4. Bypass the API and directly pick `GridAtmosphereComponent` collections from gameplay systems.
+5. Build new business logic on old LINDA/Superconductivity public methods without isolation.
 
-## Способы оптимизации API-вызовов
+## Ways to optimize API calls
 
-1. Предпочитай `IsTileAirBlockedCached(...)` для частых проверок, а `IsTileAirBlocked(...)` оставляй для редких «сразу после инвалидации».
-2. Там, где проверяется несколько тайлов, используй `GetTileMixtures(...)` вместо серии `GetTileMixture(...)`.
-3. Не ставь `excite: true` «по привычке»: это добавляет тайлы в активную обработку и дергает визуалы.
-4. После изменения мира используй `InvalidateTile(...)` и дай `Revalidate` сделать тяжелую часть работы.
-5. Для DeltaPressure используй lifecycle API (`TryAdd.../TryRemove...`) вместо ручных структур и линейных поисков.
-6. Для map-level изменений обновляй состояние пакетно (`SetMapAtmosphere` или `SetMapGasMixture/SetMapSpace`), а не серией разрозненных операций.
-7. В трубных устройствах сначала считай моли/целевое давление, потом делай один перенос+merge, не цепочку мелких переносов.
+1. Prefer `IsTileAirBlockedCached(...)` for frequent checks, and leave `IsTileAirBlocked(...)` for rare ones “immediately after invalidation”.
+2. Where multiple tiles are checked, use `GetTileMixtures(...)` instead of the `GetTileMixture(...)` series.
+3. Don’t set `excite: true` “out of habit”: this adds tiles to active processing and disrupts visuals.
+4. After changing the world, use `InvalidateTile(...)` and let `Revalidate` do the hard work.
+5. For DeltaPressure, use the lifecycle API (`TryAdd.../TryRemove...`) instead of manual structures and linear searches.
+6. For map-level changes, update the state in batches (`SetMapAtmosphere` or `SetMapGasMixture/SetMapSpace`), and not in a series of separate operations.
+7. In pipe devices, first count the moles/target pressure, then do one transfer + merge, not a chain of small transfers.
 
-## Примеры из кода
+## Code examples
 
-### 1) Регулятор давления: корректный расчет переноса
+### 1) Pressure regulator: correct transfer calculation
 
 ```csharp
-// 1) Сколько молей нужно убрать, чтобы inlet не превышал threshold.
+// 1) How many moles need to be removed so that inlet does not exceed the threshold.
 var deltaMolesToPressureThreshold = AtmosphereSystem.MolesToPressureThreshold(inlet.Air, threshold);
 
-// 2) Сколько молей достаточно, чтобы не перевернуть градиент давлений.
+// 2) How many moles are enough not to invert the pressure gradient.
 var deltaMolesToEqualize = _atmosphere.FractionToEqualizePressure(inlet.Air, outlet.Air) * inlet.Air.TotalMoles;
 
-// 3) Берем минимум и переносим соответствующий объем.
+// 3) Take the minimum and transfer the corresponding volume.
 var deltaMoles = Math.Min(deltaMolesToPressureThreshold, deltaMolesToEqualize);
 var removed = inlet.Air.RemoveVolume(volumeToTransfer);
 _atmosphere.Merge(outlet.Air, removed);
@@ -72,39 +72,39 @@ _atmosphere.Merge(outlet.Air, removed);
 ### 2) Lifecycle DeltaPressure API
 
 ```csharp
-// Init: если энтити на гриде, добавляем в обработку.
+// Init: if the entity is on the grid, add it to processing.
 _atmosphereSystem.TryAddDeltaPressureEntity(gridUid, ent);
 
-// GridChanged: remove из старого, add в новый.
+// GridChanged: remove from old, add to new.
 _atmosphereSystem.TryRemoveDeltaPressureEntity(oldGrid, ent);
 _atmosphereSystem.TryAddDeltaPressureEntity(newGrid, ent);
 
-// Shutdown: гарантированная очистка.
+// Shutdown: guaranteed cleaning.
 _atmosphereSystem.TryRemoveDeltaPressureEntity(currentGrid, ent);
 ```
 
-### 3) Интеграция взрыва с Atmos API
+### 3) Explosion integration with Atmos API
 
 ```csharp
-// Взрыв не меняет тайл вручную, а передает тепло через canonical API.
+// The explosion does not change the tile manually, but transfers heat through the canonical API.
 if (temperature != null)
 {
     _atmosphere.HotspotExpose(gridUid, tile, temperature.Value, intensity, causeUid, soh: true);
 }
 ```
 
-### 4) Инвалидация тайла после изменения airtight
+### 4) Tile invalidation after changing airtight
 
 ```csharp
-// После смены блокеров воздуха помечаем тайл для revalidate-стадии.
+// After changing the air blockers, mark the tile for the revalidate stage.
 _explosionSystem.UpdateAirtightMap(grid, pos, grid);
 _atmosphereSystem.InvalidateTile(grid.Owner, pos);
 ```
 
-### 5) Безопасный отбор тайла для спавна
+### 5) Safe selection of tiles for spawn
 
 ```csharp
-// Отбрасываем космос и полностью блокированные тайлы.
+// We discard space and completely blocked tiles.
 if (_atmosphere.IsTileSpace(gridUid, mapUid, tile)
     || _atmosphere.IsTileAirBlockedCached(gridUid, tile))
 {
@@ -112,11 +112,11 @@ if (_atmosphere.IsTileSpace(gridUid, mapUid, tile)
 }
 ```
 
-## Практическое правило
+## Rule of thumb
 
-1. По умолчанию используй только методы со статусом `Fresh-Use`.
-2. Методы со статусом `Legacy-Compat` используй только для совместимости и с тестами.
-3. Методы со статусом `Risk/TODO` не используй как опору новых правил/API-оберток ⚠️
-4. Любую оптимизацию API подтверждай профилированием, а не только «на глаз».
+1. By default, use only methods with the status `Fresh-Use`.
+2. Use methods with the status `Legacy-Compat` only for compatibility with tests.
+3. Do not use methods with the status `Risk/TODO` as support for new rules/API wrappers ⚠️
+4. Confirm any API optimization by profiling, and not just by eye.
 
-Держи API слой тонким и предсказуемым: Atmos «прощает» мало, если обойти контракт 😅
+Keep the API layer thin and predictable: Atmos is “forgiving” little if you bypass the contract 😅

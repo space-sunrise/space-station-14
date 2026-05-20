@@ -38,3 +38,6 @@ ent-ClothingBackpackDuffelSecuritySecblu = { ent-ClothingBackpackDuffelSecurity 
     .desc = { ent-ClothingBackpackDuffelSecurity.desc }
 ent-ClothingBackpackDuffelSecuritySecred = { ent-ClothingBackpackDuffelSecurity }
     .desc = { ent-ClothingBackpackDuffelSecurity.desc }
+ent-ClothingBackpackDuffelGreytideMaterials = вещмешок материалов грейтайда
+    .desc = Вещмешок, набитый посылками контрабандных материалов.
+    .suffix = Дебаг

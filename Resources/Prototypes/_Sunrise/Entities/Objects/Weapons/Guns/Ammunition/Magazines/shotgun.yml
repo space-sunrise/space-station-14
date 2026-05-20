@@ -33,7 +33,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    scale: 1.1,1.1
+    scale: 1.05,1.05
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Shotgun/m16.rsi
     layers:
     - state: base

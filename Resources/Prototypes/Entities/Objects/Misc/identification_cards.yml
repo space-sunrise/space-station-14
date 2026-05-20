@@ -18,6 +18,7 @@
   # Sunrise added end
   # Sunrise-Start
   - type: Sprite
+    scale: 0.75, 0.75 # Sunrise-Edit
     sprite: &id-rsi _Sunrise/Objects/Misc/id_cards.rsi # Sunrise-Edit
   - type: Clothing
     slots:

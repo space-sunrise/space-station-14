@@ -22,7 +22,7 @@
     id: AgentIDCard
     ears: ClothingHeadsetNinja
     pocket1: SpiderCharge
-    pocket2: HandHeldMassScanner
+    pocket2: PinpointerStation
     belt: EnergyKatana
   inhand:
     - JetpackBlackFilled
@@ -34,6 +34,11 @@
     - Wirecutter
     - Welder
     - Multitool
+    - EmergencyMedipen
+    - Flare
+    # - FoodSnackNutribrick  # Sunrise-Edit
+    # - DrinkWaterBottleFull  # Sunrise-Edit
+    - MedkitCombatFilled  # Sunrise-Add
 
 - type: chameleonOutfit
   id: NinjaChameleonOutfit

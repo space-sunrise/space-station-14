@@ -138,3 +138,41 @@
     stackRequirements:
       Steel: 1
       Cable: 2
+
+- type: entity
+  id: SMESExtendedMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: extended SMES machine board
+  description: A machine printed circuit board for an Extended SMES.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: power_mod
+  - type: MachineBoard
+    prototype: SMESExtendedEmpty
+    stackRequirements:
+      Manipulator: 2
+      CableHV: 30
+    componentRequirements:
+      PowerCell:
+        amount: 4
+        defaultPrototype: PowerCellHigh
+
+- type: entity
+  id: SMESSuperExtendedMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: super extended SMES machine board
+  description: A machine printed circuit board for a Super Extended SMES.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: power_mod
+  - type: MachineBoard
+    prototype: SMESSuperExtendedEmpty
+    stackRequirements:
+      Manipulator: 3
+      CableHV: 40
+    componentRequirements:
+      PowerCell:
+        amount: 4
+        defaultPrototype: PowerCellHyper

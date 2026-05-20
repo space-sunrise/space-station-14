@@ -4,7 +4,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 75
+    rechargeCooldown: 180
     rechargeSound:
       path: /Audio/_Sunrise/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
@@ -23,7 +23,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Grenades/grenade.rsi
@@ -42,7 +42,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 30
+    rechargeCooldown: 120
     rechargeSound:
       path: /Audio/_Sunrise/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
@@ -61,7 +61,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Grenades/smoke.rsi
@@ -81,7 +81,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Grenades/stingergrenade.rsi
@@ -103,7 +103,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Grenades/pyrogrenade.rsi
@@ -125,7 +125,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi
@@ -147,7 +147,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Bombs/ied.rsi
@@ -169,7 +169,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/explosives.rsi
@@ -191,7 +191,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 75
+    useDelay: 180
     checkCanInteract: false
     icon:
       sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -213,7 +213,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 120
     checkCanInteract: false
     icon:
       sprite: Objects/Weapons/Grenades/smoke.rsi
@@ -228,6 +228,28 @@
       speed: 8
   - type: SpeakOnAction
     sentence: action-speech-soviet-smoke
+
+- type: entity
+  id: ActionGunGrenadeExplosiveShrapnelSpell
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 180
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Weapons/Grenades/grenade.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletGrenadeExplosiveShrapnel
+      speed: 8
+  - type: SpeakOnAction
+    sentence: action-speech-soviet-grenade
   # endregion
 
 # region Soviet

@@ -31,6 +31,8 @@ salv-job-board-name-BountyTeethSharkminnow = Sharkminnow
 salv-job-board-name-BountyGoliathPlates = Goliath
 salv-job-board-name-BountyHivelordRemains = Hivelord
 salv-job-board-name-BountySalvageDiamond = Diamond
+salv-job-board-name-SunriseBountySalvageSovietDamagedIDCardsCollector = Damaged Soviet ID cards
+salv-job-board-name-SunriseBountySalvageSovietDamagedOfficerIDCardsCollector = Damaged Soviet officer ID cards
 
 bounty-description-tooth-space-carp = We need you to get a sample of some space carp teeth. You can find these guys on all kinds of salvage debris. Just be careful about their bite.
 bounty-description-salvage-scrap = We are researching the effects of deep space on station materials, and we need some samples. Find some old junk off of debris and bring it to us.

@@ -38,3 +38,6 @@ ent-ClothingBackpackDuffelSecuritySecblu = { ent-ClothingBackpackDuffelSecurity 
     .desc = { ent-ClothingBackpackDuffelSecurity.desc }
 ent-ClothingBackpackDuffelSecuritySecred = { ent-ClothingBackpackDuffelSecurity }
     .desc = { ent-ClothingBackpackDuffelSecurity.desc }
+ent-ClothingBackpackDuffelGreytideMaterials = greytide material duffel bag
+    .desc = A duffel bag packed with smuggled materials parcels.
+    .suffix = DEBUG

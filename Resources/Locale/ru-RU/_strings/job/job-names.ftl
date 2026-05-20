@@ -122,3 +122,7 @@ JobWarden = смотритель
 JobVisitor = посетитель
 JobBoxer = боксёр
 JobZookeeper = зоотехник
+job-title-tsf-trader = торговец ТСФ
+job-title-tsf-marine = морпех ТСФ
+job-title-tsf-marine-leader = командир отряда ТСФ
+job-title-tsf-MARSOC = морпех MARSOC ТСФ

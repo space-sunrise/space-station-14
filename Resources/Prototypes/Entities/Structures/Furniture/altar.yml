@@ -404,6 +404,7 @@
     sprite: Structures/Furniture/Altars/Cults/fangs.rsi
   - type: Icon
     sprite: Structures/Furniture/Altars/Cults/fangs.rsi
+    state: full
 
 
 - type: entity

@@ -1,71 +1,71 @@
 ---
 name: ss14-npc-system-core
-description: Глубокий разбор NPC-системы в SS14/Sunrise: HTN-планирование, utility-выбор целей, steering/pathfinding, blackboard и контракты выполнения. Используй, когда нужно понять общую схему и логику NPC, создать или переработать прототипы поведения (`htnCompound`, `rootTask`, `blackboard`), либо написать свой код ИИ (операторы, предусловия, компоненты, системы) и безопасно встроить его в runtime.
+description: Deep dive into the NPC system in SS14/Sunrise: HTN planning, utility target selection, steering/pathfinding, blackboard and execution contracts. Use it when you need to understand the general scheme and logic of NPCs, create or rework behavior prototypes (`htnCompound`, `rootTask`, `blackboard`), or write your own AI code (operators, preconditions, components, systems) and safely integrate it into runtime.
 ---
 
-# NPC System: Архитектура, Прототипы и Кастомный ИИ
+# NPC System: Architecture, Prototypes and Custom AI
 
-Используй этот skill как основной playbook по NPC в SS14/Sunrise.
-Держи фокус на свежем коде и проверяй актуальность через `git log`/`git blame` (cutoff: `2024-02-20`).
+Use this skill as your main NPC playbook in SS14/Sunrise.
+Keep your focus on fresh code and check its relevance through `git log`/`git blame` (cutoff: `2024-02-20`).
 
-## Что загружать в первую очередь
+## What to download first
 
-1. `references/architecture-runtime.md` — общая схема работы, слои и жизненный цикл NPC.
-2. `references/behavior-prototypes.md` — как проектировать и писать прототипы поведения (`htnCompound`, `utilityQuery`, `HTN` component).
-3. `references/custom-ai-code.md` — как и где писать свой код ИИ (операторы, предусловия, системы, компоненты).
-4. `references/debug-validation.md` — отладка, проверка и защита от регрессий.
+1. `references/architecture-runtime.md` - general scheme of work, layers and life cycle of NPCs.
+2. `references/behavior-prototypes.md` - how to design and write behavior prototypes (`htnCompound`, `utilityQuery`, `HTN` component).
+3. `references/custom-ai-code.md` - how and where to write your AI code (operators, preconditions, systems, components).
+4. `references/debug-validation.md` - debugging, checking and protection against regressions.
 
-## Общая схема работы NPC
+## General scheme of NPC work
 
-1. `NPCSystem` обновляет только активных NPC (`ActiveNPCComponent`) и ограничивает бюджет апдейта (`npc.max_updates`).
-2. `HTNSystem` планирует поведение через time-sliced job queue (`HTNPlanJob`) и исполняет текущий план.
-3. `HTNPlanJob` разворачивает дерево `HTNCompoundTask` -> `HTNPrimitiveTask`, выбирая branch по preconditions.
-4. `HTNOperator.Plan()` оценивает валидность шага и может вернуть `effects` для blackboard.
-5. `HTNOperator.Startup()/Update()/TaskShutdown()` выполняет runtime-логику.
-6. Тяжелую/координируемую логику оператор обычно делегирует внешним системам через компоненты (steering/combat и т.п.).
-7. `NPCSteeringSystem` ведет перемещение, pathfinding и obstacle avoidance.
-8. `NPCUtilitySystem` выбирает цели через `utilityQuery` + considerations/curves.
-9. `NpcFactionSystem` влияет на выбор враждебных/дружественных целей.
+1. `NPCSystem` updates only active NPCs (`ActiveNPCComponent`) and limits the update budget (`npc.max_updates`).
+2. `HTNSystem` schedules the behavior through the time-sliced ​​job queue (`HTNPlanJob`) and executes the current plan.
+3. `HTNPlanJob` expands the tree `HTNCompoundTask` -> `HTNPrimitiveTask`, selecting branch by preconditions.
+4. `HTNOperator.Plan()` evaluates the validity of the step and can return `effects` for blackboard.
+5. `HTNOperator.Startup()/Update()/TaskShutdown()` performs runtime logic.
+6. The operator usually delegates heavy/coordinated logic to external systems through components (steering/combat, etc.).
+7. `NPCSteeringSystem` controls movement, pathfinding and obstacle avoidance.
+8. `NPCUtilitySystem` selects targets via `utilityQuery` + considerations/curves.
+9. `NpcFactionSystem` affects the selection of hostile/friendly targets.
 
-## Принципы и логика проектирования
+## Design principles and logic
 
-1. Держи `Plan()` максимально чистым и предсказуемым: вычисляй, а не мутируй мир.
-2. Выполняй side effects в `Startup()`/`Update()`, а cleanup в shutdown-хуках.
-3. Разделяй “выбрать цель”, “дойти до цели”, “сделать действие” на разные примитивы.
-4. Используй blackboard как единый контракт между прототипом и кодом.
-5. Проектируй behavior как композицию маленьких compounds, а не giant-tree.
-6. Всегда добавляй fallback-ветку (idle/noop), чтобы NPC не зависал без плана.
-7. Для движений и боя опирайся на существующие системы (`NPCSteeringSystem`, `NPCCombatSystem`), а не на ad-hoc логику в операторе.
+1. Keep `Plan()` as clean and predictable as possible: compute, not mutate, the world.
+2. Perform side effects in `Startup()`/`Update()`, and cleanup in shutdown hooks.
+3. Divide “choose a goal”, “get to the goal”, “take an action” into different primitives.
+4. Use blackboard as a single contract between the prototype and the code.
+5. Design behavior as a composition of small compounds, not a giant-tree.
+6. Always add a fallback branch (idle/noop) so that the NPC does not get stuck without a plan.
+7. For movement and combat, rely on existing systems (`NPCSteeringSystem`, `NPCCombatSystem`), and not on ad-hoc logic in the operator.
 
-## Паттерны
+## Patterns
 
-1. Начинать root-behavior с приоритетной ветки (combat/goal), затем fallback (idle/follow).
-2. Добавлять `UtilityOperator` перед действием, если цель динамическая.
-3. Обновлять цель сервисом (`services`) внутри боевых примитивов.
-4. Делать `MoveToOperator` отдельным шагом между выбором цели и действием.
-5. Хранить диапазоны/флаги в blackboard (`VisionRadius`, `MeleeRange`, `NavInteract`) для тонкой настройки без кода.
-6. Возвращать `effects` из `Plan()` для переиспользования дорогих вычислений в execution.
-7. Использовать `IHtnConditionalShutdown`, когда нужен управляемый cleanup при `TaskFinished` или `PlanFinished`.
-8. Писать предусловия как простые булевы gate-объекты без побочных эффектов.
-9. Отключать/включать HTN через `SetHTNEnabled`/replan-паттерны вместо прямой мутации внутренних полей.
-10. Валидировать дерево на рекурсивные ловушки отдельным тестом.
+1. Start root-behavior from the priority branch (combat/goal), then fallback (idle/follow).
+2. Add `UtilityOperator` before the action if the goal is dynamic.
+3. Update the target with the service (`services`) inside combat primitives.
+4. Make `MoveToOperator` a separate step between goal selection and action.
+5. Store ranges/flags in blackboard (`VisionRadius`, `MeleeRange`, `NavInteract`) for fine-tuning without code.
+6. Return `effects` from `Plan()` to reuse expensive calculations in execution.
+7. Use `IHtnConditionalShutdown` when you need a controlled cleanup with `TaskFinished` or `PlanFinished`.
+8. Write preconditions as simple Boolean gate objects without side effects.
+9. Disable/enable HTN via `SetHTNEnabled`/replan patterns instead of direct mutation of internal fields.
+10. Validate the tree for recursive traps using a separate test.
 
-## Анти-паттерны
+## Anti-patterns
 
-1. Писать монолитный `htnCompound`, который сложно анализировать и тестировать.
-2. Делать побочные эффекты в `Plan()` (особенно сетевые/физические изменения).
-3. Не чистить blackboard и runtime-компоненты при завершении задачи.
-4. Полагаться только на один target key без fallback-логики.
-5. Игнорировать `services`, из-за чего NPC “залипает” на устаревшей цели.
-6. Смешивать pathfinding/steering/combat вручную в одном операторе.
-7. Писать precondition, которая зависит от скрытого mutable-state вне blackboard/компонентов.
-8. Использовать невалидные типы в `blackboard` YAML (отсутствие `!type` для сложных/явных типов).
-9. Строить behavior без ветки idle/noop.
-10. Игнорировать budget/cooldown (`PlanCooldown`, `npc.max_updates`) при диагностике “тупящих” NPC.
+1. Write a monolithic `htnCompound`, which is difficult to analyze and test.
+2. Do side effects in `Plan()` (especially network/physical changes).
+3. Do not clean the blackboard and runtime components when completing a task.
+4. Rely on only one target key without fallback logic.
+5. Ignore `services`, which causes the NPC to “stick” to an outdated target.
+6. Mix pathfinding/steering/combat manually in one statement.
+7. Write a precondition that depends on a hidden mutable-state outside the blackboard/components.
+8. Use invalid types in `blackboard` YAML (absence of `!type` for complex/explicit types).
+9. Build behavior without the idle/noop branch.
+10. Ignore budget/cooldown (`PlanCooldown`, `npc.max_updates`) when diagnosing “stupid” NPCs.
 
-## Мини-примеры
+## Mini-examples
 
-### 1) Root prototype с fallback
+### 1) Root prototype with fallback
 
 ```yaml
 - type: htnCompound
@@ -79,7 +79,7 @@ description: Глубокий разбор NPC-системы в SS14/Sunrise: H
           task: IdleCompound
 ```
 
-### 2) Подключение HTN к сущности
+### 2) Connecting HTN to an entity
 
 ```yaml
 - type: entity
@@ -97,7 +97,7 @@ description: Глубокий разбор NPC-системы в SS14/Sunrise: H
         true
 ```
 
-### 3) Кастомный оператор
+### 3) Custom operator
 
 ```csharp
 public sealed partial class MyOperator : HTNOperator
@@ -107,17 +107,17 @@ public sealed partial class MyOperator : HTNOperator
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        // Передать heavy/runtime-логику в отдельную систему или компонент.
+        // Transfer heavy/runtime logic to a separate system or component.
         return HTNOperatorStatus.Finished;
     }
 }
 ```
 
-## Правило расширения
+## Extension rule
 
-1. При добавлении новой цели/поведения сначала расширять `utilityQuery` и прототипы tasks.
-2. Переходить к новому C# коду только когда прототипов и текущих операторов уже недостаточно.
-3. Для новой механики сначала определить extension point (precondition/operator/system/component), затем писать код.
-4. После любого расширения прогонять debug-проверку домена и smoke-тест с реальным NPC.
+1. When adding a new goal/behavior, first expand `utilityQuery` and tasks prototypes.
+2. Move to new C# code only when the prototypes and current operators are no longer enough.
+3. For new mechanics, first define an extension point (precondition/operator/system/component), then write the code.
+4. After any extension, run a domain debug check and a smoke test with a real NPC.
 
-Думай о NPC-системе как о конвейере `планирование -> исполнение -> обслуживание состояния`, а не как о случайном наборе операторов.
+Think of the NPC system as a `planning -> execution -> state maintenance` pipeline rather than a random collection of operators.

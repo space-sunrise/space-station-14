@@ -3,3 +3,4 @@ department-PlanetPrison-description = В этом месте границы ме
 department-PlanetPrisonSecurity-description = Предотвращайте побеги и реагируете на любые угрозы безопасности тюрьмы.
 department-Blueshield-description = Ваша задача защищать самоубийц на главах. Довольно бесполезно...
 department-SpecialOperations-description = Выполняйте высокорисковые секретные задания ради безопасности станции.
+department-TSF-description = Служите интересам Транс-Солнечной Федерации и выполняйте приказы командования.

@@ -25,3 +25,12 @@
       - MindRoleVampire
   - type: DynamicRuleCost
     cost: 125
+
+- type: entity
+  parent: Xenoborgs
+  id: SubXenoborgs
+  components:
+  - type: GameRule
+    minPlayers: 30
+  - type: DynamicRuleCost
+    cost: 200

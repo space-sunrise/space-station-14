@@ -1,0 +1,13 @@
+id: ss14-yaml-name-fallback-must-not-contain-cyrillic
+language: Yaml
+severity: error
+message: "YAML prototype fallback `name` must stay in English per `ss14-naming-conventions`."
+note: "Use English fallback text or a localization key in YAML. Move non-English player-facing text to FTL localization."
+files:
+  - "Resources/Prototypes/**/*.yml"
+  - "Resources/Prototypes/**/*.yaml"
+rule:
+  pattern: 'name: $TEXT'
+constraints:
+  TEXT:
+    regex: '[А-Яа-яЁё]'

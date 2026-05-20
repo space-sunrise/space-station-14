@@ -12,4 +12,7 @@ ent-ClothingHeadBowRed = red bow
     .desc = { ent-ClothingHeadBowWhite.desc }
 ent-ClothingHeadBowBlack = black bow
     .desc = { ent-ClothingHeadBowWhite.desc }
-
+ent-WhiteLilyCrown = white lily crown
+    .desc = Charming white crown, that adds grace to the wearer.
+ent-ClothingHeadMantleGoliathAliveHelmet = Toothed helmet
+    .desc = It's no different from any other spacesuit top, except for the bunch of teeth and eyes.

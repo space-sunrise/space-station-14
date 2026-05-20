@@ -26,6 +26,9 @@
   - type: Temperature
     currentTemperature: 310.15
   - type: TemperatureDamage
+    coldDamage:
+      types:
+        Cold: 0
     heatDamage:
       types:
         Heat: 3
@@ -144,7 +147,32 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
     displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
       head:
         sizeMaps:
           32:
@@ -196,7 +224,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
-      hardsuit-body-normal:
+      hardsuit:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
@@ -213,7 +241,6 @@
     minds:
     - Xeno
   - type: FootprintEmitter
-  - type: Carriable
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -241,7 +268,32 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
     displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
       head:
         sizeMaps:
           32:
@@ -293,7 +345,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
-      hardsuit-body-normal:
+      hardsuit:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi

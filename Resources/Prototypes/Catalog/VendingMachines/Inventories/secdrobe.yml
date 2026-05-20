@@ -5,11 +5,11 @@
     ClothingBackpackSatchelSecurity: 3
     ClothingBackpackDuffelSecurity: 3
     ClothingUniformJumpsuitSec: 3
-    ClothingShoesBootsJack: 3
     ClothingHeadHatBeretSecurity: 3
     ClothingHeadHatSecsoft: 3
     ClothingHeadBandRed: 3
     ClothingMaskNeckGaiterRed: 3
+    ClothingNeckScarfStripedRed: 3 # Sunrise-Edit
     ClothingHandsGlovesColorBlack: 3
     ClothingHandsGlovesFingerless: 3
     ClothingUniformJumpskirtSec: 3
@@ -19,9 +19,10 @@
     ClothingHeadsetSecurity: 3
     ClothingOuterWinterSec: 2
     ClothingOuterArmorBasic: 2
-    ClothingNeckScarfStripedRed: 3
     ClothingOuterArmorBasicSlim: 2
     ClothingEyesBlindfold: 1
+    ClothingShoesBootsJack: 2 # Sunrise-Edit
+    ClothingShoesBootsJackSec: 2 # Sunrise-Edit
     ClothingShoesBootsCombat: 1
     ClothingShoesBootsWinterSec: 2
     ClothingHeadHelmetJustice: 1
@@ -31,3 +32,8 @@
     ToyFigurineSecurity: 1
     ToyFigurineWarden: 1
     ToyFigurineHeadOfSecurity: 1
+    ClothingShoesBootsCowboyBlack: 1 # Sunrise-Edit
+    ClothingHeadHatCowboyBlack: 1 # Sunrise-Edit
+  emaggedInventory:
+    ClothingHeadHatCowboyBountyHunter: 1 # Sunrise Edit
+    ClothingShoesBootsSyndieFilled: 1 # Sunrise Edit

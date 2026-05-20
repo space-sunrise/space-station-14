@@ -41,6 +41,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - NoPaint # Sunrise-Edit
   - type: ProtectedFromStepTriggers
 
 - type: entity
@@ -56,6 +57,15 @@
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
     materialComposition:
       Cloth: 50
+  # Sunrise - Start
+  - type: Tag
+    tags:
+    - NoXeno
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - NoPaint
+  # Sunrise - End
 
 # stuff common to all military boots
 - type: entity
@@ -73,6 +83,15 @@
           tags:
           - Knife
           - Sidearm
+  # Sunrise - Start
+  - type: Tag
+    tags:
+    - NoXeno
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - NoPaint
+  # Sunrise - End
 
 - type: entity
   abstract: true
@@ -93,3 +112,12 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.025
     coolingCoefficient: 0.5
+  # Sunrise - Start
+  - type: Tag
+    tags:
+    - NoXeno
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - NoPaint
+  # Sunrise - End

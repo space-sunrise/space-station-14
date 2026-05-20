@@ -808,7 +808,7 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate # Sunrise-Edit
     - type: PirateIcon
     - type: GhostRole
       name: ghost-role-information-pirate-name
@@ -828,7 +828,7 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate # Sunrise-Edit
     - type: PirateIcon
     - type: GhostRole
       name: ghost-role-information-pirate-captain-name

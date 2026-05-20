@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "icon-bartender and icon-cook by crestoedge(github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon-cook"
+        },
+        {
+            "name": "icon-bartender"
+        }
+    ]
+
+}

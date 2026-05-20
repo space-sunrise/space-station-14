@@ -13,7 +13,7 @@ ent-ShuttleGunCharon = RL-280 "Charon"
 ent-ShuttleGunTarnyx = SSG-TARNYX EMP Grenade Cannon
     .desc = A heavy-duty electromagnetic grenade lobber. Fires EMP grenades in a wide arc, designed to saturate an area with electromagnetic pulses and disable enemy ship systems. Holds 4 rounds. Does not cause structural damage.
 
-ent-WeaponTurretVespera50mm = ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
+ent-ShuttleGunVespera50mm = ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
     .desc = A rapid-fire swarm missile rack. Saturates targets with guided warheads to overwhelm defenses.
 
 ent-ShuttleGunAutocannon = L85 20mm autocannon

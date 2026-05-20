@@ -1,50 +1,50 @@
 ---
 name: SS14 UI BUI
-description: Практический гайд по Bound User Interface (BUI) в SS14: архитектура, сетевые сообщения, валидация ввода, предикция через component state, lifecycle окна и рабочие паттерны сервер-клиент. Используй при разработке и рефакторинге entity-bound интерфейсов.
+description: A practical guide to Bound User Interface (BUI) in SS14: architecture, network messages, input validation, prediction through component state, lifecycle windows and server-client working patterns. Use it when developing and refactoring entity-bound interfaces.
 ---
 
-# Bound User Interface (BUI) в SS14
+# Bound User Interface (BUI) in SS14
 
-Этот skill покрывает только BUI (entity-bound UI) 🙂
-XAML-вёрстку, EUI и стиль-систему веди в отдельных skill.
+This skill only covers BUI (entity-bound UI) :)
+Manage XAML layout, EUI and style system in separate skills.
 
-## Когда выбирать BUI
+## When to choose BUI
 
-Выбирай BUI, когда интерфейс:
+Choose BUI when the interface:
 
-- жёстко привязан к конкретной сущности;
-- должен открываться/закрываться по взаимодействию с этой сущностью;
-- обменивается typed-сообщениями с серверной логикой этой же сущности.
+- strictly tied to a specific entity;
+- must open/close upon interaction with this entity;
+- exchanges typed messages with the server logic of the same entity.
 
-Не выбирай BUI, когда нужен глобальный админский/сессионный интерфейс без привязки к сущности (это EUI).
+Don't choose BUI when you need a global admin/session interface without being tied to an entity (this is an EUI).
 
-## Ментальная модель BUI
+## BUI mental model
 
-BUI состоит из 4 слоёв:
+BUI consists of 4 layers:
 
-1. `UiKey` + typed-сообщения (`BoundUserInterfaceMessage`) + optional `BoundUserInterfaceState` в shared.
-2. Прототипная регистрация интерфейса (`UserInterface.interfaces`) и `ActivatableUI.key`.
-3. Серверная обработка событий/сообщений через `SharedUserInterfaceSystem` и систему фичи.
-4. Клиентский `BoundUserInterface`, который создаёт окно, отправляет сообщения и обновляет UI.
+1. `UiKey` + typed messages (`BoundUserInterfaceMessage`) + optional `BoundUserInterfaceState` in shared.
+2. Prototypical interface registration (`UserInterface.interfaces`) and `ActivatableUI.key`.
+3. Server-side processing of events/messages via `SharedUserInterfaceSystem` and the feature system.
+4. Client `BoundUserInterface`, which creates a window, sends messages and updates the UI.
 
-## Базовый контракт (shared)
+## Basic contract (shared)
 
 ```csharp
-// Ключ конкретного BUI.
+// Specific BUI key.
 [NetSerializable, Serializable]
 public enum BatteryUiKey : byte
 {
     Key,
 }
 
-// Сообщение клиента на сервер (кнопка/переключатель).
+// Client message to server (button/switch).
 [Serializable, NetSerializable]
 public sealed class BatterySetInputBreakerMessage(bool on) : BoundUserInterfaceMessage
 {
     public bool On = on;
 }
 
-// Полный UI-state (если действительно нужен отдельный BUI-state).
+// Full UI-state (if you really need a separate BUI-state).
 [Serializable, NetSerializable]
 public sealed class BatteryBuiState : BoundUserInterfaceState
 {
@@ -54,35 +54,35 @@ public sealed class BatteryBuiState : BoundUserInterfaceState
 }
 ```
 
-Паттерн:
-- делай сообщения узкими и предметными (`SetX`, `ToggleY`), не “универсальными”.
+Pattern:
+- make messages narrow and specific (`SetX`, `ToggleY`), not “universal”.
 
-Анти-паттерн:
-- один “всё-в-одном” message с десятками nullable-полей.
+Anti-pattern:
+- one “all-in-one” message with dozens of nullable fields.
 
-## Привязка в прототипе
+## Binding in prototype
 
 ```yaml
-# Связка ключа и client-side класса BUI
+# Keychain and client-side BUI class
 - type: UserInterface
   interfaces:
     enum.GasVolumePumpUiKey.Key:
       type: GasVolumePumpBoundUserInterface
 
-# Чем игрок открывает этот ключ
+# How does the player open this key?
 - type: ActivatableUI
   key: enum.GasVolumePumpUiKey.Key
 ```
 
-Паттерн:
-- `ActivatableUI.key` и ключ в `UserInterface.interfaces` всегда должны совпадать.
+Pattern:
+- `ActivatableUI.key` and the key in `UserInterface.interfaces` must always match.
 
-Анти-паттерн:
-- зарегистрировать `UserInterface`, но забыть `ActivatableUI` (или наоборот).
+Anti-pattern:
+- register `UserInterface`, but forget `ActivatableUI` (or vice versa).
 
-## Server-side обработка: правильная схема
+## Server-side processing: correct scheme
 
-Используй `Subs.BuiEvents<TComp>(uiKey, ...)` для подписки на BUI-события и сообщения.
+Use `Subs.BuiEvents<TComp>(uiKey, ...)` to subscribe to BUI events and messages.
 
 ```csharp
 public override void Initialize()
@@ -91,7 +91,7 @@ public override void Initialize()
 
     Subs.BuiEvents<BatteryInterfaceComponent>(BatteryUiKey.Key, subs =>
     {
-        // Сообщения пользователя.
+        // User messages.
         subs.Event<BatterySetInputBreakerMessage>(HandleSetInputBreaker);
         subs.Event<BatterySetOutputBreakerMessage>(HandleSetOutputBreaker);
     });
@@ -100,12 +100,12 @@ public override void Initialize()
 private void HandleSetInputBreaker(Entity<BatteryInterfaceComponent> ent, ref BatterySetInputBreakerMessage args)
 {
     var netBattery = Comp<PowerNetworkBatteryComponent>(ent);
-    netBattery.CanCharge = args.On; // Меняем доменную модель
+    netBattery.CanCharge = args.On; // Changing the domain model
 }
 ```
 
-Рекомендация:
-- обновляй UI только при открытом интерфейсе (`IsUiOpen`) и только при реальном изменении данных.
+Recommendation:
+- update the UI only when the interface is open (`IsUiOpen`) and only when the data actually changes.
 
 ## Client-side BUI: lifecycle
 
@@ -118,7 +118,7 @@ public sealed class GasVolumePumpBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        // Helper создаёт окно, открывает, связывает Close -> bui.Close(), регистрирует позицию.
+        // Helper creates a window, opens it, binds Close -> bui.Close(), registers the position.
         _window = this.CreateWindow<GasVolumePumpWindow>();
 
         _window.ToggleStatusButtonPressed += OnToggle;
@@ -136,17 +136,17 @@ public sealed class GasVolumePumpBoundUserInterface : BoundUserInterface
 }
 ```
 
-Паттерн:
-- подписки UI-элементов делай в `Open()`, а не в конструкторе.
+Pattern:
+- subscribe UI elements in `Open()`, and not in the constructor.
 
-Анти-паттерн:
-- прямой `new Window().OpenCentered()` без `CreateWindow<T>()` и без привязки закрытия к BUI.
+Anti-pattern:
+- direct `new Window().OpenCentered()` without `CreateWindow<T>()` and without linking the closure to the BUI.
 
-## Предикция: современный путь (предпочтительно)
+## Prediction: modern way (preferred)
 
-Приоритетный подход: UI читает уже сетевые поля компонента, а не дублирует всё в `BoundUserInterfaceState`.
+Priority approach: the UI already reads the network fields of the component, and does not duplicate everything in `BoundUserInterfaceState`.
 
-### 1) Компонент поднимает `AfterAutoHandleStateEvent`
+### 1) The component raises `AfterAutoHandleStateEvent`
 
 ```csharp
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
@@ -160,7 +160,7 @@ public sealed partial class GasVolumePumpComponent : Component
 }
 ```
 
-### 2) Клиентская система обновляет открытый BUI из component state
+### 2) The client system updates the open BUI from the component state
 
 ```csharp
 public override void Initialize()
@@ -172,11 +172,11 @@ public override void Initialize()
 private void OnPumpState(Entity<GasVolumePumpComponent> ent, ref AfterAutoHandleStateEvent args)
 {
     if (_ui.TryGetOpenUi(ent.Owner, GasVolumePumpUiKey.Key, out var bui))
-        bui.Update(); // UI читает актуальный компонент
+        bui.Update(); // UI reads the actual component
 }
 ```
 
-### 3) BUI отправляет ввод через `SendPredictedMessage`
+### 3) BUI sends input via `SendPredictedMessage`
 
 ```csharp
 private void OnPumpTransferRatePressed(string value)
@@ -186,23 +186,23 @@ private void OnPumpTransferRatePressed(string value)
 }
 ```
 
-## Когда нужен `BoundUserInterfaceState`
+## When you need `BoundUserInterfaceState`
 
-Используй `SetUiState(...)`, если:
+Use `SetUiState(...)` if:
 
-- состояние тяжело/дорого собрать на клиенте из имеющихся компонентных полей;
-- нужен server-authoritative snapshot сложной агрегированной модели;
-- нужно раздать состояние только открывшим интерфейс актёрам.
+- the state is difficult/expensive to collect on the client from existing component fields;
+- you need a server-authoritative snapshot of a complex aggregated model;
+- you need to distribute the state only to the actors who opened the interface.
 
-Если всё нужное уже `AutoNetworkedField`, предпочитай компонентный путь.
+If everything you need is already `AutoNetworkedField`, prefer the component path.
 
-## Высокочастотный ввод (слайдеры и т.п.)
+## High frequency input (sliders, etc.)
 
-Для “шумного” ввода используй связку:
+For “noisy” input, use the following link:
 
-- `InputCoalescer<T>` для склейки множества UI-событий;
-- `IBuiPreTickUpdate` + `BuiPreTickUpdateSystem` для отправки не чаще раза за тик;
-- `BuiPredictionState` для повторного наложения неподтверждённых клиентских сообщений на входящий серверный state.
+- `InputCoalescer<T>` for gluing together multiple UI events;
+- `IBuiPreTickUpdate` + `BuiPreTickUpdateSystem` for sending no more than once per tick;
+- `BuiPredictionState` to re-overlay unacknowledged client messages onto the incoming server state.
 
 ```csharp
 void IBuiPreTickUpdate.PreTickUpdate()
@@ -212,59 +212,59 @@ void IBuiPreTickUpdate.PreTickUpdate()
 }
 ```
 
-Паттерн:
-- коалесцируй значения ползунков и отправляй пакетно на tick.
+Pattern:
+- coalesce the values ​​of the sliders and send them in batches to tick.
 
-Анти-паттерн:
-- слать `SendMessage` на каждый pixel-move слайдера.
+Anti-pattern:
+- send `SendMessage` for each pixel-move of the slider.
 
-## Безопасность и валидация сообщений
+## Message security and validation
 
-По умолчанию `InterfaceData.RequireInputValidation = true`, и это правильно ✅
+The default is `InterfaceData.RequireInputValidation = true`, and that's correct ✅
 
-На каждый входящий BUI-message движок поднимает `BoundUserInterfaceMessageAttempt`, где проверяются:
+For each incoming BUI message, the engine raises `BoundUserInterfaceMessageAttempt`, where the following is checked:
 
-- возможность взаимодействия (`CanInteract`, `CanComplexInteract`);
-- доступность/дистанция;
-- single-user ограничения и другие доменные правила.
+- possibility of interaction (`CanInteract`, `CanComplexInteract`);
+- accessibility/distance;
+- single-user restrictions and other domain rules.
 
-Выключай `RequireInputValidation` только в строго обоснованных кейсах.
+Disable `RequireInputValidation` only in strictly justified cases.
 
-## Дистанция и автозакрытие
+## Distance and auto-close
 
-`SharedUserInterfaceSystem` делает range-check открытых интерфейсов и закрывает BUI при выходе из радиуса.
+`SharedUserInterfaceSystem` does a range-check of open interfaces and closes the BUI when leaving the radius.
 
-Управляй этим через `InterfaceData.InteractionRange` и, при необходимости, через `BoundUserInterfaceCheckRangeEvent`.
+Manage this through `InterfaceData.InteractionRange` and, if necessary, through `BoundUserInterfaceCheckRangeEvent`.
 
-Паттерн:
-- ставь разумный `InteractionRange` для физически близких устройств.
+Pattern:
+- set a reasonable `InteractionRange` for physically close devices.
 
-Анти-паттерн:
-- без причины выставлять большой range и получать “дистанционное управление всем”.
+Anti-pattern:
+- set a large range for no reason and get “remote control of everything”.
 
-## Критические паттерны
+## Critical patterns
 
-- `UiKey`/messages/state держи в shared и делай строго типизированными.
-- UI-кнопки поднимают сообщения; бизнес-логика живёт в системе, не в окне.
-- Для предикции сначала пробуй component-state + `AfterAutoHandleStateEvent`.
-- Обновляй UI только если он реально открыт (`TryGetOpenUi`).
-- Используй `this.CreateWindow<T>()` для корректного lifecycle окна.
-- Подписки на BUI-события группируй через `Subs.BuiEvents`.
+- Keep `UiKey`/messages/state in shared and make it strictly typed.
+- UI buttons raise messages; business logic lives in the system, not in the window.
+- For prediction, first try component-state + `AfterAutoHandleStateEvent`.
+- Update the UI only if it is actually open (`TryGetOpenUi`).
+- Use `this.CreateWindow<T>()` for the correct lifecycle window.
+- Group subscriptions to BUI events using `Subs.BuiEvents`.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Дублировать одни и те же данные и в компоненте, и в большом BUI-state без причины.
-- Прямо менять компоненты из окна/контрола, обходя сообщения.
-- Спамить `SetUiState` каждый кадр без guard-проверок изменений.
-- Игнорировать валидацию ввода и range-ограничения.
-- Смешивать BUI и EUI в одном сценарии без архитектурной причины.
+- Duplicate the same data in both the component and the large BUI-state for no reason.
+- Directly change components from the window/control, bypassing messages.
+- Spam `SetUiState` every frame without guard change checks.
+- Ignore input validation and range restrictions.
+- Mix BUI and EUI in the same scenario for no architectural reason.
 
-## Чеклист перед PR
+## Checklist before PR
 
-- Ключ UI зарегистрирован и в `UserInterface`, и в `ActivatableUI`.
-- Сообщения `BoundUserInterfaceMessage` минимальные и domain-driven.
-- Серверная система валидирует и обрабатывает сообщения через BUI-events.
-- Клиентский BUI не содержит бизнес-логики, только отображение и отправку ввода.
-- Для предикции используется `SendPredictedMessage`, где это нужно.
-- Нет лишнего сетевого дубляжа state-данных.
+- The UI key is registered in both `UserInterface` and `ActivatableUI`.
+- `BoundUserInterfaceMessage` messages are minimal and domain-driven.
+- The server system validates and processes messages through BUI-events.
+- The client BUI does not contain business logic, only displaying and sending input.
+- For prediction, `SendPredictedMessage` is used where necessary.
+- There is no unnecessary network duplication of state data.
 

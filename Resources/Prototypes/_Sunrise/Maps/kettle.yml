@@ -1,7 +1,7 @@
 - type: gameMap
   id: Kettle
   mapName: 'Kettle'
-  mapPath: /Maps/_Sunrise/Station/kettle.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/kettle.yml
   minPlayers: 35
   stations:
     Kettle:

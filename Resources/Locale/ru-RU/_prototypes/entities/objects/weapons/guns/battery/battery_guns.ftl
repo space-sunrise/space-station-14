@@ -65,3 +65,7 @@ ent-XenoborgLaserGun = лазерная пушка ксеноборга
     .desc = { ent-WeaponAdvancedLaser.desc }
 ent-XenoborgHeavyLaserGun = тяжелая лазерная пушка ксеноборга
     .desc = { ent-WeaponAdvancedLaser.desc }
+ent-WeaponLaserGunXenoborg = { ent-XenoborgLaserGun }
+    .desc = { ent-XenoborgLaserGun.desc }
+ent-WeaponLaserCannonXenoborg = { ent-XenoborgHeavyLaserGun }
+    .desc = { ent-XenoborgHeavyLaserGun.desc }

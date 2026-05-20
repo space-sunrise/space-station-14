@@ -7,7 +7,7 @@
   - SunriseSecurityBackpack
   - SecurityBelt
   - SunriseHeadofSecurityOuterClothing
-  - SecurityShoes
+  - SunriseSecurityShoes
   - SunriseSurvivalSecurity
   - SunriseTrinkets
   - HeadofSecurityJobTrinkets
@@ -27,7 +27,7 @@
   - SunriseSecurityBackpack
   - SecurityBelt
   - SunriseWardenOuterClothing
-  - SecurityShoes
+  - SunriseSecurityShoes
   - SunriseSurvivalSecurity
   - SunriseTrinkets
   - WardenJobTrinkets
@@ -46,8 +46,8 @@
   - SunriseSecurityJumpsuit
   - SunriseSecurityBackpack
   - SecurityGlasses
-  - SecurityOuterClothing
-  - SecurityShoes
+  - SunriseSecurityOuterClothing
+  - SunriseSecurityShoes
   - SecurityPDA
   - SecurityBelt
   - SunriseSurvivalSecurity
@@ -69,7 +69,7 @@
   - DetectiveJumpsuit
   - SunriseSecurityBackpack
   - SunriseDetectiveOuterClothing
-  - SecurityShoes
+  - SunriseSecurityShoes
   - SunriseSurvivalSecurity
   - SunriseTrinkets
   - DetectiveJobTrinkets

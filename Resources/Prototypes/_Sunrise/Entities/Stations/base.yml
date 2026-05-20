@@ -35,7 +35,7 @@
   abstract: true
   components:
   - type: StationTransitHub
-    map: /Maps/_Sunrise/Nonstations/transit_hub.yml
+    map: /Maps/_Sunrise/Nonstations/transit_hub_big.yml # Временно, пока не домапят
     biomes:
     - PlainGrasslands
     - PlainLowDesert
@@ -111,3 +111,15 @@
   abstract: true
   components:
   - type: StationMessengerSpam
+
+- type: entity
+  id: BaseStationCriminalRecords
+  abstract: true
+  components:
+  - type: StationCriminalRecords
+
+- type: entity
+  id: BaseStationCorporateLaw
+  abstract: true
+  components:
+  - type: StationCorporateLaw

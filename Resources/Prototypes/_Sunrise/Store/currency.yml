@@ -32,3 +32,10 @@
   cash:
     1: SpaceCash
   canWithdraw: true
+
+- type: currency
+  id: SalvageTicket
+  displayName: materials-unit-tickets
+  cash:
+    1: SalvageTicket
+  canWithdraw: true

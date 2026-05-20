@@ -1,0 +1,194 @@
+- type: entity
+  id: OverlayPlatform
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformCorner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_corner
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformCornerSmall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_deco
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformStairRight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformStairLeft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformDark
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_dark
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformCornerDark
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_corner_dark
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformCornerSmallDark
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_deco_dark
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformStairRightDark
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_dark
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformStairLeftDark
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_dark
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformWood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_wood
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformCornerWood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_corner_wood
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformCornerSmallWood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_deco_wood
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformStairRightWood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_wood
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: OverlayPlatformStairLeftWood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms_overlay.rsi
+    state: platform_wood
+    drawdepth: Items
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu

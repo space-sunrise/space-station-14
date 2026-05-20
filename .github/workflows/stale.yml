@@ -1,0 +1,38 @@
+name: Управление Issue (Stale)
+
+on:
+  schedule:
+  - cron: '0 0 * * *' # Запускается каждый день в полночь по UTC
+  issue_comment:
+    types: [created] # Запускается, если автор ответил
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  manage-issues:
+    runs-on: ubuntu-latest
+    steps:
+    # Обработка ишью с меткой "Needs Info"
+    - name: Close issues needing info if no reply
+      uses: actions/stale@v8
+      with:
+        days-before-stale: 14        # Дней до первого предупреждения
+        days-before-close: 7         # Дней до закрытия после предупреждения
+        stale-issue-label: 'Stale'   # Лейбл, который вешает бот
+        only-labels: 'Needs Info'    # Бот реагирует ТОЛЬКО на ишью с этим лейблом
+        stale-issue-message: 'В этом issue запрошена дополнительная информация, но ответа долго не было. Оно будет закрыто через 7 дней, если не последует ответа. Пожалуйста, предоставьте нужные данные, чтобы мы могли помочь!'
+        close-issue-message: 'Это issue было закрыто из-за отсутствия запрошенной информации. Если проблема все еще актуальна, пожалуйста, откройте его заново с нужными деталями.'
+        remove-stale-when-updated: true # Снять лейбл 'Stale', если автор ответил
+
+    # Общая очистка ОЧЕНЬ старых ишью (опционально)
+    - name: Stale old inactive issues
+      uses: actions/stale@v8
+      with:
+        days-before-stale: 90
+        days-before-close: 14
+        stale-issue-label: 'Inactive'
+        exempt-issue-labels: 'Pinned, Confirmed, Blocked, WIP' # Какие метки бот игнорирует
+        stale-issue-message: 'В этом issue не было активности последние 90 дней. Оно помечается как Inactive. Оставьте комментарий, если это все еще актуально.'
+        close-issue-message: 'Закрыто из-за длительной неактивности.'

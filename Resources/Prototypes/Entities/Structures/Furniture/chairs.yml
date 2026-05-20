@@ -58,6 +58,8 @@
   id: UnanchoredChairBase
   parent: SeatBase
   abstract: true
+  placement:
+    mode: SnapgridCenter # Sunrise-Edit - place chairs on tiles by default
   components:
   - type: Anchorable
   - type: Rotatable
@@ -357,6 +359,8 @@
   id: ChairFolding
   name: folding chair
   description: If you carry six of these you become the coolest kid at church.
+  placement:
+    mode: SnapgridCenter # Sunrise-Edit - place chairs on tiles by default
   components:
   - type: Rotatable
   - type: Sprite

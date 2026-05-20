@@ -1,4 +1,52 @@
-﻿#liver
+- type: entity
+  abstract: true
+  parent: SurgeryStepBase
+  id: BaseSunriseSurgeryStepScalpel
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  abstract: true
+  parent: SurgeryStepBase
+  id: BaseSunriseSurgeryStepHemostat
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+
+- type: entity
+  abstract: true
+  parent: SurgeryStepBase
+  id: BaseSunriseSurgeryStepCautery
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Cautery
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+
+- type: entity
+  abstract: true
+  parent: SurgeryStepBase
+  id: BaseSunriseSurgeryStepRetractor
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Retractor
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: retractor
+
+#liver
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepLocateLiver
@@ -11,30 +59,20 @@
     state: liver
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampLiverVessels
   name: Clamp Liver Vessels
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveLiver
   name: Remove Liver
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
@@ -54,30 +92,20 @@
     state: appendix
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampAppendix
   name: Clamp Appendix
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveAppendix
   name: Remove Appendix
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
@@ -98,30 +126,20 @@
       - state: kidney-r
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampKidneysVessels
   name: Clamp Kidneys Vessels
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveKidneys
   name: Remove Kidneys
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
@@ -140,30 +158,20 @@
     state: stomach
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampStomachVessels
   name: Clamp Stomach Vessels
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveStomach
   name: Remove Stomach
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
@@ -183,30 +191,20 @@
     state: lung-l
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampLungVessels
   name: Clamp Lung Vessels
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveLungs
   name: Remove Lungs
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
@@ -226,30 +224,20 @@
     state: heart-on
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampHeartVessels
   name: Clamp Heart Vessels
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveHeart
   name: Remove Heart
   components:
   - type: SurgeryStep
     duration: 6
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
@@ -269,34 +257,24 @@
       - state: eyeball-r
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampOpticNerve
   name: Clamp Optic Nerve
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveEyes
   name: Remove Eye
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganEyes
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 # eye implants
 - type: entity
@@ -312,124 +290,84 @@
       - state: eye_implant_welding
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepRemoveEyeImplant
   name: Remove Eye Implant
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
     - type: EyeImplant
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 # tongue
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepGrabTongue
   name: Grab Tongue
   components:
   - type: SurgeryStep
     duration: 2
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepCutTongue
   name: Cut Tongue
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganTongue
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 # brain
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepCautery
   id: SurgeryStepPreparePatient
   name: Prepare Patient
   components:
   - type: SurgeryStep
     duration: 2
-    tools:
-    - type: Cautery
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
-    state: cautery
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepShaveHead
   name: Shave Head
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepCautery
   id: SurgeryStepDisinfectScalp
   name: Disinfect Scalp
   components:
   - type: SurgeryStep
     duration: 2
-    tools:
-    - type: Cautery
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
-    state: cautery
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepMakeIncisionScalp
   name: Make Scalp Incision
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
   - type: SurgeryStepBleedEffect
     damage:
       types:
         Slash: 10
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepRetractor
   id: SurgeryStepRetractScalp
   name: Retract Scalp Flap
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Retractor
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: retractor
   - type: SurgeryStepEmoteEffect
 
 - type: entity
@@ -465,115 +403,80 @@
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepRetractor
   id: SurgeryStepRemoveBoneFlap
   name: Remove Bone Flap
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Retractor
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: retractor
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepClampDuraMater
   name: Clamp Dura Mater
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepInciseDuraMater
   name: Incise Dura Mater
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Scalpel
   - type: SurgeryStepBleedEffect
     damage:
       types:
         Slash: 10
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepRetractor
   id: SurgeryStepRetractDuraMater
   name: Retract Dura Mater
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Retractor
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: retractor
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepSeverCranialNerves
   name: Sever Cranial Nerves
   components:
   - type: SurgeryStep
     duration: 6
-    tools:
-    - type: Scalpel
   - type: SurgeryStepBleedEffect
     damage:
       types:
         Slash: 10
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
   - type: SurgeryStepEmoteEffect
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepRetractor
   id: SurgeryStepExtractBrain
   name: Extract Brain
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Retractor
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganBrain
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: retractor
   - type: SurgeryStepEmoteEffect
 
 # Implant
 # liver
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteLiver
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase
@@ -591,32 +494,22 @@
     slot: liver
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepConnectLiverVessels
   name: Connect Liver Vessels
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 # kidneys
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteKidneys
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase
@@ -636,32 +529,22 @@
     slot: kidneys
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepConnectKidneysVessels
   name: Connect Kidneys Vessels
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 # stomach
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteStomach
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase
@@ -679,32 +562,22 @@
     slot: stomach
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepConnectStomachVessels
   name: Connect Stomach Vessels
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 # lungs
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteLungs
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase
@@ -722,32 +595,22 @@
     slot: lungs
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepConnectLungVessels
   name: Connect Lung Vessels
   components:
   - type: SurgeryStep
     duration: 5
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 # heart
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteHeart
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase
@@ -765,32 +628,22 @@
     slot: heart
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepConnectHeartVessels
   name: Connect Heart Vessels
   components:
   - type: SurgeryStep
     duration: 10
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 # eyes
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteEyes
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 2
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase
@@ -810,17 +663,12 @@
       - state: eyeball-r
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepConnectOpticNerve
   name: Connect Optic Nerve
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 # eye implants
 
@@ -843,17 +691,12 @@
 # tongue
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteTongue
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 2
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase
@@ -871,59 +714,39 @@
     state: tongue
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepAttachTongue
   name: Attach Tongue
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Hemostat
   - type: SurgeryStepEmoteEffect
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 # brain
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepCautery
   id: SurgeryStepCleanImplantSite
   name: Clean Implant Site
   components:
   - type: SurgeryStep
     duration: 2
-    tools:
-    - type: Cautery
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
-    state: cautery
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareScalp
   name: Prepare Scalp
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepCautery
   id: SurgeryStepPrepareDuraMater
   name: Prepare Dura Mater
   components:
   - type: SurgeryStep
     duration: 2
-    tools:
-    - type: Cautery
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
-    state: cautery
 
 - type: entity
   parent: SurgeryStepBase
@@ -941,43 +764,28 @@
     state: brain
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepHemostat
   id: SurgeryStepReconnectCranialNerves
   name: Reconnect Cranial Nerves
   components:
   - type: SurgeryStep
     duration: 6
-    tools:
-    - type: Hemostat
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: hemostat
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepRetractor
   id: SurgeryStepReplaceDuraMater
   name: Replace Dura Mater
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Retractor
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: retractor
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepCautery
   id: SurgeryStepSealDuraMater
   name: Seal Dura Mater
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Cautery
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
-    state: cautery
 
 - type: entity
   parent: SurgeryStepBase
@@ -1006,30 +814,20 @@
     state: bone-gel
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepRetractor
   id: SurgeryStepReplaceScalp
   name: Replace Scalp
   components:
   - type: SurgeryStep
     duration: 3
-    tools:
-    - type: Retractor
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    state: retractor
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepCautery
   id: SurgeryStepSutureScalp
   name: Suture Scalp Incision
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Cautery
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
-    state: cautery
   - type: SurgeryClearProgress
 
 # - type: entity
@@ -1081,17 +879,12 @@
     slot: cavity
 
 - type: entity
-  parent: SurgeryStepBase
+  parent: BaseSunriseSurgeryStepScalpel
   id: SurgeryStepPrepareImplantSiteCavity
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 4
-    tools:
-    - type: Scalpel
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    state: scalpel
 
 - type: entity
   parent: SurgeryStepBase

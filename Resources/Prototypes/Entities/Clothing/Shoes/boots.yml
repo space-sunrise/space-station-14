@@ -59,6 +59,11 @@
     sprite: Clothing/Shoes/Boots/combatboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/combatboots.rsi
+  # Sunrise - Start
+  - type: Tag
+    tags:
+    - NoXeno
+  # Sunrise - End
 
 - type: entity
   parent: ClothingShoesMilitaryBase
@@ -80,6 +85,11 @@
       params:
         volume: -6
         variation: 0.09
+  # Sunrise - Start
+  - type: Tag
+    tags:
+    - NoXeno
+  # Sunrise - End
 
 - type: entity
   parent: [ ClothingShoesMilitaryBase ]
@@ -91,6 +101,11 @@
     sprite: Clothing/Shoes/Boots/mercboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/mercboots.rsi
+  # Sunrise - Start
+  - type: Tag
+    tags:
+    - NoXeno
+  # Sunrise - End
 
 - type: entity
   parent: ClothingShoesBaseButcherable

@@ -69,6 +69,11 @@ public sealed class MessengerUiState : BoundUserInterfaceState
     /// </summary>
     public Dictionary<string, PhotoMetadata>? PhotoGallery { get; }
 
+    /// <summary>
+    /// Разрешена ли отправка фотографий
+    /// </summary>
+    public bool PhotoSendingEnabled { get; }
+
     public MessengerUiState(
         bool isRegistered,
         bool serverAvailable,
@@ -81,7 +86,8 @@ public sealed class MessengerUiState : BoundUserInterfaceState
         Dictionary<string, int> unreadCounts,
         List<MessengerGroupInvite> activeInvites,
         HashSet<string> pinnedChats,
-        Dictionary<string, PhotoMetadata>? photoGallery = null)
+        Dictionary<string, PhotoMetadata>? photoGallery = null,
+        bool photoSendingEnabled = true)
     {
         IsRegistered = isRegistered;
         ServerAvailable = serverAvailable;
@@ -95,5 +101,6 @@ public sealed class MessengerUiState : BoundUserInterfaceState
         ActiveInvites = activeInvites;
         PinnedChats = pinnedChats;
         PhotoGallery = photoGallery;
+        PhotoSendingEnabled = photoSendingEnabled;
     }
 }

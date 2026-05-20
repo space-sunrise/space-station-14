@@ -87,3 +87,21 @@
     - MindRoleGhostRoleSilicon
   - type: GhostRoleMobSpawner
     prototype: PlayerBorgSyndicateSaboteurBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgChassisSpider
+  name: syndicate infiltrator reinforcement radio
+  description: Call in a well armed assault cyborg, instantly!
+  suffix: NukeOps
+  components:
+  - type: GhostRole
+    name: ghost-role-information-syndicate-spider-cyborg-name
+    description: ghost-role-information-syndicate-spider-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleSilicon
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgChassisSyndicateSpiderBattery

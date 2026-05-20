@@ -1,155 +1,155 @@
 ---
 name: ss14-localization-code
-description: Руководство по использованию локализации в C# коде Space Station 14. Описывает ILocalizationManager, LocId и правильные паттерны внедрения зависимостей.
+description: A guide to using localization in Space Station 14 C# code. Describes the ILocalizationManager, LocId, and proper dependency injection patterns.
 ---
 
 # SS14 Localization in Code (Russian)
 
-Этот скилл описывает правила работы с локализацией (`ILocalizationManager`) в C# коде Space Station 14.
+This skill describes the rules for working with localization (`ILocalizationManager`) in the C# code of Space Station 14.
 
-## 1. Получение локализации: String vs LocId
+## 1. Getting localization: String vs LocId
 
 ### LocId (Localization Identifier)
-В современном коде SS14 для хранения ключей локализации следует использовать структуру `LocId` вместо чистого `string`. Это позволяет статическим анализаторам проверять существование ключей.
+In modern SS14 code, the `LocId` structure should be used to store locale keys instead of a pure `string`. This allows static analyzers to check the existence of keys.
 
 ```csharp
-// ✅ Хорошо: Используем LocId в компонентах и событиях
+// ✅ Good: Using LocId in components and events
 [DataDefinition]
 public partial struct ExaminedEvent
 {
     public LocId Message;
 }
 
-// ❌ Плохо: Использование string для ключей локализации
+// ❌ Bad: Using string for localization keys
 public string Message;
 ```
 
-### Форматирование строк
-Для подстановки переменных в FTL сообщения используются кортежи `(string key, object value)`.
+### Formatting strings
+To substitute variables in the FTL message, `(string key, object value)` tuples are used.
 
 ```csharp
 // FTL:
-// my-message = Привет, { $name }! У тебя { $count } монет.
+// my-message = Hello, { $name }! You have { $count } coins.
 
 // C#:
 var msg = _loc.GetString("my-message", ("name", "Urist"), ("count", 10));
 ```
 
-## 2. Использование LocalizationManager
+## 2. Using LocalizationManager
 
-Единственный верный способ работы с локализацией в системах (`EntitySystem`) и контроллерах — через внедрение зависимостей (Dependency Injection).
+The only correct way to work with localization in systems (`EntitySystem`) and controllers is through Dependency Injection.
 
-### ✅ Паттерн: Dependency Injection
+### ✅ Pattern: Dependency Injection
 
 ```csharp
 using Robust.Shared.Localization;
 
 public sealed class MyNotSystem : SomeBaseClass
 {
-    // Внедряем менеджер через атрибут [Dependency]
+    // We implement the manager through the [Dependency] attribute
     [Dependency] private readonly ILocalizationManager _loc = default!;
 
     public void DoSomething()
     {
-        // Используем внедренный инстанс
+        // Using an embedded instance
         var text = _loc.GetString("my-localization-key");
     }
 }
 ```
 
-### 🚫 Анти-паттерн: Ручное Dependency Injection в EntitySystem
-`EntitySystem` уже имеют `ILocalizationManager` с именем `Loc`. Дополнительно создавать его самому - НЕ ТРЕБУЕТСЯ
+### 🚫 Anti-pattern: Manual Dependency Injection into EntitySystem
+`EntitySystem` already have a `ILocalizationManager` named `Loc`. Additionally, creating it yourself is NOT REQUIRED
 
-### 🚫 Анти-паттерн: Ручное разрешение зависимостей (Manual Resolve)
-Никогда не используйте `IoCManager.Resolve<T>()` внутри систем или методов, где можно использовать `[Dependency]`. Это нарушает принцип инверсии управления и усложняет тестирование.
+### 🚫 Anti-pattern: Manual Resolve
+Never use `IoCManager.Resolve<T>()` inside systems or methods where `[Dependency]` can be used. This violates the principle of inversion of control and complicates testing.
 
 ```csharp
-// ❌ ОЧЕНЬ ПЛОХО
+// ❌ VERY BAD
 public void BadMethod()
 {
-    var loc = IoCManager.Resolve<ILocalizationManager>(); // НЕТ!
+    var loc = IoCManager.Resolve<ILocalizationManager>(); // NO!
     loc.GetString("...");
 }
 ```
 
-### 🚫 Анти-паттерн: Статический класс Loc
-Класс `Loc` является статической оберткой над `ILocalizationManager`. Его использование в `EntitySystem` считается **устаревшим** (deprecated) и нежелательным, так как это скрытая зависимость.
+### 🚫 Anti-pattern: Static class Loc
+The `Loc` class is a static wrapper around `ILocalizationManager`. Its use in `EntitySystem` is considered **deprecated** and deprecated because it is a hidden dependency.
 
 ```csharp
-// ❌ Плохо (внутри систем)
+// ❌ Poor (within systems)
 var text = Loc.GetString("my-key");
 
-// ✅ Хорошо
+// ✅ Okay
 var text = _loc.GetString("my-key");
 ```
 
-**Исключение:** Статический `Loc` допустим только в тех местах, где невозможно внедрение зависимостей (например, статические утилитные методы, методы расширения без доступа к IoC), но даже там лучше передавать `ILocalizationManager` как аргумент метода.
+**Exception:** Static `Loc` is only valid in places where dependency injection is not possible (e.g. static utility methods, extension methods without IoC access), but even there it is better to pass `ILocalizationManager` as a method argument.
 
-### 🚫 Анти-паттерн: Конкатенация строк
-Никогда не склеивайте локализованные строки с переменными через `+` или `$` (интерполяцию).
-Порядок слов в разных языках отличается (SVO vs SOV). Fluent поддерживает безопасную подстановку аргументов.
+### 🚫 Anti-pattern: String concatenation
+Never concatenate localized strings with variables via `+` or `$` (interpolation).
+Word order differs in different languages ​​(SVO vs SOV). Fluent supports safe argument substitution.
 
 ```csharp
-// ❌ ПЛОХО: Ломает грамматику других языков
-var text = "Игрок " + _loc.GetString("traitor-title") + " победил!";
+// ❌ BAD: Breaks the grammar of other languages
+var text = "Player " + _loc.GetString("traitor-title") + " won!";
 
-// ✅ ХОРОШО: Передаем аргументы в FTL
-// traitor-win-msg = Игрок { $role } победил!
+// ✅ GOOD: Passing arguments to FTL
+// traitor-win-msg = Player { $role } wins!
 var text = _loc.GetString("traitor-win-msg", ("role", roleName));
 ```
 
-## 3. Автоматическая локализация сущностей
+## 3. Automatic entity localization
 
-Вам не нужно вручную получать имя сущности через `_loc.GetString("ent-...")`.
-Свойства `Name` и `Description` в `EntityPrototype` и компоненте `MetaData` уже делают это за вас.
+You don't need to manually get the entity name via `_loc.GetString("ent-...")`.
+The `Name` and `Description` properties in `EntityPrototype` and the `MetaData` component already do this for you.
 
 ```csharp
-// Получение локализованного имени сущности
-var name = Identity.Name(uid, EntityManager); // Учитывает ID карты, маскировку и т.д.
-// ИЛИ (сырое имя прототипа)
-var protoName = prototype.Name; // Уже локализовано
+// Getting the localized name of an entity
+var name = Identity.Name(uid, EntityManager); // Takes into account ID cards, masking, etc.
+// OR (raw prototype name)
+var protoName = prototype.Name; // Already localized
 ```
 
-## 4. Грамматические атрибуты (Gender)
+## 4. Grammatical attributes (Gender)
 
-При передаче сущностей в сообщения локализации, движок автоматически пытается определить пол и имя. Чтобы это работало корректно, передавайте саму сущность (`EntityUid`), а не просто её имя строкой.
+When passing entities to localization messages, the engine automatically tries to determine the gender and name. For this to work correctly, pass the entity itself (`EntityUid`), and not just its name as a string.
 
 ```csharp
 // FTL:
-// emote-jump = { THE($entity) } прыгает!
+// emote-jump = { THE($entity) } jumps!
 
 // C#:
-// ✅ Хорошо: Передаем EntityUid, движок найдет пол и имя
+// ✅ Good: Pass the EntityUid, the engine will find the gender and name
 _loc.GetString("emote-jump", ("entity", uid));
 
-// ❌ Плохо: Передаем просто имя, функции THE() и GENDER() не сработают
+// ❌ Bad: We just pass the name, the THE() and GENDER() functions will not work
 _loc.GetString("emote-jump", ("entity", Name(uid)));
 ```
 
-## Примеры из кода
+## Code examples
 
-### Регистрация компонента с LocId
+### Registering a component with LocId
 
 ```csharp
 [RegisterComponent]
 public sealed partial class VendingMachineComponent : Component
 {
     [DataField]
-    public LocId DenyMessage = "vending-machine-deny"; // Значение по умолчанию
+    public LocId DenyMessage = "vending-machine-deny"; // Default value
 }
 ```
 
-### Использование в системе
+### Use in the system
 
 ```csharp
 public sealed class VendingMachineSystem : EntitySystem
 {
-    // Не импортируем ILocalizationManager, так как он встроен в EntitySystem как Loc
+    // We do not import ILocalizationManager, since it is built into EntitySystem as Loc
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public void OnDeny(Entity<VendingMachineComponent> ent)
     {
-        // Получаем строку из компонента и показываем попап
+        // We get a string from the component and show the popup
         var msg = Loc.GetString(ent.Comp.DenyMessage);
         _popup.PopupEntity(msg, ent, PopupType.Small);
     }

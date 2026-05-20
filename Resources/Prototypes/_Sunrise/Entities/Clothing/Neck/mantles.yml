@@ -85,3 +85,27 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/captain_mantle_black_shoulder.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Neck/Mantles/captain_mantle_black_shoulder.rsi
+
+- type: entity
+  parent: ClothingCloakBase
+  id: ClothingNeckMantleGoliathAlive
+  name: alive mantle
+  description: What is it? This... thing looks both mesmerizing and terrifying. It gives off a faint warmth, and… It’s clearly staring at me. WITH A LUST FOR THE FLESH
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Mantles/goliathalivemantle.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Mantles/goliathalivemantle.rsi
+    quickEquip: true
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadMantleGoliathAliveHelmet
+    action: GoliathHoodToggleAction
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Appearance

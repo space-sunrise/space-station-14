@@ -42,6 +42,7 @@
       - HighRiskItem # no hiding objectives or trolling nukies
       - FakeNukeDisk # no disk checking
       - QuantumSpinInverter # avoid the morbillionth QSI bug
+      - Payload # Sunrise-Edit no hiding objectives or trolling nukies. Fuk u matushov
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
