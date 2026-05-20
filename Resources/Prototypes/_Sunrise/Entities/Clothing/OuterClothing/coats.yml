@@ -609,6 +609,8 @@
     sprite: _Sunrise/Secred/OuterClothing/Coats/warden.rsi
   - type: Clothing
     sprite: _Sunrise/Secred/OuterClothing/Coats/warden.rsi
+
+- type: entity
   parent: ClothingOuterCoatHoSTrench
   id: ClothingOuterCoatArbiter
   name: arbiter coat

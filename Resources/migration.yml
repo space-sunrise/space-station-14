@@ -498,6 +498,10 @@ DungeonMasterCircuitBoard: GameMasterCircuitBoard
 # 2024-12-12
 FloraRockSolid01: FloraRockSolid
 FloraRockSolid02: FloraRockSolid
+
+# 2024-12-20 - Sunrise-Edit
+# Migrate VendingMachineSecDrobe to our custom Sunrise version
+VendingMachineSecDrobe: VendingMachineSecDrobeSunrise
 FloraRockSolid03: FloraRockSolid
 FloraStalagmite1: FloraStalagmite
 FloraStalagmite2: FloraStalagmite
