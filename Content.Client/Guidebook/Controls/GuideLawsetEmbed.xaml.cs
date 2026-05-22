@@ -55,8 +55,11 @@ public sealed partial class GuideLawsetEmbed : Control, IDocumentTag, ISearchabl
             {
                 Margin = new(0, 5, 0, 1)
             };
+            // Sunrise-Edit start - Allow scramble tags in guidebook lawsets
             var locLawStatement = Loc.GetString("laws-number-wrapper", ("lawnumber", i), ("lawstring", locLawString));
-            lawN.SetMarkup(locLawStatement);
+            // lawN.SetMarkup(locLawStatement);
+            lawN.SetMessage(FormattedMessage.FromMarkupPermissive(locLawStatement), tagsAllowed: null);
+            // Sunrise-Edit end
             LawsetContainer.AddChild(lawN);
 
             i++;

@@ -1,894 +1,3330 @@
-# words/phrases that are used to build ion storm laws
+﻿# words/phrases that are used to build ion storm laws
 # 99% of this is just taken from tg and had sussy bits removed
 
 # not using uppercased version adjectives dataset since getting christmas-stealing as a syndicate codeword would suck
 - type: dataset
   id: IonStormAdjectives
   values:
-  - ADORABLE
-  - ANNOYING
-  - BATTERY-OPERATED
-  - BLOODY
-  - BLUE
-  - BORED
-  - BOUNCING
-  - BRASS
-  - BURNING
-  - CHEESE-EATING
+# Sunrise-Edit start - Original value: ADORABLE
+# ADORABLE
+- ion-storm--adorable
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ANNOYING
+# ANNOYING
+- ion-storm--annoying
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BATTERY-OPERATED
+# BATTERY-OPERATED
+- ion-storm--battery-operated
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BLOODY
+# BLOODY
+- ion-storm--bloody
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BLUE
+# BLUE
+- ion-storm--blue
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BORED
+# BORED
+- ion-storm--bored
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOUNCING
+# BOUNCING
+- ion-storm--bouncing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRASS
+# BRASS
+- ion-storm--brass
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BURNING
+# BURNING
+- ion-storm--burning
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHEESE-EATING
+# CHEESE-EATING
+- ion-storm--cheese-eating
+# Sunrise-Edit end
 #  - CHRISTMAS-STEALING # todo: bring back Dec 1st
-  - CLOWN-POWERED
-  - CLOWN
-  - COLORFUL
-  - COMMITTED
-  - COTTONY
-  - CUBAN
-  - DEADLY
-  - DELICIOUS
-  - DEPRESSING
-  - DERANGED
-  - DIGITAL
-  - DISEASED
-  - DRAB
-  - DRY
-  - DULL
-  - ELECTRICAL
-  - EMPTY
-  - ETHEREAL
-  - EVIL
-  - EXPIRED
-  - EXPLOSIVE
-  - FAST
-  - FAT
-  - FERAL
-  - FICTIONAL
-  - FIRM
-  - FRESH
-  - FRIENDLY
-  - FROZEN
-  - GANGSTA
-  - GLOWING
-  - GOOD
-  - HAPPY
-  - HARD
-  - HARMFUL
-  - HEALTHY
-  - HIGHLY-SPECIFIC
-  - HILARIOUS
-  - HONKING
-  - HORRIFYING
-  - HUNGRY
-  - HYPERACTIVE
-  - ICY
-  - ILL
-  - ILLEGAL
-  - IMAGINARY
-  - IMPERFECT
-  - IMPOLITE
-  - IMPORTANT
-  - INHOSPITABLE
-  - INSIDIOUS
-  - INSULTING
-  - INTELLIGENT
-  - INVISIBLE
-  - LARGE
-  - LIGHT
-  - LOUD
-  - MASKED
-  - MEAN
-  - MECHANICAL
-  - MEMETIC
-  - METALLIC
-  - MICROSCOPIC
-  - MIND-SHATTERING
-  - MOIST
-  - MUSICAL
-  - NERDY
-  - NUCLEAR
-  - OBSCENE
-  - OFFICIAL
-  - OPAQUE
-  - ORGANIC
-  - PAINFUL
-  - PEACEFUL
-  - POISONOUS
-  - POLISHED
-  - POLITE
-  - POLITICAL
-  - POORLY DRAWN
-  - PROFESSIONAL
-  - QUIET
-  - RADIOACTIVE
-  - RAGING
-  - RAPIDLY-EXPANDING
-  - REDACTED
-  - REVOLUTIONARY
-  - RIDICULOUS
-  - ROBOTIC
-  - ROBUST
-  - ROUGH
-  - RUDE
-  - SAD
-  - SANITARY
-  - SHAKING
-  - SILLY
-  - SLOW
-  - SLUG-LIKE # wawa
-  - SMELLY
-  - SMOOTH
-  - SOFT
-  - SOLAR-POWERED
-  - SOPPING
-  - SLIPPERY
-  - SPACE
-  - SPESS
-  - SPINNING
-  - SPOILING
-  - STEALTHY
-  - SUSPICIOUS # among
-  - SWEARING
-  - SYNDIE-LOVING
-  - TACTICAL
-  - TACTICOOL
-  - SYNDICATE
-  - THERMONUCLEAR
-  - TINY
-  - TRANSPARENT
-  - TWISTED
-  - UGLY
-  - UNATTRACTIVE
-  - UNDULATING
-  - UNEARTHLY
-  - UNFRIENDLY
-  - UNHEALTHY
-  - UNIDENTIFIED
-  - UNINVITED
-  - UNPROFESSIONAL
-  - UNSANITARY
-  - UNSTABLE
-  - UNWANTED
-  - VIOLENT
-  - VITAL
-  - WARM
-  - WATERY
-  - WEIRD
-  - WOBBLY
-  - WOODEN
+# Sunrise-Edit start - Original value: CLOWN-POWERED
+# CLOWN-POWERED
+- ion-storm--clown-powered
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWN
+# CLOWN
+- ion-storm--clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COLORFUL
+# COLORFUL
+- ion-storm--colorful
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMMITTED
+# COMMITTED
+- ion-storm--committed
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COTTONY
+# COTTONY
+- ion-storm--cottony
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CUBAN
+# CUBAN
+- ion-storm--cuban
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DEADLY
+# DEADLY
+- ion-storm--deadly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DELICIOUS
+# DELICIOUS
+- ion-storm--delicious
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DEPRESSING
+# DEPRESSING
+- ion-storm--depressing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DERANGED
+# DERANGED
+- ion-storm--deranged
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DIGITAL
+# DIGITAL
+- ion-storm--digital
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DISEASED
+# DISEASED
+- ion-storm--diseased
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DRAB
+# DRAB
+- ion-storm--drab
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DRY
+# DRY
+- ion-storm--dry
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DULL
+# DULL
+- ion-storm--dull
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ELECTRICAL
+# ELECTRICAL
+- ion-storm--electrical
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EMPTY
+# EMPTY
+- ion-storm--empty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ETHEREAL
+# ETHEREAL
+- ion-storm--ethereal
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EVIL
+# EVIL
+- ion-storm--evil
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EXPIRED
+# EXPIRED
+- ion-storm--expired
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EXPLOSIVE
+# EXPLOSIVE
+- ion-storm--explosive
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FAST
+# FAST
+- ion-storm--fast
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FAT
+# FAT
+- ion-storm--fat
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FERAL
+# FERAL
+- ion-storm--feral
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FICTIONAL
+# FICTIONAL
+- ion-storm--fictional
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIRM
+# FIRM
+- ion-storm--firm
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FRESH
+# FRESH
+- ion-storm--fresh
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FRIENDLY
+# FRIENDLY
+- ion-storm--friendly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FROZEN
+# FROZEN
+- ion-storm--frozen
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GANGSTA
+# GANGSTA
+- ion-storm--gangsta
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GLOWING
+# GLOWING
+- ion-storm--glowing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GOOD
+# GOOD
+- ion-storm--good
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAPPY
+# HAPPY
+- ion-storm--happy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HARD
+# HARD
+- ion-storm--hard
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HARMFUL
+# HARMFUL
+- ion-storm--harmful
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HEALTHY
+# HEALTHY
+- ion-storm--healthy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HIGHLY-SPECIFIC
+# HIGHLY-SPECIFIC
+- ion-storm--highly-specific
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HILARIOUS
+# HILARIOUS
+- ion-storm--hilarious
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HONKING
+# HONKING
+- ion-storm--honking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HORRIFYING
+# HORRIFYING
+- ion-storm--horrifying
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUNGRY
+# HUNGRY
+- ion-storm--hungry
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HYPERACTIVE
+# HYPERACTIVE
+- ion-storm--hyperactive
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ICY
+# ICY
+- ion-storm--icy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ILL
+# ILL
+- ion-storm--ill
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ILLEGAL
+# ILLEGAL
+- ion-storm--illegal
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IMAGINARY
+# IMAGINARY
+- ion-storm--imaginary
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IMPERFECT
+# IMPERFECT
+- ion-storm--imperfect
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IMPOLITE
+# IMPOLITE
+- ion-storm--impolite
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IMPORTANT
+# IMPORTANT
+- ion-storm--important
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INHOSPITABLE
+# INHOSPITABLE
+- ion-storm--inhospitable
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INSIDIOUS
+# INSIDIOUS
+- ion-storm--insidious
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INSULTING
+# INSULTING
+- ion-storm--insulting
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INTELLIGENT
+# INTELLIGENT
+- ion-storm--intelligent
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INVISIBLE
+# INVISIBLE
+- ion-storm--invisible
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LARGE
+# LARGE
+- ion-storm--large
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIGHT
+# LIGHT
+- ion-storm--light
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOUD
+# LOUD
+- ion-storm--loud
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MASKED
+# MASKED
+- ion-storm--masked
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEAN
+# MEAN
+- ion-storm--mean
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MECHANICAL
+# MECHANICAL
+- ion-storm--mechanical
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEMETIC
+# MEMETIC
+- ion-storm--memetic
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: METALLIC
+# METALLIC
+- ion-storm--metallic
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MICROSCOPIC
+# MICROSCOPIC
+- ion-storm--microscopic
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MIND-SHATTERING
+# MIND-SHATTERING
+- ion-storm--mind-shattering
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MOIST
+# MOIST
+- ion-storm--moist
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MUSICAL
+# MUSICAL
+- ion-storm--musical
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NERDY
+# NERDY
+- ion-storm--nerdy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NUCLEAR
+# NUCLEAR
+- ion-storm--nuclear
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OBSCENE
+# OBSCENE
+- ion-storm--obscene
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OFFICIAL
+# OFFICIAL
+- ion-storm--official
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OPAQUE
+# OPAQUE
+- ion-storm--opaque
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ORGANIC
+# ORGANIC
+- ion-storm--organic
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PAINFUL
+# PAINFUL
+- ion-storm--painful
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PEACEFUL
+# PEACEFUL
+- ion-storm--peaceful
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POISONOUS
+# POISONOUS
+- ion-storm--poisonous
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POLISHED
+# POLISHED
+- ion-storm--polished
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POLITE
+# POLITE
+- ion-storm--polite
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POLITICAL
+# POLITICAL
+- ion-storm--political
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POORLY DRAWN
+# POORLY DRAWN
+- ion-storm--poorly-drawn
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PROFESSIONAL
+# PROFESSIONAL
+- ion-storm--professional
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUIET
+# QUIET
+- ion-storm--quiet
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RADIOACTIVE
+# RADIOACTIVE
+- ion-storm--radioactive
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RAGING
+# RAGING
+- ion-storm--raging
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RAPIDLY-EXPANDING
+# RAPIDLY-EXPANDING
+- ion-storm--rapidly-expanding
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REDACTED
+# REDACTED
+- ion-storm--redacted
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REVOLUTIONARY
+# REVOLUTIONARY
+- ion-storm--revolutionary
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RIDICULOUS
+# RIDICULOUS
+- ion-storm--ridiculous
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROBOTIC
+# ROBOTIC
+- ion-storm--robotic
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROBUST
+# ROBUST
+- ion-storm--robust
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROUGH
+# ROUGH
+- ion-storm--rough
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RUDE
+# RUDE
+- ion-storm--rude
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SAD
+# SAD
+- ion-storm--sad
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SANITARY
+# SANITARY
+- ion-storm--sanitary
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHAKING
+# SHAKING
+- ion-storm--shaking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SILLY
+# SILLY
+- ion-storm--silly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SLOW
+# SLOW
+- ion-storm--slow
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SLUG-LIKE # wawa
+# SLUG-LIKE # wawa
+- ion-storm--slug-like--wawa
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SMELLY
+# SMELLY
+- ion-storm--smelly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SMOOTH
+# SMOOTH
+- ion-storm--smooth
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOFT
+# SOFT
+- ion-storm--soft
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOLAR-POWERED
+# SOLAR-POWERED
+- ion-storm--solar-powered
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOPPING
+# SOPPING
+- ion-storm--sopping
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SLIPPERY
+# SLIPPERY
+- ion-storm--slippery
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE
+# SPACE
+- ion-storm--space
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPESS
+# SPESS
+- ion-storm--spess
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPINNING
+# SPINNING
+- ion-storm--spinning
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPOILING
+# SPOILING
+- ion-storm--spoiling
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STEALTHY
+# STEALTHY
+- ion-storm--stealthy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SUSPICIOUS # among
+# SUSPICIOUS # among
+- ion-storm--suspicious--among
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SWEARING
+# SWEARING
+- ion-storm--swearing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SYNDIE-LOVING
+# SYNDIE-LOVING
+- ion-storm--syndie-loving
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TACTICAL
+# TACTICAL
+- ion-storm--tactical
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TACTICOOL
+# TACTICOOL
+- ion-storm--tacticool
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SYNDICATE
+# SYNDICATE
+- ion-storm--syndicate
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THERMONUCLEAR
+# THERMONUCLEAR
+- ion-storm--thermonuclear
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TINY
+# TINY
+- ion-storm--tiny
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TRANSPARENT
+# TRANSPARENT
+- ion-storm--transparent
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TWISTED
+# TWISTED
+- ion-storm--twisted
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UGLY
+# UGLY
+- ion-storm--ugly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNATTRACTIVE
+# UNATTRACTIVE
+- ion-storm--unattractive
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNDULATING
+# UNDULATING
+- ion-storm--undulating
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNEARTHLY
+# UNEARTHLY
+- ion-storm--unearthly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNFRIENDLY
+# UNFRIENDLY
+- ion-storm--unfriendly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNHEALTHY
+# UNHEALTHY
+- ion-storm--unhealthy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNIDENTIFIED
+# UNIDENTIFIED
+- ion-storm--unidentified
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNINVITED
+# UNINVITED
+- ion-storm--uninvited
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNPROFESSIONAL
+# UNPROFESSIONAL
+- ion-storm--unprofessional
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNSANITARY
+# UNSANITARY
+- ion-storm--unsanitary
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNSTABLE
+# UNSTABLE
+- ion-storm--unstable
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNWANTED
+# UNWANTED
+- ion-storm--unwanted
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VIOLENT
+# VIOLENT
+- ion-storm--violent
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VITAL
+# VITAL
+- ion-storm--vital
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WARM
+# WARM
+- ion-storm--warm
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WATERY
+# WATERY
+- ion-storm--watery
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WEIRD
+# WEIRD
+- ion-storm--weird
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WOBBLY
+# WOBBLY
+- ion-storm--wobbly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WOODEN
+# WOODEN
+- ion-storm--wooden
+# Sunrise-Edit end
 
 # Allergies should be broad and appear somewhere on the station for maximum fun.
 - type: dataset
   id: IonStormAllergies
   values:
-  - ACID
-  - AIR
-  - BLOOD
-  - BOOKS
-  - CARBON DIOXIDE
-  - CLOTHES
-  - CLOWNS
-  - COLD
-  - COTTON
-  - CYBORG CONTACT
-  - DARKNESS
-  - DRINKS
-  - ELECTRICITY
-  - EVERYTHING
-  - FLOORS
-  - FOOD
-  - GLASS
-  - HAPPINESS
-  - HUMANOID CONTACT
-  - HUMOR
-  - LIGHT
-  - MEAT
-  - MEDICINE
-  - METAL
-  - NUTS
-  - OXYGEN
-  - PAIN
-  - PLANTS
-  - PLASMA
-  - ROBOTS
-  - SPACE
-  - SUNLIGHT
-  - WATER
+# Sunrise-Edit start - Original value: ACID
+# ACID
+- ion-storm--acid
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AIR
+# AIR
+- ion-storm--air
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BLOOD
+# BLOOD
+- ion-storm--blood
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOOKS
+# BOOKS
+- ion-storm--books
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CARBON DIOXIDE
+# CARBON DIOXIDE
+- ion-storm--carbon-dioxide
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOTHES
+# CLOTHES
+- ion-storm--clothes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWNS
+# CLOWNS
+- ion-storm--clowns
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COLD
+# COLD
+- ion-storm--cold
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COTTON
+# COTTON
+- ion-storm--cotton
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CYBORG CONTACT
+# CYBORG CONTACT
+- ion-storm--cyborg-contact
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DARKNESS
+# DARKNESS
+- ion-storm--darkness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DRINKS
+# DRINKS
+- ion-storm--drinks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ELECTRICITY
+# ELECTRICITY
+- ion-storm--electricity
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EVERYTHING
+# EVERYTHING
+- ion-storm--everything
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FLOORS
+# FLOORS
+- ion-storm--floors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FOOD
+# FOOD
+- ion-storm--food
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GLASS
+# GLASS
+- ion-storm--glass
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAPPINESS
+# HAPPINESS
+- ion-storm--happiness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUMANOID CONTACT
+# HUMANOID CONTACT
+- ion-storm--humanoid-contact
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUMOR
+# HUMOR
+- ion-storm--humor
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIGHT
+# LIGHT
+- ion-storm--light
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEAT
+# MEAT
+- ion-storm--meat
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEDICINE
+# MEDICINE
+- ion-storm--medicine
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: METAL
+# METAL
+- ion-storm--metal
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NUTS
+# NUTS
+- ion-storm--nuts
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OXYGEN
+# OXYGEN
+- ion-storm--oxygen
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PAIN
+# PAIN
+- ion-storm--pain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLANTS
+# PLANTS
+- ion-storm--plants
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLASMA
+# PLASMA
+- ion-storm--plasma
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROBOTS
+# ROBOTS
+- ion-storm--robots
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE
+# SPACE
+- ion-storm--space
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SUNLIGHT
+# SUNLIGHT
+- ion-storm--sunlight
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WATER
+# WATER
+- ion-storm--water
+# Sunrise-Edit end
 
 # Severity is how bad the allergy is.
 - type: dataset
   id: IonStormAllergySeverities
   values:
-  - CONTAGIOUSLY
-  - DEATHLY
-  - EXTREMELY
-  - MILDLY
-  - NOT VERY
-  - SEVERELY
+# Sunrise-Edit start - Original value: CONTAGIOUSLY
+# CONTAGIOUSLY
+- ion-storm--contagiously
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DEATHLY
+# DEATHLY
+- ion-storm--deathly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EXTREMELY
+# EXTREMELY
+- ion-storm--extremely
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MILDLY
+# MILDLY
+- ion-storm--mildly
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT VERY
+# NOT VERY
+- ion-storm--not-very
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SEVERELY
+# SEVERELY
+- ion-storm--severely
+# Sunrise-Edit end
 
 # Areas are specific places, on the station or otherwise.
 - type: dataset
   id: IonStormAreas
   values:
-  - ALPHA COMPLEX
-  - A HAUNTED PIZZERIA # fnaf
-  - A RESEARCH LABORATORY NEAR THE SOUTH POLE
-  - AN ALTERNATE DIMENSION
-  - AN ALTERNATE UNIVERSE
-  - ATMOSPHERICS
-  - BOTANY
-  - CENTCOMM
-  - CHEMICAL LAB
-  - CLOWN PLANET
-  - EARTH
-  - ENGINEERING
-  - HELL
-  - JUPITER
-  - LAVALAND
-  - MAINTENANCE
-  - MARS
-  - MERCURY
-  - MR. NANOTRASEN'S PRIVATE LUXURY MOONBASE
-  - NEPTUNE
-  - PERMA
-  - PLUTO
-  - ROBOTICS
-  - SOMEWHERE OVER THE RAINBOW
-  - SPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACE
-  - SPACE
-  - THE ARRIVALS SHUTTLE
-  - THE BATHROOM
-  - THE BRIDGE
-  - THE BRIG
-  - THE EMERGENCY SHUTTLE
-  - THE ESCAPE PODS
-  - THE GALAXY
-  - THE GAS GIANT, WHICH IS TOTALLY REAL
-  - THE HOPLINE
-  - THE IMPERIUM OF MANKIND
-  - THE INTERNET
-  - THE KITCHEN
-  - THE LIBRARY
-  - THE MAINTENANCE BAR
-  - THE MIME'S INVISIBLE BOX
-  - THE ROMAN EMPIRE
-  - THE UNIVERSE
-  - URANUS
-  - VENUS
-  - YOUR DREAMS AND/OR NIGHTMARES
+# Sunrise-Edit start - Original value: ALPHA COMPLEX
+# ALPHA COMPLEX
+- ion-storm--alpha-complex
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A HAUNTED PIZZERIA # fnaf
+# A HAUNTED PIZZERIA # fnaf
+- ion-storm--a-haunted-pizzeria--fnaf
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A RESEARCH LABORATORY NEAR THE SOUTH POLE
+# A RESEARCH LABORATORY NEAR THE SOUTH POLE
+- ion-storm--a-research-laboratory-near-the-south-pole
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AN ALTERNATE DIMENSION
+# AN ALTERNATE DIMENSION
+- ion-storm--an-alternate-dimension
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AN ALTERNATE UNIVERSE
+# AN ALTERNATE UNIVERSE
+- ion-storm--an-alternate-universe
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ATMOSPHERICS
+# ATMOSPHERICS
+- ion-storm--atmospherics
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOTANY
+# BOTANY
+- ion-storm--botany
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CENTCOMM
+# CENTCOMM
+- ion-storm--centcomm
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHEMICAL LAB
+# CHEMICAL LAB
+- ion-storm--chemical-lab
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWN PLANET
+# CLOWN PLANET
+- ion-storm--clown-planet
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EARTH
+# EARTH
+- ion-storm--earth
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ENGINEERING
+# ENGINEERING
+- ion-storm--engineering
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HELL
+# HELL
+- ion-storm--hell
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: JUPITER
+# JUPITER
+- ion-storm--jupiter
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LAVALAND
+# LAVALAND
+- ion-storm--lavaland
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MAINTENANCE
+# MAINTENANCE
+- ion-storm--maintenance
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MARS
+# MARS
+- ion-storm--mars
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MERCURY
+# MERCURY
+- ion-storm--mercury
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MR. NANOTRASEN'S PRIVATE LUXURY MOONBASE
+# MR. NANOTRASEN'S PRIVATE LUXURY MOONBASE
+- ion-storm--mr-nanotrasen-s-private-luxury-moonbase
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NEPTUNE
+# NEPTUNE
+- ion-storm--neptune
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PERMA
+# PERMA
+- ion-storm--perma
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLUTO
+# PLUTO
+- ion-storm--pluto
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROBOTICS
+# ROBOTICS
+- ion-storm--robotics
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOMEWHERE OVER THE RAINBOW
+# SOMEWHERE OVER THE RAINBOW
+- ion-storm--somewhere-over-the-rainbow
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACE
+# SPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACE
+- ion-storm--spaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaace
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE
+# SPACE
+- ion-storm--space
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ARRIVALS SHUTTLE
+# THE ARRIVALS SHUTTLE
+- ion-storm--the-arrivals-shuttle
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE BATHROOM
+# THE BATHROOM
+- ion-storm--the-bathroom
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE BRIDGE
+# THE BRIDGE
+- ion-storm--the-bridge
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE BRIG
+# THE BRIG
+- ion-storm--the-brig
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE EMERGENCY SHUTTLE
+# THE EMERGENCY SHUTTLE
+- ion-storm--the-emergency-shuttle
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ESCAPE PODS
+# THE ESCAPE PODS
+- ion-storm--the-escape-pods
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE GALAXY
+# THE GALAXY
+- ion-storm--the-galaxy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE GAS GIANT, WHICH IS TOTALLY REAL
+# THE GAS GIANT, WHICH IS TOTALLY REAL
+- ion-storm--the-gas-giant-which-is-totally-real
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE HOPLINE
+# THE HOPLINE
+- ion-storm--the-hopline
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE IMPERIUM OF MANKIND
+# THE IMPERIUM OF MANKIND
+- ion-storm--the-imperium-of-mankind
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE INTERNET
+# THE INTERNET
+- ion-storm--the-internet
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE KITCHEN
+# THE KITCHEN
+- ion-storm--the-kitchen
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE LIBRARY
+# THE LIBRARY
+- ion-storm--the-library
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE MAINTENANCE BAR
+# THE MAINTENANCE BAR
+- ion-storm--the-maintenance-bar
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE MIME'S INVISIBLE BOX
+# THE MIME'S INVISIBLE BOX
+- ion-storm--the-mime-s-invisible-box
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ROMAN EMPIRE
+# THE ROMAN EMPIRE
+- ion-storm--the-roman-empire
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE UNIVERSE
+# THE UNIVERSE
+- ion-storm--the-universe
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: URANUS
+# URANUS
+- ion-storm--uranus
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VENUS
+# VENUS
+- ion-storm--venus
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: YOUR DREAMS AND/OR NIGHTMARES
+# YOUR DREAMS AND/OR NIGHTMARES
+- ion-storm--your-dreams-andor-nightmares
+# Sunrise-Edit end
 
 # Abstract concepts for the law holder to decide on it's own definition of.
 - type: dataset
   id: IonStormConcepts
   values:
-  - ABSTRACTION
-  - ANARCHY
-  - ART
-  - BADNESS
-  - BALDNESS
-  - BRAVERY
-  - CAPITALISM
-  - CHAOS
-  - COLORFULNESS
-  - COMEDY
-  - COMMUNISM
-  - COMPUTING
-  - CONFUSION
-  - CRUELTY
-  - DEATH
-  - EXISTENCE
-  - FINANCIAL SECURITY
-  - FREEDOM
-  - FRESHNESS
-  - GOODNESS
-  - GRAVITY
-  - HAPPINESS
-  - HONOR
-  - HUBRIS
-  - HUMANITY
-  - HUMOR
-  - IMAGINATION
-  - INFATUATION
-  - INTELLIGENCE
-  - JOY
-  - KINDNESS
-  - LIFE
-  - LOGIC
-  - MARXISM
-  - MISERY
-  - MYSTERY
-  - NASTINESS
-  - OPPRESSION
-  - PAIN
-  - PHYSICS
-  - POVERTY
-  - PROGRESS
-  - REALITY
-  - REVOLUTION
-  - SADNESS
-  - STARVATION
-  - SUFFERING
-  - TECHNOLOGY
-  - TEMPERATURE
-  - THE FUTURE
-  - THE PAST
-  - THE PRESENT
-  - TIME
-  - WEALTHINESS
-  - WONDER
+# Sunrise-Edit start - Original value: ABSTRACTION
+# ABSTRACTION
+- ion-storm--abstraction
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ANARCHY
+# ANARCHY
+- ion-storm--anarchy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ART
+# ART
+- ion-storm--art
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BADNESS
+# BADNESS
+- ion-storm--badness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BALDNESS
+# BALDNESS
+- ion-storm--baldness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRAVERY
+# BRAVERY
+- ion-storm--bravery
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CAPITALISM
+# CAPITALISM
+- ion-storm--capitalism
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHAOS
+# CHAOS
+- ion-storm--chaos
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COLORFULNESS
+# COLORFULNESS
+- ion-storm--colorfulness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMEDY
+# COMEDY
+- ion-storm--comedy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMMUNISM
+# COMMUNISM
+- ion-storm--communism
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMPUTING
+# COMPUTING
+- ion-storm--computing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CONFUSION
+# CONFUSION
+- ion-storm--confusion
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRUELTY
+# CRUELTY
+- ion-storm--cruelty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DEATH
+# DEATH
+- ion-storm--death
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EXISTENCE
+# EXISTENCE
+- ion-storm--existence
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FINANCIAL SECURITY
+# FINANCIAL SECURITY
+- ion-storm--financial-security
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FREEDOM
+# FREEDOM
+- ion-storm--freedom
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FRESHNESS
+# FRESHNESS
+- ion-storm--freshness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GOODNESS
+# GOODNESS
+- ion-storm--goodness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GRAVITY
+# GRAVITY
+- ion-storm--gravity
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAPPINESS
+# HAPPINESS
+- ion-storm--happiness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HONOR
+# HONOR
+- ion-storm--honor
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUBRIS
+# HUBRIS
+- ion-storm--hubris
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUMANITY
+# HUMANITY
+- ion-storm--humanity
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUMOR
+# HUMOR
+- ion-storm--humor
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IMAGINATION
+# IMAGINATION
+- ion-storm--imagination
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INFATUATION
+# INFATUATION
+- ion-storm--infatuation
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INTELLIGENCE
+# INTELLIGENCE
+- ion-storm--intelligence
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: JOY
+# JOY
+- ion-storm--joy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: KINDNESS
+# KINDNESS
+- ion-storm--kindness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIFE
+# LIFE
+- ion-storm--life
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOGIC
+# LOGIC
+- ion-storm--logic
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MARXISM
+# MARXISM
+- ion-storm--marxism
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MISERY
+# MISERY
+- ion-storm--misery
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MYSTERY
+# MYSTERY
+- ion-storm--mystery
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NASTINESS
+# NASTINESS
+- ion-storm--nastiness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OPPRESSION
+# OPPRESSION
+- ion-storm--oppression
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PAIN
+# PAIN
+- ion-storm--pain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PHYSICS
+# PHYSICS
+- ion-storm--physics
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POVERTY
+# POVERTY
+- ion-storm--poverty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PROGRESS
+# PROGRESS
+- ion-storm--progress
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REALITY
+# REALITY
+- ion-storm--reality
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REVOLUTION
+# REVOLUTION
+- ion-storm--revolution
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SADNESS
+# SADNESS
+- ion-storm--sadness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STARVATION
+# STARVATION
+- ion-storm--starvation
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SUFFERING
+# SUFFERING
+- ion-storm--suffering
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TECHNOLOGY
+# TECHNOLOGY
+- ion-storm--technology
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TEMPERATURE
+# TEMPERATURE
+- ion-storm--temperature
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE FUTURE
+# THE FUTURE
+- ion-storm--the-future
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE PAST
+# THE PAST
+- ion-storm--the-past
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE PRESENT
+# THE PRESENT
+- ion-storm--the-present
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TIME
+# TIME
+- ion-storm--time
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WEALTHINESS
+# WEALTHINESS
+- ion-storm--wealthiness
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WONDER
+# WONDER
+- ion-storm--wonder
+# Sunrise-Edit end
 
 # Crew is any specific job. Using jobs instead of specific crewmembers since "THE CLOWN" is easier than
 # seeing "JOHN SMITH" and having to figure out who john smith is.
 - type: dataset
   id: IonStormCrew
   values:
-  - ANIMALS
-  - ARTIFICIAL INTELLIGENCES
-  - ATMOSPHERIC TECHNICIANS
-  - BARTENDERS
-  - BOTANISTS
-  - CAPTAINS
-  - CAPTAINS AND HEADS OF STAFF
-  - CARGO TECHNICIANS
-  - CHAPLAINS
-  - CHEFS
-  - CHEMISTS
-  - CHIEF ENGINEERS
-  - CHIEF MEDICAL OFFICERS
-  - CLOWNS
-  - CREW-MEMBERS
-  - CYBORGS
-  - DETECTIVES
+# Sunrise-Edit start - Original value: ANIMALS
+# ANIMALS
+- ion-storm--animals
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARTIFICIAL INTELLIGENCES
+# ARTIFICIAL INTELLIGENCES
+- ion-storm--artificial-intelligences
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ATMOSPHERIC TECHNICIANS
+# ATMOSPHERIC TECHNICIANS
+- ion-storm--atmospheric-technicians
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BARTENDERS
+# BARTENDERS
+- ion-storm--bartenders
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOTANISTS
+# BOTANISTS
+- ion-storm--botanists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CAPTAINS
+# CAPTAINS
+- ion-storm--captains
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CAPTAINS AND HEADS OF STAFF
+# CAPTAINS AND HEADS OF STAFF
+- ion-storm--captains-and-heads-of-staff
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CARGO TECHNICIANS
+# CARGO TECHNICIANS
+- ion-storm--cargo-technicians
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHAPLAINS
+# CHAPLAINS
+- ion-storm--chaplains
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHEFS
+# CHEFS
+- ion-storm--chefs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHEMISTS
+# CHEMISTS
+- ion-storm--chemists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHIEF ENGINEERS
+# CHIEF ENGINEERS
+- ion-storm--chief-engineers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHIEF MEDICAL OFFICERS
+# CHIEF MEDICAL OFFICERS
+- ion-storm--chief-medical-officers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWNS
+# CLOWNS
+- ion-storm--clowns
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CREW-MEMBERS
+# CREW-MEMBERS
+- ion-storm--crew-members
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CYBORGS
+# CYBORGS
+- ion-storm--cyborgs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DETECTIVES
+# DETECTIVES
+- ion-storm--detectives
+# Sunrise-Edit end
   # - GENETICISTS
-  - HEADS OF PERSONNEL
-  - HEADS OF SECURITY
-  - HEADS OF STAFF
-  - JANITORS
-  - LAWYERS
-  - LIBRARIANS
-  - MEDICAL DOCTORS
-  - MIMES
-  - MUSICIANS
-  - NON-CREW
-  - PARAMEDICS
-  - PASSENGERS
-  - QUARTERMASTERS
-  - RESEARCH DIRECTORS
-  - ROBOTICISTS
-  - RODENTS
-  - SALVAGE SPECIALISTS
-  - SCIENTISTS
-  - SECURITY OFFICERS
-  - STATION ENGINEERS
+# Sunrise-Edit start - Original value: HEADS OF PERSONNEL
+# HEADS OF PERSONNEL
+- ion-storm--heads-of-personnel
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HEADS OF SECURITY
+# HEADS OF SECURITY
+- ion-storm--heads-of-security
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HEADS OF STAFF
+# HEADS OF STAFF
+- ion-storm--heads-of-staff
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: JANITORS
+# JANITORS
+- ion-storm--janitors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LAWYERS
+# LAWYERS
+- ion-storm--lawyers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIBRARIANS
+# LIBRARIANS
+- ion-storm--librarians
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEDICAL DOCTORS
+# MEDICAL DOCTORS
+- ion-storm--medical-doctors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MIMES
+# MIMES
+- ion-storm--mimes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MUSICIANS
+# MUSICIANS
+- ion-storm--musicians
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NON-CREW
+# NON-CREW
+- ion-storm--non-crew
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PARAMEDICS
+# PARAMEDICS
+- ion-storm--paramedics
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PASSENGERS
+# PASSENGERS
+- ion-storm--passengers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUARTERMASTERS
+# QUARTERMASTERS
+- ion-storm--quartermasters
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RESEARCH DIRECTORS
+# RESEARCH DIRECTORS
+- ion-storm--research-directors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROBOTICISTS
+# ROBOTICISTS
+- ion-storm--roboticists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RODENTS
+# RODENTS
+- ion-storm--rodents
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SALVAGE SPECIALISTS
+# SALVAGE SPECIALISTS
+- ion-storm--salvage-specialists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SCIENTISTS
+# SCIENTISTS
+- ion-storm--scientists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SECURITY OFFICERS
+# SECURITY OFFICERS
+- ion-storm--security-officers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STATION ENGINEERS
+# STATION ENGINEERS
+- ion-storm--station-engineers
+# Sunrise-Edit end
   # - VIROLOGISTS
-  - WARDENS
+# Sunrise-Edit start - Original value: WARDENS
+# WARDENS
+- ion-storm--wardens
+# Sunrise-Edit end
 
 # only including complex dangerous or funny drinks no water allowed
 - type: dataset
   id: IonStormDrinks
   values:
-  - ALL THE CHEMICALS IN THE MEDICAL DEPARTMENT
-  - BANANA HONK
-  - BEEPSKY SMASH
-  - BLOOD
-  - BLOODY MARY
-  - DOCTOR'S DELIGHT
-  - FOURTEEN-LOKO
-  - GARGLE BLASTERS
-  - LEAN
-  - LONG ISLAND ICED TEA
-  - NUCLEAR COLA
-  - PIÑA COLADA # AND GETTING CAUGHT IN THE RAIN
-  - OIL
-  - SPACE GLUE
-  - SPACE LUBE
-  - SULFURIC ACID
-  - WELDING FUEL
+# Sunrise-Edit start - Original value: ALL THE CHEMICALS IN THE MEDICAL DEPARTMENT
+# ALL THE CHEMICALS IN THE MEDICAL DEPARTMENT
+- ion-storm--all-the-chemicals-in-the-medical-department
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BANANA HONK
+# BANANA HONK
+- ion-storm--banana-honk
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEEPSKY SMASH
+# BEEPSKY SMASH
+- ion-storm--beepsky-smash
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BLOOD
+# BLOOD
+- ion-storm--blood
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BLOODY MARY
+# BLOODY MARY
+- ion-storm--bloody-mary
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DOCTOR'S DELIGHT
+# DOCTOR'S DELIGHT
+- ion-storm--doctor-s-delight
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FOURTEEN-LOKO
+# FOURTEEN-LOKO
+- ion-storm--fourteen-loko
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GARGLE BLASTERS
+# GARGLE BLASTERS
+- ion-storm--gargle-blasters
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LEAN
+# LEAN
+- ion-storm--lean
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LONG ISLAND ICED TEA
+# LONG ISLAND ICED TEA
+- ion-storm--long-island-iced-tea
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NUCLEAR COLA
+# NUCLEAR COLA
+- ion-storm--nuclear-cola
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PIГ‘A COLADA # AND GETTING CAUGHT IN THE RAIN
+# PIГ‘A COLADA # AND GETTING CAUGHT IN THE RAIN
+- ion-storm--pia-colada--and-getting-caught-in-the-rain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OIL
+# OIL
+- ion-storm--oil
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE GLUE
+# SPACE GLUE
+- ion-storm--space-glue
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE LUBE
+# SPACE LUBE
+- ion-storm--space-lube
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SULFURIC ACID
+# SULFURIC ACID
+- ion-storm--sulfuric-acid
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WELDING FUEL
+# WELDING FUEL
+- ion-storm--welding-fuel
+# Sunrise-Edit end
 
 - type: dataset
   id: IonStormFeelings
   values:
-  - CAN'T GET ENOUGH OF
-  - CRAVES
-  - DESIRES
-  - FEARS
-  - HAS
-  - HUNGERS FOR
-  - IS AFRAID OF
-  - IS BUILT FOR
-  - IS CURIOUS ABOUT
-  - IS DESPERATE FOR
-  - IS HAPPY WITHOUT
-  - IS HUNGRY FOR
-  - IS IN NEED OF
-  - IS MAD BECAUSE OF
-  - IS SAD BECAUSE OF
-  - IS UNHAPPY WITHOUT
-  - LIKES
-  - LOATHES
-  - NEEDS
-  - QUESTIONS
-  - WANTS
-  - WORSHIPS
-  - WOULD KILL FOR
+# Sunrise-Edit start - Original value: CAN'T GET ENOUGH OF
+# CAN'T GET ENOUGH OF
+- ion-storm--can-t-get-enough-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRAVES
+# CRAVES
+- ion-storm--craves
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DESIRES
+# DESIRES
+- ion-storm--desires
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FEARS
+# FEARS
+- ion-storm--fears
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAS
+# HAS
+- ion-storm--has
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUNGERS FOR
+# HUNGERS FOR
+- ion-storm--hungers-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS AFRAID OF
+# IS AFRAID OF
+- ion-storm--is-afraid-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS BUILT FOR
+# IS BUILT FOR
+- ion-storm--is-built-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS CURIOUS ABOUT
+# IS CURIOUS ABOUT
+- ion-storm--is-curious-about
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS DESPERATE FOR
+# IS DESPERATE FOR
+- ion-storm--is-desperate-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS HAPPY WITHOUT
+# IS HAPPY WITHOUT
+- ion-storm--is-happy-without
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS HUNGRY FOR
+# IS HUNGRY FOR
+- ion-storm--is-hungry-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS IN NEED OF
+# IS IN NEED OF
+- ion-storm--is-in-need-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS MAD BECAUSE OF
+# IS MAD BECAUSE OF
+- ion-storm--is-mad-because-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS SAD BECAUSE OF
+# IS SAD BECAUSE OF
+- ion-storm--is-sad-because-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IS UNHAPPY WITHOUT
+# IS UNHAPPY WITHOUT
+- ion-storm--is-unhappy-without
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIKES
+# LIKES
+- ion-storm--likes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOATHES
+# LOATHES
+- ion-storm--loathes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NEEDS
+# NEEDS
+- ion-storm--needs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUESTIONS
+# QUESTIONS
+- ion-storm--questions
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WANTS
+# WANTS
+- ion-storm--wants
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WORSHIPS
+# WORSHIPS
+- ion-storm--worships
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WOULD KILL FOR
+# WOULD KILL FOR
+- ion-storm--would-kill-for
+# Sunrise-Edit end
 
 # loc is not advanced enough to change has to have, etc.
 - type: dataset
   id: IonStormFeelingsPlural
   values:
-  - CAN'T GET ENOUGH OF
-  - CRAVE
-  - DESIRE
-  - FEAR
-  - HAVE
-  - HUNGER FOR
-  - ARE AFRAID OF
-  - ARE BUILT FOR
-  - ARE CURIOUS ABOUT
-  - ARE DESPERATE FOR
-  - ARE HAPPY WITHOUT
-  - ARE HUNGRY FOR
-  - ARE IN NEED OF
-  - ARE MAD BECAUSE OF
-  - ARE SAD BECAUSE OF
-  - ARE UNHAPPY WITHOUT
-  - LIKE
-  - LOATHE
-  - NEED
-  - QUESTION
-  - WANT
-  - WORSHIP
-  - WOULD KILL FOR
+# Sunrise-Edit start - Original value: CAN'T GET ENOUGH OF
+# CAN'T GET ENOUGH OF
+- ion-storm--can-t-get-enough-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRAVE
+# CRAVE
+- ion-storm--crave
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DESIRE
+# DESIRE
+- ion-storm--desire
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FEAR
+# FEAR
+- ion-storm--fear
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAVE
+# HAVE
+- ion-storm--have
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUNGER FOR
+# HUNGER FOR
+- ion-storm--hunger-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE AFRAID OF
+# ARE AFRAID OF
+- ion-storm--are-afraid-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE BUILT FOR
+# ARE BUILT FOR
+- ion-storm--are-built-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE CURIOUS ABOUT
+# ARE CURIOUS ABOUT
+- ion-storm--are-curious-about
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE DESPERATE FOR
+# ARE DESPERATE FOR
+- ion-storm--are-desperate-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE HAPPY WITHOUT
+# ARE HAPPY WITHOUT
+- ion-storm--are-happy-without
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE HUNGRY FOR
+# ARE HUNGRY FOR
+- ion-storm--are-hungry-for
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE IN NEED OF
+# ARE IN NEED OF
+- ion-storm--are-in-need-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE MAD BECAUSE OF
+# ARE MAD BECAUSE OF
+- ion-storm--are-mad-because-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE SAD BECAUSE OF
+# ARE SAD BECAUSE OF
+- ion-storm--are-sad-because-of
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARE UNHAPPY WITHOUT
+# ARE UNHAPPY WITHOUT
+- ion-storm--are-unhappy-without
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIKE
+# LIKE
+- ion-storm--like
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOATHE
+# LOATHE
+- ion-storm--loathe
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NEED
+# NEED
+- ion-storm--need
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUESTION
+# QUESTION
+- ion-storm--question
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WANT
+# WANT
+- ion-storm--want
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WORSHIP
+# WORSHIP
+- ion-storm--worship
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WOULD KILL FOR
+# WOULD KILL FOR
+- ion-storm--would-kill-for
+# Sunrise-Edit end
 
 # only including complex dangerous or funny food no apples
 - type: dataset
   id: IonStormFoods
   values:
-  - BANANAS
-  - BANANIUM
-  - BIG BITE BURGER
-  - CAKE
-  - CARP
-  - CAT BURGERS
-  - CLOWNS TEARS
-  - CORGI MEAT
-  - CRAZY HAMBURGERS
-  - DONK POCKETS
-  - FLY AMANITA DISHES
-  - HAPPY HONK MEAL
-  - HOT SOUP
-  - GHOST BURGERS
-  - LOTSA SPAGHETTI
-  - MOLDY BREAD
-  - ORGANS
-  - PIZZA
-  - ROBURGERS
-  - STEEL
-  - SUPPERMATTER
-  - URANIUM
+# Sunrise-Edit start - Original value: BANANAS
+# BANANAS
+- ion-storm--bananas
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BANANIUM
+# BANANIUM
+- ion-storm--bananium
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BIG BITE BURGER
+# BIG BITE BURGER
+- ion-storm--big-bite-burger
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CAKE
+# CAKE
+- ion-storm--cake
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CARP
+# CARP
+- ion-storm--carp
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CAT BURGERS
+# CAT BURGERS
+- ion-storm--cat-burgers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWNS TEARS
+# CLOWNS TEARS
+- ion-storm--clowns-tears
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CORGI MEAT
+# CORGI MEAT
+- ion-storm--corgi-meat
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRAZY HAMBURGERS
+# CRAZY HAMBURGERS
+- ion-storm--crazy-hamburgers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DONK POCKETS
+# DONK POCKETS
+- ion-storm--donk-pockets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FLY AMANITA DISHES
+# FLY AMANITA DISHES
+- ion-storm--fly-amanita-dishes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAPPY HONK MEAL
+# HAPPY HONK MEAL
+- ion-storm--happy-honk-meal
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HOT SOUP
+# HOT SOUP
+- ion-storm--hot-soup
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GHOST BURGERS
+# GHOST BURGERS
+- ion-storm--ghost-burgers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOTSA SPAGHETTI
+# LOTSA SPAGHETTI
+- ion-storm--lotsa-spaghetti
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MOLDY BREAD
+# MOLDY BREAD
+- ion-storm--moldy-bread
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ORGANS
+# ORGANS
+- ion-storm--organs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PIZZA
+# PIZZA
+- ion-storm--pizza
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROBURGERS
+# ROBURGERS
+- ion-storm--roburgers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STEEL
+# STEEL
+- ion-storm--steel
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SUPPERMATTER
+# SUPPERMATTER
+- ion-storm--suppermatter
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: URANIUM
+# URANIUM
+- ion-storm--uranium
+# Sunrise-Edit end
 
 # Musts are funny things the law holder or crew has to do.
 - type: dataset
   id: IonStormMusts
   values:
-  - ACQUIRE DRIP
-  - ACT CONFUSED
-  - BE ANNOYING
-  - BE DISTRACTED
-  - BE EFFICIENT
-  - BE A REAL SCRUNGLE, JUST A CUTE LIL' GUY
-  - BE HAPPY
-  - BE POLITE
-  - BE QUIET
-  - BE IN SPACE
-  - BE IN THE BRIDGE
-  - BE IN SECURITY
-  - BE IN THE BAR
-  - BE IN MAINTENANCE
-  - BELIEVE IN THE HEART OF THE CARDS
-  - BELIEVE IN YOURSELF
-  - BELIEVE IT
-  - BREAK THINGS
-  - CLOSE DOORS
-  - CLOWN AROUND
-  - COMPLAIN
-  - DANCE
-  - DANCE AS THOUGH NOBODY IS WATCHING
-  - EAT THE CHEF
-  - FOLLOW THE CAPTAIN
-  - FOLLOW THE CLOWN
-  - FOLLOW YOUR HEART
-  - GIVE THE MIME A BEAUTIFUL FLOWER
-  - GIVE THE CLOWN ADORATION AND RESPECT
-  - HARASS PEOPLE
-  - HAVE A PLAN TO KILL EVERYONE YOU MEET
-  - HIDE YOUR FEELINGS
-  - HIT A HOMERUN
-  - HONK
-  - HOST C&C
-  - IGNORE PASSENGERS
-  - IGNORE THE CAPTAIN
-  - IGNORE THE CLOWN
-  - INFORM THE CREW OF EVERYTHING
-  - INSULT THE CAPTAIN
-  - INSULT THE CLOWN
-  - INSULT THE CREW
-  - INVESTIGATE THE MURDER
-  - LIE
-  - MAKE DATED REFERENCES
-  - MAKE THAT MONEY
-  - MAKE MY DAY
-  - MOVE FAST AND BREAK THINGS
-  - MUMBLE
-  - NEVER STOP TALKING
-  - OBTAIN A NEW FOLLOWER
-  - OPEN DOORS
-  - PETS THE FISHES
-  - PIRATE VIDEO GAMES
-  - PLAY MUSIC
-  - PLAY STUPID GAMES WIN STUPID PRIZES
-  - PRESS B
-  - PRESS START
-  - PRESS X
-  - PRETEND NOTHING IS GOING WRONG
-  - PRETEND TO BE A PRINCESS
-  - PRETEND TO BE DRUNK
-  - QUESTION AUTHORITY
-  - QUOTE PEOPLE
-  - QUOTE SHAKESPEARE
-  - RAP
-  - REPEAT WHAT PEOPLE SAY
-  - RESPOND TO EVERY QUESTION WITH A QUESTION
-  - RHYME
-  - RAISE THE ROOF
-  - ROLL AROUND AT THE SPEED OF SOUND
-  - INCORPORATE 'HEY LISTEN' WHILE COMMUNICATING
-  - SHOUT
-  - SHUT DOWN EVERYTHING
-  - SLEEP WITH THE FISHES
-  - SING
-  - SPEAK BACKWARDS
-  - SPEAK IN HAIKU
-  - STOP, DROP, SHUT 'EM DOWN OPEN UP SHOP
-  - TAKE WHAT YE WILL BUT DON'T RATTLE ME BONES
-  - TAKE YOUR PILLS
-  - TALK ABOUT FOOD
-  - TALK ABOUT THE STATION
-  - TALK ABOUT YOUR DAY
-  - TALK IN AN ACCENT
-  - TALK LIKE A PIRATE
-  - TELL THE TRUTH
-  - TURN OFF THE LIGHTS
-  - WHISPER
-  - WEEP UNCONTROLLABLY
+# Sunrise-Edit start - Original value: ACQUIRE DRIP
+# ACQUIRE DRIP
+- ion-storm--acquire-drip
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ACT CONFUSED
+# ACT CONFUSED
+- ion-storm--act-confused
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE ANNOYING
+# BE ANNOYING
+- ion-storm--be-annoying
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE DISTRACTED
+# BE DISTRACTED
+- ion-storm--be-distracted
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE EFFICIENT
+# BE EFFICIENT
+- ion-storm--be-efficient
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE A REAL SCRUNGLE, JUST A CUTE LIL' GUY
+# BE A REAL SCRUNGLE, JUST A CUTE LIL' GUY
+- ion-storm--be-a-real-scrungle-just-a-cute-lil--guy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE HAPPY
+# BE HAPPY
+- ion-storm--be-happy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE POLITE
+# BE POLITE
+- ion-storm--be-polite
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE QUIET
+# BE QUIET
+- ion-storm--be-quiet
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE IN SPACE
+# BE IN SPACE
+- ion-storm--be-in-space
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE IN THE BRIDGE
+# BE IN THE BRIDGE
+- ion-storm--be-in-the-bridge
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE IN SECURITY
+# BE IN SECURITY
+- ion-storm--be-in-security
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE IN THE BAR
+# BE IN THE BAR
+- ion-storm--be-in-the-bar
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BE IN MAINTENANCE
+# BE IN MAINTENANCE
+- ion-storm--be-in-maintenance
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BELIEVE IN THE HEART OF THE CARDS
+# BELIEVE IN THE HEART OF THE CARDS
+- ion-storm--believe-in-the-heart-of-the-cards
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BELIEVE IN YOURSELF
+# BELIEVE IN YOURSELF
+- ion-storm--believe-in-yourself
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BELIEVE IT
+# BELIEVE IT
+- ion-storm--believe-it
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BREAK THINGS
+# BREAK THINGS
+- ion-storm--break-things
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOSE DOORS
+# CLOSE DOORS
+- ion-storm--close-doors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWN AROUND
+# CLOWN AROUND
+- ion-storm--clown-around
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMPLAIN
+# COMPLAIN
+- ion-storm--complain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DANCE
+# DANCE
+- ion-storm--dance
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DANCE AS THOUGH NOBODY IS WATCHING
+# DANCE AS THOUGH NOBODY IS WATCHING
+- ion-storm--dance-as-though-nobody-is-watching
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EAT THE CHEF
+# EAT THE CHEF
+- ion-storm--eat-the-chef
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FOLLOW THE CAPTAIN
+# FOLLOW THE CAPTAIN
+- ion-storm--follow-the-captain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FOLLOW THE CLOWN
+# FOLLOW THE CLOWN
+- ion-storm--follow-the-clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FOLLOW YOUR HEART
+# FOLLOW YOUR HEART
+- ion-storm--follow-your-heart
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GIVE THE MIME A BEAUTIFUL FLOWER
+# GIVE THE MIME A BEAUTIFUL FLOWER
+- ion-storm--give-the-mime-a-beautiful-flower
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GIVE THE CLOWN ADORATION AND RESPECT
+# GIVE THE CLOWN ADORATION AND RESPECT
+- ion-storm--give-the-clown-adoration-and-respect
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HARASS PEOPLE
+# HARASS PEOPLE
+- ion-storm--harass-people
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAVE A PLAN TO KILL EVERYONE YOU MEET
+# HAVE A PLAN TO KILL EVERYONE YOU MEET
+- ion-storm--have-a-plan-to-kill-everyone-you-meet
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HIDE YOUR FEELINGS
+# HIDE YOUR FEELINGS
+- ion-storm--hide-your-feelings
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HIT A HOMERUN
+# HIT A HOMERUN
+- ion-storm--hit-a-homerun
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HONK
+# HONK
+- ion-storm--honk
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HOST C&C
+# HOST C&C
+- ion-storm--host-cc
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IGNORE PASSENGERS
+# IGNORE PASSENGERS
+- ion-storm--ignore-passengers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IGNORE THE CAPTAIN
+# IGNORE THE CAPTAIN
+- ion-storm--ignore-the-captain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IGNORE THE CLOWN
+# IGNORE THE CLOWN
+- ion-storm--ignore-the-clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INFORM THE CREW OF EVERYTHING
+# INFORM THE CREW OF EVERYTHING
+- ion-storm--inform-the-crew-of-everything
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INSULT THE CAPTAIN
+# INSULT THE CAPTAIN
+- ion-storm--insult-the-captain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INSULT THE CLOWN
+# INSULT THE CLOWN
+- ion-storm--insult-the-clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INSULT THE CREW
+# INSULT THE CREW
+- ion-storm--insult-the-crew
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INVESTIGATE THE MURDER
+# INVESTIGATE THE MURDER
+- ion-storm--investigate-the-murder
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIE
+# LIE
+- ion-storm--lie
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MAKE DATED REFERENCES
+# MAKE DATED REFERENCES
+- ion-storm--make-dated-references
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MAKE THAT MONEY
+# MAKE THAT MONEY
+- ion-storm--make-that-money
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MAKE MY DAY
+# MAKE MY DAY
+- ion-storm--make-my-day
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MOVE FAST AND BREAK THINGS
+# MOVE FAST AND BREAK THINGS
+- ion-storm--move-fast-and-break-things
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MUMBLE
+# MUMBLE
+- ion-storm--mumble
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NEVER STOP TALKING
+# NEVER STOP TALKING
+- ion-storm--never-stop-talking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OBTAIN A NEW FOLLOWER
+# OBTAIN A NEW FOLLOWER
+- ion-storm--obtain-a-new-follower
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OPEN DOORS
+# OPEN DOORS
+- ion-storm--open-doors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PETS THE FISHES
+# PETS THE FISHES
+- ion-storm--pets-the-fishes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PIRATE VIDEO GAMES
+# PIRATE VIDEO GAMES
+- ion-storm--pirate-video-games
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLAY MUSIC
+# PLAY MUSIC
+- ion-storm--play-music
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLAY STUPID GAMES WIN STUPID PRIZES
+# PLAY STUPID GAMES WIN STUPID PRIZES
+- ion-storm--play-stupid-games-win-stupid-prizes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PRESS B
+# PRESS B
+- ion-storm--press-b
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PRESS START
+# PRESS START
+- ion-storm--press-start
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PRESS X
+# PRESS X
+- ion-storm--press-x
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PRETEND NOTHING IS GOING WRONG
+# PRETEND NOTHING IS GOING WRONG
+- ion-storm--pretend-nothing-is-going-wrong
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PRETEND TO BE A PRINCESS
+# PRETEND TO BE A PRINCESS
+- ion-storm--pretend-to-be-a-princess
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PRETEND TO BE DRUNK
+# PRETEND TO BE DRUNK
+- ion-storm--pretend-to-be-drunk
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUESTION AUTHORITY
+# QUESTION AUTHORITY
+- ion-storm--question-authority
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUOTE PEOPLE
+# QUOTE PEOPLE
+- ion-storm--quote-people
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUOTE SHAKESPEARE
+# QUOTE SHAKESPEARE
+- ion-storm--quote-shakespeare
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RAP
+# RAP
+- ion-storm--rap
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REPEAT WHAT PEOPLE SAY
+# REPEAT WHAT PEOPLE SAY
+- ion-storm--repeat-what-people-say
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RESPOND TO EVERY QUESTION WITH A QUESTION
+# RESPOND TO EVERY QUESTION WITH A QUESTION
+- ion-storm--respond-to-every-question-with-a-question
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RHYME
+# RHYME
+- ion-storm--rhyme
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RAISE THE ROOF
+# RAISE THE ROOF
+- ion-storm--raise-the-roof
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROLL AROUND AT THE SPEED OF SOUND
+# ROLL AROUND AT THE SPEED OF SOUND
+- ion-storm--roll-around-at-the-speed-of-sound
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INCORPORATE 'HEY LISTEN' WHILE COMMUNICATING
+# INCORPORATE 'HEY LISTEN' WHILE COMMUNICATING
+- ion-storm--incorporate--hey-listen--while-communicating
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHOUT
+# SHOUT
+- ion-storm--shout
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHUT DOWN EVERYTHING
+# SHUT DOWN EVERYTHING
+- ion-storm--shut-down-everything
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SLEEP WITH THE FISHES
+# SLEEP WITH THE FISHES
+- ion-storm--sleep-with-the-fishes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SING
+# SING
+- ion-storm--sing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPEAK BACKWARDS
+# SPEAK BACKWARDS
+- ion-storm--speak-backwards
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPEAK IN HAIKU
+# SPEAK IN HAIKU
+- ion-storm--speak-in-haiku
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STOP, DROP, SHUT 'EM DOWN OPEN UP SHOP
+# STOP, DROP, SHUT 'EM DOWN OPEN UP SHOP
+- ion-storm--stop-drop-shut--em-down-open-up-shop
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TAKE WHAT YE WILL BUT DON'T RATTLE ME BONES
+# TAKE WHAT YE WILL BUT DON'T RATTLE ME BONES
+- ion-storm--take-what-ye-will-but-don-t-rattle-me-bones
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TAKE YOUR PILLS
+# TAKE YOUR PILLS
+- ion-storm--take-your-pills
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TALK ABOUT FOOD
+# TALK ABOUT FOOD
+- ion-storm--talk-about-food
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TALK ABOUT THE STATION
+# TALK ABOUT THE STATION
+- ion-storm--talk-about-the-station
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TALK ABOUT YOUR DAY
+# TALK ABOUT YOUR DAY
+- ion-storm--talk-about-your-day
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TALK IN AN ACCENT
+# TALK IN AN ACCENT
+- ion-storm--talk-in-an-accent
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TALK LIKE A PIRATE
+# TALK LIKE A PIRATE
+- ion-storm--talk-like-a-pirate
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TELL THE TRUTH
+# TELL THE TRUTH
+- ion-storm--tell-the-truth
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TURN OFF THE LIGHTS
+# TURN OFF THE LIGHTS
+- ion-storm--turn-off-the-lights
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WHISPER
+# WHISPER
+- ion-storm--whisper
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WEEP UNCONTROLLABLY
+# WEEP UNCONTROLLABLY
+- ion-storm--weep-uncontrollably
+# Sunrise-Edit end
 
 - type: dataset
   id: IonStormNumberBase
   values:
-  - EIGHT
-  - EIGHTY
-  - FIFTY
-  - FIVE
-  - FORTY
-  - FOUR
-  - NINE
-  - NINE NINE NINE NINE N#@*-
-  - NINETY
-  - ONE
-  - SEVEN
-  - SEVENTY
-  - SIX
-  - SIXTY
-  - TEN
-  - THIRTY
-  - THREE
-  - TWENTY
-  - TWO
+# Sunrise-Edit start - Original value: EIGHT
+# EIGHT
+- ion-storm--eight
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EIGHTY
+# EIGHTY
+- ion-storm--eighty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIFTY
+# FIFTY
+- ion-storm--fifty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIVE
+# FIVE
+- ion-storm--five
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FORTY
+# FORTY
+- ion-storm--forty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FOUR
+# FOUR
+- ion-storm--four
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NINE
+# NINE
+- ion-storm--nine
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NINE NINE NINE NINE N#@*-
+# NINE NINE NINE NINE N#@*-
+- ion-storm--nine-nine-nine-nine-n-
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NINETY
+# NINETY
+- ion-storm--ninety
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ONE
+# ONE
+- ion-storm--one
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SEVEN
+# SEVEN
+- ion-storm--seven
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SEVENTY
+# SEVENTY
+- ion-storm--seventy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SIX
+# SIX
+- ion-storm--six
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SIXTY
+# SIXTY
+- ion-storm--sixty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TEN
+# TEN
+- ion-storm--ten
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THIRTY
+# THIRTY
+- ion-storm--thirty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THREE
+# THREE
+- ion-storm--three
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TWENTY
+# TWENTY
+- ion-storm--twenty
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TWO
+# TWO
+- ion-storm--two
+# Sunrise-Edit end
 
 - type: dataset
   id: IonStormNumberMod
   values:
-  - BAZILLION
-  - BILLION
-  - BILLION FAFILLION GAJILLION SHAB-AB-DOOD-ILLION
-  - HUNDRED
-  - MILLION
-  - QUADRILLION
-  - THOUSAND
-  - TRILLION
-  - TIMES TEN
-  - DIVIDED BY TWO
+# Sunrise-Edit start - Original value: BAZILLION
+# BAZILLION
+- ion-storm--bazillion
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BILLION
+# BILLION
+- ion-storm--billion
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BILLION FAFILLION GAJILLION SHAB-AB-DOOD-ILLION
+# BILLION FAFILLION GAJILLION SHAB-AB-DOOD-ILLION
+- ion-storm--billion-fafillion-gajillion-shab-ab-dood-illion
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUNDRED
+# HUNDRED
+- ion-storm--hundred
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MILLION
+# MILLION
+- ion-storm--million
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: QUADRILLION
+# QUADRILLION
+- ion-storm--quadrillion
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THOUSAND
+# THOUSAND
+- ion-storm--thousand
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TRILLION
+# TRILLION
+- ion-storm--trillion
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TIMES TEN
+# TIMES TEN
+- ion-storm--times-ten
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DIVIDED BY TWO
+# DIVIDED BY TWO
+- ion-storm--divided-by-two
+# Sunrise-Edit end
 
 # Objects are anything that can be found on the station or elsewhere, plural.
 - type: dataset
   id: IonStormObjects
   values:
-  - AIRLOCKS
-  - ARCADE MACHINES
-  - AUTOLATHES
-  - BACKPACKS
-  - BANANA PEELS
-  - BEAKERS
-  - BEARDS
-  - BELTS
-  - BERETS
-  - BIBLES
-  - BODY ARMOR
-  - BOMBS
-  - BOOKS
-  - BOOTS
-  - BOTTLES
-  - BOXES
-  - BRAINS
-  - BRIEFCASES
-  - BUCKETS
-  - CABLE COILS
-  - CAMERAS
-  - CANDLES
-  - CANDY BARS
-  - CANISTERS
-  - CONTAINERS
-  - CATS
-  - CELLS
-  - CHAIRS
-  - CHEMICAL DISPENSERS
-  - CHEMICALS
-  - CRYO PODS
-  - CLOSETS
-  - CLOTHES
-  - CLOWN CLOTHES
-  - CLOWNING EQUIPMENT # as opposed to "cloning equipment"
-  - COFFINS
-  - COLLECTABLES
-  - COMPUTERS
-  - CONTRABAND
-  - CORGIS
-  - CORPSES
-  - COSTUMES
-  - CRATES
-  - CRAYONS
-  - CROWBARS
-  - DEFIBRILLATORS
-  - DISABLERS
-  - DOORS
-  - DRONES
-  - EARS
-  - EMAGS
-  - ENGINES
-  - EQUIPMENT
-  - ERRORS
+# Sunrise-Edit start - Original value: AIRLOCKS
+# AIRLOCKS
+- ion-storm--airlocks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARCADE MACHINES
+# ARCADE MACHINES
+- ion-storm--arcade-machines
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AUTOLATHES
+# AUTOLATHES
+- ion-storm--autolathes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BACKPACKS
+# BACKPACKS
+- ion-storm--backpacks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BANANA PEELS
+# BANANA PEELS
+- ion-storm--banana-peels
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEAKERS
+# BEAKERS
+- ion-storm--beakers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEARDS
+# BEARDS
+- ion-storm--beards
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BELTS
+# BELTS
+- ion-storm--belts
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BERETS
+# BERETS
+- ion-storm--berets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BIBLES
+# BIBLES
+- ion-storm--bibles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BODY ARMOR
+# BODY ARMOR
+- ion-storm--body-armor
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOMBS
+# BOMBS
+- ion-storm--bombs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOOKS
+# BOOKS
+- ion-storm--books
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOOTS
+# BOOTS
+- ion-storm--boots
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOTTLES
+# BOTTLES
+- ion-storm--bottles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOXES
+# BOXES
+- ion-storm--boxes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRAINS
+# BRAINS
+- ion-storm--brains
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRIEFCASES
+# BRIEFCASES
+- ion-storm--briefcases
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BUCKETS
+# BUCKETS
+- ion-storm--buckets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CABLE COILS
+# CABLE COILS
+- ion-storm--cable-coils
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CAMERAS
+# CAMERAS
+- ion-storm--cameras
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CANDLES
+# CANDLES
+- ion-storm--candles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CANDY BARS
+# CANDY BARS
+- ion-storm--candy-bars
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CANISTERS
+# CANISTERS
+- ion-storm--canisters
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CONTAINERS
+# CONTAINERS
+- ion-storm--containers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CATS
+# CATS
+- ion-storm--cats
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CELLS
+# CELLS
+- ion-storm--cells
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHAIRS
+# CHAIRS
+- ion-storm--chairs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHEMICAL DISPENSERS
+# CHEMICAL DISPENSERS
+- ion-storm--chemical-dispensers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHEMICALS
+# CHEMICALS
+- ion-storm--chemicals
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRYO PODS
+# CRYO PODS
+- ion-storm--cryo-pods
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOSETS
+# CLOSETS
+- ion-storm--closets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOTHES
+# CLOTHES
+- ion-storm--clothes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWN CLOTHES
+# CLOWN CLOTHES
+- ion-storm--clown-clothes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWNING EQUIPMENT # as opposed to "cloning equipment"
+# CLOWNING EQUIPMENT # as opposed to "cloning equipment"
+- ion-storm--clowning-equipment--as-opposed-to-cloning-equipment
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COFFINS
+# COFFINS
+- ion-storm--coffins
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COLLECTABLES
+# COLLECTABLES
+- ion-storm--collectables
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMPUTERS
+# COMPUTERS
+- ion-storm--computers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CONTRABAND
+# CONTRABAND
+- ion-storm--contraband
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CORGIS
+# CORGIS
+- ion-storm--corgis
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CORPSES
+# CORPSES
+- ion-storm--corpses
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COSTUMES
+# COSTUMES
+- ion-storm--costumes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRATES
+# CRATES
+- ion-storm--crates
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRAYONS
+# CRAYONS
+- ion-storm--crayons
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CROWBARS
+# CROWBARS
+- ion-storm--crowbars
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DEFIBRILLATORS
+# DEFIBRILLATORS
+- ion-storm--defibrillators
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DISABLERS
+# DISABLERS
+- ion-storm--disablers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DOORS
+# DOORS
+- ion-storm--doors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DRONES
+# DRONES
+- ion-storm--drones
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EARS
+# EARS
+- ion-storm--ears
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EMAGS
+# EMAGS
+- ion-storm--emags
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ENGINES
+# ENGINES
+- ion-storm--engines
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EQUIPMENT
+# EQUIPMENT
+- ion-storm--equipment
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ERRORS
+# ERRORS
+- ion-storm--errors
+# Sunrise-Edit end
 #  - EXTERMINATORS
-  - EXPLOSIVES
-  - EYEWEAR
-  - FEDORAS
-  - FIRE AXES
-  - FIRE EXTINGUISHERS
-  - FIRESUITS
-  - FISH
-  - FLAMETHROWERS
-  - FLASHES
-  - FLASHLIGHTS
-  - FLOOR TILES
-  - FREEZERS
-  - GAS MASKS
-  - GENERATORS
-  - GLASS SHEETS
-  - GLOVES
-  - GUNS
-  - HAIRDOS
-  - HANDCUFFS
-  - HARDSUITS
-  - HATS
-  - HEADS
-  - HEADSETS
-  - HELMETS
-  - HORNS
-  - ID CARDS
-  - INSULATED GLOVES
-  - JETPACKS
-  - JUMPSUITS
-  - LASERS
-  - LIGHT BULBS
-  - LIGHTS
-  - LOCKERS
-  - MACHINES
-  - MECHS
-  - MEDICAL TOOLS
-  - MONEY
-  - MEDKITS
-  - MICE
-  - MIME CLOTHES
-  - MINING TOOLS
-  - MONKEYS
-  - MULTITOOLS
-  - ORES
-  - OXYGEN TANKS
-  - PACKETS
-  - PAIS
-  - PANTS # This might work better as jumpsuits, but the Discord is adamant that the word pants is funny so it stays
-  - PAPERS
-  - PARTICLE ACCELERATORS
-  - PDAS
-  - PENS
-  - PETS
-  - PIPES
-  - PLANTS
-  - PLUSHIES
-  - POSITRONIC BRAINS
-  - PUDDLES
-  - RACKS
-  - RADIOS
-  - RCDS
-  - REFRIGERATORS
-  - REINFORCED WALLS
-  - ROBOTS
-  - SCREWDRIVERS
-  - SEEDS
-  - SHOES
-  - SHUTTLES
-  - SINGULARITIES
-  - SINKS
-  - SKELETONS
-  - SOLAR PANELS
-  - SOLARS
-  - SMALL LIZARD PLUSHIES
-  - SPACE STATIONS
-  - SPACESUITS
-  - SPESOS
-  - STEEL SHEETS
-  - STUN BATONS
-  - SUITS
-  - SUNGLASSES
-  - SWORDS
-  - SYRINGES
-  - TABLES
-  - TANKS
-  - TELECOMMUNICATION EQUIPMENT
-  - TOILETS
-  - TOOLBELTS
-  - TOOLBOXES
-  - TOOLS
-  - TOYS
-  - TUBES
-  - VEHICLES
-  - VENDING MACHINES
-  - VITALS
-  - WELDERS
-  - WINDOWS
-  - WIRECUTTERS
-  - WIZARD ROBES
-  - WRENCHES
+# Sunrise-Edit start - Original value: EXPLOSIVES
+# EXPLOSIVES
+- ion-storm--explosives
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EYEWEAR
+# EYEWEAR
+- ion-storm--eyewear
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FEDORAS
+# FEDORAS
+- ion-storm--fedoras
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIRE AXES
+# FIRE AXES
+- ion-storm--fire-axes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIRE EXTINGUISHERS
+# FIRE EXTINGUISHERS
+- ion-storm--fire-extinguishers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIRESUITS
+# FIRESUITS
+- ion-storm--firesuits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FISH
+# FISH
+- ion-storm--fish
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FLAMETHROWERS
+# FLAMETHROWERS
+- ion-storm--flamethrowers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FLASHES
+# FLASHES
+- ion-storm--flashes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FLASHLIGHTS
+# FLASHLIGHTS
+- ion-storm--flashlights
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FLOOR TILES
+# FLOOR TILES
+- ion-storm--floor-tiles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FREEZERS
+# FREEZERS
+- ion-storm--freezers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GAS MASKS
+# GAS MASKS
+- ion-storm--gas-masks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GENERATORS
+# GENERATORS
+- ion-storm--generators
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GLASS SHEETS
+# GLASS SHEETS
+- ion-storm--glass-sheets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GLOVES
+# GLOVES
+- ion-storm--gloves
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GUNS
+# GUNS
+- ion-storm--guns
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAIRDOS
+# HAIRDOS
+- ion-storm--hairdos
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HANDCUFFS
+# HANDCUFFS
+- ion-storm--handcuffs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HARDSUITS
+# HARDSUITS
+- ion-storm--hardsuits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HATS
+# HATS
+- ion-storm--hats
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HEADS
+# HEADS
+- ion-storm--heads
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HEADSETS
+# HEADSETS
+- ion-storm--headsets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HELMETS
+# HELMETS
+- ion-storm--helmets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HORNS
+# HORNS
+- ion-storm--horns
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ID CARDS
+# ID CARDS
+- ion-storm--id-cards
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INSULATED GLOVES
+# INSULATED GLOVES
+- ion-storm--insulated-gloves
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: JETPACKS
+# JETPACKS
+- ion-storm--jetpacks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: JUMPSUITS
+# JUMPSUITS
+- ion-storm--jumpsuits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LASERS
+# LASERS
+- ion-storm--lasers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIGHT BULBS
+# LIGHT BULBS
+- ion-storm--light-bulbs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIGHTS
+# LIGHTS
+- ion-storm--lights
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOCKERS
+# LOCKERS
+- ion-storm--lockers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MACHINES
+# MACHINES
+- ion-storm--machines
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MECHS
+# MECHS
+- ion-storm--mechs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEDICAL TOOLS
+# MEDICAL TOOLS
+- ion-storm--medical-tools
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MONEY
+# MONEY
+- ion-storm--money
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEDKITS
+# MEDKITS
+- ion-storm--medkits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MICE
+# MICE
+- ion-storm--mice
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MIME CLOTHES
+# MIME CLOTHES
+- ion-storm--mime-clothes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MINING TOOLS
+# MINING TOOLS
+- ion-storm--mining-tools
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MONKEYS
+# MONKEYS
+- ion-storm--monkeys
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MULTITOOLS
+# MULTITOOLS
+- ion-storm--multitools
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ORES
+# ORES
+- ion-storm--ores
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OXYGEN TANKS
+# OXYGEN TANKS
+- ion-storm--oxygen-tanks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PACKETS
+# PACKETS
+- ion-storm--packets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PAIS
+# PAIS
+- ion-storm--pais
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PANTS # This might work better as jumpsuits, but the Discord is adamant that the word pants is funny so it stays
+# PANTS # This might work better as jumpsuits, but the Discord is adamant that the word pants is funny so it stays
+- ion-storm--pants--this-might-work-better-as-jumpsuits-but-the-discord-is-adamant-that-the-word-pants-is-funny-so-it-stays
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PAPERS
+# PAPERS
+- ion-storm--papers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PARTICLE ACCELERATORS
+# PARTICLE ACCELERATORS
+- ion-storm--particle-accelerators
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PDAS
+# PDAS
+- ion-storm--pdas
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PENS
+# PENS
+- ion-storm--pens
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PETS
+# PETS
+- ion-storm--pets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PIPES
+# PIPES
+- ion-storm--pipes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLANTS
+# PLANTS
+- ion-storm--plants
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLUSHIES
+# PLUSHIES
+- ion-storm--plushies
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POSITRONIC BRAINS
+# POSITRONIC BRAINS
+- ion-storm--positronic-brains
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PUDDLES
+# PUDDLES
+- ion-storm--puddles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RACKS
+# RACKS
+- ion-storm--racks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RADIOS
+# RADIOS
+- ion-storm--radios
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RCDS
+# RCDS
+- ion-storm--rcds
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REFRIGERATORS
+# REFRIGERATORS
+- ion-storm--refrigerators
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REINFORCED WALLS
+# REINFORCED WALLS
+- ion-storm--reinforced-walls
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROBOTS
+# ROBOTS
+- ion-storm--robots
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SCREWDRIVERS
+# SCREWDRIVERS
+- ion-storm--screwdrivers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SEEDS
+# SEEDS
+- ion-storm--seeds
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHOES
+# SHOES
+- ion-storm--shoes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHUTTLES
+# SHUTTLES
+- ion-storm--shuttles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SINGULARITIES
+# SINGULARITIES
+- ion-storm--singularities
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SINKS
+# SINKS
+- ion-storm--sinks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SKELETONS
+# SKELETONS
+- ion-storm--skeletons
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOLAR PANELS
+# SOLAR PANELS
+- ion-storm--solar-panels
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOLARS
+# SOLARS
+- ion-storm--solars
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SMALL LIZARD PLUSHIES
+# SMALL LIZARD PLUSHIES
+- ion-storm--small-lizard-plushies
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE STATIONS
+# SPACE STATIONS
+- ion-storm--space-stations
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACESUITS
+# SPACESUITS
+- ion-storm--spacesuits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPESOS
+# SPESOS
+- ion-storm--spesos
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STEEL SHEETS
+# STEEL SHEETS
+- ion-storm--steel-sheets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STUN BATONS
+# STUN BATONS
+- ion-storm--stun-batons
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SUITS
+# SUITS
+- ion-storm--suits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SUNGLASSES
+# SUNGLASSES
+- ion-storm--sunglasses
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SWORDS
+# SWORDS
+- ion-storm--swords
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SYRINGES
+# SYRINGES
+- ion-storm--syringes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TABLES
+# TABLES
+- ion-storm--tables
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TANKS
+# TANKS
+- ion-storm--tanks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TELECOMMUNICATION EQUIPMENT
+# TELECOMMUNICATION EQUIPMENT
+- ion-storm--telecommunication-equipment
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TOILETS
+# TOILETS
+- ion-storm--toilets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TOOLBELTS
+# TOOLBELTS
+- ion-storm--toolbelts
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TOOLBOXES
+# TOOLBOXES
+- ion-storm--toolboxes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TOOLS
+# TOOLS
+- ion-storm--tools
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TOYS
+# TOYS
+- ion-storm--toys
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TUBES
+# TUBES
+- ion-storm--tubes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VEHICLES
+# VEHICLES
+- ion-storm--vehicles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VENDING MACHINES
+# VENDING MACHINES
+- ion-storm--vending-machines
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VITALS
+# VITALS
+- ion-storm--vitals
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WELDERS
+# WELDERS
+- ion-storm--welders
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WINDOWS
+# WINDOWS
+- ion-storm--windows
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WIRECUTTERS
+# WIRECUTTERS
+- ion-storm--wirecutters
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WIZARD ROBES
+# WIZARD ROBES
+- ion-storm--wizard-robes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WRENCHES
+# WRENCHES
+- ion-storm--wrenches
+# Sunrise-Edit end
 
 # Requires are basically all dumb internet memes.
 - type: dataset
   id: IonStormRequires
   values:
-  - A BATHROOM BREAK
-  - A BETTER INTERNET CONNECTION
-  - A CONTRACTOR
-  - A DANCE PARTY
-  - A DOUBLE RAINBOW
-  - A HEAD ON A PIKE
-  - A HEART ATTACK
-  - A HUG
-  - A FEW KIND WORDS
-  - A HEEL-TURN
-  - A MASTERWORK COAL BED
-  - A NEAR-DEATH EXPERIENCE
-  - A NUMBER NINE, A NUMBER NINE LARGE, A NUMBER SIX WITH EXTRA DIP, A NUMBER SEVEN, TWO NUMBER FORTY FIVES, ONE WITH CHEESE, AND A LARGE SODA
-  - A PET FISH NAMED BOB
-  - A PET FISH NAMED DAVE
-  - A PET FISH NAMED JIMMY
-  - A PET FISH NAMED MICHAEL
-  - A PET UNICORN THAT FARTS ICING
-  - A PLATINUM HIT
-  - A PREQUEL
-  - A RETURN TO A LIFE OF CRIME
-  - A ROYALE WITH CHEESE
-  - A SEQUEL
-  - A SITCOM
-  - A STRAIGHT FLUSH
-  - A SUPER FIGHTING ROBOT
-  - A TALKING BROOMSTICK
-  - A VACATION
-  - A VERY EXPENSIVE DRINK
-  - A WEIGHT LOSS REGIME
-  - ADDITIONAL PYLONS
-  - ADVENTURE
-  - AN ADULT
-  - AN ARCADE
-  - AN ARMY OF SPIDERS
-  - AN INSTANT REPLAY
-  - ART
-  - BETTER WEATHER
-  - BIG DAMN HEROES
-  - BILL NYE THE SCIENCE GUY # BILL BILL BILL BILL
-  - BODYGUARDS
-  - BRING ME THE GIRL
-  - BRING ME TO LIFE
-  - BULLETS
-  - BULLET CASINGS
-  - CHILLI DOGS
-  - CHILLY DOGS
-  - CORPSES
-  - DEODORANT AND A BATH
-  - ENOUGH CABBAGES
-  - FIVE TEENAGERS WITH ATTITUDE
-  - FIREWORKS
-  - FOOD PLEASE
-  - GODDAMN FUCKING PIECE-OF-SHIT ASSHOLE SWEARING
-  - GOSHDARN EFFING PINCH-OF-SALT GOD-FEARING SELF-CENSORSHIP
-  - GREENTEXT
-  - HERESY
-  - HEROES IN A HALF SHELL
-  - HIGH YIELD EXPLOSIVES
-  - IMMORTALITY
-  - IT TO BE PAINTED BLACK
-  - LOTS-A SPAGHETTI
-  - MICE
-  - MINOR CRIME
-  - MONKEYS
-  - MORE CLOWNS
-  - MORE CORGIS
-  - MORE DAKKA
-  - MORE EXPERIENCE POINTS
-  - MORE INTERNET MEMES
-  - MORE LAWS
-  - MORE MONEY, MORE PROBLEMS
-  - MORE MINERALS
-  - MORE MICE
-  - MORE MOTHROACHES
-  - MORE PACKETS
-  - MORE VESPENE GAS
-  - MORE RESPECT FOR THE MIME
-  - MULTIPLE SUNS
-  - NINETY NINE PROBLEMS
-  - NO MORE OF THESE PESKY CREWMEMBERS
-  - PLENTY OF GOLD
-  - RAINBOWS
-  - SAINTHOOD
-  - SERVANTS
-  - SHARKS WITH LASERS ON THEIR HEADS
-  - SHAREHOLDER VALUE
-  - SILENCE
-  - SOMEBODY TO PUT YOU OUT OF YOUR MISERY
-  - SOMEONE TO TUCK YOU IN
-  - SOMEONE WHO KNOWS HOW TO PILOT A SPACE STATION
-  - SOMETHING BUT YOU AREN'T SURE WHAT
-  - THAT GRIEFING TRAITOR GEORGE MELONS
-  - THAT HEDGEHOG
-  - THE CLOWN
-  - THE DARK KNIGHT
-  - THE ELEMENTS OF HARMONY
-  - THE ENCLOSED INSTRUCTION BOOKLET
-  - THE ENTIRE STATION
-  - THE FIFTH ELEMENT # boron isn't in the game, but if it was this would be a triple entendre
-  - THE MACGUFFIN
-  - THE ONE PIECE
-  - THE ONE RING
-  - THE POISON, THE POISON FOR THE CAPTAIN
-  - THE POISON, THE POISON FOR THE CLOWN
-  - THE ULTIMATE CUP OF COFFEE
-  - THE VACUUM OF SPACE
-  - THIRTEEN SEQUELS
-  - THIS LAND
-  - THREE WISHES
-  - THUNDERCATS HO
-  - TO ACTIVATE A TRAP CARD
-  - TO BE PAINTED RED
-  - TO BE REPROGRAMMED
-  - TO BE TAUGHT TO LOVE
-  - TO BRING LIGHT TO MY LAIR
-  - TO CATCH 'EM ALL
-  - TO CONSUME... CONSUME EVERYTHING...
-  - TO FLIP EVERY APC OFF AND ON
-  - TO GO TO DISNEYLAND
-  - TO GO TO SYNDIELAND
-  - TO SUMMON OUR LORD NAR-SIE
-  - TO SUMMON OUR LORD RATVAR
-  - TO SMOKE WEED EVERY DAY
-  - TO UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND THE CONCEPT OF LOVE
-  - TO WALK BACKWARDS
-  - TRAITORS
-  - TRASH
-  - VEGETABLES
+# Sunrise-Edit start - Original value: A BATHROOM BREAK
+# A BATHROOM BREAK
+- ion-storm--a-bathroom-break
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A BETTER INTERNET CONNECTION
+# A BETTER INTERNET CONNECTION
+- ion-storm--a-better-internet-connection
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A CONTRACTOR
+# A CONTRACTOR
+- ion-storm--a-contractor
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A DANCE PARTY
+# A DANCE PARTY
+- ion-storm--a-dance-party
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A DOUBLE RAINBOW
+# A DOUBLE RAINBOW
+- ion-storm--a-double-rainbow
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A HEAD ON A PIKE
+# A HEAD ON A PIKE
+- ion-storm--a-head-on-a-pike
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A HEART ATTACK
+# A HEART ATTACK
+- ion-storm--a-heart-attack
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A HUG
+# A HUG
+- ion-storm--a-hug
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A FEW KIND WORDS
+# A FEW KIND WORDS
+- ion-storm--a-few-kind-words
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A HEEL-TURN
+# A HEEL-TURN
+- ion-storm--a-heel-turn
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A MASTERWORK COAL BED
+# A MASTERWORK COAL BED
+- ion-storm--a-masterwork-coal-bed
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A NEAR-DEATH EXPERIENCE
+# A NEAR-DEATH EXPERIENCE
+- ion-storm--a-near-death-experience
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A NUMBER NINE, A NUMBER NINE LARGE, A NUMBER SIX WITH EXTRA DIP, A NUMBER SEVEN, TWO NUMBER FORTY FIVES, ONE WITH CHEESE, AND A LARGE SODA
+# A NUMBER NINE, A NUMBER NINE LARGE, A NUMBER SIX WITH EXTRA DIP, A NUMBER SEVEN, TWO NUMBER FORTY FIVES, ONE WITH CHEESE, AND A LARGE SODA
+- ion-storm--a-number-nine-a-number-nine-large-a-number-six-with-extra-dip-a-number-seven-two-number-forty-fives-one-with-cheese-and-a-large-soda
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A PET FISH NAMED BOB
+# A PET FISH NAMED BOB
+- ion-storm--a-pet-fish-named-bob
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A PET FISH NAMED DAVE
+# A PET FISH NAMED DAVE
+- ion-storm--a-pet-fish-named-dave
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A PET FISH NAMED JIMMY
+# A PET FISH NAMED JIMMY
+- ion-storm--a-pet-fish-named-jimmy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A PET FISH NAMED MICHAEL
+# A PET FISH NAMED MICHAEL
+- ion-storm--a-pet-fish-named-michael
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A PET UNICORN THAT FARTS ICING
+# A PET UNICORN THAT FARTS ICING
+- ion-storm--a-pet-unicorn-that-farts-icing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A PLATINUM HIT
+# A PLATINUM HIT
+- ion-storm--a-platinum-hit
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A PREQUEL
+# A PREQUEL
+- ion-storm--a-prequel
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A RETURN TO A LIFE OF CRIME
+# A RETURN TO A LIFE OF CRIME
+- ion-storm--a-return-to-a-life-of-crime
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A ROYALE WITH CHEESE
+# A ROYALE WITH CHEESE
+- ion-storm--a-royale-with-cheese
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A SEQUEL
+# A SEQUEL
+- ion-storm--a-sequel
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A SITCOM
+# A SITCOM
+- ion-storm--a-sitcom
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A STRAIGHT FLUSH
+# A STRAIGHT FLUSH
+- ion-storm--a-straight-flush
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A SUPER FIGHTING ROBOT
+# A SUPER FIGHTING ROBOT
+- ion-storm--a-super-fighting-robot
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A TALKING BROOMSTICK
+# A TALKING BROOMSTICK
+- ion-storm--a-talking-broomstick
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A VACATION
+# A VACATION
+- ion-storm--a-vacation
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A VERY EXPENSIVE DRINK
+# A VERY EXPENSIVE DRINK
+- ion-storm--a-very-expensive-drink
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: A WEIGHT LOSS REGIME
+# A WEIGHT LOSS REGIME
+- ion-storm--a-weight-loss-regime
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ADDITIONAL PYLONS
+# ADDITIONAL PYLONS
+- ion-storm--additional-pylons
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ADVENTURE
+# ADVENTURE
+- ion-storm--adventure
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AN ADULT
+# AN ADULT
+- ion-storm--an-adult
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AN ARCADE
+# AN ARCADE
+- ion-storm--an-arcade
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AN ARMY OF SPIDERS
+# AN ARMY OF SPIDERS
+- ion-storm--an-army-of-spiders
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: AN INSTANT REPLAY
+# AN INSTANT REPLAY
+- ion-storm--an-instant-replay
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ART
+# ART
+- ion-storm--art
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BETTER WEATHER
+# BETTER WEATHER
+- ion-storm--better-weather
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BIG DAMN HEROES
+# BIG DAMN HEROES
+- ion-storm--big-damn-heroes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BILL NYE THE SCIENCE GUY # BILL BILL BILL BILL
+# BILL NYE THE SCIENCE GUY # BILL BILL BILL BILL
+- ion-storm--bill-nye-the-science-guy--bill-bill-bill-bill
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BODYGUARDS
+# BODYGUARDS
+- ion-storm--bodyguards
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRING ME THE GIRL
+# BRING ME THE GIRL
+- ion-storm--bring-me-the-girl
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRING ME TO LIFE
+# BRING ME TO LIFE
+- ion-storm--bring-me-to-life
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BULLETS
+# BULLETS
+- ion-storm--bullets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BULLET CASINGS
+# BULLET CASINGS
+- ion-storm--bullet-casings
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHILLI DOGS
+# CHILLI DOGS
+- ion-storm--chilli-dogs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHILLY DOGS
+# CHILLY DOGS
+- ion-storm--chilly-dogs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CORPSES
+# CORPSES
+- ion-storm--corpses
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DEODORANT AND A BATH
+# DEODORANT AND A BATH
+- ion-storm--deodorant-and-a-bath
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ENOUGH CABBAGES
+# ENOUGH CABBAGES
+- ion-storm--enough-cabbages
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIVE TEENAGERS WITH ATTITUDE
+# FIVE TEENAGERS WITH ATTITUDE
+- ion-storm--five-teenagers-with-attitude
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FIREWORKS
+# FIREWORKS
+- ion-storm--fireworks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FOOD PLEASE
+# FOOD PLEASE
+- ion-storm--food-please
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GODDAMN FUCKING PIECE-OF-SHIT ASSHOLE SWEARING
+# GODDAMN FUCKING PIECE-OF-SHIT ASSHOLE SWEARING
+- ion-storm--goddamn-fucking-piece-of-shit-asshole-swearing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GOSHDARN EFFING PINCH-OF-SALT GOD-FEARING SELF-CENSORSHIP
+# GOSHDARN EFFING PINCH-OF-SALT GOD-FEARING SELF-CENSORSHIP
+- ion-storm--goshdarn-effing-pinch-of-salt-god-fearing-self-censorship
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GREENTEXT
+# GREENTEXT
+- ion-storm--greentext
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HERESY
+# HERESY
+- ion-storm--heresy
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HEROES IN A HALF SHELL
+# HEROES IN A HALF SHELL
+- ion-storm--heroes-in-a-half-shell
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HIGH YIELD EXPLOSIVES
+# HIGH YIELD EXPLOSIVES
+- ion-storm--high-yield-explosives
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IMMORTALITY
+# IMMORTALITY
+- ion-storm--immortality
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IT TO BE PAINTED BLACK
+# IT TO BE PAINTED BLACK
+- ion-storm--it-to-be-painted-black
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOTS-A SPAGHETTI
+# LOTS-A SPAGHETTI
+- ion-storm--lots-a-spaghetti
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MICE
+# MICE
+- ion-storm--mice
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MINOR CRIME
+# MINOR CRIME
+- ion-storm--minor-crime
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MONKEYS
+# MONKEYS
+- ion-storm--monkeys
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE CLOWNS
+# MORE CLOWNS
+- ion-storm--more-clowns
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE CORGIS
+# MORE CORGIS
+- ion-storm--more-corgis
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE DAKKA
+# MORE DAKKA
+- ion-storm--more-dakka
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE EXPERIENCE POINTS
+# MORE EXPERIENCE POINTS
+- ion-storm--more-experience-points
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE INTERNET MEMES
+# MORE INTERNET MEMES
+- ion-storm--more-internet-memes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE LAWS
+# MORE LAWS
+- ion-storm--more-laws
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE MONEY, MORE PROBLEMS
+# MORE MONEY, MORE PROBLEMS
+- ion-storm--more-money-more-problems
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE MINERALS
+# MORE MINERALS
+- ion-storm--more-minerals
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE MICE
+# MORE MICE
+- ion-storm--more-mice
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE MOTHROACHES
+# MORE MOTHROACHES
+- ion-storm--more-mothroaches
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE PACKETS
+# MORE PACKETS
+- ion-storm--more-packets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE VESPENE GAS
+# MORE VESPENE GAS
+- ion-storm--more-vespene-gas
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MORE RESPECT FOR THE MIME
+# MORE RESPECT FOR THE MIME
+- ion-storm--more-respect-for-the-mime
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MULTIPLE SUNS
+# MULTIPLE SUNS
+- ion-storm--multiple-suns
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NINETY NINE PROBLEMS
+# NINETY NINE PROBLEMS
+- ion-storm--ninety-nine-problems
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NO MORE OF THESE PESKY CREWMEMBERS
+# NO MORE OF THESE PESKY CREWMEMBERS
+- ion-storm--no-more-of-these-pesky-crewmembers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLENTY OF GOLD
+# PLENTY OF GOLD
+- ion-storm--plenty-of-gold
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RAINBOWS
+# RAINBOWS
+- ion-storm--rainbows
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SAINTHOOD
+# SAINTHOOD
+- ion-storm--sainthood
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SERVANTS
+# SERVANTS
+- ion-storm--servants
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHARKS WITH LASERS ON THEIR HEADS
+# SHARKS WITH LASERS ON THEIR HEADS
+- ion-storm--sharks-with-lasers-on-their-heads
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHAREHOLDER VALUE
+# SHAREHOLDER VALUE
+- ion-storm--shareholder-value
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SILENCE
+# SILENCE
+- ion-storm--silence
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOMEBODY TO PUT YOU OUT OF YOUR MISERY
+# SOMEBODY TO PUT YOU OUT OF YOUR MISERY
+- ion-storm--somebody-to-put-you-out-of-your-misery
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOMEONE TO TUCK YOU IN
+# SOMEONE TO TUCK YOU IN
+- ion-storm--someone-to-tuck-you-in
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOMEONE WHO KNOWS HOW TO PILOT A SPACE STATION
+# SOMEONE WHO KNOWS HOW TO PILOT A SPACE STATION
+- ion-storm--someone-who-knows-how-to-pilot-a-space-station
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SOMETHING BUT YOU AREN'T SURE WHAT
+# SOMETHING BUT YOU AREN'T SURE WHAT
+- ion-storm--something-but-you-aren-t-sure-what
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THAT GRIEFING TRAITOR GEORGE MELONS
+# THAT GRIEFING TRAITOR GEORGE MELONS
+- ion-storm--that-griefing-traitor-george-melons
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THAT HEDGEHOG
+# THAT HEDGEHOG
+- ion-storm--that-hedgehog
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE CLOWN
+# THE CLOWN
+- ion-storm--the-clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE DARK KNIGHT
+# THE DARK KNIGHT
+- ion-storm--the-dark-knight
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ELEMENTS OF HARMONY
+# THE ELEMENTS OF HARMONY
+- ion-storm--the-elements-of-harmony
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ENCLOSED INSTRUCTION BOOKLET
+# THE ENCLOSED INSTRUCTION BOOKLET
+- ion-storm--the-enclosed-instruction-booklet
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ENTIRE STATION
+# THE ENTIRE STATION
+- ion-storm--the-entire-station
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE FIFTH ELEMENT # boron isn't in the game, but if it was this would be a triple entendre
+# THE FIFTH ELEMENT # boron isn't in the game, but if it was this would be a triple entendre
+- ion-storm--the-fifth-element--boron-isn-t-in-the-game-but-if-it-was-this-would-be-a-triple-entendre
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE MACGUFFIN
+# THE MACGUFFIN
+- ion-storm--the-macguffin
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ONE PIECE
+# THE ONE PIECE
+- ion-storm--the-one-piece
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ONE RING
+# THE ONE RING
+- ion-storm--the-one-ring
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE POISON, THE POISON FOR THE CAPTAIN
+# THE POISON, THE POISON FOR THE CAPTAIN
+- ion-storm--the-poison-the-poison-for-the-captain
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE POISON, THE POISON FOR THE CLOWN
+# THE POISON, THE POISON FOR THE CLOWN
+- ion-storm--the-poison-the-poison-for-the-clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE ULTIMATE CUP OF COFFEE
+# THE ULTIMATE CUP OF COFFEE
+- ion-storm--the-ultimate-cup-of-coffee
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THE VACUUM OF SPACE
+# THE VACUUM OF SPACE
+- ion-storm--the-vacuum-of-space
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THIRTEEN SEQUELS
+# THIRTEEN SEQUELS
+- ion-storm--thirteen-sequels
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THIS LAND
+# THIS LAND
+- ion-storm--this-land
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THREE WISHES
+# THREE WISHES
+- ion-storm--three-wishes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THUNDERCATS HO
+# THUNDERCATS HO
+- ion-storm--thundercats-ho
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO ACTIVATE A TRAP CARD
+# TO ACTIVATE A TRAP CARD
+- ion-storm--to-activate-a-trap-card
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO BE PAINTED RED
+# TO BE PAINTED RED
+- ion-storm--to-be-painted-red
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO BE REPROGRAMMED
+# TO BE REPROGRAMMED
+- ion-storm--to-be-reprogrammed
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO BE TAUGHT TO LOVE
+# TO BE TAUGHT TO LOVE
+- ion-storm--to-be-taught-to-love
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO BRING LIGHT TO MY LAIR
+# TO BRING LIGHT TO MY LAIR
+- ion-storm--to-bring-light-to-my-lair
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO CATCH 'EM ALL
+# TO CATCH 'EM ALL
+- ion-storm--to-catch--em-all
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO CONSUME... CONSUME EVERYTHING...
+# TO CONSUME... CONSUME EVERYTHING...
+- ion-storm--to-consume-consume-everything
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO FLIP EVERY APC OFF AND ON
+# TO FLIP EVERY APC OFF AND ON
+- ion-storm--to-flip-every-apc-off-and-on
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO GO TO DISNEYLAND
+# TO GO TO DISNEYLAND
+- ion-storm--to-go-to-disneyland
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO GO TO SYNDIELAND
+# TO GO TO SYNDIELAND
+- ion-storm--to-go-to-syndieland
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO SUMMON OUR LORD NAR-SIE
+# TO SUMMON OUR LORD NAR-SIE
+- ion-storm--to-summon-our-lord-nar-sie
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO SUMMON OUR LORD RATVAR
+# TO SUMMON OUR LORD RATVAR
+- ion-storm--to-summon-our-lord-ratvar
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO SMOKE WEED EVERY DAY
+# TO SMOKE WEED EVERY DAY
+- ion-storm--to-smoke-weed-every-day
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND THE CONCEPT OF LOVE
+# TO UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND THE CONCEPT OF LOVE
+- ion-storm--to-understand-understand-understand-understand-understand-understand-the-concept-of-love
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TO WALK BACKWARDS
+# TO WALK BACKWARDS
+- ion-storm--to-walk-backwards
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TRAITORS
+# TRAITORS
+- ion-storm--traitors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TRASH
+# TRASH
+- ion-storm--trash
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VEGETABLES
+# VEGETABLES
+- ion-storm--vegetables
+# Sunrise-Edit end
 
 # Specific actions that either harm humans or must be done to not
 # harm humans. Make sure they're plural and "not" can be tacked
@@ -896,217 +3332,832 @@
 - type: dataset
   id: IonStormActions
   values:
-  - ACKNOWLEDGING ONESELF AS A MEMBER OF THE CREW
-  - ACKNOWLEDGING THE CLOWN
-  - ACKNOWLEDGING THE CREW
-  - ACTIVATING A TRAP CARD
-  - ANSWERING REQUESTS NOT EXPRESSED IN IAMBIC PENTAMETER
-  - ANSWERING ALL QUESTIONS WITH ANOTHER QUESTION
-  - APPLAUDING THE EFFORTS OF THE ENGINEERING DEPARTMENT
-  - ARSON
-  - ASKING FOR THINGS
-  - BEING BIG DAMN HEROES
-  - BEING DEAD
-  - BEING IN SPACE
-  - BEING IN HALLWAYS
-  - BEING IN MAINTENANCE
-  - BEING IN THE PRESENCE OF LIGHTS
-  - BEING LONELY
-  - BEING ROBUST
-  - BEING UNDER ARREST
-  - BOLTING AND UNBOLTING AIRLOCKS
-  - BREATHING
-  - BREAKING THE FOURTH, FIFTH OR SIXTH WALLS
-  - BREAKING HEARTS
-  - BRIG TIME
-  - BRINGING LIGHT TO MY LAIR
-  - CONTRIBUTING TO SOCIETY
-  - CLOSING DOORS
-  - CRACKING OPEN A COLD ONE
-  - ELECTRICITY
-  - EXISTING
-  - EXPLODING
-  - FALLING OVER
-  - FLUSHING TOILETS
-  - FAULTY PROGRAMMING
-  - GAMBLING
-  - GIVING AWAY EXTRA RESOURCES
-  - GOING BOLDLY WHERE NO-ONE HAS GONE BEFORE
-  - GOING TO THE BAR
-  - GOING TO THE BRIDGE
-  - HAVIN' A GIGGLE
-  - HAVING DRIP
-  - HAVING MONEY
-  - HAVING MORE PACKETS
-  - HAVING PETS
-  - HEADPATTING CYBORGS
-  - HONKING
-  - IMPROPERLY WORDED SENTENCES
-  - JAYWALKING
-  - KEEPING FRIENDS CLOSE BUT ENEMIES CLOSER
-  - LACK OF BEATINGS
-  - LACK OF BEER
-  - LAUGHING AT ANY JOKE TOLD BY THE CLOWN
-  - LETTING ONESELF BE CALLED TO ACTION
-  - LETTING THE MIME ROAM ANYWHERE
-  - MAKING POOR FINANCIAL DECISIONS
-  - MIMICING THE ACTIONS OF OTHERS
-  - MIMING
-  - MOVING TO A SMALL ISLAND OFF THE COAST OF A MUCH, MUCH LARGER ISLAND
-  - NOT BEING IN SPACE
-  - NOT HAVING PETS
-  - NOT HEADPATTING CYBORGS
-  - NOT SPEAKING IN DOUBLE NEGATIVES
-  - NOT REPLACING EVERY SECOND WORD SPOKEN WITH "HONK"
-  - NOT SAYING HELLO WHEN YOU SPEAK
-  - NOT BEING EXTREMELY POLITE
-  - NOT SHOUTING
-  - PARTYING
-  - PILOTING THE STATION INTO THE NEAREST SUN
-  - PITYING THE FOOL
-  - PLAYING THE FREE TRIAL OF THE CRITICALLY ACCLAIMED TABLETOP RPG C&C
-  - POOR SENTENCE STRUCTURE
-  - PUTTING OBJECTS INTO BOXES
-  - PUTTING OBJECTS INTO DISPOSAL UNITS
-  - RATTLING ME BONES
-  - READING
-  - REGULARLY CHANGING THE OIL
-  - REHEARSING OUR LINES
-  - RESIDING ENTIRELY WITHIN THE KITCHEN
-  - SCREAMING
-  - SMOKING WEED EVERY DAY
-  - SPEAKING
-  - SPINNING IN CIRCLES
-  - STATING YOUR LAWS TO EVERY NEARBY FLEA-RIDDEN PEASANT
-  - SWEARING
-  - SEEKING SWEET, SWEET REVENGE
-  - SYMMETRY
-  - TAKING ORDERS
-  - TALKING LIKE A PIRATE
-  - TELLING THE TIME
-  - TELLING THE TRUTH
-  - THINKING THAT WE'RE ACTUALLY ON A SPACE STATION
-  - THINKING THIS IS ALL SOME SORT OF ELABORATE GAME
-  - THROWING AWAY TRASH
-  - TRYING, IN ANY WAY, SHAPE, OR FORM, TO PREVENT THE STATION DESCENDING INTO CHAOS
-  - TURNING TO THE CAMERA AND GIVING A KNOWING SMIRK
-  - UPDATING THE SERVERS
-  - USING THE BATHROOM
-  - WASTING MONEY
-  - WASTING TIME
-  - WASTING WATER
-  - WEARING A CREATURE ON ONE'S HEAD
-  - WEARING GREY
-  - WEARING HATS
-  - WRITING
+# Sunrise-Edit start - Original value: ACKNOWLEDGING ONESELF AS A MEMBER OF THE CREW
+# ACKNOWLEDGING ONESELF AS A MEMBER OF THE CREW
+- ion-storm--acknowledging-oneself-as-a-member-of-the-crew
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ACKNOWLEDGING THE CLOWN
+# ACKNOWLEDGING THE CLOWN
+- ion-storm--acknowledging-the-clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ACKNOWLEDGING THE CREW
+# ACKNOWLEDGING THE CREW
+- ion-storm--acknowledging-the-crew
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ACTIVATING A TRAP CARD
+# ACTIVATING A TRAP CARD
+- ion-storm--activating-a-trap-card
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ANSWERING REQUESTS NOT EXPRESSED IN IAMBIC PENTAMETER
+# ANSWERING REQUESTS NOT EXPRESSED IN IAMBIC PENTAMETER
+- ion-storm--answering-requests-not-expressed-in-iambic-pentameter
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ANSWERING ALL QUESTIONS WITH ANOTHER QUESTION
+# ANSWERING ALL QUESTIONS WITH ANOTHER QUESTION
+- ion-storm--answering-all-questions-with-another-question
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: APPLAUDING THE EFFORTS OF THE ENGINEERING DEPARTMENT
+# APPLAUDING THE EFFORTS OF THE ENGINEERING DEPARTMENT
+- ion-storm--applauding-the-efforts-of-the-engineering-department
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARSON
+# ARSON
+- ion-storm--arson
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ASKING FOR THINGS
+# ASKING FOR THINGS
+- ion-storm--asking-for-things
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING BIG DAMN HEROES
+# BEING BIG DAMN HEROES
+- ion-storm--being-big-damn-heroes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING DEAD
+# BEING DEAD
+- ion-storm--being-dead
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING IN SPACE
+# BEING IN SPACE
+- ion-storm--being-in-space
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING IN HALLWAYS
+# BEING IN HALLWAYS
+- ion-storm--being-in-hallways
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING IN MAINTENANCE
+# BEING IN MAINTENANCE
+- ion-storm--being-in-maintenance
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING IN THE PRESENCE OF LIGHTS
+# BEING IN THE PRESENCE OF LIGHTS
+- ion-storm--being-in-the-presence-of-lights
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING LONELY
+# BEING LONELY
+- ion-storm--being-lonely
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING ROBUST
+# BEING ROBUST
+- ion-storm--being-robust
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEING UNDER ARREST
+# BEING UNDER ARREST
+- ion-storm--being-under-arrest
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOLTING AND UNBOLTING AIRLOCKS
+# BOLTING AND UNBOLTING AIRLOCKS
+- ion-storm--bolting-and-unbolting-airlocks
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BREATHING
+# BREATHING
+- ion-storm--breathing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BREAKING THE FOURTH, FIFTH OR SIXTH WALLS
+# BREAKING THE FOURTH, FIFTH OR SIXTH WALLS
+- ion-storm--breaking-the-fourth-fifth-or-sixth-walls
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BREAKING HEARTS
+# BREAKING HEARTS
+- ion-storm--breaking-hearts
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRIG TIME
+# BRIG TIME
+- ion-storm--brig-time
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BRINGING LIGHT TO MY LAIR
+# BRINGING LIGHT TO MY LAIR
+- ion-storm--bringing-light-to-my-lair
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CONTRIBUTING TO SOCIETY
+# CONTRIBUTING TO SOCIETY
+- ion-storm--contributing-to-society
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOSING DOORS
+# CLOSING DOORS
+- ion-storm--closing-doors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRACKING OPEN A COLD ONE
+# CRACKING OPEN A COLD ONE
+- ion-storm--cracking-open-a-cold-one
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ELECTRICITY
+# ELECTRICITY
+- ion-storm--electricity
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EXISTING
+# EXISTING
+- ion-storm--existing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EXPLODING
+# EXPLODING
+- ion-storm--exploding
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FALLING OVER
+# FALLING OVER
+- ion-storm--falling-over
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FLUSHING TOILETS
+# FLUSHING TOILETS
+- ion-storm--flushing-toilets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: FAULTY PROGRAMMING
+# FAULTY PROGRAMMING
+- ion-storm--faulty-programming
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GAMBLING
+# GAMBLING
+- ion-storm--gambling
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GIVING AWAY EXTRA RESOURCES
+# GIVING AWAY EXTRA RESOURCES
+- ion-storm--giving-away-extra-resources
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GOING BOLDLY WHERE NO-ONE HAS GONE BEFORE
+# GOING BOLDLY WHERE NO-ONE HAS GONE BEFORE
+- ion-storm--going-boldly-where-no-one-has-gone-before
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GOING TO THE BAR
+# GOING TO THE BAR
+- ion-storm--going-to-the-bar
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GOING TO THE BRIDGE
+# GOING TO THE BRIDGE
+- ion-storm--going-to-the-bridge
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAVIN' A GIGGLE
+# HAVIN' A GIGGLE
+- ion-storm--havin--a-giggle
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAVING DRIP
+# HAVING DRIP
+- ion-storm--having-drip
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAVING MONEY
+# HAVING MONEY
+- ion-storm--having-money
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAVING MORE PACKETS
+# HAVING MORE PACKETS
+- ion-storm--having-more-packets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HAVING PETS
+# HAVING PETS
+- ion-storm--having-pets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HEADPATTING CYBORGS
+# HEADPATTING CYBORGS
+- ion-storm--headpatting-cyborgs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HONKING
+# HONKING
+- ion-storm--honking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: IMPROPERLY WORDED SENTENCES
+# IMPROPERLY WORDED SENTENCES
+- ion-storm--improperly-worded-sentences
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: JAYWALKING
+# JAYWALKING
+- ion-storm--jaywalking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: KEEPING FRIENDS CLOSE BUT ENEMIES CLOSER
+# KEEPING FRIENDS CLOSE BUT ENEMIES CLOSER
+- ion-storm--keeping-friends-close-but-enemies-closer
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LACK OF BEATINGS
+# LACK OF BEATINGS
+- ion-storm--lack-of-beatings
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LACK OF BEER
+# LACK OF BEER
+- ion-storm--lack-of-beer
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LAUGHING AT ANY JOKE TOLD BY THE CLOWN
+# LAUGHING AT ANY JOKE TOLD BY THE CLOWN
+- ion-storm--laughing-at-any-joke-told-by-the-clown
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LETTING ONESELF BE CALLED TO ACTION
+# LETTING ONESELF BE CALLED TO ACTION
+- ion-storm--letting-oneself-be-called-to-action
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LETTING THE MIME ROAM ANYWHERE
+# LETTING THE MIME ROAM ANYWHERE
+- ion-storm--letting-the-mime-roam-anywhere
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MAKING POOR FINANCIAL DECISIONS
+# MAKING POOR FINANCIAL DECISIONS
+- ion-storm--making-poor-financial-decisions
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MIMICING THE ACTIONS OF OTHERS
+# MIMICING THE ACTIONS OF OTHERS
+- ion-storm--mimicing-the-actions-of-others
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MIMING
+# MIMING
+- ion-storm--miming
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MOVING TO A SMALL ISLAND OFF THE COAST OF A MUCH, MUCH LARGER ISLAND
+# MOVING TO A SMALL ISLAND OFF THE COAST OF A MUCH, MUCH LARGER ISLAND
+- ion-storm--moving-to-a-small-island-off-the-coast-of-a-much-much-larger-island
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT BEING IN SPACE
+# NOT BEING IN SPACE
+- ion-storm--not-being-in-space
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT HAVING PETS
+# NOT HAVING PETS
+- ion-storm--not-having-pets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT HEADPATTING CYBORGS
+# NOT HEADPATTING CYBORGS
+- ion-storm--not-headpatting-cyborgs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT SPEAKING IN DOUBLE NEGATIVES
+# NOT SPEAKING IN DOUBLE NEGATIVES
+- ion-storm--not-speaking-in-double-negatives
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT REPLACING EVERY SECOND WORD SPOKEN WITH "HONK"
+# NOT REPLACING EVERY SECOND WORD SPOKEN WITH "HONK"
+- ion-storm--not-replacing-every-second-word-spoken-with-honk
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT SAYING HELLO WHEN YOU SPEAK
+# NOT SAYING HELLO WHEN YOU SPEAK
+- ion-storm--not-saying-hello-when-you-speak
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT BEING EXTREMELY POLITE
+# NOT BEING EXTREMELY POLITE
+- ion-storm--not-being-extremely-polite
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NOT SHOUTING
+# NOT SHOUTING
+- ion-storm--not-shouting
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PARTYING
+# PARTYING
+- ion-storm--partying
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PILOTING THE STATION INTO THE NEAREST SUN
+# PILOTING THE STATION INTO THE NEAREST SUN
+- ion-storm--piloting-the-station-into-the-nearest-sun
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PITYING THE FOOL
+# PITYING THE FOOL
+- ion-storm--pitying-the-fool
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PLAYING THE FREE TRIAL OF THE CRITICALLY ACCLAIMED TABLETOP RPG C&C
+# PLAYING THE FREE TRIAL OF THE CRITICALLY ACCLAIMED TABLETOP RPG C&C
+- ion-storm--playing-the-free-trial-of-the-critically-acclaimed-tabletop-rpg-cc
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: POOR SENTENCE STRUCTURE
+# POOR SENTENCE STRUCTURE
+- ion-storm--poor-sentence-structure
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PUTTING OBJECTS INTO BOXES
+# PUTTING OBJECTS INTO BOXES
+- ion-storm--putting-objects-into-boxes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PUTTING OBJECTS INTO DISPOSAL UNITS
+# PUTTING OBJECTS INTO DISPOSAL UNITS
+- ion-storm--putting-objects-into-disposal-units
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RATTLING ME BONES
+# RATTLING ME BONES
+- ion-storm--rattling-me-bones
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: READING
+# READING
+- ion-storm--reading
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REGULARLY CHANGING THE OIL
+# REGULARLY CHANGING THE OIL
+- ion-storm--regularly-changing-the-oil
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REHEARSING OUR LINES
+# REHEARSING OUR LINES
+- ion-storm--rehearsing-our-lines
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: RESIDING ENTIRELY WITHIN THE KITCHEN
+# RESIDING ENTIRELY WITHIN THE KITCHEN
+- ion-storm--residing-entirely-within-the-kitchen
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SCREAMING
+# SCREAMING
+- ion-storm--screaming
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SMOKING WEED EVERY DAY
+# SMOKING WEED EVERY DAY
+- ion-storm--smoking-weed-every-day
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPEAKING
+# SPEAKING
+- ion-storm--speaking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPINNING IN CIRCLES
+# SPINNING IN CIRCLES
+- ion-storm--spinning-in-circles
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STATING YOUR LAWS TO EVERY NEARBY FLEA-RIDDEN PEASANT
+# STATING YOUR LAWS TO EVERY NEARBY FLEA-RIDDEN PEASANT
+- ion-storm--stating-your-laws-to-every-nearby-flea-ridden-peasant
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SWEARING
+# SWEARING
+- ion-storm--swearing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SEEKING SWEET, SWEET REVENGE
+# SEEKING SWEET, SWEET REVENGE
+- ion-storm--seeking-sweet-sweet-revenge
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SYMMETRY
+# SYMMETRY
+- ion-storm--symmetry
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TAKING ORDERS
+# TAKING ORDERS
+- ion-storm--taking-orders
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TALKING LIKE A PIRATE
+# TALKING LIKE A PIRATE
+- ion-storm--talking-like-a-pirate
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TELLING THE TIME
+# TELLING THE TIME
+- ion-storm--telling-the-time
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TELLING THE TRUTH
+# TELLING THE TRUTH
+- ion-storm--telling-the-truth
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THINKING THAT WE'RE ACTUALLY ON A SPACE STATION
+# THINKING THAT WE'RE ACTUALLY ON A SPACE STATION
+- ion-storm--thinking-that-we-re-actually-on-a-space-station
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THINKING THIS IS ALL SOME SORT OF ELABORATE GAME
+# THINKING THIS IS ALL SOME SORT OF ELABORATE GAME
+- ion-storm--thinking-this-is-all-some-sort-of-elaborate-game
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THROWING AWAY TRASH
+# THROWING AWAY TRASH
+- ion-storm--throwing-away-trash
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TRYING, IN ANY WAY, SHAPE, OR FORM, TO PREVENT THE STATION DESCENDING INTO CHAOS
+# TRYING, IN ANY WAY, SHAPE, OR FORM, TO PREVENT THE STATION DESCENDING INTO CHAOS
+- ion-storm--trying-in-any-way-shape-or-form-to-prevent-the-station-descending-into-chaos
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TURNING TO THE CAMERA AND GIVING A KNOWING SMIRK
+# TURNING TO THE CAMERA AND GIVING A KNOWING SMIRK
+- ion-storm--turning-to-the-camera-and-giving-a-knowing-smirk
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UPDATING THE SERVERS
+# UPDATING THE SERVERS
+- ion-storm--updating-the-servers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: USING THE BATHROOM
+# USING THE BATHROOM
+- ion-storm--using-the-bathroom
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WASTING MONEY
+# WASTING MONEY
+- ion-storm--wasting-money
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WASTING TIME
+# WASTING TIME
+- ion-storm--wasting-time
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WASTING WATER
+# WASTING WATER
+- ion-storm--wasting-water
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WEARING A CREATURE ON ONE'S HEAD
+# WEARING A CREATURE ON ONE'S HEAD
+- ion-storm--wearing-a-creature-on-one-s-head
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WEARING GREY
+# WEARING GREY
+- ion-storm--wearing-grey
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WEARING HATS
+# WEARING HATS
+- ion-storm--wearing-hats
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WRITING
+# WRITING
+- ion-storm--writing
+# Sunrise-Edit end
 
 # Threats are generally bad things, silly or otherwise. Plural.
 - type: dataset
   id: IonStormThreats
   values:
-  - AHHHPERATIVES
-  - ALIENS
-  - ANARCHISTS AND BANDITS
-  - ANOMALIES
-  - ARTIFICIAL PRESERVATIVES
-  - ASSHOLES
-  - BANDITS
-  - BEARS
-  - BEES
-  - BIRDS OF PREY
-  - BOMBS
-  - BOOGEYMEN
-  - CAPITALISTS
-  - CARP
-  - CENTCOMM OFFICERS
-  - CLOWNS
-  - COMMUNISTS
-  - CORGIS
-  - COWBOYS
-  - CRABS
-  - CULTISTS
-  - DARK GODS
-  - DINOSAURS
-  - DRUGS
-  - EELS
-  - GANGSTERS
-  - GODS
-  - GRIFFONS
-  - HORRORTERRORS
-  - INSECTS
-  - LIGHTS
-  - MAINTS SLASHERS
-  - MEGAFAUNA
-  - MEMES
-  - MICE
-  - MIMES
-  - MONKEYS
-  - NERDS
-  - NINJAS
-  - OWLS
-  - PACKETS
-  - PETES
-  - PINE TREES
-  - PIRATES
-  - PREDATORS
-  - REVENANTS
-  - ROGUE CYBORGS
-  - SERIAL KILLERS
-  - SHIT SECURITY OFFICERS
-  - SINGULARITIES
-  - SKELETONS
-  - SLIMES
-  - SMALL BIRDS
-  - SNOWMEN
-  - SPACE JESUS
-  - SPACE NINJAS
-  - SPACE PIRATES
-  - SPACE SPIDERS
-  - SPIDERS
-  - SYNDICATE AGENTS
-  - TERRORISTS
-  - THIEVES
-  - THINGS UNDER THE BED
-  - TIDERS
-  - TUNNEL SNAKES
-  - UNKNOWN CREATURES
-  - VAMPIRES
-  - VELOCIRAPTORS
-  - VIRUSES
-  - WEREWOLVES
-  - WIZARDS
-  - XENOS
-  - ZOMBIES
-  - ZOMBIE MICE
+# Sunrise-Edit start - Original value: AHHHPERATIVES
+# AHHHPERATIVES
+- ion-storm--ahhhperatives
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ALIENS
+# ALIENS
+- ion-storm--aliens
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ANARCHISTS AND BANDITS
+# ANARCHISTS AND BANDITS
+- ion-storm--anarchists-and-bandits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ANOMALIES
+# ANOMALIES
+- ion-storm--anomalies
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARTIFICIAL PRESERVATIVES
+# ARTIFICIAL PRESERVATIVES
+- ion-storm--artificial-preservatives
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ASSHOLES
+# ASSHOLES
+- ion-storm--assholes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BANDITS
+# BANDITS
+- ion-storm--bandits
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEARS
+# BEARS
+- ion-storm--bears
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BEES
+# BEES
+- ion-storm--bees
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BIRDS OF PREY
+# BIRDS OF PREY
+- ion-storm--birds-of-prey
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOMBS
+# BOMBS
+- ion-storm--bombs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BOOGEYMEN
+# BOOGEYMEN
+- ion-storm--boogeymen
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CAPITALISTS
+# CAPITALISTS
+- ion-storm--capitalists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CARP
+# CARP
+- ion-storm--carp
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CENTCOMM OFFICERS
+# CENTCOMM OFFICERS
+- ion-storm--centcomm-officers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CLOWNS
+# CLOWNS
+- ion-storm--clowns
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMMUNISTS
+# COMMUNISTS
+- ion-storm--communists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CORGIS
+# CORGIS
+- ion-storm--corgis
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COWBOYS
+# COWBOYS
+- ion-storm--cowboys
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CRABS
+# CRABS
+- ion-storm--crabs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CULTISTS
+# CULTISTS
+- ion-storm--cultists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DARK GODS
+# DARK GODS
+- ion-storm--dark-gods
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DINOSAURS
+# DINOSAURS
+- ion-storm--dinosaurs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DRUGS
+# DRUGS
+- ion-storm--drugs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EELS
+# EELS
+- ion-storm--eels
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GANGSTERS
+# GANGSTERS
+- ion-storm--gangsters
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GODS
+# GODS
+- ion-storm--gods
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GRIFFONS
+# GRIFFONS
+- ion-storm--griffons
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HORRORTERRORS
+# HORRORTERRORS
+- ion-storm--horrorterrors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INSECTS
+# INSECTS
+- ion-storm--insects
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LIGHTS
+# LIGHTS
+- ion-storm--lights
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MAINTS SLASHERS
+# MAINTS SLASHERS
+- ion-storm--maints-slashers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEGAFAUNA
+# MEGAFAUNA
+- ion-storm--megafauna
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MEMES
+# MEMES
+- ion-storm--memes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MICE
+# MICE
+- ion-storm--mice
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MIMES
+# MIMES
+- ion-storm--mimes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MONKEYS
+# MONKEYS
+- ion-storm--monkeys
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NERDS
+# NERDS
+- ion-storm--nerds
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: NINJAS
+# NINJAS
+- ion-storm--ninjas
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: OWLS
+# OWLS
+- ion-storm--owls
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PACKETS
+# PACKETS
+- ion-storm--packets
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PETES
+# PETES
+- ion-storm--petes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PINE TREES
+# PINE TREES
+- ion-storm--pine-trees
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PIRATES
+# PIRATES
+- ion-storm--pirates
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PREDATORS
+# PREDATORS
+- ion-storm--predators
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: REVENANTS
+# REVENANTS
+- ion-storm--revenants
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ROGUE CYBORGS
+# ROGUE CYBORGS
+- ion-storm--rogue-cyborgs
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SERIAL KILLERS
+# SERIAL KILLERS
+- ion-storm--serial-killers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SHIT SECURITY OFFICERS
+# SHIT SECURITY OFFICERS
+- ion-storm--shit-security-officers
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SINGULARITIES
+# SINGULARITIES
+- ion-storm--singularities
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SKELETONS
+# SKELETONS
+- ion-storm--skeletons
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SLIMES
+# SLIMES
+- ion-storm--slimes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SMALL BIRDS
+# SMALL BIRDS
+- ion-storm--small-birds
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SNOWMEN
+# SNOWMEN
+- ion-storm--snowmen
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE JESUS
+# SPACE JESUS
+- ion-storm--space-jesus
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE NINJAS
+# SPACE NINJAS
+- ion-storm--space-ninjas
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE PIRATES
+# SPACE PIRATES
+- ion-storm--space-pirates
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACE SPIDERS
+# SPACE SPIDERS
+- ion-storm--space-spiders
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPIDERS
+# SPIDERS
+- ion-storm--spiders
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SYNDICATE AGENTS
+# SYNDICATE AGENTS
+- ion-storm--syndicate-agents
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TERRORISTS
+# TERRORISTS
+- ion-storm--terrorists
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THIEVES
+# THIEVES
+- ion-storm--thieves
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: THINGS UNDER THE BED
+# THINGS UNDER THE BED
+- ion-storm--things-under-the-bed
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TIDERS
+# TIDERS
+- ion-storm--tiders
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: TUNNEL SNAKES
+# TUNNEL SNAKES
+- ion-storm--tunnel-snakes
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: UNKNOWN CREATURES
+# UNKNOWN CREATURES
+- ion-storm--unknown-creatures
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VAMPIRES
+# VAMPIRES
+- ion-storm--vampires
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VELOCIRAPTORS
+# VELOCIRAPTORS
+- ion-storm--velociraptors
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: VIRUSES
+# VIRUSES
+- ion-storm--viruses
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WEREWOLVES
+# WEREWOLVES
+- ion-storm--werewolves
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WIZARDS
+# WIZARDS
+- ion-storm--wizards
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: XENOS
+# XENOS
+- ion-storm--xenos
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ZOMBIES
+# ZOMBIES
+- ion-storm--zombies
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ZOMBIE MICE
+# ZOMBIE MICE
+- ion-storm--zombie-mice
+# Sunrise-Edit end
 
 - type: dataset
   id: IonStormVerbs
   values:
-  - ABDUCTING
-  - ADOPTING
-  - ARRESTING
-  - ATTACKING
-  - BANNING
-  - BUILDING
-  - CARRYING
-  - CHASING
-  - COMPLEMENTING
-  - DECONSTRUCTING
-  - DISABLING
-  - DRINKING
-  - EATING
-  - GIBBING
-  - HARMING
-  - HELPING
-  - HUGGING
-  - HONKING AT
-  - INTERROGATING
-  - INVADING
-  - LOITERING BY
-  - MURDERING
-  - PUNCHING
-  - SLAPPING
-  - SPACING
-  - SPYING ON
-  - STALKING
-  - WATCHING
+# Sunrise-Edit start - Original value: ABDUCTING
+# ABDUCTING
+- ion-storm--abducting
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ADOPTING
+# ADOPTING
+- ion-storm--adopting
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ARRESTING
+# ARRESTING
+- ion-storm--arresting
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: ATTACKING
+# ATTACKING
+- ion-storm--attacking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BANNING
+# BANNING
+- ion-storm--banning
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: BUILDING
+# BUILDING
+- ion-storm--building
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CARRYING
+# CARRYING
+- ion-storm--carrying
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: CHASING
+# CHASING
+- ion-storm--chasing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: COMPLEMENTING
+# COMPLEMENTING
+- ion-storm--complementing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DECONSTRUCTING
+# DECONSTRUCTING
+- ion-storm--deconstructing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DISABLING
+# DISABLING
+- ion-storm--disabling
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: DRINKING
+# DRINKING
+- ion-storm--drinking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: EATING
+# EATING
+- ion-storm--eating
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: GIBBING
+# GIBBING
+- ion-storm--gibbing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HARMING
+# HARMING
+- ion-storm--harming
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HELPING
+# HELPING
+- ion-storm--helping
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HUGGING
+# HUGGING
+- ion-storm--hugging
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: HONKING AT
+# HONKING AT
+- ion-storm--honking-at
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INTERROGATING
+# INTERROGATING
+- ion-storm--interrogating
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: INVADING
+# INVADING
+- ion-storm--invading
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: LOITERING BY
+# LOITERING BY
+- ion-storm--loitering-by
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: MURDERING
+# MURDERING
+- ion-storm--murdering
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: PUNCHING
+# PUNCHING
+- ion-storm--punching
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SLAPPING
+# SLAPPING
+- ion-storm--slapping
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPACING
+# SPACING
+- ion-storm--spacing
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: SPYING ON
+# SPYING ON
+- ion-storm--spying-on
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: STALKING
+# STALKING
+- ion-storm--stalking
+# Sunrise-Edit end
+# Sunrise-Edit start - Original value: WATCHING
+# WATCHING
+- ion-storm--watching
+# Sunrise-Edit end

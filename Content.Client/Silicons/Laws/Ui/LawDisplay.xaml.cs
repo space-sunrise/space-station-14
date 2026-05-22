@@ -37,8 +37,12 @@ public sealed partial class LawDisplay : Control
         var lawIdentifierPlaintext = FormattedMessage.RemoveMarkupPermissive(lawIdentifier);
         var lawDescriptionPlaintext = FormattedMessage.RemoveMarkupPermissive(lawDescription);
 
-        LawNumberLabel.SetMarkup(lawIdentifier);
-        LawLabel.SetMessage(lawDescription);
+        // Sunrise-Edit start - Allow scramble and other tags in silicon laws
+        // LawNumberLabel.SetMarkup(lawIdentifier);
+        // LawLabel.SetMessage(lawDescription);
+        LawNumberLabel.SetMessage(FormattedMessage.FromMarkupPermissive(lawIdentifier), tagsAllowed: null);
+        LawLabel.SetMessage(FormattedMessage.FromMarkupPermissive(lawDescription), tagsAllowed: null);
+        // Sunrise-Edit end
 
         // If you can't talk, you can't state your laws...
         if (!_entityManager.TryGetComponent<SpeechComponent>(uid, out var speech) || speech.SpeechSounds is null)

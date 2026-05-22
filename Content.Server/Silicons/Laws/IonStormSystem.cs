@@ -257,6 +257,6 @@ public sealed class IonStormSystem : EntitySystem
     private string Pick(string name)
     {
         var dataset = _proto.Index<DatasetPrototype>(name);
-        return _robustRandom.Pick(dataset.Values);
+        return Loc.GetString(_robustRandom.Pick(dataset.Values));  // Sunrise-Edit
     }
 }
