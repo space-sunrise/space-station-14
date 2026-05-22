@@ -441,7 +441,7 @@
     sprite: _Sunrise/Markers/jobs.rsi
     layers:
       - state: green
-      - state: deathsquad
+      - state: jobicon
 
 ## BLUESHIELD OPERATIVE
 
@@ -456,9 +456,9 @@
     sprite: _Sunrise/Markers/jobs.rsi
     layers:
       - state: green
-      - state: blueshield
+      - state: blueshieldoperative
 
-## NTR GUARD
+## NTR
 
 - type: entity
   id: SpawnPointNtrLeader
@@ -471,7 +471,7 @@
     sprite: _Sunrise/Markers/jobs.rsi
     layers:
       - state: green
-      - state: ntrep
+      - state: ntrleader
 
 - type: entity
   id: SpawnPointNtrGuard
@@ -484,7 +484,7 @@
     sprite: _Sunrise/Markers/jobs.rsi
     layers:
       - state: green
-      - state: ntrep
+      - state: ntrguard
 
 ## TSF
 
@@ -496,9 +496,10 @@
   - type: SpawnPoint
     job_id: TSFMarine
   - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
     layers:
       - state: green
-      - state: security_officer
+      - state: TSF
 
 ## USSP
 

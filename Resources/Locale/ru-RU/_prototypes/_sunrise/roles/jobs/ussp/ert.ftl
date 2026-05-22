@@ -101,5 +101,6 @@ job-name-ntrguard = Гвардеец ГНТ
 
 job-name-ussp-crew = Экипаж USSP
 job-name-ussp-officer = Офицер USSP
+job-name-ussp-officer-alt = Офицер USSP (альт)
 job-name-ussp-soldier = Солдат USSP
 job-name-ussp-captain = Капитан USSP
