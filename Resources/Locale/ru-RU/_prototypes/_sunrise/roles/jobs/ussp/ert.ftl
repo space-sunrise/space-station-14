@@ -96,8 +96,8 @@ job-name-cburn-leader = Лидер карантинной группы Цент�
 job-description-cburn-leader = Возглавьте свою команду карантинных офицеров для устранения любых биологических угроз.
 
 job-name-blueshield-operative = Оперативник Синего Щита
-job-name-ntrleader = Лидер ГНТ
-job-name-ntrguard = Гвардеец ГНТ
+job-name-ntrleader = командир ИСН
+job-name-ntrguard = оперативник ИСН
 
 job-name-ussp-crew = Экипаж USSP
 job-name-ussp-officer = Офицер USSP

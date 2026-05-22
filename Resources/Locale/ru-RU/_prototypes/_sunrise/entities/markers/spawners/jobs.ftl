@@ -113,9 +113,9 @@ ent-SpawnPointDeathSquad = агент эскадрона смерти
 
 ent-SpawnPointBlueShieldOperative = оперативник Синего Щита
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointNtrLeader = лидер NTR
+ent-SpawnPointNtrLeader = командир ИСН
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointNtrGuard = страж NTR
+ent-SpawnPointNtrGuard = оперативник ИСН
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointTSFMarine = морпех ТСФ
     .desc = { ent-SpawnPointJobBase.desc }
