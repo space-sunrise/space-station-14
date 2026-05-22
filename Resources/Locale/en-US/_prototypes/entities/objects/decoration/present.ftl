@@ -22,3 +22,5 @@ ent-PresentTrash = wrapping paper
     .desc = Carefully folded, taped, and tied with a bow. Then ceremoniously ripped apart and tossed on the floor.
 ent-PresentMasksHM = 50 blessings gift set
     .desc = For agents who want to hide their identity in style, with love by Egor Semenov.
+ent-PresentMasksSlipknot = slipknot masks gift set
+    .desc = Five masks. Five souls. Numbers 7, 8, 6, 1 and 5 inside a black box — filthy Iowa fury.

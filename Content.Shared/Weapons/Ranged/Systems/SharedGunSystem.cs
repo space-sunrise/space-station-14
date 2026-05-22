@@ -13,7 +13,6 @@ using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
@@ -43,6 +42,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Sunrise.Weapons.DualWield;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -179,22 +179,32 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
-        if (ent != GetEntity(msg.Gun))
+        // Sunrise edit start - dual-wield shot alternation
+        // if (ent != GetEntity(msg.Gun))
+        //     return;
+        // In dual-wield mode the active gun (from the queue) may differ from the requested gun,
+        // so we validate against both registered dual-wield guns instead of just the active one.
+        if (!TryHandleDualWieldShootRequest(user.Value, ent, msg, out var isDualWield, out var dualWield))
             return;
+        // Sunrise edit end
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
+
         // Sunrise-Start
         gun.Targets.Clear();
         foreach (var target in msg.Targets)
         {
             var targetUid = GetEntity(target);
             if (targetUid != EntityUid.Invalid)
-            {
                 gun.Targets.Add(targetUid);
-            }
         }
         // Sunrise-End
+
         AttemptShoot(user.Value, ent, gun);
+
+        // Sunrise added start - rotate dual-wield queue after each attempt
+        RotateDualWieldQueue(user.Value, gun, isDualWield, dualWield);
+        // Sunrise added end
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -208,6 +218,10 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
             user = mechPilot.Mech;
+
+        // Sunrise added start - keep dual-wield shot counters in sync
+        StopDualWieldShooting(user);
+        // Sunrise added end
 
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
@@ -229,19 +243,21 @@ public abstract partial class SharedGunSystem : EntitySystem
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
 
-    // 🌟Starlight🌟
-    public void DelayFire(Entity<GunComponent?> entity, TimeSpan delay)
-    {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
-            return;
-
-        entity.Comp.NextFire = Timing.CurTime + delay;
-    }
-
     public bool TryGetGun(EntityUid entity, out EntityUid gunEntity, [NotNullWhen(true)] out GunComponent? gunComp)
     {
         gunEntity = default;
         gunComp = null;
+
+        // Sunrise edit start - dual-wield alternating gun selection via queue
+        if (TryComp<DualWieldComponent>(entity, out var dualWield))
+        {
+            if (TryGetDualWieldGun(entity, dualWield, out gunEntity, out gunComp))
+                return true;
+
+            // Queue is empty – dual-wield is no longer valid.
+            RemComp<DualWieldComponent>(entity);
+        }
+        // Sunrise edit end
 
         if (TryComp<MechComponent>(entity, out var mech)
             && mech.CurrentSelectedEquipment.HasValue
