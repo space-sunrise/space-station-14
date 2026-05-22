@@ -146,6 +146,15 @@
     laws: NutimovLawset
 
 - type: entity
+  id: DruidCircuitBoard
+  parent: BaseSiliconLawboard
+  name: law board (Druid)
+  description: An electronics board containing the Druid lawset.
+  components:
+  - type: SiliconLawProvider
+    laws: DruidLawset
+
+- type: entity
   id: XenoborgCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Xenoborg)
