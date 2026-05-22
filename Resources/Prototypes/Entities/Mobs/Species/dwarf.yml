@@ -8,6 +8,7 @@
   # SUNRISE EDIT
   - type: Interactions
   # SUNRISE EDIT
+  # Sunrise-start
   - type: Hunger
     starvationDamage:
       types:
@@ -19,6 +20,7 @@
         # Bloodloss: 0.5
         Mangleness: 0.5
         Asphyxiation: 0.5
+  # Sunrise-end
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full

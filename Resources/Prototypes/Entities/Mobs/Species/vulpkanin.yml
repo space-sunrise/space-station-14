@@ -8,6 +8,7 @@
   - type: Interactions
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
+  # Sunrise-start
   - type: Hunger
     starvationDamage:
       types:
@@ -17,6 +18,7 @@
       types:
         Mangleness: 0.5
         Asphyxiation: 0.5
+  # Sunrise-end
   - type: MessyDrinker
     spillChance: 0.33
   - type: Icon

@@ -122,13 +122,13 @@ public sealed partial class HungerComponent : Component
     /// Mangleness healing amount when hunger level is Okay or higher. Negative values indicate healing.
     /// </summary>
     [DataField]
-    public float ManglenessHealingOkay = -0.015f;
+    public float ManglenessHealingOkay = -0.01f;
 
     /// <summary>
     /// Mangleness healing amount when hunger level is Peckish. Negative values indicate healing.
     /// </summary>
     [DataField]
-    public float ManglenessHealingPeckish = -0.0075f;
+    public float ManglenessHealingPeckish = -0.005f;
 
     /// <summary>
     /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Okay or higher.

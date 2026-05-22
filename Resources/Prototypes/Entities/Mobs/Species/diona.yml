@@ -7,6 +7,7 @@
   components:
   - type: HumanoidAppearance
     species: Diona
+  # Sunrise-start
   - type: Hunger
     baseDecayRate: 0.015
     starvationDamage:
@@ -19,6 +20,7 @@
         # Bloodloss: 0.5
         Mangleness: 0.5
         Asphyxiation: 0.5
+  # Sunrise-end
   - type: Icon
     sprite: Mobs/Species/Diona/parts.rsi
     state: full

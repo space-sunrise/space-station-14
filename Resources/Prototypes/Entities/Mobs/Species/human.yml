@@ -8,19 +8,23 @@
 # SUNRISE EDIT
   - type: Interactions
 # SUNRISE EDIT
+  # Sunrise-start
   - type: Hunger
     starvationDamage:
       types:
         Mangleness: 0.5
+  # Sunrise-end
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: _Sunrise/Mobs/Species/Human/Basic/parts.rsi
     state: full
+  # Sunrise-start
   - type: Thirst
     dehydrationDamage:
       types:
         # Bloodloss: 0.5
         Mangleness: 0.5
         Asphyxiation: 0.5
+  # Sunrise-end
   - type: Butcherable
     butcheringType: Spike
     spawned:

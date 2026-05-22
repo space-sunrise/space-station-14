@@ -3,7 +3,7 @@
 
   [color=#cccccc]Пришло время лечить. Или, по крайней мере, попытаться вылечить. Врачи - это основные специалисты по уходу за всеми бо-бо и ой, которые члены экипажа получают на станции, будь то маленькая царапина или обгоревшая кожа.[/color]
 
-  [color=#cccccc]В этом руководстве вы найдете основные сведения о доступных вам вариантах лечения, о приоритетах и других способах оказания помощи.[/color]
+  [color=#cccccc]В этом руководстве вы найдете основные сведения о доступных вам вариантам лечения, о приоритетах и других способах оказания помощи.[/color]
 
   [head=2][color=#66ccff]Основы диагностики[/color][/head]
 
@@ -27,9 +27,9 @@
 
   [head=3][color=#88ddff]Важные замечания[/color][/head]
 
-  - [color=#ff9999]У большинства лекарств есть уровень передозировки[/color] [color=#dddddd](Максимальная безопасная доза - не больше 10u)[/color]
+  - [color=#ff9999]У большинства лекарств есть уровень передозировки[/color] [color=#dddddd](Максимальная безопасная доза - не больше 10 единиц)[/color]
   - [color=#ff9999]Таблетки метаболизируются 20 секунд[/color] [color=#dddddd]. Для быстрого действия используйте шприц[/color]
-  - [color=#ff9999]Медицинский гипоспрей[/color] [color=#dddddd]вкалывает 5u химикатов почти мгновенно, но имеет долгую перезарядку[/color]
+  - [color=#ff9999]Медицинский гипоспрей[/color] [color=#dddddd]вкалывает 5 единиц химикатов почти мгновенно, но имеет долгую перезарядку[/color]
 
   [head=3][color=#88ddff]Механические повреждения[/color][/head]
 
@@ -52,25 +52,25 @@
   [head=3][color=#88ddff]Нехватка воздуха[/color][/head]
 
   - [bold][color=#ff9999]Потеря воздуха[/color][/bold]: [color=#dddddd]Дексалин, Дексалин+ или Инапровалин (только для критических пациентов)[/color]
-  - [bold][color=#ff9999]Кровопотеря[/color][/bold]: [color=#dddddd]Дексалин, Дексалин+, железо или пакет крови[/color]
-  - [bold][color=#ff9999]Кровотечение[/color][/bold]: [color=#dddddd]Транексамовая кислота, экстренный медипен или бинт[/color]
+  - [bold][color=#99ccff]Кровопотеря[/color][/bold]: [color=#dddddd]Дексалин, Дексалин+, железо или пакет крови[/color]
+  - [bold][color=#99ccff]Кровотечение[/color][/bold]: [color=#dddddd]Транексамовая кислота, экстренный медипен или бинт[/color]
 
   [color=#dddddd]На многих станциях хранятся аптечки для разных типов урона, и у всех медиков есть некоторое оборудование в стартовом поясе. Аптечки можно найти в хранилище медотсека или заказать в Отделе Снабжения.[/color]
 
   <Box>
-    <GuideEntityEmbed Entity="MedkitFilled"/>
-    <GuideEntityEmbed Entity="MedkitBruteFilled" Caption="аптечка для тупого урона"/>
-    <GuideEntityEmbed Entity="MedkitRadiationFilled" Caption="аптечка для радиации"/>
-    <GuideEntityEmbed Entity="MedkitBurnFilled" Caption="аптечка для ожогов"/>
-    <GuideEntityEmbed Entity="MedkitToxinFilled" Caption="аптечка для токсины"/>
+    [GuideEntityEmbed Entity="MedkitFilled"]
+    [GuideEntityEmbed Entity="MedkitBruteFilled" Caption="аптечка для тупого урона"]
+    [GuideEntityEmbed Entity="MedkitRadiationFilled" Caption="аптечка для радиации"]
+    [GuideEntityEmbed Entity="MedkitBurnFilled" Caption="аптечка для ожогов"]
+    [GuideEntityEmbed Entity="MedkitToxinFilled" Caption="аптечка для токсинов"]
   </Box>
 
   <Box>
-    <GuideEntityEmbed Entity="Brutepack"/>
-    <GuideEntityEmbed Entity="Ointment"/>
-    <GuideEntityEmbed Entity="EmergencyMedipen"/>
-    <GuideEntityEmbed Entity="Bloodpack"/>
-    <GuideEntityEmbed Entity="Gauze"/>
+    [GuideEntityEmbed Entity="Brutepack"]
+    [GuideEntityEmbed Entity="Ointment"]
+    [GuideEntityEmbed Entity="EmergencyMedipen"]
+    [GuideEntityEmbed Entity="Bloodpack"]
+    [GuideEntityEmbed Entity="Gauze"]
   </Box>
 
   [head=2][color=#66ccff]Основное лечение и сортировка приоритетов[/color][/head]
@@ -79,9 +79,9 @@
 
   [head=3][color=#88ddff]Критическое состояние[/color][/head]
 
-  [color=#dddddd]Пациенты находятся в критическом состоянии при 100 повреждениях и мертвы при 200. Помните об этом, выбирая способ лечения.[/color]
+  [color=#dddddd]Пациенты находятся в критическом состоянии при 100 повреждениях и мертвы при 200, по крайней мере для стандартных типов гуманойдов. Помните об этом, выбирая способ лечения.[/color]
 
-  - [bold][color=#99ccff]Эпинефрин[/color][/bold]: [color=#dddddd]Незначительно лечит большинство видов повреждений (в т.ч удушье от критического состояния). Работает только при уроне выше 100 единиц.[/color]
+  - [bold][color=#99ccff]Эпинефрин[/color][/bold]: [color=#dddddd]Незначительно лечит большинство видов повреждений (в т.ч удушье от критического состояния). Работает только на пациентах в критическом состоянии (не мертвых!).[/color]
   - [bold][color=#99ccff]Медипены[/color][/bold]: [color=#dddddd]Используются для экстренного лечения критических пациентов[/color]
   - [bold][color=#99ccff]Транексамовая кислота[/color][/bold]: [color=#dddddd]Останавливает кровотечение[/color]
 
@@ -101,8 +101,8 @@
   - [bold][color=#99ccff]Стазисная кровать[/color][/bold]: [color=#dddddd]Замедляет метаболизм и негативные эффекты (кровотечение, удушье, яды). Лекарства в стазисе почти не действуют.[/color]
 
   <Box>
-    <GuideEntityEmbed Entity="MedicalBed"/>
-    <GuideEntityEmbed Entity="StasisBed"/>
+    [GuideEntityEmbed Entity="MedicalBed"]
+    [GuideEntityEmbed Entity="StasisBed"]
   </Box>
 
   [head=2][color=#66ccff]Смерть и возрождение[/color][/head]
@@ -115,7 +115,7 @@
 
   2. [bold][color=#ff9999]Гниет ли тело?[/color][/bold] [color=#dddddd]Если да - необходимо клонирование. Гниющее тело нельзя оживить дефибриллятором.[/color]
 
-  3. [bold][color=#ff9999]Общий урон менее 200?[/color][/bold] [color=#dddddd]Дефибрилляторы могут оживить пациентов с уроном менее 200.[/color]
+  3. [bold][color=#ff9999]Общий урон менее 200?[/color][/bold] [color=#dddddd]Дефибрилляторы могут оживить пациентов с уроном менее 200, однако каждое использование даёт немного электроожогов, так что безопасней это делать с уроном менее 190 единиц.[/color]
 
   [head=3][color=#88ddff]Процесс реанимации[/color][/head]
 
@@ -126,9 +126,9 @@
   - [bold][color=#99ccff]Оппорозидон[/color][/bold]: [color=#dddddd]Регенерирует гниение, но сложен в синтезе[/color]
 
   <Box>
-    <GuideEntityEmbed Entity="Brutepack"/>
-    <GuideEntityEmbed Entity="Defibrillator"/>
-    <GuideEntityEmbed Entity="Ointment"/>
+    [GuideEntityEmbed Entity="Brutepack"]
+    [GuideEntityEmbed Entity="Ointment"]
+    [GuideEntityEmbed Entity="Defibrillator"]
   </Box>
 
 </Document>

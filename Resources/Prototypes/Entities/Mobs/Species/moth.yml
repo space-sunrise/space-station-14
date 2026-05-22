@@ -12,6 +12,7 @@
     species: Moth
     hideLayersOnEquip:
     - HeadTop
+  # Sunrise-start
   - type: Hunger
     starvationDamage:
       types:
@@ -22,6 +23,7 @@
         # Bloodloss: 0.5
         Mangleness: 0.5
         Asphyxiation: 0.5
+  # Sunrise-end
   - type: Icon
     sprite: Mobs/Species/Moth/parts.rsi
     state: full
