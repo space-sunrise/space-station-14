@@ -44,7 +44,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.3
+          radius: 0.25 # Sunrise-Edit
         density: 230
         mask:
         - SmallMobMask
@@ -110,9 +110,9 @@
   - type: NoSlip
   - type: Rummager
   - type: RatKing
-    hungerPerArmyUse: 8  # Sunrise-edit
+    hungerPerArmyUse: 5  # Sunrise-edit
     hungerPerDomainUse: 20  # Sunrise-edit
-    hungerPerGuardUse: 80  # High cost for guards
+    hungerPerGuardUse: 60  # Sunrise-edit
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
@@ -142,6 +142,16 @@
   - type: VentCrawler
   - type: NightVision
   # Sunrise-end
+
+# Sunrise edit start - rat king variant without guards for lower population
+- type: entity
+  id: MobRatKingNoGuard
+  parent: MobRatKing
+  suffix: No Guard
+  components:
+  - type: RatKing
+    maxGuardCount: 0
+# Sunrise edit end
 
 - type: entity
   id: MobRatKingBuff
@@ -246,7 +256,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.2
+          radius: 0.13 # Sunrise-Edit
         density: 30 #Bulky by mouse standards...
         mask:
         - SmallMobMask
