@@ -31,10 +31,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      110: Critical
       200: Dead
   - type: Stamina
-    baseCritThreshold: 100
+    baseCritThreshold: 125
   - type: Fixtures
     fixtures:
       fix1:
@@ -65,6 +65,8 @@
     - id: FoodMeatSwine
       amount: 5
   - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-spider ]
+    rightBareFootState: [ footprint-right-bare-spider ]
 
 - type: entity
   save: false
