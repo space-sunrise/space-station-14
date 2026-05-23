@@ -1453,6 +1453,7 @@
     - MindRoleGhostRoleTeamAntagonist
     prob: 0.35
     makeSentient: true
+  - type: GhostTakeoverAvailable
 
 #region Asteroid
 ## Tier 1
