@@ -137,3 +137,6 @@ ent-ClothingBackpackRogueSiliconDerelictBorgSyndicateMedical = набор заб
     .suffix = Rogue Silicon, Медицинский Синдиката
     .desc = Запечатанный набор медицинских модулей Синдиката, снятых с заброшенного киборга-ренегата.
 ent-SpawnLootRogueSiliconDerelictBorgCommonModules = спавнер модулей заброшенного киборга
+
+ent-SpawnLootRogueSiliconImplants = спавнер имплантов ренегатских силиконов
+ent-SpawnLootRogueSiliconBodyParts = спавнер частей тел ренегатских силиконов

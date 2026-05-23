@@ -252,6 +252,7 @@
     - MobRogueSiliconLootT1
   - type: CanMoveInAir
   - type: ProtectedFromStepTriggers
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:
@@ -471,6 +472,7 @@
     color: orange
     energy: 0.5
   - type: CanMoveInAir
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:
@@ -670,6 +672,9 @@
     - DoorBumpOpener
     - CannotSuicide
     - RogueSiliconHealTarget
+  - type: CanMoveInAir
+  - type: ProtectedFromStepTriggers
+  - type: NoSlip
   - type: Sprite
     drawdepth: Mobs
     sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
@@ -683,14 +688,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      12: Critical
-      90: Dead
+      10: Critical
+      80: Dead
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.15
+          radius: 0.13
         density: 100
         mask:
           - FlyingMobMask
@@ -711,16 +716,18 @@
       7: 0.7
       10: 0.5
   - type: MeleeWeapon
-    attackRate: 1.0
-    animation: WeaponArcClaw
+    range: 0.65
+    attackRate: 5.0
+    animation: WeaponArcDisarm
     damage:
       types:
-        Slash: 4
-        Structural: 10
+        Slash: 1
+        Structural: 4
     soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
+      path: /Audio/Effects/saw.ogg
       params:
-        variation: 0.250
+        volume: 1
+        variation: 0.050
 
 #region Tier 2
 - type: entity
@@ -1095,6 +1102,7 @@
     - RogueSiliconHealTarget
     - NpcBoss
   - type: CanMoveInAir
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:
@@ -1622,6 +1630,7 @@
     energy: 0.5
   - type: CanMoveInAir
   - type: ProtectedFromStepTriggers
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:

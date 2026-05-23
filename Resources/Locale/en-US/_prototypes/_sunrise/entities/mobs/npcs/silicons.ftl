@@ -115,3 +115,6 @@ ent-ClothingBackpackRogueSiliconDerelictBorgSyndicateMedical = derelict syndicat
     .suffix = Rogue Silicon, Syndicate Medical
     .desc = A sealed bundle of syndicate medical modules recovered from a derelict rogue cyborg.
 ent-SpawnLootRogueSiliconDerelictBorgCommonModules = derelict borg module spawner
+
+ent-SpawnLootRogueSiliconImplants = rogue silicon implant spawner
+ent-SpawnLootRogueSiliconBodyParts = rogue silicon body part spawner

@@ -79,6 +79,13 @@
     # Circuit boards
     - id: SpawnDungeonLootCircuitBoardEngi
       prob: 0.9
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.1
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.08
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.03
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -111,6 +118,13 @@
       prob: 0.8
     - id: SpawnDungeonLootCircuitBoardScience
       prob: 0.8
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.15
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.12
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.06
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -146,6 +160,13 @@
       prob: 0.7
     - id: SpawnDungeonLootCircuitBoardSalvage
       prob: 0.7
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.2
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.16
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.1
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -183,11 +204,69 @@
       prob: 0.8
     - id: SpawnDungeonLootCircuitBoardSalvage
       prob: 0.8
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.15
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
 
 # unique loot
+- type: entity
+  name: random rogue silicon implant
+  id: SpawnLootRogueSiliconImplants
+  parent: MarkerBase
+  suffix: "Rogue Silicon, Implant"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - SadTromboneImplanter
+    - LightImplanter
+    - TrackingImplanter
+    - StorageImplanter
+    - FreedomImplanter
+    - RadioImplanter
+    - SmokeScreenImplanter
+    - CreepyLaughImplanter
+    - VoiceMaskImplanter
+    - EmpImplanter
+    - ScramImplanter
+    - DnaScramblerImplanter
+    - MicroBombImplanter
+    - DeathAcidifierImplanter
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - FakeMindShieldImplanter
+    rareChance: 0.05
+
+- type: entity
+  name: random rogue silicon body part
+  id: SpawnLootRogueSiliconBodyParts
+  parent: MarkerBase
+  suffix: "Rogue Silicon, Body Part"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - TorsoHuman
+    - HeadHuman
+    - LeftArmHuman
+    - RightArmHuman
+    - LeftHandHuman
+    - RightHandHuman
+    - LeftLegHuman
+    - RightLegHuman
+    - LeftFootHuman
+    - RightFootHuman
+    chance: 1.0
+    offset: 0.0
+
 - type: entity
   name: random derelict borg common module
   id: SpawnLootRogueSiliconDerelictBorgCommonModules
@@ -224,6 +303,13 @@
       prob: 0.3
     - id: MaintenanceInsulsSpawner
       prob: 1.0
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -244,6 +330,13 @@
       prob: 0.1
     - id: BorgModuleAdvancedCombat
       prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -264,6 +357,13 @@
       prob: 0.2
     - id: BorgModuleAdvancedTool
       prob: 0.15
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -282,6 +382,13 @@
       prob: 0.3
     - id: BorgModuleAdvancedCleaning
       prob: 0.15
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -304,6 +411,13 @@
       prob: 0.2
     - id: SunriseBorgModuleAdvancedChemical
       prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -326,6 +440,13 @@
       prob: 0.15
     - id: BorgModuleMiningCombat
       prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -344,6 +465,13 @@
       prob: 0.18
     - id: BorgModulePeace
       prob: 0.15
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -364,6 +492,13 @@
       prob: 0.12
     - id: BorgModuleSyndicateCombat
       prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -384,6 +519,13 @@
       prob: 0.12
     - id: BorgModuleSyndicateCombatAdvanced
       prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -404,6 +546,13 @@
       prob: 0.15
     - id: BorgModuleSyndicateCombatAdvanced
       prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -424,6 +573,13 @@
       prob: 0.12
     - id: SunriseBorgModuleAdvancedChemical
       prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -488,6 +644,13 @@
       prob: 0.1
     - id: MobRogueSiliconViscerator
       prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.3
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.25
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.25
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
