@@ -372,25 +372,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocket
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocket # Sunrise-Edit
+          amount: 11
         - id: DonkcoLighter
           prob: 0.10
 
@@ -405,28 +388,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketSpicy
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketSpicy # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
@@ -440,28 +403,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketTeriyaki
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketTeriyaki # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
@@ -475,28 +418,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketPizza
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketPizza # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
@@ -510,28 +433,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketStonk
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketStonk # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
@@ -545,28 +448,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketCarp
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketCarp # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
@@ -580,28 +463,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketBerry
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketBerry # Sunrise-Edit
+          amount: 12
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -614,28 +477,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketHonk
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketHonk # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
@@ -650,28 +493,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketDink
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketDink # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
@@ -685,28 +508,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketMoth
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+        - id: FoodDonkpocketMoth # Sunrise-Edit
+          amount: 12
 
 
 - type: entity
