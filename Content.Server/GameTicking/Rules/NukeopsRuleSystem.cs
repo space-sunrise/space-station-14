@@ -39,7 +39,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -143,7 +142,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
             {
                 StringBuilder text = new StringBuilder(Loc.GetString("nukeops-disk-location-title"));
 
-                List<String> containers = new List<String>();
+                List<string> containers = new();
                 bool carriedByMob = false;
 
                 var tempParent = diskUid;
@@ -502,7 +501,9 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
             if (Transform(uid).MapID != Transform(outpost).MapID) // Will receive bonus TC only on their start outpost
                 continue;
 
+            // Sunrise-Edit-Start - TC distribution logic differs from vanilla multiplier by roundstart operatives
             _store.TryAddCurrency(new() { { TelecrystalCurrencyPrototype, nukieRule.Comp.WarTcAmountPerNukie } }, uid, component);
+            // Sunrise-Edit-End
 
             var msg = Loc.GetString("store-currency-war-boost-given", ("target", uid));
             _popupSystem.PopupEntity(msg, uid);
