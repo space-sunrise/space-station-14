@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Chat;
 using Content.Shared.Interaction;
 using Content.Shared.PowerCell;
@@ -87,7 +88,12 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         base.OnGotUnequipped(ent, ref args);
         RemComp<ActiveRadioComponent>(ent);
         RemComp<WearingHeadsetComponent>(args.Equipee);
-        _actions.RemoveAction(args.Equipee, ent.Comp.ToggleActionEntity); // Sunrise-Add
+        // Sunrise-Start
+        if (TryComp<ActionComponent>(ent.Comp.ToggleActionEntity, out var action) && action.AttachedEntity == args.Equipee)
+        {
+            _actions.RemoveAction(args.Equipee, ent.Comp.ToggleActionEntity);
+        }
+        // Sunrise-End
     }
 
     public void SetEnabled(EntityUid uid, bool value, HeadsetComponent? component = null)
@@ -110,7 +116,10 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
                 // Sunrise-Start
                 var parent = Transform(uid).ParentUid;
                 RemCompDeferred<WearingHeadsetComponent>(parent);
-                _actions.RemoveAction(parent, component.ToggleActionEntity);
+                if (TryComp<ActionComponent>(component.ToggleActionEntity, out var action) && action.AttachedEntity == parent)
+                {
+                    _actions.RemoveAction(parent, component.ToggleActionEntity);
+                }
                 // Sunrise-End
             }
         }

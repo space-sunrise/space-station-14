@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: SewingPrinterPrisonMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: prison sewing printer machine board
@@ -187,6 +187,11 @@
   - type: Sprite
     sprite: Objects/Misc/module.rsi
     state: service
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 120
+    chemicalComposition:
+      Silicon: 20
 
 - type: entity
   id: TelecomServerT3Circuitboard
@@ -198,3 +203,8 @@
   - type: Sprite
     sprite: Objects/Misc/module.rsi
     state: service
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 120
+    chemicalComposition:
+      Silicon: 20
