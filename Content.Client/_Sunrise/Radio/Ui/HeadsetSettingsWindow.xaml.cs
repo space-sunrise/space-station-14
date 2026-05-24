@@ -20,7 +20,7 @@ public sealed partial class HeadsetSettingsWindow : DefaultWindow
         RobustXamlLoader.Load(this);
     }
 
-    public void UpdateState(HeadsetComponent component, EncryptionKeyHolderComponent? keys, IPrototypeManager proto)
+    public void UpdateState(HeadsetComponent component, EncryptionKeyHolderComponent keys, IPrototypeManager proto)
     {
         ChannelList.DisposeAllChildren();
 
