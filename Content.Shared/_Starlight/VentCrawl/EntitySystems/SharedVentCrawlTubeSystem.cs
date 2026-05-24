@@ -249,9 +249,6 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         1 => AtmosPipeLayer.Secondary,
         3 => AtmosPipeLayer.Tertiary,
 
-        0 => AtmosPipeLayer.Quaternary,
-        4 => AtmosPipeLayer.Quinary,
-
         _ => AtmosPipeLayer.Primary
     };
 

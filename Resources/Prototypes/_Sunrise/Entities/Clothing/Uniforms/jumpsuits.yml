@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSuperstarCop
   name: superstar cop uniform
@@ -312,7 +312,7 @@
   id: ClothingUniformJumpsuitAtmosSyndie
   name: Contortionist's Jumpsuit
   components:
-  - type: VentCrawClothing
+  - type: VentCrawlClothing
 
 - type: entity
   parent: [ ClothingUniformBase, ClothingOuterArmorBase, BaseSyndicateContraband ]

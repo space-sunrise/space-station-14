@@ -29,9 +29,9 @@
   placement:
     mode: SnapgridCenter
   components:
+    # Starlight start
     - type: Weldable
       time: 3
-    # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlEntry
     - type: ContainerContainer
@@ -81,7 +81,6 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
-    - type: Weldable
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
     - type: GuideHelp
@@ -180,8 +179,6 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
-    - type: Weldable
-      time: 3 # Starlight-Edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentScrubber
     - type: GuideHelp
@@ -189,6 +186,8 @@
       - AirScrubber
       - DeviceMonitoringAndControl
     # Starlight start
+    - type: Weldable
+      time: 3
     - type: VentCrawlTube
     - type: VentCrawlEntry
     - type: ContainerContainer

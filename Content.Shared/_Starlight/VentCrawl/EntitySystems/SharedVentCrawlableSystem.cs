@@ -547,9 +547,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         AtmosPipeLayer.Secondary => 1,
         AtmosPipeLayer.Tertiary => 3,
 
-        AtmosPipeLayer.Quaternary => 0,
-        AtmosPipeLayer.Quinary => 4,
-
         _ => 3
     };
 
@@ -559,9 +556,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         AtmosPipeLayer.Secondary => new Vector2(0.15f, 0f),
         AtmosPipeLayer.Tertiary => new Vector2(-0.15f, 0f),
-
-        AtmosPipeLayer.Quaternary => new Vector2(0.25f, 0f),
-        AtmosPipeLayer.Quinary => new Vector2(-0.25f, 0f),
 
         _ => Vector2.Zero
     };
