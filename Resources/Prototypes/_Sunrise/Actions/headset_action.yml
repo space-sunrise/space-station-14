@@ -1,8 +1,6 @@
 - type: entity
   parent: BaseAction
   id: ActionToggleHeadset
-  name: action-name-toggle-headset
-  description: action-description-toggle-headset
   components:
   - type: Action
     icon: { sprite: Objects/Devices/encryption_keys.rsi, state: crypt_gray }
