@@ -9,6 +9,10 @@ alerts-vampire-fed-desc = Ваше текущее насыщение кровь�
 roles-antag-vamire-name = Вампир
 roles-antag-vampire-description = Питайтесь членами экипажа. Вытяните клыки и пейте их кровь.
 
+roles-antag-thrall-name = Тралл
+roles-antag-thrall-description = Верно служите своему господину и выполняйте его приказы.
+roles-antag-thrall-objective = Верно служите своему господину и выполняйте его приказы.
+
 vampire-roundend-name = вампир
 
 vampire-drink-start = Вы вонзаете клыки в {CAPITALIZE(THE($target))}.
@@ -19,10 +23,14 @@ vampire-mouth-covered = Ваш рот закрыт!
 vampire-drink-invalid-target = Вы не можете пить кровь вампиров или их рабов.
 vampire-target-protected-by-faith = Этот человек защищён своей верой!
 vampire-target-sickly = Кровь этой персоны грязна и должна быть очищена.
+vampire-drink-target-empty = В этом существе не осталось крови!
 vampire-drink-target-maxed = Вы уже выпили { $amount } единиц крови у этой цели.
 vampire-drink-target-hard-max = Вы выпили максимум крови у этой цели ({ $amount } единиц).
 vampire-full-power-achieved = Ваша вампирическая сущность достигает полной силы!
 vampire-umbrae-full-power-fov = Тени подчиняются вашей воле. Теперь вы можете видеть сквозь стены!
+vampire-drink-target-not-viable = У этого существа не течёт кровь. Оно должно быть живым!
+vampire-sleep-shielded = Это существо нельзя усыпить из-за импланта!
+vampire-sleep-protected = Нужен лучший зрительный контакт...
 
 vampire-role-greeting = Вы — вампир!
     Ваша жажда крови толкает вас питаться членами экипажа. Используйте способности, чтобы обращать других.
@@ -77,6 +85,7 @@ vampire-space-burn-warning = Суровый свет пустоты обжига
 action-vampire-blood-eruption-activated = Вы вызываете извержение шипов крови вокруг себя!
 
 action-vampire-blood-bringers-rite-not-enough-power = Вам не хватает полной вампирической силы (нужно более 1000 всей крови и 8 уникальных жертв)
+action-vampire-blood-brighters-rite-not-enough-blood = Недостаточно крови для активации Ритуала Кровеносцев
 action-vampire-blood-bringers-rite-not-enough-blood = Недостаточно крови для активации Ритуала Кровеносцев
 action-vampire-blood-bringers-rite-start = Ритуал Кровеносцев активирован!
 action-vampire-blood-bringers-rite-stop = Ритуал Кровеносцев деактивирован
@@ -180,3 +189,9 @@ alerts-vampire-blood-swell-name = Кровяной отёк
 alerts-vampire-blood-swell-desc = Ваши мышцы набухают от нечестивой силы.
 alerts-vampire-blood-rush-name = Кровяной рывок
 alerts-vampire-blood-rush-desc = Сверхъестественная скорость бежит по вашим конечностям.
+
+Vamp-converted-title = Порабощен!
+Vamp-converted-text =
+    Вы были порабощены!
+    Верно слушайте своего хозяина, вы можете получить доступ к коллективному разуму с помощью '+p'
+Vamp-converted-confirm = Понял
