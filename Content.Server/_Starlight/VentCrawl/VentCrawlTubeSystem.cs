@@ -26,6 +26,7 @@ namespace Content.Server.VentCrawl
         [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly SharedMoverController _mover = default!;
+        private readonly SharedTransformSystem _transform = default!;
 
         public override void Initialize()
         {
@@ -68,7 +69,7 @@ namespace Content.Server.VentCrawl
             if (args.Handled || args.Cancelled || args.Args.Target == null || args.Args.Used == null)
                 return;
 
-            _ventCrawlsTubeSystem.TryInsert(args.Args.Target.Value, args.Args.Used.Value);
+            _ventCrawlTubeSystem.TryInsert(args.Args.Target.Value, args.Args.Used.Value);
 
             args.Handled = true;
         }

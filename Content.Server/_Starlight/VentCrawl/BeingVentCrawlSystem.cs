@@ -3,18 +3,19 @@ using Content.Server.Body.Systems;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
+using Content.Server.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.VentCrawl.Components;
 using Robust.Shared.Player;
 using Content.Shared.NodeContainer;
-using Content.Shared.VentCraw.Components;
 
 namespace Content.Server.VentCrawl;
 
 public sealed class BeingVentCrawlSystem : EntitySystem
 {
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private readonly IEntityManager _entities = default!;
 
     public override void Initialize()
     {
