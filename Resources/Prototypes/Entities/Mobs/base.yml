@@ -102,7 +102,10 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
-  - type: CollectiveMind # Sunrise-Edit
+  # Sunrise-Start
+  - type: CollectiveMind
+  - type: CanBeCarried
+  # Sunrise-End
 
 - type: entity
   save: false

@@ -34,11 +34,19 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Prometheus;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed partial class VampireSystem : EntitySystem
 {
+    # region Starlight data collection
+    private static readonly Counter _vampireClasses = Metrics.CreateCounter(
+        "Vampire_Classes",
+        "Numbers of vampire classes chosen by players",
+        ["class"]
+    );
+    #endregion
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly BloodstreamSystem _blood = default!;
@@ -58,7 +66,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    //[Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
@@ -66,9 +74,11 @@ public sealed partial class VampireSystem : EntitySystem
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
     private static readonly ProtoId<DamageGroupPrototype> _geneticGroupId = "Genetic";
+    private static readonly ProtoId<DamageTypePrototype> _cellularTypeId = "Cellular";
     private static readonly ProtoId<DamageTypePrototype> _poisonTypeId = "Poison";
     private static readonly ProtoId<DamageTypePrototype> _oxyLossTypeId = "Asphyxiation";
     private static readonly ProtoId<DamageTypePrototype> _heatTypeId = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> _pierceTypeId = "Piercing";
     private static readonly SoundSpecifier _spaceBurnSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
 
     public override void Initialize()
@@ -85,7 +95,6 @@ public sealed partial class VampireSystem : EntitySystem
         InitializeAbilities();
         InitializeObjectives();
     }
-
     private void OnPlayerAttached(PlayerAttachedEvent ev)
     {
         if (!TryComp(ev.Entity, out VampireComponent? vampire))
@@ -733,6 +742,7 @@ public sealed partial class VampireSystem : EntitySystem
             EnsureComp<ToggleableNightVisionComponent>(uid); // Sunrise-Edit
 
         comp.ChosenClassId = classProto.ID;
+        _vampireClasses.WithLabels(classProto.ID).Inc();
 
         var classSelectAction = comp.ClassSelectActionId;
         if (comp.ActionEntities.TryGetValue(classSelectAction, out var actionEntity))

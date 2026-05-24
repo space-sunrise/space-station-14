@@ -2742,9 +2742,6 @@
       collection: FootstepSpiderLegs
       params:
         volume: -10
-  - type: CollectiveMind
-    minds:
-    - Arachnids
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -3995,9 +3992,6 @@
     reformTime: 10
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
-  - type: CollectiveMind
-    minds:
-    - Dioneas
   - type: CanEscapeInventory
 
 - type: entity
