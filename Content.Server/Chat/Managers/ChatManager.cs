@@ -13,13 +13,11 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
-using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Chat.Managers;
 
@@ -47,11 +45,6 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-
-    private ISawmill _sawmill = default!;
-
-    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -71,11 +64,7 @@ internal sealed partial class ChatManager : IChatManager
         _configurationManager.OnValueChanged(CCVars.OocEnabled, OnOocEnabledChanged, true);
         _configurationManager.OnValueChanged(CCVars.AdminOocEnabled, OnAdminOocEnabledChanged, true);
 
-        _sawmill = _logManager.GetSawmill("SERVER");
-
         RegisterRateLimits();
-
-        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     private void OnOocEnabledChanged(bool val)
@@ -122,7 +111,7 @@ internal sealed partial class ChatManager : IChatManager
     {
         var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", FormattedMessage.EscapeText(message)));
         ChatMessageToAll(ChatChannel.Server, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride);
-        _sawmill.Info(message);
+        Logger.InfoS("SERVER", message);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Server announcement: {message}");
     }
@@ -277,17 +266,16 @@ internal sealed partial class ChatManager : IChatManager
 
     private void SendOOC(ICommonSession player, string message)
     {
-        if (!_oocEnabled)
+        if (_adminManager.IsAdmin(player))
         {
-            if (_adminManager.IsAdmin(player))
-            {
-                if (!_adminOocEnabled)
-                    return;
-            }
-            else
+            if (!_adminOocEnabled)
             {
                 return;
             }
+        }
+        else if (!_oocEnabled)
+        {
+            return;
         }
 
         Color? colorOverride = null;
@@ -301,19 +289,6 @@ internal sealed partial class ChatManager : IChatManager
         {
             wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }
-
-        // Sunrise-start
-        if (_sponsorsManager != null && _sponsorsManager.TryGetOocColor(player.UserId, out var oocColor) && _sponsorsManager.TryGetOocTitle(player.UserId, out var sponsorTitle))
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", oocColor), ("patronTitle", $"\\[{sponsorTitle}\\] "),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
-        }
-
-        var data = _adminManager.GetAdminData(player);
-        if (data != null && data.Title != null)
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-wrap-message", ("patronTitle", $"\\[{data.Title}\\] "),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
-        }
-        // Sunrise-end
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

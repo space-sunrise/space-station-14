@@ -111,6 +111,9 @@ public sealed class FootprintSystem : EntitySystem
     /// </summary>
     private void OnEntityMove(Entity<FootprintEmitterComponent> ent, ref MoveEvent args)
     {
+        if (TerminatingOrDeleted(ent))
+            return;
+
         TryEmitFootprint(ent);
     }
 

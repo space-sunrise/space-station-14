@@ -157,6 +157,13 @@ namespace Content.Shared.Throwing
                 if (_netMan.IsClient && !physics.Predict)
                     continue;
 
+                // Sunrise-Edit
+                if (thrown.Thrower is { } thrower && (Deleted(thrower) || Terminating(thrower)))
+                {
+                    thrown.Thrower = null;
+                    Dirty(uid, thrown);
+                }
+
                 if (thrown.LandTime <= _gameTiming.CurTime)
                 {
                     LandComponent(uid, thrown, physics, thrown.PlayLandSound);

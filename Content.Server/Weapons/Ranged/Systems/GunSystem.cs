@@ -18,61 +18,12 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-#region Starlight
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
-using Content.Server.Decals;
-using Content.Server.Emp;
-using Content.Server.IgnitionSource;
-using Content.Server.Interaction;
-using Content.Server.Mech.Equipment.Components;
-using Content.Server.Power.EntitySystems;
-using Content.Server.Stunnable.Components;
-using Content.Server.Stunnable;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Damage.Components;
-using Content.Shared.Decals;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech.Equipment.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Pinpointer;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stunnable;
-using Content.Shared.Weapons.Reflect;
-using Content.Shared._Starlight.Weapon.Components;
-using Content.Shared._Starlight.Weapon;
-using Robust.Server.GameObjects;
-using Robust.Shared.Containers;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-#endregion Starlight
-
 namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem : SharedGunSystem
 {
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
-
-    #region Starlight
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DecalSystem _decals = default!;
-    #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;
 
@@ -82,31 +33,30 @@ public sealed partial class GunSystem : SharedGunSystem
         SubscribeLocalEvent<BallisticAmmoProviderComponent, PriceCalculationEvent>(OnBallisticPrice);
     }
 
-
-    private void OnBallisticPrice(Entity<BallisticAmmoProviderComponent> ent, ref PriceCalculationEvent args)
+    private void OnBallisticPrice(EntityUid uid, BallisticAmmoProviderComponent component, ref PriceCalculationEvent args)
     {
-        if (string.IsNullOrEmpty(ent.Comp.Proto) || ent.Comp.UnspawnedCount == 0)
+        if (string.IsNullOrEmpty(component.Proto) || component.UnspawnedCount == 0)
             return;
 
-        if (!ProtoManager.TryIndex<EntityPrototype>(ent.Comp.Proto, out var proto))
+        if (!ProtoManager.TryIndex<EntityPrototype>(component.Proto, out var proto))
         {
-            Log.Error($"Unable to find fill prototype for price on {ent.Comp.Proto} on {ToPrettyString(ent)}");
+            Log.Error($"Unable to find fill prototype for price on {component.Proto} on {ToPrettyString(uid)}");
             return;
         }
 
         // Probably good enough for most.
         var price = _pricing.GetEstimatedPrice(proto);
-        args.Price += price * ent.Comp.UnspawnedCount;
+        args.Price += price * component.UnspawnedCount;
     }
 
-    public override void Shoot(Entity<GunComponent> gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
+    public override void Shoot(EntityUid gunUid, GunComponent gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
         EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, EntityUid? user = null, bool throwItems = false)
     {
         userImpulse = true;
 
         if (user != null)
         {
-            var selfEvent = new SelfBeforeGunShotEvent(user.Value, gun, ammo);
+            var selfEvent = new SelfBeforeGunShotEvent(user.Value, (gunUid, gun), ammo);
             RaiseLocalEvent(user.Value, selfEvent);
             if (selfEvent.Cancelled)
             {
@@ -140,7 +90,7 @@ public sealed partial class GunSystem : SharedGunSystem
             // pneumatic cannon doesn't shoot bullets it just throws them, ignore ammo handling
             if (throwItems && ent != null)
             {
-                ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, user);
+                ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, gunUid, user);
                 continue;
             }
 
@@ -167,11 +117,11 @@ public sealed partial class GunSystem : SharedGunSystem
                     else
                     {
                         userImpulse = false;
-                        Audio.PlayPredicted(gun.Comp.SoundEmpty, gun, user);
+                        Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
                     }
 
                     // Something like ballistic might want to leave it in the container still
-                    if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Pump)
+                    if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value))
                         EjectCartridge(ent.Value, angle);
 
                     Dirty(ent!.Value, cartridge);
@@ -191,131 +141,76 @@ public sealed partial class GunSystem : SharedGunSystem
                     {
                         FromCoordinates = fromCoordinates,
                         ShotDirection = mapDirection.Normalized(),
-                        Gun = gun,
+                        Gun = gunUid,
                         Shooter = user,
-                        Target = gun.Comp.Target,
+                        Target = gun.Target,
                     };
                     RaiseLocalEvent(ent.Value, ref hitscanEv);
 
                     Del(ent);
 
-                    Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
+                    Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        RaiseLocalEvent(gun, new AmmoShotEvent()
+        RaiseLocalEvent(gunUid, new AmmoShotEvent()
         {
             FiredProjectiles = shotProjectiles,
-            Shooter = user, //starlight
         });
 
         void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp)
         {
-            // Startlight-edit: start
-            var isMechShooter = user != null && TryComp<MechPilotComponent>(user.Value, out _);
-            const float MechMuzzleOffset = 0.8f;
-
-            EntityCoordinates SpawnFrom(Angle angle)
-            {
-                if (!isMechShooter)
-                    return fromEnt;
-
-                var localAngle = angle;
-                if (TryComp(fromEnt.EntityId, out TransformComponent? anchorXform))
-                {
-                    var anchorRot = _transform.GetWorldRotation(anchorXform);
-                    localAngle -= anchorRot;
-                }
-
-                var dir = localAngle.ToVec().Normalized();
-                return fromEnt.Offset(dir * MechMuzzleOffset);
-            }
-            // Startlight-edit: end
             if (TryComp<ProjectileSpreadComponent>(ammoEnt, out var ammoSpreadComp))
             {
                 var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
-                RaiseLocalEvent(gun, ref spreadEvent);
+                RaiseLocalEvent(gunUid, ref spreadEvent);
 
                 var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
                     mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
-                // Startlight-edit: start
-                if (isMechShooter)
-                {
-                    var spawn = SpawnFrom(angles[0]);
-                    _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
-                }
-                // Startlight-edit: end
-                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, user);
+
+                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, gunUid, user);
                 shotProjectiles.Add(ammoEnt);
 
                 for (var i = 1; i < ammoSpreadComp.Count; i++)
                 {
-                    // Startlight-edit: start
-                    var spawn = isMechShooter ? SpawnFrom(angles[i]) : fromEnt;
-                    var newuid = Spawn(ammoSpreadComp.Proto, spawn);
-                    // Startlight-edit: end
-                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, user);
+                    var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
+                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
                     shotProjectiles.Add(newuid);
                 }
             }
             else
             {
-                // Startlight-edit: start
-                if (isMechShooter)
-                {
-                    var spawn = SpawnFrom(mapDirection.ToAngle());
-                    _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
-                }
-                // Startlight-edit: end
-                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, user);
+                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, gunUid, user);
                 shotProjectiles.Add(ammoEnt);
             }
 
-            MuzzleFlash(gun, ammoComp, mapDirection.ToAngle(), user);
-            Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
+            MuzzleFlash(gunUid, ammoComp, mapDirection.ToAngle(), user);
+            Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
         }
     }
 
-    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, Entity<GunComponent> gun, EntityUid? user)
+    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
     {
-        if (gun.Comp.Target is { } target && !TerminatingOrDeleted(target))
+        if (gun.Target is { } target && !TerminatingOrDeleted(target))
         {
             var targeted = EnsureComp<TargetedProjectileComponent>(uid);
-            targeted.Targets = new(gun.Targets);
+            targeted.Target = GetNetEntity(target);
             Dirty(uid, targeted);
         }
-
-        // Starlight start - cartridges can hold hitscans
-        if (HasComp<HitscanAmmoComponent>(uid))
-        {
-            var hitscanEv = new HitscanTraceEvent
-            {
-                FromCoordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates,
-                ShotDirection = mapDirection.Normalized(),
-                Gun = gunUid,
-                Shooter = user,
-                Target = gun.Targets,
-            };
-            RaiseLocalEvent(uid, ref hitscanEv);
-
-            Del(uid);
-            return;
-        }
-        // Starlight end - cartridges can hold hitscans
 
         // Do a throw
         if (!HasComp<ProjectileComponent>(uid))
         {
             RemoveShootable(uid);
             // TODO: Someone can probably yeet this a billion miles so need to pre-validate input somewhere up the call stack.
-            ThrowingSystem.TryThrow(uid, mapDirection, gun.Comp.ProjectileSpeedModified, user);
+            ThrowingSystem.TryThrow(uid, mapDirection, gun.ProjectileSpeedModified, user);
             return;
         }
 
-        ShootProjectile(uid, mapDirection, gunVelocity, gun, user, gun.Comp.ProjectileSpeedModified);
+        ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified);
     }
 
     /// <summary>
@@ -332,27 +227,6 @@ public sealed partial class GunSystem : SharedGunSystem
         for (var i = 0; i <= intervals - 1; i++)
         {
             angles[i] = new Angle(start + (end - start) * i / (intervals - 1));
-        }
-
-        return angles;
-    }
-
-    // 🌟Starlight🌟
-    private Angle[] LinearSpreadWithRandom(Angle start, Angle end, int intervals, float randomSpread)
-    {
-        var angles = new Angle[intervals];
-        DebugTools.Assert(intervals > 1);
-
-        for (var i = 0; i < intervals; i++)
-        {
-            var t = (float)i / (intervals - 1);
-            var baseAngle = start + (end - start) * t;
-
-            var randomFactor = _rand.NextFloat() - 0.5f;
-
-            var randomOffset = Angle.FromDegrees(randomFactor * randomSpread);
-
-            angles[i] = baseAngle + randomOffset;
         }
 
         return angles;

@@ -28,8 +28,10 @@ public struct HealthAnalyzerUiState
     public bool? ScanMode;
     public bool? Bleeding;
     public bool? Unrevivable;
+    // Sunrise-Edit start - add hunger and thirst levels to UI state
     public float? HungerLevel;
     public float? ThirstLevel;
+    // Sunrise-Edit end
 
     public HealthAnalyzerUiState() {}
 
@@ -41,7 +43,9 @@ public struct HealthAnalyzerUiState
         ScanMode = scanMode;
         Bleeding = bleeding;
         Unrevivable = unrevivable;
+        // Sunrise-Edit start - assign hunger and thirst
         HungerLevel = hungerLevel;
         ThirstLevel = thirstLevel;
+        // Sunrise-Edit end
     }
 }

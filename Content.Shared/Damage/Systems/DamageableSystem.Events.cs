@@ -268,6 +268,11 @@ public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin 
     ///     Contains the entity which caused the damage, if any was responsible.
     /// </summary>
     public readonly EntityUid? Origin = origin;
+
+    // Sunrise edit start - Starlight armor penetration integration
+    public float ArmorPenetration = armorPenetration;
+    public bool CanHeal = canHeal;
+    // Sunrise edit end
 }
 
 public sealed class DamageChangedEvent : EntityEventArgs

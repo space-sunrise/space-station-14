@@ -76,7 +76,8 @@
     offset: "0, 0.5"
   - type: Strap
     position: Stand
-    buckleOffset: "0, 0.5"
+    buckleOffsets:
+    - "0, 0.5"
     buckleDoafterTime: 5
   - type: IgniteOnBuckle
   - type: Construction

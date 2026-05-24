@@ -1809,6 +1809,7 @@
         !type:String
         pda-ninja
   - type: Icon
+    sprite: Objects/Devices/pda.rsi
     state: pda-ninja
 
 - type: entity

@@ -63,6 +63,7 @@
       shader: unshaded
   - type: Physics
     bodyType: Dynamic
+    fixedRotation: true
   - type: TileFrictionModifier
     modifier: 0
   - type: Fixtures

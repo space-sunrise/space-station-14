@@ -24,18 +24,13 @@ namespace Content.Server.Chemistry.Components
         [DataField("pillDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
         public uint PillDosageLimit;
 
-        //Starlight-start
-        [DataField("patchDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
-        public uint PatchDosageLimit;
-        //Starlight-end
-
         [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
 
         /// <summary>
         /// Which source the chem master should draw from when making pills/bottles.
         /// </summary>
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadWrite)] // Sunrise-Edit
         public ChemMasterDrawSource DrawSource = ChemMasterDrawSource.Internal;
     }
 }

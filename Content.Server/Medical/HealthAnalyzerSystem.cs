@@ -19,6 +19,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Server.Body.Systems;
+using Content.Shared.Nutrition.Components;
+using Content.Shared._Sunrise.Research.Artifact;
 
 namespace Content.Server.Medical;
 
@@ -191,8 +193,15 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             || !HasComp<DamageableComponent>(target))
             return;
 
-        if (!HasComp<DamageableComponent>(target))
-            return;
+        var uiState = GetHealthAnalyzerUiState(target);
+        uiState.ScanMode = scanMode;
+
+        _uiSystem.ServerSendUiMessage(
+            healthAnalyzer,
+            HealthAnalyzerUiKey.Key,
+            new HealthAnalyzerScannedUserMessage(uiState)
+        );
+    }
 
     /// <summary>
     /// Creates a HealthAnalyzerState based on the current state of an entity.
@@ -225,13 +234,37 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (TryComp<UnrevivableComponent>(entity, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
+        // Sunrise-Edit start - collect hunger, thirst, and raise analyze event
+        // Collect hunger and thirst data as percentages
+        float hungerLevel = -1;
+        float thirstLevel = -1;
+
+        if (TryComp<HungerComponent>(entity, out var hunger))
+        {
+            // Calculate hunger as percentage (max hunger is 200.0f from Overfed threshold)
+            hungerLevel = (hunger.LastAuthoritativeHungerValue / 200.0f) * 100.0f;
+        }
+
+        if (TryComp<ThirstComponent>(entity, out var thirst))
+        {
+            // Calculate thirst as percentage (max thirst is 600.0f from OverHydrated threshold)
+            thirstLevel = (thirst.CurrentThirst / 600.0f) * 100.0f;
+        }
+
+        RaiseLocalEvent(entity, new EntityAnalyzedEvent());
+        // Sunrise-Edit end
+
+        // Sunrise-Edit start - return state with hunger and thirst
         return new HealthAnalyzerUiState(
             GetNetEntity(entity),
             bodyTemperature,
             bloodAmount,
             null,
             bleeding,
-            unrevivable
-        ));
+            unrevivable,
+            hungerLevel,
+            thirstLevel
+        );
+        // Sunrise-Edit end
     }
 }

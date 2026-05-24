@@ -31,13 +31,13 @@ namespace Content.Client.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animPlayer = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IStateManager _state = default!;
+    [Dependency] private readonly AnimationPlayerSystem _animPlayer = default!;
+    [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
@@ -128,7 +128,16 @@ public sealed partial class GunSystem : SharedGunSystem
             sprite[EffectLayers.Unshaded].AutoAnimated = false;
             _sprite.LayerSetSprite((ent, sprite), EffectLayers.Unshaded, rsi);
             _sprite.LayerSetRsiState((ent, sprite), EffectLayers.Unshaded, rsi.RsiState);
-            _sprite.SetScale((ent, sprite), new Vector2(a.Distance, 1f));
+
+            // Sunrise edit start - apply custom scale and color from hitscan event
+            var baseScale = a.Scale ?? Vector2.One;
+            _sprite.SetScale((ent, sprite), new Vector2(a.Distance * baseScale.X, baseScale.Y));
+            if (a.Color != null)
+            {
+                _sprite.LayerSetColor((ent, sprite), EffectLayers.Unshaded, a.Color.Value);
+            }
+            // Sunrise edit end
+
             sprite[EffectLayers.Unshaded].Visible = true;
 
             var anim = new Animation()
@@ -167,29 +176,29 @@ public sealed partial class GunSystem : SharedGunSystem
 
         var entity = entityNull.Value;
 
-        if (!TryGetGun(entity, out var gun))
+        if (!TryGetGun(entity, out var gunUid, out var gun))
         {
             return;
         }
 
-        var useKey = gun.Comp.UseKey ? EngineKeyFunctions.Use : EngineKeyFunctions.UseSecondary;
+        var useKey = gun.UseKey ? EngineKeyFunctions.Use : EngineKeyFunctions.UseSecondary;
 
-        if (_inputSystem.CmdStates.GetState(useKey) != BoundKeyState.Down && !gun.Comp.BurstActivated)
+        if (_inputSystem.CmdStates.GetState(useKey) != BoundKeyState.Down && !gun.BurstActivated)
         {
-            if (gun.Comp.ShotCounter != 0)
-                RaisePredictiveEvent(new RequestStopShootEvent { Gun = GetNetEntity(gun) });
+            if (gun.ShotCounter != 0)
+                RaisePredictiveEvent(new RequestStopShootEvent { Gun = GetNetEntity(gunUid) });
             return;
         }
 
-        if (gun.Comp.NextFire > Timing.CurTime)
+        if (gun.NextFire > Timing.CurTime)
             return;
 
         var mousePos = _eyeManager.PixelToMap(_inputManager.MouseScreenPosition);
 
         if (mousePos.MapId == MapId.Nullspace)
         {
-            if (gun.Comp.ShotCounter != 0)
-                RaisePredictiveEvent(new RequestStopShootEvent { Gun = GetNetEntity(gun) });
+            if (gun.ShotCounter != 0)
+                RaisePredictiveEvent(new RequestStopShootEvent { Gun = GetNetEntity(gunUid) });
 
             return;
         }
@@ -207,11 +216,11 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             Target = target,
             Coordinates = GetNetCoordinates(coordinates),
-            Gun = GetNetEntity(gun),
+            Gun = GetNetEntity(gunUid),
         });
     }
 
-    public override void Shoot(Entity<GunComponent> gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
+    public override void Shoot(EntityUid gunUid, GunComponent gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
         EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, EntityUid? user = null, bool throwItems = false)
     {
         userImpulse = true;
@@ -226,7 +235,7 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             if (throwItems)
             {
-                Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                Recoil(user, direction, gun.CameraRecoilScalarModified);
                 if (IsClientSide(ent!.Value))
                     Del(ent.Value);
                 else
@@ -241,9 +250,9 @@ public sealed partial class GunSystem : SharedGunSystem
                     if (!cartridge.Spent)
                     {
                         SetCartridgeSpent(ent!.Value, cartridge, true);
-                        MuzzleFlash(gun, cartridge, worldAngle, user);
-                        Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                        Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                        MuzzleFlash(gunUid, cartridge, worldAngle, user);
+                        Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                        Recoil(user, direction, gun.CameraRecoilScalarModified);
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
                         //    Del(cartridge.Owner);
@@ -251,7 +260,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     else
                     {
                         userImpulse = false;
-                        Audio.PlayPredicted(gun.Comp.SoundEmpty, gun, user);
+                        Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
                     }
 
                     if (IsClientSide(ent!.Value))
@@ -259,17 +268,17 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     break;
                 case AmmoComponent newAmmo:
-                    MuzzleFlash(gun, newAmmo, worldAngle, user);
-                    Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    MuzzleFlash(gunUid, newAmmo, worldAngle, user);
+                    Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                    Recoil(user, direction, gun.CameraRecoilScalarModified);
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
                     else
                         RemoveShootable(ent.Value);
                     break;
                 case HitscanAmmoComponent:
-                    Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                    Recoil(user, direction, gun.CameraRecoilScalarModified);
                     break;
             }
         }
@@ -326,9 +335,17 @@ public sealed partial class GunSystem : SharedGunSystem
 
         if (tracked != null)
         {
+            // Sunrise edit start - do not track mechs/mech pilots so smoke stays static in the world
+            if (TryComp<Content.Shared.Mech.Components.MechPilotComponent>(tracked.Value, out _) ||
+                HasComp<Content.Shared.Mech.Components.MechComponent>(tracked.Value))
+            {
+                return;
+            }
+
             var track = EnsureComp<TrackUserComponent>(ent);
             track.User = tracked;
             track.Offset = Vector2.UnitX / 2f;
+            // Sunrise edit end
         }
 
         var lifetime = 0.4f;
@@ -407,5 +424,5 @@ public sealed partial class GunSystem : SharedGunSystem
     }
 
     // TODO: Move RangedDamageSoundComponent to shared so this can be predicted.
-    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound) { }
+    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound) {}
 }

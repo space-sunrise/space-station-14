@@ -13,10 +13,24 @@ public sealed partial class SpentAmmoVisualsComponent : Component
 
     [DataField]
     public string State = "base";
+
+    // Sunrise edit start
+    [DataField]
+    public string? SpentState = null;
+
+    [DataField]
+    public bool RevealSpent = false;
+
+    [DataField]
+    public bool Tip = false;
+    // Sunrise edit end
 }
 
 public enum AmmoVisualLayers : byte
 {
     Base,
     Tip,
+    // Sunrise added start - support spent visual layer
+    Spent,
+    // Sunrise added end
 }

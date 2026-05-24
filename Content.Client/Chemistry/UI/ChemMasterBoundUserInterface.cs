@@ -46,17 +46,17 @@ namespace Content.Client.Chemistry.UI
             _window.CreateBottleButton.OnPressed += _ => SendMessage(
                 new ChemMasterOutputToBottleMessage(
                     (uint) _window.BottleDosage.Value, _window.LabelLine));
+            // Sunrise-Edit start - connect patch button event
+            _window.CreatePatchButton.OnPressed += _ => SendMessage(
+                new ChemMasterCreatePatchesMessage(
+                    (uint) _window.PatchDosage.Value, (uint) _window.PatchNumber.Value, _window.LabelLine));
+            // Sunrise-Edit end
             _window.BufferSortButton.OnPressed += _ => SendMessage(
                     new ChemMasterSortingTypeCycleMessage());
             _window.OutputBufferDraw.OnPressed += _ => SendMessage(
                 new ChemMasterOutputDrawSourceMessage(ChemMasterDrawSource.Internal));
             _window.OutputBeakerDraw.OnPressed += _ => SendMessage(
                 new ChemMasterOutputDrawSourceMessage(ChemMasterDrawSource.External));
-            // Starlight-start
-            _window.CreatePatchButton.OnPressed += _ => SendMessage(
-                new ChemMasterCreatePatchesMessage(
-                    (uint)_window.PatchDosage.Value, (uint)_window.PatchNumber.Value, _window.LabelLine));
-            // Starlight-end
 
             for (uint i = 0; i < _window.PillTypeButtons.Length; i++)
             {

@@ -107,20 +107,7 @@
   - FauxTileAstroIronsand
   - FauxTileAstroIronsandBorderless
 
-- type: technology
-  id: BiochemicalStasis
-  name: research-technology-biochemical-stasis
-  icon:
-    sprite: Structures/Machines/stasis_bed.rsi
-    state: icon
-  discipline: CivilianServices
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - StasisBedMachineCircuitboard
-  - CryoPodMachineCircuitboard
-  - CryostasisBeaker
-  - SyringeCryostasis
+
 
 - type: technology # Merge with other T2 medical research if possible!
   id: MechanizedTreatment

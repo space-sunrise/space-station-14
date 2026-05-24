@@ -94,6 +94,16 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             ? $"{state.BloodLevel * 100:F1} %"
             : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
+        // Sunrise-Edit start - hunger and thirst label updates
+        HungerLabel.Text = state.HungerLevel.HasValue && !float.IsNaN(state.HungerLevel.Value)
+            ? $"{state.HungerLevel.Value:F1} %"
+            : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+
+        ThirstLabel.Text = state.ThirstLevel.HasValue && !float.IsNaN(state.ThirstLevel.Value)
+            ? $"{state.ThirstLevel.Value:F1} %"
+            : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+        // Sunrise-Edit end
+
         StatusLabel.Text =
             _entityManager.TryGetComponent<MobStateComponent>(target.Value, out var mobStateComponent)
                 ? GetStatus(mobStateComponent.CurrentState)

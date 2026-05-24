@@ -509,11 +509,11 @@ public abstract partial class InteractionTest
         var wasInCombatMode = IsInCombatMode();
         await SetCombatMode(true);
 
-        Assert.That(SGun.TryGetGun(SPlayer, out var gun), "Player was not holding a gun!");
+        Assert.That(SGun.TryGetGun(SPlayer, out var gun, out var gunComp), "Player was not holding a gun!");
 
         await Server.WaitAssertion(() =>
         {
-            var success = SGun.AttemptShoot(SPlayer, gun, actualTarget);
+            var success = SGun.AttemptShoot(SPlayer, gun, gunComp!, actualTarget);
             if (assert)
                 Assert.That(success, "Gun failed to shoot.");
         });
@@ -548,11 +548,11 @@ public abstract partial class InteractionTest
         var wasInCombatMode = IsInCombatMode();
         await SetCombatMode(true);
 
-        Assert.That(SGun.TryGetGun(SPlayer, out var gun), "Player was not holding a gun!");
+        Assert.That(SGun.TryGetGun(SPlayer, out var gun, out var gunComp), "Player was not holding a gun!");
 
         await Server.WaitAssertion(() =>
         {
-            var success = SGun.AttemptShoot(SPlayer, gun, Position(actualTarget!.Value), ToServer(actualTarget));
+            var success = SGun.AttemptShoot(SPlayer, gun, gunComp!, Position(actualTarget!.Value), ToServer(actualTarget));
             if (assert)
                 Assert.That(success, "Gun failed to shoot.");
         });

@@ -19,6 +19,7 @@ public sealed partial class GunSystem
 
             Containers.Remove(existing, ent.Comp.Container);
             EnsureShootable(existing);
+            ammoEnt = existing; // Sunrise-Edit
         }
         else if (ent.Comp.UnspawnedCount > 0)
         {

@@ -31,6 +31,12 @@
             <Label Name="TemperatureLabel" />
             <Label Text="{Loc 'health-analyzer-window-entity-blood-level-text'}" />
             <Label Name="BloodLabel" />
+            <!-- Sunrise-Edit start - hunger and thirst labels -->
+            <Label Text="{Loc 'health-analyzer-window-entity-hunger-level-text'}" />
+            <Label Name="HungerLabel" />
+            <Label Text="{Loc 'health-analyzer-window-entity-thirst-level-text'}" />
+            <Label Name="ThirstLabel" />
+            <!-- Sunrise-Edit end -->
             <Label Text="{Loc 'health-analyzer-window-entity-damage-total-text'}" />
             <Label Name="DamageLabel" />
         </GridContainer>

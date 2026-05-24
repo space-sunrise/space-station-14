@@ -86,10 +86,10 @@ namespace Content.Client.Chemistry.UI
 
             PillDosage.InitDefaultButtons();
             PillNumber.InitDefaultButtons();
-            // Starlight-start
+            // Sunrise-Edit start - patch fields init
             PatchDosage.InitDefaultButtons();
             PatchNumber.InitDefaultButtons();
-            // Starlight-end
+            // Sunrise-Edit end
             BottleDosage.InitDefaultButtons();
 
             // Ensure label length is within the character limit.
@@ -147,18 +147,12 @@ namespace Content.Client.Chemistry.UI
         public void UpdateState(BoundUserInterfaceState state)
         {
             var castState = (ChemMasterBoundUserInterfaceState)state;
-            // Starlight Start
-            var outputCreationSolutionVariable = new Label
-            {
-                Text = $" {castState.InputContainerInfo?.CurrentVolume ?? 0}u",
-            }; //Starlight End Creates a variable for how much solution is in the input beaker to be used for Pill/Patches creation
 
             if (castState.UpdateLabel)
                 LabelLine = GenerateLabel(castState);
 
             // Ensure the Panel Info is updated, including UI elements for Buffer Volume, Output Container and so on
-            UpdatePanelInfo(castState);;
-            BufferCurrentVolume.Text = outputCreationSolutionVariable.Text; // Starlight Beaker Changes for Pills/Patches creation
+            UpdatePanelInfo(castState);
 
             switch (castState.DrawSource)
             {
@@ -176,7 +170,9 @@ namespace Content.Client.Chemistry.UI
             OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
             CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
             CreatePillButton.Disabled = castState.OutputContainerInfo?.Entities == null;
-            CreatePatchButton.Disabled = castState.OutputContainerInfo?.Entities == null; // Starlight-edit
+            // Sunrise-Edit start - disable create button if no container is loaded
+            CreatePatchButton.Disabled = castState.OutputContainerInfo?.Entities == null;
+            // Sunrise-Edit end
 
             UpdateDosageFields(castState);
         }
@@ -196,26 +192,29 @@ namespace Content.Client.Chemistry.UI
                 _ => 0,
             };
 
-            PillDosage.Value = (int)Math.Min(outputVolume, castState.PillDosageLimit); // Starlight-edit
-            PatchDosage.Value = (int)Math.Min(outputVolume, castState.PatchDosageLimit); // Starlight-edit
+            PillDosage.Value = (int)Math.Min(outputVolume, castState.PillDosageLimit);
+            // Sunrise-Edit start - update patch dosage limits
+            PatchDosage.Value = (int)Math.Min(outputVolume, castState.PatchDosageLimit);
+            // Sunrise-Edit end
 
             PillTypeButtons[castState.SelectedPillType].Pressed = true;
 
             PillNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
             PillDosage.IsValid = x => x > 0 && x <= castState.PillDosageLimit;
-            // Starlight-start
+            // Sunrise-Edit start - validate patch limits
             PatchNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
             PatchDosage.IsValid = x => x > 0 && x <= castState.PatchDosageLimit;
-            // Starlight-end
+            // Sunrise-Edit end
             BottleDosage.IsValid = x => x >= 0 && x <= bottleAmountMax;
 
             if (PillNumber.Value > pillNumberMax)
                 PillNumber.Value = pillNumberMax;
             if (BottleDosage.Value > bottleAmountMax)
                 BottleDosage.Value = bottleAmountMax;
-
+            // Sunrise-Edit start - clamp patch quantity
             if (PatchNumber.Value > pillNumberMax)
                 PatchNumber.Value = pillNumberMax;
+            // Sunrise-Edit end
 
             // Avoid division by zero
             if (PillDosage.Value > 0)
@@ -227,8 +226,7 @@ namespace Content.Client.Chemistry.UI
                 PillNumber.Value = 0;
             }
 
-
-            // Starlight-start
+            // Sunrise-Edit start - patch count calculation
             if (PatchDosage.Value > 0)
             {
                 PatchNumber.Value = Math.Min(outputVolume / PatchDosage.Value, pillNumberMax);
@@ -237,9 +235,9 @@ namespace Content.Client.Chemistry.UI
             {
                 PatchNumber.Value = 0;
             }
+            // Sunrise-Edit end
 
             BottleDosage.Value = Math.Min(bottleAmountMax, outputVolume);
-            // Starlight-end
         }
         /// <summary>
         /// Generate a product label based on reagents in the buffer or beaker.

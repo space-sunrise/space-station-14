@@ -17,8 +17,6 @@ namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
 {
-    private const float GibletLaunchImpulse = 8;
-    private const float GibletLaunchImpulseVariance = 3;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;

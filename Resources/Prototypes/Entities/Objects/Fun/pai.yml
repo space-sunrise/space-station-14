@@ -106,7 +106,7 @@
     - HandheldStationMapUnpowered
     - HandheldEmergencyCrewMonitorBorg
     entityTargetActions:
-    - HandheldHealthAnalyzerUnpowered
+    - HandheldHealthAnalyzer
   - type: BorgBrain
   - type: ContainerContainer
     containers:
@@ -168,7 +168,7 @@
   - type: InnateItem
     entityTargetActions:
     - AccessBreaker
-    - HandheldHealthAnalyzerUnpowered
+    - HandheldHealthAnalyzer
   - type: Biocode
     factions:
     - Syndicate

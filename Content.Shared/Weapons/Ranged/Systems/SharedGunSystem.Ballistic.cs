@@ -237,22 +237,56 @@ public abstract partial class SharedGunSystem
 
     private void OnBallisticTakeAmmo(Entity<BallisticAmmoProviderComponent> ent, ref TakeAmmoEvent args)
     {
+        TryComp<GunComponent>(ent, out var gun);
+        var isPump = gun != null && gun.Pump;
+
         for (var i = 0; i < args.Shots; i++)
         {
             EntityUid? ammoEntity = null;
-            if (ent.Comp.Entities.Count > 0)
+            if (isPump)
             {
-                var existingEnt = ent.Comp.Entities[^1];
-                ent.Comp.Entities.RemoveAt(ent.Comp.Entities.Count - 1);
-                DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.Entities));
-                Containers.Remove(existingEnt, ent.Comp.Container);
-                ammoEntity = existingEnt;
+                // Sunrise edit start
+                // Under Pump-action, we keep spent cartridges in the gun's container until manually cycled.
+                if (ent.Comp.Entities.Count > 0)
+                {
+                    var lastEnt = ent.Comp.Entities[^1];
+                    if (TryComp<CartridgeAmmoComponent>(lastEnt, out var lastCartridge) && lastCartridge.Spent)
+                    {
+                        // Chamber is already blocked by a spent casing! Must cycle first.
+                        args.Reason = Loc.GetString("gun-ballistic-cycle");
+                        continue;
+                    }
+                    ammoEntity = lastEnt;
+                }
+                else if (ent.Comp.UnspawnedCount > 0)
+                {
+                    ent.Comp.UnspawnedCount--;
+                    DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.UnspawnedCount));
+                    
+                    var newAmmo = Spawn(ent.Comp.Proto, args.Coordinates);
+                    Containers.Insert(newAmmo, ent.Comp.Container);
+                    ent.Comp.Entities.Add(newAmmo);
+                    DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.Entities));
+                    ammoEntity = newAmmo;
+                }
+                // Sunrise edit end
             }
-            else if (ent.Comp.UnspawnedCount > 0)
+            else
             {
-                ent.Comp.UnspawnedCount--;
-                DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.UnspawnedCount));
-                ammoEntity = Spawn(ent.Comp.Proto, args.Coordinates);
+                if (ent.Comp.Entities.Count > 0)
+                {
+                    var existingEnt = ent.Comp.Entities[^1];
+                    ent.Comp.Entities.RemoveAt(ent.Comp.Entities.Count - 1);
+                    DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.Entities));
+                    Containers.Remove(existingEnt, ent.Comp.Container);
+                    ammoEntity = existingEnt;
+                }
+                else if (ent.Comp.UnspawnedCount > 0)
+                {
+                    ent.Comp.UnspawnedCount--;
+                    DirtyField(ent.AsNullable(), nameof(BallisticAmmoProviderComponent.UnspawnedCount));
+                    ammoEntity = Spawn(ent.Comp.Proto, args.Coordinates);
+                }
             }
 
             if (ammoEntity is not { } ammoEnt)

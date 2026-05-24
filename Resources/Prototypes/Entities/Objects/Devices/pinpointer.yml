@@ -177,6 +177,7 @@
   description: A handheld tracking device that leads to the direction of the Mothership core.
   components:
   - type: Sprite
+    sprite: Objects/Devices/pinpointer.rsi # Sunrise-Edit
     layers:
     - state: pinpointer-xenoborg
       map: ["enum.PinpointerLayers.Base"]
@@ -185,6 +186,7 @@
       shader: unshaded
       visible: false
   - type: Item
+    sprite: Objects/Devices/pinpointer.rsi # Sunrise-Edit
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -199,6 +201,7 @@
         color: "#3a3a3a"
       - state: inhand-right-top
   - type: Icon
+    sprite: Objects/Devices/pinpointer.rsi # Sunrise-Edit
     state: pinpointer-xenoborg
   - type: Pinpointer
     component: MothershipCore

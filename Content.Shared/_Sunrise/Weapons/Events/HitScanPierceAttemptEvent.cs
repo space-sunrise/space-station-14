@@ -1,9 +1,9 @@
-using System.Numerics;
-using Content.Shared._Starlight.Combat.Ranged.Pierce;
-using Content.Shared.Inventory;
-using Content.Shared.Weapons.Reflect;
+// Sunrise-Edit
 
-namespace Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Sunrise.Weapons.Enums;
+using Content.Shared.Inventory;
+
+namespace Content.Shared._Sunrise.Weapons.Events;
 
 [ByRefEvent]
 public record struct HitScanPierceAttemptEvent(PierceLevel Level, bool Pierced) : IInventoryRelayEvent

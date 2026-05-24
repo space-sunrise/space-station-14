@@ -167,7 +167,9 @@ public sealed partial class DamageableSystem
                 ent.Comp.DamageModifierSetId != null &&
                 _prototypeManager.Resolve(ent.Comp.DamageModifierSetId, out var modifierSet)
             )
-                damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
+                // Sunrise edit start - respect armor penetration and healing prevention in base damage modifier set
+                damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet, armorPenetration, canHeal);
+                // Sunrise edit end
 
             // TODO DAMAGE
             // byref struct event.

@@ -12,6 +12,8 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
+    protected const string ChamberSlot = "gun_chamber";
+
     protected virtual void InitializeChamberMagazine()
     {
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, ComponentStartup>(OnChamberStartup);
@@ -23,9 +25,8 @@ public abstract partial class SharedGunSystem
          * Racking does both in one hit and has a different sound (to avoid RSI + sounds cooler).
          */
 
-        // Sunrise-Edit
-        //SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, GetVerbsEvent<Verb>>(OnChamberActivationVerb);
-        //SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, GetVerbsEvent<Verb>>(OnChamberInteractionVerb);
+        SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, GetVerbsEvent<ActivationVerb>>(OnChamberActivationVerb);
+        SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, GetVerbsEvent<InteractionVerb>>(OnChamberInteractionVerb);
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, GetVerbsEvent<AlternativeVerb>>(OnMagazineVerb);
 
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, ActivateInWorldEvent>(OnChamberActivate);
@@ -34,7 +35,6 @@ public abstract partial class SharedGunSystem
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, EntInsertedIntoContainerMessage>(OnMagazineSlotChange);
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, EntRemovedFromContainerMessage>(OnMagazineSlotChange);
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, ExaminedEvent>(OnChamberMagazineExamine);
-        SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, GetVerbsEvent<Verb>>(AddVerbs); // Sunrise-Edit
     }
 
     private void OnChamberStartup(EntityUid uid, ChamberMagazineAmmoProviderComponent component, ComponentStartup args)
@@ -42,7 +42,7 @@ public abstract partial class SharedGunSystem
         // Appearance data doesn't get serialized and want to make sure this is correct on spawn (regardless of MapInit) so.
         if (component.BoltClosed != null)
         {
-            Appearance.SetData(uid, AmmoVisuals.BoltClosed, component.BoltClosed.Value);
+           Appearance.SetData(uid, AmmoVisuals.BoltClosed, component.BoltClosed.Value);
         }
     }
 
@@ -67,38 +67,29 @@ public abstract partial class SharedGunSystem
             return;
 
         args.Handled = true;
-        // Sunrise-Edit
-        // if (component.CanRack)
-        //     UseChambered(uid, component, args.User);
-        // else
-        //     ToggleBolt(uid, component, args.User);
-    }
-
-    public void ChamberMagazineUseInHand(EntityUid user, EntityUid uid, ChamberMagazineAmmoProviderComponent component)
-    {
         if (component.CanRack)
-            UseChambered(uid, component, user);
+            UseChambered(uid, component, args.User);
         else
-            ToggleBolt(uid, component, user);
+            ToggleBolt(uid, component, args.User);
     }
 
     /// <summary>
     /// Creates "Rack" verb on the gun
     /// </summary>
-    // private void OnChamberActivationVerb(EntityUid uid, ChamberMagazineAmmoProviderComponent component, GetVerbsEvent<Verb> args)
-    // {
-    //     if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null || component.BoltClosed == null || !component.CanRack)
-    //         return;
-    //
-    //     args.Verbs.Add(new ActivationVerb()
-    //     {
-    //         Text = Loc.GetString("gun-chamber-rack"),
-    //         Act = () =>
-    //         {
-    //             UseChambered(uid, component, args.User);
-    //         }
-    //     });
-    // }
+    private void OnChamberActivationVerb(EntityUid uid, ChamberMagazineAmmoProviderComponent component, GetVerbsEvent<ActivationVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null || component.BoltClosed == null || !component.CanRack)
+            return;
+
+        args.Verbs.Add(new ActivationVerb()
+        {
+            Text = Loc.GetString("gun-chamber-rack"),
+            Act = () =>
+            {
+                UseChambered(uid, component, args.User);
+            }
+        });
+    }
 
     /// <summary>
     /// Opens then closes the bolt, or just closes it if currently open.
@@ -138,48 +129,20 @@ public abstract partial class SharedGunSystem
     /// <summary>
     /// Creates "Open/Close bolt" verb on the gun
     /// </summary>
-    // private void OnChamberInteractionVerb(EntityUid uid, ChamberMagazineAmmoProviderComponent component, GetVerbsEvent<Verb> args)
-    // {
-    //     if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null || component.BoltClosed == null)
-    //         return;
-    //
-    //     args.Verbs.Add(new InteractionVerb()
-    //     {
-    //         Text = component.BoltClosed.Value ? Loc.GetString("gun-chamber-bolt-open") : Loc.GetString("gun-chamber-bolt-close"),
-    //         Act = () =>
-    //         {
-    //             // Just toggling might be more user friendly instead of trying to set to whatever they think?
-    //             ToggleBolt(uid, component, args.User);
-    //         }
-    //     });
-    // }
-
-    private void AddVerbs(EntityUid uid, ChamberMagazineAmmoProviderComponent component, GetVerbsEvent<Verb> args)
+    private void OnChamberInteractionVerb(EntityUid uid, ChamberMagazineAmmoProviderComponent component, GetVerbsEvent<InteractionVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess || component.BoltClosed == null)
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null || component.BoltClosed == null)
             return;
 
-        args.Verbs.Add(new Verb()
+        args.Verbs.Add(new InteractionVerb()
         {
             Text = component.BoltClosed.Value ? Loc.GetString("gun-chamber-bolt-open") : Loc.GetString("gun-chamber-bolt-close"),
             Act = () =>
             {
                 // Just toggling might be more user friendly instead of trying to set to whatever they think?
                 ToggleBolt(uid, component, args.User);
-            },
+            }
         });
-
-        if (component.CanRack)
-        {
-            args.Verbs.Add(new Verb()
-            {
-                Text = Loc.GetString("gun-chamber-rack"),
-                Act = () =>
-                {
-                    UseChambered(uid, component, args.User);
-                }
-            });
-        }
     }
 
     /// <summary>
@@ -463,21 +426,5 @@ public abstract partial class SharedGunSystem
             chamberEnt = slot.ContainedEntity;
             args.Ammo.Add((chamberEnt.Value, EnsureShootable(chamberEnt.Value)));
         }
-    }
-}
-
-public sealed class CockGunEvent : HandledEntityEventArgs, ITargetedInteractEventArgs
-{
-    public EntityUid User { get; }
-
-    public EntityUid Target { get; }
-
-    public bool Complex;
-
-    public CockGunEvent(EntityUid user, EntityUid target, bool complex)
-    {
-        User = user;
-        Target = target;
-        Complex = complex;
     }
 }
