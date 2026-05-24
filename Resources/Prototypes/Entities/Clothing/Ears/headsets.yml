@@ -8,11 +8,13 @@
   - type: ContainerContainer
     containers:
       key_slots: !type:Container
+      cell_slot: !type:ContainerSlot {} # Sunrise-Edit
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyCommon
   - type: Headset
+    toggleAction: ActionToggleHeadset # Sunrise-Edit
   - type: EncryptionKeyHolder
     keySlots: 4
   - type: Sprite
@@ -26,6 +28,19 @@
   - type: GuideHelp
     guides:
     - Radio
+  # Sunrise-Start
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-name
+        startingItem: PowerCellSmall
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: UserInterface
+    interfaces:
+      enum.HeadsetUiKey.Key:
+        type: HeadsetBoundUserInterface
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadset

@@ -49,6 +49,10 @@ public sealed class TutorialSystem : SharedTutorialSystem
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly UserDbDataManager _userDb = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    private TimeSpan _cooldown;
+    private int _maxTutorials;
+    private Dictionary<NetUserId, TimeSpan> _cooldownData = new();
     private EntityUid? _tutorialMap;
     private readonly Dictionary<ICommonSession, TutorialCompletionEui> _completionEuis = new();
     private readonly Dictionary<NetUserId, int> _tutorialTtsRevisions = new();
@@ -58,19 +62,24 @@ public sealed class TutorialSystem : SharedTutorialSystem
     {
         base.Initialize();
 
+        Subs.CVar(_cfg, SunriseCCVars.TutorialCooldown, v => _cooldown = v, true);
+        Subs.CVar(_cfg, SunriseCCVars.TutorialMaxActive, v => _maxTutorials = v, true);
+
         _player.PlayerStatusChanged += OnPlayerStatusChanged;
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+
         SubscribeLocalEvent<TutorialPlayerComponent, TutorialStepChangedEvent>(OnStepChanged);
         SubscribeLocalEvent<TutorialPlayerComponent, TutorialStepsCompletedEvent>(OnStepsCompleted);
         SubscribeLocalEvent<TutorialPlayerComponent, TutorialEndedEvent>(OnTutorialComplete);
+
         SubscribeLocalEvent<TutorialPlayerComponent, ExpandPvsEvent>(OnExpandPvs);
+
         SubscribeNetworkEvent<TutorialQuitRequestEvent>(OnTutorialQuitRequest);
         SubscribeNetworkEvent<TutorialStartRequestEvent>(OnStartRequest);
         SubscribeNetworkEvent<TutorialWindowDataRequestEvent>(OnWindowDataRequest);
     }
-
     public override void Shutdown()
     {
         base.Shutdown();
@@ -79,6 +88,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
         _pendingCompletionRespawns.Clear();
         _completionEuis.Clear();
         _tutorialTtsRevisions.Clear();
+        _cooldownData.Clear();
     }
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
@@ -151,6 +161,8 @@ public sealed class TutorialSystem : SharedTutorialSystem
 
             return;
         }
+
+        _cooldownData[userId] = _timing.CurTime + _cooldown;
 
         _tutorialTtsRevisions.Remove(session.UserId);
         RespawnAfterTutorialCompletion(session);
@@ -348,10 +360,10 @@ public sealed class TutorialSystem : SharedTutorialSystem
         if (!_proto.TryIndex(msg.SequenceId, out var sequence))
             return;
 
-        if (!CanStartTutorial())
+        if (!CanStartTutorial(args.SenderSession, out var reason))
         {
             RaiseNetworkEvent(
-                new TutorialStartDeniedEvent("tutorial-start-denied-max-active"),
+                new TutorialStartDeniedEvent(reason),
                 Filter.SinglePlayer(args.SenderSession));
             return;
         }
@@ -390,10 +402,23 @@ public sealed class TutorialSystem : SharedTutorialSystem
         InitializeTutorial((uid.Value, tutorial));
     }
 
-    private bool CanStartTutorial()
+    private bool CanStartTutorial(ICommonSession session, out string reason)
     {
-        var maxActive = _cfg.GetCVar(SunriseCCVars.TutorialMaxActive);
-        if (maxActive <= 0)
+        reason = string.Empty;
+
+        if (session.AttachedEntity != null)
+            return false;
+
+        var cooldown = _cooldownData.GetValueOrDefault(session.UserId);
+
+        if (_timing.CurTime < cooldown)
+        {
+            var remaining = cooldown - _timing.CurTime;
+            reason = Loc.GetString("tutorial-cooldown-denied", ("cooldown", Math.Ceiling(remaining.TotalSeconds)));
+            return false;
+        }
+
+        if (_maxTutorials <= 0)
             return true;
 
         var count = 0;
@@ -401,8 +426,11 @@ public sealed class TutorialSystem : SharedTutorialSystem
         while (query.MoveNext(out _))
         {
             count++;
-            if (count >= maxActive)
+            if (count >= _maxTutorials)
+            {
+                reason = Loc.GetString("tutorial-start-denied-max-active");
                 return false;
+            }
         }
 
         return true;
