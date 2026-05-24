@@ -9,3 +9,15 @@
     state: ears_fox_outer
   - sprite: _Sunrise/Mobs/Customization/fox_parts.rsi
     state: ears_fox_inner
+
+- type: marking
+  id: RabbitEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: false
+  followSkinColor: false
+  sponsorOnly: false
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/rabbit_markings_parts.rsi
+    state: ears_rabbit
