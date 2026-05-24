@@ -163,7 +163,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool isFormatted = false //sunrise-edit
         )
     {
-        if (TryComp<AbductorComponent>(source, out var comp))
+        if (TryComp<AbductorComponent>(source, out var comp) && desiredType != InGameICChatType.Emote) // Sunrise-Edit for abuctors to speak in emoutes
         {
             if (!TryProcessSunriseChatMessage(source, ref message, InGameICChatType.CollectiveMind))
                 return;
