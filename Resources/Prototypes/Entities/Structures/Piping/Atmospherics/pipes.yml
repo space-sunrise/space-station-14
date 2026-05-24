@@ -70,11 +70,6 @@
   # Sunrise edit end
   - type: StaticPrice
     price: 22
-  # Starlight start
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  # Starlight End
 
 # Starlight start
 - type: entity
@@ -138,6 +133,7 @@
     guides:
     - Pipes
     - PipeNetworks
+  - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasPipeBase
@@ -158,6 +154,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: Sprite
     layers:
@@ -208,6 +205,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: Sprite
     layers:
@@ -298,6 +296,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
 
 - type: entity
@@ -338,6 +337,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: Item
     heldPrefix: Fourway
@@ -466,3 +466,13 @@
   - type: Tag
     tags:
     - Unstackable
+  # Starlight-start
+  - type: VentCrawlTube
+  - type: VentCrawlManifold
+    layerCount: 5
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight-end

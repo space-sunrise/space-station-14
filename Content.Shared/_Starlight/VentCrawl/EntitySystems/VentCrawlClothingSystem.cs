@@ -2,7 +2,7 @@ using Content.Shared.Clothing;
 using Content.Shared.VentCrawl.Components;
 using Content.Shared.VentCrawl;
 
-namespace Content.Server.VentCrawl;
+namespace Content.Shared.VentCrawl.EntitySystems;
 
 public sealed class VentCrawlClothingSystem : EntitySystem
 {
@@ -15,12 +15,8 @@ public sealed class VentCrawlClothingSystem : EntitySystem
     }
 
     private void OnClothingEquip(Entity<VentCrawlClothingComponent> ent, ref ClothingGotEquippedEvent args)
-    {
-        AddComp<VentCrawlerComponent>(args.Wearer);
-    }
+        => AddComp<VentCrawlerComponent>(args.Wearer);
 
     private void OnClothingUnequip(Entity<VentCrawlClothingComponent> ent, ref ClothingGotUnequippedEvent args)
-    {
-        RemComp<VentCrawlerComponent>(args.Wearer);
-    }
+        => RemComp<VentCrawlerComponent>(args.Wearer);
 }
