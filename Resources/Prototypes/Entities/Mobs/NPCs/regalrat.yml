@@ -143,16 +143,6 @@
   - type: NightVision
   # Sunrise-end
 
-# Sunrise edit start - rat king variant without guards for lower population
-- type: entity
-  id: MobRatKingNoGuard
-  parent: MobRatKing
-  suffix: No Guard
-  components:
-  - type: RatKing
-    maxGuardCount: 0
-# Sunrise edit end
-
 - type: entity
   id: MobRatKingBuff
   parent: MobRatKing
@@ -642,19 +632,3 @@
     event:
       !type:RatKingOrderActionEvent
       type: Loose
-
-# Sunrise-Start
-- type: entity
-  parent: BaseAction
-  id: ActionRatKingRaiseGuard
-  name: Raise Guard
-  description: Spend a large amount of hunger to summon an elite rat guard to serve you.
-  components:
-  - type: Action
-    useDelay: 180
-    icon:
-      sprite: Interface/Actions/actions_rat_king.rsi
-      state: ratKingGuard
-  - type: InstantAction
-    event: !type:RatKingRaiseGuardActionEvent
-# Sunrise-End
