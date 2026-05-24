@@ -1,5 +1,4 @@
 ﻿using Content.Server.Disposal.Unit;
-using Content.Shared._Sunrise.VentCraw;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Humanoid;
@@ -54,9 +53,6 @@ public sealed class BlindInDisposalsSystem : EntitySystem
 
     private bool CanSeeInTube(EntityUid uid)
     {
-        if (!HasComp<VentCrawlerComponent>(uid))
-            return false;
-
         if (HasComp<HumanoidAppearanceComponent>(uid))
             return false;
 

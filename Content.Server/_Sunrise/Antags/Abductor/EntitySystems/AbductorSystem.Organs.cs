@@ -18,7 +18,6 @@ using Content.Shared.Coordinates;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Antag;
-using Content.Shared._Sunrise.VentCraw;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Server.Objectives.Components;
@@ -65,7 +64,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         EnsureComp<AbductorVictimComponent>(args.Body, out var victim);
         victim.Organ = ent.Comp.Organ;
 
-        if (ent.Comp.Organ == AbductorOrganType.Vent)
+        if (ent.Comp.Organ == AbductorOrganType.Vent) // да не забуду
             AddComp<VentCrawlerComponent>(args.Body);
 
         if (ent.Comp.Organ == AbductorOrganType.Pacified)
