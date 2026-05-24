@@ -1,4 +1,67 @@
 - type: entity
+  id: PottedPlantBaseNoFade
+  parent: BaseStructureDynamic
+  name: potted plant
+  description: A little bit of nature contained in a pot.
+  abstract: true
+  components:
+  - type: Transform
+    noRot: true
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.1
+        density: 190
+        mask:
+        - HighImpassable
+  - type: Sprite
+    drawdepth: Overdoors
+    offset: "0.0,0.3"
+    sprite: Structures/Furniture/potted_plants.rsi
+    noRot: true
+  - type: Speech
+    speechVerb: Plant # for pais (In the secret stash)
+  - type: SecretStash
+    tryInsertItemSound: /Audio/Effects/plant_rustle.ogg
+    tryRemoveItemSound: /Audio/Effects/plant_rustle.ogg
+    secretStashName: secret-stash-plant
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
+  - type: Pullable
+  - type: MultiHandedItem
+  - type: Item
+    sprite: Structures/Furniture/potted_plants.rsi
+    size: Huge
+  - type: Damageable
+    damageContainer: StructuralInorganic # The pot. Not the plant. Or is it plastic?
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/plant_rustle.ogg
+
+- type: entity
+  id: PottedPlant26NoFade
+  suffix: Tutorial
+  parent: PottedPlantBaseNoFade
+  description: Is it just me, or is it blinking?
+  components:
+  - type: Sprite
+    state: plant-26
+
+- type: entity
   id: PottedPlantAlt0
   parent: PottedPlantBase
   components:

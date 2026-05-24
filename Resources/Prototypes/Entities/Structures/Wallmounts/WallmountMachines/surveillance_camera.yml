@@ -5,7 +5,7 @@
   description: A surveillance camera. It's watching you. Kinda.
   components:
   - type: AnnouncementSpeaker  # Sunrise-Edit: Add announcement speaker capability to cameras
-    range: 30
+    range: 5
     enabled: true
     requiresPower: true
   - type: Physics

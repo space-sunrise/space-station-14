@@ -1,0 +1,5 @@
+- type: tutorialCategory
+  id: BaseTutorials
+  name: base-tutorials
+  tutorials:
+  - IntroductionTutorial
