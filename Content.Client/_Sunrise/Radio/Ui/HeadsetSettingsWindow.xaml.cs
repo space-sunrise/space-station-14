@@ -29,7 +29,7 @@ public sealed partial class HeadsetSettingsWindow : DefaultWindow
 
         foreach (var channelId in keys.Channels)
         {
-            if (!proto.TryIndex<RadioChannelPrototype>(channelId, out var channel))
+            if (!proto.TryIndex(channelId, out var channel))
                 continue;
 
             var row = new BoxContainer
