@@ -24,8 +24,6 @@ public sealed partial class HeadsetSettingsWindow : DefaultWindow
     {
         ChannelList.DisposeAllChildren();
 
-        if (keys == null)
-            return;
 
         foreach (var channelId in keys.Channels)
         {
