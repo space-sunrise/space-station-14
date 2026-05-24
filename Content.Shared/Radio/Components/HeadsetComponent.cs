@@ -1,7 +1,5 @@
 using Content.Shared.Inventory;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Radio.Components;
 
@@ -19,23 +17,4 @@ public sealed partial class HeadsetComponent : Component
 
     [DataField, AutoNetworkedField]
     public SlotFlags RequiredSlot = SlotFlags.EARS;
-
-    // Sunrise-Start
-    [DataField, AutoNetworkedField]
-    public Dictionary<string, bool> EnabledChannels = new();
-
-    [DataField, AutoNetworkedField]
-    public Dictionary<string, float> ChannelVolumes = new();
-
-    [DataField]
-    public float SendChargeCost = 10f;
-
-    [DataField]
-    public float ReceiveChargeCost = 2f;
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string ToggleAction = "ActionToggleHeadset";
-
-    [DataField, AutoNetworkedField]
-    public EntityUid? ToggleActionEntity;
-    // Sunrise-End
 }
