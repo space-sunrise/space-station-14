@@ -11,6 +11,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using static Content.Server.Power.Pow3r.PowerState;
+using BodyComponent = Content.Shared.Body.BodyComponent;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 

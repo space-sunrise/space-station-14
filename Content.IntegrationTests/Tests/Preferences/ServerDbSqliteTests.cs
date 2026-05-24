@@ -50,6 +50,10 @@ namespace Content.IntegrationTests.Tests.Preferences
                 Age = 21,
                 BodyType = "Normal", // Sunrise-Edit
                 Appearance = new(
+                    HairStyles.DefaultHairStyle,
+                    Color.Black,
+                    HairStyles.DefaultFacialHairStyle,
+                    Color.Black,
                     Color.Azure,
                     Color.Beige,
                     new (),

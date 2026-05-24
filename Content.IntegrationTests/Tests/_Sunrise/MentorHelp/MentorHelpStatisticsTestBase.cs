@@ -7,6 +7,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Configuration;
 using Robust.Shared.Log;
+using Robust.Shared.Serialization.Manager;
 using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Tests._Sunrise.MentorHelp;
@@ -21,9 +22,10 @@ public abstract class MentorHelpStatisticsTestBase
         var opsLog = server.ResolveDependency<ILogManager>().GetSawmill("db.ops");
         var builder = new DbContextOptionsBuilder<SqliteServerDbContext>();
         var connection = new SqliteConnection("Data Source=:memory:");
+        var serialization = server.ResolveDependency<ISerializationManager>();
         connection.Open();
         builder.UseSqlite(connection);
-        return new ServerDbSqlite(() => builder.Options, true, cfg, true, opsLog);
+        return new ServerDbSqlite(() => builder.Options, true, cfg, true, opsLog, serialization);
     }
 
     protected static MentorHelpTicket CreateTicket(

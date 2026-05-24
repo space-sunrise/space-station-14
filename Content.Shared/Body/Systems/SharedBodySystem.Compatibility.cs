@@ -219,7 +219,7 @@ public abstract partial class SharedBodySystem : EntitySystem
         if (!Containers.TryGetContainer(parent, GetPartSlotContainerId(slot), out var container))
             return false;
 
-        if (!Containers.Insert(child, container))
+        if (!Containers.Insert(child.Owner, container))
             return false;
 
         child.Comp.Body = parent.Comp.Body;
@@ -299,10 +299,11 @@ public abstract partial class SharedBodySystem : EntitySystem
         if (!Containers.TryGetContainingContainer((partId, null, null), out var container))
             return null;
 
-        if (!container.ID.StartsWith(PartSlotContainerIdPrefix, StringComparison.Ordinal))
+        var containerId = container.ID;
+        if (!containerId.StartsWith(PartSlotContainerIdPrefix, StringComparison.Ordinal))
             return null;
 
-        return (container.Owner, container.ID[PartSlotContainerIdPrefix.Length..]);
+        return (container.Owner, containerId[PartSlotContainerIdPrefix.Length..]);
     }
 
     private static bool IsOrganForPart(BodyPartType partType, OrganComponent organ)

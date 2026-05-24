@@ -10,6 +10,7 @@ using Content.Shared.Starlight;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Robust.Shared.Prototypes;
+using BodyComponent = Content.Shared.Body.BodyComponent;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class CyberLimbSystem : EntitySystem

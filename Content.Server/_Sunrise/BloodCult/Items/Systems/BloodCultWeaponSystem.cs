@@ -3,6 +3,7 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -18,13 +19,14 @@ using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
+using ServerBodySystem = Content.Server.Body.Systems.BodySystem;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
 public sealed class BloodCultWeaponSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly ServerBodySystem _body = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;

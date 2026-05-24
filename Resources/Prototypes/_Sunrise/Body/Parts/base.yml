@@ -1,4 +1,96 @@
 - type: entity
+  id: BasePart
+  parent: OrganBase
+  name: "body part"
+  abstract: true
+  components:
+  - type: BaseLayerId
+  - type: Damageable
+    damageContainer: Biological
+  - type: BodyPart
+  - type: Gibbable
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - Trash
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+
+- type: entity
+  id: BaseTorso
+  name: "torso"
+  parent: [BasePart, OrganBaseTorso]
+  abstract: true
+
+- type: entity
+  id: BaseHead
+  name: "head"
+  parent: [BasePart, OrganBaseHead]
+  abstract: true
+  components:
+  - type: Input
+    context: "ghost"
+
+- type: entity
+  id: BaseLeftArm
+  name: "left arm"
+  parent: [BasePart, OrganBaseArmLeft]
+  abstract: true
+
+- type: entity
+  id: BaseRightArm
+  name: "right arm"
+  parent: [BasePart, OrganBaseArmRight]
+  abstract: true
+
+- type: entity
+  id: BaseLeftHand
+  name: "left hand"
+  parent: [BasePart, OrganBaseHandLeft]
+  abstract: true
+
+- type: entity
+  id: BaseRightHand
+  name: "right hand"
+  parent: [BasePart, OrganBaseHandRight]
+  abstract: true
+
+- type: entity
+  id: BaseLeftLeg
+  name: "left leg"
+  parent: [BasePart, OrganBaseLegLeft]
+  abstract: true
+  components:
+  - type: MovementBodyPart
+
+- type: entity
+  id: BaseRightLeg
+  name: "right leg"
+  parent: [BasePart, OrganBaseLegRight]
+  abstract: true
+  components:
+  - type: MovementBodyPart
+
+- type: entity
+  id: BaseLeftFoot
+  name: "left foot"
+  parent: [BasePart, OrganBaseFootLeft]
+  abstract: true
+
+- type: entity
+  id: BaseRightFoot
+  name: "right foot"
+  parent: [BasePart, OrganBaseFootRight]
+  abstract: true
+
+- type: entity
   id: BaseTail
   name: "tail"
   parent: BasePart

@@ -12,6 +12,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared._Sunrise.Smile;
 using Content.Shared.Actions;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Movement.Systems;

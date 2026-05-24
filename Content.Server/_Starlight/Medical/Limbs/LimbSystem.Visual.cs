@@ -5,6 +5,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
 using Content.Shared.Starlight;
+using BodyComponent = Content.Shared.Body.BodyComponent;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 

@@ -27,6 +27,8 @@ namespace Content.Shared.Humanoid
         LLeg,
         RFoot,
         LFoot,
+        UndergarmentBottom,
+        UndergarmentTop,
         Overlay,
         Handcuffs,
         StencilMask,

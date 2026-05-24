@@ -23,6 +23,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using BodyComponent = Content.Shared.Body.BodyComponent;
 
 namespace Content.Server._Starlight.Medical;
 public sealed class LimbDamageSystem : EntitySystem

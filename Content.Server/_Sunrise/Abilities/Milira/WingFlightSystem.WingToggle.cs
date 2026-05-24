@@ -83,7 +83,7 @@ public sealed partial class WingToggleSystem : SharedWingFlightSystem
 
         for (var i = 0; i < markings.Count; i++)
         {
-            var current = markings[i].MarkingId;
+            var current = markings[i].MarkingId.Id;
             var desired = openTarget
                 ? (current.EndsWith(suffix) ? current : $"{current}{suffix}")
                 : (current.EndsWith(suffix) ? current[..^suffix.Length] : current);

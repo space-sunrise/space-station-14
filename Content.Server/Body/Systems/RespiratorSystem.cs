@@ -7,6 +7,7 @@ using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared._Sunrise.Mood;
 using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Chat;
@@ -24,6 +25,7 @@ using Content.Shared.Mobs.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using SharedBodySystem = Content.Shared.Body.BodySystem;
 
 namespace Content.Server.Body.Systems;
 
@@ -35,7 +37,7 @@ public sealed class RespiratorSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly AtmosphereSystem _atmosSys = default!;
-    [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damageableSys = default!;
     [Dependency] private readonly LungSystem _lungSystem = default!;

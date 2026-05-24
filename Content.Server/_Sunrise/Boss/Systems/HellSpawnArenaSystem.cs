@@ -17,6 +17,7 @@ using Content.Shared.Construction;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.GameTicking;
+using Content.Shared.Gibbing;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;

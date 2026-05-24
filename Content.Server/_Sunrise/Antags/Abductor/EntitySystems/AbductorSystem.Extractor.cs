@@ -4,9 +4,9 @@ using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.DoAfter;
 using Content.Shared.Body.Systems;
-using Content.Shared.Body.Organ;
 using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using OrganComponent = Content.Shared.Body.OrganComponent;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 

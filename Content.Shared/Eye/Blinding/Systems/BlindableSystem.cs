@@ -1,5 +1,6 @@
 using Content.Shared.Camera;
 using System.Linq;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;

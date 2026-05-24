@@ -169,7 +169,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
         for (var i = 0; i < markings.Count; i++)
         {
-            var current = markings[i].MarkingId;
+            var current = markings[i].MarkingId.Id;
 
             if (string.IsNullOrEmpty(current))
                 continue;

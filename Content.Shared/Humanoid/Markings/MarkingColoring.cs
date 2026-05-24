@@ -1,3 +1,4 @@
+using System.Linq;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Markings;
@@ -23,6 +24,15 @@ public sealed partial class MarkingColors
 
 public static class MarkingColoring
 {
+    public static List<Color> GetMarkingLayerColors(
+        MarkingPrototype prototype,
+        Color? skinColor,
+        Color? eyeColor,
+        MarkingSet otherMarkings)
+    {
+        return GetMarkingLayerColors(prototype, skinColor, eyeColor, otherMarkings.GetForwardEnumerator().ToList());
+    }
+
     /// <summary>
     ///     Returns list of colors for marking layers
     /// </summary>

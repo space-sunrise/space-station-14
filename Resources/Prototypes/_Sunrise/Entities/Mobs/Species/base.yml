@@ -1,5 +1,37 @@
 - type: entity
   save: false
+  parent: BaseSpeciesMob
+  id: BaseMobSpecies
+  abstract: true
+
+- type: entity
+  save: false
+  parent: BaseSpeciesMobOrganic
+  id: BaseMobSpeciesOrganic
+  abstract: true
+
+- type: entity
+  save: false
+  parent: MobHuman
+  id: BaseMobHuman
+  abstract: true
+
+- type: entity
+  save: false
+  parent: AppearanceHuman
+  id: MobHumanDummy
+  abstract: true
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  save: false
+  parent: AppearanceHuman
+  id: BaseSpeciesDummy
+  abstract: true
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  save: false
   id: BaseSpeciesPickupable
   abstract: true
   components:

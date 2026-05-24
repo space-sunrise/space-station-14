@@ -12,6 +12,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
+using BodyComponent = Content.Shared.Body.BodyComponent;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 

@@ -16,6 +16,8 @@ namespace Content.Shared.Humanoid.Markings
         Chest,
         Arms,
         Legs,
+        UndergarmentBottom,
+        UndergarmentTop,
         Tail,
         Overlay,
         Back, // SUNRISE
@@ -47,6 +49,8 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.RLeg => MarkingCategories.Legs,
                 HumanoidVisualLayers.LFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
+                HumanoidVisualLayers.UndergarmentBottom => MarkingCategories.UndergarmentBottom,
+                HumanoidVisualLayers.UndergarmentTop => MarkingCategories.UndergarmentTop,
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 HumanoidVisualLayers.Back => MarkingCategories.Back, // SUNRISE
                 // Sunrise - Start

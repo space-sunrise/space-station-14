@@ -4,7 +4,6 @@ using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
@@ -13,6 +12,8 @@ using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.Components;
+using BodyComponent = Content.Shared.Body.BodyComponent;
+using OrganComponent = Content.Shared.Body.OrganComponent;
 
 
 namespace Content.Server.Starlight.Medical.Surgery;

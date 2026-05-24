@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared._Sunrise.VentCraw.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Emoting;
 using Content.Shared.Interaction.Events;

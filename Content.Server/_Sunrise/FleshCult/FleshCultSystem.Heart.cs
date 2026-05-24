@@ -7,7 +7,6 @@ using Content.Server.Traits.Assorted;
 using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -30,6 +29,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using BodyComponent = Content.Shared.Body.BodyComponent;
 
 namespace Content.Server._Sunrise.FleshCult;
 

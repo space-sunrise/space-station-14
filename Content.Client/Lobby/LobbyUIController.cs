@@ -10,11 +10,13 @@ using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Station;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -405,5 +407,150 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         }
 
         return (_characterSetup, _profileEditor);
+    }
+
+    public EntityUid LoadProfileEntity(HumanoidCharacterProfile? humanoid, JobPrototype? job, bool jobClothes)
+    {
+        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+
+        EntProtoId? previewEntity = null;
+        if (humanoid != null && jobClothes)
+        {
+            job ??= GetPreferredJob(humanoid);
+            previewEntity = job.JobPreviewEntity ?? (EntProtoId?) job.JobEntity;
+        }
+
+        EntityUid dummyEnt;
+        if (previewEntity != null)
+        {
+            dummyEnt = EntityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+        }
+        else if (humanoid is not null)
+        {
+            var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
+            dummyEnt = EntityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+            EntityManager.System<SharedVisualBodySystem>().ApplyProfileTo(dummyEnt, humanoid);
+            EntityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
+        }
+        else
+        {
+            dummyEnt = EntityManager.SpawnEntity(_prototypeManager.Index(HumanoidCharacterProfile.DefaultSpecies).DollPrototype, MapCoordinates.Nullspace);
+        }
+
+        if (humanoid != null && jobClothes)
+        {
+            DebugTools.Assert(job != null);
+            GiveDummyJobClothes(dummyEnt, humanoid, job);
+
+            var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
+            var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
+            if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
+            {
+                var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager, sponsorPrototypes);
+                GiveDummyLoadout(dummyEnt, loadout, jobClothes);
+            }
+        }
+
+        return dummyEnt;
+    }
+
+    public void GiveDummyLoadout(EntityUid dummyEnt, RoleLoadout? roleLoadout, bool outerwear)
+    {
+        if (roleLoadout == null)
+            return;
+
+        var spawnSys = EntityManager.System<StationSpawningSystem>();
+        var underwearSlots = new HashSet<string> { "bra", "pants", "socks" };
+
+        foreach (var group in roleLoadout.SelectedLoadouts.Values)
+        {
+            foreach (var loadout in group)
+            {
+                if (!_prototypeManager.Resolve(loadout.Prototype, out var loadoutProto))
+                    continue;
+
+                var wear = true;
+                foreach (var (slot, _) in loadoutProto.Equipment)
+                {
+                    if (!underwearSlots.Contains(slot) && !outerwear)
+                        wear = false;
+                }
+
+                if (wear)
+                    spawnSys.EquipStartingGear(dummyEnt, loadoutProto);
+            }
+        }
+    }
+
+    public void GiveDummyJobClothes(EntityUid dummyEnt, HumanoidCharacterProfile profile, JobPrototype job)
+    {
+        var inventorySys = EntityManager.System<InventorySystem>();
+        if (!inventorySys.TryGetSlots(dummyEnt, out var slots))
+            return;
+
+        if (profile.Loadouts.TryGetValue(job.ID, out var jobLoadout))
+        {
+            foreach (var loadouts in jobLoadout.SelectedLoadouts.Values)
+            {
+                foreach (var loadout in loadouts)
+                {
+                    if (!_prototypeManager.Resolve(loadout.Prototype, out var loadoutProto))
+                        continue;
+
+                    foreach (var slot in slots)
+                    {
+                        if (_prototypeManager.Resolve(loadoutProto.StartingGear, out var loadoutGear))
+                        {
+                            var itemType = ((IEquipmentLoadout) loadoutGear).GetGear(slot.Name);
+
+                            if (inventorySys.TryUnequip(dummyEnt, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                                EntityManager.DeleteEntity(unequippedItem.Value);
+
+                            if (itemType != string.Empty)
+                            {
+                                var item = EntityManager.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                                inventorySys.TryEquip(dummyEnt, item, slot.Name, true, true);
+                            }
+                        }
+                        else
+                        {
+                            var itemType = ((IEquipmentLoadout) loadoutProto).GetGear(slot.Name);
+
+                            if (inventorySys.TryUnequip(dummyEnt, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                                EntityManager.DeleteEntity(unequippedItem.Value);
+
+                            if (itemType != string.Empty)
+                            {
+                                var item = EntityManager.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                                inventorySys.TryEquip(dummyEnt, item, slot.Name, true, true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!_prototypeManager.Resolve(job.StartingGear, out var gear))
+            return;
+
+        foreach (var slot in slots)
+        {
+            var itemType = ((IEquipmentLoadout) gear).GetGear(slot.Name);
+
+            if (inventorySys.TryUnequip(dummyEnt, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                EntityManager.DeleteEntity(unequippedItem.Value);
+
+            if (itemType != string.Empty)
+            {
+                var item = EntityManager.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                inventorySys.TryEquip(dummyEnt, item, slot.Name, true, true);
+            }
+        }
+    }
+
+    private JobPrototype GetPreferredJob(HumanoidCharacterProfile profile)
+    {
+        var highPriorityJob = profile.JobPriorities.FirstOrDefault(p => p.Value == JobPriority.High).Key;
+        return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
     }
 }

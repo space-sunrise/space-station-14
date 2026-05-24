@@ -132,6 +132,11 @@
                                 <Label Text="{Loc 'humanoid-profile-editor-eyes-label'}" />
                                 <humanoid:EyeColorPicker Name="EyeColorPicker" />
                             </BoxContainer>
+                            <!-- Hair -->
+                            <BoxContainer Margin="10" Orientation="Horizontal">
+                                <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
+                                <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
+                            </BoxContainer>
                         </BoxContainer>
                     </ScrollContainer>
                 </BoxContainer>

@@ -4,7 +4,6 @@ using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Helpers;
 using Content.Shared._Sunrise.SunriseCCVars;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Doors.Electronics;
 using Content.Shared.GameTicking;
@@ -13,6 +12,7 @@ using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using OrganComponent = Content.Shared.Body.OrganComponent;
 
 namespace Content.Server._Sunrise.Xenoarchaeology;
 
