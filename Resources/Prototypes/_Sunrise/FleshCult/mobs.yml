@@ -628,6 +628,7 @@
 
 - type: entity
   id: MobFleshCultistPreview
+  categories: [ HideSpawnMenu ]
   name: flesh cultist
   suffix: DO NOT MAP
   components:

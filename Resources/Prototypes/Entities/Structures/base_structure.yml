@@ -66,6 +66,12 @@
         - MidImpassable
         - LowImpassable
   - type: Anchorable
+  # Sunrise-Start
+  - type: SunriseThrownItemDamage
+    damageTypes:
+      types:
+        Blunt: 10
+  # Sunrise-End
 
 # For use with yaml composition, so that all wheeled structures can easily be changed.
 - type: entity

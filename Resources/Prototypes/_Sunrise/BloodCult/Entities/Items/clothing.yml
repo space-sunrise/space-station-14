@@ -15,6 +15,7 @@
   parent: ClothingOuterArmorCult
   name: armored mantle
   description: At first glance, it seems that this is a simple robe, but it has elements of armor on it.
+  suffix: BloodCult
   components:
   - type: Battery
     maxCharge: 50
@@ -38,6 +39,7 @@
   parent: BaseShield
   name: mirror shield
   description: Shield with a mirror on a front side, which has some religious sign.
+  suffix: BloodCult
   components:
   - type: Sprite
     sprite: _Sunrise/BloodCult/Entities/mirror_shield.rsi
@@ -59,6 +61,9 @@
     - Energy
     - NonEnergy
   - type: ReturnItemOnThrow
+  - type: Biocode
+    factions:
+    - BloodCult
   - type: CultMirrorShield
   - type: Blocking
     passiveBlockModifier:

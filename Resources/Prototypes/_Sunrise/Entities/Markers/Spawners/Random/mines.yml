@@ -1,0 +1,40 @@
+- type: entityTable
+  id: SunriseMinesAndPeelsTable
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      weight: 15
+      tableId: SunriseExplosiveTrapTable
+    - !type:NestedSelector
+      weight: 40
+      tableId: SunriseSlipperyTrapTable
+
+- type: entityTable
+  id: SunriseExplosiveTrapTable
+  table: !type:GroupSelector
+    children:
+    - id: LandMineKick
+    - id: LandMineExplosive
+    - id: TrashBananaPeelExplosive
+
+- type: entityTable
+  id: SunriseSlipperyTrapTable
+  table: !type:GroupSelector
+    children:
+    - id: TrashBananaPeel
+    - id: LandMineModular
+
+- type: entity
+  name: mine spawner
+  id: SunriseMineSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/landmine.rsi
+      state: landmine
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SunriseMinesAndPeelsTable
+      prob: 0.5

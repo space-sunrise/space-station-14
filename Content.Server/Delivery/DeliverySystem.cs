@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.Messenger;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
@@ -31,6 +32,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private readonly MessengerServerSystem _messengerServer = default!;
 
     /// <summary>
     /// Default reason to use if the penalization is triggered
@@ -80,6 +82,28 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         {
             _fingerprintReader.AddAllowedFingerprint((ent.Owner, reader), entry.Fingerprint);
         }
+
+        // Sunrise-Start: Send PDA notification
+        var messengerServer = _messengerServer.GetServerEntity(stationId);
+        if (messengerServer != null)
+        {
+            var (serverUid, component) = messengerServer.Value;
+            foreach (var user in component.Users.Values)
+            {
+                if (user.Name == ent.Comp.RecipientName)
+                {
+                    _messengerServer.SendFakePersonalMessage(
+                        serverUid,
+                        user.UserId,
+                        "post",
+                        Loc.GetString("delivery-messenger-notification-sender"),
+                        Loc.GetString("delivery-messenger-notification-content")
+                    );
+                    break;
+                }
+            }
+        }
+        // Sunrise-End
 
         Dirty(ent);
     }

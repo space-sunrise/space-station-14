@@ -38,6 +38,14 @@
   longRange: false
 
 - type: radioChannel
+  id: TSF
+  name: chat-radio-tsf
+  keycode: "ы"
+  frequency: 1922
+  color: "#22a7ff"
+  longRange: true
+
+- type: radioChannel
   id: DeathSquad
   name: chat-radio-deathsquad
   keycode: 'э'

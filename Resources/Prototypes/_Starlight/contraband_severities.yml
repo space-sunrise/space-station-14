@@ -1,0 +1,3 @@
+- type: contrabandSeverity
+  id: TSF
+  examineText: contraband-examine-text-tsf

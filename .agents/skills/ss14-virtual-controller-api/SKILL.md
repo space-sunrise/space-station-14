@@ -1,6 +1,6 @@
 ---
 name: ss14-virtual-controller-api
-description: Дает практический каталог API вокруг VirtualController в Space Station 14: выбор хуков и order, physics mutators, relay/movement/climb сценарии, prediction-ограничения и безопасные паттерны применения.
+description: Gives a practical catalog of APIs around the VirtualController in Space Station 14: selection of hooks and order, physics mutators, relay/movement/climb scripts, prediction constraints and safe application patterns.
 metadata:
   source_skill: "../../../.agent/skills/ss14-virtual-controller-api/SKILL.md"
 ---

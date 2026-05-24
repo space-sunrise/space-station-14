@@ -38,4 +38,10 @@ public sealed partial class AoEHealComponent : Component
     /// </summary>
     [DataField]
     public bool AliveTargets = true;
+
+    /// <summary>
+    /// Should the owner be included as a valid heal target.
+    /// </summary>
+    [DataField]
+    public bool HealSelf = true;
 }

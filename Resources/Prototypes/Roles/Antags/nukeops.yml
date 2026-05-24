@@ -61,7 +61,7 @@
     mask: ClothingMaskGasSyndicate
     eyes: ClothingEyesHudSyndicate
     ears: ClothingHeadsetAltSyndicate
-    gloves: ClothingHandsGlovesCombat
+    gloves: ClothingHandsGlovesCombatCQC
     outerClothing: ClothingOuterHardsuitSyndieBiocode # Sunrise-Edit
     shoes: ClothingShoesBootsCombatFilled
     id: SyndiOperativePDA

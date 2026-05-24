@@ -18,3 +18,8 @@
     - /Audio/Effects/metal_thud1.ogg
     - /Audio/Effects/metal_thud2.ogg
     - /Audio/Effects/metal_thud3.ogg
+
+- type: soundCollection
+  id: MimicryBladeHit
+  files:
+  - /Audio/_Sunrise/Weapons/Melee/mimicry_swing.ogg

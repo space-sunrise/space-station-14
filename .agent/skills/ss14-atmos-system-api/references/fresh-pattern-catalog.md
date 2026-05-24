@@ -1,119 +1,119 @@
 # API Registry (AtmosSystem)
 
-Статусы:
-- `Fresh-Use` — можно использовать как основной современный API.
-- `Legacy-Compat` — существует и работает, но база старее cutoff.
-- `Risk/TODO` — есть явные ограничения, не брать как опору нового кода.
-- `Internal` — публично доступно, но предназначено для узкой внутренней логики.
+Statuses:
+- `Fresh-Use` - can be used as the main modern API.
+- `Legacy-Compat` - exists and works, but the database is older than cutoff.
+- `Risk/TODO` - there are obvious restrictions, do not use it as a support for new code.
+- `Internal` - publicly available, but intended for narrow internal logic.
 
 ## 1) Query / Tile API
 
-| Метод | Назначение | Дата по blame | Статус |
+| Method | Destination | Date by blame | Status |
 |---|---|---|---|
-| `GetContainingMixture(ent, ...)` (оба overload) | Газ среды для сущности | 2024-03-30 | Risk/TODO |
-| `HasAtmosphere(gridUid)` | Проверка наличия атмос-компонента у грида | 2025-11-10 | Fresh-Use |
-| `SetSimulatedGrid(gridUid, simulated)` | Событийное переключение simulated-состояния | 2022-07-04 | Risk/TODO |
-| `IsSimulatedGrid(gridUid)` | Проверка simulated через event | 2022-07-04 | Legacy-Compat |
-| `GetAllMixtures(gridUid, excite)` | Итерация всех смесей грида | 2022-07-04 | Legacy-Compat |
-| `InvalidateTile(grid, tile)` | Пометка тайла на revalidate | 2024-03-24 | Fresh-Use |
-| `GetTileMixtures(grid, map, tiles, excite)` | Batch-доступ к смесям тайлов | 2024-03-30 | Fresh-Use |
-| `GetTileMixture(entity, excite)` | Смесь тайла по сущности | 2025-11-10 | Fresh-Use |
-| `GetTileMixture(grid, map, tile, excite)` | Смесь конкретного тайла | 2024-03-30 | Fresh-Use |
-| `ReactTile(grid, tile)` | Ручной event-trigger реакции тайла | 2022-07-04 | Legacy-Compat |
+| `GetContainingMixture(ent, ...)` (both overload) | Medium gas for essence | 2024-03-30 | Risk/TODO |
+| `HasAtmosphere(gridUid)` | Checking whether the grid has an Atmos component | 2025-11-10 | Fresh-Use |
+| `SetSimulatedGrid(gridUid, simulated)` | Event switching of simulated state | 2022-07-04 | Risk/TODO |
+| `IsSimulatedGrid(gridUid)` | Checking simulated via event | 2022-07-04 | Legacy-Compat |
+| `GetAllMixtures(gridUid, excite)` | Iterate all grid mixtures | 2022-07-04 | Legacy-Compat |
+| `InvalidateTile(grid, tile)` | Marking a tile on revalidate | 2024-03-24 | Fresh-Use |
+| `GetTileMixtures(grid, map, tiles, excite)` | Batch access to tile mixtures | 2024-03-30 | Fresh-Use |
+| `GetTileMixture(entity, excite)` | Tile mix by essence | 2025-11-10 | Fresh-Use |
+| `GetTileMixture(grid, map, tile, excite)` | Mixture of a specific tile | 2024-03-30 | Fresh-Use |
+| `ReactTile(grid, tile)` | Manual event-trigger tile reaction | 2022-07-04 | Legacy-Compat |
 | `IsTileAirBlocked(grid, tile, dirs)` | On-the-fly airtight check | 2025-11-10 | Fresh-Use |
 | `IsTileAirBlockedCached(grid, tile, dirs)` | Cached airtight check | 2025-12-23 | Fresh-Use |
-| `IsTileSpace(grid, map, tile)` | Проверка space-поведения тайла | 2024-03-28 | Fresh-Use |
+| `IsTileSpace(grid, map, tile)` | Checking the space behavior of a tile | 2024-03-28 | Fresh-Use |
 | `IsTileMixtureProbablySafe(grid, map, tile)` | Pressure+temperature safety check | 2024-03-28 | Fresh-Use |
-| `GetTileHeatCapacity(grid, map, tile)` | Heat capacity тайла | 2024-03-28 | Fresh-Use |
-| `GetAdjacentTileMixtures(grid, tile, includeBlocked, excite)` | Соседние смеси | 2024-03-28 | Risk/TODO |
+| `GetTileHeatCapacity(grid, map, tile)` | Heat capacity tile | 2024-03-28 | Fresh-Use |
+| `GetAdjacentTileMixtures(grid, tile, includeBlocked, excite)` | Adjacent mixtures | 2024-03-28 | Risk/TODO |
 
 ## 2) Fire / Hotspot API
 
-| Метод | Назначение | Дата по blame | Статус |
+| Method | Destination | Date by blame | Status |
 |---|---|---|---|
-| `HotspotExpose(grid, tile, temp, volume, spark, soh)` | Инициировать/усилить hotspot на тайле | 2025-11-10 | Fresh-Use |
-| `HotspotExpose(tile, temp, volume, spark, soh)` | То же через `TileAtmosphere` | 2025-11-10 | Fresh-Use |
-| `HotspotExtinguish(grid, tile)` | Потушить hotspot | 2022-07-04 | Legacy-Compat |
-| `IsHotspotActive(grid, tile)` | Проверить активность hotspot | 2022-07-04 | Legacy-Compat |
+| `HotspotExpose(grid, tile, temp, volume, spark, soh)` | Initiate/strengthen hotspot on a tile | 2025-11-10 | Fresh-Use |
+| `HotspotExpose(tile, temp, volume, spark, soh)` | The same via `TileAtmosphere` | 2025-11-10 | Fresh-Use |
+| `HotspotExtinguish(grid, tile)` | Extinguish hotspot | 2022-07-04 | Legacy-Compat |
+| `IsHotspotActive(grid, tile)` | Check hotspot activity | 2022-07-04 | Legacy-Compat |
 
 ## 3) Registration / Device API
 
-| Метод | Назначение | Дата по blame | Статус |
+| Method | Destination | Date by blame | Status |
 |---|---|---|---|
-| `AddPipeNet(grid, pipeNet)` | Регистрация pipe-net | 2024-03-28 | Fresh-Use |
-| `RemovePipeNet(grid, pipeNet)` | Удаление pipe-net | 2024-03-28 | Fresh-Use |
-| `AddAtmosDevice(grid, device)` | Регистрация atmos-device | 2024-03-28 | Fresh-Use |
-| `RemoveAtmosDevice(grid, device)` | Удаление atmos-device | 2024-03-28 | Fresh-Use |
-| `TryAddDeltaPressureEntity(grid, ent)` | Добавить в delta-pressure список | 2025-09-03 | Fresh-Use |
-| `TryRemoveDeltaPressureEntity(grid, ent)` | Удалить из delta-pressure списка | 2025-09-03 | Fresh-Use |
-| `IsDeltaPressureEntityInList(grid, ent)` | Проверка membership delta-pressure | 2025-09-03 | Fresh-Use |
+| `AddPipeNet(grid, pipeNet)` | Registration pipe-net | 2024-03-28 | Fresh-Use |
+| `RemovePipeNet(grid, pipeNet)` | Removing pipe-net | 2024-03-28 | Fresh-Use |
+| `AddAtmosDevice(grid, device)` | Registration atmos-device | 2024-03-28 | Fresh-Use |
+| `RemoveAtmosDevice(grid, device)` | Removing atmos-device | 2024-03-28 | Fresh-Use |
+| `TryAddDeltaPressureEntity(grid, ent)` | Add to delta-pressure list | 2025-09-03 | Fresh-Use |
+| `TryRemoveDeltaPressureEntity(grid, ent)` | Remove from delta-pressure list | 2025-09-03 | Fresh-Use |
+| `IsDeltaPressureEntityInList(grid, ent)` | Checking membership delta-pressure | 2025-09-03 | Fresh-Use |
 
 ## 4) Map API
 
-| Метод | Назначение | Дата по blame | Статус |
+| Method | Destination | Date by blame | Status |
 |---|---|---|---|
-| `SetMapAtmosphere(map, space, mixture)` | Пакетно обновить map atmosphere | 2024-03-24 | Fresh-Use |
-| `SetMapGasMixture(map, mixture, ..., updateTiles)` | Обновить map смесь (immutable путь) | 2024-03-24 | Fresh-Use |
-| `SetMapSpace(map, space, ..., updateTiles)` | Обновить map space flag | 2024-03-24 | Fresh-Use |
-| `RefreshAllGridMapAtmospheres(map)` | Принудительный refresh map-atmos тайлов | 2024-03-24 | Fresh-Use |
+| `SetMapAtmosphere(map, space, mixture)` | Batch update map atmosphere | 2024-03-24 | Fresh-Use |
+| `SetMapGasMixture(map, mixture, ..., updateTiles)` | Update map mixture (immutable path) | 2024-03-24 | Fresh-Use |
+| `SetMapSpace(map, space, ..., updateTiles)` | Update map space flag | 2024-03-24 | Fresh-Use |
+| `RefreshAllGridMapAtmospheres(map)` | Forced refresh map-atmos tiles | 2024-03-24 | Fresh-Use |
 
 ## 5) Gas Math / Transfer API
 
-| Метод | Назначение | Дата по blame | Статус |
+| Method | Destination | Date by blame | Status |
 |---|---|---|---|
-| `GetHeatCapacity(mixture, applyScaling)` | Теплоемкость смеси | 2023-12-15 | Legacy-Compat |
-| `PumpSpeedup()` | Коэффициент ускорения насосов | 2023-12-11 | Legacy-Compat |
-| `GetThermalEnergy(...)` (оба overload) | Тепловая энергия | 2021-06-23 / 2021-07-23 | Legacy-Compat |
-| `AddHeat(mixture, dQ)` | Внести/убрать тепло | 2023-08-06 | Legacy-Compat |
-| `Merge(receiver, giver)` | Слить смеси | 2021-06-23 | Legacy-Compat |
-| `DivideInto(source, receivers)` | Разделить смесь по получателям | 2022-06-03 | Legacy-Compat |
-| `ReleaseGasTo(mix, output, pressure)` | Выпустить газ до pressure target | 2021-06-23 | Legacy-Compat |
-| `PumpGasTo(mix, output, pressure)` | Накачать газ до pressure target | 2021-06-23 | Legacy-Compat |
-| `ScrubInto(mix, dst, filterGases)` | Фильтрация выбранных газов | 2021-06-23 | Legacy-Compat |
-| `FractionToEqualizePressure(m1, m2)` | Доля переноса для выравнивания давления | 2025-07-03 | Fresh-Use |
-| `MolesToPressureThreshold(mix, targetP)` | Моли до порога давления | 2025-07-03 | Fresh-Use |
-| `IsMixtureProbablySafe(mix)` | Safe-check смеси | 2022-07-04 | Legacy-Compat |
-| `CompareExchange(TileAtmosphere, TileAtmosphere)` | Сравнение обмена (tile archived) | 2024-09-30 | Fresh-Use |
-| `CompareExchange(GasMixture, GasMixture)` | Сравнение обмена (mixture) | 2022-07-04 | Legacy-Compat |
-| `React(mix, holder)` | Запуск реакций газа | 2021-07-12 | Legacy-Compat |
-| `AddMolsToMixture(mix, span)` | Безопасное добавление молей с clamp | 2025-12-24 | Fresh-Use |
+| `GetHeatCapacity(mixture, applyScaling)` | Heat capacity of the mixture | 2023-12-15 | Legacy-Compat |
+| `PumpSpeedup()` | Pump acceleration coefficient | 2023-12-11 | Legacy-Compat |
+| `GetThermalEnergy(...)` (both overload) | Thermal energy | 2021-06-23 / 2021-07-23 | Legacy-Compat |
+| `AddHeat(mixture, dQ)` | Add/remove heat | 2023-08-06 | Legacy-Compat |
+| `Merge(receiver, giver)` | Drain mixtures | 2021-06-23 | Legacy-Compat |
+| `DivideInto(source, receivers)` | Divide mixture among recipients | 2022-06-03 | Legacy-Compat |
+| `ReleaseGasTo(mix, output, pressure)` | Release gas to pressure target | 2021-06-23 | Legacy-Compat |
+| `PumpGasTo(mix, output, pressure)` | Pump gas to pressure target | 2021-06-23 | Legacy-Compat |
+| `ScrubInto(mix, dst, filterGases)` | Filtration of selected gases | 2021-06-23 | Legacy-Compat |
+| `FractionToEqualizePressure(m1, m2)` | Transfer fraction for pressure equalization | 2025-07-03 | Fresh-Use |
+| `MolesToPressureThreshold(mix, targetP)` | Moths to pressure threshold | 2025-07-03 | Fresh-Use |
+| `IsMixtureProbablySafe(mix)` | Safe-check mixtures | 2022-07-04 | Legacy-Compat |
+| `CompareExchange(TileAtmosphere, TileAtmosphere)` | Exchange comparison (tile archived) | 2024-09-30 | Fresh-Use |
+| `CompareExchange(GasMixture, GasMixture)` | Exchange comparison (mixture) | 2022-07-04 | Legacy-Compat |
+| `React(mix, holder)` | Triggering gas reactions | 2021-07-12 | Legacy-Compat |
+| `AddMolsToMixture(mix, span)` | Safely adding moles with clamp | 2025-12-24 | Fresh-Use |
 
 ## 6) Utility / Processing / Internal Public API
 
-| Метод/тип | Назначение | Дата по blame | Статус |
+| Method/type | Destination | Date by blame | Status |
 |---|---|---|---|
 | `InvalidateVisuals(grid, tile)` | Invalidate gas overlay tile | 2024-03-30 | Fresh-Use |
-| `QueueTileTrim(atmos, tile)` | Очередь trim отключенных map-тайлов | 2024-03-24 | Internal |
-| `RealAtmosTime()` | Эффективное время между полными проходами | 2023-09-09 | Legacy-Compat |
-| `InvalidateAllTiles(entity)` | Полная инвалидация тайлов грида | 2024-03-24 | Internal |
-| `GetTileRef(tile)` | Получение `TileRef` из `TileAtmosphere` | 2023-12-15 | Legacy-Compat |
-| `RebuildGridAtmosphere(ent)` | Ручная пересборка атмоса грида | 2025-12-23 | Internal |
+| `QueueTileTrim(atmos, tile)` | Trim queue of disabled map tiles | 2024-03-24 | Internal |
+| `RealAtmosTime()` | Effective time between complete passes | 2023-09-09 | Legacy-Compat |
+| `InvalidateAllTiles(entity)` | Complete invalidation of grid tiles | 2024-03-24 | Internal |
+| `GetTileRef(tile)` | Getting `TileRef` from `TileAtmosphere` | 2023-12-15 | Legacy-Compat |
+| `RebuildGridAtmosphere(ent)` | Manual reassembly of the Atmos grid | 2025-12-23 | Internal |
 | `RunProcessingStage(...)` | Benchmark helper | 2025-09-03 | Internal |
 | `RunProcessingFull(...)` | Benchmark helper | 2025-10-31 | Internal |
-| `SetAtmosphereSimulation(...)` | Benchmark helper для simulate flag | 2025-10-31 | Internal |
-| `AirtightData` | Структура cached airtight метаданных | 2025-11-02 | Fresh-Use |
+| `SetAtmosphereSimulation(...)` | Benchmark helper for simulate flag | 2025-10-31 | Internal |
+| `AirtightData` | Structure of cached airtight metadata | 2025-11-02 | Fresh-Use |
 
-## 7) Legacy Low-Level Public (не брать для нового gameplay API)
+## 7) Legacy Low-Level Public (do not take for the new gameplay API)
 
-| Метод | Назначение | Дата по blame | Статус |
+| Method | Destination | Date by blame | Status |
 |---|---|---|---|
-| `ExperiencePressureDifference(...)` | Логика high-pressure воздействия | 2022-02-20 | Legacy-Compat |
+| `ExperiencePressureDifference(...)` | Logic of high-pressure effects | 2022-02-20 | Legacy-Compat |
 | `GetHeatCapacityArchived(...)` | LINDA helper | 2022-07-04 | Legacy-Compat |
 | `Share(...)` | LINDA gas share | 2022-07-04 | Legacy-Compat |
-| `TemperatureShare(...)` (оба overload) | LINDA temperature share | 2022-07-04 | Legacy-Compat |
-| `ConsiderSuperconductivity(...)` (оба overload) | Superconduction pre-check | 2021-07-20 | Legacy-Compat |
-| `FinishSuperconduction(...)` (оба overload) | Завершение superconduction | 2021-07-20 | Legacy-Compat |
-| `NeighborConductWithSource(...)` | Передача тепла соседям | 2021-07-20 | Legacy-Compat |
-| `RadiateToSpace(tile)` | Излучение в космос | 2021-07-20 | Legacy-Compat |
+| `TemperatureShare(...)` (both overload) | LINDA temperature share | 2022-07-04 | Legacy-Compat |
+| `ConsiderSuperconductivity(...)` (both overload) | Superconduction pre-check | 2021-07-20 | Legacy-Compat |
+| `FinishSuperconduction(...)` (both overload) | Completion of superconduction | 2021-07-20 | Legacy-Compat |
+| `NeighborConductWithSource(...)` | Transferring heat to neighbors | 2021-07-20 | Legacy-Compat |
+| `RadiateToSpace(tile)` | Radiation into space | 2021-07-20 | Legacy-Compat |
 
-## Примечание
+## Note
 
-`Legacy-Compat` не означает «сломано». Это означает: не использовать как основной шаблон нового API-слоя без дополнительных тестов и проверки фактического поведения на свежих потребителях.
+`Legacy-Compat` does not mean "broken". This means: do not use a new API layer as the main template without additional tests and checking the actual behavior on fresh consumers.
 
 ## Optimization Recipes
 
-1. `spawn/check tile`: `IsTileSpace(...) + IsTileAirBlockedCached(...)` -> при необходимости `GetTileMixture(...)`.
-2. `multi-tile scan`: `GetTileMixtures(...)` + локальная фильтрация -> только для кандидатов `excite: true`.
-3. `world change`: изменить объект/тайл -> `InvalidateTile(...)` -> дождаться `Revalidate`, не форсить полный пересчет.
-4. `delta pressure entities`: всегда `TryAddDeltaPressureEntity(...) / TryRemoveDeltaPressureEntity(...)`, не вести отдельный user-side список.
-5. `map atmosphere update`: пакетно `SetMapAtmosphere(...)` или `SetMapGasMixture(...) + SetMapSpace(...)` вместо точечных обходов.
+1. `spawn/check tile`: `IsTileSpace(...) + IsTileAirBlockedCached(...)` -> if necessary `GetTileMixture(...)`.
+2. `multi-tile scan`: `GetTileMixtures(...)` + local filtering -> only for `excite: true` candidates.
+3. `world change`: change object/tile -> `InvalidateTile(...)` -> wait for `Revalidate`, do not force a full recalculation.
+4. `delta pressure entities`: always `TryAddDeltaPressureEntity(...) / TryRemoveDeltaPressureEntity(...)`, do not maintain a separate user-side list.
+5. `map atmosphere update`: batch `SetMapAtmosphere(...)` or `SetMapGasMixture(...) + SetMapSpace(...)` instead of point traversals.

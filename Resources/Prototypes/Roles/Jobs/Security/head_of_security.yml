@@ -23,6 +23,12 @@
   canBeAntag: false
   radioBold: true # Sunrise-Edit
   displayWeight: 80 # Sunrise-Edit
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-security-chief
+  - job-alt-title-law-enforcement-chief
+  - job-alt-title-station-sheriff
+  # Sunrise-End
   access:
   - HeadOfSecurity
   - Command

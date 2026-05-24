@@ -1,26 +1,33 @@
-<Document>
-[head=3][color=#2b2f73][bold]Запрос на изменение заработной платы[/bold][/color][/head]
-[color=#5056d8][bold]{corpString}[/bold][/color][mono] / КОМ[/mono]
-[color=#666666][bold]Станция:[/bold][/color] {stationName}
-[color=#666666][bold]Время:[/bold][/color] {timeString}
+﻿<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#1B2333][bold]ЗАПРОС[/bold][/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / КОМ[/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#5056d8][bold]Составитель[/bold][/color]
-[mono]ФИО:      [/mono]
-[mono]Должность:[/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Запрос на изменение заработной платы[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#5056d8][bold]Запрос[/bold][/color]
+[bold]Запрос:[/bold]
+Я, [form="Имя и Фамилия"], в должности [form="ДОЛЖНОСТЬ"], прошу рассмотреть возможность повышения/понижения заработной платы на [form="сумма или количество процентов"] сотруднику [form="Имя и Фамилия"] в должности [form="ДОЛЖНОСТЬ"]/отделу [form="наименование отдела"]/текущей смене.
 
-Я, (ФИО), в должности (ДОЛЖНОСТЬ), прошу рассмотреть возможность повышения/понижения заработной платы на (сумма или количество процентов) сотруднику (ФИО) в должности (ДОЛЖНОСТЬ)/отделу (наименование отдела)/текущей смене.
-
-[color=#5056d8][bold]Причина повышения/понижения заработной платы[/bold][/color]
+[bold]Причина повышения/понижения заработной платы[/bold]
 [mono]
-1)
-2)
+1) [form="Пункт 1"]
+2) [form="Пункт 2"]
 [/mono]
 
-[color=#666666][italic]Место для печатей[/italic][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
+
+
 
 
 </Document>

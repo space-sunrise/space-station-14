@@ -1032,6 +1032,37 @@
     whitelist:
     - HeadOfSecurity
 
+- type: listing
+  id: UplinkSunriseBoxArbiterBundle
+  name: uplink-sunrise-box-arbiter-bundle-name
+  productEntity: BoxArbiterBundle
+  cost:
+    Suntick: 70
+  # HOSHeadOfDepartment = sponsor shop category for Head of Security
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseBoxRedMistBundle
+  name: uplink-sunrise-box-redmist-bundle-name
+  productEntity: BoxRedMistBundle
+  cost:
+    Suntick: 60
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Detective
+
 # Research Director
 
 

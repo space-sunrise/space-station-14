@@ -177,6 +177,10 @@
   suffix: Battery, Tools
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -198,6 +202,10 @@
   suffix: Battery, Tools
   components:
     - type: NukeOperative
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-nukeops-name
+      description: ghost-panel-antagonist-nukeops-description
+      priority: 25
     - type: ContainerFill
       containers:
         borg_brain:
@@ -214,6 +222,10 @@
   suffix: Battery, Tools
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -234,6 +246,10 @@
   suffix: Battery, Module, Operative
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -253,6 +269,10 @@
   suffix: Battery, Module, Operative
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -307,7 +327,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Sofia # Sunrise-Edit
       borg_module:
       - BorgModuleSyndicateGeneric
   - type: ItemSlots
@@ -339,7 +359,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Sofia # Sunrise-Edit
       borg_module:
       - BorgModuleSyndicateGeneric
       - BorgScoutModuleSyndicateTool
@@ -372,7 +392,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Sofia # Sunrise-Edit
       borg_module:
       - BorgModuleSyndicateGeneric
       - BorgModuleSyndicateMedical
@@ -396,3 +416,30 @@
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
+
+# region BorgChassisSyndicateSpider
+
+- type: entity
+  id: PlayerBorgChassisSyndicateSpiderBattery
+  parent: BorgChassisSyndicateSpider
+  suffix: Battery, Module
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - Sofia
+      borg_module:
+      - BorgModuleSyndicateCombatAdvanced
+      - BorgModuleSyndicateHypoAdvanced
+      - BorgModuleSyndicatePenetration
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSyndicate
+  - type: AutoImplant
+    implants:
+    - SmokeScreenImplant
+
+# region end

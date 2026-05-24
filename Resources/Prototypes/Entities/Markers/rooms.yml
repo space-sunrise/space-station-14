@@ -4,8 +4,26 @@
   parent: MarkerBase
   components:
   - type: RoomFill
+    minSize: 3, 3 # Sunrise edit
+    maxSize: 10, 10 # Sunrise edit
   - type: Sprite
     layers:
       - state: red
-      - sprite: Mobs/Aliens/elemental.rsi
-        state: alive
+      # Sunrise Start
+      # min size
+      - sprite: Markers/Outlines/3x3.rsi
+        state: rect
+        color: blue
+      - sprite: Markers/Outlines/3x3.rsi
+        state: label
+        color: blue
+      # max size
+      - sprite: Markers/Outlines/10x10.rsi
+        state: rect
+        color: red
+        offset: 0.5, 0.5
+      - sprite: Markers/Outlines/10x10.rsi
+        state: label
+        color: red
+        offset: 0.5, 0.5
+      # Sunrise End

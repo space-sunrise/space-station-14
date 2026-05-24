@@ -1,56 +1,56 @@
 ---
 name: SS14 UI EUI and UI Manager
-description: Глубокий практический гайд по связке EUI, UserInterfaceSystem и UserInterfaceManager в SS14: выбор подхода, lifecycle, обмен state/message, управление окнами через UIController и безопасные сетевые паттерны.
+description: An in-depth practical guide to the combination of EUI, UserInterfaceSystem and UserInterfaceManager in SS14: choosing an approach, lifecycle, state/message exchange, window management via UIController and secure network patterns.
 ---
 
 # EUI + UserInterfaceSystem + UserInterfaceManager
 
-Этот skill покрывает только архитектуру UI-жизненного цикла и сетевой обмен для интерфейсов 🙂
-Детали XAML-вёрстки и стилизации веди в отдельных skill.
+This skill only covers UI lifecycle architecture and networking for interfaces :)
+Details of XAML layout and styling are provided in separate skills.
 
-## Источник правды и отбор примеров
+## Source of truth and selection of examples
 
-1. Приоритет: актуальный код движка и актуальный игровой код.
-2. Документацию из `docs` используй как вторичный источник.
-3. Не используй код старше 2 лет.
-4. Не используй примеры с TODO/FIXME/проблемными комментариями по UI-сетке и lifecycle.
+1. Priority: current engine code and current game code.
+2. Use the documentation from `docs` as a secondary source.
+3. Do not use a code older than 2 years.
+4. Do not use examples with TODO/FIXME/problematic comments on the UI grid and lifecycle.
 
-## Когда что выбирать
+## When to choose what
 
-1. Локальное окно/виджет без серверного state?
+1. Local window/widget without server state?
 - `UIController` + `UserInterfaceManager`.
-2. Интерфейс привязан к сущности и её компонентам?
+2. Is the interface tied to the entity and its components?
 - `BoundUserInterface` + `UserInterfaceSystem` (BUI).
-3. Серверный диалог/панель управления, не обязанный жить на сущности?
-- `EUI` (server/client `BaseEui` + сообщения/состояние).
+3. Server-side dialog/control panel that doesn't have to live on the entity?
+- `EUI` (server/client `BaseEui` + messages/status).
 
-## Ментальная модель
+## Mental model
 
-- `UserInterfaceManager` владеет UI-root-ами (`StateRoot`, `WindowRoot`, `PopupRoot`) и очередями обновления.
-- `UIController` живёт singleton-ом, связывает input/state/system события и окна.
-- BUI работает сообщениями `BoundUserInterfaceMessage` и часто открывает `BaseWindow` через helper-ы.
-- EUI работает сообщениями `EuiMessageBase` и state-снимками `EuiStateBase` с явным `StateDirty`.
+- `UserInterfaceManager` owns UI roots (`StateRoot`, `WindowRoot`, `PopupRoot`) and update queues.
+- `UIController` lives as a singleton, connects input/state/system events and windows.
+- BUI works with `BoundUserInterfaceMessage` messages and often opens `BaseWindow` through helpers.
+- EUI works with `EuiMessageBase` messages and `EuiStateBase` state snapshots with an explicit `StateDirty`.
 
-## Паттерны
+## Patterns
 
-- Делай `EnsureWindow()` и переиспользуй окно вместо бесконтрольного `new`.
-- В BUI связывай `OnClose` окна с `bui.Close()`, чтобы клиент и сервер закрывались синхронно.
-- Передавай через EUI компактные DTO state/message, без «сырого» UI-шума.
-- Отправляй обновления через `StateDirty()`/очередь, а не спамом каждый тик.
-- Подписывайся/отписывайся на state/system события в соответствующих lifecycle-точках.
-- Разделяй ответственность: контроллер управляет flow, окно отображает, система хранит доменный state.
+- Do `EnsureWindow()` and reuse the window instead of the uncontrolled `new`.
+- In BUI, link `OnClose` windows with `bui.Close()` so that the client and server close synchronously.
+- Transmit compact DTO state/message via EUI, without “raw” UI noise.
+- Send updates via `StateDirty()`/queue rather than spamming them every tick.
+- Subscribe/unsubscribe to state/system events at the appropriate lifecycle points.
+- Share responsibility: the controller controls the flow, the window displays, the system stores the domain state.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Использовать EUI для высокочастотной покадровой телеметрии.
-- Создавать новое окно на каждый клик вместо переиспользования.
-- Смешивать EUI и BUI для одного и того же use-case без причины.
-- Забывать отправить `CloseEuiMessage` при закрытии client-side окна.
-- Передавать в сообщения «универсальные» слаботипизированные payload-ы ⚠️
+- Use EUI for high-frequency time-lapse telemetry.
+- Create a new window for each click instead of reusing.
+- Mix EUI and BUI for the same use-case for no reason.
+- Forget to send `CloseEuiMessage` when closing the client-side window.
+- Transmit “universal” weakly typed payloads into messages ⚠️
 
-## Примеры из кода
+## Code examples
 
-### Пример 1: безопасный lifecycle окна в `UIController`
+### Example 1: secure window lifecycle in `UIController`
 
 ```csharp
 public sealed class OptionsUIController : UIController
@@ -62,7 +62,7 @@ public sealed class OptionsUIController : UIController
         if (_optionsWindow is { Disposed: false })
             return;
 
-        // Создание через UIManager, а не прямой new.
+        // Creation via UIManager, not direct new.
         _optionsWindow = UIManager.CreateWindow<OptionsMenu>();
     }
 
@@ -78,19 +78,19 @@ public sealed class OptionsUIController : UIController
 }
 ```
 
-### Пример 2: entity-bound UI (BUI) с оконным представлением
+### Example 2: entity-bound UI (BUI) with windowed view
 
 ```csharp
 protected override void Open()
 {
     base.Open();
 
-    // Создаём окно как часть lifecycle BUI.
+    // We create a window as part of the lifecycle BUI.
     _menu = this.CreateWindow<JukeboxMenu>();
 
     _menu.OnPlayPressed += shouldPlay =>
     {
-        // Клиент шлёт typed-сообщение в серверную часть BUI.
+        // The client sends a typed message to the BUI server part.
         SendMessage(shouldPlay ? new JukeboxPlayingMessage() : new JukeboxPauseMessage());
     };
 
@@ -98,7 +98,7 @@ protected override void Open()
 }
 ```
 
-### Пример 3: восстановление позиции окна для BUI
+### Example 3: Restoring the window position for the BUI
 
 ```csharp
 public static T CreateWindow<T>(this BoundUserInterface bui) where T : BaseWindow, new()
@@ -114,7 +114,7 @@ public static T CreateWindow<T>(this BoundUserInterface bui) where T : BaseWindo
 }
 ```
 
-### Пример 4: серверный EUI-менеджер и отложенная отправка state
+### Example 4: server-side EUI manager and deferred state sending
 
 ```csharp
 public void QueueStateUpdate(BaseEui eui)
@@ -130,13 +130,13 @@ public void SendUpdates()
         if (!_playerData.TryGetValue(player, out var plyDat) || !plyDat.OpenUIs.TryGetValue(id, out var ui))
             continue;
 
-        // Реальная отправка состояния в одном месте lifecycle.
+        // Real state sending in one place lifecycle.
         ui.DoStateUpdate();
     }
 }
 ```
 
-### Пример 5: типобезопасный EUI state + client-side применение
+### Example 5: type-safe EUI state + client-side application
 
 ```csharp
 [Serializable, NetSerializable]
@@ -156,16 +156,16 @@ public override void HandleState(EuiStateBase state)
     if (state is not PlayerPanelEuiState s)
         return;
 
-    // UI обновляется из state-снимка.
+    // The UI is updated from the state snapshot.
     PlayerPanel.SetUsername(s.Username);
     PlayerPanel.SetPlaytime(s.Playtime);
 }
 ```
 
-## Мини-чеклист
+## Mini checklist
 
-- Выбран правильный слой: `UIController` / BUI / EUI.
-- Lifecycle закрытия симметричен lifecycle открытия.
-- Сетевые сообщения минимальны и типобезопасны.
-- Нет дублей окон и «висячих» подписок.
-- Примеры опираются на свежий, не проблемный код ✅
+- Correct layer selected: `UIController` / BUI / EUI.
+- The closing lifecycle is symmetrical to the opening lifecycle.
+- Network messages are minimal and type safe.
+- There are no duplicate windows and “dangling” subscriptions.
+- The examples are based on fresh, non-problematic code ✅

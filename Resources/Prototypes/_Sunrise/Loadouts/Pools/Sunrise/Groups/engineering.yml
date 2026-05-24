@@ -43,6 +43,63 @@
   - SunriseYellowShoes
 
 - type: loadoutGroup
+  id: SunriseChiefEngineerBra
+  name: loadout-group-chief-engineer-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - ChiefEngineerBra
+
+- type: loadoutGroup
+  id: SunriseChiefEngineerPants
+  name: loadout-group-chief-engineer-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - ChiefEngineerThong
+  - ChiefEngineerBoxers
+
+- type: loadoutGroup
   id: SunriseStationEngineerHead
   name: loadout-group-station-engineer-head
   minLimit: 0

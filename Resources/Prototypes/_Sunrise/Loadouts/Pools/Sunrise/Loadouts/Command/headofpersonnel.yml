@@ -2,3 +2,40 @@
   id: HoPScarf
   equipment:
     neck: ClothingNeckScarfHOP
+
+- type: loadout
+  id: HoPBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 5h
+  equipment:
+    bra: ClothingBraHeadOfPersonnel
+
+- type: loadout
+  id: HoPThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 5h
+  equipment:
+    pants: ClothingPantsWomanHeadOfPersonnel
+
+- type: loadout
+  id: HoPBoxers
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 5h
+  equipment:
+    pants: ClothingPantsManHeadOfPersonnel

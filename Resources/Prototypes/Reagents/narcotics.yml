@@ -18,7 +18,7 @@
           types:
             Poison: 0.55
             Blunt: 0.5
-            Mangleness: 0.05
+            Mangleness: 0.025
       # OD
       - !type:HealthChange
         conditions:
@@ -319,7 +319,6 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
-
 # Probably replace this one with sleeping chem when putting someone in a comatose state is easier
 - type: reagent
   id: Nocturine
@@ -552,3 +551,4 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
+

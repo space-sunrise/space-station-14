@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Glacier
   mapName: 'Glacier'
-  mapPath: /Maps/_Sunrise/Station/glacier.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/glacier.yml
   minPlayers: 0
   stations:
     GlacierStation:

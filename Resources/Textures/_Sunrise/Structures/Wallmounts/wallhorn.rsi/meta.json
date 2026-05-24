@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprited by discord: seraphimttt",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "speaker_black",
+            "directions": 4
+        },
+        {
+            "name": "speaker_white",
+            "directions": 4
+        },
+        {
+            "name": "unshaded",
+            "directions": 4
+        },
+        {
+            "name": "onbattery",
+            "directions": 4
+        }
+    ]
+}

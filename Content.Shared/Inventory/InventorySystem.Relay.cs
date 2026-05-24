@@ -27,10 +27,10 @@ using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
 using Content.Shared.Temperature;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Melee.Events; // Sunrise-Edit
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Wieldable;
 using Content.Shared.Zombies;
-using Content.Shared.Weapons.Ranged.Events; // Sunrise-Edit
 
 namespace Content.Shared.Inventory;
 
@@ -48,6 +48,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, GetDefaultRadioChannelEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshNameModifiersEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, TransformSpeakerNameEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, AttackedEvent>(RelayInventoryEvent); // Sunrise-Edit
         SubscribeLocalEvent<InventoryComponent, SelfBeforeInjectEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, BeforeInjectTargetEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, SelfBeforeGunShotEvent>(RelayInventoryEvent);
@@ -74,6 +75,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, HitScanReflectAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, GetContrabandDetailsEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, FlashAttemptEvent>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, MeleeAttackEvent>(RefRelayInventoryEvent); // Sunrise-Edit
         SubscribeLocalEvent<InventoryComponent, ShotAttemptedEvent>(RefRelayInventoryEvent); // Sunrise-Edit
         SubscribeLocalEvent<InventoryComponent, WieldAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, UnwieldAttemptEvent>(RefRelayInventoryEvent);

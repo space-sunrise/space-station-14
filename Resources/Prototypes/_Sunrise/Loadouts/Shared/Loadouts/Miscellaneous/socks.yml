@@ -110,6 +110,33 @@
     socks: ClothingStockingsPurple
 
 - type: loadout
+  id: StockingsWhiteSheer
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    socks: ClothingStockingsWhiteSheer
+
+- type: loadout
+  id: StockingsBlackSheer
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    socks: ClothingStockingsBlackSheer
+
+- type: loadout
+  id: StockingsGarter
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    socks: ClothingStockingsGarter
+
+- type: loadout
   id: ThighAceSocks
   sponsorOnly: false
   effects:

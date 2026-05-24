@@ -72,4 +72,16 @@ public sealed partial class MessengerServerComponent : Component
     /// </summary>
     [ViewVariables]
     public readonly Dictionary<string, List<MessengerGroupInvite>> ActiveInvites = new();
+
+    /// <summary>
+    /// Время последней отправки сообщения пользователем (userId -> время)
+    /// </summary>
+    [ViewVariables]
+    public readonly Dictionary<string, TimeSpan> LastMessageTime = new();
+
+    /// <summary>
+    /// Задержка между сообщениями для предотвращения спама
+    /// </summary>
+    [DataField]
+    public TimeSpan MessageCooldown = TimeSpan.FromSeconds(0.5);
 }

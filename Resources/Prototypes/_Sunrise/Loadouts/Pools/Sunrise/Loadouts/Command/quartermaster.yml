@@ -2,3 +2,40 @@
   id: QuartermasterScarf
   equipment:
     neck: ClothingNeckScarfQm
+
+- type: loadout
+  id: QuartermasterBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobQuartermaster
+      time: 5h
+  equipment:
+    bra: ClothingBraQuartermaster
+
+- type: loadout
+  id: QuartermasterThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobQuartermaster
+      time: 5h
+  equipment:
+    pants: ClothingPantsWomanQuartermaster
+
+- type: loadout
+  id: QuartermasterBoxers
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobQuartermaster
+      time: 5h
+  equipment:
+    pants: ClothingPantsManQuartermaster

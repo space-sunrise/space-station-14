@@ -1,11 +1,11 @@
 ---
 name: ss14-ui-styles-palettes-sheetlets
-description: Практический гайд по стилевой системе SS14: StyleClass, палитры, StyleProperties, sheetlets, псевдоклассы и композиция правил. Используй при разработке и рефакторинге визуального языка UI без хардкода.
+description: A practical guide to the SS14 style system: StyleClass, palettes, StyleProperties, sheetlets, pseudo-classes and rules composition. Use it when developing and refactoring a visual UI language without hardcode.
 ---
 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-ui-styles-palettes-sheetlets/SKILL.md.
+../../../.agent/skills/ss14-ui-styles-palettes-sheetlets/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

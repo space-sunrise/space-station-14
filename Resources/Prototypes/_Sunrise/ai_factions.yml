@@ -130,3 +130,30 @@
   hostile:
     - Pirate
     - Soviet
+    - SiliconsExpedition
+
+- type: npcFaction
+  id: SiliconsExpedition
+  hostile:
+    - NanoTrasen
+    - SimpleHostile
+    - Passive
+    - Xeno
+    - PetsNT
+    - Revolutionary
+    - Syndicate
+    - Zombie
+    - Wizard
+    - Xenoborg
+    - Dragon
+    - Vampire
+    - AllHostile
+    - Thief
+    - Carps
+    - Flesh
+    - FleshHuman
+    - BloodCult
+    - Pirate
+    - Soviet
+    - SpiderClan
+    - UraniumCrab

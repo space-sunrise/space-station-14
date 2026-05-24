@@ -83,6 +83,63 @@
   - MedicalWinterBoots
 
 - type: loadoutGroup
+  id: SunriseChiefMedicalOfficerBra
+  name: loadout-group-chief-medical-officer-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - ChiefMedicalOfficerBra
+
+- type: loadoutGroup
+  id: SunriseChiefMedicalOfficerPants
+  name: loadout-group-chief-medical-officer-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - ChiefMedicalOfficerThong
+  - ChiefMedicalOfficerBoxers
+
+- type: loadoutGroup
   id: SunriseMedicalDoctorHead
   name: loadout-group-medical-doctor-head
   minLimit: 0

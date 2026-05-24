@@ -14,7 +14,7 @@
       visible: false
   - type: PointLight
     radius: 8.0
-    energy: 8.5
+    energy: 5
     color: "#ded949"
   - type: Anomaly
     animationTime: 6

@@ -156,3 +156,40 @@
   sponsorOnly: false
   equipment:
     outerClothing: ClothingOuterCoatHoSOvercoat
+
+- type: loadout
+  id: HeadofSecurityBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 5h
+  equipment:
+    bra: ClothingBraHeadOfSecurity
+
+- type: loadout
+  id: HeadofSecurityThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 5h
+  equipment:
+    pants: ClothingPantsWomanHeadOfSecurity
+
+- type: loadout
+  id: HeadofSecurityBoxers
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 5h
+  equipment:
+    pants: ClothingPantsManHeadOfSecurity

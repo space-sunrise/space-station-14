@@ -1,0 +1,315 @@
+﻿# Shared listings for both ticket vendors
+# categories: TicketTools, TicketConsumeables
+
+- type: listing
+  id: VendorMiningBinoculars
+  productEntity: Binoculars
+  cost:
+    SalvageTicket: 25
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorMiningMiningDrill
+  productEntity: MiningDrill
+  cost:
+    SalvageTicket: 180
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorMiningMassScanner
+  productEntity: HandHeldMassScanner
+  cost:
+    SalvageTicket: 200
+  categories:
+  - TicketTools
+
+- type: listing
+  id: VendorMiningWeaponPlasmaCutter
+  productEntity: WeaponPlasmaCutter
+  cost:
+    SalvageTicket: 550
+  categories:
+  - TicketTools
+
+- type: listing
+  id: VendorMiningEnergyPickaxe
+  productEntity: EnergyPickaxe
+  cost:
+    SalvageTicket: 600
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorMiningMedkitAdvancedFilled
+  productEntity: MedkitAdvancedFilled
+  cost:
+    SalvageTicket: 250
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 9
+
+- type: listing
+  id: VendorMiningMedkitFilled
+  productEntity: MedkitFilled
+  cost:
+    SalvageTicket: 150
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 9
+
+- type: listing
+  id: VendorMiningMedkitCombatFilled
+  productEntity: MedkitCombatFilled
+  cost:
+    SalvageTicket: 400
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 9
+
+- type: listing
+  id: VendorMiningAmpulaBica
+  productEntity: AmpulaBica
+  cost:
+    SalvageTicket: 35
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 30
+
+- type: listing
+  id: VendorMiningPatchPackBruteHeat
+  productEntity: PatchPackBruteHeat
+  cost:
+    SalvageTicket: 50
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 15
+
+- type: listing
+  id: VendorMiningBoxMRE
+  productEntity: BoxMRE
+  cost:
+    SalvageTicket: 30
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 10
+
+- type: listing
+  id: VendorMiningFulton
+  productEntity: Fulton
+  cost:
+    SalvageTicket: 80
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvageGrapplingGun
+  productEntity: WeaponGrapplingGun
+  cost:
+    SalvageTicket: 40
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorSalvagePickaxe
+  productEntity: Pickaxe
+  cost:
+    SalvageTicket: 25
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 9
+
+- type: listing
+  id: VendorSalvageMiningDrillDiamond
+  productEntity: MiningDrillDiamond
+  cost:
+    SalvageTicket: 515
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: VendorSalvageWeaponGauntletDrill
+  productEntity: WeaponGauntletDrill
+  cost:
+    SalvageTicket: 525
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: VendorSalvageMineralScanner
+  productEntity: MineralScanner
+  cost:
+    SalvageTicket: 350
+  categories:
+  - TicketTools
+
+- type: listing
+  id: VendorSalvagePKAUpgradeDamage
+  productEntity: PKAUpgradeDamage
+  cost:
+    SalvageTicket: 200
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvagePKAUpgradeRange
+  productEntity: PKAUpgradeRange
+  cost:
+    SalvageTicket: 200
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvagePKAUpgradeFireRate
+  productEntity: PKAUpgradeFireRate
+  cost:
+    SalvageTicket: 200
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvageFloodlight
+  productEntity: Floodlight
+  cost:
+    SalvageTicket: 175
+  categories:
+  - TicketTools
+
+- type: listing
+  id: VendorSalvageWeaponFlareGun
+  productEntity: WeaponFlareGun
+  cost:
+    SalvageTicket: 30
+  categories:
+  - TicketTools
+
+- type: listing
+  id: VendorSalvageWeaponProtoKineticAccelerator
+  productEntity: WeaponProtoKineticAccelerator
+  cost:
+    SalvageTicket: 60
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvageWeaponProtoKineticShotgun
+  productEntity: WeaponProtoKineticShotgun
+  cost:
+    SalvageTicket: 200
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorSalvageWeaponProtoKineticRepeater
+  productEntity: WeaponProtoKineticRepeater
+  cost:
+    SalvageTicket: 125
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorSalvageWeaponProtoKineticHeavy
+  productEntity: WeaponProtoKineticHeavy
+  cost:
+    SalvageTicket: 600
+  categories:
+  - TicketTools
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: VendorSalvageBoxFlare
+  productEntity: BoxFlare
+  cost:
+    SalvageTicket: 15
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: VendorSalvageBoxShotgunFlare
+  productEntity: BoxShotgunFlare
+  cost:
+    SalvageTicket: 25
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: VendorSalvageFultonBeacon
+  productEntity: FultonBeacon
+  cost:
+    SalvageTicket: 100
+  categories:
+  - TicketConsumeables
+
+- type: listing
+  id: VendorSalvageFulton1
+  productEntity: Fulton1
+  cost:
+    SalvageTicket: 5
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 20
+

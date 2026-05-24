@@ -5,10 +5,10 @@
   name: loadout-group-captain-head
   minLimit: 0
   loadouts:
-  - CaptainHead
   - CaptainCap
   - CaptainCapWhite
   - CaptainCapBlack
+  - CaptainHead
   - EliteCaptainCap
 
 - type: loadoutGroup
@@ -16,40 +16,40 @@
   name: loadout-group-captain-jumpsuit
   loadouts:
   - CaptainJumpsuit
-  - CaptainJumpskirt
-  - CaptainFormalSuit
-  - CaptainFormalSkirt
   - CaptainJumpsuitCapWhite
   - CaptainJumpsuitCapBlack
+  - CaptainJumpskirt
   - CaptainJumpskirtCapWhite
   - CaptainJumpskirtCapBlack
+  - CaptainFormalSuit
+  - CaptainFormalSkirt
 
 - type: loadoutGroup
   id: SunriseCaptainNeck
   name: loadout-group-captain-neck
   minLimit: 0
   loadouts:
-  - CaptainCloak
-  - CaptainCloakFormal
   - CaptainMantle
-  - CaptainEliteCloak
-  - CaptainScarf
   - CaptainMantleWhite
   - CaptainMantleWhiteShoulder
   - CaptainMantleBlack
   - CaptainMantleBlackShoulder
+  - CaptainCloak
+  - CaptainCloakFormal
+  - CaptainEliteCloak
+  - CaptainScarf
 
 - type: loadoutGroup
   id: SunriseCaptainBackpack
   name: loadout-group-captain-backpack
   loadouts:
   - CaptainBackpack
-  - CaptainSatchel
-  - CaptainDuffel
   - CaptainBackpackWhite
   - CaptainBackpackBlack
+  - CaptainSatchel
   - CaptainSatchelWhite
   - CaptainSatchelBlack
+  - CaptainDuffel
   - CaptainDuffelWhite
   - CaptainDuffelBlack
 
@@ -64,15 +64,78 @@
   - CaptainGlovesBlack
 
 - type: loadoutGroup
+  id: SunriseCaptainBra
+  name: loadout-group-captain-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - CaptainBra
+  - CaptainBraWhite
+  - CaptainBraBlack
+
+- type: loadoutGroup
+  id: SunriseCaptainPants
+  name: loadout-group-captain-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - CaptainThong
+  - CaptainThongWhite
+  - CaptainThongBlack
+  - CaptainBoxers
+  - CaptainBoxersWhite
+  - CaptainBoxersBlack
+
+- type: loadoutGroup
   id: SunriseCaptainOuterClothing
   name: loadout-group-captain-outerclothing
   loadouts:
   - CaptainOuterArmor
+  - CaptainCarapaceWhite
+  - CaptainCarapaceBlack
   - CaptainOuterCoat
   - CaptainOuterOverCoat
   - CaptainWintercoat
-  - CaptainCarapaceWhite
-  - CaptainCarapaceBlack
 
 - type: loadoutGroup
   id: SunriseHoPNeck
@@ -82,6 +145,63 @@
   - HoPCloak
   - HoPMantle
   - HoPScarf
+
+- type: loadoutGroup
+  id: SunriseHoPBra
+  name: loadout-group-hop-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - HoPBra
+
+- type: loadoutGroup
+  id: SunriseHoPPants
+  name: loadout-group-hop-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - HoPThong
+  - HoPBoxers
 
 - type: loadoutGroup
   id: SunriseQuartermasterNeck
@@ -147,3 +267,60 @@
   - SunriseYellowShoes
   - SunriseShoesPurple
   - SunriseShoesLeather
+
+- type: loadoutGroup
+  id: SunriseQuartermasterBra
+  name: loadout-group-quartermaster-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - QuartermasterBra
+
+- type: loadoutGroup
+  id: SunriseQuartermasterPants
+  name: loadout-group-quartermaster-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - QuartermasterThong
+  - QuartermasterBoxers

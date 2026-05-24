@@ -9,23 +9,21 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/cyerxa_120mm.rsi
-    granularLayersRendering: true
-    layers:
-    - sprite: Structures/Machines/station_anchor.rsi
-      state: station_anchor
-      renderingStrategy: NoRotation
-    - state: space_artillery
+    state: space_artillery
+    # granularLayersRendering: true
+    # layers:
+    # - sprite: Structures/Machines/station_anchor.rsi
+    #   state: station_anchor
+    #   renderingStrategy: NoRotation
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.6
+          radius: 0.4
         density: 500
         mask:
         - MachineMask
@@ -38,18 +36,18 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 1500
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 50
+    projectileSpeed: 60
     fireRate: 1.0
     burstFireRate: 6 # Sunrise
     shotsPerBurst: 2
-    burstCooldown: 52.5
+    burstCooldown: 50
     selectedMode: Burst
     angleDecay: 30
     minAngle: 5 # Sunrise
@@ -140,7 +138,7 @@
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.75
-    maxRange: 35.0
+    maxRange: 128.0
   - type: RadarBlip
     color: "#FF44FF"
     scale: 1.4
@@ -170,13 +168,11 @@
       renderingStrategy: NoRotation
     - state: space_artillery
       map: ["enum.GunVisualLayers.Base"]
-    - state: space_artillery
+    - state: mag-8
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -203,13 +199,15 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 40
-    fireRate: 0.5
-    selectedMode: SemiAuto
+    selectedMode: Burst
+    burstCooldown: 13
+    shotsPerBurst: 1
+    burstFireRate: 0.3
     angleDecay: 20
     minAngle: 0
     maxAngle: 8
     availableModes:
-    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:
@@ -218,6 +216,10 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 9
+    zeroVisible: false
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -264,9 +266,7 @@
     - state: space_artillery
   - type: ContainerContainer
     containers:
-      ballistic_chamber: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
+      ballistic-ammo: !type:Container
   - type: Fixtures
     fixtures:
       fix1:
@@ -295,12 +295,12 @@
     projectileSpeed: 150    # railgun slug velocity
     fireRate: 100           # instant fire when loaded - delay is the manual reload
     burstCooldown: 180      # Starlight: 3-minute cooldown after firing
-    selectedMode: SemiAuto
+    selectedMode: Burst
     angleDecay: 90
     minAngle: 0
     maxAngle: 0             # perfect accuracy
     availableModes:
-    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Shuttleguns/leviathan_fire.ogg
       params:
@@ -417,7 +417,7 @@
 
 # ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
 - type: entity
-  id: WeaponTurretVespera50mm
+  id: ShuttleGunVespera50mm
   parent: ShuttleGunBase
   name: ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
   description: A rapid-fire swarm missile rack. Saturates targets with guided warheads to overwhelm defenses.
@@ -431,13 +431,11 @@
       renderingStrategy: NoRotation
     - state: space_artillery
       map: ["enum.GunVisualLayers.Base"]
-    - state: space_artillery
+    - state: mag-8
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -467,12 +465,12 @@
     burstCooldown: 20
     burstFireRate: 13
     fireRate: 16
-    selectedMode: Burst
+    selectedMode: FullAuto
     angleDecay: 20
-    minAngle: 4
-    maxAngle: 35
+    minAngle: 15
+    maxAngle: 40
     availableModes:
-    - Burst
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:
@@ -481,6 +479,10 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 9
+    zeroVisible: true
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -530,8 +532,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -607,8 +607,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -634,7 +632,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 37   # halved range
+    projectileSpeed: 40   # halved range
     fireRate: 1
     selectedMode: FullAuto
     angleDecay: 30
@@ -697,8 +695,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -724,16 +720,16 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 18   # halved range
-    fireRate: 1.5
-    burstFireRate: 3
+    projectileSpeed: 30   # halved range
+    fireRate: 1.25
+    burstFireRate: 2.5
     burstCooldown: 2
     shotsPerBurst: 4
     selectedMode: Burst
-    angleDecay: 20
-    minAngle: 1
-    maxAngle: 15
-    angleIncrease: 3
+    angleDecay: 15
+    minAngle: 2
+    maxAngle: 20
+    angleIncrease: 4
     availableModes:
     - Burst
     - FullAuto
@@ -790,9 +786,7 @@
     - state: space_artillery
   - type: ContainerContainer
     containers:
-      ballistic_chamber: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
+      ballistic-ammo: !type:Container
   - type: Fixtures
     fixtures:
       fix1:
@@ -820,12 +814,13 @@
   - type: Gun
     projectileSpeed: 180
     fireRate: 100
-    selectedMode: SemiAuto
+    burstCooldown: 120
+    selectedMode: Burst
     angleDecay: 90
     minAngle: 0
     maxAngle: 0
     availableModes:
-    - SemiAuto
+    - Burst
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Shuttleguns/uaf_cyrexa_452.ogg
       params:
@@ -869,18 +864,16 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Scylla.rsi
     granularLayersRendering: true
     layers:
-    - sprite: Structures/Machines/station_anchor.rsi
-      state: station_anchor
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
       renderingStrategy: NoRotation
-    - sprite: Structures/Machines/station_anchor.rsi
-      state: station_anchor_unlit
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_open
       renderingStrategy: NoRotation
     - state: space_artillery
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -955,8 +948,6 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -1014,7 +1005,7 @@
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.75
-    maxRange: 35.0
+    maxRange: 128.0
   - type: RadarBlip
     color: "#FF44FF"
     scale: 1.6

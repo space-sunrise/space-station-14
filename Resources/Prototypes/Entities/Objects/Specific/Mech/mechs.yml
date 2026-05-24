@@ -29,6 +29,11 @@
     speechSounds: Borg
   - type: TTS
     voice: Glados
+  # Sunrise start
+  - type: MeleeThrowOnHit
+    speed: 10
+    distance: 1
+  # Sunrise end
 
 - type: entity
   id: SpecialMech
@@ -185,6 +190,15 @@
   - type: InventorySlots
   - type: Loadout
     prototypes: [ MechArmorLightLoadout ]
+  - type: RadarBlip
+    color: "#FFD700FF"
+    scale: 1.1
+    shape: Triangle
+    requireInSpace: true
+  - type: CyborgSparkEffect
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   # Sunrise-End
   - type: Damageable
     damageContainer: Mech
@@ -240,6 +254,8 @@
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -266,8 +282,8 @@
       types:
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
-    baseSprintSpeed: 3.75
+    baseWalkSpeed: 2 # Sunrise-edit: starlight parity
+    baseSprintSpeed: 3.6 # Sunrise-edit: starlight parity
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -298,6 +314,8 @@
   description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -313,7 +331,7 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.40
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
@@ -326,8 +344,8 @@
         Blunt: 20
     bluntStaminaDamageFactor: 1
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2.25
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorMediumNTLoadout ]
@@ -376,7 +394,7 @@
     baseState: clarke
     openState: clarke-open
     brokenState: clarke-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
@@ -409,6 +427,12 @@
     - DoorBumpOpener
     - FootstepSound
     - Clarke
+  # Sunrise-Start
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked-heavy ]
+    rightBareFootState: [ footprint-tracked-heavy ]
+  # Sunrise-End
 
 - type: entity
   id: MechClarkeBattery
@@ -428,6 +452,8 @@
   description: "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -445,7 +471,7 @@
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true # Space Honks is real.
     pilotWhitelist:
       components:
@@ -456,6 +482,19 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
+  # sunrise start
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Structural: 2
+    soundHit:
+      path: /Audio/Items/bikehorn.ogg
+  - type: MeleeThrowOnHit
+    speed: 1
+    distance: 2
+  # sunrise end
 
 - type: entity
   parent: MechHonker
@@ -486,6 +525,8 @@
   description: "An experimental mech which uses a brain–computer interface to connect directly to a hamsters brain."
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -501,7 +542,7 @@
     baseState: hamtr
     openState: hamtr-open
     brokenState: hamtr-broken
-    mechToPilotDamageMultiplier: 0.2
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
@@ -644,18 +685,20 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.85
   - type: Mech
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 2.5
+    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -666,7 +709,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseSprintSpeed: 4
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -681,7 +724,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      275: Critical
+      325: Critical
 
 - type: entity
   id: MechGygaxBattery
@@ -701,6 +744,8 @@
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -712,18 +757,20 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.6
   - type: Mech
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -755,7 +802,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
+      465: Critical
 
 - type: entity
   id: MechDurandBattery
@@ -777,6 +824,8 @@
   description: Looks like we're all saved. # ERT mech
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -792,29 +841,26 @@
     baseState: marauder
     openState: marauder-open
     brokenState: marauder-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 5
+    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 50
-        Structural: 350
+        Blunt: 40
+        Structural: 200
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorHeavyNTLoadout ]
@@ -831,7 +877,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      575: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -867,6 +913,8 @@
   description: That's the last thing you'll see.
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -882,18 +930,15 @@
     baseState: seraph
     openState: seraph-open
     brokenState: seraph-broken
-    mechToPilotDamageMultiplier: 0.05
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 5
+    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -921,7 +966,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      700: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -971,22 +1016,21 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.85
   - type: Mech
     baseState: darkgygax
     openState: darkgygax-open
     brokenState: darkgygax-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 3
+    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -997,7 +1041,7 @@
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 3.7
+    baseSprintSpeed: 4.25
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorMediumSyndiLoadout ]
@@ -1005,7 +1049,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.10
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1019,7 +1063,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
+      375: Critical
   - type: AccessReader
     access: [["NuclearOperative"]]
   # Sunrise-End
@@ -1052,6 +1096,8 @@
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1063,33 +1109,32 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.5
   - type: Mech
     baseState: mauler
     openState: mauler-open
     brokenState: mauler-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0 # Sunrise edit
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
         - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 5
+    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 50
+        Blunt: 75
         Structural: 400
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorHeavySyndiLoadout ]
@@ -1097,7 +1142,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1137,3 +1182,5 @@
       - WeaponMechCombatMG
       - WeaponMechCombatShotgun
       - WeaponMechCombatMissileRack6
+
+

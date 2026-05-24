@@ -1,6 +1,6 @@
 ---
 name: ss14-audio-system-core
-description: Объясняет архитектуру AudioSystem в Space Station 14 на уровнях shared/server/client и OpenAL: жизненный цикл аудио-сущности, фильтрация через PVS, окклюзия, стриминг и EFX-цепочка. Используй, когда нужно понять внутреннюю схему системы перед расширением или отладкой.
+description: Explains the AudioSystem architecture in Space Station 14 at the shared/server/client and OpenAL levels: audio entity lifecycle, PVS filtering, occlusion, streaming and EFX chain. Use when you need to understand the internal design of a system before expanding or debugging.
 metadata:
   source_skill: "../../../.agent/skills/ss14-audio-system-core/SKILL.md"
 ---

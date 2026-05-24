@@ -1,0 +1,16 @@
+id: ss14-entity-system-class-must-end-with-system
+language: CSharp
+severity: error
+message: "Classes deriving from `EntitySystem` must end with `System` per `ss14-naming-conventions`."
+note: "This rule enforces the mandatory SS14 system naming contract for changed code."
+files:
+  - "Content.*/**/*.cs"
+rule:
+  any:
+    - pattern: 'public sealed class $NAME : EntitySystem { $$$BODY }'
+    - pattern: 'public sealed partial class $NAME : EntitySystem { $$$BODY }'
+    - pattern: 'public abstract partial class $NAME : EntitySystem { $$$BODY }'
+constraints:
+  NAME:
+    not:
+      regex: 'System$'

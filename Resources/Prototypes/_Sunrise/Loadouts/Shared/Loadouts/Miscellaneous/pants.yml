@@ -107,6 +107,33 @@
     pants: ClothingPantsWomanUk
 
 - type: loadout
+  id: PinkWomanPants
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanPink
+
+- type: loadout
+  id: PurpleWomanPants
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanPurple
+
+- type: loadout
+  id: BlackWomanPants
+  sponsorOnly: false
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanBlack
+
+- type: loadout
   id: ChristmasWomanPants
   sponsorOnly: false
   effects:

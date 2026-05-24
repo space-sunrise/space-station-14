@@ -65,6 +65,13 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 20
+        - id: SubXenoborgs
+          prob: 0.05
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 30
         # Sunrise-End
       # Midround rules
       - !type:GroupSelector
@@ -80,14 +87,10 @@
           - !type:RoundDurationCondition
             min: 900 # 15 minutes
         - id: DragonSpawn
-          weight: 5 # Sunrise-edit
+          weight: 15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          # Sunrise-start #надеюсь Визы починят свои приколы
-          - !type:PlayerCountCondition
-            min: 20
-          # Sunrise-end
           - !type:RoundDurationCondition
             min: 900 # 15 minutes
         - id: NinjaSpawn
@@ -95,10 +98,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          # Sunrise-start
-          - !type:PlayerCountCondition
-            min: 20
-          # Sunrise-end
           - !type:RoundDurationCondition
             min: 900 # 15 minutes
         - id: ParadoxCloneSpawn
@@ -138,7 +137,7 @@
           - !type:RoundDurationCondition
             min: 2100 # 35 minutes
         - id: AbductorsSpawn
-          weight: 8
+          weight: 15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition

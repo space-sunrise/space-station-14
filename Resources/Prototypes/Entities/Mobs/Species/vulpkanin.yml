@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   abstract: true
   save: false
   parent: [BaseMobSpeciesOrganic]
@@ -55,6 +55,7 @@
       types:
         Heat: 2.5 # Per second, scales with temperature & other constants
   # Sunrise-Start
+  - type: VulpaAccent
   - type: FlashModifier
     modifier: 1.4
   # Sunrise-End
@@ -143,7 +144,6 @@
             sprite: Mobs/Species/Vulpkanin/displacement.rsi
             state: hair
   # Sunrise-start
-  - type: Carriable
   - type: FootprintEmitter
   # Sunrise-end
   - type: Inventory

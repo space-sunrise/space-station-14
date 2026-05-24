@@ -86,11 +86,12 @@
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldBelt
+  - BlueshieldGun
+  - BlueShieldBra
+  - BlueShieldPants
   - SunriseTrinkets
   - SurvivalSecurity
   - GroupSpeciesBreathTool
-  - Bra
-  - Pants
   - Socks
   - Contributors
 
@@ -102,11 +103,11 @@
   - BlueShieldBackpack
   - BlueShieldBelt
   - BlueshieldGun
+  - BlueShieldBra
+  - BlueShieldPants
   - SunriseTrinkets
   - SurvivalSecurity
   - GroupSpeciesBreathTool
-  - Bra
-  - Pants
   - Socks
   - Contributors
 
@@ -433,11 +434,11 @@
   - AdjutantJumpsuit
   - AdjutantOuterClothing
   - AdjutantBackpack
+  - AdjutantBra
+  - AdjutantPants
   - SunriseSurvival
   - SunriseTrinkets
   - GroupSpeciesBreathTool
-  - Bra
-  - Pants
   - Socks
   - Contributors
 
@@ -465,6 +466,20 @@
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
   - Contributors
+
+- type: roleLoadout
+  id: SunriseRoleSurvivalSyndicate
+  groups:
+  - SunriseSurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: SunriseRoleSurvivalNukie
+  groups:
+  - SunriseSurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
 
 - type: roleLoadout
   id: JobMiningSpecialist

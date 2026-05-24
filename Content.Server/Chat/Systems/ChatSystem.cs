@@ -163,7 +163,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool isFormatted = false //sunrise-edit
         )
     {
-        if (TryComp<AbductorComponent>(source, out var comp))
+        if (TryComp<AbductorComponent>(source, out var comp) && desiredType != InGameICChatType.Emote) // Sunrise-Edit for abuctors to speak in emoutes
         {
             if (!TryProcessSunriseChatMessage(source, ref message, InGameICChatType.CollectiveMind))
                 return;
@@ -925,6 +925,16 @@ public sealed partial class ChatSystem : SharedChatSystem
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
+            // Sunrise-start
+            // Проверка на наличие прямой видимости для эмоутов
+            if (channel == ChatChannel.Emotes)
+            {
+                var ev = new EmoteVisibilityCheckEvent(source, session.AttachedEntity, VoiceRange);
+                RaiseLocalEvent(ref ev);
+                if (!ev.Visible)
+                    continue;
+            }
+            // Sunrise-end
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author, colorOverride: color);
         }

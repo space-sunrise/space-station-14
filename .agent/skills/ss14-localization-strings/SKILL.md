@@ -1,210 +1,209 @@
 ---
 name: ss14-localization-strings
-description: Руководство по работе с файлами локализации (.ftl) и строками в Space Station 14. Используй этот навык при добавлении или изменении игровых текстов, описаний предметов и интерфейса.
+description: A guide to working with localization files (.ftl) and strings in Space Station 14. Use this skill when adding or changing game text, item descriptions and interface.
 ---
 
 # SS14 Localization Strings (Russian)
 
-Этот скилл описывает правила и стандарты работы со строками локализации в Space Station 14 (Fluent Translation Lists - FTL).
+This skill describes the rules and standards for working with localization strings in Space Station 14 (Fluent Translation Lists - FTL).
 
-## Граница ответственности
+## Limit of responsibility
 
-Этот skill покрывает формат FTL, структуру строк и практику локализации.
-Строгие naming-нормативы (формат `ent-*`, `kebab-case`, длина name/desc, английские fallback-поля в прототипах) централизованы в `ss14-naming-conventions`.
-Если здесь встречается naming-фрагмент, который расходится с `ss14-naming-conventions`, применяй `ss14-naming-conventions`.
+This skill covers FTL format, string structure, and localization practices.
+Strict naming standards (format `ent-*`, `kebab-case`, name/desc length, English fallback fields in prototypes) are centralized in `ss14-naming-conventions`.
+If there is a naming fragment here that diverges from `ss14-naming-conventions`, use `ss14-naming-conventions`.
 
-## 1. Структура файлов и пути
+## 1. File structure and paths
 
-Файлы `.ftl` располагаются в `Resources/Locale/{CultureCode}/...`. Для русского языка это `Resources/Locale/ru-RU/`.
+The `.ftl` files are located in `Resources/Locale/{CultureCode}/...`. For Russian this is `Resources/Locale/ru-RU/`.
 
-### Типы файлов
+### File types
 
-*   **Прототипы (Entity Prototypes):**
-    *   Лежат в папках, соответствующих структуре прототипов, часто с префиксом `_prototypes`.
-    *   Пример: `Resources/Locale/ru-RU/_prototypes/entities/objects/weapons/guns.ftl`
-*   **Интерфейс и сообщения:**
-    *   Лежат в тематических папках (например, `interaction`, `ui`, `chat`).
-    *   Пример: `Resources/Locale/ru-RU/ui/main-menu.ftl`
+* **Entity Prototypes:**
+    * They are located in folders corresponding to the prototype structure, often with the prefix `_prototypes`.
+    * Example: `Resources/Locale/ru-RU/_prototypes/entities/objects/weapons/guns.ftl`
+* **Interface and messages:**
+    * They are located in thematic folders (for example, `interaction`, `ui`, `chat`).
+    * Example: `Resources/Locale/ru-RU/ui/main-menu.ftl`
 
-## 2. Формат строк и FTL синтаксис
+## 2. String format and FTL syntax
 
-### Стандартные строки (Ключ-Значение)
+### Standard Strings (Key-Value)
 
 ```ftl
-# Простой ключ
-my-system-message-hello = Привет, космос!
+# Simple key
+my-system-message-hello = Hello, space!
 
-# Многострочное значение (отступ обязателен, используйте ПРОБЕЛЫ, а не табы)
+# Multiline value (indentation required, use SPACE, not TAB)
 my-system-popup-error =
-    Ошибка доступа!
-    Пожалуйста, обратитесь к администратору.
+    Access denied!
+    Please contact an administrator.
 ```
 
-### Строки для прототипов (Entities)
+### Strings for prototypes (Entities)
 
-Для сущностей (`EntityPrototype`) движок автоматически ищет строки по ID сущности с префиксом `ent-`.
-Используйте **атрибуты** Fluent (начинаются с точки) для описаний и суффиксов.
+For entities (`EntityPrototype`), the engine automatically searches for rows by entity ID with the prefix `ent-`.
+Use **Fluent** attributes (beginning with a dot) for descriptions and suffixes.
 
-*   **Название (Name):** `ent-{PrototypeID} = название`
-*   **Описание (Description):** Аттрибут `.desc`
-*   **Суффикс (Editor Suffix):** Аттрибут `.suffix`
+* **Name:** `ent-{PrototypeID} = item name`
+* **Description:** Attribute `.desc`
+* **Suffix (Editor Suffix):** Attribute `.suffix`
 
-**Пример:**
-Если есть прототип с `id: Crowbar`
+**Example:**
+If there is a prototype with `id: Crowbar`
 
 ```ftl
-ent-Crowbar = лом
-    .desc = Инструмент для рычагового воздействия.
-    .suffix = Инструмент
+ent-Crowbar = crowbar
+    .desc = A tool for prying things open.
+    .suffix = Tool
 ```
 
-### 🚫 Анти-паттерн: НЕ английский язык в YAML прототипе
-Поля `name`, `description`, `suffix` в YAML прототипе являются fallback значениями.
-Они должны быть прописаны на АНГЛИЙСКОМ языке и соответствовать английской локализации.
+### 🚫 Anti-pattern: NOT English in YAML prototype
+The fields `name`, `description`, `suffix` in the YAML prototype are fallback values.
+They must be written in ENGLISH and comply with English localization.
 
-### 🚫 Анти-паттерн: Различие названий в YAML и FTL
-Поля в прототипе обязаны соответствовать английской локализации в FTL. Изменение одного требует изменения другого.
+### 🚫 Anti-pattern: Difference between names in YAML and FTL
+The fields in the prototype must correspond to the English localization in FTL. Changing one requires changing the other.
 
-### 🚫 Анти-паттерн: Отсутствие экранирования тегов в начале строки
-Если строка в FTL начинается с тега, например `[bold] Строка [/bold]`, первый тег должен быть экранирован.
-Парсер считает `[` в начале строки как сломанную структуру условных конструкций.
-Если нужно начать строку с тега требуется экранировать его с помощью ZERO WHITESPACE.
+### 🚫 Anti-pattern: Lack of tag escaping at the beginning of the line
+If a line in an FTL begins with a tag, such as `[bold] Text [/bold]`, the first tag must be escaped.
+The parser considers `[` at the beginning of a line to be a broken conditional structure.
+If you need to start a line with a tag, you need to escape it using ZERO WHITESPACE.
 
-Пример, когда экранирование требуется
+Example when shielding is required
 ```ftl
-ent-MyItem = предмет
+ent-MyItem = item
     .desc =
-    [bold] мое длинное описание[/bold]
+    [bold] my long description[/bold]
 ```
 
-Пример, когда экранирование НЕ требуется
+Example when shielding is NOT required
 ```ftl
-ent-MyItem = предмет
-    .desc = [bold] мое длинное описание[/bold]
+ent-MyItem = item
+    .desc = [bold] my long description[/bold]
 ```
 
-## 3. Наследование локализации
+## 3. Localization inheritance
 
-FTL не поддерживает автоматическое наследование строк от родительского прототипа в том виде, как это делает YAML. Если вы создаете новый прототип `CrowbarRed` с `parent: Crowbar`, вы **обязаны** создать для него свои строки локализации, иначе он будет называться `ent-CrowbarRed`.
+FTL does not support automatic row inheritance from a parent prototype the way YAML does. If you create a new prototype `CrowbarRed` with `parent: Crowbar`, you **must** create your own localization strings for it, otherwise it will be called `ent-CrowbarRed`.
 
-Однако, можно ссылаться на другие строки внутри FTL, используя перекрестные ссылки на атрибуты:
+However, it is possible to reference other lines within the FTL using attribute cross-references:
 
 ```ftl
-ent-CrowbarRed = красный лом
+ent-CrowbarRed = red crowbar
     .desc = { ent-Crowbar.desc }
 ```
 
-## 4. Встроенные функции и условия
+## 4. Built-in functions and conditions
 
-SS14 поддерживает специальные функции FTL для склонения и грамматики.
+SS14 supports special FTL functions for declension and grammar.
 
-### 🧬 Основные функции (Functions)
+### 🧬 Main functions (Functions)
 
-*   `THE($ent)`: Добавляет определенный артикль (English only).
-*   `SUBJECT($ent)`: Возвращает местоимение субъекта (он/она/оно) в зависимости от пола сущности.
-*   `OBJECT($ent)`: Возвращает местоимение объекта (его/её/оно).
-*   `GENDER($ent)`: Возвращает пол сущности (`male`, `female`, `epicene`, `neuter`) для селекторов.
-*   `CAPITALIZE($text)`: Делает первую букву заглавной.
+* `THE($ent)`: Adds a definite article (English only).
+* `SUBJECT($ent)`: Returns the subject pronoun (he/she/it) based on the gender of the entity.
+* `OBJECT($ent)`: Returns the object pronoun (his/her/it).
+* `GENDER($ent)`: Returns the gender of the entity (`male`, `female`, `epicene`, `neuter`) for selectors.
+* `CAPITALIZE($text)`: Capitalizes the first letter.
 
-### 🔀 Селекторы (Selectors)
+### 🔀 Selectors
 
-Используются для изменения текста в зависимости от пола или числа.
+Used to change text based on gender or number.
 
-**Пример (Гендерность):**
+**Example (Gender):**
 ```ftl
 examine-verb-details = { GENDER($user) ->
-    [male] Он рассматривает
-    [female] Она рассматривает
-    *[other] Оно рассматривает
+    [male] He examines
+    [female] She examines
+    *[other] It is considering
 } { THE($target) }.
 ```
 
-**Пример (Переменные):**
+**Example (Variables):**
 ```ftl
-# $count - переменная, переданная из кода
+# $count - variable passed from code
 reagent-container-name = { $count ->
-    [one] Пробирка
-    *[other] Пробирки
+    [one] Test tube
+    *[other] Test tubes
 }
 ```
 
-### Экранирование
-Если текст начинается с тега форматирования (например `[bold]`), экранируйте открывающую скобку: `{"["}bold]Text`.
+### Shielding
+If the text begins with a formatting tag (for example, `[bold]`), escape the opening parenthesis: `{"["}bold]Text`.
 
-## 5. Нейминг и Стиль (Naming & Style Guide)
+## 5. Naming & Style Guide
 
-Следуйте этим правилам неукоснительно. Они задают единый визуальный стиль игры.
+Follow these rules strictly. They set a unified visual style for the game.
 
-### 📝 Правила именования (Naming)
+### 📝 Naming Rules
 
-1.  **Названия предметов (Names) — с маленькой буквы.**
-    *   Исключение: Имена собственные или начало предложения (но в инвентаре предметы пишутся с маленькой).
-    *   ✅ `ent-Crowbar = лом`
-    *   ✅ `ent-AccessCard = ID карта`
-    *   ❌ `ent-Crowbar = Лом`
+1. **Names of items - with a small letter.**
+    * Exception: Proper names or the beginning of a sentence (but in the inventory items are written with a small letter).
+    * ✅ `ent-Crowbar = crowbar`
+    * ✅ `ent-AccessCard = ID card`
+    * ❌ `ent-Crowbar = Crowbar`
 
-2.  **Описания (Descriptions) — с большой буквы.**
-    *   Это полноценные предложения.
-    *   ✅ `.desc = Полезный инструмент.`
-    *   ❌ `.desc = полезный инструмент`
+2. **Descriptions - capitalized.**
+    *These are complete sentences.
+    * ✅ `.desc = A useful tool.`
+    * ❌ `.desc = a useful tool`
 
-### 🎨 Стиль описаний (Visual Style)
+### 🎨 Description Style (Visual Style)
 
-1.  **Только визуальная информация (Visuals only).**
-    *   Описание должно говорить о том, что персонаж *видит* или *чувствует*.
-    *   Избегайте сухих технических данных, если они не видны на предмете (например, "Наносит 10 урона").
+1. **Visuals only.**
+    * The description should talk about what the character *sees* or *feels*.
+    * Avoid dry technical data if it is not visible on the item (for example, “Deals 10 damage”).
 
-2.  **OOC допустим только как явный OOC-блок.**
-    *   OOC-фразы должны начинаться с префикса `OOC:`.
-    *   Без маркера `OOC:` добавлять внешне-игровые инструкции запрещено.
-    *   ❌ "Нажмите кнопку G чтобы активировать."
-    *   ✅ "OOC: Нажмите кнопку G чтобы активировать."
-    *   ✅ "Выглядит тяжелым и надежным."
+2. **OOC is only allowed as an explicit OOC block.**
+    * OOC phrases must begin with the prefix `OOC:`.
+    * Without the `OOC:` marker, adding external game instructions is prohibited.
+    * ❌ "Press the G button to activate."
+    * ✅ "OOC: Press G button to activate."
+    * ✅ "Looks heavy and durable."
 
-### 🚫 Анти-паттерны в FTL
+### 🚫 Anti-patterns in FTL
 
-1.  **Хардкод путей:** Не пишите пути к спрайтам или звукам в локализации.
-2.  **Дублирование ключей:** Если ключ повторяется в разных файлах, поведение может быть непредсказуемым.
-3.  **Отсутствие аргументов:** Если строка требует аргумент `{$user}`, а вы его не передали в коде — будет ошибка.
-4.  **Tab Indentation:** Используйте пробелы для отступов, табы ломают парсер Fluent.
+1. **Hardcode paths:** Do not write paths to sprites or sounds in the localization.
+2. **Duplicate Keys:** If a key is repeated in different files, the behavior may be unpredictable.
+3. **Lack of arguments:** If the line requires the argument `{$user}`, and you did not pass it in the code, there will be an error.
+4. **Tab Indentation:** Use spaces for indentation, tabs break the Fluent parser.
 
-## Примеры
+## Examples
 
-**Хорошо:**
+**Fine:**
 ```ftl
-ent-StandardRadio = радиостанция
-    .desc = Портативное устройство связи.
+ent-StandardRadio = handheld radio
+    .desc = A portable communication device.
 
-interaction-popup-blocked = { THE($user) } пытается открыть дверь, но она заперта!
+interaction-popup-blocked = { THE($user) } tries to open the door, but it is locked!
 ```
 
-**Плохо:**
+**Badly:**
 ```ftl
-ent-StandardRadio = Радиостанция  # С большой буквы
-    .desc = используется для общения (нажмите T). # OOC инфо, с маленькой буквы
+ent-StandardRadio = Handheld radio  # Starts with a capital letter
+    .desc = used for communication (press T). # OOC info, lowercase
 
-interaction-popup-blocked = Дверь закрыта. # Нет контекста кто пытается открыть
+interaction-popup-blocked = The door is closed. # No context for who is trying to open it
 ```
 
-## 6. Теги форматирования текста (Rich Text)
+## 6. Text formatting tags (Rich Text)
 
-Список доступных тегов форматирования.
+List of available formatting tags.
 
-| Тег | Параметры | Описание | Тип |
+| Tag | Options | Description | Type |
 | :--- | :--- | :--- | :--- |
-| `color` | `#HEX` / `Name` | Цвет текста. `[color=red]Текст[/color]` | Двойной |
-| `font` | `FontID`, `size` | Шрифт/размер. `[font=Default size=16]Текст[/font]` | Двойной |
-| `bold` | - | **Жирный** | Двойной |
-| `italic` | - | *Курсив* | Двойной |
-| `bolditalic` | - | ***Жирный курсив*** | Двойной |
-| `head` | `1`-`3` | Заголовок. `[head=1]Title[/head]` | Двойной |
-| `bullet` | - | Маркер списка ` · ` | Любой |
-| `cmdlink` | `command` | Выполняет команду при клике | Двойной |
-| `textlink` | `link` | Ссылка для обработки в коде (не URL!) | Двойной |
-| `emoji` | `id` | Эмодзи из прототипа | Одинарный |
-| `mono` | - | Моноширинный шрифт (для кода) | Двойной |
-| `center` | - | Выравнивание по центру | Двойной |
-| `keybind` | `name` | Показывает клавишу бинда. `[keybind="MoveUp"]` | Одинарный |
-| `scramble` | `rate`, `length`, `chars` | "Зашифрованный" меняющийся текст | Одинарный |
-| `protodata` | `text`, `comp`, `member` | Данные из прототипа (для Guidebook) | Одинарный |
-
+| `color` | `#HEX` / `Name` | Text color. `[color=red]Text[/color]` | Double |
+| `font` | `FontID`, `size` | Font/size. `[font=Default size=16]Text[/font]` | Double |
+| `bold` | - | **Bold** | Double |
+| `italic` | - | *Italics* | Double |
+| `bolditalic` | - | ***Bold italics*** | Double |
+| `head` | `1`-`3` | Title. `[head=1]Title[/head]` | Double |
+| `bullet` | - | List marker ` · ` | Any |
+| `cmdlink` | `command` | Executes a command when clicked | Double |
+| `textlink` | `link` | Link to process in code (not URL!) | Double |
+| `emoji` | `id` | Prototype Emoji | Single |
+| `mono` | - | Monospace font (for code) | Double |
+| `center` | - | Center alignment | Double |
+| `keybind` | `name` | Shows the bind key. `[keybind="MoveUp"]` | Single |
+| `scramble` | `rate`, `length`, `chars` | "Encrypted" changing text | Single |
+| `protodata` | `text`, `comp`, `member` | Data from prototype (for Guidebook) | Single |

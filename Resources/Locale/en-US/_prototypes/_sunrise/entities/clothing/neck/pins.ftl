@@ -22,3 +22,6 @@ ent-ClothingNeckPlanetPrisonCellblockPin = cellblock pin
     .desc = The pin of the forgotten cellblock.
 ent-ClothingNeckPlanetPrisonLockdownPin = lockdown pin
     .desc = The pin of the lifelong Lockdown.
+ent-ClothingNeckUSSPPinNPC = USSP pin
+    .desc = An old pin of the United Soviet Socialist Planets, worn by years of service and rust.
+    .suffix = Expedition

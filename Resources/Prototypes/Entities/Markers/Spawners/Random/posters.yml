@@ -31,6 +31,11 @@
   - type: RandomSpawner
     offset: 0
     prototypes:
+      - PosterContrabandDoCauseCancer # Starlight-edit
+      - PosterContrabandForumPost # Starlight-edit
+      - PosterContrabandFlukiesCall # Starlight-edit
+      - PosterContrabandDaysSinceFluke # Starlight-edit
+      - PosterContrabandWantedTraitor # Starlight-edit
       - PosterContrabandAriralInSpace # Sunrise-edit
       - PosterContrabandSam300 # Sunrise-edit
       - PosterContrabandSyndiMechs # Sunrise-edit
@@ -113,6 +118,14 @@
   - type: RandomSpawner
     offset: 0
     prototypes:
+      - PosterLegitCalendar # Starlight-edit
+      - PosterLegitCleanHands # Starlight-edit
+      - PosterLegitEyeChart # Starlight-edit
+      - PosterLegitSkillIssue # Starlight-edit
+      - PosterLegitDoNotCauseCancer # Starlight-edit
+      - PosterLegitRipleyCertified # Starlight-edit
+      - PosterLegitKillersClinic # Starlight-edit
+      - PosterLegitSaline # Starlight-edit
       - PosterLegitAIOverseer #Sunrise-edit
       - PosterLegitHereForYourSafety
       - PosterLegitNanotrasenLogo

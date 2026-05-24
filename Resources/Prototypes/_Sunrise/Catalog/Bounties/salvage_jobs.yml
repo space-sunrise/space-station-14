@@ -1,0 +1,29 @@
+- type: cargoBounty
+  id: SunriseBountySalvageSovietDamagedIDCardsCollector
+  reward: 17000
+  description: bounty-description-soviet-damaged-id-cards-collector
+  group: SalvageJobTier2
+  sprite:
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    state: ussp-dmg-2
+  entries:
+  - name: bounty-item-soviet-damaged-id-card
+    amount: 6
+    whitelist:
+      tags:
+      - SovietDamagedIDCardExped
+
+- type: cargoBounty
+  id: SunriseBountySalvageSovietDamagedOfficerIDCardsCollector
+  reward: 25000
+  description: bounty-description-soviet-damaged-officer-id-cards-collector
+  group: SalvageJobTier3
+  sprite:
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    state: ussp
+  entries:
+  - name: bounty-item-soviet-damaged-officer-id-card
+    amount: 3
+    whitelist:
+      tags:
+      - SovietDamagedIDCardsOfficerExped

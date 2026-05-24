@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Ovni
   mapName: 'Ovni'
-  mapPath: /Maps/_Sunrise/Station/ovni.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/ovni.yml
   minPlayers: 0
   stations:
     Ovni:

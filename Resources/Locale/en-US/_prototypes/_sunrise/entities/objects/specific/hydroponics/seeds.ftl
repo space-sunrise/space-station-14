@@ -24,3 +24,5 @@ ent-WhiteroseSeeds = packet of white rose
     .desc = { ent-SeedBase.desc }
 ent-SunflowerSeeds = packet of sunflower
     .desc = { ent-SeedBase.desc }
+ent-WhiteLilySeeds = packet of white lily
+    .desc = { ent-SeedBase.desc }

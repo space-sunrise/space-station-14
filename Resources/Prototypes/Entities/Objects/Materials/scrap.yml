@@ -92,6 +92,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 3000 # 30 sheets
+      SalvageTicket: 30 # 30 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -121,6 +122,7 @@
     materialComposition:
       Glass: 1500 # 15 sheets
       Steel: 500 # 5 sheets
+      SalvageTicket: 20 # 20 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -146,6 +148,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 1500 # 15 sheets
+      SalvageTicket: 15 # 15 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -164,6 +167,7 @@
     materialComposition:
       Steel: 200 # 2 sheets
       Glass: 500 # 5 sheets
+      SalvageTicket: 7 # 7 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -177,6 +181,7 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 300 # 3 sheets
+      SalvageTicket: 3 # 3 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -191,6 +196,7 @@
     materialComposition:
       Steel: 500 # 5 sheets
       Glass: 100 # 1 sheet
+      SalvageTicket: 6 # 6 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -204,6 +210,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 300 # 3 sheets
+      SalvageTicket: 3 # 3 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -219,6 +226,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 200 # 2 sheets
+      SalvageTicket: 2 # 2 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -238,6 +246,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 1500 # 15 sheets
+      SalvageTicket: 15 # 15 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -254,6 +263,7 @@
     materialComposition:
       Plastic: 800 # 8 sheets
       Steel: 200 # 2 sheets
+      SalvageTicket: 10 # 10 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -267,6 +277,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 600 # 6 sheets
+      SalvageTicket: 6 # 6 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -286,6 +297,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 2000 # 20 sheets
+      SalvageTicket: 20 # 20 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -305,6 +317,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 2000 # 20 sheets
+      SalvageTicket: 20 # 20 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -319,6 +332,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 700 # 7 sheets
+      SalvageTicket: 7 # 7 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -341,6 +355,7 @@
     materialComposition:
       Steel: 400 # 4 sheets
       Plastic: 300 # 3 sheets
+      SalvageTicket: 7 # 7 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -358,6 +373,7 @@
     materialComposition:
       Steel: 1000 # 10 sheets
       Plastic: 200 # 2 sheets
+      SalvageTicket: 12 # 12 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -379,6 +395,7 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 500 # 5 sheets
+      SalvageTicket: 5 # 5 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -394,6 +411,7 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 1500 # 15 sheets
+      SalvageTicket: 15 # 15 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -410,6 +428,7 @@
     materialComposition:
       Steel: 300 # 3 sheets
       Plastic: 200 # 2 sheets
+      SalvageTicket: 5 # 5 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -426,6 +445,7 @@
     materialComposition:
       Gold: 100 # 1 sheet
       Plastic: 400 # 4 sheets
+      SalvageTicket: 5 # 5 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -452,6 +472,7 @@
     materialComposition:
       Glass: 500 # 5 sheets
       Plastic: 100 # 1 sheet
+      SalvageTicket: 6 # 6 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrapLarge
@@ -470,6 +491,7 @@
       Steel: 4000 # 40 sheets
       Plasma: 2500 # 25 sheets
       Plastic: 500 # 5 sheets
+      SalvageTicket: 70 # 70 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrapLarge
@@ -486,6 +508,7 @@
       Steel: 4000 # 40 sheets
       Plasma: 1000 # 10 sheets
       Plastic: 500 # 5 sheets
+      SalvageTicket: 55 # 55 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrapLarge
@@ -513,6 +536,7 @@
       Steel: 4000 # 40 sheets
       Uranium: 2500 # 25 sheets
       Plastic: 500 # 5 sheets
+      SalvageTicket: 70 # 70 tickets # Sunrise Add
   - type: RadiationSource
     intensity: 1.0
 
@@ -537,6 +561,7 @@
       Steel: 4000 # 40 sheets
       Uranium: 1000 # 10 sheets
       Plastic: 500 # 5 sheets
+      SalvageTicket: 55 # 55 tickets # Sunrise Add
   - type: RadiationSource
     intensity: 0.5
 
@@ -553,6 +578,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 1500 # 15 sheets
+      SalvageTicket: 15 # 15 tickets # Sunrise Add
 
 - type: entity
   parent: BaseScrap
@@ -568,3 +594,4 @@
     materialComposition:
       Steel: 200 # 2 sheets
       Uranium: 500 # 5 sheets
+      SalvageTicket: 7 # 7 tickets # Sunrise Add

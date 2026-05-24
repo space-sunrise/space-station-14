@@ -10,7 +10,6 @@
     - Snout
     - HeadTop
     - HeadSide
-    - Tail
   - type: Body
     prototype: Tajaran
     requiredLegs: 2
@@ -154,7 +153,6 @@
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
   - type: FootprintEmitter
-  - type: Carriable
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
 

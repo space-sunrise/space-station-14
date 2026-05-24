@@ -1,42 +1,42 @@
-# Сверка docs и актуального кода
+# Reconciliation of docs and actual code
 
-Документы полезны для intent и терминов, но некоторые формулировки в них шире и старше текущих практик.  
-Правило этого skill: **при конфликте побеждает актуальный код**.
+The docs are useful for intent and terms, but some of the language in them is broader and older than current practices.  
+The rule of this skill is: **if there is a conflict, the current code wins**.
 
-## Сводная таблица по 10 темам
+## Summary table for 10 topics
 
-| Тема | Что обычно фиксирует docs | Что подтверждает код | Правило для skill |
+| Topic | What docs usually capture | What does the code confirm | Rule for skill |
 |---|---|---|---|
-| Кеширование в hot-path | Советы по устранению повторного доступа к данным | В реальном коде предвычисляют инварианты до вложенных циклов и ведут агрегаты счётчиками; query тоже кешируют | Сначала убирай повторные вычисления/пересчёты, затем кешируй доступ к компонентам |
-| Снижение аллокаций | Рекомендации переиспользовать память | Используются `ValueList` как поля и `ArrayPool` для временных буферов | Переиспользуй коллекции, не создавай их на каждый кадр |
-| Отказ от LINQ в hot-path | Непрямо через perf-гайды и примеры | Критичные циклы в основном написаны через `for/foreach` | В горячем коде LINQ заменяй на явные циклы |
-| `Component + ActiveComponent` | Архитектура ECS «состояние через компоненты» | Активные маркеры реально применяются для сужения query | Используй Active-компоненты для ограниченной выборки |
-| `EntityQuery` для `TryComp/HasComp/Resolve` | Рекомендации по query API | Системы кешируют `EntityQuery<T>` и используют его методы | Для частых проверок переходи на кеш query |
-| Порядок компонентов в `EntityQueryEnumerator` | Не всегда явно расписано в docs | В runtime есть прямой комментарий про редкий первый компонент | Ставь первым самый редкий компонент |
-| `ByRef record struct` события | Есть guidance про by-ref события | В server/shared встречаются `[ByRefEvent] record struct` + `RaiseLocalEvent(..., ref ...)` | Для частых локальных событий используй by-ref структуру |
-| `DirtyField` vs `Dirty` | Есть рекомендации о field deltas | В сетевых компонентах с множеством полей применяют `DirtyField` | При точечном изменении поля выбирай `DirtyField` |
-| Ранние `return/continue` | Общие советы о дешёвых фильтрах | В hot-loop часто стоят ранние фильтры и `continue` | Упорядочивай проверки от дешёвых к дорогим |
-| Удаление лишних компонентов | ECS-идея «данные только по факту состояния» | После завершения активности временные компоненты удаляются | Убирай временные компоненты сразу после завершения состояния |
+| Caching in hot-path | Tips for eliminating duplicate data access | In real code, invariants are precomputed before nested loops and aggregates are maintained using counters; query is also cached | First, remove repeated calculations/recalculations, then cache access to components |
+| Reduced allocations | Recommendations for reusing memory | Uses `ValueList` as fields and `ArrayPool` for temporary buffers | Reuse collections, don't create them for every frame |
+| Abandoning LINQ in hot-path | Indirectly through perf guides and examples | Critical loops are mostly written via `for/foreach` | In hot LINQ code, replace with explicit loops |
+| `Component + ActiveComponent` | ECS State through Components Architecture | Active markers are actually used to narrow query | Use Active Components for Limited Sampling |
+| `EntityQuery` for `TryComp/HasComp/Resolve` | Query API Recommendations | Systems cache `EntityQuery<T>` and use its methods | For frequent checks, go to the query cache |
+| Component order in `EntityQueryEnumerator` | Not always clearly stated in docs | In runtime there is a direct comment about the rare first component | Put the rarest component first |
+| `ByRef record struct` events | There is guidance about by-ref events | In server/shared there are `[ByRefEvent] record struct` + `RaiseLocalEvent(..., ref ...)` | For frequent local events, use the by-ref structure |
+| `DirtyField` vs `Dirty` | There are recommendations about field deltas | In network components with multiple fields, use `DirtyField` | When changing a field selectively, select `DirtyField` |
+| Early `return/continue` | General tips about cheap filters | In hot-loop there are often early filters and `continue` | Sort checks from cheap to expensive |
+| Removing unnecessary components | ECS-idea “data only on the fact of state” | After the activity is completed, temporary components are deleted | Remove temporary components immediately after state completion |
 
-## Где docs могут отставать
+## Where docs can fall behind
 
-1. Docs может описывать общий подход, но не отражать текущие «де-факто» оптимизации конкретных подсистем.
-2. В docs редко указывается реальная кардинальность компонентов для выбора порядка query.
-3. Документация не всегда показывает свежие локальные оптимизации UI/client слоёв.
+1. Docs may describe the general approach, but not reflect the current “de facto” optimizations of specific subsystems.
+2. The docs rarely indicate the actual cardinality of components for choosing the query order.
+3. The documentation does not always show the latest local optimizations of the UI/client layers.
 
-## Как действовать при расхождении
+## How to deal with discrepancies
 
-1. Проверь свежесть кода по blame/истории.
-2. Если код свежий и устойчивый, бери его как эталон.
-3. Если код старый, но это каноничный engine-паттерн, помечай как soft-exception и обязательно объясняй, почему он всё ещё релевантен.
-4. Если в коде есть TODO/FIXME/HACK по теме оптимизации, такой фрагмент в эталон не брать.
+1. Check the freshness of the code using the blame/history.
+2. If the code is fresh and stable, use it as a reference.
+3. If the code is old, but it is a canonical engine pattern, mark it as a soft-exception and be sure to explain why it is still relevant.
+4. If the code contains TODO/FIXME/HACK on the topic of optimization, do not take such a fragment into the standard.
 
-## Короткий шаблон фиксации решения
+## Short template for committing a solution
 
 ```text
-Тема: <оптимизация>
-Docs: <что заявлено>
-Код: <что реально делается>
-Решение: <какое правило попадает в skill>
-Основание: <свежесть/каноничность>
+Topic: <optimization>
+Docs: <what is claimed>
+Code: <what is actually done>
+Decision: <which rule goes into the skill>
+Basis: <freshness/canonicity>
 ```

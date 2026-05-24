@@ -1,41 +1,41 @@
 ---
 name: SS14 UI Styles Palettes Sheetlets
-description: Практический гайд по стилевой системе SS14: StyleClass, палитры, StyleProperties, sheetlets, псевдоклассы и композиция правил. Используй при разработке и рефакторинге визуального языка UI без хардкода.
+description: A practical guide to the SS14 style system: StyleClass, palettes, StyleProperties, sheetlets, pseudo-classes and rules composition. Use it when developing and refactoring a visual UI language without hardcode.
 ---
 
-# Стили, палитры и sheetlets в SS14 UI
+# Styles, palettes and sheetlets in SS14 UI
 
-Этот skill покрывает только стиль-систему UI: классы, палитры, sheetlets и правила применения 🙂
-Разметку окон и сетевой lifecycle UI веди в отдельных skill.
+This skill only covers the UI style system: classes, palettes, sheetlets and application rules :)
+Window layout and network lifecycle UI should be done in separate skills.
 
-## Каркас системы
+## System framework
 
-- `StyleClass`: единая точка имен общих style classes.
-- `StyleProperties`: ключи семантических palette-свойств.
-- `ColorPalette` + `Palettes` + `StatusPalette`: модель цветовой семантики.
-- `Sheetlet<T>`: модуль стилей для конкретной группы контролов.
-- `StylesheetHelpers`: DSL-обертки для удобной сборки `StyleRule`.
+- `StyleClass`: single point of names of common style classes.
+- `StyleProperties`: keys of semantic palette properties.
+- `ColorPalette` + `Palettes` + `StatusPalette`: color semantics model.
+- `Sheetlet<T>`: style module for a specific group of controls.
+- `StylesheetHelpers`: DSL wrappers for convenient assembly of `StyleRule`.
 
-## Псевдоклассы: полный список и когда выдаются
+## Pseudo-classes: complete list and when issued
 
-| Псевдокласс | Где используется | Когда выставляется |
+| Pseudo-class | Where is it used | When is exhibited |
 |---|---|---|
-| `normal` | `ContainerButton`, `TextureButton`, наследники | Обычный режим отрисовки (`DrawModeEnum.Normal`). |
-| `hover` | `ContainerButton`, `TextureButton`, `ScrollBar` | Курсор над контролом/граббером, но не активное нажатие/drag. |
-| `pressed` | `ContainerButton`, `TextureButton`, наследники | Контрол в состоянии нажатия (`DrawModeEnum.Pressed`). |
-| `disabled` | `ContainerButton`, `TextureButton`, наследники | Контрол отключен (`DrawModeEnum.Disabled`). |
-| `grabbed` | `ScrollBar` | Ползунок скроллбара захвачен мышью (drag активен). |
-| `placeholder` | `LineEdit`, `TextEdit` | Пустой текст + задан placeholder, отображается плейсхолдер. |
-| `notEditable` | `TextEdit` | Контрол переведен в read-only (`Editable = false`). |
-| `confirm-normal` | `ConfirmButton` | Кнопка в confirm-режиме и в обычном состоянии. |
-| `confirm-hover` | `ConfirmButton` | Confirm-режим + наведение. |
-| `confirm-pressed` | `ConfirmButton` | Confirm-режим + нажатие. |
-| `confirm-disabled` | `ConfirmButton` | Confirm-режим + disabled. |
+| `normal` | `ContainerButton`, `TextureButton`, heirs | Normal rendering mode (`DrawModeEnum.Normal`). |
+| `hover` | `ContainerButton`, `TextureButton`, `ScrollBar` | The cursor is over the control/grabber, but there is no active click/drag. |
+| `pressed` | `ContainerButton`, `TextureButton`, heirs | Control in pressed state (`DrawModeEnum.Pressed`). |
+| `disabled` | `ContainerButton`, `TextureButton`, heirs | Control disabled (`DrawModeEnum.Disabled`). |
+| `grabbed` | `ScrollBar` | The scrollbar slider is captured by the mouse (drag is active). |
+| `placeholder` | `LineEdit`, `TextEdit` | Empty text + placeholder specified, the placeholder is displayed. |
+| `notEditable` | `TextEdit` | The control has been converted to read-only (`Editable = false`). |
+| `confirm-normal` | `ConfirmButton` | The button is in confirm mode and in its normal state. |
+| `confirm-hover` | `ConfirmButton` | Confirm mode + guidance. |
+| `confirm-pressed` | `ConfirmButton` | Confirm mode + press. |
+| `confirm-disabled` | `ConfirmButton` | Confirm mode + disabled. |
 
-### Примеры из кода: выдача псевдоклассов
+### Code examples: issuing pseudo-classes
 
 ```csharp
-// Базовая кнопка: псевдокласс следует за DrawMode.
+// Basic Button: Pseudo-class follows DrawMode.
 protected override void DrawModeChanged()
 {
     switch (DrawMode)
@@ -57,7 +57,7 @@ protected override void DrawModeChanged()
 ```
 
 ```csharp
-// ScrollBar: grabbed имеет приоритет над hover.
+// ScrollBar: grabbed takes precedence over hover.
 private void _updatePseudoClass()
 {
     if (_grabData != null)
@@ -80,7 +80,7 @@ private void UpdatePseudoClass()
 ```
 
 ```csharp
-// ConfirmButton: добавляет префикс confirm- к базовым состояниям.
+// ConfirmButton: Adds the confirm- prefix to the base states.
 protected override void DrawModeChanged()
 {
     if (IsConfirming)
@@ -107,15 +107,15 @@ protected override void DrawModeChanged()
 }
 ```
 
-## Все хелперы-обертки над `Prop`
+## All wrapper helpers over `Prop`
 
-Ниже полный список оберток из `StylesheetHelpers`, которые в итоге вызывают `Prop(...)`.
+Below is a complete list of wrappers from `StylesheetHelpers` that ultimately call `Prop(...)`.
 
-| Хелпер | Что выставляет |
+| Helper | What exposes |
 |---|---|
 | `Modulate(Color)` | `Control.StylePropertyModulateSelf` |
 | `Margin(Thickness)` | `Control.Margin` |
-| `Margin(float)` | `Control.Margin` (через `Thickness`) |
+| `Margin(float)` | `Control.Margin` (via `Thickness`) |
 | `MinWidth(float)` | `Control.MinWidth` |
 | `MinHeight(float)` | `Control.MinHeight` |
 | `MinSize(Vector2)` | `Control.MinWidth` + `Control.MinHeight` |
@@ -127,37 +127,37 @@ protected override void DrawModeChanged()
 | `SetSize(Vector2)` | `Control.SetWidth` + `Control.SetHeight` |
 | `HorizontalExpand(bool)` | `Control.HorizontalExpand` |
 | `VerticalExpand(bool)` | `Control.VerticalExpand` |
-| `HorizontalAlignment(HAlignment)` | в текущей реализации helper пишет в ключ `Control.HorizontalExpand` |
-| `VerticalAlignment(VAlignment)` | в текущей реализации helper пишет в ключ `Control.VerticalExpand` |
+| `HorizontalAlignment(HAlignment)` | in the current implementation, helper writes to the key `Control.HorizontalExpand` |
+| `VerticalAlignment(VAlignment)` | in the current implementation, helper writes to the key `Control.VerticalExpand` |
 | `AlignMode(Label.AlignMode)` | `Label.StylePropertyAlignMode` |
 | `Panel(StyleBox)` | `PanelContainer.StylePropertyPanel` |
 | `Box(StyleBox)` | `ContainerButton.StylePropertyStyleBox` |
 | `Font(Font)` | `Label.StylePropertyFont` |
 | `FontColor(Color)` | `Label.StylePropertyFontColor` |
 
-Дополнительно (не `Prop`-обертки, но часто идут рядом):
+Additionally (not `Prop` wrappers, but often go hand in hand):
 - `PseudoNormal()`, `PseudoHovered()`, `PseudoPressed()`, `PseudoDisabled()`
 - `MaybeClass(...)`
 - `IntoPatch(...)`
 - `ParentOf(...)`
 
-Важно:
-- Для реального выравнивания лучше задавать нужный ключ напрямую через `Prop(...)`, пока helper-обертки `HorizontalAlignment/VerticalAlignment` не синхронизированы с ожидаемым поведением.
+Important:
+- For real alignment, it is better to set the desired key directly through `Prop(...)`, as long as the helper wrappers `HorizontalAlignment/VerticalAlignment` are not synchronized with the expected behavior.
 
-## Схемы: ребенок по родителю и родитель по ребенку
+## Schemes: child by parent and parent by child
 
-### 1) Изменение ребенка по родителю (поддерживается напрямую)
+### 1) Change child by parent (directly supported)
 
-Схема:
+Scheme:
 
 ```text
 Parent selector -> Child selector -> Style props child
 ```
 
-Пример из кода:
+Example from code:
 
 ```csharp
-// Стиль внутренней PanelContainer зависит от NanoHeading-родителя.
+// The style of the inner PanelContainer depends on the NanoHeading parent.
 return
 [
     E<NanoHeading>()
@@ -166,45 +166,45 @@ return
 ];
 ```
 
-### 2) Изменение родителя по ребенку (прямого селектора нет)
+### 2) Changing parent by child (no direct selector)
 
-Чисто CSS-стилем это не делается, рабочий паттерн такой:
+This is not done purely with CSS style; the working pattern is as follows:
 
 ```text
 Child state/event -> code sets parent class/pseudoclass -> style matches parent
 ```
 
-Рекомендация:
-- в коде родителя/контейнера выставляй `StyleClass` или псевдокласс при изменении состояния дочернего контрола;
-- в stylesheet описывай правила уже для родителя по этому class/pseudo.
+Recommendation:
+- in the parent/container code, set `StyleClass` or a pseudo-class when the state of the child control changes;
+- in the stylesheet, describe the rules for the parent for this class/pseudo.
 
-Мини-пример подхода:
+Mini example approach:
 
 ```csharp
-// Code-behind: дочерний контрол изменил состояние -> помечаем родителя классом.
+// Code-behind: the child control has changed state -> mark the parent with a class.
 if (childIsWarning)
     parent.AddStyleClass("child-warning");
 else
     parent.RemoveStyleClass("child-warning");
 
-// Stylesheet: родитель стилизуется по class, выставленному из кода.
+// Stylesheet: the parent is styled by the class set from the code.
 E<PanelContainer>()
     .Class("child-warning")
     .Modulate(sheet.NegativePalette.Element);
 ```
 
-## Использование текстур для UI
+## Using textures for UI
 
-### Базовые правила
+### Basic rules
 
-- Берем текстуры через API stylesheet (`GetTexture`, `TryGetTexture`, `GetTextureOr`), а не хардкодим доступ к ресурсам напрямую.
-- Для растягиваемых кнопок/панелей используем `StyleBoxTexture` и patch margins.
-- Для иконок в контролах используем `TextureRect.StylePropertyTexture`.
+- We take textures through the API stylesheet (`GetTexture`, `TryGetTexture`, `GetTextureOr`), and do not hardcode access to resources directly.
+- For stretchable buttons/panels we use `StyleBoxTexture` and patch margins.
+- For icons in controls we use `TextureRect.StylePropertyTexture`.
 
-### Примеры из кода
+### Code examples
 
 ```csharp
-// Текстура кнопки из stylesheet-ресурсов.
+// Button texture from stylesheet resources.
 var buttonTex = sheet.GetTextureOr(cfg.BaseButtonPath, NanotrasenStylesheet.TextureRoot);
 
 var topButtonBase = new StyleBoxTexture
@@ -215,35 +215,35 @@ topButtonBase.SetPatchMargin(StyleBox.Margin.All, 10);
 ```
 
 ```csharp
-// Текстура иконки в стиле.
+// Texture icon style.
 E<TextureRect>()
     .Class(OptionButton.StyleClassOptionTriangle)
     .Prop(TextureRect.StylePropertyTexture, invertedTriangleTex);
 ```
 
 ```csharp
-// Удобная обертка для 9-slice.
+// Convenient wrapper for 9-slice.
 var styleBox = texture.IntoPatch(StyleBox.Margin.All, 3);
 styleBox.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
 ```
 
-## Правила подбора цветов для стилей
+## Rules for choosing colors for styles
 
-1. Сначала выбирай семантическую палитру:
-- `Primary`: интерактивные элементы и основной акцент.
-- `Secondary`: фоны и вторичный UI.
-- `Positive`: подтверждение/успех.
-- `Negative`: опасность/ошибка.
-- `Highlight`: ключевой акцент.
+1. First choose a semantic palette:
+- `Primary`: interactive elements and main focus.
+- `Secondary`: backgrounds and secondary UI.
+- `Positive`: confirmation/success.
+- `Negative`: danger/error.
+- `Highlight`: key accent.
 
-2. Для интерактивных состояний соблюдай цепочку:
+2. For interactive states, follow the chain:
 - `Element` -> `HoveredElement` -> `PressedElement` -> `DisabledElement`.
 
-3. Для текста и фона используй назначенные роли:
-- текст: `Text`/`TextDark`;
-- подложки: `Background`/`BackgroundLight`/`BackgroundDark`.
+3. For text and background, use the assigned roles:
+- text: `Text`/`TextDark`;
+- substrates: `Background`/`BackgroundLight`/`BackgroundDark`.
 
-4. Статусы и шкалы делай через `StatusPalette`, а не ручные if/hex:
+4. Do statuses and scales using `StatusPalette`, and not manual if/hex:
 
 ```csharp
 var good = Palettes.Status.GetStatusColor(1.0f);
@@ -251,29 +251,29 @@ var warning = Palettes.Status.GetStatusColor(0.5f);
 var critical = Palettes.Status.GetStatusColor(0.0f);
 ```
 
-5. `Color.FromHex(...)` допустим в одном месте: при создании новой палитры.
+5. `Color.FromHex(...)` is valid in one place: when creating a new palette.
 
-6. Для иконок/текстурных кнопок цветовую вариативность делай через `Modulate(...)`, чтобы не плодить дубли текстур.
+6. For icons/texture buttons, do color variation through `Modulate(...)`, so as not to produce duplicate textures.
 
-## Работа со шрифтами
+## Working with fonts
 
-### Что использовать
+###What to use
 
-- `sheet.BaseFont.GetFont(size, FontKind)` для конкретных правил.
+- `sheet.BaseFont.GetFont(size, FontKind)` for specific rules.
 - `FontKind`: `Regular`, `Bold`, `Italic`, `BoldItalic`.
-- общие style classes для типографики: `FontSmall`, `FontLarge`, `Italic`, `Monospace`.
+- general style classes for typography: `FontSmall`, `FontLarge`, `Italic`, `Monospace`.
 
-### Примеры из кода
+### Code examples
 
 ```csharp
-// Крупная жирная подпись для меню-кнопок.
+// Large bold signature for menu buttons.
 E<Label>()
     .Class(MenuButton.StyleClassLabelTopButton)
     .Prop(Label.StylePropertyFont, sheet.BaseFont.GetFont(14, FontKind.Bold));
 ```
 
 ```csharp
-// Обычный и italic-стиль для статусных текстов.
+// Regular and italic style for status texts.
 E()
     .Class(StyleClass.ItemStatus)
     .Prop("font", sheet.BaseFont.GetFont(10));
@@ -284,32 +284,32 @@ E()
     .Prop("font-color", Color.Gray);
 ```
 
-### Практика
+### Practice
 
-- Размер/гарнитура должны быть функцией роли текста (label, heading, status), а не локального вкуса.
-- Один и тот же semantic role = один и тот же font rule по проекту.
-- Если нужен новый типографический паттерн, сначала оформляй его как общий class/rule, потом переиспользуй.
+- Size/typeface should be a function of the role of the text (label, heading, status), and not local taste.
+- Same semantic role = same font rule for the project.
+- If you need a new typographic pattern, first design it as a general class/rule, then reuse it.
 
-## Паттерны 😎
+## Patterns 😎
 
-- Строй sheetlets маленькими и тематическими.
-- Используй `ParentOf(...)` для контекстного оформления вложенных контролов.
-- Храни цветовые решения в палитрах, а не в элементах.
-- Для кнопок и интерактива в первую очередь думай состояниями `normal/hover/pressed/disabled`.
-- Используй модификацию цвета через `Modulate`, если можно обойтись одной текстурой.
+- Build sheetlets small and themed.
+- Use `ParentOf(...)` for contextual design of nested controls.
+- Store color solutions in palettes, not in elements.
+- For buttons and interactivity, first of all think in terms of `normal/hover/pressed/disabled` states.
+- Use color modification via `Modulate` if you can get by with just one texture.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Хардкодить цвета по месту (`Color.FromHex`) вместо палитр.
-- Мешать визуальные задачи UI-стилей с задачами графического пайплайна мира.
-- Разбрасывать одинаковые font-настройки по десяткам правил без общего класса.
-- Пытаться реализовать стиль родителя по ребенку только селектором, без кода-связки.
+- Hardcode colors by place (`Color.FromHex`) instead of palettes.
+- Interfere with the visual tasks of UI styles with the tasks of the graphical pipeline of the world.
+- Scatter the same font settings across dozens of rules without a common class.
+- Try to implement the parent-child style using only a selector, without linking code.
 
-## Чеклист качества
+## Quality checklist
 
-- Все состояния интерактива покрыты псевдоклассами.
-- Для каждой `Prop(...)`-операции, где возможно, использованы обертки-хелперы.
-- Контекстные стили через `ParentOf(...)` применены осознанно.
-- Текстуры подключаются через API stylesheet и корректные patch margins.
-- Цвета взяты из семантических палитр и status-модели.
-- Шрифты и размеры задаются как системные правила, а не ad-hoc.
+- All interactive states are covered by pseudo-classes.
+- For each `Prop(...)` operation, helper wrappers are used where possible.
+- Contextual styles via `ParentOf(...)` are applied deliberately.
+- Textures are connected via the stylesheet API and correct patch margins.
+- Colors are taken from semantic palettes and status models.
+- Fonts and sizes are set as system rules, not ad-hoc.

@@ -1,0 +1,125 @@
+- type: docTemplateCategory
+  id: CentcomStandard
+  name: copy-machine-component-CentcomStandard
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Nanotrasen
+  order: 10
+
+- type: docTemplateCategory
+  id: CentcomStrict
+  name: copy-machine-component-CentcomStrict
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Nanotrasen
+  order: 20
+
+- type: docTemplateCategory
+  id: Command
+  name: copy-machine-component-Command
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Captain
+  order: 30
+
+- type: docTemplateCategory
+  id: Engineering
+  name: copy-machine-component-Engineering
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: StationEngineer
+  order: 40
+
+- type: docTemplateCategory
+  id: Justice
+  name: copy-machine-component-Justice
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Lawyer
+  order: 50
+
+- type: docTemplateCategory
+  id: Medical
+  name: copy-machine-component-Medical
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: MedicalDoctor
+  order: 60
+
+- type: docTemplateCategory
+  id: Science
+  name: copy-machine-component-Science
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Scientist
+  order: 70
+
+- type: docTemplateCategory
+  id: Security
+  name: copy-machine-component-Security
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: SecurityOfficer
+  order: 80
+
+- type: docTemplateCategory
+  id: Service
+  name: copy-machine-component-Service
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: ServiceWorker
+  order: 90
+
+- type: docTemplateCategory
+  id: Supply
+  name: copy-machine-component-Supply
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: CargoTechnician
+  order: 100
+
+- type: docTemplateCategory
+  id: Syndicate
+  name: copy-machine-component-Syndicate
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Syndicate
+  order: 110
+
+- type: docTemplateCategory
+  id: General
+  name: copy-machine-component-General
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Passenger
+  order: 120
+
+- type: docTemplateCategory
+  id: Prison
+  name: copy-machine-component-Prison
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Prisoner
+  order: 130
+
+- type: docTemplateCategoryGroup
+  id: CopyMachineDefaultCategories
+  categories:
+  - CentcomStandard
+  - Command
+  - Engineering
+  - Justice
+  - Medical
+  - Science
+  - Security
+  - Service
+  - Supply
+  - Syndicate
+  - General
+  - Prison
+
+- type: docTemplateCategoryGroup
+  id: CopyMachineCentcomCategories
+  categories:
+  - CentcomStandard
+  - CentcomStrict

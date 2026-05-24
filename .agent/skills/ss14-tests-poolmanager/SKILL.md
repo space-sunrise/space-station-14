@@ -1,110 +1,110 @@
 ---
 name: SS14 Tests PoolManager
-description: Глубокий гайд по инфраструктуре интеграционных тестов SS14: PoolManager, жизненный цикл TestPair, синхронизация server/client, эмуляция действий и подводные камни.
+description: An in-depth guide to the SS14 integration test framework: PoolManager, TestPair lifecycle, server/client synchronization, action emulation and pitfalls.
 ---
 
-# Инфраструктура интеграционных тестов SS14
+# SS14 Integration Test Framework
 
-## Когда использовать
+## When to use
 
-Используй этот skill, когда нужно:
-- понять, как реально работает `PoolManager` и переиспользование пар server/client;
-- безопасно настраивать `PoolSettings` и `PairSettings`;
-- корректно синхронизировать тики сервера и клиента;
-- эмулировать действия игрока (ввод, UI, BUI, интеракции);
-- разобрать типичные проблемы пула и flaky-поведение.
+Use this skill when needed:
+- understand how `PoolManager` and reusing server/client pairs actually work;
+- it is safe to configure `PoolSettings` and `PairSettings`;
+- correctly synchronize server and client ticks;
+- emulate player actions (input, UI, BUI, interactions);
+- analyze typical pool problems and flaky behavior.
 
-Если задача именно про проектирование и написание нового теста как продукта, используй отдельный skill `ss14-tests-authoring`. Здесь фокус только на инфраструктуре и механике выполнения.
+If the task is specifically about designing and writing a new test as a product, use a separate skill `ss14-tests-authoring`. Here the focus is only on the infrastructure and execution mechanics.
 
-Фильтр качества перед переносом паттерна в работу:
-- не использовать примеры старше 2 лет;
-- не использовать фрагменты, где есть TODO/проблемные комментарии по теме тестов;
-- если сомневаешься, выбирай более свежий и более низкоуровневый пример из движка.
+Quality filter before transferring the pattern to work:
+- do not use examples older than 2 years;
+- do not use fragments that contain TODO/problematic comments on the test topic;
+- if in doubt, choose a more recent and lower-level example from the engine.
 
-## Модель пула: что важно помнить 🙂
+## Pool model: what is important to remember :)
 
-`PairSettings` задает политику жизни пары:
-- `Destructive`: тест может «сломать» пару.
-- `Fresh`: требовать новую пару.
-- `Connected`: нужна ли активная сессия client↔server.
-- `NoLoadTestPrototypes`: не загружать тестовые прототипы (дорого и не переиспользуемо).
-- `Dirty`: запрещает fast-recycle.
+`PairSettings` sets the couple’s life policy:
+- `Destructive`: the test can “break” the pair.
+- `Fresh`: require a new pair.
+- `Connected`: whether an active client↔server session is needed.
+- `NoLoadTestPrototypes`: Don't load test prototypes (expensive and not reusable).
+- `Dirty`: disables fast-recycle.
 
-Критичные вычисляемые свойства:
+Critical calculated properties:
 
 ```csharp
 public virtual bool MustNotBeReused => Destructive || NoLoadTestPrototypes;
 public virtual bool MustBeNew => Fresh || NoLoadTestPrototypes;
 ```
 
-Следствие:
-- `MustBeNew == true` => пул создает новую пару;
-- `MustNotBeReused == true` => пара после теста не возвращается в reuse.
+Consequence:
+- `MustBeNew == true` => the pool creates a new pair;
+- `MustNotBeReused == true` => the pair after the test is not returned to reuse.
 
-## Как `PoolManager` выбирает и готовит пару
+## How `PoolManager` selects and prepares a pair
 
-Алгоритм по сути такой:
-1. Если `MustBeNew`, создается новая пара.
-2. Иначе берется подходящая из пула.
-3. Если `CanFastRecycle(...) == true`, применяется только `ApplySettings(...)`.
-4. Иначе выполняется полный `RecycleInternal(...)`.
-5. После выдачи пары прогоняются стабилизационные тики и синхронизация дельты тиков.
+The algorithm is essentially this:
+1. If `MustBeNew`, a new pair is created.
+2. Otherwise, a suitable one is taken from the pool.
+3. If `CanFastRecycle(...) == true`, only `ApplySettings(...)` applies.
+4. Otherwise, the full `RecycleInternal(...)` is executed.
+5. After the pair is issued, stabilization ticks and tick delta synchronization are run.
 
-Практический вывод:
-- даже после «быстрого» возврата нельзя предполагать моментальную стабильность;
-- после критичных операций всегда уместны `RunTicksSync(...)` и `SyncTicks(...)`.
+Practical conclusion:
+- even after a “quick” return, immediate stability cannot be assumed;
+- after critical operations, `RunTicksSync(...)` and `SyncTicks(...)` are always appropriate.
 
-## Lifecycle пары и возврат в пул ⚠️
+## Lifecycle couples and return to the pool ⚠️
 
-Правильный путь:
-1. Взять пару.
-2. Выполнить сценарий.
-3. Вызвать `CleanReturnAsync()`.
+Correct way:
+1. Take a pair.
+2. Execute the script.
+3. Call `CleanReturnAsync()`.
 
-Что делает `CleanReturnAsync()`:
-- `Cleanup()` пары;
-- очистка/возврат измененных CVars;
-- проверка, что client/server живы (если тест не destructive);
-- проверка runtime exceptions;
-- перевод пары в `Ready` или полное уничтожение, если reuse запрещен.
+What `CleanReturnAsync()` does:
+- `Cleanup()` pairs;
+- clearing/returning changed CVars;
+- checking that client/server are alive (if the test is not destructive);
+- check runtime exceptions;
+- transfer the pair to `Ready` or complete destruction if reuse is prohibited.
 
-Если не вызвать `CleanReturnAsync()`, сработает dirty-dispose через `DisposeAsync()`:
-- пара уничтожается;
-- появляется warning;
-- деградирует производительность и стабильность тест-рана.
+If you don't call `CleanReturnAsync()`, dirty-dispose will work via `DisposeAsync()`:
+- the pair is destroyed;
+- a warning appears;
+- the performance and stability of the test run degrades.
 
-## Сервер/клиент: правильный контракт выполнения
+## Server/client: correct execution contract
 
-У `IIntegrationInstance` есть строгая дисциплина:
-- `WaitPost(...)` / `Post(...)`: только мутации.
-- `WaitAssertion(...)` / `Assert(...)`: проверки и `Assert.That(...)`.
-- `WaitIdleAsync()`: гарантирует, что очередь обработана.
+`IIntegrationInstance` has strict discipline:
+- `WaitPost(...)` / `Post(...)`: mutations only.
+- `WaitAssertion(...)` / `Assert(...)`: checks and `Assert.That(...)`.
+- `WaitIdleAsync()`: ensures that the queue is processed.
 
-Нельзя смешивать обязанности:
-- ассерты внутри `Post(...)` дают шумные и плохо читаемые падения;
-- мутации в `WaitAssertion(...)` ломают причинно-следственную модель теста.
+Responsibilities cannot be mixed:
+- assertions inside `Post(...)` give noisy and hard to read crashes;
+- mutations in `WaitAssertion(...)` break the cause-and-effect model of the test.
 
-## Специфика `PoolSettings` в контенте
+## Specificity of `PoolSettings` in content
 
-Варианты настройки в контентных интеграционных тестах:
-- `InLobby = true` автоматически требует connected-состояние.
-- `DummyTicker` используется для более легкого режима без полного round-flow.
-- `Dirty = true` нужен, если тест меняет состояние раунда, готовность, лобби-фазы и т.п.
-- `AdminLogsEnabled` включай только когда тест реально проверяет админ-логи.
+Setting options in content integration tests:
+- `InLobby = true` automatically requires connected state.
+- `DummyTicker` is used for an easier mode without full round-flow.
+- `Dirty = true` is needed if the test changes the state of the round, readiness, lobby phases, etc.
+- `AdminLogsEnabled` enable only when the test actually checks the admin logs.
 
-`CanFastRecycle` в контенте дополнительно учитывает:
+`CanFastRecycle` in the content additionally takes into account:
 - `DummyTicker`,
 - `Map`,
 - `InLobby`.
 
-## Эмуляция действий игрока
+## Emulate player actions
 
-### 1) Ввод (keybind)
+### 1) Enter (keybind)
 
-В рабочем коде это делается через `ClientFullInputCmdMessage` и `InputSystem.HandleInputCommand(...)`.
+In production code this is done through `ClientFullInputCmdMessage` and `InputSystem.HandleInputCommand(...)`.
 
 ```csharp
-// Эмуляция нажатия keybind в клиентском инстансе.
+// Emulation of pressing keybind in a client instance.
 var funcId = inputManager.NetworkBindMap.KeyFunctionID(ContentKeyFunctions.TryPullObject);
 var msg = new ClientFullInputCmdMessage(client.Timing.CurTick, client.Timing.TickFraction, funcId)
 {
@@ -119,52 +119,52 @@ await client.WaitPost(() =>
 });
 ```
 
-### 2) Клик по UI-контролу
+### 2) Click on the UI control
 
-Стандартно отправляют `Down` + `Up` через `GUIBoundKeyEventArgs` и `DoGuiEvent(...)`:
+The standard way is to send `Down` + `Up` via `GUIBoundKeyEventArgs` and `DoGuiEvent(...)`:
 
 ```csharp
-// Нажали кнопку.
+// Pressed the button.
 await client.DoGuiEvent(control, downArgs);
 await pair.RunTicksSync(1);
 
-// Отпустили кнопку.
+// Released the button.
 await client.DoGuiEvent(control, upArgs);
 await pair.RunTicksSync(1);
 ```
 
-### 3) BUI-сообщение
+### 3) BUI message
 
-После `SendMessage(...)` обычно дают дополнительные тики на round-trip client↔server:
+After `SendMessage(...)` they usually give additional ticks for round-trip client↔server:
 
 ```csharp
 await client.WaitPost(() => bui.SendMessage(msg));
-await pair.RunTicksSync(15); // запас на обработку обеими сторонами
+await pair.RunTicksSync(15); // handling reserve on both sides
 ```
 
-### 4) Серверная интеракция напрямую
+### 4) Server interaction directly
 
-Для низкоуровневых interaction-сценариев используется `UserInteraction(...)` внутри `WaitPost(...)`, а потом ожидание последствий (do-after, смена target, синхронизация).
+For low-level interaction scenarios, use `UserInteraction(...)` inside `WaitPost(...)`, and then wait for the consequences (do-after, target change, synchronization).
 
-## Паттерны
+## Patterns
 
-- `await using var pair = await PoolManager.GetServerClient(settings);` + явный `await pair.CleanReturnAsync();`
-- После критичных шагов: `RunTicksSync(...)` и при сравнении server/client еще `SyncTicks(targetDelta: ...)`.
-- Разделение: `WaitPost` для действий, `WaitAssertion` для проверок.
-- Для спецкейсов глобального состояния (например, регистрация tile defs): `Pool = false`.
-- Для нестандартных прототипов: `ExtraPrototypes` или `[TestPrototypes]` вместо внешних mutable-зависимостей.
+- `await using var pair = await PoolManager.GetServerClient(settings);` + explicit `await pair.CleanReturnAsync();`
+- After critical steps: `RunTicksSync(...)` and when comparing server/client also `SyncTicks(targetDelta: ...)`.
+- Separation: `WaitPost` for actions, `WaitAssertion` for checks.
+- For special cases of global state (for example, registration of tile defs): `Pool = false`.
+- For non-standard prototypes: `ExtraPrototypes` or `[TestPrototypes]` instead of external mutable dependencies.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Полагаться на `DisposeAsync()` и не делать `CleanReturnAsync()` 😬
-- Смешивать мутацию и проверки в одном callback без дисциплины.
-- Проверять server/client без выравнивания тиков и затем ловить «случайный» флак.
-- Ставить `Dirty = true` «на всякий случай» в каждом тесте.
-- Использовать `NoLoadTestPrototypes` без реальной необходимости (дорогой путь, нет переиспользования).
+- Rely on `DisposeAsync()` and don't do `CleanReturnAsync()` 😬
+- Mix mutation and checks in one callback without discipline.
+- Check server/client without tick alignment and then catch the “random” flack.
+- Set `Dirty = true` “just in case” in every test.
+- Use `NoLoadTestPrototypes` without real need (expensive way, no reuse).
 
-## Примеры из актуального кода
+## Examples from actual code
 
-### Пример A: базовый borrow/return через пул
+### Example A: basic borrow/return via pool
 
 ```csharp
 [Test]
@@ -178,7 +178,7 @@ public async Task RoundScenario_Works()
         InLobby = true,
     });
 
-    // Стабилизируем начальное состояние пары.
+    // Let us stabilize the initial state of the pair.
     await pair.RunTicksSync(5);
     await pair.SyncTicks(targetDelta: 1);
 
@@ -188,35 +188,35 @@ public async Task RoundScenario_Works()
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
     });
 
-    // Явный clean-return обязателен для здоровья пула.
+    // An explicit clean-return is mandatory for the health of the pool.
     await pair.CleanReturnAsync();
 }
 ```
 
-### Пример B: корректное разделение Post и Assertion
+### Example B: Correct separation of Post and Assertion
 
 ```csharp
 EntityUid entity = default;
 
 await server.WaitPost(() =>
 {
-    // Только действие: создаем сущность.
+    // Action only: create an entity.
     entity = server.EntMan.SpawnEntity("MobHuman", spawnCoords);
 });
 
 await server.WaitAssertion(() =>
 {
-    // Только проверка: убеждаемся, что сущность существует.
+    // Just checking: making sure that the entity exists.
     Assert.That(server.EntMan.EntityExists(entity), Is.True);
 });
 ```
 
-### Пример C: ручной server/client старт для спецкейса
+### Example C: manual server/client start for a special case
 
 ```csharp
 var serverOpts = new ServerIntegrationOptions
 {
-    Pool = false,              // изоляция, без reuse
+    Pool = false,              // insulation, no reuse
     ExtraPrototypes = Prototypes,
 };
 var clientOpts = new ClientIntegrationOptions
@@ -233,9 +233,9 @@ Assert.DoesNotThrow(() => client.SetConnectTarget(server));
 await client.WaitPost(() => client.ResolveDependency<IClientNetManager>().ClientConnect(null!, 0, null!));
 ```
 
-## Практические примечания из документации
+## Practical notes from the documentation
 
-- Для ускорения тест-рана полезен `COMPlus_gcServer=1` (особенно заметно на integration tests).
-- В integration-тестах user data хранится в in-memory FS и не персистится между запусками.
+- To speed up the test run, `COMPlus_gcServer=1` is useful (especially noticeable in integration tests).
+- In integration tests, user data is stored in in-memory FS and does not persist between runs.
 
-Используй это как operational guidance, но проверяй названия CVar и поведение по текущему коду.
+Use this as operational guidance, but check the CVar names and behavior against the current code.
