@@ -2649,7 +2649,6 @@
   id: MobSpiderBase
   abstract: true
   components:
-  - type: VentCrawler
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2737,6 +2736,7 @@
         Brute: -0.07
         Burn: -0.07
   # Sunrise-start
+  - type: VentCrawler
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSpiderLegs
