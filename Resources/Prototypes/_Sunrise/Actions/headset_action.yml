@@ -5,7 +5,7 @@
   description: action-description-toggle-headset
   components:
   - type: Action
-    icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
+    icon: { sprite: Objects/Devices/encryption_keys.rsi, state: crypt_gray }
     useDelay: 1
   - type: InstantAction
     event: !type:ToggleHeadsetActionEvent

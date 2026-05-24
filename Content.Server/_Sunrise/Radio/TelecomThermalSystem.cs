@@ -3,10 +3,9 @@ using Content.Shared.Audio;
 using Content.Shared.Power;
 using Content.Shared.Radio.Components;
 using Content.Shared.Temperature.Components;
-using Robust.Server.GameObjects;
+using Content.Shared._Sunrise.Radio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 using System.Text;
 
 namespace Content.Server._Sunrise.Radio;
@@ -31,33 +30,26 @@ public sealed class TelecomThermalSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<TelecomServerComponent, TemperatureComponent>();
+        var query = EntityQueryEnumerator<TelecomThermalComponent, TemperatureComponent>();
         while (query.MoveNext(out var uid, out var server, out var temp))
         {
-            // 1. Decay load over time
             if (server.CurrentLoad > 0)
             {
                 server.CurrentLoad = Math.Max(0, server.CurrentLoad - server.LoadDecayRate * frameTime);
             }
 
-            // 2. Heat exchange with environment
             if (server.CurrentLoad > 0)
             {
-                // Scaled heat accumulation
-                _tempSystem.ChangeHeat(uid, server.HeatPerMessage * (server.CurrentLoad / 10f) * frameTime, true, temp);
+                _tempSystem.ChangeHeat(uid, server.HeatPerMessage * (server.CurrentLoad / server.LoadDivisor) * frameTime, true, temp);
             }
 
-            // Exchange heat with atmos (handled automatically by AtmosphereSystem)
-
-            // 3. Dynamic ambient sound scaling
             if (_ambientQuery.TryGetComponent(uid, out var ambient))
             {
-                var ratio = Math.Clamp((temp.CurrentTemperature - 300f) / (server.MaxTemperature - 300f), 0f, 1.2f);
-                _ambient.SetVolume(uid, -9f + (ratio * 12f), ambient);
-                _ambient.SetRange(uid, 5f + (ratio * 15f), ambient);
+                var ratio = Math.Clamp((temp.CurrentTemperature - server.BaseAmbientTemperature) / (server.MaxTemperature - server.BaseAmbientTemperature), 0f, server.MaxAmbientRatio);
+                _ambient.SetVolume(uid, server.BaseAmbientVolume + (ratio * server.AmbientVolumeMultiplier), ambient);
+                _ambient.SetRange(uid, server.BaseAmbientRange + (ratio * server.AmbientRangeMultiplier), ambient);
             }
 
-            // 4. Handle Overheating State & Alarms
             if (temp.CurrentTemperature >= server.MaxTemperature)
             {
                 if (!server.Overheated)
@@ -73,44 +65,42 @@ public sealed class TelecomThermalSystem : EntitySystem
                 server.AlarmTimer = 0;
             }
 
-            // Audible alarm during overheat
-            if (server.Overheated && server.OverheatSound != null)
-            {
-                server.AlarmTimer -= frameTime;
-                if (server.AlarmTimer <= 0)
-                {
-                    server.AlarmTimer = server.AlarmInterval;
-                    _audio.PlayPvs(server.OverheatSound, uid);
-                }
-            }
+            if (!server.Overheated || server.OverheatSound == null)
+                continue;
+
+            server.AlarmTimer -= frameTime;
+            if (!(server.AlarmTimer <= 0))
+                continue;
+
+            server.AlarmTimer = server.AlarmInterval;
+            _audio.PlayPvs(server.OverheatSound, uid);
         }
     }
 
-    public void AddLoad(EntityUid uid, TelecomServerComponent component)
+    public void AddLoad(EntityUid uid, TelecomThermalComponent component)
     {
         if (component.Overheated)
             return;
 
-        component.CurrentLoad += 1.0f;
+        component.CurrentLoad += component.LoadIncreasePerMessage;
         _tempSystem.ChangeHeat(uid, component.HeatPerMessage);
     }
 
-    public string AddStatic(string message, float factor)
+    public string AddStatic(TelecomThermalComponent component, string message, float factor)
     {
-        if (factor <= 0.3f) 
+        if (factor <= component.StaticFactorThreshold)
             return message;
 
         var result = new StringBuilder();
-        var chance = (factor - 0.3f) * 0.8f;
+        var chance = (factor - component.StaticFactorThreshold) * component.StaticChanceMultiplier;
         var inTag = false;
 
         var words = message.Split(' ');
         for (var i = 0; i < words.Length; i++)
         {
             var word = words[i];
-            
-            // "Swallow" whole words at high heat/load (TTS-friendly pause)
-            if (_random.Prob(chance * 0.4f))
+
+            if (_random.Prob(chance * component.StaticChanceWordFactor))
             {
                 result.Append("...");
             }
@@ -118,18 +108,19 @@ public sealed class TelecomThermalSystem : EntitySystem
             {
                 foreach (var c in word)
                 {
-                    if (c == '[') inTag = true;
+                    if (c == '[')
+                        inTag = true;
 
                     if (!inTag && _random.Prob(chance))
                     {
-                        // 40% chance to replace with dot (pause), 60% chance to drop
-                        if (_random.Prob(0.4f))
+                        if (_random.Prob(component.StaticChancePeriodFactor))
                             result.Append('.');
                     }
                     else
                         result.Append(c);
 
-                    if (c == ']') inTag = false;
+                    if (c == ']')
+                        inTag = false;
                 }
             }
 

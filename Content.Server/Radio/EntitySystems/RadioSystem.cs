@@ -25,6 +25,7 @@ using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Server.Temperature.Systems;
 using Content.Server._Sunrise.Radio;
+using Content.Shared._Sunrise.Radio;
 using Content.Shared.Audio;
 using Content.Shared.Temperature.Components;
 using Robust.Server.GameObjects;
@@ -141,21 +142,14 @@ public sealed class RadioSystem : EntitySystem
         else
             speech = _chat.GetSpeechVerb(messageSource, message);
 
-        var content = escapeMarkup
-            ? FormattedMessage.EscapeText(message)
-            : message;
+        var radioMessage = message;
 
         // Sunrise-Start
-        if (GetIdCardIsBold(messageSource))
-        {
-            content = $"[bold]{content}[/bold]";
-        }
-
         var sourceMapId = Transform(radioSource).MapID;
         var hasActiveServer = HasActiveServer(sourceMapId, channel.ID, out var serverUid);
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
-        if (!channel.LongRange && !sourceServerExempt && serverUid != null && TryComp<TelecomServerComponent>(serverUid, out var server))
+        if (!channel.LongRange && !sourceServerExempt && serverUid != null && TryComp<TelecomThermalComponent>(serverUid, out var server))
         {
             _thermalSystem.AddLoad(serverUid.Value, server);
 
@@ -163,14 +157,25 @@ public sealed class RadioSystem : EntitySystem
             var tempFactor = 0f;
             if (TryComp<TemperatureComponent>(serverUid, out var temp))
             {
-                tempFactor = Math.Clamp((temp.CurrentTemperature - 310f) / (server.MaxTemperature - 310f), 0, 1);
+                tempFactor = Math.Clamp((temp.CurrentTemperature - server.StaticBaseTemperature) / (server.MaxTemperature - server.StaticBaseTemperature), 0, 1);
             }
 
-            content = _thermalSystem.AddStatic(content, Math.Max(loadFactor, tempFactor));
+            radioMessage = _thermalSystem.AddStatic(server, radioMessage, Math.Max(loadFactor, tempFactor));
         }
 
         if (!channel.LongRange && !hasActiveServer && !sourceServerExempt)
             return;
+        // Sunrise-End
+
+        var content = escapeMarkup
+            ? FormattedMessage.EscapeText(radioMessage)
+            : radioMessage;
+
+        // Sunrise-Start
+        if (GetIdCardIsBold(messageSource))
+        {
+            content = $"[bold]{content}[/bold]";
+        }
         // Sunrise-End
 
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
@@ -185,12 +190,12 @@ public sealed class RadioSystem : EntitySystem
         // most radios are relayed to chat, so lets parse the chat message beforehand
         var chat = new ChatMessage(
             ChatChannel.Radio,
-            message,
+            radioMessage,
             wrappedMessage,
             NetEntity.Invalid,
             null);
         var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, []);
+        var ev = new RadioReceiveEvent(radioMessage, messageSource, channel, radioSource, chatMsg, []);
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
@@ -228,7 +233,7 @@ public sealed class RadioSystem : EntitySystem
             RaiseLocalEvent(receiver, ref ev);
         }
 
-        RaiseLocalEvent(new RadioSpokeEvent(messageSource, FormattedMessage.RemoveMarkupPermissive(message), ev.Receivers.ToArray(), channel.ID)); // Sunrise-Edit
+        RaiseLocalEvent(new RadioSpokeEvent(messageSource, FormattedMessage.RemoveMarkupPermissive(radioMessage), ev.Receivers.ToArray(), channel.ID)); // Sunrise-Edit
 
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
@@ -316,7 +321,7 @@ public sealed class RadioSystem : EntitySystem
     // Sunrise-End
     // Sunrise-End
 
-    /// <inheritdoc cref="TelecomServerComponent"/>
+    /// <inheritdoc cref="TelecomThermalComponent"/>
     private bool HasActiveServer(MapId mapId, string channelId)
     {
         return HasActiveServer(mapId, channelId, out _);
@@ -325,8 +330,7 @@ public sealed class RadioSystem : EntitySystem
     // Sunrise-Start
     private bool HasActiveServer(MapId mapId, string channelId, out EntityUid? serverUid)
     {
-        serverUid = null;
-        var servers = EntityQueryEnumerator<TelecomServerComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();
+        var servers = EntityQueryEnumerator<TelecomThermalComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();
         EntityUid? overheatedServer = null;
 
         while (servers.MoveNext(out var uid, out var server, out var keys, out var power, out var transform))

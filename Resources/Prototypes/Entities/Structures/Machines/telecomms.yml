@@ -201,6 +201,7 @@
     keySlots: 10
   - type: TelecomServer
   # Sunrise-Start
+  - type: TelecomThermal
     heatPerMessage: 5000
     maxTemperature: 390
     hysteresisTemperature: 360

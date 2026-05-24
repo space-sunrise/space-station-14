@@ -1,20 +1,15 @@
-using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared._Sunrise.Radio;
 
 namespace Content.Client._Sunrise.Radio.Ui;
 
-public sealed class HeadsetBoundUserInterface : BoundUserInterface
+public sealed class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IEntityManager _ent = default!;
 
     private HeadsetSettingsWindow? _window;
-
-    public HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
@@ -43,7 +38,9 @@ public sealed class HeadsetBoundUserInterface : BoundUserInterface
         if (!_ent.TryGetComponent<HeadsetComponent>(Owner, out var component))
             return;
 
-        _ent.TryGetComponent<EncryptionKeyHolderComponent>(Owner, out var keys);
+        if (!_ent.TryGetComponent<EncryptionKeyHolderComponent>(Owner, out var keys))
+            return;
+
         _window.UpdateState(component, keys, _proto);
     }
 
@@ -53,6 +50,6 @@ public sealed class HeadsetBoundUserInterface : BoundUserInterface
         if (!disposing)
             return;
 
-        _window?.Dispose();
+        _window?.Close();
     }
 }

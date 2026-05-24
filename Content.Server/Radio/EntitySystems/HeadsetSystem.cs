@@ -15,7 +15,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Radio.EntitySystems;
 
-public sealed class HeadsetSystem : SharedHeadsetSystem
+public sealed partial class HeadsetSystem : SharedHeadsetSystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
@@ -34,29 +34,6 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         // Sunrise-End
         SubscribeLocalEvent<WearingHeadsetComponent, EntitySpokeEvent>(OnSpeak);
     }
-
-    // Sunrise-Start
-    private void OnToggleAction(Entity<HeadsetComponent> ent, ref ToggleHeadsetActionEvent args)
-    {
-        if (args.Handled || !ent.Comp.Enabled)
-            return;
-
-        if (TryComp<ActorComponent>(args.Performer, out var actor))
-        {
-            _ui.TryToggleUi(ent.Owner, HeadsetUiKey.Key, actor.PlayerSession);
-            args.Handled = true;
-        }
-    }
-
-    private void OnActivate(Entity<HeadsetComponent> ent, ref ActivateInWorldEvent args)
-    {
-        if (TryComp<ActorComponent>(args.User, out var actor))
-        {
-            _ui.OpenUi(ent.Owner, HeadsetUiKey.Key, actor.PlayerSession);
-            args.Handled = true;
-        }
-    }
-    // Sunrise-End
 
     private void OnKeysChanged(Entity<HeadsetComponent> ent, ref EncryptionChannelsChangedEvent args)
     {

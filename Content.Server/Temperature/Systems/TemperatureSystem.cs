@@ -78,7 +78,7 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
     /// <summary>
     /// Same as ChangeHeat but returns the actual amount of heat applied after modifiers.
     /// </summary>
-    public bool ChangeHeatWithReturn(EntityUid uid, float heatAmount, out float actualHeat, bool ignoreHeatResistance = false, TemperatureComponent? temperature = null)
+    private bool ChangeHeatWithReturn(EntityUid uid, float heatAmount, out float actualHeat, bool ignoreHeatResistance = false, TemperatureComponent? temperature = null)
     {
         actualHeat = heatAmount;
         if (!TemperatureQuery.Resolve(uid, ref temperature, false))

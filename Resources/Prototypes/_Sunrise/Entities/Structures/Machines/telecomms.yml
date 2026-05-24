@@ -35,7 +35,7 @@
   id: TelecomServerT2
   name: advanced telecommunication server
   components:
-  - type: TelecomServer
+  - type: TelecomThermal
     maxBandwidth: 100
     loadDecayRate: 1
     heatPerMessage: 7500
@@ -47,7 +47,7 @@
   id: TelecomServerT3
   name: experimental telecommunication server
   components:
-  - type: TelecomServer
+  - type: TelecomThermal
     maxBandwidth: 150
     loadDecayRate: 1
     heatPerMessage: 10000

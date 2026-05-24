@@ -10,29 +10,17 @@ public enum HeadsetUiKey : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class HeadsetToggleChannelMessage : BoundUserInterfaceMessage
+public sealed class HeadsetToggleChannelMessage(string channelId, bool enabled) : BoundUserInterfaceMessage
 {
-    public string ChannelId { get; }
-    public bool Enabled { get; }
-
-    public HeadsetToggleChannelMessage(string channelId, bool enabled)
-    {
-        ChannelId = channelId;
-        Enabled = enabled;
-    }
+    public string ChannelId { get; } = channelId;
+    public bool Enabled { get; } = enabled;
 }
 
 [Serializable, NetSerializable]
-public sealed class HeadsetChangeVolumeMessage : BoundUserInterfaceMessage
+public sealed class HeadsetChangeVolumeMessage(string channelId, float volume) : BoundUserInterfaceMessage
 {
-    public string ChannelId { get; }
-    public float Volume { get; }
-
-    public HeadsetChangeVolumeMessage(string channelId, float volume)
-    {
-        ChannelId = channelId;
-        Volume = volume;
-    }
+    public string ChannelId { get; } = channelId;
+    public float Volume { get; } = volume;
 }
 
 [DataDefinition]
