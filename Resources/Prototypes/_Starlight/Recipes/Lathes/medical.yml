@@ -8,7 +8,7 @@
   completetime: 6
   materials:
     Plastic: 200
-    Steel: 600
+    Steel: 200
 
 - type: latheRecipe
   id: LeftHandCyber
@@ -18,7 +18,7 @@
   completetime: 3
   materials:
     Plastic: 100
-    Steel: 200
+    Steel: 100
 
 - type: latheRecipe
   id: LeftLegCyber
@@ -28,7 +28,7 @@
   completetime: 6
   materials:
     Plastic: 200
-    Steel: 600
+    Steel: 200
 
 - type: latheRecipe
   id: LeftFootCyber
@@ -38,93 +38,93 @@
   completetime: 3
   materials:
     Plastic: 100
-    Steel: 200
+    Steel: 100
 #
 - type: latheRecipe
   id: ImplantCaseReaper
   result: ImplantCaseReaper
   categories:
   - Cyberlimbs
-  completetime: 25
+  completetime: 15
   materials:
     Plastic: 450
-    Steel: 1100
-    Silver: 800
-    Glass: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
 #
 - type: latheRecipe
   id: ImplantCaseRobust
   result: ImplantCaseRobust
   categories:
   - Cyberlimbs
-  completetime: 20
+  completetime: 15
   materials:
-    Plastic: 500
-    Steel: 1100
-    Silver: 800
-    Glass: 150
+    Plastic: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
 #
 - type: latheRecipe
   id: ImplantCaseJani
   result: ImplantCaseJani
   categories:
   - Cyberlimbs
-  completetime: 20
+  completetime: 15
   materials:
-    Plastic: 500
-    Steel: 1100
-    Silver: 800
-    Glass: 150
+    Plastic: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
 #
 - type: latheRecipe
   id: ImplantCaseMechwright
   result: ImplantCaseMechwright
   categories:
   - Cyberlimbs
-  completetime: 25
+  completetime: 15
   materials:
     Plastic: 450
-    Steel: 1100
-    Silver: 800
-    Glass: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
 #
 - type: latheRecipe
   id: ImplantCaseAtmos
   result: ImplantCaseAtmos
   categories:
   - Cyberlimbs
-  completetime: 25
+  completetime: 15
   materials:
     Plastic: 450
-    Steel: 1100
-    Silver: 800
-    Glass: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
 #
 - type: latheRecipe
   id: ImplantCaseHack
   result: ImplantCaseHack
   categories:
   - Cyberlimbs
-  completetime: 25
+  completetime: 15
   materials:
-    Steel: 1100
-    Plastic: 500
-    Glass: 250
-    Plasma: 800
-    Silver: 800
+    Plastic: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
+    Plasma: 300
 #
 - type: latheRecipe
   id: ImplantCaseGorilla
   result: ImplantCaseGorilla
   categories:
   - Cyberlimbs
-  completetime: 25
+  completetime: 15
   materials:
-    Steel: 1500
+    Plasma: 250
     Plastic: 450
-    Glass: 450
-    Plasma: 500
-    Silver: 800
+    Steel: 550
+    Silver: 100
+    Glass: 100
 #
 # IMPLANTS
 
@@ -137,10 +137,10 @@
   - Implants
   completetime: 6
   materials:
-    Steel: 330
-    Glass: 120
-    Plastic: 25
-    Plasma: 25
+    Plastic: 100
+    Steel: 100
+    Plasma: 250
+    Glass: 100
 
 - type: latheRecipe
   id: ImplantCaseImplantMedical
@@ -149,11 +149,9 @@
   - Implants
   completetime: 8
   materials:
-    Steel: 330
-    Glass: 320
-    Gold: 200
-    Silver: 200
-    Plasma: 50
+    Steel: 200
+    Plasma: 300
+    Glass: 100
 
 - type: latheRecipe
   id: ImplantCaseImplantChemical
@@ -162,11 +160,9 @@
   - Implants
   completetime: 8
   materials:
-    Steel: 330
-    Glass: 320
-    Plasma: 100
-    Gold: 25
-    Silver: 25
+    Steel: 200
+    Plasma: 300
+    Glass: 100
 
 - type: latheRecipe
   id: ImplantCaseImplantSecurity
@@ -175,11 +171,9 @@
   - Implants
   completetime: 8
   materials:
-    Steel: 330
-    Glass: 320
-    Plasma: 50
-    Gold: 325
-    Silver: 325
+    Steel: 200
+    Plasma: 300
+    Glass: 150
 
 - type: latheRecipe
   id: ImplantCaseNightVision
@@ -188,11 +182,10 @@
   - Implants
   completetime: 15
   materials:
-    Steel: 330
-    Glass: 320
-    Plasma: 300
-    Gold: 150
-    Silver: 150
+    Plastic: 100
+    Steel: 100
+    Gold: 100
+    Glass: 100
 
 - type: latheRecipe
   id: ImplantCaseThermal
@@ -201,14 +194,11 @@
   - Implants
   completetime: 60
   materials:
-    Steel: 330
-    Glass: 320
-    Plastic: 300
+    Plastic: 200
+    Steel: 100
     Gold: 300
-    Silver: 300
-    Plasma: 400
-    Uranium: 400
-    Diamond: 400
+    Plasma: 300
+    Glass: 100
 
 # Automenders
 

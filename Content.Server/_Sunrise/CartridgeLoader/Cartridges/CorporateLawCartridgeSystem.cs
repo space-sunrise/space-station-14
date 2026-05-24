@@ -26,10 +26,12 @@ public sealed class CorporateLawCartridgeSystem : EntitySystem
     {
         var lawsetComp = _stationLaw.GetStationLawset(args.Loader);
         if (lawsetComp == null)
+        {
+            _cartridgeLoader.UpdateCartridgeUiState(args.Loader, new CorporateLawUiState(new List<LawSection>(), connected: false));
             return;
+        }
 
         var lawset = lawsetComp.Value.Comp;
-
         var sections = new List<LawSection>();
 
         // 1. General Provisions

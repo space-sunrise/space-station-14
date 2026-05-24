@@ -7,10 +7,12 @@ namespace Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 public sealed class CorporateLawUiState : BoundUserInterfaceState
 {
     public readonly List<LawSection> Sections;
+    public readonly bool Connected;
 
-    public CorporateLawUiState(List<LawSection> sections)
+    public CorporateLawUiState(List<LawSection> sections, bool connected = true)
     {
         Sections = sections;
+        Connected = connected;
     }
 }
 

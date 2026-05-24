@@ -246,6 +246,7 @@
   factions:
     - Carps
     - Xenos
+    - Silicons
   # Sunrise-End
 
 - type: salvageDungeonMod
@@ -262,9 +263,9 @@
   factions:
     - Carps
     - Xenos
-    - PiratesT1
     - PiratesT2
     - PiratesT3
+    - Silicons
   # Sunrise-End
 
 - type: salvageDungeonMod
@@ -280,7 +281,7 @@
     - Challenging
   factions:
     - Carps
-    - PiratesT1
+    - Silicons
     - PiratesT2
     - PiratesT3
   # Sunrise-End
@@ -299,6 +300,7 @@
   factions:
     - Carps
     - Xenos
+    - Silicons
   # Sunrise-End
 
 - type: salvageDungeonMod
@@ -315,5 +317,6 @@
   factions:
     - Carps
     - Xenos
-    - PiratesT1
+    - PiratesT3
+    - Silicons
   # Sunrise-End

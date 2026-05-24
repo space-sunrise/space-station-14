@@ -17,6 +17,8 @@ public sealed class PrisonerManagementConsoleBoundUserInterface : BoundUserInter
         base.Open();
         _window = this.CreateWindow<PrisonerManagementConsoleWindow>();
         _window.OnStartIncarceration += StartIncarceration;
+        _window.OnEscape += Escape;
+        _window.OnParole += Parole;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -34,4 +36,13 @@ public sealed class PrisonerManagementConsoleBoundUserInterface : BoundUserInter
         SendMessage(new PrisonerManagementStartIncarcerationMessage(recordId, caseId, cellIndex));
     }
 
+    public void Escape(uint recordId, uint caseId)
+    {
+        SendMessage(new PrisonerManagementEscapeMessage(recordId, caseId));
+    }
+
+    public void Parole(uint recordId, uint caseId)
+    {
+        SendMessage(new PrisonerManagementParoleMessage(recordId, caseId));
+    }
 }

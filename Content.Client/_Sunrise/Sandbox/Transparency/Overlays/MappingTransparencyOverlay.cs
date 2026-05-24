@@ -48,7 +48,7 @@ public sealed class MappingTransparencyOverlay : Overlay
     protected override void FrameUpdate(FrameEventArgs args)
     {
         RestoreCachedTransparency();
-        RefreshTransparency();
+        ApplyTransparency();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -60,7 +60,7 @@ public sealed class MappingTransparencyOverlay : Overlay
     {
     }
 
-    private void RefreshTransparency()
+    private void ApplyTransparency()
     {
         var currentMapId = _eye.CurrentEye.Position.MapId;
         var worldViewport = _eye.GetWorldViewport();
@@ -103,5 +103,12 @@ public sealed class MappingTransparencyOverlay : Overlay
             return;
 
         _sprite.SetColor(ent.AsNullable(), ent.Comp.Color.WithAlpha(baseAlpha));
+    }
+
+    protected override void DisposeBehavior()
+    {
+        base.DisposeBehavior();
+
+        RestoreCachedTransparency();
     }
 }

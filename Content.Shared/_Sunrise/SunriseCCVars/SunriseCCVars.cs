@@ -128,6 +128,9 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> SponsorProjectName =
         CVarDef.Create("sponsor.project_name", string.Empty, CVar.SERVERONLY);
 
+    public static readonly CVarDef<int> SponsorMinPlaytimeHours =
+        CVarDef.Create("sponsor.min_playtime_hours", 0, CVar.SERVERONLY | CVar.ARCHIVE);
+
     /*
      *  Greetings
      */
@@ -562,7 +565,7 @@ public sealed partial class SunriseCCVars : CVars
     ///     The visual speed of all shuttles when in FTL map.
     /// </summary>
     public static readonly CVarDef<float> FTLSpeed =
-        CVarDef.Create("shuttle.ftl_speed", 300.0f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.ftl_speed", 100.0f, CVar.SERVERONLY);
 
     /**
      * Photo Uploads
@@ -585,4 +588,13 @@ public sealed partial class SunriseCCVars : CVars
     /// </summary>
     public static readonly CVarDef<string> CorporateLawSet =
         CVarDef.Create("sunrise.corporate_law_set", "StandardCorporateLaw", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /*
+     * Tutorial
+     */
+    public static readonly CVarDef<bool> TutorialWindowAutoOpen =
+        CVarDef.Create("tutorial.window_auto_open", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> TutorialMaxActive =
+        CVarDef.Create("tutorial.max_active", 10, CVar.SERVERONLY);
 }

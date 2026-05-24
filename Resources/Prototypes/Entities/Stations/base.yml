@@ -84,7 +84,7 @@
           - /Maps/Ruins/hydro_outpost.yml
           - /Maps/Ruins/old_ai_sat.yml
           - /Maps/Ruins/ruined_prison_ship.yml
-          - /Maps/Ruins/syndicate_dropship.yml
+          #- /Maps/Ruins/syndicate_dropship.yml # Sunrise-Edit
           - /Maps/_Sunrise/Ruins/whiteship_ancient.yml # Sunrise-Edit
           - /Maps/Ruins/whiteship_bluespacejumper.yml
           - /Maps/Ruins/wrecklaimer.yml

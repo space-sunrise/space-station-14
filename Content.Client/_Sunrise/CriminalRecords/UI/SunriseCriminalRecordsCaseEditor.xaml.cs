@@ -28,6 +28,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
     public Action<uint, List<ProtoId<CorporateLawPrototype>>, List<ProtoId<CorporateLawPrototype>>, string>? OnSave;
 
     public Action? OnFinalize;
+    public Action? OnReopen;
     public Action? OnBack;
 
     private List<ProtoId<CorporateLawPrototype>> _currentLaws = new();
@@ -38,6 +39,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
     private List<CriminalCase> _allCases = new();
     private uint? _lastCaseId;
     private int _savedSentence;
+    private bool _isWarning;
 
     private float _saveTimer;
     private const float SaveDelay = 1.0f;
@@ -54,6 +56,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
         HorizontalExpand = true;
 
         FinalizeButton.OnPressed += _ => OnFinalize?.Invoke();
+        ReopenButton.OnPressed += _ => OnReopen?.Invoke();
         BackButton.OnPressed += _ => OnBack?.Invoke();
 
         NotesInput.Placeholder = new Rope.Leaf(Loc.GetString("sunrise-records-notes-placeholder"));
@@ -67,6 +70,7 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
     public void Setup(CriminalCase @case, List<CriminalCase> allCases)
     {
         _savedSentence = @case.CalculatedSentence;
+        _isWarning = @case.IsWarning;
         bool isStatusChanged = _lastStatus != @case.Status;
         bool isSameCase = _lastCaseId == @case.Id;
         _lastCaseId = @case.Id;
@@ -83,8 +87,22 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             _dirty = false;
         }
 
+        if (@case.SentenceBreakdown != null && @case.SentenceBreakdown.Count > 0)
+        {
+            var msg = FormatBreakdown(@case.SentenceBreakdown);
+            BreakdownLabel.SetMessage(FormattedMessage.FromMarkupPermissive(msg));
+            BreakdownLabel.Visible = true;
+            BreakdownDivider.Visible = true;
+        }
+        else
+        {
+            BreakdownLabel.Visible = false;
+            BreakdownDivider.Visible = false;
+        }
+
         NotesInput.Editable = !_isReadOnly;
         FinalizeButton.Disabled = _isReadOnly;
+        ReopenButton.Visible = @case.Status == CriminalCaseStatus.Closed || (@case.Status == CriminalCaseStatus.Finished && @case.IsWarning);
 
         if (isSameCase && !isStatusChanged)
         {
@@ -374,9 +392,11 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
     private void UpdateSentenceDisplay()
     {
         int total;
+        bool isWarning;
         if (_isReadOnly)
         {
             total = _savedSentence;
+            isWarning = _isWarning;
         }
         else
         {
@@ -388,16 +408,26 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
                 Circumstances = _currentCircumstances
             };
             total = _recordsSystem.CalculateSentence(tempCase, _allCases);
+            isWarning = tempCase.IsWarning;
         }
 
         _stationLaw.GetEffectiveLawset(ConsoleEntity, out _, out _, out _, out var threshold);
 
-        if (total >= threshold)
-            SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-life");
+        if (isWarning)
+        {
+            SentenceLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("prisoner-management-warning")));
+        }
+        else if (total >= threshold)
+        {
+            SentenceLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("sunrise-records-sentence-life")));
+        }
         else
-            SentenceLabel.Text = Loc.GetString("sunrise-records-sentence-total", ("total", total));
-
-        SentenceLabel.FontColorOverride = total >= threshold ? Color.Red : Color.White;
+        {
+            SentenceLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("sunrise-records-sentence-total", ("total", total))));
+        }
     }
 
     private Color GetSectionColor(string lawId, List<ProtoId<CorporateLawSectionPrototype>> articles)
@@ -419,5 +449,23 @@ public sealed partial class SunriseCriminalRecordsCaseEditor : Control
             return section.Color ?? Color.White;
 
         return Color.White;
+    }
+
+    private string FormatBreakdown(List<SentenceBreakdownEntry> entries)
+    {
+        var lines = new List<string>();
+        foreach (var entry in entries)
+        {
+            if (entry.Args != null)
+            {
+                var args = entry.Args.Select(x => (x.Key, x.Value)).ToArray();
+                lines.Add(Loc.GetString(entry.LocId, args));
+            }
+            else
+            {
+                lines.Add(Loc.GetString(entry.LocId));
+            }
+        }
+        return string.Join("\n", lines);
     }
 }

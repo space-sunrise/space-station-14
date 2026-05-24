@@ -30,7 +30,7 @@
                 <!-- Right Sentencing Column -->
                 <BoxContainer Name="SentenceContainer" Orientation="Vertical" MinWidth="80" VerticalAlignment="Center" MouseFilter="Ignore">
                      <Label Name="SentenceTitleLabel" Text="{Loc 'sunrise-records-sentence-header'}" StyleClasses="LabelSecondaryColor" HorizontalAlignment="Right" MouseFilter="Ignore"/>
-                     <Label Name="SentenceValueLabel" StyleClasses="LabelHeading" HorizontalAlignment="Right" MouseFilter="Ignore"/>
+                     <RichTextLabel Name="SentenceValueLabel" MouseFilter="Ignore" HorizontalAlignment="Right"/>
                 </BoxContainer>
 
                 <Label Text="{Loc 'sunrise-records-case-list-arrow'}" VerticalAlignment="Center" Margin="4 0" StyleClasses="LabelSecondaryColor" MouseFilter="Ignore"/>

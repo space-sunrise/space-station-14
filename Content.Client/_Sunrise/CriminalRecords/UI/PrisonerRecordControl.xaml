@@ -1,4 +1,5 @@
 <Control xmlns="https://spacestation14.io"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
          Margin="0 4">
     <PanelContainer Name="MainPanel" StyleClasses="PrisonerRecordPanel">
         <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="4" HorizontalExpand="True">
@@ -14,9 +15,11 @@
             <!-- Time / Status -->
             <RichTextLabel Name="TimeLabel" HorizontalExpand="True"/>
 
-            <!-- Action: Button (shown when waiting) -->
-            <BoxContainer Name="ButtonContainer" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 4 0 0">
-                <Button Name="ActionButton" StyleClasses="ButtonSquare" MinWidth="130" MinHeight="32"/>
+            <!-- Action: Buttons -->
+            <BoxContainer Name="ButtonContainer" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 4 0 0" SeparationOverride="6" HorizontalExpand="True">
+                <controls:ConfirmButton Name="EscapeButton" Text="{Loc 'prisoner-management-escape'}" StyleClasses="ButtonSquare" HorizontalExpand="True" MinHeight="32" Visible="False"/>
+                <Button Name="ParoleButton" Text="{Loc 'prisoner-management-parole'}" StyleClasses="ButtonSquare" HorizontalExpand="True" MinHeight="32" Visible="False"/>
+                <Button Name="ActionButton" StyleClasses="ButtonSquare" HorizontalExpand="True" MinHeight="32"/>
             </BoxContainer>
         </BoxContainer>
     </PanelContainer>

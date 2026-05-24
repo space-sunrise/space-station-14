@@ -111,7 +111,7 @@
     - state: normal-unshaded
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
-  - type: StationAiWhitelist
+  #- type: StationAiWhitelist No more Fun =()
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -131,7 +131,7 @@
         - MachineMask
         layer:
         - MachineLayer
-        density: 190
+        density: 19000
   - type: Destructible
     thresholds:
     - trigger:
@@ -166,6 +166,7 @@
   - type: Wires
     layoutId: Vending
   - type: Anchorable
+    delay: 30
   - type: Electrified
     enabled: false
     usesApcPower: true
@@ -211,8 +212,10 @@
     name: vendor-salvage-ticket-machine
     categories:
     - SalvageEquipment
+    - TicketTools
     - SalvageWeapons
-    - SalvageConsumeables
+    - TicketConsumeables
+    - SalvageAmmo
     currencyWhitelist:
     - SalvageTicket
 
@@ -241,6 +244,8 @@
     name: vendor-mining-ticket-machine
     categories:
     - MiningEquipment
-    - MiningConsumeables
+    - TicketTools
+    - MiningMech
+    - TicketConsumeables
     currencyWhitelist:
     - SalvageTicket

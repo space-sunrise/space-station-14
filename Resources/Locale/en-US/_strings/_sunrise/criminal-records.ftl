@@ -8,6 +8,7 @@ sunrise-records-edit-case = Edit
 sunrise-records-view-case = Details
 sunrise-records-save-case = Save
 sunrise-records-finalize-case = Close Case
+sunrise-records-reopen-case = Reopen Case
 sunrise-records-back-to-cases = Back to Cases
 sunrise-records-case-list-arrow = →
 sunrise-records-cancel-edit = Cancel
@@ -28,14 +29,26 @@ sunrise-records-sentence-life = PERMA
 sunrise-records-sentence-header = SENTENCE
 sunrise-records-person-name = Name:
 sunrise-records-person-job = Job:
+
+sunrise-records-breakdown-base-sum = Base sum (Cat 1-5): {$sum} min.
+sunrise-records-breakdown-cap = Cap (1.5x Cat {$cat}): {$cap} min.
+sunrise-records-breakdown-perma-sum = Base (Cat 6): {$sum} min.
+sunrise-records-breakdown-warning = [color=yellow]{$id}: Warning (first violation)[/color]
+sunrise-records-breakdown-recidivism = [color=orange]{$id}: Recidivism {$percent}%[/color]
+sunrise-records-breakdown-escape-penalty = [color=red]Escape Penalty: +{$penalty} min.[/color]
+sunrise-records-breakdown-modifier = [color=cyan]{$id}: {$percent}%[/color]
 sunrise-records-person-age = Age:
 sunrise-records-person-dna = DNA:
 sunrise-records-person-gender = Gender:
+sunrise-records-person-species = Species:
 sunrise-records-person-fingerprints = Fingerprints:
 sunrise-records-status-open = Open
 sunrise-records-status-incarcerated = Incarcerated
 sunrise-records-status-finished = Finished
 sunrise-records-status-closed = Closed
+sunrise-records-person-status = Status:
+sunrise-records-person-status-reason = Reason:
+sunrise-records-person-status-reason-placeholder = Enter reason for status change...
 
 prisoner-management-title = Prisoner Management
 prisoner-management-waiting = Waiting for Incarceration
@@ -56,7 +69,12 @@ prisoner-management-occupied = Occupied
 prisoner-management-unequipped = Not Equipped
 prisoner-management-no-cells = Cells not configured
 prisoner-management-sentence = Sentence: {$sentence} min.
-prisoner-management-countdown-finished = Case #{$case}: [color=green]Sentence Served[/color]
+prisoner-management-warning = [color=yellow]Warning[/color]
+prisoner-management-countdown-finished = [color=green]Sentence Served[/color]
+prisoner-management-paroled-info = [color=green]Paroled[/color]
+
+prisoner-management-escape = ESCAPE
+prisoner-management-parole = PAROLE
 
 job-prisoner-title = Prisoner
 
@@ -166,3 +184,7 @@ signal-port-name-cell-10-lock = Lock Cell 10
 signal-port-description-cell-10-lock = Lock the door of the tenth cell.
 signal-port-name-cell-10-unlock = Unlock Cell 10
 signal-port-description-cell-10-unlock = Unlock the door of the tenth cell.
+
+criminal-records-status-reason-incarcerated = Incarcerated via Prisoner Management Console.
+criminal-records-status-reason-finished = Sentence served and released.
+criminal-records-status-reason-escape = Escaped from custody.

@@ -8,6 +8,7 @@ sunrise-records-edit-case = Редактировать
 sunrise-records-view-case = Детали
 sunrise-records-save-case = Сохранить
 sunrise-records-finalize-case = Закрыть дело
+sunrise-records-reopen-case = Пересмотр дела
 sunrise-records-back-to-cases = Назад к делам
 sunrise-records-case-list-arrow = →
 sunrise-records-cancel-edit = Отмена
@@ -28,14 +29,26 @@ sunrise-records-sentence-life = ПЕРМА
 sunrise-records-sentence-header = СРОК
 sunrise-records-person-name = Имя:
 sunrise-records-person-job = Должность:
+
+sunrise-records-breakdown-base-sum = Базовая сумма (Кат. 1-5): {$sum} мин.
+sunrise-records-breakdown-cap = Лимит (1.5x Кат. {$cat}): {$cap} мин.
+sunrise-records-breakdown-perma-sum = База (Кат. 6): {$sum} мин.
+sunrise-records-breakdown-warning = [color=yellow]{$id}: Предупреждение (первое нарушение)[/color]
+sunrise-records-breakdown-recidivism = [color=orange]{$id}: Рецидив {$percent}%[/color]
+sunrise-records-breakdown-escape-penalty = [color=red]Штраф за побег: +{$penalty} мин.[/color]
+sunrise-records-breakdown-modifier = [color=cyan]{$id}: {$percent}%[/color]
 sunrise-records-person-age = Возраст:
 sunrise-records-person-dna = ДНК:
 sunrise-records-person-gender = Гендер:
+sunrise-records-person-species = Раса:
 sunrise-records-person-fingerprints = Отпечатки:
 sunrise-records-status-open = Открыто
 sunrise-records-status-incarcerated = В исполнении
 sunrise-records-status-finished = Завершено
 sunrise-records-status-closed = Закрыто
+sunrise-records-person-status = Статус:
+sunrise-records-person-status-reason = Причина:
+sunrise-records-person-status-reason-placeholder = Введите причину изменения статуса...
 
 prisoner-management-title = Учет заключенных
 prisoner-management-waiting = Ожидают заключения
@@ -56,7 +69,12 @@ prisoner-management-occupied = Занята
 prisoner-management-unequipped = Не оборудована
 prisoner-management-no-cells = Камеры не настроены
 prisoner-management-sentence = Срок: {$sentence} мин.
-prisoner-management-countdown-finished = Дело #{$case}: [color=green]Срок отбыт[/color]
+prisoner-management-warning = [color=yellow]Предупреждение[/color]
+prisoner-management-countdown-finished = [color=green]Срок отбыт[/color]
+prisoner-management-paroled-info = [color=green]Освобождён по УДО[/color]
+
+prisoner-management-escape = ПОБЕГ
+prisoner-management-parole = УДО
 
 job-prisoner-title = Заключенный
 
@@ -166,3 +184,7 @@ signal-port-name-cell-10-lock = Заблокировать камеру 10
 signal-port-description-cell-10-lock = Заблокировать дверь десятой камеры.
 signal-port-name-cell-10-unlock = Разблокировать камеру 10
 signal-port-description-cell-10-unlock = Разблокировать дверь десятой камеры.
+
+criminal-records-status-reason-incarcerated = Заключен под стражу через консоль учета заключенных.
+criminal-records-status-reason-finished = Срок отбыт, заключенный освобожден.
+criminal-records-status-reason-escape = Совершен побег из-под стражи.

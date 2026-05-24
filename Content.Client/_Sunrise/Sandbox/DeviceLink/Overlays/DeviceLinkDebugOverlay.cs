@@ -24,7 +24,7 @@ public sealed class DeviceLinkDebugOverlay : Overlay
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    private readonly DeviceLinkingVisualizationSystem _deviceLinking;
+    private readonly DeviceLinkOverlaySystem _deviceLinking;
     private readonly EntityQuery<SpriteComponent> _spriteQuery;
     private readonly EntityQuery<TransformComponent> _transformQuery;
     private readonly SpriteSystem _sprite;
@@ -41,7 +41,7 @@ public sealed class DeviceLinkDebugOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
 
-        _deviceLinking = _ent.System<DeviceLinkingVisualizationSystem>();
+        _deviceLinking = _ent.System<DeviceLinkOverlaySystem>();
         _spriteQuery = _ent.GetEntityQuery<SpriteComponent>();
         _transformQuery = _ent.GetEntityQuery<TransformComponent>();
         _sprite = _ent.System<SpriteSystem>();
@@ -72,11 +72,11 @@ public sealed class DeviceLinkDebugOverlay : Overlay
 
     protected override void DisposeBehavior()
     {
+        base.DisposeBehavior();
+
         _outlineShader.Dispose();
         _unshadedShader.Dispose();
         _resources.Dispose();
-
-        base.DisposeBehavior();
     }
 
     private void BuildOutlineGroups(

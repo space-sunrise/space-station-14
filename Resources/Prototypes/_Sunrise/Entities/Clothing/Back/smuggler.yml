@@ -4,14 +4,44 @@
   id: SmugglerSunriseLootTable
   table: !type:AllSelector
     children:
-    - !type:NestedSelector
-      tableId: SmugglerSunriseForgedPartsTable
+    - id: SmugglerSunriseForgedPartsParcel
     - !type:NestedSelector
       tableId: SmugglerSunriseImprovisedAmmoTable
-    - !type:NestedSelector
-      tableId: SmugglerSunriseMaterialsTable
+    - id: SmugglerSunriseMaterialsParcel
     - !type:NestedSelector
       tableId: SmugglerSunriseGrenadesTable
+
+- type: entity
+  parent: [ BaseItem, BaseWrappedParcel ]
+  id: SmugglerSunriseMaterialsParcel
+  name: wrapped materials parcel
+  description: A compact parcel with smuggled materials.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/ParcelWrap/wrapped_parcel.rsi
+    state: parcel-medium
+  - type: Item
+    size: Small
+  - type: EntityTableContainerFill
+    containers:
+      contents: !type:NestedSelector
+        tableId: SmugglerSunriseMaterialsTable
+
+- type: entity
+  parent: [ BaseItem, BaseWrappedParcel ]
+  id: SmugglerSunriseForgedPartsParcel
+  name: wrapped forged parts parcel
+  description: A compact parcel with forged parts.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/ParcelWrap/wrapped_parcel.rsi
+    state: parcel-medium
+  - type: Item
+    size: Normal
+  - type: EntityTableContainerFill
+    containers:
+      contents: !type:NestedSelector
+        tableId: SmugglerSunriseForgedPartsTable
 
 - type: entityTable
   id: SmugglerSunriseForgedPartsTable
@@ -76,9 +106,7 @@
     - id: SheetGlass
     - id: CrushedPhosphorus
     - id: MaterialCloth
-    - id: MaterialGunpowder
-      amount: !type:RangeNumberSelector
-        range: 5, 10
+    - id: MaterialGunpowder5
       weight: 0.25
 
 - type: entityTable
@@ -286,8 +314,7 @@
   id: SmugglerSunriseRevolutionaryHeavyTable
   table: !type:GroupSelector
     children:
-    - !type:NestedSelector
-      tableId: SmugglerSunriseForgedPartsTable
+    - id: SmugglerSunriseForgedPartsParcel
     - !type:NestedSelector
       tableId: SmugglerSunriseLeftArmImplantsTable
       weight: 0.75
@@ -344,7 +371,7 @@
       tableId: SmugglerSunriseRevolutionaryHeavyTable
     - !type:GroupSelector
       rolls: !type:RangeNumberSelector
-        range: 8, 10
+        range: 10, 12
       children:
       - !type:NestedSelector
         tableId: SmugglerSunriseImprovisedAmmoCompactTable
@@ -355,6 +382,5 @@
       - !type:NestedSelector
         tableId: SmugglerSunriseMedItemsCompactTable
         weight: 1.6
-      - !type:NestedSelector
-        tableId: SmugglerSunriseMaterialsTable
+      - id: SmugglerSunriseMaterialsParcel
         weight: 1.1
