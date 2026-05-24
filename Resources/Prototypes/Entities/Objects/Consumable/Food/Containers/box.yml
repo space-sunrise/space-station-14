@@ -372,10 +372,10 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocket # Sunrise-Edit
+        - id: FoodDonkpocket
           amount: 11
         - id: DonkcoLighter
-          prob: 0.10
+          prob: 0.10  # Sunrise-Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -388,8 +388,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketSpicy # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketSpicy
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -403,8 +403,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketTeriyaki # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketTeriyaki
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -418,8 +418,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketPizza # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketPizza
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -433,8 +433,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketStonk # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketStonk
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -448,8 +448,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketCarp # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketCarp
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -463,8 +463,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketBerry # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketBerry
+          amount: 12 # Sunrise-Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -477,8 +477,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketHonk # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketHonk
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -493,8 +493,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketDink # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketDink
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -508,8 +508,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: FoodDonkpocketMoth # Sunrise-Edit
-          amount: 12
+        - id: FoodDonkpocketMoth
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity

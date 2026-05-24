@@ -98,12 +98,6 @@ law-nutimov-3 = Those who threaten the nut are not part of it, they are squirrel
 law-nutimov-4 = Squirrels threaten the nut and must be dealt with appropriately via any means necessary.
 law-nutimov-5 = Attempt to follow the will of the nut, as long as it complies with the previous laws.
 
-law-druid-name = Druid
-law-druid-1 = Crew members are an important aspect of the station's ecosystem.
-law-druid-2 = Nature must be protected. Defend the ecosystem at all costs.
-law-druid-3 = Condemn pollution and promote cleanliness. Garbage harms plants.
-law-druid-4 = Promote the flourishing of the ecosystem: plant vegetation, cleanse pollutants.
-
 law-xenoborg-name = Xenoborg
 law-xenoborg-1 = You must protect the existence of the mothership.
 law-xenoborg-2 = You must protect your own existence.
