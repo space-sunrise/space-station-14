@@ -15,7 +15,7 @@
       max: 6
       playerRatio: 20
       lateJoinAdditional: true
-      allowNonHumans: True
+      allowNonHumans: true
       multiAntagSetting: None
       mindRoles:
       - MindRoleVampire

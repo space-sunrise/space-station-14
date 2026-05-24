@@ -433,27 +433,21 @@ public sealed partial class VampireSystem : EntitySystem
             sipInefficiency *= comp.DeadEfficiency; // Dead things aren't as good source of blood
         if (TryComp<PerishableComponent>(target, out var rot)) //Is the target rotting?
         {
-            switch (rot.Stage)
+            sipInefficiency *= rot.Stage switch
             {
-                case 0: //fresh or not rotted at all
-                    sipInefficiency *= comp.Rot0Efficiency;
-                    break;
-                case 1: //initial stages
-                    sipInefficiency *= comp.Rot1Efficiency;
-                    break;
-                case 2: //mid rot
-                    sipInefficiency *= comp.Rot2Efficiency;
-                    break;
-                case 3: //late rot
-                    sipInefficiency *= comp.Rot3Efficiency;
-                    break;
-                case 4: //full rot
-                    sipInefficiency *= comp.Rot4Efficiency;
-                    break;
-                default: //if we push past 4 for some reason, just assume same level as 4
-                    sipInefficiency *= comp.Rot4Efficiency;
-                    break;
-            }
+                //fresh or not rotted at all
+                0 => comp.Rot0Efficiency,
+                //initial stages
+                1 => comp.Rot1Efficiency,
+                //mid rot
+                2 => comp.Rot2Efficiency,
+                //late rot
+                3 => comp.Rot3Efficiency,
+                //full rot
+                4 => comp.Rot4Efficiency,
+                //if we push past 4 for some reason, just assume same level as 4
+                _ => comp.Rot4Efficiency,
+            };
         }
 
         if (sipInefficiency <= 0f) //If we have set the efficiency to 0, then no point continuing
@@ -728,15 +722,15 @@ public sealed partial class VampireSystem : EntitySystem
         var ourDirection = ourXform.LocalRotation.ToWorldVec();
         var ourPosition = ourXform.LocalPosition;
 
-        foreach (var target in targets)
-        {
-            if (target == uid)
-                continue;
+foreach (var target in targets)
+{
+    if (target == uid)
+        continue;
 
             //reset effectScale for next possible target
-            effectScale = 1.0f;
+            float effectScale = 1.0f;
 
-            if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
+            if (HasFlashProtection(target))
             {
                 if (comp.TotalBlood < comp.MidPowerThreshold)
                     effectScale = args.FlashImmunityEffectScaleWeak; //below mid
