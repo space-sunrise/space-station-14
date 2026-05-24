@@ -139,7 +139,6 @@
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 1.5
-  - type: VentCrawler
   - type: NightVision
   # Sunrise-end
 
@@ -199,7 +198,6 @@
       - ReagentId: Blood
         Quantity: 60
   # Sunrise edit end
-  - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5

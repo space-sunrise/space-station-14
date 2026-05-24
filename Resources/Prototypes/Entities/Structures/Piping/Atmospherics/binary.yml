@@ -91,14 +91,6 @@
   - type: GuideHelp
     guides:
     - Pumps
-  # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
-  # Sunrise-end
 
 - type: entity
   parent: GasBinaryBase
@@ -172,14 +164,6 @@
     - type: GuideHelp
       guides:
       - Pumps
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
 
 - type: entity
   parent: GasBinaryBase
@@ -283,14 +267,6 @@
     - type: GuideHelp
       guides:
       - PassiveGate
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
 
 - type: entity
   parent: GasBinaryBase
@@ -352,14 +328,6 @@
     - type: GuideHelp
       guides:
       - ManualValve
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
 
 - type: entity
   parent: GasBinaryBase
@@ -432,14 +400,6 @@
   - type: GuideHelp
     guides:
     - SignalValve
-  # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
-  # Sunrise-end
 
 - type: entity
   parent: GasBinaryBase
@@ -479,16 +439,6 @@
     - type: GuideHelp
       guides:
       - GasCanisters
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
-      degrees:
-        - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
 
 - type: entity
   parent: GasVentPump
@@ -634,7 +584,6 @@
     guides:
     - GasRecycling
   - type: TegCirculator
-
 
 - type: entity
   parent: GasBinaryBase

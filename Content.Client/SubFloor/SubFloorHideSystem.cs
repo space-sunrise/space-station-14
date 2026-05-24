@@ -16,7 +16,6 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
 
     private bool _showAll;
-    private bool _showVentPipe; // Sunrise-edit
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool ShowAll
@@ -36,21 +35,6 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
         }
     }
 
-    // Sunrise-start
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool ShowVentPipe
-    {
-        get => _showVentPipe;
-        set
-        {
-            if (_showVentPipe == value) return;
-            _showVentPipe = value;
-
-            UpdateAll();
-        }
-    }
-    // Sunrise-end
-
     public override void Initialize()
     {
         base.Initialize();
@@ -64,7 +48,6 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
     {
         // Vismask resets so need to reset this.
         ShowAll = false;
-        _showVentPipe = false;
     }
 
     private void OnRequestReceived(ShowSubfloorRequestEvent ev)
@@ -83,15 +66,7 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
 
         scannerRevealed &= !ShowAll; // no transparency for show-subfloor mode.
 
-        // Sunrise-start
-        var showVentPipe = false;
-        if (HasComp<PipeAppearanceComponent>(uid))
-        {
-            showVentPipe = ShowVentPipe;
-        }
-
-        var revealed = !covered || ShowAll || scannerRevealed || showVentPipe;
-        // Sunrise-end
+        var revealed = !covered || ShowAll || scannerRevealed;
 
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)
