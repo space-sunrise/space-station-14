@@ -14,10 +14,22 @@
   id: RabbitEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  forcedColoring: false
-  followSkinColor: false
   sponsorOnly: false
   speciesRestriction: [Human]
   sprites:
   - sprite: _Sunrise/Mobs/Customization/rabbit_markings_parts.rsi
-    state: ears_rabbit
+    state: ears_rabbit_outer
+  - sprite: _Sunrise/Mobs/Customization/rabbit_markings_parts.rsi
+    state: ears_rabbit_inner
+
+- type: marking
+  id: RabbitEarsUp
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  sponsorOnly: false
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/rabbit_ears_up.rsi
+    state: ears_rabbit_up_outer
+  - sprite: _Sunrise/Mobs/Customization/rabbit_ears_up.rsi
+    state: ears_rabbit_up_inner

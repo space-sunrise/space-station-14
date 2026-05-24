@@ -8,7 +8,11 @@
   },
   "states": [
     {
-      "name": "ears_rabbit",
+      "name": "ears_rabbit_inner",
+      "directions": 4
+    },
+    {
+      "name": "ears_rabbit_outer",
       "directions": 4
     },
     {
