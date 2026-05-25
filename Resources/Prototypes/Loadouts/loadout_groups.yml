@@ -268,7 +268,7 @@
   minLimit: 0
   loadouts:
   - LizardPlushiePassenger
-  - RubberStampPassenger # Sunrise-Edit 
+  - RubberStampPassenger # Sunrise-Edit
   - ToyFigurinePassenger # Sunrise-Edit
 
 - type: loadoutGroup
