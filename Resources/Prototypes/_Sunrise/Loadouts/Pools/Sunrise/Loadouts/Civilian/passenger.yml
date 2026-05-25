@@ -17,7 +17,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobPassenger
-      time: 187200 # 52h
+      time: 126000 # 35h
   storage:
     back:
       - ToyFigurineGreytider
