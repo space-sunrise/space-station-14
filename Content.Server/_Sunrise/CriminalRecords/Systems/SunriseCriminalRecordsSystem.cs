@@ -363,6 +363,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             status,
             statusReason);
         _ui.SetUiState(uid, SunriseCriminalRecordsConsoleKey.Key, state);
+        Dirty(uid, component);
     }
 
 }
