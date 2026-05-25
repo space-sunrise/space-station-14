@@ -1135,11 +1135,12 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 }
 
 // Sunrise-TTS-Start
-public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
+public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers, string channelId) : EntityEventArgs
 {
     public readonly EntityUid Source = source;
     public readonly string Message = message;
     public readonly EntityUid[] Receivers = receivers;
+    public readonly string ChannelId = channelId;
 }
 
 public sealed class CollectiveMindSpokeEvent(EntityUid source, string message, IReadOnlyCollection<EntityUid> receivers, string collectiveMindId) : EntityEventArgs

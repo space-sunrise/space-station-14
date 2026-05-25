@@ -149,6 +149,12 @@
         variant-nokey:
           True: { shader: unshaded }
           False: { shader: shaded }
+      # Sunrise-Start
+      enum.PowerDeviceVisuals.VisualState:
+        telecom-on:
+          1: { color: "#ff4444" }
+          0: { color: "#ffffff" }
+      # Sunrise-End
   - type: Appearance
   - type: AmbientOnPowered
   - type: AmbientSound
@@ -194,6 +200,15 @@
     keysExtractionMethod: Prying
     keySlots: 10
   - type: TelecomServer
+  # Sunrise-Start
+  - type: TelecomThermal
+    heatPerMessage: 5000
+    maxTemperature: 390
+    hysteresisTemperature: 360
+  - type: Temperature
+    specificHeat: 25
+  - type: AtmosExposed
+  # Sunrise-End
   - type: ContainerContainer
     containers:
       key_slots: !type:Container

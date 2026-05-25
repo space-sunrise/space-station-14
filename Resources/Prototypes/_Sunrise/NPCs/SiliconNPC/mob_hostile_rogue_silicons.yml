@@ -64,8 +64,16 @@
     priority: 45
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - RogueSiliconHealTarget
   - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 300
   - type: Strippable
   - type: Pullable
   - type: UserInterface
@@ -82,7 +90,7 @@
     thresholds:
       0: Alive
       64: Critical
-      330: Dead
+      400: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -194,7 +202,7 @@
     thresholds:
       0: Alive
       48: Critical
-      300: Dead
+      400: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       30: 0.7
@@ -224,11 +232,11 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 500
+    damageCap: 600
     damage:
       groups:
-        Brute: -0.6
-        Burn: -0.6
+        Brute: -0.75
+        Burn: -0.75
         Airloss: -1
 
 - type: entity
@@ -243,6 +251,8 @@
     prototypes:
     - MobRogueSiliconLootT1
   - type: CanMoveInAir
+  - type: ProtectedFromStepTriggers
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:
@@ -259,11 +269,15 @@
     defaultRotation: 90
     horizontalRotation: 90
   - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 300
   - type: MobThresholds
     thresholds:
       0: Alive
       24: Critical
-      216: Dead
+      300: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       14: 0.7
@@ -458,6 +472,7 @@
     color: orange
     energy: 0.5
   - type: CanMoveInAir
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:
@@ -652,7 +667,14 @@
   components:
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - RogueSiliconHealTarget
+  - type: CanMoveInAir
+  - type: ProtectedFromStepTriggers
+  - type: NoSlip
   - type: Sprite
     drawdepth: Mobs
     sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
@@ -666,14 +688,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      12: Critical
-      60: Dead
+      10: Critical
+      80: Dead
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.15
+          radius: 0.13
         density: 100
         mask:
           - FlyingMobMask
@@ -694,16 +716,18 @@
       7: 0.7
       10: 0.5
   - type: MeleeWeapon
-    attackRate: 1.0
-    animation: WeaponArcClaw
+    range: 0.65
+    attackRate: 5.0
+    animation: WeaponArcDisarm
     damage:
       types:
-        Slash: 4
-        Structural: 10
+        Slash: 1
+        Structural: 4
     soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
+      path: /Audio/Effects/saw.ogg
       params:
-        variation: 0.250
+        volume: 1
+        variation: 0.050
 
 #region Tier 2
 - type: entity
@@ -937,10 +961,16 @@
     - MobRogueSiliconLootT3
   - type: NameIdentifier
     group: Silicon
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-silicon-name
+    description: ghost-panel-antagonist-silicon-description
+    priority: 45
   - type: Tag
     tags:
+    - CanPilot
     - FootstepSound
     - DoorBumpOpener
+    - CannotSuicide
     - MindTransferTarget
     - Unimplantable
     - RogueSiliconHealTarget
@@ -987,9 +1017,13 @@
   components:
   - type: Loadout
     prototypes:
-    - MobRogueSiliconLootT3
+    - MobRogueSiliconLootTesla
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - RogueSiliconHealTarget
     - NpcVeteranLeader
   - type: Sprite
@@ -1015,27 +1049,27 @@
     thresholds:
       0: Alive
       88: Critical
-      390: Dead
+      500: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       54: 0.7
       70: 0.5
   - type: BatteryAmmoProvider
     proto: TeslaGunBullet
-    fireCost: 100
+    fireCost: 50
   - type: BatterySelfRecharger
-    autoRechargeRate: 30
+    autoRechargeRate: 20
   - type: Battery
     maxCharge: 300
     startingCharge: 300
   - type: Gun
-    projectileSpeed: 10
+    projectileSpeed: 9
     showExamineText: false
-    fireRate: 0.75
+    fireRate: 0.3
     minAngle: 5
-    maxAngle: 15
-    angleIncrease: 2
-    angleDecay: 3
+    maxAngle: 25
+    angleIncrease: 15
+    angleDecay: 5
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
@@ -1061,9 +1095,14 @@
     - MobRogueSiliconLootT3
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - RogueSiliconHealTarget
     - NpcBoss
   - type: CanMoveInAir
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:
@@ -1172,6 +1211,10 @@
     - MobRogueSiliconLootT3
   - type: Tag
     tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
     - RogueSiliconHealTarget
     - NpcBoss
   - type: Sprite
@@ -1233,6 +1276,183 @@
       settings: default
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+
+
+- type: entity
+  name: Skull House
+  description: Corrupted Mech, a communist variant of the Durand, features stronger armor and a powerful machine gun. beeb-boob...
+  parent:
+  - MobRogueSiliconBase
+  - MobRogueSiliconPassiveRegen
+  id: MobRogueSiliconBossSkullHouse
+  components:
+  - type: CyborgSparkEffect
+  - type: MechVulnerableToEMP
+  - type: Damageable
+    damageModifierSet: MobRogueSiliconBossSkullHouse
+  - type: NPCUseActionWhenTargetInRange
+    delay: 2
+    actions:
+    - actionId: ActionHellSpawnSpiral
+      minRange: 6
+      maxRange: 0
+    - actionId: ActionActivateBorgLaughImplant
+      minRange: 1
+      maxRange: 0
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootSkullHouse
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/durand.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: warboss
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: warboss-unshaded
+      shader: unshaded
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: warboss
+        BaseUnshaded: warboss-unshaded
+      Critical:
+        Base: warboss-broken
+      Dead:
+        Base: warboss-broken
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 250
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      325: Critical
+      500: Dead
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: SpawnEntityTableOnTrigger
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: RogueAiNode
+  - type: SpawnOnTrigger
+    proto: ClothingBackpackRogueSiliconT4
+  - type: GibOnTrigger
+    targetUser: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 450
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.9
+      250: 0.8
+      350: 0.7
+      400: 0.6
+  - type: Stamina
+    baseCritThreshold: 9999
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.2
+  - type: Repairable
+    fuelCost: 25
+    doAfterDelay: 10
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleHeavy127mm
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 5
+    autoRechargeRate: 999
+  - type: Battery
+    maxCharge: 35
+    startingCharge: 35
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 3
+    angleDecay: 18
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/ump45-1.ogg
+      params:
+        volume: -1
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 360
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 1.5
+    energy: 1.5
+    mask: /Textures/Effects/LightMasks/soft_cone.png
+    color: "#FFFF00"
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Tag
+    tags:
+    - CanPilot
+    - DoorBumpOpener
+    - FootstepSound
+    - CannotSuicide
+    - RogueSiliconHealTarget
+    - NpcBoss
+    - Pickaxe
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.5
+  - type: HellSpawnInvincibility
+  - type: HellSpawnSpiral
+  - type: AutoImplant
+    implants:
+    - CreepyLaughImplant
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-one-star-unit-dungeon-name
+    description: ghost-role-information-one-star-unit-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    prob: 0.35
+    makeSentient: true
   - type: GhostTakeoverAvailable
 
 #region Asteroid
@@ -1410,6 +1630,8 @@
     color: orange
     energy: 0.5
   - type: CanMoveInAir
+  - type: ProtectedFromStepTriggers
+  - type: NoSlip
   - type: Fixtures
     fixtures:
       fix1:
@@ -1457,3 +1679,486 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
       params:
         variation: 0.2
+
+# region Derelict Borg Units
+- type: entity
+  id: MobRogueSiliconDerelictBorgBase
+  abstract: true
+  parent: MobRogueSiliconBase
+  name: derelict rogue cyborg
+  suffix: AI, Rogue silicon
+  description: A ruined cyborg chassis commandeered by a rogue silicon network.
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT1
+  - type: CyborgSparkEffect
+  - type: Sprite
+    drawdepth: Mobs
+
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: derelict
+      map: ["enum.DamageStateVisualLayers.Base"]
+    - state: derelict_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: derelict
+        BaseUnshaded: derelict_e_r
+      Critical:
+        Base: derelict
+      Dead:
+        Base: derelict
+
+- type: entity
+  id: MobRogueSiliconDerelictBorg
+  parent:
+  - MobMovementSpeedModifierMelee
+  - MobRogueSiliconDerelictBorgBase
+  - MobRogueSiliconAISimpleMelee
+  name: derelict rogue brawler
+  description: A derelict cyborg configured for brute-force melee assaults.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorg
+  - type: MeleeWeapon
+    attackRate: 1.1
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 10
+        Structural: 14
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgEngineering
+  parent:
+  - MobMovementSpeedModifierMelee
+  - MobRogueSiliconDerelictBorgBase
+  - MobRogueSiliconAISimpleMelee
+  name: derelict rogue engineer cyborg
+  description: A crystallized engineering chassis repurposed by rogue silicon directives.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgEngineering
+  - type: Sprite
+    drawdepth: Mobs
+
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: engineer_derelict
+      map: ["enum.DamageStateVisualLayers.Base"]
+    - state: engineer_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: engineer_derelict
+        BaseUnshaded: engineer_e_r
+      Critical:
+        Base: engineer_derelict
+      Dead:
+        Base: engineer_derelict
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 8
+        Shock: 6
+        Structural: 16
+  - type: RadiationSource
+    intensity: 1.0
+    slope: 0.25
+  - type: Electrified
+    requirePower: false
+    shockDamage: 12
+    shockTime: 2
+  - type: LightningArcShooter
+    arcDepth: 1
+    maxLightningArc: 2
+    shootMinInterval: 4
+    shootMaxInterval: 8
+    shootRange: 4
+    lightningPrototype: LightningRogueSiliconWeak
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#4080FF"
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgJanitor
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobRogueSiliconDerelictBorgBase
+  - MobRogueSiliconAISimpleRanged
+  name: derelict rogue janitor cyborg
+  description: A derelict janitorial chassis now weaponized by rogue silicon logic.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgJanitor
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: janitor_derelict
+      map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - state: janitor_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: janitor_derelict
+        BaseUnshaded: janitor_e_r
+      Critical:
+        Base: janitor_derelict
+      Dead:
+        Base: janitor_derelict
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: janitor_moving_derelict
+    noMovementLayers:
+      movement:
+        state: janitor_derelict
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SpaceLube
+        Quantity: 900
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 6
+    rechargeSound:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: GrenadeCleanadeSyndicate
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 5
+    maxAngle: 15
+    projectileSpeed: 17
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgMedical
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobRogueSiliconDerelictBorgBase
+  name: derelict rogue medical cyborg
+  description: A degraded medical chassis with failing safeguards and hostile routines.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgMedical
+  - type: Sprite
+    drawdepth: Mobs
+
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: medical_derelict
+      map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - state: medical_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: medical_derelict
+        BaseUnshaded: medical_e_r
+      Critical:
+        Base: medical_derelict
+      Dead:
+        Base: medical_derelict
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: medical_moving_derelict
+    noMovementLayers:
+      movement:
+        state: medical_derelict
+  - type: BatteryAmmoProvider
+    proto: MiniSyringeRSMedical
+    fireCost: 125
+  - type: BatterySelfRecharger
+    autoRechargeRate: 200
+    autoRechargePauseTime: 2
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 2
+    maxAngle: 15
+    projectileSpeed: 15
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgMining
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobRogueSiliconDerelictBorgBase
+  name: derelict rogue salvage cyborg
+  description: A salvage-frame derelict unit adapted into a hostile roaming threat.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgMining
+  - type: Sprite
+    drawdepth: Mobs
+
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: miner_derelict
+      map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - state: miner_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: miner_derelict
+        BaseUnshaded: miner_e_r
+      Critical:
+        Base: miner_derelict
+      Dead:
+        Base: miner_derelict
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: miner_moving_derelict
+    noMovementLayers:
+      movement:
+        state: miner_derelict
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked ]
+    rightBareFootState: [ footprint-tracked ]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.6
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    minAngle: 8
+    maxAngle: 18
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgAssaultT1
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobRogueSiliconDerelictBorgBase
+  name: derelict rogue assault cyborg
+  description: A derelict assault chassis fielded as a frontline rogue silicon unit.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgAssaultT1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Silicon/chassis.rsi
+    layers:
+    - state: synd_sec_derelict
+      map: ["enum.DamageStateVisualLayers.Base"]
+    - state: synd_sec_derelict_e
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: synd_sec_derelict
+        BaseUnshaded: synd_sec_derelict_e
+      Critical:
+        Base: synd_sec_derelict
+      Dead:
+        Base: synd_sec_derelict
+  - type: BatteryAmmoProvider
+    proto: CartridgeRiflePractice
+    fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 5
+    autoRechargeRate: 99
+  - type: Battery
+    maxCharge: 15
+    startingCharge: 15
+    pricePerJoule: 0
+  - type: Gun
+    showExamineText: false
+    fireRate: 8
+    selectedMode: FullAuto
+    minAngle: 8
+    maxAngle: 60
+    angleIncrease: 2
+    angleDecay: 15
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
+      params:
+        pitch: 0.8
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgAssaultT2
+  parent: MobRogueSiliconDerelictBorgAssaultT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgAssaultT2
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleSP
+  - type: Battery
+    maxCharge: 20
+    startingCharge: 20
+    pricePerJoule: 0
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgAssaultT3
+  parent: MobRogueSiliconDerelictBorgAssaultT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgAssaultT3
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleIncendiary
+  - type: Battery
+    maxCharge: 20
+    startingCharge: 20
+    pricePerJoule: 0
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgSyndicateSaboteur
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobRogueSiliconDerelictBorgBase
+  name: derelict rogue saboteur cyborg
+  description: A saboteur frame reconstructed into a mobile breach-and-harass platform.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgSyndicateSaboteur
+  - type: Sprite
+    drawdepth: Mobs
+
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: spider
+      map: ["enum.DamageStateVisualLayers.Base"]
+    - state: spider_e_r
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spider
+        BaseUnshaded: spider_e_r
+      Critical:
+        Base: spider
+      Dead:
+        Base: spider
+  - type: BatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 40
+  - type: Gun
+    showExamineText: false
+    fireRate: 1.5
+    minAngle: 4
+    maxAngle: 15
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+
+- type: entity
+  id: MobRogueSiliconDerelictBorgSyndicateMedical
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobRogueSiliconDerelictBorgBase
+  name: derelict rogue syndicate medical cyborg
+  description: A syndicate medical chassis that now supports rogue assault units with suppressive fire.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootDerelictBorgSyndicateMedical
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: synd_medical
+      map: ["enum.DamageStateVisualLayers.Base"]
+    - state: synd_medical_e
+      map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: synd_medical
+        BaseUnshaded: synd_medical_e
+      Critical:
+        Base: synd_medical
+      Dead:
+        Base: synd_medical
+  - type: BatteryAmmoProvider
+    proto: MiniSyringeRSMedical
+    fireCost: 99
+  - type: BatterySelfRecharger
+    autoRechargeRate: 400
+    autoRechargePauseTime: 2
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800
+  - type: Gun
+    showExamineText: false
+    fireRate: 3
+    minAngle: 2
+    maxAngle: 15
+    projectileSpeed: 16
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+# endregion Derelict Borg Units
