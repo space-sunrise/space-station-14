@@ -55,6 +55,7 @@ namespace Content.Client.Input
             // Sunrise-Start
             common.AddFunction(ContentKeyFunctions.OpenMentorHelp);
             common.AddFunction(ContentKeyFunctions.OpenHelpChoice);
+            common.AddFunction(ContentKeyFunctions.OpenMessenger);
             // Sunrise-End
 
             var human = contexts.GetContext("human");

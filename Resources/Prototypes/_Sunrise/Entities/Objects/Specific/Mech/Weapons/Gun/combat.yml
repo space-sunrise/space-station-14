@@ -361,3 +361,37 @@
       Felinid:
         knockback: 20
         staminaMultiplier: 8
+
+- type: entity
+  id: WeaponMechCombatKord
+  name: mounted "Kord"
+  description: Rapid-fire machine gun chambered for 12.7 x 108 mm
+  suffix: Mech Weapon, Combat, Kord
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_kord.rsi
+    state: mecha_kord
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_kord_inhands.rsi
+    size: Ginormous
+  - type: Gun
+    minAngle: 24
+    maxAngle: 60
+    angleIncrease: 3
+    angleDecay: 18
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/ump45-1.ogg
+      params:
+        volume: -1
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleHeavy127mm
+    fireCost: 9
+  - type: Appearance
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 5000

@@ -80,6 +80,8 @@
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   categories: [ HideSpawnMenu ]
   components:
+  - type: Flash
+    flashOnUse: false
   - type: Sprite
     sprite: Objects/Weapons/Melee/flash.rsi
     layers:
@@ -120,9 +122,9 @@
         Quantity: 0.4
   - type: Injector
     solutionName: hypospray
-    activeModeProtoId: HyposprayInjectMode
+    activeModeProtoId: HyposprayDynamicMode
     allowedModes:
-    - HyposprayInjectMode
+    - HyposprayDynamicMode
     currentTransferAmount: 5 #Sunrise-End
   - type: UseDelay
     delay: 1
