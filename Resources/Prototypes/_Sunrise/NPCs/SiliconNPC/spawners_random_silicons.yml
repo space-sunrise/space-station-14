@@ -190,11 +190,11 @@
     - MobRogueSiliconDerelictBorgAssaultT1
     - MobRogueSiliconDerelictBorgAssaultT2
     - MobRogueSiliconDerelictBorgSyndicateMedical
-    - MobRogueSiliconDerelictBorgSyndicateSaboteur
     chance: 1
     offset: 0.0
     rarePrototypes:
     - MobRogueSiliconDerelictBorgAssaultT3
+    - MobRogueSiliconDerelictBorgSyndicateSaboteur
     rareChance: 0.05
 
 - type: entity
