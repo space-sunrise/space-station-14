@@ -1,0 +1,23 @@
+- type: loadout
+  id: RubberStampPassenger
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 187200 # 52hr
+  storage:
+    back:
+      - RubberStampGreytide
+
+- type: loadout
+  id: ToyFigurinePassenger
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 187200 # 52hr
+  storage:
+    back:
+      - ToyFigurineGreytider
