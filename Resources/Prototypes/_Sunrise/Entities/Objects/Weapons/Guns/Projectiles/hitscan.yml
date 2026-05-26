@@ -302,6 +302,11 @@
       types:
         Heat: 15
         Radiation: 10
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: xray
+    rotation: 90
+    noRot: false
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -312,6 +317,10 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_xray
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+        state: xray
 
 - type: entity
   id: AdvancedDisablerBolt

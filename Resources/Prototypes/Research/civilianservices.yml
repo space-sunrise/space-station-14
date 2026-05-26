@@ -109,18 +109,18 @@
 
 
 
-- type: technology # Merge with other T2 medical research if possible!
-  id: MechanizedTreatment
-  name: research-technology-mechanized-treatment
-  icon:
-    sprite: Mobs/Silicon/chassis.rsi
-    state: medical
-  discipline: CivilianServices
-  tier: 2
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleAdvancedTopical
-  - AdvancedJetInjector
+# - type: technology # Merge with other T2 medical research if possible! # Moved to Sunrise Medical tech
+#   id: MechanizedTreatment
+#   name: research-technology-mechanized-treatment
+#   icon:
+#     sprite: Mobs/Silicon/chassis.rsi
+#     state: medical
+#   discipline: CivilianServices
+#   tier: 2
+#   cost: 5000
+#   recipeUnlocks:
+#   - BorgModuleAdvancedTopical
+#   - AdvancedJetInjector
 
 - type: technology
   id: AdvancedCleaning

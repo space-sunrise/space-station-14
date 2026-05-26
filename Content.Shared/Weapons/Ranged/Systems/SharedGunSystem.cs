@@ -495,6 +495,11 @@ public abstract partial class SharedGunSystem : EntitySystem
             Projectiles.SetShooter(uid, projectile, shooter.Value);
 
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
+
+        // Sunrise-Start allow shot projectiles to start trigger timers.
+        var shotEvent = new ProjectileShotEvent();
+        RaiseLocalEvent(uid, ref shotEvent);
+        // Sunrise-End
     }
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);

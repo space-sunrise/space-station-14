@@ -926,8 +926,7 @@
   description: Custom 15-round double-stack magazine for the Viper pistol.
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
-    proto: CartridgePistolFMJ
+    proto: Null # Sunrise-Edit
     whitelist:
       tags:
       - CartridgePistol
@@ -957,7 +956,6 @@
   description: Custom 15-round double-stack magazine for the Viper pistol. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: CartridgePistolAP
     whitelist:
       tags:

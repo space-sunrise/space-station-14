@@ -887,8 +887,8 @@
     - state: icon-treatment
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
-    - item: AdvancedJetInjector
+    #- item: HandheldHealthAnalyzer # Sunrise-Edit
+    - item: HypoBorgMedical
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -924,7 +924,7 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    #- item: HandheldHealthAnalyzer
+    #- item: HandheldHealthAnalyzer # Sunrise-Edit
     - item: DefibrillatorOneHandedUnpowered
     - item: Crowbar
     - item: BorgFireExtinguisher
@@ -944,7 +944,7 @@
   - type: ItemBorgModule
     hands:
     - item: HandLabeler
-    - item: HypoBorgMedical # Sunrise-Edit
+    - item: AdvancedJetInjector # Sunrise-Edit
     - item: Syringe
       hand:
         emptyLabel: borg-slot-injector-dropper-empty
@@ -995,8 +995,8 @@
     - state: icon-chem
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
-    - item: BorgHypo
+    #- item: HandheldHealthAnalyzer # Sunrise-Edit
+    - item: HypoBorgMedicalAdvanced #- item: BorgHypo # Sunrise-Edit
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
