@@ -1,16 +1,16 @@
-using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.VentCrawl.Tube.Components;
 
-[RegisterComponent]
+/// <summary>
+/// A component representing a vent that you can crawl through
+/// </summary>
+[RegisterComponent, NetworkedComponent]
 public sealed partial class VentCrawlTubeComponent : Component
 {
     public string ContainerId { get; set; } = "VentCrawlTube";
 
     public bool Connected;
-
-    [ViewVariables]
-    public Container Contents { get; set; } = default!;
 }
 
 [ByRefEvent]

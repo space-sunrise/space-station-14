@@ -1,7 +1,6 @@
 using Content.Client.UserInterface.Systems.Sandbox;
 using Content.Shared.Atmos.Components;
 using Content.Shared.DrawDepth;
-using Content.Shared.GameTicking;
 using Content.Shared.SubFloor;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -45,7 +44,11 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
             if (_showVentPipe == value) return;
             _showVentPipe = value;
 
-            UpdateAll();
+            var ev = new ShowSubfloorRequestEvent()
+            {
+                Value = value,
+            };
+            RaiseNetworkEvent(ev);
         }
     }
 
