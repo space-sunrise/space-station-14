@@ -17,8 +17,7 @@ public sealed class AccountCreationManager
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
-
-    private readonly DiscordWebhook _discord = new();
+    [Dependency] private readonly DiscordWebhook _discord = default!;
     private HttpClient _httpClient = default!;
     private ISawmill _sawmill = default!;
     private string _api = "api/query/userid?userid=";

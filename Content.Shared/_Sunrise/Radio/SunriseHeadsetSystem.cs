@@ -12,19 +12,20 @@ public sealed class SunriseHeadsetSystem : EntitySystem
 
         SubscribeLocalEvent<HeadsetComponent, HeadsetToggleChannelMessage>(OnToggleChannel);
         SubscribeLocalEvent<HeadsetComponent, HeadsetChangeVolumeMessage>(OnChangeVolume);
-        SubscribeLocalEvent<HeadsetComponent, EncryptionChannelsChangedEvent>(OnEncryptionChannelsChanged);
+        SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionChannelsChangedEvent>(OnEncryptionChannelsChanged);
     }
 
     /// <summary>
     ///     When channels are recalculated, disable Common channel by default
     ///     unless the user has explicitly toggled it.
     /// </summary>
-    private void OnEncryptionChannelsChanged(Entity<HeadsetComponent> ent, ref EncryptionChannelsChangedEvent args)
+    private void OnEncryptionChannelsChanged(Entity<EncryptionKeyHolderComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
-        if (args.Component.Channels.Contains(SharedChatSystem.CommonChannel) &&
-            ent.Comp.EnabledChannels.TryAdd(SharedChatSystem.CommonChannel.Id, false))
+        if (TryComp<HeadsetComponent>(ent, out var headset) &&
+            args.Component.Channels.Contains(SharedChatSystem.CommonChannel) &&
+            headset.EnabledChannels.TryAdd(SharedChatSystem.CommonChannel.Id, false))
         {
-            Dirty(ent, ent.Comp);
+            Dirty(ent, headset);
         }
     }
 

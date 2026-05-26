@@ -44,8 +44,8 @@ intro-tut-take-clothing-chat = Здесь стоит раздатчик одеж
 intro-tut-take-clothing-tts = Здесь стоит раздатчик одежды. Выберите берет.
 
 intro-tut-equip-clothing-bubble = Наденьте берет. Откройте инвентарь [tutkeybind="OpenInventoryMenu"] и перетащите предмет в нужный слот, или нажмите [tutkeybind="ActivateItemInHand"] для быстрого надевания.
-intro-tut-equip-clothing-chat = Откройте инвентарь и наденьте одежду - или нажмите [tutkeybind="ActivateItemInHand"], держа предмет в руке.
-intro-tut-equip-clothing-tts = Откройте инвентарь и наденьте одежду - или нажмите [tutkeybind="ActivateItemInHand"], держа предмет в руке.
+intro-tut-equip-clothing-chat = Наденьте крутой берет, вам подойдет.
+intro-tut-equip-clothing-tts = Наденьте крутой берет, вам подойдет.
 
 intro-tut-drop-old-clothing-bubble = Выбросьте старый предмет одежды на пол [tutkeybind="Drop"].
 intro-tut-drop-old-clothing-chat = Старая одежда теперь в руке - просто бросьте её.

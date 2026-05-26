@@ -1,11 +1,11 @@
 using Content.Shared._Sunrise.CriminalRecords;
 using Content.Shared.StationRecords;
-using Content.Server._Sunrise.CriminalRecords.Systems;
+using Content.Shared._Sunrise.CriminalRecords.Systems;
 
-namespace Content.Server._Sunrise.CriminalRecords.Components;
+namespace Content.Shared._Sunrise.CriminalRecords.Components;
 
 [RegisterComponent]
-[Access(typeof(SunriseCriminalRecordsSystem))]
+[Access(typeof(SharedSunriseCriminalRecordsSystem))]
 public sealed partial class SunriseCriminalRecordsConsoleComponent : Component
 {
     /// <summary>

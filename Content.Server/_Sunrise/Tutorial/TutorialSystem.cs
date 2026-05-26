@@ -513,7 +513,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
 
         try
         {
-            return await _tts.GenerateTTS(text, voicePrototype, null);
+            return await _tts.GenerateTTS(Loc.GetString(text), voicePrototype, null);
         }
         catch (Exception e)
         {
