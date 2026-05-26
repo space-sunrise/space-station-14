@@ -27,7 +27,6 @@ public sealed class BorgVoiceSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BorgVoiceComponent, BorgVoiceChangeActionEvent>(OnBorgVoiceChangeAction);
-        SubscribeLocalEvent<BorgVoiceComponent, ComponentStartup>(OnBorgVoiceStartup);
 
         // Subscribe to TTS voice transformation
         SubscribeLocalEvent<BorgVoiceComponent, TransformSpeakerVoiceEvent>(OnTransformSpeakerVoice);
@@ -94,7 +93,7 @@ public sealed class BorgVoiceSystem : EntitySystem
         _uiSystem.SetUiState(uid, BorgVoiceUiKey.Key, state);
     }
 
-    private void OnBorgVoiceStartup(EntityUid uid, BorgVoiceComponent component, ComponentStartup args)
+    private void OnBorgVoiceStartup(EntityUid uid, BorgVoiceComponent component)
     {
         // Set default voice if not already set
         if (component.SelectedVoiceId == null)
