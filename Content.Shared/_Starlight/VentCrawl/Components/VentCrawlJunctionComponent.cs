@@ -1,7 +1,7 @@
 namespace Content.Shared.VentCrawl.Components;
 
-[RegisterComponent, Virtual]
-public partial class VentCrawlJunctionComponent : Component
+[RegisterComponent]
+public sealed partial class VentCrawlJunctionComponent : Component
 {
     /// <summary>
     ///     The angles to connect to.
