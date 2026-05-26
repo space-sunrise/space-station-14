@@ -731,7 +731,7 @@
         variation: 0.050
   - type: Loadout
     prototypes:
-    - ClothingBackpackRogueSiliconT0
+    - MobRogueSiliconLootT0
 
 #region Tier 2
 - type: entity
