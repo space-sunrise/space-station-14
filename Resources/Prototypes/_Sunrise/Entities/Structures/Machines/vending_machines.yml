@@ -194,6 +194,7 @@
   components:
   - type: AccessReader
     access: [["Salvage"]]
+  - type: ActivatableUIRequiresAccess
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/salvage.rsi
     snapCardinals: true
@@ -226,6 +227,7 @@
   components:
   - type: AccessReader
     access: [["Mining"]]
+  - type: ActivatableUIRequiresAccess
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/mining.rsi
     snapCardinals: true
