@@ -696,7 +696,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.13
+          radius: 0.12
         density: 100
         mask:
           - FlyingMobMask
@@ -714,8 +714,8 @@
         Base: destroyed
   - type: SlowOnDamage
     speedModifierThresholds:
-      7: 0.7
-      10: 0.5
+      5: 1.5
+      8: 1.7
   - type: MeleeWeapon
     range: 0.65
     attackRate: 5.0
@@ -729,6 +729,9 @@
       params:
         volume: 1
         variation: 0.050
+  - type: Loadout
+    prototypes:
+    - ClothingBackpackRogueSiliconT0
 
 #region Tier 2
 - type: entity
