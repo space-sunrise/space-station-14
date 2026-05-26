@@ -190,7 +190,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Sunrise edit end
 
         if (TryComp(user, out VentCrawlerComponent? crawlerComp) //🌟Starlight🌟
-            && crawlerComp.InTube == true)
+            && crawlerComp.InTube)
             return;
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
