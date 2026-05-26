@@ -18,28 +18,22 @@ public sealed partial class VentCrawlHolderComponent : Component
     [AutoNetworkedField]
     public bool IsMoving = false;
 
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? PreviousTube { get; set; }
 
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? NextTube { get; set; }
 
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public Direction PreviousDirection { get; set; } = Direction.Invalid;
 
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? CurrentTube { get; set; }
 
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public bool HasExitAction { get; set; }
 
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public Direction CurrentDirection { get; set; } = Direction.Invalid;
 
     [ViewVariables]
@@ -47,14 +41,13 @@ public sealed partial class VentCrawlHolderComponent : Component
 
     public static readonly TimeSpan CrawlDelay = TimeSpan.FromSeconds(0.5);
 
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public TimeSpan LastCrawl;
 
-    [DataField("crawlSound")]
+    [DataField]
     public SoundCollectionSpecifier CrawlSound { get; set; } = new ("VentClaw", AudioParams.Default.WithVolume(5f));
 
-    [DataField("travelDuration")]
+    [DataField]
     public float TravelDuration = 0.15f;
 
     [DataField]
@@ -66,29 +59,25 @@ public sealed partial class VentCrawlHolderComponent : Component
     /// <summary>
     /// Current layer in manifold. Null if not in manifold.
     /// </summary>
-    [AutoNetworkedField]
-    [ViewVariables]
+    [AutoNetworkedField, ViewVariables]
     public int? ManifoldLayer;
 
     /// <summary>
     /// Previous layer in manifold.
     /// </summary>
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public int? PreviousManifoldLayer;
 
     /// <summary>
     /// Current progress of transition in manifold between layers.
     /// </summary>
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public float ManifoldTransitionProgress = 1f;
 
     /// <summary>
     /// Duration of transition in manifold between layers.
     /// </summary>
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public float ManifoldTransitionDuration = 0.15f;
 
     public TimeSpan ManifoldLayerSelectionCooldown = TimeSpan.FromSeconds(0.5f);
