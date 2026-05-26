@@ -32,6 +32,9 @@ rev-role-greeting =
 rev-briefing = Помогите главам революции избавиться от командования станции, чтобы захватить её.
 rev-banned = You have been converted but are unable to play due to a ban for this role.
 
+rev-examine-willing-convert = Этот человек легко внушаем, вы можете с легкостью загипнотизировать цель даже без явного согласия.
+rev-examine-willing-convert-verb = Легко внушаем
+
 ## General
 
 rev-title = Революционеры

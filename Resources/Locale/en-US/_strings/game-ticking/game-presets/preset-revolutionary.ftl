@@ -28,6 +28,9 @@ rev-role-greeting =
 
 rev-briefing = Help the head revolutionaries kill, restrain, or convert all members of Command to take over the station.
 
+rev-examine-willing-convert = This person is easily influenced; they look like they would agree to your escapade without question.
+rev-examine-willing-convert-verb = Easy to sway
+
 ## General
 
 rev-title = Revolutionaries

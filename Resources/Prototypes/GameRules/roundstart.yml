@@ -360,8 +360,8 @@
     minPlayers: 45 # Sunrise-Edit
     # Sunrise-Start
     delay:
-      min: 180
-      max: 300
+      min: 60
+      max: 180
     # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
@@ -369,7 +369,7 @@
     definitions:
     - prefRoles: [ HeadRev ]
       fallbackRoles: [ Rev ]
-      max: 3
+      max: 4
       playerRatio: 15
       # Sunrise - start
       blacklist:
@@ -391,7 +391,6 @@
       fallbackRoles: [ HeadRev ]
       max: 40
       playerRatio: 2
-      ignorePrefCheck: true
       blacklist:
         components:
         - CommandStaff
