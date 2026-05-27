@@ -34,7 +34,7 @@ public sealed partial class AbductorVictimComponent : Component
     [DataField]
     public TimeSpan? LastActivation;
 
-    [DataField("organ"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public AbductorOrganType Organ = AbductorOrganType.None;
 
     [ViewVariables]
