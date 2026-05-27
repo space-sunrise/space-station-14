@@ -1,5 +1,5 @@
 using Content.Shared.Inventory;
-using Content.Shared.Item.ItemToggle.Components; // Sunrise Added
+using Content.Shared.Item.ItemToggle.Components; // Sunrise Edit
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
@@ -53,10 +53,10 @@ public sealed class MagnetPickupSystem : EntitySystem
             comp.NextScan += ScanDelay;
             Dirty(uid, comp);
 
-            // Sunrise Added Start - skip if magnet toggle is disabled
+            // Sunrise Start - skip if magnet toggle is disabled
             if (TryComp<ItemToggleComponent>(uid, out var toggle) && !toggle.Activated)
                 continue;
-            // Sunrise Added End
+            // Sunrise End
 
             // Sunrise Edit Start
             if (!_borgQuery.HasComponent(xform.ParentUid))

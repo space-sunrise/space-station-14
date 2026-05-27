@@ -6,7 +6,7 @@
   components:
   - type: MagnetPickup
     range: 3.75 # Sunrise-add
-  - type: ItemToggle # Sunrise-add
+  - type: ItemToggle # Sunrise-edit
     activated: true
     verbToggleOn: magnet-pickup-verb-enable
     verbToggleOff: magnet-pickup-verb-disable
