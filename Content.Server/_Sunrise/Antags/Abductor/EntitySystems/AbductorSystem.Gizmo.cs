@@ -4,10 +4,8 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
@@ -15,11 +13,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-
-    private static readonly ProtoId<TagPrototype> AbductorTag = "Abductor";
-    private static readonly TimeSpan DefaultMarkDelay = TimeSpan.FromSeconds(6);
-    private static readonly TimeSpan AbductorMarkDelay = TimeSpan.FromSeconds(0.5);
-    private static readonly TimeSpan VictimActivationDuration = TimeSpan.FromMinutes(5);
 
     public void InitializeGizmo()
     {
@@ -86,7 +79,9 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (!CanMarkTarget(target))
             return false;
 
-        var doAfter = new DoAfterArgs(EntityManager, user, GetMarkDelay(target), new AbductorGizmoMarkDoAfterEvent(), gizmo, target, gizmo.Owner)
+        var doAfter = new DoAfterArgs(EntityManager, user, GetMarkDelay(gizmo, target),
+                                        new AbductorGizmoMarkDoAfterEvent(),
+                                        gizmo, target, gizmo.Owner)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -100,8 +95,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private bool CanMarkTarget(EntityUid target)
         => Exists(target) && HasComp<SurgeryTargetComponent>(target);
 
-    private TimeSpan GetMarkDelay(EntityUid target)
-        => _tags.HasTag(target, AbductorTag) ? AbductorMarkDelay : DefaultMarkDelay;
+    private TimeSpan GetMarkDelay(Entity<AbductorGizmoComponent> gizmo, EntityUid target)
+        => _tags.HasTag(target, gizmo.Comp.FastMarkTag) ? gizmo.Comp.FastMarkDelay : gizmo.Comp.MarkDelay;
 
     private void DoMarkTarget(Entity<AbductorGizmoComponent> gizmo, EntityUid target)
     {
@@ -109,7 +104,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         Dirty(gizmo);
 
         EnsureComp<AbductorVictimComponent>(target, out var victim);
-        victim.LastActivation = _time.CurTime + VictimActivationDuration;
+        victim.LastActivation = _time.CurTime + gizmo.Comp.VictimActivationDelay;
         victim.Position ??= Transform(target).Coordinates;
         Dirty(target, victim);
     }
