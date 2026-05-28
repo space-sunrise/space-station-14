@@ -1013,4 +1013,8 @@ AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
 ComputerNukieDelivery: SyndicateComputerComms
 HandheldStationMapNukeops: HandheldStationMapUnpowered
 MagazineG36Extended: null
+# 2026-05-28
+Vampire: null
+MobBatVampire: null
+VampireLightning: null
 # region Sunrise-End

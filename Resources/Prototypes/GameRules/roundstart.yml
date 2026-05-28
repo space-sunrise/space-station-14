@@ -22,7 +22,6 @@
     rules:
     - id: Thief
       prob: 0.5
-#    - id: Vampire
 #      prob: 0.3
     - id: SubWizard
       prob: 0.05
@@ -37,7 +36,6 @@
     rules:
     - id: Thief
       prob: 0.5
-#    - id: Vampire
 #      prob: 0.3
     - id: Xenoborgs
       prob: 0.05
