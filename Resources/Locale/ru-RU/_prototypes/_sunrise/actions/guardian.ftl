@@ -1,0 +1,12 @@
+ent-ActionGuardianCharge = рывок стража
+    .desc = Прыгнуть в выбранном направлении.
+ent-ActionGuardianExplosiveBlast = взрывной заряд
+    .desc = Выпустить компактный взрывной заряд.
+ent-ActionGuardianLightningBolt = малая молния
+    .desc = Выпустить сдержанную тесла-дугу.
+ent-ActionGuardianRangedShot = твердосветный болт
+    .desc = Выпустить быстрый твердосветный болт.
+ent-ActionGuardianHealingBolt = лечащий болт
+    .desc = Выпустить небольшой лечащий снаряд.
+ent-ActionGuardianEvict = выселить голопаразита
+    .desc = Разорвать связь с вашим голопаразитом.

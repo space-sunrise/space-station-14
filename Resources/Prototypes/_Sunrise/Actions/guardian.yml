@@ -1,0 +1,123 @@
+- type: entity
+  parent: Jump
+  id: ActionGuardianCharge
+  name: guardian charge
+  description: Leap in the selected direction.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 4
+    priority: 2
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionGuardianExplosiveBlast
+  name: explosive charge
+  description: Project a compact explosive charge.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: frag
+    itemIconStyle: BigAction
+    useDelay: 10
+    priority: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionGuardianLightningBolt
+  name: lesser lightning
+  description: Launch a contained tesla arc.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
+      state: tesla_projectile
+    itemIconStyle: BigAction
+    useDelay: 6
+    priority: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionGuardianForceWall
+  name: forcewall
+  description: Creates a magical barrier.
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: shield
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: WallForce
+      posData: !type:TargetInFront
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionGuardianRangedShot
+  name: hard-light bolt
+  description: Fire a rapid hard-light bolt.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: heavylaser
+    itemIconStyle: BigAction
+    useDelay: 0.6
+    priority: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionGuardianHealingBolt
+  name: healing bolt
+  description: Fire a small healing bolt.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+      state: spell
+    itemIconStyle: BigAction
+    useDelay: 2
+    priority: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionGuardianEvict
+  name: evict guardian
+  description: Sever the link to your holoparasite.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: Interface/Actions/harm.png
+    useDelay: 5
+    priority: 1
+  - type: InstantAction
+    event: !type:GuardianEvictActionEvent

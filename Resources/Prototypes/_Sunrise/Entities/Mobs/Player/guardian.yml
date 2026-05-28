@@ -1,0 +1,384 @@
+- type: entity
+  abstract: true
+  id: BaseSunriseHoloparasiteGuardian
+  parent: MobGuardianBase
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-holoparasite-name
+      description: ghost-role-information-holoparasite-description
+      rules: ghost-role-information-familiar-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+    - type: NameIdentifier
+      group: Holoparasite
+    - type: TypingIndicator
+      proto: holo
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: ActionGrant
+      actions:
+      - ActionToggleGuardian
+    - type: RandomSprite
+      available: []
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianStandard
+  name: holoparasite
+  description: A classic hard-light combat guardian with brutal armor-piercing punches.
+  components:
+  - type: Sprite
+    layers:
+    - state: tech_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: tech_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#40a7d7"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.4
+    distanceAllowed: 10
+  - type: MeleeWeapon
+    attackRate: 1.8
+    damage:
+      types:
+        Blunt: 20
+        Structural: 100
+    resistanceBypass: true
+  - type: MeleeSpeech
+    Battlecry: ORA
+    MaxBattlecryLength: 8
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianAssassin
+  name: assassin holoparasite
+  description: A quiet hard-light guardian tuned for stealth and lethal strikes.
+  components:
+  - type: Sprite
+    layers:
+    - state: magic_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: magic_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#7b4dff"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 1
+    distanceAllowed: 10
+  - type: Stealth
+    examineThreshold: 0.35
+    lastVisibility: 0.35
+    minVisibility: -0.8
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.3
+    movementVisibilityRate: 0.55
+  - type: MeleeWeapon
+    attackRate: 1.4
+    damage:
+      types:
+        Blunt: 30
+        Poison: 5
+  - type: InjectOnHit
+    limit: 5
+    reagents:
+      - ReagentId: Toxin
+        Quantity: 5
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianChaos
+  name: chaos holoparasite
+  description: An unstable guardian that burns its targets with volatile hard-light.
+  components:
+  - type: Sprite
+    layers:
+    - state: magic_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: magic_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#ff5a36"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.8
+    distanceAllowed: 10
+  - type: RepulseAttract
+    speed: -15 #Anything above this pushes things too far away from the Wizard
+    range: 5
+    whitelist:
+      components:
+      - MobMover
+      - Item
+  - type: UseDelay
+    delay: 10
+  - type: UseDelayOnMeleeHit
+  - type: IgniteOnMeleeHit
+    fireStacks: 1
+  - type: MeleeWeapon
+    attackRate: 1.8
+    damage:
+      types:
+        Heat: 15
+        Structural: 20
+    resistanceBypass: true
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianCharger
+  name: charger holoparasite
+  description: A high-speed guardian that closes distance with violent leaps.
+  components:
+  - type: Sprite
+    layers:
+    - state: miner_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: miner_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#5ec7ff"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.6
+    distanceAllowed: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 7
+    baseSprintSpeed: 9
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 30
+    soundHit:
+      collection: MetalThud
+  - type: JumpSkill
+    actionJumpId: ActionGuardianCharge
+    throwSpeed: 13
+    throwRange: 8
+    maxThrow: 8
+  - type: WorldTargetActionKeybind
+    action: ActionGuardianCharge
+  - type: MeleeWeapon
+    attackRate: 3.6
+    damage:
+      types:
+        Blunt: 15
+        Structural: 20
+    resistanceBypass: true
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianExplosive
+  name: explosive holoparasite
+  description: A demolition guardian that projects compact explosive charges.
+  components:
+  - type: Sprite
+    layers:
+    - state: miner_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: miner_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#ff9c3a"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.6
+    distanceAllowed: 13
+  - type: ActionGun
+    action: ActionGuardianExplosiveBlast
+    gunProto: GuardianExplosiveGun
+  - type: WorldTargetActionKeybind
+    action: ActionGuardianExplosiveBlast
+  - type: MeleeWeapon
+    attackRate: 1.8
+    damage:
+      types:
+        Blunt: 15
+        Structural: 40
+    resistanceBypass: true
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianLightning
+  name: lightning holoparasite
+  description: A charged guardian that lashes targets with contained tesla arcs.
+  components:
+  - type: Sprite
+    layers:
+    - state: tech_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: tech_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#55e5ff"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.6
+    distanceAllowed: 7
+  - type: ActionGun
+    action: ActionGuardianLightningBolt
+    gunProto: GuardianLightningGun
+  - type: WorldTargetActionKeybind
+    action: ActionGuardianLightningBolt
+  - type: MeleeWeapon
+    attackRate: 1.8
+    damage:
+      types:
+        Shock: 15
+        Structural: 20
+    resistanceBypass: true
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianProtector
+  name: protector holoparasite
+  description: A resilient defensive guardian with an extended link to its host.
+  components:
+  - type: Sprite
+    layers:
+    - state: miner_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: miner_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#5ee06f"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.4
+    distanceAllowed: 15
+  - type: MeleeWeapon
+    attackRate: 1.6
+    damage:
+      types:
+        Blunt: 15
+        Structural: 20
+    resistanceBypass: true
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianRanged
+  name: ranged holoparasite
+  description: A fragile guardian that fires rapid armor-piercing hard-light bolts.
+  components:
+  - type: Sprite
+    layers:
+    - state: tech_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: tech_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#6aa5ff"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 1
+    distanceAllowed: 13
+  - type: ActionGun
+    action: ActionGuardianRangedShot
+    gunProto: GuardianRangedGun
+  - type: WorldTargetActionKeybind
+    action: ActionGuardianRangedShot
+  - type: MeleeWeapon
+    attackRate: 1.8
+    damage:
+      types:
+        Blunt: 10
+        Structural: 10
+    resistanceBypass: true
+
+- type: entity
+  parent: [BaseSunriseHoloparasiteGuardian, InventoryBase]
+  id: MobHoloparasiteGuardianDexterous
+  name: dexterous holoparasite
+  description: A delicate guardian with hands for manipulating equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: miner_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: miner_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#f2d15b"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.65
+    distanceAllowed: 10
+  - type: Body
+    prototype: Primate
+  - type: Inventory
+    templateId: holoclown
+  - type: Hands
+  - type: ComplexInteraction
+  - type: MeleeWeapon
+    attackRate: 1.8
+    damage:
+      types:
+        Blunt: 5
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianSupport
+  name: support holoparasite
+  description: A bluespace medical guardian that can heal at range or fight with toxic strikes.
+  components:
+  - type: Sprite
+    layers:
+    - state: magic_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: magic_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#69e7a0"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.7
+    distanceAllowed: 10
+  - type: ActionGun
+    action: ActionGuardianHealingBolt
+    gunProto: GuardianHealingGun
+  - type: WorldTargetActionKeybind
+    action: ActionGuardianHealingBolt
+  - type: MeleeWeapon
+    attackRate: 1.8
+    damage:
+      types:
+        Blunt: 5
+        Poison: 15
+    resistanceBypass: true
+
+- type: entity
+  parent: MobHoloparasiteGuardianSupport
+  id: MobHoloparasiteGuardianHealer
+  name: healer holoparasite
+  description: A frail guardian specialized in patching wounds instead of causing them.
+  components:
+  - type: Sprite
+    layers:
+    - state: magic_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: magic_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#92ffcf"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.8
+    distanceAllowed: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.5
+  - type: MeleeWeapon
+    attackRate: 1.2
+    damage:
+      groups:
+        Brute: -5
+        Burn: -5
+        Airloss: -5
+        Toxin: -5
+    resistanceBypass: true

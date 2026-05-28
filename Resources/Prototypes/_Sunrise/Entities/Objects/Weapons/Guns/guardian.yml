@@ -1,0 +1,141 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: GuardianExplosiveGun
+  name: holoparasite explosive projector
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 10
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileGuardianExplosive
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    soundEmpty: null
+    projectileSpeed: 10
+
+- type: entity
+  parent: BulletGrenadeBlast
+  id: ProjectileGuardianExplosive
+  name: holoparasite explosive charge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+    ignoreResistances: true
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 18
+    intensitySlope: 3
+    maxIntensity: 5
+    maxTileBreak: 0
+    canCreateVacuum: false
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: GuardianLightningGun
+  name: holoparasite tesla projector
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 6
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileGuardianLightning
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      collection: sparks
+    soundEmpty: null
+    projectileSpeed: 12
+
+- type: entity
+  parent: TeslaGunBullet
+  id: ProjectileGuardianLightning
+  name: holoparasite lightning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 10
+    ignoreResistances: true
+  - type: LightningArcShooter
+    arcDepth: 1
+    maxLightningArc: 2
+    shootMinInterval: 1
+    shootMaxInterval: 1.5
+    shootRange: 4
+    lightningPrototype: Lightning
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: GuardianRangedGun
+  name: holoparasite hard-light projector
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.6
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileGuardianHardlight
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      collection: EnergyMiss
+    soundEmpty: null
+    projectileSpeed: 18
+
+- type: entity
+  parent: BulletLaser
+  id: ProjectileGuardianHardlight
+  name: holoparasite hard-light bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Blunt: 18
+    ignoreResistances: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      color: "#40a7d7"
+      shader: unshaded
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: GuardianHealingGun
+  name: holoparasite medical projector
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileGuardianHealingBolt
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      collection: WeakHit
+    soundEmpty: null
+    projectileSpeed: 12
+
+- type: entity
+  parent: ProjectileHealingBolt
+  id: ProjectileGuardianHealingBolt
+  name: holoparasite healing bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      groups:
+        Brute: -5
+        Burn: -5
+        Airloss: -5
+        Toxin: -5
+    ignoreResistances: true

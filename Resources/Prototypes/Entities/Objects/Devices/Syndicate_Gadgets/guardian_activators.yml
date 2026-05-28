@@ -9,6 +9,58 @@
     state: combat_hypo
   - type: GuardianCreator
     guardianProto: MobHoloparasiteGuardian
+  # Sunrise-Start
+  - type: UserInterface
+    interfaces:
+      enum.GuardianCreatorSelectorUiKey.Key:
+        type: GuardianCreatorSelectorBoundUserInterface
+  - type: GuardianCreatorSelector
+    options:
+    - prototype: MobHoloparasiteGuardianStandard
+      name: guardian-selector-standard-name
+      description: guardian-selector-standard-description
+      details: guardian-selector-standard-details
+    - prototype: MobHoloparasiteGuardianAssassin
+      name: guardian-selector-assassin-name
+      description: guardian-selector-assassin-description
+      details: guardian-selector-assassin-details
+    - prototype: MobHoloparasiteGuardianChaos
+      name: guardian-selector-chaos-name
+      description: guardian-selector-chaos-description
+      details: guardian-selector-chaos-details
+    - prototype: MobHoloparasiteGuardianCharger
+      name: guardian-selector-charger-name
+      description: guardian-selector-charger-description
+      details: guardian-selector-charger-details
+    #- prototype: MobHoloparasiteGuardianExplosive
+    #  name: guardian-selector-explosive-name
+    #  description: guardian-selector-explosive-description
+    #  details: guardian-selector-explosive-details
+    - prototype: MobHoloparasiteGuardianLightning
+      name: guardian-selector-lightning-name
+      description: guardian-selector-lightning-description
+      details: guardian-selector-lightning-details
+    - prototype: MobHoloparasiteGuardianProtector
+      name: guardian-selector-protector-name
+      description: guardian-selector-protector-description
+      details: guardian-selector-protector-details
+    - prototype: MobHoloparasiteGuardianRanged
+      name: guardian-selector-ranged-name
+      description: guardian-selector-ranged-description
+      details: guardian-selector-ranged-details
+    - prototype: MobHoloparasiteGuardianDexterous
+      name: guardian-selector-dexterous-name
+      description: guardian-selector-dexterous-description
+      details: guardian-selector-dexterous-details
+    - prototype: MobHoloparasiteGuardianSupport
+      name: guardian-selector-support-name
+      description: guardian-selector-support-description
+      details: guardian-selector-support-details
+    - prototype: MobHoloparasiteGuardianHealer
+      name: guardian-selector-healer-name
+      description: guardian-selector-healer-description
+      details: guardian-selector-healer-details
+  # Sunrise-End
 
 - type: entity
   name: holoclown injector
@@ -18,6 +70,14 @@
   components:
   - type: GuardianCreator
     guardianProto: MobHoloClownGuardian
+  # Sunrise-Start
+  - type: GuardianCreatorSelector
+    options:
+    - prototype: MobHoloClownGuardian
+      name: guardian-selector-holoclown-name
+      description: guardian-selector-holoclown-description
+      details: guardian-selector-holoclown-details
+  # Sunrise-End
 
 - type: entity
   name: magical lamp

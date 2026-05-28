@@ -1,0 +1,12 @@
+ent-ActionGuardianCharge = guardian charge
+    .desc = Leap in the selected direction.
+ent-ActionGuardianExplosiveBlast = explosive charge
+    .desc = Project a compact explosive charge.
+ent-ActionGuardianLightningBolt = lesser lightning
+    .desc = Launch a contained tesla arc.
+ent-ActionGuardianRangedShot = hard-light bolt
+    .desc = Fire a rapid hard-light bolt.
+ent-ActionGuardianHealingBolt = healing bolt
+    .desc = Fire a small healing bolt.
+ent-ActionGuardianEvict = evict guardian
+    .desc = Sever the link to your holoparasite.
