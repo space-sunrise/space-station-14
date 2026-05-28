@@ -488,7 +488,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox ] # Surise-Edit
+          type: [ Animal, Vox ]
           inverted: true
         type: Local
         visualType: MediumCaution
