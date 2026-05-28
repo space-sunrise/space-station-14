@@ -100,6 +100,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade3);
 
             // Sunrise-Start
+            human.AddFunction(ContentKeyFunctions.UseWorldTargetAction);
             human.AddFunction(ContentKeyFunctions.ToggleStanding);
             human.AddFunction(ContentKeyFunctions.CockGun);
             human.AddFunction(ContentKeyFunctions.MeleeGunAttack);

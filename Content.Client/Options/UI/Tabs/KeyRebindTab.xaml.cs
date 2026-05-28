@@ -168,6 +168,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.Reloading);
             AddButton(ContentKeyFunctions.Interact);
             AddButton(ContentKeyFunctions.LookUp);
+            AddButton(ContentKeyFunctions.UseWorldTargetAction);
             AddButton(ContentKeyFunctions.OpenMentorHelp);
             AddButton(ContentKeyFunctions.OpenHelpChoice);
             AddButton(ContentKeyFunctions.OpenMessenger);

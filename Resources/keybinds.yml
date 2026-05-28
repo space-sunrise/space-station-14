@@ -654,6 +654,10 @@ binds:
   key: MouseRight
   canFocus: true
 # Sunrise-Start
+- function: UseWorldTargetAction
+  type: State
+  key: MouseMiddle
+  canFocus: true
 - function: CockGun
   type: State
   key: C
