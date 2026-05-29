@@ -165,8 +165,8 @@
     soundHit:
       collection: MetalThud
   - type: StunOnCollide
-    stunAmount: 1
-    knockdownAmount: 1
+    stunAmount: 0.5
+    knockdownAmount: 2
     drop: false
   - type: JumpSkill
     actionJumpId: ActionGuardianCharge

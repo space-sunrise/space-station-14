@@ -70,14 +70,6 @@
   components:
   - type: GuardianCreator
     guardianProto: MobHoloClownGuardian
-  # Sunrise-Start
-  - type: GuardianCreatorSelector
-    options:
-    - prototype: MobHoloClownGuardian
-      name: guardian-selector-holoclown-name
-      description: guardian-selector-holoclown-description
-      details: guardian-selector-holoclown-details
-  # Sunrise-End
 
 - type: entity
   name: magical lamp
