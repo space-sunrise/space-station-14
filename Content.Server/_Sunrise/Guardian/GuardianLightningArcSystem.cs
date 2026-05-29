@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Server.Beam;
 using Content.Server.Guardian;
-using Content.Server.Lightning;
 using Content.Shared._Sunrise.Guardian;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -17,7 +16,6 @@ public sealed class GuardianLightningArcSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private readonly HashSet<EntityUid> _arcCandidates = new();
@@ -108,7 +106,7 @@ public sealed class GuardianLightningArcSystem : EntitySystem
         if (guardianCoords.MapId != hostCoords.MapId)
             return;
 
-        _beam.TryCreateBeam(ent.Owner, host, ent.Comp.BeamPrototype, _lightning.LightningRandomizer());
+        _beam.TryCreateBeam(ent.Owner, host, ent.Comp.BeamPrototype);
 
         var start = guardianCoords.Position;
         var end = hostCoords.Position;

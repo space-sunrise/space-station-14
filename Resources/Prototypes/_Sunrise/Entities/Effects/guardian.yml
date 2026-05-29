@@ -7,7 +7,8 @@
     sprite: /Textures/Effects/lightning.rsi
     drawdepth: Effects
     layers:
-    - state: "lightning_1"
+    - state: lightning_6
+      rotation: 190
       shader: unshaded
   - type: Physics
     canCollide: false

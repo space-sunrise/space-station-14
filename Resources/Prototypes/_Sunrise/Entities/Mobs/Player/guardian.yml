@@ -205,7 +205,7 @@
     attackRate: 1.8
     damage:
       types:
-        Shock: 14
+        Shock: 10
         Structural: 20
 
 - type: entity
