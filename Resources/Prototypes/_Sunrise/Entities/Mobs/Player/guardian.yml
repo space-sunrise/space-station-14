@@ -118,7 +118,7 @@
   - type: Guardian
     damageShare: 0.8
     distanceAllowed: 10
-  - type: RepulseAttract
+  - type: GuardianChaosAttract
     speed: -15 #Anything above this pushes things too far away from the Wizard
     range: 5
     whitelist:
@@ -226,11 +226,7 @@
   - type: Guardian
     damageShare: 0.6
     distanceAllowed: 7
-  - type: ActionGun
-    action: ActionGuardianLightningBolt
-    gunProto: GuardianLightningGun
-  - type: WorldTargetActionKeybind
-    action: ActionGuardianLightningBolt
+  - type: GuardianLightningArc
   - type: MeleeWeapon
     attackRate: 1.8
     damage:
@@ -256,6 +252,9 @@
   - type: Guardian
     damageShare: 0.4
     distanceAllowed: 15
+  - type: ActionGrant
+    actions:
+    - ActionGuardianForceWall
   - type: MeleeWeapon
     attackRate: 1.6
     damage:
@@ -325,6 +324,34 @@
 
 - type: entity
   parent: BaseSunriseHoloparasiteGuardian
+  id: MobHoloparasiteGuardianIce
+  name: ice holoparasite
+  description: A frigid guardian that numbs targets with freezing hard-light.
+  components:
+  - type: Sprite
+    layers:
+    - state: magic_base
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: magic_flare
+      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      color: "#8fd8ff"
+      shader: unshaded
+  - type: Guardian
+    damageShare: 0.6
+    distanceAllowed: 10
+  - type: ChangeTemperatureOnMeleeHit
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: MeleeWeapon
+    attackRate: 1.6
+    damage:
+      types:
+        Cold: 10
+        Structural: 20
+    resistanceBypass: true
+
+- type: entity
+  parent: BaseSunriseHoloparasiteGuardian
   id: MobHoloparasiteGuardianSupport
   name: support holoparasite
   description: A bluespace medical guardian that can heal at range or fight with toxic strikes.
@@ -373,6 +400,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 4.5
+  - type: GuardianAllowHostMelee
   - type: MeleeWeapon
     attackRate: 1.2
     damage:

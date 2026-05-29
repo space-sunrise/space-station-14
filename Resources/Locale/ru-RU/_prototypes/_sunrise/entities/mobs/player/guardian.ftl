@@ -16,6 +16,9 @@ ent-MobHoloparasiteGuardianExplosive = голопаразит-подрывник
 ent-MobHoloparasiteGuardianLightning = голопаразит-молния
     .desc = Заряженный хранитель, поражающий цели управляемыми дугами теслы.
 
+ent-MobHoloparasiteGuardianIce = ледяной голопаразит
+    .desc = Морозный хранитель, от которого твердосветные удары немеют холодом.
+
 ent-MobHoloparasiteGuardianProtector = голопаразит-защитник
     .desc = Стойкий защитный хранитель с увеличенной связью со своим хозяином.
 

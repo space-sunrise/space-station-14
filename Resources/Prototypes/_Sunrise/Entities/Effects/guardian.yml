@@ -1,0 +1,26 @@
+- type: entity
+  id: GuardianLightningArc
+  name: holoparasite lightning arc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Effects/lightning.rsi
+    drawdepth: Effects
+    layers:
+    - state: "lightning_1"
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: PointLight
+    enabled: true
+    color: "#55e5ff"
+    radius: 2.5
+    softness: 1
+    autoRot: true
+    castShadows: false
+  - type: Beam
+  - type: TimedDespawn
+    lifetime: 0.12
+  - type: Tag
+    tags:
+    - HideContextMenu

@@ -54,6 +54,7 @@
   id: ActionGuardianForceWall
   name: forcewall
   description: Creates a magical barrier.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Action
     useDelay: 15

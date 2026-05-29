@@ -16,6 +16,9 @@ ent-MobHoloparasiteGuardianExplosive = explosive holoparasite
 ent-MobHoloparasiteGuardianLightning = lightning holoparasite
     .desc = A charged guardian that lashes targets with contained tesla arcs.
 
+ent-MobHoloparasiteGuardianIce = ice holoparasite
+    .desc = A frigid guardian that numbs targets with freezing hard-light.
+
 ent-MobHoloparasiteGuardianProtector = protector holoparasite
     .desc = A resilient defensive guardian with an extended link to its host.
 

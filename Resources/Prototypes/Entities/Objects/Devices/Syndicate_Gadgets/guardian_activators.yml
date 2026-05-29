@@ -40,6 +40,10 @@
       name: guardian-selector-lightning-name
       description: guardian-selector-lightning-description
       details: guardian-selector-lightning-details
+    - prototype: MobHoloparasiteGuardianIce # Sunrise-Edit
+      name: guardian-selector-ice-name
+      description: guardian-selector-ice-description
+      details: guardian-selector-ice-details
     - prototype: MobHoloparasiteGuardianProtector
       name: guardian-selector-protector-name
       description: guardian-selector-protector-description

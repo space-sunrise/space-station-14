@@ -66,16 +66,29 @@ guardian-selector-explosive-details =
     - Pressures chokepoints and clustered enemies while still keeping reliable melee damage.
 
 guardian-selector-lightning-name = Lightning
-guardian-selector-lightning-description = Shock melee attacks and a lesser tesla bolt.
+guardian-selector-lightning-description = A defensive tesla link that protects the host and burns enemies crossing the arc.
 guardian-selector-lightning-details =
     Stats:
     - Melee: 15 armor-piercing shock damage and 20 structural damage.
     - Damage transfer: 0.6 to the host.
     - Link range: 7 tiles.
-    Lesser lightning:
-    - Use the targeted-ability key to launch a contained tesla arc. Cooldown: 6 seconds.
+    Tesla link:
+    - While the guardian exists, the host is protected from shock damage.
+    - While manifested, a lightning arc links guardian and host. Mobs touching it, and mobs standing next to them, take 3 heat damage every 0.1 seconds.
     Shock tactics:
-    - Short tether range makes positioning risky, but its ranged zap lets it punish retreating targets.
+    - Short tether range makes positioning risky, but the arc turns the space between guardian and host into a dangerous barrier.
+
+guardian-selector-ice-name = Ice
+guardian-selector-ice-description = Freezing melee strikes that sap stamina and chill targets.
+guardian-selector-ice-details =
+    Stats:
+    - Melee: 10 cold damage and 20 structural damage.
+    - Damage transfer: 0.6 to the host.
+    - Link range: 10 tiles.
+    Frostbite:
+    - Hits rapidly pull heat out of targets and deal light stamina damage.
+    Control profile:
+    - Best at slowing pressure and punishing enemies who stay in melee too long.
 
 guardian-selector-protector-name = Protector
 guardian-selector-protector-description = Defensive guardian with an extended tether range.
@@ -84,6 +97,8 @@ guardian-selector-protector-details =
     - Melee: 15 armor-piercing blunt damage and 20 structural damage.
     - Damage transfer: 0.4 to the host.
     - Link range: 15 tiles.
+    Force wall:
+    - Can create a short-lived magical barrier to split fights and protect the host.
     Protection profile:
     - The safest front-line bodyguard. Use the long link to block paths and pull pressure away from the host.
     Fortress:
