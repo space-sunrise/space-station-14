@@ -96,7 +96,7 @@
     - id: vampires-name
       name: roadmap-goal-vampires-name
       desc: roadmap-goal-vampires-desc
-      state: InProgress
+      state: Complete
     - id: pirates-name
       name: roadmap-goal-pirates-name
       desc: roadmap-goal-pirates-desc

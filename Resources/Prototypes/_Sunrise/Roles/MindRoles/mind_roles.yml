@@ -66,3 +66,25 @@
   components:
   - type: MindRole
     roleType: TSFAligned
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+    roleType: SoloAntagonist
+    subtype: role-subtype-vampire
+  - type: VampireRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleThrall
+  name: Thrall Role
+  components:
+  - type: MindRole
+    antagPrototype: Thrall
+    roleType: TeamAntagonist
+    subtype: role-subtype-thrall
+  - type: VampireThrall

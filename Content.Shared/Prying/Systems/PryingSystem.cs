@@ -16,7 +16,7 @@ namespace Content.Shared.Prying.Systems;
 /// <summary>
 /// Handles prying of entities (e.g. doors)
 /// </summary>
-public sealed class PryingSystem : EntitySystem
+public sealed partial class PryingSystem : EntitySystem // Sunrise-Edit
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
@@ -124,12 +124,22 @@ public sealed class PryingSystem : EntitySystem
             canev = new BeforePryEvent(user, false, false, false);
         }
 
+        // Sunrise-Start
+        if (!CanSunrisePry(target, user, ref canev, out var userMessage))
+        {
+            message = userMessage;
+            return false;
+        }
+        // Sunrise-End
+
         RaiseLocalEvent(target, ref canev);
 
         message = canev.Message;
 
         return !canev.Cancelled;
     }
+
+    private partial bool CanSunrisePry(EntityUid target, EntityUid user, ref BeforePryEvent pryEvent, out string? message); // Sunrise-Edit
 
     private bool StartPry(EntityUid target, EntityUid user, EntityUid? tool, float toolModifier, [NotNullWhen(true)] out DoAfterId? id)
     {

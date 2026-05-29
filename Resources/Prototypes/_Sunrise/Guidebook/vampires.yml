@@ -1,0 +1,29 @@
+- type: guideEntry
+  id: Vampires
+  name: guide-entry-vampires
+  text: "/ServerInfo/_Sunrise/Guidebook/Antagonist/Vampire/Vampires.xml"
+  children:
+  - VampiresHemomancer
+  - VampiresUmbrae
+  - VampiresDantalion
+  - VampiresGargantua
+
+- type: guideEntry
+  id: VampiresHemomancer
+  name: guide-entry-vampire-hemomancer
+  text: "/ServerInfo/_Sunrise/Guidebook/Antagonist/Vampire/Hemomancer.xml"
+
+- type: guideEntry
+  id: VampiresUmbrae
+  name: guide-entry-vampire-umbrae
+  text: "/ServerInfo/_Sunrise/Guidebook/Antagonist/Vampire/Umbrae.xml"
+
+- type: guideEntry
+  id: VampiresDantalion
+  name: guide-entry-vampire-dantalion
+  text: "/ServerInfo/_Sunrise/Guidebook/Antagonist/Vampire/Dantalion.xml"
+
+- type: guideEntry
+  id: VampiresGargantua
+  name: guide-entry-vampire-gargantua
+  text: "/ServerInfo/_Sunrise/Guidebook/Antagonist/Vampire/Gargantua.xml"

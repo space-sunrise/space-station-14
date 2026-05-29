@@ -256,6 +256,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             _adminLog.Add(LogType.Action,
                 LogImpact.Medium,
                 $"{ToPrettyString(args.User)} pried {ToPrettyString(uid)} open");
+            RaiseSunrisePriedDoorEvent(args.User, uid, true); // Sunrise-Edit
             StartOpening(uid, door, args.User, true);
         }
         else if (door.State == DoorState.Open)
@@ -263,9 +264,12 @@ public abstract partial class SharedDoorSystem : EntitySystem
             _adminLog.Add(LogType.Action,
                 LogImpact.Medium,
                 $"{ToPrettyString(args.User)} pried {ToPrettyString(uid)} closed");
+            RaiseSunrisePriedDoorEvent(args.User, uid, false); // Sunrise-Edit
             StartClosing(uid, door, args.User, true);
         }
     }
+
+    private partial void RaiseSunrisePriedDoorEvent(EntityUid user, EntityUid door, bool opened); // Sunrise-Edit
 
     private void OnWeldAttempt(EntityUid uid, DoorComponent component, WeldableAttemptEvent args)
     {

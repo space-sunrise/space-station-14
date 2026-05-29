@@ -1,0 +1,35 @@
+- type: factionIcon
+  id: VampireThrallIcon
+  priority: 1
+  showTo:
+    components:
+      - VampireThrall
+      - Vampire
+  isShaded: true
+  icon:
+    sprite: /Textures/_Sunrise/Vampire/hud_icons.rsi
+    state: hudvampirethrall
+
+- type: factionIcon
+  id: VampireMasterIcon
+  priority: 1
+  showTo:
+    components:
+      - VampireThrall
+      - Vampire
+  isShaded: true
+  icon:
+    sprite: /Textures/_Sunrise/Vampire/hud_icons.rsi
+    state: hudvampire
+
+- type: factionIcon
+  id: VampireFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Vampire
+  icon:
+    sprite: /Textures/_Sunrise/Vampire/hud_icons.rsi
+    state: hudvampire
