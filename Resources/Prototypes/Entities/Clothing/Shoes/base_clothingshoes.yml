@@ -41,6 +41,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - NoPaint # Sunrise-Edit
   - type: ProtectedFromStepTriggers
 
 - type: entity
@@ -63,6 +64,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - NoPaint
   # Sunrise - End
 
 # stuff common to all military boots
@@ -88,6 +90,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - NoPaint
   # Sunrise - End
 
 - type: entity
@@ -99,11 +102,6 @@
     containers:
       item:
       - CombatKnife
-   # Sunrise - Start
-  - type: Tag
-    tags:
-    - NoXeno
-  # Sunrise - End
 
 - type: entity
   abstract: true
@@ -121,4 +119,5 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - NoPaint
   # Sunrise - End

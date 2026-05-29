@@ -49,6 +49,12 @@
   parent: BorgChassisSelectable
   name: salvage cyborg
   components:
+  # Sunrise-Start
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked ]
+    rightBareFootState: [ footprint-tracked ]
+  # Sunrise-End
   - type: BorgSwitchableType
     selectedBorgType: mining
 
@@ -406,6 +412,12 @@
       - BorgModuleCargo
     hasMindState: miner_e
     noMindState: miner_e_r
+  # Sunrise-Start
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked ]
+    rightBareFootState: [ footprint-tracked ]
+  # Sunrise-End
 
 - type: entity
   parent: BaseBorgChassisSyndicateDerelict

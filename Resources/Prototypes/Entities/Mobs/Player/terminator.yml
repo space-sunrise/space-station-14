@@ -197,6 +197,7 @@
     force: true
   - type: Tag
     tags:
+    - FootstepSound # Sunrise-Edit
     - DoorBumpOpener
     # let mind transfer on gib work
     - MindTransferTarget

@@ -21,6 +21,9 @@
         <Button Access="Public" Name="OptionsButton" Text="{Loc 'ui-escape-options'}" />
         <PanelContainer StyleClasses="LowDivider" Margin="0 2.5 0 2.5" />
         <Button Access="Public" Name="DisconnectButton" Text="{Loc 'ui-escape-disconnect'}" />
+        <!-- Sunrise-Start -->
+        <Button Access="Public" Name="QuitTutorialButton" Text="{Loc 'ui-escape-quit-tutorial'}" StyleClasses="negative" />
+        <!-- Sunrise-End -->
         <Button Access="Public" Name="QuitButton" Text="{Loc 'ui-escape-quit'}" StyleClasses="ButtonColorRed" />
     </BoxContainer>
 </ui1:EscapeMenu>
