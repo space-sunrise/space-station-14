@@ -18,7 +18,7 @@
           types:
             Poison: 0.55
             Blunt: 0.5
-            Mangleness: 0.1 # Sunrise-edit
+            Mangleness: 0.15 # Sunrise-edit
       # OD
       - !type:HealthChange
         conditions:
@@ -85,7 +85,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.1
+            Mangleness: 0.15
       # Sunrise-End
       # Main effects
       - !type:MovementSpeedModifier
@@ -151,7 +151,7 @@
       - !type:HealthChange
         damage:
           types:
-            Mangleness: 0.05 # a little bit
+            Mangleness: 0.1 # a little bit
       # Sunrise-End
       # Main effects
       - !type:MovementSpeedModifier
@@ -258,15 +258,6 @@
   flavor: bitter
   color: "#C0C0C0"
   physicalDesc: reagent-physical-desc-strong-smelling
-  #Sunrise-Start
-  metabolisms:
-    Narcotic:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Mangleness: -0.1
-  #Sunrise-End
   plantMetabolism:
   - !type:PlantAdjustHealth
     amount: -5
