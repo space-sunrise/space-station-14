@@ -10,46 +10,6 @@
     priority: 2
 
 - type: entity
-  parent: BaseMentalAction
-  id: ActionGuardianExplosiveBlast
-  name: explosive charge
-  description: Project a compact explosive charge.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    icon:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: frag
-    itemIconStyle: BigAction
-    useDelay: 10
-    priority: 2
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
-
-- type: entity
-  parent: BaseMentalAction
-  id: ActionGuardianLightningBolt
-  name: lesser lightning
-  description: Launch a contained tesla arc.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    icon:
-      sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
-      state: tesla_projectile
-    itemIconStyle: BigAction
-    useDelay: 6
-    priority: 2
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
-
-- type: entity
   parent: BaseAction
   id: ActionGuardianForceWall
   name: forcewall
@@ -101,7 +61,7 @@
       sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
       state: spell
     itemIconStyle: BigAction
-    useDelay: 2
+    useDelay: 12
     priority: 2
   - type: TargetAction
     checkCanAccess: false

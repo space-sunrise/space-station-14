@@ -32,10 +32,6 @@
       name: guardian-selector-charger-name
       description: guardian-selector-charger-description
       details: guardian-selector-charger-details
-    #- prototype: MobHoloparasiteGuardianExplosive
-    #  name: guardian-selector-explosive-name
-    #  description: guardian-selector-explosive-description
-    #  details: guardian-selector-explosive-details
     - prototype: MobHoloparasiteGuardianLightning
       name: guardian-selector-lightning-name
       description: guardian-selector-lightning-description

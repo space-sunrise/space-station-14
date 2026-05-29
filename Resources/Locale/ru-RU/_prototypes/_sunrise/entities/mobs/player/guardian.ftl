@@ -10,9 +10,6 @@ ent-MobHoloparasiteGuardianChaos = голопаразит хаоса
 ent-MobHoloparasiteGuardianCharger = голопаразит-налетчик
     .desc = Быстрый хранитель, резко сближающийся с целью мощными прыжками.
 
-ent-MobHoloparasiteGuardianExplosive = голопаразит-подрывник
-    .desc = Подрывной хранитель, проецирующий компактные взрывные заряды.
-
 ent-MobHoloparasiteGuardianLightning = голопаразит-молния
     .desc = Заряженный хранитель, поражающий цели управляемыми дугами теслы.
 

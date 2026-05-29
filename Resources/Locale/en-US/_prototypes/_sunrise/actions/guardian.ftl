@@ -1,9 +1,5 @@
 ent-ActionGuardianCharge = guardian charge
     .desc = Leap in the selected direction.
-ent-ActionGuardianExplosiveBlast = explosive charge
-    .desc = Project a compact explosive charge.
-ent-ActionGuardianLightningBolt = lesser lightning
-    .desc = Launch a contained tesla arc.
 ent-ActionGuardianForceWall = forcewall
     .desc = Creates a magical barrier.
 ent-ActionGuardianRangedShot = hard-light bolt

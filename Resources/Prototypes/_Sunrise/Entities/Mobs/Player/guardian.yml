@@ -134,7 +134,7 @@
     attackRate: 1.8
     damage:
       types:
-        Heat: 15
+        Heat: 13
         Structural: 20
     resistanceBypass: true
 
@@ -164,6 +164,10 @@
         Blunt: 30
     soundHit:
       collection: MetalThud
+  - type: StunOnCollide
+    stunAmount: 1
+    knockdownAmount: 1
+    drop: false
   - type: JumpSkill
     actionJumpId: ActionGuardianCharge
     throwSpeed: 13
@@ -177,36 +181,6 @@
       types:
         Blunt: 15
         Structural: 20
-    resistanceBypass: true
-
-- type: entity
-  parent: BaseSunriseHoloparasiteGuardian
-  id: MobHoloparasiteGuardianExplosive
-  name: explosive holoparasite
-  description: A demolition guardian that projects compact explosive charges.
-  components:
-  - type: Sprite
-    layers:
-    - state: miner_base
-      map: [ "enum.DamageStateVisualLayers.Base" ]
-    - state: miner_flare
-      map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      color: "#ff9c3a"
-      shader: unshaded
-  - type: Guardian
-    damageShare: 0.6
-    distanceAllowed: 13
-  - type: ActionGun
-    action: ActionGuardianExplosiveBlast
-    gunProto: GuardianExplosiveGun
-  - type: WorldTargetActionKeybind
-    action: ActionGuardianExplosiveBlast
-  - type: MeleeWeapon
-    attackRate: 1.8
-    damage:
-      types:
-        Blunt: 15
-        Structural: 40
     resistanceBypass: true
 
 - type: entity
@@ -231,9 +205,8 @@
     attackRate: 1.8
     damage:
       types:
-        Shock: 15
+        Shock: 14
         Structural: 20
-    resistanceBypass: true
 
 - type: entity
   parent: BaseSunriseHoloparasiteGuardian
@@ -320,7 +293,7 @@
     attackRate: 1.8
     damage:
       types:
-        Blunt: 5
+        Blunt: 10
 
 - type: entity
   parent: BaseSunriseHoloparasiteGuardian
@@ -340,15 +313,15 @@
     damageShare: 0.6
     distanceAllowed: 10
   - type: ChangeTemperatureOnMeleeHit
+    heat: -50000
   - type: StaminaDamageOnHit
     damage: 10
   - type: MeleeWeapon
     attackRate: 1.6
     damage:
       types:
-        Cold: 10
+        Cold: 23
         Structural: 20
-    resistanceBypass: true
 
 - type: entity
   parent: BaseSunriseHoloparasiteGuardian
@@ -405,8 +378,7 @@
     attackRate: 1.2
     damage:
       groups:
-        Brute: -5
-        Burn: -5
-        Airloss: -5
-        Toxin: -5
-    resistanceBypass: true
+        Brute: -17 # Оно не лечит 25 брута, оно лечит где-то 5 брута, я не знаю почему так, поэтому и выставил
+        Burn: -17
+        Airloss: -17
+        Toxin: -17

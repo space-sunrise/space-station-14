@@ -10,9 +10,6 @@ ent-MobHoloparasiteGuardianChaos = chaos holoparasite
 ent-MobHoloparasiteGuardianCharger = charger holoparasite
     .desc = A high-speed guardian that closes distance with violent leaps.
 
-ent-MobHoloparasiteGuardianExplosive = explosive holoparasite
-    .desc = A demolition guardian that projects compact explosive charges.
-
 ent-MobHoloparasiteGuardianLightning = lightning holoparasite
     .desc = A charged guardian that lashes targets with contained tesla arcs.
 

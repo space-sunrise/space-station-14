@@ -1,9 +1,5 @@
 ent-ActionGuardianCharge = рывок стража
     .desc = Прыгнуть в выбранном направлении.
-ent-ActionGuardianExplosiveBlast = взрывной заряд
-    .desc = Выпустить компактный взрывной заряд.
-ent-ActionGuardianLightningBolt = малая молния
-    .desc = Выпустить сдержанную тесла-дугу.
 ent-ActionGuardianForceWall = силовой барьер
     .desc = Создать магический барьер.
 ent-ActionGuardianRangedShot = твердосветный болт
