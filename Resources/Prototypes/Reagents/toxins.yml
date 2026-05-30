@@ -488,7 +488,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire ] # Surise-Edit
+          type: [ Animal, Vox ]
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -498,12 +498,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ]
+          type: [ Animal, Vox, Plant ]
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ]
+          type: [ Animal, Vox, Plant ]
           inverted: true
         damage:
           types:
@@ -527,13 +527,6 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
-      - !type:AdjustReagent
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Vampire ]
-        reagent: Protein
-        amount: 0.5
-
 - type: reagent
   id: Allicin
   name: reagent-name-allicin

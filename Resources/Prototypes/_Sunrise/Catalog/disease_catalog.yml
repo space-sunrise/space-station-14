@@ -4,11 +4,10 @@
   description: listing-disease-cough-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: cough }
   raiseProductEventOnUser: true
-  productAction: ActionDiseaseCough
   cost:
     DiseasePoints: 0
   categories:
-  - DiseaseInfectCategory
+  - DiseaseSymptomsCategory
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -18,7 +17,7 @@
   name: listing-disease-sneeze-name
   description: listing-disease-sneeze-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: sneeze }
-  productAction: ActionDiseaseSneeze
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 20
   categories:
@@ -32,7 +31,7 @@
   name: listing-disease-vomit-name
   description: listing-disease-vomit-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: vomit }
-  productAction: ActionDiseaseVomit
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 25
   categories:
@@ -46,7 +45,7 @@
   name: listing-disease-narcolepsy-name
   description: listing-disease-narcolepsy-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: narcolepsy }
-  productAction: ActionDiseaseNarcolepsy
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 20
   categories:
@@ -60,7 +59,7 @@
   name: listing-disease-cry-name
   description: listing-disease-cry-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: sob }
-  productAction: ActionDiseaseCrying
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 10
   categories:
@@ -74,7 +73,7 @@
   name: listing-disease-muted-name
   description: listing-disease-muted-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: muted }
-  productAction: ActionDiseaseMuted
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 25
   categories:
@@ -88,7 +87,7 @@
   name: listing-disease-slowness-name
   description: listing-disease-slowness-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: slowness }
-  productAction: ActionDiseaseSlowness
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 15
   categories:
@@ -102,7 +101,7 @@
   name: listing-disease-bleed-name
   description: listing-disease-bleed-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: bleed }
-  productAction: ActionDiseaseBleed
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 30
   categories:
@@ -116,7 +115,7 @@
   name: listing-disease-blindness-name
   description: listing-disease-blindness-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: blindness }
-  productAction: ActionDiseaseBlindness
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 40
   categories:
@@ -130,7 +129,7 @@
   name: listing-disease-insult-name
   description: listing-disease-insult-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: lethal }
-  productAction: ActionDiseaseInsult
+  raiseProductEventOnUser: true
   cost:
     DiseasePoints: 20
   categories:
@@ -144,9 +143,9 @@
   name: listing-disease-zombie-name
   description: listing-disease-zombie-description
   icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: lethal }
-  productAction: ActionDiseaseZombie
+  raiseProductEventOnUser: true
   cost:
-    DiseasePoints: 200
+    DiseasePoints: 500
   categories:
   - DiseaseSymptomsCategory
   conditions:
@@ -175,7 +174,7 @@
   - DiseaseEvolutionCategory
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 5
 
 - type: listing
   id: InfectChance
@@ -189,7 +188,7 @@
   - DiseaseEvolutionCategory
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 3
 
 - type: listing
   id: Shield
@@ -203,7 +202,7 @@
   - DiseaseEvolutionCategory
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 6
 
 - type: listing
   id: Lethal

@@ -1,0 +1,19 @@
+# Sunrise-Edit
+
+- type: storytellerType
+  id: Calm
+  budgetModifier: 0.5
+  maxBudgetModifier: 0.5
+  durationMultiplier: 1.5
+
+- type: storytellerType
+  id: Classic
+  budgetModifier: 1.0
+  maxBudgetModifier: 1.0
+  durationMultiplier: 1.0
+
+- type: storytellerType
+  id: Insane
+  budgetModifier: 2.0
+  maxBudgetModifier: 1.5
+  durationMultiplier: 0.6
