@@ -190,7 +190,8 @@ public abstract partial class SharedCarryingSystem
             RemComp<KnockedDownComponent>(target);
             RemComp<ActiveCanBeCarriedComponent>(target);
             _actionBlocker.UpdateCanMove(target);
-            _transform.AttachToGridOrMap(target);
+            if (!Terminating(target))
+                _transform.AttachToGridOrMap(target);
             _standing.Stand(target);
 
             var ev = new CarryDroppedEvent();

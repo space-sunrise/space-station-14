@@ -2,6 +2,7 @@ using Content.Shared.Alert;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Prototypes;
@@ -150,10 +151,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
 
     private void RefreshDualWieldGuns(EntityUid? leftGun, EntityUid? rightGun)
     {
-        if (leftGun != null)
+        if (leftGun != null && Exists(leftGun.Value) && HasComp<GunComponent>(leftGun.Value))
             _gunSystem.RefreshModifiers(leftGun.Value);
 
-        if (rightGun != null)
+        if (rightGun != null && Exists(rightGun.Value) && HasComp<GunComponent>(rightGun.Value))
             _gunSystem.RefreshModifiers(rightGun.Value);
     }
 }

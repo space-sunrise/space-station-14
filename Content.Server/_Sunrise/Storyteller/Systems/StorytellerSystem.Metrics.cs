@@ -1,3 +1,4 @@
+using System.Globalization;
 using Prometheus;
 using Content.Server._Sunrise.Storyteller.Components;
 using Content.Shared._Sunrise.Storyteller.Prototypes;
@@ -134,8 +135,7 @@ public sealed partial class StorytellerSystem
         if (!_cfg.GetCVar(SunriseCCVars.StorytellerTelemetryEnabled))
             return;
 
-        var json = $"{{\"event\":\"storyteller_state_changed\",\"old_state\":\"{oldState}\",\"new_state\":\"{comp.PacingState}\",\"crew_stress\":{comp.CrewStress:F1},\"threat_budget\":{comp.ThreatBudget:F1}}}";
-        _sawmill.Info(json);
+        _sawmill.Info($"State changed: {oldState} -> {comp.PacingState}. Crew stress: {comp.CrewStress.ToString("F1", CultureInfo.InvariantCulture)}, Threat budget: {comp.ThreatBudget.ToString("F1", CultureInfo.InvariantCulture)}");
     }
 
     private void LogTelemetryTick(StorytellerRuleComponent comp, StationMetrics metrics)
@@ -143,42 +143,18 @@ public sealed partial class StorytellerSystem
         if (!_cfg.GetCVar(SunriseCCVars.StorytellerTelemetryEnabled))
             return;
 
-        var json = $"{{" +
-                   $"\"event\":\"storyteller_tick\"," +
-                   $"\"state\":\"{comp.PacingState}\"," +
-                   $"\"crew_stress\":{comp.CrewStress:F2}," +
-                   $"\"threat_budget\":{comp.ThreatBudget:F2}," +
-                   $"\"metrics\":{{" +
-                   $"\"total_players\":{metrics.TotalPlayers}," +
-                   $"\"alive\":{metrics.AliveCount}," +
-                   $"\"dead\":{metrics.DeadCount}," +
-                   $"\"ghosts\":{metrics.GhostCount}," +
-                   $"\"security\":{metrics.SecurityCount}," +
-                   $"\"cargo_balance\":{metrics.CargoBalance}," +
-                   $"\"science_points\":{metrics.SciencePoints}," +
-                   $"\"atmos_breach_ratio\":{metrics.AtmosphereBreachRatio:F4}," +
-                   $"\"dangerous_gases\":{(metrics.HasDangerousGases ? "true" : "false")}," +
-                   $"\"power_deficit_ratio\":{metrics.PowerGridDeficitRatio:F4}," +
-                   $"\"crew_weapon_count\":{metrics.CrewWeaponCount}," +
-                   $"\"active_antagonist_count\":{metrics.ActiveAntagonistCount}," +
-                   $"\"active_ert_count\":{metrics.ActiveErtCount}," +
-                   $"\"singularity_active\":{(metrics.SingularityActive ? "true" : "false")}," +
-                   $"\"singularity_contained\":{(metrics.SingularityContained ? "true" : "false")}," +
-                   $"\"tesla_active\":{(metrics.TeslaActive ? "true" : "false")}," +
-                   $"\"tesla_contained\":{(metrics.TeslaContained ? "true" : "false")}," +
-                   $"\"supermatter_integrity\":{metrics.SupermatterIntegrity:F2}," +
-                   $"\"unlocked_research_tiers\":{metrics.UnlockedResearchTiers}," +
-                   $"\"player_join_rate\":{metrics.PlayerJoinRate:F2}," +
-                   $"\"player_leave_rate\":{metrics.PlayerLeaveRate:F2}," +
-                   $"\"available_ghost_roles\":{metrics.AvailableGhostRoles}," +
-                   $"\"anomalies\":{metrics.AnomaliesCount}," +
-                   $"\"active_artifacts\":{metrics.ActiveArtifactsCount}," +
-                   $"\"puddles\":{metrics.PuddlesCount}," +
-                   $"\"trash\":{metrics.TrashCount}," +
-                   $"\"average_crew_damage\":{metrics.AverageCrewDamage:F2}" +
-                   $"}}" +
-                   $"}}";
-        _sawmill.Info(json);
+        _sawmill.Info($"Tick - State: {comp.PacingState}, Crew Stress: {comp.CrewStress.ToString("F2", CultureInfo.InvariantCulture)}, Threat Budget: {comp.ThreatBudget.ToString("F2", CultureInfo.InvariantCulture)}, " +
+                      $"Players: {metrics.AliveCount}/{metrics.TotalPlayers} (Dead: {metrics.DeadCount}, Ghosts: {metrics.GhostCount}, Sec: {metrics.SecurityCount}), " +
+                      $"Economy: Cargo Balance {metrics.CargoBalance}, Science Points {metrics.SciencePoints}, " +
+                      $"Atmos: Breach Ratio {metrics.AtmosphereBreachRatio.ToString("F4", CultureInfo.InvariantCulture)}, Dangerous Gases: {metrics.HasDangerousGases}, " +
+                      $"Power Deficit Ratio: {metrics.PowerGridDeficitRatio.ToString("F4", CultureInfo.InvariantCulture)}, " +
+                      $"Weapons: {metrics.CrewWeaponCount}, Antags: {metrics.ActiveAntagonistCount}, ERT: {metrics.ActiveErtCount}, " +
+                      $"Singularity: Active {metrics.SingularityActive}/Contained {metrics.SingularityContained}, " +
+                      $"Tesla: Active {metrics.TeslaActive}/Contained {metrics.TeslaContained}, " +
+                      $"SM Integrity: {metrics.SupermatterIntegrity.ToString("F2", CultureInfo.InvariantCulture)}, " +
+                      $"Research Tiers: {metrics.UnlockedResearchTiers}, Ghost Roles: {metrics.AvailableGhostRoles}, " +
+                      $"Anomalies: {metrics.AnomaliesCount}, Artifacts: {metrics.ActiveArtifactsCount}, " +
+                      $"Puddles: {metrics.PuddlesCount}, Trash: {metrics.TrashCount}, Avg Damage: {metrics.AverageCrewDamage.ToString("F2", CultureInfo.InvariantCulture)}");
     }
 
     private void RecordEventTriggered(string eventId, StorytellerMetadataPrototype metadata)
@@ -188,7 +164,6 @@ public sealed partial class StorytellerSystem
         if (!_cfg.GetCVar(SunriseCCVars.StorytellerTelemetryEnabled))
             return;
 
-        var json = $"{{\"event\":\"storyteller_event_triggered\",\"rule_id\":\"{eventId}\",\"threat_type\":\"{metadata.ThreatType}\",\"cost\":{metadata.ThreatCost:F1},\"stress_reduction\":{metadata.StressReduction:F1}}}";
-        _sawmill.Info(json);
+        _sawmill.Info($"Triggered event: {eventId} (Threat Type: {metadata.ThreatType}, Cost: {metadata.ThreatCost.ToString("F1", CultureInfo.InvariantCulture)}, Stress Reduction: {metadata.StressReduction.ToString("F1", CultureInfo.InvariantCulture)})");
     }
 }

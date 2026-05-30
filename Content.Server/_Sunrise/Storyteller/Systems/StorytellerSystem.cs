@@ -601,8 +601,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         // Deduct cost / process rewards
         entity.Comp.ThreatBudget = MathF.Max(0f, entity.Comp.ThreatBudget - metadata.ThreatCost);
 
-        // Spawn rule
+        // Spawn and start rule
         var ruleUid = GameTicker.AddGameRule(proto.ID);
+        GameTicker.StartGameRule(ruleUid);
 
         // Record history
         entity.Comp.ActiveStorytellerRules.Add(ruleUid);

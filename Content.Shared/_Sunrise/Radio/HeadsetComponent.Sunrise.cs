@@ -13,10 +13,10 @@ public sealed partial class HeadsetComponent
     public Dictionary<string, float> ChannelVolumes = new();
 
     [DataField]
-    public float SendChargeCost = 10f;
+    public float SendChargeCost = 5f;
 
     [DataField]
-    public float ReceiveChargeCost = 2f;
+    public float ReceiveChargeCost = 1f;
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ToggleAction = "ActionToggleHeadset";

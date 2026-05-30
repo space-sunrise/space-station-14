@@ -73,13 +73,13 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
             var target = comp.Target.Value;
 
-            if (!Exists(target) || Deleted(target) || Terminating(target))
+            if (!Exists(target) || Deleted(target))
             {
                 RemComp<ActiveCarrierComponent>(uid);
                 continue;
             }
 
-            if (!TryComp(target, out TransformComponent? targetXform))
+            if (!TryComp<TransformComponent>(target, out var targetXform))
             {
                 RemComp<ActiveCarrierComponent>(uid);
                 continue;
@@ -308,10 +308,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void OnInteractionAttempt(Entity<ActiveCanBeCarriedComponent> ent, ref InteractionAttemptEvent args)
     {
-        if (args.Target == null)
-            return;
-
-        if (!TryComp(args.Target.Value, out TransformComponent? targetXform))
+        if (args.Target == null || !TryComp<TransformComponent>(args.Target.Value, out var targetXform))
             return;
 
         var targetParent = targetXform.ParentUid;
