@@ -82,6 +82,15 @@ public sealed partial class PryingSystem : EntitySystem // Sunrise-Edit
             return true;
         }
 
+        // Sunrise-Start
+        if (!TrySunrisePry(target, user, new BeforePryEvent(user, comp.PryPowered, comp.Force, true), out message))
+        {
+            if (!string.IsNullOrWhiteSpace(message))
+                _popup.PopupClient(Loc.GetString(message), target, user);
+            return true;
+        }
+        // Sunrise-End
+
         StartPry(target, user, tool, comp.SpeedModifier, out id);
 
         return true;
@@ -99,6 +108,11 @@ public sealed partial class PryingSystem : EntitySystem // Sunrise-Edit
             // If we have reached this point we want the event that caused this
             // to be marked as handled.
             return true;
+
+        // Sunrise-Start
+        if (!TrySunrisePry(target, user, new BeforePryEvent(user, false, false, false), out _))
+            return true;
+        // Sunrise-End
 
         // hand-prying is much slower
         var modifier = CompOrNull<PryingComponent>(user)?.SpeedModifier ?? unpoweredComp.PryModifier;
@@ -140,6 +154,7 @@ public sealed partial class PryingSystem : EntitySystem // Sunrise-Edit
     }
 
     private partial bool CanSunrisePry(EntityUid target, EntityUid user, ref BeforePryEvent pryEvent, out string? message); // Sunrise-Edit
+    private partial bool TrySunrisePry(EntityUid target, EntityUid user, BeforePryEvent pryEvent, out string? message); // Sunrise-Edit
 
     private bool StartPry(EntityUid target, EntityUid user, EntityUid? tool, float toolModifier, [NotNullWhen(true)] out DoAfterId? id)
     {
@@ -186,6 +201,20 @@ public sealed partial class PryingSystem : EntitySystem // Sunrise-Edit
                 _popup.PopupClient(Loc.GetString(message), uid, args.User);
             return;
         }
+
+        // Sunrise-Start
+        var pryEvent = comp != null
+            ? new BeforePryEvent(args.User, comp.PryPowered, comp.Force, true)
+            : new BeforePryEvent(args.User, false, false, false);
+
+        if (!TrySunrisePry(uid, args.User, pryEvent, out message))
+        {
+            if (!string.IsNullOrWhiteSpace(message))
+                _popup.PopupClient(Loc.GetString(message), uid, args.User);
+
+            return;
+        }
+        // Sunrise-End
 
         if (args.Used != null && comp != null)
         {

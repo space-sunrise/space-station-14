@@ -684,6 +684,9 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void StartDrinkDoAfter(Entity<VampireComponent> ent, EntityUid target, bool showPopup)
     {
+        if (ent.Comp.IsDrinking)
+            return;
+
         if (IsMouthBlocked(ent.Owner))
         {
             if (showPopup)
@@ -698,6 +701,8 @@ public sealed partial class VampireSystem : EntitySystem
             BreakOnHandChange = true,
             BreakOnMove = true,
             BreakOnWeightlessMove = true,
+            BlockDuplicate = true,
+            CancelDuplicate = true,
             AttemptFrequency = AttemptFrequency.StartAndEnd
         };
 

@@ -6,6 +6,9 @@ namespace Content.Shared.Prying.Systems;
 public sealed partial class PryingSystem
 {
     private partial bool CanSunrisePry(EntityUid target, EntityUid user, ref BeforePryEvent pryEvent, out string? message)
+        => (message = null) is null;
+
+    private partial bool TrySunrisePry(EntityUid target, EntityUid user, BeforePryEvent pryEvent, out string? message)
     {
         var userEvent = new UserBeforePryEvent(target, pryEvent.PryPowered, pryEvent.Force, pryEvent.StrongPry);
         RaiseLocalEvent(user, ref userEvent);

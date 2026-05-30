@@ -74,6 +74,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
 
     private ISawmill? _sawmill;
     private static readonly ProtoId<DamageGroupPrototype> BruteGroupId = "Brute";
@@ -487,6 +488,8 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (TryComp<UmbraeComponent>(ent, out var umbrae))
         {
+            _eye.SetDrawFov(ent, true);
+
             umbrae.ShadowBoxingActive = false;
             umbrae.ShadowBoxingTarget = null;
             umbrae.ShadowBoxingEndTime = null;
