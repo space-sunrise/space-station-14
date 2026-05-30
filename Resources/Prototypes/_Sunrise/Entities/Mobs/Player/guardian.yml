@@ -134,7 +134,7 @@
     attackRate: 1.8
     damage:
       types:
-        Heat: 13
+        Heat: 15
         Structural: 20
     resistanceBypass: true
 
@@ -205,7 +205,7 @@
     attackRate: 1.8
     damage:
       types:
-        Shock: 10
+        Shock: 14
         Structural: 20
 
 - type: entity
@@ -378,7 +378,7 @@
     attackRate: 1.2
     damage:
       groups:
-        Brute: -17 # Оно не лечит 25 брута, оно лечит где-то 5 брута, я не знаю почему так, поэтому и выставил
+        Brute: -17 # Оно не лечит 17 брута, оно лечит где-то 5 брута, я не знаю почему так, поэтому и выставил
         Burn: -17
         Airloss: -17
         Toxin: -17

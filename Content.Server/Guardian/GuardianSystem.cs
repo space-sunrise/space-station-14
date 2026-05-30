@@ -143,9 +143,7 @@ namespace Content.Server.Guardian
             if (args.Cancelled)
                 return;
 
-            // Sunrise edit start - allow fork-specific guardian attack restrictions.
-            if (!CanAttemptGuardianAttack(uid, component, args) || args.Target != component.Host || CanAttackHost(uid))
-            // Sunrise edit end
+            if (!CanAttemptGuardianAttack(uid, component, args) || args.Target != component.Host || CanAttackHost(uid)) // Sunrise-Edit
                 return;
 
             // why is this server side code? This should be in shared
@@ -163,7 +161,7 @@ namespace Content.Server.Guardian
             args.Args.Cancelled = true;
         }
 
-        // Sunrise edit start - fork-specific guardian host attack rules live in partial files.
+        // Sunrise edit start
         private partial bool CanAttackHost(EntityUid uid);
 
         private partial bool CanAttemptGuardianAttack(EntityUid uid, GuardianComponent component, AttackAttemptEvent args);
@@ -251,8 +249,7 @@ namespace Content.Server.Guardian
             if (TryComp<GuardianComponent>(guardian, out var guardianComp))
             {
                 guardianComp.Host = args.Args.Target.Value;
-                // Sunrise-Edit
-                OnGuardianLooseChanged(guardian, guardianComp);
+                OnGuardianLooseChanged(guardian, guardianComp); // Sunrise-Edit
                 _audio.PlayPvs(guardianComp.InjectSound, args.Args.Target.Value);
                 _popupSystem.PopupEntity(Loc.GetString("guardian-created"), args.Args.Target.Value, args.Args.Target.Value);
                 // Exhaust the activator
@@ -314,8 +311,8 @@ namespace Content.Server.Guardian
         /// </summary>
         private void OnCreatorExamine(EntityUid uid, GuardianCreatorComponent component, ExaminedEvent args)
         {
-           if (component.Used)
-               args.PushMarkup(Loc.GetString("guardian-activator-empty-examine"));
+            if (component.Used)
+                args.PushMarkup(Loc.GetString("guardian-activator-empty-examine"));
         }
 
         /// <summary>
@@ -383,8 +380,8 @@ namespace Content.Server.Guardian
             DebugTools.Assert(!hostComponent.GuardianContainer.Contains(guardian));
 
             guardianComponent.GuardianLoose = true;
-            // Sunrise-Edit
-            OnGuardianLooseChanged(guardian, guardianComponent);
+
+            OnGuardianLooseChanged(guardian, guardianComponent); // Sunrise-Edit
         }
 
         private void RetractGuardian(EntityUid host,GuardianHostComponent hostComponent, EntityUid guardian, GuardianComponent guardianComponent)
@@ -399,11 +396,11 @@ namespace Content.Server.Guardian
             DebugTools.Assert(hostComponent.GuardianContainer.Contains(guardian));
             _popupSystem.PopupEntity(Loc.GetString("guardian-entity-recall"), host);
             guardianComponent.GuardianLoose = false;
-            // Sunrise-Edit
-            OnGuardianLooseChanged(guardian, guardianComponent);
+
+            OnGuardianLooseChanged(guardian, guardianComponent); // Sunrise-Edit
         }
 
-        // Sunrise edit start - fork-specific guardian state updates live in partial files.
+        // Sunrise edit start
         partial void OnGuardianLooseChanged(EntityUid guardian, GuardianComponent guardianComponent);
         // Sunrise edit end
     }
