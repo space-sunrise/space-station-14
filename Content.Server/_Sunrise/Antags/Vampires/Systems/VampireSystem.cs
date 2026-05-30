@@ -180,7 +180,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (damageInterval < TimeSpan.FromSeconds(0.1f))
             damageInterval = TimeSpan.FromSeconds(0.1f);
 
-        if (sunlight.TimeEnteredSpace == null)
+        if (sunlight.TimeEnteredSpace is null)
         {
             sunlight.TimeEnteredSpace = now;
             sunlight.NextWarningPopup = now + sunlight.GracePeriod;
@@ -199,7 +199,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         var nextDamage = sunlight.NextDamageTime;
-        if (nextDamage == null)
+        if (nextDamage is null)
         {
             sunlight.NextDamageTime = now + damageInterval;
             nextDamage = sunlight.NextDamageTime;
@@ -263,7 +263,7 @@ public sealed partial class VampireSystem : EntitySystem
         _damageableSystem.TryChangeDamage(uid, spec, true);
 
         if (!TryComp(uid, out DamageableComponent? damageable) ||
-            damageable == null ||
+            damageable is null ||
             !damageable.DamagePerGroup.TryGetValue(GeneticGroupId, out var geneticDamage))
         {
             return true;
@@ -302,11 +302,11 @@ public sealed partial class VampireSystem : EntitySystem
         damageable ??= CompOrNull<DamageableComponent>(uid);
         thresholds ??= CompOrNull<MobThresholdsComponent>(uid);
 
-        if (damageable == null)
+        if (damageable is null)
             return true;
 
         if (!_mobThreshold.TryGetDeadThreshold(uid, out var deadThreshold, thresholds) ||
-            deadThreshold == null ||
+            deadThreshold is null ||
             deadThreshold.Value == FixedPoint2.Zero)
         {
             return true;
@@ -330,7 +330,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool IsInSpace(TransformComponent xform)
     {
-        if (xform.GridUid == null)
+        if (xform.GridUid is null)
             return true;
 
         if (!TryComp(xform.GridUid.Value, out MapGridComponent? grid))
@@ -400,7 +400,7 @@ public sealed partial class VampireSystem : EntitySystem
         {
             EntityUid? actionEntity = null;
             _actions.AddAction(uid, ref actionEntity, classSelectAction, uid);
-            if (actionEntity != null)
+            if (actionEntity is not null)
             {
                 comp.ActionEntities[classSelectAction] = actionEntity.Value;
                 Dirty(uid, comp);
@@ -455,7 +455,7 @@ public sealed partial class VampireSystem : EntitySystem
 
             _actions.AddAction(uid, ref action, actionId, uid);
 
-            if (action != null)
+            if (action is not null)
                 comp.ActionEntities[actionId] = action.Value;
         }
         RemComp<HungerComponent>(uid);
@@ -527,7 +527,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void TryRefreshVampireAction(EntityUid owner, EntityUid? actionEntity)
     {
-        if (actionEntity == null
+        if (actionEntity is null
             || _actions.GetAction(actionEntity) is not { } action
             || !TryComp<VampireComponent>(owner, out var vamp))
             return;
@@ -539,7 +539,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         var enabled = vamp.TotalBlood >= vac.BloodToUnlock
-             && (vac.RequiredClass == null || ValidateVampireClass(owner, vamp, vac.RequiredClass))
+             && (vac.RequiredClass is null || ValidateVampireClass(owner, vamp, vac.RequiredClass))
              && (!vac.RequiresFullPower || vamp.FullPower);
 
         _actions.SetEnabled(action.AsNullable(), enabled);
@@ -568,7 +568,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void GrantAbility(EntityUid uid, VampireComponent comp, ref EntityUid? field, EntProtoId actionId)
     {
-        if (field != null)
+        if (field is not null)
             return;
 
         var threshold = GetActionBloodThreshold(actionId);
@@ -576,7 +576,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (comp.TotalBlood >= threshold)
         {
             _actions.AddAction(uid, ref field, actionId, uid);
-            if (field != null)
+            if (field is not null)
             {
                 comp.ActionEntities[actionId] = field.Value;
                 Dirty(uid, comp);
@@ -621,7 +621,7 @@ public sealed partial class VampireSystem : EntitySystem
         {
             EntityUid? action = null;
             _actions.AddAction(uid, ref action, rejuvenateII, uid);
-            if (action != null)
+            if (action is not null)
                 comp.ActionEntities[rejuvenateII] = action.Value;
         }
 
@@ -737,7 +737,7 @@ public sealed partial class VampireSystem : EntitySystem
             return 100f;
 
         if (!_mobThreshold.TryGetDeadThreshold(uid, out var deadThreshold, CompOrNull<MobThresholdsComponent>(uid))
-            || deadThreshold == null
+            || deadThreshold is null
             || deadThreshold.Value == FixedPoint2.Zero)
         {
             return 100f - damageable.TotalDamage.Float();
@@ -816,7 +816,7 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnBloodDrainGetProgress(EntityUid uid, BloodDrainConditionComponent comp, ref ObjectiveGetProgressEvent args)
     {
         var target = _number.GetTarget(uid);
-        if (args.Mind.OwnedEntity != null && TryComp<VampireComponent>(args.Mind.OwnedEntity.Value, out var vampComp))
+        if (args.Mind.OwnedEntity is not null && TryComp<VampireComponent>(args.Mind.OwnedEntity.Value, out var vampComp))
             args.Progress = target > 0 ? MathF.Min(vampComp.TotalBlood / target, 1f) : 1f;
         else
             args.Progress = 0f;

@@ -41,7 +41,7 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
             if (ShouldForceRevert(uid, xform))
                 continue;
 
-            if (comp.TrailPrototype == null)
+            if (comp.TrailPrototype is null)
                 continue;
 
             // Spawn more frequently: once per entered tile (but don't duplicate if the tile already has a blood puddle).
@@ -69,9 +69,9 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
     private bool ShouldForceRevert(EntityUid uid, TransformComponent xform)
     {
         var gridUid = xform.GridUid;
-        var inSpace = gridUid == null;
+        var inSpace = gridUid is null;
 
-        if (!inSpace && gridUid != null)
+        if (!inSpace && gridUid is not null)
         {
             if (!_gridQuery.TryComp(gridUid.Value, out var grid) ||
                 !_map.TryGetTileRef(gridUid.Value, grid, xform.Coordinates, out var tileRef) ||

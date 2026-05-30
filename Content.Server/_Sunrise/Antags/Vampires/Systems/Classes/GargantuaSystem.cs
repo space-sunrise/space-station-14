@@ -497,7 +497,7 @@ public sealed class GargantuaSystem : EntitySystem
 
         var xform = Transform(uid);
 
-        if (xform.GridUid == null || !TryComp<MapGridComponent>(xform.GridUid, out var grid))
+        if (xform.GridUid is null || !TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             EndCharge(uid, gargantua);
             return;

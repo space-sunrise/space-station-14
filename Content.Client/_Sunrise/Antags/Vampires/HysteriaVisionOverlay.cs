@@ -51,7 +51,7 @@ public sealed class HysteriaVisionOverlay : Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
-        if (player == null
+        if (player is null
             || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria)
             || _timing.CurTime > hysteria.EndTime) // Check if effect expired
         {
@@ -135,7 +135,7 @@ public sealed class HysteriaVisionOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
-        if (player == null || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria))
+        if (player is null || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria))
             return;
 
         var spriteCount = hysteria.DisguiseSprites.Count;
@@ -183,7 +183,7 @@ public sealed class HysteriaVisionOverlay : Overlay
                 continue;
 
             var disguiseState = _disguiseStates[spriteIndex];
-            if (disguiseState == null)
+            if (disguiseState is null)
                 continue;
 
             var size = hysteria.DisguiseSprites[spriteIndex].Size;
@@ -191,7 +191,7 @@ public sealed class HysteriaVisionOverlay : Overlay
             // Get the direction from the targets sprite to match their facing
             var rsiDir = GetRsiDirection(xform.LocalRotation.GetCardinalDir());
             var texture = disguiseState.GetFrame(rsiDir, 0);
-            if (texture == null)
+            if (texture is null)
                 continue;
 
             var angle = (worldRot + eyeRotation).Reduced().FlipPositive();

@@ -160,8 +160,8 @@ public sealed partial class VampireSystem : EntitySystem
     internal bool IsValidTile(EntityCoordinates coords, EntityUid? gridUid = null, MapGridComponent? gridComp = null)
     {
         gridUid ??= _transform.GetGrid(coords);
-        if (gridUid == null
-            || (gridComp == null && !TryComp(gridUid.Value, out gridComp))
+        if (gridUid is null
+            || (gridComp is null && !TryComp(gridUid.Value, out gridComp))
             || !_map.TryGetTileRef(gridUid.Value, gridComp, coords, out var tileRef))
             return false;
 
@@ -176,7 +176,7 @@ public sealed partial class VampireSystem : EntitySystem
     internal bool ValidateVampireClass(EntityUid uid, VampireComponent comp, ProtoId<VampireClassPrototype>? requiredClass)
     {
         _ = uid;
-        if (requiredClass == null)
+        if (requiredClass is null)
             return true;
 
         return string.Equals(comp.ChosenClassId, requiredClass.Value.Id, StringComparison.Ordinal);
@@ -508,7 +508,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         if (!comp.FangsExtended
-            || args.Args.Target == null
+            || args.Args.Target is null
             || !HasComp<BloodstreamComponent>(args.Args.Target.Value)
             )
         {
@@ -788,7 +788,7 @@ public sealed partial class VampireSystem : EntitySystem
 	/// </summary>
     private void OnSleepDoAfter(EntityUid uid, VampireComponent comp, ref VampireSleepDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null)
+        if (args.Handled || args.Cancelled || args.Target is null)
             return;
 
         var target = args.Target.Value;
@@ -991,7 +991,7 @@ public sealed partial class VampireSystem : EntitySystem
                 break;
 
             if (!_proto.TryIndex<ReagentPrototype>(quant.Reagent.Prototype, out var proto)
-                || proto.Metabolisms == null
+                || proto.Metabolisms is null
                 || !proto.Metabolisms.Keys.Any(k => args.PurgedMetabolismGroups.Contains(k.Id)))
                 continue;
 

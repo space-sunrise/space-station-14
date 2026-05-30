@@ -18,7 +18,7 @@ public sealed class VampireLocateBui(EntityUid owner, Enum uiKey) : BoundUserInt
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing && _window != null)
+        if (disposing && _window is not null)
         {
             _window.TargetSelected -= OnTargetSelected;
         }

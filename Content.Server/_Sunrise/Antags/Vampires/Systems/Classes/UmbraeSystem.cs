@@ -267,7 +267,7 @@ public sealed class UmbraeSystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("action-vampire-eternal-darkness-start"), uid, uid);
             umbrae.EternalDarknessLoopId++;
-            if (umbrae.EternalDarknessAuraEntity == null || !Exists(umbrae.EternalDarknessAuraEntity))
+            if (umbrae.EternalDarknessAuraEntity is null || !Exists(umbrae.EternalDarknessAuraEntity))
             {
                 var aura = Spawn(args.AuraPrototype, Transform(uid).Coordinates);
                 umbrae.EternalDarknessAuraEntity = aura;
@@ -287,7 +287,7 @@ public sealed class UmbraeSystem : EntitySystem
         else
         {
             _popup.PopupEntity(Loc.GetString("action-vampire-eternal-darkness-stop"), uid, uid);
-            if (umbrae.EternalDarknessAuraEntity != null && Exists(umbrae.EternalDarknessAuraEntity))
+            if (umbrae.EternalDarknessAuraEntity is not null && Exists(umbrae.EternalDarknessAuraEntity))
                 QueueDel(umbrae.EternalDarknessAuraEntity.Value);
             umbrae.EternalDarknessAuraEntity = null;
             RemComp<ActiveVampireEternalDarknessComponent>(uid);
@@ -362,13 +362,13 @@ public sealed class UmbraeSystem : EntitySystem
         if (comp.ActionEntities.TryGetValue("ActionVampireEternalDarkness", out var actionEntity) && _actions.GetAction(actionEntity) is { } action)
             _actions.SetToggled(action.AsNullable(), false);
 
-        if (umbrae.EternalDarknessAuraEntity != null && Exists(umbrae.EternalDarknessAuraEntity))
+        if (umbrae.EternalDarknessAuraEntity is not null && Exists(umbrae.EternalDarknessAuraEntity))
             QueueDel(umbrae.EternalDarknessAuraEntity.Value);
 
         umbrae.EternalDarknessAuraEntity = null;
         RemComp<ActiveVampireEternalDarknessComponent>(uid);
 
-        if (message != null)
+        if (message is not null)
             _popup.PopupEntity(message, uid, uid);
 
         Dirty(uid, umbrae);
@@ -424,7 +424,7 @@ public sealed class UmbraeSystem : EntitySystem
             || !HasComp<UmbraeComponent>(uid))
             return;
 
-        if (umbrae.SpawnedShadowAnchorBeacon != null && Exists(umbrae.SpawnedShadowAnchorBeacon))
+        if (umbrae.SpawnedShadowAnchorBeacon is not null && Exists(umbrae.SpawnedShadowAnchorBeacon))
         {
             ReturnToShadowAnchor(uid, umbrae);
             args.Handled = true;
@@ -491,7 +491,7 @@ public sealed class UmbraeSystem : EntitySystem
         if (!_vampire.CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
             return;
 
-        if (umbrae.SpawnedShadowAnchorBeacon != null && Exists(umbrae.SpawnedShadowAnchorBeacon))
+        if (umbrae.SpawnedShadowAnchorBeacon is not null && Exists(umbrae.SpawnedShadowAnchorBeacon))
             return;
 
         var coords = GetCoordinates(args.TargetCoordinates);
@@ -524,7 +524,7 @@ public sealed class UmbraeSystem : EntitySystem
         if (umbrae.ShadowAnchorLoopId != expectedLoopId)
             return;
 
-        if (umbrae.SpawnedShadowAnchorBeacon == null || !Exists(umbrae.SpawnedShadowAnchorBeacon))
+        if (umbrae.SpawnedShadowAnchorBeacon is null || !Exists(umbrae.SpawnedShadowAnchorBeacon))
             return;
 
         ReturnToShadowAnchor(uid, umbrae);
@@ -532,7 +532,7 @@ public sealed class UmbraeSystem : EntitySystem
 
     private void ReturnToShadowAnchor(EntityUid uid, UmbraeComponent umbrae)
     {
-        if (umbrae.SpawnedShadowAnchorBeacon == null || !Exists(umbrae.SpawnedShadowAnchorBeacon))
+        if (umbrae.SpawnedShadowAnchorBeacon is null || !Exists(umbrae.SpawnedShadowAnchorBeacon))
         {
             umbrae.SpawnedShadowAnchorBeacon = null;
             umbrae.ShadowAnchorAutoReturnTime = null;
@@ -604,7 +604,7 @@ public sealed class UmbraeSystem : EntitySystem
                 var spec = new DamageSpecifier(_proto.Index<DamageTypePrototype>(BluntTypeId), FixedPoint2.New(active.BrutePerTick));
                 _damageableSystem.TryChangeDamage(target, spec, true, origin: uid);
 
-                if (active.HitSound != null)
+                if (active.HitSound is not null)
                     _audio.PlayPvs(active.HitSound, target);
 
                 var punchEffect = Spawn(active.PunchEffectPrototype, Transform(target).Coordinates);

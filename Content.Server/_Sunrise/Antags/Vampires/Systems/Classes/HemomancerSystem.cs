@@ -153,7 +153,7 @@ public sealed class HemomancerSystem : EntitySystem
         var uid = args.Performer;
         var active = EnsureComp<ActiveVampireHemomancerClawsComponent>(uid);
 
-        if (active.SpawnedClaws != null && EntityManager.EntityExists(active.SpawnedClaws.Value))
+        if (active.SpawnedClaws is not null && EntityManager.EntityExists(active.SpawnedClaws.Value))
         {
             var oldClaws = active.SpawnedClaws.Value;
             active.SpawnedClaws = null;
@@ -182,7 +182,7 @@ public sealed class HemomancerSystem : EntitySystem
         {
             active.SpawnedClaws = null;
 
-            if (vampire != null && vampire.SpawnedClaws == claws)
+            if (vampire is not null && vampire.SpawnedClaws == claws)
             {
                 vampire.SpawnedClaws = null;
                 Dirty(uid, vampire);

@@ -20,7 +20,7 @@ public sealed class VampireDecoySystem : EntitySystem
 
     private void OnDecoyDamaged(Entity<VampireDecoyComponent> ent, ref DamageChangedEvent args)
     {
-        if (ent.Comp.Detonated || args.DamageDelta == null || !args.DamageDelta.AnyPositive())
+        if (ent.Comp.Detonated || args.DamageDelta is null || !args.DamageDelta.AnyPositive())
             return;
 
         ent.Comp.Detonated = true;

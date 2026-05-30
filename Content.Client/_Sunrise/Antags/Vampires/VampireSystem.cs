@@ -133,7 +133,7 @@ public sealed class VampireSystem : EntitySystem
 
     private static bool ValidateVampireClass(VampireComponent comp, ProtoId<VampireClassPrototype>? requiredClass)
     {
-        if (requiredClass == null)
+        if (requiredClass is null)
             return true;
 
         return string.Equals(comp.ChosenClassId, requiredClass.Value.Id, StringComparison.Ordinal);

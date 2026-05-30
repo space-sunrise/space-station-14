@@ -226,7 +226,7 @@ public sealed class DantalionSystem : EntitySystem
     /// </summary>
     private void OnEnthrallDoAfter(EntityUid uid, DantalionComponent dantalion, ref VampireEnthrallDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null)
+        if (args.Handled || args.Cancelled || args.Target is null)
             return;
 
         if (!TryComp<VampireComponent>(uid, out var vampire))
@@ -321,7 +321,7 @@ public sealed class DantalionSystem : EntitySystem
         if (_mind.TryGetMind(thrall, out var mindId, out var mind))
         {
             //Remove objectives
-            if (_mind.TryFindObjective((mindId, mind), comp.ObeyObjectiveId, out var objective) && objective != null)
+            if (_mind.TryFindObjective((mindId, mind), comp.ObeyObjectiveId, out var objective) && objective is not null)
                 _mind.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(objective.Value));
             //Remove role
             _role.MindRemoveRole<VampireThrallComponent>(mindId);
@@ -814,7 +814,7 @@ public sealed class DantalionSystem : EntitySystem
             return false;
         }
 
-        if (comp != null)
+        if (comp is not null)
             _vampire.CheckAndConsumeBloodCost(uid, comp, null, active.BloodCostPerTick);
 
         var coords = Transform(uid).Coordinates;

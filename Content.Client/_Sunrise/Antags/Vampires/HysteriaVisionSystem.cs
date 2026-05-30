@@ -61,7 +61,7 @@ public sealed class HysteriaVisionSystem : EntitySystem
 
         // Check if we need to remove the overlay due to expiration
         var player = _playerManager.LocalEntity;
-        if (player == null || !_hysteriaQuery.TryComp(player.Value, out var hysteria))
+        if (player is null || !_hysteriaQuery.TryComp(player.Value, out var hysteria))
             return;
 
         // Server owns the component lifetime; client only hides the overlay while waiting for replication.
@@ -71,7 +71,7 @@ public sealed class HysteriaVisionSystem : EntitySystem
 
     private void AddOverlay()
     {
-        if (_overlay != null)
+        if (_overlay is not null)
             return;
 
         _overlay = new HysteriaVisionOverlay();
@@ -80,7 +80,7 @@ public sealed class HysteriaVisionSystem : EntitySystem
 
     private void RemoveOverlay()
     {
-        if (_overlay == null)
+        if (_overlay is null)
             return;
 
         _overlayManager.RemoveOverlay(_overlay);
