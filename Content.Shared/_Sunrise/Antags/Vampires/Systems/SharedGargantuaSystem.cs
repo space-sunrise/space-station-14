@@ -167,72 +167,72 @@ public sealed class SharedGargantuaSystem : EntitySystem
     private void OnRefreshMovementSpeed(Entity<ActiveBloodRushComponent> ent, ref StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
         => args.Args.ModifySpeed(ent.Comp.SpeedMultiplier, ent.Comp.SpeedMultiplier);
 
-    private void OnOverwhelmingForce(EntityUid uid, GargantuaComponent gargantua, ref VampireOverwhelmingForceActionEvent args)
+    private void OnOverwhelmingForce(Entity<GargantuaComponent> ent, ref VampireOverwhelmingForceActionEvent args)
     {
         if (args.Handled)
             return;
 
         var actionEntity = args.Action.Owner;
         if (!Exists(actionEntity)
-            || !_vampireActions.TryUse(uid, actionEntity))
+            || !_vampireActions.TryUse(ent.Owner, actionEntity))
             return;
 
-        gargantua.OverwhelmingForceActive = !gargantua.OverwhelmingForceActive;
+        ent.Comp.OverwhelmingForceActive = !ent.Comp.OverwhelmingForceActive;
 
-        if (gargantua.OverwhelmingForceActive)
+        if (ent.Comp.OverwhelmingForceActive)
         {
-            var prying = EnsureComp<PryingComponent>(uid);
+            var prying = EnsureComp<PryingComponent>(ent);
             prying.PryPowered = true;
             prying.Force = true;
-            prying.SpeedModifier = gargantua.OverwhelmingForcePrySpeedModifier;
+            prying.SpeedModifier = ent.Comp.OverwhelmingForcePrySpeedModifier;
 
-            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-start"), uid, uid);
+            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-start"), ent.Owner, ent.Owner);
         }
         else
         {
-            RemComp<PryingComponent>(uid);
+            RemComp<PryingComponent>(ent);
 
-            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-stop"), uid, uid);
+            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-stop"), ent.Owner, ent.Owner);
         }
 
         if (_actions.GetAction(actionEntity) is { } action)
-            _actions.SetToggled(action.AsNullable(), gargantua.OverwhelmingForceActive);
+            _actions.SetToggled(action.AsNullable(), ent.Comp.OverwhelmingForceActive);
 
-        Dirty(uid, gargantua);
+        Dirty(ent);
         args.Handled = true;
     }
 
-    private void OnOverwhelmingForcePullAttempt(EntityUid uid, GargantuaComponent component, PullAttemptEvent args)
+    private void OnOverwhelmingForcePullAttempt(Entity<GargantuaComponent> ent, ref PullAttemptEvent args)
     {
-        if (!component.OverwhelmingForceActive || args.PulledUid != uid)
+        if (!ent.Comp.OverwhelmingForceActive || args.PulledUid != ent.Owner)
             return;
 
         args.Cancelled = true;
-        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), uid, args.PullerUid, PopupType.MediumCaution);
+        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), ent.Owner, args.PullerUid, PopupType.MediumCaution);
     }
 
-    private void OnOverwhelmingForceDisarmAttempt(EntityUid uid, GargantuaComponent component, ref DisarmAttemptEvent args)
+    private void OnOverwhelmingForceDisarmAttempt(Entity<GargantuaComponent> ent, ref DisarmAttemptEvent args)
     {
-        if (!component.OverwhelmingForceActive || args.TargetUid != uid)
+        if (!ent.Comp.OverwhelmingForceActive || args.TargetUid != ent.Owner)
             return;
 
         args.Cancelled = true;
-        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), uid, args.DisarmerUid, PopupType.MediumCaution);
+        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), ent.Owner, args.DisarmerUid, PopupType.MediumCaution);
     }
 
-    private void OnOverwhelmingForceMobPushAttempt(EntityUid uid, GargantuaComponent component, ref AttemptMobTargetCollideEvent args)
+    private void OnOverwhelmingForceMobPushAttempt(Entity<GargantuaComponent> ent, ref AttemptMobTargetCollideEvent args)
     {
-        if (!component.OverwhelmingForceActive)
+        if (!ent.Comp.OverwhelmingForceActive)
             return;
 
         args.Cancelled = true;
     }
 
-    private void OnOverwhelmingForceBeforePry(EntityUid uid, GargantuaComponent component, ref UserBeforePryEvent args)
+    private void OnOverwhelmingForceBeforePry(Entity<GargantuaComponent> ent, ref UserBeforePryEvent args)
     {
-        if (!component.OverwhelmingForceActive
-            || !TryComp<VampireComponent>(uid, out var vampire)
-            || vampire.DrunkBlood >= component.OverwhelmingForceDoorPryBloodCost)
+        if (!ent.Comp.OverwhelmingForceActive
+            || !TryComp<VampireComponent>(ent, out var vampire)
+            || vampire.DrunkBlood >= ent.Comp.OverwhelmingForceDoorPryBloodCost)
         {
             return;
         }

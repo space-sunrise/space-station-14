@@ -13,7 +13,18 @@ public sealed class ShadegenSystem : EntitySystem
     [Dependency] private readonly HandheldLightSystem _handheldLight = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
+    private EntityQuery<DarkLightComponent> _darkLightQuery;
+    private EntityQuery<HandheldLightComponent> _handheldLightQuery;
+
     private readonly HashSet<EntityUid> _updateQueue = [];
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _darkLightQuery = GetEntityQuery<DarkLightComponent>();
+        _handheldLightQuery = GetEntityQuery<HandheldLightComponent>();
+    }
 
     public override void Update(float frameTime)
     {
@@ -38,13 +49,13 @@ public sealed class ShadegenSystem : EntitySystem
             var lights = _lookup.GetEntitiesInRange<PointLightComponent>(Transform(uid).Coordinates, component.Range);
             foreach (var light in lights)
             {
-                if (HasComp<DarkLightComponent>(light.Owner))
+                if (_darkLightQuery.HasComp(light.Owner))
                     continue;
 
                 EnsureComp<ShadegenAffectedComponent>(light.Owner);
                 _updateQueue.Add(light.Owner);
 
-                if (TryComp<HandheldLightComponent>(light.Owner, out var handheld) && handheld.Activated)
+                if (_handheldLightQuery.TryComp(light.Owner, out var handheld) && handheld.Activated)
                     _handheldLight.TurnOff((light.Owner, handheld), makeNoise: false);
             }
         }

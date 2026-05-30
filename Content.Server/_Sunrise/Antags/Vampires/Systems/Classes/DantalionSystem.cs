@@ -145,8 +145,10 @@ public sealed class DantalionSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("vampire-thrall-released"), uid, uid, PopupType.Medium);
     }
 
-    private void OnBloodDrank(EntityUid uid, DantalionComponent dantalion, ref VampireBloodDrankEvent args)
+    private void OnBloodDrank(Entity<DantalionComponent> ent, ref VampireBloodDrankEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (!TryComp<VampireComponent>(uid, out var vampire) || vampire.TotalBlood < dantalion.HealBloodThreshold)
             return;
 
@@ -158,8 +160,10 @@ public sealed class DantalionSystem : EntitySystem
     /// <summary>
     /// Checks if a target can be enthralled and starts a do after if they can be
     /// </summary>
-    private void OnEnthrall(EntityUid uid, DantalionComponent dantalion, ref VampireEnthrallActionEvent args)
+    private void OnEnthrall(Entity<DantalionComponent> ent, ref VampireEnthrallActionEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (args.Handled || !Exists(args.Target))
             return;
 
@@ -224,8 +228,10 @@ public sealed class DantalionSystem : EntitySystem
     /// <summary>
     /// double checks the target can be enthralled and subtract blood from vampire to then give the target the thrall comp, objective, mind comp, and hivemind along with triggering a pop-up to inform the player they have been enthralled
     /// </summary>
-    private void OnEnthrallDoAfter(EntityUid uid, DantalionComponent dantalion, ref VampireEnthrallDoAfterEvent args)
+    private void OnEnthrallDoAfter(Entity<DantalionComponent> ent, ref VampireEnthrallDoAfterEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (args.Handled || args.Cancelled || args.Target is null)
             return;
 
@@ -252,7 +258,7 @@ public sealed class DantalionSystem : EntitySystem
             return;
         }
 
-        if (!_vampire.CheckAndConsumeBloodCost(uid, vampire, null, args.BloodCost))
+        if (!_vampire.CheckAndConsumeBloodCost((uid, vampire), null, args.BloodCost))
             return;
 
         var thrallComp = EnsureComp<VampireThrallComponent>(target);
@@ -298,8 +304,8 @@ public sealed class DantalionSystem : EntitySystem
         Dirty(master, dantalion);
     }
 
-    private void OnDantalionShutdown(EntityUid uid, DantalionComponent component, ComponentShutdown args)
-        => ReleaseAllThralls(uid, component);
+    private void OnDantalionShutdown(Entity<DantalionComponent> ent, ref ComponentShutdown args)
+        => ReleaseAllThralls(ent.Owner, ent.Comp);
 
     private void ReleaseAllThralls(EntityUid _, DantalionComponent component)
     {
@@ -473,8 +479,10 @@ public sealed class DantalionSystem : EntitySystem
 
     #region Pacify
 
-    private void OnPacify(EntityUid uid, DantalionComponent dantalion, ref VampirePacifyActionEvent args)
+    private void OnPacify(Entity<DantalionComponent> ent, ref VampirePacifyActionEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (args.Handled || !Exists(args.Target))
             return;
 
@@ -500,7 +508,7 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(uid, vampire, actionEntity))
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost((uid, vampire), actionEntity))
             return;
 
         EnsureComp<PacifiedComponent>(target);
@@ -516,8 +524,10 @@ public sealed class DantalionSystem : EntitySystem
 
     #region Subspace Swap
 
-    private void OnSubspaceSwap(EntityUid uid, DantalionComponent dantalion, ref VampireSubspaceSwapActionEvent args)
+    private void OnSubspaceSwap(Entity<DantalionComponent> ent, ref VampireSubspaceSwapActionEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (args.Handled || !Exists(args.Target))
             return;
 
@@ -548,7 +558,7 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(uid, vampire, actionEntity))
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost((uid, vampire), actionEntity))
             return;
 
         if (!_transform.SwapPositions(uid, target))
@@ -622,8 +632,10 @@ public sealed class DantalionSystem : EntitySystem
 
     #region Rally Thralls
 
-    private void OnRallyThralls(EntityUid uid, DantalionComponent dantalion, ref VampireRallyThrallsActionEvent args)
+    private void OnRallyThralls(Entity<DantalionComponent> ent, ref VampireRallyThrallsActionEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (args.Handled)
             return;
 
@@ -650,7 +662,7 @@ public sealed class DantalionSystem : EntitySystem
         }
 
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(uid, vampire, actionEntity))
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost((uid, vampire), actionEntity))
             return;
 
         var ralliedCount = 0;
@@ -716,7 +728,7 @@ public sealed class DantalionSystem : EntitySystem
     }
 
     private void OnBloodBondStopped(ref VampireBloodBondStoppedEvent ev)
-        => DeactivateBloodBond(ev.Dantalion.Owner, ev.Dantalion.Comp);
+        => DeactivateBloodBond(ev.Dantalion);
 
     private void ActivateBloodBond(
         EntityUid uid,
@@ -746,12 +758,12 @@ public sealed class DantalionSystem : EntitySystem
         active.NextTick = _timing.CurTime;
     }
 
-    private void DeactivateBloodBond(EntityUid uid, DantalionComponent dantalion)
+    private void DeactivateBloodBond(Entity<DantalionComponent> ent)
     {
-        dantalion.BloodBondActive = false;
-        dantalion.BloodBondLinkedThralls.Clear();
+        ent.Comp.BloodBondActive = false;
+        ent.Comp.BloodBondLinkedThralls.Clear();
 
-        if (TryComp<VampireBloodBondBeamComponent>(uid, out var beamComp))
+        if (TryComp<VampireBloodBondBeamComponent>(ent, out var beamComp))
         {
             foreach (var connection in beamComp.ActiveBeams.Values)
             {
@@ -762,8 +774,8 @@ public sealed class DantalionSystem : EntitySystem
             beamComp.ActiveBeams.Clear();
         }
 
-        RemComp<ActiveVampireBloodBondComponent>(uid);
-        Dirty(uid, dantalion);
+        RemComp<ActiveVampireBloodBondComponent>(ent);
+        Dirty(ent);
     }
 
     private void ProcessActiveBloodBonds(TimeSpan now)
@@ -773,7 +785,7 @@ public sealed class DantalionSystem : EntitySystem
         {
             if (active.TickInterval <= TimeSpan.Zero)
             {
-                DeactivateBloodBond(uid, dantalion);
+                DeactivateBloodBond((uid, dantalion));
                 continue;
             }
 
@@ -798,7 +810,7 @@ public sealed class DantalionSystem : EntitySystem
         if (TryComp<MobStateComponent>(uid, out var mobState)
             && mobState.CurrentState is MobState.Dead or MobState.Critical)
         {
-            DeactivateBloodBond(uid, dantalion);
+            DeactivateBloodBond((uid, dantalion));
             if (Exists(active.ActionEntity) && _actions.GetAction(active.ActionEntity) is { } action)
                 _actions.SetToggled(action.AsNullable(), false);
             return false;
@@ -807,7 +819,7 @@ public sealed class DantalionSystem : EntitySystem
         if (TryComp<VampireComponent>(uid, out var comp)
             && comp.DrunkBlood < active.BloodCostPerTick)
         {
-            DeactivateBloodBond(uid, dantalion);
+            DeactivateBloodBond((uid, dantalion));
             _popup.PopupEntity(Loc.GetString("vampire-blood-bond-stop-blood"), uid, uid);
             if (Exists(active.ActionEntity) && _actions.GetAction(active.ActionEntity) is { } action)
                 _actions.SetToggled(action.AsNullable(), false);
@@ -815,7 +827,7 @@ public sealed class DantalionSystem : EntitySystem
         }
 
         if (comp is not null)
-            _vampire.CheckAndConsumeBloodCost(uid, comp, null, active.BloodCostPerTick);
+            _vampire.CheckAndConsumeBloodCost((uid, comp), null, active.BloodCostPerTick);
 
         var coords = Transform(uid).Coordinates;
         var linkedThralls = new List<EntityUid>();
@@ -843,16 +855,20 @@ public sealed class DantalionSystem : EntitySystem
         return true;
     }
 
-    private void OnDantalionDamage(EntityUid uid, DantalionComponent dantalion, ref DamageBeforeApplyEvent args)
+    private void OnDantalionDamage(Entity<DantalionComponent> ent, ref DamageBeforeApplyEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (!dantalion.BloodBondActive || dantalion.BloodBondProcessingDamage)
             return;
 
         SplitBloodBondDamage(uid, uid, dantalion, ref args);
     }
 
-    private void OnThrallDamage(EntityUid uid, VampireThrallComponent thrall, ref DamageBeforeApplyEvent args)
+    private void OnThrallDamage(Entity<VampireThrallComponent> ent, ref DamageBeforeApplyEvent args)
     {
+        var (uid, thrall) = ent;
+
         if (!TryComp<DantalionComponent>(thrall.Master, out var dantalion))
             return;
 
@@ -966,8 +982,10 @@ public sealed class DantalionSystem : EntitySystem
 
     #region Mass Hysteria
 
-    private void OnMassHysteria(EntityUid uid, DantalionComponent dantalion, ref VampireMassHysteriaActionEvent args)
+    private void OnMassHysteria(Entity<DantalionComponent> ent, ref VampireMassHysteriaActionEvent args)
     {
+        var (uid, dantalion) = ent;
+
         if (args.Handled)
             return;
 
@@ -982,7 +1000,7 @@ public sealed class DantalionSystem : EntitySystem
         }
 
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(uid, vampire, actionEntity))
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost((uid, vampire), actionEntity))
             return;
 
         var coords = Transform(uid).Coordinates;

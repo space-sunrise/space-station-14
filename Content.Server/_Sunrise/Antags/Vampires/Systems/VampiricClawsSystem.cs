@@ -62,7 +62,7 @@ public sealed class VampiricClawsSystem : EntitySystem
             {
                 bloodGained += ent.Comp.BloodPerHit;
                 ent.Comp.HitsRemaining--;
-                _vampire.AddBlood(args.User, vamp, ent.Comp.BloodPerHit, hitEntity);
+                _vampire.AddBlood((args.User, vamp), ent.Comp.BloodPerHit, hitEntity);
 
                 if (ent.Comp.HitsRemaining <= 0)
                     break;

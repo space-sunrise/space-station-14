@@ -38,43 +38,44 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
             if (processed++ >= MaxPoolsProcessedPerUpdate)
                 break;
 
-            if (ShouldForceRevert(uid, xform))
+            Entity<SanguinePoolComponent, TransformComponent> ent = (uid, comp, xform);
+            if (ShouldForceRevert(ent))
                 continue;
 
-            if (comp.TrailPrototype is null)
+            if (ent.Comp1.TrailPrototype is null)
                 continue;
 
             // Spawn more frequently: once per entered tile (but don't duplicate if the tile already has a blood puddle).
-            if (xform.GridUid is not { } gridUid || !_gridQuery.TryComp(gridUid, out var gridComp))
+            if (ent.Comp2.GridUid is not { } gridUid || !_gridQuery.TryComp(gridUid, out var gridComp))
                 continue;
 
-            var tile = _map.CoordinatesToTile(gridUid, gridComp, xform.Coordinates);
-            if (comp.LastTrail is { } last && last.Grid == gridUid && last.Tile == tile)
+            var tile = _map.CoordinatesToTile(gridUid, gridComp, ent.Comp2.Coordinates);
+            if (ent.Comp1.LastTrail is { } last && last.Grid == gridUid && last.Tile == tile)
                 continue;
 
-            comp.LastTrail = (gridUid, tile);
+            ent.Comp1.LastTrail = (gridUid, tile);
 
             var tileCoords = _map.GridTileToLocal(gridUid, gridComp, tile);
-            if (_puddle.TryGetPuddle(_map.GetTileRef((gridUid, gridComp), tileCoords), out var puddle))
+            if (_puddle.TryGetPuddle(_map.GetTileRef((gridUid, gridComp), tile), out var puddle))
             {
-                var solution = new Solution { Contents = [new ReagentQuantity(comp.TrailReagent, comp.TrailReagentQuantity)] };
+                var solution = new Solution { Contents = [new ReagentQuantity(ent.Comp1.TrailReagent, ent.Comp1.TrailReagentQuantity)] };
                 _puddle.TryAddSolution(puddle, solution);
                 continue;
             }
 
-            Spawn(comp.TrailPrototype, tileCoords);
+            Spawn(ent.Comp1.TrailPrototype, tileCoords);
         }
     }
 
-    private bool ShouldForceRevert(EntityUid uid, TransformComponent xform)
+    private bool ShouldForceRevert(Entity<SanguinePoolComponent, TransformComponent> ent)
     {
-        var gridUid = xform.GridUid;
+        var gridUid = ent.Comp2.GridUid;
         var inSpace = gridUid is null;
 
         if (!inSpace && gridUid is not null)
         {
             if (!_gridQuery.TryComp(gridUid.Value, out var grid) ||
-                !_map.TryGetTileRef(gridUid.Value, grid, xform.Coordinates, out var tileRef) ||
+                !_map.TryGetTileRef(gridUid.Value, grid, ent.Comp2.Coordinates, out var tileRef) ||
                 _turf.IsSpace(tileRef))
             {
                 inSpace = true;
@@ -84,8 +85,8 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
         if (!inSpace)
             return false;
 
-        if (TryComp<PolymorphedEntityComponent>(uid, out var polymorph))
-            _polymorph.Revert((uid, polymorph));
+        if (TryComp<PolymorphedEntityComponent>(ent, out var polymorph))
+            _polymorph.Revert((ent.Owner, polymorph));
 
         return true;
     }

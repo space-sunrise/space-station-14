@@ -111,7 +111,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp(ev.Entity, out VampireComponent? vampire))
             return;
 
-        SyncVampireActions(ev.Entity, vampire);
+        SyncVampireActions((ev.Entity, vampire));
     }
 
     public override void Update(float frameTime)
@@ -136,9 +136,10 @@ public sealed partial class VampireSystem : EntitySystem
             comp.LastUpdate = now;
             comp.NextUpdate = now + comp.UpdateDelay;
 
-            ProcessBloodDecay((uid, comp), elapsed);
-            HandleHolyWater(uid, comp);
-            HandleHolyPlace(uid, comp);
+            var ent = (uid, comp);
+            ProcessBloodDecay(ent, elapsed);
+            HandleHolyWater(ent);
+            HandleHolyPlace(ent);
         }
 
         var sunlightQuery = EntityQueryEnumerator<VampireSunlightComponent, TransformComponent>();
@@ -147,70 +148,70 @@ public sealed partial class VampireSystem : EntitySystem
             if (!TryComp<VampireComponent>(uid, out var vampire))
                 continue;
 
-            HandleSpaceExposure(uid, vampire, sunlight, xform);
+            HandleSpaceExposure((uid, vampire, sunlight), xform);
         }
 
         ProcessActiveVampireEffects(now);
     }
 
-    private void HandleSpaceExposure(EntityUid uid, VampireComponent vampire, VampireSunlightComponent sunlight, TransformComponent xform)
+    private void HandleSpaceExposure(Entity<VampireComponent, VampireSunlightComponent> ent, TransformComponent xform)
     {
-        if (_container.IsEntityInContainer(uid))
+        if (_container.IsEntityInContainer(ent.Owner))
         {
-            ResetSpaceExposure(sunlight);
+            ResetSpaceExposure(ent.Comp2);
             return;
         }
 
         if (!IsInSpace(xform))
         {
-            ResetSpaceExposure(sunlight);
+            ResetSpaceExposure(ent.Comp2);
             return;
         }
 
-        if (TryComp<MobStateComponent>(uid, out var mobState) &&
+        if (TryComp<MobStateComponent>(ent, out var mobState) &&
             mobState.CurrentState == Shared.Mobs.MobState.Dead)
         {
-            ResetSpaceExposure(sunlight);
+            ResetSpaceExposure(ent.Comp2);
             return;
         }
 
         var now = _timing.CurTime;
 
-        var damageInterval = sunlight.DamageInterval;
+        var damageInterval = ent.Comp2.DamageInterval;
         if (damageInterval < TimeSpan.FromSeconds(0.1f))
             damageInterval = TimeSpan.FromSeconds(0.1f);
 
-        if (sunlight.TimeEnteredSpace is null)
+        if (ent.Comp2.TimeEnteredSpace is null)
         {
-            sunlight.TimeEnteredSpace = now;
-            sunlight.NextWarningPopup = now + sunlight.GracePeriod;
-            sunlight.NextDamageTime = now + sunlight.GracePeriod + damageInterval;
+            ent.Comp2.TimeEnteredSpace = now;
+            ent.Comp2.NextWarningPopup = now + ent.Comp2.GracePeriod;
+            ent.Comp2.NextDamageTime = now + ent.Comp2.GracePeriod + damageInterval;
         }
 
-        var timeInSpace = now - sunlight.TimeEnteredSpace.Value;
+        var timeInSpace = now - ent.Comp2.TimeEnteredSpace.Value;
 
-        if (timeInSpace < sunlight.GracePeriod)
+        if (timeInSpace < ent.Comp2.GracePeriod)
             return;
 
-        if (_timing.CurTime >= sunlight.NextWarningPopup)
+        if (_timing.CurTime >= ent.Comp2.NextWarningPopup)
         {
-            _popup.PopupEntity(Loc.GetString(sunlight.WarningPopup), uid, uid, PopupType.LargeCaution);
-            sunlight.NextWarningPopup = _timing.CurTime + sunlight.WarningPopupCooldown;
+            _popup.PopupEntity(Loc.GetString(ent.Comp2.WarningPopup), ent.Owner, ent.Owner, PopupType.LargeCaution);
+            ent.Comp2.NextWarningPopup = _timing.CurTime + ent.Comp2.WarningPopupCooldown;
         }
 
-        var nextDamage = sunlight.NextDamageTime;
+        var nextDamage = ent.Comp2.NextDamageTime;
         if (nextDamage is null)
         {
-            sunlight.NextDamageTime = now + damageInterval;
-            nextDamage = sunlight.NextDamageTime;
+            ent.Comp2.NextDamageTime = now + damageInterval;
+            nextDamage = ent.Comp2.NextDamageTime;
         }
         if (_timing.CurTime < nextDamage)
             return;
 
-        if (!ProcessSpaceExposureTick(uid, vampire, sunlight))
+        if (!ProcessSpaceExposureTick(ent))
             return;
 
-        sunlight.NextDamageTime = now + damageInterval;
+        ent.Comp2.NextDamageTime = now + damageInterval;
     }
 
     private void ResetSpaceExposure(VampireSunlightComponent sunlight)
@@ -220,65 +221,63 @@ public sealed partial class VampireSystem : EntitySystem
         sunlight.NextWarningPopup = TimeSpan.Zero;
     }
 
-    private bool ProcessSpaceExposureTick(EntityUid uid, VampireComponent vampire, VampireSunlightComponent sunlight)
+    private bool ProcessSpaceExposureTick(Entity<VampireComponent, VampireSunlightComponent> ent)
     {
-        var hadBlood = vampire.DrunkBlood > 0;
+        var hadBlood = ent.Comp1.DrunkBlood > 0;
 
         if (hadBlood)
-        {
-            DrainBlood(uid, vampire, sunlight);
+            DrainBlood(ent);
 
-        }
         else
         {
-            if (!ApplyGeneticSpaceDamage(uid, sunlight))
+            if (!ApplyGeneticSpaceDamage(ent))
                 return false;
         }
 
-        var damageable = CompOrNull<DamageableComponent>(uid);
-        var thresholds = CompOrNull<MobThresholdsComponent>(uid);
-        var healthy = IsAboveHalfHealth(uid, damageable, thresholds);
+        var damageable = CompOrNull<DamageableComponent>(ent.Owner);
+        var thresholds = CompOrNull<MobThresholdsComponent>(ent.Owner);
+        var healthy = IsAboveHalfHealth(ent.Owner, damageable, thresholds);
 
-        var chance = hadBlood ? sunlight.BloodEffectChance : sunlight.BloodlessEffectChance;
-        TryApplySpaceDamage(uid, healthy, chance, sunlight);
+        var chance = hadBlood ? ent.Comp2.BloodEffectChance : ent.Comp2.BloodlessEffectChance;
+        TryApplySpaceDamage(ent, healthy, chance);
 
         return true;
     }
 
-    private void DrainBlood(EntityUid uid, VampireComponent vampire, VampireSunlightComponent sunlight)
+    private void DrainBlood(Entity<VampireComponent, VampireSunlightComponent> ent)
     {
-        var drain = Math.Min(sunlight.BloodDrainPerInterval, vampire.DrunkBlood);
+        var drain = Math.Min(ent.Comp2.BloodDrainPerInterval, ent.Comp1.DrunkBlood);
         if (drain <= 0)
             return;
 
-        TrySpendBlood(uid, vampire, drain, showPopup: false);
+        TrySpendBlood(ent, drain, showPopup: false);
     }
 
-    private bool ApplyGeneticSpaceDamage(EntityUid uid, VampireSunlightComponent sunlight)
+    private bool ApplyGeneticSpaceDamage(Entity<VampireComponent, VampireSunlightComponent> ent)
     {
         if (!_proto.TryIndex<DamageGroupPrototype>(GeneticGroupId, out var damageGroup))
             return true;
 
-        var spec = new DamageSpecifier(damageGroup, sunlight.GeneticDamagePerInterval);
-        _damageableSystem.TryChangeDamage(uid, spec, true);
+        var spec = new DamageSpecifier(damageGroup, ent.Comp2.GeneticDamagePerInterval);
+        _damageableSystem.TryChangeDamage(ent.Owner, spec, true);
 
-        if (!TryComp(uid, out DamageableComponent? damageable) ||
+        if (!TryComp(ent, out DamageableComponent? damageable) ||
             damageable is null ||
             !damageable.DamagePerGroup.TryGetValue(GeneticGroupId, out var geneticDamage))
         {
             return true;
         }
 
-        _audio.PlayPvs(SpaceBurnSound, uid);
+        _audio.PlayPvs(SpaceBurnSound, ent.Owner);
 
-        if (geneticDamage < sunlight.GeneticDustThreshold)
+        if (geneticDamage < ent.Comp2.GeneticDustThreshold)
             return true;
 
-        DustEntity(uid);
+        DustEntity(ent.Owner);
         return false;
     }
 
-    private void TryApplySpaceDamage(EntityUid uid, bool isHealthy, float chance, VampireSunlightComponent sunlight)
+    private void TryApplySpaceDamage(Entity<VampireComponent, VampireSunlightComponent> ent, bool isHealthy, float chance)
     {
         if (!_rand.Prob(Math.Clamp(chance, 0f, 1f)))
             return;
@@ -287,14 +286,14 @@ public sealed partial class VampireSystem : EntitySystem
         {
             if (_proto.TryIndex(HeatTypeId, out var heat))
             {
-                var spec = new DamageSpecifier(heat, sunlight.BurnDamage);
-                _damageableSystem.TryChangeDamage(uid, spec, true);
+                var spec = new DamageSpecifier(heat, ent.Comp2.BurnDamage);
+                _damageableSystem.TryChangeDamage(ent.Owner, spec, true);
             }
         }
         else
-            _flammable.AdjustFireStacks(uid, sunlight.FireStacksOnIgnite, ignite: true);
+            _flammable.AdjustFireStacks(ent.Owner, ent.Comp2.FireStacksOnIgnite, ignite: true);
 
-        _audio.PlayPvs(SpaceBurnSound, uid);
+        _audio.PlayPvs(SpaceBurnSound, ent.Owner);
     }
 
     private bool IsAboveHalfHealth(EntityUid uid, DamageableComponent? damageable, MobThresholdsComponent? thresholds)
@@ -344,90 +343,89 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool ProcessBloodDecay(Entity<VampireComponent> ent, float elapsed)
     {
-        var (uid, comp) = ent;
-        var before = comp.BloodFullness;
+        var before = ent.Comp.BloodFullness;
         var wasStarving = before <= 0f;
         var changed = false;
 
         if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
-            comp.StarvationDrunkBloodDrainAccumulator = 0f;
-            comp.BloodFullness = MathF.Max(0f, before - (comp.FullnessDecayPerSecond * elapsed));
-            changed = !MathF.Abs(comp.BloodFullness - before).Equals(0f);
+            ent.Comp.StarvationDrunkBloodDrainAccumulator = 0f;
+            ent.Comp.BloodFullness = MathF.Max(0f, before - (ent.Comp.FullnessDecayPerSecond * elapsed));
+            changed = !MathF.Abs(ent.Comp.BloodFullness - before).Equals(0f);
 
             if (changed)
             {
-                Dirty(uid, comp);
-                UpdateVampireFedAlert(uid, comp);
+                Dirty(ent);
+                UpdateVampireFedAlert(ent);
             }
         }
 
-        var isStarving = comp.BloodFullness <= 0f;
+        var isStarving = ent.Comp.BloodFullness <= 0f;
         if (wasStarving != isStarving)
-            _movementSpeed.RefreshMovementSpeedModifiers(uid);
+            _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);
 
         // When blood fullness is empty, burn stored blood
-        if (comp.BloodFullness <= 0f && comp.StarvationDrunkBloodDrainPerSecond > 0 && comp.DrunkBlood > 0)
+        if (ent.Comp.BloodFullness <= 0f && ent.Comp.StarvationDrunkBloodDrainPerSecond > 0 && ent.Comp.DrunkBlood > 0)
         {
-            comp.StarvationDrunkBloodDrainAccumulator += comp.StarvationDrunkBloodDrainPerSecond * elapsed;
-            var drained = Math.Min(comp.DrunkBlood, (int) comp.StarvationDrunkBloodDrainAccumulator);
+            ent.Comp.StarvationDrunkBloodDrainAccumulator += ent.Comp.StarvationDrunkBloodDrainPerSecond * elapsed;
+            var drained = Math.Min(ent.Comp.DrunkBlood, (int) ent.Comp.StarvationDrunkBloodDrainAccumulator);
             if (drained <= 0)
                 return changed;
 
-            comp.StarvationDrunkBloodDrainAccumulator -= drained;
-            TrySpendBlood(uid, comp, drained, showPopup: false);
+            ent.Comp.StarvationDrunkBloodDrainAccumulator -= drained;
+            TrySpendBlood(ent, drained, showPopup: false);
             changed = true;
         }
 
         return changed;
     }
 
-    private void RefreshAllActions(EntityUid uid, VampireComponent comp)
+    private void RefreshAllActions(Entity<VampireComponent> ent)
     {
-        comp.LastRefreshedBloodLevel = comp.TotalBlood;
-        foreach (var (_, actionEntity) in comp.ActionEntities)
-            TryRefreshVampireAction(uid, actionEntity);
+        ent.Comp.LastRefreshedBloodLevel = ent.Comp.TotalBlood;
+        foreach (var (_, actionEntity) in ent.Comp.ActionEntities)
+            TryRefreshVampireAction(ent.Owner, actionEntity);
     }
 
-    private void HandleClassSelection(EntityUid uid, VampireComponent comp)
+    private void HandleClassSelection(Entity<VampireComponent> ent)
     {
-        if (HasChosenClass(uid))
+        if (HasChosenClass(ent.Owner))
             return;
 
-        var classSelectAction = comp.ClassSelectActionId;
+        var classSelectAction = ent.Comp.ClassSelectActionId;
 
-        if (comp.TotalBlood >= comp.ClassSelectThreshold && !comp.ActionEntities.ContainsKey(classSelectAction))
+        if (ent.Comp.TotalBlood >= ent.Comp.ClassSelectThreshold && !ent.Comp.ActionEntities.ContainsKey(classSelectAction))
         {
             EntityUid? actionEntity = null;
-            _actions.AddAction(uid, ref actionEntity, classSelectAction, uid);
+            _actions.AddAction(ent.Owner, ref actionEntity, classSelectAction, ent.Owner);
             if (actionEntity is not null)
             {
-                comp.ActionEntities[classSelectAction] = actionEntity.Value;
-                Dirty(uid, comp);
+                ent.Comp.ActionEntities[classSelectAction] = actionEntity.Value;
+                Dirty(ent);
             }
         }
 
-        if (comp.ActionEntities.TryGetValue(classSelectAction, out var classSelectActionEntity))
-            TryRefreshVampireAction(uid, classSelectActionEntity);
+        if (ent.Comp.ActionEntities.TryGetValue(classSelectAction, out var classSelectActionEntity))
+            TryRefreshVampireAction(ent.Owner, classSelectActionEntity);
     }
 
-    private void OnProgressionChanged(EntityUid uid, VampireComponent comp, ref VampireProgressionChangedEvent args) =>
-        SyncVampireActions(uid, comp);
+    private void OnProgressionChanged(Entity<VampireComponent> ent, ref VampireProgressionChangedEvent args) =>
+        SyncVampireActions(ent);
 
-    private void OnActionsComponentStartup(EntityUid uid, ActionsComponent _, ComponentStartup args)
+    private void OnActionsComponentStartup(Entity<ActionsComponent> ent, ref ComponentStartup args)
     {
-        if (!TryComp(uid, out VampireComponent? vampire))
+        if (!TryComp(ent, out VampireComponent? vampire))
             return;
-        SyncVampireActions(uid, vampire);
+        SyncVampireActions((ent.Owner, vampire));
     }
 
-    private void SyncVampireActions(EntityUid uid, VampireComponent comp)
+    private void SyncVampireActions(Entity<VampireComponent> ent)
     {
-        CleanMissingActions(comp);
-        HandleClassSelection(uid, comp);
-        EnsureRejuvenateUpgrade(uid, comp);
-        TryGrantClassAbilities(uid, comp);
-        RefreshAllActions(uid, comp);
+        CleanMissingActions(ent.Comp);
+        HandleClassSelection(ent);
+        EnsureRejuvenateUpgrade(ent);
+        TryGrantClassAbilities(ent);
+        RefreshAllActions(ent);
     }
 
     private void CleanMissingActions(VampireComponent comp)
@@ -445,38 +443,39 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private void OnStartup(EntityUid uid, VampireComponent comp, ComponentStartup args)
+    private void OnStartup(Entity<VampireComponent> ent, ref ComponentStartup args)
     {
-        EnsureComp<UnholyComponent>(uid);
-        EnsureComp<VampireSunlightComponent>(uid);
-        foreach (var actionId in comp.BaseVampireActions)
+        EnsureComp<UnholyComponent>(ent);
+        EnsureComp<VampireSunlightComponent>(ent);
+        foreach (var actionId in ent.Comp.BaseVampireActions)
         {
             EntityUid? action = null;
 
-            _actions.AddAction(uid, ref action, actionId, uid);
+            _actions.AddAction(ent.Owner, ref action, actionId, ent.Owner);
 
             if (action is not null)
-                comp.ActionEntities[actionId] = action.Value;
+                ent.Comp.ActionEntities[actionId] = action.Value;
         }
-        RemComp<HungerComponent>(uid);
-        RemComp<ThirstComponent>(uid);
-        RemComp<RespiratorComponent>(uid);
 
-        _alerts.ClearAlertCategory(uid, "Hunger");
+        RemComp<HungerComponent>(ent);
+        RemComp<ThirstComponent>(ent);
+        RemComp<RespiratorComponent>(ent);
 
-        UpdateVampireAlert(uid);
-        UpdateVampireFedAlert(uid, comp);
+        _alerts.ClearAlertCategory(ent.Owner, "Hunger");
 
-        SyncVampireActions(uid, comp);
-        _movementSpeed.RefreshMovementSpeedModifiers(uid);
+        UpdateVampireAlert(ent.Owner);
+        UpdateVampireFedAlert(ent);
+
+        SyncVampireActions(ent);
+        _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);
 
     }
 
-    private void OnShutdown(EntityUid uid, VampireComponent comp, ComponentShutdown args)
+    private void OnShutdown(Entity<VampireComponent> ent, ref ComponentShutdown args)
     {
-        RemComp<UnholyComponent>(uid);
-        RemComp<NightVisionComponent>(uid);
-        if (TryComp<VampireDrainBeamComponent>(uid, out var drainBeamComp))
+        RemComp<UnholyComponent>(ent);
+        RemComp<NightVisionComponent>(ent);
+        if (TryComp<VampireDrainBeamComponent>(ent, out var drainBeamComp))
         {
             foreach (var connection in drainBeamComp.ActiveBeams.Values)
             {
@@ -486,7 +485,7 @@ public sealed partial class VampireSystem : EntitySystem
             drainBeamComp.ActiveBeams.Clear();
         }
 
-        if (TryComp<UmbraeComponent>(uid, out var umbrae))
+        if (TryComp<UmbraeComponent>(ent, out var umbrae))
         {
             umbrae.ShadowBoxingActive = false;
             umbrae.ShadowBoxingTarget = null;
@@ -511,19 +510,19 @@ public sealed partial class VampireSystem : EntitySystem
             umbrae.ShadowAnchorAutoReturnTime = null;
         }
 
-        if (_playerShadowSnares.TryGetValue(uid, out var snares))
+        if (_playerShadowSnares.TryGetValue(ent.Owner, out var snares))
         {
             foreach (var trap in snares.ToArray())
             {
                 if (Exists(trap))
                     QueueDel(trap);
             }
-            _playerShadowSnares.Remove(uid);
+            _playerShadowSnares.Remove(ent.Owner);
         }
     }
 
     partial void UpdateVampireAlert(EntityUid uid);
-    partial void UpdateVampireFedAlert(EntityUid uid, VampireComponent? comp);
+    partial void UpdateVampireFedAlert(Entity<VampireComponent> ent);
 
     private void TryRefreshVampireAction(EntityUid owner, EntityUid? actionEntity)
     {
@@ -545,54 +544,54 @@ public sealed partial class VampireSystem : EntitySystem
         _actions.SetEnabled(action.AsNullable(), enabled);
     }
 
-    private void TryGrantClassAbilities(EntityUid uid, VampireComponent comp)
+    private void TryGrantClassAbilities(Entity<VampireComponent> ent)
     {
-        if (string.IsNullOrWhiteSpace(comp.ChosenClassId))
+        if (string.IsNullOrWhiteSpace(ent.Comp.ChosenClassId))
             return;
 
-        if (!_proto.TryIndex<VampireClassPrototype>(comp.ChosenClassId, out var classProto))
+        if (!_proto.TryIndex<VampireClassPrototype>(ent.Comp.ChosenClassId, out var classProto))
             return;
 
         foreach (var actionId in classProto.Actions)
-            GrantAbility(uid, comp, actionId);
+            GrantAbility(ent, actionId);
     }
 
-    private void GrantAbility(EntityUid uid, VampireComponent comp, EntProtoId actionId)
+    private void GrantAbility(Entity<VampireComponent> ent, EntProtoId actionId)
     {
-        if (comp.ActionEntities.ContainsKey(actionId))
+        if (ent.Comp.ActionEntities.ContainsKey(actionId))
             return;
 
         EntityUid? field = null;
-        GrantAbility(uid, comp, ref field, actionId);
+        GrantAbility(ent, ref field, actionId);
     }
 
-    private void GrantAbility(EntityUid uid, VampireComponent comp, ref EntityUid? field, EntProtoId actionId)
+    private void GrantAbility(Entity<VampireComponent> ent, ref EntityUid? field, EntProtoId actionId)
     {
         if (field is not null)
             return;
 
         var threshold = GetActionBloodThreshold(actionId);
 
-        if (comp.TotalBlood >= threshold)
+        if (ent.Comp.TotalBlood >= threshold)
         {
-            _actions.AddAction(uid, ref field, actionId, uid);
+            _actions.AddAction(ent.Owner, ref field, actionId, ent.Owner);
             if (field is not null)
             {
-                comp.ActionEntities[actionId] = field.Value;
-                Dirty(uid, comp);
+                ent.Comp.ActionEntities[actionId] = field.Value;
+                Dirty(ent);
             }
         }
     }
 
-    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _)
-        => TryRemoveAbilities(uid, comp);
+    private void OnComponentRemove(Entity<VampireComponent> ent, ComponentRemove _)
+        => TryRemoveAbilities(ent);
 
-    private void TryRemoveAbilities(EntityUid uid, VampireComponent comp)
+    private void TryRemoveAbilities(Entity<VampireComponent> ent)
     {
-        foreach (var (_, action) in comp.ActionEntities)
-            _actions.RemoveAction(uid, action);
-        comp.ActionEntities.Clear();
-        Dirty(uid, comp);
+        foreach (var (_, action) in ent.Comp.ActionEntities)
+            _actions.RemoveAction(ent.Owner, action);
+        ent.Comp.ActionEntities.Clear();
+        Dirty(ent);
     }
 
     private int GetActionBloodThreshold(EntProtoId actionId)
@@ -602,127 +601,127 @@ public sealed partial class VampireSystem : EntitySystem
             return vac.BloodToUnlock;
         return 0;
     }
-    private void EnsureRejuvenateUpgrade(EntityUid uid, VampireComponent comp)
+    private void EnsureRejuvenateUpgrade(Entity<VampireComponent> ent)
     {
-        if (comp.RejuvenateActions.Count < 2)
+        if (ent.Comp.RejuvenateActions.Count < 2)
         {
-            _sawmill?.Error($"Vampire {ToPrettyString(uid)} missing rejuvenate action config");
+            _sawmill?.Error($"Vampire {ToPrettyString(ent.Owner)} missing rejuvenate action config");
             return;
         }
 
-        var rejuvenateI = comp.RejuvenateActions[0];
-        var rejuvenateII = comp.RejuvenateActions[1];
+        var rejuvenateI = ent.Comp.RejuvenateActions[0];
+        var rejuvenateII = ent.Comp.RejuvenateActions[1];
 
         var unlockThreshold = GetActionBloodThreshold(rejuvenateII);
-        if (comp.TotalBlood < unlockThreshold)
+        if (ent.Comp.TotalBlood < unlockThreshold)
             return;
 
-        if (!comp.ActionEntities.ContainsKey(rejuvenateII))
+        if (!ent.Comp.ActionEntities.ContainsKey(rejuvenateII))
         {
             EntityUid? action = null;
-            _actions.AddAction(uid, ref action, rejuvenateII, uid);
+            _actions.AddAction(ent.Owner, ref action, rejuvenateII, ent.Owner);
             if (action is not null)
-                comp.ActionEntities[rejuvenateII] = action.Value;
+                ent.Comp.ActionEntities[rejuvenateII] = action.Value;
         }
 
-        TryRefreshVampireAction(uid, comp.ActionEntities[rejuvenateII]);
-        if (comp.ActionEntities.TryGetValue(rejuvenateI, out var firstAction))
+        TryRefreshVampireAction(ent.Owner, ent.Comp.ActionEntities[rejuvenateII]);
+        if (ent.Comp.ActionEntities.TryGetValue(rejuvenateI, out var firstAction))
         {
-            _actions.RemoveAction(uid, firstAction);
-            comp.ActionEntities.Remove(rejuvenateI);
+            _actions.RemoveAction(ent.Owner, firstAction);
+            ent.Comp.ActionEntities.Remove(rejuvenateI);
         }
 
-        Dirty(uid, comp);
+        Dirty(ent);
     }
 
-    private void HandleHolyWater(EntityUid uid, VampireComponent comp)
+    private void HandleHolyWater(Entity<VampireComponent> ent)
     {
-        if (comp.UniqueHumanoidVictims < 1)
+        if (ent.Comp.UniqueHumanoidVictims < 1)
             return;
 
-        if (_timing.CurTime < comp.NextHolyWaterTick)
+        if (_timing.CurTime < ent.Comp.NextHolyWaterTick)
             return;
 
-        var holywater = _solution.GetTotalPrototypeQuantity(uid, comp.HolyWaterReagentId);
+        var holywater = _solution.GetTotalPrototypeQuantity(ent.Owner, ent.Comp.HolyWaterReagentId);
         if (holywater <= FixedPoint2.Zero)
             return;
 
-        if (TryComp(uid, out MobStateComponent? mobState) && mobState.CurrentState == Shared.Mobs.MobState.Dead)
+        if (TryComp(ent, out MobStateComponent? mobState) && mobState.CurrentState == Shared.Mobs.MobState.Dead)
             return;
 
-        comp.NextHolyWaterTick = _timing.CurTime + comp.HolyTickDelay;
+        ent.Comp.NextHolyWaterTick = _timing.CurTime + ent.Comp.HolyTickDelay;
 
-        if (comp.DrunkBlood > 0)
+        if (ent.Comp.DrunkBlood > 0)
         {
-            TrySpendBlood(uid, comp, Math.Min(3, comp.DrunkBlood), showPopup: false);
+            TrySpendBlood(ent, Math.Min(3, ent.Comp.DrunkBlood), showPopup: false);
 
-            ApplyGroupDamage(uid, BruteGroupId, 3f);
+            ApplyGroupDamage(ent.Owner, BruteGroupId, 3f);
 
-            if (TryComp(uid, out StaminaComponent? stamina))
-                _stamina.TakeStaminaDamage(uid, 5f, stamina);
+            if (TryComp(ent, out StaminaComponent? stamina))
+                _stamina.TakeStaminaDamage(ent.Owner, 5f, stamina);
 
             return;
         }
 
-        ApplyGroupDamage(uid, BurnGroupId, 2f);
+        ApplyGroupDamage(ent.Owner, BurnGroupId, 2f);
         if (_rand.Prob(0.25f))
-            _flammable.AdjustFireStacks(uid, 2f, ignite: true);
+            _flammable.AdjustFireStacks(ent.Owner, 2f, ignite: true);
     }
 
-    private void HandleHolyPlace(EntityUid uid, VampireComponent comp)
+    private void HandleHolyPlace(Entity<VampireComponent> ent)
     {
-        if (comp.UniqueHumanoidVictims < 1)
+        if (ent.Comp.UniqueHumanoidVictims < 1)
             return;
 
-        if (_timing.CurTime < comp.NextHolyPlaceTick)
+        if (_timing.CurTime < ent.Comp.NextHolyPlaceTick)
             return;
 
-        if (!IsInHolyPlace(uid, comp))
+        if (!IsInHolyPlace(ent))
             return;
 
-        if (TryComp(uid, out MobStateComponent? mobState) && mobState.CurrentState == Shared.Mobs.MobState.Dead)
+        if (TryComp(ent, out MobStateComponent? mobState) && mobState.CurrentState == Shared.Mobs.MobState.Dead)
             return;
 
-        comp.NextHolyPlaceTick = _timing.CurTime + comp.HolyTickDelay;
+        ent.Comp.NextHolyPlaceTick = _timing.CurTime + ent.Comp.HolyTickDelay;
 
-        if (_timing.CurTime >= comp.NextHolyPlacePopup)
+        if (_timing.CurTime >= ent.Comp.NextHolyPlacePopup)
         {
-            _popup.PopupEntity(Loc.GetString("vampire-holy-place-burn"), uid, uid, PopupType.MediumCaution);
-            comp.NextHolyPlacePopup = _timing.CurTime + TimeSpan.FromSeconds(5);
+            _popup.PopupEntity(Loc.GetString("vampire-holy-place-burn"), ent.Owner, ent.Owner, PopupType.MediumCaution);
+            ent.Comp.NextHolyPlacePopup = _timing.CurTime + TimeSpan.FromSeconds(5);
         }
 
-        var health = GetApproximateHealth(uid);
+        var health = GetApproximateHealth(ent.Owner);
         if (health <= 50f)
         {
-            _flammable.AdjustFireStacks(uid, 3f, ignite: true);
+            _flammable.AdjustFireStacks(ent.Owner, 3f, ignite: true);
             return;
         }
 
         if (_proto.TryIndex<DamageTypePrototype>(HeatTypeId, out var heat))
         {
             var spec = new DamageSpecifier(heat, FixedPoint2.New(3f));
-            _damageableSystem.TryChangeDamage(uid, spec, true);
+            _damageableSystem.TryChangeDamage(ent.Owner, spec, true);
         }
     }
 
-    private bool IsInHolyPlace(EntityUid uid, VampireComponent comp)
+    private bool IsInHolyPlace(Entity<VampireComponent> ent)
     {
-        if (_container.IsEntityInContainer(uid))
+        if (_container.IsEntityInContainer(ent.Owner))
             return false;
 
-        var coords = Transform(uid).Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange(coords, comp.HolyPlaceRange, LookupFlags.Static))
+        var coords = Transform(ent).Coordinates;
+        foreach (var target in _lookup.GetEntitiesInRange(coords, ent.Comp.HolyPlaceRange, LookupFlags.Static))
         {
-            if (ent == uid)
+            if (target == ent.Owner)
                 continue;
 
-            if (!HasComp<PrayableComponent>(ent))
+            if (!HasComp<PrayableComponent>(target))
                 continue;
 
-            if (!Transform(ent).Anchored)
+            if (!Transform(target).Anchored)
                 continue;
 
-            if (!_interaction.InRangeUnobstructed(uid, ent, comp.HolyPlaceRange))
+            if (!_interaction.InRangeUnobstructed(ent.Owner, target, ent.Comp.HolyPlaceRange))
                 continue;
 
             return true;
@@ -796,7 +795,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         _ui.CloseUi(uid, VampireClassUiKey.Key);
 
-        SyncVampireActions(uid, comp);
+        SyncVampireActions((uid, comp));
 
         Dirty(uid, comp);
     }
@@ -813,9 +812,9 @@ public sealed partial class VampireSystem : EntitySystem
     private void InitializeObjectives()
         => SubscribeLocalEvent<BloodDrainConditionComponent, ObjectiveGetProgressEvent>(OnBloodDrainGetProgress);
 
-    private void OnBloodDrainGetProgress(EntityUid uid, BloodDrainConditionComponent comp, ref ObjectiveGetProgressEvent args)
+    private void OnBloodDrainGetProgress(Entity<BloodDrainConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        var target = _number.GetTarget(uid);
+        var target = _number.GetTarget(ent.Owner);
         if (args.Mind.OwnedEntity is not null && TryComp<VampireComponent>(args.Mind.OwnedEntity.Value, out var vampComp))
             args.Progress = target > 0 ? MathF.Min(vampComp.TotalBlood / target, 1f) : 1f;
         else

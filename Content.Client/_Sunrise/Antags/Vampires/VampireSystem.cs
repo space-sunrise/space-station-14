@@ -70,31 +70,30 @@ public sealed class VampireSystem : EntitySystem
     internal bool CanUseGrantedVampireAction(EntityUid uid, EntityUid? actionEntity = null, int bloodCost = 0, bool showPopup = true)
     {
         if (TryComp<VampireComponent>(uid, out var comp))
-            return CanUseVampireAbility(uid, comp, actionEntity, bloodCost, showPopup);
+            return CanUseVampireAbility((uid, comp), actionEntity, bloodCost, showPopup);
 
         return CanUseNonVampireGrantedAction(actionEntity);
     }
 
-    private bool CanUseVampireAbility(EntityUid uid, VampireComponent comp, EntityUid? actionEntity, int bloodCost, bool showPopup)
+    private bool CanUseVampireAbility(Entity<VampireComponent> ent, EntityUid? actionEntity, int bloodCost, bool showPopup)
     {
-        return TryResolveVampireActionCost(uid, comp, actionEntity, bloodCost, out var resolvedCost, showPopup)
-            && CanSpendBlood(uid, comp, resolvedCost, showPopup);
+        return TryResolveVampireActionCost(ent, actionEntity, bloodCost, out var resolvedCost, showPopup)
+            && CanSpendBlood(ent, resolvedCost, showPopup);
     }
 
-    private bool CanSpendBlood(EntityUid uid, VampireComponent comp, int bloodCost, bool showPopup)
+    private bool CanSpendBlood(Entity<VampireComponent> ent, int bloodCost, bool showPopup)
     {
-        if (bloodCost <= 0 || comp.DrunkBlood >= bloodCost)
+        if (bloodCost <= 0 || ent.Comp.DrunkBlood >= bloodCost)
             return true;
 
         if (showPopup)
-            _popup.PopupPredicted(Loc.GetString("vampire-not-enough-blood"), uid, uid, PopupType.MediumCaution);
+            _popup.PopupPredicted(Loc.GetString("vampire-not-enough-blood"), ent.Owner, ent.Owner, PopupType.MediumCaution);
 
         return false;
     }
 
     private bool TryResolveVampireActionCost(
-        EntityUid uid,
-        VampireComponent comp,
+        Entity<VampireComponent> ent,
         EntityUid? actionEntity,
         int bloodCost,
         out int resolvedCost,
@@ -111,16 +110,16 @@ public sealed class VampireSystem : EntitySystem
         if (!TryComp<VampireActionComponent>(action, out var vac))
             return true;
 
-        if (comp.TotalBlood < vac.BloodToUnlock)
+        if (ent.Comp.TotalBlood < vac.BloodToUnlock)
             return false;
 
-        if (!ValidateVampireClass(comp, vac.RequiredClass))
+        if (!ValidateVampireClass(ent.Comp, vac.RequiredClass))
             return false;
 
-        if (vac.RequiresFullPower && !comp.FullPower)
+        if (vac.RequiresFullPower && !ent.Comp.FullPower)
         {
             if (showPopup)
-                _popup.PopupPredicted(Loc.GetString("action-vampire-not-enough-power"), uid, uid, PopupType.MediumCaution);
+                _popup.PopupPredicted(Loc.GetString("action-vampire-not-enough-power"), ent.Owner, ent.Owner, PopupType.MediumCaution);
 
             return false;
         }
