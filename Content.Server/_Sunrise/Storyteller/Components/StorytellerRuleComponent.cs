@@ -30,7 +30,7 @@ public sealed partial class StorytellerRuleComponent : Component
     /// How much threat budget is generated per second by default.
     /// </summary>
     [DataField]
-    public float BaseBudgetPerSecond = 0.05f;
+    public float BaseBudgetPerSecond = 0.1f;
 
     /// <summary>
     /// Current pacing state.

@@ -165,7 +165,7 @@
     startAudio:
       path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     minimumPlayers: 25
-    weight: 3
+    weight: 0 # Sunrise-edit
     duration: 1
   - type: BureaucraticErrorRule
     ignoredJobs:
