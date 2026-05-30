@@ -6,7 +6,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: WeaponPulseCarbineBorg
@@ -23,7 +25,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: StunbatonBorg
@@ -40,7 +44,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: JawsOfLife
@@ -127,6 +133,7 @@
     layers:
     - state: security
     - state: icon-stuh
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: StunbatonBorg
@@ -142,6 +149,7 @@
     layers:
     - state: security
     - state: icon-combat
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: Truncheon
@@ -158,6 +166,7 @@
     layers:
     - state: security
     - state: icon-combat
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: CyberMantisBladeMaxGuard
@@ -173,6 +182,7 @@
     layers:
     - state: security
     - state: icon-peace
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: FlashBorg
@@ -233,6 +243,7 @@
     layers:
     - state: syndicate
     - state: icon-syndicate-treatment
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: SawAdvanced
@@ -278,7 +289,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: CrowbarBorg
@@ -296,6 +309,7 @@
     layers:
     - state: science
     - state: icon-robotics
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: CrowbarBorg
@@ -313,6 +327,8 @@
           - TileFrictionModifier
           - CablePlacer
           - BorgModule
+          - Material
+          - BorgBrain
     - item: HandheldRoboAnalyzerUnpowered
     - item: Nanopaste1
       hand:
@@ -351,6 +367,7 @@
     layers:
     - state: xenoborg_heavy
     - state: icon-combat
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: XenoborgLaserMinigun
