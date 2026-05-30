@@ -268,7 +268,8 @@ public sealed class GargantuaSystem : EntitySystem
         if (!TryComp<VampireComponent>(uid, out var vampire))
             return;
 
-        _vampire.TrySpendBlood(uid, vampire, component.OverwhelmingForceDoorPryBloodCost, showPopup: false);
+        if (!_vampire.TrySpendBlood(uid, vampire, component.OverwhelmingForceDoorPryBloodCost, showPopup: false))
+            return;
 
         _audio.PlayPvs(component.OverwhelmingForcePrySound, uid, AudioParams.Default.WithVolume(2f));
     }
@@ -551,8 +552,12 @@ public sealed class GargantuaSystem : EntitySystem
 
             _audio.PlayPvs(gargantua.ChargeSound, obstacleCoords, AudioParams.Default.WithVolume(3f));
 
-            if (HasComp<DestructibleComponent>(other))
-                _destructible.DestroyEntity(other);
+            if (gargantua.ChargeStructuralDamage > 0f && TryComp<DamageableComponent>(other, out _))
+            {
+                var damageSpec = new DamageSpecifier();
+                damageSpec.DamageDict["Blunt"] = FixedPoint2.New(gargantua.ChargeStructuralDamage);
+                _damageableSystem.TryChangeDamage(other, damageSpec, true, origin: uid);
+            }
 
             EndCharge(uid, gargantua);
         }

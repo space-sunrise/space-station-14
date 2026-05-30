@@ -18,13 +18,14 @@ public sealed class VampireDecoySystem : EntitySystem
         SubscribeLocalEvent<VampireDecoyComponent, DamageChangedEvent>(OnDecoyDamaged);
     }
 
-    private void OnDecoyDamaged(EntityUid uid, VampireDecoyComponent component, DamageChangedEvent args)
+    private void OnDecoyDamaged(Entity<VampireDecoyComponent> ent, ref DamageChangedEvent args)
     {
-        if (component.Detonated || args.DamageDelta == null || !args.DamageDelta.AnyPositive())
+        if (ent.Comp.Detonated || args.DamageDelta == null || !args.DamageDelta.AnyPositive())
             return;
 
-        component.Detonated = true;
-        TriggerDecoyFlash((uid, component));
+        ent.Comp.Detonated = true;
+        Dirty(ent);
+        TriggerDecoyFlash(ent);
     }
 
     private void TriggerDecoyFlash(Entity<VampireDecoyComponent> ent)

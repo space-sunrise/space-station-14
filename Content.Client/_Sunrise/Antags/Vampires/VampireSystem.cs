@@ -34,8 +34,9 @@ public sealed class VampireSystem : EntitySystem
         args.Allowed = CanUseGrantedVampireAction(args.User, args.ActionEntity, args.BloodCost, args.ShowPopup);
     }
 
-    private void OnUpdateAlert(EntityUid uid, VampireComponent comp, ref UpdateAlertSpriteEvent args)
+    private void OnUpdateAlert(Entity<VampireComponent> ent, ref UpdateAlertSpriteEvent args)
     {
+        var comp = ent.Comp;
         var key = args.Alert.AlertKey.AlertType;
 
         if (key == VampireBloodAlert)
@@ -54,13 +55,13 @@ public sealed class VampireSystem : EntitySystem
         }
     }
 
-    private void OnThrallIcons(EntityUid uid, VampireThrallComponent component, ref GetStatusIconsEvent ev)
+    private void OnThrallIcons(Entity<VampireThrallComponent> ent, ref GetStatusIconsEvent ev)
     {
         if (_prototype.TryIndex(ThrallIcon, out var icon))
             ev.StatusIcons.Add(icon);
     }
 
-    private void OnVampireIcons(EntityUid uid, VampireComponent component, ref GetStatusIconsEvent ev)
+    private void OnVampireIcons(Entity<VampireComponent> ent, ref GetStatusIconsEvent ev)
     {
         if (_prototype.TryIndex(MasterIcon, out var icon))
             ev.StatusIcons.Add(icon);

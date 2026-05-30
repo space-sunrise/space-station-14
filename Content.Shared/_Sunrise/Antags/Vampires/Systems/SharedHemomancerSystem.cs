@@ -15,14 +15,16 @@ public sealed class SharedHemomancerSystem : EntitySystem
 
     private void OnHemomancerClaws(VampireHemomancerClawsActionEvent args)
     {
-        var uid = args.Performer;
-        var action = args.Action.Owner;
-        if (args.Handled
-            || !Exists(action)
-            || !_vampireActions.TryUse(uid, action))
-        {
+        if (args.Handled || !TryActivateHemomancerClaws(args.Performer, args.Action.Owner))
             return;
-        }
+
+        args.Handled = true;
+    }
+
+    public bool TryActivateHemomancerClaws(EntityUid uid, EntityUid action)
+    {
+        if (!Exists(action) || !_vampireActions.TryUse(uid, action))
+            return false;
 
         if (TryComp<HemomancerComponent>(uid, out var hemomancer))
         {
@@ -32,6 +34,6 @@ public sealed class SharedHemomancerSystem : EntitySystem
 
         var activated = new VampireHemomancerClawsActivatedEvent(uid);
         RaiseLocalEvent(uid, ref activated, true);
-        args.Handled = true;
+        return true;
     }
 }

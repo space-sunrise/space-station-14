@@ -22,6 +22,7 @@ public sealed class VampireBeamSystem : EntitySystem
     private EntityQuery<VampireBeamVisualComponent> _beamVisualQuery;
 
     private readonly Dictionary<(BeamKind Kind, EntityUid Source, EntityUid Target), EntityUid> _activeBeamVisuals = [];
+    private readonly List<(BeamKind Kind, EntityUid Source, EntityUid Target)> _toRemove = [];
 
     public override void Initialize()
     {
@@ -82,13 +83,13 @@ public sealed class VampireBeamSystem : EntitySystem
 
     private void UpdateActiveBeamVisuals()
     {
-        var toRemove = new List<(BeamKind Kind, EntityUid Source, EntityUid Target)>();
+        _toRemove.Clear();
 
         foreach (var ((kind, source, target), beamEntity) in _activeBeamVisuals)
         {
             if (!Exists(source) || !Exists(target) || !Exists(beamEntity))
             {
-                toRemove.Add((kind, source, target));
+                _toRemove.Add((kind, source, target));
 
                 if (Exists(beamEntity))
                     QueueDel(beamEntity);
@@ -99,7 +100,7 @@ public sealed class VampireBeamSystem : EntitySystem
             UpdateBeamVisual(beamEntity, source, target);
         }
 
-        foreach (var key in toRemove)
+        foreach (var key in _toRemove)
         {
             _activeBeamVisuals.Remove(key);
         }
@@ -165,7 +166,7 @@ public sealed class VampireBeamSystem : EntitySystem
 
     private void RemoveSourceBeams(BeamKind kind, EntityUid source)
     {
-        var toRemove = new List<(BeamKind Kind, EntityUid Source, EntityUid Target)>();
+        _toRemove.Clear();
         foreach (var ((beamKind, beamSource, target), beamEntity) in _activeBeamVisuals)
         {
             if (beamKind != kind || beamSource != source)
@@ -174,10 +175,10 @@ public sealed class VampireBeamSystem : EntitySystem
             if (Exists(beamEntity))
                 QueueDel(beamEntity);
 
-            toRemove.Add((beamKind, beamSource, target));
+            _toRemove.Add((beamKind, beamSource, target));
         }
 
-        foreach (var key in toRemove)
+        foreach (var key in _toRemove)
         {
             _activeBeamVisuals.Remove(key);
         }
@@ -185,7 +186,7 @@ public sealed class VampireBeamSystem : EntitySystem
 
     private void RemoveUnlinkedSourceBeams(BeamKind kind, EntityUid source, List<EntityUid> linkedThralls)
     {
-        var toRemove = new List<(BeamKind Kind, EntityUid Source, EntityUid Target)>();
+        _toRemove.Clear();
         foreach (var ((beamKind, beamSource, target), beamEntity) in _activeBeamVisuals)
         {
             if (beamKind != kind || beamSource != source || linkedThralls.Contains(target))
@@ -194,10 +195,10 @@ public sealed class VampireBeamSystem : EntitySystem
             if (Exists(beamEntity))
                 QueueDel(beamEntity);
 
-            toRemove.Add((beamKind, beamSource, target));
+            _toRemove.Add((beamKind, beamSource, target));
         }
 
-        foreach (var key in toRemove)
+        foreach (var key in _toRemove)
         {
             _activeBeamVisuals.Remove(key);
         }

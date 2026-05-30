@@ -90,7 +90,7 @@ action-vampire-blood-bringers-rite-stop = Blood bringers rite deactivated
 action-vampire-blood-bringers-rite-stop-blood = Blood Bringers Rite deactivated - not enough blood
 
 vampire-locate-result = Your senses trace { $target } to { $location }.
-vampire-locate-not-same-sector = vampire-locate-not-same-sector = That person is not on your sector.
+vampire-locate-not-same-sector = That person is not on your sector.
 vampire-locate-unknown = Unknown area
 vampire-locate-no-targets = No prey can be sensed on this sector.
 

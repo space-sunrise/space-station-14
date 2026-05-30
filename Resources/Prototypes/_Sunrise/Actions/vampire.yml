@@ -505,7 +505,7 @@
 - type: entity
   parent: BaseAction
   id: ActionVampirePacify
-  name: Pacify(10)
+  name: Pacify(30)
   description: Flood a victim's mind with bliss, pacifying them for 40 seconds.
   components:
     - type: Action
@@ -672,7 +672,7 @@
   parent: BaseAction
   id: ActionVampireBloodSwell
   name: Blood Swell(30)
-  description: For 30 seconds, reduces brute damage by 60%, stamina and burn by 50%, halves stun times. Cannot use guns. After 400 blood, also gain +14 melee damage.
+  description: For 30 seconds, reduces listed incoming damage and stamina damage by 50%, halves stun times. Cannot use guns. After 400 blood, also gain +14 melee damage.
   components:
     - type: Action
       useDelay: 40

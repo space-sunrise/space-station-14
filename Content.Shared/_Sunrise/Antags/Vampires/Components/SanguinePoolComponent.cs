@@ -11,25 +11,25 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 ///     Handles collision filtering on both client and server and exposes
 ///     tunables used while the form is active (trail spawning, etc.).
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class SanguinePoolComponent : Component
 {
     /// <summary>
     ///     Prototype spawned when the pool enters a new tile
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntProtoId? TrailPrototype = "PuddleBlood";
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntProtoId ExitEffectPrototype = "VampireSanguinePoolIn";
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/_Sunrise/Effects/vampire/exit_blood.ogg");
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public ProtoId<ReagentPrototype> TrailReagent = "Blood";
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public FixedPoint2 TrailReagentQuantity = FixedPoint2.New(30);
 
     [ViewVariables]

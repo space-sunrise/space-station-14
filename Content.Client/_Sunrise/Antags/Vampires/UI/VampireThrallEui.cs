@@ -10,7 +10,7 @@ public sealed class VampireThrallEui : BaseEui
         => _menu = new VampireThrallMenu();
 
     public override void Opened()
-        =>_menu.OpenCentered();
+        => _menu.OpenCentered();
 
     public override void Closed()
     {

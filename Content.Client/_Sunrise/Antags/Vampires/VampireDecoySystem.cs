@@ -26,12 +26,12 @@ public sealed class VampireDecoySystem : EntitySystem
         if (!ent.Comp.Source.HasValue)
             return;
 
-        if (!TryComp<SpriteComponent>(ent.Owner, out var decoySprite))
+        if (!TryComp<SpriteComponent>(ent, out var decoySprite))
             return;
 
         if (!TryComp<SpriteComponent>(ent.Comp.Source.Value, out var sourceSprite))
             return;
 
-        _sprite.CopySprite((ent.Comp.Source.Value, sourceSprite), (ent.Owner, decoySprite));
+        _sprite.CopySprite((ent.Comp.Source.Value, sourceSprite), (ent, decoySprite));
     }
 }

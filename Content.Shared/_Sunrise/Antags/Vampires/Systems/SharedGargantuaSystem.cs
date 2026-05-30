@@ -232,7 +232,7 @@ public sealed class SharedGargantuaSystem : EntitySystem
     {
         if (!component.OverwhelmingForceActive
             || !TryComp<VampireComponent>(uid, out var vampire)
-            || vampire.TotalBlood >= component.OverwhelmingForceDoorPryBloodCost)
+            || vampire.DrunkBlood >= component.OverwhelmingForceDoorPryBloodCost)
         {
             return;
         }

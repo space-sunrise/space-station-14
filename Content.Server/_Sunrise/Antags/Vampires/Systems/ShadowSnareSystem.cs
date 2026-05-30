@@ -30,11 +30,13 @@ public sealed class ShadowSnareSystem : EntitySystem
         SubscribeLocalEvent<ShadowSnareComponent, AfterFlashedEvent>(OnShadowSnareFlashed);
     }
 
-    private void OnShadowSnareStepAttempt(EntityUid uid, ShadowSnareComponent component, ref StepTriggerAttemptEvent args)
+    private void OnShadowSnareStepAttempt(Entity<ShadowSnareComponent> ent, ref StepTriggerAttemptEvent args)
         => args.Continue = true;
 
-    private void OnShadowSnareTriggered(EntityUid uid, ShadowSnareComponent component, ref StepTriggeredOffEvent args)
+    private void OnShadowSnareTriggered(Entity<ShadowSnareComponent> ent, ref StepTriggeredOffEvent args)
     {
+        var uid = ent.Owner;
+        var component = ent.Comp;
         var target = args.Tripper;
 
         // Only trigger on humanoids
@@ -72,8 +74,8 @@ public sealed class ShadowSnareSystem : EntitySystem
         QueueDel(uid);
     }
 
-    private void OnShadowSnareFlashed(EntityUid uid, ShadowSnareComponent component, ref AfterFlashedEvent args)
-        => QueueDel(uid);
+    private void OnShadowSnareFlashed(Entity<ShadowSnareComponent> ent, ref AfterFlashedEvent args)
+        => QueueDel(ent);
 
     private void ExtinguishNearbyLights(EntityUid uid, float radius)
     {

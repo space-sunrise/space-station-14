@@ -1,5 +1,6 @@
 using Content.Shared.Prying.Components;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Content.Shared.Prying.Systems;
 
 public sealed partial class PryingSystem

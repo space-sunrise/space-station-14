@@ -29,8 +29,8 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         SubscribeLocalEvent<VampireRuleComponent, ObjectivesTextPrependEvent>(OnTextPrepend);
     }
 
-    private void OnSelectAntag(EntityUid uid, VampireRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
-        => MakeVampire(args.EntityUid, comp);
+    private void OnSelectAntag(Entity<VampireRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
+        => MakeVampire(args.EntityUid, ent.Comp);
 
     public bool MakeVampire(EntityUid target, VampireRuleComponent rule)
     {
@@ -65,19 +65,16 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         return true;
     }
 
-    private void OnTextPrepend(EntityUid uid, VampireRuleComponent comp, ref ObjectivesTextPrependEvent args)
+    private void OnTextPrepend(Entity<VampireRuleComponent> ent, ref ObjectivesTextPrependEvent args)
     {
         var mostDrainedName = string.Empty;
         var mostDrained = 0f;
         var totalBlood = 0f;
 
-        var query = EntityQueryEnumerator<VampireComponent>();
-        while (query.MoveNext(out var vampUid, out var vamp))
+        var query = EntityQueryEnumerator<VampireComponent, MetaDataComponent>();
+        while (query.MoveNext(out var vampUid, out var vamp, out var meta))
         {
             if (!_mind.TryGetMind(vampUid, out var mindId, out var mind))
-                continue;
-
-            if (!TryComp(vampUid, out MetaDataComponent? meta))
                 continue;
 
             totalBlood += vamp.TotalBlood;

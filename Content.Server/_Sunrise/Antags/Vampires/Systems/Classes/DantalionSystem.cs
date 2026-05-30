@@ -261,6 +261,7 @@ public sealed class DantalionSystem : EntitySystem
 
         dantalion.Thralls.Add(target);
         dantalion.ThrallSlotsUsed++;
+        Dirty(uid, dantalion);
 
         TryAssignThrallObeyObjective(uid, target, thrallComp);
 
@@ -294,6 +295,7 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
+        Dirty(master, dantalion);
     }
 
     private void OnDantalionShutdown(EntityUid uid, DantalionComponent component, ComponentShutdown args)
@@ -425,6 +427,7 @@ public sealed class DantalionSystem : EntitySystem
                 || thrallComp.Master != dantalion.Owner)
             {
                 dantalion.Comp.Thralls.Remove(thrall);
+                Dirty(dantalion);
                 continue;
             }
 

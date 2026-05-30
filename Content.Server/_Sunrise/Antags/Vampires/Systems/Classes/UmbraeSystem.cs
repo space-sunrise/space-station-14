@@ -224,7 +224,7 @@ public sealed class UmbraeSystem : EntitySystem
             if (ent == uid)
                 continue;
 
-            if (TryComp<PoweredLightComponent>(ent, out var light))
+            if (TryComp<PoweredLightComponent>(ent, out var light) && light.On)
             {
                 _poweredLightSystem.TryDestroyBulb(ent, light);
                 count++;
@@ -609,7 +609,7 @@ public sealed class UmbraeSystem : EntitySystem
 
                 var punchEffect = Spawn(active.PunchEffectPrototype, Transform(target).Coordinates);
                 _transform.SetParent(punchEffect, target);
-                RaiseNetworkEvent(new VampireShadowBoxingPunchEvent(GetNetEntity(uid), GetNetEntity(target)));
+                RaiseNetworkEvent(new VampireShadowBoxingPunchEvent(GetNetEntity(uid), GetNetEntity(target), TimeSpan.FromSeconds(0.33), "VampireShadowBoxingPunch"));
             }
 
             active.NextTick = now + active.TickInterval;

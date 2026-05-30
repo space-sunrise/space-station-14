@@ -23,7 +23,7 @@ public sealed partial class ActiveBloodSwellComponent : Component
     [DataField, AutoNetworkedField]
     public ProtoId<DamageTypePrototype> MeleeBonusDamageType = "Blunt";
 
-    [DataField]
+    [ViewVariables]
     public HashSet<string> ReducedDamageTypes = new()
     {
         "Blunt",

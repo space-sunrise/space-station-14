@@ -9,8 +9,8 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 [RegisterComponent]
 public sealed partial class VampireBloodBondBeamComponent : Component
 {
-    [DataField(required: true)]
-    public EntProtoId VisualPrototype;
+    [DataField]
+    public EntProtoId VisualPrototype = "VampireBloodBondBeamVisual";
 
     /// <summary>
     /// Active beam connections where this entity is the source

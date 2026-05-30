@@ -16,7 +16,7 @@ public sealed partial class VampireThrallComponent : BaseMindRoleComponent
     /// <summary>
     ///     The vampire currently controlling this thrall
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public EntityUid? Master;
 
     [DataField]

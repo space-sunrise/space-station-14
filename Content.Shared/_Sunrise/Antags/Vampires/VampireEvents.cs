@@ -177,18 +177,11 @@ public sealed partial class VampireClassSelectActionEvent : InstantActionEvent;
 public sealed partial class VampireToggleFangsActionEvent : InstantActionEvent;
 public sealed partial class VampireLocateMindActionEvent : InstantActionEvent;
 
-public sealed class VampireBloodDrankEvent : EntityEventArgs
+public sealed class VampireBloodDrankEvent(EntityUid target, float amount) : EntityEventArgs
 {
-    public EntityUid Target { get; }
-    public float Amount { get; }
-
-    public VampireBloodDrankEvent(EntityUid target, float amount)
-    {
-        Target = target;
-        Amount = amount;
-    }
+    public EntityUid Target { get; } = target;
+    public float Amount { get; } = amount;
 }
-
 public sealed class VampireFullPowerAchievedEvent : EntityEventArgs
 {
 }
@@ -381,7 +374,7 @@ public sealed partial class VampireShadowAnchorActionEvent : InstantActionEvent
 [Serializable, NetSerializable]
 public sealed partial class VampireShadowAnchorDoAfterEvent : SimpleDoAfterEvent
 {
-    [DataField("coordinates", required: true)]
+    [DataField(required: true)]
     public NetCoordinates TargetCoordinates;
 
     [DataField]
@@ -456,20 +449,12 @@ public record struct VampireShadowBoxingStartAttemptEvent(EntityUid Performer, E
 }
 
 [Serializable, NetSerializable]
-public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
+public sealed class VampireShadowBoxingPunchEvent(NetEntity source, NetEntity target, TimeSpan punchLifetime, string effectProto) : EntityEventArgs
 {
-    public NetEntity Source { get; }
-    public NetEntity Target { get; }
-
-    public VampireShadowBoxingPunchEvent(NetEntity source, NetEntity target)
-    {
-        Source = source;
-        Target = target;
-    }
-    [DataField]
-    public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33);
-    [DataField]
-    public string EffectProto = "VampireShadowBoxingPunch";
+    public NetEntity Source { get; } = source;
+    public NetEntity Target { get; } = target;
+    public TimeSpan PunchLifetime { get; } = punchLifetime;
+    public string EffectProto { get; } = effectProto;
 }
 
 // Eternal Darkness

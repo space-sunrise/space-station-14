@@ -14,5 +14,5 @@
   name: roles-antag-thrall-name
   antagonist: true
   setPreference: false
-  objective: roles-antag-thrall-objective
+  objective: roles-antag-thrall-description
   playTimeTracker: AntagVampireThrall

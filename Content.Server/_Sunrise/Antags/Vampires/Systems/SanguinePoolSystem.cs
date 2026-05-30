@@ -19,6 +19,14 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
+    private EntityQuery<MapGridComponent> _gridQuery;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _gridQuery = GetEntityQuery<MapGridComponent>();
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -37,7 +45,7 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
                 continue;
 
             // Spawn more frequently: once per entered tile (but don't duplicate if the tile already has a blood puddle).
-            if (xform.GridUid is not { } gridUid || !TryComp(gridUid, out MapGridComponent? gridComp))
+            if (xform.GridUid is not { } gridUid || !_gridQuery.TryComp(gridUid, out var gridComp))
                 continue;
 
             var tile = _map.CoordinatesToTile(gridUid, gridComp, xform.Coordinates);
@@ -65,7 +73,7 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
 
         if (!inSpace && gridUid != null)
         {
-            if (!TryComp(gridUid.Value, out MapGridComponent? grid) ||
+            if (!_gridQuery.TryComp(gridUid.Value, out var grid) ||
                 !_map.TryGetTileRef(gridUid.Value, grid, xform.Coordinates, out var tileRef) ||
                 _turf.IsSpace(tileRef))
             {

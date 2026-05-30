@@ -61,13 +61,16 @@ public sealed class VampiricClawsSystem : EntitySystem
                 && _bloodstream.TryModifyBloodLevel((hitEntity, victimBlood), -ent.Comp.BloodPerHit))
             {
                 bloodGained += ent.Comp.BloodPerHit;
+                ent.Comp.HitsRemaining--;
                 _vampire.AddBlood(args.User, vamp, ent.Comp.BloodPerHit, hitEntity);
+
+                if (ent.Comp.HitsRemaining <= 0)
+                    break;
             }
         }
 
         if (bloodGained > 0)
         {
-            ent.Comp.HitsRemaining--;
             Dirty(ent);
             if (ent.Comp.HitsRemaining <= 0)
             {
@@ -88,11 +91,8 @@ public sealed class VampiricClawsSystem : EntitySystem
 
     private void OnUnwielded(Entity<VampiricClawsComponent> ent, ref ItemUnwieldedEvent args)
     {
-        if (TryComp<VampireComponent>(args.User, out var vampire))
+        if (TryComp<VampireComponent>(args.User, out var vampire) && vampire.SpawnedClaws == ent.Owner)
         {
-            if (vampire.SpawnedClaws != ent.Owner)
-                return;
-
             vampire.SpawnedClaws = null;
             Dirty(args.User, vampire);
         }

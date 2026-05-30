@@ -99,6 +99,7 @@ public sealed class HemomancerSystem : EntitySystem
 
         SubscribeLocalEvent<HemomancerComponent, VampireBloodDrankEvent>(OnBloodDrank);
 
+        SubscribeLocalEvent<VampireComponent, ComponentRemove>(OnVampireRemoved);
         SubscribeLocalEvent<VampireComponent, VampireLocateMindActionEvent>(OnPredatorSense);
         Subs.BuiEvents<VampireComponent>(VampireLocateUiKey.Key, subs =>
         {
@@ -127,8 +128,12 @@ public sealed class HemomancerSystem : EntitySystem
         ProcessActiveBloodBringersRites(now);
     }
 
-    private void OnBloodDrank(EntityUid uid, HemomancerComponent hemomancer, ref VampireBloodDrankEvent args)
+    private void OnVampireRemoved(Entity<VampireComponent> ent, ref ComponentRemove args)
+        => _predatorSenseUiActionEntities.Remove(ent);
+
+    private void OnBloodDrank(Entity<HemomancerComponent> ent, ref VampireBloodDrankEvent args)
     {
+        var uid = ent.Owner;
         if (!TryComp<VampireComponent>(uid, out var vampire))
             return;
 
@@ -247,7 +252,7 @@ public sealed class HemomancerSystem : EntitySystem
 
         var tileCoords = pending.TileCoordinates;
         var gridUid = _transform.GetGrid(tileCoords);
-        if (gridUid == null || !TryComp<MapGridComponent>(gridUid.Value, out var gridComp))
+        if (gridUid is null || !TryComp<MapGridComponent>(gridUid.Value, out var gridComp))
             return;
 
         if (_map.TryGetTileRef(gridUid.Value, gridComp, tileCoords, out var centerTileRef)
@@ -288,7 +293,7 @@ public sealed class HemomancerSystem : EntitySystem
     private void SpawnTendrilVisuals(EntityCoordinates tileCoords, EntProtoId tendrilVisualId)
     {
         var gridUid = _transform.GetGrid(tileCoords);
-        if (gridUid == null || !TryComp<MapGridComponent>(gridUid.Value, out var gridComp))
+        if (gridUid is null || !TryComp<MapGridComponent>(gridUid.Value, out var gridComp))
             return;
 
         foreach (var offset in TendrilOffsets)
@@ -404,7 +409,7 @@ public sealed class HemomancerSystem : EntitySystem
         };
 
         var poolEntity = _polymorph.PolymorphEntity(uid, configuration);
-        if (poolEntity == null)
+        if (poolEntity is null)
             return false;
 
         if (TryComp<SanguinePoolComponent>(poolEntity.Value, out var poolComp))
@@ -479,16 +484,16 @@ public sealed class HemomancerSystem : EntitySystem
 
             var puddleCoords = xform.Coordinates;
             var puddleTile = _map.CoordinatesToTile(gridUid, gridComp, puddleCoords);
-            var targetsNearPuddle = _lookup.GetEntitiesInRange(puddleCoords, args.TargetRange)
-                .Where(target => target != uid
-                                 && target != entity
-                                 && HasComp<DamageableComponent>(target)
-                                 && HasComp<BloodstreamComponent>(target)
-                                 && !_container.IsEntityOrParentInContainer(target))
-                .ToList();
-
-            foreach (var target in targetsNearPuddle)
+            foreach (var target in _lookup.GetEntitiesInRange(puddleCoords, args.TargetRange))
             {
+                if (target == uid || target == entity)
+                    continue;
+
+                if (!HasComp<DamageableComponent>(target) || !HasComp<BloodstreamComponent>(target))
+                    continue;
+
+                if (_container.IsEntityOrParentInContainer(target))
+                    continue;
                 targetsToDamage.Add(target);
 
                 if (!TryComp(target, out TransformComponent? targetXform))
@@ -519,9 +524,6 @@ public sealed class HemomancerSystem : EntitySystem
         foreach (var targetUid in targetsToVisualize)
         {
             if (!TryComp(targetUid, out TransformComponent? targetXform) || _container.IsEntityOrParentInContainer(targetUid))
-                continue;
-
-            if (targetXform == null)
                 continue;
 
             var visual = Spawn("VampireBloodEruptionVisual", targetXform.Coordinates);
@@ -927,7 +929,7 @@ public sealed class HemomancerSystem : EntitySystem
             if (warpXform.MapID != targetMap)
                 continue;
 
-            if (targetGrid != null && warpXform.GridUid != targetGrid)
+            if (targetGrid is not null && warpXform.GridUid != targetGrid)
                 continue;
 
             var warpPos = _transform.GetWorldPosition(warpXform);
@@ -939,7 +941,7 @@ public sealed class HemomancerSystem : EntitySystem
             best = warp.Location;
         }
 
-        if (best == null)
+        if (best is null)
             return false;
 
         location = best;

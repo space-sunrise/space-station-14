@@ -4,6 +4,7 @@ using Robust.Shared.Network;
 using Content.Shared.Weapons.Ranged.Events;
 
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
+using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._Sunrise.Antags.Vampires.Systems;
 
@@ -12,19 +13,21 @@ public sealed class GargantuaBloodSwellSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ActiveBloodSwellComponent, ShotAttemptedEvent>(OnShotAttempted);
+        SubscribeLocalEvent<GargantuaComponent, ShotAttemptedEvent>(OnShotAttempted);
     }
 
-    private void OnShotAttempted(Entity<ActiveBloodSwellComponent> ent, ref ShotAttemptedEvent args)
+    private void OnShotAttempted(Entity<GargantuaComponent> ent, ref ShotAttemptedEvent args)
     {
-        if (!TryComp<GargantuaComponent>(ent.Owner, out var gargantua))
+        if (args.User != ent.Owner
+            || !_statusEffects.TryEffectsWithComp<ActiveBloodSwellComponent>(ent, out _))
             return;
 
-        TryShowPopup((ent.Owner, gargantua), args.Used);
+        TryShowPopup(ent, args.Used);
         args.Cancel();
     }
 
@@ -40,6 +43,7 @@ public sealed class GargantuaBloodSwellSystem : EntitySystem
 
         ent.Comp.BloodSwellShootLastGun = used;
         ent.Comp.BloodSwellShootNextPopupTime = _timing.CurTime + ent.Comp.BloodSwellShootPopupCooldown;
+        Dirty(ent);
         _popup.PopupClient(Loc.GetString("vampire-blood-swell-cancel-shoot"), ent.Owner, ent.Owner);
     }
 }

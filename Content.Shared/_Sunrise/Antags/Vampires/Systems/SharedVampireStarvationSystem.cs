@@ -15,11 +15,11 @@ public sealed class SharedVampireStarvationSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
     }
 
-    private void OnRefreshMovespeed(EntityUid uid, VampireComponent component, RefreshMovementSpeedModifiersEvent args)
+    private void OnRefreshMovespeed(Entity<VampireComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (component.BloodFullness > 0f)
+        if (ent.Comp.BloodFullness > 0f)
             return;
 
-        args.ModifySpeed(component.StarvationWalkSpeedModifier, component.StarvationSprintSpeedModifier);
+        args.ModifySpeed(ent.Comp.StarvationWalkSpeedModifier, ent.Comp.StarvationSprintSpeedModifier);
     }
 }

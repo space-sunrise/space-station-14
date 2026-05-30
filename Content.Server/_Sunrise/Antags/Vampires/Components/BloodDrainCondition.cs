@@ -6,5 +6,5 @@ namespace Content.Server.Objectives.Components;
 public sealed partial class BloodDrainConditionComponent : Component
 {
     [DataField]
-    public float BloodDranked = 0f;
+    public float BloodDrained = 0f;
 }

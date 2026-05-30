@@ -2,15 +2,15 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VampiricClawsComponent : Component
 {
     /// <summary>
     /// How many successful melee hits before the claws dissipate
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public int HitsRemaining = 15;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public int BloodPerHit = 5;
 }
