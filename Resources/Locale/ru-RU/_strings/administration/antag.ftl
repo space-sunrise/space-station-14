@@ -18,8 +18,3 @@ admin-verb-text-make-paradox-clone = Создать парадоксальног
 admin-verb-text-make-thief = Сделать вором
 admin-verb-text-make-changeling = Сделать генокрадом
 admin-overlay-antag-classic = АНТАГОНИСТ
-
-# Sunrise-Start
-admin-verb-make-vampire = Сделать вампиром
-admin-verb-text-make-vampire = Сделать вампиром
-# Sunrise-End

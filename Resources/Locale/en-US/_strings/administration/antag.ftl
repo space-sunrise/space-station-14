@@ -23,8 +23,3 @@ admin-verb-text-make-wizard = Make Wizard
 admin-verb-text-make-changeling = Make Changeling (WIP)
 
 admin-overlay-antag-classic = ANTAG
-
-# Sunrise-Start
-admin-verb-make-vampire = Make Vampire
-admin-verb-text-make-vampire = Make Vampire
-# Sunrise-End

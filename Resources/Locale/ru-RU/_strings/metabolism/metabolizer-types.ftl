@@ -9,7 +9,3 @@ metabolizer-type-plant = Растение
 metabolizer-type-dwarf = Дварф
 metabolizer-type-moth = Ниан
 metabolizer-type-arachnid = Арахнид
-
-# Sunrise-Start
-metabolizer-type-vampire = Вампир
-# Sunrise-End
