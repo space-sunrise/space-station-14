@@ -60,7 +60,7 @@
   - type: Projectile
     damage:
       groups:
-        Brute: -35 # 15 лечит
+        Brute: -35 # Heals approximately 15 HP
         Burn: -35
         Airloss: -35
         Toxin: -35
