@@ -36,6 +36,11 @@
             - FlyingMobMask
           layer:
             - FlyingMobLayer
+    - type: Puller
+      needsHands: false
+    - type: ToggleableNightVision
+    - type: TTS
+      voice: wraith_king_dota_2
 
 - type: entity
   parent: BaseSunriseHoloparasiteGuardian
