@@ -383,7 +383,7 @@
     attackRate: 1.2
     damage:
       groups:
-        Brute: -17 # Оно не лечит 17 брута, оно лечит где-то 5 брута, я не знаю почему так, поэтому и выставил
+        Brute: -17 # Heals approximately 5 brute damage, not 17. Exact value is uncertain, needs verification.
         Burn: -17
         Airloss: -17
         Toxin: -17
