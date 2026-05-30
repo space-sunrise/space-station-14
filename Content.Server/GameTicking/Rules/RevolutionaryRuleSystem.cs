@@ -27,6 +27,7 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.Roles.Components;
 using Content.Shared.Stunnable;
+using Content.Shared.Tag; // Sunrise-Edit
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -60,10 +61,12 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
     [Dependency] private readonly AdminVerbSystem _adminVerbSystem = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Sunrise-Edit
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
     public readonly ProtoId<NpcFactionPrototype> RevPrototypeId = "Rev";
+    private static readonly ProtoId<TagPrototype> CantBecomeRevolutionaryTag = "CantBecomeRevolutionary"; // Sunrise-Edit
     private Dictionary<EntityUid, TimeSpan> _scheduledSmites = new();
 
 
@@ -178,6 +181,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
             HasComp<CommandStaffComponent>(ev.Target) ||
+            _tag.HasTag(ev.Target, CantBecomeRevolutionaryTag) || // Sunrise-Edit
             !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||
