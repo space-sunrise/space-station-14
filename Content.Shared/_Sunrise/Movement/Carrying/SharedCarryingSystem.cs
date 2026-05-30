@@ -79,9 +79,15 @@ public abstract partial class SharedCarryingSystem : EntitySystem
                 continue;
             }
 
+            if (!TryComp<TransformComponent>(target, out var targetXform))
+            {
+                RemComp<ActiveCarrierComponent>(uid);
+                continue;
+            }
+
             var expectedCoordinates = GetCarriedCoordinates(uid);
 
-            if (!expectedCoordinates.TryDistance(EntityManager, Transform(target).Coordinates, out var distance)
+            if (!expectedCoordinates.TryDistance(EntityManager, targetXform.Coordinates, out var distance)
                 || distance > carrier.MaxSeparation)
             {
                 DropCarried(uid, target);
@@ -302,10 +308,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void OnInteractionAttempt(Entity<ActiveCanBeCarriedComponent> ent, ref InteractionAttemptEvent args)
     {
-        if (args.Target == null)
+        if (args.Target == null || !TryComp<TransformComponent>(args.Target.Value, out var targetXform))
             return;
 
-        var targetParent = Transform(args.Target.Value).ParentUid;
+        var targetParent = targetXform.ParentUid;
 
         if (args.Target.Value != ent.Owner &&
             args.Target.Value != ent.Comp.Carrier &&
