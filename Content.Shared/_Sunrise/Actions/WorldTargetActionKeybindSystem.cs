@@ -43,6 +43,23 @@ public sealed class WorldTargetActionKeybindSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    ///     Attempts to execute the world-target action bound to <paramref name="ent"/> at the given coordinates.
+    ///     Resolves <see cref="WorldTargetActionKeybindComponent"/> on the entity, locates the matching
+    ///     <see cref="WorldTargetActionComponent"/> action via <c>TryGetAction</c>, populates the event with
+    ///     <paramref name="coordinates"/> and an optional <paramref name="target"/>, then performs the action
+    ///     through <see cref="SharedActionsSystem.PerformAction"/>.
+    /// </summary>
+    /// <param name="ent">The entity that owns the keybind component. Component may be <c>null</c>; it will be resolved internally.</param>
+    /// <param name="coordinates">World coordinates at which the action should be aimed.</param>
+    /// <param name="target">
+    ///     Optional entity under the cursor. Only used when the action also has an
+    ///     <see cref="EntityTargetActionComponent"/> and the entity is valid and exists.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the action was located and <see cref="SharedActionsSystem.PerformAction"/> was called;
+    ///     <c>false</c> if the component could not be resolved or no valid action was found.
+    /// </returns>
     public bool TryUseWorldTargetAction(
         Entity<WorldTargetActionKeybindComponent?> ent,
         EntityCoordinates coordinates,
