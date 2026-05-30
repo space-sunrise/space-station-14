@@ -32,10 +32,10 @@
       name: guardian-selector-charger-name
       description: guardian-selector-charger-description
       details: guardian-selector-charger-details
-    - prototype: MobHoloparasiteGuardianLightning
-      name: guardian-selector-lightning-name
-      description: guardian-selector-lightning-description
-      details: guardian-selector-lightning-details
+    #- prototype: MobHoloparasiteGuardianLightning
+    #  name: guardian-selector-lightning-name
+    #  description: guardian-selector-lightning-description
+    #  details: guardian-selector-lightning-details
     - prototype: MobHoloparasiteGuardianIce # Sunrise-Edit
       name: guardian-selector-ice-name
       description: guardian-selector-ice-description
