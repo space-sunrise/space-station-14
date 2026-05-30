@@ -10,7 +10,7 @@
     context: "ghost"
   - type: MovementSpeedModifier
     baseWalkSpeed: 6
-    baseSprintSpeed: 6
+    baseSprintSpeed: 10
   - type: Sprite
     noRot: true
     drawdepth: Ghosts
@@ -48,19 +48,12 @@
     maxZoom: 1.2, 1.2
   - type: DoAfter
   - type: Alerts
-  - type: GhostRole
-    makeSentient: true
-    name: ghostrole-disease-name
-    description: ghostrole-disease-description
-    raffle:
-      settings: default
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
-  - type: GhostTakeoverAvailable
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      enum.DiseaseInfoUiKey.Key:
+        type: DiseaseInfoBui
   - type: Visibility
     layer: 2 #ghost vis layer
   - type: Store
@@ -92,3 +85,23 @@
     sprite: /Textures/_Sunrise/Mobs/Aliens/Disease/interface.rsi
     state: normal
   priority: 2
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostDisease
+  components:
+  - type: GhostRole
+    name: ghostrole-disease-name
+    description: ghostrole-disease-description
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+      state: test
+

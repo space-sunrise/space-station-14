@@ -1,0 +1,6 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolAntags
+  abstract: true
+  roleLoadouts:
+    RoleSurvivalSyndicate: SunriseRoleSurvivalSyndicate
+    RoleSurvivalNukie: SunriseRoleSurvivalNukie

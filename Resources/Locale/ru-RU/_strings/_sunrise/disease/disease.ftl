@@ -37,3 +37,7 @@ disease-death-reward = Получено { $points } очков болезни о
 
 disease-upgrade-purchased = Улучшение успешно куплено!
 disease-upgrade-max-reached = Достигнут максимальный уровень улучшения!
+
+disease-infect-success = Успешное заражение!
+
+disease-info-window-title = Статистика Болезни

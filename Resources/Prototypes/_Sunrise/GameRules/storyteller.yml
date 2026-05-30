@@ -1,0 +1,8 @@
+# Sunrise-Edit
+
+- type: entity
+  parent: BaseGameRule
+  id: StorytellerRule
+  components:
+  - type: GameRule
+  - type: StorytellerRule

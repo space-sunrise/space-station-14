@@ -197,8 +197,6 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       # Sunrise-Start
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
       enum.SummonCultistUiKey.Key:
         type: SummonCultistListWindowBUI
       enum.CultSpellProviderUiKey.Key:

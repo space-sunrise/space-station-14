@@ -38,7 +38,7 @@ public sealed partial class DiseaseRoleComponent : Component
     [DataField] public int SickOfAllTime = 0;
 
     [DataField("newBloodReagent")]
-    public List<string> NewBloodReagent = new() { "ZombieBlood" };
+    public List<string> NewBloodReagent = new();
 }
 
 [Serializable, NetSerializable]
