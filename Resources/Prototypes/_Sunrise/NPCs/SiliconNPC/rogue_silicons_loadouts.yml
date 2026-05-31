@@ -22,6 +22,12 @@
   equipment:
     back: ClothingBackpackRogueSiliconT3
 
+# Boss
+- type: startingGear
+  id: MobRogueSiliconLootBoss
+  equipment:
+    back: ClothingBackpackRogueSiliconBoss
+
 # unique
 - type: startingGear
   id: MobRogueSiliconLootTesla

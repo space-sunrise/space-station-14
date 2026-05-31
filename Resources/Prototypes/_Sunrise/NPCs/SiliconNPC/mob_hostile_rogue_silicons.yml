@@ -629,6 +629,37 @@
   - type: BatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 100
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+
+- type: entity
+  parent:
+  - MobRogueSiliconDroneNonLethals
+  id: MobRogueSiliconDroneNonLethalsBuff
+  description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#653302"
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#0055cc"
+  - type: BatteryAmmoProvider
+    proto: BulletTaser
+    fireCost: 100
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser.ogg
 
 - type: entity
   parent:
@@ -654,6 +685,33 @@
       color: "#ffff00"
   - type: BatteryAmmoProvider
     proto: BulletKinetic
+    fireCost: 100
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+
+- type: entity
+  parent:
+  - MobRogueSiliconDroneScience
+  id: MobRogueSiliconDroneScienceBuff
+  description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#51049e"
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#ffd000"
+  - type: BatteryAmmoProvider
+    proto: BulletKineticShuttle
     fireCost: 100
 
 - type: entity
@@ -1096,7 +1154,7 @@
   components:
   - type: Loadout
     prototypes:
-    - MobRogueSiliconLootT3
+    - MobRogueSiliconLootBoss
   - type: Tag
     tags:
     - CanPilot
@@ -1212,7 +1270,7 @@
   components:
   - type: Loadout
     prototypes:
-    - MobRogueSiliconLootT3
+    - MobRogueSiliconLootBoss
   - type: Tag
     tags:
     - CanPilot
@@ -1699,7 +1757,6 @@
   - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
-
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: derelict
@@ -1716,6 +1773,11 @@
         Base: derelict
       Dead:
         Base: derelict
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      999: Dead
 
 - type: entity
   id: MobRogueSiliconDerelictBorg
@@ -1879,7 +1941,6 @@
     - MobRogueSiliconLootDerelictBorgMedical
   - type: Sprite
     drawdepth: Mobs
-
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: medical_derelict
@@ -1896,6 +1957,7 @@
         Base: medical_derelict
       Dead:
         Base: medical_derelict
+  - type: NoSlip
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -1987,6 +2049,7 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: NoSlip
 
 - type: entity
   id: MobRogueSiliconDerelictBorgAssaultT1
@@ -2181,4 +2244,6 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+  - type: NoSlip
+
 # endregion Derelict Borg Units
