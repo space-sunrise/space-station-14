@@ -39,4 +39,3 @@
   id: NightVisionDevice
   recipes:
   - BasicNVD
-  - BasicThermals

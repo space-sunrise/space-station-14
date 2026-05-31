@@ -1,0 +1,139 @@
+- type: entity
+  id: BaseSunriseWallhorn
+  abstract: true
+  name: loudspeaker
+  description: A wall-mounted loudspeaker for station-wide announcements.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: Physics
+    canCollide: false
+  - type: Clickable
+  - type: WallMount
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - Structure
+  - type: AnnouncementSpeaker
+    range: 20
+    enabled: true
+    requiresPower: true
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  - type: Battery
+    netsync: false
+    maxCharge: 15000
+    startingCharge: 0
+  - type: ExaminableBattery
+  - type: ApcPowerReceiverBattery
+    idleLoad: 50
+    batteryRechargeRate: 100
+    batteryRechargeEfficiency: 0.8
+  - type: PowerState
+    idlePowerDraw: 50
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Sunrise/Structures/Wallmounts/wallhorn.rsi
+    layers:
+    - state: speaker_black
+    - state: unshaded
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PowerDeviceVisuals.BatteryPowered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { state: onbattery }
+          False: { state: unshaded }
+  - type: Appearance
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: SunriseWallhornBlack
+  parent: BaseSunriseWallhorn
+  name: loudspeaker
+  suffix: Black
+  components:
+  - type: Transform
+    anchored: true
+  - type: Construction
+    graph: SunriseWallhorn
+    node: wallhornBlack
+    containers:
+    - board
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: ContainerFill
+    containers:
+      board: [ SunriseWallhornElectronics ]
+
+- type: entity
+  id: SunriseWallhornWhite
+  parent: BaseSunriseWallhorn
+  name: loudspeaker
+  suffix: White
+  components:
+  - type: Transform
+    anchored: true
+  - type: Construction
+    graph: SunriseWallhorn
+    node: wallhornWhite
+    containers:
+    - board
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: ContainerFill
+    containers:
+      board: [ SunriseWallhornElectronics ]
+  - type: Sprite
+    layers:
+    - state: speaker_white
+    - state: unshaded
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+
+- type: entity
+  id: SunriseWallhornAssembly
+  name: loudspeaker assembly
+  description: A wall-mounted loudspeaker frame without electronics.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/wallhorn.rsi
+    state: speaker_black
+  - type: Construction
+    graph: SunriseWallhorn
+    node: assembly

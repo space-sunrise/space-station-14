@@ -6,6 +6,7 @@
   children:
   - MobsExpeditionGuidePirates
   - MobsExpeditionGuideSoviets
+  - MobsExpeditionGuideSilicons
   - MobsExpeditionGuideXenos
   - MobsExpeditionGuideCarps
 
@@ -18,6 +19,11 @@
   id: MobsExpeditionGuideSoviets
   name: guide-entry-expedition-soviets
   text: "/ServerInfo/Guidebook/_Sunrise/MobsHostileExpedition/soviets.xml"
+
+- type: guideEntry
+  id: MobsExpeditionGuideSilicons
+  name: guide-entry-expedition-silicons
+  text: "/ServerInfo/Guidebook/_Sunrise/MobsHostileExpedition/silicons.xml"
 
 - type: guideEntry
   id: MobsExpeditionGuideXenos

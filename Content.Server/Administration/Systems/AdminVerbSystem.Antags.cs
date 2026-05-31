@@ -38,7 +38,6 @@ public sealed partial class AdminVerbSystem
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultAssaultOpsRule = "AssaultOps";
     private static readonly EntProtoId DefaultFleshCultRule = "FleshCult";
-    private static readonly EntProtoId DefaultVampireRule = "Vampire";
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -218,21 +217,6 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(paradox);
 
         // Sunrise-Start
-
-        Verb vampire = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-vampire"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_vampire.rsi"),
-                "unholystrength"),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-vampire"),
-        };
-        args.Verbs.Add(vampire);
 
         Verb assaultOperative = new()
         {

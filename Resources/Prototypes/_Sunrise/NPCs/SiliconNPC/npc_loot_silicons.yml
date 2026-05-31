@@ -1,0 +1,657 @@
+# BASE
+- type: entity
+  parent: BaseItem
+  id: RogueSiliconGiftBox
+  name: rogue unit's bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/bundles.rsi
+    state: engi-base
+    scale: 0.7, 0.7
+  - type: Item
+    size: Normal
+  - type: Clothing
+    slots:
+    - back
+    quickEquip: false
+    sprite: _Sunrise/Objects/Tools/bundles.rsi
+    clothingVisuals:
+      back:
+      - state: mask_null
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+# ROGUE SILICON NPC LOOT
+## TIER 0
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT0
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapSteel
+      prob: 1.0
+    # Parts
+    - id: CableApcStack10
+      prob: 0.3
+    - id: PowerCellMedium
+      prob: 0.3
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      prob: 0.25
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 1
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapSteel
+      prob: 1.0
+    # Parts
+    - id: CableApcStack10
+      prob: 0.4
+    - id: CableMVStack10
+      prob: 0.4
+    - id: PowerCellMedium
+      prob: 0.4
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      prob: 0.9
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.1
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.08
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.03
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 2
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    # Parts
+    - id: PowerCellHigh
+      prob: 0.4
+    - id: PowerCellHyper
+      prob: 0.4
+    - id: CableHVStack10
+      prob: 0.4
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      amount: 2
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardScience
+      prob: 0.8
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.15
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.12
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.06
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 3
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    # Parts
+    - id: PowerCellMicroreactor
+      prob: 0.05
+    - id: MaterialDiamond1
+      prob: 0.05
+    - id: MaterialBananium1
+      prob: 0.05
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      amount: 3
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.7
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.2
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.16
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.1
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 4 (Placeholder)
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    - id: WeaponLaserCannon
+      prob: 0.1
+    # Parts
+    - id: PowerCellMicroreactor
+      prob: 0.05
+    - id: MaterialDiamond1
+      prob: 0.05
+    - id: MaterialBananium1
+      prob: 0.05
+    - id: PowerCellHigh
+      prob: 0.05
+    - id: SheetSteel10
+      amount: 3
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.8
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.15
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+
+# unique loot
+- type: entity
+  name: random rogue silicon implant
+  id: SpawnLootRogueSiliconImplants
+  parent: MarkerBase
+  suffix: "Rogue Silicon, Implant"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - SadTromboneImplanter
+    - LightImplanter
+    - TrackingImplanter
+    - StorageImplanter
+    - FreedomImplanter
+    - RadioImplanter
+    - SmokeScreenImplanter
+    - CreepyLaughImplanter
+    - VoiceMaskImplanter
+    - EmpImplanter
+    - ScramImplanter
+    - DnaScramblerImplanter
+    - MicroBombImplanter
+    - DeathAcidifierImplanter
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - FakeMindShieldImplanter
+    rareChance: 0.05
+
+- type: entity
+  name: random rogue silicon body part
+  id: SpawnLootRogueSiliconBodyParts
+  parent: MarkerBase
+  suffix: "Rogue Silicon, Body Part"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - TorsoHuman
+    - HeadHuman
+    - LeftArmHuman
+    - RightArmHuman
+    - LeftHandHuman
+    - RightHandHuman
+    - LeftLegHuman
+    - RightLegHuman
+    - LeftFootHuman
+    - RightFootHuman
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random derelict borg common module
+  id: SpawnLootRogueSiliconDerelictBorgCommonModules
+  parent: MarkerBase
+  suffix: "Rogue Silicon, Derelict Borg, Common"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - BorgModuleStandart
+    - BorgModuleTool
+    - BorgModuleFireExtinguisher
+    - BorgModuleInflatable
+    - BorgModuleArtistry
+    chance: 0.75
+    offset: 0.0
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconTesla
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponTeslaGun
+      prob: 0.25
+    - id: WeaponMechCombatTeslaCannon
+      prob: 0.05
+    - id: TeslaMiniEnergyBall
+      prob: 0.15
+    - id: TeslaGroundingRodFlatpack
+      prob: 0.3
+    - id: TeslaCoilFlatpack
+      prob: 0.3
+    - id: MaintenanceInsulsSpawner
+      prob: 1.0
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleCombat
+      prob: 0.25
+    - id: BorgModuleStun
+      prob: 0.2
+    - id: BorgModulePeace
+      prob: 0.1
+    - id: BorgModuleAdvancedCombat
+      prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgEngineering
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleCable
+      prob: 0.3
+    - id: BorgModuleConstruction
+      prob: 0.25
+    - id: BorgModuleRCD
+      prob: 0.2
+    - id: BorgModuleAdvancedTool
+      prob: 0.15
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgJanitor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleCleaning
+      prob: 0.35
+    - id: BorgModuleCustodial
+      prob: 0.3
+    - id: BorgModuleAdvancedCleaning
+      prob: 0.15
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgMedical
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleDiagnosis
+      prob: 0.35
+    - id: BorgModuleTopicals
+      prob: 0.3
+    - id: SunriseBorgModuleChemical
+      prob: 0.25
+    - id: BorgModuleRescue
+      prob: 0.2
+    - id: SunriseBorgModuleAdvancedChemical
+      prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgMining
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleMining
+      prob: 0.35
+    - id: BorgModuleTraversal
+      prob: 0.25
+    - id: BorgModuleAppraisal
+      prob: 0.2
+    - id: BorgModuleAdvancedMining
+      prob: 0.15
+    - id: BorgModuleMiningCombat
+      prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgAssaultT1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleStun
+      prob: 0.25
+    - id: BorgModuleCombat
+      prob: 0.18
+    - id: BorgModulePeace
+      prob: 0.15
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgAssaultT2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleStun
+      prob: 0.2
+    - id: BorgModuleCombat
+      prob: 0.25
+    - id: BorgModuleAdvancedCombat
+      prob: 0.12
+    - id: BorgModuleSyndicateCombat
+      prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgAssaultT3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleCombat
+      prob: 0.25
+    - id: BorgModuleAdvancedCombat
+      prob: 0.2
+    - id: BorgModuleSyndicateCombat
+      prob: 0.12
+    - id: BorgModuleSyndicateCombatAdvanced
+      prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgSyndicateSaboteur
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleSyndicateGeneric
+      prob: 0.25
+    - id: BorgModuleSyndicateHypoAdvanced
+      prob: 0.15
+    - id: BorgModuleSyndicatePenetration
+      prob: 0.15
+    - id: BorgModuleSyndicateCombatAdvanced
+      prob: 0.08
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconDerelictBorgSyndicateMedical
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpawnLootRogueSiliconDerelictBorgCommonModules
+      prob: 1.0
+    - id: BorgModuleSyndicateMedical
+      prob: 0.25
+    - id: BorgModuleSyndicateGeneric
+      prob: 0.2
+    - id: BorgModuleSyndicateHypoAdvanced
+      prob: 0.12
+    - id: SunriseBorgModuleAdvancedChemical
+      prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.25
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.2
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.18
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconSkullHouse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    - id: WeaponLaserCannon
+      prob: 0.1
+    # Parts
+    - id: PowerCellMicroreactor
+      prob: 0.05
+    - id: MaterialDiamond1
+      prob: 0.05
+    - id: MaterialBananium1
+      prob: 0.05
+    - id: PowerCellHigh
+      prob: 0.05
+    - id: SheetSteel10
+      amount: 3
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.8
+    - id: WeaponMechCombatKord
+      prob: 0.25
+    - id: MechPaintDollHouseWarboss
+      prob: 0.25
+    - id: EnergyDomeGeneratorBackpackNT
+      prob: 0.15
+    - id: EnergyDomeGeneratorBackpackSyndie
+      prob: 0.15
+    - id: RogueAiNode
+      prob: 0.1
+    - id: MobRogueSiliconViscerator
+      prob: 0.25
+    - id: MobRogueSiliconViscerator
+      prob: 0.2
+    - id: MobRogueSiliconViscerator
+      prob: 0.15
+    - id: MobRogueSiliconViscerator
+      prob: 0.1
+    - id: MobRogueSiliconViscerator
+      prob: 0.1
+    - id: MobRogueSiliconViscerator
+      prob: 0.1
+    - id: MobRogueSiliconViscerator
+      prob: 0.1
+    - id: MobRogueSiliconViscerator
+      prob: 0.1
+    - id: MobRogueSiliconViscerator
+      prob: 0.1
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.3
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.25
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.25
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+

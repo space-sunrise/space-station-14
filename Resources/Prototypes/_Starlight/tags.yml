@@ -101,6 +101,9 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModularReceiverForged
+
+- type: Tag
   id: CartridgeBattery
 
 - type: Tag
