@@ -7580,7 +7580,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: StarlightSerpentcrest
+      id: SunriseSerpentcrest
     - type: ImplicitRoof
     - type: NavMap
     - type: ExplosionAirtightGrid

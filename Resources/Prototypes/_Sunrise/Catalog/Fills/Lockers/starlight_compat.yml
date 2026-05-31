@@ -115,12 +115,10 @@
         children:
         - !type:NestedSelector
           tableId: FillMiningSpecialistHardsuitSpaceHazard
-        - !type:NestedSelector
-          tableId: FillMiningSpecialistHardsuitSpaceHazard
-        - !type:NestedSelector
-          tableId: LockerFillMiningSpecialist
+          rolls: 2
         - !type:NestedSelector
           tableId: LockerFillMiningSpecialist
+          rolls: 2
 
 - type: entity
   id: LockerMiningSpecialistLargeFilled
@@ -133,8 +131,7 @@
         children:
         - !type:NestedSelector
           tableId: LockerFillMiningSpecialist
-        - !type:NestedSelector
-          tableId: LockerFillMiningSpecialist
+          rolls: 2
 
 - type: entityTable
   id: FillSalvageLeadHardsuitSpatio

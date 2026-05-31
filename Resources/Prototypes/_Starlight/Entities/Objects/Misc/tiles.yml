@@ -541,7 +541,7 @@
     stackType: FloorTileMetalBrown
 
 - type: entity
-  name: blue  metal tile
+  name: blue metal tile
   parent: FloorTileItemSteel
   id: FloorTileItemMetalBlue
   components:
@@ -700,7 +700,7 @@
   id: FloorTileItemOrnate
   parent: FloorTileItemBase
   name: ornate tile
-  description: Old orante tiles.
+  description: Old ornate tiles.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Tiles/tiles.rsi

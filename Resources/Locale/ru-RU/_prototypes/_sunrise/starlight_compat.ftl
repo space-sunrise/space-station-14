@@ -259,8 +259,6 @@ ent-ComfyChairRed = удобное кресло
     .desc = Выглядит удобным.
     .suffix = Красное
 
-ent-CompuerShuttleSalvage = консоль шаттла утилизации
-    .desc = Используется для пилотирования шаттла утилизации.
 ent-ComputerShuttleMining = консоль шахтёрского шаттла
     .desc = Используется для пилотирования шахтёрского шаттла.
 ent-ComputerCommsCargo = консоль связи снабжения
@@ -287,7 +285,7 @@ ent-HolopadServiceLawyer = голопад юриста
     .desc = { ent-Holopad.desc }
     .suffix = Сервис, Юрист
 
-ent-VendingMachineDonk = Donk on the Go
+ent-VendingMachineDonk = Донк на ходу
     .desc = Горячо и готово, когда вы в бегах! Donk Pockets: юридически это еда.
 ent-VendingMachineLegalDrobe = ЮрШкаф
     .desc = Торговый автомат с одеждой для работников юридического отдела.

@@ -1,11 +1,11 @@
 - type: gameMap
-  id: StarlightSerpentcrest
+  id: SunriseSerpentcrest
   mapName: 'Serpentcrest'
   mapPath: /Maps/_Sunrise/Station/Serpentcrest.yml
   minPlayers: 60
   maxPlayers: 150
   stations:
-    StarlightSerpentcrest:
+    SunriseSerpentcrest:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

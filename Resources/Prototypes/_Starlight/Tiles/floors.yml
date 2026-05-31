@@ -628,7 +628,7 @@
 
 - type: tile
   id: FloorMetalPurple
-  name: tiles-metal-pruple-floor
+  name: tiles-metal-purple-floor
   sprite: /Textures/_Starlight/Tiles/metal_sci_monke.png
   baseTurf: Plating
   isSubfloor: false

@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseWallmountMetallic
   id: WallmountRadarBroken
-  name: mass scanner computer
-  description: A wall-mounted console for detecting nearby bodies by position and mass.
+  name: broken mass scanner computer
+  description: A wall-mounted console for detecting nearby bodies by position and mass. Its screen is cracked and lifeless.
   suffix: Wall broken
   components:
     - type: Sprite

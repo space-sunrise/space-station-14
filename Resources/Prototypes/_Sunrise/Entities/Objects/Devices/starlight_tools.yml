@@ -1,4 +1,0 @@
-- type: entity
-  id: HandheldMachineAnalyzer
-  parent: HandheldCrewMonitor
-  name: handheld machine analyzer

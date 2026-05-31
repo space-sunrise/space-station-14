@@ -8,6 +8,13 @@
   - type: Stack
     stackType: SyndicateBrutePack
     count: 10
+  - type: Sprite
+    state: redbrutepack
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    heldPrefix: redbrutepack
 
 - type: entity
   id: SyndicateBrutePack1
@@ -34,6 +41,14 @@
   - type: Stack
     stackType: SyndicateOintment
     count: 10
+  - type: Sprite
+    state: redointment3
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    heldPrefix: redointment
+
 
 - type: entity
   id: SyndicateOintment1

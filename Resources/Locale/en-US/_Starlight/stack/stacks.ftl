@@ -35,6 +35,8 @@ stack-metal-purple-floor = purple metal floor
 stack-metal-red-floor = red metal floor
 stack-metal-green-floor = green metal floor
 stack-astro-dirt-floor = astro-dirt floor
+stack-astro-ironsand-floor = astro-ironsand floor
+stack-astro-ironsand-floor-borderless = borderless astro-ironsand floor
 stack-3x3black-floor = 3x3 black floor
 stack-3x3brown-floor = 3x3 brown floor
 stack-3x3steel-floor = 3x3 steel floor
@@ -103,3 +105,6 @@ stack-abyssium-bar = {$amount ->
     [1] abyssium bar
     *[other] abyssium bars
 }
+
+stack-interdynebrutepack = Interdyne bruise pack
+stack-interdyneointment = Interdyne ointment

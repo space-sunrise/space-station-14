@@ -1,5 +1,5 @@
 - type: entity
-  id: CompuerShuttleSalvage
+  id: ComputerShuttleSalvage
   parent: BaseComputerShuttle
   name: salvage shuttle console
   description: Used to pilot the salvage shuttle.
@@ -307,7 +307,7 @@
 
 - type: entity
   id: ComputerShuttleMining
-  parent: CompuerShuttleSalvage
+  parent: ComputerShuttleSalvage
   name: mining shuttle console
   components:
   - type: Sprite
