@@ -181,6 +181,17 @@
   - SalvageEquipment
 
 - type: listing
+  id: VendorSalvageClothingHandsSalvageMercGlovesCombat
+  productEntity: ClothingHandsSalvageMercGlovesCombat
+  cost:
+    SalvageTicket: 900
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
   id: VendorSalvageJetpackMini
   productEntity: JetpackMini
   cost:
