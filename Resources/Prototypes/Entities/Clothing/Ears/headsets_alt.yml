@@ -14,7 +14,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-name
-        startingItem: PowerCellSmall
+        startingItem: PowerCellMedium
   # Sunrise-End
 
 - type: entity

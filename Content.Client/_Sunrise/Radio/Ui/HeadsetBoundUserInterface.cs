@@ -44,4 +44,14 @@ public sealed class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : Bou
         _window.UpdateState(component, keys, _proto);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (!disposing)
+            return;
+
+        _window?.Close();
+    }
 }
+

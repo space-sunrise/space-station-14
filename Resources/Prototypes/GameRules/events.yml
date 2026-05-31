@@ -156,25 +156,24 @@
     minimumPlayers: 15
   - type: BreakerFlipRule
 
-# Sunrise-edit: Disabled for now
-#- type: entity
-#  id: BureaucraticError
-#  parent: BaseGameRule
-#  components:
-#  - type: StationEvent
-#    startAnnouncement: station-event-bureaucratic-error-announcement
-#    startAudio:
-#      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
-#    minimumPlayers: 25
-#    weight: 3
-#    duration: 1
-#  - type: BureaucraticErrorRule
-#    ignoredJobs:
-#    - StationAi
-#    - ResearchAssistant
-#    - MedicalIntern
-#    - SecurityCadet
-#    - TechnicalAssistant
+- type: entity
+  id: BureaucraticError
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bureaucratic-error-announcement
+    startAudio:
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
+    minimumPlayers: 25
+    weight: 0 # Sunrise-edit
+    duration: 1
+  - type: BureaucraticErrorRule
+    ignoredJobs:
+    - StationAi
+    - ResearchAssistant
+    - MedicalIntern
+    - SecurityCadet
+    - TechnicalAssistant
 
 - type: entity
   id: ClericalError
