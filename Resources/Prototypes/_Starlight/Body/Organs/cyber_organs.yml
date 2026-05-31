@@ -23,6 +23,7 @@
   parent: [OrganCyber, BaseOrganEyes]
   components:
   - type: Sprite
+    scale: 0.75,0.75
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_night
   - type: FunctionalOrgan
@@ -39,6 +40,7 @@
   parent: [OrganCyber, BaseOrganEyes]
   components:
   - type: Sprite
+    scale: 0.75,0.75
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_thermal
   - type: FunctionalOrgan

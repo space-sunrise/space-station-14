@@ -104,6 +104,7 @@
           type: MeleeSpeechBoundUserInterface
     - type: Actions
     - type: Guardian
+      distanceAllowed: 7 # Sunrise-Edit
     - type: InteractionPopup
       interactSuccessString: petting-success-holo
       interactFailureString: petting-failure-holo
@@ -112,6 +113,13 @@
       tags:
         - CannotSuicide
         - NoPaint  # Sunrise-edit
+    # Sunrise-Start
+    - type: Puller
+      needsHands: false
+    - type: ToggleableNightVision
+    - type: TTS
+      voice: wraith_king_dota_2
+    # Sunrise-End
 
 # From the uplink injector
 - type: entity

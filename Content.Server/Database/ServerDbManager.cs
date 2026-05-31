@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Shared._Sunrise.MentorHelp;
+using Content.Shared._Sunrise.Tutorial.Prototypes;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
@@ -392,6 +393,19 @@ namespace Content.Server.Database
         Task AddMentorHelpMessageAsync(MentorHelpMessage message);
         Task<List<MentorHelpMessage>> GetMentorHelpMessagesByTicketAsync(int ticketId);
         Task<List<MentorHelpTicket>> GetClosedMentorHelpTicketsAsync();
+
+        #endregion
+
+
+        #region Tutorial
+        Task AddTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial, TimeSpan? accountAge = null);
+
+        Task<List<string>> GetTutorial(Guid player, CancellationToken cancel = default);
+        Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
+
+        Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
+        Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default);
+        Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default);
 
         #endregion
 
@@ -1104,7 +1118,7 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
-
+        // Sunrise-start
         public Task AddAHelpMessage(Guid senderUserId, Guid receiverUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly)
         {
             DbWriteOpsMetric.Inc();
@@ -1117,7 +1131,6 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetAHelpMessagesByReceiverAsync(receiverUserId));
         }
 
-        // Sunrise-start
         // MentorHelp implementations
         public Task AddMentorHelpTicketAsync(MentorHelpTicket ticket)
         {
@@ -1172,8 +1185,43 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetClosedMentorHelpTicketsAsync());
         }
 
-        // Sunrise-end
+        public Task AddTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial, TimeSpan? accountAge = null)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddTutorial(player, tutorial, accountAge));
+        }
 
+        public Task<List<string>> GetTutorial(Guid player, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetTutorial(player, cancel));
+        }
+
+        public Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.IsTutorialCompleted(player, tutorial));
+        }
+
+        public Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveTutorial(player, tutorial));
+        }
+
+        public Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetTutorialCompletionMetricsAsync(cancel));
+        }
+
+        public Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.PruneInvalidTutorialCompletionsAsync(validTutorialIds, cancel));
+        }
+
+        // Sunrise-end
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
         {
             lock (_notificationHandlers)

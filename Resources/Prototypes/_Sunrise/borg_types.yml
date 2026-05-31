@@ -28,7 +28,7 @@
   addComponents:
   - type: ShowCriminalRecordIcons
   - type: SiliconLawProvider
-    laws: PeaceLawset
+    laws: PeaceLawsetAiAssigned
   - type: Pacified
   - type: FabricateCookie
     cookieList:
@@ -203,7 +203,7 @@
   - type: ShowMindShieldIcons
   - type: BorgCuffed
   - type: SiliconLawProvider
-    laws: SecurityLawset
+    laws: SecurityLawsetAiAssigned
   - type: Access
     tags:
     - EmergencyShuttleRepealAll

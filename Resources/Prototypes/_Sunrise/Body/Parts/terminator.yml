@@ -39,6 +39,7 @@
   description: Its red eyes have powered down... for now.
   components:
   - type: Sprite
+    scale: 0.6, 0.6
     state: skull_icon
   - type: Icon
     state: skull_icon
