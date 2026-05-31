@@ -25,7 +25,7 @@ public sealed class ChildBlockVisionSystem : EntitySystem
         SubscribeLocalEvent<ParentCanBlockVisionComponent, EntParentChangedMessage>(OnChangeParent);
     }
 
-    private void OnChangeParent(Entity<ParentCanBlockVisionComponent> ent, ref EntParentChangedMessage args) => _blindable.UpdateIsBlind(ent.Owner, true);
+    private void OnChangeParent(Entity<ParentCanBlockVisionComponent> ent, ref EntParentChangedMessage args) => _blindable.UpdateIsBlind(ent.Owner);
 
     private void OnSeeAttempt(Entity<ParentCanBlockVisionComponent> ent, ref CanSeeAttemptEvent args)
     {
