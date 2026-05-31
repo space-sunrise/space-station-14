@@ -1,7 +1,7 @@
-reagent-name-predator-acid = кровь хищника
-reagent-desc-predator-acid = Мм-м... Хуета.
-reagent-name-stable-mutagen = стабильный мутаген
-reagent-desc-stable-mutagen = Стабильный хуила.
+reagent-name-predator-acid = predator acid
+reagent-desc-predator-acid = Thick bile that burns through almost anything except its owner.
+reagent-name-stable-mutagen = stable mutagen
+reagent-desc-stable-mutagen = A weakened mutagen that causes slow, predictable changes.
 reagent-name-pulverizedlantern = pulverized lantern
 reagent-desc-pulverizedlantern = pulverized lantern
 

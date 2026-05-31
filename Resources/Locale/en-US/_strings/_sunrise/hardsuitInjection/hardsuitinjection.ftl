@@ -3,10 +3,10 @@ hardsuitinjection-False = The EC compartment on the spacesuit is open
 hardsuitinjection-empty = The ampoule is empty
 hardsuitinjection-full = The body is overflowing
 hardsuitinjection-close = You are closing the EC compartment
-hardsuitinjection-open = You are open the EC compartment
+hardsuitinjection-open = You are opening the EC compartment
 hardsuitinjection-closed = The EC compartment is closed
 hardsuitinjection-critical = The body is in a critical condition, and substances are being administered from the emergency compartment
-ent-Ampula = Ampula
+ent-Ampula = ampula
     .desc = An ampoule used in the EC compartments of spacesuits
 
 ent-AmpulaMini = mini ampoule
@@ -15,9 +15,9 @@ ent-AmpulaMedium = medium ampoule
     .desc = Medium-sized ampoule.
 ent-AmpulaBig = big ampoule
     .desc = Large ampoule for intensive care.
-    
+
 hardsuitinjection-toggle = toggle the EC
-hardsuitinjection-toggledescription = The EC has been switched
+hardsuitinjection-toggledescription = Toggles the EC
 hardsuitinjection-injection = Injecting substances from the EC compartment
 hardsuitinjection-injectiondescription = Injects substances from an ampoule contained in the emergency compartment
 hardsuitinjection-nobeaker = The ampoule is not inserted into the EC compartment
@@ -41,7 +41,7 @@ ent-AmpulaHyro = {ent-Ampula}
     .suffix = Hyronalin
     .desc = {ent-Ampula.desc}
 
-ent-AmpulaBloodloseAspxyxia = {ent-Ampula}
+ent-AmpulaBloodlossAsphyxia = {ent-Ampula}
     .suffix = Artiplasm + Thyreostate
     .desc = {ent-Ampula.desc}
 ent-AmpulaMecha = {ent-Ampula}
@@ -53,7 +53,7 @@ ent-AmpulaPhysical = {ent-Ampula}
 ent-AmpulaCellMang = {ent-Ampula}
     .suffix = Omnizine + Genocillin
     .desc = {ent-Ampula.desc}
-ent-AmpulaRadiatonPoison = {ent-Ampula}
+ent-AmpulaRadiationPoison = {ent-Ampula}
     .suffix = Diphenhydramine + Retroindralyne
     .desc = {ent-Ampula.desc}
 
