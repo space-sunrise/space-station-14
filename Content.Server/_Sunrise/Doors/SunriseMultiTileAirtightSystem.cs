@@ -64,6 +64,9 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
 
     private void RefreshAfterUnpause(EntityUid uid)
     {
+        if (TerminatingOrDeleted(uid))
+            return;
+
         if (!TryComp<SunriseMultiTileAirtightComponent>(uid, out var component))
             return;
 
