@@ -27148,8 +27148,6 @@ entities:
       pos: -24.5,12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
   - uid: 563
@@ -27741,8 +27739,6 @@ entities:
       accessListsOriginal:
       - - Atmospherics
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 174
   - uid: 632
@@ -89459,8 +89455,6 @@ entities:
       pos: 19.5,15.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 174
       - 152
@@ -89549,8 +89543,6 @@ entities:
       pos: 18.5,15.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 174
       - 152
@@ -89637,8 +89629,6 @@ entities:
       pos: 11.5,12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 174
       - 103
@@ -89649,8 +89639,6 @@ entities:
       pos: 11.5,11.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 174
       - 103
@@ -89670,8 +89658,6 @@ entities:
       pos: -20.5,8.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
       - 164
@@ -90055,8 +90041,6 @@ entities:
       pos: -18.5,9.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
   - uid: 11733
@@ -91630,7 +91614,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 87
-      - invalid
   - uid: 11910
     components:
     - type: Transform
@@ -118483,8 +118466,6 @@ entities:
       pos: -26.5,10.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
     - type: AtmosPipeColor
@@ -120582,8 +120563,6 @@ entities:
       pos: -24.5,9.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
     - type: AtmosPipeColor
@@ -151863,8 +151842,6 @@ entities:
       pos: -27.5,52.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 20646
     components:
     - type: Transform
@@ -152876,8 +152853,6 @@ entities:
       pos: -23.5,49.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: DeviceLinkSource
       linkedPorts:
         20645:
@@ -214016,8 +213991,6 @@ entities:
       pos: 2.5,71.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29737
@@ -214026,8 +213999,6 @@ entities:
       pos: 2.5,69.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29738
@@ -214036,8 +214007,6 @@ entities:
       pos: -3.5,69.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29739
@@ -214046,8 +214015,6 @@ entities:
       pos: -3.5,71.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29740
@@ -214056,8 +214023,6 @@ entities:
       pos: -5.5,78.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29741
@@ -214066,8 +214031,6 @@ entities:
       pos: 4.5,78.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29742
@@ -214076,8 +214039,6 @@ entities:
       pos: 4.5,88.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29743
@@ -214086,8 +214047,6 @@ entities:
       pos: -5.5,88.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29745
   - uid: 29744
@@ -214127,8 +214086,6 @@ entities:
       pos: -15.5,38.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29749
   - uid: 29747
@@ -214137,8 +214094,6 @@ entities:
       pos: -3.5,38.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29749
   - uid: 29748
@@ -214148,8 +214103,6 @@ entities:
       pos: -9.5,42.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29749
 - proto: WeaponEnergyTurretCommandControlPanel

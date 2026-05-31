@@ -31976,8 +31976,6 @@ entities:
       pos: -8.5,4.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
 - proto: AltarBananium
@@ -122363,8 +122361,6 @@ entities:
       pos: -6.5,4.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
   - uid: 16730
@@ -122374,8 +122370,6 @@ entities:
       pos: -6.5,9.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
       - 149
@@ -157743,8 +157737,6 @@ entities:
       pos: -9.5,10.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
     - type: AtmosPipeColor
@@ -157756,8 +157748,6 @@ entities:
       pos: -9.5,5.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
     - type: AtmosPipeColor
@@ -160165,8 +160155,6 @@ entities:
       pos: -9.5,3.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 173
     - type: AtmosPipeColor
