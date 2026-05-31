@@ -1,28 +1,42 @@
+using Robust.Shared.Serialization;
+
 namespace Content.Shared.Medical.CrewMonitoring;
 
 /// <summary>
-/// Состояние здоровья существа.
+/// Crew monitor health category derived from suit sensor damage data.
 /// </summary>
+[Serializable, NetSerializable]
 public enum CrewMonitoringHealthState
 {
-    Unknown,    // нет данных о здоровье (датчики не в health-режиме)
-    Healthy,    // 0% – 13.2%
-    Good,       // 13.2% – 36%
-    NotGreat,   // 36% – 60%
-    Bad,        // 60% – 83%
-    Terrible,   // 83% – 100%
-    Critical,   // >= 100%
-    Dead        // мёртв
+    Unknown,
+    Healthy,
+    Good,
+    NotGreat,
+    Bad,
+    Terrible,
+    Critical,
+    Dead
 }
 
 public static class HealthStateHelper
 {
+    // The thresholds match the original crew monitor icon bands:
+    // health0, health1, health2, health3, health4, then critical at 100% of the critical damage threshold.
+    private const float GoodThreshold = 0.132f;
+    private const float NotGreatThreshold = 0.36f;
+    private const float BadThreshold = 0.6f;
+    private const float TerribleThreshold = 0.83f;
+    private const float CriticalThreshold = 1.0f;
+
     /// <summary>
-    /// Определяет состояние здоровья по проценту урона и признаку жизни.
+    /// Converts suit sensor damage ratio into the matching crew monitor health category.
     /// </summary>
-    /// <param name="damagePercentage">Процент урона (0..∞). null = нет данных о здоровье.</param>
-    /// <param name="isAlive">Жив ли существо.</param>
-    /// <returns>Состояние здоровья.</returns>
+    /// <param name="damagePercentage">
+    /// Damage divided by the critical damage threshold. 1.0 means 100% of the critical threshold.
+    /// Null means the sensor mode does not provide health data.
+    /// </param>
+    /// <param name="isAlive">Whether the sensor owner is alive.</param>
+    /// <returns>The health category used by crew monitor filtering and icons.</returns>
     public static CrewMonitoringHealthState GetHealthState(float? damagePercentage, bool isAlive)
     {
         if (!isAlive)
@@ -31,17 +45,17 @@ public static class HealthStateHelper
         if (damagePercentage == null)
             return CrewMonitoringHealthState.Unknown;
 
-        float damage = damagePercentage.Value;
+        var damageRatio = damagePercentage.Value;
 
-        if (damage >= 1.0f)
+        if (damageRatio >= CriticalThreshold)
             return CrewMonitoringHealthState.Critical;
-        if (damage >= 0.83f)
+        if (damageRatio >= TerribleThreshold)
             return CrewMonitoringHealthState.Terrible;
-        if (damage >= 0.6f)
+        if (damageRatio >= BadThreshold)
             return CrewMonitoringHealthState.Bad;
-        if (damage >= 0.36f)
+        if (damageRatio >= NotGreatThreshold)
             return CrewMonitoringHealthState.NotGreat;
-        if (damage >= 0.132f)
+        if (damageRatio >= GoodThreshold)
             return CrewMonitoringHealthState.Good;
         return CrewMonitoringHealthState.Healthy;
     }

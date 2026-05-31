@@ -23,6 +23,7 @@
     - Terrible
     - Critical
     - Dead
+    - Unknown
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

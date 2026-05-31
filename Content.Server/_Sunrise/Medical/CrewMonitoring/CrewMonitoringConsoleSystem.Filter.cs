@@ -19,7 +19,7 @@ public sealed partial class CrewMonitoringConsoleSystem
         var filterByHealthState = filter.AllowedHealthStates.Count > 0;
         var includeTrackers = filter.IncludeTrackers;
 
-        if (!filterByDepartment && !filterByHealthState)
+        if (!filterByDepartment && !filterByHealthState && includeTrackers)
             return;
 
         HashSet<string>? allowedDepartmentNames = null;
@@ -30,6 +30,10 @@ public sealed partial class CrewMonitoringConsoleSystem
 
         foreach (var sensor in sensors)
         {
+            var isTracker = IsTrackerSensor(sensor);
+            if (!includeTrackers && isTracker)
+                continue;
+
             if (filterByHealthState)
             {
                 var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
@@ -37,7 +41,7 @@ public sealed partial class CrewMonitoringConsoleSystem
                     continue;
             }
 
-            if (allowedDepartmentNames != null && !IsInAllowedDepartments(sensor, allowedDepartmentNames, includeTrackers))
+            if (allowedDepartmentNames != null && !IsInAllowedDepartments(sensor, allowedDepartmentNames, includeTrackers, isTracker))
                 continue;
 
             filteredSensors.Add(sensor);
@@ -59,7 +63,11 @@ public sealed partial class CrewMonitoringConsoleSystem
         return allowedDepartments;
     }
 
-    private bool IsInAllowedDepartments(SuitSensorStatus sensor, HashSet<string> allowedDepartmentNames, bool includeTrackers)
+    private bool IsInAllowedDepartments(
+        SuitSensorStatus sensor,
+        HashSet<string> allowedDepartmentNames,
+        bool includeTrackers,
+        bool isTracker)
     {
         foreach (var department in sensor.JobDepartments)
         {
@@ -70,6 +78,11 @@ public sealed partial class CrewMonitoringConsoleSystem
         if (!includeTrackers)
             return false;
 
+        return isTracker;
+    }
+
+    private bool IsTrackerSensor(SuitSensorStatus sensor)
+    {
         var sensorEntity = GetEntity(sensor.SuitSensorUid);
         return HasComp<SubdermalImplantComponent>(sensorEntity);
     }

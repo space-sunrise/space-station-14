@@ -230,8 +230,8 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
             CrewMonitoringHealthState.Terrible => "health4",
             CrewMonitoringHealthState.Critical => "critical",
             CrewMonitoringHealthState.Dead => "dead",
-            CrewMonitoringHealthState.Unknown => "alive",
-            _ => "alive"
+            CrewMonitoringHealthState.Unknown => "unknown",
+            _ => "unknown"
         };
 
         return new SpriteSpecifier.Rsi(new ResPath(HumanCrewMonitoringRsi), rsiState);

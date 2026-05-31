@@ -7,19 +7,19 @@ namespace Content.Shared.Medical.CrewMonitoring;
 public sealed partial class CrewMonitoringFilterComponent : Component
 {
     /// <summary>
-    /// Разрешённые состояния здоровья. Если пусто – отображаются все.
+    /// Health states allowed by this monitor. Empty means all states are allowed.
     /// </summary>
     [DataField]
     public List<CrewMonitoringHealthState> AllowedHealthStates = [];
 
     /// <summary>
-    /// Разрешенные отделы. Если пусто – все доступны.
+    /// Departments allowed by this monitor. Empty means all departments are allowed.
     /// </summary>
     [DataField]
     public List<ProtoId<DepartmentPrototype>> AllowedDepartmentIds = [];
 
     /// <summary>
-    /// Будут ли отображаться трекеры (импланты).
+    /// Whether implant trackers are shown by this monitor.
     /// </summary>
     [DataField]
     public bool IncludeTrackers;
