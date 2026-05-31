@@ -67,7 +67,9 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
                 new(0, -GlowRadius), new(0, GlowRadius),
             };
 
-            var eyeRot = _entityManager.GetComponent<EyeComponent>(player.Value).Rotation;
+            if (!_entityManager.TryGetComponent<EyeComponent>(player.Value, out var eye))
+                return;
+            var eyeRot = eye.Rotation;
 
             var isCurrentTube = holder.CurrentTube == uid;
             var glowColor = isCurrentTube ? CurrentPipeGlowColor : PipeGlowColor;

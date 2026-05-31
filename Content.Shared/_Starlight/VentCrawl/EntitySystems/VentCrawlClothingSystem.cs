@@ -15,7 +15,7 @@ public sealed class VentCrawlClothingSystem : EntitySystem
     }
 
     private void OnClothingEquip(Entity<VentCrawlClothingComponent> ent, ref ClothingGotEquippedEvent args)
-        => AddComp<VentCrawlerComponent>(args.Wearer);
+        => EnsureComp<VentCrawlerComponent>(args.Wearer);
 
     private void OnClothingUnequip(Entity<VentCrawlClothingComponent> ent, ref ClothingGotUnequippedEvent args)
         => RemComp<VentCrawlerComponent>(args.Wearer);

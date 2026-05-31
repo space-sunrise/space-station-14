@@ -189,7 +189,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         // Sunrise edit end
 
-        if (TryComp(user, out VentCrawlerComponent? crawlerComp) //🌟Starlight🌟
+        if (TryComp(user, out VentCrawlerComponent? crawlerComp) // Starlight-Edit
             && crawlerComp.InTube)
             return;
 

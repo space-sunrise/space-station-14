@@ -390,7 +390,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         {
             holder.LastCrawl = _gameTiming.CurTime;
 
-            _audioSystem.PlayPvs(holder.CrawlSound, uid);
+            var player = GetOrEnsureContainer(uid).ContainedEntities.FirstOrNull();
+            if (player != null)
+                _audioSystem.PlayPredicted(holder.CrawlSound, uid, player);
         }
 
         var nextTube = holder.NextTube.Value;
