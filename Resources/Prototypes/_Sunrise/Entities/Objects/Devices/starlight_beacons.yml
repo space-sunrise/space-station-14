@@ -1,0 +1,23 @@
+- type: entity
+  id: DefaultStationBeaconIAA
+  parent: DefaultStationBeaconLawOffice
+  suffix: IAA
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-internal-affairs
+
+- type: entity
+  id: DefaultStationBeaconLawyer
+  parent: DefaultStationBeaconLawOffice
+  suffix: Lawyer
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-lawyer
+
+- type: entity
+  id: DefaultStationBeaconNCT
+  parent: DefaultStationBeaconCommand
+  suffix: NCT
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-nct

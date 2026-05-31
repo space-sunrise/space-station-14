@@ -1,0 +1,51 @@
+- type: entity
+  id: SyndicateBrutePack
+  parent: Brutepack
+  name: Interdyne bruise pack
+  description: Interdyne-graded bruise packs for all your needs.
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: SyndicateBrutePack
+    count: 10
+
+- type: entity
+  id: SyndicateBrutePack1
+  parent: SyndicateBrutePack
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: SyndicateBrutePack
+    count: 1
+
+- type: stack
+  id: SyndicateBrutePack
+  name: stack-interdynebrutepack
+  spawn: SyndicateBrutePack1
+  maxCount: 10
+
+- type: entity
+  id: SyndicateOintment
+  parent: Ointment
+  name: Interdyne ointment
+  description: Interdyne's special blend of pyrazine and aloe, used to treat severe burns.
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: SyndicateOintment
+    count: 10
+
+- type: entity
+  id: SyndicateOintment1
+  parent: SyndicateOintment
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: SyndicateOintment
+    count: 1
+
+- type: stack
+  id: SyndicateOintment
+  name: stack-interdyneointment
+  spawn: SyndicateOintment1
+  maxCount: 10
