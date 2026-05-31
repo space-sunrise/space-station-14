@@ -8,6 +8,7 @@ using Content.Shared.Doors.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Doors.Systems;
 
@@ -58,8 +59,15 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
         RefreshAirblock(ent);
     }
 
-    private void OnUnpaused(Entity<SunriseMultiTileAirtightComponent> ent, ref EntityUnpausedEvent args)
+    private void OnUnpaused(Entity<SunriseMultiTileAirtightComponent> ent, ref EntityUnpausedEvent args) =>
+        Timer.Spawn(0, () => RefreshAfterUnpause(ent.Owner));
+
+    private void RefreshAfterUnpause(EntityUid uid)
     {
+        if (!TryComp<SunriseMultiTileAirtightComponent>(uid, out var component))
+            return;
+
+        var ent = (uid, component);
         RefreshGeometry(ent);
         RefreshAirblock(ent);
     }
