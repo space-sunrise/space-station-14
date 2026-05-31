@@ -286,6 +286,9 @@
       icon:
         sprite: _Sunrise/Vampire/Haemomancer.rsi
         state: blood_rite
+      iconOn:
+        sprite: _Sunrise/Vampire/Haemomancer.rsi
+        state: blood_rite_on
     - type: InstantAction
       event: !type:VampireBloodBringersRiteActionEvent
         range: 4
@@ -317,6 +320,9 @@
       icon:
         sprite: _Sunrise/Vampire/umbrae.rsi
         state: cloak_of_darkness
+      iconOn:
+        sprite: _Sunrise/Vampire/umbrae.rsi
+        state: cloak_of_darkness_on
     - type: InstantAction
       event: !type:VampireCloakOfDarknessActionEvent {}
     - type: VampireAction
@@ -458,6 +464,9 @@
       icon:
         sprite: _Sunrise/Vampire/umbrae.rsi
         state: eternal_darkness
+      iconOn:
+        sprite: _Sunrise/Vampire/umbrae.rsi
+        state: eternal_darkness_on
     - type: InstantAction
       event: !type:VampireEternalDarknessActionEvent
         maxTicks: 360
@@ -624,6 +633,9 @@
       icon:
         sprite: _Sunrise/Vampire/Dantalion.rsi
         state: blood_bond
+      iconOn:
+        sprite: _Sunrise/Vampire/Dantalion.rsi
+        state: blood_bond_on
     - type: InstantAction
       event: !type:VampireBloodBondActionEvent
         range: 3
@@ -757,6 +769,9 @@
       icon:
         sprite: _Sunrise/Vampire/Gargantua.rsi
         state: overwhelming_force
+      iconOn:
+        sprite: _Sunrise/Vampire/Gargantua.rsi
+        state: overwhelming_force_on
     - type: InstantAction
       event: !type:VampireOverwhelmingForceActionEvent {}
     - type: VampireAction
