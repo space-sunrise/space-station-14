@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server._Sunrise.Doors.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared._Sunrise.Doors.Components;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Robust.Server.GameObjects;
@@ -41,6 +42,7 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
         _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SunriseMultiTileAirtightComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, ComponentShutdown>(OnShutdown);
 
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, AirtightChanged>(OnAirtightChanged);
@@ -51,6 +53,12 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     }
 
     private void OnMapInit(Entity<SunriseMultiTileAirtightComponent> ent, ref MapInitEvent args)
+    {
+        RefreshGeometry(ent);
+        RefreshAirblock(ent);
+    }
+
+    private void OnUnpaused(Entity<SunriseMultiTileAirtightComponent> ent, ref EntityUnpausedEvent args)
     {
         RefreshGeometry(ent);
         RefreshAirblock(ent);
