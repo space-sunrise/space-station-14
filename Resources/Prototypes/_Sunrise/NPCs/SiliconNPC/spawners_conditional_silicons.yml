@@ -1,0 +1,133 @@
+- type: entity
+  name: viscerator unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobViscerator
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
+        state: base
+      - sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
+        state: base_lights
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconViscerator
+
+- type: entityTable
+  id: RogueSiliconVisceratorSquadTable
+  table: !type:AllSelector
+    children:
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 1
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 1
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 1
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 1
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 0.5
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 0.5
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 0.5
+    - !type:EntSelector
+      id: MobRogueSiliconViscerator
+      prob: 0.5
+
+- type: entity
+  name: viscerator squad spawner
+  suffix: AI, Hostile, 4-8
+  id: SpawnMobRogueSiliconVisceratorSquad
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: one
+      - sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
+        state: base
+      - sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
+        state: base_lights
+  - type: EntityTableSpawner
+    offset: 1
+    table: !type:NestedSelector
+      tableId: RogueSiliconVisceratorSquadTable
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  name: one star unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobRogueSiliconBoss
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Silicon/onestar.rsi
+        state: onestar_boss
+      - sprite: Mobs/Silicon/onestar.rsi
+        state: onestar_boss_screen
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconBoss
+
+- type: entity
+  name: guardian unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobRogueSiliconGuardian
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _Sunrise/Mobs/RogueSilicons/netguardian.rsi
+        state: netguardian
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconGuardian
+
+- type: entity
+  name: guardian unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobRogueSiliconGuardianLCG
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _Sunrise/Mobs/RogueSilicons/netguardian.rsi
+        state: netguardian
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconGuardianLCG
+
+- type: entity
+  name: exterminator unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobRogueSiliconTerminator
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Terminator/parts.rsi
+        state: full
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconTerminatorT3
+

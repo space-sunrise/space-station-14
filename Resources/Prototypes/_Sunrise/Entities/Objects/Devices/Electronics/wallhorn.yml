@@ -1,0 +1,14 @@
+- type: entity
+  id: SunriseWallhornElectronics
+  parent: BaseElectronics
+  name: loudspeaker electronics
+  description: An electronics board used in wall-mounted loudspeakers.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: id_mod
+  - type: Tag
+    tags:
+    - SunriseWallhornElectronics
+  - type: StaticPrice
+    price: 55
