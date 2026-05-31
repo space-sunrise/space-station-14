@@ -440,7 +440,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (anchor != null && TryComp<AtmosPipeLayersComponent>(anchor, out var layersComp))
             pipeLayer = layersComp.CurrentPipeLayer;
         else
-            pipeLayer = (AtmosPipeLayer)layerIndex;
+            pipeLayer = SharedVentCrawlTubeSystem.TransformFromManifoldLayer(layerIndex);
 
         var baseOffset = GetLayerOffset(pipeLayer);
         if (baseOffset == Vector2.Zero)
