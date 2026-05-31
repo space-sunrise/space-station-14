@@ -1,9 +1,9 @@
 namespace Content.Shared._Sunrise.Weapons.Melee.Components;
 
-[RegisterComponent]
 /// <summary>
-/// Applies a forced knockdown to entities on the tile where a melee blink finishes.
+/// Applies a forced knockdown to one entity near the coordinates where a melee blink finishes.
 /// </summary>
+[RegisterComponent]
 public sealed partial class MeleeBlinkKnockdownComponent : Component
 {
     /// <summary>
@@ -11,4 +11,10 @@ public sealed partial class MeleeBlinkKnockdownComponent : Component
     /// </summary>
     [DataField(required: true)]
     public TimeSpan KnockdownDuration;
+
+    /// <summary>
+    /// Radius around the blink landing coordinates to search for a knockdown target.
+    /// </summary>
+    [DataField]
+    public float Radius = 1.25f;
 }

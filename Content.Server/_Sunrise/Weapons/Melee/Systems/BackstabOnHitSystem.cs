@@ -26,6 +26,6 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
         }
 
         var popup = Loc.GetString(popupWeights.Pick(_random));
-        _popup.PopupEntity(popup, target, PopupType.LargeCaution);
+        _popup.PopupEntity(popup, target, target, PopupType.LargeCaution);
     }
 }

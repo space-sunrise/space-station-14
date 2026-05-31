@@ -1,9 +1,8 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.CombatMode;
-using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
+using Content.Shared._Sunrise.Weapons.Melee.Events;
 using Content.Shared.Weapons.Melee;
 using Content.Client.Weapons.Melee;
 using Robust.Client.Input;
@@ -13,7 +12,7 @@ using Robust.Shared.Input.Binding;
 namespace Content.Client._Sunrise.Weapons.Melee.Systems;
 
 /// <summary>
-/// Converts combat-mode secondary use presses into alt-interacts for melee weapons that opt into the behavior.
+/// Converts combat-mode secondary use presses into blink requests for melee weapons that opt into the behavior.
 /// </summary>
 public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
 {
@@ -21,19 +20,17 @@ public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly MeleeWeaponSystem _melee = default!;
 
-    private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<UseSecondaryMeleeAltInteractComponent> _redirectQuery;
 
     public override void Initialize()
     {
         base.Initialize();
-        _handsQuery = GetEntityQuery<HandsComponent>();
         _redirectQuery = GetEntityQuery<UseSecondaryMeleeAltInteractComponent>();
 
          CommandBinds.Builder
              // Let normal secondary-use interaction resolve first so this redirect only applies to melee-combat handling.
              // This routing runs after normal interaction binding and outside prediction because it only decides
-             // whether RMB should become an alt-interact request for the held melee weapon on the local client.
+             // whether RMB should become a blink request for the held melee weapon on the local client.
              .BindAfter(EngineKeyFunctions.UseSecondary,
                 new PointerInputCmdHandler(OnUseSecondary, true, true),
                 typeof(SharedInteractionSystem))
@@ -54,10 +51,7 @@ public sealed class UseSecondaryMeleeAltInteractSystem : EntitySystem
         if (!_redirectQuery.HasComp(weaponUid) || !_blocker.CanAttack(user, weapon: (weaponUid, weapon)))
             return false;
 
-        if (!_handsQuery.TryComp(user, out var hands) || hands.ActiveHandId == null)
-            return false;
-
-        RaisePredictiveEvent(new RequestHandAltInteractEvent(hands.ActiveHandId));
+        RaisePredictiveEvent(new RequestMeleeBlinkEvent(GetNetEntity(weaponUid), GetNetCoordinates(args.Coordinates)));
         return true;
     }
 }

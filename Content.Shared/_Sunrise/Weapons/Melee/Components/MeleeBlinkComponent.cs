@@ -2,10 +2,10 @@ using Content.Shared.Damage;
 
 namespace Content.Shared._Sunrise.Weapons.Melee.Components;
 
-[RegisterComponent]
 /// <summary>
-/// Configures a charge-based short-range melee blink that moves the user in the direction they are facing.
+/// Configures a charge-based short-range melee blink that moves the user to clicked coordinates.
 /// </summary>
+[RegisterComponent]
 public sealed partial class MeleeBlinkComponent : Component
 {
     /// <summary>
@@ -28,11 +28,4 @@ public sealed partial class MeleeBlinkComponent : Component
     [DataField]
     public DamageSpecifier? DamageOnBlocked;
 
-    /// <summary>
-    /// Random offset in tiles applied to the user's landing position.
-    /// The user lands within this radius of the target point.
-    /// Set to 0 to land exactly at the target.
-    /// </summary>
-    [DataField]
-    public float LandingRandomOffset = 1f;
 }

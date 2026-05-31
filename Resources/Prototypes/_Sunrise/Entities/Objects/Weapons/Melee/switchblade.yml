@@ -59,12 +59,12 @@
   - type: MeleeBlink
     randomDistanceValue: 0
     teleportationValue: 5
-    landingRandomOffset: 0
     damageOnBlocked:
       types:
         Cellular: 1
   - type: MeleeBlinkKnockdown
     knockdownDuration: 2
+    radius: 1.25
   - type: UseSecondaryMeleeAltInteract
   - type: AutoRecharge
     rechargeDuration: 15

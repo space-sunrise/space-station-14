@@ -7,6 +7,7 @@ using Content.Shared._Sunrise.Weapons.Melee.Events;
 using Content.Shared.Charges.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Timing;
@@ -46,8 +47,31 @@ public sealed class MeleeBlinkSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeAllEvent<RequestMeleeBlinkEvent>(OnRequestMeleeBlink);
+        SubscribeLocalEvent<MeleeBlinkComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<MeleeBlinkComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
         SubscribeLocalEvent<MeleeBlinkComponent, GetVerbsEvent<ActivationVerb>>(OnGetActivationVerb);
+    }
+
+    private void OnRequestMeleeBlink(RequestMeleeBlinkEvent msg, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession.AttachedEntity is not { Valid: true } user)
+            return;
+
+        var weapon = GetEntity(msg.Weapon);
+        if (!TryComp<MeleeBlinkComponent>(weapon, out var blink))
+            return;
+
+        TryBlink((weapon, blink), user, GetCoordinates(msg.Coordinates), quiet: false);
+    }
+
+    private void OnAfterInteract(Entity<MeleeBlinkComponent> ent, ref AfterInteractEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (TryBlink(ent, args.User, args.ClickLocation, quiet: false))
+            args.Handled = true;
     }
 
     private void OnGetAlternativeVerb(Entity<MeleeBlinkComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -55,7 +79,7 @@ public sealed class MeleeBlinkSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        args.Verbs.Add(CreateBlinkVerb<AlternativeVerb>(ent, args.User));
+        args.Verbs.Add(CreateBlinkVerb<AlternativeVerb>(ent, args.User, GetForwardTarget(args.User, ent.Comp)));
     }
 
     private void OnGetActivationVerb(Entity<MeleeBlinkComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
@@ -63,31 +87,36 @@ public sealed class MeleeBlinkSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        args.Verbs.Add(CreateBlinkVerb<ActivationVerb>(ent, args.User));
+        args.Verbs.Add(CreateBlinkVerb<ActivationVerb>(ent, args.User, GetForwardTarget(args.User, ent.Comp)));
     }
 
-    private T CreateBlinkVerb<T>(Entity<MeleeBlinkComponent> ent, EntityUid user) where T : Verb, new()
+    private T CreateBlinkVerb<T>(Entity<MeleeBlinkComponent> ent, EntityUid user, EntityCoordinates target) where T : Verb, new()
     {
-        var canBlink = CanBlink(ent, user, out var disabledMessage, quiet: true);
-        return new T
+        var canBlink = CanBlink(ent, user, target, out var disabledMessage, quiet: true);
+        var verb = new T
         {
             Text = Loc.GetString("syndicate-teleporter-verb"),
             Disabled = !canBlink,
             Message = disabledMessage,
-            Act = () => TryBlink(ent, user, quiet: false),
+            Act = () => TryBlink(ent, user, target, quiet: false),
         };
+
+        if (verb is AlternativeVerb alternativeVerb)
+            alternativeVerb.Priority = 10;
+
+        return verb;
     }
 
-    private bool TryBlink(Entity<MeleeBlinkComponent> ent, EntityUid user, bool quiet = false)
+    private bool TryBlink(Entity<MeleeBlinkComponent> ent, EntityUid user, EntityCoordinates target, bool quiet = false)
     {
-        if (!CanBlink(ent, user, out _, quiet))
+        if (!CanBlink(ent, user, target, out _, quiet))
             return false;
 
-        DoBlink(ent, user);
+        DoBlink(ent, user, target);
         return true;
     }
 
-    private bool CanBlink(Entity<MeleeBlinkComponent> ent, EntityUid user, out string? disabledMessage, bool quiet = false)
+    private bool CanBlink(Entity<MeleeBlinkComponent> ent, EntityUid user, EntityCoordinates target, out string? disabledMessage, bool quiet = false)
     {
         disabledMessage = null;
 
@@ -131,6 +160,15 @@ public sealed class MeleeBlinkSystem : EntitySystem
             return false;
         }
 
+        if (!target.IsValid(EntityManager) || _transform.GetMapId(user) != _transform.GetMapId(target))
+            return false;
+
+        var userPosition = Transform(user).MapPosition.Position;
+        var targetPosition = _transform.ToMapCoordinates(target).Position;
+        var maxDistance = ent.Comp.TeleportationValue + ent.Comp.RandomDistanceValue;
+        if (Vector2.DistanceSquared(userPosition, targetPosition) > maxDistance * maxDistance)
+            return false;
+
         return true;
     }
 
@@ -151,7 +189,7 @@ public sealed class MeleeBlinkSystem : EntitySystem
         return false;
     }
 
-    private void DoBlink(Entity<MeleeBlinkComponent> ent, EntityUid user)
+    private void DoBlink(Entity<MeleeBlinkComponent> ent, EntityUid user, EntityCoordinates target)
     {
         if (TryComp<UseDelayComponent>(ent.Owner, out var useDelay))
             _useDelay.TryResetDelay((ent.Owner, useDelay), true, GetTeleportDelayId(useDelay));
@@ -159,17 +197,12 @@ public sealed class MeleeBlinkSystem : EntitySystem
         if (TryComp<LimitedChargesComponent>(ent.Owner, out var charges))
             _charges.TryUseCharge((ent.Owner, charges));
 
-        Blink(user, ent);
+        Blink(user, ent, target);
     }
 
-    private void Blink(EntityUid user, Entity<MeleeBlinkComponent> ent)
+    private void Blink(EntityUid user, Entity<MeleeBlinkComponent> ent, EntityCoordinates target)
     {
         var pre = Transform(user).Coordinates;
-
-        var random = ent.Comp.RandomDistanceValue > 0 ? _random.Next(0, ent.Comp.RandomDistanceValue + 1) : 0;
-        var dist = ent.Comp.TeleportationValue + random;
-        var dir = Transform(user).LocalRotation.ToWorldVec().Normalized();
-        var target = pre.Offset(dir * new Vector2(dist, dist));
 
         Spawn(SourceEffectPrototype, _transform.ToMapCoordinates(pre));
 
@@ -178,19 +211,28 @@ public sealed class MeleeBlinkSystem : EntitySystem
 
         if (IsSpotFree(user, target))
         {
-            ApplyLanding(ent.Owner, user, target, ent.Comp);
+            ApplyLanding(ent.Owner, user, target);
             return;
         }
 
         if (TryFindSafeTile(user, target, out var safe))
         {
-            ApplyLanding(ent.Owner, user, safe, ent.Comp);
+            ApplyLanding(ent.Owner, user, safe);
             ApplyBlockedDamage(user, ent.Comp);
             return;
         }
 
         _transform.SetCoordinates(user, pre);
         ApplyBlockedDamage(user, ent.Comp);
+    }
+
+    private EntityCoordinates GetForwardTarget(EntityUid user, MeleeBlinkComponent comp)
+    {
+        var random = comp.RandomDistanceValue > 0 ? _random.Next(0, comp.RandomDistanceValue + 1) : 0;
+        var distance = comp.TeleportationValue + random;
+        var direction = Transform(user).LocalRotation.ToWorldVec().Normalized();
+
+        return Transform(user).Coordinates.Offset(direction * new Vector2(distance, distance));
     }
 
     private void ApplyBlockedDamage(EntityUid user, MeleeBlinkComponent comp)
@@ -267,31 +309,14 @@ public sealed class MeleeBlinkSystem : EntitySystem
             : UseDelaySystem.DefaultId;
     }
 
-    private void ApplyLanding(EntityUid weapon, EntityUid user, EntityCoordinates where, MeleeBlinkComponent comp)
+    private void ApplyLanding(EntityUid weapon, EntityUid user, EntityCoordinates where)
     {
-        var landing = ResolveLandingCoordinates(user, where, comp);
+        _transform.SetCoordinates(user, where);
 
-        _transform.SetCoordinates(user, landing);
-
-        var landed = new MeleeBlinkLandedEvent(user, landing);
+        var landed = new MeleeBlinkLandedEvent(user, where);
         RaiseLocalEvent(weapon, ref landed);
 
-        Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(landing));
-    }
-
-    private EntityCoordinates ResolveLandingCoordinates(EntityUid user, EntityCoordinates where, MeleeBlinkComponent comp)
-    {
-        if (comp.LandingRandomOffset <= 0f)
-            return where;
-
-        var angle = Angle.FromDegrees(_random.Next(0, 360));
-        var dist = _random.NextFloat(0f, comp.LandingRandomOffset);
-        var offset = angle.ToWorldVec() * dist;
-        var candidate = where.Offset(offset);
-
-        return IsSpotFree(user, candidate)
-            ? candidate
-            : where;
+        Spawn(TargetEffectPrototype, _transform.ToMapCoordinates(where));
     }
 
     private bool IsBlockingEntity(EntityUid uid)
