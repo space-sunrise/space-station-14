@@ -49,6 +49,10 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
             LookupFlags.Uncontained
         );
 
+        if (!_entityManager.TryGetComponent<EyeComponent>(player.Value, out var eye))
+            return;
+        var eyeRot = eye.Rotation;
+
         worldHandle.UseShader(null);
 
         foreach (var uid in entities)
@@ -66,10 +70,6 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
                 new(-GlowRadius, 0), new(GlowRadius, 0),
                 new(0, -GlowRadius), new(0, GlowRadius),
             };
-
-            if (!_entityManager.TryGetComponent<EyeComponent>(player.Value, out var eye))
-                return;
-            var eyeRot = eye.Rotation;
 
             var isCurrentTube = holder.CurrentTube == uid;
             var glowColor = isCurrentTube ? CurrentPipeGlowColor : PipeGlowColor;
