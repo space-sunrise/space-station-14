@@ -59,11 +59,11 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
     private void OnStartup(EntityUid uid, VentCrawlTubeComponent component, ComponentStartup args)
         => UpdateAnchored(component, Transform(uid).Anchored);
 
-    private void OnBreak(EntityUid uid, VentCrawlTubeComponent component, BreakageEventArgs args)
-        => DisconnectTube(component);
+    private void OnBreak(Entity<VentCrawlTubeComponent> ent, ref BreakageEventArgs args)
+        => DisconnectTube(ent.Comp);
 
-    private void OnAnchorChange(EntityUid uid, VentCrawlTubeComponent component, ref AnchorStateChangedEvent args)
-        => UpdateAnchored(component, args.Anchored);
+    private void OnAnchorChange(Entity<VentCrawlTubeComponent> ent, ref AnchorStateChangedEvent args)
+        => UpdateAnchored(ent.Comp, args.Anchored);
 
     private void AddClimbedVerb(EntityUid uid, VentCrawlEntryComponent component, GetVerbsEvent<AlternativeVerb> args)
     {

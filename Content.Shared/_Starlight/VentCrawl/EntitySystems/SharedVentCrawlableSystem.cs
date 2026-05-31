@@ -46,8 +46,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     /// <summary>
     /// Handles the MoveInputEvent for <seealso cref="VentCrawlHolderComponent"/>.
     /// </summary>
-    private void OnMoveInput(EntityUid uid, VentCrawlHolderComponent holder, ref MoveInputEvent args)
+    private void OnMoveInput(Entity<VentCrawlHolderComponent> ent, ref MoveInputEvent args)
     {
+        var (uid, holder) = ent;
         if (!Exists(holder.CurrentTube))
         {
             ExitVentCrawl(uid);
@@ -204,8 +205,8 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         return true;
     }
 
-    private void OnExitVentActionEvent(EntityUid uid, BeingVentCrawlComponent component, ExitVentActionEvent args)
-        => ExitVentCrawl(component.Holder);
+    private void OnExitVentActionEvent(Entity<BeingVentCrawlComponent> ent, ref ExitVentActionEvent args)
+        => ExitVentCrawl(ent.Comp.Holder);
 
     /// <summary>
     /// Exits the vent craws for the specified <seealso cref="VentCrawlHolderComponent"/>, removing it and any contained entities from the craws.
