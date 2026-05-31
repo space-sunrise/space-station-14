@@ -8,7 +8,6 @@ tiles-terracotta-floor = terracotta tile
 tiles-terracotta-diagonal-floor = diagonal terracotta tile
 tiles-terracotta-small-floor = small terracotta tile
 tiles-abyss-floor = abyss floor
-tiles-abductor-floor = abductor floor
 tiles-darkstone = dark stone floor
 tiles-dark-wood = dark wood floor
 tiles-dark-wood2 = dark wood pattern floor

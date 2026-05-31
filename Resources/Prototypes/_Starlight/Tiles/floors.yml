@@ -565,7 +565,7 @@
     collection: FootstepWood
   barestepSounds:
     collection: BarestepWood
-  itemDrop: FloorTileItemWoodRed
+  itemDrop: FloorTileItemWoodParquetRed
   heatCapacity: 10000
 
 - type: tile

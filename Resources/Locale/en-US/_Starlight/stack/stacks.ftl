@@ -60,10 +60,6 @@ stack-adamantine = {$amount ->
 stack-bluespace-tile = bluespace tile
 stack-sepia-xenobiology-tile = sepia tile
 
-stack-brutepack = {$amount ->
-    [1] brutepack
-    *[other] brutepacks
-}
 stack-blueointment = {$amount ->
     [1] blueointment
     *[other] blueointments
@@ -75,14 +71,6 @@ stack-redointment = {$amount ->
 stack-redbrutepack = {$amount ->
     [1] redbrutepack
     *[other] redbrutepacks
-}
-stack-interdyneointment = {$amount ->
-    [1] interdyneointment
-    *[other] interdyneointments
-}
-stack-interdynebrutepack = {$amount ->
-    [1] interdynebrutepack
-    *[other] interdynebrutepacks
 }
 stack-redpunctpack = {$amount ->
     [1] redpunctpack
@@ -101,16 +89,6 @@ stack-empty-oilpack = {$amount ->
     [1] emptyoilpack
     *[other] emptyoilpacks
 }
-
-stack-credit = {$amount ->
-    [1] credit
-    *[other] credits
-}
-stack-ticket = {$amount ->
-    [1] ticket
-    *[other] tickets
-}
-
 
 stack-wizcoin = {$amount ->
     [1] wizcoin
