@@ -69,7 +69,7 @@
   - type: AutoRecharge
     rechargeDuration: 15
   - type: LimitedCharges
-    maxCharges: 2
+    maxCharges: 3
   - type: ThrowingAngle
     angle: 180
 - type: weightedRandom

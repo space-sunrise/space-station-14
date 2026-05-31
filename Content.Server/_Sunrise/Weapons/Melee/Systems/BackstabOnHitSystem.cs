@@ -4,12 +4,14 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Popups;
 using Content.Shared._Sunrise.Weapons.Melee.Components;
 using Content.Shared._Sunrise.Weapons.Melee.Systems;
+using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 namespace Content.Server._Sunrise.Weapons.Melee.Systems;
 
 public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
 {
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -26,6 +28,9 @@ public sealed class BackstabOnHitSystem : SharedBackstabOnHitSystem
         }
 
         var popup = Loc.GetString(popupWeights.Pick(_random));
-        _popup.PopupEntity(popup, target, target, PopupType.LargeCaution);
+        foreach (var session in _player.Sessions)
+        {
+            _popup.PopupCursor(popup, session, PopupType.LargeCaution);
+        }
     }
 }
