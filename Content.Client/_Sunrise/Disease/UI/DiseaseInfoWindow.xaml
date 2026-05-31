@@ -1,0 +1,37 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="{Loc 'disease-info-window-title'}"
+               SetSize="400 350">
+    <BoxContainer Orientation="Vertical" Margin="10">
+        <Label Text="{Loc 'disease-info-core-statistics'}" FontColorOverride="LightGray" Margin="0 0 0 5"/>
+        <BoxContainer Orientation="Horizontal" Margin="10 0 0 0">
+            <Label Text="{Loc 'disease-info-base-chance'}" MinWidth="200"/>
+            <Label Name="BaseChanceLabel" Text="0%"/>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="10 0 0 0">
+            <Label Text="{Loc 'disease-info-cough-sneeze-chance'}" MinWidth="200"/>
+            <Label Name="InfectChanceLabel" Text="0%"/>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="10 0 0 0">
+            <Label Text="{Loc 'disease-info-lethal'}" MinWidth="200"/>
+            <Label Name="LethalLabel" Text="0"/>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="10 0 0 0">
+            <Label Text="{Loc 'disease-info-shield'}" MinWidth="200"/>
+            <Label Name="ShieldLabel" Text="0"/>
+        </BoxContainer>
+
+        <Control MinHeight="20"/>
+
+        <Label Text="{Loc 'disease-info-infection-statistics'}" FontColorOverride="LightGray" Margin="0 0 0 5"/>
+        <BoxContainer Orientation="Horizontal" Margin="10 0 0 0">
+            <Label Text="{Loc 'disease-info-infected-count'}" MinWidth="200"/>
+            <Label Name="CurrentInfectedLabel" Text="0"/>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="10 0 0 0">
+            <Label Text="{Loc 'disease-info-total-infected'}" MinWidth="200"/>
+            <Label Name="TotalInfectedLabel" Text="0"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

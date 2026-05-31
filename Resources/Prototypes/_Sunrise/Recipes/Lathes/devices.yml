@@ -9,17 +9,6 @@
     Gold: 50
 
 - type: latheRecipe
-  id: BasicThermals
-  result: ClothingEyesGlassesThermal
-  completetime: 60
-  materials:
-    Steel: 1000
-    Plastic: 400
-    Silver: 200
-    Gold: 100
-    Diamond: 200
-
-- type: latheRecipe
   id: WeaponPlasmaCutter
   result: WeaponPlasmaCutter
   categories:

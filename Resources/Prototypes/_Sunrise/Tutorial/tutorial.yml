@@ -1,0 +1,75 @@
+- type: entity
+  name: tutorial spawn point
+  id: TutorialSpawnPoint
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    state: green
+  - type: TutorialSpawnPoint
+
+- type: entity
+  name: tutorial goal marker
+  id: TutorialGoalMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    state: green
+  - type: TutorialGoalMarker
+
+- type: entity
+  save: false
+  name: You!
+  parent: BaseMobHuman
+  id: BaseTutorialPlayer
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+    hair: HumanHairBob
+  - type: Loadout
+    prototypes: [TutorialPlayerGear]
+
+- type: startingGear
+  id: TutorialPlayerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    back: ClothingBackpack
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
+
+# --- Introduction Tutorial Markers ---
+
+- type: entity
+  name: intro locker room marker
+  id: IntroTutMarkerLockerRoom
+  parent: TutorialGoalMarker
+
+- type: entity
+  name: intro center marker
+  id: IntroTutMarkerCenter
+  parent: TutorialGoalMarker
+
+- type: entity
+  name: intro bar marker
+  id: IntroTutMarkerBar
+  parent: TutorialGoalMarker
+
+- type: entity
+  name: intro bar counter marker
+  id: IntroTutMarkerBarCounter
+  parent: TutorialGoalMarker
+
+- type: entity
+  name: intro after airlock marker
+  id: IntroTutMarkerAfterAirlock
+  parent: TutorialGoalMarker
+
+- type: entity
+  name: intro dark hallway marker
+  id: IntroTutMarkerHallway
+  parent: TutorialGoalMarker
+
+- type: entity
+  name: intro shooting range marker
+  id: IntroTutMarkerRange
+  parent: TutorialGoalMarker

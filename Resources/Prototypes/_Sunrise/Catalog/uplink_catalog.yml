@@ -2011,6 +2011,25 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkWeaponMechCombatKord
+  name: uplink-mech-equipment-kord-name
+  description: uplink-mech-equipment-kord-desc
+  productEntity: WeaponMechCombatKord
+  cost:
+    Telecrystal: 28
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkMechAMLG90
   name: uplink-mech-equipment-amlg90-name
   description: uplink-mech-equipment-amlg90-desc
@@ -2638,6 +2657,24 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkWeaponMechCombatKordRoboticist
+  name: uplink-mech-equipment-kord-name
+  description: uplink-mech-equipment-kord-desc
+  productEntity: WeaponMechCombatKord
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Roboticist
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkCArmouredJumpsuit
   name: uplink-armoured-jumpsuit-name
   description: uplink-armoured-jumpsuit-desc
@@ -3100,6 +3137,17 @@
   name: uplink-50blessing-name
   description: uplink-50blessing-desc
   productEntity: PresentMasksHM
+  discountCategory: rareDiscounts
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+
+- type: listing
+  id: UplinkSlipknotSet
+  name: uplink-slipknotset-name
+  description: uplink-slipknotset-desc
+  productEntity: PresentMasksSlipknot
   discountCategory: rareDiscounts
   cost:
     Telecrystal: 1

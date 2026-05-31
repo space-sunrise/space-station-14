@@ -55,6 +55,7 @@
       types:
         Heat: 2.5 # Per second, scales with temperature & other constants
   # Sunrise-Start
+  - type: VulpaAccent
   - type: FlashModifier
     modifier: 1.4
   # Sunrise-End
