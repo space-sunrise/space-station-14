@@ -2,12 +2,12 @@ using System.Numerics;
 using Content.Server._Sunrise.Doors.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared._Sunrise.Doors.Components;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Doors.Systems;
@@ -22,12 +22,13 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    private const string BlockerPrototype = "SunriseMultiTileAirtightBlocker";
+    private static readonly EntProtoId BlockerPrototype = "SunriseMultiTileAirtightBlocker";
 
     private EntityQuery<AirtightComponent> _airtightQuery;
     private EntityQuery<SunriseMultiTileAirtightBlockerComponent> _blockerQuery;
     private EntityQuery<DoorComponent> _doorQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
+    private EntityQuery<SunriseMultiTileAirtightComponent> _multiTileQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
     private readonly List<EntityUid> _anchoredEntities = new();
@@ -40,6 +41,7 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
         _blockerQuery = GetEntityQuery<SunriseMultiTileAirtightBlockerComponent>();
         _doorQuery = GetEntityQuery<DoorComponent>();
         _gridQuery = GetEntityQuery<MapGridComponent>();
+        _multiTileQuery = GetEntityQuery<SunriseMultiTileAirtightComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, MapInitEvent>(OnMapInit);
@@ -67,7 +69,7 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
             return;
 
-        if (!TryComp<SunriseMultiTileAirtightComponent>(uid, out var component))
+        if (!_multiTileQuery.TryGetComponent(uid, out var component))
             return;
 
         var ent = (uid, component);
