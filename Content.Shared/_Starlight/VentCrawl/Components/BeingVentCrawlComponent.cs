@@ -11,7 +11,7 @@ public sealed partial class BeingVentCrawlComponent : Component
     /// <summary>
     /// Gets or sets up a holder entity
     /// </summary>
-    [DataField("holder"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public EntityUid Holder
     {
         get;

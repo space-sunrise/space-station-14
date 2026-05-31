@@ -41,7 +41,7 @@ public sealed partial class VentCrawlHolderComponent : Component
 
     public static readonly TimeSpan CrawlDelay = TimeSpan.FromSeconds(0.5);
 
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField, AutoPausedField]
     public TimeSpan LastCrawl;
 
     [DataField]
