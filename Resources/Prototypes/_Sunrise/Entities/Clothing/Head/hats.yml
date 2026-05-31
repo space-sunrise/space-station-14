@@ -761,3 +761,13 @@
     sprite: _Sunrise/Secred/Head/Hats/beret_warden.rsi
   - type: Clothing
     sprite: _Sunrise/Secred/Head/Hats/beret_warden.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretWarden
+  id: ClothingHeadHatWardenSecred
+  suffix: Secred
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Secred/Head/Hats/warden.rsi
+  - type: Clothing
+    sprite: _Sunrise/Secred/Head/Hats/warden.rsi

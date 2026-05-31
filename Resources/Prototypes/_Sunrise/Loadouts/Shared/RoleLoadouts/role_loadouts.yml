@@ -116,7 +116,7 @@
   groups:
   - SeniorOfficerJumpsuit
   - SecurityOuterClothing
-  - SecurityBackpack
+  - SunriseSecurityBackpack
   - SecurityBelt
   - SecurityShoes
   - SunriseSecurityGun
@@ -232,7 +232,7 @@
   - SecurityPilotJumpsuit
   - SecurityBelt
   - SecurityShoes
-  - SecurityBackpack
+  - SunriseSecurityBackpack
   - SunriseSecurityGun
   - SurvivalSecurity
   - SunriseTrinkets

@@ -116,6 +116,9 @@
   minLimit: 0
   loadouts:
   - WardenBeretSecred
+  - ClothingHeadHatBeretWarden
+  - ClothingHeadHatWarden
+  - WardenHatSecred
   - ClothingHeadHatCapWardenAlt
 
 - type: loadoutGroup
