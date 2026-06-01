@@ -13,7 +13,7 @@ public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owne
     private static readonly Color SelectedOptionBackground = Palettes.Green.Element.WithAlpha(128);
     private static readonly Color SelectedOptionHoverBackground = Palettes.Green.HoveredElement.WithAlpha(128);
 
-    private readonly SpriteSpecifier.Texture _noEquipIcon = new(new ResPath("/Textures/Interface/Default/blocked.png"));
+    private static readonly SpriteSpecifier.Texture _noEquipIcon = new(new ResPath("/Textures/Interface/Default/blocked.png"));
     private SimpleRadialMenu? _menu;
 
     protected override void Open()
@@ -31,8 +31,10 @@ public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owne
             return;
 
         if (!EntMan.TryGetComponent<MechComponent>(Owner, out var mech))
+        {
+            Close();
             return;
-
+        }
         var models = ConvertToButtons(mech.EquipmentContainer.ContainedEntities, mech.CurrentSelectedEquipment);
         _menu.SetButtons(models);
     }
@@ -73,13 +75,9 @@ public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owne
         return buttons;
     }
 
-    private void SendToolDeselect(NetEntity? equipmentId)
-    {
+    private void SendToolDeselect(NetEntity? equipmentId) =>
         SendPredictedMessage(new MechActiveEquipmentSelectMessage(null));
-    }
 
-    private void SendToolSelect(NetEntity equipmentId)
-    {
+    private void SendToolSelect(NetEntity equipmentId) =>
         SendPredictedMessage(new MechActiveEquipmentSelectMessage(equipmentId));
-    }
 }
