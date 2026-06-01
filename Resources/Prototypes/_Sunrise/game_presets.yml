@@ -39,3 +39,18 @@
   - SpaceTrafficControlEventScheduler
   - SubGamemodesRule
   - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Storyteller
+  alias:
+  - storyteller
+  - story
+  - director
+  name: storyteller-preset-title
+  showInVote: true
+  hide: false
+  description: storyteller-preset-description
+  rules:
+  - StorytellerRule
+  - BasicRoundstartVariation
+

@@ -10,6 +10,8 @@
     - Moderate
   factions:
     - PiratesT1
+    - SiliconsLight
+    - Silicons
 
 - type: salvageDungeonMod
   id: SovietStronghold
@@ -51,5 +53,4 @@
     - Difficult
     - Impossible
   factions:
-    - PiratesT2
     - PiratesT3

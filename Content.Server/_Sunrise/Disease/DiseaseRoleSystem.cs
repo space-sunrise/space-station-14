@@ -19,6 +19,8 @@ using Content.Shared.Mobs;
 
 namespace Content.Server._Sunrise.Disease;
 
+using Robust.Server.GameObjects;
+
 public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -29,6 +31,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     private static readonly List<string> _bloodReagents = new()
     {
@@ -66,16 +69,12 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (TryComp<DiseaseRoleComponent>(args.Performer, out var component))
         {
-            if (TryRemoveMoney(args.Performer, component.InfectCost))
-                OnInfect(args, 1.0f);
-            else
-            {
-                _popup.PopupEntity(Loc.GetString("disease-not-enough-evolution-points"), args.Performer, PopupType.Medium);
-                return;
-            }
+            OnInfect(args, 1.0f);
+            _popup.PopupEntity(Loc.GetString("disease-infect-success"), args.Performer, PopupType.Medium);
 
             // Play Initial Infected antag audio (only for the disease player)
             _audio.PlayGlobal("/Audio/Ambience/Antag/zombie_start.ogg", args.Performer);
+            UpdateUi(args.Performer, component);
         }
     }
 
@@ -105,25 +104,21 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
     private void OnDiseaseInfo(EntityUid uid, DiseaseRoleComponent component, DiseaseInfoEvent args)
     {
-        // Create a simple formatted display using StringBuilder for better performance
-        var infoText = new StringBuilder();
-        infoText.AppendLine(Loc.GetString("disease-info-header"));
-        infoText.AppendLine();
+        _ui.TryToggleUi(uid, DiseaseInfoUiKey.Key, uid);
+        UpdateUi(uid, component);
+    }
 
-        // Core Statistics Section
-        infoText.AppendLine(Loc.GetString("disease-info-core-statistics") + ":");
-        infoText.AppendLine("├─ " + Loc.GetString("disease-info-base-chance") + ": " + (component.BaseInfectChance * 100).ToString("F0") + "%");
-        infoText.AppendLine("├─ " + Loc.GetString("disease-info-cough-sneeze-chance") + ": " + (component.CoughSneezeInfectChance * 100).ToString("F0") + "%");
-        infoText.AppendLine("├─ " + Loc.GetString("disease-info-lethal") + ": " + component.Lethal);
-        infoText.AppendLine("└─ " + Loc.GetString("disease-info-shield") + ": " + component.Shield);
-        infoText.AppendLine();
-
-        // Infection Statistics Section
-        infoText.AppendLine(Loc.GetString("disease-info-infection-statistics") + ":");
-        infoText.AppendLine("├─ " + Loc.GetString("disease-info-infected-count") + ": " + component.Infected.Count);
-        infoText.Append("└─ " + Loc.GetString("disease-info-total-infected") + ": " + component.SickOfAllTime);
-
-        _popup.PopupEntity(infoText.ToString(), uid, uid, PopupType.Large);
+    private void UpdateUi(EntityUid uid, DiseaseRoleComponent component)
+    {
+        var state = new DiseaseInfoState(
+            component.BaseInfectChance,
+            component.CoughSneezeInfectChance,
+            component.Lethal,
+            component.Shield,
+            component.Infected.Count,
+            component.SickOfAllTime
+        );
+        _ui.SetUiState(uid, DiseaseInfoUiKey.Key, state);
     }
 
 
@@ -221,10 +216,84 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                     _popup.PopupEntity(Loc.GetString("disease-upgrade-max-reached"), storeOwner, PopupType.Medium);
                 }
                 break;
+            default:
+                if (!diseaseComp.Symptoms.ContainsKey(args.PurchasedItem.ID))
+                {
+                    // Check if it's a symptom listing from the ID
+                    var symptom = args.PurchasedItem.ID;
+                    int minLevel = 0;
+                    int maxLevel = 5;
+
+                    // Ideally we should get this from the listing/action metadata,
+                    // but since the previous system relied on hardcoded event args from actions,
+                    // we might need to assume or look it up.
+                    // For now, let's replicate the levels from the removed actions:
+
+                    switch (symptom)
+                    {
+                        case "Cough": minLevel = 2; break;
+                        case "Sneeze": minLevel = 3; break;
+                        case "Vomit": minLevel = 3; break;
+                        case "Narcolepsy": minLevel = 3; break;
+                        case "Crying": minLevel = 0; break;
+                        case "Muted": minLevel = 4; break;
+                        case "Slowness": minLevel = 2; break;
+                        case "Bleed": minLevel = 3; break;
+                        case "Blindness": minLevel = 4; break;
+                        case "Insult": minLevel = 2; break;
+                            // Zombie handled separately via special event if needed, or if it's just a symptom?
+                            // The original action raised DiseaseZombieEvent for "Zombie".
+                            // Wait, "Zombie" was a separate category in catalog?
+                            // Checking catalog: "Zombie" listing productAction was ActionDiseaseZombie.
+                            // So Zombie is NOT handled here in default block if we want to keep specific behavior.
+                    }
+
+                    if (symptom == "Zombie")
+                    {
+                        // Zombie Logic - previously handled by DiseaseZombieEvent which was raised by InstantAction
+                        // Now we trigger it directly on purchase
+                        // We need to manually construct the event or call the logic.
+                        // But wait, the original logic was: Purchase -> Get Item/Action -> Use Action -> Trigger Event.
+                        // If we enable "instant buy", we trigger logic now.
+                        var zombieArgs = new DiseaseZombieEvent(); // Empty event, needed for handler signature?
+                                                                   // Actually the handler uses the event args to get the action to remove it.
+                                                                   // We can just extract the logic.
+
+                        var infected = diseaseComp.Infected.ToArray();
+                        var convertedCount = 0;
+
+                        for (int i = 0; i < infected.Length; i++)
+                        {
+                            var target = infected[i];
+                            if (target.IsValid() && !Deleted(target))
+                            {
+                                RemComp<SickComponent>(target);
+                                diseaseComp.Infected.Remove(target);
+                                EnsureComp<ZombifyOnDeathComponent>(target);
+                                EnsureComp<PendingZombieComponent>(target);
+                                convertedCount++;
+                            }
+                        }
+
+                        if (convertedCount > 0)
+                        {
+                            _popup.PopupEntity(Loc.GetString("disease-zombie-success", ("count", convertedCount)), storeOwner, PopupType.Medium);
+                        }
+                    }
+                    else
+                    {
+                        // Regular Symptom
+                        diseaseComp.Symptoms.Add(symptom, new SymptomData(minLevel, maxLevel));
+                        _popup.PopupEntity(Loc.GetString("disease-upgrade-purchased"), storeOwner, PopupType.Medium);
+                    }
+                }
+                break;
         }
+        UpdateUi(storeOwner, diseaseComp);
+
     }
 
-    void AddMoney(EntityUid uid, FixedPoint2 value)
+    private void AddMoney(EntityUid uid, FixedPoint2 value)
     {
         if (TryComp<DiseaseRoleComponent>(uid, out var diseaseComp))
         {
@@ -311,6 +380,10 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
         // Safety check - ensure the entity is still valid
         if (Deleted(args.Target))
+            return;
+
+        // Check if the dying entity was actually infected
+        if (!HasComp<SickComponent>(args.Target))
             return;
 
         // Reward all other disease antagonists when any infected dies

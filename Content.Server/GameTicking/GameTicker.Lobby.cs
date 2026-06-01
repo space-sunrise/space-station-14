@@ -15,6 +15,8 @@ namespace Content.Server.GameTicking
         [ViewVariables]
         private TimeSpan _roundStartTime;
 
+        public TimeSpan RoundStartTime => _roundStartTime; // Sunrise-Edit
+
         /// <summary>
         /// How long before RoundStartTime do we load maps.
         /// </summary>
