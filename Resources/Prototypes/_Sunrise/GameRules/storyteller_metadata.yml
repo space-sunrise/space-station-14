@@ -302,13 +302,6 @@
   maxStress: 80
 
 - type: storytellerMetadata
-  id: SmallDisease
-  threatType: MinorCalm
-  threatCost: 15
-  minStress: 5
-  maxStress: 90
-
-- type: storytellerMetadata
   id: GasLeak
   threatType: MinorCalm
   threatCost: 14
@@ -398,13 +391,6 @@
   stressReduction: 0
   minStress: 15
   maxStress: 85
-
-- type: storytellerMetadata
-  id: DiseaseRule
-  threatType: MajorCalm
-  threatCost: 45
-  minStress: 20
-  maxStress: 75
 
 - type: storytellerMetadata
   id: GreytideVirus

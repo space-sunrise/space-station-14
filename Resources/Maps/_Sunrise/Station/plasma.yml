@@ -68944,8 +68944,6 @@ entities:
     - type: Clothing
       inSlotFlag: MASK
       inSlot: mask
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
 - proto: ClothingMaskGasSwat
@@ -68957,8 +68955,6 @@ entities:
     - type: Clothing
       inSlotFlag: MASK
       inSlot: mask
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
 - proto: ClothingNeckGoldAutismPin
