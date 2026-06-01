@@ -85,7 +85,7 @@ public sealed class GuardianHostEvictSystem : EntitySystem
     {
         guardian = default;
 
-        if (!TryComp<GuardianHostComponent>(hostUid, out var host) || host.HostedGuardian == null)
+        if (!TryComp<GuardianHostComponent>(hostUid, out var host) || host.HostedGuardian is null)
             return false;
 
         guardian = host.HostedGuardian.Value;
