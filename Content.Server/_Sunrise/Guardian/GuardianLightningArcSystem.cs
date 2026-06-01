@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Server.Beam;
 using Content.Server.Guardian;
 using Content.Shared._Sunrise.Guardian;
 using Content.Shared.Damage.Components;
@@ -12,7 +11,6 @@ namespace Content.Server._Sunrise.Guardian;
 
 public sealed class GuardianLightningArcSystem : EntitySystem
 {
-    [Dependency] private readonly BeamSystem _beam = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -44,6 +42,7 @@ public sealed class GuardianLightningArcSystem : EntitySystem
         var query = EntityQueryEnumerator<GuardianLightningArcComponent, GuardianComponent>();
         while (query.MoveNext(out var uid, out var arc, out var guardian))
         {
+            SyncVisualState((uid, arc), guardian.Host, guardian.GuardianLoose && guardian.Host != null);
             UpdateHostProtection((uid, arc), guardian.Host);
 
             if (!guardian.GuardianLoose || guardian.Host is not { } host)
@@ -106,8 +105,6 @@ public sealed class GuardianLightningArcSystem : EntitySystem
         if (guardianCoords.MapId != hostCoords.MapId)
             return;
 
-        _beam.TryCreateBeam(ent.Owner, host, ent.Comp.BeamPrototype);
-
         var start = guardianCoords.Position;
         var end = hostCoords.Position;
         var direction = end - start;
@@ -141,6 +138,16 @@ public sealed class GuardianLightningArcSystem : EntitySystem
 
         foreach (var target in _damaged)
             _damageable.TryChangeDamage(target, ent.Comp.Damage, ignoreResistances: true, interruptsDoAfters: false, origin: ent.Owner);
+    }
+
+    private void SyncVisualState(Entity<GuardianLightningArcComponent> ent, EntityUid? host, bool active)
+    {
+        if (ent.Comp.VisualHost == host && ent.Comp.VisualActive == active)
+            return;
+
+        ent.Comp.VisualHost = host;
+        ent.Comp.VisualActive = active;
+        Dirty(ent.Owner, ent.Comp);
     }
 
     private void AddDamagedWithNearby(EntityUid target, EntityUid guardian, EntityUid host, float radius)
