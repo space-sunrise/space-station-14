@@ -107,14 +107,14 @@ public abstract partial class SharedMechSystem : EntitySystem
     private void RelayInteractionEvent(EntityUid uid, MechComponent component, UserActivateInWorldEvent args)
     {
         var pilot = component.PilotSlot.ContainedEntity;
-        if (pilot == null)
+        if (pilot is null)
             return;
 
         // TODO why is this being blocked?
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (component.CurrentSelectedEquipment != null)
+        if (component.CurrentSelectedEquipment is not null)
         {
             RaiseLocalEvent(component.CurrentSelectedEquipment.Value, args);
         }
@@ -150,7 +150,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     private void OnGetAdditionalAccess(EntityUid uid, MechComponent component, ref GetAdditionalAccessEvent args)
     {
         var pilot = component.PilotSlot.ContainedEntity;
-        if (pilot == null)
+        if (pilot is null)
             return;
 
         args.Entities.Add(pilot.Value);
@@ -237,7 +237,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         var allEquipment = component.EquipmentContainer.ContainedEntities.ToList();
 
         var equipmentIndex = -1;
-        if (component.CurrentSelectedEquipment != null)
+        if (component.CurrentSelectedEquipment is not null)
         {
             bool StartIndex(EntityUid u) => u == component.CurrentSelectedEquipment;
             equipmentIndex = allEquipment.FindIndex(StartIndex);
@@ -248,7 +248,7 @@ public abstract partial class SharedMechSystem : EntitySystem
             ? null
             : allEquipment[equipmentIndex];
 
-        var popupString = component.CurrentSelectedEquipment != null
+        var popupString = component.CurrentSelectedEquipment is not null
             ? Loc.GetString("mech-equipment-select-popup", ("item", component.CurrentSelectedEquipment))
             : Loc.GetString("mech-equipment-select-none-popup");
 
@@ -328,7 +328,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.CurrentSelectedEquipment == toRemove)
             CycleEquipment(uid, component);
 
-        if (forced && equipmentComponent != null)
+        if (forced && equipmentComponent is not null)
             equipmentComponent.EquipmentOwner = null;
 
         _container.Remove(toRemove, component.EquipmentContainer);
@@ -393,7 +393,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     /// <returns>Whether or not the pilot is present</returns>
     public bool IsEmpty(MechComponent component)
     {
-        return component.PilotSlot.ContainedEntity == null;
+        return component.PilotSlot.ContainedEntity is null;
     }
 
     /// <summary>
@@ -433,7 +433,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        if (toInsert == null || component.PilotSlot.ContainedEntity == toInsert)
+        if (toInsert is null || component.PilotSlot.ContainedEntity == toInsert)
             return false;
 
         if (!CanInsert(uid, toInsert.Value, component))
@@ -458,7 +458,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        if (component.PilotSlot.ContainedEntity == null)
+        if (component.PilotSlot.ContainedEntity is null)
             return false;
 
         if (HasComp<NoRotateOnMoveComponent>(uid))

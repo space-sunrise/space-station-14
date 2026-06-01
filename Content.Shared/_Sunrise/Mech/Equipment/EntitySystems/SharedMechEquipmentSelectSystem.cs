@@ -24,10 +24,9 @@ public sealed class SharedMechEquipmentSelectSystem : EntitySystem
         if (!TryComp<UserInterfaceComponent>(uid, out var uiComp))
             return;
 
-        args.Handled = true;
+        _ui.TryOpenUi((uid, uiComp), MechEquipmentSelectUiKey.Key, args.Performer);
 
-        if (!_ui.IsUiOpen((uid, uiComp), MechEquipmentSelectUiKey.Key, args.Performer))
-            _ui.OpenUi((uid, uiComp), MechEquipmentSelectUiKey.Key, args.Performer);
+        args.Handled = true;
     }
 
     private void OnRadialSelected(EntityUid uid, MechComponent comp, MechActiveEquipmentSelectMessage msg)
@@ -40,7 +39,7 @@ public sealed class SharedMechEquipmentSelectSystem : EntitySystem
 
         comp.CurrentSelectedEquipment = equipment;
 
-        var popupString = comp.CurrentSelectedEquipment != null
+        var popupString = comp.CurrentSelectedEquipment is not null
             ? Loc.GetString("mech-equipment-select-popup", ("item", comp.CurrentSelectedEquipment))
             : Loc.GetString("mech-equipment-select-none-popup");
 

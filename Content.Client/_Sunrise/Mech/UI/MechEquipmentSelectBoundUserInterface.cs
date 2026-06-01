@@ -27,7 +27,7 @@ public sealed partial class MechEquipmentSelectBoundUserInterface(EntityUid owne
 
     public override void Update()
     {
-        if (_menu == null)
+        if (_menu is null)
             return;
 
         if (!EntMan.TryGetComponent<MechComponent>(Owner, out var mech))
