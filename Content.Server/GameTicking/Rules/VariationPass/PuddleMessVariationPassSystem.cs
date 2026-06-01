@@ -1,8 +1,8 @@
-using Content.Server._Sunrise.Storyteller.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Tag; // Sunrise-Edit
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -13,6 +13,10 @@ public sealed class PuddleMessVariationPassSystem : VariationPassSystem<PuddleMe
 {
     [Dependency] private readonly PuddleSystem _puddle = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Sunrise-Edit
+
+    // Sunrise-Edit
+    private static readonly ProtoId<TagPrototype> StorytellerIgnoreMessTag = "StorytellerIgnoreMess";
 
     protected override void ApplyVariation(Entity<PuddleMessVariationPassComponent> ent, ref StationVariationPassEvent args)
     {
@@ -32,7 +36,7 @@ public sealed class PuddleMessVariationPassSystem : VariationPassSystem<PuddleMe
             var sol = proto.Pick(Random);
             // Sunrise-Edit: Mark variation-pass puddles so they are excluded from storyteller mess stress
             if (_puddle.TrySpillAt(coords, new Solution(sol.reagent, sol.quantity), out var puddleEnt, sound: false))
-                EnsureComp<StorytellerIgnoreMessComponent>(puddleEnt);
+                _tag.AddTag(puddleEnt, StorytellerIgnoreMessTag);
         }
     }
 }

@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
-using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents;
 using Content.Server.StationEvents.Components;
@@ -55,6 +54,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 {
     private const string SecurityDepartmentId = "Security";
 
+    private static readonly ProtoId<TagPrototype> StorytellerIgnoreMessTag = "StorytellerIgnoreMess";
+    private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
+
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -68,6 +70,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
 
     private readonly List<TimeSpan> _joinTimestamps = new();
@@ -82,8 +85,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
-        SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInitForBaseline,
-            after: new[] { typeof(RoundstartStationVariationRuleSystem) });
     }
 
     public override void Shutdown()
@@ -92,32 +93,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
     }
 
-    // TODO: Не работает, нужен правильный способ игнорировать раундстарт мусор для определения стресса
-    private void OnStationPostInitForBaseline(ref StationPostInitEvent ev)
-    {
-        var storytellerQuery = EntityQueryEnumerator<StorytellerRuleComponent>();
-        if (!storytellerQuery.MoveNext(out _, out var storytellerComp))
-            return;
 
-        if (storytellerComp.TrashBaselineRecorded)
-            return;
-
-        var baseline = 0;
-        var tagQuery = EntityQueryEnumerator<TagComponent, TransformComponent>();
-        while (tagQuery.MoveNext(out _, out var tag, out var xform))
-        {
-            if (tag.Tags.Contains("Trash") && xform.GridUid != null && xform.ParentUid == xform.GridUid)
-            {
-                if (_stationSystem.GetOwningStation(xform.GridUid.Value) == null)
-                    continue;
-                baseline++;
-            }
-        }
-
-        storytellerComp.TrashBaseline = baseline;
-        storytellerComp.TrashBaselineRecorded = true;
-        Log.Debug($"[Storyteller] Trash baseline recorded: {baseline} entities");
-    }
 
     public bool ForceTriggerEvent(string eventId)
     {
@@ -442,10 +418,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             anomaliesCount++;
         }
 
-        // Sunrise-Edit: Artifact stress is proportional to the number of dangerous unlocked nodes:
-        // - Suppressed artifacts (inside blocking containers) are ignored entirely
-        // - Nodes whose research has been fully consumed (Degraded or ConsumedResearchValue >= ResearchValue) are ignored
-        // This means a freshly researched/safe artifact doesn't contribute stress.
         var dangerousArtifactNodes = 0;
         var artifactQuery = EntityQueryEnumerator<XenoArtifactComponent, TransformComponent>();
         while (artifactQuery.MoveNext(out var artifactUid, out var artifact, out var xform))
@@ -476,7 +448,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             }
         }
 
-        // Sunrise-Edit: Exclude puddles spawned by BasicPuddleMessVariationPass (they have StorytellerIgnoreMessComponent)
         var puddlesCount = 0;
         var puddleQuery = EntityQueryEnumerator<PuddleComponent, TransformComponent>();
         while (puddleQuery.MoveNext(out var uid, out _, out var xform))
@@ -484,13 +455,12 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (xform.GridUid == null || _stationSystem.GetOwningStation(xform.GridUid.Value) == null)
                 continue;
 
-            if (HasComp<StorytellerIgnoreMessComponent>(uid))
+            if (_tagSystem.HasTag(uid, StorytellerIgnoreMessTag))
                 continue;
 
             puddlesCount++;
         }
 
-        // Sunrise-Edit: Footprints count as light mess (1/10th the weight of a puddle)
         var footprintsCount = 0;
         var footprintQuery = EntityQueryEnumerator<FootprintComponent, TransformComponent>();
         while (footprintQuery.MoveNext(out _, out _, out var xform))
@@ -501,28 +471,24 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             footprintsCount++;
         }
 
-        // Sunrise-Edit: Subtract round-start trash baseline so variation-pass mess doesn't inflate stress.
-        // The baseline is captured in OnStationPostInitForBaseline after all variation passes have run.
         var trashCount = 0;
-        var trashBaseline = 0;
-        var storytellerQuery = EntityQueryEnumerator<StorytellerRuleComponent>();
-        if (storytellerQuery.MoveNext(out _, out var storytellerComp))
-            trashBaseline = storytellerComp.TrashBaseline;
-
         var tagQuery = EntityQueryEnumerator<TagComponent, TransformComponent>();
-        while (tagQuery.MoveNext(out _, out var tag, out var xform))
+        while (tagQuery.MoveNext(out var tagUid, out var tag, out var xform))
         {
-            if (tag.Tags.Contains("Trash") && xform.GridUid != null && xform.ParentUid == xform.GridUid)
-            {
-                if (_stationSystem.GetOwningStation(xform.GridUid.Value) == null)
-                    continue;
+            if (!tag.Tags.Contains(TrashTag))
+                continue;
 
-                trashCount++;
-            }
+            if (xform.GridUid == null || xform.ParentUid != xform.GridUid)
+                continue;
+
+            if (_stationSystem.GetOwningStation(xform.GridUid.Value) == null)
+                continue;
+
+            if (_tagSystem.HasTag(tagUid, StorytellerIgnoreMessTag))
+                continue;
+
+            trashCount++;
         }
-
-        // Subtract baseline (clamped to 0 so we never get negative trash)
-        trashCount = Math.Max(0, trashCount - trashBaseline);
 
         var totalCrewDamage = 0f;
         var crewWithMindCount = 0;
@@ -578,19 +544,19 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             AnomaliesCount = anomaliesCount,
             ActiveArtifactsCount = dangerousArtifactNodes,
             PuddlesCount = puddlesCount,
-            FootprintsCount = footprintsCount, // Sunrise-Edit
+            FootprintsCount = footprintsCount,
             TrashCount = trashCount,
             AverageCrewDamage = averageCrewDamage,
             TotalStationTiles = totalTiles,
 
-            StrengthArmedCrew = CountArmedCrewNotAntags() * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out var typeProto) ? typeProto.StrengthArmedCrewCoefficient : 10f),
-            StrengthSecurity = securityCount * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthSecurityCoefficient : 15f),
-            StrengthCargo = cargoBalance * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthCargoCoefficient : 0.0005f),
-            StrengthTechnology = researchTiers * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthTechnologyCoefficient : 3.0f),
-            StationStrength = (CountArmedCrewNotAntags() * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthArmedCrewCoefficient : 10f)) +
-                              (securityCount * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthSecurityCoefficient : 15f)) +
-                              (cargoBalance * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthCargoCoefficient : 0.0005f)) +
-                              (researchTiers * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthTechnologyCoefficient : 3.0f))
+            StrengthArmedCrew = CountArmedCrewNotAntags() * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out var typeProto) ? typeProto.StrengthArmedCrewCoefficient : 10f), // TODO: Магические числа в филды
+            StrengthSecurity = securityCount * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthSecurityCoefficient : 15f), // TODO: Магические числа в филды
+            StrengthCargo = cargoBalance * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthCargoCoefficient : 0.0005f), // TODO: Магические числа в филды
+            StrengthTechnology = researchTiers * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthTechnologyCoefficient : 3.0f), // TODO: Магические числа в филды
+            StationStrength = (CountArmedCrewNotAntags() * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthArmedCrewCoefficient : 10f)) + // TODO: Магические числа в филды
+                              (securityCount * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthSecurityCoefficient : 15f)) + // TODO: Магические числа в филды
+                              (cargoBalance * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthCargoCoefficient : 0.0005f)) + // TODO: Магические числа в филды
+                              (researchTiers * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthTechnologyCoefficient : 3.0f)) // TODO: Магические числа в филды
         };
     }
 
@@ -600,71 +566,69 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             return 0f;
 
         // 1. Dead crew ratio (up to 35 points of stress)
-        float deadStress = Math.Clamp(((float)metrics.DeadCount / MathF.Max(1f, metrics.TotalPlayers)) * 35f, 0f, 35f);
+        float deadStress = Math.Clamp(((float)metrics.DeadCount / MathF.Max(1f, metrics.TotalPlayers)) * 35f, 0f, 35f); // TODO: Магические числа в филды
 
         // 1.1. Ghost/Visiting ratio (up to 5 points of stress)
-        float ghostStress = Math.Clamp(((float)metrics.GhostCount / MathF.Max(1f, metrics.TotalPlayers)) * 5f, 0f, 5f);
+        float ghostStress = Math.Clamp(((float)metrics.GhostCount / MathF.Max(1f, metrics.TotalPlayers)) * 5f, 0f, 5f); // TODO: Магические числа в филды
 
 
         // 2. Singularity/Tesla/Supermatter escape/integrity state (up to 10 points of stress)
         float containmentStress = 0f;
         if (metrics.SingularityActive)
         {
-            containmentStress += metrics.SingularityContained ? 2f : 10f;
+            containmentStress += metrics.SingularityContained ? 2f : 10f; // TODO: Магические числа в филды
         }
         if (metrics.TeslaActive)
         {
-            containmentStress += metrics.TeslaContained ? 2f : 10f;
+            containmentStress += metrics.TeslaContained ? 2f : 10f; // TODO: Магические числа в филды
         }
         if (metrics.SupermatterActive)
         {
-            containmentStress += 3f + ((100f - metrics.SupermatterIntegrity) / 100f * 2f);
+            containmentStress += 3f + ((100f - metrics.SupermatterIntegrity) / 100f * 2f); // TODO: Магические числа в филды
         }
-        containmentStress = Math.Clamp(containmentStress, 0f, 10f);
+        containmentStress = Math.Clamp(containmentStress, 0f, 10f); // TODO: Магические числа в филды
 
 
         // 3. Security force deficit (up to 10 points of stress)
-        float targetSecurity = metrics.TotalPlayers > 5 ? MathF.Max(1f, metrics.TotalPlayers * 0.1f) : 0f;
+        float targetSecurity = metrics.TotalPlayers > 5 ? MathF.Max(1f, metrics.TotalPlayers * 0.1f) : 0f; // TODO: Магические числа в филды
         float securityStress = 0f;
         if (targetSecurity > 0)
         {
             float deficit = MathF.Max(0f, targetSecurity - metrics.SecurityCount);
-            securityStress = Math.Clamp((deficit / targetSecurity) * 10f, 0f, 10f);
+            securityStress = Math.Clamp((deficit / targetSecurity) * 10f, 0f, 10f); // TODO: Магические числа в филды
         }
 
         // 4. Economy Distress (up to 5 points of stress)
         float economyStress = 0f;
-        if (metrics.CargoBalance < 1000) economyStress += 5f;
+        if (metrics.CargoBalance < 1000) economyStress += 5f; // TODO: Магические числа в филды
 
         // 5. Living Crew Damage (up to 5 points of stress)
-        float damageStress = Math.Clamp(metrics.AverageCrewDamage * 0.1f, 0f, 5f);
+        float damageStress = Math.Clamp(metrics.AverageCrewDamage * 0.1f, 0f, 5f); // TODO: Магические числа в филды
 
         // 6. Anomalies & active artifact nodes (up to 6 points of stress)
-        // Sunrise-Edit: artifact stress scales with dangerous node count (1 node = 0.3 pts), not artifact count
-        float anomalyStress = Math.Clamp((metrics.AnomaliesCount * 2f) + (metrics.ActiveArtifactsCount * 0.3f), 0f, 6f);
+        float anomalyStress = Math.Clamp((metrics.AnomaliesCount * 2f) + (metrics.ActiveArtifactsCount * 0.3f), 0f, 6f); // TODO: Магические числа в филды
 
         // 7. Station Dirt & Mess (up to 4 points of stress)
         float totalStationTiles = MathF.Max(100f, metrics.TotalStationTiles);
-        float adjustedPuddles = MathF.Max(0f, metrics.PuddlesCount - 150f);
-        float adjustedTrash = MathF.Max(0f, metrics.TrashCount - 450f);
-        // Sunrise-Edit: Footprints contribute 1/10th of a puddle each
+        float adjustedPuddles = MathF.Max(0f, metrics.PuddlesCount - 10f); // TODO: Магические числа в филды
+        float adjustedTrash = MathF.Max(0f, metrics.TrashCount - 100f); // TODO: Магические числа в филды
         float footprintEquivalent = metrics.FootprintsCount * 0.1f;
-        float adjustedFootprints = MathF.Max(0f, footprintEquivalent - 50f); // free threshold: 500 footprints
+        float adjustedFootprints = MathF.Max(0f, footprintEquivalent - 10f); // TODO: Магические числа в филды
         float puddleDensity = (adjustedPuddles + adjustedFootprints) / totalStationTiles;
         float trashDensity = adjustedTrash / totalStationTiles;
         // Standard density threshold: 1 puddle per 330 tiles (~0.003), 1 trash per 160 tiles (~0.006)
-        float messStress = Math.Clamp((puddleDensity / 0.003f) * 2f + (trashDensity / 0.006f) * 2f, 0f, 4f);
+        float messStress = Math.Clamp((puddleDensity / 0.003f) * 2f + (trashDensity / 0.006f) * 2f, 0f, 4f); // TODO: Магические числа в филды
 
         // 8. Power grid deficit (up to 10 points of stress)
-        float adjustedPowerDeficit = MathF.Max(0f, metrics.PowerGridDeficitRatio - 0.10f) / 0.90f;
-        float powerStress = Math.Clamp(adjustedPowerDeficit * 10f, 0f, 10f);
+        float adjustedPowerDeficit = MathF.Max(0f, metrics.PowerGridDeficitRatio - 0.10f) / 0.90f; // TODO: Магические числа в филды
+        float powerStress = Math.Clamp(adjustedPowerDeficit * 10f, 0f, 10f); // TODO: Магические числа в филды
 
         // TODO: Обьединить опасные газы и неподходящую атмосферу в одино значение стресса
         // 9. Atmosphere breach / Spaced tiles (up to 10 points of stress)
-        float breachStress = Math.Clamp(metrics.AtmosphereBreachRatio * 50f, 0f, 10f);
+        float breachStress = Math.Clamp(metrics.AtmosphereBreachRatio * 50f, 0f, 10f); // TODO: Магические числа в филды
 
         // 10. Dangerous gases / Toxic air (up to 10 points of stress)
-        float gasStress = Math.Clamp(metrics.DangerousGasesRatio * 100f, 0f, 10f);
+        float gasStress = Math.Clamp(metrics.DangerousGasesRatio * 100f, 0f, 10f); // TODO: Магические числа в филды
 
 
         metrics.StressDead = deadStress;
@@ -1385,7 +1349,7 @@ public struct StationMetrics
     public int AnomaliesCount;
     public int ActiveArtifactsCount;
     public int PuddlesCount;
-    public int FootprintsCount; // Sunrise-Edit: Footprints as light mess
+    public int FootprintsCount;
     public int TrashCount;
     public float AverageCrewDamage;
     public int TotalStationTiles;

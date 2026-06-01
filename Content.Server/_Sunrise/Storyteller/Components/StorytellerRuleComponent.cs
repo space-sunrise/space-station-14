@@ -67,15 +67,6 @@ public sealed partial class StorytellerRuleComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public StorytellerType StorytellerType { get; set; } = StorytellerType.Classic;
-
-    // Sunrise-Edit: Baseline trash count from round-start variation passes.
-    // Subtracted from current trash count so pre-existing mess doesn't inflate stress.
-    [ViewVariables(VVAccess.ReadOnly)]
-    public int TrashBaseline;
-
-    // Sunrise-Edit: Whether the trash baseline has been captured yet.
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool TrashBaselineRecorded;
 }
 
 public enum StorytellerPacingState
