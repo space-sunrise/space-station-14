@@ -86,7 +86,7 @@ public sealed class GuardianLightningArcSystem : EntitySystem
 
     private void RemoveHostProtection(EntityUid? host, bool addedHostInsulation)
     {
-        if (host == null || !addedHostInsulation)
+        if (host is null || !addedHostInsulation)
             return;
 
         RemComp<InsulatedComponent>(host.Value);
