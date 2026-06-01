@@ -22,13 +22,13 @@ public sealed partial class SunriseCCVars
     /// Чем выше значение, тем сильнее бонус при низком онлайне и штраф при высоком.
     /// </summary>
     public static readonly CVarDef<float> ResearchPointScalingMultiplier =
-        CVarDef.Create("research.point_scaling_multiplier", 1.15f, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("research.point_scaling_multiplier", 2.5f, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Минимальный модификатор скейлинга очков исследований по онлайну.
     /// </summary>
     public static readonly CVarDef<float> ResearchPointScalingMinModifier =
-        CVarDef.Create("research.point_scaling_min_modifier", 0.6f, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("research.point_scaling_min_modifier", 0.08f, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
     /// Максимальный модификатор скейлинга очков исследований по онлайну.
