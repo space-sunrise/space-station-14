@@ -2,7 +2,7 @@
   id: FoxEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Human, Demon]
   sponsorOnly: false
   sprites:
   - sprite: _Sunrise/Mobs/Customization/fox_parts.rsi

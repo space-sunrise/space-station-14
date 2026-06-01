@@ -1,8 +1,8 @@
 - type: marking
   id: CatEars
-  bodyPart: Special
-  markingCategory: Special
-  speciesRestriction: [Human, Dwarf, Felinid] # sunrise-edit
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Dwarf, Felinid, Demon] # Sunrise-Edit
   sponsorOnly: false
   coloring:
     default:
@@ -26,7 +26,7 @@
   id: CatTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Dwarf, Felinid] # sunrise-edit
+  speciesRestriction: [Human, Dwarf, Felinid] # Sunrise-Edit
   sponsorOnly: false
   coloring:
     default:
