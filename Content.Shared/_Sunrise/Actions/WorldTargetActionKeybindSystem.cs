@@ -100,7 +100,7 @@ public sealed class WorldTargetActionKeybindSystem : EntitySystem
         foreach (var candidate in actions.Actions)
         {
             var prototype = Prototype(candidate);
-            if (prototype == null || prototype.ID != ent.Comp.Action.Id)
+            if (prototype is null || prototype.ID != ent.Comp.Action.Id)
                 continue;
 
             if (!TryComp<ActionComponent>(candidate, out var actionComp))
