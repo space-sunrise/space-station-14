@@ -27,6 +27,10 @@
     - MobRogueSiliconDroneScience
     chance: 1
     offset: 0.0
+    rarePrototypes:
+    - MobRogueSiliconDroneNonLethalsBuff
+    - MobRogueSiliconDroneScienceBuff
+    rareChance: 0.1
 
 - type: entity
   name: scrap unit spawner
@@ -190,11 +194,11 @@
     - MobRogueSiliconDerelictBorgAssaultT1
     - MobRogueSiliconDerelictBorgAssaultT2
     - MobRogueSiliconDerelictBorgSyndicateMedical
-    - MobRogueSiliconDerelictBorgSyndicateSaboteur
     chance: 1
     offset: 0.0
     rarePrototypes:
     - MobRogueSiliconDerelictBorgAssaultT3
+    - MobRogueSiliconDerelictBorgSyndicateSaboteur
     rareChance: 0.05
 
 - type: entity

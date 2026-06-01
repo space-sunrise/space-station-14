@@ -28,6 +28,13 @@ public sealed partial class StorytellerMetadataPrototype : IPrototype
 
     [DataField]
     public float WeightModifier = 1f;
+
+    // Sunrise-Edit - Custom localization keys for storyteller timeline history
+    [DataField("descriptionLocKey")]
+    public string? DescriptionLocKey = null;
+
+    [DataField("endedLocKey")]
+    public string? EndedLocKey = null;
 }
 
 public enum StorytellerThreatType

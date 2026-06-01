@@ -1566,10 +1566,10 @@
 - type: loadoutGroup
   id: PlanetPrisonSecurityLoot
   name: loadout-group-prison-security-loot
-  minLimit: 0
+  minLimit: 1
   maxLimit: 1
   loadouts:
-  - PlanetPrisonSecurityMasterHandheldCamera
+  - PlanetPrisonSecurityHandheldCamera
   - PlanetPrisonSecurityMasterHandheldCamera
 
 # Planet Prison - Inspector

@@ -51,6 +51,12 @@
     # Circuit boards
     - id: SpawnDungeonLootCircuitBoardEngi
       prob: 0.25
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.1
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.1
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -79,6 +85,14 @@
     # Circuit boards
     - id: SpawnDungeonLootCircuitBoardEngi
       prob: 0.9
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.15
+    - id: ResearchDisk5000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.2
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.1
@@ -118,6 +132,18 @@
       prob: 0.8
     - id: SpawnDungeonLootCircuitBoardScience
       prob: 0.8
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.2
+    - id: ResearchDisk5000
+      prob: 0.1
+    - id: ResearchDisk10000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.3
+    - id: TechnologyDiskRare
+      prob: 0.05
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.15
@@ -160,6 +186,18 @@
       prob: 0.7
     - id: SpawnDungeonLootCircuitBoardSalvage
       prob: 0.7
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.25
+    - id: ResearchDisk5000
+      prob: 0.15
+    - id: ResearchDisk10000
+      prob: 0.1
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.4
+    - id: TechnologyDiskRare
+      prob: 0.1
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.2
@@ -204,6 +242,18 @@
       prob: 0.8
     - id: SpawnDungeonLootCircuitBoardSalvage
       prob: 0.8
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.3
+    - id: ResearchDisk5000
+      prob: 0.2
+    - id: ResearchDisk10000
+      prob: 0.15
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.5
+    - id: TechnologyDiskRare
+      prob: 0.15
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -211,6 +261,62 @@
       prob: 0.2
     - id: SpawnLootRogueSiliconImplants
       prob: 0.15
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## BOSS
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Scrap chunks
+    - id: ScrapAirlock1
+      prob: 1.0
+    # Parts
+    - id: PowerCellMicroreactor
+      prob: 0.05
+    - id: MaterialDiamond1
+      prob: 0.05
+    - id: MaterialBananium1
+      prob: 0.05
+    - id: PowerCellHigh
+      prob: 0.25
+    - id: SheetSteel10
+      amount: 3
+      prob: 0.25
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.7
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.3
+    - id: ResearchDisk5000
+      prob: 0.2
+    - id: ResearchDisk10000
+      prob: 0.15
+    - id: ResearchDiskDebug
+      prob: 0.01
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.5
+    - id: TechnologyDiskRare
+      prob: 0.15
+    # Organic debris
+    - id: OrganLootSpawner
+      prob: 0.2
+    - id: SpawnLootRogueSiliconBodyParts
+      prob: 0.16
+    - id: SpawnLootRogueSiliconImplants
+      prob: 0.1
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -303,6 +409,18 @@
       prob: 0.3
     - id: MaintenanceInsulsSpawner
       prob: 1.0
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.25
+    - id: ResearchDisk5000
+      prob: 0.15
+    - id: ResearchDisk10000
+      prob: 0.1
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.4
+    - id: TechnologyDiskRare
+      prob: 0.1
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -330,6 +448,14 @@
       prob: 0.1
     - id: BorgModuleAdvancedCombat
       prob: 0.08
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.15
+    - id: ResearchDisk5000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.2
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -357,6 +483,18 @@
       prob: 0.2
     - id: BorgModuleAdvancedTool
       prob: 0.15
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.2
+    - id: ResearchDisk5000
+      prob: 0.1
+    - id: ResearchDisk10000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.3
+    - id: TechnologyDiskRare
+      prob: 0.05
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -382,6 +520,18 @@
       prob: 0.3
     - id: BorgModuleAdvancedCleaning
       prob: 0.15
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.2
+    - id: ResearchDisk5000
+      prob: 0.1
+    - id: ResearchDisk10000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.3
+    - id: TechnologyDiskRare
+      prob: 0.05
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -411,6 +561,18 @@
       prob: 0.2
     - id: SunriseBorgModuleAdvancedChemical
       prob: 0.1
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.2
+    - id: ResearchDisk5000
+      prob: 0.1
+    - id: ResearchDisk10000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.3
+    - id: TechnologyDiskRare
+      prob: 0.05
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -440,6 +602,18 @@
       prob: 0.15
     - id: BorgModuleMiningCombat
       prob: 0.1
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.2
+    - id: ResearchDisk5000
+      prob: 0.1
+    - id: ResearchDisk10000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.3
+    - id: TechnologyDiskRare
+      prob: 0.05
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -465,6 +639,14 @@
       prob: 0.18
     - id: BorgModulePeace
       prob: 0.15
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.15
+    - id: ResearchDisk5000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.2
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -492,6 +674,18 @@
       prob: 0.12
     - id: BorgModuleSyndicateCombat
       prob: 0.08
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.2
+    - id: ResearchDisk5000
+      prob: 0.1
+    - id: ResearchDisk10000
+      prob: 0.05
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.3
+    - id: TechnologyDiskRare
+      prob: 0.05
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -519,6 +713,18 @@
       prob: 0.12
     - id: BorgModuleSyndicateCombatAdvanced
       prob: 0.08
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.25
+    - id: ResearchDisk5000
+      prob: 0.15
+    - id: ResearchDisk10000
+      prob: 0.1
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.4
+    - id: TechnologyDiskRare
+      prob: 0.1
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -546,6 +752,18 @@
       prob: 0.15
     - id: BorgModuleSyndicateCombatAdvanced
       prob: 0.08
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.25
+    - id: ResearchDisk5000
+      prob: 0.15
+    - id: ResearchDisk10000
+      prob: 0.1
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.4
+    - id: TechnologyDiskRare
+      prob: 0.1
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.25
@@ -572,6 +790,18 @@
     - id: BorgModuleSyndicateHypoAdvanced
       prob: 0.12
     - id: SunriseBorgModuleAdvancedChemical
+      prob: 0.1
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.25
+    - id: ResearchDisk5000
+      prob: 0.15
+    - id: ResearchDisk10000
+      prob: 0.1
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.4
+    - id: TechnologyDiskRare
       prob: 0.1
     # Organic debris
     - id: OrganLootSpawner
@@ -626,6 +856,20 @@
       prob: 0.15
     - id: RogueAiNode
       prob: 0.1
+    # Research disks
+    - id: ResearchDisk
+      prob: 0.3
+    - id: ResearchDisk5000
+      prob: 0.2
+    - id: ResearchDisk10000
+      prob: 0.15
+    - id: ResearchDiskDebug
+      prob: 0.01
+    # Technology disks
+    - id: TechnologyDisk
+      prob: 0.5
+    - id: TechnologyDiskRare
+      prob: 0.15
     - id: MobRogueSiliconViscerator
       prob: 0.25
     - id: MobRogueSiliconViscerator
