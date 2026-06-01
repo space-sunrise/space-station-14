@@ -26,12 +26,12 @@
     baseSprintSpeed: 0.9
   - type: SlowOnDamage
     speedModifierThresholds:
-      80: 0.8
-      90: 0.9
+      80: 0.9
+      90: 0.95
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
+      100: Critical
       200: Dead
   - type: Stamina
     baseCritThreshold: 125
