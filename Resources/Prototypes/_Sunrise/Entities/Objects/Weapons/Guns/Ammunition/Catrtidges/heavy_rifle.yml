@@ -184,7 +184,7 @@
   - type: CartridgeAmmo
     proto: BulletRifleHeavy127mm
   - type: Sprite
-    scale: 1.20, 1.20
+    scale: 0.7, 0.7
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]

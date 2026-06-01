@@ -74,6 +74,9 @@
   id: CarpRiftHealTarget
 
 - type: Tag
+  id: RogueSiliconHealTarget
+
+- type: Tag
   id: Felinid
 
 - type: Tag
@@ -342,6 +345,9 @@
 
 - type: Tag
   id: ModularReceiverAuto
+
+- type: Tag
+  id: ImprovisedModularReceiver
 
 - type: Tag
   id: RiotShield

@@ -18,6 +18,7 @@ using Content.Shared.Climbing.Events;
 using Content.Shared.Buckle.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Content.Shared._Sunrise.Movement.Carrying.Slowdown;
 
 namespace Content.Shared._Sunrise.Movement.Carrying;
 
@@ -36,6 +37,8 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         SubscribeLocalEvent<CanBeCarriedComponent, CarryDoAfterEvent>(OnDoAfter);
 
         SubscribeLocalEvent<CarrierComponent, ComponentShutdown>(OnCarrierShutdown);
+        SubscribeLocalEvent<ActiveCarrierComponent, ComponentShutdown>(OnActiveCarrierShutdown);
+        SubscribeLocalEvent<ActiveCanBeCarriedComponent, ComponentShutdown>(OnActiveCanBeCarriedShutdown);
 
         SubscribeLocalEvent<ActiveCarrierComponent, BeforeThrowEvent>(OnBeforeThrow);
         SubscribeLocalEvent<ActiveCarrierComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
@@ -69,9 +72,22 @@ public abstract partial class SharedCarryingSystem : EntitySystem
                 continue;
 
             var target = comp.Target.Value;
+
+            if (!Exists(target) || Deleted(target))
+            {
+                RemComp<ActiveCarrierComponent>(uid);
+                continue;
+            }
+
+            if (!TryComp<TransformComponent>(target, out var targetXform))
+            {
+                RemComp<ActiveCarrierComponent>(uid);
+                continue;
+            }
+
             var expectedCoordinates = GetCarriedCoordinates(uid);
 
-            if (!expectedCoordinates.TryDistance(EntityManager, Transform(target).Coordinates, out var distance)
+            if (!expectedCoordinates.TryDistance(EntityManager, targetXform.Coordinates, out var distance)
                 || distance > carrier.MaxSeparation)
             {
                 DropCarried(uid, target);
@@ -124,6 +140,51 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var target = activeCarrier.Target.Value;
         DropCarried(ent.Owner, target);
+    }
+
+    private void OnActiveCarrierShutdown(Entity<ActiveCarrierComponent> ent, ref ComponentShutdown args)
+    {
+        if (_timing.ApplyingState)
+            return;
+
+        RemCompDeferred<CarryingSlowdownComponent>(ent.Owner);
+        _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);
+
+        if (ent.Comp.Target == null)
+            return;
+
+        var target = ent.Comp.Target.Value;
+
+        if (TryComp<ActiveCanBeCarriedComponent>(target, out var activeCanBeCarried))
+        {
+            if (activeCanBeCarried.Carrier == ent.Owner)
+            {
+                activeCanBeCarried.Carrier = null;
+                RemCompDeferred<ActiveCanBeCarriedComponent>(target);
+            }
+        }
+    }
+
+    private void OnActiveCanBeCarriedShutdown(Entity<ActiveCanBeCarriedComponent> ent, ref ComponentShutdown args)
+    {
+        if (_timing.ApplyingState)
+            return;
+
+        if (ent.Comp.Carrier == null)
+            return;
+
+        var carrier = ent.Comp.Carrier.Value;
+        if (!Exists(carrier) || Deleted(carrier))
+            return;
+
+        if (TryComp<ActiveCarrierComponent>(carrier, out var activeCarrier))
+        {
+            if (activeCarrier.Target == ent.Owner)
+            {
+                activeCarrier.Target = null;
+                RemCompDeferred<ActiveCarrierComponent>(carrier);
+            }
+        }
     }
 
     private void OnBeforeThrow(Entity<ActiveCarrierComponent> ent, ref BeforeThrowEvent args)
@@ -187,6 +248,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
             return;
 
         var target = ent.Comp.Target.Value;
+
+        if (!Exists(target) || Deleted(target))
+            return;
+
         UpdateCarriedTransform(ent.Owner, target);
     }
 
@@ -243,10 +308,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void OnInteractionAttempt(Entity<ActiveCanBeCarriedComponent> ent, ref InteractionAttemptEvent args)
     {
-        if (args.Target == null)
+        if (args.Target == null || !TryComp<TransformComponent>(args.Target.Value, out var targetXform))
             return;
 
-        var targetParent = Transform(args.Target.Value).ParentUid;
+        var targetParent = targetXform.ParentUid;
 
         if (args.Target.Value != ent.Owner &&
             args.Target.Value != ent.Comp.Carrier &&
@@ -308,7 +373,12 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         if (ent.Comp.Target == null)
             return;
 
-        UpdateCarriedTransform(ent.Owner, ent.Comp.Target.Value);
+        var target = ent.Comp.Target.Value;
+
+        if (!Exists(target) || Deleted(target))
+            return;
+
+        UpdateCarriedTransform(ent.Owner, target);
     }
 
     private void UpdateCarriedTransform(EntityUid carrier, EntityUid target)

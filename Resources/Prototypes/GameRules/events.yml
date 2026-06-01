@@ -49,8 +49,11 @@
     - id: LoneOpsSpawn
     - id: WizardSpawn
     - id: AbductorsSpawn # Sunrise-Edit
+    - id: DiseaseRule # Sunrise-Edit
+    - id: SmallDisease # Sunrise-Edit
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
+
 
 #Sunrise-start
 - type: entityTable
@@ -162,7 +165,7 @@
     startAudio:
       path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     minimumPlayers: 25
-    weight: 3
+    weight: 0 # Sunrise-edit
     duration: 1
   - type: BureaucraticErrorRule
     ignoredJobs:

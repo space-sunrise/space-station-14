@@ -10,7 +10,6 @@
     - Snout
     - HeadTop
     - HeadSide
-    - Tail
   - type: Body
     prototype: Tajaran
     requiredLegs: 2

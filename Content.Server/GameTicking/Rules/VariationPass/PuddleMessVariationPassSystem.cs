@@ -1,4 +1,5 @@
-﻿using Content.Server.Fluids.EntitySystems;
+using Content.Server._Sunrise.Storyteller.Components;
+using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Random.Helpers;
@@ -29,7 +30,9 @@ public sealed class PuddleMessVariationPassSystem : VariationPassSystem<PuddleMe
                 continue;
 
             var sol = proto.Pick(Random);
-            _puddle.TrySpillAt(coords, new Solution(sol.reagent, sol.quantity), out _, sound: false);
+            // Sunrise-Edit: Mark variation-pass puddles so they are excluded from storyteller mess stress
+            if (_puddle.TrySpillAt(coords, new Solution(sol.reagent, sol.quantity), out var puddleEnt, sound: false))
+                EnsureComp<StorytellerIgnoreMessComponent>(puddleEnt);
         }
     }
 }
