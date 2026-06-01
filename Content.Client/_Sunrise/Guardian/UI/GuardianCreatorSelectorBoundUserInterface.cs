@@ -5,13 +5,11 @@ using JetBrains.Annotations;
 namespace Content.Client._Sunrise.Guardian.UI;
 
 [UsedImplicitly]
-public sealed class GuardianCreatorSelectorBoundUserInterface : BoundUserInterface
+public sealed class GuardianCreatorSelectorBoundUserInterface(EntityUid owner, Enum uiKey)
+    : BoundUserInterface(owner, uiKey)
 {
     private GuardianCreatorSelectorWindow? _window;
 
-    public GuardianCreatorSelectorBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
