@@ -24007,8 +24007,6 @@ entities:
       pos: -15.5,29.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 507
     components:
     - type: Transform
@@ -24526,8 +24524,6 @@ entities:
       pos: 14.5,-26.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 75
   - uid: 572
@@ -24562,8 +24558,6 @@ entities:
       pos: 25.5,-27.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29950
   - uid: 29952
@@ -24572,8 +24566,6 @@ entities:
       pos: 23.5,1.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29920
 - proto: AltarSpawner
@@ -124702,8 +124694,6 @@ entities:
       pos: 25.5,-26.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29950
 - proto: GasVentScrubber
@@ -126558,8 +126548,6 @@ entities:
       pos: 23.5,-28.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 29950
 - proto: GasVolumePump
