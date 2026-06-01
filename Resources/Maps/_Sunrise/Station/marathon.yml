@@ -134462,8 +134462,6 @@ entities:
           ent: 9510
     - type: Physics
       bodyType: Static
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 9518
     components:
     - type: Transform
