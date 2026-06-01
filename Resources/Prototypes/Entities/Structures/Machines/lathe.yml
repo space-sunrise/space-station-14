@@ -234,7 +234,7 @@
     - MedicalCyberlimbDynamic # Sunrise-Add
     - MedicalCyberOrgansDynamic # Sunrise-Add
     - MedicalImplantDynamic # Sunrise-Add
-    - SyndicateAmmoSunrise # Sunrise-Add
+    - SyndicateAmmoDynamicSunrise # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection
