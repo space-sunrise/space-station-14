@@ -146,8 +146,9 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         _idCard.TryChangeFullName(targetId, newFullName, player: player);
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
 
-        if (_prototype.Resolve(newJobProto, out var job)
-            && _prototype.Resolve(job.Icon, out var jobIcon))
+        // Sunrise-Start - fix invalid job prototype log spam using TryIndex
+        if (_prototype.TryIndex(newJobProto, out var job)
+            && _prototype.TryIndex(job.Icon, out var jobIcon))
         {
             _idCard.TryChangeJobIcon(targetId, jobIcon, player: player);
             _idCard.TryChangeJobDepartment(targetId, job);
@@ -155,6 +156,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             _idCard.TryChangeJobColor(targetId,_idCard.GetJobColor(_prototype, job), job.RadioIsBold);
             // Sunrise-End
         }
+        // Sunrise-End
 
         UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job);
         if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)

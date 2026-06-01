@@ -28,7 +28,10 @@
   access:
   - Cargo
   - Salvage
-  - CargoPurchaseAccess  # Sunrise-Edit
+  # Sunrise-start
+  - CargoPurchaseAccess
+  - Mining
+  # Sunrise-end
   - Quartermaster
   - Maintenance
   - External

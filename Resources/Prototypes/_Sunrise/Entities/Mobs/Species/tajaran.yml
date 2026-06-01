@@ -3,6 +3,8 @@
   id: BaseMobTajaran
   abstract: true
   components:
+  - type: MessyDrinker
+    spillChance: 0.2
   - type: Interactions
   - type: HumanoidAppearance
     species: Tajaran
@@ -10,7 +12,6 @@
     - Snout
     - HeadTop
     - HeadSide
-    - Tail
   - type: Body
     prototype: Tajaran
     requiredLegs: 2
@@ -154,8 +155,8 @@
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
   - type: FootprintEmitter
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
 
 - type: entity
   save: false
