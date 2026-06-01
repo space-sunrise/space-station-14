@@ -53,7 +53,7 @@ public sealed class GuardianCreatorSelectorSystem : EntitySystem
 
     private void OnAfterInteract(Entity<GuardianCreatorSelectorComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Handled || args.Target == null || !args.CanReach)
+        if (args.Handled || args.Target is null || !args.CanReach)
             return;
 
         args.Handled = true;
