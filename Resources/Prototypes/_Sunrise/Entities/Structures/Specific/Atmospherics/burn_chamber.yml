@@ -1,0 +1,33 @@
+# Sunrise edit start - specialized sensors for atmos burn chambers that do not trigger alarms
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorBurnChamberBase
+  suffix: Burn Chamber Atmosphere
+  components:
+  - type: AtmosMonitor
+    ignoreStress: true
+
+- type: entity
+  parent: [AirSensorBurnChamberBase, AirSensor]
+  id: AirSensorBurnChamber
+
+- type: entity
+  parent: [AirSensorBurnChamberBase, GasVentPump]
+  id: GasVentPumpBurnChamber
+
+- type: entity
+  parent: [AirSensorBurnChamberBase, GasVentScrubber]
+  id: GasVentScrubberBurnChamber
+
+# air alarm proto with auto: false to prevent the automatic switching of modes overriding the default values
+- type: entity
+  parent: AirAlarm
+  id: AirAlarmBurnChamber
+  suffix: Burn Chamber Atmosphere, auto mode disabled
+  components:
+  - type: AirAlarm
+    autoMode: false
+  - type: AtmosAlertsDevice
+    group: Invalid # Hide it from registering as an AirAlarm/FireAlarm on the Atmos Alerts Console map
+# Sunrise edit end

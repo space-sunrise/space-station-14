@@ -282,6 +282,7 @@
   name: extended-capacity survival box
   description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Syndicate
+  categories: [ HideSpawnMenu ] # Sunrise-Edit
   components:
   - type: EntityTableContainerFill
     containers:
@@ -301,6 +302,7 @@
   parent: BoxSurvivalSyndicate
   id: BoxSurvivalSyndicateNitrogen
   suffix: Syndicate N2
+  categories: [ HideSpawnMenu ] # Sunrise-Edit
   components:
   - type: EntityTableContainerFill
     containers:

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: SewingPrinterPrisonMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: prison sewing printer machine board
@@ -176,3 +176,35 @@
       PowerCell:
         amount: 4
         defaultPrototype: PowerCellHyper
+
+- type: entity
+  id: TelecomServerT2Circuitboard
+  parent: BaseMachineCircuitboard
+  name: advanced telecommunication server circuit board
+  components:
+  - type: MachineBoard
+    prototype: TelecomServerT2
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: service
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 120
+    chemicalComposition:
+      Silicon: 20
+
+- type: entity
+  id: TelecomServerT3Circuitboard
+  parent: BaseMachineCircuitboard
+  name: experimental telecommunication server circuit board
+  components:
+  - type: MachineBoard
+    prototype: TelecomServerT3
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: service
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 120
+    chemicalComposition:
+      Silicon: 20

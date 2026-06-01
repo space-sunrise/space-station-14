@@ -14302,7 +14302,7 @@ entities:
     - type: Transform
       pos: 15.5,1.5
       parent: 1
-- proto: MobPirateT2ExpeditionSpawner
+- proto: MobPirateT3ExpeditionSpawner
   entities:
   - uid: 2282
     components:
@@ -14329,8 +14329,6 @@ entities:
     - type: Transform
       pos: 22.5,1.5
       parent: 1
-- proto: MobPirateT3ExpeditionSpawner
-  entities:
   - uid: 1985
     components:
     - type: Transform
