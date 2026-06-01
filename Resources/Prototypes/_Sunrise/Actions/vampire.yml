@@ -567,11 +567,13 @@
         slowMultiplier: 0.4
         hysteriaDuration: 15
         hysteriaDisguiseSprites:
-        - path: /_Sunrise/Vampire/Effects.rsi
-          state: schizo
+        - sprite:
+            sprite: _Sunrise/Vampire/Effects.rsi
+            state: schizo
           size: 1.5, 1.5
-        - path: /Mobs/Animals/bear.rsi
-          state: bear
+        - sprite:
+            sprite: Mobs/Animals/bear.rsi
+            state: bear
           size: 1.65, 1.65
     - type: VampireAction
       bloodToUnlock: 250
@@ -666,11 +668,13 @@
         flashDuration: 3
         hysteriaDuration: 30
         hysteriaDisguiseSprites:
-        - path: /_Sunrise/Vampire/Effects.rsi
-          state: schizo
+        - sprite:
+            sprite: _Sunrise/Vampire/Effects.rsi
+            state: schizo
           size: 1.5, 1.5
-        - path: /Mobs/Animals/bear.rsi
-          state: bear
+        - sprite:
+            sprite: Mobs/Animals/bear.rsi
+            state: bear
           size: 1.65, 1.65
     - type: VampireAction
       bloodToUnlock: 1000

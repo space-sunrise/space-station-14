@@ -1,6 +1,7 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 
@@ -31,4 +32,4 @@ public sealed partial class HysteriaVisionComponent : Component
 /// Defines a disguise sprite for hysteria vision.
 /// </summary>
 [DataRecord, Serializable, NetSerializable]
-public partial record struct HysteriaDisguiseSprite(string Path, string State, Vector2 Size);
+public partial record struct HysteriaDisguiseSprite(SpriteSpecifier.Rsi Sprite, Vector2 Size);

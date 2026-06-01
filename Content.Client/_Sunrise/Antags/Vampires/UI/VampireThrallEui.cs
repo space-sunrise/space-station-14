@@ -4,10 +4,7 @@ namespace Content.Client._Sunrise.Antags.Vampires.UI;
 
 public sealed class VampireThrallEui : BaseEui
 {
-    private readonly VampireThrallMenu _menu;
-
-    public VampireThrallEui()
-        => _menu = new VampireThrallMenu();
+    private readonly VampireThrallMenu _menu = new();
 
     public override void Opened()
         => _menu.OpenCentered();
