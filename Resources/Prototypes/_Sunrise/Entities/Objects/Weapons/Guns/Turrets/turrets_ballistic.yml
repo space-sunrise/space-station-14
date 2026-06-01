@@ -716,20 +716,17 @@
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: RandomSpawner
-    chance: 0.95
+  - type: EntityTableSpawner
     offset: 0.0
-    prototypes:
-    - ScrapSteel
-    - ScrapAirlock1
-    - ScrapGlass
-    - CartridgeRifleHeavyArtillery
-    - CartridgeRifleHeavyArtillery
-    - CartridgeRifleHeavyArtillery
-    - CartridgeRifleHeavyArtillery
-    rarePrototypes:
-    - ShuttleGunSquallCircuitboard
-    rareChance: 0.2
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+      - id: ScrapAirlock1
+      - id: ScrapGlass
+      - id: CartridgeRifleHeavyArtillery
+        amount: 4
+      - id: ShuttleGunSquallCircuitboard
+        prob: 0.2
 
 - type: entity
   id: SpawnLootRogueSiliconTurretQuadling
@@ -737,20 +734,19 @@
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: RandomSpawner
-    chance: 0.95
+  - type: EntityTableSpawner
     offset: 0.0
-    prototypes:
-    - ScrapSteel
-    - ScrapAirlock1
-    - ScrapAirlock1
-    - ScrapGlass
-    - ScrapGlass
-    - MagazineBoxBelt127Empty
-    - MagazineBoxBelt127Empty
-    rarePrototypes:
-    - ShuttleGunQuadlingCircuitboard
-    rareChance: 0.2
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+      - id: ScrapAirlock1
+        amount: 2
+      - id: ScrapGlass
+        amount: 2
+      - id: MagazineBoxBelt127Empty
+        amount: 2
+      - id: ShuttleGunQuadlingCircuitboard
+        prob: 0.2
 
 - type: entity
   id: SpawnLootRogueSiliconTurretVympel
@@ -758,19 +754,18 @@
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: RandomSpawner
-    chance: 0.95
+  - type: EntityTableSpawner
     offset: 0.0
-    prototypes:
-    - ScrapSteel
-    - ScrapAirlock1
-    - ScrapAirlock1
-    - ScrapGlass
-    - MagazineBoxBelt127Empty
-    - MagazineBoxBelt127Empty
-    rarePrototypes:
-    - ShuttleGunVympelCircuitboard
-    rareChance: 0.2
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+      - id: ScrapAirlock1
+        amount: 2
+      - id: ScrapGlass
+      - id: MagazineBoxBelt127Empty
+        amount: 2
+      - id: ShuttleGunVympelCircuitboard
+        prob: 0.2
 
 - type: entity
   id: SpawnLootRogueSiliconTurretLongbow
@@ -778,17 +773,16 @@
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: RandomSpawner
-    chance: 0.95
+  - type: EntityTableSpawner
     offset: 0.0
-    prototypes:
-    - ScrapSteel
-    - ScrapAirlock1
-    - ScrapGlass
-    - CartridgeAntiMateriel
-    rarePrototypes:
-    - ShuttleGunLongbowCircuitboard
-    rareChance: 0.2
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+      - id: ScrapAirlock1
+      - id: ScrapGlass
+      - id: CartridgeAntiMateriel
+      - id: ShuttleGunLongbowCircuitboard
+        prob: 0.2
 
 - type: entity
   id: SpawnLootRogueSiliconTurretBullfrog
@@ -796,19 +790,18 @@
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: RandomSpawner
-    chance: 0.95
+  - type: EntityTableSpawner
     offset: 0.0
-    prototypes:
-    - ScrapSteel
-    - ScrapAirlock1
-    - ScrapGlass
-    - MagazineGrenadeEmpty
-    - ShellFragArtillery
-    - ShellFragArtillery
-    rarePrototypes:
-    - ShuttleGunBullfrogCircuitboard
-    rareChance: 0.2
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+      - id: ScrapAirlock1
+      - id: ScrapGlass
+      - id: MagazineGrenadeEmpty
+      - id: ShellFragArtillery
+        amount: 2
+      - id: ShuttleGunBullfrogCircuitboard
+        prob: 0.2
 
 - type: entity
   id: SpawnLootRogueSiliconTurretAutocannon
@@ -816,21 +809,21 @@
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: RandomSpawner
-    chance: 0.95
+  - type: EntityTableSpawner
     offset: 0.0
-    prototypes:
-    - ScrapSteel
-    - ScrapAirlock1
-    - ScrapGlass
-    - CartridgeMinigun
-    - CartridgeMinigun
-    - MagazineChainGun200
-    - MagazineChainGun100
-    rarePrototypes:
-    - WeaponMachineGunLCG
-    - WeaponMechCombatChaingun
-    rareChance: 0.15
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+      - id: ScrapAirlock1
+      - id: ScrapGlass
+      - id: CartridgeMinigun
+        amount: 2
+      - id: MagazineChainGun200
+      - id: MagazineChainGun100
+      - id: WeaponMachineGunLCG
+        prob: 0.15
+      - id: WeaponMechCombatChaingun
+        prob: 0.15
 
 - type: entity
   id: SpawnLootRogueSiliconTurretEnergy
@@ -838,16 +831,15 @@
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
-  - type: RandomSpawner
-    chance: 0.95
+  - type: EntityTableSpawner
     offset: 0.0
-    prototypes:
-    - ScrapSteel
-    - ScrapAirlock1
-    - ScrapGlass
-    rarePrototypes:
-    - WeaponEnergyTurretAIMachineCircuitboard
-    rareChance: 0.25
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+      - id: ScrapAirlock1
+      - id: ScrapGlass
+      - id: WeaponEnergyTurretAIMachineCircuitboard
+        prob: 0.25
 
 - type: entity
   parent: WeaponEnergyTurretStationBase

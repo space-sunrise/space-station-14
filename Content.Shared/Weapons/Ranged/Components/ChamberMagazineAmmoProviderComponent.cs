@@ -1,12 +1,13 @@
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
 /// <summary>
 /// Chamber + mags in one package. If you need just magazine then use <see cref="MagazineAmmoProviderComponent"/>
 /// </summary>
-[RegisterComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)] // Sunrise-Edit - sync selected prefix state.
 [Access(typeof(SharedGunSystem))]
 public sealed partial class ChamberMagazineAmmoProviderComponent : MagazineAmmoProviderComponent
 {

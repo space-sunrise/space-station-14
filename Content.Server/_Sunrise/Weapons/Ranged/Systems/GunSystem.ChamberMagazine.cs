@@ -1,4 +1,5 @@
 using Content.Shared.Weapons.Ranged.Components;
+using Robust.Shared.Random;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Content.Server.Weapons.Ranged.Systems;
@@ -12,10 +13,10 @@ public sealed partial class GunSystem
 
     private void OnChamberMagazineMapInit(Entity<ChamberMagazineAmmoProviderComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.SelectedPrefix != null || ent.Comp.AvailablePrefixes.Count <= 1)
+        if (ent.Comp.SelectedPrefix != null || ent.Comp.AvailablePrefixes.Count == 0)
             return;
 
-        ent.Comp.SelectedPrefix = ent.Comp.AvailablePrefixes[_rand.Next(ent.Comp.AvailablePrefixes.Count)];
+        ent.Comp.SelectedPrefix = _rand.Pick(ent.Comp.AvailablePrefixes);
         Dirty(ent);
     }
 }
