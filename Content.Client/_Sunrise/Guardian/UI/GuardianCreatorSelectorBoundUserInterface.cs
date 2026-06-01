@@ -10,9 +10,11 @@ public sealed class GuardianCreatorSelectorBoundUserInterface(EntityUid owner, E
 {
     private GuardianCreatorSelectorWindow? _window;
 
-
     protected override void Open()
     {
+        if (IsOpened)
+            return;
+
         base.Open();
 
         _window = this.CreateWindow<GuardianCreatorSelectorWindow>();
@@ -29,8 +31,17 @@ public sealed class GuardianCreatorSelectorBoundUserInterface(EntityUid owner, E
         _window.UpdateState(selectorState);
     }
 
-    private void OnConfirmed(string prototype)
+    protected override void Dispose(bool disposing)
     {
-        SendMessage(new GuardianCreatorSelectorConfirmMessage(prototype));
+        if (disposing && _window != null)
+        {
+            _window.Confirmed -= OnConfirmed;
+            _window = null;
+        }
+
+        base.Dispose(disposing);
     }
+
+    private void OnConfirmed(string prototype) =>
+        SendMessage(new GuardianCreatorSelectorConfirmMessage(prototype));
 }

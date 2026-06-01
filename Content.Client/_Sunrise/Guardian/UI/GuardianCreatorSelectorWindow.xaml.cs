@@ -34,8 +34,11 @@ public sealed partial class GuardianCreatorSelectorWindow : DefaultWindow
 
     public void UpdateState(GuardianCreatorSelectorBuiState state)
     {
-        _entries = state.Options;
-        RebuildOptions();
+        if (!OptionsEqual(_entries, state.Options))
+        {
+            _entries = state.Options;
+            RebuildOptions();
+        }
 
         if (_entries.Count == 0)
         {
@@ -147,33 +150,14 @@ public sealed partial class GuardianCreatorSelectorWindow : DefaultWindow
     {
         DetailsContainer.RemoveAllChildren();
 
-        var details = Loc.GetString(entry.Details);
-        foreach (var rawLine in details.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+        var details = new RichTextLabel
         {
-            var line = rawLine.Trim();
-            if (line.Length == 0)
-                continue;
+            SetWidth = DetailsTextWidth,
+            StyleClasses = { StyleClass.LabelSubText },
+        };
 
-            if (line.StartsWith("- ", StringComparison.Ordinal))
-            {
-                var detail = new RichTextLabel
-                {
-                    SetWidth = DetailsTextWidth,
-                    Margin = new Thickness(10, 0, 0, 0),
-                    StyleClasses = { StyleClass.LabelSubText },
-                };
-
-                detail.SetMessage(line);
-                DetailsContainer.AddChild(detail);
-                continue;
-            }
-
-            DetailsContainer.AddChild(new Label
-            {
-                Text = line,
-                StyleClasses = { StyleClass.LabelKeyText },
-            });
-        }
+        details.SetMessage(Loc.GetString(entry.Details));
+        DetailsContainer.AddChild(details);
     }
 
     private void ConfirmSelected()
@@ -182,5 +166,29 @@ public sealed partial class GuardianCreatorSelectorWindow : DefaultWindow
             return;
 
         Confirmed?.Invoke(_selectedPrototype);
+    }
+
+    private static bool OptionsEqual(
+        IReadOnlyList<GuardianCreatorSelectorEntryState> current,
+        IReadOnlyList<GuardianCreatorSelectorEntryState> next)
+    {
+        if (current.Count != next.Count)
+            return false;
+
+        for (var i = 0; i < current.Count; i++)
+        {
+            var currentEntry = current[i];
+            var nextEntry = next[i];
+
+            if (!string.Equals(currentEntry.Prototype, nextEntry.Prototype, StringComparison.Ordinal) ||
+                !string.Equals(currentEntry.Name, nextEntry.Name, StringComparison.Ordinal) ||
+                !string.Equals(currentEntry.Description, nextEntry.Description, StringComparison.Ordinal) ||
+                !string.Equals(currentEntry.Details, nextEntry.Details, StringComparison.Ordinal))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
