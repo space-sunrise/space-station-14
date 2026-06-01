@@ -72,7 +72,7 @@ public sealed class GuardianLightningArcSystem : EntitySystem
         ent.Comp.ProtectedHost = null;
         ent.Comp.AddedHostInsulation = false;
 
-        if (host == null)
+        if (host is null)
             return;
 
         if (!HasComp<InsulatedComponent>(host.Value))
