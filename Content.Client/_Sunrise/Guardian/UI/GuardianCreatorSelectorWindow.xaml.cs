@@ -178,7 +178,7 @@ public sealed partial class GuardianCreatorSelectorWindow : DefaultWindow
 
     private void ConfirmSelected()
     {
-        if (_selectedPrototype == null)
+        if (_selectedPrototype is null)
             return;
 
         Confirmed?.Invoke(_selectedPrototype);
