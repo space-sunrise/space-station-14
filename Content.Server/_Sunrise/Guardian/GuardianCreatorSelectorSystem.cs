@@ -37,18 +37,16 @@ public sealed class GuardianCreatorSelectorSystem : EntitySystem
         });
     }
 
-    private void OnMapInit(Entity<GuardianCreatorSelectorComponent> ent, ref MapInitEvent args)
-    {
+    private void OnMapInit(Entity<GuardianCreatorSelectorComponent> ent, ref MapInitEvent args) =>
         EnsureSelected(ent.Comp);
-    }
 
     private void OnUseInHand(Entity<GuardianCreatorSelectorComponent> ent, ref UseInHandEvent args)
     {
         if (args.Handled)
             return;
 
-        args.Handled = true;
-        TryOpenSelector(ent.AsNullable(), args.User, args.User);
+        if (TryOpenSelector(ent.AsNullable(), args.User, args.User))
+            args.Handled = true;
     }
 
     private void OnAfterInteract(Entity<GuardianCreatorSelectorComponent> ent, ref AfterInteractEvent args)
@@ -56,19 +54,15 @@ public sealed class GuardianCreatorSelectorSystem : EntitySystem
         if (args.Handled || args.Target is null || !args.CanReach)
             return;
 
-        args.Handled = true;
-        TryOpenSelector(ent.AsNullable(), args.User, args.Target.Value);
+        if (TryOpenSelector(ent.AsNullable(), args.User, args.Target.Value))
+            args.Handled = true;
     }
 
-    private void OnUiOpened(Entity<GuardianCreatorSelectorComponent> ent, ref BoundUIOpenedEvent args)
-    {
+    private void OnUiOpened(Entity<GuardianCreatorSelectorComponent> ent, ref BoundUIOpenedEvent args) =>
         UpdateUserInterface(ent);
-    }
 
-    private void OnUiClosed(Entity<GuardianCreatorSelectorComponent> ent, ref BoundUIClosedEvent args)
-    {
+    private void OnUiClosed(Entity<GuardianCreatorSelectorComponent> ent, ref BoundUIClosedEvent args) =>
         ent.Comp.PendingTargets.Remove(args.Actor);
-    }
 
     private void OnConfirm(Entity<GuardianCreatorSelectorComponent> ent, ref GuardianCreatorSelectorConfirmMessage args)
     {
@@ -79,13 +73,32 @@ public sealed class GuardianCreatorSelectorSystem : EntitySystem
         if (!TryGetOption(ent.Comp, args.Prototype, out var option))
             return;
 
-        if (!CanStartInjection(ent, user, target))
-            return;
+        TryStartInjection(ent, user, target, option.Prototype);
+    }
 
-        ent.Comp.SelectedPrototype = option.Prototype;
+    private bool TryStartInjection(
+        Entity<GuardianCreatorSelectorComponent> ent,
+        EntityUid user,
+        EntityUid target,
+        string prototype)
+    {
+        if (!CanStartInjection(ent, user, target))
+            return false;
+
+        DoStartInjection(ent, user, target, prototype);
+        return true;
+    }
+
+    private void DoStartInjection(
+        Entity<GuardianCreatorSelectorComponent> ent,
+        EntityUid user,
+        EntityUid target,
+        string prototype)
+    {
+        ent.Comp.SelectedPrototype = prototype;
 
         var creator = Comp<GuardianCreatorComponent>(ent.Owner);
-        creator.GuardianProto = option.Prototype;
+        creator.GuardianProto = prototype;
 
         _ui.CloseUi(ent.Owner, GuardianCreatorSelectorUiKey.Key, user);
 
@@ -108,16 +121,24 @@ public sealed class GuardianCreatorSelectorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (!CanOpenSelector(ent.Owner, ent.Comp, user, target))
+        Entity<GuardianCreatorSelectorComponent> resolved = (ent.Owner, ent.Comp!);
+
+        if (!CanOpenSelector(resolved.Owner, resolved.Comp, user, target))
+        {
+            resolved.Comp.PendingTargets.Remove(user);
             return false;
+        }
 
-        ent.Comp.PendingTargets[user] = target;
-        EnsureSelected(ent.Comp);
+        EnsureSelected(resolved.Comp);
 
-        if (!_ui.TryOpenUi(ent.Owner, GuardianCreatorSelectorUiKey.Key, user))
+        if (!_ui.TryOpenUi(resolved.Owner, GuardianCreatorSelectorUiKey.Key, user))
+        {
+            resolved.Comp.PendingTargets.Remove(user);
             return false;
+        }
 
-        UpdateUserInterface(ent);
+        resolved.Comp.PendingTargets[user] = target;
+        UpdateUserInterface(resolved);
         return true;
     }
 
