@@ -117,7 +117,7 @@ public sealed class GuardianCreatorSelectorSystem : EntitySystem
         if (!_ui.TryOpenUi(ent.Owner, GuardianCreatorSelectorUiKey.Key, user))
             return false;
 
-        UpdateUserInterface((ent.Owner, ent.Comp));
+        UpdateUserInterface(ent);
         return true;
     }
 
