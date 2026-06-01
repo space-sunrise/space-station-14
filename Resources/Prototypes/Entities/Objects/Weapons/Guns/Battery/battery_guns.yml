@@ -928,11 +928,11 @@
     heldPrefix: energy
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
+    maxCharge: 960
+    startingCharge: 960
   # Sunrise-start
   - type: StealTarget
     stealGroup: WeaponEnergyShotgun
-    maxCharge: 960
-    startingCharge: 960
   # Sunrise-end
 
 - type: entity
