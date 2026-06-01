@@ -21,8 +21,7 @@
       visible: false
       sprite: Structures/Storage/closet_labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
-    - state: panel_open
-      sprite: Structures/Storage/closet.rsi
+    - state: generic_open
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
       visible: false
     - state: electrified_ai
