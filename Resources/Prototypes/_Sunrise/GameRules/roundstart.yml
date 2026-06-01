@@ -4,6 +4,26 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: DiseaseRule
+  # Sunrise edit start - antagonist spawning and event configuration
+  - type: StationEvent
+    minimumPlayers: 40
+    weight: 5
+    maxOccurrences: 1
+    earliestStart: 30
+    reoccurrenceDelay: 20
+    duration: null
+  - type: AntagSpawner
+    prototype: MobDisease
+  - type: AntagSelection
+    agentName: disease-agent-name
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDisease
+      min: 1
+      max: 1
+      pickPlayer: false
+  # Sunrise edit end
+
+
 
 - type: entity
   id: Fugitive

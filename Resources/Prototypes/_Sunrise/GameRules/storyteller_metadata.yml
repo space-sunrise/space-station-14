@@ -1,0 +1,729 @@
+# Sunrise-Edit - Storyteller Event Metadata grouped logically
+
+# =============================================================================
+# 🟢 HELPFUL / POSITIVE EVENTS
+# =============================================================================
+
+- type: storytellerMetadata
+  id: RandomSentience
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 5
+  minStress: 20
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: BluespaceLocker
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 8
+  minStress: 10
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsEngineering
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 10
+  minStress: 15
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsMedical
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 10
+  minStress: 15
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsJanitor
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 5
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsPizzaPartyLarge
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 15
+  minStress: 20
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsPizzaPartySmall
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 8
+  minStress: 10
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsSpacingSupplies
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 10
+  minStress: 15
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsVendingRestock
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 5
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsSecurityGuns
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 15
+  minStress: 30
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsSecurityRiot
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 10
+  minStress: 20
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsAncientGuns
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 15
+  minStress: 30
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: GiftsFireProtection
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 8
+  minStress: 5
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleGym
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 5
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleCargoLost
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 8
+  minStress: 5
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleTravelingCuisine
+  threatType: Helpful
+  threatCost: 0
+  stressReduction: 10
+  minStress: 0
+  maxStress: 100
+
+
+# =============================================================================
+# 🟡 NEUTRAL / FLAVOR EVENTS
+# =============================================================================
+
+- type: storytellerMetadata
+  id: ClericalError
+  threatType: Neutral
+  threatCost: 5
+  stressReduction: 2
+  minStress: 5
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: PowerGridCheck
+  threatType: Neutral
+  threatCost: 4
+  stressReduction: 1
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: VentClog
+  threatType: Neutral
+  threatCost: 6
+  minStress: 0
+  maxStress: 90
+
+- type: storytellerMetadata
+  id: CockroachMigration
+  threatType: Neutral
+  threatCost: 4
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: VentbullMigration
+  threatType: Neutral
+  threatCost: 22
+  minStress: 10
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: MouseMigration
+  threatType: Neutral
+  threatCost: 4
+  minStress: 0
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: UnknownShuttleNTQuark
+  threatType: Neutral
+  threatCost: 8
+  minStress: 0
+  maxStress: 90
+
+- type: storytellerMetadata
+  id: UnknownShuttleJoe
+  threatType: Neutral
+  threatCost: 5
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleLambordeere
+  threatType: Neutral
+  threatCost: 6
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleMicroshuttle
+  threatType: Neutral
+  threatCost: 5
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleEternal
+  threatType: Neutral
+  threatCost: 8
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleNTIncorporation
+  threatType: Neutral
+  threatCost: 7
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleMeatZone
+  threatType: Neutral
+  threatCost: 6
+  minStress: 0
+  maxStress: 100
+
+- type: storytellerMetadata
+  id: UnknownShuttleCryptid
+  threatType: Neutral
+  threatCost: 5
+  minStress: 0
+  maxStress: 100
+
+
+# =============================================================================
+# 🔵 MINOR CALM / ENVIRONMENTAL CRISES
+# =============================================================================
+
+- type: storytellerMetadata
+  id: AnomalySpawn
+  threatType: MinorCalm
+  threatCost: 10
+  stressReduction: 0
+  minStress: 0
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: BluespaceArtifact
+  threatType: MinorCalm
+  threatCost: 12
+  stressReduction: 0
+  minStress: 0
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: BreakerFlip
+  threatType: MinorCalm
+  threatCost: 8
+  stressReduction: 0
+  minStress: 10
+  maxStress: 70
+
+- type: storytellerMetadata
+  id: KudzuGrowth
+  threatType: MinorCalm
+  threatCost: 15
+  minStress: 5
+  maxStress: 90
+
+- type: storytellerMetadata
+  id: MassHallucinations
+  threatType: MinorCalm
+  threatCost: 18
+  minStress: 10
+  maxStress: 95
+
+- type: storytellerMetadata
+  id: SlimesSpawn
+  threatType: MinorCalm
+  threatCost: 12
+  minStress: 5
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: SnakeSpawn
+  threatType: MinorCalm
+  threatCost: 10
+  minStress: 0
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: SpiderSpawn
+  threatType: MinorCalm
+  threatCost: 15
+  minStress: 5
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: SmallDisease
+  threatType: MinorCalm
+  threatCost: 15
+  minStress: 5
+  maxStress: 90
+
+- type: storytellerMetadata
+  id: GasLeak
+  threatType: MinorCalm
+  threatCost: 14
+  minStress: 5
+  maxStress: 85
+
+- type: storytellerMetadata
+  id: VentFleshWorms
+  threatType: MinorCalm
+  threatCost: 20
+  minStress: 10
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: SnailMigration
+  threatType: MinorCalm
+  threatCost: 12
+  minStress: 5
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: SnailMigrationLowPop
+  threatType: MinorCalm
+  threatCost: 10
+  minStress: 0
+  maxStress: 70
+
+- type: storytellerMetadata
+  id: MimicVendorRule
+  threatType: MinorCalm
+  threatCost: 15
+  minStress: 5
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: ClosetSkeleton
+  threatType: MinorCalm
+  threatCost: 10
+  minStress: 0
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: ParadoxCloneSpawn
+  threatType: MinorCalm
+  threatCost: 18
+  minStress: 10
+  maxStress: 85
+
+- type: storytellerMetadata
+  id: GameRuleSpaceDustMinor
+  threatType: MinorCalm
+  threatCost: 15
+  minStress: 5
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: GameRuleMeteorSwarmSmall
+  threatType: MinorCalm
+  threatCost: 20
+  minStress: 10
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: UnknownShuttleFlatline
+  threatType: MinorCalm
+  threatCost: 15
+  minStress: 10
+  maxStress: 80
+
+
+# =============================================================================
+# 🟠 MAJOR CALM / SEVERE CRISES
+# =============================================================================
+
+- type: storytellerMetadata
+  id: SolarFlare
+  threatType: MajorCalm
+  threatCost: 35
+  stressReduction: 0
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: IonStorm
+  threatType: MajorCalm
+  threatCost: 30
+  stressReduction: 0
+  minStress: 15
+  maxStress: 85
+
+- type: storytellerMetadata
+  id: DiseaseRule
+  threatType: MajorCalm
+  threatCost: 45
+  minStress: 20
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: GreytideVirus
+  threatType: MajorCalm
+  threatCost: 40
+  minStress: 25
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: ImmovableRodSpawn
+  threatType: MajorCalm
+  threatCost: 40
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: GameRuleSpaceDustMajor
+  threatType: MajorCalm
+  threatCost: 35
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: GameRuleMeteorSwarmMedium
+  threatType: MajorCalm
+  threatCost: 45
+  minStress: 20
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: GameRuleMeteorSwarmLarge
+  threatType: MajorCalm
+  threatCost: 65
+  minStress: 30
+  maxStress: 70
+
+
+# =============================================================================
+# 🟣 MINOR ANTAGONISTS / THREATS
+# =============================================================================
+
+- type: storytellerMetadata
+  id: KingRatMigration
+  threatType: MinorAntag
+  threatCost: 25
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: KingRatMigrationHighPop
+  threatType: MinorAntag
+  threatCost: 35
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: RevenantSpawn
+  threatType: MinorAntag
+  threatCost: 35
+  minStress: 20
+  maxStress: 85
+
+- type: storytellerMetadata
+  id: Thief
+  threatType: MinorAntag
+  threatCost: 20
+  minStress: 0
+  maxStress: 90
+  weightModifier: 4.0
+
+- type: storytellerMetadata
+  id: PirateSmall
+  threatType: MinorAntag
+  threatCost: 35
+  minStress: 15
+  maxStress: 80
+  weightModifier: 2.0
+
+- type: storytellerMetadata
+  id: Fugitive
+  threatType: MinorAntag
+  threatCost: 25
+  minStress: 5
+  maxStress: 85
+  weightModifier: 2.0
+
+- type: storytellerMetadata
+  id: TerminatorSpawn
+  threatType: MinorAntag
+  threatCost: 50
+  minStress: 15
+  maxStress: 80
+  weightModifier: 1.0
+
+- type: storytellerMetadata
+  id: DerelictMiningCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 30
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: DerelictEngineerCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 30
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: DerelictGenericCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 20
+  minStress: 10
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: DerelictMedicalCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 30
+  minStress: 15
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: DerelictJanitorCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 25
+  minStress: 10
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: DerelictSyndicateReaperCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 55
+  minStress: 20
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: DerelictSyndicateSaboteurCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 55
+  minStress: 20
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: DerelictSyndicateMedicalCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 50
+  minStress: 15
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: DerelictSyndicateAssaultCyborgSpawn
+  threatType: MinorAntag
+  threatCost: 60
+  minStress: 20
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: SpiderClownSpawn
+  threatType: MinorAntag
+  threatCost: 25
+  minStress: 10
+  maxStress: 80
+
+- type: storytellerMetadata
+  id: UnknownShuttleCruiser
+  threatType: MinorAntag
+  threatCost: 35
+  minStress: 15
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: UnknownShuttleInstigator
+  threatType: MinorAntag
+  threatCost: 40
+  minStress: 20
+  maxStress: 75
+
+- type: storytellerMetadata
+  id: UnknownShuttleManOWar
+  threatType: MinorAntag
+  threatCost: 45
+  minStress: 20
+  maxStress: 75
+
+
+# =============================================================================
+# 🔴 MAJOR ANTAGONISTS / GAME MODES
+# =============================================================================
+
+- type: storytellerMetadata
+  id: DragonSpawn
+  threatType: MajorAntag
+  threatCost: 75
+  stressReduction: 0
+  minStress: 20
+  maxStress: 70
+
+- type: storytellerMetadata
+  id: NinjaSpawn
+  threatType: MajorAntag
+  threatCost: 70
+  stressReduction: 0
+  minStress: 20
+  maxStress: 70
+
+- type: storytellerMetadata
+  id: ZombieOutbreak
+  threatType: MajorAntag
+  threatCost: 150
+  stressReduction: 0
+  minStress: 40
+  maxStress: 60
+
+- type: storytellerMetadata
+  id: LoneOpsSpawn
+  threatType: MajorAntag
+  threatCost: 80
+  stressReduction: 0
+  minStress: 25
+  maxStress: 70
+
+- type: storytellerMetadata
+  id: SleeperAgents
+  threatType: MajorAntag
+  threatCost: 65
+  minStress: 25
+  maxStress: 70
+
+- type: storytellerMetadata
+  id: WizardSpawn
+  threatType: MajorAntag
+  threatCost: 110
+  minStress: 30
+  maxStress: 65
+
+- type: storytellerMetadata
+  id: AbductorsSpawn
+  threatType: MajorAntag
+  threatCost: 90
+  minStress: 25
+  maxStress: 70
+
+- type: storytellerMetadata
+  id: Traitor
+  threatType: MajorAntag
+  threatCost: 60
+  minStress: 0
+  maxStress: 70
+  weightModifier: 6.0
+
+- type: storytellerMetadata
+  id: Nukeops
+  threatType: MajorAntag
+  threatCost: 150
+  minStress: 25
+  maxStress: 75
+  weightModifier: 2.5
+
+- type: storytellerMetadata
+  id: Revolutionary
+  threatType: MajorAntag
+  threatCost: 80
+  minStress: 10
+  maxStress: 70
+  weightModifier: 1.5
+
+- type: storytellerMetadata
+  id: Zombie
+  threatType: MajorAntag
+  threatCost: 120
+  minStress: 35
+  maxStress: 65
+  weightModifier: 0.5
+
+- type: storytellerMetadata
+  id: Wizard
+  threatType: MajorAntag
+  threatCost: 100
+  minStress: 20
+  maxStress: 65
+  weightModifier: 1.0
+
+- type: storytellerMetadata
+  id: PirateMedium
+  threatType: MajorAntag
+  threatCost: 70
+  minStress: 25
+  maxStress: 75
+  weightModifier: 1.5
+
+- type: storytellerMetadata
+  id: BloodCult
+  threatType: MajorAntag
+  threatCost: 140
+  minStress: 25
+  maxStress: 65
+  weightModifier: 1.0
+
+- type: storytellerMetadata
+  id: FleshCult
+  threatType: MajorAntag
+  threatCost: 140
+  minStress: 25
+  maxStress: 65
+  weightModifier: 1.0
+
+- type: storytellerMetadata
+  id: AssaultOps
+  threatType: MajorAntag
+  threatCost: 100
+  minStress: 30
+  maxStress: 70
+  weightModifier: 1.0
+
+- type: storytellerMetadata
+  id: SubXenoborgs
+  threatType: MajorAntag
+  threatCost: 100
+  minStress: 20
+  maxStress: 80
+  weightModifier: 1.0

@@ -10,18 +10,6 @@ namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class HeadsetSystem
 {
-    private void OnToggleAction(Entity<HeadsetComponent> ent, ref ToggleHeadsetActionEvent args)
-    {
-        if (args.Handled || !ent.Comp.Enabled)
-            return;
-
-        if (TryComp<ActorComponent>(args.Performer, out var actor))
-        {
-            _ui.TryToggleUi(ent.Owner, HeadsetUiKey.Key, actor.PlayerSession);
-            args.Handled = true;
-        }
-    }
-
     private void OnActivate(Entity<HeadsetComponent> ent, ref ActivateInWorldEvent args)
     {
         if (TryComp<ActorComponent>(args.User, out var actor))
