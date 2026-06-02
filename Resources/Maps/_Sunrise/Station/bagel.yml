@@ -79365,8 +79365,6 @@ entities:
     - type: Clothing
       inSlot: mask
       inSlotFlag: MASK
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
 - proto: ClothingMaskGasExplorer
