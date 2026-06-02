@@ -11,62 +11,62 @@ public sealed partial class StorytellerRuleComponent : Component
     /// <summary>
     /// The current stress rating of the crew (0 to 100).
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float CrewStress = 0f;
 
     /// <summary>
     /// Current threat budget available to spend on challenging events.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float ThreatBudget = 20f;
 
     /// <summary>
     /// Maximum threat budget the storyteller can accumulate.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float MaxThreatBudget = 250f;
 
     /// <summary>
     /// How much threat budget is generated per second by default.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float BaseBudgetPerSecond = 0.1f;
 
     /// <summary>
     /// Current pacing state.
     /// </summary>
-    [DataField]
-    public StorytellerPacingState PacingState = StorytellerPacingState.BuildUp;
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public StorytellerPacingState PacingState { get; set; } = StorytellerPacingState.BuildUp;
 
     /// <summary>
     /// The timestamp when the storyteller should evaluate the station state next.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextCheckTime;
 
     /// <summary>
     /// The timestamp when the current pacing state is scheduled to transition.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan StateTransitionTime;
 
     /// <summary>
     /// Game rules executed by the storyteller that are currently active.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public List<EntityUid> ActiveStorytellerRules = new();
 
     /// <summary>
     /// Historical list of rules triggered by the storyteller during this round.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public List<string> EventHistory = new();
 
     /// <summary>
     /// The active type of the storyteller.
     /// </summary>
-    [DataField]
-    public StorytellerType StorytellerType = StorytellerType.Classic;
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public StorytellerType StorytellerType { get; set; } = StorytellerType.Classic;
 }
 
 public enum StorytellerPacingState

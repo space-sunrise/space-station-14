@@ -118,7 +118,8 @@ public sealed partial class StorytellerSystem
         "Calculated defensive and technological strength score of the station.");
 
 
-    private static readonly Gauge StressDeadGauge = Metrics.CreateGauge("ss14_storyteller_stress_dead", "Stress from dead and ghost players.");
+    private static readonly Gauge StressDeadGauge = Metrics.CreateGauge("ss14_storyteller_stress_dead", "Stress from dead crew.");
+    private static readonly Gauge StressGhostGauge = Metrics.CreateGauge("ss14_storyteller_stress_ghost", "Stress from ghosts of living crew.");
     private static readonly Gauge StressContainmentGauge = Metrics.CreateGauge("ss14_storyteller_stress_containment", "Stress from singularity or tesla containment breach.");
     private static readonly Gauge StressSecurityGauge = Metrics.CreateGauge("ss14_storyteller_stress_security", "Stress from security force deficit.");
     private static readonly Gauge StressEconomyGauge = Metrics.CreateGauge("ss14_storyteller_stress_economy", "Stress from cargo budget deficit.");
@@ -145,6 +146,7 @@ public sealed partial class StorytellerSystem
     private void InitializeMetrics()
     {
         _sawmill = Logger.GetSawmill("storyteller");
+        _sawmill.Level = LogLevel.Info;
     }
 
     private void UpdatePrometheusGauges(StorytellerRuleComponent comp, StationMetrics metrics)
@@ -181,6 +183,7 @@ public sealed partial class StorytellerSystem
 
         // Update individual components
         StressDeadGauge.Set(metrics.StressDead);
+        StressGhostGauge.Set(metrics.StressGhost);
         StressContainmentGauge.Set(metrics.StressContainment);
         StressSecurityGauge.Set(metrics.StressSecurity);
         StressEconomyGauge.Set(metrics.StressEconomy);
@@ -205,7 +208,9 @@ public sealed partial class StorytellerSystem
         if (!_cfg.GetCVar(SunriseCCVars.StorytellerTelemetryEnabled))
             return;
 
-        _sawmill.Info($"State changed: {oldState} -> {comp.PacingState}. Crew stress: {comp.CrewStress.ToString("F1", CultureInfo.InvariantCulture)}, Threat budget: {comp.ThreatBudget.ToString("F1", CultureInfo.InvariantCulture)}");
+        var message = $"State changed: {oldState} -> {comp.PacingState}. Crew stress: {comp.CrewStress.ToString("F1", CultureInfo.InvariantCulture)}, Threat budget: {comp.ThreatBudget.ToString("F1", CultureInfo.InvariantCulture)}";
+        _sawmill.Info(message);
+        Log.Info($"[Storyteller] {message}"); // Sunrise-Edit: duplicate log output without sawmill to ensure visibility
     }
 
     private void LogTelemetryTick(StorytellerRuleComponent comp, StationMetrics metrics)
@@ -213,7 +218,7 @@ public sealed partial class StorytellerSystem
         if (!_cfg.GetCVar(SunriseCCVars.StorytellerTelemetryEnabled))
             return;
 
-        _sawmill.Info($"Tick - State: {comp.PacingState}, Crew Stress: {comp.CrewStress.ToString("F2", CultureInfo.InvariantCulture)}, Threat Budget: {comp.ThreatBudget.ToString("F2", CultureInfo.InvariantCulture)}, " +
+        var message = $"Tick - State: {comp.PacingState}, Crew Stress: {comp.CrewStress.ToString("F2", CultureInfo.InvariantCulture)}, Threat Budget: {comp.ThreatBudget.ToString("F2", CultureInfo.InvariantCulture)}, " +
                       $"Players: {metrics.AliveCount}/{metrics.TotalPlayers} (Dead: {metrics.DeadCount}, Ghosts: {metrics.GhostCount}, Sec: {metrics.SecurityCount}), " +
                       $"Economy: Cargo Balance {metrics.CargoBalance}, Science Points {metrics.SciencePoints}, " +
                       $"Atmos: Breach Ratio {metrics.AtmosphereBreachRatio.ToString("F4", CultureInfo.InvariantCulture)}, Dangerous Gases Ratio: {metrics.DangerousGasesRatio.ToString("F4", CultureInfo.InvariantCulture)}, " +
@@ -224,7 +229,9 @@ public sealed partial class StorytellerSystem
                       $"SM Integrity: {metrics.SupermatterIntegrity.ToString("F2", CultureInfo.InvariantCulture)}, " +
                       $"Research Tiers: {metrics.UnlockedResearchTiers}, Ghost Roles: {metrics.AvailableGhostRoles}, " +
                       $"Anomalies: {metrics.AnomaliesCount}, Artifacts: {metrics.ActiveArtifactsCount}, " +
-                      $"Puddles: {metrics.PuddlesCount}, Trash: {metrics.TrashCount}, Avg Damage: {metrics.AverageCrewDamage.ToString("F2", CultureInfo.InvariantCulture)}");
+                      $"Puddles: {metrics.PuddlesCount}, Footprints: {metrics.FootprintsCount}, Trash: {metrics.TrashCount}, Avg Damage: {metrics.AverageCrewDamage.ToString("F2", CultureInfo.InvariantCulture)}";
+        _sawmill.Info(message);
+        Log.Info($"[Storyteller] {message}"); // Sunrise-Edit: duplicate log output without sawmill to ensure visibility
     }
 
     private void RecordEventTriggered(string eventId, StorytellerMetadataPrototype metadata)

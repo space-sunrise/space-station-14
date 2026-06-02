@@ -162,11 +162,12 @@
         type: StoreBoundUserInterface
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
+  - type: ActivatableUIRequiresPower
   - type: WiresPanel
   - type: Wires
     layoutId: Vending
   - type: Anchorable
-    delay: 30
+    delay: 45
   - type: Electrified
     enabled: false
     usesApcPower: true
@@ -176,7 +177,7 @@
     radius: 1.5
   - type: LitOnPowered
   - type: ApcPowerReceiver
-    powerLoad: 200
+    powerLoad: 10000
   - type: StaticPrice
     price: 100
   - type: Appearance
@@ -194,6 +195,7 @@
   components:
   - type: AccessReader
     access: [["Salvage"]]
+  - type: ActivatableUIRequiresAccess
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/salvage.rsi
     snapCardinals: true
@@ -226,6 +228,7 @@
   components:
   - type: AccessReader
     access: [["Mining"]]
+  - type: ActivatableUIRequiresAccess
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/VendingMachines/mining.rsi
     snapCardinals: true
