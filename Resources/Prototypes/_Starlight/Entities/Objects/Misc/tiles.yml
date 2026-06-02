@@ -200,7 +200,7 @@
       - Plating
       - FloorWoodParquet
   - type: Stack
-    stackType: FloorTileWood
+    stackType: FloorTileItemWoodParquet
 
 - type: entity
   name: black wooden floor

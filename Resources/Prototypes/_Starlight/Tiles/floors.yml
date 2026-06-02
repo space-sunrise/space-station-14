@@ -182,7 +182,7 @@
     collection: FootstepWood
   barestepSounds:
     collection: BarestepWood
-  itemDrop: FloorTileItemWoodPattern
+  itemDrop: FloorTileItemDarkWoodPattern
   heatCapacity: 10000
 
 - type: tile

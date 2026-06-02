@@ -91,6 +91,7 @@ large-black-wood-floor = большой чёрный деревянный пол
 large-dark-wood-floor = большой тёмный деревянный пол
 large-light-wood-floor = большой светлый деревянный пол
 large-red-wood-floor = большой красный деревянный пол
+parquet-wood-floor = деревянный паркет
 parquet-black-wood-floor = чёрный деревянный паркет
 parquet-dark-wood-floor = тёмный деревянный паркет
 parquet-light-wood-floor = светлый деревянный паркет

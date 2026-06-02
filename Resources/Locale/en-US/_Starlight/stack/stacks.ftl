@@ -19,6 +19,7 @@ large-black-wood-floor = large black wooden floor
 large-dark-wood-floor = large dark wooden floor
 large-light-wood-floor = large light wooden floor
 large-red-wood-floor = large red wooden floor
+parquet-wood-floor = wooden parquet
 parquet-black-wood-floor = black wooden parquet
 parquet-dark-wood-floor = dark wooden parquet
 parquet-light-wood-floor = light wooden parquet
