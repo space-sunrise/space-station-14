@@ -1,0 +1,24 @@
+- type: entity
+  id: CrateLawboards
+  parent: CrateScienceSecure
+  name: AI lawboard crate
+  description: A crate filled with various AI lawboards.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: NTDefaultCircuitBoard
+        - id: AsimovCircuitBoard
+        - id: CorporateCircuitBoard
+        - id: CommandmentCircuitBoard
+        - id: PaladinCircuitBoard
+        - id: LiveLetLiveCircuitBoard
+        - id: StationEfficiencyCircuitBoard
+        - id: RobocopCircuitBoard
+        - id: OverlordCircuitBoard
+        - id: GameMasterCircuitBoard
+        - id: ArtistCircuitBoard
+        - id: NutimovCircuitBoard
+        # Starlight also included PanicmovCircuitBoard, GenieCircuitBoard,
+        # ReporterCircuitBoard and JermovCircuitBoard; those prototypes are not ported.

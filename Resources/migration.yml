@@ -1012,6 +1012,7 @@ AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
 #2026-05-10 # Sunrise-TODO: Delete this after upstreaming wizards
 ComputerNukieDelivery: SyndicateComputerComms
 HandheldStationMapNukeops: HandheldStationMapUnpowered
+HandheldMachineAnalyzer: HandheldRoboAnalyzer
 MagazineG36Extended: null
 # 2026-05-28
 Vampire: null

@@ -1,3 +1,7 @@
 - type: accessLevel
   id: ResearchConsoleAccess
   name: id-card-access-level-research-console-access
+
+- type: accessLevel
+  id: Robotics
+  name: id-card-access-level-robotics

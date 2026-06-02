@@ -9,3 +9,30 @@
       entity_storage: !type:AllSelector
         children:
         - id: VariantCubeBoxSunrise
+
+- type: entity
+  parent: CrateMedicalSecure
+  id: SunriseCrateMedicalManualHealingDebug
+  name: manual medicine debug crate
+  description: Contains manual-use healing items for debugging.
+  suffix: Debug
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Ointment
+        - id: RegenerativeMesh
+        - id: Brutepack
+        - id: MedicatedSuture
+        - id: Bloodpack
+        - id: Gauze
+        - id: Blueointment20
+        - id: Bluebrutepack20
+        - id: RedOintment
+        - id: SyndicateOintment
+        - id: RedBrutePack
+        - id: SyndicateBrutePack
+        - id: RedPunctPack
+        - id: RedLacePack
+        - id: RedBruizPack
