@@ -1,0 +1,30 @@
+- type: entity
+  id: SignBrigmed
+  parent: SignMedical
+  name: brigmed sign
+  description: A sign indicating the brig medical bay.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: brigmed
+
+- type: entity
+  id: SignIAA
+  parent: SignLawyer
+  name: internal affairs sign
+  description: A sign indicating an internal affairs office.
+  # No matching SignIAA prototype or RSI state exists in Starlight.
+
+- type: entity
+  id: SignMagistrate
+  parent: SignLawyer
+  name: magistrate sign
+  description: A sign indicating the magistrate's office.
+  # No matching SignMagistrate prototype or RSI state exists in Starlight.
+
+- type: entity
+  id: SignNTR
+  parent: SignHead
+  name: NanoTrasen representative sign
+  description: A sign indicating the NanoTrasen representative's office.
+  # No matching SignNTR prototype or RSI state exists in Starlight.

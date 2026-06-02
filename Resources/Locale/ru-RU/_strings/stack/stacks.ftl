@@ -282,3 +282,6 @@ stack-xeno-steel-corner = угловая плитка из ксено-стали
 stack-xenoborg = ксеноборговая плитка
 stack-xeno-maint = ксено-техзона
 stack-dark-squiggly = темная стальная волнистая плитка
+
+stack-interdynebrutepack = набор от ушибов Interdyne
+stack-interdyneointment = мазь Interdyne
