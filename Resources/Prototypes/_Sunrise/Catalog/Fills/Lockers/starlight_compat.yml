@@ -9,9 +9,13 @@
         children:
         - id: WeaponDisabler
           amount: 2
+        - id: SecurityMedkit
+          amount: 2
         - id: TrackingImplanter
           amount: 4
-        - id: ClothingOuterHardsuitBrigmedic
+        - id: ClothingHeadHelmetSecurityMedic
+          amount: 2
+        - id: ClothingOuterHardsuitBrigmedicSunrise
           amount: 2
         - id: BoxSterileMask
         - id: ClothingHeadHatBeretBrigmedic
@@ -36,6 +40,9 @@
           prob: 0.3
         - id: MedkitBurnFilled
           prob: 0.7
+        - id: RedBrutePack
+          prob: 0.5
+          amount: 2
 
 - type: entity
   id: LockerWardenLargeFilled
