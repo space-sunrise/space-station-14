@@ -51,8 +51,8 @@
     FoodOrange: 1
   emaggedInventory:
     StrangePill: 2
-    PatchOmni: 5 # Sunrise Edit
-    StimpackMini: 1 # Sunrise Edit
+    PatchOmni: 5
+    StimpackMini: 1
 
 - type: vendingMachineInventory
   id: InterdyneCommercialWallInventory
