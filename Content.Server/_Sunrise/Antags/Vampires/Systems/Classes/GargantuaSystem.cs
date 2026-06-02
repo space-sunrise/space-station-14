@@ -9,6 +9,7 @@ using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
+using Content.Shared._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Systems.Abilities;
 using Content.Shared._Sunrise.Antags.Vampires.Systems.Classes;
 using Content.Shared.Actions;

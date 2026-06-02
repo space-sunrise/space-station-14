@@ -1,6 +1,7 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Objectives.Systems;
+using Content.Server._Sunrise.Antags.Vampires.Components;
 using Content.Shared._Sunrise.Antags.Vampires.Events;
 using Content.Shared._Sunrise.Antags.Vampires.UI;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
