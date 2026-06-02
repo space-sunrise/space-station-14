@@ -40,12 +40,19 @@
     AutoMenderBruteFilled: 1
     AutoMenderBurnFilled: 1
     SpaceMedipen: 1
+    PatchPackHeat: 2
+    PatchPackBrute: 2
+    PatchBruteSmall: 6
+    PatchBurnSmall: 6
   contrabandInventory:
     PillCanisterRandom: 3
     PillSpaceDrugs: 3
+    MedicatedSuture: 1
     FoodOrange: 1
   emaggedInventory:
     StrangePill: 2
+    PatchOmni: 5 # Sunrise Edit
+    StimpackMini: 1 # Sunrise Edit
 
 - type: vendingMachineInventory
   id: InterdyneCommercialWallInventory

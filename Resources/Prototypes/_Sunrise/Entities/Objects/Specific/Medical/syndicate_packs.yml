@@ -48,7 +48,15 @@
     size: Small
     sprite: _Starlight/Objects/Specific/Medical/medical.rsi
     heldPrefix: redointment
-
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Heat: -7
+        Cold: -7
+        Shock: -7
+        Caustic: -7
 
 - type: entity
   id: SyndicateOintment1
