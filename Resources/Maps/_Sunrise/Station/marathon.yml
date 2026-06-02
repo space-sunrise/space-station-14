@@ -75910,8 +75910,6 @@ entities:
     - type: Clothing
       inSlot: mask
       inSlotFlag: MASK
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
 - proto: ClothingMaskSterile
@@ -134464,8 +134462,6 @@ entities:
           ent: 9510
     - type: Physics
       bodyType: Static
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 9518
     components:
     - type: Transform

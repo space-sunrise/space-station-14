@@ -138039,7 +138039,6 @@ entities:
           ent: 10514
     - type: Physics
       bodyType: Static
-    - type: DiseaseTempImmune
   - uid: 10538
     components:
     - type: Transform

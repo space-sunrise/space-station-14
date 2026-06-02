@@ -99849,8 +99849,6 @@ entities:
     components:
     - type: Transform
       parent: 41
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
   - uid: 13238
@@ -99924,8 +99922,6 @@ entities:
     - type: Clothing
       inSlot: mask
       inSlotFlag: MASK
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
 - proto: ClothingMaskGasCaptain
@@ -99934,8 +99930,6 @@ entities:
     components:
     - type: Transform
       parent: 31
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
 - proto: ClothingMaskItalianMoustache
@@ -173530,8 +173524,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 34
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 41
     components:
     - type: Transform
@@ -173572,8 +173564,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 42
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 13092
     components:
     - type: Transform
@@ -173618,8 +173608,6 @@ entities:
       bodyType: Static
     - type: Pullable
       prevFixedRotation: True
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 13113
     components:
     - type: Transform

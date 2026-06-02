@@ -746,6 +746,7 @@
     - FloorConcreteTilesStatic
     - CircuitFloorsStatic
     - FloorMarbleTilesStatic
+    - SunriseFloorTilesStatic # Sunrise-Edit
     dynamicPacks:
     - FauxTiles
   - type: MaterialStorage

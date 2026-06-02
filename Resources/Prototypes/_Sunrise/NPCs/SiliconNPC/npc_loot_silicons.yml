@@ -198,6 +198,9 @@
       prob: 0.4
     - id: TechnologyDiskRare
       prob: 0.1
+    # Drones
+    - id: RogueSiliconVisceratorClusterGrenade
+      prob: 0.15
     # Organic debris
     - id: OrganLootSpawner
       prob: 0.2
@@ -870,23 +873,23 @@
       prob: 0.5
     - id: TechnologyDiskRare
       prob: 0.15
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.25
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.2
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.15
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.1
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.1
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.1
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.1
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.1
-    - id: MobRogueSiliconViscerator
+    - id: MobRogueSiliconT1Viscerator
       prob: 0.1
     # Organic debris
     - id: OrganLootSpawner

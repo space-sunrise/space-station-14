@@ -23,9 +23,16 @@
   - type: Tag
     tags:
     - Ointment
+  # Sunrise edit start - dynamic ointment stack sprites
   - type: Sprite
-    state: ointment
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: ointment3
+    layers:
+    - state: ointment3
+      map: ["base"]
+  # Sunrise edit end
   - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: ointment
     storedSprite:
       state: ointment-storage
@@ -53,6 +60,21 @@
   - type: Stack
     stackType: Ointment
     count: 10
+    # Sunrise edit start - dynamic ointment stack sprites
+    baseLayer: base
+    layerStates:
+    - ointment
+    - ointment2
+    - ointment3
+    layerFunction: Threshold
+    # Sunrise edit end
+  # Sunrise added start - dynamic ointment stack sprites
+  - type: StackLayerThreshold
+    thresholds:
+    - 5
+    - 10
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 5
 
@@ -75,9 +97,16 @@
   - type: Tag
     tags:
     - Ointment
+  # Sunrise edit start - dynamic regenerative mesh stack sprites
   - type: Sprite
-    state: regenerative-mesh
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: regenerative-mesh3
+    layers:
+    - state: regenerative-mesh3
+      map: ["base"]
+  # Sunrise edit end
   - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: regenerative-mesh
   - type: Healing
     damageContainers:
@@ -101,6 +130,23 @@
   - type: Stack
     stackType: RegenerativeMesh
     count: 10
+    # Sunrise edit start - dynamic regenerative mesh stack sprites
+    baseLayer: base
+    layerStates:
+    - regenerative-mesh
+    - regenerative-mesh1
+    - regenerative-mesh2
+    - regenerative-mesh3
+    layerFunction: Threshold
+    # Sunrise edit end
+  # Sunrise added start - dynamic regenerative mesh stack sprites
+  - type: StackLayerThreshold
+    thresholds:
+    - 3
+    - 6
+    - 9
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 20
 
@@ -123,9 +169,16 @@
   - type: Tag
     tags:
     - Brutepack
+  # Sunrise edit start - dynamic brutepack stack sprites
   - type: Sprite
-    state: brutepack
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: brutepack3
+    layers:
+    - state: brutepack3
+      map: ["base"]
+  # Sunrise edit end
   - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: brutepack
   - type: Healing
     damageContainers:
@@ -146,6 +199,21 @@
   - type: Stack
     stackType: Brutepack
     count: 10
+    # Sunrise edit start - dynamic brutepack stack sprites
+    baseLayer: base
+    layerStates:
+    - brutepack
+    - brutepack2
+    - brutepack3
+    layerFunction: Threshold
+    # Sunrise edit end
+  # Sunrise added start - dynamic brutepack stack sprites
+  - type: StackLayerThreshold
+    thresholds:
+    - 5
+    - 10
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 5
 
@@ -168,9 +236,16 @@
   - type: Tag
     tags:
     - Brutepack
+  # Sunrise edit start - dynamic medicated suture stack sprites
   - type: Sprite
-    state: medicated-suture
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: medicated-suture4
+    layers:
+    - state: medicated-suture4
+      map: ["base"]
+  # Sunrise edit end
   - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: medicated-suture
     storedRotation: -90
   - type: Healing
@@ -193,6 +268,23 @@
   - type: Stack
     stackType: MedicatedSuture
     count: 10
+    # Sunrise edit start - dynamic medicated suture stack sprites
+    baseLayer: base
+    layerStates:
+    - medicated-suture
+    - medicated-suture2
+    - medicated-suture3
+    - medicated-suture4
+    layerFunction: Threshold
+    # Sunrise edit end
+  # Sunrise added start - dynamic medicated suture stack sprites
+  - type: StackLayerThreshold
+    thresholds:
+    - 3
+    - 6
+    - 9
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 20
 
@@ -339,15 +431,43 @@
 - type: entity
   name: aloe cream
   description: A topical cream for burns.
-  parent: Ointment ##Yes it's a direct reskin
+  parent: BaseHealingItem
   id: AloeCream
   components:
+  - type: Tag
+    tags:
+    - Ointment
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/aloe.rsi
     state: cream
+  - type: Item
+    sprite: Objects/Specific/Hydroponics/aloe.rsi
+    heldPrefix: produce
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Heat: -5
+        Cold: -5
+        Shock: -5
+        Caustic: -1.5
+
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
   - type: Stack
     stackType: AloeCream
     count: 10
+  - type: StackPrice
+    price: 5
 
 - type: entity
   parent: BaseHealingItem

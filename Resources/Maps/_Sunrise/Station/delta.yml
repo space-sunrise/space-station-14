@@ -123391,8 +123391,6 @@ entities:
     - type: Clothing
       inSlot: mask
       inSlotFlag: MASK
-    - type: DiseaseImmuneClothing
-      isActive: True
     - type: Physics
       canCollide: False
 - proto: ClothingMaskGasMerc
@@ -205916,7 +205914,7 @@ entities:
 
         Монтаж водопровода
 
-        Монтаж специализированного оборудования для упрощения работы Бриг-Медиков. 
+        Монтаж специализированного оборудования для упрощения работы Бриг-Медиков.
 
         Снабжение дополнительными химикатами.
 
@@ -210435,8 +210433,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 16750
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 16828
     components:
     - type: Transform

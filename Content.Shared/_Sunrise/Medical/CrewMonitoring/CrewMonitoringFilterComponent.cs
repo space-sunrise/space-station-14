@@ -1,22 +1,26 @@
+using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
+
 namespace Content.Shared.Medical.CrewMonitoring;
 
 [RegisterComponent]
 public sealed partial class CrewMonitoringFilterComponent : Component
 {
     /// <summary>
-    /// Разрешенные отделы. Если пустое все доступны
+    /// Health states allowed by this monitor. Empty means all states are allowed.
     /// </summary>
     [DataField]
-    public List<string> AllowedDepartmentIds = new();
+    public List<CrewMonitoringHealthState> AllowedHealthStates = [];
+
     /// <summary>
-    /// Будут ли отображаться по трекерам
+    /// Departments allowed by this monitor. Empty means all departments are allowed.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<DepartmentPrototype>> AllowedDepartmentIds = [];
+
+    /// <summary>
+    /// Whether implant trackers are shown by this monitor.
     /// </summary>
     [DataField]
     public bool IncludeTrackers;
-    /// <summary>
-    /// Показывать ли мертвых, в крите, в ужасном
-    /// </summary>
-    [DataField]
-    public bool OnlyShowWoundedOrDead;
 }
-
