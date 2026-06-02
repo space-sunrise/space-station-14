@@ -63,6 +63,8 @@
     name: ghost-panel-antagonist-silicon-name
     description: ghost-panel-antagonist-silicon-description
     priority: 45
+  - type: GhostOnMove
+    mustBeDead: true
   - type: Tag
     tags:
     - CanPilot
@@ -309,7 +311,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrap
+  id: MobRogueSiliconT1Scrap
   #categories: [ HideSpawnMenu ]
   components:
   - type: RandomSprite
@@ -373,7 +375,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThreads
+  id: MobRogueSiliconT1ScrapThreads
   #categories: [ HideSpawnMenu ]
   components:
   - type: RandomSprite
@@ -424,7 +426,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThrusters
+  id: MobRogueSiliconT1ScrapThrusters
   #categories: [ HideSpawnMenu ]
   components:
   - type: RandomSprite
@@ -496,8 +498,8 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconScrapThrusters
-  id: MobRogueSiliconScrapThrustersRanged
+  - MobRogueSiliconT1ScrapThrusters
+  id: MobRogueSiliconT1ScrapThrustersRanged
   #categories: [ HideSpawnMenu ]
   components:
   - type: BatteryAmmoProvider
@@ -524,7 +526,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapFlayer
+  id: MobRogueSiliconT1ScrapFlayer
   #categories: [ HideSpawnMenu ]
   components:
   - type: MeleeWeapon
@@ -583,7 +585,7 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  id: MobRogueSiliconDroneLethals
+  id: MobRogueSiliconT1DroneLethals
   description: Hacked by a rogue AI, these security drones are programmed to kill.
   #categories: [ HideSpawnMenu ]
   components:
@@ -607,7 +609,7 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  id: MobRogueSiliconDroneNonLethals
+  id: MobRogueSiliconT1DroneNonLethals
   description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
   #categories: [ HideSpawnMenu ]
   components:
@@ -635,8 +637,8 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconDroneNonLethals
-  id: MobRogueSiliconDroneNonLethalsBuff
+  - MobRogueSiliconT1DroneNonLethals
+  id: MobRogueSiliconT1DroneNonLethalsBuff
   description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
   components:
   - type: Sprite
@@ -665,7 +667,7 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  id: MobRogueSiliconDroneScience
+  id: MobRogueSiliconT1DroneScience
   description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
   #categories: [ HideSpawnMenu ]
   components:
@@ -692,8 +694,8 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconDroneScience
-  id: MobRogueSiliconDroneScienceBuff
+  - MobRogueSiliconT1DroneScience
+  id: MobRogueSiliconT1DroneScienceBuff
   description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
   components:
   - type: Sprite
@@ -719,7 +721,7 @@
   - MobMovementSpeedModifierSpecial
   - MobRogueSiliconDroneBase
   - MobRogueSiliconPassiveRegen
-  id: MobRogueSiliconViscerator
+  id: MobRogueSiliconT1Viscerator
   name: viscerator unit
   description: Small, quick, and nimble, these drones are designed to chase its targets through narrow areas and incapacitate those it catches. Often accompanies catcher units.
   #categories: [ HideSpawnMenu ]
@@ -754,7 +756,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.12
+          radius: 0.10
         density: 100
         mask:
           - FlyingMobMask
@@ -780,8 +782,8 @@
     animation: WeaponArcDisarm
     damage:
       types:
-        Slash: 1
-        Structural: 4
+        Slash: 2
+        Structural: 5
     soundHit:
       path: /Audio/Effects/saw.ogg
       params:
@@ -791,6 +793,82 @@
     prototypes:
     - MobRogueSiliconLootT0
 
+- type: entity
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - MobRogueSiliconDroneBase
+  id: MobSyndicateViscerator
+  name: viscerator
+  description: A compact syndicate strike drone built to rush targets after deployment.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: []
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: CanMoveInAir
+  - type: ProtectedFromStepTriggers
+  - type: NoSlip
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: base_lights
+      shader: unshaded
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      20: Critical
+      50: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.10
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+        BaseUnshaded: base_lights
+      Critical:
+        Base: crit
+        BaseUnshaded: crit_lights
+      Dead:
+        Base: destroyed
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      5: 1.5
+      8: 1.7
+  - type: MeleeWeapon
+    range: 0.65
+    attackRate: 6.0
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Slash: 2
+        Structural: 5
+    soundHit:
+      path: /Audio/Effects/saw.ogg
+      params:
+        volume: 1
+        variation: 0.050
+
 #region Tier 2
 - type: entity
   parent:
@@ -798,7 +876,7 @@
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconServo
+  id: MobRogueSiliconT2Servo
   name: servo unit
   description: With its programming rewritten, this crash test dummy will stop at nothing in exacting its revenge.
   #categories: [ HideSpawnMenu ]
@@ -836,7 +914,7 @@
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconHerder
+  id: MobRogueSiliconT2Herder
   name: herder unit
   description: This rogue silicon unit's primary directive is to corral and herd captives. Its stun prod can be used to good effect, take caution.
   #categories: [ HideSpawnMenu ]
@@ -894,7 +972,7 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
-  id: MobRogueSiliconHunter
+  id: MobRogueSiliconT2Hunter
   name: hunter unit
   description: These mobile drones are tasked with reconnaissance, threat identification, and target elimination.
   #categories: [ HideSpawnMenu ]
@@ -951,7 +1029,7 @@
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
-  id: MobRogueSiliconCatcher
+  id: MobRogueSiliconT2Catcher
   name: catcher unit
   description: Equipped with viscerators, this unit is designed to slow, capture, and detain targets.
   #categories: [ HideSpawnMenu ]
@@ -988,7 +1066,7 @@
     defaultRotation: 90
     horizontalRotation: 90
   - type: BasicEntityAmmoProvider
-    proto: MobRogueSiliconViscerator
+    proto: MobRogueSiliconT1Viscerator
     capacity: 1
     count: 1
   - type: Gun
@@ -1010,7 +1088,7 @@
   - MobRogueSiliconPassiveRegen
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconTerminatorT3
+  id: MobRogueSiliconT3Terminator
   name: nt-800 "exterminator"
   description: A captured NT-800 endoskeleton repurposed by a rogue silicon hive. Extremely durable and relentless.
   #categories: [ HideSpawnMenu ]
@@ -1072,7 +1150,7 @@
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconTesla
+  id: MobRogueSiliconT3Tesla
   name: tesla unit
   description: Originally designed to service tesla power generators, this silicon's equipment has been repurposed as a makeshift stun gun.
   #categories: [ HideSpawnMenu ]
@@ -1147,7 +1225,7 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
-  id: MobRogueSiliconGuardian
+  id: MobRogueSiliconBossGuardian
   name: guardian unit
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
   #categories: [ HideSpawnMenu ]
@@ -1234,8 +1312,8 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconGuardian
-  id: MobRogueSiliconGuardianLCG
+  - MobRogueSiliconBossGuardian
+  id: MobRogueSiliconBossGuardianLCG
   name: guardian unit
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
   #categories: [ HideSpawnMenu ]
@@ -1523,7 +1601,7 @@
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapAsteroid
+  id: MobRogueSiliconT1ScrapAsteroid
   name: malfunctioning scrap unit
   #categories: [ HideSpawnMenu ]
   components:
@@ -1588,7 +1666,7 @@
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThreadsAsteroid
+  id: MobRogueSiliconT1ScrapThreadsAsteroid
   name: malfunctioning scrap unit
   #categories: [ HideSpawnMenu ]
   components:
@@ -1640,7 +1718,7 @@
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThrustersAsteroid
+  id: MobRogueSiliconT1ScrapThrustersAsteroid
   name: malfunctioning scrap unit
   #categories: [ HideSpawnMenu ]
   components:
@@ -1716,8 +1794,8 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconScrapThrustersAsteroid
-  id: MobRogueSiliconScrapThrustersRangedAsteroid
+  - MobRogueSiliconT1ScrapThrustersAsteroid
+  id: MobRogueSiliconT1ScrapThrustersRangedAsteroid
   #categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
@@ -1780,7 +1858,7 @@
       999: Dead
 
 - type: entity
-  id: MobRogueSiliconDerelictBorg
+  id: MobRogueSiliconT1DerelictBorg
   parent:
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconDerelictBorgBase
@@ -1803,7 +1881,7 @@
         Structural: 14
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgEngineering
+  id: MobRogueSiliconT1DerelictBorgEngineering
   parent:
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconDerelictBorgBase
@@ -1864,7 +1942,7 @@
     color: "#4080FF"
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgJanitor
+  id: MobRogueSiliconT1DerelictBorgJanitor
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
@@ -1928,7 +2006,7 @@
   - type: NoSlip
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgMedical
+  id: MobRogueSiliconT1DerelictBorgMedical
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
@@ -1987,7 +2065,7 @@
       path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgMining
+  id: MobRogueSiliconT1DerelictBorgMining
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
@@ -2052,7 +2130,7 @@
   - type: NoSlip
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgAssaultT1
+  id: MobRogueSiliconT2DerelictBorgAssault
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
@@ -2107,8 +2185,8 @@
         pitch: 0.8
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgAssaultT2
-  parent: MobRogueSiliconDerelictBorgAssaultT1
+  id: MobRogueSiliconT2DerelictBorgAssaultHeavy
+  parent: MobRogueSiliconT2DerelictBorgAssault
   #categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
@@ -2122,8 +2200,8 @@
     pricePerJoule: 0
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgAssaultT3
-  parent: MobRogueSiliconDerelictBorgAssaultT1
+  id: MobRogueSiliconT3DerelictBorgAssault
+  parent: MobRogueSiliconT2DerelictBorgAssault
   #categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
@@ -2137,7 +2215,7 @@
     pricePerJoule: 0
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgSyndicateSaboteur
+  id: MobRogueSiliconT3DerelictBorgSyndicateSaboteur
   parent:
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconDerelictBorgBase
@@ -2195,7 +2273,7 @@
     transferAmount: 2
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgSyndicateMedical
+  id: MobRogueSiliconT2DerelictBorgSyndicateMedical
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
