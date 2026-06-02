@@ -795,7 +795,7 @@
       - id: MagazineBoxBelt127Empty
         prob: 0.25
       - id: MagazineBoxBelt127Empty
-        prob: 0.25<<<<<<< KM-Glock-Go
+        prob: 0.25
       - id: ScrapAirlock1
         amount: 2
       - id: ScrapGlass
