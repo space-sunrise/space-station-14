@@ -71,3 +71,42 @@
     PowerCellSmall: 2
   emaggedInventory:
     StrangePill: 1
+
+- type: vendingMachineInventory
+  id: NanoMedSecurityInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    BodyBagFolded: 5
+    Brutepack: 5
+    Ointment: 5
+    RedPunctPack: 3
+    RedLacePack: 3
+    RedBruizPack: 3
+    RedBrutePack: 2
+    RedOintment: 2
+    RegenerativeMesh: 2
+    MedicatedSuture: 2
+    Bloodpack: 5
+    Tourniquet: 5
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
+    ChemistryBottleBruizine: 1
+    ChemistryBottleDermaline: 1
+    ChemistryBottleDexalin: 1
+    ChemistryBottleDylovene: 1
+    Syringe: 3
+    PillCanisterTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    PillCanisterHyronalin: 1
+    PillCanisterCharcoal: 1
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    PowerCellSmall: 1
+    FoodSnackSwirlLollipop: 1
+    FoodLollipop: 1
+  emaggedInventory:
+    StrangePill: 1

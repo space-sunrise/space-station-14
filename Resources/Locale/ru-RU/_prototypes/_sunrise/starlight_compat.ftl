@@ -138,18 +138,6 @@ ent-DefaultStationBeaconNCT = маяк представителя NanoTrasen
 ent-HandheldMachineAnalyzer = портативный анализатор машин
     .desc = Портативное устройство для диагностики машин.
 
-ent-SyndicateBrutePack = травматологический набор Interdyne
-    .desc = Травматологические наборы качества Interdyne на все случаи жизни.
-    .suffix = Полный
-ent-SyndicateBrutePack1 = { ent-SyndicateBrutePack }
-    .desc = { ent-SyndicateBrutePack.desc }
-    .suffix = Один
-ent-SyndicateOintment = мазь Interdyne
-    .desc = Особая смесь пиразина и алоэ от Interdyne, используемая для лечения серьёзных ожогов.
-    .suffix = Полная
-ent-SyndicateOintment1 = { ent-SyndicateOintment }
-    .desc = { ent-SyndicateOintment.desc }
-    .suffix = Одна
 stack-carpet-deco-tile = декоративная ковровая плитка
 stack-dark-bitile-tile = тёмная двойная плитка
 stack-steel-bitile-tile = стальная двойная плитка
@@ -293,6 +281,8 @@ ent-VendingMachineMedicalSyndicate = Interdyne Enterprise
     .desc = Медицинский торговый автомат Interdyne Pharmaceutics.
 ent-VendingMachineWallMedicalCivilianSyndicate = коммерческая аптечка Interdyne
     .desc = Настенный раздатчик медицинского оборудования от Interdyne Pharmaceutics.
+ent-VendingMachineMedicalSecurity = НаноМед СБ
+    .desc = Раздатчик медицинских препаратов для службы безопасности. Только натуральные химикаты!
 
 ent-CybersunFlag = флаг CyberSun
     .desc = Бумага, костюм, прогресс.
