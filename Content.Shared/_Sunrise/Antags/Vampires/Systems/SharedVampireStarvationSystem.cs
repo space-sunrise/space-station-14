@@ -1,4 +1,7 @@
 using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared.Movement.Systems;
 
 namespace Content.Shared._Sunrise.Antags.Vampires.Systems;

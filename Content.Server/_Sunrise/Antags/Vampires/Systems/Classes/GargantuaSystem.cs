@@ -2,10 +2,15 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Destructible;
-using Content.Shared._Sunrise.Antags.Vampires;
+using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Server._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
-using Content.Shared._Sunrise.Antags.Vampires.Systems;
+using Content.Shared._Sunrise.Antags.Vampires.Systems.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Systems.Classes;
 using Content.Shared.Actions;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
@@ -38,7 +43,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Physics;
 
-namespace Content.Server._Sunrise.Antags.Vampires.Systems;
+namespace Content.Server._Sunrise.Antags.Vampires.Systems.Classes;
 
 public sealed class GargantuaSystem : EntitySystem
 {

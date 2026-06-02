@@ -1,6 +1,10 @@
 using Content.Server.Bible.Components;
-using Content.Shared._Sunrise.Antags.Vampires;
+using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Shared._Sunrise.Antags.Vampires.UI;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Prototypes;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;

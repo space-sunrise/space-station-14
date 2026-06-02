@@ -1,12 +1,14 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
-using Content.Shared._Sunrise.Antags.Vampires;
+using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Shared._Sunrise.Antags.Vampires.UI;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared._Sunrise.Antags.Vampires.Prototypes;
-using Content.Shared.Vampire.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;

@@ -3,10 +3,15 @@ using Content.Server.Actions;
 using Content.Server.Bible.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Temperature.Systems;
-using Content.Shared._Sunrise.Antags.Vampires;
+using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Server._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
-using Content.Shared._Sunrise.Antags.Vampires.Systems;
+using Content.Shared._Sunrise.Antags.Vampires.Systems.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Systems.Classes;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -27,7 +32,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Mobs;
 
-namespace Content.Server._Sunrise.Antags.Vampires.Systems;
+namespace Content.Server._Sunrise.Antags.Vampires.Systems.Classes;
 
 public sealed class UmbraeSystem : EntitySystem
 {

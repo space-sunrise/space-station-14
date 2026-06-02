@@ -1,7 +1,7 @@
 using Content.Server._Sunrise.AssaultOps;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server._Sunrise.FleshCult.GameRule;
-using Content.Server._Sunrise.GameTicking.Rules.Components; // Sunrise-Edit
+using Content.Server._Sunrise.Antags.Vampires.Rules.Components; // Sunrise-Edit
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
 using Content.Server.GameTicking;

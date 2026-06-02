@@ -16,7 +16,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Prayer;
 using Content.Shared.Timing;
-using Content.Shared.Vampire.Components; // Sunrise-Edit
+using Content.Shared._Sunrise.Antags.Vampires.Components; // Sunrise-Edit
 using Content.Shared.Stunnable; // Sunrise-Edit
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;

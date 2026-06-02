@@ -1,8 +1,12 @@
 using System.Linq;
 using Content.Server._Sunrise.Antags.Vampires.Components;
 using Content.Server.Bible.Components;
-using Content.Shared._Sunrise.Antags.Vampires;
+using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Server._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Bed.Sleep;
@@ -30,10 +34,11 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Server.EUI;
+using Content.Server._Sunrise.Antags.Vampires.UI;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Server.Roles;
 
-namespace Content.Server._Sunrise.Antags.Vampires.Systems;
+namespace Content.Server._Sunrise.Antags.Vampires.Systems.Classes;
 
 public sealed class DantalionSystem : EntitySystem
 {

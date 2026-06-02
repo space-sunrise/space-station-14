@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Antags.Vampires.Events;
 namespace Content.Shared._Sunrise.Antags.Vampires.Systems;
 
 public sealed class SharedVampireActionUseSystem : EntitySystem
