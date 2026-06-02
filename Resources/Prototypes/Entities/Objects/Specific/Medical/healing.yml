@@ -23,12 +23,14 @@
   - type: Tag
     tags:
     - Ointment
+  # Sunrise edit start - dynamic ointment stack sprites
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
-    state: ointment3 # Sunrise-Edit
-    layers: # Sunrise-Edit
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: ointment3
+    layers:
     - state: ointment3
       map: ["base"]
+  # Sunrise edit end
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: ointment
@@ -58,17 +60,21 @@
   - type: Stack
     stackType: Ointment
     count: 10
-    baseLayer: base # Sunrise-Edit
-    layerStates: # Sunrise-Edit
+    # Sunrise edit start - dynamic ointment stack sprites
+    baseLayer: base
+    layerStates:
     - ointment
     - ointment2
     - ointment3
     layerFunction: Threshold
-  - type: StackLayerThreshold # Sunrise-Edit
+    # Sunrise edit end
+  # Sunrise added start - dynamic ointment stack sprites
+  - type: StackLayerThreshold
     thresholds:
     - 5
     - 10
-  - type: Appearance # Sunrise-Edit
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 5
 
@@ -91,12 +97,14 @@
   - type: Tag
     tags:
     - Ointment
+  # Sunrise edit start - dynamic regenerative mesh stack sprites
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
-    state: regenerative-mesh3 # Sunrise-Edit
-    layers: # Sunrise-Edit
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: regenerative-mesh3
+    layers:
     - state: regenerative-mesh3
       map: ["base"]
+  # Sunrise edit end
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: regenerative-mesh
@@ -122,19 +130,23 @@
   - type: Stack
     stackType: RegenerativeMesh
     count: 10
-    baseLayer: base # Sunrise-Edit
-    layerStates: # Sunrise-Edit
+    # Sunrise edit start - dynamic regenerative mesh stack sprites
+    baseLayer: base
+    layerStates:
     - regenerative-mesh
     - regenerative-mesh1
     - regenerative-mesh2
     - regenerative-mesh3
     layerFunction: Threshold
-  - type: StackLayerThreshold # Sunrise-Edit
+    # Sunrise edit end
+  # Sunrise added start - dynamic regenerative mesh stack sprites
+  - type: StackLayerThreshold
     thresholds:
     - 3
     - 6
     - 9
-  - type: Appearance # Sunrise-Edit
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 20
 
@@ -157,9 +169,16 @@
   - type: Tag
     tags:
     - Brutepack
+  # Sunrise edit start - dynamic brutepack stack sprites
   - type: Sprite
-    state: brutepack
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: brutepack3
+    layers:
+    - state: brutepack3
+      map: ["base"]
+  # Sunrise edit end
   - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: brutepack
   - type: Healing
     damageContainers:
@@ -180,6 +199,21 @@
   - type: Stack
     stackType: Brutepack
     count: 10
+    # Sunrise edit start - dynamic brutepack stack sprites
+    baseLayer: base
+    layerStates:
+    - brutepack
+    - brutepack2
+    - brutepack3
+    layerFunction: Threshold
+    # Sunrise edit end
+  # Sunrise added start - dynamic brutepack stack sprites
+  - type: StackLayerThreshold
+    thresholds:
+    - 5
+    - 10
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 5
 
@@ -202,12 +236,14 @@
   - type: Tag
     tags:
     - Brutepack
+  # Sunrise edit start - dynamic medicated suture stack sprites
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
-    state: medicated-suture4 # Sunrise-Edit
-    layers: # Sunrise-Edit
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: medicated-suture4
+    layers:
     - state: medicated-suture4
       map: ["base"]
+  # Sunrise edit end
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/medical.rsi # Sunrise-Edit
     heldPrefix: medicated-suture
@@ -232,19 +268,23 @@
   - type: Stack
     stackType: MedicatedSuture
     count: 10
-    baseLayer: base # Sunrise-Edit
-    layerStates: # Sunrise-Edit
+    # Sunrise edit start - dynamic medicated suture stack sprites
+    baseLayer: base
+    layerStates:
     - medicated-suture
     - medicated-suture2
     - medicated-suture3
     - medicated-suture4
     layerFunction: Threshold
-  - type: StackLayerThreshold # Sunrise-Edit
+    # Sunrise edit end
+  # Sunrise added start - dynamic medicated suture stack sprites
+  - type: StackLayerThreshold
     thresholds:
     - 3
     - 6
     - 9
-  - type: Appearance # Sunrise-Edit
+  - type: Appearance
+  # Sunrise added end
   - type: StackPrice
     price: 20
 

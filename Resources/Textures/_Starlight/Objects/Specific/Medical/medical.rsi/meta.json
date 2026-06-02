@@ -8,6 +8,23 @@
 	},
 	"states": [
 		{
+			"name": "brutepack"
+		},
+		{
+			"name": "brutepack2"
+		},
+		{
+			"name": "brutepack3"
+		},
+		{
+			"name": "brutepack-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "brutepack-inhand-right",
+			"directions": 4
+		},
+		{
 			"name": "bluebrutepack"
 		},
 		{
