@@ -672,7 +672,7 @@ namespace Content.Server.Voting.Managers
             {
                 // Sunrise-Start
                 var poolPresets = new Dictionary<string, int[]>(presetPoolProto.Presets);
-                _Sunrise.Storyteller.StorytellerPresetHelper.AdjustPresetPool(poolPresets);
+                _Sunrise.Storyteller.StorytellerPresetHelper.AdjustPresetPool(poolPresets, _cfg);
                 // Sunrise-End
 
                 foreach (var (presetId, limits) in poolPresets)

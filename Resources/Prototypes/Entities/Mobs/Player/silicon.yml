@@ -91,6 +91,7 @@
   # Sunrise-End
   - type: Speech # Sunrise-Edit
     speechVerb: Robotic # Sunrise-Edit
+    speechSounds: Borg # Sunrise-Edit
 
 - type: entity
   id: AiHeldIntellicard

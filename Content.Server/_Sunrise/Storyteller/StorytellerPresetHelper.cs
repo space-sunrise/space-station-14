@@ -14,9 +14,9 @@ public static class StorytellerPresetHelper
     /// <summary>
     /// Integrates the Storyteller preset dynamically into the available preset pools.
     /// </summary>
-    public static void AdjustPresetPool(Dictionary<string, int[]> presets)
+    public static void AdjustPresetPool(Dictionary<string, int[] > presets, Robust.Shared.Configuration.IConfigurationManager cfg)
     {
-        if (!presets.ContainsKey(StorytellerPresetId))
+        if (cfg.GetCVar(Content.Shared._Sunrise.SunriseCCVars.SunriseCCVars.StorytellerEnabled) && !presets.ContainsKey(StorytellerPresetId))
         {
             presets.Add(StorytellerPresetId, new[] { 0, 200 });
         }
