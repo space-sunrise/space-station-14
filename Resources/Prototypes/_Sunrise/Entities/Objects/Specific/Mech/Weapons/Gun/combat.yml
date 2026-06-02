@@ -376,9 +376,9 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_kord_inhands.rsi
     size: Ginormous
   - type: Gun
-    minAngle: 24
-    maxAngle: 60
-    angleIncrease: 3
+    minAngle: 18
+    maxAngle: 50
+    angleIncrease: 1
     angleDecay: 18
     fireRate: 5
     selectedMode: FullAuto
@@ -390,7 +390,7 @@
         volume: -1
   - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavy127mm
-    fireCost: 9
+    fireCost: 6
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice

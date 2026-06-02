@@ -46,17 +46,20 @@ public sealed partial class StorytellerTypePrototype : IPrototype
     [DataField]
     public float BuildUpPreservationThreshold = 40f;
 
-    // Station Strength Coefficients
+    // Station strength normalization: value at which a component reaches its cap (see StorytellerSystem).
     [DataField]
     public float StrengthArmedCrewCoefficient = 10f;
     [DataField]
     public float StrengthSecurityCoefficient = 15f;
-
     [DataField]
-    public float StrengthCargoCoefficient = 0.0005f;
-
+    public float StrengthCargoFullScale = 200_000f;
+    /// <summary>
+    /// Denominator for technology strength. Zero uses the weighted sum of all technologies in the content pack.
+    /// </summary>
     [DataField]
-    public float StrengthTechnologyCoefficient = 3.0f;
+    public float StrengthTechnologyFullScale;
+    [DataField]
+    public float StrengthMaterialsFullScale = 50_000f;
 
     // Threat Scaling Coefficients
     [DataField]

@@ -205,6 +205,9 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
 
+uplink-viscerator-cluster-grenade-name = Viscerator cluster grenade
+uplink-viscerator-cluster-grenade-desc = Releases eight syndicate viscerator drones after a short timer.
+
 # OTHER
 uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name = Cyborg Infiltrator Reinforcement Teleport
 uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Sends you support for the syndicate's borg.

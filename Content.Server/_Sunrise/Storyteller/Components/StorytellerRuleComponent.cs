@@ -67,6 +67,13 @@ public sealed partial class StorytellerRuleComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public StorytellerType StorytellerType { get; set; } = StorytellerType.Classic;
+
+    /// <summary>
+    /// The configured storyteller type from the game rule entity.
+    /// If set, this type will be used instead of the default.
+    /// </summary>
+    [DataField("storyTellerType")]
+    public StorytellerType? ConfiguredStorytellerType;
 }
 
 public enum StorytellerPacingState

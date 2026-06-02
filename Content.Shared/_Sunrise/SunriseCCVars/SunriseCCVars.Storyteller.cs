@@ -33,4 +33,22 @@ public sealed partial class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<bool> StorytellerTelemetryEnabled =
         CVarDef.Create("storyteller.telemetry_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// If true, replace default preset pool with the custom StorytellerPool when building votes.
+    /// </summary>
+    public static readonly CVarDef<bool> StorytellerOverridePresetPool =
+        CVarDef.Create("storyteller.override_preset_pool", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// If true, enable special rotation of storyteller presets: classic -> (calm/insane) -> all.
+    /// </summary>
+    public static readonly CVarDef<bool> StorytellerRotationEnabled =
+        CVarDef.Create("storyteller.rotation_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Counter of the storyteller rotation. Used to determine which presets are available in the current round. Incremented by 1 at the end of each round if rotation is enabled.
+    /// </summary>
+    public static readonly CVarDef<int> StorytellerRotationCounter =
+        CVarDef.Create("storyteller.rotation_counter", 0, CVar.SERVERONLY | CVar.ARCHIVE);
 }
