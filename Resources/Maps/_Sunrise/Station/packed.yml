@@ -87572,8 +87572,6 @@ entities:
           ent: 6628
     - type: Physics
       bodyType: Static
-    - type: DiseaseTempImmune
-      prob: 0.35
 - proto: MaterialCloth
   entities:
   - uid: 12228

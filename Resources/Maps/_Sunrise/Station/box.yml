@@ -173862,8 +173862,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 31
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 38
     components:
     - type: Transform
@@ -173904,8 +173902,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 39
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 13479
     components:
     - type: Transform
@@ -173950,8 +173946,6 @@ entities:
       bodyType: Static
     - type: Pullable
       prevFixedRotation: True
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 13501
     components:
     - type: Transform

@@ -138129,8 +138129,6 @@ entities:
           ent: 10761
     - type: Physics
       bodyType: Static
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 10785
     components:
     - type: Transform

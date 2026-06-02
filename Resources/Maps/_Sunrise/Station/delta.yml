@@ -210593,8 +210593,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 16437
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 16445
     components:
     - type: Transform

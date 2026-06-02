@@ -134528,8 +134528,6 @@ entities:
           ent: 9489
     - type: Physics
       bodyType: Static
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 9497
     components:
     - type: Transform
