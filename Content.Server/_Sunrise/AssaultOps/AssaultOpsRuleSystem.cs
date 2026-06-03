@@ -343,7 +343,17 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
             if (operativesAlive)
                 continue;
 
-            _roundEndSystem.EndRound();
+            if (assaultops.RoundEndBehavior == RoundEndBehavior.Nothing)
+                continue;
+
+            _roundEndSystem.DoRoundEndBehavior(
+                assaultops.RoundEndBehavior,
+                assaultops.EvacShuttleTime,
+                assaultops.RoundEndTextSender,
+                assaultops.RoundEndTextShuttleCall,
+                assaultops.RoundEndTextAnnouncement);
+
+            assaultops.RoundEndBehavior = RoundEndBehavior.Nothing;
         }
     }
 

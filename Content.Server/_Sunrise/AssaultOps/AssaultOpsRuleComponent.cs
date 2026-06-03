@@ -1,3 +1,4 @@
+using Content.Server.RoundEnd;
 using Content.Shared.Dataset;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Preferences;
@@ -36,6 +37,36 @@ public sealed partial class AssaultOpsRuleComponent : Component
 
     [DataField]
     public int TCAmountPerOperative = 50;
+
+    /// <summary>
+    /// What will happen if all of the assault operatives die.
+    /// </summary>
+    [DataField]
+    public RoundEndBehavior RoundEndBehavior = RoundEndBehavior.ShuttleCall;
+
+    /// <summary>
+    /// Text sender for shuttle call if RoundEndBehavior is ShuttleCall.
+    /// </summary>
+    [DataField]
+    public string RoundEndTextSender = "comms-console-announcement-title-centcom";
+
+    /// <summary>
+    /// Text for shuttle call if RoundEndBehavior is ShuttleCall.
+    /// </summary>
+    [DataField]
+    public string RoundEndTextShuttleCall = "assaultops-no-more-threat-announcement-shuttle-call";
+
+    /// <summary>
+    /// Text for announcement if RoundEndBehavior is ShuttleCall. Used if shuttle is already called.
+    /// </summary>
+    [DataField]
+    public string RoundEndTextAnnouncement = "assaultops-no-more-threat-announcement";
+
+    /// <summary>
+    /// Time to emergency shuttle to arrive if RoundEndBehavior is ShuttleCall.
+    /// </summary>
+    [DataField]
+    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(3);
 
     public int RoundstartOperatives;
 
