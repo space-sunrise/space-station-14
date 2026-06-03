@@ -80,6 +80,7 @@
   suffix: Single
   components:
   - type: Sprite
+    scale: 1.10,1.05
     sprite: _Starlight/Objects/Specific/Medical/medical.rsi
     state: blueointment
     layers:
@@ -112,7 +113,7 @@
     damage:
       types:
         Heat: -5
-        Cold: -8
+        Cold: -6
         Shock: -8
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
@@ -167,6 +168,7 @@
     tags:
     - Ointment
   - type: Sprite
+    scale: 1.10,1.05
     state: redointment3
     layers:
     - state: redointment3

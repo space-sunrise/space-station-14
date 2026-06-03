@@ -78,9 +78,10 @@
     HandheldHealthAnalyzer: 3
     BodyBagFolded: 5
     Brutepack: 3
-    Ointment: 3
     RedBrutePack: 2
+    Ointment: 3
     RedOintment: 2
+    Blueointment20: 2
     RedPunctPack: 2
     RedLacePack: 2
     RedBruizPack: 2
