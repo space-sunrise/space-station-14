@@ -12,7 +12,7 @@
   - type: CargoSellBlacklist
   - type: MovementSpeedModifier
     baseSprintSpeed: 12
-    baseWalkSpeed: 8
+    baseWalkSpeed: 30
   - type: MovementIgnoreGravity
   - type: Physics
     bodyType: KinematicController
@@ -78,7 +78,7 @@
       path: /Audio/Animals/cat_meow.ogg
   - type: Pullable
   - type: MovementSpeedModifier
-    baseSprintSpeed: 8
+    baseSprintSpeed: 12
     baseWalkSpeed: 30
   # Sunrise-End
 
