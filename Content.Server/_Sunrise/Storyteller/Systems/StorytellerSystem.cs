@@ -567,6 +567,15 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (!_protoManager.TryIndex<StorytellerMetadataPrototype>(proto.ID, out var metadata))
                 continue;
 
+            if (GameTicker.IsGameRuleAdded(proto.ID))
+                continue;
+
+            if (proto.TryGetComponent<GameRuleComponent>(out var gameRule, EntityManager.ComponentFactory) &&
+                metrics.TotalPlayers < gameRule.MinPlayers)
+            {
+                continue;
+            }
+
             if (comp.CrewStress < metadata.MinStress || comp.CrewStress > metadata.MaxStress)
                 continue;
 
@@ -627,10 +636,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
             // Budget check
             if (metadata.ThreatType != StorytellerThreatType.Helpful && metadata.ThreatCost > comp.ThreatBudget)
-                continue;
-
-            // Prevent already running rules
-            if (GameTicker.IsGameRuleActive(proto.ID))
                 continue;
 
             result.Add(proto, metadata);
@@ -733,14 +738,19 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         return (first.Key, first.Value);
     }
 
-    private void TriggerEvent(Entity<StorytellerRuleComponent> entity, EntityPrototype proto, StorytellerMetadataPrototype metadata)
+    private bool TriggerEvent(Entity<StorytellerRuleComponent> entity, EntityPrototype proto, StorytellerMetadataPrototype metadata)
     {
-        // Deduct cost / process rewards
-        entity.Comp.ThreatBudget = MathF.Max(0f, entity.Comp.ThreatBudget - metadata.ThreatCost);
-
         // Spawn and start rule
         var ruleUid = GameTicker.AddGameRule(proto.ID);
-        GameTicker.StartGameRule(ruleUid);
+        if (!GameTicker.StartGameRule(ruleUid))
+        {
+            GameTicker.EndGameRule(ruleUid);
+            Log.Warning($"Storyteller selected {proto.ID}, but the game rule failed to start.");
+            return false;
+        }
+
+        // Deduct cost / process rewards
+        entity.Comp.ThreatBudget = MathF.Max(0f, entity.Comp.ThreatBudget - metadata.ThreatCost);
 
         // Record history
         entity.Comp.ActiveStorytellerRules.Add(ruleUid);
@@ -748,6 +758,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         // Metrics & Logging
         RecordEventTriggered(proto.ID, metadata);
+        return true;
     }
 
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
