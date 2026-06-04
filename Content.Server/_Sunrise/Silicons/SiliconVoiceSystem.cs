@@ -27,7 +27,7 @@ public sealed class SiliconVoiceSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<BorgVoiceComponent, MapInitEvent>(OnBorgVoiceStartup);
 
-        SubscribeLocalEvent<BorgVoiceComponent, BorgVoiceChangeActionEvent>(OnBorgVoiceChangeAction);
+        SubscribeLocalEvent<BorgVoiceComponent, SiliconVoiceChangeActionEvent>(OnBorgVoiceChangeAction);
 
         // Subscribe to TTS voice transformation
         SubscribeLocalEvent<BorgVoiceComponent, TransformSpeakerVoiceEvent>(OnTransformSpeakerVoice);
@@ -42,7 +42,7 @@ public sealed class SiliconVoiceSystem : EntitySystem
         });
     }
 
-    private void OnBorgVoiceChangeAction(EntityUid uid, BorgVoiceComponent component, BorgVoiceChangeActionEvent args)
+    private void OnBorgVoiceChangeAction(EntityUid uid, BorgVoiceComponent component, SiliconVoiceChangeActionEvent args)
     {
         // Open the voice selection UI
         if (!_uiSystem.HasUi(uid, BorgVoiceUiKey.Key))
