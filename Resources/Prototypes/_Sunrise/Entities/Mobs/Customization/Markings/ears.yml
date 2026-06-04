@@ -23,6 +23,18 @@
     state: ears_rabbit_inner
 
 - type: marking
+  id: RabbitEarsMirror
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  sponsorOnly: false
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/rabbit_markings_parts.rsi
+    state: ears_rabbit_outer_mir
+  - sprite: _Sunrise/Mobs/Customization/rabbit_markings_parts.rsi
+    state: ears_rabbit_inner_mir
+
+- type: marking
   id: RabbitEarsUp
   bodyPart: HeadTop
   markingCategory: HeadTop
@@ -33,3 +45,15 @@
     state: ears_rabbit_up_outer
   - sprite: _Sunrise/Mobs/Customization/rabbit_ears_up.rsi
     state: ears_rabbit_up_inner
+
+- type: marking
+  id: RabbitEarsUpMirror
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  sponsorOnly: false
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/rabbit_ears_up.rsi
+    state: ears_rabbit_up_outer_mir
+  - sprite: _Sunrise/Mobs/Customization/rabbit_ears_up.rsi
+    state: ears_rabbit_up_inner_mir

@@ -16,6 +16,14 @@
       "directions": 4
     },
     {
+      "name": "ears_rabbit_inner_mir",
+      "directions": 4
+    },
+    {
+      "name": "ears_rabbit_outer_mir",
+      "directions": 4
+    },
+    {
       "name": "tail_rabbit",
       "directions": 4
     }
