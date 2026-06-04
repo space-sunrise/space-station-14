@@ -13,7 +13,7 @@ namespace Content.Server.Silicons.Borgs;
 /// <summary>
 /// System that handles cyborg voice changing functionality.
 /// </summary>
-public sealed class BorgVoiceSystem : EntitySystem
+public sealed class SiliconVoiceSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -25,6 +25,7 @@ public sealed class BorgVoiceSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<BorgVoiceComponent, MapInitEvent>(OnBorgVoiceStartup);
 
         SubscribeLocalEvent<BorgVoiceComponent, BorgVoiceChangeActionEvent>(OnBorgVoiceChangeAction);
 
@@ -93,7 +94,7 @@ public sealed class BorgVoiceSystem : EntitySystem
         _uiSystem.SetUiState(uid, BorgVoiceUiKey.Key, state);
     }
 
-    private void OnBorgVoiceStartup(EntityUid uid, BorgVoiceComponent component)
+    private void OnBorgVoiceStartup(EntityUid uid, BorgVoiceComponent component, ref MapInitEvent args)
     {
         // Set default voice if not already set
         if (component.SelectedVoiceId == null)
