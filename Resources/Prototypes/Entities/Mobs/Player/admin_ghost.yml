@@ -111,6 +111,17 @@
   - type: IgnoreUIRange
   - type: ShowAntagIcons
   - type: ShowContrabandDetails
+  # Sunrise - Start
+  - type: ShowCriminalRecordIcons
+  - type: ShowSyndicateIcons
+  - type: ShowAccessReaderSettings
+  - type: ShowHealthIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Mech
+  # Sunrise - End
   - type: Inventory
     templateId: aghost
   - type: Loadout
