@@ -12,7 +12,7 @@
   - type: CargoSellBlacklist
   - type: MovementSpeedModifier
     baseSprintSpeed: 12
-    baseWalkSpeed: 30
+    baseWalkSpeed: 8
   - type: MovementIgnoreGravity
   - type: Physics
     bodyType: KinematicController
