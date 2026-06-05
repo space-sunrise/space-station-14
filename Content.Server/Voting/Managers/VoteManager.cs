@@ -411,7 +411,7 @@ namespace Content.Server.Voting.Managers
             // Still allow vote if availbable one is different from current one
             if (voteType == StandardVoteType.Preset)
             {
-                var presets = GetGamePresets();
+                var presets = GetGamePresetsSunrise(); // Sunrise-Start
                 if (presets.Count == 1 && presets.Select(x => x.Key).Single() == _entityManager.System<GameTicker>().Preset?.ID)
                     return false;
             }

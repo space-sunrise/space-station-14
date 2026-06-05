@@ -39,12 +39,12 @@
   - type: BloodBolt
     damage:
       groups:
-        Brute: 20
+        Brute: 25
     healConstruct:
       groups:
-        Brute: -20
-        Burn: -20
-        Toxin: -20
+        Brute: -30
+        Burn: -30
+        Toxin: -30
     unholyVolume: 8
   - type: PointLight
     enabled: true

@@ -513,6 +513,7 @@
       collection: FootstepCyborgLegs
   - type: Reflect
     reflectProb: 0.1
+  - type: MechVulnerableToEMP
 
 # region Spawners
 - type: entity
@@ -1777,7 +1778,7 @@
   name: Scrap raider
   parent: [MobMovementSpeedModifierEVARanged, MobPirateVeteranChatterBase]
   id: MobPirateT1SMG
-  description: In a team where everyone is armed with whatever they could grab, he picked up an SMG - and somehow made it work.  
+  description: In a team where everyone is armed with whatever they could grab, he picked up an SMG - and somehow made it work.
   components:
   - type: Tag
     tags:
@@ -2124,6 +2125,10 @@
   parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
   id: MobPirateT1BorgMining
   components:
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked ]
+    rightBareFootState: [ footprint-tracked ]
   - type: Loadout
     prototypes:
     - MobPirateT1BorgMiningGear
@@ -2471,6 +2476,7 @@
   parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Mech
   components:
+  - type: MechVulnerableToEMP
   - type: Loadout
     prototypes:
     - MobPirateT2MechGear
@@ -2573,7 +2579,7 @@
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -2599,6 +2605,9 @@
   parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Juggernaut
   components:
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGear
@@ -2678,7 +2687,7 @@
     soundHit:
       collection: MetalThud
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -2709,6 +2718,9 @@
   id: MobPirateT2JuggernautMG
   suffix: Machine gunner
   components:
+  - type: FootprintEmitter
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGearAlt
@@ -4168,6 +4180,7 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
+  - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     delay: 2
     actions:
@@ -4277,7 +4290,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:

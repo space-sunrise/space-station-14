@@ -50,10 +50,10 @@
   - type: StaticPrice
     price: 0
   - type: SurgeryTarget
-  - type: DamageOtherOnHit
-    damage:
+  - type: SunriseThrownItemDamage
+    damageTypes:
       types:
-        Blunt: 2
+        Blunt: 1
   # Sunrise end
 
 - type: entity

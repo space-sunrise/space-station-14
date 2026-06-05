@@ -55,6 +55,7 @@
       - WeaponCrusherDagger
       - WeaponCrusherGlaive
       - MiningDrill
+      - WeaponProtoKineticHeavy # Sunrise Edit
       offset: 0.0
 
 - type: entity

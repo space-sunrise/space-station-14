@@ -1,3 +1,20 @@
 ent-MobSharkGhost = { ent-MobShark }
     .suffix = Роль призрака
     .desc = { ent-MobShark.desc }
+ent-MobCarpServantDungeon = карп-слуга подземелья
+    .desc = { ent-MobCarpDungeon.desc }
+ent-MobCarpServantMagic = карп-слуга магикарп
+    .desc = { ent-MobCarpMagic.desc }
+ent-MobCarpServantHolo = карп-слуга голокарп
+    .desc = { ent-MobCarpHolo.desc }
+ent-MobCarpServantRainbow = карп-слуга радужный
+    .desc = { ent-MobCarpRainbow.desc }
+ent-MobCarpServantDragon = карп-слуга драконий
+    .desc = { ent-MobCarpDragon.desc }
+
+ent-MobCarpHoloDragon = { ent-MobCarpHolo }
+    .desc = { ent-MobCarpHolo.desc }
+ent-MobCarpRainbowDragon = { ent-MobCarpRainbow }
+    .desc = { ent-MobCarpRainbow.desc }
+ent-MobSharkDragon = { ent-MobShark }
+    .desc = { ent-MobShark.desc }

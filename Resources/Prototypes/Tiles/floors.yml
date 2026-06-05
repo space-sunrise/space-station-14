@@ -2061,7 +2061,7 @@
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroAsteroidSand
+  itemDrop: FloorTileItemAstroAsteroidSand # Sunrise-Edit
   weather: false
 
 - type: tile
@@ -2071,7 +2071,7 @@
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroAsteroidSand
+  itemDrop: FloorTileItemAstroAsteroidSandBorderless # Sunrise-Edit
   weather: false
 
 - type: tile

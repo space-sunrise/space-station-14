@@ -1,0 +1,82 @@
+- type: researchPopulationWeights
+  id: SunriseResearchPopulationWeights
+  weights:
+    # Civilian
+    Passenger: 0.40
+    Visitor: 0.40
+    Clown: 0.40
+    Mime: 0.40
+    Musician: 0.40
+    Librarian: 0.40
+    Barber: 0.40
+    Chaplain: 0.45
+    Lawyer: 0.45
+    Bartender: 0.45
+    Chef: 0.45
+    Janitor: 0.45
+    ServiceWorker: 0.50
+    Reporter: 0.50
+    Botanist: 0.50
+    Psychologist: 0.50
+
+    # Cargo
+    MailCarrier: 0.50
+    CargoTechnician: 0.55
+    SalvageSpecialist: 0.60
+    MiningSpecialist: 0.60
+    Quartermaster: 0.65
+
+    # Engineering
+    TechnicalAssistant: 0.50
+    StationEngineer: 0.60
+    AtmosphericTechnician: 0.60
+    SeniorEngineer: 0.65
+    ChiefEngineer: 0.70
+
+    # Medical
+    MedicalIntern: 0.50
+    Chemist: 0.60
+    Paramedic: 0.60
+    MedicalDoctor: 0.70
+    SeniorPhysician: 0.75
+    ChiefMedicalOfficer: 0.75
+    MedicalPathologist: 0.60
+
+    # Science
+    ResearchAssistant: 1.20
+    Roboticist: 1.50
+    Scientist: 1.50
+    SeniorResearcher: 1.70
+    ResearchDirector: 1.75
+
+    # Security
+    SecurityCadet: 0.50
+    Detective: 0.55
+    Brigmedic: 0.60
+    SecurityPilot: 0.60
+    SecurityOfficer: 0.65
+    BlueShieldEnsign: 0.65
+    SeniorOfficer: 0.70
+    Warden: 0.70
+    HeadOfSecurity: 0.75
+    BlueShieldOfficer: 0.75
+
+    # Command and legal
+    Adjutant: 0.55
+    IAA: 0.55
+    HeadOfPersonnel: 0.60
+    NanoTrasenRepresentative: 0.65
+    Captain: 0.70
+    ComMaid: 0.50
+
+    # Silicon
+    StationAi: 0.85
+    Borg: 0.55
+    EngineerBorg: 0.65
+    MiningBorg: 0.60
+    JanitorBorg: 0.45
+    ServiceBorg: 0.50
+    ClownBorg: 0.40
+    PeaceBorg: 0.65
+    MedicalBorg: 0.65
+    SecurityBorg: 0.70

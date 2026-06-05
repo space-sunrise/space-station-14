@@ -686,6 +686,9 @@
     sprintModifier: 0.9
   - type: Item
     size: Huge
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
@@ -958,7 +961,7 @@
   - type: GasTank
     outputPressure: 42.6
     air:
-      volume: 5
+      volume: 10
       temperature: 293.15
       moles:
       - 1.025689525

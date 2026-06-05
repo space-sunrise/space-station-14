@@ -5,12 +5,12 @@ on:
     branches: [ master, staging, stable ]
   merge_group:
   pull_request:
-    types: [ opened, reopened, synchronize, ready_for_review ]
+    types: [ opened, reopened, synchronize ]
 
 jobs:
   build:
     name: YAML Linter
-    if: github.actor != 'Sunrise-Bot' && github.event.pull_request.draft == false
+    if: github.actor != 'Sunrise-Bot'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2

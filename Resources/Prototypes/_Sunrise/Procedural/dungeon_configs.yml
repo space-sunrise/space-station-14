@@ -251,6 +251,46 @@
       NorthWest: BrickTileWhiteInnerNw
       NorthEast: BrickTileWhiteInnerNe
 
+- type: entityTable
+  id: SovietDungeonEntrance
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonRoomEntrance
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonWindow
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: WallSolidRust
+    - id: PoweredSmallLight
+
+- type: entityTable
+  id: SovietDungeonWalls
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: PosterContrabandCommunistState
+    - id: PosterContrabandPunchShit
+    - id: PosterContrabandRevolt
+    - id: PosterContrabandRise
+    - id: PosterLegitWorkForAFuture
+
+- type: entityTable
+  id: SovietFloorLights
+  table: !type:GroupSelector
+    children:
+    - id: PoweredLightPostSmall
+    - id: PoweredSmallLight
+
 #========================================================================
 
 - type: dungeonConfig
@@ -473,118 +513,3 @@
     - Wow
     - SpaceShip
     - Tall
-
-#========================================================================
-
-- type: dungeonConfig
-  id: SovietStrategicResourcesWarehouseDungeon
-  layers:
-  - !type:PrefabDunGen
-    roomWhitelist:
-      tags:
-      - SovietWarehouse
-    presets:
-    - Arena
-
-  - !type:CorridorDunGen
-    width: 5
-    tile: FloorConcreteMono
-
-  - !type:DungeonEntranceDunGen
-    count: 5
-    tile: FloorConcreteMono
-    contents: SovietDungeonEntrance
-
-  - !type:RoomEntranceDunGen
-    tile: FloorConcreteMono
-    contents: SovietDungeonRoomEntrance
-
-  - !type:EntranceFlankDunGen
-    tile: FloorConcreteMono
-    contents: SovietDungeonWindow
-
-  - !type:WallMountDunGen
-    tile: FloorConcreteMono
-    contents: SovietDungeonWalls
-
-  - !type:BoundaryWallDunGen
-    tile: FloorConcreteMono
-    wall: WallBrick
-    cornerWall: WallBrick
-
-  - !type:AutoCablingDunGen
-    entity: CableApcExtension
-
-  - !type:CornerClutterDunGen
-    contents: BaseClutter
-
-  - !type:CorridorClutterDunGen
-    contents: SovietFloorLights
-    chance: 0.05
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
-
-- type: entityTable
-  id: SovietDungeonRoomEntrance
-  table: !type:GroupSelector
-    children:
-    - id: CableApcExtension
-    - id: ScrapAirlock1
-
-- type: entityTable
-  id: SovietDungeonWindow
-  table: !type:GroupSelector
-    children:
-    - id: CableApcExtension
-    - id: WallBrick
-    - id: Grille
-    - id: MiningWindow
-
-- type: entityTable
-  id: SovietDungeonEntrance
-  table: !type:GroupSelector
-    children:
-    - id: CableApcExtension
-    - id: ScrapAirlock1
-    - id: LandMineModular
-      prob: 0.03
-
-- type: entityTable
-  id: SovietDungeonWalls
-  table: !type:GroupSelector
-    children:
-    - id: IntercomConstructed
-      weight: 0.2
-    - id: StationMapBroken
-      weight: 0.15
-    - id: PosterBroken
-      weight: 2
-    - id: RandomPosterContraband
-      weight: 2
-    - id: PoweredWarmSmallLight
-      weight: 0.7
-    - id: AlwaysPoweredStrobeDimLight
-      weight: 0.35
-    - id: PoweredlightEmpty
-      weight: 0.6
-
-- type: entityTable
-  id: SovietFloorLights
-  table: !type:GroupSelector
-    children:
-    - id: PoweredFloorlight

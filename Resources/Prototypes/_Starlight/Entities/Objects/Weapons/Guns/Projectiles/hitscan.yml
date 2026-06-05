@@ -1005,16 +1005,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: 0.05 # Sunrise-add
     damage:
       types:
         Piercing: 40
         Structural: 15
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 10
   - type: HitscanPierce
     chance: 0.08
-    pierceLevel: Metal # Sunrise-add
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1524,8 +1520,11 @@
     damage:
       types:
         Heat: 60
+        Structural: 60
   - type: HitscanCrawlerTargetEffects
     knockdownDuration: 3
+  - type: HitscanReflect
+    reflectiveType: None
   - type: HitscanStaminaDamage
     staminaDamage: 40
   - type: HitscanBasicVisuals

@@ -4,7 +4,8 @@
   parent: BaseItem
   id: RadioHandheld
   components:
-  - type: TelecomExempt
+  # Sunrise-Edit
+  #- type: TelecomExempt
   - type: RadioMicrophone
     broadcastChannel: Handheld
   - type: RadioSpeaker

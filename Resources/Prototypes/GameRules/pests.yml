@@ -13,6 +13,7 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: KingRatMigration
+    - id: KingRatMigrationHighPop # Sunrise-Edit
     - id: SnailMigration
 
 # events
@@ -63,8 +64,36 @@
     - id: MobMouseCancer
       prob: 0.001
     specialEntries:
+    - id: SpawnPointGhostRatKingNoGuard # Sunrise-Edit
+      prob: 0.001
+
+# Sunrise edit start - high-pop rat king variant event
+- type: entity
+  id: KingRatMigrationHighPop
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    weight: 6
+    duration: 50
+    minimumPlayers: 81 # Sunrise-Edit
+  - type: VentCrittersRule
+    entries:
+    - id: MobMouse
+      prob: 0.02
+    - id: MobMouse1
+      prob: 0.02
+    - id: MobMouse2
+      prob: 0.02
+    - id: MobMouseCancer
+      prob: 0.001
+    specialEntries:
     - id: SpawnPointGhostRatKing
       prob: 0.001
+# Sunrise edit end
 
 - type: entity
   id: CockroachMigration

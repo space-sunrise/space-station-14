@@ -108,3 +108,6 @@ ent-CrushedPhosphorus = фосфорный порошок
 ent-CrushedPhosphorus1 = { ent-CrushedPhosphorus }
     .suffix = 1
     .desc = { ent-CrushedPhosphorus.desc }
+ent-MaterialGunpowder5 = { ent-MaterialGunpowder }
+    .suffix = 5
+    .desc = { ent-MaterialGunpowder.desc }

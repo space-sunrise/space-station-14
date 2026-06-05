@@ -2,6 +2,7 @@
   id: Industrial
   name: research-discipline-industrial
   color: "#eeac34"
+  storytellerUsefulness: 1.5 # Sunrise-Edit
   icon:
     sprite: Interface/Misc/research_disciplines.rsi
     state: industrial
@@ -14,6 +15,7 @@
   id: Arsenal
   name: research-discipline-arsenal
   color: "#dc373b"
+  storytellerUsefulness: 2.0 # Sunrise-Edit
   icon:
     sprite: Interface/Misc/research_disciplines.rsi
     state: arsenal
@@ -26,6 +28,7 @@
   id: Experimental
   name: research-discipline-experimental
   color: "#9a6ef0"
+  storytellerUsefulness: 1.2 # Sunrise-Edit
   icon:
     sprite: Interface/Misc/research_disciplines.rsi
     state: experimental
@@ -38,6 +41,7 @@
   id: CivilianServices
   name: research-discipline-civilian-services
   color: "#7ecd48"
+  storytellerUsefulness: 0.8 # Sunrise-Edit
   icon:
     sprite: Interface/Misc/research_disciplines.rsi
     state: civilianservices

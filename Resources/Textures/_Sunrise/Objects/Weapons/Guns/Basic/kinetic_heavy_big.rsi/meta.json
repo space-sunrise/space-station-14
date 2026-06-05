@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "based on tgstation at https://github.com/tgstation/tgstation/commit/8b7f8ba6a3327c7381967c550f185dffafd11a57 edited by KaiserMaus (discord)",
+    "size": {
+        "x": 48,
+        "y": 32
+    },
+    "states": [
+	{
+		"name": "icon"
+	},
+    {
+        "name": "animation-icon",
+        "delays": [
+            [
+                0.2,
+                0.2
+            ]
+        ]
+    }
+    ]
+}

@@ -1,0 +1,146 @@
+- type: decal
+  id: StencilCyrillicBe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilBe
+
+- type: decal
+  id: StencilCyrillicCh
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilCh
+
+- type: decal
+  id: StencilCyrillicDe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilDe
+
+- type: decal
+  id: StencilCyrillicErus
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilErus
+
+- type: decal
+  id: StencilCyrillicFe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilFe
+
+- type: decal
+  id: StencilCyrillicGe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilGe
+
+- type: decal
+  id: StencilCyrillicHardSign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilHardSign
+
+- type: decal
+  id: StencilCyrillicIru
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilIru
+
+- type: decal
+  id: StencilCyrillicLru
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilLru
+
+- type: decal
+  id: StencilCyrillicPe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilPe
+
+- type: decal
+  id: StencilCyrillicSch
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilSch
+
+- type: decal
+  id: StencilCyrillicSh
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilSh
+
+- type: decal
+  id: StencilCyrillicSoftSign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilSoftSign
+
+- type: decal
+  id: StencilCyrillicTs
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilTs
+
+- type: decal
+  id: StencilCyrillicUrus
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilUrus
+
+- type: decal
+  id: StencilCyrillicYa
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilYa
+
+- type: decal
+  id: StencilCyrillicYru
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilYru
+
+- type: decal
+  id: StencilCyrillicYu
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilYu
+
+- type: decal
+  id: StencilCyrillicZh
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencilZh
+
+- type: decal
+  id: StencilCyrillicHeart
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencil_Heart
+
+- type: decal
+  id: StencilCyrillicStar
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Sunrise/Decals/stencil_cyrillic.rsi
+    state: stencil_Star
