@@ -220,6 +220,9 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
     private SpriteSpecifier.Rsi GetIconSpecifier(SuitSensorStatus sensor)
     {
+        if (sensor.DamagePercentage == null)
+            return new SpriteSpecifier.Rsi(new ResPath(HumanCrewMonitoringRsi), sensor.IsAlive ? "alive" : "dead");
+
         var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
         string rsiState = healthState switch
         {
