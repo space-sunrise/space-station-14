@@ -2,8 +2,8 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Roles;
+using Content.Server._Sunrise.Antags.SELF;
 using Content.Server._Sunrise.GameTicking.Rules.Components;
-using Content.Shared._Sunrise.Antags.SELF;
 using Content.Shared._Sunrise.Roles.Components;
 
 namespace Content.Server._Sunrise.GameTicking.Rules;

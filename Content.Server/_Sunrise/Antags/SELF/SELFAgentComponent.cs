@@ -1,4 +1,4 @@
-namespace Content.Shared._Sunrise.Antags.SELF;
+namespace Content.Server._Sunrise.Antags.SELF;
 
 /// <summary>
 /// Marker component for S.E.L.F agents.
