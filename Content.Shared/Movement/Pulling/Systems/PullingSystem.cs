@@ -1,6 +1,7 @@
 using Content.Shared._Sunrise.Carrying;
 using Content.Shared._Sunrise.Grab;
 using Content.Shared._Sunrise.Grab.Events;
+using Content.Shared._Sunrise.Movement.Carrying;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
@@ -310,8 +311,8 @@ public sealed class PullingSystem : EntitySystem
             return;
         }
         // Sunrise-start
-        if (TryComp<CarriableComponent>(component.Pulling, out var carriable) && !_mobState.IsAlive(component.Pulling.Value))
-            args.ModifySpeed(carriable.WalkSpeedModifier, carriable.SprintSpeedModifier);
+        if (TryComp<CanBeCarriedComponent>(component.Pulling, out var canBeCarried) && !_mobState.IsAlive(component.Pulling.Value))
+            args.ModifySpeed(canBeCarried.PullWalkSpeedModifier, canBeCarried.PullSprintSpeedModifier);
         // Sunrise-end
 
         args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);

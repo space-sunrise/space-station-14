@@ -3,6 +3,7 @@ using Content.Client._Sunrise.Sandbox.Access.Overlays;
 using Content.Client.Administration.Managers;
 using Robust.Client.GameObjects;
 using Content.Client.UserInterface.Systems.Sandbox;
+using Content.Shared._Sunrise.Misc.Events;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration;
 using Robust.Client.Graphics;
@@ -26,10 +27,10 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IResourceCache _resource = default!;
 
-    private MappingAccessOverlay _overlay = default!;
-    private MappingAccessOutlineOverlay _outlineOverlay = default!;
-    private MappingAccessReaderResolver _readerResolver = default!;
-    private MappingAccessTightBounds _tightBounds = default!;
+    private MappingAccessOverlay? _overlay;
+    private MappingAccessOutlineOverlay? _outlineOverlay;
+    private MappingAccessReaderResolver? _readerResolver;
+    private MappingAccessTightBounds? _tightBounds;
 
     /// <summary>
     /// Raised after the overlay state or filter settings change.
@@ -64,21 +65,19 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         base.Initialize();
 
         _admin.AdminStatusUpdated += OnAdminStatusUpdated;
-        _readerResolver = new(EntityManager, _prototype);
-        _readerResolver.MarkAccessReaderLookupDirty();
-        _tightBounds = new(_clickMap);
-        _overlay = new(EntityManager, _lookup, _sprite, _prototype, Loc, _resource, _ui, _readerResolver, _tightBounds);
-        _outlineOverlay = new(EntityManager, _sprite, _prototype, _clyde, _readerResolver, _tightBounds);
-        _overlay.BodyFilter = BodyFilter;
-        _overlay.ElectronicsOnly = ElectronicsOnly;
-        _outlineOverlay.BodyFilter = BodyFilter;
-        _outlineOverlay.ElectronicsOnly = ElectronicsOnly;
 
         SubscribeLocalEvent<AccessReaderComponent, ComponentStartup>(OnAccessReaderStartup);
         SubscribeLocalEvent<AccessReaderComponent, ComponentShutdown>(OnAccessReaderShutdown);
         SubscribeLocalEvent<AccessReaderComponent, ComponentRemove>(OnAccessReaderRemove);
         SubscribeLocalEvent<AccessReaderComponent, AccessReaderConfigurationChangedEvent>(OnAccessReaderChanged);
         UpdateUi();
+
+        SubscribeNetworkEvent<ToggleAccessOverlayEvent>(OnToggleOverlay);
+    }
+
+    private void OnToggleOverlay(ToggleAccessOverlayEvent ev, EntitySessionEventArgs args)
+    {
+        TrySetEnabled(!Enabled);
     }
 
     /// <summary>
@@ -86,17 +85,6 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
     /// </summary>
     public override void Shutdown()
     {
-        if (_overlayManager.HasOverlay<MappingAccessOverlay>())
-            _overlayManager.RemoveOverlay(_overlay);
-
-        if (_overlayManager.HasOverlay<MappingAccessOutlineOverlay>())
-            _overlayManager.RemoveOverlay(_outlineOverlay);
-
-        _overlay.Dispose();
-        _outlineOverlay.Dispose();
-        _readerResolver.Dispose();
-        _tightBounds.ClearCache();
-
         base.Shutdown();
 
         _admin.AdminStatusUpdated -= OnAdminStatusUpdated;
@@ -145,8 +133,8 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
             return;
 
         BodyFilter = filter;
-        _overlay.BodyFilter = filter;
-        _outlineOverlay.BodyFilter = filter;
+        _overlay?.BodyFilter = filter;
+        _outlineOverlay?.BodyFilter = filter;
         StateChanged?.Invoke();
     }
 
@@ -159,33 +147,33 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
             return;
 
         ElectronicsOnly = electronicsOnly;
-        _overlay.ElectronicsOnly = electronicsOnly;
-        _outlineOverlay.ElectronicsOnly = electronicsOnly;
+        _overlay?.ElectronicsOnly = electronicsOnly;
+        _outlineOverlay?.ElectronicsOnly = electronicsOnly;
 
         if (electronicsOnly)
-            _readerResolver.MarkAccessReaderLookupDirty();
+            _readerResolver?.MarkAccessReaderLookupDirty();
 
         StateChanged?.Invoke();
     }
 
     private void OnAccessReaderStartup(Entity<AccessReaderComponent> ent, ref ComponentStartup args)
     {
-        _readerResolver.SyncAccessReaderLookup(ent.Owner, ent.Comp);
+        _readerResolver?.SyncAccessReaderLookup(ent.Owner, ent.Comp);
     }
 
     private void OnAccessReaderShutdown(Entity<AccessReaderComponent> ent, ref ComponentShutdown args)
     {
-        _readerResolver.RemoveAccessReaderLookup(ent.Owner);
+        _readerResolver?.RemoveAccessReaderLookup(ent.Owner);
     }
 
     private void OnAccessReaderRemove(Entity<AccessReaderComponent> ent, ref ComponentRemove args)
     {
-        _readerResolver.RemoveAccessReaderLookup(ent.Owner);
+        _readerResolver?.RemoveAccessReaderLookup(ent.Owner);
     }
 
     private void OnAccessReaderChanged(Entity<AccessReaderComponent> ent, ref AccessReaderConfigurationChangedEvent args)
     {
-        _readerResolver.SyncAccessReaderLookup(ent.Owner, ent.Comp);
+        _readerResolver?.SyncAccessReaderLookup(ent.Owner, ent.Comp);
     }
 
     private void SetEnabled(bool enabled)
@@ -194,6 +182,16 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         if (enabled)
         {
+            _readerResolver = new(EntityManager, _prototype);
+            _readerResolver.MarkAccessReaderLookupDirty();
+            _tightBounds = new(_clickMap);
+            _overlay = new(EntityManager, _lookup, _sprite, _prototype, Loc, _resource, _ui, _readerResolver, _tightBounds);
+            _outlineOverlay = new(EntityManager, _sprite, _prototype, _clyde, _readerResolver, _tightBounds);
+            _overlay.BodyFilter = BodyFilter;
+            _overlay.ElectronicsOnly = ElectronicsOnly;
+            _outlineOverlay.BodyFilter = BodyFilter;
+            _outlineOverlay.ElectronicsOnly = ElectronicsOnly;
+
             if (!_overlayManager.HasOverlay<MappingAccessOverlay>())
                 _overlayManager.AddOverlay(_overlay);
 
@@ -202,8 +200,21 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
         }
         else
         {
-            _overlayManager.RemoveOverlay(_overlay);
-            _overlayManager.RemoveOverlay(_outlineOverlay);
+            if (_overlay != null)
+                _overlayManager.RemoveOverlay(_overlay);
+
+            if (_outlineOverlay != null)
+                _overlayManager.RemoveOverlay(_outlineOverlay);
+
+            _overlay?.Dispose();
+            _outlineOverlay?.Dispose();
+            _readerResolver?.Dispose();
+            _tightBounds?.ClearCache();
+
+            _overlay = null;
+            _outlineOverlay = null;
+            _readerResolver = null;
+            _tightBounds = null;
         }
 
         UpdateUi();

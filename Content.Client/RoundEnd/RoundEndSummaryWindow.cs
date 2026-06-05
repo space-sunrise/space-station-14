@@ -4,6 +4,7 @@ using Content.Client._Sunrise.StatsBoard;
 using Content.Client.Message;
 using Content.Shared._Sunrise.StatsBoard;
 using Content.Shared.GameTicking;
+using Content.Shared._Sunrise.Storyteller; // Sunrise-Edit
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Player;
@@ -19,26 +20,22 @@ namespace Content.Client.RoundEnd
         public int RoundId;
 
         public RoundEndSummaryWindow(string gm, string roundEnd, TimeSpan roundTimeSpan, int roundId,
-            RoundEndMessageEvent.RoundEndPlayerInfo[] info, string roundEndStats, SharedStatisticEntry[] statisticEntries, IEntityManager entityManager, ISharedPlayerManager playerManager) // Sunrise-Edit
+            RoundEndMessageEvent.RoundEndPlayerInfo[] info, string roundEndStats, SharedStatisticEntry[] statisticEntries, IEntityManager entityManager, ISharedPlayerManager playerManager,
+            string? storytellerName, StorytellerHistoryEntry[] storytellerHistory) // Sunrise-Edit
         {
             _entityManager = entityManager;
             _playerManager = playerManager; // Sunrise-Edit
 
-            MinSize = SetSize = new Vector2(700, 600); // Sunrise-Edit
+            MinSize = SetSize = new Vector2(750, 650); // Sunrise-Edit
 
             Title = Loc.GetString("round-end-summary-window-title");
-
-            // The round end window is split into two tabs, one about the round stats
-            // and the other is a list of RoundEndPlayerInfo for each player.
-            // This tab would be a good place for things like: "x many people died.",
-            // "clown slipped the crew x times.", "x shots were fired this round.", etc.
-            // Also good for serious info.
 
             RoundId = roundId;
             var roundEndTabs = new TabContainer();
             roundEndTabs.AddChild(MakeRoundEndStatsTab(roundEndStats)); // Sunrise-End
             roundEndTabs.AddChild(MakeRoundEndMyStatsTab(statisticEntries)); // Sunrise-End
-            roundEndTabs.AddChild(MakeRoundEndSummaryTab(gm, roundEnd, roundTimeSpan, roundId));
+            roundEndTabs.AddChild(MakeRoundEndSummaryTab(gm, roundEnd, roundTimeSpan, roundId, storytellerName)); // Sunrise-Edit
+            roundEndTabs.AddChild(MakeStorytellerHistoryTab(storytellerHistory)); // Sunrise-Edit
             roundEndTabs.AddChild(MakePlayerManifestTab(info));
 
             ContentsContainer.AddChild(roundEndTabs);
@@ -47,7 +44,7 @@ namespace Content.Client.RoundEnd
             MoveToFront();
         }
 
-        private BoxContainer MakeRoundEndSummaryTab(string gamemode, string roundEnd, TimeSpan roundDuration, int roundId)
+        private BoxContainer MakeRoundEndSummaryTab(string gamemode, string roundEnd, TimeSpan roundDuration, int roundId, string? storytellerName) // Sunrise-Edit
         {
             var roundEndSummaryTab = new BoxContainer
             {
@@ -66,13 +63,21 @@ namespace Content.Client.RoundEnd
             };
 
             //Gamemode Name
-            var gamemodeLabel = new RichTextLabel();
+            var gamemodeLabel = new RichRichRichRichTextLabelHackForMarkup();
             var gamemodeMessage = new FormattedMessage();
             gamemodeMessage.AddMarkupOrThrow(Loc.GetString("round-end-summary-window-round-id-label", ("roundId", roundId)));
             gamemodeMessage.AddText(" ");
             gamemodeMessage.AddMarkupOrThrow(Loc.GetString("round-end-summary-window-gamemode-name-label", ("gamemode", gamemode)));
             gamemodeLabel.SetMessage(gamemodeMessage);
             roundEndSummaryContainer.AddChild(gamemodeLabel);
+
+            // Active Storyteller
+            if (!string.IsNullOrEmpty(storytellerName))
+            {
+                var storytellerLabel = new RichTextLabel();
+                storytellerLabel.SetMarkup(Loc.GetString("round-end-summary-window-storyteller-name-label", ("storyteller", storytellerName)));
+                roundEndSummaryContainer.AddChild(storytellerLabel);
+            }
 
             //Duration
             var roundTimeLabel = new RichTextLabel();
@@ -244,6 +249,77 @@ namespace Content.Client.RoundEnd
             return roundEndSummaryTab;
         }
         // Sunrise-End
+
+        private BoxContainer MakeStorytellerHistoryTab(StorytellerHistoryEntry[] history)
+        {
+            var tab = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                Name = Loc.GetString("round-end-summary-window-storyteller-history-tab-title")
+            };
+
+            var scroll = new ScrollContainer
+            {
+                VerticalExpand = true,
+                Margin = new Thickness(10)
+            };
+            var container = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                SeparationOverride = 10
+            };
+
+            if (history == null || history.Length == 0)
+            {
+                var emptyLabel = new RichTextLabel();
+                emptyLabel.SetMarkup(Loc.GetString("round-end-summary-window-storyteller-history-empty"));
+                container.AddChild(emptyLabel);
+            }
+            else
+            {
+                var titleLabel = new RichTextLabel();
+                titleLabel.SetMarkup("[bold][size=14]Хронология событий раунда:[/size][/bold]\n");
+                container.AddChild(titleLabel);
+
+                foreach (var entry in history)
+                {
+                    var hBox = new BoxContainer
+                    {
+                        Orientation = LayoutOrientation.Horizontal,
+                        SeparationOverride = 12
+                    };
+
+                    var timeLabel = new RichTextLabel
+                    {
+                        SetWidth = 80,
+                    };
+                    var formattedTime = $"[color=#A9A9A9]({entry.RoundTime.ToString(@"hh\:mm\:ss")})[/color]";
+                    timeLabel.SetMarkup(formattedTime);
+
+                    var textLabel = new RichTextLabel
+                    {
+                        HorizontalExpand = true
+                    };
+                    textLabel.SetMarkupPermissive(entry.Description);
+
+                    hBox.AddChild(timeLabel);
+                    hBox.AddChild(textLabel);
+                    container.AddChild(hBox);
+                }
+            }
+
+            scroll.AddChild(container);
+            tab.AddChild(scroll);
+
+            return tab;
+        }
     }
+
+    // Sunrise-Start
+    // Simple helper class to allow compiling gamemodeLabel in the modified MakeRoundEndSummaryTab
+    internal sealed class RichRichRichRichTextLabelHackForMarkup : RichTextLabel
+    {
+    }
+    // Sunrise-End
 
 }

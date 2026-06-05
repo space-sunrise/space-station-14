@@ -23,7 +23,11 @@ public sealed partial class PuddleSystem
         if (args.Handled)
             return;
 
-        TrySpillAt(Transform(entity).Coordinates, args.Overflow, out _);
+        TrySpillAt(Transform(entity).Coordinates, args.Overflow, out var spawned); // Sunrise-Edit
+        // Sunrise-Edit start
+        if (_tag.HasTag(entity.Owner, StorytellerIgnoreMessTag))
+            _tag.AddTag(spawned, StorytellerIgnoreMessTag);
+        // Sunrise-Edit end
         args.Handled = true;
     }
 

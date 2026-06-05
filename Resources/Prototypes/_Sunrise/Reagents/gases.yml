@@ -181,7 +181,7 @@
         ignoreResistances: true
         damage:
           types:
-            Mangleness: 0.4
+            Mangleness: 0.2
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition

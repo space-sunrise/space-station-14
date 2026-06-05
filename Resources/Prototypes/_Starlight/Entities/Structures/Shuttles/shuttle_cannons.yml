@@ -18,8 +18,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -175,8 +173,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -270,9 +266,7 @@
     - state: space_artillery
   - type: ContainerContainer
     containers:
-      ballistic_chamber: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
+      ballistic-ammo: !type:Container
   - type: Fixtures
     fixtures:
       fix1:
@@ -442,8 +436,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -540,8 +532,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -617,8 +607,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -707,8 +695,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -800,9 +786,7 @@
     - state: space_artillery
   - type: ContainerContainer
     containers:
-      ballistic_chamber: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
+      ballistic-ammo: !type:Container
   - type: Fixtures
     fixtures:
       fix1:
@@ -890,8 +874,6 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -966,8 +948,6 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
-  - type: Physics
-    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:

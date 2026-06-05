@@ -1,6 +1,15 @@
 ent-SalvageTicket = тикет
     .desc = Обменивается на снаряжение в тикет-автоматах.
 
+ent-SalvageTicket2 = { ent-SalvageTicket }
+    .desc = { ent-SalvageTicket.desc }
+
+ent-SalvageTicket3 = { ent-SalvageTicket }
+    .desc = { ent-SalvageTicket.desc }
+
+ent-SalvageTicket4 = { ent-SalvageTicket }
+    .desc = { ent-SalvageTicket.desc }
+
 ent-SalvageTicket5 = { ent-SalvageTicket }
     .desc = { ent-SalvageTicket.desc }
 

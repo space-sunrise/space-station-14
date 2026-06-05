@@ -6,7 +6,6 @@
   group: Medicinal
   solids:
     FoodAloe: 1
-  recipeType: MedicalAssembler # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeMedicatedSuture

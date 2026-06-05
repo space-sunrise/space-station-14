@@ -197,8 +197,6 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       # Sunrise-Start
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
       enum.SummonCultistUiKey.Key:
         type: SummonCultistListWindowBUI
       enum.CultSpellProviderUiKey.Key:
@@ -229,6 +227,7 @@
     - DoorBumpOpener
     - AnomalyHost
   # Sunrise-Start
+  - type: Carrier
   - type: Paws
     screamInterval: 3
     thresholdDamage: 5

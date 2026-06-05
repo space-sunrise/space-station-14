@@ -189,7 +189,7 @@
   productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
   cost:
-    Bluecrystal: 33
+    Bluecrystal: 32
   categories:
     - NTAutoGun
   conditions:
@@ -296,7 +296,7 @@
   productEntity: ClothingBackpackDuffelWeaponShotgunCycler
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cycler }
   cost:
-    Bluecrystal: 23
+    Bluecrystal: 17
   categories:
   - NTAutoGun
   conditions:
@@ -942,9 +942,9 @@
       - ERTEpsilon
 
 - type: listing
-  id: ERTUplinkRifleHeavyMagazineFMJ
-  productEntity: RifleHeavyMagazineFMJ
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: 342fmj }
+  id: ERTUplinkRifleHeavyMagazineSP
+  productEntity: RifleHeavyMagazineSP
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: 342sp }
   cost:
     Crystallite: 8
   categories:
@@ -954,6 +954,19 @@
     whitelist:
       tags:
       - ERTGamma
+
+- type: listing
+  id: ERTUplinkRifleHeavyMagazineFMJ
+  productEntity: RifleHeavyMagazineFMJ
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: 342fmj }
+  cost:
+    Crystallite: 10
+  categories:
+  - NTAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
       - ERTEpsilon
 
 - type: listing

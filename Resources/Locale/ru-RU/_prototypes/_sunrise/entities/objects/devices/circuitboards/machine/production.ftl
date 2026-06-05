@@ -1,5 +1,5 @@
-ent-CopyMachineMachineCircuitboard = плата копировального аппарата
-    .desc = Машинная печатная плата для копировального аппарата. Позволяет печатать документы NanoTrasen, пока хватает бумаги и чернил.
+ent-CopyMachineMachineCircuitboard = плата принтера документов
+    .desc = Машинная печатная плата для принтера документов. Позволяет печатать документы NanoTrasen, пока хватает бумаги и чернил.
 ent-PacificatorCircuitboard = плата генератора пацифизма
     .desc = Делает всех разумных существ в радиусе действия пацифистами.
 ent-ReflectorMachineCircuitboard = плата отражателя
@@ -20,3 +20,7 @@ ent-SMESExtendedMachineCircuitboard = расширенный СМЭС (маши�
     .desc = Машинная печатная плата для расширенного СМЭС.
 ent-SMESSuperExtendedMachineCircuitboard = суперрасширенный СМЭС (машинная плата)
     .desc = Машинная печатная плата для суперрасширенного СМЭС.
+ent-TelecomServerT2Circuitboard = продвинутый телекоммуникационный сервер (машинная плата)
+    .desc = { ent-TelecomServerCircuitboard.desc }
+ent-TelecomServerT3Circuitboard = экспериментальный телекоммуникационный сервер (машинная плата)
+    .desc = { ent-TelecomServerCircuitboard.desc }

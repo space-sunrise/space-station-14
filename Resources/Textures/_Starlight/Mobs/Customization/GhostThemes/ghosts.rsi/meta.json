@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Skyrat",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ghost-moff",
+      "directions": 4
+    },
+    {
+      "name": "ghost-mothroach",
+      "directions": 4
+    },
+    {
+      "name": "ghost-scurret",
+      "directions": 4
+    },
+    {
+      "name": "ghost-ian_cute",
+      "directions": 4
+    }
+  ]
+}

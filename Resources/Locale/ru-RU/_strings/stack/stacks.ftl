@@ -132,36 +132,15 @@ stack-ointment = мазь
 stack-aloe-cream = крем с алоэ
 stack-gauze = марля
 stack-brutepack = набор для грубой силы
-stack-blueointment =
-    { $amount ->
-        [1] blueointment
-       *[other] blueointments
-    }
-stack-redointment =
-    { $amount ->
-        [1] redointment
-       *[other] redointments
-    }
-stack-redbrutepack =
-    { $amount ->
-        [1] redbrutepack
-       *[other] redbrutepacks
-    }
-stack-redpunctpack =
-    { $amount ->
-        [1] redpunctpack
-       *[other] redpunctpacks
-    }
-stack-redlacepack =
-    { $amount ->
-        [1] redlacepack
-       *[other] redlacepacks
-    }
-stack-redbruizpack =
-    { $amount ->
-        [1] redbruizpack
-       *[other] redbruizpacks
-    }
+stack-bluebrutepack = синий набор от ушибов
+stack-blueointment = синяя мазь
+stack-redointment = красная мазь
+stack-redbrutepack = красный набор от ушибов
+stack-interdynebrutepack = набор от ушибов Interdyne
+stack-interdyneointment = мазь Interdyne
+stack-redpunctpack = красный набор с пунктуразой
+stack-redlacepack = красный набор с лацеринолом
+stack-redbruizpack = красный набор с бруизином
 stack-bloodpack = пакет крови
 stack-medicated-suture = медикаментозный шов
 stack-regenerative-mesh = регенеративная сетка
@@ -273,6 +252,7 @@ stack-jungle-astro-grass-floor = пол из астро-травы джунгл�
 stack-astro-ice-floor = астро-ледяной пол
 stack-astro-snow-floor = астро-снежный пол
 stack-large-wood-floor = большой деревянный пол
+stack-light-fancy-wood = большой светлый деревянный пол
 stack-red-circuit-floor = red-circuit floor
 stack-asteroid-astro-sand-floor = пол из астероидного астро-песка
 stack-xeno-floor = ксено-пол

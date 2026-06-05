@@ -12,3 +12,9 @@ public sealed class CopyMachinePrintMessage(string templateId) : BoundUserInterf
 public sealed class CopyMachineCopyMessage() : BoundUserInterfaceMessage
 {
 }
+
+[Serializable, NetSerializable]
+public sealed class CopyMachineCancelJobMessage(int index) : BoundUserInterfaceMessage
+{
+    public int Index { get; } = index;
+}

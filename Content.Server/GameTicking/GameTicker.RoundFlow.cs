@@ -27,6 +27,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.StatsBoard;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Server._Sunrise.Storyteller.Systems; // Sunrise-Edit
+using Content.Shared._Sunrise.Storyteller; // Sunrise-Edit
 
 namespace Content.Server.GameTicking
 {
@@ -447,7 +449,7 @@ namespace Content.Server.GameTicking
             }
 
             // Sunrise-Start
-            if (_cfg.GetCVar(SunriseCCVars.ExcludePresets) && CurrentPreset != null)
+            if (_cfg.GetCVar(SunriseCCVars.ExcludePresets) && CurrentPreset != null && !_Sunrise.Storyteller.StorytellerPresetHelper.ShouldBypassExclusion(CurrentPreset.ID))
                 AddExcludedPreset(CurrentPreset.ID);
             // Sunrise-End
 
@@ -624,6 +626,9 @@ namespace Content.Server.GameTicking
             var roundStats = _statsBoardSystem.GetRoundStats();
             var statisticEntries = _statsBoardSystem.GetStatisticEntries();
             var sharedEntries = statisticEntries.Select(entry => _statsBoardSystem.ConvertToSharedStatisticEntry(entry)).ToArray();
+            var storytellerHistorySys = EntityManager.System<StorytellerHistorySystem>();
+            var storytellerName = storytellerHistorySys.GetActiveStorytellerName();
+            var storytellerHistory = storytellerHistorySys.GetHistory();
             // Sunrise-End
 
             var roundEndMessageEvent = new RoundEndMessageEvent(
@@ -635,6 +640,8 @@ namespace Content.Server.GameTicking
                 listOfPlayerInfoFinal,
                 roundStats, // Sunrise-Edit
                 sharedEntries, // Sunrise-Edit
+                storytellerName, // Sunrise-Edit
+                storytellerHistory, // Sunrise-Edit
                 sound
             );
             RaiseNetworkEvent(roundEndMessageEvent);
@@ -763,6 +770,11 @@ namespace Content.Server.GameTicking
         /// </summary>
         private void ResettingCleanup()
         {
+            // Sunrise-Edit - Clear game rules and previous history before flushing map/entities to avoid cleanup exceptions blocking it
+            ClearGameRules();
+            CurrentPreset = null;
+            _allPreviousGameRules.Clear();
+
             // Move everybody currently in the server to lobby.
             foreach (var player in _playerManager.Sessions)
             {
@@ -783,12 +795,6 @@ namespace Content.Server.GameTicking
             _banManager.Restart();
 
             _gameMapManager.ClearSelectedMap();
-
-            // Clear up any game rules.
-            ClearGameRules();
-            CurrentPreset = null;
-
-            _allPreviousGameRules.Clear();
 
             DisallowLateJoin = false;
             _playerGameStatuses.Clear();

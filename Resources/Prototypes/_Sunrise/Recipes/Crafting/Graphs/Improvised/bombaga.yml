@@ -27,5 +27,28 @@
       - material: Steel
         amount: 15
         doAfter: 1
+    - to: bombarda
+      steps:
+      - tag: Pipe
+        icon:
+          sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeStraight
+        name: construction-graph-tag-pipe
+      - tag: ImprovisedModularReceiver
+        icon:
+          sprite: _Sunrise/Objects/Misc/improvised_modular_receiver.rsi
+          state: icon
+        name: crafting-menu-name-improvised-modular-receiver
+      - tag: RifleStock
+        icon:
+          sprite: Objects/Misc/rifle_stock.rsi
+          state: icon
+        name: construction-graph-tag-rifle-stock
+      - material: Cable
+        amount: 10
+        doAfter: 1
+      - material: Steel
+        amount: 15
+        doAfter: 1
   - node: bombarda
     entity: WeaponGrenadeLauncherImprovised

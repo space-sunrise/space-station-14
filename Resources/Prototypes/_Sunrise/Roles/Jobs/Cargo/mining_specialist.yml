@@ -13,6 +13,8 @@
   startingGear: MiningSpecialistGear
   supervisors: job-supervisors-qm
   canBeAntag: true
+  alternativeTitles:
+  - job-alt-title-prospector
   access:
   - Cargo
   - Salvage
