@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.NPC;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Explosion.Components;
@@ -53,6 +54,10 @@ public sealed partial class ExecutionSystem
 
         // You can't execute borgs
         if (HasComp<BorgChassisComponent>(victim))
+            return false;
+
+        // You can't execute veteran followers.
+        if (HasComp<NpcVeteranFollowerComponent>(victim))
             return false;
 
         // You're not allowed to execute dead people (no fun allowed)

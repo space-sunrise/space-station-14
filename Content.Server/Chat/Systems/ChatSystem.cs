@@ -163,7 +163,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool isFormatted = false //sunrise-edit
         )
     {
-        if (TryComp<AbductorComponent>(source, out var comp))
+        if (TryComp<AbductorComponent>(source, out var comp) && desiredType != InGameICChatType.Emote) // Sunrise-Edit for abuctors to speak in emoutes
         {
             if (!TryProcessSunriseChatMessage(source, ref message, InGameICChatType.CollectiveMind))
                 return;
@@ -1135,11 +1135,12 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 }
 
 // Sunrise-TTS-Start
-public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
+public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers, string channelId) : EntityEventArgs
 {
     public readonly EntityUid Source = source;
     public readonly string Message = message;
     public readonly EntityUid[] Receivers = receivers;
+    public readonly string ChannelId = channelId;
 }
 
 public sealed class CollectiveMindSpokeEvent(EntityUid source, string message, IReadOnlyCollection<EntityUid> receivers, string collectiveMindId) : EntityEventArgs

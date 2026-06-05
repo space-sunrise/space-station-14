@@ -170,6 +170,50 @@
     - state: emergencytank
 
 - type: entity
+  parent: BoxSurvival
+  id: SunriseBoxSurvivalSyndicate
+  name: extended-capacity survival box
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
+  suffix: syndicate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: DrinkMREFlask
+        - id: FoodTinMRE
+        - id: Flare
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: extendedtank
+
+- type: entity
+  parent: SunriseBoxSurvivalSyndicate
+  id: SunriseBoxSurvivalSyndicateNitrogen
+  suffix: syndicate, N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: DrinkMREFlask
+        - id: FoodTinMRE
+        - id: Flare
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: nitrogentank
+  - type: Label
+    currentLabel: reagent-name-nitrogen
+
+- type: entity
   parent: BoxSurvivalBase
   id: BoxSurvivalSyndicateWithoutGas
   name: extended-capacity survival box
@@ -182,8 +226,8 @@
         children:
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutribrick
-        - id: DrinkWaterBottleFull
+        - id: FoodTinMRE
+        - id: DrinkMREFlask
         - id: ClothingMaskGasSyndicate
   - type: Sprite
     layers:
@@ -334,9 +378,10 @@
         children:
         - id: ClothingMaskGasSyndicate
         - id: DoubleEmergencyOxygenTankFilled
-        - id: FoodSnackNutribrick
+        - id: FoodTinMRE
         - id: DrinkBeerBottleFull
         - id: EmergencyMedipen
+        - id: Flare
   - type: Sprite
     layers:
     - state: internals

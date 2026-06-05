@@ -27,7 +27,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.2
+          radius: 0.3
         density: 50
         mask:
         - MobMask
@@ -717,7 +717,7 @@
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   components:
   - type: TTS
-    voice: TfSniper
+    voice: TfDemoman
   - type: Loadout
     prototypes:
     - MobSovietGearRangedAltT1
@@ -820,6 +820,8 @@
       state: equipped-HAND
     - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
       state: wielded-inhand-right
+  - type: TTS
+    voice: Anduin
 
 #region Tier 2
 - type: entity
@@ -1275,6 +1277,17 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MechVulnerableToEMP
   - type: NoSlip
   - type: Loadout
@@ -1376,7 +1389,7 @@
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -1436,6 +1449,17 @@
   - type: Loadout
     prototypes:
     - MobSovietGearT3Mech
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1548,7 +1572,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -2137,21 +2161,5 @@
       tableId: SovietHeavyMechanizedSquadTable
     deleteSpawnerAfterSpawn: true
 
-# Backward-compat aliases for old Tier 1 IDs used by procedural spawners/maps.
-- type: entity
-  parent: MobSovietT1Knife
-  id: MobSovietKnife
-
-- type: entity
-  parent: MobSovietT1Pistol
-  id: MobSovietPistol
-
-- type: entity
-  parent: MobSovietT1Mosin
-  id: MobSovietMosin
-
-- type: entity
-  parent: MobSovietT1MosinAlt
-  id: MobSovietMosinAlt
 
 

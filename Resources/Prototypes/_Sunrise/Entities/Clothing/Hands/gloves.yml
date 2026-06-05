@@ -41,8 +41,6 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_black.rsi
   - type: Fiber
@@ -63,8 +61,6 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_green.rsi
   - type: Fiber
@@ -85,8 +81,6 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_orange.rsi
   - type: Fiber
@@ -107,8 +101,6 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_red.rsi
   - type: Fiber
@@ -129,8 +121,6 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/nitrile_blue.rsi
   - type: Fiber

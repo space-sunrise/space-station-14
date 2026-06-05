@@ -1,0 +1,31 @@
+name: Предложение (Feature Request)
+description: Идея для новой механики или контента
+labels: ["Enhancement"]
+body:
+- type: textarea
+  id: problem
+  attributes:
+    label: Какую проблему это решает?
+    description: Почему текущая система недостаточно хороша?
+  validations:
+    required: true
+- type: textarea
+  id: solution
+  attributes:
+    label: Ваше предложение
+    description: Подробно опишите, как это должно работать.
+    placeholder: "Новый предмет/система должна взаимодействовать с... так-то..."
+  validations:
+    required: true
+- type: textarea
+  id: alternatives
+  attributes:
+    label: Альтернативы
+    description: Рассматривали ли вы другие способы реализации?
+- type: checkboxes
+  id: game_balance
+  attributes:
+    label: Влияние на баланс
+    options:
+    - label: Я продумал, как это повлияет на экономику/геймплей раунда
+      required: true

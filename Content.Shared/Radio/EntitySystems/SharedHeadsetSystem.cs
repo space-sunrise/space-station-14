@@ -17,28 +17,28 @@ public abstract class SharedHeadsetSystem : EntitySystem
         SubscribeLocalEvent<HeadsetComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
-    private void OnGetDefault(EntityUid uid, HeadsetComponent component, InventoryRelayedEvent<GetDefaultRadioChannelEvent> args)
+    private void OnGetDefault(Entity<HeadsetComponent> ent, ref InventoryRelayedEvent<GetDefaultRadioChannelEvent> args)
     {
-        if (!component.Enabled || !component.IsEquipped)
+        if (!ent.Comp.Enabled || !ent.Comp.IsEquipped)
         {
             // don't provide default channels from pocket slots.
             return;
         }
 
-        if (TryComp(uid, out EncryptionKeyHolderComponent? keyHolder))
+        if (TryComp(ent, out EncryptionKeyHolderComponent? keyHolder))
             args.Args.Channel ??= keyHolder.DefaultChannel;
     }
 
-    protected virtual void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)
+    protected virtual void OnGotEquipped(Entity<HeadsetComponent> ent, ref GotEquippedEvent args)
     {
-        component.IsEquipped = args.SlotFlags.HasFlag(component.RequiredSlot);
-        Dirty(uid, component);
+        ent.Comp.IsEquipped = args.SlotFlags.HasFlag(ent.Comp.RequiredSlot);
+        Dirty(ent, ent.Comp);
     }
 
-    protected virtual void OnGotUnequipped(EntityUid uid, HeadsetComponent component, GotUnequippedEvent args)
+    protected virtual void OnGotUnequipped(Entity<HeadsetComponent> ent, ref GotUnequippedEvent args)
     {
-        component.IsEquipped = false;
-        Dirty(uid, component);
+        ent.Comp.IsEquipped = false;
+        Dirty(ent, ent.Comp);
     }
 
     private void OnEmpPulse(Entity<HeadsetComponent> ent, ref EmpPulseEvent args)

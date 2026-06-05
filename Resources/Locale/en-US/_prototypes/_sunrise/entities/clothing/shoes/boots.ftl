@@ -16,3 +16,5 @@ ent-ClothingShoesBootsArbiter = arbiter shoes
     .desc = Heavy shoes with gold hardware. They pinch a little at the sides, testing your composure, but the sole is a true pocket of warmth. In them you can stand for hours on the icy floor of an archive without fearing a chill.
 ent-ClothingShoesBootsRedMist = red mist boots
     .desc = Field boots in a dark finish with reinforced shaping. Meant for long movement and short conversations.
+ent-ClothingShoesBootsSalvageMerc = scrapper boots
+    .desc = Boots capable of withstanding any terrain that a salvager may encounter.

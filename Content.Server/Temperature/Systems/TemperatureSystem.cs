@@ -72,14 +72,24 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
 
     public override void ChangeHeat(EntityUid uid, float heatAmount, bool ignoreHeatResistance = false, TemperatureComponent? temperature = null)
     {
+        ChangeHeatWithReturn(uid, heatAmount, out _, ignoreHeatResistance, temperature);
+    }
+
+    /// <summary>
+    /// Same as ChangeHeat but returns the actual amount of heat applied after modifiers.
+    /// </summary>
+    private bool ChangeHeatWithReturn(EntityUid uid, float heatAmount, out float actualHeat, bool ignoreHeatResistance = false, TemperatureComponent? temperature = null)
+    {
+        actualHeat = heatAmount;
         if (!TemperatureQuery.Resolve(uid, ref temperature, false))
-            return;
+            return false;
 
         if (!ignoreHeatResistance)
         {
             var ev = new ModifyChangedTemperatureEvent(heatAmount);
             RaiseLocalEvent(uid, ev);
             heatAmount = ev.TemperatureDelta;
+            actualHeat = heatAmount;
         }
 
         float lastTemp = temperature.CurrentTemperature;
@@ -87,6 +97,7 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         float delta = temperature.CurrentTemperature - lastTemp;
 
         RaiseLocalEvent(uid, new OnTemperatureChangeEvent(temperature.CurrentTemperature, lastTemp, delta), broadcast: true);
+        return true;
     }
 
     private void OnAtmosExposedUpdate(EntityUid uid, TemperatureComponent temperature, ref AtmosExposedUpdateEvent args)
@@ -102,7 +113,20 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         // TODO ATMOS: This heat transfer formula is really really wrong, it needs to be pulled out. Pending on HeatContainers.
         var heat = temperatureDelta * (airHeatCapacity * heatCapacity /
                                        (airHeatCapacity + heatCapacity));
-        ChangeHeat(uid, heat * temperature.AtmosTemperatureTransferEfficiency, temperature: temperature);
+
+        // Sunrise-Start
+        // Apply global transfer efficiency. 
+        // 0.1f is used as a balance limit to prevent instantaneous temperature equalization 
+        // which often feels unfair or glitchy for players in extreme conditions (fire, space).
+        var transfer = heat * temperature.AtmosTemperatureTransferEfficiency;
+
+        // We need to know how much heat was ACTUALLY transferred after protection/modifiers.
+        var actualTransfer = transfer;
+        if (ChangeHeatWithReturn(uid, transfer, out var modifiedHeat, temperature: temperature))
+            actualTransfer = modifiedHeat;
+
+        _atmosphere.AddHeat(args.GasMixture, -actualTransfer);
+        // Sunrise-End
     }
 
     private void OnInit(Entity<InternalTemperatureComponent> entity, ref MapInitEvent args)

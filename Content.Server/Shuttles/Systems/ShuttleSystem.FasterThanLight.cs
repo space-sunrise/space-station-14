@@ -64,7 +64,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Space between grids within hyperspace.
     /// </summary>
-    private const float Buffer = 5f;
+    private const float Buffer = 10f; // Sunrise-Edit
 
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
@@ -463,8 +463,13 @@ public sealed partial class ShuttleSystem
                 clippedAudio.Value.Component.Flags |= AudioFlags.NoOcclusion;
         }
 
-        // Offset the start by buffer range just to avoid overlap.
-        var ftlStart = new EntityCoordinates(ftlMap, new Vector2(_index + width / 2f, 0f) - shuttleCenter);
+        // Sunrise-Start
+        var yOffset = 0f;
+        if (HasComp<SunriseArrivalsShuttleComponent>(entity.Owner))
+            yOffset = 10000f;
+        // Sunrise-End
+
+        var ftlStart = new EntityCoordinates(ftlMap, new Vector2(_index + width / 2f, yOffset) - shuttleCenter);
 
         // Store the matrix for the grid prior to movement. This means any entities we need to leave behind we can make sure their positions are updated.
         // Setting the entity to map directly may run grid traversal (at least at time of writing this).

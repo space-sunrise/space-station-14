@@ -39,8 +39,16 @@ public sealed partial class AdminVerbSystem
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultAssaultOpsRule = "AssaultOps";
     private static readonly EntProtoId DefaultFleshCultRule = "FleshCult";
-    private static readonly EntProtoId DefaultVampireRule = "Vampire";
     private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation";
+
+    private static readonly SpriteSpecifier SelfAgentVerbIcon =
+        new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/self_icon.rsi"), "icon");
+    private static readonly SpriteSpecifier AssaultOperativeVerbIcon =
+        new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"), "poster46_contraband");
+    private static readonly SpriteSpecifier FleshCultistVerbIcon =
+        new SpriteSpecifier.Texture(new ResPath("_Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png"));
+    private static readonly SpriteSpecifier BloodCultistVerbIcon =
+        new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Weapons/Melee/cult_dagger.rsi"), "icon");
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -221,26 +229,11 @@ public sealed partial class AdminVerbSystem
 
         // Sunrise-Start
 
-        Verb vampire = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-vampire"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_vampire.rsi"),
-                "unholystrength"),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-vampire"),
-        };
-        args.Verbs.Add(vampire);
-
         Verb selfAgent = new()
         {
             Text = Loc.GetString("admin-verb-text-make-selfagent"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/self_icon.rsi"), "icon"),
+            Icon = SelfAgentVerbIcon,
             Act = () =>
             {
                 _antag.ForceMakeAntag<SELFRuleComponent>(targetPlayer, DefaultSELFRule);
@@ -254,8 +247,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-assault-operative"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"),
-                "poster46_contraband"),
+            Icon = AssaultOperativeVerbIcon,
             Act = () =>
             {
                 _antag.ForceMakeAntag<AssaultOpsRuleComponent>(targetPlayer, DefaultAssaultOpsRule);
@@ -269,8 +261,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = "Make Flesh Cultist",
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Texture(
-                new ResPath("_Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png")),
+            Icon = FleshCultistVerbIcon,
             Act = () =>
             {
                 _antag.ForceMakeAntag<FleshCultRuleComponent>(targetPlayer, DefaultFleshCultRule);
@@ -284,7 +275,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-cultist"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Weapons/Melee/cult_dagger.rsi"), "icon"),
+            Icon = BloodCultistVerbIcon,
             Act = () =>
             {
                 _antag.ForceMakeAntag<BloodCultRuleComponent>(targetPlayer, "BloodCult");

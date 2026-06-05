@@ -42,8 +42,8 @@
     - ToolDebug # spanish army knife
     - WelderExperimental
     # - Hypospray # Sunrise-edit
-    - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
-    - FreedomImplanter
+    # - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits  # Sunrise-edit
+    # - FreedomImplanter  # Sunrise-edit
     # Sunrise-start
     - EnergySword
     - EnergyShield

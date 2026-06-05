@@ -2125,6 +2125,10 @@
   parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
   id: MobPirateT1BorgMining
   components:
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked ]
+    rightBareFootState: [ footprint-tracked ]
   - type: Loadout
     prototypes:
     - MobPirateT1BorgMiningGear
@@ -2575,7 +2579,7 @@
     soundHit:
       path: "/Audio/Items/drill_use.ogg"
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -2601,6 +2605,9 @@
   parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Juggernaut
   components:
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGear
@@ -2680,7 +2687,7 @@
     soundHit:
       collection: MetalThud
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -2711,6 +2718,9 @@
   id: MobPirateT2JuggernautMG
   suffix: Machine gunner
   components:
+  - type: FootprintEmitter
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGearAlt
@@ -4280,7 +4290,7 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 360
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:

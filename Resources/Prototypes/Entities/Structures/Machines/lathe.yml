@@ -678,7 +678,7 @@
     board: OreProcessorIndustrialMachineCircuitboard
   - type: Lathe
     materialUseMultiplier: 0.75
-    timeMultiplier: 0.5
+    timeMultiplier: 1.25 # Sunrise-Edit
     staticPacks:
     - OreSmelting
     - RGlassSmelting
@@ -749,6 +749,7 @@
     - FloorConcreteTilesStatic
     - CircuitFloorsStatic
     - FloorMarbleTilesStatic
+    - SunriseFloorTilesStatic # Sunrise-Edit
     dynamicPacks:
     - FauxTiles
   - type: MaterialStorage

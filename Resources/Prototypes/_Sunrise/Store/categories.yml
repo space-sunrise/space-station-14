@@ -100,29 +100,6 @@
   name: store-category-paint
   priority: 99
 
-# disease
-
-- type: storeCategory
-  id: DiseaseInfectCategory
-  name: shop-disease-category-infect
-
-- type: storeCategory
-  id: DiseaseSymptomsCategory
-  name: shop-disease-category-symptoms
-
-- type: storeCategory
-  id: DiseaseEvolutionCategory
-  name: shop-disease-category-evolution
-
-- type: storeCategory
-  id: DiseaseInfectionCategory
-  name: shop-disease-category-infection
-
-- type: currency
-  id: DiseasePoints
-  displayName: shop-disease-currency
-  canWithdraw: false
-
 #uplink categoires
 - type: storeCategory
   id: UplinkCybernetics
@@ -278,14 +255,24 @@
   priority: 0
 
 - type: storeCategory
-  id: SalvageWeapons
-  name: store-category-salvage-weapons
+  id: TicketTools
+  name: store-category-ticket-tools
   priority: 1
 
 - type: storeCategory
-  id: SalvageConsumeables
-  name: store-category-salvage-consumeables
+  id: TicketConsumeables
+  name: store-category-ticket-consumeables
   priority: 2
+
+- type: storeCategory
+  id: SalvageAmmo
+  name: store-category-salvage-ammo
+  priority: 3
+
+- type: storeCategory
+  id: SalvageWeapons
+  name: store-category-salvage-weapons
+  priority: 3
 
 - type: storeCategory
   id: MiningEquipment
@@ -293,6 +280,6 @@
   priority: 0
 
 - type: storeCategory
-  id: MiningConsumeables
-  name: store-category-mining-consumeables
-  priority: 1
+  id: MiningMech
+  name: store-category-mining-mech
+  priority: 2
