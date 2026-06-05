@@ -9,7 +9,6 @@
   # SunriseEdit Start
   #- !type:RoleTimeRequirement
   #  role: JobBorg
-  #  time: 18000  # 5 hrs
   - !type:DepartmentTimeRequirement
     department: Silicon
     time: 18000 # 5 hrs
@@ -27,7 +26,6 @@
   # SunriseEdit Start
   #- !type:RoleTimeRequirement
   #  role: JobBorg
-  #  time: 18000  # 5 hrs
   - !type:DepartmentTimeRequirement
     department: Silicon
     time: 18000 # 5 hrs

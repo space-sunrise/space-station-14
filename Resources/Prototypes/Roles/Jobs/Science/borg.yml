@@ -9,7 +9,6 @@
   # SunriseEdit Start
   #- !type:RoleTimeRequirement
   #  role: JobBorg
-  #  time: 5h
   - !type:DepartmentTimeRequirement
     department: Silicon
     time: 5h
