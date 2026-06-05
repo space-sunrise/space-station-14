@@ -1230,6 +1230,11 @@
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
   #categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#47F8FFFF"
+    scale: 2
+    shape: Triangle
+    requireInSpace: false
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootBoss
@@ -1318,6 +1323,11 @@
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
   #categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#A8F8FFFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
   - type: BatteryAmmoProvider
     proto: CartridgeMinigun
     fireCost: 15
@@ -1346,6 +1356,11 @@
   description: An autonomous combat-grade mech, typically used for offensive operations. Now a rogue AI's elite guard. Equipped with missile launchers, exercise extreme caution.
   #categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#FF335DFF"
+    scale: 2
+    shape: Square
+    requireInSpace: false
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootBoss
@@ -1427,6 +1442,11 @@
   - MobRogueSiliconPassiveRegen
   id: MobRogueSiliconBossSkullHouse
   components:
+  - type: RadarBlip
+    color: "#8B5CFFFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
   - type: CyborgSparkEffect
   - type: MechVulnerableToEMP
   - type: Damageable

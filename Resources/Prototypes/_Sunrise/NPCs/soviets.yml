@@ -1277,6 +1277,11 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
+  - type: RadarBlip
+    color: "#3DFF8CFF"
+    scale: 2
+    shape: Triangle
+    requireInSpace: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -1436,6 +1441,11 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT3Mech
   components:
+  - type: RadarBlip
+    color: "#1FA8FFFF"
+    scale: 2
+    shape: Square
+    requireInSpace: false
   - type: NoSlip
   - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
@@ -1611,6 +1621,11 @@
   id: MobSovietCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   components:
+  - type: RadarBlip
+    color: "#55FFEEFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
   - type: TTS
     voice: Khajiit
   - type: Tag

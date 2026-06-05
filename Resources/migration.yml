@@ -1056,4 +1056,5 @@ SpawnMobRogueSiliconVisceratorSquad: SpawnMobRogueSiliconT1VisceratorSquad
 SpawnMobRogueSiliconGuardian: SpawnMobRogueSiliconBossGuardian
 SpawnMobRogueSiliconGuardianLCG: SpawnMobRogueSiliconBossGuardianLCG
 SpawnMobRogueSiliconTerminator: SpawnMobRogueSiliconT3Terminator
+HyposprayERT: Hypospray
 # region Sunrise-End
