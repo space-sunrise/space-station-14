@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
+using Content.Shared.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents;
@@ -32,14 +33,18 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Ghost.Roles;
 using Content.Server.Power.Components;
+using Content.Server.Jobs;
+using Content.Server.NPC.HTN;
+using Content.Server.Revolutionary.Components;
 using Content.Server.Tesla.Components;
+using Content.Shared.Materials;
 using Content.Shared.Singularity.Components;
-using Content.Shared.Starlight.Energy.Supermatter;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Anomaly.Components;
+using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Damage.Components;
 
@@ -53,6 +58,31 @@ namespace Content.Server._Sunrise.Storyteller.Systems;
 public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleComponent>
 {
     private const string SecurityDepartmentId = "Security";
+
+    private const float StationStrengthMax = 100f;
+    private const float StrengthCapArmedCrew = 25f;
+    private const float StrengthCapSecurity = 25f;
+    private const float StrengthCapTechnology = 20f;
+    private const float StrengthCapEconomy = 15f;
+    private const float StrengthCapMaterials = 15f;
+
+    private const float ArmedCrewFullScale = 8f;
+    private const float SecurityFullScale = 6f;
+    private const float CargoFullScale = 200_000f;
+    private const float MaterialsFullScale = 50_000f;
+    private const float MaterialStrengthPriceDivisor = 3f;
+    private const float MaterialStrengthMinFallback = 0.25f;
+    private const float MaterialStrengthUnknownFallback = 0.5f;
+
+    private const float StressDeadMax = 35f;
+    private const float StressDeadCommandPool = StressDeadMax * 0.4f;
+    private const float StressDeadCrewPool = StressDeadMax * 0.6f;
+    private const float StressAtmosphereMax = 15f;
+    private const float StressPowerMax = 15f;
+    private const float StressMessMax = 5f;
+    private const float StressEconomyMax = 5f;
+    private const float StressEconomyCargoThreshold = 20_000f;
+    private const float StressContainmentMax = 10f;
 
     private static readonly ProtoId<TagPrototype> StorytellerIgnoreMessTag = "StorytellerIgnoreMess";
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
@@ -72,9 +102,16 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     private readonly List<TimeSpan> _joinTimestamps = new();
     private readonly List<TimeSpan> _leaveTimestamps = new();
+
+    private float _maxResearchStorytellerScore;
+    private int _totalTechnologyCount;
+
+    private TimeSpan _lastStarvationWarningTime = TimeSpan.Zero;
 
     public override void Initialize()
     {
@@ -85,6 +122,14 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        _joinTimestamps.Clear();
+        _leaveTimestamps.Clear();
+        _lastStarvationWarningTime = TimeSpan.Zero;
     }
 
     public override void Shutdown()
@@ -118,12 +163,17 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         component.NextCheckTime = Timing.CurTime + TimeSpan.FromSeconds(10);
 
         component.StateTransitionTime = Timing.CurTime + TimeSpan.FromMinutes(_random.Next(15, 30));
-        component.PacingState = StorytellerPacingState.BuildUp;
+        component.PacingState = StorytellerPacingState.Relaxation;
         component.ThreatBudget = 30f;
 
-
-        var lobbySystem = EntityManager.System<StorytellerLobbySystem>();
-        component.StorytellerType = lobbySystem.StorytellerType;
+        if (component.ConfiguredStorytellerType.HasValue)
+        {
+            component.StorytellerType = component.ConfiguredStorytellerType.Value;
+        }
+        else
+        {
+            component.StorytellerType = _random.Pick(new[] { StorytellerType.Calm, StorytellerType.Classic, StorytellerType.Insane });
+        }
     }
 
     protected override void Started(EntityUid uid, StorytellerRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -135,7 +185,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     protected override void ActiveTick(EntityUid uid, StorytellerRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
         base.ActiveTick(uid, component, gameRule, frameTime);
-
 
         var budgetModifier = 1f;
         var maxBudgetModifier = 1f;
@@ -162,6 +211,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         if (Timing.CurTime >= component.NextCheckTime)
         {
             var interval = _cfg.GetCVar(SunriseCCVars.StorytellerCheckInterval);
+            _sawmill.Info($"ActiveTick: Timing.CurTime ({Timing.CurTime.TotalSeconds:F1}s) >= NextCheckTime ({component.NextCheckTime.TotalSeconds:F1}s). Triggering EvaluateStoryteller.");
             component.NextCheckTime = Timing.CurTime + TimeSpan.FromSeconds(interval);
             EvaluateStoryteller((uid, component));
         }
@@ -214,13 +264,21 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 break;
         }
 
+        _sawmill.Info($"TransitionPacingState: Pacing state changed from {oldState} to {comp.PacingState}. Next transition scheduled at {comp.StateTransitionTime.TotalSeconds:F1}s.");
         LogStorytellerState(comp, oldState);
     }
 
     private void EvaluateStoryteller(Entity<StorytellerRuleComponent> entity)
     {
-        if (_roundEnd.IsRoundEndRequested())
+        _sawmill.Info("EvaluateStoryteller: Entered method.");
+
+        var roundEndRequested = _roundEnd.IsRoundEndRequested();
+        _sawmill.Info($"EvaluateStoryteller: RoundEndRequested status is {roundEndRequested}.");
+        if (roundEndRequested)
+        {
+            _sawmill.Info("EvaluateStoryteller: Exiting early because RoundEndRequested is true.");
             return;
+        }
 
         var metrics = CalculateStationMetrics(entity.Comp);
         entity.Comp.CrewStress = CalculateCrewStress(ref metrics);
@@ -234,11 +292,13 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         // AI storyteller branch
         if (_cfg.GetCVar(SunriseCCVars.StorytellerAiEnabled) && !string.IsNullOrWhiteSpace(_cfg.GetCVar(SunriseCCVars.StorytellerAiUrl)))
         {
+            _sawmill.Info("EvaluateStoryteller: AI Storyteller is enabled, requesting recommendation.");
             RequestAiEventRecommendation(entity, metrics);
             return;
         }
 
         // Default heuristic branch
+        _sawmill.Info("EvaluateStoryteller: Running default heuristic storyteller.");
         ExecuteHeuristicStoryteller(entity, metrics);
     }
 
@@ -274,14 +334,26 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         {
             var warningMsg = $"Storyteller evaluated, but eligibleEvents.Count is 0! Stress: {entity.Comp.CrewStress}, Budget: {entity.Comp.ThreatBudget}, PacingState: {entity.Comp.PacingState}, StorytellerType: {entity.Comp.StorytellerType}";
             _sawmill.Warning(warningMsg);
-            Log.Warning($"[Storyteller] {warningMsg}");
+
+            if (entity.Comp.ThreatBudget > 80f && Timing.CurTime - _lastStarvationWarningTime > TimeSpan.FromMinutes(5))
+            {
+                _lastStarvationWarningTime = Timing.CurTime;
+                LogStarvationDiagnostics(entity.Comp, metrics);
+            }
             return;
         }
 
         // Weighted random pick
         var selected = PickEventFromEligible(eligibleEvents, entity.Comp.ThreatBudget, metrics.StationStrength, entity.Comp.StorytellerType);
         if (selected == null)
+        {
+            if (entity.Comp.ThreatBudget > 80f && Timing.CurTime - _lastStarvationWarningTime > TimeSpan.FromMinutes(5))
+            {
+                _lastStarvationWarningTime = Timing.CurTime;
+                LogStarvationDiagnostics(entity.Comp, metrics, eligibleEvents);
+            }
             return;
+        }
 
         TriggerEvent(entity, selected.Value.Item1, selected.Value.Item2);
     }
@@ -396,13 +468,20 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         }
 
         // Calculate expanded storyteller metrics
-        CalculateGridAtmosMetrics(out var breachRatio, out var dangerousRatio, out var totalTiles);
+        CalculateGridAtmosMetrics(out var atmosUnsafeRatio, out var totalTiles);
         CalculatePowerGridMetrics(out var powerDeficit);
         var weaponsCount = CountCrewWeapons();
         CountAntagAndErt(out var antagCount, out var ertCount);
         GetSingularityTeslaStatus(out var singActive, out var singCont, out var tesActive, out var tesCont);
-        var smIntegrity = GetSupermatterIntegrity(out var smActive);
-        var researchTiers = GetUnlockedResearchCount();
+        var researchScore = CalculateResearchStorytellerScore(out var unlockedTechnologyCount);
+        EnsureResearchStorytellerBoundsCache();
+        CountCrewRosterDeaths(
+            out var crewRosterCount,
+            out var rosterCommand,
+            out var rosterCrew,
+            out var deadCommand,
+            out var deadCrew);
+        var materialStrengthScore = CalculateMaterialStrengthScore();
         var distribution = GetCrewDistribution();
         GetPlayerFlowRates(out var joinRate, out var leaveRate);
         var ghostRolesCount = _ghostRoleSystem.GetGhostRoleCount();
@@ -456,6 +535,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 continue;
 
             if (_tagSystem.HasTag(uid, StorytellerIgnoreMessTag))
+                continue;
+
+            if (HasComp<FootprintComponent>(uid))
                 continue;
 
             puddlesCount++;
@@ -512,6 +594,17 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         }
         var averageCrewDamage = crewWithMindCount > 0 ? totalCrewDamage / crewWithMindCount : 0f;
 
+        _protoManager.TryIndex<StorytellerTypePrototype>(comp?.StorytellerType.ToString() ?? string.Empty, out var storytellerType);
+        var armedCrewCount = CountArmedCrewNotAntags();
+        var strength = CalculateNormalizedStationStrength(
+            aliveCount,
+            armedCrewCount,
+            securityCount,
+            cargoBalance,
+            researchScore,
+            materialStrengthScore,
+            storytellerType);
+
         return new StationMetrics
         {
             TotalPlayers = totalPlayers,
@@ -522,8 +615,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             CargoBalance = cargoBalance,
             SciencePoints = sciencePoints,
 
-            AtmosphereBreachRatio = breachRatio,
-            DangerousGasesRatio = dangerousRatio,
+            AtmosphereUnsafeRatio = atmosUnsafeRatio,
             PowerGridDeficitRatio = powerDeficit,
             CrewWeaponCount = weaponsCount,
             ActiveAntagonistCount = antagCount,
@@ -532,14 +624,20 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             SingularityContained = singCont,
             TeslaActive = tesActive,
             TeslaContained = tesCont,
-            SupermatterIntegrity = smIntegrity,
-            SupermatterActive = smActive,
-            UnlockedResearchTiers = researchTiers,
+            ResearchStorytellerScore = researchScore,
+            UnlockedTechnologyCount = unlockedTechnologyCount,
+            TotalTechnologyCount = _totalTechnologyCount,
+            MaxResearchStorytellerScore = _maxResearchStorytellerScore,
             CrewDistribution = distribution,
             PlayerJoinRate = joinRate,
             PlayerLeaveRate = leaveRate,
             AvailableGhostRoles = ghostRolesCount,
 
+            CrewRosterCount = crewRosterCount,
+            RosterCommandCount = rosterCommand,
+            RosterCrewCount = rosterCrew,
+            DeadCommandCount = deadCommand,
+            DeadCrewCount = deadCrew,
 
             AnomaliesCount = anomaliesCount,
             ActiveArtifactsCount = dangerousArtifactNodes,
@@ -548,104 +646,230 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             TrashCount = trashCount,
             AverageCrewDamage = averageCrewDamage,
             TotalStationTiles = totalTiles,
+            MaterialStrengthScore = materialStrengthScore,
 
-            StrengthArmedCrew = CountArmedCrewNotAntags() * (comp != null && _protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out var typeProto) ? typeProto.StrengthArmedCrewCoefficient : 10f), // TODO: Магические числа в филды
-            StrengthSecurity = securityCount * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthSecurityCoefficient : 15f), // TODO: Магические числа в филды
-            StrengthCargo = cargoBalance * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthCargoCoefficient : 0.0005f), // TODO: Магические числа в филды
-            StrengthTechnology = researchTiers * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthTechnologyCoefficient : 3.0f), // TODO: Магические числа в филды
-            StationStrength = (CountArmedCrewNotAntags() * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthArmedCrewCoefficient : 10f)) + // TODO: Магические числа в филды
-                              (securityCount * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthSecurityCoefficient : 15f)) + // TODO: Магические числа в филды
-                              (cargoBalance * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthCargoCoefficient : 0.0005f)) + // TODO: Магические числа в филды
-                              (researchTiers * (comp != null && _protoManager.TryIndex(comp.StorytellerType.ToString(), out typeProto) ? typeProto.StrengthTechnologyCoefficient : 3.0f)) // TODO: Магические числа в филды
+            StrengthArmedCrew = strength.Armed,
+            StrengthSecurity = strength.Security,
+            StrengthCargo = strength.Economy,
+            StrengthTechnology = strength.Technology,
+            StrengthMaterials = strength.Materials,
+            StationStrength = strength.Total,
         };
     }
 
     public float CalculateCrewStress(ref StationMetrics metrics)
     {
-        if (metrics.TotalPlayers == 0)
+        if (metrics.TotalPlayers == 0 && metrics.CrewRosterCount == 0)
             return 0f;
 
-        // 1. Dead crew ratio (up to 35 points of stress)
-        float deadStress = Math.Clamp(((float)metrics.DeadCount / MathF.Max(1f, metrics.TotalPlayers)) * 35f, 0f, 35f); // TODO: Магические числа в филды
+        // Dead crew: command 40% + standard crew 60% of pool, vs total round roster
+        var commandDeadRatio = metrics.RosterCommandCount > 0
+            ? (float) metrics.DeadCommandCount / metrics.RosterCommandCount
+            : 0f;
+        var crewDeadRatio = metrics.RosterCrewCount > 0
+            ? (float) metrics.DeadCrewCount / metrics.RosterCrewCount
+            : 0f;
+        var deadStress = Math.Clamp(commandDeadRatio * StressDeadCommandPool, 0f, StressDeadCommandPool)
+                         + Math.Clamp(crewDeadRatio * StressDeadCrewPool, 0f, StressDeadCrewPool);
 
-        // 1.1. Ghost/Visiting ratio (up to 5 points of stress)
-        float ghostStress = Math.Clamp(((float)metrics.GhostCount / MathF.Max(1f, metrics.TotalPlayers)) * 5f, 0f, 5f); // TODO: Магические числа в филды
+        var ghostStress = Math.Clamp(
+            (float) metrics.GhostCount / MathF.Max(1f, metrics.TotalPlayers) * 5f,
+            0f,
+            5f);
 
+        var containmentStress = 0f;
+        if (metrics.SingularityActive || metrics.TeslaActive)
+            containmentStress += 5f;
 
-        // 2. Singularity/Tesla/Supermatter escape/integrity state (up to 10 points of stress)
-        float containmentStress = 0f;
-        if (metrics.SingularityActive)
+        if ((metrics.SingularityActive && !metrics.SingularityContained)
+            || (metrics.TeslaActive && !metrics.TeslaContained))
         {
-            containmentStress += metrics.SingularityContained ? 2f : 10f; // TODO: Магические числа в филды
-        }
-        if (metrics.TeslaActive)
-        {
-            containmentStress += metrics.TeslaContained ? 2f : 10f; // TODO: Магические числа в филды
-        }
-        if (metrics.SupermatterActive)
-        {
-            containmentStress += 3f + ((100f - metrics.SupermatterIntegrity) / 100f * 2f); // TODO: Магические числа в филды
-        }
-        containmentStress = Math.Clamp(containmentStress, 0f, 10f); // TODO: Магические числа в филды
-
-
-        // 3. Security force deficit (up to 10 points of stress)
-        float targetSecurity = metrics.TotalPlayers > 5 ? MathF.Max(1f, metrics.TotalPlayers * 0.1f) : 0f; // TODO: Магические числа в филды
-        float securityStress = 0f;
-        if (targetSecurity > 0)
-        {
-            float deficit = MathF.Max(0f, targetSecurity - metrics.SecurityCount);
-            securityStress = Math.Clamp((deficit / targetSecurity) * 10f, 0f, 10f); // TODO: Магические числа в филды
+            containmentStress += 5f;
         }
 
-        // 4. Economy Distress (up to 5 points of stress)
-        float economyStress = 0f;
-        if (metrics.CargoBalance < 1000) economyStress += 5f; // TODO: Магические числа в филды
+        containmentStress = Math.Clamp(containmentStress, 0f, StressContainmentMax);
 
-        // 5. Living Crew Damage (up to 5 points of stress)
-        float damageStress = Math.Clamp(metrics.AverageCrewDamage * 0.1f, 0f, 5f); // TODO: Магические числа в филды
+        var economyStress = 0f;
+        if (metrics.CargoBalance < StressEconomyCargoThreshold)
+        {
+            var deficitRatio = 1f - metrics.CargoBalance / StressEconomyCargoThreshold;
+            economyStress = Math.Clamp(deficitRatio * StressEconomyMax, 0f, StressEconomyMax);
+        }
 
-        // 6. Anomalies & active artifact nodes (up to 6 points of stress)
-        float anomalyStress = Math.Clamp((metrics.AnomaliesCount * 2f) + (metrics.ActiveArtifactsCount * 0.3f), 0f, 6f); // TODO: Магические числа в филды
+        var damageStress = Math.Clamp(metrics.AverageCrewDamage * 0.1f, 0f, 5f);
 
-        // 7. Station Dirt & Mess (up to 4 points of stress)
-        float totalStationTiles = MathF.Max(100f, metrics.TotalStationTiles);
-        float adjustedPuddles = MathF.Max(0f, metrics.PuddlesCount - 10f); // TODO: Магические числа в филды
-        float adjustedTrash = MathF.Max(0f, metrics.TrashCount - 100f); // TODO: Магические числа в филды
-        float footprintEquivalent = metrics.FootprintsCount * 0.1f;
-        float adjustedFootprints = MathF.Max(0f, footprintEquivalent - 10f); // TODO: Магические числа в филды
-        float puddleDensity = (adjustedPuddles + adjustedFootprints) / totalStationTiles;
-        float trashDensity = adjustedTrash / totalStationTiles;
-        // Standard density threshold: 1 puddle per 330 tiles (~0.003), 1 trash per 160 tiles (~0.006)
-        float messStress = Math.Clamp((puddleDensity / 0.003f) * 2f + (trashDensity / 0.006f) * 2f, 0f, 4f); // TODO: Магические числа в филды
+        var anomalyStress = Math.Clamp(
+            metrics.AnomaliesCount * 2f + metrics.ActiveArtifactsCount * 0.3f,
+            0f,
+            6f);
 
-        // 8. Power grid deficit (up to 10 points of stress)
-        float adjustedPowerDeficit = MathF.Max(0f, metrics.PowerGridDeficitRatio - 0.10f) / 0.90f; // TODO: Магические числа в филды
-        float powerStress = Math.Clamp(adjustedPowerDeficit * 10f, 0f, 10f); // TODO: Магические числа в филды
+        var totalStationTiles = MathF.Max(100f, metrics.TotalStationTiles);
+        var adjustedPuddles = MathF.Max(0f, metrics.PuddlesCount - 10f);
+        var adjustedTrash = MathF.Max(0f, metrics.TrashCount - 100f);
+        var puddleDensity = adjustedPuddles / totalStationTiles;
+        var trashDensity = adjustedTrash / totalStationTiles;
+        var messStress = Math.Clamp(
+            puddleDensity / 0.003f * 2f + trashDensity / 0.006f * 2f,
+            0f,
+            StressMessMax);
 
-        // TODO: Обьединить опасные газы и неподходящую атмосферу в одино значение стресса
-        // 9. Atmosphere breach / Spaced tiles (up to 10 points of stress)
-        float breachStress = Math.Clamp(metrics.AtmosphereBreachRatio * 50f, 0f, 10f); // TODO: Магические числа в филды
+        var adjustedPowerDeficit = MathF.Max(0f, metrics.PowerGridDeficitRatio - 0.10f) / 0.90f;
+        var powerStress = Math.Clamp(adjustedPowerDeficit * StressPowerMax, 0f, StressPowerMax);
 
-        // 10. Dangerous gases / Toxic air (up to 10 points of stress)
-        float gasStress = Math.Clamp(metrics.DangerousGasesRatio * 100f, 0f, 10f); // TODO: Магические числа в филды
-
+        var atmosphereStress = Math.Clamp(
+            metrics.AtmosphereUnsafeRatio * StressAtmosphereMax,
+            0f,
+            StressAtmosphereMax);
 
         metrics.StressDead = deadStress;
         metrics.StressGhost = ghostStress;
         metrics.StressContainment = containmentStress;
-        metrics.StressSecurity = securityStress;
         metrics.StressEconomy = economyStress;
         metrics.StressDamage = damageStress;
         metrics.StressAnomaly = anomalyStress;
         metrics.StressMess = messStress;
         metrics.StressPower = powerStress;
-        metrics.StressBreach = breachStress;
-        metrics.StressGas = gasStress;
+        metrics.StressAtmosphere = atmosphereStress;
 
-
-        float totalStress = deadStress + ghostStress + containmentStress + securityStress + economyStress + damageStress + anomalyStress + messStress + powerStress + breachStress + gasStress;
+        var totalStress = deadStress + ghostStress + containmentStress + economyStress + damageStress
+                          + anomalyStress + messStress + powerStress + atmosphereStress;
         return Math.Clamp(totalStress, 0f, 100f);
+    }
+
+    private readonly record struct NormalizedStationStrength(
+        float Armed,
+        float Security,
+        float Economy,
+        float Technology,
+        float Materials,
+        float Total);
+
+    private NormalizedStationStrength CalculateNormalizedStationStrength(
+        int aliveCount,
+        int armedCrewCount,
+        int securityCount,
+        int cargoBalance,
+        float researchScore,
+        float materialScore,
+        StorytellerTypePrototype? typeProto)
+    {
+        var armedScale = typeProto?.StrengthArmedCrewCoefficient ?? ArmedCrewFullScale;
+        var securityScale = typeProto?.StrengthSecurityCoefficient ?? SecurityFullScale;
+        var cargoScale = typeProto?.StrengthCargoFullScale ?? CargoFullScale;
+        var materialsScale = typeProto?.StrengthMaterialsFullScale ?? MaterialsFullScale;
+
+        EnsureResearchStorytellerBoundsCache();
+        var techMax = typeProto?.StrengthTechnologyFullScale > 0f
+            ? typeProto.StrengthTechnologyFullScale
+            : _maxResearchStorytellerScore;
+
+        var dynamicArmedScale = MathF.Max(armedScale, aliveCount * 0.25f);
+
+        var dynamicSecurityScale = MathF.Max(securityScale, aliveCount * 0.12f);
+
+        var armed = StrengthCapArmedCrew * Math.Clamp(armedCrewCount / MathF.Max(1f, dynamicArmedScale), 0f, 1f);
+        var security = StrengthCapSecurity * Math.Clamp(securityCount / MathF.Max(1f, dynamicSecurityScale), 0f, 1f);
+        var economy = StrengthCapEconomy * Math.Clamp(cargoBalance / MathF.Max(1f, cargoScale), 0f, 1f);
+        var technology = StrengthCapTechnology * Math.Clamp(researchScore / MathF.Max(1f, techMax), 0f, 1f);
+        var materials = StrengthCapMaterials * Math.Clamp(materialScore / MathF.Max(1f, materialsScale), 0f, 1f);
+
+        var total = Math.Clamp(armed + security + economy + technology + materials, 0f, StationStrengthMax);
+        return new NormalizedStationStrength(armed, security, economy, technology, materials, total);
+    }
+
+    private float CalculateMaterialStrengthScore()
+    {
+        var aggregated = new Dictionary<ProtoId<MaterialPrototype>, int>();
+        var storageQuery = EntityQueryEnumerator<MaterialStorageComponent, TransformComponent>();
+        while (storageQuery.MoveNext(out var uid, out var storage, out var xform))
+        {
+            if (xform.GridUid == null || _stationSystem.GetOwningStation(xform.GridUid.Value) == null)
+                continue;
+
+            foreach (var (material, amount) in _materialStorage.GetStoredMaterials((uid, storage), localOnly: false))
+            {
+                aggregated[material] = aggregated.GetValueOrDefault(material) + amount;
+            }
+        }
+
+        var score = 0f;
+        foreach (var (material, amount) in aggregated)
+            score += amount * GetMaterialStrengthWeight(material);
+
+        return score;
+    }
+
+    private float GetMaterialStrengthWeight(ProtoId<MaterialPrototype> materialId)
+    {
+        if (_protoManager.TryIndex<StorytellerMaterialWeightPrototype>(materialId, out var weightOverride))
+            return weightOverride.Weight;
+
+        if (!_protoManager.TryIndex(materialId, out MaterialPrototype? proto))
+            return MaterialStrengthUnknownFallback;
+
+        if (proto.StorytellerStrengthWeight > 0f)
+            return proto.StorytellerStrengthWeight;
+
+        return MathF.Max(MaterialStrengthMinFallback, (float) (proto.Price / MaterialStrengthPriceDivisor));
+    }
+
+    private void CountCrewRosterDeaths(
+        out int rosterCount,
+        out int rosterCommand,
+        out int rosterCrew,
+        out int deadCommand,
+        out int deadCrew)
+    {
+        rosterCount = 0;
+        rosterCommand = 0;
+        rosterCrew = 0;
+        deadCommand = 0;
+        deadCrew = 0;
+
+        var mindQuery = EntityQueryEnumerator<MindComponent>();
+        while (mindQuery.MoveNext(out var mindId, out var mind))
+        {
+            if (!_jobSystem.MindTryGetJob(mindId, out var job))
+                continue;
+
+            if (job.JobEntity != null)
+                continue;
+
+            var isCommand = JobGrantsCommandStaff(job);
+            rosterCount++;
+            if (isCommand)
+                rosterCommand++;
+            else
+                rosterCrew++;
+
+            if (mind.OwnedEntity is not { } body || !Exists(body))
+                continue;
+
+            if (!TryComp<MobStateComponent>(body, out var mobState) || mobState.CurrentState != MobState.Dead)
+                continue;
+
+            if (isCommand)
+                deadCommand++;
+            else
+                deadCrew++;
+        }
+    }
+
+    private bool JobGrantsCommandStaff(JobPrototype job)
+    {
+        foreach (var special in job.Special)
+        {
+            if (special is not AddComponentSpecial componentSpecial)
+                continue;
+
+            foreach (var component in componentSpecial.Components)
+            {
+                if (_componentFactory.GetComponent(component.Value) is CommandStaffComponent)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     private bool IsSecurityJob(JobPrototype job)
@@ -676,8 +900,15 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (!_protoManager.TryIndex<StorytellerMetadataPrototype>(proto.ID, out var metadata))
                 continue;
 
-            if (comp.CrewStress < metadata.MinStress || comp.CrewStress > metadata.MaxStress)
+            if (metadata.ThreatType is StorytellerThreatType.MajorAntag or StorytellerThreatType.MajorCalm)
+            {
+                if (metrics.StationStrength < metadata.MinStationStrength)
+                    continue;
+            }
+            else if (comp.CrewStress > metadata.MaxStress)
+            {
                 continue;
+            }
 
             // Evac/roundend checks
             if (proto.TryGetComponent<StationEventComponent>(out var stationEvent, EntityManager.ComponentFactory))
@@ -857,6 +1088,8 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         // Metrics & Logging
         RecordEventTriggered(proto.ID, metadata);
+        var metrics = CalculateStationMetrics(entity.Comp);
+        LogTelemetryTick(entity.Comp, metrics, false);
     }
 
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
@@ -881,15 +1114,13 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         leaveRate = _leaveTimestamps.Count;
     }
 
-    private void CalculateGridAtmosMetrics(out float breachRatio, out float dangerousGasesRatio, out int totalTiles)
+    private void CalculateGridAtmosMetrics(out float unsafeRatio, out int totalTiles)
     {
-        breachRatio = 0f;
-        dangerousGasesRatio = 0f;
+        unsafeRatio = 0f;
         totalTiles = 0;
 
         var totalSensors = 0;
-        var breachedSensors = 0;
-        var dangerousSensors = 0;
+        var unsafeSensors = 0;
 
         // This is highly accurate and ignores tiles under walls or unsimulated areas.
         var monitorQuery = EntityQueryEnumerator<Content.Server.Atmos.Monitor.Components.AtmosMonitorComponent, TransformComponent>();
@@ -913,7 +1144,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
             if (air == null)
             {
-                breachedSensors++;
+                unsafeSensors++;
             }
             else
             {
@@ -952,22 +1183,14 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                     state = monitor.LastAlarmState;
                 }
 
-                // Map alert state to breach/danger metrics
-                if (state == Content.Shared.Atmos.Monitor.AtmosAlarmType.Danger)
-                {
-                    breachedSensors++;
-                }
-                else if (state == Content.Shared.Atmos.Monitor.AtmosAlarmType.Warning)
-                {
-                    dangerousSensors++;
-                }
+                if (state != Content.Shared.Atmos.Monitor.AtmosAlarmType.Normal)
+                    unsafeSensors++;
             }
         }
 
         if (totalSensors > 0)
         {
-            breachRatio = (float)breachedSensors / totalSensors;
-            dangerousGasesRatio = (float)dangerousSensors / totalSensors;
+            unsafeRatio = (float) unsafeSensors / totalSensors;
             totalTiles = totalSensors;
         }
     }
@@ -993,29 +1216,32 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         powerDeficitRatio = totalApcs > 0 ? (float)deadApcs / totalApcs : 0f;
     }
 
-    private bool IsSecurity(EntityUid mob)
-    {
-        if (_mindSystem.TryGetMind(mob, out var mindId, out _))
-        {
-            if (_jobSystem.MindTryGetJob(mindId, out var job) && IsSecurityJob(job))
-                return true;
-        }
-        return false;
-    }
-
-    private bool IsValidCrewOrBorg(EntityUid mob, bool excludeAntags = false)
+    /// <summary>
+    /// Round-start station crew used for armed strength / weapon metrics.
+    /// Excludes NPCs, visitors, ghost-role entities, security (tracked separately), and optionally antags.
+    /// </summary>
+    private bool IsStationCrewMob(EntityUid mob, bool excludeAntags)
     {
         if (!HasComp<HumanoidAppearanceComponent>(mob) && !HasComp<BorgChassisComponent>(mob))
             return false;
 
-        if (IsSecurity(mob))
+        if (HasComp<HTNComponent>(mob))
             return false;
 
-        if (excludeAntags && _mindSystem.TryGetMind(mob, out var mindId, out _))
-        {
-            if (_roleSystem.MindIsAntagonist(mindId))
-                return false;
-        }
+        if (!_mindSystem.TryGetMind(mob, out var mindId, out _))
+            return false;
+
+        if (!_jobSystem.MindTryGetJob(mindId, out var job))
+            return false;
+
+        if (job?.JobEntity != null)
+            return false;
+
+        if (job == null || IsSecurityJob(job))
+            return false;
+
+        if (excludeAntags && _roleSystem.MindIsAntagonist(mindId))
+            return false;
 
         return true;
     }
@@ -1029,12 +1255,15 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         var gunQuery = EntityQueryEnumerator<GunComponent>();
         while (gunQuery.MoveNext(out var uid, out _))
         {
+            if (IsToyWeapon(uid))
+                continue;
+
             var mob = FindCarryingMob(uid, xformQuery, mobQuery);
             if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
             {
                 if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
                 {
-                    if (IsValidCrewOrBorg(mob.Value, excludeAntags: false))
+                    if (IsStationCrewMob(mob.Value, excludeAntags: true))
                     {
                         armedMobs.Add(mob.Value);
                     }
@@ -1045,17 +1274,33 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         var meleeQuery = EntityQueryEnumerator<MeleeWeaponComponent>();
         while (meleeQuery.MoveNext(out var uid, out var melee))
         {
+            if (IsFirearm(uid))
+            {
+                var mob = FindCarryingMob(uid, xformQuery, mobQuery);
+                if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+                {
+                    if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
+                    {
+                        if (IsStationCrewMob(mob.Value, excludeAntags: true))
+                        {
+                            armedMobs.Add(mob.Value);
+                        }
+                    }
+                }
+                continue;
+            }
+
             if (melee.Damage.GetTotal().Float() <= 15) // TODO: Магическое число должно быть обьявлено переменной
                 continue;
 
-            var mob = FindCarryingMob(uid, xformQuery, mobQuery);
-            if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+            var mob2 = FindCarryingMob(uid, xformQuery, mobQuery);
+            if (mob2 != null && mobQuery.TryGetComponent(mob2.Value, out var mobState2))
             {
-                if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
+                if (mobState2.CurrentState == MobState.Alive || mobState2.CurrentState == MobState.Critical)
                 {
-                    if (IsValidCrewOrBorg(mob.Value, excludeAntags: false))
+                    if (IsStationCrewMob(mob2.Value, excludeAntags: true))
                     {
-                        armedMobs.Add(mob.Value);
+                        armedMobs.Add(mob2.Value);
                     }
                 }
             }
@@ -1072,12 +1317,15 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         var gunQuery = EntityQueryEnumerator<GunComponent>();
         while (gunQuery.MoveNext(out var uid, out _))
         {
+            if (IsToyWeapon(uid))
+                continue;
+
             var mob = FindCarryingMob(uid, xformQuery, mobQuery);
             if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
             {
                 if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
                 {
-                    if (IsValidCrewOrBorg(mob.Value, excludeAntags: true))
+                    if (IsStationCrewMob(mob.Value, excludeAntags: true))
                     {
                         armedMobs.Add(mob.Value);
                     }
@@ -1088,22 +1336,54 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         var meleeQuery = EntityQueryEnumerator<MeleeWeaponComponent>();
         while (meleeQuery.MoveNext(out var uid, out var melee))
         {
+            if (IsFirearm(uid))
+            {
+                var mob = FindCarryingMob(uid, xformQuery, mobQuery);
+                if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+                {
+                    if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
+                    {
+                        if (IsStationCrewMob(mob.Value, excludeAntags: true))
+                        {
+                            armedMobs.Add(mob.Value);
+                        }
+                    }
+                }
+                continue;
+            }
+
             if (melee.Damage.GetTotal().Float() <= 10)
                 continue;
 
-            var mob = FindCarryingMob(uid, xformQuery, mobQuery);
-            if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+            var mob2 = FindCarryingMob(uid, xformQuery, mobQuery);
+            if (mob2 != null && mobQuery.TryGetComponent(mob2.Value, out var mobState2))
             {
-                if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
+                if (mobState2.CurrentState == MobState.Alive || mobState2.CurrentState == MobState.Critical)
                 {
-                    if (IsValidCrewOrBorg(mob.Value, excludeAntags: true))
+                    if (IsStationCrewMob(mob2.Value, excludeAntags: true))
                     {
-                        armedMobs.Add(mob.Value);
+                        armedMobs.Add(mob2.Value);
                     }
                 }
             }
         }
         return armedMobs.Count;
+    }
+
+    private bool IsToyWeapon(EntityUid uid)
+    {
+        return HasComp<PacifismAllowedGunComponent>(uid);
+    }
+
+    private bool IsFirearm(EntityUid uid)
+    {
+        if (IsToyWeapon(uid))
+            return false;
+
+        if (HasComp<GunComponent>(uid))
+            return true;
+
+        return false;
     }
 
     private EntityUid? FindCarryingMob(EntityUid uid, EntityQuery<TransformComponent> xformQuery, EntityQuery<MobStateComponent> mobQuery)
@@ -1183,21 +1463,23 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         var singuloQuery = EntityQueryEnumerator<SingularityComponent, TransformComponent>();
         while (singuloQuery.MoveNext(out _, out _, out var xform))
         {
+            if (xform.GridUid == null || _stationSystem.GetOwningStation(xform.GridUid.Value) == null)
+                continue;
+
             singuloActive = true;
             if (!fieldsExist || !IsNearActiveContainmentField(xform))
-            {
                 singuloContained = false;
-            }
         }
 
         var teslaQuery = EntityQueryEnumerator<TeslaEnergyBallComponent, TransformComponent>();
         while (teslaQuery.MoveNext(out _, out _, out var xform))
         {
+            if (xform.GridUid == null || _stationSystem.GetOwningStation(xform.GridUid.Value) == null)
+                continue;
+
             teslaActive = true;
             if (!fieldsExist || !IsNearActiveContainmentField(xform))
-            {
                 teslaContained = false;
-            }
         }
     }
 
@@ -1209,7 +1491,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (entityXform.MapID == fieldXform.MapID)
             {
                 var distance = (entityXform.WorldPosition - fieldXform.WorldPosition).Length();
-                if (distance <= 10.0f) // Within 10 meters of any active containment field
+                if (distance <= 10.0f)
                 {
                     return true;
                 }
@@ -1218,29 +1500,43 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         return false;
     }
 
-    private float GetSupermatterIntegrity(out bool active)
+    private void EnsureResearchStorytellerBoundsCache()
     {
-        var minIntegrity = 100f;
-        var smQuery = EntityQueryEnumerator<SupermatterComponent, TransformComponent>();
-        var anySm = false;
-        while (smQuery.MoveNext(out _, out var sm, out var xform))
+        if (_maxResearchStorytellerScore > 0f)
+            return;
+
+        _maxResearchStorytellerScore = 1f;
+        _totalTechnologyCount = 0;
+
+        foreach (var tech in _protoManager.EnumeratePrototypes<Content.Shared.Research.Prototypes.TechnologyPrototype>())
         {
-            if (xform.GridUid == null || _stationSystem.GetOwningStation(xform.GridUid.Value) == null)
+            if (tech.Hidden)
                 continue;
 
-            anySm = true;
-            if (sm.Durability.Float() < minIntegrity)
-            {
-                minIntegrity = sm.Durability.Float();
-            }
+            _totalTechnologyCount++;
+            _maxResearchStorytellerScore += GetTechnologyStorytellerWeight(tech);
         }
-        active = anySm;
-        return anySm ? minIntegrity : 100f;
     }
 
-    private int GetUnlockedResearchCount()
+    private float GetTechnologyStorytellerWeight(Content.Shared.Research.Prototypes.TechnologyPrototype tech)
     {
+        var tierWeight = tech.Tier switch
+        {
+            1 => 1f,
+            2 => 3f,
+            3 => 8f,
+            _ => 1f,
+        };
 
+        var disciplineMult = 1f;
+        if (_protoManager.TryIndex(tech.Discipline, out Content.Shared.Research.Prototypes.TechDisciplinePrototype? discipline))
+            disciplineMult = discipline.StorytellerUsefulness;
+
+        return tierWeight * disciplineMult;
+    }
+
+    private float CalculateResearchStorytellerScore(out int unlockedTechnologyCount)
+    {
         var uniqueTechs = new HashSet<string>();
         var techQuery = EntityQueryEnumerator<TechnologyDatabaseComponent, TransformComponent>();
         while (techQuery.MoveNext(out _, out var techDb, out var techXform))
@@ -1249,10 +1545,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 continue;
 
             foreach (var techId in techDb.UnlockedTechnologies)
-            {
                 uniqueTechs.Add(techId.Id);
-            }
         }
+
+        unlockedTechnologyCount = uniqueTechs.Count;
 
         var totalScore = 0f;
         foreach (var techId in uniqueTechs)
@@ -1260,27 +1556,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (!_protoManager.TryIndex<Content.Shared.Research.Prototypes.TechnologyPrototype>(techId, out var techProto))
                 continue;
 
-            // Tier weight: T3 is much more important than T1
-            var tierWeight = techProto.Tier switch
-            {
-                1 => 1f,
-                2 => 3f,
-                3 => 8f,
-                _ => 1f
-            };
-
-            // Discipline weight: loaded dynamically from the discipline prototype to avoid hardcoding IDs
-            var disciplineMult = 1.0f;
-            if (_protoManager.TryIndex(techProto.Discipline, out var disciplineProto))
-            {
-                disciplineMult = disciplineProto.StorytellerUsefulness;
-            }
-
-            totalScore += tierWeight * disciplineMult;
+            totalScore += GetTechnologyStorytellerWeight(techProto);
         }
 
-        return (int)MathF.Round(totalScore);
-
+        return totalScore;
     }
 
     private Dictionary<string, int> GetCrewDistribution()
@@ -1318,6 +1597,180 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         }
         return dist;
     }
+
+    private void LogStarvationDiagnostics(StorytellerRuleComponent comp, StationMetrics metrics, Dictionary<EntityPrototype, StorytellerMetadataPrototype>? eligibleEvents = null)
+    {
+        var currentDuration = GameTicker.RoundDuration();
+        _sawmill.Warning($"Storyteller Starvation Diagnostics: Budget={comp.ThreatBudget}, Pacing={comp.PacingState}, Players={metrics.TotalPlayers}, RoundDuration={currentDuration.TotalMinutes:F1}m");
+
+        if (eligibleEvents != null && eligibleEvents.Count > 0)
+        {
+            _sawmill.Warning($"Found {eligibleEvents.Count} eligible events, calculating weights:");
+
+            var highBudgetThreshold = 40f;
+            var majorMult = 8f;
+            var minorMult = 0.1f;
+            var scalingFactor = 50f;
+
+            if (_protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out var typeProto))
+            {
+                highBudgetThreshold = typeProto.HighBudgetThreshold;
+                majorMult = typeProto.MajorThreatWeightMultiplier;
+                minorMult = typeProto.MinorThreatWeightMultiplier;
+                scalingFactor = typeProto.StationStrengthScalingFactor;
+            }
+
+            foreach (var (proto, metadata) in eligibleEvents)
+            {
+                var baseWeight = 10f;
+                if (proto.TryGetComponent<StationEventComponent>(out var stationEvent, EntityManager.ComponentFactory))
+                {
+                    baseWeight = stationEvent.Weight;
+                }
+
+                var weight = baseWeight * metadata.WeightModifier;
+
+                if (comp.ThreatBudget >= highBudgetThreshold)
+                {
+                    if (metadata.ThreatType == StorytellerThreatType.MajorAntag ||
+                        metadata.ThreatType == StorytellerThreatType.MajorCalm)
+                    {
+                        var strengthMult = 1f + (metrics.StationStrength / scalingFactor);
+                        weight *= majorMult * strengthMult;
+                    }
+                    else if (metadata.ThreatType == StorytellerThreatType.Neutral ||
+                             metadata.ThreatType == StorytellerThreatType.MinorCalm)
+                    {
+                        weight *= minorMult;
+                    }
+                }
+
+                _sawmill.Warning($"  Event: {proto.ID}, Type: {metadata.ThreatType}, BaseWeight: {baseWeight}, FinalWeight: {weight}, Cost: {metadata.ThreatCost}");
+            }
+        }
+
+        var skippedCount = 0;
+        var totalCount = 0;
+        var reasons = new Dictionary<string, int>();
+
+        foreach (var proto in _protoManager.EnumeratePrototypes<EntityPrototype>())
+        {
+            if (proto.Abstract)
+                continue;
+
+            if (!_protoManager.TryIndex<StorytellerMetadataPrototype>(proto.ID, out var metadata))
+                continue;
+
+            totalCount++;
+
+            if (metadata.ThreatType is StorytellerThreatType.MajorAntag or StorytellerThreatType.MajorCalm)
+            {
+                if (metrics.StationStrength < metadata.MinStationStrength)
+                {
+                    IncrementReason("StationStrength < MinStationStrength");
+                    continue;
+                }
+            }
+            else if (comp.CrewStress > metadata.MaxStress)
+            {
+                IncrementReason("CrewStress > MaxStress");
+                continue;
+            }
+
+            if (proto.TryGetComponent<StationEventComponent>(out var stationEvent, EntityManager.ComponentFactory))
+            {
+                if (metrics.TotalPlayers < stationEvent.MinimumPlayers)
+                {
+                    IncrementReason($"TotalPlayers < MinimumPlayers ({stationEvent.MinimumPlayers})");
+                    continue;
+                }
+
+                if (currentDuration.TotalMinutes < stationEvent.EarliestStart)
+                {
+                    IncrementReason($"RoundDuration < EarliestStart ({stationEvent.EarliestStart}m)");
+                    continue;
+                }
+
+                var lastTime = _eventManager.TimeSinceLastEvent(proto);
+                if (lastTime != TimeSpan.Zero && currentDuration.TotalMinutes < stationEvent.ReoccurrenceDelay + lastTime.TotalMinutes)
+                {
+                    IncrementReason($"Within ReoccurrenceDelay ({stationEvent.ReoccurrenceDelay}m)");
+                    continue;
+                }
+
+                if (_roundEnd.IsRoundEndRequested() && !stationEvent.OccursDuringRoundEnd)
+                {
+                    IncrementReason("RoundEndRequested && !OccursDuringRoundEnd");
+                    continue;
+                }
+            }
+
+            if (comp.PacingState == StorytellerPacingState.Recovery)
+            {
+                if (metadata.ThreatType != StorytellerThreatType.Helpful && metadata.ThreatType != StorytellerThreatType.Neutral)
+                {
+                    IncrementReason("RecoveryPacing: Only Helpful/Neutral allowed");
+                    continue;
+                }
+            }
+            else if (comp.PacingState == StorytellerPacingState.Relaxation)
+            {
+                if (metadata.ThreatType == StorytellerThreatType.MajorCalm || metadata.ThreatType == StorytellerThreatType.MajorAntag)
+                {
+                    IncrementReason("RelaxationPacing: Major threats forbidden");
+                    continue;
+                }
+            }
+            else if (comp.PacingState == StorytellerPacingState.Peak)
+            {
+                if (metadata.ThreatType == StorytellerThreatType.MajorAntag)
+                {
+                    IncrementReason("PeakPacing: Major Antags forbidden");
+                    continue;
+                }
+            }
+
+            var preservationThreshold = 40f;
+            if (_protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out var typeProto))
+            {
+                preservationThreshold = typeProto.BuildUpPreservationThreshold;
+            }
+
+            if (comp.PacingState == StorytellerPacingState.BuildUp && comp.ThreatBudget < preservationThreshold)
+            {
+                if (metadata.ThreatType != StorytellerThreatType.Helpful &&
+                    metadata.ThreatType != StorytellerThreatType.Neutral &&
+                    metadata.ThreatCost > 0f)
+                {
+                    IncrementReason("BuildUpPreservation: Budget preserved");
+                    continue;
+                }
+            }
+
+            if (metadata.ThreatType != StorytellerThreatType.Helpful && metadata.ThreatCost > comp.ThreatBudget)
+            {
+                IncrementReason($"ThreatCost ({metadata.ThreatCost}) > ThreatBudget");
+                continue;
+            }
+
+            if (GameTicker.IsGameRuleActive(proto.ID))
+            {
+                IncrementReason("GameRuleActive");
+                continue;
+            }
+        }
+
+        foreach (var (reason, count) in reasons)
+        {
+            _sawmill.Warning($"  Skipped {count} events due to: {reason}");
+        }
+
+        void IncrementReason(string reason)
+        {
+            reasons[reason] = reasons.GetValueOrDefault(reason) + 1;
+            skippedCount++;
+        }
+    }
 }
 
 public struct StationMetrics
@@ -1329,8 +1782,7 @@ public struct StationMetrics
     public int SecurityCount;
     public int CargoBalance;
     public int SciencePoints;
-    public float AtmosphereBreachRatio;
-    public float DangerousGasesRatio;
+    public float AtmosphereUnsafeRatio;
     public float PowerGridDeficitRatio;
     public int CrewWeaponCount;
     public int ActiveAntagonistCount;
@@ -1339,9 +1791,16 @@ public struct StationMetrics
     public bool SingularityContained;
     public bool TeslaActive;
     public bool TeslaContained;
-    public float SupermatterIntegrity;
-    public bool SupermatterActive;
-    public int UnlockedResearchTiers;
+    public float ResearchStorytellerScore;
+    public int UnlockedTechnologyCount;
+    public int TotalTechnologyCount;
+    public float MaxResearchStorytellerScore;
+    public int CrewRosterCount;
+    public int RosterCommandCount;
+    public int RosterCrewCount;
+    public int DeadCommandCount;
+    public int DeadCrewCount;
+    public float MaterialStrengthScore;
     public Dictionary<string, int> CrewDistribution;
     public float PlayerJoinRate;
     public float PlayerLeaveRate;
@@ -1356,7 +1815,6 @@ public struct StationMetrics
     public float StationStrength;
     public float StressDead;
     public float StressContainment;
-    public float StressSecurity;
     public float StressEconomy;
     public float StressDamage;
     public float StressAnomaly;
@@ -1365,8 +1823,8 @@ public struct StationMetrics
     public float StrengthSecurity;
     public float StrengthCargo;
     public float StrengthTechnology;
+    public float StrengthMaterials;
     public float StressPower;
-    public float StressBreach;
-    public float StressGas;
+    public float StressAtmosphere;
     public float StressGhost;
 }

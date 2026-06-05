@@ -13,7 +13,7 @@
   peakMaxMinutes: 15
   recoveryMinMinutes: 15
   recoveryMaxMinutes: 30
-  buildUpPreservationThreshold: 50
+  buildUpPreservationThreshold: 30
   strengthArmedCrewCoefficient: 8
   strengthSecurityCoefficient: 12
   highBudgetThreshold: 50
@@ -34,7 +34,7 @@
   peakMaxMinutes: 24
   recoveryMinMinutes: 8
   recoveryMaxMinutes: 16
-  buildUpPreservationThreshold: 40
+  buildUpPreservationThreshold: 50
   strengthArmedCrewCoefficient: 10
   strengthSecurityCoefficient: 15
   highBudgetThreshold: 60
@@ -55,7 +55,7 @@
   peakMaxMinutes: 30
   recoveryMinMinutes: 5
   recoveryMaxMinutes: 10
-  buildUpPreservationThreshold: 30
+  buildUpPreservationThreshold: 100
   strengthArmedCrewCoefficient: 12
   strengthSecurityCoefficient: 18
   highBudgetThreshold: 30

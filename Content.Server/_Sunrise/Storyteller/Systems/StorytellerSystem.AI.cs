@@ -67,8 +67,7 @@ public sealed partial class StorytellerSystem
             PacingState = entity.Comp.PacingState.ToString(),
             RecentEvents = entity.Comp.EventHistory.Skip(Math.Max(0, entity.Comp.EventHistory.Count - 10)).ToList(),
 
-            AtmosphereBreachRatio = metrics.AtmosphereBreachRatio,
-            DangerousGasesRatio = metrics.DangerousGasesRatio,
+            AtmosphereUnsafeRatio = metrics.AtmosphereUnsafeRatio,
             PowerGridDeficitRatio = metrics.PowerGridDeficitRatio,
             CrewWeaponCount = metrics.CrewWeaponCount,
             ActiveAntagonistCount = metrics.ActiveAntagonistCount,
@@ -77,9 +76,13 @@ public sealed partial class StorytellerSystem
             SingularityContained = metrics.SingularityContained,
             TeslaActive = metrics.TeslaActive,
             TeslaContained = metrics.TeslaContained,
-            SupermatterIntegrity = metrics.SupermatterIntegrity,
-            UnlockedResearchTiers = metrics.UnlockedResearchTiers,
+            ResearchStorytellerScore = metrics.ResearchStorytellerScore,
+            UnlockedTechnologyCount = metrics.UnlockedTechnologyCount,
+            TotalTechnologyCount = metrics.TotalTechnologyCount,
+            MaxResearchStorytellerScore = metrics.MaxResearchStorytellerScore,
             StationStrength = metrics.StationStrength,
+            CrewRosterCount = metrics.CrewRosterCount,
+            MaterialStrengthScore = metrics.MaterialStrengthScore,
             CrewDistribution = metrics.CrewDistribution,
             PlayerJoinRate = metrics.PlayerJoinRate,
             PlayerLeaveRate = metrics.PlayerLeaveRate,
@@ -173,8 +176,7 @@ public sealed partial class StorytellerSystem
         public string PacingState { get; set; } = string.Empty;
         public List<string> RecentEvents { get; set; } = new();
 
-        public float AtmosphereBreachRatio { get; set; }
-        public float DangerousGasesRatio { get; set; }
+        public float AtmosphereUnsafeRatio { get; set; }
         public float PowerGridDeficitRatio { get; set; }
         public int CrewWeaponCount { get; set; }
         public int ActiveAntagonistCount { get; set; }
@@ -183,9 +185,13 @@ public sealed partial class StorytellerSystem
         public bool SingularityContained { get; set; }
         public bool TeslaActive { get; set; }
         public bool TeslaContained { get; set; }
-        public float SupermatterIntegrity { get; set; }
-        public int UnlockedResearchTiers { get; set; }
+        public float ResearchStorytellerScore { get; set; }
+        public int UnlockedTechnologyCount { get; set; }
+        public int TotalTechnologyCount { get; set; }
+        public float MaxResearchStorytellerScore { get; set; }
         public float StationStrength { get; set; }
+        public int CrewRosterCount { get; set; }
+        public float MaterialStrengthScore { get; set; }
         public Dictionary<string, int> CrewDistribution { get; set; } = new();
         public float PlayerJoinRate { get; set; }
         public float PlayerLeaveRate { get; set; }
