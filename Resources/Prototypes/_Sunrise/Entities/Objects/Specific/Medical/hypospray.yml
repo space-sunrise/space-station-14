@@ -384,9 +384,9 @@
         maxVol: 15
         reagents:
         - ReagentId: Beer
-          Quantity: 13
+          Quantity: 11
         - ReagentId: Vodkizine
-          Quantity: 2
+          Quantity: 4
 
 - type: entity
   name: coal auto-injector
