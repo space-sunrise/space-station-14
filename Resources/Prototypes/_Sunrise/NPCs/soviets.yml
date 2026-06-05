@@ -7,6 +7,7 @@
   - MobPassiveRegen
   name: comrade
   id: MobSovietBase
+  suffix: AI, Soviet
   categories: [ Spawner ]
   components:
   - type: Climbing
@@ -1738,6 +1739,7 @@
   id: MobSovietBearBase
   parent: MobBearSpace
   description: Smells like booze.
+  suffix: AI, Soviet
   components:
   - type: NpcFactionMember
     factions:

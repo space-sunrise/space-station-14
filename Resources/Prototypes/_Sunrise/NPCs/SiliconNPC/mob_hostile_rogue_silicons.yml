@@ -49,6 +49,7 @@
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleRanged
   id: MobRogueSiliconBase
+  suffix: AI, Rogue silicon
   components:
   - type: Damageable
     damageContainer: Silicon
@@ -736,6 +737,11 @@
   - type: CanMoveInAir
   - type: ProtectedFromStepTriggers
   - type: NoSlip
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 30
   - type: Sprite
     drawdepth: Mobs
     sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
@@ -749,7 +755,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      10: Critical
+      15: Critical
       80: Dead
   - type: Fixtures
     fixtures:
@@ -789,6 +795,16 @@
       params:
         volume: 1
         variation: 0.050
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Warfarin
+          Quantity: 90
+        maxVol: 90
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 2
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -802,6 +818,7 @@
   id: MobSyndicateViscerator
   name: viscerator
   description: A compact syndicate strike drone built to rush targets after deployment.
+  suffix: AI, Syndicate
   components:
   - type: Damageable
     damageContainer: Silicon
@@ -827,7 +844,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 300
+        Quantity: 30
   - type: Sprite
     drawdepth: Mobs
     sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
@@ -892,6 +909,16 @@
       params:
         volume: 1
         variation: 0.050
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Warfarin
+          Quantity: 90
+        maxVol: 90
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1
   - type: Speech
     speechSounds: SyndieBorg
   - type: Vocal
@@ -1328,7 +1355,7 @@
       130: 0.5
   - type: BatteryAmmoProvider
     proto: RedLightLaser
-    fireCost: 10
+    fireCost: 6
   - type: Gun
     showExamineText: false
     fireRate: 8
@@ -2341,11 +2368,11 @@
       melee:
         reagents:
         - ReagentId: Nocturine
-          Quantity: 60
-        maxVol: 60
+          Quantity: 120
+        maxVol: 120
   - type: MeleeChemicalInjector
     solution: melee
-    transferAmount: 2
+    transferAmount: 3
 
 - type: entity
   id: MobRogueSiliconT2DerelictBorgSyndicateMedical
