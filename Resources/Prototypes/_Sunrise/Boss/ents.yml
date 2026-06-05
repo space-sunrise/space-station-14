@@ -54,6 +54,13 @@
     scale: 2
     shape: Circle
     requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: HellSpawnBoss

@@ -1334,6 +1334,15 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
   - type: GibOnTrigger
@@ -1506,6 +1515,15 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
   - type: GibOnTrigger
@@ -1626,6 +1644,18 @@
     scale: 2
     shape: Circle
     requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: RadarBlip
   - type: TTS
     voice: Khajiit
   - type: Tag

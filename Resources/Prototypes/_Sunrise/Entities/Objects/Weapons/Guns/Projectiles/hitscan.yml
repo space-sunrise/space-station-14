@@ -143,16 +143,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: 0.3
+    armorPenetration: 0.4
     damage:
       types:
         Piercing: 40
         Structural: 80
   - type: HitscanPierce
-    chance: 0.3
+    chance: 0.4
     deviation: 0.05
   - type: HitscanRicochet
-    chance: 0.3
+    chance: 0.4
 
 - type: entity
   id: BulletRifleTraceHeavyAP

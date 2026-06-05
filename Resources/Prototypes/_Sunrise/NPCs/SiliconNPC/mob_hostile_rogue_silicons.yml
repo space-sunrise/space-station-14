@@ -778,7 +778,7 @@
       8: 1.7
   - type: MeleeWeapon
     range: 0.65
-    attackRate: 5.0
+    attackRate: 6.0
     animation: WeaponArcDisarm
     damage:
       types:
@@ -796,14 +796,22 @@
 - type: entity
   parent:
   - MobMovementSpeedModifierSpecial
-  - MobRogueSiliconDroneBase
+  - MobStaminaBoss
+  - MobNonHumanHostileBase
+  - MobRogueSiliconAISimpleMelee
   id: MobSyndicateViscerator
   name: viscerator
   description: A compact syndicate strike drone built to rush targets after deployment.
   components:
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: MobRogueSilicon
+  - type: Insulated
   - type: NpcFactionMember
     factions:
     - Syndicate
+  - type: NameIdentifier
+    group: Silicon
   - type: Loadout
     prototypes: []
   - type: Tag
@@ -815,6 +823,11 @@
   - type: CanMoveInAir
   - type: ProtectedFromStepTriggers
   - type: NoSlip
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 300
   - type: Sprite
     drawdepth: Mobs
     sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
@@ -855,6 +868,17 @@
     speedModifierThresholds:
       5: 1.5
       8: 1.7
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: Repairable
+    doAfterDelay: 10
+    allowSelfRepair: true
   - type: MeleeWeapon
     range: 0.65
     attackRate: 6.0
@@ -868,6 +892,19 @@
       params:
         volume: 1
         variation: 0.050
+  - type: Speech
+    speechSounds: SyndieBorg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: SoundWhileAlive
+  - type: ToggleableNightVision
+    effect: EffectNightVisionSyndie
+  - type: TTS
+    voice: Sentrybot
 
 #region Tier 2
 - type: entity
@@ -1235,6 +1272,13 @@
     scale: 2
     shape: Triangle
     requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootBoss
@@ -1361,6 +1405,13 @@
     scale: 2
     shape: Square
     requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootBoss
@@ -1501,6 +1552,10 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: SpawnEntityTableOnTrigger
     table: !type:AllSelector
       children:

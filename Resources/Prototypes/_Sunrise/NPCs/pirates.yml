@@ -4049,6 +4049,20 @@
     scale: 2
     shape: Triangle
     requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobPirateGearMeleeT4Alt
@@ -4130,6 +4144,20 @@
     scale: 2
     shape: Circle
     requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobPirateGearRangedT4
@@ -4246,6 +4274,17 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobPirateT3Revolver
   - type: GibOnTrigger
