@@ -11,6 +11,7 @@ using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
 using Content.Shared._Sunrise.AssaultOps;
 using Content.Shared._Sunrise.AssaultOps.Icarus;
+using Content.Shared.Chat;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
@@ -26,6 +27,7 @@ using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
+using Robust.Shared.Maths;
 using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.AssaultOps;
@@ -33,13 +35,13 @@ namespace Content.Server._Sunrise.AssaultOps;
 public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponent>
 {
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly StoreSystem _store = default!;
+    [Dependency] private readonly SharedChatSystem _chat = default!;
 
     [ValidatePrototypeId<TagPrototype>]
     private const string UplinkTagPrototype = "AssaultOpsUplink";
@@ -346,12 +348,10 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
             if (assaultops.RoundEndBehavior == RoundEndBehavior.Nothing)
                 continue;
 
-            _roundEndSystem.DoRoundEndBehavior(
-                assaultops.RoundEndBehavior,
-                assaultops.EvacShuttleTime,
-                assaultops.RoundEndTextSender,
-                assaultops.RoundEndTextShuttleCall,
-                assaultops.RoundEndTextAnnouncement);
+            _chat.DispatchGlobalAnnouncement(
+                Loc.GetString(assaultops.RoundEndTextAnnouncement),
+                Loc.GetString(assaultops.RoundEndTextSender),
+                colorOverride: Color.Gold);
 
             assaultops.RoundEndBehavior = RoundEndBehavior.Nothing;
         }
