@@ -1,13 +1,3 @@
-# - type: cargoProduct
-#   id: SecuritySWAT
-#   icon:
-#     sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
-#     state: icon
-#   product: CrateSecuritySWAT
-#   cost: 11984
-#   category: cargoproduct-category-name-security
-#   group: market
-
 - type: cargoProduct
   id: SecurityHeatAbsorb
   icon:

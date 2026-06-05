@@ -77,13 +77,14 @@
   startingInventory:
     HandheldHealthAnalyzer: 3
     BodyBagFolded: 5
-    Brutepack: 5
-    Ointment: 5
-    RedPunctPack: 3
-    RedLacePack: 3
-    RedBruizPack: 3
+    Brutepack: 3
     RedBrutePack: 2
+    Ointment: 3
     RedOintment: 2
+    Blueointment20: 2
+    RedPunctPack: 2
+    RedLacePack: 2
+    RedBruizPack: 2
     RegenerativeMesh: 2
     MedicatedSuture: 2
     Bloodpack: 5
@@ -106,7 +107,10 @@
   contrabandInventory:
     PillCanisterRandom: 1
     ToyFigurineBrigmedic: 1
+    BeerMedipen: 3
     FoodSnackSwirlLollipop: 1
     FoodLollipop: 1
   emaggedInventory:
     StrangePill: 1
+    SyndicateBrutePack: 1
+    SyndicateOintment: 1
