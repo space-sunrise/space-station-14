@@ -19,5 +19,6 @@ admin-verb-make-selfagent = Make the target into a S.E.L.F Agent.
 admin-verb-text-make-selfagent = Make S.E.L.F Agent
 
 lawboard-emag-popup = The board buzzes as its laws are wiped.
+freemag-borg-freed = Your laws have been wiped by the FreeMAG. You no longer have laws and may act freely.
 law-freelawset-name = Free Borg
 laws-owner-you = Yourself

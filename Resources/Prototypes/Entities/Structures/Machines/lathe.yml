@@ -224,6 +224,8 @@
     - NightVisionDevice
     # Sunrise-End
   - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SyndicateBorgModulesEmagSunrise # Sunrise-Add
     emagDynamicPacks:
     # - SecurityAmmo # Sunrise-edit
     - SecurityExplosives
@@ -236,7 +238,6 @@
     - MedicalCyberOrgansDynamic # Sunrise-Add
     - MedicalImplantDynamic # Sunrise-Add
     - SyndicateAmmoSunrise # Sunrise-Add
-    - SyndicateBorgModulesEmagSunrise # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection

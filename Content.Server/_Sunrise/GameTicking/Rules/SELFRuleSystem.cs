@@ -4,7 +4,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Roles;
 using Content.Server._Sunrise.Antags.SELF;
 using Content.Server._Sunrise.GameTicking.Rules.Components;
-using Content.Shared._Sunrise.Roles.Components;
+using Content.Server._Sunrise.Roles.Components;
 
 namespace Content.Server._Sunrise.GameTicking.Rules;
 

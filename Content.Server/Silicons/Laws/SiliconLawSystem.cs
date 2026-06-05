@@ -174,6 +174,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             component.Laws = lawsetEmag.Lawset;
             component.Lawset = GetLawset(lawsetEmag.Lawset);
             _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
+            NotifyLawsetEmagged(uid);
             EnsureComp<BlockLawChangeComponent>(uid);
             return;
         }
@@ -224,6 +225,19 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
         args.Repeatable = true;
         args.Handled = true;
+    }
+    // Sunrise-End
+
+    // Sunrise-Start
+    private void NotifyLawsetEmagged(EntityUid uid)
+    {
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        var msg = Loc.GetString("freemag-borg-freed");
+        var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
+        _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMessage, uid, false, actor.PlayerSession.Channel,
+            colorOverride: Color.LimeGreen);
     }
     // Sunrise-End
 
