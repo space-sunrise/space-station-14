@@ -34,8 +34,6 @@ public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
         args.Append(MakeBriefing());
     }
 
-    private string MakeBriefing()
-    {
-        return $"{Loc.GetString("self-role-greeting-human")}\n \n{Loc.GetString("self-role-greeting-equipment")}\n";
-    }
+    private string MakeBriefing() =>
+        $"{Loc.GetString("self-role-greeting-human")}\n\n{Loc.GetString("self-role-greeting-equipment")}\n";
 }
