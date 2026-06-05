@@ -1,0 +1,21 @@
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretCentralCommandCircuitboard
+  suffix: CentralCommand
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/module.rsi
+    state: centralcommand
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretCentralCommandControlPanel
+
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretSyndicateCircuitboard
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/module.rsi
+    state: syndicate
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretSyndicateControlPanel
