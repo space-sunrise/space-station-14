@@ -28,7 +28,7 @@ public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
 
     private void OnGetBriefing(Entity<SELFAgentRoleComponent> role, ref GetBriefingEvent args)
     {
-        if (args.Mind.Comp.OwnedEntity == null)
+        if (args.Mind.Comp.OwnedEntity is null)
             return;
 
         args.Append(MakeBriefing());
