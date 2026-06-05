@@ -220,6 +220,8 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
 
     private SpriteSpecifier.Rsi GetIconSpecifier(SuitSensorStatus sensor)
     {
+        // Binary sensors (without health data) should display only alive/dead states
+        // instead of falling through to Unknown state via HealthStateHelper
         if (sensor.DamagePercentage == null)
             return new SpriteSpecifier.Rsi(new ResPath(HumanCrewMonitoringRsi), sensor.IsAlive ? "alive" : "dead");
 
