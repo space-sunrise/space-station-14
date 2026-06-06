@@ -41,7 +41,7 @@
     state: stamp-ntrep
 
 - type: entity
-  name: Pathologist rubber stamp
+  name: pathologist rubber stamp
   parent: RubberStampBase
   id: RubberStampPath
   categories: [ DoNotMap ]
@@ -55,7 +55,7 @@
     state: stamp-path
 
 - type: entity
-  name: Adjutant's rubber stamp
+  name: adjutant's rubber stamp
   parent: RubberStampBase
   id: RubberStampAdj
   categories: [ DoNotMap ]
@@ -69,7 +69,7 @@
     state: stamp-adj
 
 - type: entity
-  name: Head of Prison rubber stamp
+  name: head of prison rubber stamp
   parent: RubberStampBase
   id: RubberStampNpt
   categories: [ DoNotMap ]
@@ -96,7 +96,7 @@
     state: stamp-veto
 
 - type: entity
-  name: Redo rubber stamp
+  name: redo rubber stamp
   parent: RubberStampBase
   id: RubberStampRedo
   components:
@@ -109,7 +109,7 @@
     state: stamp-redo
 
 - type: entity
-  name: Special Operations rubber stamp
+  name: special operations rubber stamp
   parent: RubberStampBase
   id: RubberStampSpecOps
   categories: [ DoNotMap ]
@@ -136,7 +136,7 @@
       state: stamp-specops
 
 - type: entity
-  name: Blue Shield Commander's rubber stamp
+  name: blue Shield Commander's rubber stamp
   parent: RubberStampBase
   id: RubberStampCommanderBlueShield
   categories: [ DoNotMap ]
