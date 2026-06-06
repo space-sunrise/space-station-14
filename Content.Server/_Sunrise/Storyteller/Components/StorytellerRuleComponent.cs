@@ -116,6 +116,24 @@ public sealed partial class StorytellerRuleComponent : Component
     /// </summary>
     [DataField("storyTellerType")]
     public StorytellerType? ConfiguredStorytellerType;
+
+    /// <summary>
+    /// The timestamp when the storyteller rule was started.
+    /// </summary>
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan RuleStartTime;
+
+    /// <summary>
+    /// Alert level history per station, used to calculate stress based on station codes.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<EntityUid, List<AlertLevelHistoryEntry>> AlertLevelHistory = new();
+}
+
+public sealed class AlertLevelHistoryEntry
+{
+    public TimeSpan Time;
+    public string Level = string.Empty;
 }
 
 public enum StorytellerPacingState
@@ -132,3 +150,4 @@ public enum StorytellerType
     Classic,
     Insane
 }
+
