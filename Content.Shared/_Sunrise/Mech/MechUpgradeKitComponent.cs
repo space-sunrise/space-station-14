@@ -12,8 +12,7 @@ public sealed partial class MechUpgradeKitComponent : Component
     public TimeSpan Delay = TimeSpan.FromSeconds(3);
 
     [DataField(required: true)]
-    [AutoNetworkedField]
-    public List<EntProtoId> TargetPrototypes = new();
+    public HashSet<EntProtoId> TargetPrototypes = [];
 
     [DataField(required: true)]
     [AutoNetworkedField]
