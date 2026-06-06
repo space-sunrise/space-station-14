@@ -331,4 +331,6 @@
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/ninja.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: _Sunrise/Clothing/Ears/Headsets/ninja.rsi # Sunrise-Edit
+    sprite: Clothing/Ears/Headsets/ninja.rsi
+  - type: EmpResistance
+    strengthMultiplier: 0

@@ -165,6 +165,13 @@ namespace Content.Shared.Throwing
                 }
                 // Sunrise-End
 
+                // Sunrise-Edit
+                if (thrown.Thrower is { } thrower && (Deleted(thrower) || Terminating(thrower)))
+                {
+                    thrown.Thrower = null;
+                    Dirty(uid, thrown);
+                }
+
                 if (thrown.LandTime <= _gameTiming.CurTime)
                 {
                     LandComponent(uid, thrown, physics, thrown.PlayLandSound);

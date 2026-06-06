@@ -1,8 +1,0 @@
-- type: entity
-  id: XenoArtifactEffectCreationGasElectrovae
-  parent: BaseXenoArtifactEffect
-  description: Expels electrovae
-  components:
-  - type: XAECreateGas
-    gases:
-      Electrovae: 300

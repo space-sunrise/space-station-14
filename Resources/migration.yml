@@ -771,6 +771,13 @@ FigureSpawner: MechFigurineSpawner50
 ToySpawner: PlushieSpawner50
 SpacemenFigureSpawner: SpacemenFigurineSpawner90
 
+# 2026-01-07
+HandheldHealthAnalyzerUnpowered: HandheldHealthAnalyzer
+HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
+
+#2026-01-09
+BorgModuleAdvancedChemical: BorgModuleAdvancedTopical
+
 # region Sunrise-Start
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
@@ -1013,9 +1020,8 @@ AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
 WeaponPistolG22: WeaponPistolEnforcer
 WeaponPistolG22Auto: WeaponPistolEnforcer
 MagazineGlock22: MagazinePistol
-#2026-05-10 # Sunrise-TODO: Delete this after upstreaming wizards
-ComputerNukieDelivery: SyndicateComputerComms
-HandheldStationMapNukeops: HandheldStationMapUnpowered
+#2026-05-10
+SunriseBorgModuleChemical: BorgModuleChemical
 HandheldMachineAnalyzer: HandheldRoboAnalyzer
 MagazineG36Extended: null
 # 2026-05-28

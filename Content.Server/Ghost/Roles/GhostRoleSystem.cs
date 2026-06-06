@@ -334,7 +334,11 @@ public sealed class GhostRoleSystem : EntitySystem
     private void RemoveRaffleAndUpdateEui(EntityUid entityUid, GhostRoleRaffleComponent raffle)
     {
         _ghostRoleRaffles.Remove(raffle.Identifier);
-        RemComp(entityUid, raffle);
+        // Sunrise-Edit
+        if (!Deleted(entityUid) && HasComp<GhostRoleRaffleComponent>(entityUid))
+        {
+            RemComp(entityUid, raffle);
+        }
         UpdateAllEui();
     }
 

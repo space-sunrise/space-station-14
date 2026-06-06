@@ -46,10 +46,14 @@ public sealed class ServerReloginTest
             Assert.That(serverPlayerMgr.PlayerCount, Is.EqualTo(0));
         });
         client.SetConnectTarget(server);
+        // Sunrise edit start - fix RobustToolbox 270.1.0 run level transitions
+        var baseClient = client.ResolveDependency<Robust.Client.IBaseClient>();
         await client.WaitPost(() =>
         {
-            clientNetManager.ClientConnect(null!, 0, username);
+            baseClient.PlayerNameOverride = username;
+            baseClient.ConnectToServer(new System.Net.DnsEndPoint("localhost", 1212));
         });
+        // Sunrise edit end
 
         await pair.RunTicksSync(20);
 

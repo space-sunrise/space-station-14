@@ -201,10 +201,30 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void PreventCollision(EntityUid uid, ProjectileComponent component, ref PreventCollideEvent args)
     {
-        if (component.IgnoreShooter && (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon))
+        if (component.IgnoreShooter)
+        {
+            if (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon)
+            {
+                args.Cancelled = true;
+                return;
+            }
+
+            // Sunrise edit start - ignore shooter's mech
+            if (component.Shooter != null && TryComp<Mech.Components.MechPilotComponent>(component.Shooter.Value, out var pilot) && args.OtherEntity == pilot.Mech)
+            {
+                args.Cancelled = true;
+                return;
+            }
+            // Sunrise edit end
+        }
+
+        // Sunrise edit start - Projectile pierce collision prevention
+        if (TryComp<Content.Shared._Sunrise.Weapons.Components.ProjectilePierceComponent>(uid, out var pierce) && pierce.PiercedEntities.Contains(args.OtherEntity))
         {
             args.Cancelled = true;
+            return;
         }
+        // Sunrise edit end
     }
 
     public void SetShooter(EntityUid id, ProjectileComponent component, EntityUid? shooterId = null)

@@ -723,12 +723,11 @@
       - id: GunSafeRifleAKMU
       - id: GunSafeRifleLecterMk2
       - id: GunSafeRifleM16A4
-      - id: GunSafeRifleFamas
       - id: GunSafeSuperDMR
     - !type:GroupSelector
       weight: 5
       children:
-      - id: GunSafeSuperDMRElite
+      - id: GunSafeRifleFamas
     - id: SpawnerSafeLethal
       weight: 15
 
@@ -793,13 +792,13 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 60
+      weight: 70
       children:
       - id: GunSafeSuperweaponLWAP
       - id: GunSafeSuperweaponSmartGun
       - id: GunSafeSuperweaponRocketLauncher
     - !type:GroupSelector
-      weight: 30
+      weight: 20
       children:
       - id: GunSafeSuperDMR
       - id: GunSafeRifleM52

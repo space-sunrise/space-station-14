@@ -70,31 +70,6 @@
   threatCost: 0
   maxStress: 100
 
-# Бесполезный огромный шаттл
-#- type: storytellerMetadata
-#  id: UnknownShuttleGym
-#  threatType: Helpful
-#  threatCost: 0
-#  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleCargoLost
-  threatType: Helpful
-  threatCost: 0
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleTravelingCuisine
-  threatType: Helpful
-  threatCost: 0
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleFlatline
-  threatType: Helpful
-  threatCost: 0
-  maxStress: 100
-
 # =============================================================================
 # 🟡 NEUTRAL / FLAVOR EVENTS
 # =============================================================================
@@ -131,60 +106,6 @@
 
 - type: storytellerMetadata
   id: MouseMigration
-  threatType: Neutral
-  threatCost: 5
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleNTQuark
-  threatType: Neutral
-  threatCost: 10
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleCruiser
-  threatType: Neutral
-  threatCost: 10
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleJoe
-  threatType: Neutral
-  threatCost: 5
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleLambordeere
-  threatType: Neutral
-  threatCost: 6
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleMicroshuttle
-  threatType: Neutral
-  threatCost: 5
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleEternal
-  threatType: Neutral
-  threatCost: 5
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleNTIncorporation
-  threatType: Neutral
-  threatCost: 10
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleMeatZone
-  threatType: Neutral
-  threatCost: 5
-  maxStress: 100
-
-- type: storytellerMetadata
-  id: UnknownShuttleCryptid
   threatType: Neutral
   threatCost: 5
   maxStress: 100

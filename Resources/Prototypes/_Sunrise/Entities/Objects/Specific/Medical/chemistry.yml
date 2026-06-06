@@ -89,6 +89,11 @@
         - state: inhand-right-fill-1
           map: [ "enum.SolutionContainerLayers.Fill" ]
           visible: false
+    - type: SolutionContainerVisuals
+      maxFillLevels: 6
+      fillBaseName: jug
+      inHandsMaxFillLevels: 5
+      inHandsFillBaseName: -fill-
     - type: StaticPrice
       price: 30 # Consistent with BaseBeakerMetallic
     - type: Destructible # Hacky - takes damage, but shouldn't be destructible
