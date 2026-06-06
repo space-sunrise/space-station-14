@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.QuickConstruction.Prototypes;
 
-[Prototype("quickConstructionCategory")]
+[Prototype]
 public sealed partial class QuickConstructionCategoryPrototype : IPrototype
 {
     [ViewVariables]
