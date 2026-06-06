@@ -15,7 +15,6 @@ public sealed partial class MechUpgradeKitComponent : Component
     public HashSet<EntProtoId> TargetPrototypes = [];
 
     [DataField(required: true)]
-    [AutoNetworkedField]
     public EntProtoId ResultPrototype = default!;
 }
 
