@@ -89,4 +89,4 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 }
 
 [ByRefEvent]
-public record struct SiliconEmaggedEvent(EntityUid user, EntityUid? EmagUid = null); // Sunrise Edit
+public record struct SiliconEmaggedEvent(EntityUid UserUid, EntityUid? EmagUid = null); // Sunrise Edit
