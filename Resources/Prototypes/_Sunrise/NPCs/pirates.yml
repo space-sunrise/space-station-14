@@ -2125,6 +2125,10 @@
   parent: [MobMovementSpeedModifierRanged, MobPirateBorgBase]
   id: MobPirateT1BorgMining
   components:
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked ]
+    rightBareFootState: [ footprint-tracked ]
   - type: Loadout
     prototypes:
     - MobPirateT1BorgMiningGear
@@ -2601,6 +2605,9 @@
   parent: [MobPirateBaseT2, MobPirateSparkEffectBase]
   id: MobPirateT2Juggernaut
   components:
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGear
@@ -2711,6 +2718,9 @@
   id: MobPirateT2JuggernautMG
   suffix: Machine gunner
   components:
+  - type: FootprintEmitter
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Loadout
     prototypes:
     - MobPirateT2JuggernautGearAlt

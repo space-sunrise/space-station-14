@@ -166,13 +166,19 @@ public sealed partial class MindTests
 
     private static async Task Connect(Pair.TestPair pair, string username)
     {
-        var netManager = pair.Client.ResolveDependency<IClientNetManager>();
         var playerMan = pair.Server.ResolveDependency<IPlayerManager>();
         Assert.That(playerMan.Sessions, Is.Empty);
 
         await Task.WhenAll(pair.Client.WaitIdleAsync(), pair.Client.WaitIdleAsync());
         pair.Client.SetConnectTarget(pair.Server);
-        await pair.Client.WaitPost(() => netManager.ClientConnect(null!, 0, username));
+        // Sunrise edit start - fix RobustToolbox 270.1.0 run level transitions
+        var baseClient = pair.Client.ResolveDependency<Robust.Client.IBaseClient>();
+        await pair.Client.WaitPost(() =>
+        {
+            baseClient.PlayerNameOverride = username;
+            baseClient.ConnectToServer(new System.Net.DnsEndPoint("localhost", 1212));
+        });
+        // Sunrise edit end
         await pair.RunTicksSync(5);
 
         var player = playerMan.Sessions.Single();

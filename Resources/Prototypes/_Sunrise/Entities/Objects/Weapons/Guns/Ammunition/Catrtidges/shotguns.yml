@@ -57,9 +57,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#555555"
-      - state: spent
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
@@ -169,9 +166,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#149A1E"
-      - state: spent
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     proto: PelletShotgunBooze
   - type: ChemicalAmmo
@@ -203,9 +197,6 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#e4e4e4"
       - state: holy
-      - state: spent-long
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     proto: PelletShotgunHoly
   - type: ChemicalAmmo
@@ -237,9 +228,6 @@
         color: "#5da0b5"
       - state: holy
         color: "#07252eb5"
-      - state: spent-long
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
@@ -260,9 +248,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#0096FF"
-      - state: spent
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject

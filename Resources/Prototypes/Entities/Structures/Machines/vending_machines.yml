@@ -2293,6 +2293,17 @@
     ejectDelay: 2
   - type: AccessReader
     access: [["SyndicateAgent"]]
+  # Sunrise-Start
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/syndie_chemvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  # Sunrise-End
 
 # wallmount
 - type: entity

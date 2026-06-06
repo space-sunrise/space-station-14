@@ -100,6 +100,17 @@
   recipeType: MedicalAssembler 
 
 - type: microwaveMealRecipe
+  id: RecipeCleanBeerMedipen
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 5
+  solids:
+    BeerMedipen: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
   id: RecipeCleanPolyAutoInjector
   name: sterilize and reset pen
   result: BlankMediPen
@@ -357,6 +368,18 @@
     BlankMediPen: 1
   reagents:
     JuiceThatMakesYouWeh: 60
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipeBeerMedipen
+  name: beer medipen
+  result: BeerMedipen
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Beer: 11
+    Vodkizine: 4
   recipeType: MedicalAssembler
 
 #Frontier pen recipes
