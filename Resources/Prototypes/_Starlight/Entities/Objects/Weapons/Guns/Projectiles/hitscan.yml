@@ -1,6 +1,6 @@
 - type: entity
   id: BulletTrace
-  parent: BasicHitscan
+  parent: BaseBullet
   abstract: true
   categories: [ HideSpawnMenu ]
   components:
@@ -30,7 +30,7 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
@@ -40,19 +40,19 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.35
     damage:
       types:
         Piercing: 75
         Structural: 113
-  - type: HitscanStaminaDamage
-    staminaDamage: 35
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 35
+  - type: ProjectilePierce
     chance: 0.95
     pierceLevel: Rock
     deviation: 0.005
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.95
   - type: HitscanReflect
     reflectiveType: NonEnergy
@@ -63,7 +63,7 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 20000
@@ -73,12 +73,12 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 1
-  - type: HitscanStaminaDamage
-    staminaDamage: 12
+  - type: StaminaDamageOnCollide
+    damage: 12
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -101,17 +101,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.15
     damage:
       types:
         Piercing: 35
-  - type: HitscanStaminaDamage
-    staminaDamage: 15
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 15
+  - type: ProjectilePierce
     chance: 0.40
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.30
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -133,19 +133,19 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.35
     damage:
       types:
         Piercing: 15
         Blunt: 15
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.25
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.30
-  - type: HitscanStaminaDamage
-    staminaDamage: 12
+  - type: StaminaDamageOnCollide
+    damage: 12
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -166,17 +166,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -1.00
     damage:
       types:
         Piercing: 45 # +30%
-  - type: HitscanStaminaDamage
-    staminaDamage: 22
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 22
+  - type: ProjectilePierce
     chance: 0.03
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.15
 
 - type: entity
@@ -184,18 +184,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.25
     damage:
       types:
         Piercing: 25 #- 30%
-  - type: HitscanStaminaDamage
-    staminaDamage: 6
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 6
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -217,14 +217,14 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -246,15 +246,15 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 3
         Heat: 32
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanIgniteEffect
   - type: HitscanBasicVisuals
@@ -277,16 +277,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Radiation: 15
         Piercing: 20
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -308,16 +308,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.69
     damage:
       types:
         Piercing: 25 #- 30%
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.81
     deviation: 0.05
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -341,17 +341,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.15
     damage:
       types:
         Piercing: 16
-  - type: HitscanStaminaDamage
-    staminaDamage: 3
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: ProjectilePierce
     chance: 0.40
     deviation: 0.2
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.30
   - type: HitscanBasicVisuals
     bullet:
@@ -364,18 +364,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.30
     damage:
       types:
         Piercing: 7
         Blunt: 7
-  - type: HitscanStaminaDamage
-    staminaDamage: 5
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 5
+  - type: ProjectilePierce
     chance: 0.25
     deviation: 0.2
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.10
   - type: HitscanBasicVisuals
     bullet:
@@ -388,17 +388,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -1.00
     damage:
       types:
         Piercing: 21 # +30%
-  - type: HitscanStaminaDamage
-    staminaDamage: 8
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: ProjectilePierce
     chance: 0.03
     deviation: 0.2
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.15
 
 - type: entity
@@ -406,16 +406,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.25
     damage:
       types:
         Piercing: 10 #- 40%
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.2
     pierceLevel: Wood
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     bullet:
@@ -428,14 +428,14 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.2
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -448,16 +448,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
         Heat: 14
   - type: HitscanIgniteEffect
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.2
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -470,16 +470,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Radiation: 6
         Piercing: 10
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.2
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     bullet:
@@ -492,16 +492,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.69
     damage:
       types:
         Piercing: 10 #- 40%
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.81
     deviation: 0.2
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -514,17 +514,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.5
     damage:
       types:
         Piercing: 20
-  - type: HitscanStaminaDamage
-    staminaDamage: 16
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 16
+  - type: ProjectilePierce
     chance: 0.30
     deviation: 0.15
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.20
   - type: HitscanBasicVisuals
     bullet:
@@ -537,17 +537,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -1.00
     damage:
       types:
         Piercing: 26 # +30%
-  - type: HitscanStaminaDamage
-    staminaDamage: 22
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 22
+  - type: ProjectilePierce
     chance: 0.02
     deviation: 0.15
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.10
   - type: HitscanBasicVisuals
     bullet:
@@ -560,18 +560,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.15
     damage:
       types:
         Piercing: 13 #- 35%
-  - type: HitscanStaminaDamage
-    staminaDamage: 8
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: ProjectilePierce
     chance: 0.55
     deviation: 0.15
     pierceLevel: Wood
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.70
   - type: HitscanBasicVisuals
     bullet:
@@ -584,18 +584,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.50
     damage:
       types:
         Piercing: 13 #- 35%
-  - type: HitscanStaminaDamage
-    staminaDamage: 8
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: ProjectilePierce
     chance: 0.63
     deviation: 0.15
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.35
   - type: HitscanBasicVisuals
     bullet:
@@ -610,7 +610,7 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Piercing: 19
@@ -620,7 +620,7 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
@@ -632,7 +632,7 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Piercing: 19
@@ -642,18 +642,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.4
     damage:
       types:
         Piercing: 5
-  - type: HitscanStaminaDamage
-    staminaDamage: 3
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: ProjectilePierce
     chance: 0.6
     deviation: 0.05
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.5
 ### light rifle
 
@@ -663,18 +663,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.15
     damage:
       types:
         Piercing: 19
-  - type: HitscanStaminaDamage
-    staminaDamage: 6
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 6
+  - type: ProjectilePierce
     chance: 0.40
     deviation: 0.05
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.30
   - type: HitscanBasicVisuals
     bullet:
@@ -687,19 +687,19 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.35
     damage:
       types:
         Piercing: 13
         Blunt: 6
-  - type: HitscanStaminaDamage
-    staminaDamage: 8
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: ProjectilePierce
     chance: 0.20
     deviation: 0.05
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.30
   - type: HitscanBasicVisuals
     bullet:
@@ -712,18 +712,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -1.00
     damage:
       types:
         Piercing: 25 # +30%
-  - type: HitscanStaminaDamage
-    staminaDamage: 12
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 12
+  - type: ProjectilePierce
     chance: 0.03
     deviation: 0.05
     pierceLevel: Wood
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.15
 
 - type: entity
@@ -731,16 +731,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.25
     damage:
       types:
         Piercing: 12 #- 35%
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     bullet:
@@ -753,16 +753,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.69
     damage:
       types:
         Piercing: 12 #- 35%
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.81
     deviation: 0.05
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -775,14 +775,14 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -795,16 +795,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 3
         Heat: 16
   - type: HitscanIgniteEffect
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -817,16 +817,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Radiation: 9
         Piercing: 10
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     deviation: 0.05
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     bullet:
@@ -841,17 +841,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.15
     damage:
       types:
         Piercing: 17
-  - type: HitscanStaminaDamage
-    staminaDamage: 4
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 4
+  - type: ProjectilePierce
     chance: 0.40
     pierceLevel: Wood
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.30
   - type: HitscanBasicVisuals
     bullet:
@@ -864,16 +864,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -1.00
     damage:
       types:
         Piercing: 23 # +30%
-  - type: HitscanStaminaDamage
-    staminaDamage: 8
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: ProjectilePierce
     chance: 0.03
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.15
 
 - type: entity
@@ -881,15 +881,15 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.25
     damage:
       types:
         Piercing: 11 #- 35%
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     bullet:
@@ -902,15 +902,15 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.69
     damage:
       types:
         Piercing: 11 #- 35%
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.81
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -923,13 +923,13 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -942,15 +942,15 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
         Heat: 15
   - type: HitscanIgniteEffect
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.48
   - type: HitscanBasicVisuals
     bullet:
@@ -963,15 +963,15 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Radiation: 7
         Piercing: 8
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.69
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     bullet:
@@ -985,13 +985,13 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 10
-  - type: HitscanStaminaDamage
-    staminaDamage: 35
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 35
+  - type: ProjectilePierce
     chance: 0
   - type: HitscanBasicVisuals
     bullet:
@@ -1004,12 +1004,12 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Piercing: 40
         Structural: 15
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.08
   - type: HitscanBasicVisuals
     bullet:
@@ -1022,11 +1022,11 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Piercing: 28
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.08
   - type: HitscanBasicVisuals
     bullet:
@@ -1039,17 +1039,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.2 # Sunrise-edit
     damage:
       types:
         Piercing: 5
         Structural: 5
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 2
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide # Sunrise-add
+    damage: 2
+  - type: ProjectilePierce
     chance: 0.03
-  - type: HitscanRicochet # Sunrise-edit
+  - type: ProjectileRicochet # Sunrise-edit
     chance: 0.2
   - type: HitscanBasicVisuals
     bullet:
@@ -1072,14 +1072,14 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 2
         Heat: 3
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 2
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide # Sunrise-add
+    damage: 2
+  - type: ProjectilePierce
     chance: 0.02
   - type: HitscanIgniteEffect
   - type: HitscanBasicVisuals
@@ -1103,13 +1103,13 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 1
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 1
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide # Sunrise-add
+    damage: 1
+  - type: ProjectilePierce
     chance: 0
   - type: HitscanBasicVisuals
     bullet:
@@ -1132,17 +1132,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.15 # Sunrise-edit
     damage:
       types:
         Piercing: 2
         Slash: 2
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 2
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide # Sunrise-add
+    damage: 2
+  - type: ProjectilePierce
     chance: 0
-  - type: HitscanRicochet # Sunrise-edit
+  - type: ProjectileRicochet # Sunrise-edit
     chance: 0.2
   - type: HitscanBasicVisuals
     bullet:
@@ -1165,14 +1165,14 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Radiation: 2
         Piercing: 3
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 2
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide # Sunrise-add
+    damage: 2
+  - type: ProjectilePierce
     chance: 0.05
     pierceLevel: HardenedMetal
   - type: HitscanBasicVisuals
@@ -1196,18 +1196,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.4
     damage:
       types:
         Piercing: 4
         Structural: 4
-  - type: HitscanStaminaDamage
-    staminaDamage: 3
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: ProjectilePierce
     chance: 0.7
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.4
   - type: HitscanBasicVisuals
     bullet:
@@ -1230,14 +1230,14 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Piercing: 5
         Structural: 20
-  - type: HitscanStaminaDamage # Sunrise-add
-    staminaDamage: 3
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide # Sunrise-add
+    damage: 3
+  - type: ProjectilePierce
     chance: 0.03
   - type: HitscanBasicVisuals
     bullet:
@@ -1294,7 +1294,7 @@
   parent: LaserTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 20
@@ -1304,7 +1304,7 @@
   id: IgnitionRedLaser
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 15
@@ -1316,7 +1316,7 @@
   parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 20
@@ -1338,7 +1338,7 @@
   parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 35
@@ -1360,7 +1360,7 @@
   parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 10
@@ -1398,8 +1398,8 @@
   parent: DisablerBoltPractice
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanStaminaDamage
-    staminaDamage: 25
+  - type: StaminaDamageOnCollide
+    damage: 25
 
 - type: entity
   id: DisablerBoltSmg
@@ -1407,8 +1407,8 @@
   parent: DisablerBolt
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanStaminaDamage
-    staminaDamage: 15
+  - type: StaminaDamageOnCollide
+    damage: 15
 
 - type: entity
   id: TaserBolt
@@ -1416,12 +1416,12 @@
   parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 0
-  - type: HitscanStaminaDamage
-    staminaDamage: 33
+  - type: StaminaDamageOnCollide
+    damage: 33
   - type: HitscanCrawlerTargetEffects
     knockdownDuration: 0.5s
   - type: HitscanBasicRaycast
@@ -1439,12 +1439,12 @@
   parent: EnergyTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 0
-  - type: HitscanStaminaDamage
-    staminaDamage: 100
+  - type: StaminaDamageOnCollide
+    damage: 100
     #knockdownAmount: 0.5
     #maxLength: 5
   - type: HitscanBasicVisuals
@@ -1460,12 +1460,12 @@
   parent: EnergyTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 5
-  - type: HitscanStaminaDamage
-    staminaDamage: 33
+  - type: StaminaDamageOnCollide
+    damage: 33
   - type: HitscanCrawlerTargetEffects
     knockdownDuration: 3s
   - type: HitscanBasicRaycast
@@ -1499,7 +1499,7 @@
   parent: EnergyTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Radiation: 10
@@ -1516,7 +1516,7 @@
   parent: EnergyTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 60
@@ -1525,8 +1525,8 @@
     knockdownDuration: 3
   - type: HitscanReflect
     reflectiveType: None
-  - type: HitscanStaminaDamage
-    staminaDamage: 40
+  - type: StaminaDamageOnCollide
+    damage: 40
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1576,7 +1576,7 @@
   name: acid spit
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Caustic: 8
@@ -1595,7 +1595,7 @@
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 250
@@ -1626,7 +1626,7 @@
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 750
@@ -1663,7 +1663,7 @@
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 500

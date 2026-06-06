@@ -73,5 +73,5 @@
     - AnomalyTrapGravity
     - AnomalyTrapTech
     - AnomalyTrapRock
-    - AnomalyTrapSanta
+    #- AnomalyTrapSanta
     chance: 1

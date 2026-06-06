@@ -85,6 +85,10 @@
   - type: ContainerContainer
     containers:
       upgrades: !type:Container
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 1
+    dualWieldFireRatePenalty: 0.3
+    dualWieldRecoilPenalty: 0.3
 
 - type: entity
   name: portable proto-kinetic "Matter Dematerializer"
@@ -136,6 +140,14 @@
     walkModifier: 0.75
     sprintModifier: 0.75
   - type: MultiHandedItem
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 2
+        staminaMultiplier: 15
+      Felinid:
+        knockback: 1.25
+        staminaMultiplier: 15
   - type: BasicEntityAmmoProvider
     proto: BulletKineticShuttle
     capacity: 9

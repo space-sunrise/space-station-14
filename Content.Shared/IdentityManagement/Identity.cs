@@ -21,10 +21,12 @@ public static class Identity
     /// </remarks>
     public static string Name(EntityUid uid, IEntityManager ent, EntityUid? viewer = null)
     {
-        if (!uid.IsValid())
-            return string.Empty;
+        if (!uid.IsValid() || !ent.EntityExists(uid))
+            return string.Empty; // Sunrise-Edit
 
-        var meta = ent.GetComponent<MetaDataComponent>(uid);
+        if (!ent.TryGetComponent<MetaDataComponent>(uid, out var meta))
+            return string.Empty; // Sunrise-Edit
+
         if (meta.EntityLifeStage <= EntityLifeStage.Initializing)
             return meta.EntityName; // Identity component and such will not yet have initialized and may throw NREs
 

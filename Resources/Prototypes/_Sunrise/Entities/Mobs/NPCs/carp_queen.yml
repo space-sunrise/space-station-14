@@ -38,5 +38,7 @@
     proto: slime
   - type: Hunger
   - type: Thirst
-
-
+  - type: Puller
+    needsHands: false
+  - type: TTS
+    voice: broodmother_dota_2

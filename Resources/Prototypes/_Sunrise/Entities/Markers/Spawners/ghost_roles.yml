@@ -67,3 +67,27 @@
       - state: green
       - sprite: Mobs/Aliens/Carps/sharkminnow.rsi
         state: icon
+
+# separate rat king spawner for low-pop no-guard variant
+- type: entity
+  id: SpawnPointGhostRatKingNoGuard
+  name: ghost role spawn point
+  suffix: rat king, no guard
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-information-rat-king-name
+    description: ghost-role-information-rat-king-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobRatKingNoGuard
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Animals/regalrat.rsi
+        state: icon

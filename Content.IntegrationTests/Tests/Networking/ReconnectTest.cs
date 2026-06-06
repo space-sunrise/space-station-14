@@ -26,7 +26,10 @@ namespace Content.IntegrationTests.Tests.Networking
             // Reconnect.
             client.SetConnectTarget(server);
 
-            await client.WaitPost(() => netManager.ClientConnect(null, 0, null));
+            // Sunrise edit start - fix RobustToolbox 270.1.0 run level transitions
+            var baseClient = client.ResolveDependency<Robust.Client.IBaseClient>();
+            await client.WaitPost(() => baseClient.ConnectToServer(new System.Net.DnsEndPoint("localhost", 1212)));
+            // Sunrise edit end
 
             // Run some ticks for the handshake to complete and such.
             await pair.RunTicksSync(10);

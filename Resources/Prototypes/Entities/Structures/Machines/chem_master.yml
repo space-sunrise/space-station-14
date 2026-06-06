@@ -26,7 +26,9 @@
           - FitsInDispenser
   - type: ChemMaster
     pillDosageLimit: 20
+    # Sunrise-Edit start - patch dosage limit
     patchDosageLimit: 20
+    # Sunrise-Edit end
   - type: Physics
     bodyType: Static
   - type: Fixtures

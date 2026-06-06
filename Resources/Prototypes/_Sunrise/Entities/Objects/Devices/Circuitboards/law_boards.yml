@@ -21,3 +21,15 @@
     state: std_mod
   - type: SiliconLawProvider
     laws: ERTLawset
+
+- type: entity
+  id: DruidCircuitBoard
+  parent: BaseElectronics
+  name: circuit board (Druid)
+  description: An electronics board containing the Druid lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: DruidLawset

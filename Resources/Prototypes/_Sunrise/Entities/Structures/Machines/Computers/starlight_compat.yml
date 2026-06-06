@@ -1,0 +1,325 @@
+- type: entity
+  id: ComputerShuttleSalvage
+  parent: BaseComputerShuttle
+  name: salvage shuttle console
+  description: Used to pilot the salvage shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: shuttle-salvage
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: DroneConsole
+    components:
+    - type: SalvageShuttle
+  - type: RadarConsole
+    maxRange: 256
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#735ec3"
+  - type: Computer
+    # Starlight board SalvageShuttleConsoleCircuitboard is not ported.
+    board: CargoShuttleConsoleCircuitboard
+  - type: StealTarget
+    stealGroup: CargoShuttleConsoleCircuitboard
+
+- type: entity
+  id: ComputerCommsCargo
+  parent: ComputerComms
+  name: cargo communications console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: comm-sup
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Quartermaster" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-sup
+    sound: /Audio/Announcements/announce.ogg # Starlight used /Audio/_Starlight/Announcements/announce2.ogg.
+    color: "#b48b57"
+    canShuttle: false
+  - type: Computer
+    # Starlight department comms boards are not ported.
+    board: CommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#b48b57"
+
+- type: entity
+  id: ComputerCommsEngineering
+  parent: ComputerComms
+  name: engineering communications console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: comm-eng
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Engineering" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-eng
+    sound: /Audio/Announcements/announce.ogg
+    color: "#f37746"
+    canShuttle: false
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#f37746"
+
+- type: entity
+  id: ComputerCommsLaw
+  parent: ComputerComms
+  name: law communications console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: comm-law
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Magistrat" ], [ "Lawyer" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-law
+    sound: /Audio/Announcements/announce.ogg
+    color: "#ff178b"
+    canShuttle: false
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#ff178b"
+
+- type: entity
+  id: ComputerCommsMedical
+  parent: ComputerComms
+  name: medical communications console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: comm-med
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Medical" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-med
+    sound: /Audio/Announcements/announce.ogg
+    color: "#52b4e9"
+    canShuttle: false
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#52b4e9"
+
+- type: entity
+  id: ComputerCommsScience
+  parent: ComputerComms
+  name: science communications console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: comm-sci
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Research" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-sci
+    sound: /Audio/Announcements/announce.ogg
+    color: "#c68cfa"
+    canShuttle: false
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#c68cfa"
+
+- type: entity
+  id: ComputerCommsSecurity
+  parent: ComputerComms
+  name: security communications console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: comm-sec
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Security" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-sec
+    sound: /Audio/Announcements/announce.ogg
+    color: "#dd3535"
+    canShuttle: false
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#dd3535"
+
+- type: entity
+  id: ComputerCommsService
+  parent: ComputerComms
+  name: service communications console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: comm-srv
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Service" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-srv
+    sound: /Audio/Announcements/announce.ogg
+    color: "#539c00"
+    canShuttle: false
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#539c00"
+
+- type: entity
+  id: ComputerPersonalDesktop
+  parent: ComputerId
+  name: personal desktop computer
+  description: For all your stationary computing needs!
+  components:
+  # Full Starlight desktop PDA/store behavior depends on BaseDesktop and ComputerPersonalCircuitboardDesktop, which are not ported.
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/desktop_computers.rsi
+    drawdepth: SmallObjects
+    offset: 0,0.2
+    noRot: true
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: personal
+    - map: ["computerLayerKeys"]
+      state: service_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computersDesktop
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: _Starlight/Structures/Machines/desktop_computers.rsi }
+  - type: Computer
+    board: IDComputerCircuitboard
+  - type: Instrument
+    program: 2
+    allowPercussion: true
+    allowProgramChange: true
+
+- type: entity
+  id: ComputerShuttleMining
+  parent: ComputerShuttleSalvage
+  name: mining shuttle console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: shuttle-mining
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
