@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Client.Construction;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Sunrise.QuickConstruction.Components;
@@ -28,7 +27,7 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
     public QuickConstructionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         IoCManager.InjectDependencies(this);
-        _sawmill = _logManager.GetSawmill("quick-construction.bui");
+        _sawmill = _log.GetSawmill("quick-construction.bui");
     }
 
     protected override void Open()
@@ -37,7 +36,7 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
         _constructionSystem ??= EntMan.System<ConstructionSystem>();
 
         if (!EntMan.TryGetComponent<QuickConstructableComponent>(Owner, out var quickConstructable) ||
-            !_prototypeManager.TryIndex(quickConstructable.Category, out var rootCategory))
+            !_prototype.TryIndex(quickConstructable.Category, out var rootCategory))
             return;
 
         var models = ConvertToButtons(
@@ -51,7 +50,7 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
         _menu.OpenOverMouseScreenPosition();
     }
 
-    private IEnumerable<RadialMenuOptionBase> ConvertToButtons(
+    private IReadOnlyCollection<RadialMenuOptionBase> ConvertToButtons(
         List<ProtoId<ConstructionPrototype>> constructionEntries,
         List<ProtoId<QuickConstructionCategoryPrototype>> categoryEntries,
         HashSet<ProtoId<QuickConstructionCategoryPrototype>> categoryStack)
@@ -65,7 +64,7 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
 
         foreach (var constructionEntry in constructionEntries)
         {
-            if (!_prototypeManager.TryIndex(constructionEntry, out var constructionPrototype))
+            if (!_prototype.TryIndex(constructionEntry, out var constructionPrototype))
             {
                 _sawmill.Warning($"Skipping unknown construction prototype '{constructionEntry}' in quick construction menu for entity {Owner}.");
                 continue;
@@ -77,7 +76,7 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
                 continue;
             }
 
-            if (!_prototypeManager.TryIndex(recipePrototypeId, out var recipePrototype))
+            if (!_prototype.TryIndex(recipePrototypeId, out var recipePrototype))
             {
                 _sawmill.Warning($"Skipping construction prototype '{constructionEntry}' because recipe prototype '{recipePrototypeId}' could not be resolved for entity {Owner}.");
                 continue;
@@ -95,14 +94,14 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
         foreach (var categoryEntry in categoryEntries)
         {
             if (categoryStack.Contains(categoryEntry) ||
-                !_prototypeManager.TryIndex(categoryEntry, out var categoryPrototype))
+                !_prototype.TryIndex(categoryEntry, out var categoryPrototype))
                 continue;
 
             categoryStack.Add(categoryEntry);
             var nestedButtons = ConvertToButtons(
                 categoryPrototype.ConstructionEntries,
                 categoryPrototype.CategoryEntries,
-                categoryStack).ToList();
+                categoryStack);
             categoryStack.Remove(categoryEntry);
 
             categoryButtons.Add((categoryPrototype, nestedButtons));
