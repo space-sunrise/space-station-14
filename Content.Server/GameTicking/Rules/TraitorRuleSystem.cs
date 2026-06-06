@@ -145,6 +145,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         // Change the faction
         Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Change faction");
         _npcFaction.RemoveFaction(traitor, component.NanoTrasenFaction, false);
+        _npcFaction.AddFaction(traitor, component.SyndicateFaction); // Sunrise-Edit
 
         if (mind.CurrentEntity is not null) EnsureComp<TraitorComponent>(mind.CurrentEntity.Value); // Sunrise-Add //mark entity as traitor
 
