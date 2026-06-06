@@ -1,0 +1,97 @@
+# Root abstract base for all tutorial steps.
+- type: tutorialStep
+  id: BaseTutorialStepBase
+  abstract: true
+  sender: base-tutorial-sender
+
+# Steps where the player moves/walks.
+- type: tutorialStep
+  id: BaseTutorialMovementStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-walk-chat
+  ttsMessage: tutorial-base-walk-tts
+  conditions:
+  - !type:TravelDistanceCondition
+    distance: 10
+
+# Steps where the player picks up an item from the world.
+- type: tutorialStep
+  id: BaseTutorialPickupStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-pickup-chat
+  ttsMessage: tutorial-base-step-pickup-tts
+  conditions:
+  - !type:PickupListenedCondition
+
+# Steps where the player picks up an item from the world.
+- type: tutorialStep
+  id: BaseTutorialActivateAction
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-activate-action-chat
+  ttsMessage: tutorial-base-step-activate-action-tts
+  conditions:
+  - !type:ActivateActionListenedCondition
+
+
+# Steps where the player equips an item into a clothing slot.
+- type: tutorialStep
+  id: BaseTutorialEquipStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-equip-chat
+  ttsMessage: tutorial-base-step-equip-tts
+  conditions:
+  - !type:EquipListenedCondition
+
+# Steps where the player interacts with or activates an entity in the world.
+- type: tutorialStep
+  id: BaseTutorialInteractStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-interact-chat
+  ttsMessage: tutorial-base-step-interact-tts
+  conditions:
+  - !type:InteractListenedCondition
+
+# Steps where the player uses/activates a held item.
+- type: tutorialStep
+  id: BaseTutorialUseStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-use-chat
+  ttsMessage: tutorial-base-step-use-tts
+  conditions:
+  - !type:UseListenedCondition
+
+# Steps where the player drops a held item.
+- type: tutorialStep
+  id: BaseTutorialDropStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-drop-chat
+  ttsMessage: tutorial-base-step-drop-tts
+  conditions:
+  - !type:DropListenedCondition
+
+# Steps where the player must reach a goal marker on the map.
+- type: tutorialStep
+  id: BaseTutorialReachStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-reach-chat
+  ttsMessage: tutorial-base-step-reach-tts
+  conditions:
+  - !type:ReachMarkerCondition
+
+# Steps where the player attacks an entity.
+- type: tutorialStep
+  id: BaseTutorialAttackStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  chatMessage: tutorial-base-step-attack-chat
+  ttsMessage: tutorial-base-step-attack-tts
+  conditions:
+  - !type:AttackListenedCondition

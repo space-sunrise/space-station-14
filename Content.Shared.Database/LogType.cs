@@ -479,7 +479,12 @@ public enum LogType
     /// </summary>
     Instrument = 103,
 
+    /// <summary>
+    /// Events related to players connecting/disconnecting.
+    /// </summary>
+    Connection = 104,
+
     // Sunrise-Start
-    Interactions = 104,
+    Interactions = 105,
     // Sunrise-End
 }

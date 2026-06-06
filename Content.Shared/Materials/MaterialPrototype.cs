@@ -56,5 +56,14 @@ namespace Content.Shared.Materials
         /// </summary>
         [DataField(required: true)]
         public double Price = 0;
+
+        // Sunrise-Start
+        /// <summary>
+        /// Per cm³ weight for Storyteller station material strength.
+        /// When zero, derived from <see cref="Price"/> at runtime.
+        /// </summary>
+        [DataField]
+        public float StorytellerStrengthWeight;
+        // Sunrise-End
     }
 }

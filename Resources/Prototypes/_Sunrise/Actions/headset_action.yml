@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleHeadset
+  components:
+  - type: Action
+    icon: { sprite: Objects/Devices/encryption_keys.rsi, state: crypt_gray }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:OpenUiActionEvent
+      key: enum.HeadsetUiKey.Key

@@ -15,28 +15,34 @@ public sealed partial class CrewMonitoringConsoleSystem
         if (!TryComp(uid, out CrewMonitoringFilterComponent? filter))
             return;
 
-        var showOnlyWoundedOrDead = filter.OnlyShowWoundedOrDead;
         var filterByDepartment = filter.AllowedDepartmentIds.Count > 0;
+        var filterByHealthState = filter.AllowedHealthStates.Count > 0;
+        var includeTrackers = filter.IncludeTrackers;
 
-        if (!showOnlyWoundedOrDead && !filterByDepartment)
+        if (!filterByDepartment && !filterByHealthState && includeTrackers)
             return;
 
         HashSet<string>? allowedDepartmentNames = null;
         if (filterByDepartment)
             allowedDepartmentNames = BuildAllowedDepartmentNameSet(filter.AllowedDepartmentIds);
 
-        var includeTrackers = filter.IncludeTrackers;
         var filteredSensors = new List<SuitSensorStatus>(sensors.Count);
+
         foreach (var sensor in sensors)
         {
-            if (showOnlyWoundedOrDead && !IsWoundedOrDead(sensor))
+            var isTracker = IsTrackerSensor(sensor);
+            if (!includeTrackers && isTracker)
                 continue;
 
-            if (allowedDepartmentNames != null)
+            if (filterByHealthState)
             {
-                if (!IsInAllowedDepartments(sensor, allowedDepartmentNames, includeTrackers))
+                var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
+                if (!filter.AllowedHealthStates.Contains(healthState))
                     continue;
             }
+
+            if (allowedDepartmentNames != null && !IsInAllowedDepartments(sensor, allowedDepartmentNames, includeTrackers, isTracker))
+                continue;
 
             filteredSensors.Add(sensor);
         }
@@ -44,30 +50,24 @@ public sealed partial class CrewMonitoringConsoleSystem
         sensors = filteredSensors;
     }
 
-    private HashSet<string> BuildAllowedDepartmentNameSet(List<string> departmentIds)
+    private HashSet<string> BuildAllowedDepartmentNameSet(List<ProtoId<DepartmentPrototype>> departmentIds)
     {
         var allowedDepartments = new HashSet<string>();
 
         foreach (var departmentId in departmentIds)
         {
-            if (_prototypeManager.TryIndex<DepartmentPrototype>(departmentId, out var department))
+            if (_prototypeManager.TryIndex(departmentId, out var department))
                 allowedDepartments.Add(Loc.GetString(department.Name));
-            else
-                allowedDepartments.Add(departmentId);
         }
 
         return allowedDepartments;
     }
 
-    private bool IsWoundedOrDead(SuitSensorStatus sensor)
-    {
-        if (!sensor.IsAlive)
-            return true;
-
-        return sensor.DamagePercentage is >= CriticalDamagePercentage;
-    }
-
-    private bool IsInAllowedDepartments(SuitSensorStatus sensor, HashSet<string> allowedDepartmentNames, bool includeTrackers)
+    private bool IsInAllowedDepartments(
+        SuitSensorStatus sensor,
+        HashSet<string> allowedDepartmentNames,
+        bool includeTrackers,
+        bool isTracker)
     {
         foreach (var department in sensor.JobDepartments)
         {
@@ -78,6 +78,11 @@ public sealed partial class CrewMonitoringConsoleSystem
         if (!includeTrackers)
             return false;
 
+        return isTracker;
+    }
+
+    private bool IsTrackerSensor(SuitSensorStatus sensor)
+    {
         var sensorEntity = GetEntity(sensor.SuitSensorUid);
         return HasComp<SubdermalImplantComponent>(sensorEntity);
     }

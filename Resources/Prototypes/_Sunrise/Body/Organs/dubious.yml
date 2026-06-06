@@ -24,7 +24,6 @@
   - type: Item
     size: Small
     heldPrefix: heart
-  - type: Gibbable
 
 
 - type: entity

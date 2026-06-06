@@ -1,4 +1,4 @@
-ent-MobAbductor = абдуктор
+ent-MobAbductor = Урист МакАбдуктор
     .desc = { ent-BaseMobAbductor.desc }
 ent-MobAbductorScientist = абдуктор учёный
     .desc = { ent-MobAbductor.desc }

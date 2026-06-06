@@ -4,6 +4,7 @@
   id: MobAbductor
   components:
   - type: Abductor
+  - type: Interactions
   - type: Tag
     tags:
       - Abductor

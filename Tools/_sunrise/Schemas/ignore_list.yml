@@ -193,6 +193,10 @@ ignore_list:
   - 'RobustChat'
   - 'www.wetskrell.nt'
   - '25-j*%...o1q'
+  - '1u'
+  - '5u'
+  - '10u'
+  - '20u'
 
 ignore_files:
   - 'italian.ftl'

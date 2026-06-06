@@ -26,8 +26,19 @@
     FoodFrozenSandwich: 2
     FoodFrozenSandwichStrawberry: 2
     # Sunrise Start
-    FoodMeatFish: 3 
+    FoodMeatFish: 3
     FoodMeatHuman: 3
+    FoodMeatVulpkanin: 3
+    FoodMeatUnath: 3
+    FoodMeatTajaran: 3
+    FoodMeatSwine: 3
+    FoodMeatSlimeJelly: 3
+    FoodMeatResomi: 3
+    FoodMeatNian: 3
+    FoodMeatMilira: 3
+    FoodMeatFelinid: 3
+    FoodMeatDionaRoots: 3
+    FoodMeatDemon: 3
     FoodMeatClown: 2
     FoodMeatAnomaly: 1
   emaggedInventory:
