@@ -10,6 +10,6 @@ public abstract partial class BaseWireAction : IWireAction
         if (!EntityManager.TryGetComponent<DoorComponent>(uid, out var door) || !door.WireCutSparks)
             return;
         var coords = EntityManager.GetComponent<TransformComponent>(uid).Coordinates;
-        EntityManager.SpawnEntity("EffectMechSparks", coords);
+        EntityManager.SpawnAttachedTo("EffectMechSparks", coords);
     }
 }
