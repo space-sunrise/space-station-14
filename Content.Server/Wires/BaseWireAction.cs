@@ -2,7 +2,6 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Wires;
-using Content.Shared.Doors.Components;
 
 namespace Content.Server.Wires;
 
@@ -89,17 +88,4 @@ public abstract partial class BaseWireAction : IWireAction
     {
         return WiresSystem.IsPowered(uid, EntityManager);
     }
-
-    // Sunrise-start
-
-    public void WireCutSparks(EntityUid uid)
-    {
-        if (!IsPowered(uid))
-            return;
-        if (!EntityManager.TryGetComponent<DoorComponent>(uid, out var door) || !door.WireCutSparks)
-            return;
-        var coords = EntityManager.GetComponent<TransformComponent>(uid).Coordinates;
-        EntityManager.SpawnAttachedTo("EffectMechSparks", coords);
-    }
-    // Sunrise-end
 }
