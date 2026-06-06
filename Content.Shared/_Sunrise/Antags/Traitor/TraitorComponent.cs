@@ -1,4 +1,4 @@
-namespace Content.Shared._Starlight.Antags.Traitor;
+namespace Content.Shared._Sunrise.Antags.Traitor;
 
 /// <summary>
 /// Dummy component to mark player entity as a traitor for whitelist/blacklist checks.

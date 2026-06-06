@@ -18,7 +18,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
 using Content.Server.Codewords;
-using Content.Shared._Starlight.Antags.Traitor; // Sunrise-Add
+using Content.Shared._Sunrise.Antags.Traitor; // Sunrise-Add
 using Content.Shared.Mind.Components; // Sunrise-Add
 
 namespace Content.Server.GameTicking.Rules;
@@ -145,9 +145,6 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         // Change the faction
         Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Change faction");
         _npcFaction.RemoveFaction(traitor, component.NanoTrasenFaction, false);
-        // Sunrise added start - ensure traitors are recognized as Syndicate by faction checks
-        _npcFaction.AddFaction(traitor, component.SyndicateFaction);
-        // Sunrise added end
 
         if (mind.CurrentEntity is not null) EnsureComp<TraitorComponent>(mind.CurrentEntity.Value); // Sunrise-Add //mark entity as traitor
 
