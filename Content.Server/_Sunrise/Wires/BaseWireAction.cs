@@ -7,9 +7,10 @@ public abstract partial class BaseWireAction : IWireAction
     {
         if (!IsPowered(uid))
             return;
-        if (!EntityManager.TryGetComponent<DoorComponent>(uid, out var door) || !door.WireCutSparks)
+        if (!EntityManager.TryGetComponent<DoorComponent>(uid, out var door)
+            || !door.WireCutSparks
+            || !EntityManager.TryGetComponent<TransformComponent>(uid, out var tform))
             return;
-        var coords = EntityManager.GetComponent<TransformComponent>(uid).Coordinates;
-        EntityManager.SpawnAttachedTo("EffectMechSparks", coords);
+        EntityManager.SpawnAttachedTo("EffectMechSparks", tform.Coordinates);
     }
 }
