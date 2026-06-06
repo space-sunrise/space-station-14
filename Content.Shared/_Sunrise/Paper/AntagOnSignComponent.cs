@@ -1,7 +1,7 @@
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Paper;
+namespace Content.Shared._Sunrise.Paper;
 
 [RegisterComponent]
 public sealed partial class AntagOnSignComponent : Component

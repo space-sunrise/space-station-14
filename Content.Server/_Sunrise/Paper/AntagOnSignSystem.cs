@@ -5,12 +5,12 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Database;
 using Content.Shared.Paper;
 using Content.Shared.Whitelist;
-using Content.Shared._Starlight.Paper;
+using Content.Shared._Sunrise.Paper;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Paper;
+namespace Content.Server._Sunrise.Paper;
 
 public sealed class AntagOnSignSystem : EntitySystem
 {

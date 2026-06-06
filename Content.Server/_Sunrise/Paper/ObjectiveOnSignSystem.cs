@@ -2,13 +2,13 @@ using Content.Server.GameTicking;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Paper;
-using Content.Shared._Starlight.Paper;
+using Content.Shared._Sunrise.Paper;
 using Content.Shared.Whitelist;
 using Robust.Shared.Random;
 using Content.Shared.Mind;
 using Robust.Shared.Player;
 
-namespace Content.Server._Starlight.Paper;
+namespace Content.Server._Sunrise.Paper;
 
 public sealed class ObjectiveOnSignSystem : EntitySystem
 {
