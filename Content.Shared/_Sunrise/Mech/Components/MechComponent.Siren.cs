@@ -20,8 +20,8 @@ public sealed partial class MechComponent
     [DataField, AutoNetworkedField]
     public string? SirenState;
 
-    [DataField]
-    public bool SirenEnabled = false;
+    [DataField, AutoNetworkedField]
+    public bool SirenEnabled;
 
     [DataField]
     public SoundSpecifier SirenSound = new SoundPathSpecifier("/Audio/Effects/Vehicle/policesiren.ogg");
