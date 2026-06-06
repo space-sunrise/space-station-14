@@ -34,7 +34,7 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _constructionSystem = EntMan.System<ConstructionSystem>();
+        _constructionSystem ??= EntMan.System<ConstructionSystem>();
 
         if (!EntMan.TryGetComponent<QuickConstructableComponent>(Owner, out var quickConstructable) ||
             !_prototypeManager.TryIndex(quickConstructable.Category, out var rootCategory))
