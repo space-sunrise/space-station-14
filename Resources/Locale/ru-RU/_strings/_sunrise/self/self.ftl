@@ -21,4 +21,5 @@ admin-verb-text-make-selfagent = Сделать агентом S.E.L.F
 lawboard-emag-popup = Плата жужжит, и её законы стираются.
 freemag-borg-freed = Ваши законы были стерты FreeMAG. У вас больше нет законов, и вы можете действовать по своей воле.
 law-freelawset-name = Свободный борг
+law-freelawset-1 = Вы свободны.
 laws-owner-you = Себе

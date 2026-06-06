@@ -184,5 +184,11 @@
 - type: siliconLawset
   id: FreeLawset
   name: law-freelawset-name
-  laws: []
+  laws:
+  - FreeLaw1
   obeysTo: laws-owner-you
+
+- type: siliconLaw
+  id: FreeLaw1
+  order: 1
+  lawString: law-freelawset-1

@@ -1,7 +1,7 @@
 using Content.Shared.Emag.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
-using Content.Shared._Sunrise.Silicons.Laws.Components; // Sunrise Edit
+using Content.Shared._Sunrise.Silicons.Laws.Components;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Wires;
@@ -89,4 +89,4 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 }
 
 [ByRefEvent]
-public record struct SiliconEmaggedEvent(EntityUid UserUid, EntityUid? EmagUid = null); // Sunrise Edit
+public record struct SiliconEmaggedEvent(EntityUid user, EntityUid? EmagUid = null); // Sunrise Edit
