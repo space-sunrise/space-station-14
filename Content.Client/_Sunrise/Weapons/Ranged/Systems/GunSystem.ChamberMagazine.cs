@@ -15,12 +15,14 @@ public sealed partial class GunSystem
 
     private void OnSunriseChamberMagazineState(EntityUid uid, ChamberMagazineAmmoProviderComponent component, ref AfterAutoHandleStateEvent args)
     {
-        if (!TryComp<SpriteComponent>(uid, out var sprite) ||
-            !_sprite.LayerMapTryGet((uid, sprite), GunVisualLayers.Base, out var boltLayer, false) ||
-            !Appearance.TryGetData(uid, AmmoVisuals.BoltClosed, out bool boltClosed))
-        {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
-        }
+
+        if (!_sprite.LayerMapTryGet((uid, sprite), GunVisualLayers.Base, out var boltLayer, false))
+            return;
+
+        if (!Appearance.TryGetData(uid, AmmoVisuals.BoltClosed, out bool boltClosed))
+            return;
 
         var prefix = string.IsNullOrEmpty(component.SelectedPrefix) ? "" : $"_{component.SelectedPrefix}";
         _sprite.LayerSetRsiState((uid, sprite), boltLayer, boltClosed ? $"base{prefix}" : $"bolt-open{prefix}");
