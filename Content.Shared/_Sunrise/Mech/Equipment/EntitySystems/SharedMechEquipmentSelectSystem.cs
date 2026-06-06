@@ -31,6 +31,9 @@ public sealed class SharedMechEquipmentSelectSystem : EntitySystem
 
     private void OnRadialSelected(EntityUid uid, MechComponent comp, MechActiveEquipmentSelectMessage msg)
     {
+        if (msg.Actor != comp.PilotSlot.ContainedEntity)
+            return;
+
         var equipment = GetEntity(msg.SelectedEquipment);
 
         if (equipment.HasValue &&
