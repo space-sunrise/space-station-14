@@ -1,0 +1,66 @@
+# Sunrise-specific cargo loadout groups.
+
+- type: loadoutGroup
+  id: SunriseCargoTechnicianHead
+  name: loadout-group-cargo-technician-head
+  minLimit: 0
+  loadouts:
+  - CargoTechnicianHead
+  - SunriseBandOrange
+  - SunriseBandYellow
+  - SunriseBandBrown
+  - SunriseHatOrangesoft
+  - SunriseHatYellowsoft
+  - SunriseHatBrownsoft
+  - SunriseBrownFlatcap
+  - SunriseCatBrown
+  - SunriseHelmetCosmonaut
+
+- type: loadoutGroup
+  id: SunriseCargoTechnicianOuterClothing
+  name: loadout-group-cargo-technician-outerclothing
+  minLimit: 0
+  loadouts:
+  - CargoTechnicianWintercoat
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+  - SunriseWinterColorBrown
+  - SunriseWinterColorLightBrown
+  - SunrisePonchoClassic
+  - SunriseCoatBomber
+
+- type: loadoutGroup
+  id: SunriseCargoTechnicianShoes
+  name: loadout-group-cargo-technician-shoes
+  loadouts:
+  - BlackShoes
+  - CargoWinterBoots
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
+  - BrownShoes
+
+- type: loadoutGroup
+  id: SunriseSalvageSpecialistOuterClothing
+  name: loadout-group-salvage-specialist-outerclothing
+  minLimit: 0
+  loadouts:
+  - SalvageSpecialistWintercoat
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+  - SunriseWinterColorBrown
+  - SunriseWinterColorLightBrown
+  - SunriseWinterColorPurple
+  - SunrisePonchoClassic
+  - SunriseCoatBomber
+
+- type: loadoutGroup
+  id: SunriseSalvageSpecialistShoes
+  name: loadout-group-salvage-specialist-shoes
+  loadouts:
+  - SalvageBoots
+  - CargoWinterBoots
+  - BlackShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
+  - BrownShoes
+  - SunriseShoesPurple

@@ -1,0 +1,123 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by denchito (discord) srm state by KaiserMaus based on ss13 sprites https://github.com/tgstation/tgstation at https://github.com/tgstation/tgstation/commit/da4d61210600269aaf56a2e309dd31c056252d84",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "amlg90-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "amlg90-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "bananamrtr-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "bananamrtr-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "carbine-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "carbine-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "chainsword-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "chainsword-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "ddrill-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "ddrill-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "drill-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "drill-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "exting-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "exting-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "honker-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "honker-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "srm6-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "srm6-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "taser-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "taser-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "uac2-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "uac2-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "weaponbay-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "weaponbay-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "xray-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "xray-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "lightcutter-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "lightcutter-inhand-right",
+            "directions": 4
+        }
+    ]
+}

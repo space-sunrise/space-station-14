@@ -167,14 +167,3 @@
     back:
     - BagpipeInstrument
 
-# Sunrise-start
-
-- type: loadout
-  id: SuperSynthesizer
-  equipment:
-    back: SuperSynthesizerInstrument
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MusicGoldenInstrument
-
-# Sunrise-end

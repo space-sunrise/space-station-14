@@ -127,3 +127,13 @@
     seedId: Sunflower
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Hydroponics/sunflower.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of white lily
+  id: WhiteLilySeeds
+  components:
+  - type: Seed
+    seedId: WhiteLily
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/white_lily.rsi

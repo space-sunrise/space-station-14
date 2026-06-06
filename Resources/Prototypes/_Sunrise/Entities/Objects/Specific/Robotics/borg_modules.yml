@@ -6,7 +6,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: WeaponPulseCarbineBorg
@@ -23,7 +25,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: StunbatonBorg
@@ -40,7 +44,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: JawsOfLife
@@ -94,7 +100,7 @@
   - type: ItemBorgModule
     hands:
     - item: RadioJammerBorg
-    - item: JetpackVoidFilled
+    - item: JetpackXenoborg
     - item: trayScanner
     - item: WelderExperimental
     - item: Multitool
@@ -127,6 +133,7 @@
     layers:
     - state: security
     - state: icon-stuh
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: StunbatonBorg
@@ -142,6 +149,7 @@
     layers:
     - state: security
     - state: icon-combat
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: Truncheon
@@ -158,9 +166,10 @@
     layers:
     - state: security
     - state: icon-combat
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
-    - item: CombatKnife
+    - item: CyberMantisBladeMaxGuard
     - item: WeaponLaserBorg
     - item: HoloprojectorSecurityBorg
 
@@ -173,6 +182,7 @@
     layers:
     - state: security
     - state: icon-peace
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: FlashBorg
@@ -205,7 +215,7 @@
     - state: icon-mining
   - type: ItemBorgModule
     hands:
-    - item: JetpackVoidFilled
+    - item: JetpackBorg
   - type: BorgModuleIcon
     icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
 
@@ -233,6 +243,7 @@
     layers:
     - state: syndicate
     - state: icon-syndicate-treatment
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: SawAdvanced
@@ -278,7 +289,9 @@
   - type: Sprite
     layers:
     - state: NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
     - state: icon-NT
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: CrowbarBorg
@@ -286,6 +299,46 @@
     - item: HypoBorgStandardERT
   - type: BorgModuleIcon
     icon: { sprite: _Sunrise/Objects/Tools/items_cyborg.rsi, state: crowbar_cyborg }
+
+- type: entity
+  id: BorgModuleRobotics
+  parent: [ BaseBorgModuleScience, BaseProviderBorgModule ]
+  name: unit assembly module
+  components:
+  - type: Sprite
+    layers:
+    - state: science
+    - state: icon-robotics
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    hands:
+    - item: CrowbarBorg
+    - item: ScrewdriverBorg
+    - item: WelderBorg
+    - item: Flash
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Flash
+        whitelist:
+          components:
+          - Flash
+          - Battery
+          - BodyPart
+          - TileFrictionModifier
+          - CablePlacer
+          - BorgModule
+          - Material
+          - BorgBrain
+    - item: HandheldRoboAnalyzerUnpowered
+    - item: Nanopaste1
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Nanopaste1
+        whitelist:
+          components:
+          - Healing
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Specific/Robotics/borgmodule.rsi, state: science }
 
 # Xeno Borgs Stuff
 - type: entity
@@ -314,8 +367,393 @@
     layers:
     - state: xenoborg_heavy
     - state: icon-combat
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     hands:
     - item: XenoborgLaserMinigun
   - type: BorgModuleIcon
     icon: { sprite: _Sunrise/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
+
+- type: entity
+  parent: XenoborgModuleHeavyLaser
+  id: XenoborgModuleTemperature
+  name: temperature xenoborg module
+  description: Module with a self-recharging temperature gun.
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: XenoborgTemperatureGun
+
+- type: entity
+  id: BorgModulePaperwork
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: paperwork cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-pen
+  - type: ItemBorgModule
+    hands:
+    - item: Pen
+    - item: HandLabeler
+    - item: RubberStampApproved
+    - item: RubberStampDenied
+    - item: BooksBag
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: BookBase
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: Paper
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: null
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: null
+      hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+  - type: BorgModuleIcon
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_borg.rsi
+      state: paperwork-module
+
+- type: entity
+  id: BorgModuleBartender
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bartender cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-bartender
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    hands:
+    - item: BorgSodaDispenser
+    - item: BorgBoozeDispenser
+    - item: DrinkShaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkShaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: BarSpoon
+    - item: BorgDropper
+  - type: BorgModuleIcon
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: service-module
+
+- type: entity
+  id: BorgModuleCooking
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: cooking cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-cook
+      sprite: _Sunrise/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    hands:
+    - item: KitchenKnife
+    - item: RollingPin
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: null
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: ReagentContainerFlour
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: FoodCondimentBottleEnzyme
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreadPlain
+        whitelist:
+          components:
+          - Edible
+  - type: BorgModuleIcon
+    icon:
+      sprite: _Sunrise/Interface/Actions/actions_borg.rsi
+      state: cooking-module
+
+- type: entity
+  id: BorgModuleExtensiveGardening
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: gardening cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-gardening
+  - type: ItemBorgModule
+    hands:
+    - item: HydroponicsToolMiniHoe
+    - item: HydroponicsToolSpade
+    - item: HydroponicsToolClippers
+    - item: HydroponicsToolHatchet
+    - item: Bucket
+    - item: PlantBag
+    - item: null
+      hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodApple
+        whitelist:
+          components:
+          - Edible
+    - item: null
+      hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: AppleSeeds
+        whitelist:
+          components:
+          - Seed
+    - item: null
+      hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: AppleSeeds
+        whitelist:
+          components:
+          - Seed
+  - type: BorgModuleIcon
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: gardening-module
+
+# region BorgChassisSyndicateSpider
+
+- type: entity
+  id: BorgModuleSyndicateCombatAdvanced
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: advanced combat syndicate cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponPistolEchis
+    - item: CyberMantisBlade
+
+- type: entity
+  id: BorgModuleSyndicateHypoAdvanced
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: advanced hypo syndicate cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: HypoBorgSaboteurSyndicate
+    - item: CloakingDevice
+    - item: RadioJammerSyndicateBorg
+    - item: ChameleonProjector
+
+- type: entity
+  id: BorgModuleSyndicatePenetration
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: syndicate penetration cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: SyndicateJawsOfLife
+    - item: Emag
+    - item: PinpointerIcarus
+
+# region end
+
+- type: entity
+  id: SunriseBorgModuleChemical
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: chemical cyborg module
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-chem
+  - type: ItemBorgModule
+    hands:
+    - item: HypoBorgMedical
+    - item: Syringe
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Jug
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Jug
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
+
+- type: entity
+  id: SunriseBorgModuleAdvancedChemical
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: advanced chemical cyborg module
+  suffix: Sunrise
+  description: Advanced medical module containing the cyborg adaptation of the highly coveted hypospray. Now your cyborgs can inject crew-harmers with chloral hydrate even faster!
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-chemist
+  - type: ItemBorgModule
+    hands:
+    - item: HypoBorgMedicalAdvanced
+    #- item: Hypospray # Sunrise-Todo: Change to JetInjector
+    - item: SyringeBluespace
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Jug
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Jug
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }

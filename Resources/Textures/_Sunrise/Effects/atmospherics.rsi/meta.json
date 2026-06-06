@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CLA",
-    "copyright": "Discord: odlieerr",
+    "copyright": "Discord: odlieerr and Nrd-k",
     "size": {
         "x": 32,
         "y": 32
@@ -17,6 +17,38 @@
         },
         {
             "name": "nitriumGas",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+        },
+        {
+            "name": "pluoxium",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+        },
+        {
+			"name": "halon",
+			"delays": [[0.1, 0.1, 0.1,	0.1, 0.1]]
+		},
+        {
+			"name": "anti_noblium",
+			"delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+		},
+        {
+			"name": "hyper_noblium",
+			"delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+		},
+        {
+			"name": "zauker",
+			"delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+		},
+        {
+			"name": "proto_nitrate",
+			"delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+		},
+                {
+            "name": "electrovae",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+        },
+        {
+            "name": "electrovae_charged",
             "delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
         }
     ]

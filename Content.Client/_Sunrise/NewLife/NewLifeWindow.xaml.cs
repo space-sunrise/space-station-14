@@ -5,171 +5,191 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Timing;
 
-namespace Content.Client._Sunrise.NewLife
+namespace Content.Client._Sunrise.NewLife;
+
+[GenerateTypedNameReferences]
+public sealed partial class NewLifeWindow : DefaultWindow
 {
-    [GenerateTypedNameReferences]
-    public sealed partial class NewLifeWindow : DefaultWindow
+    [Dependency] private readonly ILocalizationManager _loc = default!;
+
+    private readonly IGameTiming _timing;
+
+    private TimeSpan _nextRespawnTime = TimeSpan.Zero;
+
+    private List<int> _usedCharacters = [];
+
+    private Dictionary<NetEntity, List<NewLifeRolesInfo>> _jobs = new();
+    private NewLifeEuiState? _validationState;
+
+    public Action? SpawnRequested;
+
+    public NewLifeWindow(IGameTiming timing)
     {
-        private readonly IGameTiming _timing;
+        RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
+        _timing = timing;
+        Spawn.OnPressed += OnSpawnPressed;
 
-        private TimeSpan _nextRespawnTime = TimeSpan.Zero;
-
-        private List<int> _usedCharacters = [];
-
-        private Dictionary<NetEntity, List<NewLifeRolesInfo>> _jobs = new();
-
-        public Action? SpawnRequested;
-
-        public NewLifeWindow(IGameTiming timing)
+        CharacterSelector.OnItemSelected += args =>
         {
-            RobustXamlLoader.Load(this);
-            _timing = timing;
-            Spawn.OnPressed += OnSpawnPressed;
+            CharacterSelector.Select(args.Id);
+        };
 
-            CharacterSelector.OnItemSelected += args =>
-            {
-                CharacterSelector.Select(args.Id);
-            };
-
-            StationSelector.OnItemSelected += args =>
-            {
-                var metadata = StationSelector.GetItemMetadata(args.Id);
-                if (metadata is not NetEntity cast)
-                    return;
-                RoleSelector.Clear();
-                UpdateRolesList(_jobs[cast]);
-                StationSelector.Select(args.Id);
-            };
-
-            RoleSelector.OnItemSelected += args =>
-            {
-                RoleSelector.Select(args.Id);
-            };
-        }
-
-        private void OnSpawnPressed(BaseButton.ButtonEventArgs obj)
+        StationSelector.OnItemSelected += args =>
         {
-            var selectedCharacter = GetSelectedCharacter();
-            if (selectedCharacter == null || _usedCharacters.Contains(selectedCharacter.Value))
+            var metadata = StationSelector.GetItemMetadata(args.Id);
+            if (metadata is not NetEntity cast)
                 return;
-            if (_timing.CurTime < _nextRespawnTime)
-                return;
-            SpawnRequested?.Invoke();
+            RoleSelector.Clear();
+            UpdateRolesList(_jobs[cast]);
+            StationSelector.Select(args.Id);
+        };
+
+        RoleSelector.OnItemSelected += args =>
+        {
+            RoleSelector.Select(args.Id);
+        };
+    }
+
+    private void OnSpawnPressed(BaseButton.ButtonEventArgs obj)
+    {
+        if (_validationState == null)
+            return;
+
+        var validation = NewLifeRequestValidation.Validate(
+            _validationState,
+            _timing.CurTime,
+            GetSelectedCharacter(),
+            GetSelectedStation(),
+            GetSelectedRole());
+
+        if (validation != NewLifeRequestValidationResult.Valid)
+            return;
+
+        SpawnRequested?.Invoke();
+    }
+
+    public int? GetSelectedCharacter()
+    {
+        var characterId = (int?)CharacterSelector.SelectedMetadata;
+        return characterId;
+    }
+
+    public string? GetSelectedRole()
+    {
+        var roleId = (string?)RoleSelector.SelectedMetadata;
+        return roleId;
+    }
+
+    public NetEntity? GetSelectedStation()
+    {
+        var roleId = (NetEntity?)StationSelector.SelectedMetadata;
+        return roleId;
+    }
+
+    public void UpdateNextRespawn(TimeSpan nextRespaw)
+    {
+        _nextRespawnTime = nextRespaw;
+    }
+
+    public void UpdateValidationState(NewLifeEuiState state)
+    {
+        _validationState = state;
+    }
+
+    public void UpdateCharactersList(List<NewLifeCharacterInfo> characters, List<int> usedCharactersForRespawn)
+    {
+        _usedCharacters = usedCharactersForRespawn;
+        CharacterSelector.Clear();
+
+        for (var i = 0; i < characters.Count; i++)
+        {
+            var character = characters[i];
+            CharacterSelector.AddItem($"{character.Name}", i);
+            CharacterSelector.SetItemMetadata(i, character.Identifier);
+
+            if (usedCharactersForRespawn.Contains(character.Identifier))
+                CharacterSelector.SetItemText(CharacterSelector.GetIdx(i), _loc.GetString("new-life-gui-character-used", ("name", character.Name)));
+        }
+    }
+
+    public void UpdateStationList(Dictionary<NetEntity, string> stations, NetEntity selectedStation)
+    {
+        StationSelector.Clear();
+
+        if (stations.Count == 0)
+            return;
+
+        foreach (var (stationUid, stationName) in stations)
+        {
+            StationSelector.AddItem(stationName);
+            StationSelector.SetItemMetadata(StationSelector.ItemCount - 1, stationUid);
+
+            if (stationUid == selectedStation)
+                StationSelector.Select(StationSelector.ItemCount - 1);
+        }
+    }
+
+    public void UpdateRolesList(List<NewLifeRolesInfo> roles)
+    {
+        RoleSelector.Clear();
+        for (var i = 0; i < roles.Count; i++)
+        {
+            var role = roles[i];
+            var count = role.Count.HasValue ? role.Count.ToString() : "\u221e";
+            RoleSelector.AddItem($"{role.Name} [{count}]", i);
+            RoleSelector.SetItemMetadata(i, role.Identifier);
+        }
+    }
+
+    public void UpdateJobs(Dictionary<NetEntity, List<NewLifeRolesInfo>> jobs)
+    {
+        _jobs = jobs;
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        if (_validationState == null)
+        {
+            Spawn.Disabled = true;
+            return;
         }
 
-        public int? GetSelectedCharacter()
+        var validation = NewLifeRequestValidation.Validate(
+            _validationState,
+            _timing.CurTime,
+            GetSelectedCharacter(),
+            GetSelectedStation(),
+            GetSelectedRole());
+
+        switch (validation)
         {
-            var characterId = (int?) CharacterSelector.SelectedMetadata;
-            return characterId;
-        }
-
-        public string? GetSelectedRole()
-        {
-            var roleId = (string?) RoleSelector.SelectedMetadata;
-            return roleId;
-        }
-
-        public NetEntity? GetSelectedStation()
-        {
-            var roleId = (NetEntity?) StationSelector.SelectedMetadata;
-            return roleId;
-        }
-
-        public void UpdateNextRespawn(TimeSpan nextRespaw)
-        {
-            _nextRespawnTime = nextRespaw;
-        }
-
-        public void UpdateCharactersList(List<NewLifeCharacterInfo> characters, List<int> usedCharactersForRespawn)
-        {
-            _usedCharacters = usedCharactersForRespawn;
-            for (var i = 0; i < characters.Count; i++)
-            {
-                var character = characters[i];
-                CharacterSelector.AddItem($"{character.Name}", i);
-                CharacterSelector.SetItemMetadata(i, character.Identifier);
-                if (usedCharactersForRespawn.Contains(character.Identifier))
-                {
-                    //CharacterSelector.SetItemDisabled(CharacterSelector.GetIdx(i), true);
-                    CharacterSelector.SetItemText(CharacterSelector.GetIdx(i), Loc.GetString("new-life-gui-character-used", ("name", character.Name)));
-                }
-            }
-        }
-
-        public void UpdateStationList(Dictionary<NetEntity, string> stations, NetEntity selectedStation)
-        {
-            StationSelector.Clear();
-
-            if (stations.Count == 0)
-                return;
-
-            foreach (var (stationUid, stationName) in stations)
-            {
-                StationSelector.AddItem(stationName);
-                StationSelector.SetItemMetadata(StationSelector.ItemCount - 1, stationUid);
-
-                if (stationUid == selectedStation)
-                {
-                    StationSelector.Select(StationSelector.ItemCount - 1);
-                }
-            }
-        }
-
-        public void UpdateRolesList(List<NewLifeRolesInfo> roles)
-        {
-            for (var i = 0; i < roles.Count; i++)
-            {
-                var role = roles[i];
-                var count = role.Count.HasValue ? role.Count.ToString() : "\u221e";
-                RoleSelector.AddItem($"{role.Name} [{count}]", i);
-                RoleSelector.SetItemMetadata(i, role.Identifier);
-            }
-        }
-
-        public void UpdateJobs(Dictionary<NetEntity, List<NewLifeRolesInfo>> jobs)
-        {
-            _jobs = jobs;
-        }
-
-        protected override void FrameUpdate(FrameEventArgs args)
-        {
-            base.FrameUpdate(args);
-            var selectedCharacter = GetSelectedCharacter();
-            if (selectedCharacter != null && _usedCharacters.Contains(selectedCharacter.Value))
-            {
-                Spawn.Disabled = true;
-                NextRespawnLabelTitle.Text = Loc.GetString("new-life-gui-character-not-available");
+            case NewLifeRequestValidationResult.Valid:
+                Spawn.Disabled = false;
+                NextRespawnLabelTitle.Text = _loc.GetString("new-life-gui-available");
                 NextRespawnLabel.Visible = false;
                 return;
-            }
-
-            var selectedStation = GetSelectedStation();
-            var selectedRole = GetSelectedRole();
-            if (selectedStation != null && selectedRole != null)
-            {
-                foreach (var role in _jobs[selectedStation.Value])
-                {
-                    if (selectedRole != role.Identifier || role.Count != 0)
-                        continue;
-                    Spawn.Disabled = true;
-                    NextRespawnLabelTitle.Text = Loc.GetString("new-life-gui-role-not-available");
-                    NextRespawnLabel.Visible = false;
-                    return;
-                }
-            }
-
-            if (_timing.CurTime < _nextRespawnTime)
-            {
+            case NewLifeRequestValidationResult.CooldownActive:
                 Spawn.Disabled = true;
-                NextRespawnLabelTitle.Text = Loc.GetString("new-life-gui-available-via");
+                NextRespawnLabelTitle.Text = _loc.GetString("new-life-gui-available-via");
                 NextRespawnLabel.Visible = true;
                 var remaining = TimeSpan.FromSeconds(Math.Max((_nextRespawnTime - _timing.CurTime).TotalSeconds, 0));
                 NextRespawnLabel.Text = $" {remaining:mm':'ss}";
                 return;
-            }
-            Spawn.Disabled = false;
-            NextRespawnLabelTitle.Text = Loc.GetString("new-life-gui-available");
-            NextRespawnLabel.Visible = false;
+            case NewLifeRequestValidationResult.MissingCharacter:
+            case NewLifeRequestValidationResult.CharacterUnavailable:
+                Spawn.Disabled = true;
+                NextRespawnLabelTitle.Text = _loc.GetString("new-life-gui-character-not-available");
+                NextRespawnLabel.Visible = false;
+                return;
+            default:
+                Spawn.Disabled = true;
+                NextRespawnLabelTitle.Text = _loc.GetString("new-life-gui-role-not-available");
+                NextRespawnLabel.Visible = false;
+                return;
         }
     }
 }
+

@@ -1,0 +1,222 @@
+- type: roleLoadout
+  id: SunriseJobPassenger
+  groups:
+  - GroupTankHarness
+  - PassengerJumpsuit
+  - SunriseCommonBackpack
+  - PassengerNeck
+  - PassengerFace
+  - PassengerGloves
+  - PassengerOuterClothing
+  - PassengerShoes
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - PassengerJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobBartender
+  groups:
+  - GroupTankHarness
+  - BartenderHead
+  - BartenderJumpsuit
+  - SunriseCommonBackpack
+  - BartenderOuterClothing
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - BartenderJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobServiceWorker
+  groups:
+  - GroupTankHarness
+  - BartenderJumpsuit
+  - SunriseCommonBackpack
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - ServiceWorkerJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobChef
+  groups:
+  - GroupTankHarness
+  - ChefHead
+  - ChefMask
+  - ChefJumpsuit
+  - SunriseCommonBackpack
+  - ChefOuterClothing
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - ChefJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobLibrarian
+  groups:
+  - GroupTankHarness
+  - LibrarianJumpsuit
+  - SunriseCommonBackpack
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - LibrarianJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobLawyer
+  groups:
+  - GroupTankHarness
+  - LawyerNeck
+  - LawyerJumpsuit
+  - SunriseCommonBackpack
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - LawyerJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobChaplain
+  groups:
+  - GroupTankHarness
+  - ChaplainHead
+  - ChaplainMask
+  - ChaplainNeck
+  - ChaplainJumpsuit
+  - SunriseCommonBackpack
+  - ChaplainOuterClothing
+  - ChaplainBible
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - ChaplainJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobJanitor
+  groups:
+  - GroupTankHarness
+  - JanitorHead
+  - SunriseJanitorJumpsuit
+  - JanitorGloves
+  - SunriseCommonBackpack
+  - JanitorOuterClothing
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - JanitorJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobBotanist
+  groups:
+  - GroupTankHarness
+  - BotanistHead
+  - BotanistJumpsuit
+  - BotanistBackpack
+  - BotanistOuterClothing
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - BotanistJobTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobClown
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - ClownHead
+  - ClownJumpsuit
+  - ClownBackpack
+  - ClownOuterClothing
+  - ClownShoes
+  - SunriseGlasses
+  - SunriseSurvivalClown
+  - SunriseTrinkets
+  - ClownJobTrinkets
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobMime
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - MimeHead
+  - MimeMask
+  - MimeJumpsuit
+  - MimeBackpack
+  - MimeOuterClothing
+  - MimeBelt
+  - SunriseGlasses
+  - SunriseSurvivalMime
+  - SunriseTrinkets
+  - MimeJobTrinkets
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobMusician
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - SunriseMusicianJumpsuit
+  - SunriseCommonBackpack
+  - SunriseMusicianOuterClothing
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - MusicianJobTrinkets
+  - SunriseInstruments
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - Contributors

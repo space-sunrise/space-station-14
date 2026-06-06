@@ -33,6 +33,7 @@
     tags:
     - DoorBumpOpener
     - StunImmune
+    - NoPaint # Sunrise-Edit
   - type: Blindable
 
 - type: entity

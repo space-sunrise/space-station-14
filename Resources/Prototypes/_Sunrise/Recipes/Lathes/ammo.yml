@@ -850,15 +850,15 @@
   id: MagazineBauer127Penetrator
   result: MagazineBauer127Penetrator
   materials:
-    Steel: 300
-    Uranium: 200
+    Steel: 250
+    Uranium: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBauer127
   result: MagazineBauer127
   materials:
-    Steel: 275
+    Steel: 250
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -867,7 +867,7 @@
   completetime: 3
   materials:
     Steel: 250
-    Plastic: 200
+    Plastic: 115
     Glass: 35
 
 - type: latheRecipe
@@ -876,9 +876,9 @@
   result: MagazineBauer127Blast
   completetime: 3
   materials:
-    Steel: 500
-    Plastic: 500
-    Gold: 200
+    Steel: 300
+    Plastic: 300
+    Gold: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -886,9 +886,9 @@
   result: MagazineBauer127Frag
   completetime: 3
   materials:
-    Steel: 800
+    Steel: 500
     Plastic: 300
-    Gold: 100
+    Gold: 50
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -902,16 +902,16 @@
   id: MagazineBoxBelt127
   result: MagazineBoxBelt127
   materials:
-    Steel: 800
-    Plasteel: 100
-    Uranium: 100
+    Steel: 1000
+    Plasteel: 125
+    Uranium: 125
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxBelt127Artillery
   result: MagazineBoxBelt127Artillery
   materials:
-    Steel: 900
+    Steel: 1125
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -919,9 +919,9 @@
   result: MagazineBoxBelt127Emp
   completetime: 3
   materials:
-    Steel: 800
-    Plastic: 900
-    Glass: 150
+    Steel: 1000
+    Plastic: 1125
+    Glass: 190
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -929,9 +929,9 @@
   result: MagazineBoxBelt127Blast
   completetime: 3
   materials:
-    Steel: 2000
-    Plastic: 3000
-    Gold: 1500
+    Steel: 2500
+    Plastic: 3750
+    Gold: 1875
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -939,9 +939,9 @@
   result: MagazineBoxBelt127Frag
   completetime: 3
   materials:
-    Steel: 2500
-    Plastic: 1500
-    Gold: 450
+    Steel: 3125
+    Plastic: 1875
+    Gold: 560
 
 # .308 belt box
 - type: latheRecipe

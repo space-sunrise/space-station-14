@@ -1,0 +1,17 @@
+id: ss14-component-class-must-end-with-component
+language: CSharp
+severity: error
+message: "Registered component classes must end with `Component` per `ss14-naming-conventions`."
+note: "This encodes the repository rule that C# component types are named `XxxComponent` and linked to YAML as `- type: Xxx`."
+files:
+  - "Content.*/**/*.cs"
+rule:
+  any:
+    - pattern: '[RegisterComponent] public sealed partial class $NAME : Component { $$$BODY }'
+    - pattern: '[RegisterComponent, $$$REST] public sealed partial class $NAME : Component { $$$BODY }'
+    - pattern: '[RegisterComponent] [$$$MORE] public sealed partial class $NAME : Component { $$$BODY }'
+    - pattern: '[RegisterComponent, $$$REST] [$$$MORE] public sealed partial class $NAME : Component { $$$BODY }'
+constraints:
+  NAME:
+    not:
+      regex: 'Component$'

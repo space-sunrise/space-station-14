@@ -104,6 +104,9 @@
   - unpausemap
   - restart
   - shutdown
+  - loadgrid
+  - addmap
+  - loadmap
 
 - Flags: SPAWN
   Commands:

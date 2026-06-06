@@ -26,6 +26,11 @@ public sealed class CopyMachineBoundUserInterface : BoundUserInterface
         {
             SendMessage(new CopyMachineCopyMessage());
         };
+
+        _window.OnCancelQueueJobPressed += index =>
+        {
+            SendMessage(new CopyMachineCancelJobMessage(index));
+        };
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

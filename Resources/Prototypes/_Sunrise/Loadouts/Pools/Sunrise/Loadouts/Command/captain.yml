@@ -1,0 +1,378 @@
+- type: loadout
+  id: EliteCaptainCap
+  sponsorOnly: false
+  equipment:
+    head: ClothingHeadEliteCaptainCap
+
+- type: loadout
+  id: CaptainCapWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    head: ClothingHeadCaptainCapWhite
+
+- type: loadout
+  id: CaptainCapBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    head: ClothingHeadCaptainCapBlack
+
+- type: loadout
+  id: CaptainJumpsuitCapWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCaptainWhite
+
+- type: loadout
+  id: CaptainJumpsuitCapBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCaptainBlack
+
+- type: loadout
+  id: CaptainJumpskirtCapWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCaptainWhite
+
+- type: loadout
+  id: CaptainJumpskirtCapBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCaptainBlack
+
+- type: loadout
+  id: CaptainScarf
+  equipment:
+    neck: ClothingNeckScarfCap
+
+- type: loadout
+  id: CaptainEliteCloak
+  sponsorOnly: false
+  equipment:
+    neck: ClothingEliteNeckCloakCaptain
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCap
+
+- type: loadout
+  id: CaptainMantleWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    neck: ClothingNeckMantleCaptainWhite
+
+- type: loadout
+  id: CaptainMantleWhiteShoulder
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    neck: ClothingNeckMantleCaptainWhiteShoulder
+
+- type: loadout
+  id: CaptainMantleBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    neck: ClothingNeckMantleCaptainBlack
+
+- type: loadout
+  id: CaptainMantleBlackShoulder
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    neck: ClothingNeckMantleCaptainBlackShoulder
+
+- type: loadout
+  id: CaptainBackpackWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    back: ClothingBackpackCaptainWhite
+
+- type: loadout
+  id: CaptainBackpackBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    back: ClothingBackpackCaptainBlack
+
+- type: loadout
+  id: CaptainSatchelWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    back: ClothingBackpackSatchelCaptainWhite
+
+- type: loadout
+  id: CaptainSatchelBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    back: ClothingBackpackSatchelCaptainBlack
+
+- type: loadout
+  id: CaptainDuffelWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    back: ClothingBackpackDuffelCaptainWhite
+
+- type: loadout
+  id: CaptainDuffelBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    back: ClothingBackpackDuffelCaptainBlack
+
+- type: loadout
+  id: CaptainGloves
+  equipment:
+    gloves: ClothingHandsGlovesCaptain
+
+- type: loadout
+  id: CaptainGlovesWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    gloves: ClothingHandsGlovesCaptainCapWhite
+
+- type: loadout
+  id: CaptainGlovesBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    gloves: ClothingHandsGlovesCaptainCapBlack
+
+- type: loadout
+  id: CaptainOuterCoat
+  equipment:
+    outerClothing: ClothingOuterCoatCaptain
+
+- type: loadout
+  id: CaptainOuterOverCoat
+  sponsorOnly: false
+  equipment:
+    outerClothing: ClothingOuterCoatCaptainOvercoat
+
+- type: loadout
+  id: CaptainCarapaceWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    outerClothing: ClothingOuterArmorCaptainCarapaceWhite
+
+- type: loadout
+  id: CaptainCarapaceBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    outerClothing: ClothingOuterArmorCaptainCarapaceBlack
+
+- type: loadout
+  id: SunriseLizardPlushieCaptainLoadout
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 72000 # 20hr
+  storage:
+    back:
+    - PlushieLizardJobCaptain
+
+- type: loadout
+  id: CaptainBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 5h
+  equipment:
+    bra: ClothingBraCaptain
+
+- type: loadout
+  id: CaptainBraWhite
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    bra: ClothingBraCaptainWhite
+
+- type: loadout
+  id: CaptainBraBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    bra: ClothingBraCaptainBlack
+
+- type: loadout
+  id: CaptainThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 5h
+  equipment:
+    pants: ClothingPantsWomanCaptain
+
+- type: loadout
+  id: CaptainThongWhite
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    pants: ClothingPantsWomanCaptainWhite
+
+- type: loadout
+  id: CaptainThongBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    pants: ClothingPantsWomanCaptainBlack
+
+- type: loadout
+  id: CaptainBoxers
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 5h
+  equipment:
+    pants: ClothingPantsManCaptain
+
+- type: loadout
+  id: CaptainBoxersWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 13h
+  equipment:
+    pants: ClothingPantsManCaptainWhite
+
+- type: loadout
+  id: CaptainBoxersBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 45h
+  equipment:
+    pants: ClothingPantsManCaptainBlack

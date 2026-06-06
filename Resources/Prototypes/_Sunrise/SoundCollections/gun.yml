@@ -12,6 +12,20 @@
     sound:
       collection: PulseDrop
 
+- type: entity
+  id: BaseGunShotgunSound
+  abstract: true
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ShotgunsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: ShotgunsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShotgunsDrop
+
 - type: soundCollection
   id: RiflesPickUp
   files:

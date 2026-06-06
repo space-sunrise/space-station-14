@@ -1,0 +1,97 @@
+- type: loadout
+  id: DetectiveCoatDark
+  equipment:
+    outerClothing: ClothingOuterCoatDetectiveDark
+
+- type: loadout
+  id: DetectiveTieHorrific
+  equipment:
+    neck: ClothingNeckHorrific
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
+- type: loadoutEffectGroup
+  id: MasterDetective
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 72000 #20 hrs
+
+- type: loadoutEffectGroup
+  id: MasterDetective50h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 180000 #50 hrs
+
+- type: loadoutEffectGroup
+  id: MasterDetective100h
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 360000 #100 hrs
+
+- type: loadout
+  id: DetectiveWeapon
+  equipment:
+    pocket1: WeaponRevolverInspector
+
+- type: loadout
+  id: WeaponRevolverSnubRevolver
+  equipment:
+    pocket1: WeaponRevolverSnubRevolver
+
+- type: loadout
+  id: DetectiveWeapon20h
+  equipment:
+    pocket1: WeaponRevolverDeckard
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
+- type: loadout
+  id: DetectiveWeapon50h
+  equipment:
+    pocket1: WeaponRevolverSpearhead
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective50h
+
+- type: loadout
+  id: DetectiveWeapon50h2
+  equipment:
+    pocket1: WeaponRevolverSpearheadBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective50h
+
+- type: loadout
+  id: DetectiveWeapon100h
+  equipment:
+    pocket1: WeaponPistolM1984
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective100h
+
+- type: loadout
+  id: ClothingUniformJumpSuitSuperStarCop20h
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSuperstarCop
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective
+
+- type: loadout
+  id: ClothingOuterDiscoAssBlazerDetective20h
+  equipment:
+    outerClothing: ClothingOuterDiscoAssBlazerDetective
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterDetective

@@ -25,9 +25,25 @@
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
       Frezon: danger
-      BZ: danger #SunRise edit
-      Healium: stationNO #SunRise edit
-      Nitrium: stationNO #SunRise edit
+      #SunRise-Start
+      BZ: danger
+      Healium: stationNO
+      Nitrium: stationNO
+      Pluoxium: unwanted
+      Hydrogen: danger
+      HyperNoblium: unwanted
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: danger
+      Helium: unwanted
+      AntiNoblium: danger
+      Electrovae: danger
+      ChargedElectrovae: danger
+  - type: Tag
+    tags:
+    - AirSensor
+    - ForceFixRotations
+      #SunRise-End
   - type: GuideHelp
     guides:
     - DeviceMonitoringAndControl

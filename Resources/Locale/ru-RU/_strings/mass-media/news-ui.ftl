@@ -45,3 +45,4 @@ news-write-ui-photos-label = Фотографии:
 news-write-ui-add-photo-text = Добавить фото
 news-write-ui-select-photo-title = Выберите фото с КПК
 news-write-ui-no-photos = На КПК нет фотографий
+news-write-upload-disabled = Отправка фотографий отключена.

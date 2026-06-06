@@ -88,7 +88,7 @@ public sealed partial class AtmosphereSystem
             tile.Hotspot.Volume <= 1f ||
             tile.Air == null ||
             tile.Air.GetMoles(Gas.Oxygen) < 0.5f ||
-            tile.Air.GetMoles(Gas.Plasma) < 0.5f && tile.Air.GetMoles(Gas.Tritium) < 0.5f)
+            (tile.Air.GetMoles(Gas.Plasma) < 0.5f && tile.Air.GetMoles(Gas.Tritium) < 0.5f && tile.Air.GetMoles(Gas.Hydrogen) < 0.5f && tile.Air.GetMoles(Gas.HyperNoblium) > 5f)) //SunRise edit
         {
             tile.Hotspot = new Hotspot();
             InvalidateVisuals(ent, tile);
@@ -208,12 +208,14 @@ public sealed partial class AtmosphereSystem
 
         var plasma = tile.Air.GetMoles(Gas.Plasma);
         var tritium = tile.Air.GetMoles(Gas.Tritium);
+        var hydrogen = tile.Air.GetMoles(Gas.Hydrogen); //SunRise edit
+        var hypernoblium = tile.Air.GetMoles(Gas.HyperNoblium); //SunRise edit
 
         if (tile.Hotspot.Valid)
         {
             if (soh)
             {
-                if (plasma > 0.5f || tritium > 0.5f)
+                if (plasma > 0.5f && hypernoblium < 5f || tritium > 0.5f && hypernoblium < 5f || hydrogen > 0.5f && hypernoblium < 5f) //SunRise edit
                 {
                     tile.Hotspot.Temperature = MathF.Max(tile.Hotspot.Temperature, exposedTemperature);
                     tile.Hotspot.Volume = MathF.Max(tile.Hotspot.Volume, exposedVolume);
@@ -223,13 +225,11 @@ public sealed partial class AtmosphereSystem
             return;
         }
 
-        if (exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature && (plasma > 0.5f || tritium > 0.5f))
+        if ((exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature) && (plasma > 0.5f && hypernoblium < 5f || tritium > 0.5f && hypernoblium < 5f || hydrogen > 0.5f && hypernoblium < 5f)) //SunRise edit
         {
             if (sparkSourceUid.HasValue)
             {
-                _adminLog.Add(LogType.Flammable,
-                    LogImpact.High,
-                    $"Heat/spark of {ToPrettyString(sparkSourceUid.Value)} caused atmos ignition of gas: {tile.Air.Temperature.ToString():temperature}K - {oxygen}mol Oxygen, {plasma}mol Plasma, {tritium}mol Tritium");
+                _adminLog.Add(LogType.Flammable, LogImpact.High, $"Heat/spark of {ToPrettyString(sparkSourceUid.Value)} caused atmos ignition of gas: {tile.Air.Temperature.ToString():temperature}K - {oxygen}mol Oxygen, {plasma}mol Plasma, {tritium}mol Tritium, {hydrogen}mol Hydrogen"); //SunRise edit
             }
 
             tile.Hotspot = new Hotspot

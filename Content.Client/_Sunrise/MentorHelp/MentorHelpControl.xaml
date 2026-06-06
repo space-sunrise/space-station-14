@@ -84,8 +84,12 @@
 
                     <BoxContainer Name="ReplyPanel" Access="Public" Orientation="Vertical" HorizontalExpand="True" Margin="5">
                         <RichTextLabel Name="TypingIndicator" Access="Public" />
-                        <LineEdit Name="ReplyInput" Access="Public" PlaceHolder="{Loc 'mentor-help-reply-placeholder'}"
-                                  HorizontalExpand="True" />
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalExpand="True">
+                            <LineEdit Name="ReplyInput" Access="Public" PlaceHolder="{Loc 'mentor-help-reply-placeholder'}"
+                                      HorizontalExpand="True" />
+                            <Button Name="EmojiButton" Access="Public" Text="☻" SetWidth="45"
+                                    ToolTip="{Loc 'messenger-emoji-button-tooltip'}" />
+                        </BoxContainer>
                         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 5 0 0">
                             <Button Name="ClaimButton" Access="Public" Text="{Loc 'mentor-help-claim'}"
                                     StyleClasses="ButtonBig" />

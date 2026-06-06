@@ -22,6 +22,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
+// TODO: Рефактор. Эта система огромнейший сборник щиткода с гигантским количеством варнингов. Она ужасна и не должна существовать.
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     [Dependency] private readonly StationSystem _stationSystem = default!;

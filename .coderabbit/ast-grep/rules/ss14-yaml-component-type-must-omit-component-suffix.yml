@@ -1,0 +1,13 @@
+id: ss14-yaml-component-type-must-omit-component-suffix
+language: Yaml
+severity: error
+message: "YAML component `type` values must omit the `Component` suffix per `ss14-ecs-prototypes` and `ss14-naming-conventions`."
+note: "In SS14 prototypes, C# `XxxComponent` is written as `- type: Xxx`."
+files:
+  - "Resources/**/*.yml"
+  - "Resources/**/*.yaml"
+rule:
+  pattern: 'type: $TYPE'
+constraints:
+  TYPE:
+    regex: 'Component$'

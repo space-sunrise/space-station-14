@@ -1,0 +1,45 @@
+- type: roleLoadout
+  id: SunriseJobCargoTechnician
+  groups:
+  - GroupTankHarness
+  - SunriseCargoTechnicianHead
+  - SunriseCargoTechMask
+  - CargoTechnicianJumpsuit
+  - SunriseCargoTechGloves
+  - CargoTechnicianBackpack
+  - SunriseCargoTechnicianOuterClothing
+  - SunriseCargoTechNeck
+  - SunriseCargoTechnicianShoes
+  - CargoTechnicianID
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - CargoTechnicianJobTrinkets
+  - GroupSpeciesBreathTool
+  - TrinketsCargo
+  - Bra
+  - Pants
+  - Socks
+  - Contributors
+
+- type: roleLoadout
+  id: SunriseJobSalvageSpecialist
+  groups:
+  - GroupTankHarness
+  - SunriseSalvageHead
+  - SunriseSalvageMask
+  - SunriseSalvageGloves
+  - SalvageSpecialistBackpack
+  - SunriseSalvageSpecialistOuterClothing
+  - SunriseSalvageNeck
+  - SunriseSalvageSpecialistShoes
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - SalvageSpecialistJobTrinkets
+  - GroupSpeciesBreathTool
+  - TrinketsCargo
+  - Bra
+  - Pants
+  - Socks
+  - Contributors

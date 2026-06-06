@@ -1,0 +1,22 @@
+- type: roleLoadout
+  id: SunriseJobQuartermaster
+  groups:
+  - GroupTankHarness
+  - SunriseQuartermasterHead
+  - SunriseQuartermasterMask
+  - QuartermasterJumpsuit
+  - SunriseQuartermasterGloves
+  - CargoTechnicianBackpack
+  - SunriseQuartermasterOuterClothing
+  - SunriseQuartermasterNeck
+  - SunriseQuartermasterShoes
+  - SunriseQuartermasterBra
+  - SunriseQuartermasterPants
+  - SunriseGlasses
+  - SunriseSurvival
+  - SunriseTrinkets
+  - QuartermasterJobTrinkets
+  - SunriseGroupSpeciesBreathTool
+  - TrinketsCargo
+  - Socks
+  - Contributors

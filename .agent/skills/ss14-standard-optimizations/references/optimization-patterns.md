@@ -1,36 +1,36 @@
-# Матрица оптимизаций: сигнал → решение → риск
+# Optimization matrix: signal → decision → risk
 
-Используй таблицу как быстрый роутер решений в ревью и при рефакторинге.
+Use the table as a quick solution router in reviews and refactorings.
 
-| Тема | Сигнал | Решение | Риск при неверном применении |
+| Topic | Signal | Solution | Risk due to incorrect use |
 |---|---|---|---|
-| Кеширование инвариантов и агрегатов | Внутри вложенных циклов повторяются одни и те же вычисления или пересчёт количества | Предвычислить инварианты до цикла и вести счётчик инкрементально (`TargetCount`, `BurstShotsCount`, `count += / -=`) | Несогласованный счётчик при пропущенном обновлении |
-| Снижение аллокаций | GC spikes на массовых кадрах | Переиспользовать `ValueList/List`, применять `ArrayPool`, передавать коллекции/спаны | Утечки в пуле при забытом `Return`, грязные данные без `Clear` |
-| Отказ от LINQ | LINQ в hot-path (`Where/Select/Any/Count`) | Переписать на `for/foreach` с ранними выходами | Потеря читаемости, если переписано без структуры |
-| `Component + ActiveComponent` | Много «неактивных» сущностей в общей итерации | Ввести активный маркер и итерировать только активные | Неконсистентные переходы состояния при забытом remove/add |
-| `EntityQuery` для `TryComp/HasComp/Resolve` | Частые повторные проверки компонентов | Кешировать `EntityQuery<T>` в `Initialize()` и использовать его методы | Ложная «оптимизация» в редко вызываемом коде |
-| Порядок в `EntityQueryEnumerator` | Дорогие multi-component query | Ставить первым редкий компонент, затем более массовые | Неправильный порядок ухудшает время итерации |
-| `ByRef record struct` события | Частые локальные события в gameplay loop | `[ByRefEvent] public record struct ...` + передача `ref` | Поломка обработчиков из-за несогласованной сигнатуры |
-| `DirtyField` vs `Dirty` | Большой компонент с многими сетевыми полями | При точечных изменениях использовать `DirtyField` | Пропустить нужное поле и получить рассинхрон |
-| Ранние `return/continue` | Сложные вложенные проверки в цикле | Дешёвые фильтры впереди, ранний выход | Сложно отследить логику, если условия хаотичны |
-| Удаление лишних компонентов | Временные компоненты висят после завершения задачи | Снимать компонент сразу после завершения состояния | Сломать визуальные/событийные хвосты, если убрать слишком рано |
+| Caching invariants and aggregates | Inside nested loops, the same calculations or quantity recalculation are repeated | Precalculate invariants before the loop and keep the counter incrementally (`TargetCount`, `BurstShotsCount`, `count += / -=`) | Inconsistent counter when update is missed |
+| Reduced allocations | GC spikes on mass shots | Reuse `ValueList/List`, apply `ArrayPool`, transfer collections/spans | Leaks in the pool when `Return` is forgotten, dirty data without `Clear` |
+| Abandoning LINQ | LINQ in hot-path (`Where/Select/Any/Count`) | Rewrite to `for/foreach` with early exits | Loss of readability if rewritten without structure |
+| `Component + ActiveComponent` | Many "inactive" entities in the overall iteration | Enter active marker and iterate only active ones | Inconsistent state transitions when remove/add is forgotten |
+| `EntityQuery` for `TryComp/HasComp/Resolve` | Frequent component rechecks | Cache `EntityQuery<T>` in `Initialize()` and use its methods | False "optimization" in rarely called code |
+| Order in `EntityQueryEnumerator` | Dear multi-component query | Put the rare component first, then the more widespread ones | Incorrect ordering worsens iteration time |
+| `ByRef record struct` events | Frequent local events in the gameplay loop | `[ByRefEvent] public record struct ...` + transfer `ref` | Handlers break due to inconsistent signature |
+| `DirtyField` vs `Dirty` | Large component with many network fields | For point changes, use `DirtyField` | Skip the required field and get out of sync |
+| Early `return/continue` | Complex nested checks in a loop | Cheap filters ahead, early release | It's difficult to follow the logic if the conditions are chaotic |
+| Removing unnecessary components | Temporary components hang after task completion | Remove the component immediately after the state is completed | Break visual/event tails if removed too early |
 
-## Критерий hot-path по темам
+## Hot-path criterion by topic
 
-1. Кеширование: в hot-loop есть повторный расчёт одинаковых параметров или повторный полный пересчёт количества.
-2. Аллокации: участок создаёт временные объекты на каждом кадре/пакете.
-3. LINQ: метод вызывается часто и содержит цепочки перечислений.
-4. ActiveComponent: доля реально активных сущностей мала относительно общей.
-5. EntityQuery: одна и та же компонентная проверка повторяется в API/циклах.
-6. Порядок query: использован `EntityQueryEnumerator<T1, T2[, T3]>` в частом пути.
-7. ByRef events: событие поднимается массово (боёвка, физика, периодические апдейты).
-8. DirtyField: компонент сетевой и содержит несколько `AutoNetworkedField`.
-9. Ранние выходы: дорогая работа выполняется до базовых фильтров.
-10. Чистка компонентов: временные/active-маркеры продолжают жить после завершения.
+1. Caching: in hot-loop there is a repeated calculation of identical parameters or a repeated complete recalculation of the quantity.
+2. Allocations: the site creates temporary objects on each frame/packet.
+3. LINQ: the method is called frequently and contains chains of enumerations.
+4. ActiveComponent: the proportion of actually active entities is small relative to the total.
+5. EntityQuery: The same component check is repeated in API/loops.
+6. Query order: `EntityQueryEnumerator<T1, T2[, T3]>` is used in the frequent path.
+7. ByRef events: the event is raised en masse (combat, physics, periodic updates).
+8. DirtyField: a network component and contains several `AutoNetworkedField`.
+9. Early exits: Expensive work is done before the base filters.
+10. Cleaning components: temporary/active markers continue to live after completion.
 
-## Необычные, но полезные приёмы
+## Unusual but useful techniques
 
-1. Двойная очередь пакетов (swap queues) в сетевой подсистеме: предотвращает зацикливание «пакет порождает пакет» в одном тике.
-2. Передача `ReadOnlySpan<T>` в методы рассылки: убирает лишние копии списков получателей.
-3. Локальный кеш списка на кадр в UI/эффектах: стабильнее по GC, чем создавать новый список каждый проход.
-4. Комбинация `fieldDeltas + DirtyField`: особенно полезна для компонентов с частыми мелкими обновлениями.
+1. Double packet queues (swap queues) in the network subsystem: prevents the “packet begets a packet” loop in one tick.
+2. Passing `ReadOnlySpan<T>` to distribution methods: removes unnecessary copies of recipient lists.
+3. Local list cache per frame in UI/effects: more GC-stable than creating a new list every pass.
+4. `fieldDeltas + DirtyField` combination: especially useful for components with frequent minor updates.

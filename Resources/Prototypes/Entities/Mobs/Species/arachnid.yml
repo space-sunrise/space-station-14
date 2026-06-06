@@ -146,7 +146,6 @@
       - "footprint-left-bare-spider"
     rightBareFootState:
       - "footprint-right-bare-spider"
-  - type: Carriable
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
   # Sunrise-end

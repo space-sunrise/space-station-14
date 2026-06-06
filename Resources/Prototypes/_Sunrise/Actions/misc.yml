@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: GoliathHoodToggleAction
+  name: Switching hood
+  description: Switching hood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: _Sunrise/Clothing/Neck/Mantles/goliathalivemantle.rsi, state: icon }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent

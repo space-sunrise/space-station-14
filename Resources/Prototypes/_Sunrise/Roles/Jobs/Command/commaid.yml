@@ -13,9 +13,12 @@
   startingGear: ComMaidGear
   icon: "JobIconComMaid"
   supervisors: job-supervisors-captain
-  canBeAntag: false
+  canBeAntag: true
   displayWeight: 0
   weight: 5
+  alternativeTitles:
+  - job-alt-title-valet
+  - job-alt-title-butler
   access:
   - Command
   - Service

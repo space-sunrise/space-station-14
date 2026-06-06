@@ -1,73 +1,73 @@
 ---
 name: SS14 UI XAML
-description: Практический гайд по XAML-интерфейсам SS14: структура окон, GenerateTypedNameReferences, загрузка через RobustXamlLoader, layout-контейнеры, локализация и стиль-классы. Используй при создании, рефакторинге и визуальной полировке UI-окон.
+description: A practical guide to SS14 XAML interfaces: window structure, GenerateTypedNameReferences, loading via RobustXamlLoader, layout containers, localization and style classes. Use it when creating, refactoring and visually polishing UI windows.
 ---
 
-# XAML и окна UI в SS14
+# XAML and UI windows in SS14
 
-Этот skill покрывает только XAML и code-behind для окон/контролов 🙂
-Сетевую часть (`EUI`, `UserInterfaceSystem`, `UserInterfaceManager`) и глубокую стилизацию (палитры/sheetlets) веди в отдельных skill.
+This skill only covers XAML and code-behind for windows/controls :)
+The network part (`EUI`, `UserInterfaceSystem`, `UserInterfaceManager`) and deep styling (palettes/sheetlets) should be done in separate skills.
 
-## Жесткая связка XAML и `xaml.cs`
+## Rigid XAML binding and `xaml.cs`
 
-Это обязательное правило, не рекомендация ⚠️
+This is a mandatory rule, not a recommendation ⚠️
 
-1. Имя класса в `xaml.cs` и имя файла `.xaml` должны совпадать один-в-один.
-2. Класс должен быть `partial`, если используется `[GenerateTypedNameReferences]`.
-3. Корневой тип в XAML должен совпадать с классом из `xaml.cs` или его базовым классом.
-4. Должен существовать ровно один подходящий `.xaml` для класса.
+1. The class name in `xaml.cs` and the file name `.xaml` must match one-to-one.
+2. The class must be `partial` if `[GenerateTypedNameReferences]` is used.
+3. The root type in XAML must be the same as the class in `xaml.cs` or its base class.
+4. There must be exactly one matching `.xaml` for the class.
 
-Если нарушить эти требования, генератор typed-name references выбрасывает compile-time ошибки (`RXN0001`, `RXN0002`, `RXN0005`).
+If these requirements are violated, the typed-name references generator throws compile-time errors (`RXN0001`, `RXN0002`, `RXN0005`).
 
-Мини-пример правильной связки:
+Mini-example of a correct link:
 
 ```text
 AdminPanel.xaml
 AdminPanel.xaml.cs -> public sealed partial class AdminPanel : FancyWindow
 ```
 
-## Статическое получение данных в XAML
+## Statically retrieving data in XAML
 
-Для статических значений используй `x:Static` и `x:Type`.
+For static values ​​use `x:Static` and `x:Type`.
 
-Когда это нужно:
-- константы размеров/параметров из C#;
-- enum/статические поля для хоткеев и конфигураций;
-- статические style-классы из `StyleClass`;
-- передача `Type` в свойства, ожидающие тип окна/контрола.
+When needed:
+- size/parameter constants from C#;
+- enum/static fields for hotkeys and configurations;
+- static style classes from `StyleClass`;
+- passing `Type` to properties expecting a window/control type.
 
-Примеры:
+Examples:
 
 ```xml
-<!-- Статическое поле enum -->
+<!-- Static enum field -->
 <ui:MenuButton BoundKey="{x:Static is:ContentKeyFunctions.OpenGuidebook}" />
 
-<!-- Статическая константа высоты -->
+<!-- Static height constant -->
 <ContainerButton MinHeight="{x:Static ui:ContextMenuElement.ElementHeight}" />
 
-<!-- Статическая строковая константа style class -->
+<!-- Static string style class constant -->
 <ui:MenuButton AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}" />
 
-<!-- Передача Type вместо строки -->
+<!-- Passing `Type` instead of a string -->
 <cc:UICommandButton WindowType="{x:Type at:AddAtmosWindow}" />
 ```
 
-Паттерн:
-- Если значение «архитектурное» и уже объявлено в коде как `const/static`, подтягивай его в XAML через `x:Static`, а не дублируй литералом.
+Pattern:
+- If the value is “architectural” and is already declared in the code as `const/static`, pull it into XAML via `x:Static`, rather than duplicating it with a literal.
 
-Анти-паттерн:
-- Дублировать строки ключей/классов/типов в XAML вручную, когда есть статическое поле-источник.
+Anti-pattern:
+- Duplicate key/class/type lines in XAML manually when there is a static source field.
 
-## UiDependency в коде элемента
+## UiDependency in the element code
 
-В текущей кодовой базе нет отдельного атрибута `UiDependency`.
-Практический эквивалент для UI-элементов:
+The current codebase does not have a separate `UiDependency` attribute.
+The practical equivalent for UI elements is:
 
-1. Используй `[Dependency]` для обычных IoC-зависимостей элемента.
-2. Вызывай `IoCManager.InjectDependencies(this)` в конструкторе после `RobustXamlLoader.Load(this)`.
-3. Для `UIController` и зависимостей от `EntitySystem` используй `[UISystemDependency]`.
+1. Use `[Dependency]` for normal IoC element dependencies.
+2. Call `IoCManager.InjectDependencies(this)` in the constructor after `RobustXamlLoader.Load(this)`.
+3. For `UIController` and dependencies on `EntitySystem` use `[UISystemDependency]`.
 
-Пример для UI-элемента:
+Example for a UI element:
 
 ```csharp
 [GenerateTypedNameReferences]
@@ -84,7 +84,7 @@ public partial class FancyWindow : BaseWindow
 }
 ```
 
-Пример для `UIController`:
+Example for `UIController`:
 
 ```csharp
 public sealed class GuidebookUIController : UIController
@@ -94,66 +94,66 @@ public sealed class GuidebookUIController : UIController
 }
 ```
 
-## Таблица полезных UI-элементов
+## Table of useful UI elements
 
-| Элемент | Когда использовать | Мини-пример |
+| Element | When to use | Mini-example |
 |---|---|---|
-| `FancyWindow` | Стандартные игровые окна с заголовком/закрытием | ``<ui:FancyWindow Title="{Loc 'ui-title'}">...</ui:FancyWindow>`` |
-| `Control` | Базовый контейнер-обертка без лишнего поведения | ``<Control MinWidth="200">...</Control>`` |
-| `BoxContainer` | Вертикальный/горизонтальный поток элементов | ``<BoxContainer Orientation="Vertical" SeparationOverride="4">...</BoxContainer>`` |
-| `GridContainer` | Табличное размещение с колонками | ``<GridContainer Columns="3">...</GridContainer>`` |
-| `ScrollContainer` | Прокрутка длинного контента | ``<ScrollContainer VerticalExpand="True">...</ScrollContainer>`` |
-| `PanelContainer` | Фон/рамка/визуальное отделение блока | ``<PanelContainer StyleClasses="BackgroundPanel" />`` |
-| `Label` | Обычный текст, заголовки, короткие подписи | ``<Label StyleClasses="LabelSubText" Text="{Loc 'ui-label'}" />`` |
-| `RichTextLabel` | Разметка/многострочные форматированные тексты | ``<RichTextLabel Name="Description" />`` |
-| `LineEdit` | Ввод строки и поиск | ``<LineEdit PlaceHolder="{Loc 'ui-search'}" HorizontalExpand="True" />`` |
-| `Button` | Основное действие пользователя | ``<Button Text="{Loc 'ui-confirm'}" />`` |
-| `TextureButton` | Иконка-кнопка (help/close/refresh) | ``<TextureButton StyleClasses="windowCloseButton" />`` |
-| `ItemList` | Выбор из списка элементов | ``<ItemList Name="MusicList" SelectMode="Button" VerticalExpand="True" />`` |
-| `Slider` | Выбор значения по диапазону | ``<Slider Name="PlaybackSlider" HorizontalExpand="True" />`` |
-| `TextureRect` | Отображение текстур/иконок | ``<TextureRect Stretch="KeepCentered" />`` |
+| `FancyWindow` | Standard game windows with title/close | ``<ui:FancyWindow Title="{Loc 'ui-title'}">...</ui:FancyWindow>`` |
+| `Control` | Basic wrapper container without unnecessary behavior | ``<Control MinWidth="200">...</Control>`` |
+| `BoxContainer` | Vertical/horizontal flow of elements | ``<BoxContainer Orientation="Vertical" SeparationOverride="4">...</BoxContainer>`` |
+| `GridContainer` | Table layout with columns | ``<GridContainer Columns="3">...</GridContainer>`` |
+| `ScrollContainer` | Scrolling long content | ``<ScrollContainer VerticalExpand="True">...</ScrollContainer>`` |
+| `PanelContainer` | Background/frame/visual block separation | ``<PanelContainer StyleClasses="BackgroundPanel" />`` |
+| `Label` | Plain text, headings, short captions | ``<Label StyleClasses="LabelSubText" Text="{Loc 'ui-label'}" />`` |
+| `RichTextLabel` | Markup/multiline rich text | ``<RichTextLabel Name="Description" />`` |
+| `LineEdit` | String input and search | ``<LineEdit PlaceHolder="{Loc 'ui-search'}" HorizontalExpand="True" />`` |
+| `Button` | Primary user action | ``<Button Text="{Loc 'ui-confirm'}" />`` |
+| `TextureButton` | Button icon (help/close/refresh) | ``<TextureButton StyleClasses="windowCloseButton" />`` |
+| `ItemList` | Selecting from a list of elements | ``<ItemList Name="MusicList" SelectMode="Button" VerticalExpand="True" />`` |
+| `Slider` | Selecting a value by range | ``<Slider Name="PlaybackSlider" HorizontalExpand="True" />`` |
+| `TextureRect` | Displaying textures/icons | ``<TextureRect Stretch="KeepCentered" />`` |
 
-## Быстрый выбор подхода
+## Quick approach selection
 
-1. Нужен стандартный игровый window chrome, заголовок и единый стиль?
-- Используй `FancyWindow`.
-2. Нужен переиспользуемый составной элемент?
-- Делай `Control` + XAML + `[GenerateTypedNameReferences]`.
-3. Нужны динамические элементы (кнопки/фильтры/списки) после загрузки разметки?
-- Добавляй их в конструкторе после `RobustXamlLoader.Load(this)`.
+1. Do you need a standard game window chrome, header and uniform style?
+- Use `FancyWindow`.
+2. Need a reusable compound element?
+- Do `Control` + XAML + `[GenerateTypedNameReferences]`.
+3. Do you need dynamic elements (buttons/filters/lists) after loading the markup?
+- Add them in the constructor after `RobustXamlLoader.Load(this)`.
 
-## Рабочие паттерны
+## Working patterns
 
-- Строй layout через контейнеры (`BoxContainer`, `ScrollContainer`, `GridContainer`), а не через ручные координаты.
-- Держи XAML декларативным: структура, классы, базовые атрибуты.
-- Держи поведение в code-behind: подписки, заполнение данных, условная логика.
-- Локализуй текст через `Loc`/`{Loc ...}` и не хардкодь строки.
-- Используй `Name` + `[GenerateTypedNameReferences]`, чтобы получать типобезопасные ссылки на контролы.
-- Добавляй `Access="Public"` только там, где элемент реально нужен снаружи.
+- Build layout through containers (`BoxContainer`, `ScrollContainer`, `GridContainer`), and not through manual coordinates.
+- Keep XAML declarative: structure, classes, base attributes.
+- Keep the behavior in the code-behind: subscriptions, data filling, conditional logic.
+- Localize text using `Loc`/`{Loc ...}` and do not hardcode strings.
+- Use `Name` + `[GenerateTypedNameReferences]` to get type-safe references to controls.
+- Add `Access="Public"` only where the element is really needed outside.
 
-## Анти-паттерны
+## Anti-patterns
 
-- Позиционировать UI «пикселями», когда достаточно контейнеров.
-- Держать бизнес-логику прямо в XAML.
-- Массово помечать элементы `Access="Public"` без причины.
-- Хардкодить цвета/строки вместо style classes и локализации.
-- Копировать старые примеры без проверки даты и проблемных комментариев ⚠️
+- Position the UI in “pixels” when there are enough containers.
+- Keep business logic directly in XAML.
+- Bulk mark `Access="Public"` elements for no reason.
+- Hardcode colors/strings instead of style classes and localization.
+- Copy old examples without checking the date and problematic comments ⚠️
 
-## Примеры из кода
+## Code examples
 
-### Пример 1: каркас окна через `FancyWindow`
+### Example 1: window frame via `FancyWindow`
 
 ```xml
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       MouseFilter="Stop"
                       MinWidth="200" MinHeight="150">
-    <!-- Фоновая панель в стиле текущей темы -->
+    <!-- Background panel using the current theme style -->
     <PanelContainer StyleClasses="BackgroundPanel" />
 
     <BoxContainer Orientation="Vertical">
         <Control>
-            <!-- Хедер окна со style class -->
+            <!-- Window header with a style class -->
             <PanelContainer StyleClasses="WindowHeadingBackground" Name="WindowHeader" />
             <BoxContainer Margin="4 2 4 0" Orientation="Horizontal">
                 <Label Name="WindowTitle"
@@ -164,13 +164,13 @@ public sealed class GuidebookUIController : UIController
 
         <PanelContainer StyleClasses="LowDivider" />
 
-        <!-- Публичный контейнер контента для последующего наполнения -->
+        <!-- Public content container for later population -->
         <Control Access="Public" Name="ContentsContainer" VerticalExpand="true" />
     </BoxContainer>
 </controls:FancyWindow>
 ```
 
-### Пример 2: типобезопасные ссылки + программное расширение UI
+### Example 2: Type-safe references + UI plugin
 
 ```csharp
 [GenerateTypedNameReferences]
@@ -180,10 +180,10 @@ public sealed partial class ActionsWindow : DefaultWindow
 
     public ActionsWindow()
     {
-        // Сначала загружаем XAML-дерево.
+        // First we load the XAML tree.
         RobustXamlLoader.Load(this);
 
-        // Потом дополняем его динамическим контролом.
+        // Then we supplement it with dynamic control.
         SearchContainer.AddChild(FilterButton = new MultiselectOptionButton<Filters>
         {
             Label = Loc.GetString("ui-actionmenu-filter-button")
@@ -192,41 +192,41 @@ public sealed partial class ActionsWindow : DefaultWindow
 }
 ```
 
-### Пример 3: несколько style classes в XAML
+### Example 3: Multiple style classes in XAML
 
 ```xml
 <Button Name="DoneButton" Text="{Loc 'nano-task-ui-done'}">
     <Button.StyleClasses>
-        <!-- Комбинируем размер и форму кнопки -->
+        <!-- Combine button size and shape -->
         <system:String>ButtonSmall</system:String>
         <system:String>OpenLeft</system:String>
     </Button.StyleClasses>
 </Button>
 ```
 
-### Пример 4: связывание данных и событий после загрузки разметки
+### Example 4: Data and event binding after markup is loaded
 
 ```csharp
 public NanoTaskItemControl(NanoTaskItemAndId item)
 {
     RobustXamlLoader.Load(this);
 
-    // Заполняем UI данными.
+    // Filling the UI with data.
     TaskLabel.Text = item.Data.Description;
     TaskForLabel.Text = item.Data.TaskIsFor;
 
-    // Привязываем действия пользователя к доменной логике.
+    // We tie user actions to domain logic.
     MainButton.OnPressed += _ => OnMainPressed?.Invoke(item.Id);
     DoneButton.OnPressed += _ => OnDonePressed?.Invoke(item.Id);
 }
 ```
 
-## Чеклист перед PR
+## Checklist before PR
 
-- Окно собирается контейнерами и корректно тянется при resize.
-- Все пользовательские строки локализованы.
-- Для статических значений применяются `x:Static`/`x:Type`, а не дубли литералов.
-- Соблюдена жёсткая связка имени класса и имени `.xaml`.
-- Нет хардкода визуала, который должен быть в style system.
-- Подписки на события осмысленные, без «лишнего шума».
-- Используются только свежие и чистые (без TODO/FIXME) референсы кода 👍
+- The window is assembled by containers and stretches correctly when resizing.
+- All custom strings are localized.
+- For static values, `x:Static`/`x:Type` are used, not duplicate literals.
+- A strict connection between the class name and the name `.xaml` has been maintained.
+- There is no visual hardcode, which should be in the style system.
+- Subscriptions to events are meaningful, without “extra noise.”
+- Only fresh and clean (without TODO/FIXME) code references are used 👍

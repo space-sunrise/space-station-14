@@ -45,8 +45,6 @@
       # Sunrise-start
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
       # Sunrise-end
   - type: UseDelay
     delay: 0.5
@@ -140,7 +138,6 @@
       - "footprint-left-bare-slime"
     rightBareFootState:
       - "footprint-right-bare-slime"
-  - type: Carriable
   # Sunrise edit end.
 
 - type: entity

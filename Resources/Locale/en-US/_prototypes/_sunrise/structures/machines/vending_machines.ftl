@@ -10,3 +10,5 @@ ent-VendingMachineAbductorDispenser = alien dispenser
     .desc = Dispenses something weird.
 ent-VendingMachineWeaponDev = liberation station
     .desc = An overwhelming amount of ancient patriotism washes over you just by looking at the machine.
+ent-VendingMachineDressCloset = dress closet
+    .desc = To be perfect.

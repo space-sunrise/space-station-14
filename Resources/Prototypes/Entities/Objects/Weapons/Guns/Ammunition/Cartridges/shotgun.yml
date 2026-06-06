@@ -8,6 +8,7 @@
     tags:
     - ShellShotgun
   - type: Sprite
+    scale: 0.9,0.9 # Sunrise-Add
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     layers:
       - state: base

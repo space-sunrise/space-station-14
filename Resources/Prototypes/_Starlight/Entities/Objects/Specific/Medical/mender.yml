@@ -17,7 +17,7 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 35
+        maxVol: 50
   - type: RefillableSolution
     solution: injector
   - type: Appearance
@@ -25,6 +25,9 @@
     maxFillLevels: 3
     fillBaseName: mender
     solutionName: injector
+  - type: Tag # Sunrise-Add
+    tags:
+      - AutoMender
 
 - type: entity
   id: AutoMenderBrute
@@ -35,7 +38,7 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 30
+        maxVol: 50
   - type: Healing
     worksOnTheDead: false #Sunrise-Edit
     solutionDrain: true
@@ -47,9 +50,9 @@
       - Biological
     damage:
       groups:
-        Brute: -2
+        Brute: -4
       types: #Sunrise-Edit
-        Mangleness: 0.01 #Sunrise-Edit
+        Mangleness: 0.02 #Sunrise-Edit
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
@@ -63,10 +66,10 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 35
+        maxVol: 50
         reagents:
         - ReagentId: Bicaridine
-          Quantity: 35
+          Quantity: 50
 
 - type: entity
   id: AutoMenderBurn
@@ -103,7 +106,7 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 35
+        maxVol: 50
         reagents:
         - ReagentId: Dermaline
-          Quantity: 35
+          Quantity: 50

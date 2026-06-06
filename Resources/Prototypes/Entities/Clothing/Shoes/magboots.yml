@@ -118,6 +118,9 @@
   # Sunrise-start
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
+  - type: RadarBlip
+    scale: 0
+    requireInSpace: true
   # Sunrise-end
 
 - type: entity

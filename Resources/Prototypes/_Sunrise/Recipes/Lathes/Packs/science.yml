@@ -9,9 +9,9 @@
   - GygaxCentralElectronics
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
-  - PhazonCentralElectronics
-  - PhazonPeripheralsElectronics
-  - PhazonTargetingElectronics
+  # - PhazonCentralElectronics
+  # - PhazonPeripheralsElectronics
+  # - PhazonTargetingElectronics
   - DurandCentralElectronics
   - DurandPeripheralsElectronics
   - DurandTargetingElectronics
@@ -20,6 +20,7 @@
   - InterrogatorMachineCircuitboard
   - ExosuitFabricatorHyperConvectionMachineCircuitboard
   - MedicalAssemblerMachineCircuitboard
+  - SlopDispenserMachineCircuitboard
 
 - type: latheRecipePack
   id: PowerCages
@@ -37,6 +38,4 @@
 - type: latheRecipePack
   id: NightVisionDevice
   recipes:
-  - HandCraftedNVD
   - BasicNVD
-  - BasicThermals

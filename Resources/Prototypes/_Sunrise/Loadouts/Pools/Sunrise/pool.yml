@@ -1,0 +1,18 @@
+- type: loadoutPool
+  id: BaseLoadoutPool
+  abstract: true
+  roleLoadouts: {}
+
+- type: loadoutPool
+  id: SunriseLoadout
+  parent:
+  - BaseLoadoutPool
+  - BaseLoadoutPoolAntags
+  - BaseLoadoutPoolCommand
+  - BaseLoadoutPoolCargo
+  - BaseLoadoutPoolCivilian
+  - BaseLoadoutPoolEngineering
+  - BaseLoadoutPoolScience
+  - BaseLoadoutPoolSecurity
+  - BaseLoadoutPoolMedical
+  - BaseLoadoutPoolWildcards

@@ -1,17 +1,17 @@
-# Аннотированные примеры из кода
+# Annotated code examples
 
-Ниже примеры, сверенные по реальному коду.  
-Формат: подсистема, сигнатура, слой, актуальность, затем фрагмент с пояснениями.
+Below are examples verified against real code.  
+Format: subsystem, signature, layer, relevance, then a fragment with explanations.
 
-## Пример 1: предвычисление до вложенных циклов (real fast-path)
+## Example 1: precomputation before nested loops (real fast-path)
 
-- Подсистема: storage area insert
-- Сигнатура: участок подбора позиции/угла в методе проверки размещения
-- Слой: `shared`
-- Актуальность: `2025-05`
+- Subsystem: storage area insert
+- Signature: position/angle selection section in the placement verification method
+- Layer: `shared`
+- Relevance: `2025-05`
 
 ```csharp
-var itemShape = ItemSystem.GetItemShape(itemEnt); // Один расчёт формы до циклов.
+var itemShape = ItemSystem.GetItemShape(itemEnt); // One shape calculation before cycles.
 var fastAngles = itemShape.Count == 1;
 var fastPath = itemShape.Count == 1 && itemShape[0].Contains(Vector2i.Zero);
 
@@ -19,7 +19,7 @@ var angles = new ValueList<Angle>();
 if (!fastAngles)
 {
     for (var angle = startAngle; angle <= Angle.FromDegrees(360 - startAngle); angle += Math.PI / 2f)
-        angles.Add(angle); // Подготовили набор углов один раз.
+        angles.Add(angle); // We prepared a set of corners once.
 }
 else
 {
@@ -36,20 +36,20 @@ while (chunkEnumerator.MoveNext(out var storageChunk))
         {
             foreach (var angle in angles)
             {
-                // Внутри самого дорогого участка используем только предвычисленные данные.
-                // Это убирает повторный расчёт формы/углов на каждый тайл.
+                // Within the most expensive section we use only pre-calculated data.
+                // This eliminates the need to re-calculate shape/angles for each tile.
             }
         }
     }
 }
 ```
 
-## Пример 2: `fieldDeltas + DirtyField` для точечных изменений
+## Example 2: `fieldDeltas + DirtyField` for point changes
 
-- Подсистема: proximity detector
-- Сигнатура: `public override void Update(float frameTime)`
-- Слой: `shared`
-- Актуальность: `2025-05`
+- Subsystem: proximity detector
+- Signature: `public override void Update(float frameTime)`
+- Layer: `shared`
+- Relevance: `2025-05`
 
 ```csharp
 [AutoGenerateComponentState(fieldDeltas: true)]
@@ -70,17 +70,17 @@ public override void Update(float frameTime)
 
         component.NextUpdate += component.UpdateCooldown;
         DirtyField(uid, component, nameof(ProximityDetectorComponent.NextUpdate));
-        // Грязним только реально изменённое поле.
+        // Only the actually changed field is dirty.
     }
 }
 ```
 
-## Пример 3: кеш `EntityQuery<T>` в `Initialize()`
+## Example 3: cache `EntityQuery<T>` in `Initialize()`
 
-- Подсистема: proximity detector
-- Сигнатура: `public override void Initialize()`
-- Слой: `shared`
-- Актуальность: `2025-05`
+- Subsystem: proximity detector
+- Signature: `public override void Initialize()`
+- Layer: `shared`
+- Relevance: `2025-05`
 
 ```csharp
 private EntityQuery<TransformComponent> _xformQuery;
@@ -88,24 +88,24 @@ private EntityQuery<TransformComponent> _xformQuery;
 public override void Initialize()
 {
     SubscribeLocalEvent<ProximityDetectorComponent, MapInitEvent>(OnMapInit);
-    _xformQuery = GetEntityQuery<TransformComponent>(); // Кешируем один раз.
+    _xformQuery = GetEntityQuery<TransformComponent>(); // We cache once.
 }
 
 private void UpdateTarget(Entity<ProximityDetectorComponent> detector)
 {
     if (!_xformQuery.TryGetComponent(detector, out var transform))
-        return; // Быстрый ранний выход.
+        return; // Quick early exit.
 
-    // ... дальнейшая логика поиска цели ...
+    // ...further logic of target search...
 }
 ```
 
-## Пример 4: `ByRef record struct` для частого локального события
+## Example 4: `ByRef record struct` for a frequent local event
 
-- Подсистема: power charge machine
-- Сигнатура: `[ByRefEvent] public record struct ...`
-- Слой: `server`
-- Актуальность: `2024-08`
+- Subsystem: power charge machine
+- Signature: `[ByRefEvent] public record struct ...`
+- Layer: `server`
+- Relevance: `2024-08`
 
 ```csharp
 [ByRefEvent] public record struct ChargedMachineActivatedEvent;
@@ -116,7 +116,7 @@ private void Notify(EntityUid uid, bool active)
     if (active)
     {
         var ev = new ChargedMachineActivatedEvent();
-        RaiseLocalEvent(uid, ref ev); // By-ref вызов.
+        RaiseLocalEvent(uid, ref ev); // By-ref call.
         return;
     }
 
@@ -125,12 +125,12 @@ private void Notify(EntityUid uid, bool active)
 }
 ```
 
-## Пример 5: переиспользование `ValueList` без пер-кадровых аллокаций
+## Example 5: reusing `ValueList` without per-personnel allocations
 
-- Подсистема: визуальные эффекты
-- Сигнатура: `public override void Update(float frameTime)`
-- Слой: `client`
-- Актуальность: `2024-06`
+- Subsystem: visual effects
+- Signature: `public override void Update(float frameTime)`
+- Layer: `client`
+- Relevance: `2024-06`
 
 ```csharp
 private ValueList<EntityUid> _toRemove = new();
@@ -138,7 +138,7 @@ private ValueList<EntityUid> _toRemove = new();
 public override void Update(float frameTime)
 {
     var query = AllEntityQuery<ColorFlashEffectComponent>();
-    _toRemove.Clear(); // Очистка вместо new ValueList<...>().
+    _toRemove.Clear(); // Clearing instead of new ValueList<...>().
 
     while (query.MoveNext(out var uid, out _))
     {
@@ -153,12 +153,12 @@ public override void Update(float frameTime)
 }
 ```
 
-## Пример 6: `ArrayPool<T>` + `ReadOnlySpan<T>` при рассылке
+## Example 6: `ArrayPool<T>` + `ReadOnlySpan<T>` when sending
 
-- Подсистема: device network
-- Сигнатура: `private void SendPacket(...)` / `private void SendToConnections(...)`
-- Слой: `server`
-- Актуальность: `2022-05` (soft-exception: каноничный паттерн, до сих пор применим)
+- Subsystem: device network
+- Signature: `private void SendPacket(...)` / `private void SendToConnections(...)`
+- Layer: `server`
+- Relevance: `2022-05` (soft-exception: canonical pattern, still applicable)
 
 ```csharp
 var deviceCopy = ArrayPool<DeviceNetworkComponent>.Shared.Rent(totalDevices);
@@ -176,17 +176,17 @@ private void SendToConnections(ReadOnlySpan<DeviceNetworkComponent> connections,
 {
     foreach (var connection in connections)
     {
-        // Работаем со span без лишних копий списка.
+        // We work with span without unnecessary copies of the list.
     }
 }
 ```
 
-## Пример 7: `EntityQuery<T>` в API системы вместо повторных общих проверок
+## Example 7: `EntityQuery<T>` in the system API instead of repeating general checks
 
-- Подсистема: tags
-- Сигнатура: `public override void Initialize()` / `public bool HasTag(...)`
-- Слой: `shared`
-- Актуальность: `2024-05`
+- Subsystem: tags
+- Signature: `public override void Initialize()` / `public bool HasTag(...)`
+- Layer: `shared`
+- Relevance: `2024-05`
 
 ```csharp
 private EntityQuery<TagComponent> _tagQuery;
@@ -203,28 +203,28 @@ public bool HasTag(EntityUid uid, ProtoId<TagPrototype> tag)
 }
 ```
 
-## Пример 8: порядок компонентов в query по кардинальности
+## Example 8: ordering components in a query by cardinality
 
-- Подсистема: ECS runtime
-- Сигнатура: `EntityQuery<TComp1, TComp2>(...)`
-- Слой: `engine`
-- Актуальность: `2023-11` (soft-exception: каноничный комментарий движка)
+- Subsystem: ECS runtime
+- Signature: `EntityQuery<TComp1, TComp2>(...)`
+- Layer: `engine`
+- Relevance: `2023-11` (soft-exception: canonical engine comment)
 
 ```csharp
-// В runtime есть прямое указание:
+// There is a direct indication in runtime:
 // "you really want trait1 to be the smaller set of components"
 
-// Практический вывод:
+// Practical conclusion:
 var query = EntityQueryEnumerator<ActiveTimerTriggerComponent, TimerTriggerComponent>();
-// Сначала более редкий компонент, чтобы сократить пересечение.
+// First the rarer component to reduce the overlap.
 ```
 
-## Пример 9: инкрементальный счётчик вместо пересчёта состояния
+## Example 9: incremental counter instead of state recalculation
 
-- Подсистема: ranged gun burst mode
-- Сигнатура: участок обработки выстрела в `SharedGunSystem`
-- Слой: `shared`
-- Актуальность: `2024-10` (используется в актуальном коде 2025+)
+- Subsystem: ranged gun burst mode
+- Signature: shot processing area in `SharedGunSystem`
+- Layer: `shared`
+- Relevance: `2024-10` (used in the current code 2025+)
 
 ```csharp
 if (gun.SelectedMode == SelectiveFire.Burst)
@@ -232,15 +232,15 @@ if (gun.SelectedMode == SelectiveFire.Burst)
 
 if (gun.BurstActivated)
 {
-    gun.BurstShotsCount += shots; // Поддерживаем агрегат инкрементально.
+    gun.BurstShotsCount += shots; // We support the unit incrementally.
 
     if (gun.BurstShotsCount >= gun.ShotsPerBurstModified)
     {
         gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldown);
         gun.BurstActivated = false;
-        gun.BurstShotsCount = 0; // Сброс при завершении burst-окна.
+        gun.BurstShotsCount = 0; // Reset when the burst window ends.
     }
 }
 ```
 
-Комментарий: система не «пересчитывает историю выстрелов» для проверки лимита burst, а обновляет счётчик по месту изменения состояния.
+Comment: the system does not “recalculate the shot history” to check the burst limit, but updates the counter at the point where the state changes.

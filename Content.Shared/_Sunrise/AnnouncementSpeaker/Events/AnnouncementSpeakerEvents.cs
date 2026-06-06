@@ -12,6 +12,7 @@ public readonly record struct AnnouncementSpeakerEvent(
     EntityUid Station,
     string Message,
     ResolvedSoundSpecifier? AnnouncementSound,
+    AudioParams? AnnouncementSoundParams,
     string? AnnounceVoice,
     byte[]? TtsData = null)
 {

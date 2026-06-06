@@ -54,6 +54,44 @@
     - SovietCorpseGearC
     - SovietCorpseGearD
     - SovietCorpseGearF
+    # Additional non-EVA weighting to reduce total EVA chance to 5%.
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearMarine
+    - SovietCorpseGearOfficer
     # Non-EVA entries are intentionally duplicated to reduce EVA overall chance.
     - SovietCorpseGearMarine
     - SovietCorpseGearMarineB
@@ -68,6 +106,16 @@
     - SovietCorpseGearD
     - SovietCorpseGearF
     # Double duplicated for lovering chance.
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
+    - SovietCorpseGearA
+    - SovietCorpseGearB
+    - SovietCorpseGearC
+    - SovietCorpseGearD
+    - SovietCorpseGearF
     - SovietCorpseGearA
     - SovietCorpseGearB
     - SovietCorpseGearC

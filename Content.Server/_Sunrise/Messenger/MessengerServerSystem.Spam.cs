@@ -10,9 +10,6 @@ namespace Content.Server._Sunrise.Messenger;
 
 public sealed partial class MessengerServerSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-
     private bool _spamEnabled;
     private float _spamMinTime;
     private float _spamMaxTime;

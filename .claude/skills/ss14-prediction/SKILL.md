@@ -6,6 +6,6 @@ description: Architecture guide for client-side prediction in Space Station 14 â
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-prediction/SKILL.md.
+../../../.agent/skills/ss14-prediction/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

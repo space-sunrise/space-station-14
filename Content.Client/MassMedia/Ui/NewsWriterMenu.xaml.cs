@@ -34,7 +34,7 @@ public sealed partial class NewsWriterMenu : FancyWindow
         ButtonCreate.OnPressed += OnCreate;
     }
 
-    public void UpdateUI(NewsArticle[] articles, bool publishEnabled, TimeSpan nextPublish, string draftTitle, string draftContent)
+    public void UpdateUI(NewsArticle[] articles, bool publishEnabled, TimeSpan nextPublish, string draftTitle, string draftContent, bool photoSendingEnabled = true)
     {
         ArticlesContainer.Children.Clear();
         ArticleCount.Text = Loc.GetString("news-write-ui-article-count-text", ("count", articles.Length));
@@ -60,6 +60,7 @@ public sealed partial class NewsWriterMenu : FancyWindow
 
         ArticleEditorPanel.TitleField.Text = draftTitle;
         ArticleEditorPanel.ContentField.TextRope = new Rope.Leaf(draftContent);
+        ArticleEditorPanel.SetPhotoSendingEnabled(photoSendingEnabled);
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

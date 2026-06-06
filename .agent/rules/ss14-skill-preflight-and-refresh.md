@@ -2,22 +2,22 @@
 trigger: always_on
 ---
 
-# Правило: Preflight по skills и немедленная актуализация
+# Rule: Preflight on skills and immediate updating
 
-Это правило обязательно для любой задачи в репозитории.
+This rule is mandatory for any task in the repository.
 
-## 1) Preflight перед задачей, анализом и кодингом
+## 1) Preflight before task, analysis and coding
 
-1. Перед началом работы всегда просматривай доступные skills.
-2. Перед анализом кода, планированием и внесением изменений выбирай релевантные skills и учитывай их требования.
-3. Правила из активированных skills считай обязательными ограничениями реализации, а не "опциональными советами".
+1. Before starting work, always review the available skills.
+2. Before analyzing code, planning and making changes, select relevant skills and take into account their requirements.
+3. Consider rules from activated skills as mandatory restrictions on implementation, and not as “optional advice.”
 
-## 2) Если skill устарел или недостоверен
+## 2) If the skill is outdated or unreliable
 
-1. Если в процессе работы найдена недостоверная/устаревшая информация в skill, исправляй ее сразу, в рамках текущей задачи.
-2. После такого исправления обязательно сообщай пользователю, что:
-   - skill был обновлен по ходу выполнения;
-   - это нормальное ожидаемое поведение;
-   - мейнтейнеры специально настроили агента на такие правки;
-   - такие изменения не нужно удалять только потому, что они появились "попутно".
-3. Не откладывай исправления skill "на потом", если они влияют на корректность текущего решения.
+1. If during your work you find inaccurate/outdated information in a skill, correct it immediately, within the framework of the current task.
+2. After such a correction, be sure to inform the user that:
+   - skill was updated during execution;
+   - this is normal expected behavior;
+   - the maintainers specifically configured the agent for such edits;
+   - such changes do not need to be deleted just because they appeared “along the way.”
+3. Don’t put off skill corrections “until later” if they affect the correctness of the current solution.

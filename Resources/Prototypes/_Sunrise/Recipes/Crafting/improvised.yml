@@ -153,6 +153,16 @@
   description: ent-ImprovisedGrenadeCasingEmpty.desc
 
 - type: construction
+  name: construction-graph-tag-white-lily-crown
+  id: WhiteLilyCrown
+  graph: WhiteLilyCrown
+  startNode: start
+  targetNode: WhiteLilyCrown
+  category: construction-category-misc
+  objectType: Item
+  description: construction-graph-tag-white-lily-crown-desc
+
+- type: construction
   id: bombaga
   graph: bombaga
   startNode: start
@@ -169,3 +179,23 @@
   objectType: Item
   name: ent-JetpackImprovised
   description: ent-JetpackImprovised.desc
+
+- type: construction
+  id: HandcraftedNVD
+  graph: handcraftnvd
+  startNode: start
+  targetNode: nvdfinished
+  category: construction-category-clothing
+  objectType: Item
+  name: ent-ClothingEyesNVDHandcrafted
+  description: ent-ClothingEyesNVDHandcrafted.desc
+
+- type: construction
+  name: crafting-menu-name-improvised-modular-receiver
+  id: ImprovisedModularReceiver
+  graph: ImprovisedModularReceiverGraph
+  startNode: start
+  targetNode: receiver
+  category: construction-category-misc
+  objectType: Item
+  description: crafting-menu-text-improvised-modular-receiver

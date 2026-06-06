@@ -103,6 +103,10 @@
     alternateState: Standing
   - type: FlashImmunity
     showInExamine: false
+  # Sunrise-Start
+  - type: ToggleableNightVision
+    effect: EffectNightVisionPirate
+  # Sunrise-End
   - type: Inventory
     femaleDisplacements:
       jumpsuit:
@@ -130,7 +134,6 @@
         type: StrippableBoundUserInterface
   # Sunrise edit ;3
   - type: FootprintEmitter
-  - type: Carriable
   # Sunrise edit end 0_0
 
 - type: entity

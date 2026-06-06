@@ -114,12 +114,12 @@
         shader: unshaded
   # Sunrise-Start
   - type: Defibrillator
-    doAfterDuration: 1
+    doAfterDuration: 0.45
     allowUseOnAlive: true
     reagents:
-      Omnizine: 10
+      Omnizine: 5
       Epinephrine: 5
-      Necrosol: 5
+      Tazinide: 10
   - type: ItemSlots
     slots:
       cell_slot:
@@ -128,9 +128,9 @@
         disableEject: true
         locked: true
   - type: PowerCellDraw
-    useCharge: 40
+    useCharge: 25
   - type: PowerDrainOnMeleeHit
-    chargePerHit: 30
+    chargePerHit: 25
   # Sunrise-End
   - type: MeleeWeapon
     damage:

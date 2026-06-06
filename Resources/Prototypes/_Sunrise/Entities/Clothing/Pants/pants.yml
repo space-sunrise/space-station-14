@@ -314,3 +314,336 @@
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
     equippedState: female_strapless
 
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanAdjutant
+  name: women's thong "Adjutant"
+  description: A thong in adjutant colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/adjutant.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/adjutant.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanCMO
+  name: women's thong "CMO"
+  description: A thong in chief medical officer colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/cmo.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/cmo.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanCaptain
+  name: women's thong "Captain"
+  description: A thong in captain colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/captain.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/captain.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanCaptainBlack
+  name: women's black thong "Captain"
+  description: A black thong for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_black.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_black.rsi
+    equippedState: female_thong
+  - type: StaticPrice
+    price: 3333
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanCaptainWhite
+  name: women's white thong "Captain"
+  description: A white thong for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_white.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/captain_white.rsi
+    equippedState: female_thong
+  - type: StaticPrice
+    price: 1333
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanHeadOfPersonnel
+  name: women's thong "Head of Personnel"
+  description: A thong in head of personnel colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/hop.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/hop.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanHeadOfSecurity
+  name: women's thong "Head of Security"
+  description: A thong in head of security colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/hos.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/hos.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanQuartermaster
+  name: women's thong "Quartermaster"
+  description: A thong in quartermaster colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/qm.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/qm.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanResearchDirector
+  name: women's thong "Research Director"
+  description: A thong in research director colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/rd.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/rd.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanBlueshield
+  name: women's thong "Blueshield"
+  description: A thong in blueshield colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/blueshield.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/blueshield.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanChiefEngineer
+  name: women's thong "Chief Engineer"
+  description: A thong in chief engineer colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/ce.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/ce.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanPink
+  name: women's pink thong
+  description: A pink thong.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pink.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pink.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanPurple
+  name: women's purple thong
+  description: A purple thong.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/purple.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/purple.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanBlack
+  name: women's black thong
+  description: A black thong.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/black.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/black.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManAdjutant
+  name: boxers "Adjutant"
+  description: Boxers in adjutant colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/adjutant.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/adjutant.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManCMO
+  name: boxers "CMO"
+  description: Boxers in chief medical officer colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/cmo.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/cmo.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManCaptain
+  name: boxers "Captain"
+  description: Boxers in captain colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/captain.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/captain.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManCaptainBlack
+  name: black boxers "Captain"
+  description: Black boxers for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/captain_black.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/captain_black.rsi
+    equippedState: male_boxers
+  - type: StaticPrice
+    price: 3666
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManCaptainWhite
+  name: white boxers "Captain"
+  description: White boxers for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/captain_white.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/captain_white.rsi
+    equippedState: male_boxers
+  - type: StaticPrice
+    price: 1666
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManHeadOfPersonnel
+  name: boxers "Head of Personnel"
+  description: Boxers in head of personnel colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/hop.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/hop.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManHeadOfSecurity
+  name: boxers "Head of Security"
+  description: Boxers in head of security colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/hos.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/hos.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManQuartermaster
+  name: boxers "Quartermaster"
+  description: Boxers in quartermaster colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/qm.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/qm.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManResearchDirector
+  name: boxers "Research Director"
+  description: Boxers in research director colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/rd.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/rd.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManBlueshield
+  name: boxers "Blueshield"
+  description: Boxers in blueshield colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/blueshield.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/blueshield.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManChiefEngineer
+  name: boxers "Chief Engineer"
+  description: Boxers in chief engineer colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/ce.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/ce.rsi
+    equippedState: male_boxers
+

@@ -20,10 +20,18 @@
   canBeAntag: true # Sunrise-Edit
   radioBold: true # Sunrise-Edit
   displayWeight: 40  # Sunrise-Edit
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-intendant
+  - job-alt-title-director-of-logistics
+  # Sunrise-End
   access:
   - Cargo
   - Salvage
-  - CargoPurchaseAccess  # Sunrise-Edit
+  # Sunrise-start
+  - CargoPurchaseAccess
+  - Mining
+  # Sunrise-end
   - Quartermaster
   - Maintenance
   - External

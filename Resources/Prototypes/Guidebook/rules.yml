@@ -34,7 +34,7 @@
   name: guide-entry-rules-role-types
   ruleEntry: true
   priority: 10
-  text: "/ServerInfo/Guidebook/ServerRules/RoleTypes.xml"
+  text: "/ServerInfo/Guidebook/_Sunrise/ServerRules/RoleTypes.xml"  # Sunrise-Edit
 
 - type: guideEntry
   id: CoreRules

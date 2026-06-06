@@ -1,0 +1,11 @@
+- type: cargoBounty
+  id: SunriseBountySovietPinsCollector
+  reward: 19840
+  description: bounty-description-soviet-pin-collector
+  idPrefix: SUN
+  entries:
+  - name: bounty-item-soviet-pin
+    amount: 10
+    whitelist:
+      tags:
+      - SovietPinsExped

@@ -423,11 +423,13 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         // Sunrise-Start
         var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
-        // Sunrise-End
 
-        if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
+        var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
+        var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
+        if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
+        // Sunrise-end
         {
-            var loadout = profile.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager, sponsorPrototypes);
+            var loadout = profile.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager, sponsorPrototypes); // Sunrise-edit
             GiveDummyLoadout(dummy, loadout, true);
         }
     }
@@ -592,9 +594,13 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         {
             GiveDummyJobClothes(dummyEnt, humanoid, job);
 
-            if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
+            // Sunrise-start
+            var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
+            var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
+            if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
+            // Sunrise-end
             {
-                var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager, sponsorPrototypes);
+                var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager, sponsorPrototypes);  // Sunrise-edit
                 GiveDummyLoadout(dummyEnt, loadout, jobClothes);
             }
         }

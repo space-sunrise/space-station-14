@@ -1,0 +1,167 @@
+# Sunrise-specific engineering loadout groups.
+
+- type: loadoutGroup
+  id: SunriseChiefEngineerNeck
+  name: loadout-group-chief-engineer-neck
+  minLimit: 0
+  loadouts:
+  - ChiefEngineerCloak
+  - ChiefEngineerMantle
+  - ChiefEngineerScarf
+  - ChiefEngineerCloakLegacy
+  - SunriseScarfRed
+  - SunriseScarfOrange
+  - SunriseScarfYellow
+  - SunriseScarfCyan
+  - SunriseScarfLightBlue
+  - SunriseTieRed
+
+- type: loadoutGroup
+  id: SunriseChiefEngineerOuterClothing
+  name: loadout-group-chief-engineer-outerclothing
+  minLimit: 0
+  loadouts:
+  - ChiefEngineerWintercoat
+  - SunriseWinterColorWhite
+  - SunriseClothingOuterFlannelWhite
+  - StationEngineerOuterVest
+  - StationEngineerWintercoat
+  - AtmosphericTechnicianWintercoat
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+
+- type: loadoutGroup
+  id: SunriseChiefEngineerShoes
+  name: loadout-group-chief-engineer-shoes
+  loadouts:
+  - BrownShoes
+  - EngineeringWinterBoots
+  - WhiteShoes
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
+
+- type: loadoutGroup
+  id: SunriseChiefEngineerBra
+  name: loadout-group-chief-engineer-bra
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
+  - PinkBra
+  - PurpleBra
+  - BlackBra
+  - ChiefEngineerBra
+
+- type: loadoutGroup
+  id: SunriseChiefEngineerPants
+  name: loadout-group-chief-engineer-pants
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+  - PinkWomanPants
+  - PurpleWomanPants
+  - BlackWomanPants
+  - ChiefEngineerThong
+  - ChiefEngineerBoxers
+
+- type: loadoutGroup
+  id: SunriseStationEngineerHead
+  name: loadout-group-station-engineer-head
+  minLimit: 0
+  loadouts:
+  - SunriseEngineerHeadBeret
+  - SunriseAtmosBeret
+  - SunriseBandRed
+  - SunriseBandOrange
+  - SunriseBandYellow
+  - SunriseHardhatYellowDark
+  - StationEngineerHardhatYellow
+  - StationEngineerHardhatOrange
+  - StationEngineerHardhatRed
+  - SunriseHatRedsoft
+  - SunriseHatOrangesoft
+  - SunriseHatYellowsoft
+
+- type: loadoutGroup
+  id: SunriseStationEngineerOuterClothing
+  name: loadout-group-station-engineer-outerclothing
+  minLimit: 0
+  loadouts:
+  - StationEngineerOuterVest
+  - StationEngineerWintercoat
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+
+- type: loadoutGroup
+  id: SunriseStationEngineerShoes
+  name: loadout-group-station-engineer-shoes
+  loadouts:
+  - WorkBoots
+  - EngineeringWinterBoots
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
+
+- type: loadoutGroup
+  id: SunriseAtmosphericTechnicianOuterClothing
+  name: loadout-group-atmospheric-technician-outerclothing
+  minLimit: 0
+  loadouts:
+  - AtmosphericTechnicianWintercoat
+  - StationEngineerOuterVest
+  - SunriseWinterColorRed
+  - SunriseWinterColorOrange
+  - SunriseWinterColorYellow
+
+- type: loadoutGroup
+  id: SunriseAtmosphericTechnicianShoes
+  name: loadout-group-atmospheric-technician-shoes
+  loadouts:
+  - WhiteShoes
+  - EngineeringWinterBoots
+  - SunriseRedShoes
+  - SunriseOrangeShoes
+  - SunriseYellowShoes
+
+- type: loadoutGroup
+  id: SunriseStationEngineerID
+  name: loadout-group-station-engineer-id
+  loadouts:
+  - StationEngineerPDA
+  - SeniorEngineerPDA

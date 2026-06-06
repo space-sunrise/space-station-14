@@ -32,55 +32,63 @@
   - type: ChamberMagazineAmmoProvider
     autoEject: true
 
-# - type: entity #Sunrise-TODO: Add Uzi to NukeOps
-#   name: Type U3 Uzi
-#   parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
-#   id: WeaponSubMachineGunUzi
-#   description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
-#   components:
-#   - type: Sprite
-#     sprite: _Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi
-#     layers:
-#     - state: base
-#       map: ["enum.GunVisualLayers.Base"]
-#     - state: mag-0
-#       map: ["enum.GunVisualLayers.Mag"]
-#   - type: Gun
-#     fireRate: 12
-#     selectedMode: FullAuto
-#     shotsPerBurst: 4
-#     availableModes:
-#     - SemiAuto
-#     - Burst
-#     - FullAuto
-#     soundGunshot:
-#       path: /Audio/_Starlight/Weapons/Guns/Gunshots/uzi.ogg
-#   - type: MagazineVisuals
-#     magState: mag
-#     steps: 1
-#     zeroVisible: true
-#   - type: Appearance
-#   - type: ChamberMagazineAmmoProvider
-#     autoEject: true
-#   - type: ItemSlots
-#     slots:
-#       gun_magazine:
-#         name: Magazine
-#         startingItem: MagazinePistolSubMachineGunUzi
-#         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-#         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-#         priority: 2
-#         whitelist:
-#           tags:
-#             - MagazineSMGUzi
-#         whitelistFailPopup: gun-magazine-whitelist-fail
-#       gun_chamber:
-#         name: Chamber
-#         startingItem: CartridgePistolSP
-#         priority: 1
-#         whitelist:
-#           tags:
-#             - CartridgePistol
+- type: entity
+  name: Type U3 Uzi
+  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
+  id: SunriseWeaponSubMachineGunUzi
+  description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1 # Starlight
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 12
+    minAngle: 1
+    maxAngle: 25
+    angleIncrease: 8
+    angleDecay: 5
+    selectedMode: FullAuto
+    shotsPerBurst: 4
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/uzi.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 - type: entity
   name: makeshift SMG
@@ -237,3 +245,5 @@
   - type: Appearance
   - type: WeaponDismantleOnShoot
     dismantleChance: 0
+
+

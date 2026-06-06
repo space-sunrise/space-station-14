@@ -36,7 +36,7 @@
 
 - type: marking
   id: BodyStripes
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:
@@ -45,7 +45,7 @@
 
 - type: marking
   id: BodyBlots
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:
@@ -54,7 +54,7 @@
 
 - type: marking
   id: patch2
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:
@@ -63,7 +63,7 @@
 
 - type: marking
   id: BodySkeleton
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:
@@ -403,7 +403,7 @@
 
 - type: marking
   id: BodyAshwalker
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:
@@ -412,7 +412,7 @@
 
 - type: marking
   id: BodyCheetor
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:
@@ -421,7 +421,7 @@
 
 - type: marking
   id: BodyPaintedBack
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:
@@ -430,7 +430,7 @@
 
 - type: marking
   id: BodySpottyShoulders
-  bodyPart: Chest
+  bodyPart: LLeg
   markingCategory: Chest
   speciesRestriction: [Tajaran]
   sprites:

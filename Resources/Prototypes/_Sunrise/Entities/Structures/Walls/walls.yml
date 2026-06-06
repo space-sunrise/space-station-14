@@ -1,5 +1,40 @@
 #shuttle walls
 - type: entity
+  abstract: true
+  parent: BaseStructureWall
+  id: WallDiagonalBaseSunrise
+  suffix: Diagonal
+  components:
+  - type: Tag
+    tags:
+    - Wall
+    - Diagonal
+    - ForceNoTileWalls
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+          vertices:
+          - "0.5,-0.5"
+          - "-0.5,-0.5"
+          - "-0.5,0.1"
+          - "0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+- type: entity
   id: WallAbductorDiagonal
   name: shuttle wall
   suffix: Diagonal
@@ -15,6 +50,7 @@
   - type: Tag
     tags:
     - Wall
+    - ForceNoTileWalls
   - type: Sprite
     drawdepth: Walls
     sprite: _Sunrise/Abductor/Structures/Walls/abductor_diagonal.rsi
@@ -99,3 +135,110 @@
   - type: IconSmooth
     key: walls
     base: cult
+
+# Sunrise-Add start - reinforced shuttle/plastitanium variants from PR #3821
+- type: entity
+  parent: WallPlastitanium
+  id: WallReinforcedPlastitanium
+  name: reinforced plastitanium wall
+  suffix: Reinforced
+  description: A plastitanium wall reinforced with an additional structural lattice, doubling its resistance to damage.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: WallPlastitaniumDiagonal
+  id: WallReinforcedPlastitaniumDiagonal
+  name: reinforced plastitanium wall
+  suffix: Reinforced, Diagonal
+  description: A diagonal plastitanium wall reinforced with an additional structural lattice, doubling its resistance to damage.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WallReinforcedShuttleDiagonal
+  name: reinforced shuttle wall
+  suffix: Reinforced, Diagonal
+  description: A diagonal shuttle wall with extra bracing, making it significantly harder to breach.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: WallShuttle
+  id: WallReinforcedShuttle
+  name: reinforced shuttle wall
+  suffix: Reinforced
+  description: A shuttle wall with extra bracing, making it significantly harder to breach.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+# Sunrise-Add end

@@ -11,7 +11,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -30,7 +30,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -48,7 +48,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -66,7 +66,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -85,7 +85,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -103,7 +103,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -121,7 +121,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -139,7 +139,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -177,6 +177,10 @@
   suffix: Battery, Tools
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -198,6 +202,10 @@
   suffix: Battery, Tools
   components:
     - type: NukeOperative
+    - type: GhostPanelAntagonistMarker
+      name: ghost-panel-antagonist-nukeops-name
+      description: ghost-panel-antagonist-nukeops-description
+      priority: 25
     - type: ContainerFill
       containers:
         borg_brain:
@@ -214,6 +222,10 @@
   suffix: Battery, Tools
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -234,6 +246,10 @@
   suffix: Battery, Module, Operative
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -253,6 +269,10 @@
   suffix: Battery, Module, Operative
   components:
   - type: NukeOperative
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 25
   - type: ContainerFill
     containers:
       borg_brain:
@@ -266,30 +286,6 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSyndicate
-
-- type: entity
-  id: DeathSquadDirectivesCircuitBoard
-  parent: BaseElectronics
-  name: circuit board (Death Squad Directives)
-  description: An electronics board containing the Death Squad Directives lawset.
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: DeathSquadLawset
-
-- type: entity
-  id: ERTDirectivesCircuitBoard
-  parent: BaseElectronics
-  name: circuit board (ERT Directives)
-  description: An electronics board containing the ERT Directives lawset.
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: ERTLawset
 
 - type: entity
   id: SyndieIntellicard
@@ -324,15 +320,126 @@
     price: 500
 
 - type: entity
-  id: SyndicateCircuitBoard
-  parent: BaseElectronics
-  name: law board (Syndicate)
-  description: An electronics board containing the Sindicate lawset.
+  parent: SyndicateReaperBorgChassisDerelictSunrise
+  id: PlayerSyndicateReaperBorgDerelict
+  suffix: Battery, Module
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: SyndicateStatic
-  - type: StaticPrice
-    price: 2000
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - Sofia # Sunrise-Edit
+      borg_module:
+      - BorgModuleSyndicateGeneric
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+
+- type: entity
+  parent: PlayerSyndicateReaperBorgDerelict
+  id: PlayerBorgSyndicateReaperDerelictGhostRoleSunrise
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-syndicate-reaper-cyborg-name
+    description: ghost-role-information-derelict-syndicate-reaper-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: SyndicateSaboteurBorgChassisDerelictSunrise
+  id: PlayerSyndicateSaboteurBorgDerelict
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - Sofia # Sunrise-Edit
+      borg_module:
+      - BorgModuleSyndicateGeneric
+      - BorgScoutModuleSyndicateTool
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+
+- type: entity
+  parent: PlayerSyndicateSaboteurBorgDerelict
+  id: PlayerBorgSyndicateSaboteurDerelictGhostRoleSunrise
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-syndicate-saboteur-cyborg-name
+    description: ghost-role-information-derelict-syndicate-saboteur-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: SyndicateMedicalBorgChassisDerelictSunrise
+  id: PlayerSyndicateMedicalBorgDerelict
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - Sofia # Sunrise-Edit
+      borg_module:
+      - BorgModuleSyndicateGeneric
+      - BorgModuleSyndicateMedical
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+  - type: RandomMetadata
+    nameSegments: [NamesDeathCommando]
+
+- type: entity
+  parent: PlayerSyndicateMedicalBorgDerelict
+  id: PlayerBorgSyndicateMedicalDerelictGhostRoleSunrise
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-syndicate-medical-cyborg-name
+    description: ghost-role-information-derelict-syndicate-medical-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+
+# region BorgChassisSyndicateSpider
+
+- type: entity
+  id: PlayerBorgChassisSyndicateSpiderBattery
+  parent: BorgChassisSyndicateSpider
+  suffix: Battery, Module
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - Sofia
+      borg_module:
+      - BorgModuleSyndicateCombatAdvanced
+      - BorgModuleSyndicateHypoAdvanced
+      - BorgModuleSyndicatePenetration
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSyndicate
+  - type: AutoImplant
+    implants:
+    - SmokeScreenImplant
+
+# region end

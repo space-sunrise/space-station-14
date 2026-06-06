@@ -510,9 +510,10 @@ public sealed partial class NukeSystem : EntitySystem
         _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);
 
         // warn a crew
+        var nearestBeacon = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((uid, nukeXform)));
         var announcement = Loc.GetString("nuke-component-announcement-armed",
             ("time", (int) component.RemainingTime),
-            ("location", FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((uid, nukeXform)))));
+            ("location", nearestBeacon));
         var sender = Loc.GetString("nuke-component-announcement-sender");
         _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, playDefault: false, colorOverride: Color.Red);
 
@@ -534,6 +535,10 @@ public sealed partial class NukeSystem : EntitySystem
         component.Status = NukeStatus.ARMED;
         UpdateUserInterface(uid, component);
         UpdateAppearance(uid, component);
+
+        // Sunrise-Edit - Log arming in storyteller history
+        var nukeArmedEv = new Content.Shared._Sunrise.Storyteller.SunriseNukeArmedEvent(nearestBeacon);
+        RaiseLocalEvent(nukeArmedEv);
     }
 
     /// <summary>

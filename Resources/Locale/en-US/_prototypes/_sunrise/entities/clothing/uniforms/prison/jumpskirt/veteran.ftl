@@ -1,3 +1,6 @@
+ent-ClothingUniformJumpskirtPrisonVeteranBase = prison veteran jumpskirt
+    .desc = A distinguished skirt uniform worn by experienced prison staff who have proven their dedication through years of service.
+
 ent-ClothingUniformJumpskirtPrisonChefVeteran = veteran prison chef jumpskirt
     .desc = Masterfully tailored skirt uniform for seasoned culinary experts, bearing the proud marks of countless perfectly executed meals and the wisdom of years spent mastering prison cuisine.
 
