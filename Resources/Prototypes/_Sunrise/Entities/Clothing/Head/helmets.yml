@@ -325,5 +325,15 @@
       params:
         volume: -9
         pitch: 1.3
-  - type: GhostRoleOnTrigger
-  - type: GhostRoleOnEquipTrigger
+  - type: TriggerOnGotEquipped
+    keyOut: makeGhostRole
+  - type: TriggerOnGotUnequipped
+    keyOut: removeGhostRole
+  - type: MakeGhostRoleOnTrigger
+    keysIn:
+    - makeGhostRole
+    targetUser: true
+  - type: RemoveGhostRoleOnTrigger
+    keysIn:
+    - removeGhostRole
+    targetUser: true
