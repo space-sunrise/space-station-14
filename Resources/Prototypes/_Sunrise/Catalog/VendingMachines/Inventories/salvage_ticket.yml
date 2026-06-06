@@ -1,50 +1,18 @@
-# equipment
-- type: listing
-  id: VendorSalvageBinoculars
-  productEntity: Binoculars
-  cost:
-    SalvageTicket: 25
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-
-- type: listing
-  id: VendorSalvageGrapplingGun
-  productEntity: WeaponGrapplingGun
-  cost:
-    SalvageTicket: 40
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
+﻿# equipment
 
 - type: listing
   id: VendorSalvageClothingMaskGasExplorer
   productEntity: ClothingMaskGasExplorer
   cost:
-    SalvageTicket: 100
+    SalvageTicket: 50
   categories:
   - SalvageEquipment
-
-- type: listing
-  id: VendorSalvageMechClarke
-  productEntity: MechClarke
-  cost:
-    SalvageTicket: 700
-  categories:
-  - SalvageMech
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorSalvageClothingOuterHardsuitMaxim
   productEntity: ClothingOuterHardsuitMaxim
   cost:
-    SalvageTicket: 1500
+    SalvageTicket: 3000
   categories:
   - SalvageEquipment
   conditions:
@@ -101,95 +69,10 @@
   - SalvageEquipment
 
 - type: listing
-  id: VendorSalvageMiningDrill
-  productEntity: MiningDrill
+  id: VendorSalvageClothingEyesNVD
+  productEntity: ClothingEyesNVD
   cost:
-    SalvageTicket: 300
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: VendorSalvageMiningDrillDiamond
-  productEntity: MiningDrillDiamond
-  cost:
-    SalvageTicket: 600
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: VendorSalvageMineralScanner
-  productEntity: MineralScanner
-  cost:
-    SalvageTicket: 350
-  categories:
-  - SalvageEquipment
-
-- type: listing
-  id: VendorSalvagePKAUpgradeDamage
-  productEntity: PKAUpgradeDamage
-  cost:
-    SalvageTicket: 200
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-
-- type: listing
-  id: VendorSalvagePKAUpgradeRange
-  productEntity: PKAUpgradeRange
-  cost:
-    SalvageTicket: 200
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-
-- type: listing
-  id: VendorSalvagePKAUpgradeFireRate
-  productEntity: PKAUpgradeFireRate
-  cost:
-    SalvageTicket: 200
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-
-- type: listing
-  id: VendorSalvageWeaponMechMeleeDrill
-  productEntity: WeaponMechMelleDrill
-  cost:
-    SalvageTicket: 400
-  categories:
-  - SalvageMech
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: VendorSalvageWeaponMechMeleeDrillDiamond
-  productEntity: WeaponMechMelleDrillDiamond
-  cost:
-    SalvageTicket: 600
-  categories:
-  - SalvageMech
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: VendorSalvageFloodlight
-  productEntity: Floodlight
-  cost:
-    SalvageTicket: 250
+    SalvageTicket: 800
   categories:
   - SalvageEquipment
 
@@ -202,10 +85,18 @@
   - SalvageEquipment
 
 - type: listing
+  id: VendorSalvageClothingBeltSalvageWebbing
+  productEntity: ClothingBeltSalvageWebbing
+  cost:
+    SalvageTicket: 100
+  categories:
+  - SalvageEquipment
+
+- type: listing
   id: VendorSalvageClothingBeltSalvageMercWebbing
   productEntity: ClothingBeltSalvageMercWebbing
   cost:
-    SalvageTicket: 150
+    SalvageTicket: 200
   categories:
   - SalvageEquipment
 
@@ -213,7 +104,7 @@
   id: VendorSalvageClothingOuterVestWebSalvageMerc
   productEntity: ClothingOuterVestWebSalvageMerc
   cost:
-    SalvageTicket: 200
+    SalvageTicket: 150
   categories:
   - SalvageEquipment
 
@@ -289,52 +180,62 @@
   categories:
   - SalvageEquipment
 
-# weapons
 - type: listing
-  id: VendorSalvageWeaponProtoKineticAccelerator
-  productEntity: WeaponProtoKineticAccelerator
+  id: VendorSalvageClothingHandsSalvageMercGlovesCombat
+  productEntity: ClothingHandsSalvageMercGlovesCombat
   cost:
-    SalvageTicket: 60
+    SalvageTicket: 1984
   categories:
-  - SalvageWeapons
-
-- type: listing
-  id: VendorSalvageWeaponProtoKineticShotgun
-  productEntity: WeaponProtoKineticShotgun
-  cost:
-    SalvageTicket: 120
-  categories:
-  - SalvageWeapons
-
-- type: listing
-  id: VendorSalvageWeaponProtoKineticRepeater
-  productEntity: WeaponProtoKineticRepeater
-  cost:
-    SalvageTicket: 120
-  categories:
-  - SalvageWeapons
-
-- type: listing
-  id: VendorSalvageWeaponProtoKineticHeavy
-  productEntity: WeaponProtoKineticHeavy
-  cost:
-    SalvageTicket: 600
-  categories:
-  - SalvageWeapons
+  - SalvageEquipment
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 3
+
+- type: listing
+  id: VendorSalvageJetpackMini
+  productEntity: JetpackMini
+  cost:
+    SalvageTicket: 130
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvageJetpackSalvage
+  productEntity: JetpackSalvage
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: VendorSalvageJetpackVoid
+  productEntity: JetpackVoid
+  cost:
+    SalvageTicket: 500
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+# weapons
 
 - type: listing
   id: VendorSalvageWeaponLaserLNT620
   productEntity: WeaponLaserLNT620
   cost:
-    SalvageTicket: 800
+    SalvageTicket: 999
   categories:
   - SalvageWeapons
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 5
+    stock: 3
 
 - type: listing
   id: VendorSalvageWeaponLaserSvalinn
@@ -357,7 +258,7 @@
   icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi, state: icon }
   productEntity: CrateShelfMosin
   cost:
-    SalvageTicket: 220
+    SalvageTicket: 235
   categories:
   - SalvageWeapons
 
@@ -386,16 +287,17 @@
   - SalvageWeapons
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 5
+    stock: 3
 
 # consumables
+
 - type: listing
   id: VendorSalvageSpeedLoaderShotgunEmpty
   productEntity: SpeedLoaderShotgunEmpty
   cost:
     SalvageTicket: 50
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
 
 - type: listing
   id: VendorSalvageBoxLethalshot
@@ -403,7 +305,7 @@
   cost:
     SalvageTicket: 200
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
 
 - type: listing
   id: VendorSalvageSpeedLoaderMagnumSP
@@ -411,7 +313,7 @@
   cost:
     SalvageTicket: 75
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
 
 - type: listing
   id: VendorSalvageMagazineMK58
@@ -419,7 +321,7 @@
   cost:
     SalvageTicket: 50
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
 
 - type: listing
   id: VendorSalvageCrateAmmunitionSmallLightRifle
@@ -428,7 +330,7 @@
   cost:
     SalvageTicket: 125
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
 
 - type: listing
   id: VendorSalvageCrateAmmunitionSmallLightRifleIncendiary
@@ -437,7 +339,7 @@
   cost:
     SalvageTicket: 250
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -448,36 +350,4 @@
   cost:
     SalvageTicket: 50
   categories:
-  - SalvageConsumeables
-
-- type: listing
-  id: VendorSalvageMedkitAdvancedFilled
-  productEntity: MedkitAdvancedFilled
-  cost:
-    SalvageTicket: 250
-  categories:
-  - SalvageConsumeables
-
-- type: listing
-  id: VendorSalvageMedkitFilled
-  productEntity: MedkitFilled
-  cost:
-    SalvageTicket: 150
-  categories:
-  - SalvageConsumeables
-
-- type: listing
-  id: VendorSalvageMedkitCombatFilled
-  productEntity: MedkitCombatFilled
-  cost:
-    SalvageTicket: 500
-  categories:
-  - SalvageConsumeables
-
-- type: listing
-  id: VendorSalvageBoxFlare
-  productEntity: BoxFlare
-  cost:
-    SalvageTicket: 15
-  categories:
-  - SalvageConsumeables
+  - SalvageAmmo

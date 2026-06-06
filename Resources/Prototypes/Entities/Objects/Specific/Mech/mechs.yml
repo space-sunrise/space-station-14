@@ -194,6 +194,9 @@
     shape: Triangle
     requireInSpace: true
   - type: CyborgSparkEffect
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   # Sunrise-End
   - type: Damageable
     damageContainer: Mech
@@ -249,6 +252,8 @@
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -307,6 +312,8 @@
   description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -418,6 +425,12 @@
     - DoorBumpOpener
     - FootstepSound
     - Clarke
+  # Sunrise-Start
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked-heavy ]
+    rightBareFootState: [ footprint-tracked-heavy ]
+  # Sunrise-End
 
 - type: entity
   id: MechClarkeBattery
@@ -437,6 +450,8 @@
   description: "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -508,6 +523,8 @@
   description: "An experimental mech which uses a brain–computer interface to connect directly to a hamsters brain."
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-suit-heavy ]
+    rightBareFootState: [ footprint-suit-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -725,6 +742,8 @@
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -803,6 +822,8 @@
   description: Looks like we're all saved. # ERT mech
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -890,6 +911,8 @@
   description: That's the last thing you'll see.
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1071,6 +1094,8 @@
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
   - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -1155,3 +1180,5 @@
       - WeaponMechCombatMG
       - WeaponMechCombatShotgun
       - WeaponMechCombatMissileRack6
+
+

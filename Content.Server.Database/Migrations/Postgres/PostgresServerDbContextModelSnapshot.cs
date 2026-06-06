@@ -1630,6 +1630,40 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("ui_likes", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.TutorialCompletion", b =>
+                {
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("player_user_id");
+
+                    b.Property<string>("TutorialId")
+                        .HasColumnType("text")
+                        .HasColumnName("tutorial_id");
+
+                    b.Property<double?>("AccountAgeDays")
+                        .HasColumnType("double precision")
+                        .HasColumnName("account_age_days");
+
+                    b.Property<DateTimeOffset>("CompletedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("completed_at");
+
+                    b.Property<int>("CompletionCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("completion_count");
+
+                    b.HasKey("PlayerUserId", "TutorialId")
+                        .HasName("PK_tutorial_completion");
+
+                    b.HasIndex("PlayerUserId")
+                        .HasDatabaseName("IX_tutorial_completion_player_user_id");
+
+                    b.HasIndex("TutorialId")
+                        .HasDatabaseName("IX_tutorial_completion_tutorial_id");
+
+                    b.ToTable("tutorial_completion", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.UploadedResourceLog", b =>
                 {
                     b.Property<int>("Id")
