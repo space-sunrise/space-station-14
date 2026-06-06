@@ -10,10 +10,8 @@ namespace Content.Client.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
-    partial void InitializeSunriseChamberMagazine()
-    {
+    partial void InitializeSunriseChamberMagazine() =>
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, AfterAutoHandleStateEvent>(OnSunriseChamberMagazineState);
-    }
 
     private void OnSunriseChamberMagazineState(EntityUid uid, ChamberMagazineAmmoProviderComponent component, ref AfterAutoHandleStateEvent args)
     {
