@@ -67,10 +67,6 @@ job-description-cburn-eva = Go to the station and eliminate any and all biologic
 job-name-cburn-leader = Central Command Quarantine Leader
 job-description-cburn-leader = Lead your team of quarantine officers to eliminate any and all biological hazards.
 
-job-name-blueshield-operative = BlueShield Operative
-job-name-ntrleader = NTR Leader
-job-name-ntrguard = NTR Guard
-
 job-name-ussp-crew = USSP Crew
 job-name-ussp-officer = USSP Officer
 job-name-ussp-officer-alt = USSP Officer (alt)

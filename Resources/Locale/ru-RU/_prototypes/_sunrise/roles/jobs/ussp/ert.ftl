@@ -95,10 +95,6 @@ job-description-cburn-eva = Отправляйтесь на станцию и у
 job-name-cburn-leader = Лидер карантинной группы Центком
 job-description-cburn-leader = Возглавьте свою команду карантинных офицеров для устранения любых биологических угроз.
 
-job-name-blueshield-operative = Оперативник Синего Щита
-job-name-ntrleader = командир ИСН
-job-name-ntrguard = оперативник ИСН
-
 job-name-ussp-crew = Экипаж USSP
 job-name-ussp-officer = Офицер USSP
 job-name-ussp-officer-alt = Офицер USSP (альт)
