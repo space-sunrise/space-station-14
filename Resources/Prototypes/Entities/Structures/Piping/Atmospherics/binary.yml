@@ -27,6 +27,7 @@
       Primary: Structures/Piping/Atmospherics/pump.rsi
       Secondary: Structures/Piping/Atmospherics/pump_alt1.rsi
       Tertiary: Structures/Piping/Atmospherics/pump_alt2.rsi
+  - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasBinaryBase
@@ -91,14 +92,14 @@
   - type: GuideHelp
     guides:
     - Pumps
-  # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
   - type: ContainerContainer
     containers:
-      VentCrawTube: !type:Container
-  # Sunrise-end
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -172,14 +173,14 @@
     - type: GuideHelp
       guides:
       - Pumps
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -241,6 +242,15 @@
   - type: GuideHelp
     guides:
     - PressureRegulator
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
+
 
 - type: entity
   parent: GasBinaryBase
@@ -283,14 +293,14 @@
     - type: GuideHelp
       guides:
       - PassiveGate
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -352,14 +362,14 @@
     - type: GuideHelp
       guides:
       - ManualValve
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawTransit
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -432,14 +442,14 @@
   - type: GuideHelp
     guides:
     - SignalValve
-  # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
   - type: ContainerContainer
     containers:
-      VentCrawTube: !type:Container
-  # Sunrise-end
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -479,16 +489,16 @@
     - type: GuideHelp
       guides:
       - GasCanisters
-    # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
       degrees:
         - 0
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
-    # Sunrise-end
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasVentPump
@@ -555,6 +565,10 @@
     - type: GuideHelp
       guides:
       - AirVent
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
+    # Starlight end
 
 - type: entity
   parent: [ BaseMachine, ConstructibleMachine ]
@@ -634,7 +648,16 @@
     guides:
     - GasRecycling
   - type: TegCirculator
-
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
 
 - type: entity
   parent: GasBinaryBase
@@ -683,6 +706,14 @@
   - type: GuideHelp
     guides:
     - Radiators
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
 
 - type: entity
   parent: HeatExchanger
@@ -712,3 +743,11 @@
     - type: Construction
       graph: GasBinary
       node: bendradiator
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end

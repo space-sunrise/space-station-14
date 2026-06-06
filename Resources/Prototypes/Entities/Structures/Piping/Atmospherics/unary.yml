@@ -19,6 +19,7 @@
           nodeGroupID: Pipe
           pipeDirection: South
     - type: CollideOnAnchor
+    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
@@ -28,6 +29,15 @@
   placement:
     mode: SnapgridCenter
   components:
+    # Starlight start
+    - type: Weldable
+      time: 3
+    - type: VentCrawlTube
+    - type: VentCrawlEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
     - type: DeviceNetwork
@@ -71,22 +81,12 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
-    - type: Weldable
-      time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
     - type: GuideHelp
       guides:
       - AirVent
       - DeviceMonitoringAndControl
-      # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawTube: !type:Container
-      # Sunrise-end
 
 - type: entity
   parent: GasUnaryBase
@@ -119,14 +119,15 @@
     - type: GuideHelp
       guides:
       - PassiveVent
-      # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawEntry
+    # Starlight start
+    - type: Weldable
+      time: 3
+    - type: VentCrawlTube
+    - type: VentCrawlEntry
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
-          # Sunrise-end
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
@@ -178,22 +179,21 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
-    - type: Weldable
-      time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentScrubber
     - type: GuideHelp
       guides:
       - AirScrubber
       - DeviceMonitoringAndControl
-      # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawEntry
+    # Starlight start
+    - type: Weldable
+      time: 3
+    - type: VentCrawlTube
+    - type: VentCrawlEntry
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
-      # Sunrise-end
+        VentCrawlTube: !type:Container
+    # Starlight end
 
 - type: entity
   parent: GasUnaryBase
@@ -238,16 +238,16 @@
     - type: GuideHelp
       guides:
       - AirInjector
-      # Sunrise-start
-    - type: VentCrawTube
-      containerId: VentCrawTube
-    - type: VentCrawJunction
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
       degrees:
         - 0
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
-      # Sunrise-end
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision # Starlight-edit
+    # Starlight end
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -303,6 +303,16 @@
     - type: GuideHelp
       guides:
       - Thermomachines
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: BaseGasThermoMachine
@@ -339,6 +349,18 @@
       prefix: device-address-prefix-freezer
     - type: StealTarget
       stealGroup: FreezerHeater
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasThermoMachineFreezer
@@ -384,6 +406,18 @@
       prefix: device-address-prefix-heater
     - type: StealTarget
       stealGroup: FreezerHeater
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasThermoMachineHeater
@@ -519,4 +553,15 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
+    degrees:
+      - 0
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ChildBlockVision
+  # Starlight end

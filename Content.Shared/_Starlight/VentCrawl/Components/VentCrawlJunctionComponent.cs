@@ -1,7 +1,7 @@
-namespace Content.Shared._Sunrise.VentCraw.Components;
+namespace Content.Shared.VentCrawl.Components;
 
-[RegisterComponent, Virtual]
-public partial class VentCrawJunctionComponent : Component
+[RegisterComponent]
+public sealed partial class VentCrawlJunctionComponent : Component
 {
     /// <summary>
     ///     The angles to connect to.

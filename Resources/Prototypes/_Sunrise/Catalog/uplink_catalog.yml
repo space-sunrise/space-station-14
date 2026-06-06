@@ -2414,9 +2414,9 @@
   productEntity: ClothingUniformJumpsuitAtmosSyndie
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 3
   cost:
-    Telecrystal: 12
+    Telecrystal: 6
   categories:
   - UplinkJob
   conditions:

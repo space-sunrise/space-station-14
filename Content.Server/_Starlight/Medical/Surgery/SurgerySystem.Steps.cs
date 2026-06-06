@@ -14,7 +14,6 @@ using Content.Server.Administration.Systems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.Components;
 
-
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14

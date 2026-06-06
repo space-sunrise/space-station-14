@@ -58,6 +58,14 @@
     guides:
     - AtmosphericNetworkMonitor
     - DeviceMonitoringAndControl
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
 
 - type: entity
   parent: GasPipeSensor

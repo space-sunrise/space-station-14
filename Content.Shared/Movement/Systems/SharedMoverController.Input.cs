@@ -95,7 +95,6 @@ namespace Content.Shared.Movement.Systems
 
             // Relay the fact we had any movement event.
             // TODO: Ideally we'd do these in a tick instead of out of sim.
-
             // Starlight-abductor-start
             // var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);
             Vector2 vector2 = DirVecForButtons(entity.Comp.HeldMoveButtons);

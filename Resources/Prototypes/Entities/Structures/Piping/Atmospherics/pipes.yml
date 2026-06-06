@@ -69,22 +69,20 @@
     requireSameRotation: true
   # Sunrise edit end
   - type: StaticPrice
-    price: 30
-  # Sunrise-start
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
+    price: 22
 
+# Starlight start
 - type: entity
-  id: VentCrawHolder
-  name: vent claw holder
+  id: VentCrawlHolder
+  categories: [ HideSpawnMenu ]
+  name: vent craw holder
   components:
-    - type: VentCrawHolder
+    - type: VentCrawlHolder
     - type: InputMover
     - type: ContainerContainer
       containers:
-        VentCrawHolderComponent: !type:Container
-  # Sunrise-end
+        VentCrawlHolderComponent: !type:Container
+# Starlight end
 
 
 - type: entity
@@ -135,6 +133,7 @@
     guides:
     - Pipes
     - PipeNetworks
+  - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasPipeBase
@@ -149,6 +148,14 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: Longitudinal
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
   - type: Sprite
     layers:
     - state: pipeStraight
@@ -178,14 +185,6 @@
     guides:
     - Pipes
     - PipeNetworks
-    # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
-    # Sunrise-end
 
 - type: entity
   parent: GasPipeBase
@@ -200,6 +199,14 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: SWBend
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlBend
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
   - type: Sprite
     layers:
       - state: pipeBend
@@ -236,14 +243,6 @@
     guides:
     - Pipes
     - PipeNetworks
-    # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawBend
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
-    # Sunrise-end
 
 - type: entity
   parent: GasPipeBase
@@ -287,18 +286,18 @@
     guides:
     - Pipes
     - PipeNetworks
-    # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawJunction
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
     degrees:
       - 0
       - 90
       - -90
   - type: ContainerContainer
     containers:
-      VentCrawTube: !type:Container
-    # Sunrise-end
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
 
 - type: entity
   parent: GasPipeBase
@@ -327,6 +326,19 @@
   - type: Construction
     graph: GasPipe
     node: fourway
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
+    degrees:
+      - 0
+      - 90
+      - -90
+      - 180
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
   - type: Item
     heldPrefix: Fourway
     storedSprite:
@@ -344,19 +356,6 @@
     guides:
     - Pipes
     - PipeNetworks
-    # Sunrise-start
-  - type: VentCrawTube
-    containerId: VentCrawTube
-  - type: VentCrawJunction
-    degrees:
-      - 0
-      - 90
-      - -90
-      - 180
-  - type: ContainerContainer
-    containers:
-      VentCrawTube: !type:Container
-    # Sunrise-end
 
 - type: entity
   id: GasPipeBroken
@@ -467,3 +466,13 @@
   - type: Tag
     tags:
     - Unstackable
+  # Starlight-start
+  - type: VentCrawlTube
+  - type: VentCrawlManifold
+    layerCount: 5
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight-end

@@ -9,6 +9,7 @@
     name: ghost-panel-antagonist-rats-name
     description: ghost-panel-antagonist-rats-description
     priority: 110
+  - type: VentCrawler
   # Sunrise edit end
   - type: CombatMode
   - type: MovementSpeedModifier
@@ -139,7 +140,6 @@
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 1.5
-  - type: VentCrawler
   - type: NightVision
   # Sunrise-end
 
@@ -188,6 +188,7 @@
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
   # Sunrise edit start
+  - type: VentCrawler
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-rats-name
     description: ghost-panel-antagonist-rats-description
@@ -199,7 +200,6 @@
       - ReagentId: Blood
         Quantity: 60
   # Sunrise edit end
-  - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5

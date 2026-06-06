@@ -41,6 +41,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.VentCrawl;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared._Sunrise.Weapons.DualWield;
 
@@ -187,6 +188,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (!TryHandleDualWieldShootRequest(user.Value, ent, msg, out var isDualWield, out var dualWield))
             return;
         // Sunrise edit end
+
+        if (TryComp(user, out VentCrawlerComponent? crawlerComp) // Starlight-Edit
+            && crawlerComp.InTube)
+            return;
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
 
