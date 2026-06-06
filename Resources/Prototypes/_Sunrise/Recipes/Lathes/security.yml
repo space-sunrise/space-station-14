@@ -250,14 +250,13 @@
   result: ImplantCaseMantisBladeMaxGuard
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Steel: 1750
-    Plastic: 550
-    Silver: 250
-    Gold: 250
-    Glass: 300
-    Plasma: 200
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
     Diamond: 200
     Uranium: 50
 
@@ -267,62 +266,53 @@
   result: ImplantCaseGrenadeThrower
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 2050
-    Silver: 250
-    Gold: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
     Glass: 100
-
+    Plasma: 100
+    Uranium: 200
 #
 - type: latheRecipe
   id: ImplantCaseLaserEmitter
   result: ImplantCaseLaserEmitter
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 1850
-    Silver: 250
-    Gold: 250
-    Glass: 400
-    Diamond: 100
-    Uranium: 250
-    Plasma: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
 #
 - type: latheRecipe
   id: ImplantCaseBulwark
   result: ImplantCaseBulwark
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 1650
-    Silver: 250
-    Gold: 250
-    Glass: 250
-    Diamond: 300
-    Uranium: 250
-    Plasma: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
 #
 - type: latheRecipe
   id: ImplantCaseBonesaw
   result: ImplantCaseBonesaw
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 1850
-    Silver: 250
-    Gold: 250
-    Glass: 200
-    Diamond: 300
-    Uranium: 250
-    Plasma: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
 
 # Clothing
 - type: latheRecipe

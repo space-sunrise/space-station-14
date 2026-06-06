@@ -1,0 +1,95 @@
+- type: entity
+  id: AirlockBrigmedLocked
+  parent: AirlockMedicalLocked
+  suffix: Brigmed, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrigmed ]
+
+- type: entity
+  id: AirlockInternalAffairsGlassLocked
+  parent: AirlockNtrepGlassLocked
+  suffix: Internal Affairs, Glass, Locked
+  components:
+  - type: Wires
+    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInternalAffairs ]
+
+- type: entity
+  id: AirlockInternalAffairsLocked
+  parent: AirlockNrepLocked
+  suffix: Internal Affairs, Locked
+  components:
+  - type: Wires
+    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInternalAffairs ]
+
+- type: entity
+  id: AirlockMaintInternalAffairsLocked
+  parent: AirlockMaintNtrepLocked
+  suffix: Internal Affairs, Locked
+  components:
+  - type: Wires
+    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInternalAffairs ]
+
+- type: entity
+  id: AirlockMaintRoboticsLocked
+  parent: AirlockMaintRnDLocked
+  suffix: Robotics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRobotics ]
+
+- type: entity
+  id: AirlockParamedicGlassLocked
+  parent: AirlockMedicalGlassLocked
+  suffix: Paramedic, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsParamedic ]
+
+- type: entity
+  id: AirlockRoboticsGlassLocked
+  parent: AirlockScienceGlassLocked
+  suffix: Robotics, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRobotics ]
+
+- type: entity
+  id: AirlockSalvageMiningGlassLocked
+  parent: AirlockMiningGlassLocked
+  suffix: Salvage Mining, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageMining ]
+
+- type: entity
+  id: AirlockSecurityInternalAffairsGlassLocked
+  parent: AirlockSecurityLawyerGlassLocked
+  suffix: Security Internal Affairs, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityInternalAffairs ]
+
+- type: entity
+  id: AirlockSecurityInternalAffairsLocked
+  parent: AirlockSecurityLawyerLocked
+  suffix: Security Internal Affairs, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityInternalAffairs ]

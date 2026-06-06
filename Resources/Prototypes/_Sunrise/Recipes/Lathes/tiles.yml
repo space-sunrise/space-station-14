@@ -1,0 +1,255 @@
+# Starlight floor tiles
+
+# Faux
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemCarpetDeco
+  result: FloorTileItemCarpetDeco
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemHierophant
+  result: FloorTileItemHierophant
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemSepia
+  result: FloorTileItemSepia
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemAstroDirt
+  result: FloorTileItemAstroDirt
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemAstroIronsand
+  result: FloorTileItemAstroIronsand
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FloorTileItemAstroIronsandBorderless
+  result: FloorTileItemAstroIronsandBorderless
+
+# Steel
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemDarkBitile
+  result: FloorTileItemDarkBitile
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemSteelBitile
+  result: FloorTileItemSteelBitile
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemWhiteBitile
+  result: FloorTileItemWhiteBitile
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemMetalDark
+  result: FloorTileItemMetalDark
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemMetalBrown
+  result: FloorTileItemMetalBrown
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemMetalBlue
+  result: FloorTileItemMetalBlue
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemMetalPurple
+  result: FloorTileItemMetalPurple
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemMetalRed
+  result: FloorTileItemMetalRed
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemMetalGreen
+  result: FloorTileItemMetalGreen
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3Black
+  result: FloorTileItem3x3Black
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3Brown
+  result: FloorTileItem3x3Brown
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3Steel
+  result: FloorTileItem3x3Steel
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3White
+  result: FloorTileItem3x3White
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemRoughMetal
+  result: FloorTileItemRoughMetal
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemRustyMetal
+  result: FloorTileItemRustyMetal
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemSteelGrate
+  result: FloorTileItemSteelGrate
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemTechGreeb
+  result: FloorTileItemTechGreeb
+
+# Wood
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemDarkWood
+  result: FloorTileItemDarkWood
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemDarkWoodPattern
+  result: FloorTileItemDarkWoodPattern
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemDarkWoodLarge
+  result: FloorTileItemDarkWoodLarge
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquet
+  result: FloorTileItemWoodParquet
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodBlack
+  result: FloorTileItemWoodBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodDark
+  result: FloorTileItemWoodDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLight
+  result: FloorTileItemWoodLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodRed
+  result: FloorTileItemWoodRed
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeBlack
+  result: FloorTileItemWoodLargeBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeDark
+  result: FloorTileItemWoodLargeDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeLight
+  result: FloorTileItemWoodLargeLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeRed
+  result: FloorTileItemWoodLargeRed
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetBlack
+  result: FloorTileItemWoodParquetBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetDark
+  result: FloorTileItemWoodParquetDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetLight
+  result: FloorTileItemWoodParquetLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetRed
+  result: FloorTileItemWoodParquetRed
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChess
+  result: FloorTileItemWoodChess
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessBlack
+  result: FloorTileItemWoodChessBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessDark
+  result: FloorTileItemWoodChessDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessLight
+  result: FloorTileItemWoodChessLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessRed
+  result: FloorTileItemWoodChessRed
+
+# Concrete
+- type: latheRecipe
+  parent: BaseConcreteTileRecipe
+  id: FloorTileItemTerracotta
+  result: FloorTileItemTerracotta
+
+- type: latheRecipe
+  parent: BaseConcreteTileRecipe
+  id: FloorTileItemTerracottaDiagonal
+  result: FloorTileItemTerracottaDiagonal
+
+- type: latheRecipe
+  parent: BaseConcreteTileRecipe
+  id: FloorTileItemTerracottaSmall
+  result: FloorTileItemTerracottaSmall
+
+- type: latheRecipe
+  parent: BaseConcreteTileRecipe
+  id: FloorTileItemOldConcreteBricks
+  result: FloorTileItemOldConcreteBricks
+
+- type: latheRecipe
+  parent: BaseConcreteTileRecipe
+  id: FloorTileItemOldConcreteTile
+  result: FloorTileItemOldConcreteTile
+
+- type: latheRecipe
+  parent: BaseConcreteTileRecipe
+  id: FloorTileItemOrnate
+  result: FloorTileItemOrnate

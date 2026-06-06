@@ -1,0 +1,74 @@
+- type: constructionGraph
+  id: SunriseWallhorn
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: assembly
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2.0
+
+  - node: assembly
+    entity: SunriseWallhornAssembly
+    edges:
+    - to: electronics
+      steps:
+      - tag: SunriseWallhornElectronics
+        store: board
+        name: construction-graph-tag-sunrise-wallhorn-electronics
+        icon:
+          sprite: "Objects/Misc/module.rsi"
+          state: "id_mod"
+        doAfter: 1
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: electronics
+    edges:
+    - to: wallhornBlack
+      steps:
+      - tool: Screwing
+        doAfter: 2
+    - to: wallhornWhite
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: wallhornBlack
+    entity: SunriseWallhornBlack
+    edges:
+    - to: assembly
+      conditions:
+      - !type:ContainerNotEmpty
+        container: board
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 1
+
+  - node: wallhornWhite
+    entity: SunriseWallhornWhite
+    edges:
+    - to: assembly
+      conditions:
+      - !type:ContainerNotEmpty
+        container: board
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 1

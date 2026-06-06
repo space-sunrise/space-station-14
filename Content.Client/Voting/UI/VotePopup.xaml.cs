@@ -59,21 +59,45 @@ namespace Content.Client.Voting.UI
             VoteTitle.SetMessage(FormattedMessage.FromUnformatted(_vote.Title));
             VoteCaller.Text = Loc.GetString("ui-vote-created", ("initiator", _vote.Initiator));
 
+            // Sunrise-Edit Start
+            var totalEstimatedWidth = 0;
+            var useVerticalLayout = false;
+
             for (var i = 0; i < _voteButtons.Length; i++)
             {
                 var entry = _vote.Entries[i];
+                string buttonText;
                 if (_vote.DisplayVotes)
                 {
-                    _voteButtons[i].Text = Loc.GetString("ui-vote-button", ("text", entry.Text), ("votes", entry.Votes));
+                    buttonText = Loc.GetString("ui-vote-button", ("text", entry.Text), ("votes", entry.Votes));
                 }
                 else
                 {
-                    _voteButtons[i].Text = Loc.GetString("ui-vote-button-no-votes", ("text", entry.Text));
+                    buttonText = Loc.GetString("ui-vote-button-no-votes", ("text", entry.Text));
                 }
+
+                _voteButtons[i].Text = buttonText;
 
                 if (_vote.OurVote == i)
                     _voteButtons[i].Pressed = true;
+
+                // Estimate button width: ~7 pixels per character + ~32 pixels for padding
+                var buttonWidth = buttonText.Length * 7 + 32;
+                totalEstimatedWidth += buttonWidth;
+
+                if (buttonWidth > 180)
+                {
+                    useVerticalLayout = true;
+                }
             }
+
+            if (totalEstimatedWidth > 520)
+            {
+                useVerticalLayout = true;
+            }
+
+            VoteOptionsContainer.Columns = useVerticalLayout ? 1 : Math.Min(3, _voteButtons.Length);
+            // Sunrise-Edit End
         }
 
         private void AttemptFollowVoteEntity()

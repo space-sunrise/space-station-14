@@ -40,7 +40,7 @@ public sealed partial class NukeopsRuleComponent : Component
     /// Time to emergency shuttle to arrive if RoundEndBehavior is ShuttleCall.
     /// </summary>
     [DataField]
-    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(1);
+    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(3);
 
     /// <summary>
     /// Whether or not nukie left their outpost
@@ -83,7 +83,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     Time crew can't call emergency shuttle after war declaration.
     /// </summary>
     [DataField]
-    public TimeSpan WarEvacShuttleDisabled = TimeSpan.FromMinutes(30); // Sunrise-edit
+    public TimeSpan WarEvacShuttleDisabled = TimeSpan.FromMinutes(40); // Sunrise-edit
 
     /// <summary>
     ///     Minimal operatives count for war declaration

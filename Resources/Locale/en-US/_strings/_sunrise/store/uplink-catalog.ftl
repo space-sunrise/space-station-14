@@ -66,6 +66,8 @@ uplink-hardsuit-syndie-medic-name = Syndicate Medic Hardsuit
 uplink-hardsuit-syndie-medic-desc = A hardsuit designed for Gorlax combat medics.
 uplink-50blessing-name = 50 Blessings Gift Set
 uplink-50blessing-desc = For agents who want to conceal their identity in style, with love from Egor Semenov.
+uplink-slipknotset-name = slipknot masks gift set
+uplink-slipknotset-desc = Five masks. Five souls. Numbers 7, 8, 6, 1 and 5 inside a black box — filthy Iowa fury.
 uplink-clothing-murder-socks-name = Murder Socks
 uplink-clothing-murder-socks-desc = For the agent who truly understands style.
 uplink-syndie-maid-raid-name = Maid Raider
@@ -202,6 +204,9 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
+
+uplink-viscerator-cluster-grenade-name = Viscerator cluster grenade
+uplink-viscerator-cluster-grenade-desc = Releases eight syndicate viscerator drones after a short timer.
 
 # OTHER
 uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name = Cyborg Infiltrator Reinforcement Teleport

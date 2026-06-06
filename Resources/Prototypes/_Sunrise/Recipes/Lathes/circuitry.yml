@@ -1,0 +1,4 @@
+- type: latheRecipe
+  parent: [ BaseElectronicsRecipe, BaseCircuitryRecipeCategory ]
+  id: SunriseWallhornElectronics
+  result: SunriseWallhornElectronics

@@ -520,6 +520,18 @@
 
 - type: entity
   parent: SunriseClothingHeadHatBattleMasksBase
+  id: ClothingHeadHatRichardSunrise
+  name: Richard
+  description: 'Do you like hurting people?'
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Misc/richard.rsi
+    scale: 0.63, 0.63
+  - type: Clothing
+    sprite: Clothing/Head/Misc/richard.rsi
+
+- type: entity
+  parent: SunriseClothingHeadHatBattleMasksBase
   id: ClothingHeadHatTony
   name: Tony
   description: 'Man, this party sucks, I fucking hate these people'
@@ -589,6 +601,67 @@
     scale: 0.63, 0.63
   - type: Clothing
     sprite: _Sunrise/Clothing/Mask/swanone.rsi
+
+
+- type: entity
+  parent: SunriseClothingHeadHatBattleMasksBase
+  id: ClothingHeadHatMaskN1
+  name: mask 1
+  description: You are mine. You will always be mine.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/mask1.rsi
+    scale: 0.63, 0.63
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/mask1.rsi
+
+- type: entity
+  parent: SunriseClothingHeadHatBattleMasksBase
+  id: ClothingHeadHatMaskN5
+  name: mask 5
+  description: I've seen space before...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/mask5.rsi
+    scale: 0.63, 0.63
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/mask5.rsi
+
+- type: entity
+  parent: SunriseClothingHeadHatBattleMasksBase
+  id: ClothingHeadHatMaskN6
+  name: mask 6
+  description: SHAWN, FOR FUCK'S SAKE! WE ARE NOT YOUR KIND!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/mask6.rsi
+    scale: 0.63, 0.63
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/mask6.rsi
+
+- type: entity
+  parent: SunriseClothingHeadHatBattleMasksBase
+  id: ClothingHeadHatMaskN7
+  name: mask 7
+  description: You're quite tall.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/mask7.rsi
+    scale: 0.63, 0.63
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/mask7.rsi
+
+- type: entity
+  parent: SunriseClothingHeadHatBattleMasksBase
+  id: ClothingHeadHatMaskN8
+  name: mask 8
+  description: You just... You just wanna scream.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/mask8.rsi
+    scale: 0.63, 0.63
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/mask8.rsi
 
 - type: entity
   parent: ClothingHeadBase
