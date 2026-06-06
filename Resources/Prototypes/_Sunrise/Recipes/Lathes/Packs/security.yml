@@ -208,6 +208,8 @@
     - WeaponEnergyGun
     - WeaponMiniEnergyGun
     - WeaponIonCarbine
+    - WeaponDecloner
+    - ScanGateMachineCircuitboard
     - MagazineBatteryLr30
     - WeaponSunriseLaserPistol
     - FlareGunSecurityUpgrade

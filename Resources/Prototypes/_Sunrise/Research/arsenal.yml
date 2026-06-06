@@ -268,7 +268,7 @@
   id: ScanGateTechnology
   name: research-technology-scan-gate
   icon:
-    sprite: _Starlight/Structures/Machines/scan_gate.rsi
+    sprite: _Sunrise/Structures/Machines/scan_gate.rsi
     state: base
   discipline: Arsenal
   tier: 4

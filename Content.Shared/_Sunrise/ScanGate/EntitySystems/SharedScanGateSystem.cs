@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.ScanGate.Components;
+using Content.Shared._Sunrise.ScanGate.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
@@ -12,7 +12,7 @@ using Content.Shared.PowerCell;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Storage;
 
-namespace Content.Shared._Starlight.ScanGate.EntitySystems;
+namespace Content.Shared._Sunrise.ScanGate.EntitySystems;
 
 public sealed partial class SharedScanGateSystem : EntitySystem
 {

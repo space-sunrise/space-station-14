@@ -1,7 +1,7 @@
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.ScanGate;
+namespace Content.Shared._Sunrise.ScanGate;
 
 [ByRefEvent]
 public record struct TryDetectItem(EntityUid ScanGate, bool EntityDetected = false, bool ByPass = false) : IInventoryRelayEvent

@@ -1,7 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.ScanGate.Components;
+namespace Content.Shared._Sunrise.ScanGate.Components;
 
 /// <summary>
 /// Marks an entity as a scan gate that can detect entities with <see cref="ScanDetectableComponent"/>.
@@ -32,7 +32,7 @@ public sealed partial class ScanGateComponent : Component
     /// The sound played when a scan successfully detects an item.
     /// </summary>
     [DataField("scanFailSound")]
-    public SoundSpecifier ScanFailSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/ScanGate/scan_fail.ogg");
+    public SoundSpecifier ScanFailSound = new SoundPathSpecifier("/Audio/_Sunrise/Effects/ScanGate/scan_fail.ogg");
 
     /// <summary>
     /// Sprite state to set on successful scan.

@@ -64,7 +64,7 @@
   description: It scans items for contraband when they pass through.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Machines/scan_gate.rsi
+    sprite: _Sunrise/Structures/Machines/scan_gate.rsi
     snapCardinals: true
     layers:
     - state: base

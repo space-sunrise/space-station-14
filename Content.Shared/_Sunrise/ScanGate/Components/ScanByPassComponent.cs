@@ -1,4 +1,4 @@
-namespace Content.Shared._Starlight.ScanGate.Components;
+namespace Content.Shared._Sunrise.ScanGate.Components;
 
 /// <summary>
 /// Marks an entity as able to bypass scan gate detection.
