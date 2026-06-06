@@ -600,4 +600,6 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
         CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
+
+
 }

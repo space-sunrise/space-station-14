@@ -15,7 +15,7 @@
   [color=#a4885c]Летающий[/color]: юнит парит над землёй и может проходить через низкие препятствия (столы, каркасы машин, перила), не замедляясь.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconScrap" Caption=""/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT1Scrap" Caption=""/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 60 (крит), 120 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)[bold][color=#a4885c]*[/color][/bold]
@@ -35,7 +35,7 @@
   [color=#a4885c]Летающий[/color]: юнит парит над землёй и может проходить через низкие препятствия (столы, каркасы машин, перила), не замедляясь.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconDroneLethals"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT1DroneLethals"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 30 (крит), 90 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -49,7 +49,7 @@
   Эти инженерные дроны способны стрелять разрядными болтами дизейблера. Особенно опасны в сочетании с другими противниками.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconDroneNonLethals"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT1DroneNonLethals"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 30 (крит), 90 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -63,7 +63,7 @@
   Научный дрон-ренегат, оснащённый экспериментальной пушкой C.H.I.M.P.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconDroneScience"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT1DroneScience"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 30 (крит), 90 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -81,7 +81,7 @@
   [color=#a4885c]Регенерация (сильная)[/color]: медленно восстанавливает здоровье даже после смерти.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconServo"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT2Servo"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 80 (крит), 140 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -99,7 +99,7 @@
   [color=#a4885c]Регенерация (сильная)[/color]: медленно восстанавливает здоровье даже после смерти.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconHerder"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT2Herder"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 80 (крит), 140 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -117,7 +117,7 @@
   [color=#a4885c]Регенерация (сильная)[/color]: медленно восстанавливают здоровье даже после смерти.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconHunter"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT2Hunter"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 30 (крит), 90 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -135,7 +135,7 @@
   [color=#a4885c]Регенерация (сильная)[/color]: медленно восстанавливает здоровье даже после смерти.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconCatcher"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT2Catcher"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 80 (крит), 140 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -151,7 +151,7 @@
   Малые, быстрые и манёвренные дроны, созданные для преследования целей в узких проходах и выведения их из строя. Часто сопровождают ловчих.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconViscerator"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT1Viscerator"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 12 (крит), 20 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 5 м/с (5 м/с)
@@ -169,7 +169,7 @@
   [color=#a4885c]Регенерация (сильная)[/color]: медленно восстанавливает здоровье даже после смерти.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconTesla"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconT3Tesla"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 110 (крит), 160 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)
@@ -187,7 +187,7 @@
   [color=#a4885c]Регенерация (сильная)[/color]: медленно восстанавливает здоровье даже после смерти.
 
   <Box>
-  <GuideEntityEmbed Entity="MobRogueSiliconGuardian"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconBossGuardian"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 200 (крит), 400 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4 м/с (4 м/с)

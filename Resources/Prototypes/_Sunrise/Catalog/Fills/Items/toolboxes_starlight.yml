@@ -1,0 +1,31 @@
+- type: entity
+  id: ToolboxRoboticist
+  name: roboticist toolbox
+  description: What, it's just a roboticist toolbox? Were you expecting something else?
+  parent: ToolboxBase
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/Toolboxes/toolbox_robotics.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Tools/Toolboxes/toolbox_robotics.rsi
+
+- type: entity
+  id: ToolboxRoboticistFilled
+  name: roboticist toolbox
+  suffix: Filled
+  parent: ToolboxRoboticist
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrowbarOrange
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: Multitool
+        - id: ClothingMaskGas
+        - id: ClothingHandsGlovesRobohands
+        - id: ReagentContainerOliveoil

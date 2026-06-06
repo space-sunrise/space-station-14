@@ -1,8 +1,12 @@
-storyteller-preset-title = Рассказчик
-storyteller-preset-description = Судьба станции находится в руках незримого рассказчика. Он будет динамически настраивать происходящее, создавая уникальную историю в зависимости от ваших успехов и неудач.
+storyteller-preset-title = Рассказчик: Классический
+storyteller-preset-description = Судьба станции — в руках незримого режиссера. Он чутко реагирует на происходящее, создавая уникальную историю взлетов и падений вашего экипажа.
 
-ui-vote-storyteller-type-title = Выберите тип Рассказчика:
-# Sunrise-Edit
+storyteller-preset-calm-title = Рассказчик: Спокойный
+storyteller-preset-calm-description = Затишье в космосе. Рассказчик предпочитает размеренное развитие сюжета, давая экипажу больше времени на передышку и стараясь не разводить лишний хаос.
+
+storyteller-preset-insane-title = Рассказчик: Безумный
+storyteller-preset-insane-description = Абсолютный хаос. Рассказчик будет безжалостно бросать на станцию одну угрозу за другой, пуская в ход самые коварные и разрушительные события.
+
 ui-vote-storyteller-type-calm = Спокойный
 ui-vote-storyteller-type-classic = Классический
 ui-vote-storyteller-type-insane = Безумный
@@ -13,7 +17,6 @@ ui-vote-storyteller-type-calm-name = Спокойный
 ui-vote-storyteller-type-classic-name = Классический
 ui-vote-storyteller-type-insane-name = Безумный
 
-# Sunrise-Edit
 round-end-summary-window-storyteller-name-label = Активный рассказчик: [color=#7DF9FF]{$storyteller}[/color]
 round-end-summary-window-storyteller-history-tab-title = История Рассказчика
 round-end-summary-window-storyteller-history-empty = История пуста. В этом раунде не произошло ничего примечательного.
@@ -177,17 +180,14 @@ storyteller-metadata-assaultops-start = Прозвучал сигнал боев
 storyteller-metadata-powergridcheck-start = Инженеры объявили о начале масштабных профилактических работ в энергосети станции.
 storyteller-metadata-thief-start = В толпе экипажа скрылся ловкий карманник, нацеленный на личные вещи сотрудников.
 storyteller-metadata-terminatorspawn-start = Блюспейс-вспышка озарила отсек: из далёкого будущего прибыл безжалостный Терминатор, чтобы забрать жизнь своей цели.
-storyteller-metadata-diseaserule-start = Медицинский отсек забил тревогу: датчики зафиксировали вспышку опасного патогена среди экипажа.
 storyteller-metadata-spiderclownspawn-start = Безумный цирковой кошмар воплотился наяву: на борту материализовался ужасающий Паук-Клоун.
 storyteller-metadata-abductors-end = Чуждые сигналы утихли: биологическая активность Абдукторов в секторе прекратилась.
 storyteller-metadata-revolutionary-end = Волна мятежа спала, и революционный запал среди бунтовщиков сошёл на нет.
 storyteller-metadata-bloodcult-end = Тёмная скверна отступила: Кровавый культ был полностью изгнан со станции.
 storyteller-metadata-fleshcult-end = Пульсирующее гнездо плоти затихло и сгнило: органическое заражение станции полностью остановлено.
 storyteller-metadata-powergridcheck-end = Инженерная служба доложила об успешном завершении проверки стабильности энергосети.
-storyteller-metadata-diseaserule-end = Вспышка инфекции была успешно локализована и побеждена, карантин снят.
 
 # Final 12 storyteller descriptions
-storyteller-metadata-smalldisease-start = В медицинском отсеке скопилась небольшая очередь: среди экипажа распространилась лёгкая простуда.
 storyteller-metadata-bluespaceartifact-start = Приборы зафиксировали мощные блюспейс-колебания: в секторе обнаружен загадочный инопланетный артефакт.
 storyteller-metadata-giftsjanitor-start = Уборщики ликуют: на станцию прибыла партия новеньких швабр и чистящих средств премиум-класса.
 storyteller-metadata-giftsancientguns-start = Коллекционеры оружия пришли в восторг: в руки экипажа попал ящик со старинным пороховым огнестрелом.

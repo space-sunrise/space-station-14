@@ -7,3 +7,7 @@ id-card-access-level-mail = Почтальйон
 id-card-access-level-cargo-purchase-access = Снабжение: заказы
 id-card-access-level-research-console-access = Науч. исследования
 id-card-access-level-mining = Шахтёр
+id-card-access-level-iaa = Внутренние дела
+id-card-access-level-brigmedic = Бригмедик
+id-card-access-level-cadet = Кадет
+id-card-access-level-robotics = Робототехника

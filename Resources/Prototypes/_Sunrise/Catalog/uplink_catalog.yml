@@ -670,6 +670,19 @@
       tags:
       - AssaultOpsUplink
 
+- type: listing
+  id: UplinkSyndicateVisceratorClusterGrenade
+  name: uplink-viscerator-cluster-grenade-name
+  description: uplink-viscerator-cluster-grenade-desc
+  productEntity: SyndicateVisceratorClusterGrenade
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkExplosives
+
 # For the China-Lake
 - type: listing
   id: UplinkGrenadeFragTimer

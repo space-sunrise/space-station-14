@@ -35,6 +35,8 @@
   - Brig
   - Detective
   - Cryogenics
+  - Brigmedic # Sunrise-edit
+  - Cadet # Sunrise-edit
 
 - type: accessGroup
   id: Armory

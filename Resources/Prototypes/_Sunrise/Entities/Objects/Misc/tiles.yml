@@ -1,5 +1,5 @@
 - type: entity
-  name: tiles-light-fancy-wood-floor
+  name: light fancy wood floor
   parent: FloorTileItemBase
   id: FloorTileItemLightFancyWood
   components:

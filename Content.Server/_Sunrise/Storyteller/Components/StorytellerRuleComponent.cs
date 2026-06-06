@@ -21,6 +21,12 @@ public sealed partial class StorytellerRuleComponent : Component
     public float ThreatBudget = 20f;
 
     /// <summary>
+    /// Current major threat budget available to spend on major antag/calm events.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float MajorThreatBudget = 30f;
+
+    /// <summary>
     /// Maximum threat budget the storyteller can accumulate.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
@@ -43,6 +49,42 @@ public sealed partial class StorytellerRuleComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextCheckTime;
+
+    /// <summary>
+    /// Last timestamp when any event was triggered.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LastAnyEventTime;
+
+    /// <summary>
+    /// Last timestamp when a Helpful event was triggered.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LastHelpfulEventTime;
+
+    /// <summary>
+    /// Last timestamp when a Neutral event was triggered.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LastNeutralEventTime;
+
+    /// <summary>
+    /// Global cooldown between any storyteller events (in minutes).
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float GlobalEventCooldownMinutes = 3f;
+
+    /// <summary>
+    /// Cooldown between Helpful events (in minutes).
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float HelpfulEventCooldownMinutes = 8f;
+
+    /// <summary>
+    /// Cooldown between Neutral events (in minutes).
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float NeutralEventCooldownMinutes = 6f;
 
     /// <summary>
     /// The timestamp when the current pacing state is scheduled to transition.
@@ -68,14 +110,12 @@ public sealed partial class StorytellerRuleComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public StorytellerType StorytellerType { get; set; } = StorytellerType.Classic;
 
-    // Sunrise-Edit: Baseline trash count from round-start variation passes.
-    // Subtracted from current trash count so pre-existing mess doesn't inflate stress.
-    [ViewVariables(VVAccess.ReadOnly)]
-    public int TrashBaseline;
-
-    // Sunrise-Edit: Whether the trash baseline has been captured yet.
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool TrashBaselineRecorded;
+    /// <summary>
+    /// The configured storyteller type from the game rule entity.
+    /// If set, this type will be used instead of the default.
+    /// </summary>
+    [DataField("storyTellerType")]
+    public StorytellerType? ConfiguredStorytellerType;
 }
 
 public enum StorytellerPacingState
