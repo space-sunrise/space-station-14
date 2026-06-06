@@ -15,6 +15,7 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 8
+    proto: ShellShotgunBeanbag
   - type: Construction
     graph: ShotgunRiotSawn
     node: start
