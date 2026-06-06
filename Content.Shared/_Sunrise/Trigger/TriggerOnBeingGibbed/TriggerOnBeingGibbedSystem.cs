@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Body.Events;
+using Content.Shared.Gibbing;
 using Content.Shared.Trigger.Systems;
 
 namespace Content.Shared._Sunrise.Trigger.TriggerOnBeingGibbed;

@@ -181,6 +181,7 @@ public sealed partial class StorytellerSystem
     private static readonly Gauge StressDamageGauge = Metrics.CreateGauge("ss14_storyteller_stress_damage", "Stress from average crew damage.");
     private static readonly Gauge StressAnomalyGauge = Metrics.CreateGauge("ss14_storyteller_stress_anomaly", "Stress from active anomalies and uncontained artifacts.");
     private static readonly Gauge StressMessGauge = Metrics.CreateGauge("ss14_storyteller_stress_mess", "Stress from puddles and trash on the station.");
+    private static readonly Gauge StressAlertLevelGauge = Metrics.CreateGauge("ss14_storyteller_stress_alert_level", "Stress from station alert levels.");
 
     private static readonly Gauge StrengthArmedCrewGauge = Metrics.CreateGauge("ss14_storyteller_strength_armed_crew", "Station strength from peaceful armed crew members.");
     private static readonly Gauge StrengthSecurityGauge = Metrics.CreateGauge("ss14_storyteller_strength_security", "Station strength from security personnel.");
@@ -257,6 +258,7 @@ public sealed partial class StorytellerSystem
         StressDamageGauge.Set(metrics.StressDamage);
         StressAnomalyGauge.Set(metrics.StressAnomaly);
         StressMessGauge.Set(metrics.StressMess);
+        StressAlertLevelGauge.Set(metrics.StressAlertLevel);
 
         StrengthArmedCrewGauge.Set(metrics.StrengthArmedCrew);
         StrengthSecurityGauge.Set(metrics.StrengthSecurity);
@@ -301,6 +303,7 @@ public sealed partial class StorytellerSystem
             $"Material Score: {F1(metrics.MaterialStrengthScore, inv)}, " +
             $"Stress: Dead {F2(metrics.StressDead, inv)}, Ghost {F2(metrics.StressGhost, inv)}, Antag {F2(metrics.StressAntagonist, inv)}, Contain {F2(metrics.StressContainment, inv)}, Econ {F2(metrics.StressEconomy, inv)}, " +
             $"Dmg {F2(metrics.StressDamage, inv)}, Anomaly {F2(metrics.StressAnomaly, inv)}, Mess {F2(metrics.StressMess, inv)}, Power {F2(metrics.StressPower, inv)}, Atmos {F2(metrics.StressAtmosphere, inv)}, " +
+            $"StressAlertLevel: {F2(metrics.StressAlertLevel, inv)}, " +
             $"Atmos Unsafe: {F4(metrics.AtmosphereUnsafeRatio, inv)}, Power Deficit: {F4(metrics.PowerGridDeficitRatio, inv)}, Tiles: {metrics.TotalStationTiles}, " +
             $"Weapons: {metrics.CrewWeaponCount}, Antags: {metrics.ActiveAntagonistCount}, ERT: {metrics.ActiveErtCount}, " +
             $"Singularity: {metrics.SingularityActive}/{metrics.SingularityContained}, Tesla: {metrics.TeslaActive}/{metrics.TeslaContained}, " +

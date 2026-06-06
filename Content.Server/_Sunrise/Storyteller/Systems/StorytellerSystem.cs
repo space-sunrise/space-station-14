@@ -47,6 +47,7 @@ using Content.Shared.Anomaly.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Damage.Components;
+using Content.Server.AlertLevel;
 
 
 namespace Content.Server._Sunrise.Storyteller.Systems;
@@ -123,6 +124,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -188,6 +190,14 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     {
         base.Started(uid, component, gameRule, args);
         LogStorytellerState(component, null);
+
+        component.RuleStartTime = Timing.CurTime;
+        component.AlertLevelHistory.Clear();
+        var query = EntityQueryEnumerator<AlertLevelComponent>();
+        while (query.MoveNext(out var stationUid, out var alertComp))
+        {
+            RecordAlertLevelChange(component, stationUid, alertComp.CurrentLevel);
+        }
     }
 
     protected override void ActiveTick(EntityUid uid, StorytellerRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -616,6 +626,12 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         }
         var averageCrewDamage = crewWithMindCount > 0 ? totalCrewDamage / crewWithMindCount : 0f;
 
+        var alertLevelStress = 0f;
+        if (comp != null)
+        {
+            alertLevelStress = CalculateAlertLevelStress(comp);
+        }
+
         _protoManager.TryIndex<StorytellerTypePrototype>(comp?.StorytellerType.ToString() ?? string.Empty, out var storytellerType);
         var armedCrewScore = CountArmedCrewNotAntags();
         var strength = CalculateNormalizedStationStrength(
@@ -677,6 +693,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             StrengthTechnology = strength.Technology,
             StrengthMaterials = strength.Materials,
             StationStrength = strength.Total,
+            StressAlertLevel = alertLevelStress,
         };
     }
 
@@ -738,6 +755,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             StressAtmosphereMax);
 
         var antagonistStress = Math.Clamp(metrics.ActiveAntagonistCount * 4f, 0f, 20f);
+        var alertLevelStress = metrics.StressAlertLevel;
 
         metrics.StressDead = deadStress;
         metrics.StressGhost = ghostStress;
@@ -751,7 +769,8 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         metrics.StressAntagonist = antagonistStress;
 
         var totalStress = deadStress + ghostStress + containmentStress + economyStress + damageStress
-                          + anomalyStress + messStress + powerStress + atmosphereStress + antagonistStress;
+                          + anomalyStress + messStress + powerStress + atmosphereStress + antagonistStress
+                          + alertLevelStress;
         return Math.Clamp(totalStress, 0f, 100f);
     }
 
@@ -1756,6 +1775,156 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             skippedCount++;
         }
     }
+
+    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
+    {
+        var query = EntityQueryEnumerator<StorytellerRuleComponent>();
+        while (query.MoveNext(out _, out var comp))
+        {
+            RecordAlertLevelChange(comp, ev.Station, ev.AlertLevel);
+        }
+    }
+
+    private void RecordAlertLevelChange(StorytellerRuleComponent comp, EntityUid station, string level)
+    {
+        var now = Timing.CurTime;
+        if (!comp.AlertLevelHistory.TryGetValue(station, out var history))
+        {
+            history = new List<AlertLevelHistoryEntry>();
+            comp.AlertLevelHistory[station] = history;
+        }
+
+        if (history.Count > 0 && history[^1].Level.Equals(level, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        history.Add(new AlertLevelHistoryEntry { Time = now, Level = level });
+        PruneAlertLevelHistory(comp);
+    }
+
+    private void PruneAlertLevelHistory(StorytellerRuleComponent comp)
+    {
+        var cutoff = Timing.CurTime - TimeSpan.FromHours(1);
+        foreach (var (station, history) in comp.AlertLevelHistory)
+        {
+            if (history.Count <= 1)
+                continue;
+
+            int keepIndex = -1;
+            for (int i = 0; i < history.Count; i++)
+            {
+                if (history[i].Time <= cutoff)
+                {
+                    keepIndex = i;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if (keepIndex > 0)
+            {
+                history.RemoveRange(0, keepIndex);
+            }
+        }
+    }
+
+    public float CalculateAlertLevelStress(StorytellerRuleComponent comp)
+    {
+        var T = Timing.CurTime;
+        var windowStart = T - TimeSpan.FromHours(1);
+        if (windowStart < comp.RuleStartTime)
+            windowStart = comp.RuleStartTime;
+
+        var totalWindowSeconds = (T - windowStart).TotalSeconds;
+        if (totalWindowSeconds <= 0)
+            return 0f;
+
+        var stationStresses = new List<float>();
+
+        foreach (var (station, history) in comp.AlertLevelHistory)
+        {
+            if (!Exists(station))
+                continue;
+
+            double greenDuration = 0;
+            double totalDuration = 0;
+
+            var defaultLevel = "green";
+            if (TryComp<AlertLevelComponent>(station, out var alertComp) && alertComp.AlertLevels != null && !string.IsNullOrEmpty(alertComp.AlertLevels.DefaultLevel))
+            {
+                defaultLevel = alertComp.AlertLevels.DefaultLevel;
+            }
+
+            if (history.Count == 0)
+            {
+                var currentLevel = defaultLevel;
+                if (alertComp != null)
+                    currentLevel = alertComp.CurrentLevel;
+
+                if (currentLevel.Equals(defaultLevel, StringComparison.OrdinalIgnoreCase))
+                {
+                    greenDuration = totalWindowSeconds;
+                }
+                totalDuration = totalWindowSeconds;
+            }
+            else
+            {
+                var activeLevel = defaultLevel;
+                var firstEntry = history[0];
+                if (firstEntry.Time > windowStart)
+                {
+                    activeLevel = firstEntry.Level;
+                }
+                else
+                {
+                    foreach (var entry in history)
+                    {
+                        if (entry.Time <= windowStart)
+                            activeLevel = entry.Level;
+                        else
+                            break;
+                    }
+                }
+
+                var currentIntervalStart = windowStart;
+                foreach (var entry in history)
+                {
+                    if (entry.Time <= windowStart)
+                        continue;
+
+                    var duration = (entry.Time - currentIntervalStart).TotalSeconds;
+                    if (activeLevel.Equals(defaultLevel, StringComparison.OrdinalIgnoreCase))
+                    {
+                        greenDuration += duration;
+                    }
+                    totalDuration += duration;
+
+                    activeLevel = entry.Level;
+                    currentIntervalStart = entry.Time;
+                }
+
+                var lastDuration = (T - currentIntervalStart).TotalSeconds;
+                if (activeLevel.Equals(defaultLevel, StringComparison.OrdinalIgnoreCase))
+                {
+                    greenDuration += lastDuration;
+                }
+                totalDuration += lastDuration;
+            }
+
+            if (totalDuration > 0)
+            {
+                var proportion = greenDuration / totalDuration;
+                var stress = 10f * (1f - (float)proportion);
+                stationStresses.Add(stress);
+            }
+        }
+
+        if (stationStresses.Count == 0)
+            return 0f;
+
+        return stationStresses.Average();
+    }
 }
 
 public struct StationMetrics
@@ -1813,4 +1982,5 @@ public struct StationMetrics
     public float StressAtmosphere;
     public float StressGhost;
     public float StressAntagonist;
+    public float StressAlertLevel;
 }

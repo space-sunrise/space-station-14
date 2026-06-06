@@ -61,6 +61,17 @@
   - PinkBra
   - PurpleBra
   - BlackBra
+  - BraTshirtWhite
+  - BraTshirtRed
+  - BraTshirtYellow
+  - BraTshirtGreen
+  - BraTshirtBlue
+  - BraTshirtLightBlue
+  - BraTshirtBlack
+  - BraTshirtGrey
+  - BraTshirtPurple
+  - BraTshirtBrown
+  - BraTshirtOrange
 
 - type: loadoutGroup
   id: Pants

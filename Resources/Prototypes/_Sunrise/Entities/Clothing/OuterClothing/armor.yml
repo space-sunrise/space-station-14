@@ -455,8 +455,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.75
   - type: ClothingSpeedModifier
-    walkModifier: 0.97
-    sprintModifier: 0.97
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: Construction
     graph: UpgradeArmorVest
     node: bullet_heavy
