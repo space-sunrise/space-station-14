@@ -668,11 +668,11 @@
     enabled: true
   - type: BatteryAmmoProvider
     proto: BulletEnergyTurretDisabler
-    fireCost: 100
+    fireCost: 1
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletEnergyTurretDisabler
-      fireCost: 100
+      fireCost: 1
   - type: Destructible
     thresholds:
     - trigger:
@@ -714,6 +714,7 @@
   id: SpawnLootRogueSiliconTurretSquall
   name: rogue silicon turret loot spawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     chance: 0.95
@@ -734,6 +735,7 @@
   id: SpawnLootRogueSiliconTurretQuadling
   name: rogue silicon turret loot spawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     chance: 0.95
@@ -754,6 +756,7 @@
   id: SpawnLootRogueSiliconTurretVympel
   name: rogue silicon turret loot spawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     chance: 0.95
@@ -773,6 +776,7 @@
   id: SpawnLootRogueSiliconTurretLongbow
   name: rogue silicon turret loot spawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     chance: 0.95
@@ -790,6 +794,7 @@
   id: SpawnLootRogueSiliconTurretBullfrog
   name: rogue silicon turret loot spawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     chance: 0.95
@@ -809,6 +814,7 @@
   id: SpawnLootRogueSiliconTurretAutocannon
   name: rogue silicon turret loot spawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     chance: 0.95
@@ -830,6 +836,7 @@
   id: SpawnLootRogueSiliconTurretEnergy
   name: rogue silicon turret loot spawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     chance: 0.95
@@ -855,11 +862,11 @@
     enabled: true
   - type: BatteryAmmoProvider
     proto: BulletEnergyTurretLaser
-    fireCost: 100
+    fireCost: 1
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletEnergyTurretLaser
-      fireCost: 100
+      fireCost: 1
   - type: Destructible
     thresholds:
     - trigger:

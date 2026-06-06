@@ -85,6 +85,10 @@
   - type: ContainerContainer
     containers:
       upgrades: !type:Container
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 1
+    dualWieldFireRatePenalty: 0.3
+    dualWieldRecoilPenalty: 0.3
 
 - type: entity
   name: portable proto-kinetic "Matter Dematerializer"
