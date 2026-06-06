@@ -1728,7 +1728,7 @@
   name: tiles-astro-asteroid-sand
   isSubfloor: false
   deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroAsteroidSand
+  itemDrop: FloorTileItemAstroAsteroidSand # Sunrise-Edit
   weather: false
 
 - type: tile
@@ -1737,7 +1737,7 @@
   name: tiles-astro-asteroid-sand-borderless
   isSubfloor: false
   deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroAsteroidSand
+  itemDrop: FloorTileItemAstroAsteroidSandBorderless # Sunrise-Edit
   weather: false
 
 - type: tile

@@ -157,3 +157,9 @@ tiles-ironsand-concrete-slab = ironsand concrete slab
 tiles-ironsand-concrete-smooth = smooth ironsand concrete floor
 tiles-ironsand-packed = packed ironsand
 tiles-ironsand-paved = paved ironsand
+
+tiles-glass-floor-bronze = bronze glass floor
+tiles-glass-floor-plasma = plasma glass floor
+tiles-glass-floor-plasma-reinforced = reinforced plasma glass floor
+tiles-glass-floor-uranium = uranium glass floor
+tiles-glass-floor-uranium-reinforced = reinforced uranium glass floor

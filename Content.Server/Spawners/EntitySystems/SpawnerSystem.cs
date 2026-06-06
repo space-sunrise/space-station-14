@@ -1,4 +1,6 @@
 using Content.Server.Spawners.Components;
+using Content.Shared.Tag; // Sunrise-Edit
+using Robust.Shared.Prototypes; // Sunrise-Edit
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -8,6 +10,11 @@ public sealed class SpawnerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Sunrise-Edit
+
+    // Sunrise-Edit start
+    private static readonly ProtoId<TagPrototype> StorytellerIgnoreMessTag = "StorytellerIgnoreMess";
+    // Sunrise-Edit end
 
     public override void Initialize()
     {
@@ -46,10 +53,18 @@ public sealed class SpawnerSystem : EntitySystem
         var number = _random.Next(component.MinimumEntitiesSpawned, component.MaximumEntitiesSpawned);
         var coordinates = Transform(uid).Coordinates;
 
+        // Sunrise-Edit start
+        var hasIgnoreMess = _tag.HasTag(uid, StorytellerIgnoreMessTag);
+        // Sunrise-Edit end
+
         for (var i = 0; i < number; i++)
         {
             var entity = _random.Pick(component.Prototypes);
-            SpawnAtPosition(entity, coordinates);
+            var spawned = SpawnAtPosition(entity, coordinates);
+            // Sunrise-Edit start
+            if (hasIgnoreMess)
+                _tag.AddTag(spawned, StorytellerIgnoreMessTag);
+            // Sunrise-Edit end
         }
     }
 }

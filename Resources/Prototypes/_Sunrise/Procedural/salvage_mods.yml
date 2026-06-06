@@ -12,6 +12,7 @@
     - PiratesT1
     - SiliconsLight
     - Silicons
+    - SovietsLight
 
 - type: salvageDungeonMod
   id: SovietStronghold
@@ -22,12 +23,12 @@
     - Grasslands
     - Caves
   difficulties:
-    - Moderate
     - Challenging
     - Difficult
     - Impossible
   factions:
     - Soviets
+    - SovietsLight
 
 - type: salvageDungeonMod
   id: SovietStrongholdClassic
@@ -49,7 +50,7 @@
   proto: SyndicateBase
   biomes:
     - Snow
-  difficulties: # Sunrise-Edit
+  difficulties:
     - Difficult
     - Impossible
   factions:

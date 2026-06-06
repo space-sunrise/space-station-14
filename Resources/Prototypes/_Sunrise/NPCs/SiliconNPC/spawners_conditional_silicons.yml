@@ -14,41 +14,41 @@
         state: base_lights
   - type: ConditionalSpawner
     prototypes:
-    - MobRogueSiliconViscerator
+    - MobRogueSiliconT1Viscerator
 
 - type: entityTable
   id: RogueSiliconVisceratorSquadTable
   table: !type:AllSelector
     children:
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 1
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 1
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 1
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 1
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 0.5
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 0.5
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 0.5
     - !type:EntSelector
-      id: MobRogueSiliconViscerator
+      id: MobRogueSiliconT1Viscerator
       prob: 0.5
 
 - type: entity
   name: viscerator squad spawner
   suffix: AI, Hostile, 4-8
-  id: SpawnMobRogueSiliconVisceratorSquad
+  id: SpawnMobRogueSiliconT1VisceratorSquad
   parent: MarkerBase
   components:
   - type: Sprite
@@ -86,7 +86,7 @@
 - type: entity
   name: guardian unit spawner
   suffix: AI, Hostile
-  id: SpawnMobRogueSiliconGuardian
+  id: SpawnMobRogueSiliconBossGuardian
   parent: MarkerBase
   components:
   - type: Sprite
@@ -97,12 +97,12 @@
         state: netguardian
   - type: ConditionalSpawner
     prototypes:
-    - MobRogueSiliconGuardian
+    - MobRogueSiliconBossGuardian
 
 - type: entity
   name: guardian unit spawner
   suffix: AI, Hostile
-  id: SpawnMobRogueSiliconGuardianLCG
+  id: SpawnMobRogueSiliconBossGuardianLCG
   parent: MarkerBase
   components:
   - type: Sprite
@@ -113,12 +113,12 @@
         state: netguardian
   - type: ConditionalSpawner
     prototypes:
-    - MobRogueSiliconGuardianLCG
+    - MobRogueSiliconBossGuardianLCG
 
 - type: entity
   name: exterminator unit spawner
   suffix: AI, Hostile
-  id: SpawnMobRogueSiliconTerminator
+  id: SpawnMobRogueSiliconT3Terminator
   parent: MarkerBase
   components:
   - type: Sprite
@@ -129,5 +129,5 @@
         state: full
   - type: ConditionalSpawner
     prototypes:
-    - MobRogueSiliconTerminatorT3
+    - MobRogueSiliconT3Terminator
 

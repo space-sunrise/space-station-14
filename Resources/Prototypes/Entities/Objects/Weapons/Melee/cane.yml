@@ -26,6 +26,19 @@
         Blunt: 3
   - type: UseDelay
     delay: 1
+  # Sunrise-Start
+  - type: EmitSoundOnWearerMove
+    sound:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        pitch: 0.9
+        variation: 0.09
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cane.rsi
+    slots:
+    - Belt
+    # Sunrise-End
 
 - type: entity
   name: cane blade
@@ -49,6 +62,19 @@
     tags:
       - CaneBlade
   - type: DisarmMalus
+  # Sunrise-Start
+  - type: EmitSoundOnWearerMove
+    sound:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        pitch: 0.9
+        variation: 0.09
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cane_blade.rsi
+    slots:
+    - Belt
+    # Sunrise-End
 
 - type: entity
   parent: [Cane, SelectableLock]
@@ -98,53 +124,3 @@
     containers:
       item:
       - CaneBlade
-
-- type: entity
-  parent: WeaponFlareGun #VoiceLock
-  id: CaneShotgun
-  name: cane
-  description: A wooden cane.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/cane_shotgun.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,1,1
-    sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/cane_shotgun.rsi
-  - type: Appearance
-  - type: Gun
-    fireRate: 4
-    useKey: true
-    selectedMode: SemiAuto
-  - type: StaminaDamageOnHit
-    damage: 5
-  - type: Wieldable
-  - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Blunt: 3
-  - type: MeleeWeapon
-    wideAnimationRotation: 45
-    damage:
-      types:
-        Blunt: 5
-    bluntStaminaDamageFactor: 2.0
-    attackRate: 1
-    autoAttack: false
-  - type: AltFireMelee
-    attackType: Heavy
-  - type: ItemSlots
-    slots:
-      gun_chamber:
-        name: Chamber
-        startingItem: ShellShotgunBooze
-        priority: 1
-        whitelist:
-          tags:
-            - ShellShotgun
-  - type: UseDelay
-    delay: 1

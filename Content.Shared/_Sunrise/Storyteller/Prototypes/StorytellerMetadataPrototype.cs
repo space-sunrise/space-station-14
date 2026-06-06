@@ -5,7 +5,7 @@ namespace Content.Shared._Sunrise.Storyteller.Prototypes;
 /// <summary>
 /// Storyteller metadata for game rules. Configures event pacing, scoring, and filters in a separate prototype class.
 /// </summary>
-[Prototype("storytellerMetadata")]
+[Prototype]
 public sealed partial class StorytellerMetadataPrototype : IPrototype
 {
     [IdDataField]
@@ -18,16 +18,19 @@ public sealed partial class StorytellerMetadataPrototype : IPrototype
     public float ThreatCost = 10f;
 
     [DataField]
-    public float StressReduction = 0f;
-
-    [DataField]
-    public float MinStress = 0f;
+    public float MinStationStrength = 0f;
 
     [DataField]
     public float MaxStress = 100f;
 
     [DataField]
     public float WeightModifier = 1f;
+
+    [DataField("descriptionLocKey")]
+    public string? DescriptionLocKey = null;
+
+    [DataField("endedLocKey")]
+    public string? EndedLocKey = null;
 }
 
 public enum StorytellerThreatType

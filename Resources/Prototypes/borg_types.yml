@@ -21,6 +21,7 @@
   - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
+  - BorgModuleRobotics # Sunrise-Edit
 
   radioChannels:
   - Science
