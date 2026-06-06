@@ -1,0 +1,55 @@
+- type: entity
+  id: BenchBlueComfyEndLeft
+  parent: BenchComfy
+  suffix: End Left. Blue
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Benches/bench_end_left.rsi
+    layers:
+    - state: base
+      color: "#767e82"
+    - state: cover
+      color: "#334e6d"
+  # Starlight construction graph BenchSL is not ported.
+
+- type: entity
+  id: BenchBlueComfyEndRight
+  parent: BenchComfy
+  suffix: End Right. Blue
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Benches/bench_end_right.rsi
+    layers:
+    - state: base
+      color: "#767e82"
+    - state: cover
+      color: "#334e6d"
+  # Starlight construction graph BenchSL is not ported.
+
+- type: entity
+  id: BenchRedComfyEndLeft
+  parent: BenchComfy
+  suffix: End Left. Red
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Benches/bench_end_left.rsi
+    layers:
+    - state: base
+      color: "#767e82"
+    - state: cover
+      color: "#8c4141"
+  # Starlight construction graph BenchSL is not ported.
+
+- type: entity
+  id: BenchRedComfyEndRight
+  parent: BenchComfy
+  suffix: End Right. Red
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Benches/bench_end_right.rsi
+    layers:
+    - state: base
+      color: "#767e82"
+    - state: cover
+      color: "#8c4141"
+  # Starlight construction graph BenchSL is not ported.

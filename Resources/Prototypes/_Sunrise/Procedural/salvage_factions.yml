@@ -100,28 +100,9 @@
     - proto: MobPirateT1BombardierPipe
       cost: 12
       prob: 0.04
-    # squad spawners
-    - proto: PirateSquadT1LMG
-      cost: 30
-      prob: 0.05
-    - proto: PirateSquadT1Breach
-      cost: 30
-      prob: 0.05
-    - proto: PirateSquadT1Assault
-      cost: 30
-      prob: 0.05
-    - proto: PirateSquadT1Heavy
-      cost: 30
-      prob: 0.05
-    - proto: PirateSquadT1Infiltrator
-      cost: 30
-      prob: 0.05
     - proto: PirateSquadT1Monkey
       cost: 20
-      prob: 0.1
-    - proto: PirateSquadT1Random
-      cost: 25
-      prob: 0.15
+      prob: 0.04
     # borgs
     - proto: MobPirateT1BorgAssault
       cost: 5
@@ -136,10 +117,7 @@
       cost: 50
       prob: 0.03
   difficulties:
-    - Challenging
     - Moderate
-    - Difficult
-    - Impossible
   configs:
     DefenseStructure: WeaponTurretPirateDisposable
     Megafauna: MobPirateT1Boss
@@ -277,194 +255,283 @@
 
 - type: salvageFaction
   id: PiratesT3
-  desc: salvage-faction-freelancers
+  desc: salvage-faction-scrappers
   entries:
-    # melee
-    - proto: MobPirateT3Bola
-      cost: 5
-      prob: 0.08
-    - proto: MobPirateT3Stun
-      cost: 6
-      prob: 0.08
-    - proto: MobPirateT1ECutlass
-      cost: 4
-      prob: 0.03
+      # melee
+    - proto: MobPirateT1ExpeditionSpawner
+      cost: 3
+      prob: 0.05
     - proto: MobPirateT1Spawner
       cost: 5
-      prob: 0.03
-    # range
-    - proto: MobPirateT1BombardierFire
-      cost: 8
-      prob: 0.03
-    - proto: MobPirateT1BombardierGlass
-      cost: 8
-      prob: 0.03
-    - proto: MobPirateT1BombardierPipe
-      cost: 8
-      prob: 0.03
-    - proto: MobPirateT1Pistol
-      cost: 2
-      prob: 0.08
-    - proto: MobPirateT1SMG
-      cost: 5
-      prob: 0.08
-    - proto: MobPirateT1ScrapSMG
-      cost: 5
       prob: 0.05
-    - proto: MobPirateT1ScrapRifle
+    # range
+    - proto: MobPirateT1ScrapSMG
       cost: 5
       prob: 0.05
     - proto: MobPirateT1Rifle
       cost: 5
       prob: 0.05
+    - proto: MobPirateT1RifleAlt
+      cost: 5
+      prob: 0.05
+    - proto: MobPirateT1LCG
+      cost: 5
+      prob: 0.05
+    - proto: MobPirateT1SMG
+      cost: 5
+      prob: 0.05
+    - proto: MobPirateT1BombardierFire
+      cost: 6
+      prob: 0.03
+    - proto: MobPirateT1BombardierGlass
+      cost: 9
+      prob: 0.03
+    - proto: MobPirateT1BombardierPipe
+      cost: 9
+      prob: 0.04
+    # squad spawners
+    - proto: PirateSquadT1LMG
+      cost: 25
+      prob: 0.05
+    - proto: PirateSquadT1Breach
+      cost: 25
+      prob: 0.05
+    - proto: PirateSquadT1Assault
+      cost: 25
+      prob: 0.05
+    - proto: PirateSquadT1Heavy
+      cost: 25
+      prob: 0.05
+    - proto: PirateSquadT1Infiltrator
+      cost: 25
+      prob: 0.05
+    - proto: PirateSquadT1Monkey
+      cost: 25
+      prob: 0.05
+    - proto: PirateSquadT1Random
+      cost: 25
+      prob: 0.1
+    # melee
+    - proto: MobPirateT3Bola
+      cost: 8
+      prob: 0.08
+    - proto: MobPirateT3Stun
+      cost: 8
+      prob: 0.08
+    # range
     - proto: MobPirateT3Shield1984
-      cost: 7
-      prob: 0.08
-    - proto: MobPirateT3ShieldSMG
-      cost: 7
-      prob: 0.08
-    - proto: MobPirateT3DMR
-      cost: 10
-      prob: 0.08
-    - proto: MobPirateT3Rifle2
-      cost: 8
-      prob: 0.15
-    - proto: MobPirateT3Rifle
-      cost: 8
-      prob: 0.15
-    - proto: MobPirateT3LaserSMG
-      cost: 8
-      prob: 0.08
-    - proto: MobPirateT3LaserCannon
       cost: 9
       prob: 0.08
+    - proto: MobPirateT3ShieldSMG
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT3DMR
+      cost: 12
+      prob: 0.08
+    - proto: MobPirateT3Rifle2
+      cost: 9
+      prob: 0.15
+    - proto: MobPirateT3Rifle
+      cost: 9
+      prob: 0.15
+    - proto: MobPirateT3LaserSMG
+      cost: 9
+      prob: 0.08
+    - proto: MobPirateT3LaserCannon
+      cost: 11
+      prob: 0.08
     - proto: MobPirateT3Revolver
-      cost: 8
+      cost: 11
       prob: 0.05
     - proto: MobPirateT3SMG
-      cost: 12
+      cost: 15
       prob: 0.1
     - proto: MobPirateT3Medic
-      cost: 4
+      cost: 8
       prob: 0.08
     # rare
     - proto: MobPirateT3L6
-      cost: 13
+      cost: 15
       prob: 0.08
     - proto: MobPirateT3RPD
-      cost: 13
+      cost: 15
       prob: 0.1
     - proto: MobPirateT3Tachanka
       cost: 15
       prob: 0.06
     - proto: MobPirateT3Grenadier
-      cost: 13
+      cost: 15
       prob: 0.08
     - proto: MobPirateT3Infiltrator
-      cost: 14
+      cost: 15
       prob: 0.04
     - proto: MobPirateT3Sniper
-      cost: 16
+      cost: 20
       prob: 0.04
     # squad spawners
     - proto: PirateSquadT3LMG
-      cost: 45
+      cost: 55
       prob: 0.1
     - proto: PirateSquadT3Breach
-      cost: 35
+      cost: 45
       prob: 0.08
     - proto: PirateSquadT3Assault
-      cost: 40
+      cost: 45
       prob: 0.08
     - proto: PirateSquadT3Heavy
-      cost: 55
+      cost: 65
       prob: 0.08
     - proto: PirateSquadT3Infiltrator
-      cost: 40
+      cost: 50
       prob: 0.08
     # T1 add
     - proto: PirateSquadT1LMG
-      cost: 16
+      cost: 20
       prob: 0.05
     - proto: PirateSquadT1Breach
-      cost: 16
+      cost: 20
       prob: 0.05
     - proto: PirateSquadT1Assault
-      cost: 16
+      cost: 20
       prob: 0.05
     - proto: PirateSquadT1Heavy
-      cost: 16
+      cost: 20
       prob: 0.05
     - proto: PirateSquadT1Infiltrator
-      cost: 16
+      cost: 20
       prob: 0.05
     - proto: PirateSquadT1Monkey
-      cost: 16
+      cost: 18
       prob: 0.05
     - proto: PirateSquadT1Random
-      cost: 15
+      cost: 20
       prob: 0.02
     # unique squads
     - proto: PirateSquadT3ShieldPhalanx
-      cost: 35
+      cost: 45
       prob: 0.08
     - proto: PirateSquadT3Suppressor
-      cost: 55
+      cost: 60
       prob: 0.08
     - proto: PirateSquadT3Universal
-      cost: 40
+      cost: 55
       prob: 0.08
     - proto: PirateSquadT3Random
-      cost: 45
+      cost: 65
       prob: 0.02
     # borgs
     - proto: MobPirateT1BorgAssault
-      cost: 2
+      cost: 5
       prob: 0.01
     - proto: MobPirateT2BorgAssault
-      cost: 4
+      cost: 10
       prob: 0.05
     - proto: MobPirateT1BorgMining
-      cost: 2
+      cost: 5
       prob: 0.01
     - proto: MobPirateT1BorgDerelict
-      cost: 2
+      cost: 5
       prob: 0.01
     - proto: MobPirateT3Boss
-      cost: 50
+      cost: 75
       prob: 0.01
+    - proto: MobPirateT1Boss
+      cost: 25
+      prob: 0.05
   difficulties:
+    - Challenging
     - Difficult
     - Impossible
   configs:
     DefenseStructure: WeaponTurretPirateDisposable
     Megafauna: MobPirateT3Boss
 
+# region Soviets
+- type: salvageFaction
+  id: SovietsLight
+  desc: salvage-faction-soviets
+  entries:
+    - proto: MobSovietT1Knife
+      cost: 3
+      prob: 0.04
+    - proto: MobSovietT1Pistol
+      cost: 3
+      prob: 0.06
+    - proto: MobSovietT1Mosin
+      cost: 4
+      prob: 0.05
+    - proto: MobSovietT1MosinAlt
+      cost: 4
+      prob: 0.05
+    - proto: MobSovietT1SMGAlt
+      cost: 5
+      prob: 0.05
+    - proto: MobSovietT2Bottle
+      cost: 5
+      prob: 0.03
+    - proto: MobSovietT2Finka
+      cost: 5
+      prob: 0.03
+    - proto: MobSovietT2Revolver
+      cost: 8
+      prob: 0.03
+    - proto: MobSovietT2Rifle
+      cost: 8
+      prob: 0.03
+    - proto: MobSovietT2RifleW
+      cost: 8
+      prob: 0.03
+    - proto: MobSovietT2Raider
+      cost: 10
+      prob: 0.03
+    - proto: SovietSquadPatrol
+      cost: 20
+      prob: 0.25
+    - proto: SovietSquadInfantry
+      cost: 50
+      prob: 0.1
+    - proto: SovietSquadInfantry2
+      cost: 50
+      prob: 0.1
+    - proto: SovietSquadSmg
+      cost: 50
+      prob: 0.1
+    - proto: SovietSquadAssault
+      cost: 60
+      prob: 0.1
+    - proto: SovietSquadLmg
+      cost: 30
+      prob: 0.1
+    - proto: SovietSquadMmg
+      cost: 30
+      prob: 0.1
+    - proto: MobSovietBear
+      cost: 10
+      prob: 0.02
+    - proto: MobSovietBearAlt
+      cost: 10
+      prob: 0.02
+    - proto: MobSovietSpaceBear
+      cost: 10
+      prob: 0.02
+    - proto: MobSovietT2Mech
+      cost: 50
+      prob: 0.001
+  difficulties:
+    - Moderate
+    - Challenging
+  configs:
+    DefenseStructure: WeaponTurretPirateDisposable
+    Megafauna: MobSovietT2Mech
+
+# region Soviets Hard
 - type: salvageFaction
   id: Soviets
   desc: salvage-faction-soviets
   entries:
-    - proto: MobSovietT1Knife
+    - proto: MobSovietT1ExpeditionSpawner
       cost: 4
-      prob: 0.04
-    - proto: MobSovietT1Pistol
-      cost: 4
-      prob: 0.06
-    - proto: MobSovietT1Mosin
-      cost: 5
-      prob: 0.06
-    - proto: MobSovietT1SMGAlt
-      cost: 7
-      prob: 0.05
-    - proto: MobSovietT1MosinAlt
-      cost: 5
-      prob: 0.04
-    - proto: MobSovietT2Bottle
-      cost: 5
-      prob: 0.04
-    - proto: MobSovietT2Finka
-      cost: 5
-      prob: 0.04
+      prob: 0.15
     - proto: MobSovietT2Revolver
       cost: 8
       prob: 0.03
@@ -499,7 +566,7 @@
       cost: 40
       prob: 0.1
     - proto: SovietSquadAssault
-      cost: 45
+      cost: 50
       prob: 0.1
     - proto: SovietSquadLmg
       cost: 25
@@ -526,10 +593,181 @@
       cost: 50
       prob: 0.05
   difficulties:
-    - Moderate
     - Challenging
     - Difficult
     - Impossible
   configs:
     DefenseStructure: WeaponTurretPirateDisposable
     Megafauna: MobSovietCaptain
+
+# region Rogue Silicons
+- type: salvageFaction
+  id: SiliconsLight
+  desc: salvage-faction-silicons
+  entries:
+    - proto: SpawnMobRogueScrapT1
+      cost: 3
+      prob: 0.3
+    - proto: SpawnMobRogueDronesT1
+      cost: 1
+      prob: 0.2
+    - proto: MobRogueSiliconT1Viscerator
+      cost: 1
+      prob: 0.1
+    - proto: SpawnMobRogueSiliconT1VisceratorSquad
+      cost: 4
+      prob: 0.2
+    - proto: SpawnMobRogueSiliconsT2
+      cost: 6
+      prob: 0.15
+    - proto: MobRogueSiliconT1DerelictBorg
+      cost: 2
+      prob: 0.12
+    - proto: MobRogueSiliconT1DerelictBorgEngineering
+      cost: 3
+      prob: 0.08
+    - proto: MobRogueSiliconT1DerelictBorgJanitor
+      cost: 3
+      prob: 0.08
+    - proto: MobRogueSiliconT1DerelictBorgMedical
+      cost: 3
+      prob: 0.08
+    - proto: MobRogueSiliconT1DerelictBorgMining
+      cost: 3
+      prob: 0.08
+    - proto: MobRogueSiliconT2DerelictBorgAssault
+      cost: 4
+      prob: 0.06
+    - proto: MobRogueSiliconT3Terminator
+      cost: 4
+      prob: 0.05
+    - proto: MobRogueSiliconT3Tesla
+      cost: 8
+      prob: 0.005
+    - proto: MobRogueSiliconT1ScrapFlayer
+      cost: 1
+      prob: 0.1
+    - proto: SpawnMobRogueSiliconsT3
+      cost: 8
+      prob: 0.08
+    - proto: SpawnMobRogueDerelictBorgsT3
+      cost: 8
+      prob: 0.08
+    - proto: WeaponTurretRogueSiliconStunner
+      cost: 5
+      prob: 0.08
+    - proto: WeaponTurretRogueSiliconLaser
+      cost: 10
+      prob: 0.06
+    - proto: RogueAiNode
+      cost: 10
+      prob: 0.1
+    - proto: SpawnMobRogueSiliconBossRandom
+      cost: 15
+      prob: 0.03
+  difficulties:
+    - Easy
+    - Moderate
+  configs:
+    DefenseStructure: WeaponTurretRogueSiliconStunner
+    Megafauna: SpawnMobRogueSiliconBossRandom
+
+# region Rogue Hard
+- type: salvageFaction
+  id: Silicons
+  desc: salvage-faction-silicons
+  entries:
+    - proto: SpawnMobRogueScrapT1
+      cost: 2
+      prob: 0.3
+    - proto: SpawnMobRogueDronesT1
+      cost: 1
+      prob: 0.25
+    - proto: MobRogueSiliconT1Viscerator
+      cost: 1
+      prob: 0.15
+    - proto: SpawnMobRogueSiliconT1VisceratorSquad
+      cost: 5
+      prob: 0.2
+    - proto: SpawnMobRogueSiliconsT2
+      cost: 4
+      prob: 0.15
+    - proto: MobRogueSiliconT1DerelictBorg
+      cost: 1
+      prob: 0.15
+    - proto: MobRogueSiliconT1DerelictBorgEngineering
+      cost: 2
+      prob: 0.1
+    - proto: MobRogueSiliconT1DerelictBorgJanitor
+      cost: 2
+      prob: 0.1
+    - proto: MobRogueSiliconT1DerelictBorgMedical
+      cost: 2
+      prob: 0.1
+    - proto: MobRogueSiliconT1DerelictBorgMining
+      cost: 2
+      prob: 0.1
+    - proto: MobRogueSiliconT2DerelictBorgAssault
+      cost: 2
+      prob: 0.1
+    - proto: MobRogueSiliconT2DerelictBorgAssaultHeavy
+      cost: 3
+      prob: 0.08
+    - proto: MobRogueSiliconT3DerelictBorgAssault
+      cost: 4
+      prob: 0.05
+    - proto: MobRogueSiliconT2DerelictBorgSyndicateMedical
+      cost: 3
+      prob: 0.06
+    - proto: SpawnMobRogueSiliconsT2
+      cost: 2
+      prob: 0.15
+    - proto: SpawnMobRogueDerelictBorgsT2
+      cost: 3
+      prob: 0.1
+    - proto: MobRogueSiliconT3Tesla
+      cost: 4
+      prob: 0.1
+    - proto: MobRogueSiliconT1ScrapFlayer
+      cost: 1
+      prob: 0.1
+    - proto: SpawnMobRogueSiliconsT3
+      cost: 6
+      prob: 0.08
+    - proto: SpawnMobRogueDerelictBorgsT3
+      cost: 6
+      prob: 0.08
+    - proto: SpawnMobRogueSiliconBossRandom
+      cost: 10
+      prob: 0.05
+    - proto: SpawnWeaponTurretRogueSiliconRandom
+      cost: 8
+      prob: 0.15
+    - proto: WeaponTurretRogueSiliconLaser
+      cost: 6
+      prob: 0.08
+    - proto: WeaponTurretRogueSiliconStunner
+      cost: 5
+      prob: 0.08
+    - proto: MobRogueSiliconBoss
+      cost: 7
+      prob: 0.03
+    - proto: MobRogueSiliconBossSkullHouse
+      cost: 10
+      prob: 0.03
+    - proto: MobRogueSiliconBossGuardian
+      cost: 8
+      prob: 0.05
+    - proto: MobRogueSiliconBossGuardianLCG
+      cost: 8
+      prob: 0.04
+    - proto: RogueAiNode
+      cost: 5
+      prob: 0.15
+  difficulties:
+    - Challenging
+    - Difficult
+    - Impossible
+  configs:
+    DefenseStructure: SpawnWeaponTurretRogueSiliconRandom
+    Megafauna: SpawnMobRogueSiliconBossRandom

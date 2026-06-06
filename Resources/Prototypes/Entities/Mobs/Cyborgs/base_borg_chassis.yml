@@ -397,6 +397,8 @@
     - HandheldStationMapUnpowered
   - type: BorgCrewManifestViewer
   - type: StationRecordKeyStorage
+  - type: SiliconLawProvider
+    laws: CrewsimovAiAssigned
   # Sunrise-End
 
 - type: entity

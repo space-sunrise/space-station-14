@@ -283,6 +283,9 @@
     - NanoMedPlusInventory
     - NanoMedCivilianInventory
     - NanoMedCivilianWallInventory
+    - NanoMedSecurityInventory # Sunrise-Edit
+    - InterdyneEnterpriseInventory # Sunrise-Edit
+    - InterdyneCommercialWallInventory # Sunrise-Edit
   - type: Sprite
     layers:
     - state: base

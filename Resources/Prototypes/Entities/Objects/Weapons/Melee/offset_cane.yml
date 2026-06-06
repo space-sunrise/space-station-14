@@ -36,6 +36,19 @@
         Blunt: 3
   - type: UseDelay
     delay: 1
+  # Sunrise-Start
+  - type: EmitSoundOnWearerMove
+    sound:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        pitch: 0.9
+        variation: 0.09
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/offset_canes/standard.rsi
+    slots:
+    - Belt
+    # Sunrise-End
 
 - type: entity
   parent: OffsetCane

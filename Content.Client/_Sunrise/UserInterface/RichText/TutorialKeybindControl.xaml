@@ -1,0 +1,10 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                StyleClasses="TutorialKeybindFrame"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+    <Label Name="KeybindLabel"
+              StyleClasses="TutorialKeybindFrame"
+              Access="Public"
+              Margin="3 0 3 0"
+              VAlign="Center"/>
+</PanelContainer>

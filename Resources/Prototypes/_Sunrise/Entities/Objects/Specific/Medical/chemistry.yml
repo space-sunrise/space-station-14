@@ -126,3 +126,23 @@
     sprite: _Sunrise/Objects/Specific/Chemistry/vial_bluespace.rsi
   - type: StaticPrice
     price: 100
+
+- type: entity
+  id: MiniSyringeRSMedical
+  parent: MiniSyringe
+  name: toxic mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Ipecac
+          Quantity: 3
+        - ReagentId: Licoxide
+          Quantity: 1
+        - ReagentId: Tricordrazine
+          Quantity: 1
+  - type: TimedDespawn
+    lifetime: 30

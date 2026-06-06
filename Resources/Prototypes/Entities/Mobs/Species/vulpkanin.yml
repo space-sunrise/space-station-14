@@ -6,8 +6,6 @@
   name: Urist McBark
   components:
   - type: Interactions
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
   - type: Hunger
   - type: Thirst
   - type: MessyDrinker
@@ -55,6 +53,7 @@
       types:
         Heat: 2.5 # Per second, scales with temperature & other constants
   # Sunrise-Start
+  - type: VulpaAccent
   - type: FlashModifier
     modifier: 1.4
   # Sunrise-End
@@ -144,6 +143,8 @@
             state: hair
   # Sunrise-start
   - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
   # Sunrise-end
   - type: Inventory
 # SUNRISE EDIT
