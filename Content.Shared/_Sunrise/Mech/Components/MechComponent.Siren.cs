@@ -26,7 +26,7 @@ public sealed partial class MechComponent
     [DataField]
     public SoundSpecifier SirenSound = new SoundPathSpecifier("/Audio/Effects/Vehicle/policesiren.ogg");
 
-    [DataField]
+    [AutoNetworkedField]
     public EntityUid? MechSirenActionEntity;
 
     [ViewVariables]
