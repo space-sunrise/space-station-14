@@ -670,6 +670,19 @@
       tags:
       - AssaultOpsUplink
 
+- type: listing
+  id: UplinkSyndicateVisceratorClusterGrenade
+  name: uplink-viscerator-cluster-grenade-name
+  description: uplink-viscerator-cluster-grenade-desc
+  productEntity: SyndicateVisceratorClusterGrenade
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkExplosives
+
 # For the China-Lake
 - type: listing
   id: UplinkGrenadeFragTimer
@@ -2011,6 +2024,25 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkWeaponMechCombatKord
+  name: uplink-mech-equipment-kord-name
+  description: uplink-mech-equipment-kord-desc
+  productEntity: WeaponMechCombatKord
+  cost:
+    Telecrystal: 28
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkMechAMLG90
   name: uplink-mech-equipment-amlg90-name
   description: uplink-mech-equipment-amlg90-desc
@@ -2638,6 +2670,24 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkWeaponMechCombatKordRoboticist
+  name: uplink-mech-equipment-kord-name
+  description: uplink-mech-equipment-kord-desc
+  productEntity: WeaponMechCombatKord
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Roboticist
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkCArmouredJumpsuit
   name: uplink-armoured-jumpsuit-name
   description: uplink-armoured-jumpsuit-desc
@@ -3107,6 +3157,17 @@
   - UplinkPointless
 
 - type: listing
+  id: UplinkSlipknotSet
+  name: uplink-slipknotset-name
+  description: uplink-slipknotset-desc
+  productEntity: PresentMasksSlipknot
+  discountCategory: rareDiscounts
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+
+- type: listing
   id: UplinkWeaponPistolTec9
   name: uplink-pistoltec9-name
   description: uplink-pistoltec9-desc
@@ -3143,9 +3204,9 @@
   productEntity: EnergyShield
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2
   cost:
-    Telecrystal: 6
+    Telecrystal: 4
   categories:
     - UplinkWeaponry
   conditions:

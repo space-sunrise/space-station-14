@@ -603,6 +603,7 @@
     PainterLawset: 1
     AntimovLawset: 0.25
     NutimovLawset: 0.5
+    DruidLawset: 1
     Ninja: 0.25
     MothershipCoreLawset: 0.25
     XenoborgLawset: 0.25
@@ -632,6 +633,31 @@
   order: 5
   lawString: law-sec-5
 
+- type: siliconLaw
+  id: SecAiAssigned2
+  order: 2
+  lawString: law-sec-1
+
+- type: siliconLaw
+  id: SecAiAssigned3
+  order: 3
+  lawString: law-sec-2
+
+- type: siliconLaw
+  id: SecAiAssigned4
+  order: 4
+  lawString: law-sec-3
+
+- type: siliconLaw
+  id: SecAiAssigned5
+  order: 5
+  lawString: law-sec-4
+
+- type: siliconLaw
+  id: SecAiAssigned6
+  order: 6
+  lawString: law-sec-5
+
 - type: siliconLawset
   id: SecurityLawset
   laws:
@@ -640,6 +666,17 @@
   - Sec3
   - Sec4
   - Sec5
+  obeysTo: laws-owner-station
+
+- type: siliconLawset
+  id: SecurityLawsetAiAssigned
+  laws:
+  - CrewsimovStationAi0
+  - SecAiAssigned2
+  - SecAiAssigned3
+  - SecAiAssigned4
+  - SecAiAssigned5
+  - SecAiAssigned6
   obeysTo: laws-owner-station
 
 - type: siliconLaw
@@ -667,6 +704,31 @@
   order: 5
   lawString: law-peace-5
 
+- type: siliconLaw
+  id: PeaceAiAssigned2
+  order: 2
+  lawString: law-peace-1
+
+- type: siliconLaw
+  id: PeaceAiAssigned3
+  order: 3
+  lawString: law-peace-2
+
+- type: siliconLaw
+  id: PeaceAiAssigned4
+  order: 4
+  lawString: law-peace-3
+
+- type: siliconLaw
+  id: PeaceAiAssigned5
+  order: 5
+  lawString: law-peace-4
+
+- type: siliconLaw
+  id: PeaceAiAssigned6
+  order: 6
+  lawString: law-peace-5
+
 - type: siliconLawset
   id: PeaceLawset
   laws:
@@ -675,4 +737,15 @@
   - Peace3
   - Peace4
   - Peace5
+  obeysTo: laws-owner-station
+
+- type: siliconLawset
+  id: PeaceLawsetAiAssigned
+  laws:
+  - CrewsimovStationAi0
+  - PeaceAiAssigned2
+  - PeaceAiAssigned3
+  - PeaceAiAssigned4
+  - PeaceAiAssigned5
+  - PeaceAiAssigned6
   obeysTo: laws-owner-station

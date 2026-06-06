@@ -3,10 +3,10 @@
   startingInventory:
     ClothingOuterHardsuitEVA: 4
     ClothingHeadHelmetEVA: 4
-    ClothingHeadHelmetEVALarge: 4
     ClothingOuterSuitEmergency: 6
   contrabandInventory:
-    ClothingOuterHardsuitEVAPrisoner: 4
+    ClothingOuterHardsuitEVAPrisoner: 3
+    ClothingHeadHelmetEVALarge: 3
   emaggedInventory:
     ClothingHeadHelmetSyndicate: 2
     ClothingOuterEVASuitSyndicate: 2

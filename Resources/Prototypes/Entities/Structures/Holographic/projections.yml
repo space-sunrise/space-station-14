@@ -112,7 +112,7 @@
           layer:
             - TableLayer
     - type: TimedDespawn
-      lifetime: 180
+      lifetime: 900 # Sunrise-Edit
     - type: PointLight
       enabled: true
       radius: 3

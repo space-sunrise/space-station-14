@@ -241,8 +241,12 @@
     fireRate: 3
     soundGunshot:
       collection: m3 # Sunrise-Edit
+  - type: CanDualWield # Sunrise-Edit
+    dualWieldInaccuracyPenalty: 3
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
   - type: GunSpreadModifier
-    spread: 1.4
+    spread: 1.8 # Sunrise-Edit
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction

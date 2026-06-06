@@ -38,17 +38,18 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-      collection: Punch
+      collection: AlienClaw
     angle: 30
     animation: WeaponArcClaw
     attackRate: 1
     damage:
       types:
-        Blunt: 5
-        Slash: 5
+        Blunt: 2
+        Slash: 3
         Caustic: 1
   - type: LizardAccent
   - type: VulpaAccent
+  - type: TajaranAccent
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -58,8 +59,9 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
-  - type: ToggleableNightVision
-    effect: EffectNightVisionXeno
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -241,6 +243,8 @@
     minds:
     - Xeno
   - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-lizard ]
+    rightBareFootState: [ footprint-right-bare-lizard ]
 
 - type: entity
   parent: BaseSpeciesDummy
