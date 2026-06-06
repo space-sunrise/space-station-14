@@ -17,9 +17,9 @@ namespace Content.Client._Sunrise.QuickConstruction.UI;
 [UsedImplicitly]
 public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IPlacementManager _placement = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly ILogManager _log = default!;
 
     private SimpleRadialMenu? _menu;
     private ConstructionSystem? _constructionSystem;
