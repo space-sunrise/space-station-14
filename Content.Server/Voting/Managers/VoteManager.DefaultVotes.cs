@@ -322,7 +322,7 @@ namespace Content.Server.Voting.Managers
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
                 DisplayVotes = _cfg.GetCVar(SunriseCCVars.ShowMapVotes), // Sunrise-Edit
-                DisplayVotesAdmins = _cfg.GetCVar(SunriseCCVars.ShowMapVotes), // Sunrise-Edit
+                DisplayVotesAdmins = true, // Sunrise-Edit
             };
 
             if (alone)
