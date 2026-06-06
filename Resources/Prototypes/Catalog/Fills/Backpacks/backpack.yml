@@ -34,7 +34,7 @@
       containers:
         storagebase: !type:AllSelector
           children:
-            - id: ClothingOuterMaidArmorRaid
+            - id: ClothingOuterMaidArmorRaidBiocode
             - id: ClothingHeadHelmetRaid
             - id: ClothingHandsTacticalMaidGloves
             - id: ClothingMaskGasSyndicate

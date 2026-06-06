@@ -7,3 +7,7 @@ ent-TelecomServerFilledBlueShield = { ent-TelecomServer }
 ent-TelecomServerFilledUSSP = { ent-TelecomServer }
     .suffix = USSP
     .desc = { ent-TelecomServer.desc }
+ent-TelecomServerT2 = advanced telecommunication server
+    .desc = { ent-TelecomServer.desc }
+ent-TelecomServerT3 = experimental telecommunication server
+    .desc = { ent-TelecomServer.desc }

@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared._Sunrise.StatsBoard;
+using Content.Shared._Sunrise.Storyteller; // Sunrise-Edit
 using Content.Shared.Roles;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -214,6 +215,8 @@ namespace Content.Shared.GameTicking
         public RoundEndPlayerInfo[] AllPlayersEndInfo { get; }
         public string RoundEndStats { get; } // Sunrise-Edit
         public SharedStatisticEntry[] StatisticEntries { get; } // Sunrise-Edit
+        public string? StorytellerName { get; } // Sunrise-Edit
+        public StorytellerHistoryEntry[] StorytellerHistory { get; } // Sunrise-Edit
 
         /// <summary>
         /// Sound gets networked due to how entity lifecycle works between client / server and to avoid clipping.
@@ -229,6 +232,8 @@ namespace Content.Shared.GameTicking
             RoundEndPlayerInfo[] allPlayersEndInfo,
             string roundEndStats, // Sunrise-Edit
             SharedStatisticEntry[] statisticEntries, // Sunrise-Edit
+            string? storytellerName, // Sunrise-Edit
+            StorytellerHistoryEntry[] storytellerHistory, // Sunrise-Edit
             ResolvedSoundSpecifier? restartSound)
         {
             GamemodeTitle = gamemodeTitle;
@@ -239,6 +244,8 @@ namespace Content.Shared.GameTicking
             AllPlayersEndInfo = allPlayersEndInfo;
             RoundEndStats = roundEndStats; // Sunrise-Edit
             StatisticEntries = statisticEntries; // Sunrise-Edit
+            StorytellerName = storytellerName; // Sunrise-Edit
+            StorytellerHistory = storytellerHistory; // Sunrise-Edit
             RestartSound = restartSound;
         }
     }

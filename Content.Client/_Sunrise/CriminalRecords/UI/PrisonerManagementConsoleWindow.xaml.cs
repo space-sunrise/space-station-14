@@ -16,6 +16,8 @@ public sealed partial class PrisonerManagementConsoleWindow : FancyWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public Action<uint, uint, int>? OnStartIncarceration;
+    public Action<uint, uint>? OnEscape;
+    public Action<uint, uint>? OnParole;
     private Dictionary<int, bool> _cellOccupied = new();
 
     public PrisonerManagementConsoleWindow()
@@ -83,6 +85,10 @@ public sealed partial class PrisonerManagementConsoleWindow : FancyWindow
             control.PermanentThreshold = threshold;
             control.SetCellIndex(incar.CellIndex);
             control.SetupInProgress(incar);
+
+            control.OnEscapePressed += () => OnEscape?.Invoke(incar.RecordId, incar.CaseId);
+            control.OnParolePressed += () => OnParole?.Invoke(incar.RecordId, incar.CaseId);
+
             InProgressContainer.AddChild(control);
         }
     }

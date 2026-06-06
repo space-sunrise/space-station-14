@@ -2,8 +2,8 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
         <!-- Person Info Header -->
-        <PanelContainer StyleClasses="Menu_Background_Light" Margin="0 0 0 12">
-            <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="6">
+        <PanelContainer StyleClasses="Menu_Background_Light" Margin="0">
+            <BoxContainer Orientation="Vertical" Margin="8 4" SeparationOverride="4">
                 <!-- Identity Section -->
                 <BoxContainer Orientation="Vertical" SeparationOverride="2">
                     <BoxContainer Orientation="Horizontal">
@@ -16,10 +16,10 @@
                     </BoxContainer>
                 </BoxContainer>
 
-                <PanelContainer StyleClasses="LowDivider" MinHeight="1" />
+                <PanelContainer Name="MetadataDivider" StyleClasses="LowDivider" MinHeight="1" />
 
                 <!-- Metadata List -->
-                <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                <BoxContainer Name="MetadataContainer" Orientation="Vertical" SeparationOverride="2">
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'sunrise-records-person-age'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
                         <Label Name="AgeLabel" />
@@ -29,12 +29,33 @@
                         <Label Name="GenderLabel" />
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'sunrise-records-person-species'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
+                        <Label Name="SpeciesLabel" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'sunrise-records-person-dna'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
                         <Label Name="DnaLabel" StyleClasses="LabelBig" />
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'sunrise-records-person-fingerprints'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
                         <Label Name="FingerprintsLabel" StyleClasses="LabelBig" />
+                    </BoxContainer>
+                </BoxContainer>
+
+                <PanelContainer Name="StatusDivider" StyleClasses="LowDivider" MinHeight="1" />
+
+                <!-- Status Section -->
+                <BoxContainer Name="StatusContainer" Orientation="Vertical" SeparationOverride="6">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'sunrise-records-person-status'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                             <OptionButton Name="StatusOption" HorizontalExpand="True" />
+                             <Label Name="StatusReasonLabel" StyleClasses="LabelSecondaryColor" HorizontalExpand="True" Margin="0 4" Visible="False" />
+                        </BoxContainer>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                         <Label Text="{Loc 'sunrise-records-person-status-reason'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
+                         <LineEdit Name="StatusReasonInput" HorizontalExpand="True" PlaceHolder="{Loc 'sunrise-records-person-status-reason-placeholder'}" />
                     </BoxContainer>
                 </BoxContainer>
             </BoxContainer>

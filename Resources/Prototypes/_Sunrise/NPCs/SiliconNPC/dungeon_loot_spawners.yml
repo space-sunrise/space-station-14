@@ -1,0 +1,96 @@
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - PowerComputerCircuitboard
+    - SolarControlComputerCircuitboard
+    - AlertsComputerCircuitboard
+    - CircuitImprinterMachineCircuitboard
+    - ProtolatheMachineCircuitboard
+    - AutolatheMachineCircuitboard
+    - FlatpackerMachineCircuitboard
+    - CutterMachineCircuitboard
+    - SpaceHeaterMachineCircuitBoard
+    - PortableScrubberMachineCircuitBoard
+    - HellfireHeaterMachineCircuitBoard
+    - HellfireFreezerMachineCircuitBoard
+    - ThermomachineHeaterMachineCircuitBoard
+    - ThermomachineFreezerMachineCircuitBoard
+    - PortableGeneratorJrPacmanMachineCircuitboard
+    - PortableGeneratorPacmanMachineCircuitboard
+    - PortableGeneratorSuperPacmanMachineCircuitboard
+    - EmitterCircuitboard
+    - CondenserMachineCircuitBoard
+    - TurboItemRechargerCircuitboard
+    - GyroscopeMachineCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - ThrusterMachineCircuitboard
+    - StationMapCircuitboard
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - AutolatheHyperConvectionMachineCircuitboard
+    - ProtolatheHyperConvectionMachineCircuitboard
+    - ComputerIFFCircuitboard
+    rareChance: 0.05
+
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardScience
+  parent: MarkerBase
+  suffix: "Dungeon, Science"
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ResearchComputerCircuitboard
+    - AnalysisComputerCircuitboard
+    - CircuitImprinterMachineCircuitboard
+    - ExosuitFabricatorMachineCircuitboard
+    - ProtolatheMachineCircuitboard
+    - AutolatheMachineCircuitboard
+    - FlatpackerMachineCircuitboard
+    - ResearchAndDevelopmentServerMachineCircuitboard
+    - APECircuitboard
+    - ArtifactAnalyzerMachineCircuitboard
+    - ArtifactCrusherMachineCircuitboard
+    - AnomalyVesselCircuitboard
+    - AnomalyVesselExperimentalCircuitboard
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - AutolatheHyperConvectionMachineCircuitboard
+    - ProtolatheHyperConvectionMachineCircuitboard
+    - ComputerIFFCircuitboard
+    rareChance: 0.05
+
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ComputerIFFCircuitboard
+    - AutolatheMachineCircuitboard
+    - OreProcessorMachineCircuitboard
+    - SpaceHeaterMachineCircuitBoard
+    - TurboItemRechargerCircuitboard
+    - GyroscopeMachineCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - ThrusterMachineCircuitboard
+    - ShuttleGunKineticCircuitboard
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - OreProcessorIndustrialMachineCircuitboard
+    - AmmoTechFabCircuitboard
+    - ShuttleGunSvalinnMachineGunCircuitboard
+    - ComputerIFFCircuitboard
+    - ShuttleGunKineticFlatpack
+    - ResearchAndDevelopmentServerFlatpack
+    rareChance: 0.03

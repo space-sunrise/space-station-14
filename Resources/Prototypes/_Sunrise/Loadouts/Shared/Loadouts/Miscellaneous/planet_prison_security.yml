@@ -1,12 +1,19 @@
 # Neck
 
 - type: loadout
+  id: PlanetPrisonSecurityHandheldCamera
+  groupBy: "bodycam"
+  equipment:
+    neck: HandheldCamera
+
+- type: loadout
   id: PlanetPrisonSecurityMasterHandheldCamera
+  groupBy: "bodycam"
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:DepartmentTimeRequirement
       department: PlanetPrisonSecurity
       time: 108000 # 30 hrs
-  inhand:
-  - MasterHandheldCamera
+  equipment:
+    neck: MasterHandheldCamera

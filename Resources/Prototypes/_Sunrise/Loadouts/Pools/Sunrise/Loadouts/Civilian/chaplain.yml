@@ -1,0 +1,5 @@
+- type: loadout
+  id: BibleJunkariat
+  storage:
+    back:
+    - BibleJunkariat

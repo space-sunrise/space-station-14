@@ -1,36 +1,4 @@
 - type: weightedRandom
-  id: VampireObjectiveGroups
-  weights:
-    VampireObjectiveGroupSteal: 1
-    VampireObjectiveGroupKill: 1
-    VampireObjectiveGroupState: 1
-
-- type: weightedRandom
-  id: VampireObjectiveGroupSteal
-  weights:
-    CMOHyposprayVampireStealObjective: 1
-    RDHardsuitVampireStealObjective: 1
-    MagbootsVampireStealObjective: 1
-    ClipboardVampireStealObjective: 1
-    CaptainIDVampireStealObjective: 1
-    CaptainJetpackVampireStealObjective: 1
-    CaptainGunVampireStealObjective: 1
-
-- type: weightedRandom
-  id: VampireObjectiveGroupKill
-  weights:
-    VampireKillRandomPersonObjective: 1
-    # SUNRISE-TODO: Цель не работает, так как в момент выдачи антагов еще нету
-    # Нужно как-то выдавать эту цель позже выбора агентов.
-    # VampireKillRandomAntagObjective
-
-- type: weightedRandom
-  id: VampireObjectiveGroupState
-  weights:
-    VampireSurviveObjective: 1
-    VampireEscapeObjective: 1
-
-- type: weightedRandom
   id: ChangelingObjectiveGroups
   weights:
     ChangelingObjectiveGroupSteal: 1

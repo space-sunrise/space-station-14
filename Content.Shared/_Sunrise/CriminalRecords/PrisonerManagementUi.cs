@@ -9,14 +9,23 @@ public enum PrisonerManagementConsoleKey : byte
     Key
 }
 
+/// <summary>
+///     The state of a prisoner management console, sent to the client.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class PrisonerManagementConsoleState : BoundUserInterfaceState
 {
+    /// <summary>Cases waiting for incarceration to begin.</summary>
     public readonly List<PrisonerRecordInfo> Waiting;
+    /// <summary>Active incarcerations currently in progress.</summary>
     public readonly List<IncarcerationInfo> InProgress;
+    /// <summary>Completed or paroled cases.</summary>
     public readonly List<PrisonerRecordInfo> Finished;
+    /// <summary>Mapping of cell indices to their occupancy status.</summary>
     public readonly Dictionary<int, bool> CellOccupied;
+    /// <summary>Mapping of cell indices to whether they are fully equipped.</summary>
     public readonly Dictionary<int, bool> CellEquipped;
+    /// <summary>The threshold in minutes at which a sentence becomes permanent.</summary>
     public readonly int PermanentThreshold;
 
     public PrisonerManagementConsoleState(
@@ -36,8 +45,19 @@ public sealed class PrisonerManagementConsoleState : BoundUserInterfaceState
     }
 }
 
+/// <summary>
+///     Summary information for a criminal record in the prisoner management system.
+/// </summary>
 [Serializable, NetSerializable]
-public record struct PrisonerRecordInfo(uint RecordId, string Name, string Job, uint CaseId, int Sentence);
+public record struct PrisonerRecordInfo(
+    uint RecordId, 
+    string Name, 
+    string Job, 
+    uint CaseId, 
+    int Sentence, 
+    bool IsParoled = false, 
+    bool IsWarning = false,
+    List<SentenceBreakdownEntry>? SentenceBreakdown = null);
 
 [Serializable, NetSerializable]
 public record struct IncarcerationInfo(uint RecordId, string Name, uint CaseId, int CellIndex, TimeSpan StartTime, int Sentence);

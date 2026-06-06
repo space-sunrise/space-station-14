@@ -8,7 +8,7 @@
     ClusterBangFull: 2
     GrenadeStinger: 4
     Flash: 5
-    Tourniquet: 5
+    Tourniquet: 12 # Sunrise-Edit
     FlashlightSeclite: 5
     ClothingEyesGlassesSunglasses: 2
     ClothingEyesHudSecurity: 2
@@ -20,7 +20,8 @@
     RiotLaserShield: 2
     RiotBulletShield: 2
     RadioHandheldSecurity: 5
-    BolaSecurity: 6 # Sunrise-Edit
+    BolaSecurity: 5 # Sunrise-Edit
+    HandheldCamera: 3  # Sunrise-Edit
   # security officers need to follow a diet regimen!
   contrabandInventory:
     WeaponMeleeNeedle: 2

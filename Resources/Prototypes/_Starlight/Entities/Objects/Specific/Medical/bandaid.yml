@@ -195,6 +195,23 @@
           amount: 5
 
 - type: entity
+  name: patch pack
+  parent: PatchPack
+  id: PatchPackBruteHeat
+  suffix: Brute-Heat
+  components:
+  - type: Label
+    currentLabel: brute/heat patch
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PatchBrute
+          amount: 5
+        - id: PatchBurn
+          amount: 5
+
+- type: entity
   name: bluespace drug storage
   id: BluespacePillPatchCanister
   parent: BaseStorageItem

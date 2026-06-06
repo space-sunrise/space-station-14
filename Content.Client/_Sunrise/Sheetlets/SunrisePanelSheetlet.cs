@@ -1,4 +1,3 @@
-using Content.Client._Sunrise.Stylesheets;
 using Content.Client.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;

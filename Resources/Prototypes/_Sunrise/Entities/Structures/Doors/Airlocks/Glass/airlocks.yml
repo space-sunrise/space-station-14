@@ -78,6 +78,14 @@
 # == Double airlocks == #
 
 - type: entity
+  id: DoubleGlassAirlockBolted
+  parent: DoubleGlassAirlock
+  suffix: Bolted
+  components:
+  - type: DoorBolt
+    boltsDown: true
+
+- type: entity
   id: DoubleGlassAirlockBasic
   parent: [ DoubleGlassAirlock ]
   name: double basic glass airlock

@@ -13,6 +13,15 @@
       uiWindowPos: 1,0
       strippingWindowPos: 1,0
       displayName: Head
+      blacklist:
+        tags:
+        - SecurityHelmet
+        - HelmetEVA
+        - FullCovered
+        - Helmet
+        - WeldingMask
+        - NightVisionDevice
+        - NVDHandcrafted
     - name: pocket1
       slotTexture: pocket
       slotFlags: POCKET

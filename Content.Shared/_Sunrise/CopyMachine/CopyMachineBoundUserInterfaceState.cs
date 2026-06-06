@@ -46,12 +46,12 @@ public sealed class CopyMachineJobView
 
     public override string ToString()
     {
-       return Type switch
-       {
-           CopyMachineJobType.Print => $"{Loc.GetString("copy-machine-print-job")}: {Title}",
-           CopyMachineJobType.Copy => $"{Loc.GetString("copy-machine-copy-job")}: {Title}",
-           _ => Title
-       };
+        return Type switch
+        {
+            CopyMachineJobType.Print => $"{Loc.GetString("copy-machine-print-job")}: {Title}",
+            CopyMachineJobType.Copy => $"{Loc.GetString("copy-machine-copy-job")}: {Title}",
+            _ => Title
+        };
     }
 }
 

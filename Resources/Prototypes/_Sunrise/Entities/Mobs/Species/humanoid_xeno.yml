@@ -38,17 +38,18 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-      collection: Punch
+      collection: AlienClaw
     angle: 30
     animation: WeaponArcClaw
     attackRate: 1
     damage:
       types:
-        Blunt: 5
-        Slash: 5
+        Blunt: 2
+        Slash: 3
         Caustic: 1
   - type: LizardAccent
   - type: VulpaAccent
+  - type: TajaranAccent
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -58,8 +59,9 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
-  - type: ToggleableNightVision
-    effect: EffectNightVisionXeno
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -147,7 +149,32 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
     displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
       head:
         sizeMaps:
           32:
@@ -163,7 +190,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: shoes
-      socks-body-curved-small-muzzle:
+      socks:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
@@ -199,7 +226,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
-      hardsuit-body-normal:
+      hardsuit:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
@@ -216,7 +243,8 @@
     minds:
     - Xeno
   - type: FootprintEmitter
-  - type: Carriable
+    leftBareFootState: [ footprint-left-bare-lizard ]
+    rightBareFootState: [ footprint-right-bare-lizard ]
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -244,7 +272,32 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: socks
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: outer
+      hardsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: hardsuit
     displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit
       head:
         sizeMaps:
           32:
@@ -296,7 +349,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
-      hardsuit-body-normal:
+      hardsuit:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi

@@ -175,7 +175,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -248,7 +248,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleFMJ
+        startingItem: MagazineRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_unload.ogg
         priority: 2
@@ -578,7 +578,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineLightRifleSP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -660,30 +660,30 @@
       - id: MagazineLightRifleEmpty
         launchAngle: -90
         prob: 1
-      - id: CartridgeLightRifleFMJ
+      - id: CartridgeLightRifleSP
         launchAngle: 45
         prob: 1
-      - id: CartridgeLightRifleFMJ
+      - id: CartridgeLightRifleSP
         launchAngle: -45
-        prob: 0.80
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 75
         prob: 0.75
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -75
+      - id: CartridgeLightRifleSP
+        launchAngle: 75
         prob: 0.5
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 120
-        prob: 0.3
-      - id: CartridgeLightRifleFMJ
-        launchAngle: 120
+      - id: CartridgeLightRifleSP
+        launchAngle: -75
         prob: 0.25
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -120
+      - id: CartridgeLightRifleSP
+        launchAngle: 120
         prob: 0.2
-      - id: CartridgeLightRifleFMJ
-        launchAngle: -120
+      - id: CartridgeLightRifleSP
+        launchAngle: 120
         prob: 0.15
+      - id: CartridgeLightRifleSP
+        launchAngle: -120
+        prob: 0.1
+      - id: CartridgeLightRifleSP
+        launchAngle: -120
+        prob: 0.05
 
 - type: entity
   parent: WeaponRifleSKM24Scrap
@@ -777,7 +777,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleHeavyFMJ
+        startingItem: MagazineRifleHeavySP
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 2

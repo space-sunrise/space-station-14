@@ -10,6 +10,7 @@
     spawnPrototypes:
     - MobCarpDragon
     - MobCarpHoloDragon
+    - MobCarpRainbowDragon
     - MobSharkDragon
     # Sunrise-end
   - type: Transform
@@ -74,6 +75,7 @@
         Brute: -8
         Burn: -5
         Airloss: -5
+        Toxin: -5 # Sunrise-Edit
     whitelist:
       tags:
       - CarpRiftHealTarget

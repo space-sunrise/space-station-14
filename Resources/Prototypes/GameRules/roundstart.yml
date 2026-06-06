@@ -22,7 +22,6 @@
     rules:
     - id: Thief
       prob: 0.5
-#    - id: Vampire
 #      prob: 0.3
     - id: SubWizard
       prob: 0.05
@@ -37,7 +36,6 @@
     rules:
     - id: Thief
       prob: 0.5
-#    - id: Vampire
 #      prob: 0.3
     - id: Xenoborgs
       prob: 0.05
@@ -132,7 +130,6 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
-    - Felinid
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
@@ -149,7 +146,7 @@
   - type: GameRule
     minPlayers: 50
   - type: LoadMapRule
-    mapPath: /Maps/_Sunrise/Nonstations/geigerComplex.yml #/Maps/_Sunrise/Nonstations/nukieplanet.yml # Sunrise-Edit
+    mapPath: /Maps/_Sunrise/Nonstations/nukieplanet.yml # Sunrise-Edit
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -277,14 +274,11 @@
   components:
   - type: GameRule
     minPlayers: 5
-    delay:
-      min: 300 # Sunrise-Edit
-      max: 600 # Sunrise-Edit
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
-      max: 13 # Sunrise-Edit
+      max: 10 # Sunrise-Edit
       playerRatio: 10
       pickCommandStaff: true # Sunrise-Edit
       maxCommandStaff: 1 # Sunrise-Edit
@@ -359,11 +353,6 @@
   components:
   - type: GameRule
     minPlayers: 45 # Sunrise-Edit
-    # Sunrise-Start
-    delay:
-      min: 180
-      max: 300
-    # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
@@ -372,6 +361,11 @@
       fallbackRoles: [ Rev ]
       max: 3
       playerRatio: 15
+      # Sunrise - start
+      blacklist:
+        components:
+        - MindShield
+      # Sunrise - end
       briefing:
         text: head-rev-role-greeting
         color: CornflowerBlue
@@ -391,6 +385,7 @@
       blacklist:
         components:
         - CommandStaff
+        - MindShield # Sunrise-Edit
       briefing:
         text: rev-role-greeting
         color: CornflowerBlue
@@ -485,9 +480,10 @@
   components:
   - type: GameRule
     minPlayers: 20
-    delay:
-      min: 600
-      max: 900
+    # Sunrise-Edit
+    #delay:
+    #  min: 600
+    #  max: 900
   - type: ZombieRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
