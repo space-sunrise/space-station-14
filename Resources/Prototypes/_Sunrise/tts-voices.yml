@@ -174,7 +174,6 @@
   name: tts-voice-name-vance
   sex: Male
   speaker: vance
-  canAiUse: false
 
 - type: ttsVoice
   parent: BaseSunriseTtsVoiceNtts

@@ -35,7 +35,4 @@ public sealed partial class TTSVoicePrototype : IPrototype, IInheritingPrototype
 
     [DataField]
     public bool SponsorOnly;
-
-    [DataField]
-    public bool CanAiUse;
 }

@@ -64,7 +64,7 @@ public sealed class SiliconVoiceSystem : EntitySystem
             return;
 
         // Validate the voice prototype exists and player can use it
-        if (!CanUseVoice(args.VoiceId, session))
+        if (!CanUseVoice(uid, component, args.VoiceId, session))
         {
             if (!_prototypeManager.TryIndex<TTSVoicePrototype>(args.VoiceId, out var voicePrototype))
             {
@@ -96,18 +96,16 @@ public sealed class SiliconVoiceSystem : EntitySystem
 
     private void OnBorgVoiceStartup(EntityUid uid, BorgVoiceComponent component, ref MapInitEvent args)
     {
-        // Set default voice if not already set
-        if (component.SelectedVoiceId == null)
-        {
-            var defaultVoice = _prototypeManager
-                .EnumeratePrototypes<TTSVoicePrototype>()
-                .FirstOrDefault(v => v.RoundStart && !v.SponsorOnly);
+        if (component.SelectedVoiceId != null)
+            return;
 
-            if (defaultVoice != null)
-            {
-                component.SelectedVoiceId = defaultVoice.ID;
-                Dirty(uid, component);
-            }
+        var availableVoices = _prototypeManager
+            .EnumeratePrototypes<TTSVoicePrototype>().Where(v => v.RoundStart && !v.SponsorOnly && CanUseVoice(uid, component, v.ID, null!)).ToList();
+
+        if (availableVoices.Any())
+        {
+            component.SelectedVoiceId = availableVoices.First().ID;
+            Dirty(uid, component);
         }
     }
 
@@ -125,24 +123,32 @@ public sealed class SiliconVoiceSystem : EntitySystem
     {
         var availableVoices = _prototypeManager
             .EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(v => v.RoundStart && CanUseVoice(v.ID, player))
+            .Where(v => v.RoundStart && CanUseVoice(uid, component, v.ID, player))
             .Select(v => v.ID)
             .ToList();
 
         return new BorgVoiceChangeState(component.SelectedVoiceId, availableVoices);
     }
 
-    private bool CanUseVoice(string voiceId, ICommonSession player)
+    private bool CanUseVoice(EntityUid uid, BorgVoiceComponent component, string voiceId, ICommonSession player)
     {
         if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var voice))
             return false;
 
-        if (!voice.SponsorOnly)
-            return true;
+        if (voice.SponsorOnly)
+        {
+            if (_sponsorsManager == null)
+                return false;
+            if (!_sponsorsManager.TryGetPrototypes(player.UserId, out var allowed) || !allowed.Contains(voiceId))
+                return false;
+        }
 
-        if (_sponsorsManager == null)
-            return true;
+        if (component.VoiceWhitelist != null && component.VoiceWhitelist.Any())
+            return component.VoiceWhitelist.Contains(voiceId);
 
-        return _sponsorsManager.TryGetPrototypes(player.UserId, out var allowedPrototypes) && allowedPrototypes.Contains(voiceId);
+        if (component.VoiceBlacklist != null && component.VoiceBlacklist.Any())
+            return !component.VoiceBlacklist.Contains(voiceId);
+
+        return true;
     }
 }

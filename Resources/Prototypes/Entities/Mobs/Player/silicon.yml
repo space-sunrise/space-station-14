@@ -41,6 +41,12 @@
     # Sunrise-AIVoice-Edit-Start
     - ActionChangeBorgVoice
   - type: BorgVoice
+    voiceBlacklist:
+      - Mita
+      - MitaDream
+      - MitaGhost
+      - Biden
+      - Trump
     # Sunrise-AIVoice-Edit-End
   - type: UserInterface
     interfaces:

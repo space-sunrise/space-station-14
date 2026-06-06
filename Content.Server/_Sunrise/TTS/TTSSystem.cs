@@ -291,12 +291,6 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void HandleSay(EntityUid uid, string message, TTSVoicePrototype voicePrototype, string? effect)
     {
-        //чек для ИИ голоса
-        if (!CanAiUseVoice(voicePrototype, uid))
-        {
-            Logger.Warning($"AI {ToPrettyString(uid)} attempted to use voice {voicePrototype.ID} which is not allowed for AI");
-            return;
-        }
 
         var recipients = Filter.Pvs(uid, 1F).RemovePlayers(_ignoredRecipients);
 
@@ -377,13 +371,6 @@ public sealed partial class TTSSystem : EntitySystem
         }
 
         return null;
-    }
-    private bool CanAiUseVoice(TTSVoicePrototype voicePrototype, EntityUid speaker)
-    {
-        if (!HasComp<Content.Shared.Silicons.StationAi.StationAiHeldComponent>(speaker))
-            return true;
-
-        return voicePrototype.CanAiUse;
     }
 }
 

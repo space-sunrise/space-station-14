@@ -21,12 +21,10 @@ public partial class VoiceMaskSystem
 
     private void OnChangeVoice(EntityUid uid, VoiceMaskComponent component, VoiceMaskChangeVoiceMessage message)
     {
-        // Используем существующее поле _proto (или _prototypeManager — как в основном файле)
         if (!_proto.TryIndex<TTSVoicePrototype>(message.Voice, out var voiceProto))
             return;
 
-        // Если ИИ пытается установить неподходящий голос — запрещаем
-        if (HasComp<StationAiHeldComponent>(message.Actor) && !voiceProto.CanAiUse)
+        if (HasComp<StationAiHeldComponent>(message.Actor))
         {
             _popupSystem.PopupEntity(Loc.GetString("voice-mask-ai-cannot-use-this-voice"), uid);
             return;
