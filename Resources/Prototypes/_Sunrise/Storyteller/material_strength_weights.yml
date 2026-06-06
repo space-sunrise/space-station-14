@@ -19,8 +19,8 @@
 
 - type: storytellerMaterialWeight
   id: Steel
-  weight: 1
+  weight: 0.0
 
 - type: storytellerMaterialWeight
   id: Glass
-  weight: 0.3
+  weight: 0.0

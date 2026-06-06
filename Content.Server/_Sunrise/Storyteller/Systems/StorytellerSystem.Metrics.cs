@@ -21,6 +21,10 @@ public sealed partial class StorytellerSystem
         "ss14_storyteller_threat_budget",
         "Current threat budget available to spend on challenging events.");
 
+    private static readonly Gauge MajorThreatBudgetGauge = Metrics.CreateGauge(
+        "ss14_storyteller_major_threat_budget",
+        "Current major threat budget available to spend on major antag/calm events.");
+
     private static readonly Gauge PacingStateGauge = Metrics.CreateGauge(
         "ss14_storyteller_pacing_state",
         "Current storyteller pacing state (0 = Relaxation, 1 = BuildUp, 2 = Peak, 3 = Recovery).");
@@ -204,6 +208,7 @@ public sealed partial class StorytellerSystem
     {
         CrewStressGauge.Set(comp.CrewStress);
         ThreatBudgetGauge.Set(comp.ThreatBudget);
+        MajorThreatBudgetGauge.Set(comp.MajorThreatBudget);
         MaxThreatBudgetGauge.Set(comp.MaxThreatBudget);
         PacingStateGauge.Set((double)comp.PacingState);
         AlivePlayersGauge.Set(metrics.AliveCount);
@@ -269,7 +274,7 @@ public sealed partial class StorytellerSystem
         if (!_cfg.GetCVar(SunriseCCVars.StorytellerTelemetryEnabled))
             return;
 
-        var message = $"State changed: {oldState} -> {comp.PacingState}. Crew stress: {comp.CrewStress.ToString("F1", CultureInfo.InvariantCulture)}, Threat budget: {comp.ThreatBudget.ToString("F1", CultureInfo.InvariantCulture)}";
+        var message = $"State changed: {oldState} -> {comp.PacingState}. Crew stress: {comp.CrewStress.ToString("F1", CultureInfo.InvariantCulture)}, Threat budget: {comp.ThreatBudget.ToString("F1", CultureInfo.InvariantCulture)}, Major budget: {comp.MajorThreatBudget.ToString("F1", CultureInfo.InvariantCulture)}";
         _sawmill.Debug(message);
     }
 
@@ -286,6 +291,7 @@ public sealed partial class StorytellerSystem
         var message =
             $"Tick - State: {comp.PacingState}, Type: {comp.StorytellerType}, " +
             $"Crew Stress: {F2(comp.CrewStress, inv)}, Threat Budget: {F2(comp.ThreatBudget, inv)}/{F1(comp.MaxThreatBudget, inv)}, " +
+            $"Major Budget: {F2(comp.MajorThreatBudget, inv)}/{F1(comp.MaxThreatBudget, inv)}, " +
             $"Players: {metrics.AliveCount}/{metrics.TotalPlayers} (Dead: {metrics.DeadCount}, Ghosts: {metrics.GhostCount}, Sec: {metrics.SecurityCount}), " +
             $"Roster: {metrics.CrewRosterCount} (Command/Crew: {metrics.RosterCommandCount}/{metrics.RosterCrewCount}, Dead Cmd/Crew: {metrics.DeadCommandCount}/{metrics.DeadCrewCount}), " +
             $"Join/Leave Rate: {F1(metrics.PlayerJoinRate, inv)}/{F1(metrics.PlayerLeaveRate, inv)}, " +
@@ -293,7 +299,7 @@ public sealed partial class StorytellerSystem
             $"Station Strength: {F1(metrics.StationStrength, inv)} " +
             $"(Armed {F1(metrics.StrengthArmedCrew, inv)}, Sec {F1(metrics.StrengthSecurity, inv)}, Cargo {F1(metrics.StrengthCargo, inv)}, Tech {F1(metrics.StrengthTechnology, inv)}, Mats {F1(metrics.StrengthMaterials, inv)}), " +
             $"Material Score: {F1(metrics.MaterialStrengthScore, inv)}, " +
-            $"Stress: Dead {F2(metrics.StressDead, inv)}, Ghost {F2(metrics.StressGhost, inv)}, Contain {F2(metrics.StressContainment, inv)}, Econ {F2(metrics.StressEconomy, inv)}, " +
+            $"Stress: Dead {F2(metrics.StressDead, inv)}, Ghost {F2(metrics.StressGhost, inv)}, Antag {F2(metrics.StressAntagonist, inv)}, Contain {F2(metrics.StressContainment, inv)}, Econ {F2(metrics.StressEconomy, inv)}, " +
             $"Dmg {F2(metrics.StressDamage, inv)}, Anomaly {F2(metrics.StressAnomaly, inv)}, Mess {F2(metrics.StressMess, inv)}, Power {F2(metrics.StressPower, inv)}, Atmos {F2(metrics.StressAtmosphere, inv)}, " +
             $"Atmos Unsafe: {F4(metrics.AtmosphereUnsafeRatio, inv)}, Power Deficit: {F4(metrics.PowerGridDeficitRatio, inv)}, Tiles: {metrics.TotalStationTiles}, " +
             $"Weapons: {metrics.CrewWeaponCount}, Antags: {metrics.ActiveAntagonistCount}, ERT: {metrics.ActiveErtCount}, " +
