@@ -439,21 +439,21 @@
 # region Paddy
 - type: entity
   id: MechPaddy
-  parent: [ MechBreakageRipley, BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ] # Sunrise-edit
+  parent: [ MechBreakageRipley, BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
   name: Paddy
   description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
   components:
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/ripley.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/paddy.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: paddy
-    # - state: base-sirens  # Todo: port siren system from starlight
-    #   map: [ "enum.MechVisualLayers.Siren" ]
-    #   shader: unshaded
+      state: base
+    - state: base-sirens
+      map: [ "enum.MechVisualLayers.Siren" ]
+      shader: unshaded
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -462,13 +462,14 @@
       tags:
       - PaddyMech
       - IndustrialMech
-    baseState: paddy
-    openState: paddy-open
-    brokenState: paddy-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 4
-    #siren: true # Todo: port siren system from starlight
+    sirenEnabled: true
+    sirenState: base-sirens
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -495,8 +496,6 @@
     radius: 5
     energy: 5
     enabled: false
-  - type: AccessReader
-    access: [["Security"]]
 
 - type: entity
   id: MechPaddyBattery
@@ -517,7 +516,7 @@
     startingEquipment:
       - WeaponMechCombatDisabler
       - WeaponMechCombatFlashbangLauncher
-      - MechEquipmentGrabber
+      - MechEquipmentGrabberSmall
 
 # region Pirate Yarrk
 - type: entity
