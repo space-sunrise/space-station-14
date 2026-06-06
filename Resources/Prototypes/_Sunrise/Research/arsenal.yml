@@ -249,7 +249,6 @@
   radioChannels: # Sunrise-Add
   - Security
 
-# Tier 4
 - type: technology
   id: DecloneTechnology
   name: research-technology-declone-technology
@@ -257,7 +256,7 @@
     sprite: _Starlight/Objects/Weapons/Guns/Battery/decloner.rsi
     state: icon
   discipline: Arsenal
-  tier: 4
+  tier: 3
   cost: 30000
   recipeUnlocks:
   - WeaponDecloner
@@ -271,7 +270,7 @@
     sprite: _Starlight/Structures/Machines/scan_gate.rsi
     state: base
   discipline: Arsenal
-  tier: 4
+  tier: 3
   cost: 5000
   recipeUnlocks:
   - ScanGateMachineCircuitboard
