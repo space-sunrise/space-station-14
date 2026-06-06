@@ -8,7 +8,7 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 namespace Content.Client.Mech;
 
 /// <inheritdoc/>
-public sealed class MechSystem : SharedMechSystem
+public sealed partial class MechSystem : SharedMechSystem // Sunrise-Edit - allow siren partial hooks
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -50,7 +50,7 @@ public sealed class MechSystem : SharedMechSystem
         }
 
         _sprite.LayerSetRsiState((uid, sprite), MechVisualLayers.Base, state);
-        // Sunrise-Start
+        // Sunrise added start - mech siren visuals
         if (_sprite.LayerMapTryGet((uid, sprite), MechVisualLayers.Siren, out _, false))
         {
             if (component.SirenState != null)
@@ -59,7 +59,7 @@ public sealed class MechSystem : SharedMechSystem
             if (_appearance.TryGetData<bool>(uid, MechVisuals.Siren, out var siren))
                 _sprite.LayerSetVisible((uid, sprite), MechVisualLayers.Siren, siren);
         }
-        // Sunrise-End
+        // Sunrise added end
         _sprite.SetDrawDepth((uid, sprite), (int)drawDepth);
     }
 
@@ -74,9 +74,7 @@ public sealed class MechSystem : SharedMechSystem
         if (_appearance.TryGetData<string>(uid, MechVisualLayers.Broken, out var broken))
             component.BrokenState = broken;
 
-        // Sunrise-Start
-        if (_appearance.TryGetData<string>(uid, MechVisualLayers.Siren, out var siren))
-            component.SirenState = siren;
-        // Sunrise-End
+        UpdateSunrisePaintAppearance(uid, component); // Sunrise added - mech siren paint state
     }
+    partial void UpdateSunrisePaintAppearance(EntityUid uid, MechComponent component); // Sunrise added - mech siren paint state
 }

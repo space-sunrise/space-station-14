@@ -60,17 +60,3 @@
   - type: InstantAction
     event: !type:MechToggleLightsEvent
 
-# Sunrise-start
-- type: entity
-  id: ActionMechSiren
-  name: Siren
-  description: Toggles mech siren.
-  components:
-  - type: Action
-    useDelay: 1
-    itemIconStyle: NoItem
-    icon: { sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi, state: icon }
-    iconOn: { sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi, state: icon-siren }
-  - type: InstantAction
-    event: !type:MechToggleSirenEvent
-# Sunrise-end

@@ -8,7 +8,7 @@ public enum MechVisuals : byte
 {
     Open, //whether or not it's open and has a rider
     Broken, //if it broke and no longer works.
-    Siren // Sunrise-Added
+    Siren // Sunrise-Edit - mech siren visual state
 }
 
 [Serializable, NetSerializable]
@@ -21,9 +21,9 @@ public enum MechAssemblyVisuals : byte
 public enum MechVisualLayers : byte
 {
     Base,
-    Open, // Sunrise-added
-    Broken, // Sunrise-added
-    Siren // Sunrise-added
+    Open, // Sunrise-Edit - mech open visual layer
+    Broken, // Sunrise-Edit - mech broken visual layer
+    Siren // Sunrise-Edit - mech siren visual layer
 }
 
 /// <summary>
@@ -72,8 +72,8 @@ public sealed partial class MechToggleLightsEvent : InstantActionEvent
 {
 }
 
-// Sunrise added start
- public sealed partial class MechToggleSirenEvent : InstantActionEvent
- {
- }
+// Sunrise added start - mech siren action
+public sealed partial class MechToggleSirenEvent : InstantActionEvent
+{
+}
 // Sunrise added end

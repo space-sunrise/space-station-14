@@ -1,11 +1,10 @@
 using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
-using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Mech;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class MechUpgradeKitComponent : Component
 {
     [DataField]

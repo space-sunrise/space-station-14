@@ -61,7 +61,9 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
         SubscribeLocalEvent<MechComponent, MechToggleLightsEvent>(OnToggleLightsEvent);
+        // Sunrise added start - mech siren action
         SubscribeLocalEvent<MechComponent, MechToggleSirenEvent>(OnToggleSirenEvent);
+        // Sunrise added end
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MechComponent, MobStateChangedEvent>(OnMobState);
@@ -102,7 +104,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         args.Handled = true;
     }
-    // Sunrise-Start
+    // Sunrise added start - mech siren action
     private void OnToggleSirenEvent(EntityUid uid, MechComponent component, MechToggleSirenEvent args)
     {
         if (args.Handled)
@@ -112,7 +114,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         args.Handled = true;
     }
-    // Sunrise-End
+    // Sunrise added end
 
     private void RelayInteractionEvent(EntityUid uid, MechComponent component, UserActivateInWorldEvent args)
     {
@@ -187,10 +189,10 @@ public abstract partial class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechLightsActionEntity, component.MechLightsAction, mech);
-        // Sunrise-Start
+        // Sunrise added start - mech siren action
         if (component.SirenEnabled)
             _actions.AddAction(pilot, ref component.MechSirenActionEntity, component.MechSirenAction, mech);
-        // Sunrise-End
+        // Sunrise added end
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
     }
 
@@ -216,7 +218,7 @@ public abstract partial class SharedMechSystem : EntitySystem
             Dirty(uid, component);
         }
     }
-    // Sunrise-Start
+    // Sunrise added start - mech siren toggle
     public void ToggleSiren(EntityUid uid, MechComponent component)
     {
         if (!component.SirenEnabled)
@@ -225,7 +227,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         component.Siren = !component.Siren;
         _actions.SetToggled(component.MechSirenActionEntity, component.Siren);
         _appearance.SetData(uid, MechVisuals.Siren, component.Siren);
-        var ev = new MechSayEvent(uid, component.Siren ? component.MessageEnableSiren : component.MessageDisableSiren);
+        var ev = new MechSayEvent(uid, component.Siren ? MessageEnableSiren : MessageDisableSiren);
         RaiseLocalEvent(uid, ref ev, true);
         OnSirenToggled(uid, component);
         Dirty(uid, component);
@@ -234,7 +236,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     protected virtual void OnSirenToggled(EntityUid uid, MechComponent component)
     {
     }
-    // Sunrise-End
+    // Sunrise added end
     /// <summary>
     /// Destroys the mech, removing the user and ejecting anything contained.
     /// </summary>
@@ -244,7 +246,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
-        // Sunrise-Start
+        // Sunrise added start - stop mech siren on break
         if (component.Siren)
         {
             component.Siren = false;
@@ -252,7 +254,7 @@ public abstract partial class SharedMechSystem : EntitySystem
             _actions.SetToggled(component.MechSirenActionEntity, false);
             OnSirenToggled(uid, component);
         }
-        // Sunrise-End
+        // Sunrise added end
         TryEject(uid, component);
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         foreach (var ent in equipment)

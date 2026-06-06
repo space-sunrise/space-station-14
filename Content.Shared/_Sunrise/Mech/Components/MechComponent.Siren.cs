@@ -9,12 +9,6 @@ public sealed partial class MechComponent
     public bool Siren = false;
 
     [DataField]
-    public string MessageEnableSiren = "mech-message-enable-siren";
-
-    [DataField]
-    public string MessageDisableSiren = "mech-message-disable-siren";
-
-    [DataField]
     public EntProtoId MechSirenAction = "ActionMechSiren";
 
     [DataField, AutoNetworkedField]
