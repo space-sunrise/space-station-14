@@ -96,6 +96,9 @@
   name: "left xenomorph leg"
   parent: [ PartHumanoidXeno, BaseLeftLeg ]
   components:
+  - type: MovementBodyPart
+    walkSpeed: 3
+    sprintSpeed: 4
   - type: Sprite
     netsync: false
     sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
@@ -109,6 +112,9 @@
   name: "right xenomorph leg"
   parent: [ PartHumanoidXeno, BaseRightLeg ]
   components:
+  - type: MovementBodyPart
+    walkSpeed: 3
+    sprintSpeed: 4
   - type: Sprite
     netsync: false
     sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi

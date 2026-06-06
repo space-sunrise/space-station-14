@@ -1,15 +1,20 @@
 ﻿using Content.Client._Sunrise.Roadmap;
+using Content.Client._Sunrise.Tutorial;
+using Content.Client._Sunrise.Tutorial.TutorialWindow;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.Tutorial.Components;
 using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Client.Console;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Utility;
@@ -27,6 +32,8 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
     [Dependency] private readonly InfoUIController _info = default!;
     [Dependency] private readonly OptionsUIController _options = default!;
     [Dependency] private readonly GuidebookUIController _guidebook = default!;
+    [Dependency] private readonly IEntityManager _entity = default!; // Sunrise
+    [Dependency] private readonly IEntitySystemManager _entSys = default!; // Sunrise
 
     private Options.UI.EscapeMenu? _escapeWindow;
 
@@ -76,6 +83,15 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         {
             CloseEscapeWindow();
             UIManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
+        };
+
+        var tutorialUi = UIManager.GetUIController<TutorialUIController>();
+        UpdateQuitTutorialButtonVisibility();
+
+        _escapeWindow.QuitTutorialButton.OnPressed += _ =>
+        {
+            var tutorialSystem = _entSys.GetEntitySystem<TutorialSystem>();
+            tutorialSystem.RequestQuitTutorial();
         };
         // Sunrise-End
 
@@ -161,6 +177,18 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         _escapeWindow?.Close();
     }
 
+    // Sunrise-start
+    private void UpdateQuitTutorialButtonVisibility()
+    {
+        if (_escapeWindow == null)
+            return;
+
+        var session = IoCManager.Resolve<IPlayerManager>().LocalSession;
+        _escapeWindow.QuitTutorialButton.Visible =
+            session != null && _entity.HasComponent<TutorialPlayerComponent>(session.AttachedEntity);
+    }
+    // Sunrise-end
+
     /// <summary>
     /// Toggles the game menu.
     /// </summary>
@@ -176,6 +204,9 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         }
         else
         {
+            // Sunrise-start
+            UpdateQuitTutorialButtonVisibility();
+            // Sunrise-end
             _escapeWindow.OpenCentered();
             EscapeButton!.Pressed = true;
         }

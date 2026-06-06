@@ -1,0 +1,78 @@
+<DefaultWindow  xmlns="https://spacestation14.io"
+                          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                          SetSize="1450 720"
+                          MinSize="1450 720"
+                          Name="Window"
+                          Title="{Loc ui-tutorial}">
+    <PanelContainer>
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat
+                BackgroundColor="#1d1c1c"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation ="Vertical">
+            <BoxContainer Orientation="Horizontal"
+                        HorizontalExpand="True"
+                        VerticalExpand="True">
+
+                <!-- кпопки категорий туториалов -->
+                <BoxContainer Name="CategoryContainer"
+                            Orientation="Vertical"
+                            MinSize="230 0"
+                            Margin="0 0 0 0">
+                </BoxContainer>
+
+                <PanelContainer
+                    VerticalExpand="True"
+                    StyleClasses="TutorialDivider"/>
+
+                <!-- контейнер с кнопками туториалов -->
+                <BoxContainer Orientation="Vertical"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Margin="0 0 0 0">
+                <PanelContainer>
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat
+                        BackgroundColor="#2b2b2b"/>
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical">
+                        <Label Text="{Loc 'ui-tutorial-text'}"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 15 0 0"
+                                    StyleClasses="LabelKeyText"/>
+                        <CheckBox Name="AutoOpenCheckbox"
+                                Text="{Loc 'ui-tutorial-auto-open'}"
+                                HorizontalAlignment="Center"
+                                Margin="5"/>
+                    </BoxContainer>
+                </PanelContainer>
+                    <Label Text="{Loc 'ui-tutorial-available'}"
+                        HorizontalAlignment="Center"
+                        Margin="0 10 0 10"
+                        StyleClasses="LabelKeyText"
+                        FontColorOverride="#2ecc71"/>
+
+                    <ScrollContainer VScrollEnabled="True"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True">
+
+                        <BoxContainer Name="ButtonContainer"
+                                    Orientation="Horizontal"
+                                    HorizontalExpand="True">
+
+                            <Control HorizontalExpand="True"/>
+
+                            <GridContainer Name="ButtonGrid"
+                                        Columns="2"
+                                        Margin="0 10 0 0"
+                                        HorizontalAlignment="Center"/>
+
+                            <Control HorizontalExpand="True"/>
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</DefaultWindow>

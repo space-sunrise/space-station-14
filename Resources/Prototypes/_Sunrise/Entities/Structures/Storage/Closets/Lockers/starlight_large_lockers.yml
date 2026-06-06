@@ -1,0 +1,141 @@
+- type: entity
+  id: LockerLargeBase
+  parent: LockerBase
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Structures/Storage/closet-large.rsi
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
+    - state: generic_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+  - type: EntityStorage
+    capacity: 60
+
+- type: entity
+  id: LockerLargeBaseSecure
+  parent: LockerLargeBase
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: LockerSteelLarge
+  parent: LockerLargeBaseSecure
+  name: large secure closet
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: secure
+    stateDoorOpen: secure_open
+    stateDoorClosed: secure_door
+
+- type: entity
+  id: LockerSecurityLarge
+  parent: LockerLargeBaseSecure
+  name: large security officer's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerWardenLarge
+  parent: LockerLargeBaseSecure
+  name: large warden's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+- type: entity
+  id: LockerBrigmedicLarge
+  parent: LockerLargeBaseSecure
+  name: large brigmedic's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Medical"]]
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+
+- type: entity
+  id: LockerSalvageSpecialistLarge
+  parent: LockerLargeBaseSecure
+  name: large salvage specialist's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: salvage
+    stateDoorOpen: salvage_open
+    stateDoorClosed: salvage_door
+  - type: AccessReader
+    access: [["Salvage"]]
+
+- type: entity
+  id: LockerMiningSpecialistLarge
+  parent: LockerLargeBaseSecure
+  name: large mining specialist's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: miner
+    stateDoorOpen: miner_open
+    stateDoorClosed: miner_door
+  - type: AccessReader
+    # Starlight used Mining access; Sunrise uses Salvage for mining/salvage lockers.
+    access: [["Salvage"]]

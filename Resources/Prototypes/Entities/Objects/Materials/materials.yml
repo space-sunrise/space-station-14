@@ -637,6 +637,27 @@
       - cobwebs
     ignoreReagents:
       - Fiber
+    # Sunrise edit start - web silk: weaker bleed stop and light cut/stab healing
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Slash: -0.5
+        Piercing: -0.5
+        Mangleness: 0.3
+    bloodlossModifier: -3
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  # Sunrise edit end
   - type: Extractable
     juiceSolution:
       reagents:

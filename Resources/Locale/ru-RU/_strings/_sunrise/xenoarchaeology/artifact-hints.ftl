@@ -1,0 +1,11 @@
+xenoarch-trigger-tip-electrovae = Электровей
+xenoarch-trigger-tip-bz = БЗ
+xenoarch-trigger-tip-charged-electrovae = Заряженный электровей
+xenoarch-trigger-tip-halon = галон
+xenoarch-trigger-tip-healium = Хиллиум
+xenoarch-trigger-tip-nitrium = Нитриум
+xenoarch-trigger-tip-pluoxium = Плюоксиум
+xenoarch-trigger-tip-hydrogen = Водород
+xenoarch-trigger-tip-zauker = Заукер
+xenoarch-trigger-tip-proto-nitrate = Прото-Нитрат
+xenoarch-trigger-tip-helium = Гелий

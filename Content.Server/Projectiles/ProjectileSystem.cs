@@ -3,13 +3,21 @@ using Content.Server.Destructible;
 using Content.Server.Effects;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Camera;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Projectiles;
+using Content.Shared._Sunrise.Weapons.Components;
+using Content.Shared._Sunrise.Weapons.Events;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Random;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Maths;
 
 namespace Content.Server.Projectiles;
 
@@ -21,6 +29,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly IRobustRandom _rand = default!;
 
     public override void Initialize()
     {
@@ -45,6 +56,39 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             return;
         }
 
+        // Sunrise edit start - Projectile ricochet integration
+        if (TryComp<ProjectileRicochetComponent>(uid, out var ricochet) && ricochet.Chance > 0)
+        {
+            if (TryComp<PhysicsComponent>(uid, out var physics) && !physics.LinearVelocity.IsLengthZero())
+            {
+                var projXform = Transform(uid);
+                var worldPos = _transformSystem.GetWorldPosition(projXform);
+                // Sunrise edit start - Use original flight direction derived from rotation to bypass any temporary physics speed/direction anomalies
+                var direction = (projXform.WorldRotation - component.Angle).ToWorldVec();
+                // Sunrise edit end
+
+                var contactPoint = args.PointCount > 0 ? args.WorldPoints[0] : worldPos;
+                var raycastStart = contactPoint - direction * 0.5f;
+
+                var ricochetEv = new HitScanRicochetAttemptEvent(ricochet.Chance, raycastStart, direction, false, args.WorldNormal);
+                RaiseLocalEvent(target, ref ricochetEv);
+
+                if (ricochetEv.Ricocheted)
+                {
+                    var speed = physics.LinearVelocity.Length();
+                    var newVelocity = ricochetEv.Dir * speed;
+                    _physics.SetLinearVelocity(uid, newVelocity, body: physics);
+                    _transformSystem.SetWorldRotation(projXform, ricochetEv.Dir.ToWorldAngle() + component.Angle);
+
+                    // Move projectile slightly outside the wall to prevent stuck physics
+                    var newPosition = contactPoint + ricochetEv.Dir * 0.15f;
+                    _transformSystem.SetWorldPosition(projXform, newPosition);
+                    return; // bounce off, cancel damage application!
+                }
+            }
+        }
+        // Sunrise edit end
+
         var ev = new ProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
 
@@ -57,9 +101,20 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         }
         var deleted = Deleted(target);
 
-        if (_damageableSystem.TryChangeDamage((target, damageableComponent), ev.Damage, out var damage, component.IgnoreResistances, origin: component.Shooter) && Exists(component.Shooter))
+        DamageSpecifier damage;
+        // Sunrise edit start - Starlight armor penetration integration
+        var damageChange = _damageableSystem.ChangeDamage(
+            (target, damageableComponent),
+            ev.Damage,
+            component.IgnoreResistances,
+            origin: component.Shooter,
+            armorPenetration: component.ArmorPenetration,
+            canHeal: false);
+
+        damage = damageChange;
+
+        if (!damageChange.Empty && Exists(component.Shooter))
         {
-            // Sunrise-Start
             // Guard against race conditions where collided entities are already losing transform
             // during this physics tick.
             if (!deleted)
@@ -67,52 +122,49 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 if (TryComp<TransformComponent>(target, out var targetXform))
                     _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager));
             }
-            // Sunrise-End
 
             _adminLogger.Add(LogType.BulletHit,
                 LogImpact.Medium,
                 $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {damage:damage} damage");
+        }
 
-            // If penetration is to be considered, we need to do some checks to see if the projectile should stop.
-            if (component.PenetrationThreshold != 0)
+        var projectileSpent = !TryPenetrate((uid, component), damage, damageRequired);
+
+        // Sunrise edit start - Projectile pierce integration
+        if (projectileSpent && TryComp<ProjectilePierceComponent>(uid, out var pierce) && pierce.Chance > 0)
+        {
+            if (HasComp<MobStateComponent>(target) || HasComp<PierceableComponent>(target))
             {
-                // If a damage type is required, stop the bullet if the hit entity doesn't have that type.
-                if (component.PenetrationDamageTypeRequirement != null)
+                if (_rand.Prob(pierce.Chance))
                 {
-                    var stopPenetration = false;
-                    foreach (var requiredDamageType in component.PenetrationDamageTypeRequirement)
+                    var pierceEv = new HitScanPierceAttemptEvent(pierce.PierceLevel, true);
+                    RaiseLocalEvent(target, ref pierceEv);
+
+                    if (pierceEv.Pierced)
                     {
-                        if (!damage.DamageDict.Keys.Contains(requiredDamageType))
+                        projectileSpent = false;
+                        pierce.PiercedEntities.Add(target);
+                        Dirty(uid, pierce);
+
+                        // Give it a little bit of swim/deviation
+                        if (TryComp<PhysicsComponent>(uid, out var physics))
                         {
-                            stopPenetration = true;
-                            break;
+                            var random = pierce.Deviation > 0 ? _rand.NextFloat(-pierce.Deviation, pierce.Deviation) : 0f;
+                            var projXform = Transform(uid);
+                            // Sunrise edit start - Use original flight angle derived from rotation to bypass any post-collision physics state changes
+                            var velocityAngle = projXform.WorldRotation - component.Angle;
+                            // Sunrise edit end
+                            var newDir = (velocityAngle + random).ToWorldVec();
+                            _physics.SetLinearVelocity(uid, newDir * physics.LinearVelocity.Length(), body: physics);
+                            _transformSystem.SetWorldRotation(uid, newDir.ToWorldAngle() + component.Angle);
+
                         }
                     }
-                    if (stopPenetration)
-                        component.ProjectileSpent = true;
                 }
-
-                // If the object won't be destroyed, it "tanks" the penetration hit.
-                if (damage.GetTotal() < damageRequired)
-                {
-                    component.ProjectileSpent = true;
-                }
-
-                if (!component.ProjectileSpent)
-                {
-                    component.PenetrationAmount += damageRequired;
-                    // The projectile has dealt enough damage to be spent.
-                    if (component.PenetrationAmount >= component.PenetrationThreshold)
-                    {
-                        component.ProjectileSpent = true;
-                    }
-                }
-            }
-            else
-            {
-                component.ProjectileSpent = true;
             }
         }
+        component.ProjectileSpent = projectileSpent;
+        // Sunrise edit end
 
         // Sunrise-Start
         if (!deleted && HasComp<TransformComponent>(target))
@@ -131,5 +183,42 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         {
             RaiseNetworkEvent(new ImpactEffectEvent(component.ImpactEffect, GetNetCoordinates(xform.Coordinates)), Filter.Pvs(xform.Coordinates, entityMan: EntityManager));
         }
+    }
+
+    private bool TryPenetrate(Entity<ProjectileComponent> projectile, DamageSpecifier damage, FixedPoint2 damageRequired)
+    {
+        // If penetration is to be considered, we need to do some checks to see if the projectile should stop.
+        if (projectile.Comp.PenetrationThreshold == 0)
+            return false;
+
+        // If a damage type is required, stop the bullet if the hit entity doesn't have that type.
+        if (projectile.Comp.PenetrationDamageTypeRequirement != null)
+        {
+            foreach (var requiredDamageType in projectile.Comp.PenetrationDamageTypeRequirement)
+            {
+                if (damage.DamageDict.Keys.Contains(requiredDamageType))
+                    continue;
+
+                return false;
+            }
+        }
+
+        // If the object won't be destroyed, it "tanks" the penetration hit.
+        if (damage.GetTotal() < damageRequired)
+        {
+            return false;
+        }
+
+        if (!projectile.Comp.ProjectileSpent)
+        {
+            projectile.Comp.PenetrationAmount += damageRequired;
+            // The projectile has dealt enough damage to be spent.
+            if (projectile.Comp.PenetrationAmount >= projectile.Comp.PenetrationThreshold)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

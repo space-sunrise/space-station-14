@@ -25,6 +25,7 @@
   id: ElectronicsStaticPrison
   recipes:
   - IntercomElectronics
+  - SunriseWallhornElectronics
   - FirelockElectronics
   - DoorElectronics
   - AirAlarmElectronics

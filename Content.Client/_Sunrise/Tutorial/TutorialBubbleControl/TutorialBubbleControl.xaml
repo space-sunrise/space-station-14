@@ -1,0 +1,27 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:tutorial="clr-namespace:Content.Client._Sunrise.Tutorial.TutorialBubbleControl"
+                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+    <BoxContainer Orientation="Vertical"
+                  HorizontalAlignment="Center">
+        <PanelContainer Name="BubbleFrame"
+                        StyleClasses="TutorialBubbleFrame"
+                        Access="Public">
+            <PanelContainer Name="BubbleFill"
+                            Access="Public">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#000000CC" />
+                </PanelContainer.PanelOverride>
+                <RichTextLabel Name="BubbleText"
+                                  MaxWidth="400"
+                                  Margin="10,8,10,8"
+                                  Access="Public"
+                                  StyleClasses="LabelKeyText"/>
+            </PanelContainer>
+        </PanelContainer>
+        <tutorial:TutorialBubbleTail Name="BubbleTail"
+                                     HorizontalAlignment="Center"
+                                     MinSize="20,12"
+                                     Margin="0,-1,0,0"
+                                     TailColor="#B8860B"/>
+    </BoxContainer>
+</PanelContainer>

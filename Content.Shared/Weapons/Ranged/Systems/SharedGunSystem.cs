@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
@@ -12,37 +11,32 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Input;
-using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
-using Content.Shared.Starlight.Utility;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Sunrise.Weapons.DualWield;
+using Content.Shared.Mech.Components;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -114,32 +108,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
 
-        // Sunrise-Start
-        CommandBinds.Builder
-            .Bind(ContentKeyFunctions.CockGun, InputCmdHandler.FromDelegate(HandleCockGun, handle: false, outsidePrediction: false))
+        // Sunrise edit start
+        Robust.Shared.Input.Binding.CommandBinds.Builder
+            .Bind(Content.Shared.Input.ContentKeyFunctions.CockGun, Robust.Shared.Input.Binding.InputCmdHandler.FromDelegate(HandleCockGun, handle: false, outsidePrediction: false))
             .Register<SharedGunSystem>();
-        // Sunrise-End
-    }
-
-    private void HandleCockGun(ICommonSession? session)
-    {
-        if (session?.AttachedEntity == null)
-            return;
-
-        if (!TryComp<HandsComponent>(session.AttachedEntity.Value, out var handsComp))
-            return;
-
-        if (!_hands.TryGetActiveItem((session.AttachedEntity.Value, handsComp), out var itemInHand))
-            return;
-
-        if (TryComp<ChamberMagazineAmmoProviderComponent>(itemInHand.Value, out var chamberMagazineProvider))
-            ChamberMagazineUseInHand(session.AttachedEntity.Value, itemInHand.Value, chamberMagazineProvider);
-
-        if (TryComp<BallisticAmmoProviderComponent>(itemInHand.Value, out var ballisticAmmoProvider))
-            BallisticAmmoCockGun(session.AttachedEntity.Value, itemInHand.Value, ballisticAmmoProvider);
-
-        if (TryComp<MagazineAmmoProviderComponent>(itemInHand.Value, out var magazineAmmoProvider))
-            MagazineAmmoCockGun(session.AttachedEntity.Value, itemInHand.Value, magazineAmmoProvider);
+        // Sunrise edit end
     }
 
     private void OnMapInit(Entity<GunComponent> gun, ref MapInitEvent args)
@@ -170,49 +143,43 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         var user = args.SenderSession.AttachedEntity;
 
-        if (user == null || !_combatMode.IsInCombatMode(user))
+        if (user == null ||
+            !_combatMode.IsInCombatMode(user) ||
+            !TryGetGun(user.Value, out var ent, out var gun))
+        {
             return;
+        }
 
-        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
-            user = mechPilot.Mech;
-
-        if (!TryGetGun(user.Value, out var ent, out var gun))
+        // Sunrise edit start - dual-wield shot alternation
+        if (!TryHandleDualWieldShootRequest(user.Value, ent, msg, out var isDualWield, out var dualWield))
             return;
-
-        if (ent != GetEntity(msg.Gun))
-            return;
+        // Sunrise edit end
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
-        // Sunrise-Start
-        gun.Targets.Clear();
-        foreach (var target in msg.Targets)
-        {
-            var targetUid = GetEntity(target);
-            if (targetUid != EntityUid.Invalid)
-            {
-                gun.Targets.Add(targetUid);
-            }
-        }
-        // Sunrise-End
+        gun.Target = GetEntity(msg.Target);
         AttemptShoot(user.Value, ent, gun);
+
+        // Sunrise added start - rotate dual-wield queue after each attempt
+        RotateDualWieldQueue(user.Value, gun, isDualWield, dualWield);
+        // Sunrise added end
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
     {
         var gunUid = GetEntity(ev.Gun);
 
-        var user = args.SenderSession.AttachedEntity;
-
-        if (user == null)
+        if (args.SenderSession.AttachedEntity == null ||
+            !TryComp<GunComponent>(gunUid, out var gun) ||
+            !TryGetGun(args.SenderSession.AttachedEntity.Value, out _, out var userGun))
+        {
             return;
+        }
 
-        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
-            user = mechPilot.Mech;
+        // Sunrise added start - keep dual-wield shot counters in sync
+        StopDualWieldShooting(args.SenderSession.AttachedEntity);
+        // Sunrise added end
 
-        if (!TryGetGun(user.Value, out var ent, out var gun))
-            return;
-
-        if (ent != gunUid)
+        if (userGun != gun)
             return;
 
         StopShooting(gunUid, gun);
@@ -225,32 +192,37 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         return true;
     }
-    //🌟Starlight🌟
-    public bool IsChamberClosed(EntityUid gunEntity)
-        => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
-
-    // 🌟Starlight🌟
-    public void DelayFire(Entity<GunComponent?> entity, TimeSpan delay)
-    {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
-            return;
-
-        entity.Comp.NextFire = Timing.CurTime + delay;
-    }
 
     public bool TryGetGun(EntityUid entity, out EntityUid gunEntity, [NotNullWhen(true)] out GunComponent? gunComp)
     {
         gunEntity = default;
         gunComp = null;
 
-        if (TryComp<MechComponent>(entity, out var mech)
-            && mech.CurrentSelectedEquipment.HasValue
-            && TryComp<GunComponent>(mech.CurrentSelectedEquipment.Value, out var mechGun))
+        // Sunrise edit start - support mech pilots firing mounted mech weapons
+        if (TryComp<MechPilotComponent>(entity, out var pilot) &&
+            TryComp<MechComponent>(pilot.Mech, out var mech) &&
+            mech.CurrentSelectedEquipment is { } equipment &&
+            TryComp<GunComponent>(equipment, out var mechGun))
         {
-            gunEntity = mech.CurrentSelectedEquipment.Value;
+            gunEntity = equipment;
             gunComp = mechGun;
             return true;
         }
+        // Sunrise edit end
+
+        // Sunrise edit start - dual-wield alternating gun selection via queue
+        if (TryComp<DualWieldComponent>(entity, out var dualWield))
+        {
+            if (TryGetDualWieldGun(entity, dualWield, out gunEntity, out gunComp))
+            {
+                if (gunComp != null)
+                    return true;
+            }
+
+            // Queue is empty – dual-wield is no longer valid.
+            RemComp<DualWieldComponent>(entity);
+        }
+        // Sunrise edit end
 
         if (_hands.GetActiveItem(entity) is { } held &&
             TryComp(held, out GunComponent? gun))
@@ -278,14 +250,8 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         gun.ShotCounter = 0;
         gun.ShootCoordinates = null;
-        gun.Targets.Clear();
+        gun.Target = null;
         DirtyField(uid, gun, nameof(GunComponent.ShotCounter));
-    }
-
-    public void SetTarget(GunComponent gun, EntityUid target)
-    {
-        gun.Targets.Clear();
-        gun.Targets.Add(target);
     }
 
     /// <summary>
@@ -294,10 +260,9 @@ public abstract partial class SharedGunSystem : EntitySystem
     public bool AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, EntityCoordinates toCoordinates, EntityUid? target = null)
     {
         gun.ShootCoordinates = toCoordinates;
+        gun.Target = target;
         var result = AttemptShoot(user, gunUid, gun);
         gun.ShotCounter = 0;
-        if (target.HasValue)
-            gun.Targets = new HashSet<EntityUid>{target.Value};
         DirtyField(gunUid, gun, nameof(GunComponent.ShotCounter));
         return result;
     }
@@ -362,11 +327,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shots = 0;
         var lastFire = gun.NextFire;
 
-        Log.Debug($"Nextfire={gun.NextFire} curTime={curTime}");
-
         while (gun.NextFire <= curTime)
         {
-            Log.Debug("Shots++");
             gun.NextFire += fireRate;
             shots++;
         }
@@ -396,8 +358,6 @@ public abstract partial class SharedGunSystem : EntitySystem
             shots = Math.Min(shots, gun.ShotsPerBurstModified - gun.ShotCounter);
         }
 
-        Log.Debug($"Shots fired: {shots}");
-
         var attemptEv = new AttemptShootEvent(user, null);
         RaiseLocalEvent(gunUid, ref attemptEv);
 
@@ -413,7 +373,13 @@ public abstract partial class SharedGunSystem : EntitySystem
             return false;
         }
 
+        // Sunrise edit start - use gun coordinates for mechs to prevent firing from center/hitting lying objects
         var fromCoordinates = Transform(user).Coordinates;
+        if (HasComp<MechPilotComponent>(user) || HasComp<MechComponent>(user))
+        {
+            fromCoordinates = Transform(gunUid).Coordinates;
+        }
+        // Sunrise edit end
         // Remove ammo
         var ev = new TakeAmmoEvent(shots, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, user);
 
@@ -455,9 +421,6 @@ public abstract partial class SharedGunSystem : EntitySystem
 
             return false;
         }
-
-        var nonEmptyGunShotEvent = new OnNonEmptyGunShotEvent(user, ev.Ammo);
-        RaiseLocalEvent(gunUid, ref nonEmptyGunShotEvent);
 
         // Handle burstfire
         if (gun.SelectedMode == SelectiveFire.Burst)
@@ -531,12 +494,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (shooter != null)
             Projectiles.SetShooter(uid, projectile, shooter.Value);
 
-        // Sunrise-Start
-        var ev = new ProjectileShotEvent();
-        RaiseLocalEvent(uid, ref ev);
-        // Sunrise-End
-
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
+
+        // Sunrise-Start allow shot projectiles to start trigger timers.
+        var shotEvent = new ProjectileShotEvent();
+        RaiseLocalEvent(uid, ref shotEvent);
+        // Sunrise-End
     }
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);
@@ -562,15 +525,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         else
             TagSystem.RemoveTag(uid, TrashTag);
     }
-    // 🌟Starlight🌟
-    protected void SetCartridgeSpent(EntityUid uid, HitScanCartridgeAmmoComponent cartridge, bool spent)
-    {
-        if (cartridge.Spent != spent)
-            DirtyField(uid, cartridge, nameof(HitScanCartridgeAmmoComponent.Spent));
-
-        cartridge.Spent = spent;
-        Appearance.SetData(uid, AmmoVisuals.Spent, spent);
-    }
 
     /// <summary>
     /// Drops a single cartridge / shell
@@ -583,6 +537,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         // TODO: Sound limit version.
         var offsetPos = Random.NextVector2(EjectOffset);
         var xform = Transform(entity);
+
+        // Sunrise edit start - detach casing from container / mech chassis
+        TransformSystem.AttachToGridOrMap(entity, xform);
+        // Sunrise edit end
 
         var coordinates = xform.Coordinates;
         coordinates = coordinates.Offset(offsetPos);
@@ -605,11 +563,11 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     protected IShootable EnsureShootable(EntityUid uid)
     {
-        if (TryComp<HitScanCartridgeAmmoComponent>(uid, out var hitscanCartridge))
-            return hitscanCartridge;
-
         if (TryComp<CartridgeAmmoComponent>(uid, out var cartridge))
             return cartridge;
+
+        if (TryComp<HitscanAmmoComponent>(uid, out var hitscanAmmo))
+            return hitscanAmmo;
 
         return EnsureComp<AmmoComponent>(uid);
     }
@@ -733,29 +691,9 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Serializable, NetSerializable]
     public sealed class HitscanEvent : EntityEventArgs
     {
-        // Starlight - comment out the upstream Sprites list in favor of tracking the hitscan and its traces
-        // public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier Sprite, float Distance)> Sprites = new();
-        // Starilght start - we add the traces block below, and use that instead of the sprite list above.
-        public required List<HitscanTrace> Traces;
-
-        // The following set of properties are copied from the HitscanBasicVisualsComponent
-        public SpriteSpecifier? MuzzleFlash;
-        public SpriteSpecifier? TravelFlash;
-        public SpriteSpecifier? ImpactFlash;
-        public ExtendedSpriteSpecifier? Bullet;
-        public required float Speed;
-    }
-    [Serializable, NetSerializable]
-    public struct Effect
-    {
-        public Angle Angle;
-        public float Distance;
-
-        public NetCoordinates? MuzzleCoordinates;
-        public NetCoordinates? TravelCoordinates;
-        public NetCoordinates ImpactCoordinates;
-        public NetEntity? ImpactEnt;
-
+        // Sunrise edit start - pass custom color and scale for hitscans
+        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier Sprite, float Distance, Color? Color, Vector2? Scale)> Sprites = new();
+        // Sunrise edit end
     }
 
     /// <summary>
@@ -777,6 +715,26 @@ public abstract partial class SharedGunSystem : EntitySystem
         RaiseLocalEvent(uid, ref ammoEv);
         return ammoEv.Capacity;
     }
+
+    // Sunrise added start
+    private void HandleCockGun(Robust.Shared.Player.ICommonSession? session)
+    {
+        if (session?.AttachedEntity is not { } user)
+            return;
+
+        if (_hands.GetActiveItem(user) is not { } gunUid)
+            return;
+
+        if (TryComp<ChamberMagazineAmmoProviderComponent>(gunUid, out var chamber))
+        {
+            UseChambered(gunUid, chamber, user);
+        }
+        else if (TryComp<BallisticAmmoProviderComponent>(gunUid, out var ballistic))
+        {
+            ManualCycle((gunUid, ballistic), TransformSystem.GetMapCoordinates(gunUid), user);
+        }
+    }
+    // Sunrise added end
 
     public override void Update(float frameTime)
     {
@@ -803,10 +761,6 @@ public record struct AttemptShootEvent(EntityUid User, string? Message, bool Can
 /// <param name="User">The user that fired this gun.</param>
 [ByRefEvent]
 public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
-
-[ByRefEvent]
-public record struct OnNonEmptyGunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
-
 
 /// <summary>
 /// Raised on an entity after firing a gun to see if any components or systems would allow this entity to be pushed

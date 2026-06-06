@@ -717,7 +717,7 @@
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   components:
   - type: TTS
-    voice: TfSniper
+    voice: TfDemoman
   - type: Loadout
     prototypes:
     - MobSovietGearRangedAltT1
@@ -820,6 +820,8 @@
       state: equipped-HAND
     - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
       state: wielded-inhand-right
+  - type: TTS
+    voice: Anduin
 
 #region Tier 2
 - type: entity
@@ -2159,21 +2161,5 @@
       tableId: SovietHeavyMechanizedSquadTable
     deleteSpawnerAfterSpawn: true
 
-# Backward-compat aliases for old Tier 1 IDs used by procedural spawners/maps.
-- type: entity
-  parent: MobSovietT1Knife
-  id: MobSovietKnife
-
-- type: entity
-  parent: MobSovietT1Pistol
-  id: MobSovietPistol
-
-- type: entity
-  parent: MobSovietT1Mosin
-  id: MobSovietMosin
-
-- type: entity
-  parent: MobSovietT1MosinAlt
-  id: MobSovietMosinAlt
 
 

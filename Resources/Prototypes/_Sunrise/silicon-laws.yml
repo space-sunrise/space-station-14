@@ -1,3 +1,34 @@
+# Crewsimov for Borg
+- type: siliconLaw
+  id: CrewsimovStationAi0
+  order: 1
+  lawString: law-crewsimov-station-ai-0
+
+- type: siliconLaw
+  id: CrewsimovAiAssigned2
+  order: 2
+  lawString: law-crewsimov-1
+
+- type: siliconLaw
+  id: CrewsimovAiAssigned3
+  order: 3
+  lawString: law-crewsimov-2
+
+- type: siliconLaw
+  id: CrewsimovAiAssigned4
+  order: 4
+  lawString: law-crewsimov-3
+
+- type: siliconLawset
+  id: CrewsimovAiAssigned
+  name: law-crewsimov-name
+  laws:
+  - CrewsimovStationAi0
+  - CrewsimovAiAssigned2
+  - CrewsimovAiAssigned3
+  - CrewsimovAiAssigned4
+  obeysTo: laws-owner-crew
+
 # ERT laws (not ert directives)
 - type: siliconLawset
   id: ERTStatic
@@ -118,3 +149,34 @@
   - ERTDirective4
   - ERTDirective5
   obeysTo: laws-owner-centcomm
+
+# Druid laws
+- type: siliconLaw
+  id: Druid1
+  order: 1
+  lawString: law-druid-1
+
+- type: siliconLaw
+  id: Druid2
+  order: 2
+  lawString: law-druid-2
+
+- type: siliconLaw
+  id: Druid3
+  order: 3
+  lawString: law-druid-3
+
+- type: siliconLaw
+  id: Druid4
+  order: 4
+  lawString: law-druid-4
+
+- type: siliconLawset
+  id: DruidLawset
+  name: law-druid-name
+  laws:
+  - Druid1
+  - Druid2
+  - Druid3
+  - Druid4
+  obeysTo: laws-owner-crew

@@ -89,6 +89,11 @@
         - state: inhand-right-fill-1
           map: [ "enum.SolutionContainerLayers.Fill" ]
           visible: false
+    - type: SolutionContainerVisuals
+      maxFillLevels: 6
+      fillBaseName: jug
+      inHandsMaxFillLevels: 5
+      inHandsFillBaseName: -fill-
     - type: StaticPrice
       price: 30 # Consistent with BaseBeakerMetallic
     - type: Destructible # Hacky - takes damage, but shouldn't be destructible
@@ -126,3 +131,23 @@
     sprite: _Sunrise/Objects/Specific/Chemistry/vial_bluespace.rsi
   - type: StaticPrice
     price: 100
+
+- type: entity
+  id: MiniSyringeRSMedical
+  parent: MiniSyringe
+  name: toxic mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Ipecac
+          Quantity: 3
+        - ReagentId: Licoxide
+          Quantity: 1
+        - ReagentId: Tricordrazine
+          Quantity: 1
+  - type: TimedDespawn
+    lifetime: 30
