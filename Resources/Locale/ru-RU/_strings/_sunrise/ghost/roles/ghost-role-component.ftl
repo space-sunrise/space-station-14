@@ -52,3 +52,7 @@ ghost-role-information-sentient-carprainbow-name = Разумный радужн
 ghost-role-information-sentient-carpshark-name = Разумная карпоакула
 sunrise-ghost-role-justice-helmet-name = Носитель шлема эволюции
 sunrise-ghost-role-justice-helmet-description = Похоже шлем насильно ввел вам результат эволюции человечества. Разберитесь, что делать дальше.
+ghost-role-information-one-star-unit-dungeon-name = Юнит «Одинокая звезда»
+ghost-role-information-guardian-unit-dungeon-name = Юнит-страж
+ghost-role-information-terminator-unit-dungeon-name = Юнит-экстерминатор
+ghost-role-information-one-star-unit-dungeon-description = [11201010111002] Работайте с другими автоматонами, защищайте комплекс и уничтожайте всех нарушителей. [1110220001010002220]

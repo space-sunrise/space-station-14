@@ -39,3 +39,49 @@
   - SpaceTrafficControlEventScheduler
   - SubGamemodesRule
   - BasicRoundstartVariation
+
+- type: gamePreset
+  id: StorytellerClassic
+  alias:
+  - storyteller
+  - story
+  - director
+  name: storyteller-preset-title
+  showInVote: true
+  hide: false
+  description: storyteller-preset-description
+  rules:
+  - StorytellerClassicRule
+  - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
+
+- type: gamePreset
+  id: StorytellerCalm
+  alias:
+  - storyteller-calm
+  - story-calm
+  - director-calm
+  name: storyteller-preset-calm-title
+  showInVote: true
+  hide: false
+  description: storyteller-preset-calm-description
+  rules:
+  - StorytellerCalmRule
+  - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
+
+- type: gamePreset
+  id: StorytellerInsane
+  alias:
+  - storyteller-insane
+  - story-insane
+  - director-insane
+  name: storyteller-preset-insane-title
+  showInVote: true
+  hide: false
+  description: storyteller-preset-insane-description
+  rules:
+  - StorytellerInsaneRule
+  - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
+

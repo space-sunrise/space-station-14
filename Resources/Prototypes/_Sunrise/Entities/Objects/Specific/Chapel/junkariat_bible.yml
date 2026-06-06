@@ -1,0 +1,19 @@
+- type: entity
+  id: BibleJunkariat
+  parent: Bible
+  name: junkariat bible
+  description: The history of those who worship junk, recorded on a cassette tape. Somewhat sticky.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Chapel/junkariat_bible.rsi
+    state: icon
+  - type: Item
+    size: Small
+    heldPrefix: null
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: shaded
+      right:
+      - state: inhand-right
+        shader: shaded

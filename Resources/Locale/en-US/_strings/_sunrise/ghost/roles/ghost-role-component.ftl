@@ -52,3 +52,7 @@ ghost-role-information-sentient-carprainbow-name = Sentient Rainbow Carp
 ghost-role-information-sentient-carpshark-name = Sentient Carpshark
 sunrise-ghost-role-justice-helmet-name = Evolutionator Host
 sunrise-ghost-role-justice-helmet-description = You woke up in a body wearing an evolutionator helmet. Figure out what to do next.
+ghost-role-information-one-star-unit-dungeon-name = One Star Unit
+ghost-role-information-guardian-unit-dungeon-name = Guardian Unit
+ghost-role-information-terminator-unit-dungeon-name = Exterminator Unit
+ghost-role-information-one-star-unit-dungeon-description = [11201010111002] Work with other automatons to defend the installation and destroy all intruders. [1110220001010002220]

@@ -122,6 +122,7 @@
     tags:
     - Metal
     - ModularBarrel
+    - Pipe # Sunrise-Edit
   - type: Construction
     graph: ModularBarrelGraph
     node: shotgun

@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+using System;
+using System.Numerics;
 using Content.Shared.Chemistry.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -140,10 +141,10 @@ public sealed partial class FootprintEmitterComponent : Component
     public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolumeFoot = 0.5f;
+    public float TransferVolumeFoot = 2.5f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolumeDragMark = 1.0f;
+    public float TransferVolumeDragMark = 5.0f;
 
     /// <summary>
     /// Offset from entity center for footprint placement
@@ -160,6 +161,12 @@ public sealed partial class FootprintEmitterComponent : Component
     /// Position of last footprint
     /// </summary>
     public Vector2 LastStepPosition = Vector2.Zero;
+
+    /// <summary>
+    /// Timestamp (game time) until which the emitter cannot absorb fluid from puddles.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan PuddleAbsorptionCooldownUntil = TimeSpan.Zero;
 }
 
 /// <summary>
