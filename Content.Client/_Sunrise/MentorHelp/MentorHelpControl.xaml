@@ -99,7 +99,7 @@
                                     StyleClasses="ButtonBig" />
                             <Control HorizontalExpand="True" />
                             <Button Name="TeleportButton" Access="Public" Text="{Loc 'mentor-help-teleport'}"
-                                    StyleClasses="ButtonBig" Visible="False" />
+                                    StyleClasses="ButtonBig" Visible="False"  />
                         </BoxContainer>
                     </BoxContainer>
                 </BoxContainer>
