@@ -16,7 +16,7 @@ public sealed partial class GunSystem
         if (ent.Comp.SelectedPrefix is not null || ent.Comp.AvailablePrefixes.Count == 0)
             return;
 
-        ent.Comp.SelectedPrefix = _rand.Pick(ent.Comp.AvailablePrefixes);
+        ent.Comp.SelectedPrefix = Random.Pick(ent.Comp.AvailablePrefixes);
         Dirty(ent);
     }
 }
