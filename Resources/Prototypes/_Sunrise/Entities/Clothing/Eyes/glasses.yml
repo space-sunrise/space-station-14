@@ -110,8 +110,50 @@
       - type: NightVision
         effect: EffectNightVisionSyndie
 
+# region thermals
 - type: entity
-  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSyndicateContraband]
+  parent: [ClothingEyesBase, BaseToggleClothing, PowerCellSlotSmallItem] # Sunrise-edit
+  id: SunriseClothingEyesGlassesThermal
+  name: optical thermal scanner
+  description: Thermals in the shape of glasses.
+  suffix: true working thermal glasses
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+  - type: GroupExamine
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ToggleClothing
+    action: ActionToggleThermalVision
+    disableOnUnequip: true
+    targetSlot: eyes
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: ThermalVision
+  - type: PowerCellDraw
+    drawRate: 15
+    useCharge: 15
+  - type: ItemToggle
+    predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
+
+- type: entity
+  parent: [SunriseClothingEyesGlassesThermal, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesGlassesThermalSyndie
   name: optical thermal scanner
   suffix: syndicate
@@ -129,30 +171,22 @@
         startingItem: PowerCellSyndicate
 
 - type: entity
-  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSecurityCommandContraband]
+  parent: [SunriseClothingEyesGlassesThermal, ShowSecurityIcons, BaseSecurityCommandContraband]
   id: ClothingEyesGlassesThermalSec
   name: optical thermal scanner
   suffix: security
   description: Thermals in the shape of glasses. for better exterminating enemies of NanoTrasen.
   components:
   - type: Sprite
-    sprite: Clothing/Eyes/Glasses/thermal.rsi
+    sprite: _Sunrise/Clothing/Eyes/Glasses/military_thermal.rsi
   - type: Clothing
-    sprite: Clothing/Eyes/Glasses/thermal.rsi
+    sprite: _Sunrise/Clothing/Eyes/Glasses/military_thermal.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+      - state: equipped-EYES-unshaded
+        shader: unshaded
   - type: ShowMindShieldIcons
-
-- type: entity
-  parent: ClothingEyesBase
-  id: ClothingEyesStuttering
-  name: stuttering glasses
-  description: Glasses that give the owner knowledge...or stuttering
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
-  - type: AddAccentClothing
-    accent: StutteringAccent
 
 - type: entity
   parent: ClothingEyesGlassesThermalSyndie
@@ -227,3 +261,17 @@
     soundFailToActivate:
       path: /Audio/Machines/button.ogg
   - type: ToggleCellDraw
+# region thermals end
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesStuttering
+  name: stuttering glasses
+  description: Glasses that give the owner knowledge...or stuttering
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/stuttering_glasses.rsi
+  - type: AddAccentClothing
+    accent: StutteringAccent

@@ -1,4 +1,4 @@
-# All consoles
+﻿# All consoles
 - type: navMapBlip
   id: NavMapConsole
   blinks: true

@@ -1,55 +1,55 @@
 ---
 name: ss14-audio-system-api
-description: Дает практический каталог API AudioSystem в Space Station 14: когда использовать Play/Set/Stop/Resolve методы, как работать с predicted-аудио и фильтрами, и как применять OpenAL EFX (auxiliary/effect/preset) без типичных ошибок.
+description: Gives a practical catalog of the AudioSystem API in Space Station 14: when to use the Play/Set/Stop/Resolve methods, how to work with predicted audio and filters, and how to use OpenAL EFX (auxiliary/effect/preset) without common mistakes.
 ---
 
-# AudioSystem: API-практика
+# AudioSystem: API practice
 
-Используй этот skill, когда нужно быстро выбрать корректный метод AudioSystem и применить его без регрессий 🙂
-Ориентир свежести: `git blame` с cutoff `2024-02-19`.
+Use this skill when you need to quickly select the correct AudioSystem method and apply it without regressions :)
+Freshness reference: `git blame` with cutoff `2024-02-19`.
 
-## Что загружать
+## What to download
 
-1. `references/fresh-pattern-catalog.md` — API-реестр с рекомендациями.
-2. `references/rejected-snippets.md` — legacy/TODO/опасные сценарии.
-3. `references/docs-context.md` — как безопасно использовать docs.
+1. `references/fresh-pattern-catalog.md` - API registry with recommendations.
+2. `references/rejected-snippets.md` - legacy/TODO/dangerous scenarios.
+3. `references/docs-context.md` - how to use docs safely.
 
-## Быстрый выбор API
+## Quick API selection
 
-1. Нужен звук «для всех вокруг источника»: `PlayPvs(sound, uid/coords, params)`.
-2. Нужен звук «для конкретного получателя»: `PlayEntity/PlayGlobal/PlayStatic(..., recipient, ...)`.
-3. Нужен predicted UX без дублей: `PlayPredicted(sound, source/coords, user, params)`.
-4. Нужен runtime-контроль потока: `SetState`, `SetPlaybackPosition`, `Stop`, `IsPlaying`.
-5. Нужен map/grid special sound: `SetMapAudio`, `SetGridAudio`.
-6. Нужен эффект реверба/фильтра: `CreateEffect + CreateAuxiliary + SetEffectPreset + SetEffect + SetAuxiliary`.
-7. Нужна настройка громкости/тона/дальности: `AudioParams.With*` и/или `SetVolume/SetGain`.
+1. We need a sound “for everyone around the source”: `PlayPvs(sound, uid/coords, params)`.
+2. We need a sound “for a specific recipient”: `PlayEntity/PlayGlobal/PlayStatic(..., recipient, ...)`.
+3. We need predicted UX without duplicates: `PlayPredicted(sound, source/coords, user, params)`.
+4. We need runtime flow control: `SetState`, `SetPlaybackPosition`, `Stop`, `IsPlaying`.
+5. You need a map/grid special sound: `SetMapAudio`, `SetGridAudio`.
+6. You need a reverb/filter effect: `CreateEffect + CreateAuxiliary + SetEffectPreset + SetEffect + SetAuxiliary`.
+7. Need volume/tone/range setting: `AudioParams.With*` and/or `SetVolume/SetGain`.
 
-## API по группам
+## API by group
 
-### 1) Resolve и утилиты
+### 1) Resolve and utilities
 
-1. `ResolveSound(SoundSpecifier)` — закрепляет конкретный трек из collection.
-2. `GetAudioPath(ResolvedSoundSpecifier?)` — получает реальный путь.
-3. `GetAudioLength(...)` — длительность для seek/таймеров.
-4. `GetAudioDistance(length)` — учитывает Z-offset.
-5. `GainToVolume/VolumeToGain` — перевод между gain и dB.
+1. `ResolveSound(SoundSpecifier)` - pins a specific track from the collection.
+2. `GetAudioPath(ResolvedSoundSpecifier?)` - gets the real path.
+3. `GetAudioLength(...)` - duration for seek/timers.
+4. `GetAudioDistance(length)` - takes into account Z-offset.
+5. `GainToVolume/VolumeToGain` - translation between gain and dB.
 
-### 2) Playback API (основа)
+### 2) Playback API (basis)
 
-1. `PlayGlobal(...)` — непозиционный звук.
-2. `PlayEntity(...)` — звук следует за entity.
-3. `PlayStatic(...)` — звук в фиксированных координатах.
-4. `PlayPvs(...)` — shorthand для PVS-аудитории.
-5. Все группы имеют overload-ы под:
+1. `PlayGlobal(...)` - non-positional sound.
+2. `PlayEntity(...)` - the sound follows the entity.
+3. `PlayStatic(...)` - sound in fixed coordinates.
+4. `PlayPvs(...)` - shorthand for the PVS audience.
+5. All groups have overloads under:
 `SoundSpecifier`/`ResolvedSoundSpecifier`, `Filter`, `ICommonSession`, `EntityUid recipient`.
 
 ### 3) Predicted API
 
 1. `PlayPredicted(sound, source, user, params)`.
 2. `PlayPredicted(sound, coords, user, params)`.
-3. `PlayLocal(...)` — локальный predicted-alias.
+3. `PlayLocal(...)` - local predicted-alias.
 
-### 4) Контроль уже играющего потока
+### 4) Control of an already playing thread
 
 1. `SetState(stream, Playing/Paused/Stopped)`.
 2. `SetPlaybackPosition(stream, seconds)`.
@@ -57,90 +57,90 @@ description: Дает практический каталог API AudioSystem в
 4. `Stop(stream)`.
 5. `IsPlaying(stream)`.
 
-### 5) Spatial-режимы карты/сетки
+### 5) Spatial map/grid modes
 
-1. `SetMapAudio(audioEntity)` — map-wide звучание.
-2. `SetGridAudio(audioEntity)` — grid-центр, tuned distance, `NoOcclusion`.
+1. `SetMapAudio(audioEntity)` - map-wide sound.
+2. `SetGridAudio(audioEntity)` — grid center, tuned distance, `NoOcclusion`.
 
 ### 6) Stream API (client runtime)
 
 1. `PlayGlobal(AudioStream, ...)`.
 2. `PlayEntity(AudioStream, ...)`.
 3. `PlayStatic(AudioStream, ...)`.
-4. `LoadStream<T>(entity, stream)` — загрузка source из stream-type.
+4. `LoadStream<T>(entity, stream)` — loading source from stream-type.
 
-### 7) API эффектов OpenAL (EFX)
+### 7) OpenAL Effects API (EFX)
 
-1. `CreateEffect()` — создает effect entity.
-2. `CreateAuxiliary()` — создает auxiliary slot entity.
-3. `SetEffectPreset(effect, presetProtoOrReverb)` — применяет набор параметров.
-4. `SetEffect(aux, effect)` — цепляет effect к slot.
-5. `SetAuxiliary(audio, aux)` — цепляет slot к источнику.
+1. `CreateEffect()` - creates an effect entity.
+2. `CreateAuxiliary()` - creates an auxiliary slot entity.
+3. `SetEffectPreset(effect, presetProtoOrReverb)` - applies a set of parameters.
+4. `SetEffect(aux, effect)` - attaches effect to slot.
+5. `SetAuxiliary(audio, aux)` - connects the slot to the source.
 6. Shortcut: `SetEffect(audioUid, audioComp, presetId)`.
 
-## Паттерны
+## Patterns
 
-1. Для интеракций игрока всегда передавай `user` и используй `PlayPredicted`.
-2. Для long music/stateful SFX храни stream `EntityUid?` и управляй через `SetState/Stop`.
-3. Для шатающихся/больших объектов (шаттлы, платформы) делай `PlayPvs -> SetGridAudio`.
-4. Для map-событий (таймеры, глобальные фазы) делай `PlayPvs -> SetMapAudio`.
-5. Для rich-acoustics сначала собери EFX-цепочку, потом подключай к активному stream.
-6. Для разовых звуков с вариацией используй `AudioParams.WithVariation(...)`.
-7. Для «тише/громче в рантайме» предпочитай `SetVolume`; для линейных коэффициентов — `SetGain`.
+1. For player interactions, always pass `user` and use `PlayPredicted`.
+2. For long music/stateful SFX, store stream `EntityUid?` and control via `SetState/Stop`.
+3. For wobbly/large objects (shuttles, platforms) do `PlayPvs -> SetGridAudio`.
+4. For map events (timers, global phases) do `PlayPvs -> SetMapAudio`.
+5. For rich-acoustics, first assemble an EFX chain, then connect it to the active stream.
+6. For one-off sounds with variation, use `AudioParams.WithVariation(...)`.
+7. For “quieter/louder in runtime” prefer `SetVolume`; for linear coefficients - `SetGain`.
 
-## Анти-паттерны
+## Anti-patterns
 
-1. Дергать `PlayPvs` в predicted-коде там, где нужен `PlayPredicted`.
-2. Использовать старые TODO-зоны как шаблон нового API.
-3. Полагаться на server `LoadStream<T>` как на рабочий контракт.
-4. Навешивать эффекты до готовности реального source без учета жизненного цикла.
-5. Миксовать map/grid semantics вручную вместо `SetMapAudio/SetGridAudio`.
-6. Игнорировать состояние `AudioState` и пытаться «лечить» поток только удалением сущности.
+1. Pull `PlayPvs` in the predicted code where `PlayPredicted` is needed.
+2. Use old TODO zones as a template for the new API.
+3. Rely on server `LoadStream<T>` as a work contract.
+4. Add effects until the real source is ready, without taking into account the life cycle.
+5. Mix map/grid semantics manually instead of `SetMapAudio/SetGridAudio`.
+6. Ignore the `AudioState` state and try to “cure” the flow only by deleting the entity.
 
-## OpenAL эффекты: практический минимум
+## OpenAL effects: practical minimum
 
-1. Reverb параметры живут в `AudioEffectComponent` (`Density`, `Decay*`, `Echo*`, `Modulation*`, `HF/LF*`).
-2. `AudioAuxiliaryComponent` держит link на effect.
-3. `AudioComponent.Auxiliary` подключает slot к конкретному источнику.
-4. Окклюзия в EFX-режиме использует lowpass; без EFX деградирует в gain-fallback.
+1. Reverb parameters live in `AudioEffectComponent` (`Density`, `Decay*`, `Echo*`, `Modulation*`, `HF/LF*`).
+2. `AudioAuxiliaryComponent` holds the link to the effect.
+3. `AudioComponent.Auxiliary` connects slot to a specific source.
+4. Occlusion in EFX mode uses lowpass; without EFX it degrades into gain-fallback.
 
-## Примеры из кода
+## Code examples
 
-### 1) Predicted звук от интеракции
+### 1) Predicted sound from interaction
 
 ```csharp
-// Пользователь уже слышит локально; сервер исключит его из повторного события.
+// The user already hears locally; the server will exclude it from the repeat event.
 _audio.PlayPredicted(ent.Comp.UseSound, ent.Owner, args.User, AudioParams.Default.WithVariation(0.25f));
 ```
 
-### 2) Станционная музыка/ивент только нужной аудитории
+### 2) Station music/event only for the right audience
 
 ```csharp
-// Сервер сам формирует фильтр станции + PVS и рассылает network event.
+// The server itself creates a station filter + PVS and sends out a network event.
 var spec = _audio.ResolveSound(sound);
 _globalSound.PlayGlobalOnStation(sourceUid, spec, AudioParams.Default.WithVolume(-8f));
 ```
 
-### 3) Ping-aware seek для синхронного воспроизведения
+### 3) Ping-aware seek for synchronous playback
 
 ```csharp
-// Компенсация сетевой задержки при перемотке текущего трека.
+// Compensation for network delay when rewinding the current track.
 var offset = session.Channel.Ping * 1.5f / 1000f;
 Audio.SetPlaybackPosition(streamUid, requestedTime + offset);
 ```
 
-### 4) Grid-аудио для FTL-фазы
+### 4) Grid audio for FTL phase
 
 ```csharp
-// Шаттл-саунд привязываем к grid-семантике, а не к локальной точке.
+// We tie the shuttle sound to grid semantics, and not to a local point.
 var audio = _audio.PlayPvs(startupSound, shuttleUid);
 _audio.SetGridAudio(audio);
 ```
 
-### 5) Полная EFX-цепочка
+### 5) Complete EFX chain
 
 ```csharp
-// Создали effect + slot, применили preset и подключили к конкретному аудио.
+// We created an effect + slot, applied a preset and connected it to a specific audio.
 var effect = _audio.CreateEffect();
 var aux = _audio.CreateAuxiliary();
 
@@ -149,20 +149,20 @@ _audio.SetEffect(aux.Entity, aux.Component, effect.Entity);
 _audio.SetAuxiliary(soundUid, soundComp, aux.Entity);
 ```
 
-### 6) Управление состоянием потока
+### 6) Thread state management
 
 ```csharp
-// Пауза/возобновление/стоп — через state API.
+// Pause/resume/stop - via state API.
 Audio.SetState(streamUid, AudioState.Paused);
 Audio.SetState(streamUid, AudioState.Playing);
 Audio.SetState(streamUid, AudioState.Stopped);
 ```
 
-## Правило применения
+## Rule of application
 
-1. По умолчанию выбирай `Fresh-Use` методы из reference-каталога.
-2. `Legacy-Compat` используй только при явной необходимости и с тестами.
-3. `Risk/TODO` не используй как опорную точку для нового API-дизайна.
-4. Любой API-рефакторинг аудио проверяй на prediction, PVS и EFX fallback одновременно.
+1. By default, select `Fresh-Use` methods from the reference directory.
+2. Use `Legacy-Compat` only when clearly necessary and with tests.
+3. Do not use `Risk/TODO` as a reference point for a new API design.
+4. Check any audio API refactoring for prediction, PVS and EFX fallback at the same time.
 
-Держи API слой предсказуемым: правильный overload и правильный recipient важнее, чем «короткий» вызов 😅
+Keep the API layer predictable: the right overload and the right recipient are more important than a “short” call 😅

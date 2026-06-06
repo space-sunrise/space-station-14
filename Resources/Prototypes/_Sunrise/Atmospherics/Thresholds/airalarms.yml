@@ -1,0 +1,6 @@
+- type: alarmThreshold
+  id: unwanted
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.0025
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5

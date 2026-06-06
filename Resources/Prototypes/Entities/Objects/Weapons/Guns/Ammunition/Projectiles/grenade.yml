@@ -15,7 +15,7 @@
   - type: StaminaDamageOnCollide
     damage: 55
   - type: TimedDespawn
-    lifetime: 0.25
+    lifetime: 0.10 # Sunrise-Edit
 
 - type: entity
   id: PelletClusterLethal
@@ -32,7 +32,7 @@
       types:
         Piercing: 45
   - type: TimedDespawn
-    lifetime: 0.25
+    lifetime: 0.10 # Sunrise-Edit
 
 - type: entity
   id: PelletClusterIncendiary
@@ -53,7 +53,7 @@
     fireStacks: 1
     count: 10
   - type: TimedDespawn
-    lifetime: 0.25
+    lifetime: 0.10 # Sunrise-Edit
 
 - type: entity
   id: PelletClusterLessLethal
@@ -70,4 +70,4 @@
       types:
         Piercing: 5
   - type: TimedDespawn
-    lifetime: 0.25
+    lifetime: 0.15 # Sunrise-Edit

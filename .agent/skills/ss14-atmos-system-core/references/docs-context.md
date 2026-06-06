@@ -1,33 +1,33 @@
 # Docs Context (Atmos Core)
 
-## Роль документации
+## The role of documentation
 
-1. Используй docs как дизайн-контекст и терминологию.
-2. Проверяй каждое правило по текущему коду перед переносом в практику.
-3. Если docs противоречат коду, выбирай код.
+1. Use docs as design context and terminology.
+2. Check each rule against the current code before transferring it into practice.
+3. If the docs contradict the code, choose the code.
 
-## Актуальные страницы docs
+## Current docs pages
 
-1. `Atmospherics` (обзор департамента) — обновлялась `2026-02-01`.
-2. `Atmospherics Design Choices` — обновлялась `2026-02-04`.
-3. `PR Guidelines` для атмоса — обновлялась `2026-01-19`.
-4. Proposals (`atmos-rework`, `station-air-recirculation`, `inverse-pneumatic-valves`) — полезны как roadmap/идеи, не как факт текущей реализации.
+1. `Atmospherics` (department overview) - `2026-02-01` was updated.
+2. `Atmospherics Design Choices` — `2026-02-04` was updated.
+3. `PR Guidelines` for atmosphere - `2026-01-19` was updated.
+4. Proposals (`atmos-rework`, `station-air-recirculation`, `inverse-pneumatic-valves`) - useful as roadmaps/ideas, not as a fact of the current implementation.
 
-## Что важно для архитектуры
+## What is important for architecture
 
-1. Явно декларируется приоритет gameplay и читаемости над «идеальной физикой».
-2. В design choices описан риск зависимости от implementation details (особенно порядок устройств).
-3. В guidelines зафиксирован обязательный подход: документировать подсистемы, избегать god-method, поддерживать configurability стадий.
-4. В docs подчеркивается необходимость time-budget-aware обработки атмоса.
+1. The priority of gameplay and readability over “ideal physics” is clearly declared.
+2. Design choices describe the risk of depending on implementation details (especially the order of devices).
+3. The guidelines set out a mandatory approach: document subsystems, avoid god-method, support configurability of stages.
+4. The docs emphasize the need for time-budget-aware atmospheric processing.
 
-## Ограничения docs
+## Limitations docs
 
-1. В proposal-документах есть материалы со статусом legacy/roadmap.
-2. Часть идей еще не внедрена или внедрена частично.
-3. Не переноси proposal-механики в rules без подтверждения по свежему коду.
+1. Proposal documents contain materials with legacy/roadmap status.
+2. Some ideas have not yet been implemented or have been partially implemented.
+3. Do not transfer proposal mechanics to the rules without confirmation using the latest code.
 
-## Практика применения
+## Application practice
 
-1. Сначала считай кодовую реализацию этапа.
-2. Затем используй docs только для объяснения «почему так», а не «как именно сейчас работает».
-3. Все спорные места фиксируй в `rejected-snippets.md` до внедрения.
+1. First consider the code implementation of the stage.
+2. Then use docs only to explain “why it is” and not “how exactly it works now”.
+3. Fix all controversial areas in `rejected-snippets.md` before implementation.

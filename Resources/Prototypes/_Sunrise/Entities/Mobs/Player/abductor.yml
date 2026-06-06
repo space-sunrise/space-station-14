@@ -4,6 +4,7 @@
   id: MobAbductor
   components:
   - type: Abductor
+  - type: Interactions
   - type: Tag
     tags:
       - Abductor
@@ -67,7 +68,7 @@
     ears: ClothingHeadsetAltAbductor
     jumpsuit: ClothingUniformJumpsuitAbductor
     gloves: ClothingHandsGlovesCombat
-    shoes: ClothingShoesBootsCombat
+    shoes: ClothingShoesBootsAbductor
     pocket1: AbductorGizmo
     id: AbductorIDCard
 
@@ -78,7 +79,7 @@
     ears: ClothingHeadsetAltAbductor
     jumpsuit: ClothingUniformJumpsuitAbductor
     gloves: ClothingHandsGlovesCombat
-    shoes: ClothingShoesBootsCombat
+    shoes: ClothingShoesBootsAbductor
     pocket1: Silencer
     pocket2: WeaponAlien
     belt: ClothingAbductorBeltFilled

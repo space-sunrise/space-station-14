@@ -1,11 +1,11 @@
 ---
 name: ss14-graphics-overlays
-description: Глубокий практический гайд по overlay-архитектуре SS14: OverlaySpace, lifecycle, связь с шейдерами, ScreenTexture, render targets, stencil-композиция, графические примитивы и оптимизация рендера.
+description: An in-depth practical guide to the SS14 overlay architecture: OverlaySpace, lifecycle, communication with shaders, ScreenTexture, render targets, stencil composition, graphics primitives and render optimization.
 ---
 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-graphics-overlays/SKILL.md.
+../../../.agent/skills/ss14-graphics-overlays/SKILL.md.
 
 Use that file as the entrypoint and follow its source mapping.

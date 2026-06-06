@@ -6,6 +6,7 @@
   - MMI
   # Sunrise-Remove
   #- PositronicBrain
+  - Boris # Sunrise-Add
   - SciFlash
   - CyborgEndoskeleton
 
@@ -39,7 +40,6 @@
   id: BorgModules
   recipes:
   - BorgModuleAdvancedCleaning
-  - BorgModuleAdvancedCombat # Sunrise_edit
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedClowning
   - BorgModuleAdvancedChemical

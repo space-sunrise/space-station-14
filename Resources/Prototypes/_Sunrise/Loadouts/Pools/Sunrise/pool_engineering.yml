@@ -1,0 +1,9 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolEngineering
+  abstract: true
+  roleLoadouts:
+    JobChiefEngineer: SunriseJobChiefEngineer
+    JobTechnicalAssistant: SunriseJobTechnicalAssistant
+    JobStationEngineer: SunriseJobStationEngineer
+    JobAtmosphericTechnician: SunriseJobAtmosphericTechnician
+

@@ -269,3 +269,5 @@ uplink-sunrise-spray-paint-green-name = Spray paint (green)
 uplink-sunrise-spray-paint-orange-name = Spray paint (orange)
 uplink-sunrise-spray-paint-purple-name = Spray paint (purple)
 uplink-sunrise-spray-paint-white-name = Spray paint (white)
+uplink-sunrise-box-arbiter-bundle-name = Arbiter set
+uplink-sunrise-box-redmist-bundle-name = Red Mist set

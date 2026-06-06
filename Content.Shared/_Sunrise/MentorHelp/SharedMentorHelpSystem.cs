@@ -36,7 +36,7 @@ namespace Content.Shared._Sunrise.MentorHelp
     public struct MentorHelpStatistics
     {
         public Guid MentorUserId { get; set; }
-        public int TicketsClaimed { get; set; }
+        public int TicketsClosed { get; set; }
         public int MessagesCount { get; set; }
     }
 
@@ -131,20 +131,20 @@ namespace Content.Shared._Sunrise.MentorHelp
     [Serializable, NetSerializable]
     public sealed class MentorHelpTicketData
     {
-        public int Id { get; set; }
-        public NetUserId PlayerId { get; set; }
-        public string PlayerName { get; set; } = string.Empty;
-        public NetUserId? AssignedToUserId { get; set; }
-        public string? AssignedToName { get; set; }
-        public string Subject { get; set; } = string.Empty;
-        public MentorHelpTicketStatus Status { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime? ClosedAt { get; set; }
-        public NetUserId? ClosedByUserId { get; set; }
-        public string? ClosedByName { get; set; }
-        public int? RoundId { get; set; }
-        public bool HasUnreadMessages { get; set; }
+        public int Id { get; init; }
+        public NetUserId PlayerId { get; init; }
+        public string PlayerName { get; init; } = string.Empty;
+        public NetUserId? AssignedToUserId { get; init; }
+        public string? AssignedToName { get; init; }
+        public string Subject { get; init; } = string.Empty;
+        public MentorHelpTicketStatus Status { get; init; }
+        public DateTime CreatedAt { get; init; }
+        public DateTime UpdatedAt { get; init; }
+        public DateTime? ClosedAt { get; init; }
+        public NetUserId? ClosedByUserId { get; init; }
+        public string? ClosedByName { get; init; }
+        public int? RoundId { get; init; }
+        public bool HasUnreadMessages { get; init; }
     }
 
     /// <summary>
@@ -170,7 +170,7 @@ namespace Content.Shared._Sunrise.MentorHelp
     public sealed class MentorHelpStatisticsData
     {
         public string MentorName { get; set; } = string.Empty;
-        public int TicketsClaimed { get; set; }
+        public int TicketsClosed { get; set; }
         public int MessagesCount { get; set; }
     }
 
@@ -187,9 +187,14 @@ namespace Content.Shared._Sunrise.MentorHelp
     /// Сообщение с результатами статистики по менторам
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed class MentorHelpStatisticsMessage(List<MentorHelpStatisticsData> statistics) : EntityEventArgs
+    public sealed class MentorHelpStatisticsMessage(
+        List<MentorHelpStatisticsData> weekStatistics,
+        List<MentorHelpStatisticsData> monthStatistics,
+        List<MentorHelpStatisticsData> allTimeStatistics) : EntityEventArgs
     {
-        public readonly List<MentorHelpStatisticsData> Statistics = statistics;
+        public readonly List<MentorHelpStatisticsData> WeekStatistics = weekStatistics;
+        public readonly List<MentorHelpStatisticsData> MonthStatistics = monthStatistics;
+        public readonly List<MentorHelpStatisticsData> AllTimeStatistics = allTimeStatistics;
     }
 
     /// <summary>

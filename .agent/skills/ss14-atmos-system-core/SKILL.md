@@ -1,72 +1,72 @@
 ---
 name: ss14-atmos-system-core
-description: Разбирает архитектуру AtmosSystem в Space Station 14 на уровне server/shared/client: цикл обработки, состояние тайлов, инвалидации, связь с DeltaPressure и overlay-синхронизацией. Используй, когда нужно понять как система реально работает, где расширять безопасно, и как не ломать производительность/согласованность атмоса.
+description: Parses the AtmosSystem architecture in Space Station 14 at the server/shared/client level: processing cycle, tile state, invalidations, connection with DeltaPressure and overlay synchronization. Use it when you need to understand how the system actually works, where it is safe to expand, and how not to break the performance/consistency of the atmosphere.
 ---
 
-# AtmosSystem: Архитектура и Цикл
+# AtmosSystem: Architecture and Cycle
 
-Используй этот skill как архитектурный playbook по AtmosSystem 🙂
-Держи фокус на актуальном коде и проверяй свежесть через `git blame` (cutoff: `2024-02-19`).
+Use this skill as an architectural playbook for AtmosSystem :)
+Keep your focus on the current code and check for freshness via `git blame` (cutoff: `2024-02-19`).
 
-## Что загружать в первую очередь
+## What to download first
 
-1. `references/fresh-pattern-catalog.md` — свежие рабочие паттерны ✅
-2. `references/rejected-snippets.md` — старые/проблемные зоны, которые нельзя брать как эталон ⚠️
-3. `references/docs-context.md` — вспомогательные идеи из docs (не источник истины)
+1. `references/fresh-pattern-catalog.md` - fresh working patterns ✅
+2. `references/rejected-snippets.md` - old/problem areas that cannot be taken as a standard ⚠️
+3. `references/docs-context.md` - supporting ideas from docs (not the source of truth)
 
-## Источник правды
+## Source of truth
 
-1. Кодовая база — основной источник истины.
-2. Документация — вторичный слой для терминологии и дизайн-намерений.
-3. Любой участок старше двух лет или с TODO по теме не поднимай в rules/patterns.
+1. The codebase is the primary source of truth.
+2. Documentation is a secondary layer for terminology and design intent.
+3. Do not add any site older than two years or with TODO on the topic in rules/patterns.
 
-## Ментальная модель AtmosSystem
+## Mental model of AtmosSystem
 
-1. Система живет вокруг `GridAtmosphereComponent`: у каждой сетки есть набор `TileAtmosphere`, очереди текущего цикла и processing-state.
-2. Обработка идет стадиями через конечный автомат: `Revalidate -> TileEqualize -> ActiveTiles -> ExcitedGroups -> HighPressureDelta -> DeltaPressure -> Hotspots -> Superconductivity -> PipeNet -> AtmosDevices`.
-3. Каждая стадия обязана уметь паузиться по time-budget и продолжаться в следующем тике.
-4. Любое изменение геометрии/airtight сначала инвалидирует тайл, а реальная переоценка происходит на стадии `Revalidate`.
-5. Получение газа строится по цепочке `grid tile -> map atmosphere -> SpaceGas fallback`.
-6. Визуалы газа отделены от физики газа: физика меняет данные тайла, а overlay получает инвалидированные чанки и синхронизируется сетью.
-7. DeltaPressure — отдельный subsystem внутри цикла: параллельный сбор давлений + отложенное применение урона.
+1. The system lives around `GridAtmosphereComponent`: each grid has a set of `TileAtmosphere`, queues of the current cycle and a processing-state.
+2. Processing occurs in stages through a finite machine: `Revalidate -> TileEqualize -> ActiveTiles -> ExcitedGroups -> HighPressureDelta -> DeltaPressure -> Hotspots -> Superconductivity -> PipeNet -> AtmosDevices`.
+3. Each stage must be able to pause according to the time-budget and continue at the next tick.
+4. Any change in geometry/airtight first invalidates the tile, and the real revaluation occurs at the `Revalidate` stage.
+5. Gas production is based on the chain `grid tile -> map atmosphere -> SpaceGas fallback`.
+6. Gas visuals are separated from gas physics: physics changes tile data, and overlay receives invalid chunks and is synchronized by the network.
+7. DeltaPressure - a separate subsystem within the cycle: parallel pressure collection + delayed application of damage.
 
-## Паттерны
+## Patterns
 
-1. Реализуй новую механику как отдельный этап или как отдельный блок в существующем этапе с явной паузой по таймеру.
-2. После изменения airtight/тайла всегда вызывай инвалидацию тайла, а не пересчитывай все вручную.
-3. Для чтения блокировок воздуха в gameplay-коде предпочитай cached-вариант проверки.
-4. Для map-level атмосферы используй immutable смесь и централизованный refresh map-atmos тайлов.
-5. Для сущностей с баротравмой используй lifecycle регистрации в DeltaPressure-списках (init/shutdown/grid changed).
-6. Для shared-логики дыхания используй события маски/интерналов и поддерживай корректный disconnect.
-7. Для клиентского газа объединяй full/delta state через единый merge-проход по чанкам.
+1. Implement the new mechanic as a separate stage or as a separate block in an existing stage with an explicit timer pause.
+2. After changing the airtight/tile, always invalidate the tile rather than recalculate everything manually.
+3. To read air blocking in gameplay code, prefer the cached version of the check.
+4. For map-level atmosphere, use immutable mixture and centralized refresh map-atmos tiles.
+5. For entities with barotrauma, use lifecycle registration in DeltaPressure lists (init/shutdown/grid changed).
+6. For shared breathing logic, use mask/internal events and maintain correct disconnect.
+7. For client gas, combine full/delta state through a single merge pass across chunks.
 
-## Анти-паттерны
+## Anti-patterns
 
-1. Считать, что Atmos обновляет все сразу за один тик; игнорировать `ProcessingPaused`.
-2. Обходить инвалидацию и менять кэши airtight/tiles «по месту».
-3. Использовать устаревшие зоны с TODO как reference-реализацию.
-4. Привязывать логику к порядку вызова устройств как к «фиче».
-5. Писать тяжелую логику без yield-точек по time-budget.
-6. Рассчитывать, что docs всегда совпадают с текущим поведением кода.
+1. Consider that Atmos updates everything at once in one tick; ignore `ProcessingPaused`.
+2. Bypass invalidation and change airtight/tiles caches locally.
+3. Use legacy zones with TODO as a reference implementation.
+4. Link logic to the order in which devices are called as a “feature”.
+5. Write heavy logic without yield points based on time-budget.
+6. Assume that docs always match the current behavior of the code.
 
-## Способы оптимизации при работе с системой
+## Optimization methods when working with the system
 
-1. Для частых gameplay-проверок используй `IsTileAirBlockedCached(...)`, а не on-the-fly вариант.
-2. Для набора тайлов используй `GetTileMixtures(...)` вместо многократных одиночных вызовов.
-3. Ставь `excite: true` только когда действительно нужен немедленный отклик атмоса/визуалов.
-4. После локальных изменений вызывай `InvalidateTile(...)`, не запускай ручной массовый пересчет.
-5. В DeltaPressure подбирай `DeltaPressureParallelProcessPerIteration` и `DeltaPressureParallelBatchSize` под нагрузку сервера.
-6. Не dirty/refresh весь grid overlay без необходимости, инвалидируй только затронутые тайлы.
-7. В новых подсистемах делай обработку порционной: очередь + периодическая проверка time-budget.
-8. Если нужен быстрый pre-filter точки, комбинируй `IsTileSpace(...)` + `IsTileAirBlockedCached(...)`.
-9. Для map-level изменений обновляй атмосферу пакетно (`SetMapAtmosphere/SetMapGasMixture/SetMapSpace`), а не по тайлу.
+1. For frequent gameplay checks, use `IsTileAirBlockedCached(...)`, and not the on-the-fly option.
+2. To set tiles, use `GetTileMixtures(...)` instead of multiple single calls.
+3. Set `excite: true` only when you really need an immediate response from the atmosphere/visuals.
+4. After local changes, call `InvalidateTile(...)`, do not run a manual mass recalculation.
+5. In DeltaPressure, select `DeltaPressureParallelProcessPerIteration` and `DeltaPressureParallelBatchSize` for the server load.
+6. Don't dirty/refresh the entire grid overlay unnecessarily, invalidate only the affected tiles.
+7. In new subsystems, do batch processing: queue + periodic time-budget check.
+8. If you need a quick pre-filter of a point, combine `IsTileSpace(...)` + `IsTileAirBlockedCached(...)`.
+9. For map-level changes, update the atmosphere in batches (`SetMapAtmosphere/SetMapGasMixture/SetMapSpace`), and not by tile.
 
-## Примеры из кода
+## Code examples
 
-### 1) Конечный автомат стадий атмоса
+### 1) Atmos stages finite state machine
 
 ```csharp
-// Каждая стадия возвращает: продолжать, перейти к следующей или приостановить цикл.
+// Each stage returns: continue, move to the next, or pause the cycle.
 switch (atmosphere.State)
 {
     case AtmosphereProcessingState.Revalidate:
@@ -87,41 +87,41 @@ switch (atmosphere.State)
 }
 ```
 
-### 2) Канал инвалидации: изменение airtight -> revalidate
+### 2) Invalidation channel: change airtight -> revalidate
 
 ```csharp
-// При изменении позиции/состояния airtight-энтити помечай тайл как invalid.
+// When changing the position/state of an airtight entity, mark the tile as invalid.
 public void InvalidatePosition(Entity<MapGridComponent?> grid, Vector2i pos)
 {
     _explosionSystem.UpdateAirtightMap(grid, pos, grid);
     _atmosphereSystem.InvalidateTile(grid.Owner, pos);
 }
 
-// На стадии Revalidate тайл пересобирает TileData/AirtightData и визуалы.
+// At the Revalidate stage, the tile rebuilds TileData/AirtightData and visuals.
 UpdateTileData(ent, mapAtmos, tile);
 UpdateAdjacentTiles(ent, tile, activate: true);
 UpdateTileAir(ent, tile, volume);
 InvalidateVisuals(ent, tile);
 ```
 
-### 3) DeltaPressure: параллельный расчет + отложенный урон
+### 3) DeltaPressure: parallel calculation + delayed damage
 
 ```csharp
-// Расчет давления выполняется батчами в parallel-job.
+// The pressure calculation is performed in batches in parallel-job.
 var job = new DeltaPressureParallelJob(this, atmosphere, atmosphere.DeltaPressureCursor, DeltaPressureParallelBatchSize);
 _parallel.ProcessNow(job, toProcess);
 
-// Сам урон применяется отдельным проходом из очереди результатов.
+// The damage itself is applied in a separate pass from the results queue.
 while (atmosphere.DeltaPressureDamageResults.TryDequeue(out var result))
 {
     PerformDamage(result.Ent, result.Pressure, result.DeltaPressure);
 }
 ```
 
-### 4) Shared: интеграция дыхательной маски и интерналов
+### 4) Shared: integration of breathing mask and internals
 
 ```csharp
-// При выключении маски пробуем подключить дыхательный инструмент к интерналам носителя.
+// When turning off the mask, we try to connect the breathing instrument to the internals of the wearer.
 private void OnMaskToggled(Entity<BreathToolComponent> ent, ref ItemMaskToggledEvent args)
 {
     if (args.Mask.Comp.IsToggled)
@@ -135,15 +135,15 @@ private void OnMaskToggled(Entity<BreathToolComponent> ent, ref ItemMaskToggledE
 }
 ```
 
-### 5) Client: корректный merge full/delta gas-overlay чанков
+### 5) Client: correct merge full/delta gas-overlay chunks
 
 ```csharp
-// Клиент принимает либо full state, либо delta state, но применяет одинаково через modifiedChunks.
+// The client accepts either full state or delta state, but applies the same via modifiedChunks.
 switch (args.Current)
 {
     case GasTileOverlayDeltaState delta:
         modifiedChunks = delta.ModifiedChunks;
-        // Удаляем локальные чанки, которых больше нет в серверном списке.
+        // We delete local chunks that are no longer in the server list.
         break;
     case GasTileOverlayState state:
         modifiedChunks = state.Chunks;
@@ -152,15 +152,15 @@ switch (args.Current)
 
 foreach (var (index, data) in modifiedChunks)
 {
-    comp.Chunks[index] = data; // единый путь применения
+    comp.Chunks[index] = data; // single way of application
 }
 ```
 
-## Правило расширения
+## Extension rule
 
-1. Сначала расширяй свежие этапы и свежие API-поверхности.
-2. Если нужно менять legacy-блок, сначала зафиксируй риск в `references/rejected-snippets.md` и только потом вноси изменение.
-3. Любой новый subsystem делай конфигурируемым и паузируемым.
-4. Любое «ускорение» проверяй метриками (время кадра/атмотика), а не интуицией.
+1. Expand fresh stages and fresh API surfaces first.
+2. If you need to change a legacy block, first fix the risk in `references/rejected-snippets.md` and only then make the change.
+3. Make any new subsystem configurable and pauseable.
+4. Check any “acceleration” with metrics (frame time/atmotics), and not with intuition.
 
-Думай как о конвейере с очередями, а не как о «одной функции атмоса» 🧪
+Think of it as a pipeline with queues, not as a "single function atmos" 🧪

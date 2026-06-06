@@ -706,6 +706,18 @@ namespace Content.Server.Atmos.EntitySystems
                     }
 
                     atmosphere.ProcessingPaused = false;
+                    // SunRise-start
+                    atmosphere.State = AtmosphereProcessingState.ChargedElectrovae;
+                    return AtmosphereProcessingCompletionState.Continue;
+                case AtmosphereProcessingState.ChargedElectrovae:
+                    if (!ProcessChargedElectrovaeTiles(ent))
+                    {
+                        atmosphere.ProcessingPaused = true;
+                        return AtmosphereProcessingCompletionState.Return;
+                    }
+
+                    atmosphere.ProcessingPaused = false;
+                    // SunRise-end
 
                     // Next state depends on whether monstermos equalization is enabled or not.
                     // Note: We do this here instead of on the tile equalization step to prevent ending it early.
@@ -854,6 +866,9 @@ namespace Content.Server.Atmos.EntitySystems
         HighPressureDelta,
         DeltaPressure,
         Hotspots,
+        //SunRise start
+        ChargedElectrovae,
+        //SunRise end
         Superconductivity,
         PipeNet,
         AtmosDevices,

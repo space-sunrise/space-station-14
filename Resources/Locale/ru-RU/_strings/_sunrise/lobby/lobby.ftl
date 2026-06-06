@@ -93,6 +93,7 @@ lobby-art-JaniShootout = Перестрелка Джани
 lobby-art-TeslaLoose = Тесла на свободе
 lobby-art-GutsGuts = Гатс Гатс
 lobby-art-RedAlertMed = Красная тревога в Медотсеке
+lobby-art-GiftAnomaly = Подарочная аномалия
 # Parallaxes
 lobby-parallax-Random = Случайный
 lobby-parallax-FastSpace = Быстрый космос

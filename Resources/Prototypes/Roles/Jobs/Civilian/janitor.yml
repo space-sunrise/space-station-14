@@ -6,6 +6,10 @@
   startingGear: JanitorGear
   icon: "JobIconJanitor"
   supervisors: job-supervisors-hop
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-maid
+  # Sunrise-End
   access:
   - Service
   - Janitor

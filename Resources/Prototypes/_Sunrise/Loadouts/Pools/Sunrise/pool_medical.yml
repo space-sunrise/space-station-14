@@ -1,0 +1,10 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolMedical
+  abstract: true
+  roleLoadouts:
+    JobChiefMedicalOfficer: SunriseJobChiefMedicalOfficer
+    JobMedicalDoctor: SunriseJobMedicalDoctor
+    JobMedicalIntern: SunriseJobMedicalIntern
+    JobChemist: SunriseJobChemist
+    JobParamedic: SunriseJobParamedic
+

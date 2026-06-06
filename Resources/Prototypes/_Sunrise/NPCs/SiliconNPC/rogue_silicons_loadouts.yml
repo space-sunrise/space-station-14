@@ -1,0 +1,101 @@
+# Tier 0
+- type: startingGear
+  id: MobRogueSiliconLootT0
+  equipment:
+    back: ClothingBackpackRogueSiliconT0
+
+# Tier 1
+- type: startingGear
+  id: MobRogueSiliconLootT1
+  equipment:
+    back: ClothingBackpackRogueSiliconT1
+
+# Tier 2
+- type: startingGear
+  id: MobRogueSiliconLootT2
+  equipment:
+    back: ClothingBackpackRogueSiliconT2
+
+# Tier 3
+- type: startingGear
+  id: MobRogueSiliconLootT3
+  equipment:
+    back: ClothingBackpackRogueSiliconT3
+
+# Boss
+- type: startingGear
+  id: MobRogueSiliconLootBoss
+  equipment:
+    back: ClothingBackpackRogueSiliconBoss
+
+# unique
+- type: startingGear
+  id: MobRogueSiliconLootTesla
+  equipment:
+    back: ClothingBackpackRogueSiliconTesla
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorg
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorg
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgEngineering
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgEngineering
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgJanitor
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgJanitor
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgMedical
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgMedical
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgMining
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgMining
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgAssaultT1
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgAssaultT1
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgAssaultT2
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgAssaultT2
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgAssaultT3
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgAssaultT3
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgSyndicateSaboteur
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgSyndicateSaboteur
+
+- type: startingGear
+  id: MobRogueSiliconLootDerelictBorgSyndicateMedical
+  equipment:
+    back: ClothingBackpackRogueSiliconDerelictBorgSyndicateMedical
+
+# Tier 4
+- type: startingGear
+  id: MobRogueSiliconLootT4
+  equipment:
+    back: ClothingBackpackRogueSiliconT4
+
+- type: startingGear
+  id: MobRogueSiliconLootSkullHouse
+  equipment:
+    back: ClothingBackpackRogueSiliconSkullHouse
+    gloves: ClothingHandsMechMaxim
+    pocket1: DurandCentralElectronics
+    pocket2: DurandPeripheralsElectronics
+    shoes: MechPaintDurandDollhouse
+    belt: DurandTargetingElectronics

@@ -272,3 +272,6 @@ uplink-sunrise-spray-paint-green-name = Баллончик краски (зел�
 uplink-sunrise-spray-paint-orange-name = Баллончик краски (оранжевый)
 uplink-sunrise-spray-paint-purple-name = Баллончик краски (фиолетовый)
 uplink-sunrise-spray-paint-white-name = Баллончик краски (белый)
+
+uplink-sunrise-box-arbiter-bundle-name = Набор Арбитра
+uplink-sunrise-box-redmist-bundle-name = Набор Красного Тумана

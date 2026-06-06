@@ -7,9 +7,9 @@
   components:
   - type: Sprite
     drawdepth: SmallObjects
-    sprite: Structures/Walls/railing.rsi
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
   - type: Icon
-    sprite: Structures/Walls/railing.rsi
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
   - type: Physics
     bodyType: Static
   - type: InteractionOutline
@@ -28,10 +28,13 @@
 - type: entity
   parent: BaseRailing
   id: Railing
+  suffix: Steel # Sunrise-Add
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: side
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: side
   - type: Fixtures
     fixtures:
@@ -74,10 +77,13 @@
 - type: entity
   parent: BaseRailing
   id: RailingCorner
+  suffix: Steel, Corner # Sunrise-Add
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: corner
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: corner
   - type: Fixtures
     fixtures:
@@ -129,10 +135,13 @@
 - type: entity
   parent: BaseRailing
   id: RailingCornerSmall
+  suffix: Steel, Corner Small # Sunrise-Add
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: corner_small
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: corner_small
   - type: Fixtures
     fixtures:
@@ -175,10 +184,13 @@
 - type: entity
   parent: BaseRailing
   id: RailingRound
+  suffix: Steel, Round # Sunrise-Add
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: round
   - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi # Sunrise-Edit
     state: round
   - type: Fixtures
     fixtures:

@@ -340,7 +340,7 @@
     - id: ClothingBeltSecurityFilled
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHeadsetAltSecurity
-    - id: ClothingOuterCoatHoSTrench
+    #- id: ClothingOuterCoatHoSTrench  # Sunrise-Edit
     - id: ClothingShoesBootsJack
     - id: FlashlightSeclite
     - id: DoorRemoteSecurity
@@ -356,6 +356,8 @@
       tableId: SecureDocumentTable
     # Sunrise-end
     - id: FlippoLighterSunriseHos  # Sunrise-Flippo
+    - id: SunriseCriminalRecordsComputerCircuitboard  # Sunrise-Edit
+    - id: ComputerPrisonerManagementCircuitboard  # Sunrise-Edit
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

@@ -27,6 +27,10 @@
         reagents:
         - ReagentId: Laughter
           Quantity: 2
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 2
+        - ReagentId: Tazinide
+          Quantity: 1
         - ReagentId: Protein
           Quantity: 1
   - type: SpeedModifierContacts

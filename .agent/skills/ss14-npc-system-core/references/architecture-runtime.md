@@ -1,89 +1,89 @@
 # Architecture and Runtime Map
 
-## Назначение
+## Purpose
 
-Используй этот файл, когда нужно быстро восстановить в голове, как именно работает NPC runtime в SS14/Sunrise.
+Use this file when you need to quickly remember in your head exactly how NPC runtime works in SS14/Sunrise.
 
-## Карта слоев
+## Layer map
 
-1. Оркестрация NPC:
+1. NPC orchestration:
 `Content.Server/NPC/Systems/NPCSystem.cs`
 2. HTN runtime:
 `Content.Server/NPC/HTN/HTNSystem.cs`
-3. Планировщик:
+3. Scheduler:
 `Content.Server/NPC/HTN/HTNPlanJob.cs`
-4. Данные плана:
+4. Plan details:
 `Content.Server/NPC/HTN/HTNPlan.cs`
-5. Базовые контракты tasks:
+5. Basic contracts tasks:
 `Content.Server/NPC/HTN/HTNTask.cs`
 `Content.Server/NPC/HTN/HTNCompoundTask.cs`
 `Content.Server/NPC/HTN/PrimitiveTasks/HTNPrimitiveTask.cs`
-6. Контракты расширения:
+6. Expansion contracts:
 `Content.Server/NPC/HTN/PrimitiveTasks/HTNOperator.cs`
 `Content.Server/NPC/HTN/Preconditions/HTNPrecondition.cs`
 `Content.Server/NPC/HTN/IHtnConditionalShutdown.cs`
 7. Blackboard:
 `Content.Server/NPC/NPCBlackboard.cs`
 `Content.Server/NPC/NPCBlackboardSerializer.cs`
-8. Навигация и steering:
+8. Navigation and steering:
 `Content.Server/NPC/Systems/NPCSteeringSystem.cs`
-9. Utility-оценка целей:
+9. Utility-assessment of goals:
 `Content.Server/NPC/Systems/NPCUtilitySystem.cs`
 `Content.Server/NPC/Queries/UtilityQueryPrototype.cs`
-10. Фракции:
+10. Factions:
 `Content.Shared/NPC/Systems/NpcFactionSystem.cs`
 
-## Цикл жизни NPC (runtime)
+## NPC life cycle (runtime)
 
-1. На `MapInit` NPC “будится” (`WakeNPC`) и получает `ActiveNPCComponent`.
-2. `NPCSystem.Update()` вызывает `HTNSystem.UpdateNPC(...)` в рамках бюджетных лимитов.
+1. At `MapInit` the NPC “wakes up” (`WakeNPC`) and receives `ActiveNPCComponent`.
+2. `NPCSystem.Update()` calls `HTNSystem.UpdateNPC(...)` within budget limits.
 3. `HTNSystem`:
-обрабатывает очередь планирования -> подхватывает готовый plan job -> при необходимости подменяет текущий план -> выполняет `Update()` текущего оператора.
-4. Если оператор завершился:
-выполняется shutdown, индекс плана сдвигается, запускается следующий task.
-5. Если оператор упал:
-текущий план гасится и инициируется новый цикл планирования.
-6. Если entity умер/выключен/занят игроком:
-NPC переводится в sleep, активные компоненты поведения снимаются.
+processes the planning queue -> picks up a ready plan job -> if necessary, replaces the current plan -> executes `Update()` of the current operator.
+4. If the statement has completed:
+shutdown is executed, the plan index is shifted, and the next task is launched.
+5. If the operator falls:
+the current plan is extinguished and a new planning cycle is initiated.
+6. If an entity is dead/turned off/occupied by a player:
+The NPC is put into sleep, the active components of the behavior are removed.
 
-## Планирование и execution: строгая граница
+## Planning and execution: strict boundary
 
-1. Планирование:
-выполняется асинхронно (job queue), проверяет preconditions и `Plan()`.
+1. Planning:
+runs asynchronously (job queue), checks preconditions and `Plan()`.
 2. Execution:
-выполняется в обычном апдейте мира через `Startup()`/`Update()`/shutdown.
+executed in a normal world update via `Startup()`/`Update()`/shutdown.
 3. Effects:
-данные, возвращенные из `Plan()`, могут быть применены на startup шага (reuse результатов планирования).
+The data returned from `Plan()` can be applied to the startup step (reuse the planning results).
 
-## HTN-декомпозиция: как выбирается ветка
+## HTN decomposition: how a branch is selected
 
-1. Для `HTNCompoundTask` перебираются branches сверху вниз.
-2. Первая ветка, где все branch-preconditions истинны, попадает в стек декомпозиции.
-3. Если далее план развалился на дочернем шаге, планировщик откатывает состояние (blackboard + selected primitives) и пробует следующую ветку.
-4. Если все ветки провалены, текущая compound-точка считается неразрешимой.
+1. For `HTNCompoundTask` branches are sorted from top to bottom.
+2. The first branch where all branch-preconditions are true goes onto the decomposition stack.
+3. If the plan then falls apart at a child step, the planner rolls back the state (blackboard + selected primitives) and tries the next branch.
+4. If all branches are failed, the current compound point is considered unsolvable.
 
-## Blackboard-модель
+## Blackboard model
 
-1. Blackboard хранит состояние NPC и настраиваемые параметры.
-2. Ключи строковые, есть базовые константы (`Owner`, `Target`, `MovementPathfind`, `NavInteract` и др.).
-3. Есть дефолты (например, `VisionRadius`, `MeleeRange`, `FollowRange`), которые подхватываются даже без явной записи.
-4. Во время планирования доска может работать в read-only режиме.
-5. Для YAML blackboard используется типизированная сериализация (`!type:Single`, `!type:Bool`, `!type:SoundPathSpecifier` и т.п.).
+1. Blackboard stores NPC status and configurable parameters.
+2. The keys are strings, there are basic constants (`Owner`, `Target`, `MovementPathfind`, `NavInteract`, etc.).
+3. There are defaults (for example, `VisionRadius`, `MeleeRange`, `FollowRange`) that are picked up even without an explicit entry.
+4. During planning, the board can operate in read-only mode.
+5. For YAML blackboard, typed serialization is used (`!type:Single`, `!type:Bool`, `!type:SoundPathSpecifier`, etc.).
 
-## Сервисные подсистемы, которые обычно участвуют в поведении
+## Service subsystems that are typically involved in behavior
 
 1. `NPCSteeringSystem`:
-регистрация movement-задачи, pathfinding, обход препятствий, завершение по range/LOS.
+movement task registration, pathfinding, obstacle avoidance, completion by range/LOS.
 2. `NPCCombatSystem`:
-исполнение melee/ranged через runtime-компоненты.
+execution of melee/ranged via runtime components.
 3. `NPCUtilitySystem`:
-поиск и ранжирование целей через utility query.
+search and ranking of targets via utility query.
 4. `NpcFactionSystem`:
-определение hostile/friendly множества.
+definition of hostile/friendly set.
 
-## Практические выводы для автора поведения
+## Practical conclusions for the author of behavior
 
-1. Определи behavior в прототипах (compound/primitive/preconditions/services) до написания C#.
-2. Проверяй, можно ли решить задачу существующими операторами и utility query.
-3. Если нужен новый код, добавляй узкий extension point, а не переписывай pipeline.
-4. Всегда проектируй явный fallback путь (idle/noop), иначе NPC будет часто без плана.
+1. Define behavior in prototypes (compound/primitive/preconditions/services) before writing C#.
+2. Check whether the problem can be solved using existing operators and utility queries.
+3. If you need new code, add a narrow extension point, rather than rewrite the pipeline.
+4. Always design an explicit fallback path (idle/noop), otherwise the NPC will often be without a plan.

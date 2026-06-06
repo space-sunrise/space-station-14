@@ -5,6 +5,7 @@ on:
     branches: [ master, staging, stable ]
   merge_group:
   pull_request:
+    types: [ opened, reopened, synchronize ]
     paths:
       - '**.rsi/**'
 

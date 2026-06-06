@@ -1,22 +1,22 @@
 # Fresh Pattern Catalog (Documentation)
 
-> Все записи ниже прошли фильтр свежести: дата изменения не старше 2024-02-20 и без TODO/HACK/FIXME по теме документирования.
+> All entries below have passed the freshness filter: the modification date is not older than 2024-02-20 and without TODO/HACK/FIXME on the documentation topic.
 
-| Домен | Паттерн | Подтверждено на свежем примере | Дата | Статус |
+| Domain | Pattern | Confirmed with a recent example | Date | Status |
 |---|---|---|---|---|
-| Engine API docs | `summary` + `remarks` + параметризованное описание контракта | `SharedContainerSystem.Remove(...)` | 2026-01-18 | Использовать |
-| Engine architecture docs | Документация абстрактного API контейнеров через свойства и методы | `BaseContainer` | 2024-05-26 | Использовать |
-| Shared gameplay docs | `summary` на действиях + короткие комментарии на критичных проверках | `MimePowersSystem.OnInvisibleWall(...)` | 2025-09-05 | Использовать |
-| Client gameplay docs | `summary` + пояснение сложных преобразований, а не всех строк подряд | `ClickableSystem.CheckClick(...)` | 2025-05-18 | Использовать |
-| Server gameplay docs | `summary` + `remarks` для инварианта, важного для вызовов других методов | `AccessOverriderSystem.PrivilegedIdIsAuthorized(...)` | 2025-12-16 | Использовать |
-| Large subsystem docs | Разделение большой системы на partial-части с отдельной зоной ответственности | `SharedScp096System` family | 2026-01-24 | Использовать |
-| Cross-system docs | Проверка необычных вызовов API в потребителях системы | `Scp096PhotoSystem`, `ArtifactScp096MadnessSystem` + `TryAddTarget(..., true, true)` | 2026-01-08 / 2025-11-29 | Использовать |
-| YAML docs | Лаконичные групповые комментарии (1 строка) между блоками прототипов | `salvage reward` catalog groups (`# Rank 2`, `# Rank 3`) | 2025-09-18 | Использовать |
-| FTL docs | Корректный разделитель групп в формате `## Group Name` | `battery menu` localization section | 2025-04-28 | Использовать |
-| FTL docs hygiene | Проверка валидности заголовков перед merge | контроль на строку `##bombs` в каталоге аплинка | 2026-02-01 | Проверять |
+| Engine API docs | `summary` + `remarks` + parameterized contract description | `SharedContainerSystem.Remove(...)` | 2026-01-18 | Use |
+| Engine architecture docs | Documentation of the abstract container API through properties and methods | `BaseContainer` | 2024-05-26 | Use |
+| Shared gameplay docs | `summary` on actions + short comments on critical checks | `MimePowersSystem.OnInvisibleWall(...)` | 2025-09-05 | Use |
+| Client gameplay docs | `summary` + explanation of complex transformations, not all lines in a row | `ClickableSystem.CheckClick(...)` | 2025-05-18 | Use |
+| Server gameplay docs | `summary` + `remarks` for an invariant important for calls to other methods | `AccessOverriderSystem.PrivilegedIdIsAuthorized(...)` | 2025-12-16 | Use |
+| Large subsystem docs | Dividing a large system into partial parts with a separate area of ​​responsibility | `SharedScp096System` family | 2026-01-24 | Use |
+| Cross-system docs | Check for unusual API calls in system consumers | `Scp096PhotoSystem`, `ArtifactScp096MadnessSystem` + `TryAddTarget(..., true, true)` | 2026-01-08 / 2025-11-29 | Use |
+| YAML docs | Concise group comments (1 line) between prototype blocks | `salvage reward` catalog groups (`# Rank 2`, `# Rank 3`) | 2025-09-18 | Use |
+| FTL docs | Correct group separator in the format `## Group Name` | `battery menu` localization section | 2025-04-28 | Use |
+| FTL docs hygiene | Checking the validity of headers before merging | control on the line `##bombs` in the uplink directory | 2026-02-01 | Check |
 
-## Короткий вывод
+## Short output
 
-1. `summary` остается главным контрактным форматом документации в C#.
-2. Точечные комментарии нужны там, где логика неочевидна (координаты, инварианты, нестандартные ветки).
-3. Для YAML/FTL выигрывает лаконичность: короткие разделители и минимум "объяснительных стен".
+1. `summary` remains the main contract documentation format in C#.
+2. Pointed comments are needed where the logic is not obvious (coordinates, invariants, non-standard branches).
+3. YAML/FTL benefits from conciseness: short separators and a minimum of “explanatory walls”.

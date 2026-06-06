@@ -54,7 +54,7 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 20 # Starlight
+        Heat: 14
 
 - type: entity
   parent: BasicHitscan

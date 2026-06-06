@@ -1,0 +1,10 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolSecurity
+  abstract: true
+  roleLoadouts:
+    JobHeadOfSecurity: SunriseJobHeadOfSecurity
+    JobWarden: SunriseJobWarden
+    JobSecurityOfficer: SunriseJobSecurityOfficer
+    JobDetective: SunriseJobDetective
+    JobSecurityCadet: SunriseJobSecurityCadet
+

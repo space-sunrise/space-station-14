@@ -1,50 +1,175 @@
 - type: gasReaction
-  id: bzFormation
-  priority: 2
-  maximumTemperature: 313.149 # Atmospherics.FireMinimumTemperatureToExist - 60
+  id: BZProductionReaction
+  priority: 3
+  maximumTemperature: 313.149 # Atmospherics.FireMinimumTemperatureToExist 
   minimumRequirements:
-  - 0     # oxygen
-  - 0     # nitrogen
-  - 0     # carbon dioxide
-  - 0.01    # plasma
-  - 0     # tritium
-  - 0     # vapor
-  - 0     # miasma
-  - 0.01    # n2o
-  - 0     # frezon
+    Plasma: 10
+    NitrousOxide: 10
   effects:
-  - !type:BZFormationReaction {}
+    - !type:BZProductionReaction {}
+
+- type: gasReaction
+  id: PluoxiumProductionReaction
+  priority: 4
+  minimumTemperature: 50
+  maximumTemperature: 273.15
+  minimumRequirements:
+    Oxygen: 0.01 
+    CarbonDioxide: 0.01
+    Tritium: 0.01
+  effects:
+    - !type:PluoxiumProductionReaction {}
+
+- type: gasReaction
+  id: HydrogenFireReaction
+  priority: -3
+  minimumTemperature: 373.149 # Same as Atmospherics.FireMinimumTemperatureToExist
+  minimumRequirements:
+    Oxygen: 0.01
+    Hydrogen: 0.01
+  effects:
+    - !type:HydrogenFireReaction {}
+
+- type: gasReaction
+  id: NitriumProduction
+  priority: 5
+  minimumTemperature: 1500
+  minimumRequirements:
+    Nitrogen: 10
+    Tritium: 20
+    BZ: 5
+  effects:
+    - !type:NitriumProductionReaction {}
+
+- type: gasReaction
+  id: NitriumDecomposition
+  priority: 6
+  maximumTemperature: 343.15
+  minimumRequirements:
+    Oxygen: 0.01
+    Nitrium: 0.01
+  effects:
+    - !type:NitriumDecompositionReaction {}
+
+- type: gasReaction
+  id: HyperNobliumProduction
+  priority: 7
+  minimumTemperature: 2.7
+  maximumTemperature: 15
+  minimumRequirements:
+    Nitrogen: 10
+    Tritium: 5
+  effects:
+    - !type:HyperNobliumProductionReaction {}
+
+- type: gasReaction
+  id: HalonOxygenAbsorption
+  priority: -4
+  minimumTemperature: 373.149
+  minimumRequirements:
+    Oxygen: 0.01
+    Halon: 0.01
+  effects:
+    - !type:HalonOxygenAbsorptionReaction {}
 
 - type: gasReaction
   id: HealiumProduction
-  priority: 2
+  priority: 8
+  minimumTemperature: 25
+  maximumTemperature: 300
   minimumRequirements:
-  - 0     # oxygen
-  - 0     # nitrogen
-  - 0     # carbon dioxide
-  - 0     # plasma
-  - 0     # tritium
-  - 0     # vapor
-  - 0     # miasma
-  - 0     # n2o
-  - 0.01     # frezon
-  - 0.01     # bz
+    Frezon: 0.01
+    BZ: 0.01
   effects:
-  - !type:HealiumProductionReaction {}
+    - !type:HealiumProductionReaction {}
 
 - type: gasReaction
-  id: NitriumSynthesis
+  id: ZaukerProduction
+  priority: 9
+  minimumTemperature: 50000
+  maximumTemperature: 75000
+  minimumRequirements:
+    Nitrium: 0.01
+    HyperNoblium: 0.01
+  effects:
+    - !type:ZaukerProductionReaction {}
+
+- type: gasReaction
+  id: ZaukerDecomposition
+  priority: 10
+  minimumRequirements:
+    Nitrogen: 0.01
+    Zauker: 0.01
+  effects:
+    - !type:ZaukerDecompositionReaction {}
+
+- type: gasReaction
+  id: ProtoNitrateProduction
+  priority: 11
+  minimumTemperature: 5000
+  maximumTemperature: 10000
+  minimumRequirements:
+    Pluoxium: 0.01
+    Hydrogen: 0.01
+  effects:
+    - !type:ProtoNitrateProductionReaction {}
+
+- type: gasReaction
+  id: ProtoNitrateHydrogenConversion
+  priority: 12
+  minimumRequirements:
+    Hydrogen: 150
+    ProtoNitrate: 0.01
+  effects:
+    - !type:ProtoNitrateHydrogenConversionReaction {}
+
+- type: gasReaction
+  id: ProtoNitrateTritiumDeirradiation
+  priority: 13
+  minimumTemperature: 150
+  maximumTemperature: 340
+  minimumRequirements:
+    Tritium: 0.01
+    ProtoNitrate: 0.01
+  effects:
+    - !type:ProtoNitrateTritiumConversionReaction {}
+
+- type: gasReaction
+  id: ProtoNitrateBZaseAction
+  priority: 14
+  minimumTemperature: 260
+  maximumTemperature: 280
+  minimumRequirements:
+    BZ: 0.01
+    ProtoNitrate: 0.01
+  effects:
+    - !type:ProtoNitrateBZaseConversionReaction {}
+
+- type: gasReaction
+  id: ElectrovaeDischarge
   priority: 2
   minimumRequirements:
-  - 0     # oxygen
-  - 0.5   # nitrogen
-  - 0     # carbon dioxide
-  - 0     # plasma
-  - 0.5   # tritium
-  - 0     # vapor
-  - 0     # miasma
-  - 0     # n2o
-  - 0     # frezon
-  - 0.1  # bz
+    Oxygen: 0.01
+    ChargedElectrovae: 0.01
   effects:
-  - !type:NitriumSynthesisReaction {}
+    - !type:ChargedElectrovaeDischargeReaction {}
+
+- type: gasReaction
+  id: ElectrovaeCharge
+  priority: 3
+  minimumTemperature: 400 # Requires high heat to charge
+  minimumRequirements:
+    Electrovae: 0.01
+  effects:
+    - !type:ElectrovaeChargeReaction {}
+
+- type: gasReaction
+  id: ElectrovaeProduction
+  priority: 4
+  minimumTemperature: 200
+  minimumRequirements:
+    Nitrogen: 0.01
+    WaterVapor: 0.01
+    NitrousOxide: 0.01
+  effects:
+    - !type:ElectrovaeProductionReaction {}

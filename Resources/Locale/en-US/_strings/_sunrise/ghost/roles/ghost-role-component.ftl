@@ -37,3 +37,21 @@ ghost-role-information-ussp-waralt-name = Старший Офицер СССП
 ghost-role-information-ussp-war-name = Солдат СССП
 ghost-role-information-ussp-war-description = "Вы — Солдат великой армии СССП! Выполняйте любые приказы своего Командира без вопросов! ВО СЛАВУ РОДИНЫ!"
 ghost-role-information-ussp-war-rules = Вы [color=red][bold]Командный Антагонист[/bold][/color]. Вы должны [bold]кооперироваться и работать сообща[/bold] со своими Товарищами! Выслушайте брифинг от своего Капитана и действуйте строго по его указаниям.
+ghost-role-information-tsf-marine-name = Solar Federation Marine
+ghost-role-information-tsf-leader-name = Solar Federation Marine Team Leader
+ghost-role-information-tsf-MARSOC-name = Solar Federation MARSOC Marine
+ghost-role-information-tsf-marine-desc = You are a Solar Federation Marine. Perform your assigned task.
+job-rules-corporate-aligned = You are {role-type-corporate-aligned-name}.
+                              You are to serve the interests of NanoTrasen and Central Command, even if they differ from the stations'.
+                              Remember, you do NOT serve the crew.
+job-rules-tsf-aligned = You are {role-type-tsf-aligned-name}.
+                        You are to serve the interests of the Trans-Solar Federation.
+                        Remember, you do NOT serve the crew.
+ghost-role-information-sentient-carpholo-name = Sentient Holocarp
+ghost-role-information-sentient-carprainbow-name = Sentient Rainbow Carp
+ghost-role-information-sentient-carpshark-name = Sentient Carpshark
+
+ghost-role-information-one-star-unit-dungeon-name = One Star Unit
+ghost-role-information-guardian-unit-dungeon-name = Guardian Unit
+ghost-role-information-terminator-unit-dungeon-name = Exterminator Unit
+ghost-role-information-one-star-unit-dungeon-description = [11201010111002] Work with other automatons to defend the installation and destroy all intruders. [1110220001010002220]

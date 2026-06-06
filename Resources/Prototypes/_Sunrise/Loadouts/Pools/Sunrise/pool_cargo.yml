@@ -1,0 +1,8 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolCargo
+  abstract: true
+  roleLoadouts:
+    JobQuartermaster: SunriseJobQuartermaster
+    JobCargoTechnician: SunriseJobCargoTechnician
+    JobSalvageSpecialist: SunriseJobSalvageSpecialist
+

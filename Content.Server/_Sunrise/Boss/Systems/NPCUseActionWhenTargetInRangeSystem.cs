@@ -4,6 +4,7 @@ using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Atmos.Components;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Boss.Systems;
@@ -11,6 +12,7 @@ namespace Content.Server._Sunrise.Boss.Systems;
 public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
@@ -51,6 +53,17 @@ public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
                     action.ActionEnt = hellSpawnTentacleComponent.LeftGrabActionEntity;
                 }
             }
+
+            if (action.ActionEnt == null || !TryComp<ActionComponent>(action.ActionEnt, out var actionComp))
+                continue;
+
+            if (actionComp.UseDelay is not { } useDelay || useDelay <= TimeSpan.Zero)
+                continue;
+
+            // Spread initial cooldowns so NPCs do not unload all granted actions at spawn.
+            var randomDelay = TimeSpan.FromSeconds(_random.NextFloat() * (float) useDelay.TotalSeconds);
+            if (randomDelay > TimeSpan.Zero)
+                _actions.SetCooldown(action.ActionEnt, randomDelay);
         }
     }
 
@@ -83,7 +96,7 @@ public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
                     instantAction.Event,
                     false);
             }
-            else if (TryComp<WorldTargetActionComponent>(actionWhenTargetInRange.ActionEnt, out var worldTargetAction))
+            else if (TryComp<WorldTargetActionComponent>(actionWhenTargetInRange.ActionEnt, out _))
             {
                 var action = Comp<ActionComponent>(actionWhenTargetInRange.ActionEnt.Value);
 
@@ -100,14 +113,11 @@ public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
                     actionWhenTargetInRange.MinRange != 0f && distance < actionWhenTargetInRange.MinRange)
                     continue;
 
-                if (worldTargetAction.Event is {} worldEv)
-                {
-                    worldEv.Target = targetXform.Coordinates;
-                }
+                _actions.SetEventTarget(actionWhenTargetInRange.ActionEnt.Value, target);
 
                 _actions.PerformAction((user, null),
                     (actionWhenTargetInRange.ActionEnt.Value, action),
-                    worldTargetAction.Event,
+                    null,
                     false);
             }
         }

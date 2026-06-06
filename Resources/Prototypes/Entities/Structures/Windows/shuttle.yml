@@ -83,9 +83,12 @@
         shape:
           !type:PolygonShape
             vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
+            # Sunrise-Start
             - "0.5,-0.5"
+            - "-0.4,-0.5"
+            - "-0.4,0.1"
+            - "0.5,0.5"
+            # Sunrise-End
         mask:
         - FullTileMask
         layer:

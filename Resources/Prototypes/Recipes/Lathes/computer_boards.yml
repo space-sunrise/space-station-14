@@ -98,6 +98,11 @@
   id: RadarConsoleCircuitboard
   result: RadarConsoleCircuitboard
 
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseSecurityComputerRecipeCategory ]
+  id: ComputerGunneryCircuitboard
+  result: ComputerGunneryCircuitboard
+
 # Civilian
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]

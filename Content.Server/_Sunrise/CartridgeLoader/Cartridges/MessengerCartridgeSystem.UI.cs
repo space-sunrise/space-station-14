@@ -58,7 +58,8 @@ public sealed partial class MessengerCartridgeSystem
             unreadCounts,
             component.ActiveInvites,
             component.PinnedChats,
-            photoGallery
+            photoGallery,
+            _photoUploadEnabled
         );
 
         _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);

@@ -1,0 +1,17 @@
+- type: loadoutPool
+  id: BaseLoadoutPoolCivilian
+  abstract: true
+  roleLoadouts:
+    JobPassenger: SunriseJobPassenger
+    JobBartender: SunriseJobBartender
+    JobServiceWorker: SunriseJobServiceWorker
+    JobChef: SunriseJobChef
+    JobLibrarian: SunriseJobLibrarian
+    JobLawyer: SunriseJobLawyer
+    JobChaplain: SunriseJobChaplain
+    JobJanitor: SunriseJobJanitor
+    JobBotanist: SunriseJobBotanist
+    JobClown: SunriseJobClown
+    JobMime: SunriseJobMime
+    JobMusician: SunriseJobMusician
+

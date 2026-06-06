@@ -6,7 +6,7 @@ namespace Content.Shared.Atmos
     /// <summary>
     ///     Class to store atmos constants.
     /// </summary>
-    public static class Atmospherics
+    public static partial class Atmospherics // Sunrise-edit
     {
         #region ATMOS
         /// <summary>
@@ -177,9 +177,21 @@ namespace Content.Shared.Atmos
             [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
             [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
-            [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"), //SunRise edit
-            [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"), //SunRise edit
-            [Gas.Nitrium] = Loc.GetString("gas-nitrium-abbreviation"), //SunRise edit
+            //Sunrise - Start
+            [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"),
+            [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"),
+            [Gas.Nitrium] = Loc.GetString("gas-nitrium-abbreviation"),                                                        
+            [Gas.Pluoxium] = Loc.GetString("gas-pluoxium-abbreviation"),
+            [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"),
+            [Gas.HyperNoblium] = Loc.GetString("gas-hyper-noblium-abbreviation"),
+            [Gas.ProtoNitrate] = Loc.GetString("gas-proto-nitrate-abbreviation"),
+            [Gas.Zauker] = Loc.GetString("gas-zauker-abbreviation"),
+            [Gas.Halon]= Loc.GetString("gas-halon-abbreviation"),
+            [Gas.Helium] = Loc.GetString("gas-helium-abbreviation"),
+            [Gas.AntiNoblium] = Loc.GetString("gas-anti-noblium-abbreviation"),
+            [Gas.ChargedElectrovae] = Loc.GetString("gas-charged-electrovae-abbreviation"),
+            [Gas.Electrovae] = Loc.GetString("gas-electrovae-abbreviation"),
+            //Sunrise - End
         };
 
         #region Excited Groups
@@ -209,7 +221,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 12; //SunRise edit
+        public const int TotalNumberOfGases = 22; //SunRise edit
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -392,8 +404,20 @@ namespace Content.Shared.Atmos
         Ammonia = 6,
         NitrousOxide = 7,
         Frezon = 8,
-        BZ = 9, //SunRise edit
-        Healium = 10, //SunRise edit
-        Nitrium = 11 //SunRise edit
+        //Sunrise - Start
+        BZ = 9,
+        Pluoxium = 10,
+        Hydrogen = 11,
+        Nitrium = 12,
+        Healium = 13,
+        HyperNoblium = 14,
+        ProtoNitrate = 15,
+        Zauker = 16,
+        Halon = 17,
+        Helium = 18,
+        AntiNoblium = 19,
+        Electrovae = 20,
+        ChargedElectrovae = 21
+        //Sunrise - End
     }
 }

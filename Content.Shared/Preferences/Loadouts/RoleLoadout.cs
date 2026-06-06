@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.CCVar;
+using Content.Shared.Clothing; // Sunrise-edit
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Random;
 using Content.Sunrise.Interfaces.Shared;
@@ -67,7 +68,10 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         var protoManager = collection.Resolve<IPrototypeManager>();
         var configManager = collection.Resolve<IConfigurationManager>();
 
-        if (!protoManager.TryIndex(Role, out var roleProto))
+        // Sunrise-start
+        var effectiveRole = LoadoutSystem.GetEffectiveRolePrototype(Role, protoManager);
+        if (!protoManager.TryIndex(effectiveRole, out var roleProto))
+        // Sunrise-end
         {
             EntityName = null;
             SelectedLoadouts.Clear();
@@ -217,7 +221,10 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             SelectedLoadouts.Clear();
 
         var collection = IoCManager.Instance!;
-        var roleProto = protoManager.Index(Role);
+        // Sunrise-start
+        var effectiveRole = LoadoutSystem.GetEffectiveRolePrototype(Role, protoManager);
+        var roleProto = protoManager.Index(effectiveRole);
+        // Sunrise-end
 
         for (var i = roleProto.Groups.Count - 1; i >= 0; i--)
         {

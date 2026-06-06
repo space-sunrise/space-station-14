@@ -3,15 +3,15 @@ name: SS14 Netcode Architecture
 description: Architecture guide for networking in Space Station 14 — Lidgren integration, NetManager abstraction, message system, game state synchronization, PVS, network events, and component networking
 ---
 
-# Сетевая архитектура SS14
+# SS14 network architecture
 
-## Обзор стека
+## Stack overview
 
-Сетевой стек SS14 состоит из нескольких уровней абстракции, от низкоуровневого транспорта до логики синхронизации игрового состояния:
+The SS14 networking stack consists of several layers of abstraction, from low-level transport to game state synchronization logic:
 
 ```
 ┌─────────────────────────────────────────────┐
-│            Контент (системы игры)            │
+│ Content (game systems) │
 │  RaiseNetworkEvent / ComponentState / Dirty  │
 ├─────────────────────────────────────────────┤
 │         ServerGameStateManager              │
@@ -19,223 +19,223 @@ description: Architecture guide for networking in Space Station 14 — Lidgren i
 │         GameStateProcessor                  │
 ├─────────────────────────────────────────────┤
 │              PVS System                     │
-│     (фильтрация видимости сущностей)        │
+│ (filtering the visibility of entities) │
 ├─────────────────────────────────────────────┤
 │       NetMessage / MsgState / MsgGroups     │
-│    (типизированные сообщения с сериализацией)│
+│ (typed messages with serialization)│
 ├─────────────────────────────────────────────┤
 │            NetManager                       │
-│    (обёртка над Lidgren, управление         │
-│     каналами, диспатч пакетов)              │
+│ (wrapper over Lidgren, control │
+│ channels, packet dispatch) │
 ├─────────────────────────────────────────────┤
 │     Lidgren (NetPeer/NetServer/NetClient)   │
 │          UDP + reliability layer            │
 └─────────────────────────────────────────────┘
 ```
 
-## Lidgren: транспортный уровень
+## Lidgren: transport layer
 
-SS14 использует библиотеку **Lidgren** для UDP-транспорта. Движок не использует Lidgren напрямую в игровом коде — вся работа идёт через абстракции `INetManager` и `NetMessage`.
+SS14 uses the **Lidgren** library for UDP transport. The engine does not use Lidgren directly in the game code - all work is done through the `INetManager` and `NetMessage` abstractions.
 
-### Конфигурация Lidgren
+### Lidgren configuration
 
-Движок настраивает Lidgren через CVars:
+The engine configures Lidgren via CVars:
 
-- **MTU** — Maximum Transmission Unit. Пакеты больше MTU фрагментируются. По умолчанию ~1408 байт
-- **Симуляция сетевых проблем** — для тестирования:
-  - `net.fakeloss` — процент потерянных пакетов (0.0–1.0)
-  - `net.fakelagmin` — минимальная задержка в секундах
-  - `net.fakelagrand` — случайная добавочная задержка
-  - `net.fakeduplicates` — шанс дублирования пакета
-- **Буферы** — `net.sendbuffersize`, `net.receivebuffersize`
-- **AppIdentifier** — строка для идентификации протокола (через `CVars.NetLidgrenAppIdentifier`)
+- **MTU** - Maximum Transmission Unit. Packets larger than MTU are fragmented. Default ~1408 bytes
+- **Simulation of network problems** - for testing:
+  - `net.fakeloss` — percentage of lost packets (0.0–1.0)
+  - `net.fakelagmin` — minimum delay in seconds
+  - `net.fakelagrand` - random additional delay
+  - `net.fakeduplicates` — chance of packet duplication
+- **Buffers** — `net.sendbuffersize`, `net.receivebuffersize`
+- **AppIdentifier** - string to identify the protocol (via `CVars.NetLidgrenAppIdentifier`)
 
-### Синхронизация времени
+### Time synchronization
 
-При инициализации движок синхронизирует `NetTime` Lidgren с собственным `RealTime`:
+When initialized, the engine synchronizes `NetTime` Lidgren with its own `RealTime`:
 
 ```csharp
 NetTime.SetNow(_timing.RealTime.TotalSeconds);
 ```
 
-Это критически важно для корректной работы таймингов пакетов.
+This is critical for packet timings to work correctly.
 
-## NetMessage: система типизированных сообщений
+## NetMessage: typed message system
 
-Все сетевые сообщения наследуются от абстрактного класса `NetMessage`.
+All network messages are inherited from the abstract class `NetMessage`.
 
-### Группы сообщений (MsgGroups)
+### Message groups (MsgGroups)
 
-Каждое сообщение принадлежит к группе, определяющей способ доставки по умолчанию:
+Each message belongs to a group that determines the default delivery method:
 
-| Группа | Доставка | Назначение |
+| Group | Delivery | Destination |
 |--------|----------|------------|
-| `Core` | ReliableUnordered | Подключения, отключения, тики |
-| `Entity` | Unreliable | Синхронизация игрового состояния |
-| `String` | ReliableOrdered | Чат, текстовые сообщения |
-| `Command` | ReliableUnordered | Команды клиент → сервер |
-| `EntityEvent` | ReliableOrdered | ECS-события между сервером и клиентом |
+| `Core` | ReliableUnordered | Connections, disconnections, ticks |
+| `Entity` | Unreliable Game state synchronization |
+| `String` | ReliableOrdered | Chat, text messages |
+| `Command` | ReliableUnordered | Commands client → server |
+| `EntityEvent` | ReliableOrdered | ECS events between server and client |
 
-### Способы доставки Lidgren
+### Lidgren delivery methods
 
-- **Unreliable** — без гарантии доставки, без порядка. Самый быстрый
-- **ReliableUnordered** — гарантия доставки, без гарантии порядка
-- **ReliableOrdered** — гарантия доставки и порядка (в пределах sequence channel)
+- **Unreliable** - no guarantee of delivery, no order. The fastest
+- **ReliableUnordered** — delivery guarantee, without order guarantee
+- **ReliableOrdered** - guarantee of delivery and order (within the sequence channel)
 
 ### Sequence Channels
 
-Lidgren поддерживает до 32 каналов для ordered-сообщений. Каналы 16+ зарезервированы для внутренних нужд движка. Сообщения в разных каналах упорядочиваются независимо.
+Lidgren supports up to 32 channels for ordered messages. Channels 16+ are reserved for internal engine needs. Messages in different channels are ordered independently.
 
-### Регистрация и обработка
+### Registration and processing
 
 ```csharp
-// Регистрация сообщения с обработчиком
+// Registering a message with a handler
 _networkManager.RegisterNetMessage<MsgStateAck>(HandleStateAck);
 
-// Регистрация без обработчика (только для отправки)
+// Registration without handler (for sending only)
 _networkManager.RegisterNetMessage<MsgState>();
 ```
 
-## NetManager: управление сетью
+## NetManager: network management
 
-`NetManager` — центральная точка сетевой подсистемы. Он реализует оба интерфейса: `IClientNetManager` и `IServerNetManager`.
+`NetManager` is the central point of the network subsystem. It implements both interfaces: `IClientNetManager` and `IServerNetManager`.
 
-### Основной цикл обработки
+### Main processing cycle
 
-Метод `ProcessPackets()` вызывается каждый кадр и выполняет:
+The `ProcessPackets()` method is called every frame and does:
 
-1. Читает все входящие сообщения из Lidgren peers
-2. Классифицирует по `NetIncomingMessageType`:
-   - `Data` → десериализует в `NetMessage`, вызывает зарегистрированный callback
-   - `StatusChanged` → обрабатывает подключения/отключения
-   - `VerboseDebugMessage`, `WarningMessage`, `ErrorMessage` → логирует
-3. Обновляет метрики Prometheus (отправленные/полученные пакеты, байты, ресенды)
-4. Перерабатывает использованные буферы Lidgren
+1. Reads all incoming messages from Lidgren peers
+2. Classifies by `NetIncomingMessageType`:
+   - `Data` → deserializes to `NetMessage`, calls the registered callback
+   - `StatusChanged` → handles connections/disconnections
+   - `VerboseDebugMessage`, `WarningMessage`, `ErrorMessage` → logs
+3. Updates Prometheus metrics (sent/received packets, bytes, resends)
+4. Recycles used Lidgren buffers
 
 ### StringTable
 
-Для экономии трафика имена типов сообщений передаются как числовые ID через `StringTable`. При подключении сервер и клиент синхронизируют таблицу соответствий.
+To save traffic, message type names are passed as numeric IDs via `StringTable`. When connecting, the server and client synchronize the mapping table.
 
-### Каналы (NetChannel)
+### Channels (NetChannel)
 
-Каждое подключение представлено `NetChannel`, который хранит:
+Each connection is represented by `NetChannel`, which stores:
 - Lidgren `NetConnection`
-- Идентификатор пользователя (`NetUserId`)
+- User ID (`NetUserId`)
 - Ping
-- Состояние аутентификации
+- Authentication status
 
-## Синхронизация игрового состояния (GameState)
+## Synchronizing the game state (GameState)
 
-### Структура GameState
+### GameState structure
 
-`GameState` — снимок состояния игры на конкретном тике. Содержит:
+`GameState` — a snapshot of the game state at a specific tick. Contains:
 
-- **EntityStates** — изменённые состояния компонентов сущностей
-- **PlayerStates** — состояния сессий игроков
-- **EntityDeletions** — удалённые сущности
-- **FromSequence / ToSequence** — диапазон тиков (дельта-состояние)
-- **LastProcessedInput** — последний обработанный сервером ввод клиента
+- **EntityStates** — changed states of entity components
+- **PlayerStates** — player session states
+- **EntityDeletions** — deleted entities
+- **FromSequence / ToSequence** — tick range (delta state)
+- **LastProcessedInput** — the last client input processed by the server
 
-### Дельта-состояния
+### Delta states
 
-Сервер отправляет **дельту** между двумя тиками, а не полное состояние каждый раз. `FromSequence = 0` означает полное состояние (после подключения или при ошибке).
+The server sends the **delta** between two ticks, rather than the full state each time. `FromSequence = 0` means full status (after connection or on error).
 
-### Сжатие и надёжность (MsgState)
+### Compression and reliability (MsgState)
 
-Класс `MsgState` реализует умную логику отправки:
+The `MsgState` class implements smart dispatch logic:
 
-- **Сжатие ZStd** — состояния > 256 байт сжимаются
-- **Адаптивная надёжность** — если итоговый размер превышает Lidgren MTU (~1408 байт), сообщение отправляется как Reliable. Иначе — Unreliable
-- **Принудительная надёжность** — `ForceSendReliably` для состояний, которые обязан получить клиент
+- **ZStd compression** - states > 256 bytes are compressed
+- **Adaptive reliability** - if the resulting size exceeds the Lidgren MTU (~1408 bytes), the message is sent as Reliable. Otherwise - Unreliable
+- **Forced reliability** - `ForceSendReliably` for states that the client must receive
 
-### Поток сервер → клиент
+### Flow server → client
 
-1. **Сервер:** `ServerGameStateManager.SendGameStateUpdate()` → `PvsSystem.SendGameStates(players)`
-2. PVS рассчитывает видимые сущности для каждого игрока
-3. Для каждого игрока формируется индивидуальный `GameState`
-4. Состояние сериализуется, сжимается, отправляется как `MsgState`
-5. **Клиент:** получает `MsgState`, десериализует, помещает в `GameStateProcessor`
-6. Клиент отвечает `MsgStateAck` подтверждением
+1. **Server:** `ServerGameStateManager.SendGameStateUpdate()` → `PvsSystem.SendGameStates(players)`
+2. PVS calculates visible entities for each player
+3. An individual `GameState` is formed for each player
+4. State is serialized, compressed, sent as `MsgState`
+5. **Client:** receives `MsgState`, deserializes, places in `GameStateProcessor`
+6. The client responds with `MsgStateAck` confirmation
 
-### Клиентская обработка состояний
+### Client state processing
 
-`GameStateProcessor` буферизует полученные состояния и выдаёт их для применения:
+`GameStateProcessor` buffers received states and releases them for use:
 
-- **Буфер состояний** — хранит несколько состояний наперёд для сглаживания
-- **Target buffer size** — целевой размер буфера, влияет на задержку vs плавность
-- **Tick timing adjustment** — клиент слегка ускоряет/замедляет свой тик для синхронизации с сервером
+- **State Buffer** - stores several states in advance for smoothing
+- **Target buffer size** — target buffer size, affects latency vs smoothness
+- **Tick timing adjustment** — the client slightly speeds up/slows down its tick to synchronize with the server
 
-### Запрос полного состояния
+### Query full status
 
-При ошибке (отсутствие метаданных сущности, рассинхронизация) клиент запрашивает полное состояние через `MsgStateRequestFull`. Сервер отвечает состоянием с `FromSequence = 0`.
+If there is an error (missing entity metadata, desynchronization), the client requests the full state via `MsgStateRequestFull`. The server responds with a state of `FromSequence = 0`.
 
 ## Potentially Visible Set (PVS)
 
-PVS — серверная система оптимизации, определяющая какие сущности видит каждый клиент.
+PVS is a server-side optimization system that determines which entities each client sees.
 
-### Принцип работы
+### Operating principle
 
-- Мир разделён на **чанки**
-- Сервер отслеживает позицию каждого игрока
-- Сущности в пределах определённого радиуса входят в PVS игрока
-- Только данные видимых сущностей отправляются клиенту
+- The world is divided into **chunks**
+- The server tracks the position of each player
+- Entities within a certain radius enter the player's PVS
+- Only visible entity data is sent to the client
 
-### Жизненный цикл видимости
+### Visibility Lifecycle
 
-1. **Сущность входит в PVS** — клиент получает полное состояние, флаг `Detached` снимается
-2. **Сущность в PVS** — клиент получает дельта-обновления
-3. **Сущность покидает PVS** — сервер отправляет `MsgStateLeavePvs`, клиент устанавливает флаг `MetaDataFlags.Detached`
+1. **Entity enters PVS** - the client receives the full state, the `Detached` flag is cleared
+2. **Entity in PVS** - client receives delta updates
+3. **The entity leaves PVS** - the server sends `MsgStateLeavePvs`, the client sets the flag `MetaDataFlags.Detached`
 
-### Detached сущности
+### Detached entities
 
-Когда сущность выходит из PVS:
-- Она **не удаляется** — остаётся в памяти клиента
-- Устанавливается флаг `MetaDataFlags.Detached`
-- Сущность перемещается в «null-space» (убирается из broadphase)
-- При повторном входе в PVS флаг снимается, сущность возвращается на место
+When an entity exits PVS:
+- It **is not deleted** - remains in the client’s memory
+- The flag `MetaDataFlags.Detached` is set
+- The entity moves to “null-space” (removed from broadphase)
+- When re-entering PVS, the flag is removed, the entity returns to its place
 
 ### PVS Overrides
 
-Для сущностей, которые должны быть видны всегда или конкретным игрокам:
+For entities that should be visible always or to specific players:
 
 ```csharp
-// Видна всем клиентам, независимо от расстояния
+// Visible to all clients, regardless of distance
 _pvs.AddGlobalOverride(entityUid);
 
-// Видна конкретной сессии
+// Visible to a specific session
 _pvs.AddSessionOverride(entityUid, session);
 ```
 
-Типичные применения: UI-сущности игрока, глобальные контроллеры, объекты «на руках» персонажа.
+Typical applications: player UI entities, global controllers, objects on the character’s hands.
 
-## Сетевые события (Network Events)
+## Network Events
 
-### Два типа событий
+### Two types of events
 
-В SS14 есть **локальные** и **сетевые** события. Это принципиально разные механизмы:
+SS14 has **local** and **online** events. These are fundamentally different mechanisms:
 
 ```csharp
-// Локальное событие — только в текущем процессе
+// Local event - only in the current process
 RaiseLocalEvent(uid, new MyLocalEvent());
 SubscribeLocalEvent<MyComponent, MyLocalEvent>(OnMyEvent);
 
-// Сетевое событие — отправляется по сети
+// Network event - sent over the network
 RaiseNetworkEvent(new MyNetEvent());
 SubscribeNetworkEvent<MyNetEvent>(OnNetEvent);
 ```
 
-### Серверная валидация
+### Server Validation
 
-**Все события от клиента к серверу должны быть валидированы.** Клиент может отправить любые данные:
+**All events from the client to the server must be validated.** The client can send any data:
 
 ```csharp
-// ❌ Опасно — нет валидации
+// ❌ Dangerous - no validation
 private void OnClientEvent(MyEvent ev, EntitySessionEventArgs args)
 {
-    DoAction(ev.TargetEntity); // Клиент мог подделать TargetEntity!
+    DoAction(ev.TargetEntity); // The client could have spoofed the TargetEntity!
 }
 
-// ✅ Безопасно — с валидацией
+// ✅ Safe - with validation
 private void OnClientEvent(MyEvent ev, EntitySessionEventArgs args)
 {
     if (!HasComp<MyComponent>(ev.TargetEntity))
@@ -246,54 +246,54 @@ private void OnClientEvent(MyEvent ev, EntitySessionEventArgs args)
 }
 ```
 
-Валидация должна происходить на сервере после получения сообщения и на клиенте до его отправки.
-Код валидации должен находиться в shared системе/хелпер классе для предотвращения дублирования логики!
+Validation must occur on the server after receiving the message and on the client before it is sent.
+Validation code must be in a shared system/helper class to prevent duplication of logic!
 
-### Паттерны отправки
+### Sending patterns
 
 ```csharp
-// Сервер → всем клиентам
+// Server → all clients
 RaiseNetworkEvent(new MyEvent());
 
-// Сервер → конкретному клиенту
+// Server → specific client
 RaiseNetworkEvent(new MyEvent(), session);
 
-// Сервер → всем, кроме одного
+// Server → everyone except one
 var filter = Filter.Broadcast().RemovePlayerByAttachedEntity(uid);
 RaiseNetworkEvent(new MyEvent(), filter);
 ```
 
 ## EntityUid vs NetEntity
 
-В SS14 две системы идентификации сущностей:
+SS14 has two entity identification systems:
 
 | | EntityUid | NetEntity |
 |---|---|---|
-| Где используется | Локально в процессе | При передаче по сети |
-| Стабильность | Разный на клиенте и сервере | Одинаковый везде |
-| Хранение | В компонентах | Только для передачи |
+| Where is it used | Locally in progress | When transmitted over a network |
+| Stability | Different on client and server | Same everywhere |
+| Storage | In components | For transmission only |
 
-### Конвертация
+### Conversion
 
 ```csharp
-// EntityUid → NetEntity (для отправки по сети)
+// EntityUid → NetEntity (to be sent over the network)
 var netEntity = GetNetEntity(uid);
 
-// NetEntity → EntityUid (при получении из сети)
+// NetEntity → EntityUid (when received from the network)
 var uid = GetEntity(netEntity);
 ```
 
-### Правила
+### Rules
 
-- **Компоненты** хранят `EntityUid`, не `NetEntity`
-- При сетевой синхронизации (`[AutoNetworkedField]`) конвертация происходит автоматически
-- Для ручного networking используйте `GetNetEntity()`/`GetEntity()` при сериализации/десериализации
+- **Components** store `EntityUid`, not `NetEntity`
+- During network synchronization (`[AutoNetworkedField]`), conversion occurs automatically
+- For manual networking, use `GetNetEntity()`/`GetEntity()` when serializing/deserializing
 
-## Component Networking: сетевая синхронизация компонентов
+## Component Networking: network synchronization of components
 
-### Автоматическая синхронизация
+### Automatic synchronization
 
-Это основной и рекомендуемый способ. Подробно описан в скилле **SS14 ECS Components**:
+This is the basic and recommended method. Described in detail in the skill **SS14 ECS Components**:
 
 ```csharp
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -304,22 +304,22 @@ public sealed partial class MyComponent : Component
 }
 ```
 
-### Ключевой момент: Dirty()
+### Key Point: Dirty()
 
-После изменения данных компонента в коде **обязательно** вызывайте `Dirty()`:
+After changing component data in code, it is **required** to call `Dirty()`:
 
 ```csharp
 comp.Value = newValue;
-Dirty(uid, comp); // Без этого клиент НЕ получит обновление!
+Dirty(uid, comp); // Without this, the client will NOT receive the update!
 ```
 
-`Dirty()` помечает компонент как изменённый. PVS-система включит его в следующий `GameState` для отправки клиентам.
+`Dirty()` marks the component as changed. The PVS system will include it in the next `GameState` to send to clients.
 
-> **⚠️ Частая ошибка:** забыть `Dirty()` после изменения компонента. Данные изменятся на сервере, но клиент не получит обновление, что приведёт к рассинхронизации.
+> **⚠️ Common mistake:** forgetting `Dirty()` after changing a component. The data will change on the server, but the client will not receive the update, which will lead to desynchronization.
 
 ### SendOnlyToOwner
 
-Для данных, которые должен видеть только «владелец» сущности (например, инвентарь):
+For data that only the "owner" of the entity should see (such as inventory):
 
 ```csharp
 [DataField, AutoNetworkedField]
@@ -333,59 +333,59 @@ public int SecretValue
 
 ### SessionSpecific
 
-Для данных, которые отличаются для разных клиентов (например, видимость замаскированного персонажа).
+For data that differs between clients (for example, the visibility of a masked character).
 
-### NetworkedComponent только для Shared
+### NetworkedComponent for Shared only
 
-`[NetworkedComponent]` можно ставить **только на компоненты в Shared-проекте**. Если поставить на компонент в Client или Server проекте, он молча не будет работать — без ошибок компиляции, но и без синхронизации.
+`[NetworkedComponent]` can be set **only on components in a Shared project**. If you put it on a component in a Client or Server project, it will not work silently - without compilation errors, but also without synchronization.
 
-### IRobustCloneable для ссылочных типов
+### IRobustCloneable for reference types
 
-Если сетевое поле содержит ссылочный тип (класс, коллекцию), тип должен реализовать `IRobustCloneable`, чтобы предикшн мог корректно сохранять и восстанавливать состояние:
+If the network field contains a reference type (class, collection), the type must implement `IRobustCloneable` so that the prediction can correctly save and restore state:
 
 ```csharp
 [DataField, AutoNetworkedField]
-public List<string> Items = new(); // List<T> уже реализует IRobustCloneable
+public List<string> Items = new(); // List<T> already implements IRobustCloneable
 ```
 
-## Отладка сетевых проблем
+## Debugging network problems
 
-### CVars для симуляции
+###CVars for simulation
 
-Используйте в консоли клиента или сервера:
+Use in the client or server console:
 
 ```
-net.fakeloss 0.1       // Потеря 10% пакетов
-net.fakelagmin 0.1     // Минимум 100мс задержки
-net.fakelagrand 0.05   // + случайные 0-50мс
-net.fakeduplicates 0.05 // 5% дублей
+net.fakeloss 0.1       // 10% packet loss
+net.fakelagmin 0.1     // Minimum 100ms latency
+net.fakelagrand 0.05   // + random 0-50ms
+net.fakeduplicates 0.05 // 5% doubles
 ```
 
 ### net.predict
 
 ```
-net.predict false  // Отключить клиентскую предикцию — видно реальную задержку
-net.predict true   // Включить обратно
+net.predict false  // Disable client prediction - you can see the real delay
+net.predict true   // Turn back on
 ```
 
-### Метрики Prometheus
+### Prometheus Metrics
 
-Движок экспортирует метрики:
+The engine exports metrics:
 - `robust_net_sent_packets` / `robust_net_recv_packets`
 - `robust_net_sent_bytes` / `robust_net_recv_bytes`
 - `robust_net_resent_delay` / `robust_net_resent_hole`
 - `robust_net_dropped`
 
-## Связь с другими скиллами
+## Connection with other skills
 
-- **SS14 ECS Components** — детали атрибутов `[NetworkedComponent]`, `[AutoGenerateComponentState]`, `[AutoNetworkedField]`
-- **SS14 ECS Systems** — паттерны работы с сетевыми событиями из систем
-- **SS14 ECS Entities** — `EntityUid` vs `NetEntity`, контейнеры и сетевая идентификация
-- **SS14 Prediction** — как клиент использует полученные состояния для предсказания
+- **SS14 ECS Components** - attribute details `[NetworkedComponent]`, `[AutoGenerateComponentState]`, `[AutoNetworkedField]`
+- **SS14 ECS Systems** - patterns for working with network events from systems
+- **SS14 ECS Entities** - `EntityUid` vs `NetEntity`, containers and network identification
+- **SS14 Prediction** - how the client uses the received states to make predictions
 
-## Оптимизация синхронизации: `DirtyField` вместо полного `Dirty` (дополнение)
+## Synchronization optimization: `DirtyField` instead of the full `Dirty` (addition)
 
-Для больших сетевых компонентов с множеством `AutoNetworkedField` и включёнными field deltas, точечные изменения помечай через `DirtyField`.
+For large network components with multiple `AutoNetworkedField` and field deltas enabled, mark point changes with `DirtyField`.
 
 ```csharp
 [RegisterComponent, NetworkedComponent]
@@ -401,22 +401,22 @@ private void Tick(EntityUid uid, ProximityDetectorComponent comp)
 {
     comp.NextUpdate += comp.UpdateCooldown;
     DirtyField(uid, comp, nameof(ProximityDetectorComponent.NextUpdate));
-    // Отправится дельта только по изменённому полю.
+    // The delta will be sent only along the changed field.
 }
 ```
 
-### Когда так делать
+### When to do this
 
-1. Меняется одно или несколько конкретных полей.
-2. Компонент «тяжёлый» по количеству сетевых полей.
-3. Изменения происходят часто.
+1. One or more specific fields change.
+2. The component is “heavy” in terms of the number of network fields.
+3. Changes occur frequently.
 
-### Анти-паттерн
+### Anti-pattern
 
 ```csharp
-// ❌ Полный dirty на каждый тик при изменении одного поля:
+// ❌ Completely dirty for every tick when changing one field:
 comp.NextUpdate += comp.UpdateCooldown;
 Dirty(uid, comp);
 ```
 
-Полный `Dirty` оставляй для случаев, где действительно меняется существенная часть состояния одновременно.
+Leave the full `Dirty` for cases where a significant part of the state actually changes at the same time.

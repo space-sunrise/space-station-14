@@ -1,0 +1,19 @@
+ent-BoxCaptainCircuitboards = bridge circuit tote
+    .desc = A tote with bridge circuitboards.
+ent-BoxCECircuitboards = engineering circuit tote
+    .desc = A tote with engineering circuitboards.
+ent-BoxCMOCircuitboards = medical circuit tote
+    .desc = A tote with medical circuitboards.
+ent-BoxHoPCircuitboards = head of personnel circuit tote
+    .desc = A tote with service and ID circuitboards.
+ent-BoxHoSCircuitboards = security circuit tote
+    .desc = A tote with security circuitboards.
+ent-BoxQMCircuitboards = cargo circuit tote
+    .desc = A tote with cargo and salvage circuitboards.
+ent-BoxRDCircuitboards = science circuit tote
+    .desc = A tote with science circuitboards.
+
+ent-BoxHoPStamps = head of personnel's stamp box
+    .desc = A box with service stamps for the Head of Personnel.
+ent-BoxQMStamps = quartermaster's stamp box
+    .desc = A box with cargo stamps for the Quartermaster.

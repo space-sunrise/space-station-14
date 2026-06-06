@@ -36,3 +36,5 @@ ent-BorgModuleStandart = fire extinguisher cyborg module
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgERTModuleStandard = ERT utility cyborg module
     .desc = A versatile NT module containing essential tools and medical supplies for ERT operations.
+ent-XenoborgModuleTemperature = temperature xenoborg module
+    .desc = Module with a self-recharging temperature gun.

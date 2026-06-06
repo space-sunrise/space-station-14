@@ -1,0 +1,46 @@
+- type: loadout
+  id: ResearchDirectorScarf
+  equipment:
+    neck: ClothingNeckScarfRD
+
+- type: loadout
+  id: ResearchDirectorCloakLegacy
+  equipment:
+    neck: ClothingNeckCloakLegacyRd
+
+- type: loadout
+  id: ResearchDirectorBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobResearchDirector
+      time: 5h
+  equipment:
+    bra: ClothingBraResearchDirector
+
+- type: loadout
+  id: ResearchDirectorThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobResearchDirector
+      time: 5h
+  equipment:
+    pants: ClothingPantsWomanResearchDirector
+
+- type: loadout
+  id: ResearchDirectorBoxers
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobResearchDirector
+      time: 5h
+  equipment:
+    pants: ClothingPantsManResearchDirector

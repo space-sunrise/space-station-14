@@ -1,0 +1,9 @@
+- type: xenoArchTrigger
+  id: TriggerElectrovae
+  tip: xenoarch-trigger-tip-electrovae
+  components:
+  - type: XATGas
+    targetGas: Electrovae
+  - type: XATReactive
+    reagents:
+    - Electrovae

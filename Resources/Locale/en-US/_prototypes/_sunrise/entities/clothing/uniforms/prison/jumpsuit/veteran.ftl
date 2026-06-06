@@ -1,3 +1,6 @@
+ent-ClothingUniformJumpsuitPrisonVeteranBase = prison veteran uniform
+    .desc = A distinguished uniform worn by experienced prison staff who have proven their dedication through years of service.
+
 ent-ClothingUniformJumpsuitPrisonDoctorVeteran = veteran prison doctor jumpsuit
     .desc = Enhanced medical uniform with additional pockets and reinforced stitching, bearing the subtle wear of countless emergency interventions in maximum security.
 

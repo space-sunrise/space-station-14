@@ -371,3 +371,14 @@ ghost-role-information-wizard-desc = YER A WIZARD! Show the station what your ma
 
 ghost-role-information-emotional-support-scurret-name = Emotional Support Scurret
 ghost-role-information-emotional-support-scurret-description = Support the crew, be adorable, say "wa" a lot.
+ghost-role-information-corporate-aligned-rules =
+    You are [color={role-type-corporate-aligned-alternate-color}][bold]{role-type-corporate-aligned-name}[/bold][/color].
+    You are to serve the interests of NanoTrasen and Central Command, even if they differ from the station's.
+    Remember, you do [color=red]NOT[/color] serve the crew.
+    You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+
+ghost-role-information-tsf-aligned-rules =
+    You are [color={role-type-tsf-aligned-color}][bold]{role-type-tsf-aligned-name}[/bold][/color].
+    You are to serve the interests of the Trans-Solar Federation.
+    Remember, you do [color=red]NOT[/color] serve the crew.
+    You don't remember any of your previous life, and you don't remember anything you learned as a ghost.

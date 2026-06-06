@@ -1,11 +1,11 @@
 ---
 name: ss14-ui-eui-and-ui-manager
-description: Глубокий практический гайд по связке EUI, UserInterfaceSystem и UserInterfaceManager в SS14: выбор подхода, lifecycle, обмен state/message, управление окнами через UIController и безопасные сетевые паттерны.
+description: An in-depth practical guide to the combination of EUI, UserInterfaceSystem and UserInterfaceManager in SS14: choosing an approach, lifecycle, state/message exchange, window management via UIController and secure network patterns.
 ---
 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-ui-eui-and-ui-manager/SKILL.md.
+../../../.agent/skills/ss14-ui-eui-and-ui-manager/SKILL.md
 
 Use that file as the entrypoint and follow its source mapping.

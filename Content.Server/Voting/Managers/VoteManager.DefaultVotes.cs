@@ -57,8 +57,10 @@ namespace Content.Server.Voting.Managers
 
             bool timeoutVote = true;
 
+            // Sunrise-Start
             _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
             _gameTicker.UpdateInfoText();
+            // Sunrise-End
             switch (voteType)
             {
                 case StandardVoteType.Restart:
@@ -97,7 +99,7 @@ namespace Content.Server.Voting.Managers
 
             if (totalPlayers <= playerVoteMaximum || ghostVoterPercentage >= ghostVotePercentageRequirement)
             {
-                StartVote(initiator, showRestartVotes);
+                StartVote(initiator, showRestartVotes); // Sunrise-Start
             }
             else
             {
@@ -145,7 +147,7 @@ namespace Content.Server.Voting.Managers
             return eligibleCount;
         }
 
-        private void StartVote(ICommonSession? initiator, bool displayVotes)
+        private void StartVote(ICommonSession? initiator, bool displayVotes) // Sunrise-Edit
         {
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
@@ -161,7 +163,7 @@ namespace Content.Server.Voting.Managers
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerRestart)),
                 InitiatorTimeout = TimeSpan.FromMinutes(5),
-                DisplayVotes = displayVotes
+                DisplayVotes = displayVotes // Sunrise-Edit
             };
 
             if (alone)
@@ -227,7 +229,7 @@ namespace Content.Server.Voting.Managers
 
         private void CreatePresetVote(ICommonSession? initiator)
         {
-            var presets = GetGamePresets();
+            var presets = GetGamePresetsSunrise(); // Sunrise-Edit
 
             // Sunrise-Start
             if (presets.Count == 1)
@@ -328,7 +330,7 @@ namespace Content.Server.Voting.Managers
 
             foreach (var (k, v) in maps)
             {
-                options.Options.Add((k, v));
+                options.Options.Add((k, v)); // Sunrise-Edit
             }
 
             WirePresetVoteInitiator(options, initiator);
@@ -342,7 +344,7 @@ namespace Content.Server.Voting.Managers
                 {
                     picked = (GameMapPrototype) _random.Pick(args.Winners);
                     _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-map-tie"));
+                        Loc.GetString("ui-vote-map-tie")); // Sunrise-Edit
                 }
                 else
                 {
@@ -352,13 +354,13 @@ namespace Content.Server.Voting.Managers
 
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-                if (ticker.RunLevel == GameRunLevel.PreRoundLobby)
+                if (ticker.RunLevel == GameRunLevel.PreRoundLobby) // Sunrise-Edit
                 {
                     if (_gameMapManager.TrySelectMapIfEligible(picked.ID))
                     {
                         ticker.UpdateInfoText();
                     }
-                    ticker.UpdateInfoText();
+                    ticker.UpdateInfoText(); // Sunrise-Edit
                 }
                 else
                 {
@@ -407,7 +409,7 @@ namespace Content.Server.Voting.Managers
 
             string target = args[0];
             string reason = args[1];
-            string note = args[2];
+            string note = args[2]; // Sunrise-Edit
 
             // Start by getting all relevant target data
             var located = await _locator.LookupIdByNameOrIdAsync(target);
@@ -493,9 +495,9 @@ namespace Content.Server.Voting.Managers
             string voteTitle = "";
             NetEntity? targetNetEntity = _entityManager.GetNetEntity(targetSession.AttachedEntity);
             var initiatorName = initiator != null ? initiator.Name : Loc.GetString("ui-vote-votekick-unknown-initiator");
-            var reasonLocalised = Loc.GetString($"ui-vote-votekick-type-{reason.ToLower()}");
+            var reasonLocalised = Loc.GetString($"ui-vote-votekick-type-{reason.ToLower()}"); // Sunrise-Edit
 
-            voteTitle = Loc.GetString("ui-vote-votekick-title", ("initiator", initiatorName), ("targetEntity", targetEntityName), ("reason", reasonLocalised + ". " + note));
+            voteTitle = Loc.GetString("ui-vote-votekick-title", ("initiator", initiatorName), ("targetEntity", targetEntityName), ("reason", reasonLocalised + ". " + note)); // Sunrise-Edit
 
             var options = new VoteOptions
             {
@@ -581,7 +583,7 @@ namespace Content.Server.Voting.Managers
                     else
                     {
                         _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} succeeded:  Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-success", ("target", targetEntityName), ("reason", reasonLocalised + ". " + note)));
+                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-success", ("target", targetEntityName), ("reason", reasonLocalised + ". " + note))); // Sunrise-Edit
 
                         if (!Enum.TryParse(_cfg.GetCVar(CCVars.VotekickBanDefaultSeverity), out NoteSeverity severity))
                         {
@@ -595,7 +597,7 @@ namespace Content.Server.Voting.Managers
 
                         uint minutes = (uint)_cfg.GetCVar(CCVars.VotekickBanDuration);
 
-                        _bans.CreateServerBan(targetUid, target, null, targetIP, targetHWid, minutes, severity, reasonLocalised + ". " + note);
+                        _bans.CreateServerBan(targetUid, target, null, targetIP, targetHWid, minutes, severity, reasonLocalised + ". " + note); // Sunrise-Edit
                     }
                 }
                 else
@@ -636,8 +638,28 @@ namespace Content.Server.Voting.Managers
             DirtyCanCallVoteAll();
         }
 
-        // Sunrise-Start
         private Dictionary<string, string> GetGamePresets()
+        {
+            var presets = new Dictionary<string, string>();
+
+            foreach (var preset in _prototypeManager.EnumeratePrototypes<GamePresetPrototype>())
+            {
+                if(!preset.ShowInVote)
+                    continue;
+
+                if(_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
+                    continue;
+
+                if(_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
+                    continue;
+
+                presets[preset.ID] = preset.ModeTitle;
+            }
+            return presets;
+        }
+
+        // Sunrise-Start
+        private Dictionary<string, string> GetGamePresetsSunrise()
         {
             var presets = new Dictionary<string, string>();
 
@@ -648,10 +670,17 @@ namespace Content.Server.Voting.Managers
 
             if (_prototypeManager.TryIndex<GamePresetPoolPrototype>(presetPoolId, out var presetPoolProto))
             {
-                foreach (var (presetId, limits) in presetPoolProto.Presets)
+                // Sunrise-Start
+                var poolPresets = new Dictionary<string, int[]>(presetPoolProto.Presets);
+                _Sunrise.Storyteller.StorytellerPresetHelper.AdjustPresetPool(poolPresets, _cfg);
+                // Sunrise-End
+
+                foreach (var (presetId, limits) in poolPresets)
                 {
-                    if (excluded.Contains(presetId))
+                    // Sunrise-Start
+                    if (!_Sunrise.Storyteller.StorytellerPresetHelper.ShouldBypassExclusion(presetId) && excluded.Contains(presetId))
                         continue;
+                    // Sunrise-End
 
                     if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
                         continue;
@@ -671,7 +700,7 @@ namespace Content.Server.Voting.Managers
                 if (validPresets.Count == 0 && excluded.Count > 0)
                 {
                     ticker.ClearExcludedPresets();
-                    foreach (var (presetId, limits) in presetPoolProto.Presets)
+                    foreach (var (presetId, limits) in poolPresets)
                     {
                         if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
                             continue;
@@ -703,6 +732,6 @@ namespace Content.Server.Voting.Managers
 
             return presets;
         }
-        // Sunrise-End
     }
+    // Sunrise-End
 }

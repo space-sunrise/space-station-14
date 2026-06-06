@@ -25,7 +25,7 @@
   parent: BaseSmallStack
   id: Brutepack
   name: stack-brutepack
-  icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: gauze }
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: brutepack } # Sunrise-Edit
   spawn: Brutepack
 
 - type: stack

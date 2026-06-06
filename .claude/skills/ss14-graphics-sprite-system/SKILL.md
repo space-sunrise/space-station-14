@@ -1,11 +1,11 @@
 ---
 name: ss14-graphics-sprite-system
-description: Глубокий практический гайд по SpriteSystem в Space Station 14: lifecycle, полный API по группам методов, работа со слоями и layer-map, практические паттерны и анти-паттерны. Используй при разработке динамических спрайтов, visualizer-систем и рефакторинге устаревших SpriteComponent-вызовов.
+description: An in-depth practical guide to SpriteSystem in Space Station 14: lifecycle, full API for groups of methods, working with layers and layer-map, practical patterns and anti-patterns. Use it when developing dynamic sprites, visualizer systems and refactoring outdated SpriteComponent calls.
 ---
 
 # Claude Bridge
 
 Canonical bridge skill file:
-../../../.agents/skills/ss14-graphics-sprite-system/SKILL.md.
+../../../.agent/skills/ss14-graphics-sprite-system/SKILL.md
 
 Use that file as the entrypoint and follow its source mapping.

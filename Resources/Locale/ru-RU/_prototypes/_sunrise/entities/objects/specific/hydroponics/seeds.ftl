@@ -24,3 +24,5 @@ ent-WhiteroseSeeds = пакет семян белых роз
     .desc = { ent-SeedBase.desc }
 ent-SunflowerSeeds = пакет семян подсолнуха
     .desc = { ent-SeedBase.desc }
+ent-WhiteLilySeeds = пакет семян белой лилии
+    .desc = { ent-SeedBase.desc }

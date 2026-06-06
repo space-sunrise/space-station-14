@@ -62,3 +62,53 @@
     state: rib
     drawdepth: Mobs
     offset: "0.0,0.5"
+
+- type: entity
+  id: StatueAngel
+  parent: BaseStructure
+  name: statue angel
+  description:
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Furniture/statuelarge_x64.rsi
+    state: angel
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.3,0.3"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+
+- type: entity
+  id: StatueAngelPray
+  parent: BaseStructure
+  name: statue angel praying
+  description:
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Furniture/statuelarge_x64.rsi
+    state: angel_praying
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.1,0.8,0.2"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable

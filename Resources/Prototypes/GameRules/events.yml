@@ -52,6 +52,7 @@
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
+
 #Sunrise-start
 - type: entityTable
   id: DerelictBorgEventTable #For Derelict Borg spawns
@@ -162,7 +163,7 @@
     startAudio:
       path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     minimumPlayers: 25
-    weight: 3
+    weight: 0 # Sunrise-edit
     duration: 1
   - type: BureaucraticErrorRule
     ignoredJobs:
@@ -200,12 +201,6 @@
   parent: BaseGameRule
   id: DragonSpawn
   components:
-  # Sunrise-start
-  - type: GameRule
-    delay:
-      min: 900
-      max: 900
-  # Sunrise-end
   - type: StationEvent
     weight: 6.5
     earliestStart: 40
@@ -237,12 +232,6 @@
   parent: BaseGameRule
   id: NinjaSpawn
   components:
-  # Sunrise-start
-  - type: GameRule
-    delay:
-      min: 60
-      max: 600
-  # Sunrise-end
   - type: StationEvent
     weight: 6
     duration: null
@@ -286,7 +275,14 @@
         - SpiderClan
       - type: AutoImplant
         implants:
-        - DeathAcidifierImplant
+        # Sunrise-Start
+        #- DeathAcidifierImplant
+        - RedspaceImplant
+        - MicroBombImplant
+        - StimpackImplant
+        - ReviverImplant
+        - NutrimentImplant
+        # Sunrise-End
       - type: RandomMetadata
         nameSegments:
         - NamesNinjaTitle
@@ -505,7 +501,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -560,7 +556,7 @@
   - type: StationEvent
     earliestStart: 90
     minimumPlayers: 40
-    weight: 0 # Sunrise-edit: Нахуя оно блядь вообще надо
+    weight: 0.005 # Sunrise-edit: Нахуя оно блядь вообще надо
     duration: 1
     occursDuringRoundEnd: false
   - type: ZombieRule

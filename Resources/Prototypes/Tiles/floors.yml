@@ -194,7 +194,7 @@
   id: FloorBrassFilled
   name: tiles-brass-floor-filled
   sprite: /Textures/Tiles/Misc/clockwork/clockwork_floor_filled.png
-  baseTurf: PlatingBrass
+  baseTurf: Plating # Sunrise-Edit
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
@@ -206,7 +206,7 @@
   id: FloorBrassReebe
   name: tiles-brass-floor-reebe
   sprite: /Textures/Tiles/Misc/clockwork/reebe.png
-  baseTurf: PlatingBrass
+  baseTurf: Plating # Sunrise-Edit
   isSubfloor: false
   deconstructTools: [ Prying ]
   footstepSounds:
@@ -2061,7 +2061,7 @@
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroAsteroidSand
+  itemDrop: FloorTileItemAstroAsteroidSand # Sunrise-Edit
   weather: false
 
 - type: tile
@@ -2071,7 +2071,7 @@
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroAsteroidSand
+  itemDrop: FloorTileItemAstroAsteroidSandBorderless # Sunrise-Edit
   weather: false
 
 - type: tile

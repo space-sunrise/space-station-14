@@ -1,3 +1,6 @@
+ent-ClothingUniformJumpsuitPrisonRegularBase = prison regular uniform
+    .desc = A standard uniform worn by prison staff in their daily duties.
+
 ent-ClothingUniformJumpsuitPrisonChef = prison chef jumpsuit
     .desc = Crisp and functional attire for culinary duties, the fabric bearing subtle marks from countless meals prepared behind cold steel bars.
 

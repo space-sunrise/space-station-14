@@ -10,7 +10,7 @@ namespace Content.Server.Atmos;
 /// Use the public APIs in <see cref="AtmosphereSystem"/> instead.
 /// </summary>
 [Access(typeof(AtmosphereSystem), typeof(GasTileOverlaySystem), typeof(AtmosDebugOverlaySystem))]
-public sealed class TileAtmosphere : IGasMixtureHolder
+public sealed partial class TileAtmosphere : IGasMixtureHolder // Sunrise-edit
 {
     /// <summary>
     /// The last cycle this tile's air was archived into <see cref="AirArchived"/>.

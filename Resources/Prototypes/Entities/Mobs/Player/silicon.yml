@@ -91,6 +91,7 @@
   # Sunrise-End
   - type: Speech # Sunrise-Edit
     speechVerb: Robotic # Sunrise-Edit
+    speechSounds: Borg # Sunrise-Edit
 
 - type: entity
   id: AiHeldIntellicard
@@ -553,7 +554,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -651,7 +652,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool
       - BorgModuleFireExtinguisher
@@ -689,7 +690,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-        - PositronicBrain
+        - Boris # Sunrise-Edit
       borg_module:
         - BorgModuleTool
         - BorgModuleFireExtinguisher
@@ -724,7 +725,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool
       - BorgModuleFireExtinguisher
@@ -761,7 +762,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool
       - BorgModuleFireExtinguisher
@@ -799,7 +800,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Boris # Sunrise-Edit
       borg_module:
       - BorgModuleTool #No fire extinguisher, traversal is better
       - BorgModuleMining
@@ -828,16 +829,15 @@
     job: Borg
   - type: GhostTakeoverAvailable
 
-#Sunrise-start
 - type: entity
-  parent: SyndicateAssaultBorgChassisDerelictSunrise
+  parent: SyndicateAssaultBorgChassisDerelictSunrise # Sunrise-Edit
   id: PlayerSyndicateAssaultBorgDerelict
   suffix: Battery, Module
   components:
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+      - Sofia # Sunrise-Edit
       borg_module:
       - BorgModuleOperative
       - BorgModuleC20r
@@ -849,9 +849,7 @@
         startingItem: PowerCellHyper
   - type: RandomMetadata
     nameSegments: [NamesDeathCommando]
-#Sunrise-End
 
-#Sunrise-start
 - type: entity
   parent: PlayerSyndicateAssaultBorgDerelict
   id: PlayerBorgSyndicateDerelictGhostRole
@@ -866,103 +864,3 @@
     reregister: false
     job: Borg
   - type: GhostTakeoverAvailable
-
-- type: entity
-  parent: SyndicateReaperBorgChassisDerelictSunrise
-  id: PlayerSyndicateReaperBorgDerelict
-  suffix: Battery, Module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-      - PositronicBrain
-      borg_module:
-      - BorgModuleSyndicateGeneric
-      - BorgModuleSyndicateCombat
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-  - type: RandomMetadata
-    nameSegments: [NamesDeathCommando]
-
-- type: entity
-  parent: PlayerSyndicateReaperBorgDerelict
-  id: PlayerBorgSyndicateReaperDerelictGhostRoleSunrise
-  suffix: Ghost role
-  components:
-  - type: GhostRole
-    name: ghost-role-information-derelict-syndicate-reaper-cyborg-name
-    description: ghost-role-information-derelict-syndicate-reaper-cyborg-description
-    rules: ghost-role-information-silicon-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-
-- type: entity
-  parent: SyndicateSaboteurBorgChassisDerelictSunrise
-  id: PlayerSyndicateSaboteurBorgDerelict
-  suffix: Battery, Module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-      - PositronicBrain
-      borg_module:
-      - BorgModuleSyndicateGeneric
-      - BorgScoutModuleSyndicateTool
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-  - type: RandomMetadata
-    nameSegments: [NamesDeathCommando]
-
-- type: entity
-  parent: PlayerSyndicateSaboteurBorgDerelict
-  id: PlayerBorgSyndicateSaboteurDerelictGhostRoleSunrise
-  suffix: Ghost role
-  components:
-  - type: GhostRole
-    name: ghost-role-information-derelict-syndicate-saboteur-cyborg-name
-    description: ghost-role-information-derelict-syndicate-saboteur-cyborg-description
-    rules: ghost-role-information-silicon-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-
-- type: entity
-  parent: SyndicateMedicalBorgChassisDerelictSunrise
-  id: PlayerSyndicateMedicalBorgDerelict
-  suffix: Battery, Module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-      - PositronicBrain
-      borg_module:
-      - BorgModuleSyndicateGeneric
-      - BorgModuleSyndicateMedical
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-  - type: RandomMetadata
-    nameSegments: [NamesDeathCommando]
-
-- type: entity
-  parent: PlayerSyndicateMedicalBorgDerelict
-  id: PlayerBorgSyndicateMedicalDerelictGhostRoleSunrise
-  suffix: Ghost role
-  components:
-  - type: GhostRole
-    name: ghost-role-information-derelict-syndicate-medical-cyborg-name
-    description: ghost-role-information-derelict-syndicate-medical-cyborg-description
-    rules: ghost-role-information-silicon-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-#Sunrise-End

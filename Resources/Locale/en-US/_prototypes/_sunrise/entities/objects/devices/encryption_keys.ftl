@@ -10,3 +10,7 @@ ent-EncryptionKeyUSSPCom = command USSP encryption key
     .desc = A time-worn encryption key. You’d be better off not knowing what they’re talking about.
 ent-EncryptionKeySyndieMaster = blood-red master encryption key
     .desc = Syndicate encryption key for coordinating with allies and tapping other channels; intel is a weapon.
+ent-EncryptionKeyDeathSquad = death squad encryption key
+    .desc = The encryption key used by an unknown squad has dried drops of blood on it.
+ent-EncryptionKeyERT = ert encryption key
+    .desc = The encryption key used by ERT for fast information transfer.

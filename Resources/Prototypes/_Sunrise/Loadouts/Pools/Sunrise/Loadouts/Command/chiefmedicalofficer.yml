@@ -1,0 +1,41 @@
+- type: loadout
+  id: ChiefMedicalOfficerScarf
+  equipment:
+    neck: ClothingNeckScarfCmo
+
+- type: loadout
+  id: ChiefMedicalOfficerBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefMedicalOfficer
+      time: 5h
+  equipment:
+    bra: ClothingBraCMO
+
+- type: loadout
+  id: ChiefMedicalOfficerThong
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefMedicalOfficer
+      time: 5h
+  equipment:
+    pants: ClothingPantsWomanCMO
+
+- type: loadout
+  id: ChiefMedicalOfficerBoxers
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefMedicalOfficer
+      time: 5h
+  equipment:
+    pants: ClothingPantsManCMO

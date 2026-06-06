@@ -18,12 +18,15 @@
   overrideConsoleVisibility: false
   supervisors: job-supervisors-head-of-prison
   displayWeight: 60
+  alternativeTitles:
+  - job-alt-title-prison-scholar
   access:
     - Security
     - Brig
     - Maintenance
     - Research
     - Medical
+    - ResearchConsoleAccess
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]

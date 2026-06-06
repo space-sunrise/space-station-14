@@ -1,0 +1,16 @@
+advertisement-soviethumanoid-veteran-1 = Squad, maintain formation. We follow doctrine.
+advertisement-soviethumanoid-veteran-2 = Team leads, confirm sectors and report.
+advertisement-soviethumanoid-veteran-3 = First team assaults, second team covers.
+advertisement-soviethumanoid-veteran-4 = Keep discipline, no improvisation.
+advertisement-soviethumanoid-veteran-5 = Priority targets: officer, medic, heavy.
+advertisement-soviethumanoid-veteran-6 = Secure flanks, center advances.
+advertisement-soviethumanoid-veteran-7 = Set crossfire, maintain spacing.
+advertisement-soviethumanoid-veteran-8 = Radio traffic short: fact, coordinate, task.
+advertisement-soviethumanoid-veteran-9 = Maneuver on my signal. Confirm readiness.
+advertisement-soviethumanoid-veteran-10 = Medical team stays reserve until ordered.
+advertisement-soviethumanoid-veteran-11 = Reinforcements, hold the right corridor.
+advertisement-soviethumanoid-veteran-12 = Increase corner checks, clear upper levels.
+advertisement-soviethumanoid-veteran-13 = Organized fallback by cover groups.
+advertisement-soviethumanoid-veteran-14 = Hold position until further orders.
+advertisement-soviethumanoid-veteran-15 = Personnel, check ammo and status.
+advertisement-soviethumanoid-veteran-16 = Task remains active until sector is fully secured.

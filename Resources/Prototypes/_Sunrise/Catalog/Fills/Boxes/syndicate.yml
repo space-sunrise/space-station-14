@@ -268,13 +268,13 @@
   components:
   - type: Storage
     grid:
-    - 0,0,3,1
+    - 0,0,2,1
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
         - id: MagazineRifleBoxSP
-          amount: 3
+          amount: 2
         - id: MagazineRifleBoxFMJ
   - type: Sprite
     layers:
@@ -291,7 +291,7 @@
       storagebase: !type:AllSelector
         children:
         - id: MagazineRifleBoxIncendiary
-          amount: 4
+          amount: 3
   - type: Sprite
     layers:
     - state: box_of_doom_big
@@ -307,7 +307,7 @@
       storagebase: !type:AllSelector
         children:
         - id: MagazineRifleBoxUranium
-          amount: 4
+          amount: 3
   - type: Sprite
     layers:
     - state: box_of_doom_big

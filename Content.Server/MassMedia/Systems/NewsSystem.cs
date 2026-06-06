@@ -29,6 +29,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -52,6 +53,7 @@ public sealed class NewsSystem : SharedNewsSystem
     private WebhookIdentifier? _webhookId = null;
     private Color _webhookEmbedColor;
     private bool _webhookSendDuringRound;
+    private bool _photoUploadEnabled = true;
 
     public override void Initialize()
     {
@@ -73,6 +75,7 @@ public sealed class NewsSystem : SharedNewsSystem
             }, true);
 
         _cfg.OnValueChanged(CCVars.DiscordNewsWebhookSendDuringRound, value => _webhookSendDuringRound = value, true);
+        _cfg.OnValueChanged(SunriseCCVars.PhotoUploadEnabled, value => _photoUploadEnabled = value, true);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEndMessageEvent);
 
         // News writer
@@ -183,7 +186,7 @@ public sealed class NewsSystem : SharedNewsSystem
 
         var title = msg.Title.Trim();
         var content = msg.Content.Trim();
-        var photoPaths = msg.PhotoPaths;
+        var photoPaths = _photoUploadEnabled ? msg.PhotoPaths : null;
 
         if (TryAddNews(ent, title, content, out var article, authorName, msg.Actor, photoPaths))
         {
@@ -336,7 +339,7 @@ public sealed class NewsSystem : SharedNewsSystem
         if (!TryGetArticles(ent, out var articles))
             return;
 
-        var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent, ent.Comp.DraftPhotoPaths);
+        var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent, ent.Comp.DraftPhotoPaths, _photoUploadEnabled);
         _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
@@ -410,6 +413,14 @@ public sealed class NewsSystem : SharedNewsSystem
     private void OnRequestPhotosMessage(Entity<NewsWriterComponent> ent, ref NewsWriterRequestPhotosMessage msg)
     {
         var photos = new List<PhotoMetadata>();
+
+        if (!_photoUploadEnabled)
+        {
+            var emptyPhotosMsg = new NewsWriterPhotosMessage(photos);
+            _ui.ServerSendUiMessage(ent.Owner, NewsWriterUiKey.Key, emptyPhotosMsg, msg.Actor);
+            _popup.PopupEntity(Loc.GetString("news-write-upload-disabled"), ent, msg.Actor, PopupType.SmallCaution);
+            return;
+        }
 
         // Find all PDAs or cartridges with photos on the actor
         var query = EntityQueryEnumerator<PhotoCartridgeComponent>();

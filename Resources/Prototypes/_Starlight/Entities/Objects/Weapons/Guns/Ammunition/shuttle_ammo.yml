@@ -1,0 +1,901 @@
+# Shuttle Artillery Ammunition
+# Covers: M321-CHARYBDIS 280mm, Dravon 75mm, AK570 90mm, Leviathan 240mm
+
+# Base Charybdis 280mm cartridge (abstract)
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseMajorContraband] # Sunrise-Edit
+  id: BaseCharon280mmCartridge
+  name: base 280mm Charybdis cartridge
+  categories: [ HideSpawnMenu ] # Sunrise-Add
+  components:
+  - type: Sprite
+    drawdepth: Items
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.05,0.10,0.05"
+        density: 20
+        mask:
+          - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: Tag
+    tags:
+    - Cartridge
+    - Cartridge280mmSlug
+  - type: Item
+    size: Ginormous # Sunrise-Edit
+  - type: EmitSoundOnLand
+    sound:
+      collection: CasingFall
+      params:
+        volume: -1
+  - type: StaticPrice
+    price: 1
+  - type: GuideHelp
+    guides:
+    - SunriseAmmunition
+  - type: DamageOnLand # Sunrise-Add
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: MultiHandedItem
+
+# M381 CHARYBDIS 280mm 26.5kg Slug
+# A massive kinetic penetrator. Pierces through targets and structures before detonating.
+- type: entity
+  parent: BaseCharon280mmCartridge
+  id: CartridgeCharon280mmSlug
+  name: M381 CHARYBDIS 280mm 26.5kg slug
+  description: >-
+    A 26.5 kilogram depleted-tungsten penetrator round for the M321-CHARYBDIS 'Thanatos' railgun system.
+    The slug punches through multiple targets and structural layers before its delayed fuse detonates.
+    Handle with extreme care. Requires manual chamber loading.
+  suffix: Slug
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeCharon280mmSlugDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSlug
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
+    layers:
+    - state: railgun_slug
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: railgun_slug
+    suffix: false
+  - type: StaticPrice
+    price: 2000
+  - type: HeldSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+
+# M381 CHARYBDIS 280mm Slug (Damaged, 75%)
+- type: entity
+  parent: CartridgeCharon280mmSlug
+  id: CartridgeCharon280mmSlugDamaged75
+  name: M381 CHARYBDIS 280mm 26.5kg slug
+  description: >-
+    A damaged 280mm slug with compromised mass distribution and reduced penetrative effect.
+    Estimated combat effectiveness: 75%.
+  suffix: Slug, Damaged 75%
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSlugDamaged75
+    deleteOnSpawn: true
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 0
+  - type: StaticPrice
+    price: 1500
+
+# M381 CHARYBDIS 280mm 40KG Subnuclear Slug
+# A subnuclear warhead. Detonates on impact with a catastrophic area-of-effect blast.
+- type: entity
+  parent: BaseCharon280mmCartridge
+  id: CartridgeCharon280mmSubnuclear
+  name: M381 CHARYBDIS 280mm 40kg subnuclear slug
+  description: >-
+    A 40 kilogram subnuclear warhead packaged as a railgun slug for the M321-CHARYBDIS 'Thanatos' system.
+    Detonates on first contact, producing a massive subnuclear detonation with significant residual radiation.
+    RESTRICTED to authorized combat operations only. Requires manual chamber loading.
+  suffix: Subnuclear
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeCharon280mmSubnuclearDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSubnuclear
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/ArtilleryAmmo/charon_ammo.rsi # Sunrise-Edit
+    layers:
+    - state: subnuclear
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: subnuclear
+    suffix: false
+  - type: StaticPrice
+    price: 8000
+  - type: HeldSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+
+# M381 CHARYBDIS 280mm Subnuclear Slug (Damaged, 75%)
+- type: entity
+  parent: CartridgeCharon280mmSubnuclear
+  id: CartridgeCharon280mmSubnuclearDamaged75
+  name: M381 CHARYBDIS 280mm 40kg subnuclear slug
+  description: >-
+    A damaged subnuclear 280mm shell with partially degraded internals.
+    Estimated combat effectiveness: 75%.
+  suffix: Subnuclear, Damaged 75%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeCharon280mmSubnuclearDamaged50:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSubnuclearDamaged75
+    deleteOnSpawn: true
+  - type: DamageOnLand # Sunrise-Add
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 6000
+
+# M381 CHARYBDIS 280mm Subnuclear Slug (Damaged, 50%)
+- type: entity
+  parent: CartridgeCharon280mmSubnuclear
+  id: CartridgeCharon280mmSubnuclearDamaged50
+  name: M381 CHARYBDIS 280mm 40kg subnuclear slug
+  description: >-
+    A critically damaged subnuclear shell. One more hard impact may trigger catastrophic failure.
+    Estimated combat effectiveness: 50%.
+  suffix: Subnuclear, Damaged 50%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CharonSubnuclearRupture25:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSubnuclearDamaged50
+    deleteOnSpawn: true
+  - type: DamageOnLand # Sunrise-Add
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 4000
+
+# Dravon 75mm Artillery Shell Ammunition
+
+# Base Dravon 75mm shell (abstract)
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseMajorContraband]
+  id: BaseDravon75mmShell
+  name: base 75mm Dravon shell
+  categories: [ HideSpawnMenu ] # Sunrise-Add
+  components:
+  - type: Tag
+    tags:
+    - Cartridge75mmDravon
+  - type: Item
+    size: Normal
+
+# Dravon 75mm HE Shell
+- type: entity
+  parent: BaseDravon75mmShell
+  id: CartridgeDravon75mmHE
+  name: DVN-75 75mm HE shell
+  description: >-
+    A 75mm high-explosive artillery shell for the Dravon cannon system.
+    Detonates on impact with a solid area-of-effect blast.
+  suffix: HE
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDravon75mmHE
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 0.8, 1.15
+    layers:
+    - state: flash
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: StaticPrice
+    price: 150
+
+# 15-Round Magazine for Dravon 75mm HE
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineDravon75mmHE
+  name: DVN-75 75mm HE shell magazine
+  description: A 15-round magazine of 75mm HE shells for the Dravon cannon system.
+  components:
+  - type: Tag
+    tags:
+    - MagazineDravon75mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Cartridge75mmDravon
+    proto: CartridgeDravon75mmHE
+    capacity: 15
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-4
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: StaticPrice
+    price: 400
+
+
+# AK570 90mm Artillery Shell Ammunition
+
+# Base AK570 90mm shell (abstract)
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseMajorContraband]
+  id: BaseAK570_90mmShell
+  name: base 90mm AK570 shell
+  categories: [ HideSpawnMenu ] # Sunrise-Add
+  components:
+  - type: Tag
+    tags:
+    - Cartridge90mmAK570
+  - type: Item
+    size: Normal
+
+# AK570 90mm HE Shell
+- type: entity
+  parent: BaseAK570_90mmShell
+  id: Cartridge90mmAutoHE
+  name: AK-90 90mm HE shell
+  description: >-
+    A 90mm high-explosive artillery shell for the AK570 cannon system.
+    Heavier than the Dravon's 75mm round, with a larger explosive yield.
+  suffix: HE
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAK57090mmHE
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    scale: 1.3, 1.3
+    layers:
+    - state: baton
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: StaticPrice
+    price: 200
+
+# 20-Round Magazine for AK570 90mm HE
+- type: entity
+  parent: BaseMagazineGrenade
+  id: MagazineAK570_90mmHE
+  name: AK-90 90mm HE shell magazine
+  description: A 20-round magazine of 90mm HE shells for the AK570 cannon system.
+  components:
+  - type: Tag
+    tags:
+    - MagazineAK570_90mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Cartridge90mmAK570
+    proto: Cartridge90mmAutoHE
+    capacity: 20
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-4
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: StaticPrice
+    price: 550
+
+
+# Leviathan 240mm Artillery Shell Ammunition
+
+# Base Leviathan 240mm shell (abstract)
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseMajorContraband]
+  id: BaseLeviathanShell # Sunrise-Edit
+  name: base 240mm Leviathan shell
+  categories: [ HideSpawnMenu ] # Sunrise-Add
+  components:
+  - type: Tag
+    tags:
+    - Cartridge240mmLeviathan
+  - type: Item
+    size: Ginormous
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 150
+  - type: Damageable
+    damageContainer: Inorganic
+
+# Leviathan 240mm HE Shell
+- type: entity
+  parent: BaseLeviathanShell # Sunrise-Edit
+  id: CartridgeLeviathan240mmHE
+  name: 240mm HE artillery shell
+  description: >-
+    A massive 240mm high-explosive artillery shell for the Leviathan siege cannon.
+    The sheer concussive force of detonation can level structures and devastate entire sections of a ship.
+    Requires manual chamber loading.
+  suffix: HE
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmHEDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmHE
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast240mm
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: blast240-inhand-left
+      right:
+      - state: blast240-inhand-right
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: StaticPrice
+    price: 11984
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+
+# Leviathan 240mm HE Shell (Damaged, 75%)
+- type: entity
+  parent: CartridgeLeviathan240mmHE
+  id: CartridgeLeviathan240mmHEDamaged75
+  name: 240mm HE artillery shell
+  description: >-
+    A damaged 240mm HE shell with partially degraded internals.
+  suffix: HE, Damaged 75%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmHEDamaged50:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmHE
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast240mmdamaged
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 5000
+
+# Leviathan 240mm HE Shell (Damaged, 50%)
+- type: entity
+  parent: CartridgeLeviathan240mmHE
+  id: CartridgeLeviathan240mmHEDamaged50
+  name: 240mm HE artillery shell
+  description: >-
+    A critically damaged 240mm HE shell. One more hard impact may trigger catastrophic failure.
+    Estimated combat effectiveness: 50%.
+  suffix: HE, Damaged 50%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          LeviathanHERupture25:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmHE
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast240mmcrit
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 0
+
+# Leviathan 240mm Nuke Shell
+- type: entity
+  parent: BaseLeviathanShell
+  id: CartridgeLeviathan240mmNuke
+  name: 240mm nuclear artillery shell
+  description: >-
+    A strategic 240mm shell with a compact nuclear payload for the Leviathan siege cannon.
+    On impact, it produces a detonation equivalent to a nuclear grenade and disperses irradiated shrapnel.
+    Requires manual chamber loading.
+  suffix: Nuclear
+  components:
+  - type: Construction
+    graph: LeviathanNukeShellDisassembly
+    node: start
+    defaultTarget: terminal
+    deconstructionTarget: terminal
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmNukeDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmNuke
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: nuke240mm
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: nuke240-inhand-left
+      right:
+      - state: nuke240-inhand-right
+  - type: Appearance
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: StaticPrice
+    price: 19984
+
+# Leviathan 240mm Nuke Shell (Damaged, 75%)
+- type: entity
+  parent: CartridgeLeviathan240mmNuke
+  id: CartridgeLeviathan240mmNukeDamaged75
+  name: 240mm nuclear artillery shell
+  description: >-
+    A damaged nuclear 240mm shell with compromised casing and degraded internals.
+  suffix: Nuclear, Damaged 75%
+  components:
+  - type: Construction
+    graph: LeviathanNukeShellDisassembly
+    node: damaged75
+    defaultTarget: terminal
+    deconstructionTarget: terminal
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmNukeDamaged50:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: AmbientSound
+    volume: -15
+    range: 3
+    sound:
+      path: "/Audio/Misc/gamma.ogg"
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmNuke
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: nuke240mmdamaged
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 0.8
+    color: "#52ff39"
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: -9999
+
+# Leviathan 240mm Nuke Shell (Damaged, 50%)
+- type: entity
+  parent: CartridgeLeviathan240mmNuke
+  id: CartridgeLeviathan240mmNukeDamaged50
+  name: 240mm nuclear artillery shell
+  description: >-
+    A critically damaged nuclear shell. One more hard impact may trigger catastrophic rupture.
+    Estimated combat effectiveness: 50%.
+  suffix: Nuclear, Damaged 50%
+  components:
+  - type: Construction
+    graph: LeviathanNukeShellDisassembly
+    node: damaged50
+    defaultTarget: terminal
+    deconstructionTarget: terminal
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          LeviathanNukeRupture25:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: AmbientSound
+    volume: -10
+    range: 10
+    sound:
+      path: "/Audio/Misc/gamma.ogg"
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmNuke
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: nuke240mmcrit
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 2.5
+    color: "#52ff39"
+  - type: RadiationSource
+    intensity: 0.5
+    slope: 0.1
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: -99999
+
+# Outcome spawners for Leviathan nuke shell disassembly graph.
+- type: entity
+  id: LeviathanNukeShellStep1OutcomeSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: SpawnEntityTableOnTrigger
+    keysIn: [trigger]
+    useMapCoords: true
+    table: !type:GroupSelector
+      children:
+      - id: CartridgeLeviathan240mmNukeDamaged75
+        weight: 75
+      - id: LeviathanNukeRupture25
+        weight: 25
+  - type: DeleteOnTrigger
+    keysIn: [trigger]
+
+- type: entity
+  id: LeviathanNukeShellStep2OutcomeSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: SpawnEntityTableOnTrigger
+    keysIn: [trigger]
+    useMapCoords: true
+    table: !type:GroupSelector
+      children:
+      - !type:AllSelector
+        weight: 50
+        children:
+        - id: SheetUranium
+          amount: 1
+        - id: CartridgeLeviathan240mmNukeDamaged50
+      - id: LeviathanNukeRupture25
+        weight: 50
+  - type: DeleteOnTrigger
+    keysIn: [trigger]
+
+- type: entity
+  id: LeviathanNukeShellStep3OutcomeSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: trigger
+  - type: SpawnEntityTableOnTrigger
+    keysIn: [trigger]
+    useMapCoords: true
+    table: !type:GroupSelector
+      children:
+      - !type:AllSelector
+        weight: 25
+        children:
+        - id: ExplosionEffectSmoke
+          amount: 1
+        - id: SheetUranium
+          amount: 2
+        - id: SheetPlasteel10
+          amount: 2
+        - id: SheetSteel
+          amount: 2
+      - id: LeviathanNukeRupture25
+        weight: 75
+  - type: DeleteOnTrigger
+    keysIn: [trigger]
+
+# Leviathan 240mm Cluster Shell
+- type: entity
+  parent: BaseLeviathanShell
+  id: CartridgeLeviathan240mmCluster
+  name: 240mm cluster artillery shell
+  description: >-
+    A 240mm cluster shell for the Leviathan siege cannon.
+    On impact, it disperses a payload of syndicate cluster grenades over the target area.
+    Requires manual chamber loading.
+  suffix: Cluster
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmClusterDamaged75:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmCluster
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: cluster240mm
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: cluster240-inhand-left
+      right:
+      - state: cluster240-inhand-right
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: StaticPrice
+    price: 15000
+
+# Leviathan 240mm Cluster Shell (Damaged, 75%)
+- type: entity
+  parent: CartridgeLeviathan240mmCluster
+  id: CartridgeLeviathan240mmClusterDamaged75
+  name: 240mm cluster artillery shell
+  description: >-
+    A damaged 240mm cluster shell with unstable dispersal internals.
+  suffix: Cluster, Damaged 75%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CartridgeLeviathan240mmClusterDamaged50:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmCluster
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: cluster240mmdamaged
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 5000
+
+# Leviathan 240mm Cluster Shell (Damaged, 50%)
+- type: entity
+  parent: CartridgeLeviathan240mmCluster
+  id: CartridgeLeviathan240mmClusterDamaged50
+  name: 240mm cluster artillery shell
+  description: >-
+    A critically damaged cluster shell. One more hard impact may trigger an uncontrolled payload rupture.
+    Estimated combat effectiveness: 50%.
+  suffix: Cluster, Damaged 50%
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          LeviathanClusterRupture25:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CartridgeAmmo
+    proto: BulletLeviathan240mmCluster
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: cluster240mmcrit
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 100
+  - type: StaticPrice
+    price: 0
+

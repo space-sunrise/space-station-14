@@ -10,3 +10,15 @@
         children:
         - id: VendingMachineRestockPaintVend
           amount: 1
+
+- type: entity
+  id: CrateVendingMachineRestockDonkFilled
+  parent: CratePlastic
+  name: donk on the go restock crate
+  description: Contains a restock box for the Donk on the Go Vendor.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockDonk

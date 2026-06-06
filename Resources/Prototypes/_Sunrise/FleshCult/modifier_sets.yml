@@ -1,7 +1,9 @@
-﻿- type: damageModifierSet
+- type: damageModifierSet
   id: FleshMob
   coefficients:
-    Heat: 1.25
+    Heat: 2.0
+    Piercing: 0.8
+    Blunt: 0.8
 
 - type: damageModifierSet
   id: FleshHeart

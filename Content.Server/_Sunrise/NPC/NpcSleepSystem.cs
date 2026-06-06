@@ -1,5 +1,6 @@
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Server.Salvage.Expeditions;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
@@ -85,6 +86,10 @@ public sealed partial class NpcSleepSystem : EntitySystem
 
     private bool AllowNpc(EntityUid uid, TransformComponent xform)
     {
+        // НЕ СПАТЬ НА ЭКСПЕ!!
+        if (xform.MapUid is { } mapUid && HasComp<SalvageExpeditionComponent>(mapUid))
+            return true;
+
         var npcCoords = _transform.GetMapCoordinates(uid, xform);
 
         _players.Clear();

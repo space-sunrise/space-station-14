@@ -166,3 +166,189 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Bra/bra.rsi
     equippedState: female_christmas
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraAdjutant
+  name: women's bra "Adjutant"
+  description: A bra in adjutant colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/adjutant.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/adjutant.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraCMO
+  name: women's bra "CMO"
+  description: A bra in chief medical officer colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/cmo.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/cmo.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraCaptain
+  name: women's bra "Captain"
+  description: A bra in captain colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/captain.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/captain.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraCaptainBlack
+  name: women's black bra "Captain"
+  description: A black bra for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/captain_black.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/captain_black.rsi
+    equippedState: female_bralette
+  - type: StaticPrice
+    price: 3333
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraCaptainWhite
+  name: women's white bra "Captain"
+  description: A white bra for the captain.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/captain_white.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/captain_white.rsi
+    equippedState: female_bralette
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraHeadOfPersonnel
+  name: women's bra "Head of Personnel"
+  description: A bra in head of personnel colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/hop.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/hop.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraHeadOfSecurity
+  name: women's bra "Head of Security"
+  description: A bra in head of security colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/hos.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/hos.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraQuartermaster
+  name: women's bra "Quartermaster"
+  description: A bra in quartermaster colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/qm.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/qm.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraResearchDirector
+  name: women's bra "Research Director"
+  description: A bra in research director colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/rd.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/rd.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraBlueshield
+  name: women's bra "Blueshield"
+  description: A bra in blueshield colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/blueshield.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/blueshield.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraChiefEngineer
+  name: women's bra "Chief Engineer"
+  description: A bra in chief engineer colors.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/ce.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/ce.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraPink
+  name: women's pink bra
+  description: A pink bra.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/pink.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/pink.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraPurple
+  name: women's purple bra
+  description: A purple bra.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/purple.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/purple.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraBlack
+  name: women's black bra
+  description: A black bra.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/black.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/black.rsi
+    equippedState: female_bralette

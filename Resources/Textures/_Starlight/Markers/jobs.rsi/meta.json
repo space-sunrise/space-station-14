@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "taken from the game",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "jobicon",
+      "copyright": "taken from the game"
+    },
+    {
+      "name": "green",
+      "copyright": "taken from the game"
+    },
+    {
+      "name": "magistrate",
+      "copyright": "by Rinary1(Github)"
+    },
+    {
+      "name": "ntrep",
+      "copyright": "by Rinary1(Github)"
+    },
+    {
+      "name": "iaa",
+      "copyright": "by Rinary1(Github)"
+    },
+    {
+      "name": "obs"
+    },
+    {
+      "name": "surgeon"
+    },
+    {
+      "name": "mailtech"
+    },
+    {
+      "name": "salvagelead"
+    },
+    {
+      "name": "miningspecialist"
+    },
+	{
+      "name": "performer",
+	  "copyright": "wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "decimusicon"
+    },
+	  {
+      "name": "dutyofficer",
+	    "copyright": "BORT",
+	    "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "ntsficon"
+    },
+    {
+      "name": "TSF"
+    },
+    {
+      "name": "TSFCrew"
+    },
+    {
+      "name": "TSFOfficer"
+    },
+    {
+      "name": "MARSOC"
+    },
+    {
+      "name": "Phantom"
+    },
+    {
+      "name": "nct"
+    }
+  ]
+}

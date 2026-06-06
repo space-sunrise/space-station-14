@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +20,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
+using System.Linq;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -62,7 +63,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         "Number of times the log queue cap has been reached in a round.");
 
     private static readonly Gauge PreRoundQueueCapReached = Metrics.CreateGauge(
-        "admin_logs_queue_cap_reached",
+        "admin_logs_pre_round_queue_cap_reached",
         "Number of times the pre-round log queue cap has been reached in a round.");
 
     private static readonly Gauge LogsSent = Metrics.CreateGauge(
@@ -74,6 +75,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     // CVars
     private bool _metricsEnabled;
+
     private TimeSpan _queueSendDelay;
     private int _queueMax;
     private int _preRoundQueueMax;
@@ -111,6 +113,9 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             value => _queueMax = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsPreRoundQueueMax,
             value => _preRoundQueueMax = value, true);
+        // Sunrise edit start - keep Loki configuration in fork partial
+        InitializeLokiConfiguration();
+        // Sunrise edit end
         _configuration.OnValueChanged(CCVars.AdminLogsDropThreshold,
             value => _dropThreshold = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsHighLogPlaytime,
@@ -132,9 +137,18 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     public async Task Shutdown()
     {
-        if (!_logQueue.IsEmpty)
+        try
         {
-            await SaveLogs();
+            if (!_logQueue.IsEmpty)
+            {
+                await SaveLogs();
+            }
+        }
+        finally
+        {
+            // Sunrise edit start - release fork Loki resources during admin log shutdown
+            ShutdownLoki();
+            // Sunrise edit end
         }
     }
 
@@ -247,9 +261,19 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         _preRoundLogQueue.Clear();
         PreRoundQueue.Set(0);
 
-        var task = _db.AddAdminLogs(copy);
-
-        _sawmill.Debug($"Saving {copy.Count} admin logs.");
+        // Sunrise edit start - choose Loki or database admin log persistence
+        Task task;
+        if (_lokiEnabled)
+        {
+            task = SaveLogsToLoki(copy);
+            _sawmill.Debug($"Saving {copy.Count} admin logs to Loki.");
+        }
+        else
+        {
+            task = _db.AddAdminLogs(copy);
+            _sawmill.Debug($"Saving {copy.Count} admin logs.");
+        }
+        // Sunrise edit end
 
         if (_metricsEnabled)
         {
@@ -564,6 +588,14 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             list = new List<SharedAdminLog>(initialSize);
         }
 
+        // Sunrise edit start - read admin logs from Loki when enabled
+        if (_lokiEnabled)
+        {
+            await GetAdminLogsFromLoki(filter, list);
+            return list;
+        }
+        // Sunrise edit end
+
         await foreach (var log in _db.GetAdminLogs(filter).WithCancellation(filter?.CancellationToken ?? default))
         {
             list.Add(log);
@@ -572,15 +604,33 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return list;
     }
 
-    public IAsyncEnumerable<string> AllMessages(LogFilter? filter = null)
+    // Sunrise edit start - route log message reads through Loki-aware query paths
+    public async IAsyncEnumerable<string> AllMessages(LogFilter? filter = null)
     {
-        return _db.GetAdminLogMessages(filter);
+        if (_lokiEnabled)
+        {
+            var list = new List<SharedAdminLog>();
+            await GetAdminLogsFromLoki(filter, list);
+            foreach (var l in list) yield return l.Message;
+        }
+        else
+        {
+            await foreach (var message in _db.GetAdminLogMessages(filter)) yield return message;
+        }
     }
 
-    public IAsyncEnumerable<JsonDocument> AllJson(LogFilter? filter = null)
+    public async IAsyncEnumerable<JsonDocument> AllJson(LogFilter? filter = null)
     {
-        return _db.GetAdminLogsJson(filter);
+        if (_lokiEnabled)
+        {
+            yield break;
+        }
+        else
+        {
+            await foreach (var json in _db.GetAdminLogsJson(filter)) yield return json;
+        }
     }
+    // Sunrise edit end
 
     public Task<Round> Round(int roundId)
     {
@@ -613,8 +663,75 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return Round(_currentRoundId);
     }
 
-    public Task<int> CountLogs(int round)
+    // Sunrise edit start - prefer Loki count and report zero if Loki is unavailable
+    public async Task<int> CountLogs(int round)
     {
-        return _db.CountAdminLogs(round);
+        if (_lokiEnabled)
+        {
+            try
+            {
+                return await CountLogsFromLoki(round);
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Warning($"Failed to fetch Loki log count for round {round}: {ex}");
+                return 0;
+            }
+        }
+
+        return await _db.CountAdminLogs(round);
     }
+
+    private async Task<int> CountLogsFromLoki(int round)
+    {
+        if (string.IsNullOrEmpty(_lokiUrl))
+            return 0;
+
+        var filter = new LogFilter { Round = round };
+        var ascending = true;
+        var timeRange = await ResolveLokiTimeRange(filter);
+        var batchLimit = 5000;
+        LokiCursor? cursor = null;
+        var count = 0;
+        var requiresMore = true;
+
+        while (requiresMore)
+        {
+            var query = BuildLokiQuery(filter, ascending, cursor);
+            var url = BuildLokiQueryUrl(query, batchLimit, timeRange, ascending);
+            var response = await _httpClient.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Loki count query failed: {response.StatusCode} {body}");
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            var lokiResponse = JsonSerializer.Deserialize<LokiQueryResponse>(content);
+            var rawValueCount = CountLokiValues(lokiResponse);
+            var rawValues = FlattenLokiValues(lokiResponse, ascending, batchLimit);
+            if (rawValues.Count == 0)
+                return count;
+
+            var nextCursor = cursor;
+            foreach (var parsed in rawValues)
+            {
+                if (cursor != null && !IsCursorBefore(parsed, cursor.Value))
+                    continue;
+
+                count++;
+                nextCursor = ToLokiCursor(parsed);
+            }
+
+            if (nextCursor == null || nextCursor == cursor)
+                return count;
+
+            cursor = nextCursor;
+            timeRange = MoveTimeRangeCursorForward(timeRange, cursor.Value, ascending);
+            requiresMore = rawValueCount >= batchLimit;
+        }
+
+        return count;
+    }
+    // Sunrise edit end
 }

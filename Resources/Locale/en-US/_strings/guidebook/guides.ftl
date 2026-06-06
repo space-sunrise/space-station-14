@@ -138,6 +138,7 @@ guide-entry-antagonists = Antagonists
 guide-entry-nuclear-operatives = Nuclear Operatives
 guide-entry-traitors = Traitors
 guide-entry-changelings = Changelings
+guide-entry-flesh-cult = Flesh Cultist
 guide-entry-zombies = Zombies
 guide-entry-revolutionaries = Revolutionaries
 guide-entry-minor-antagonists = Minor Antagonists

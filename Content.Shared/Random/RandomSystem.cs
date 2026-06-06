@@ -12,6 +12,23 @@ public sealed class RandomSystem : EntitySystem
         if (entries.Count == 0)
             return null;
 
+        // Sunrise-start
+        for (var i = 0; i < entries.Count; i++)
+        {
+            var entry = entries[i];
+
+            if (entry.Cost <= budget)
+                continue;
+
+            entries.RemoveSwap(i);
+            i--;
+            probSum -= entry.Prob;
+        }
+
+        if (entries.Count == 0 || probSum <= 0f)
+            return null;
+        // Sunrise-End
+
         // - Pick an entry
         // - Remove the cost from budget
         // - If our remaining budget is under maxCost then start pruning unavailable entries.
@@ -25,7 +42,7 @@ public sealed class RandomSystem : EntitySystem
         {
             var entry = entries[i];
 
-            if (entry.Cost < budget)
+            if (entry.Cost <= budget)   // Sunrise-Edit
                 continue;
 
             entries.RemoveSwap(i);

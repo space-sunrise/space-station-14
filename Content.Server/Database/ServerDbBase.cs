@@ -24,10 +24,11 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Sunrise.Tutorial.Prototypes;
 
 namespace Content.Server.Database
 {
-    public abstract class ServerDbBase
+    public abstract partial class ServerDbBase // Sunrise-Edit
     {
         private readonly ISawmill _opsLog;
         public event Action<DatabaseNotification>? OnNotificationReceived;
@@ -50,6 +51,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
+                .Include(p => p.Profiles).ThenInclude(h => h.JobAlternativeTitles) // Sunrise
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -106,6 +108,7 @@ namespace Content.Server.Database
                 .Include(p => p.Jobs)
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
+                .Include(p => p.JobAlternativeTitles) // Sunrise
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -210,6 +213,13 @@ namespace Content.Server.Database
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
 
+            // Sunrise-Start
+            var jobAltTitles = profile.JobAlternativeTitles.ToDictionary(
+                j => new ProtoId<JobPrototype>(j.JobName),
+                j => new LocId(j.Title)
+            );
+            // Sunrise-End
+
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
                 sex = sexVal;
@@ -299,7 +309,7 @@ namespace Content.Server.Database
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts
-            );
+            ).WithJobAlternativeTitles(jobAltTitles); // Sunrise
         }
 
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
@@ -360,6 +370,14 @@ namespace Content.Server.Database
                 humanoid.TraitPreferences
                         .Select(t => new Trait {TraitName = t})
             );
+
+            // Sunrise-Start
+            profile.JobAlternativeTitles.Clear();
+            profile.JobAlternativeTitles.AddRange(
+                humanoid.JobAlternativeTitles
+                    .Select(j => new JobAlternativeTitle {JobName = j.Key, Title = j.Value.Id})
+            );
+            // Sunrise-End
 
             profile.Loadouts.Clear();
 
@@ -1855,7 +1873,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         # endregion
 
-        # region MentorHelp
+        // Sunrise-start
+        #region MentorHelp
 
         public async Task AddMentorHelpTicketAsync(MentorHelpTicket ticket)
         {
@@ -1868,53 +1887,108 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb();
             return await db.DbContext.MentorHelpTickets
+                .AsNoTracking()
                 .FirstOrDefaultAsync(t => t.Id == ticketId);
         }
 
-        public async Task<List<MentorHelpStatistics>> GetMentorHelpStatisticsAsync()
+        public async Task<List<MentorHelpStatistics>> GetMentorHelpStatisticsAsync(DateTimeOffset? from)
         {
             await using var db = await GetDb();
+            var isSqlite = db.DbContext.Database.ProviderName?.Contains("Sqlite") == true;
 
-            // Получаем количество тикетов, взятых каждым ментором
-            var tickets = await db.DbContext.MentorHelpTickets
-                .Where(t => t.AssignedToUserId != null)
-                .GroupBy(t => t.AssignedToUserId!.Value)
-                .Select(g => new { MentorUserId = g.Key, TicketsClaimed = g.Count() })
+            var handledTicketsQuery = db.DbContext.MentorHelpMessages
+                .AsNoTracking()
+                .Join(
+                    db.DbContext.MentorHelpTickets.AsNoTracking().Where(ticket => ticket.AssignedToUserId != null),
+                    message => message.TicketId,
+                    ticket => ticket.Id,
+                    (message, ticket) => new
+                    {
+                        message.TicketId,
+                        message.SenderUserId,
+                        message.SentAt,
+                        ticket.PlayerId,
+                        AssignedMentorId = ticket.AssignedToUserId!.Value
+                    })
+                .Where(activity =>
+                    activity.SenderUserId == activity.AssignedMentorId &&
+                    activity.SenderUserId != activity.PlayerId);
+
+            var messagesQuery = db.DbContext.MentorHelpMessages
+                .AsNoTracking()
+                .Join(
+                    db.DbContext.MentorHelpTickets.AsNoTracking(),
+                    message => message.TicketId,
+                    ticket => ticket.Id,
+                    (message, ticket) => new
+                    {
+                        message.SenderUserId,
+                        message.SentAt,
+                        ticket.PlayerId
+                    })
+                .Where(message => message.SenderUserId != message.PlayerId);
+
+            if (from != null && !isSqlite)
+                messagesQuery = messagesQuery.Where(m => m.SentAt >= from);
+
+            var handledTicketsData = await handledTicketsQuery
+                .Select(ticket => new { ticket.TicketId, ticket.AssignedMentorId, ticket.SentAt })
                 .ToListAsync();
 
-            // Получаем количество сообщений, отправленных каждым ментором
-            var messages = await db.DbContext.MentorHelpMessages
-                .GroupBy(m => m.SenderUserId)
-                .Select(g => new { MentorUserId = g.Key, MessagesCount = g.Count() })
+            var messagesData = await messagesQuery
+                .Select(m => new { m.SenderUserId, m.SentAt })
                 .ToListAsync();
 
-            // Объединяем статистику по MentorUserId
+            if (from != null && isSqlite)
+                messagesData = messagesData.Where(m => m.SentAt >= from).ToList();
+
+            var handledTickets = handledTicketsData
+                .GroupBy(ticket => new { ticket.AssignedMentorId, ticket.TicketId })
+                .Select(group => new
+                {
+                    MentorUserId = group.Key.AssignedMentorId,
+                    FirstHandledAt = group.Min(ticket => ticket.SentAt)
+                });
+
+            if (from != null)
+                handledTickets = handledTickets.Where(ticket => ticket.FirstHandledAt >= from);
+
+            var ticketStats = handledTickets
+                .GroupBy(ticket => ticket.MentorUserId)
+                .Select(group => new { MentorUserId = group.Key, TicketsClosed = group.Count() })
+                .ToList();
+
+            var messageStats = messagesData
+                .GroupBy(message => message.SenderUserId)
+                .Select(group => new { MentorUserId = group.Key, MessagesCount = group.Count() })
+                .ToList();
+
             var stats = new Dictionary<Guid, MentorHelpStatistics>();
 
-            foreach (var t in tickets)
+            foreach (var ticketStat in ticketStats)
             {
-                stats[t.MentorUserId] = new MentorHelpStatistics
+                stats[ticketStat.MentorUserId] = new MentorHelpStatistics
                 {
-                    MentorUserId = t.MentorUserId,
-                    TicketsClaimed = t.TicketsClaimed,
+                    MentorUserId = ticketStat.MentorUserId,
+                    TicketsClosed = ticketStat.TicketsClosed,
                     MessagesCount = 0
                 };
             }
 
-            foreach (var m in messages)
+            foreach (var messageStat in messageStats)
             {
-                if (stats.TryGetValue(m.MentorUserId, out var stat))
+                if (stats.TryGetValue(messageStat.MentorUserId, out var stat))
                 {
-                    stat.MessagesCount = m.MessagesCount;
-                    stats[m.MentorUserId] = stat;
+                    stat.MessagesCount = messageStat.MessagesCount;
+                    stats[messageStat.MentorUserId] = stat;
                 }
                 else
                 {
-                    stats[m.MentorUserId] = new MentorHelpStatistics
+                    stats[messageStat.MentorUserId] = new MentorHelpStatistics
                     {
-                        MentorUserId = m.MentorUserId,
-                        TicketsClaimed = 0,
-                        MessagesCount = m.MessagesCount
+                        MentorUserId = messageStat.MentorUserId,
+                        TicketsClosed = 0,
+                        MessagesCount = messageStat.MessagesCount
                     };
                 }
             }
@@ -1932,37 +2006,41 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         public async Task<List<MentorHelpTicket>> GetMentorHelpTicketsByPlayerAsync(Guid playerId)
         {
             await using var db = await GetDb();
-            return await db.DbContext.MentorHelpTickets
+            var tickets = await db.DbContext.MentorHelpTickets
+                .AsNoTracking()
                 .Where(t => t.PlayerId == playerId)
-                .OrderByDescending(t => t.CreatedAt)
                 .ToListAsync();
+            return tickets.OrderByDescending(t => t.CreatedAt).ToList();
         }
 
         public async Task<List<MentorHelpTicket>> GetOpenMentorHelpTicketsAsync()
         {
             await using var db = await GetDb();
-            return await db.DbContext.MentorHelpTickets
+            var tickets = await db.DbContext.MentorHelpTickets
+                .AsNoTracking()
                 .Where(t => t.Status != MentorHelpTicketStatus.Closed)
-                .OrderByDescending(t => t.UpdatedAt)
                 .ToListAsync();
+            return tickets.OrderByDescending(t => t.UpdatedAt).ToList();
         }
 
         public async Task<List<MentorHelpTicket>> GetAssignedMentorHelpTicketsAsync(Guid mentorId)
         {
             await using var db = await GetDb();
-            return await db.DbContext.MentorHelpTickets
+            var tickets = await db.DbContext.MentorHelpTickets
+                .AsNoTracking()
                 .Where(t => t.AssignedToUserId == mentorId && t.Status != MentorHelpTicketStatus.Closed)
-                .OrderByDescending(t => t.UpdatedAt)
                 .ToListAsync();
+            return tickets.OrderByDescending(t => t.UpdatedAt).ToList();
         }
 
         public async Task<List<MentorHelpTicket>> GetClosedMentorHelpTicketsAsync()
         {
             await using var db = await GetDb();
-            return await db.DbContext.MentorHelpTickets
+            var tickets = await db.DbContext.MentorHelpTickets
+                .AsNoTracking()
                 .Where(t => t.Status == MentorHelpTicketStatus.Closed)
-                .OrderByDescending(t => t.UpdatedAt)
                 .ToListAsync();
+            return tickets.OrderByDescending(t => t.UpdatedAt).ToList();
         }
 
         public async Task AddMentorHelpMessageAsync(MentorHelpMessage message)
@@ -1976,13 +2054,163 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
             await using var db = await GetDb();
             return await db.DbContext.MentorHelpMessages
+                .AsNoTracking()
                 .Where(m => m.TicketId == ticketId)
                 .ToListAsync();
         }
-
         # endregion
-        // Sunrise-End
 
+        #region Tutorial
+        public async Task<bool> AddTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial, TimeSpan? accountAge = null)
+        {
+            await using var db = await GetDb();
+            var entry = await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Where(w => w.TutorialId == tutorial.Id)
+                .SingleOrDefaultAsync();
+
+            var now = DateTimeOffset.UtcNow;
+            var accountAgeDays = accountAge != null ? (double?)accountAge.Value.TotalDays : null;
+            var isNew = entry == null;
+
+            if (isNew)
+            {
+                entry = new TutorialCompletion
+                {
+                    PlayerUserId = player,
+                    TutorialId = tutorial.Id,
+                    CompletedAt = now,
+                    AccountAgeDays = accountAgeDays,
+                    CompletionCount = 1
+                };
+                db.DbContext.TutorialCompletions.Add(entry);
+            }
+            else
+            {
+                entry!.CompletedAt = now;
+                entry.CompletionCount++;
+                if (accountAgeDays != null)
+                    entry.AccountAgeDays = accountAgeDays;
+            }
+
+            await db.DbContext.SaveChangesAsync();
+            return isNew;
+        }
+
+        public async Task<List<string>> GetTutorial(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Select(w => w.TutorialId)
+                .ToListAsync(cancellationToken: cancel);
+        }
+
+        public async Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Where(w => w.TutorialId == tutorial.Id)
+                .AnyAsync();
+        }
+
+        public async Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
+        {
+            await using var db = await GetDb();
+            var entry = await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Where(w => w.TutorialId == tutorial.Id)
+                .SingleOrDefaultAsync();
+
+            if (entry == null)
+                return false;
+
+            db.DbContext.TutorialCompletions.Remove(entry);
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var isSqlite = db.DbContext.Database.ProviderName?.Contains("Sqlite") == true;
+
+            if (isSqlite)
+            {
+                var metrics = await db.DbContext.TutorialCompletions
+                    .AsNoTracking()
+                    .GroupBy(completion => completion.TutorialId)
+                    .Select(group => new
+                    {
+                        TutorialId = group.Key,
+                        CompletedPlayers = group.Count(),
+                        CompletionCount = group.Sum(completion => completion.CompletionCount),
+                        AccountAgeSamples = group.Count(completion => completion.AccountAgeDays != null),
+                        AverageAccountAgeDays = group.Average(completion => completion.AccountAgeDays)
+                    })
+                    .ToListAsync(cancellationToken: cancel);
+
+                var lastCompletedAt = await db.DbContext.TutorialCompletions
+                    .AsNoTracking()
+                    .Select(completion => new
+                    {
+                        completion.TutorialId,
+                        completion.CompletedAt
+                    })
+                    .ToListAsync(cancellationToken: cancel);
+
+                var lastCompletedAtByTutorial = lastCompletedAt
+                    .GroupBy(completion => completion.TutorialId)
+                    .ToDictionary(
+                        group => group.Key,
+                        group => group.Max(completion => completion.CompletedAt));
+
+                return metrics
+                    .Select(metric => new TutorialCompletionMetrics(
+                        metric.TutorialId,
+                        metric.CompletedPlayers,
+                        metric.CompletionCount,
+                        metric.AccountAgeSamples,
+                        metric.AverageAccountAgeDays,
+                        lastCompletedAtByTutorial[metric.TutorialId]))
+                    .ToList();
+            }
+
+            return await db.DbContext.TutorialCompletions
+                .AsNoTracking()
+                .GroupBy(w => w.TutorialId)
+                .Select(group => new TutorialCompletionMetrics(
+                    group.Key,
+                    group.Count(),
+                    group.Sum(w => w.CompletionCount),
+                    group.Count(w => w.AccountAgeDays != null),
+                    group.Average(w => w.AccountAgeDays),
+                    group.Max(w => w.CompletedAt)))
+                .ToListAsync(cancellationToken: cancel);
+        }
+
+        public async Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var validList = validTutorialIds.ToList();
+            if (validList.Count == 0)
+                return 0;
+
+            IQueryable<TutorialCompletion> query = db.DbContext.TutorialCompletions;
+            query = query.Where(w => !validList.Contains(w.TutorialId));
+
+            var toRemove = await query.ToListAsync(cancellationToken: cancel);
+            if (toRemove.Count == 0)
+                return 0;
+
+            db.DbContext.TutorialCompletions.RemoveRange(toRemove);
+            await db.DbContext.SaveChangesAsync();
+            return toRemove.Count;
+        }
+
+        #endregion
+        // Sunrise-end
         # region IPIntel
 
         public async Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score)
