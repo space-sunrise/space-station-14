@@ -28,15 +28,8 @@
       - Meat
 
 - type: entity
-  id: BasePredatorOrgan
-  parent: BasePredatorOrganUnGibbable
-  abstract: true
-  components:
-  - type: Gibbable
-
-- type: entity
   id: OrganPredatorBrain
-  parent: [BasePredatorOrgan, BaseOrganBrain]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganBrain]
   name: brain
   description: The nexus of the alien mind. Thoughts you don't want to know.
   components:
@@ -70,7 +63,7 @@
 
 - type: entity
   id: OrganPredatorTongue
-  parent: [BasePredatorOrgan, BaseOrganTongue]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganTongue]
   name: tongue
   description: Long and flexible.
   components:
@@ -79,7 +72,7 @@
 
 - type: entity
   id: OrganPredatorAppendix
-  parent: [BasePredatorOrgan, BaseOrganAppendix]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganAppendix]
   name: appendix
   description: An evolutionary greeting from the past.
   components:
@@ -91,7 +84,7 @@
 
 - type: entity
   id: OrganPredatorEars
-  parent: [BasePredatorOrgan, BaseOrganEars]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganEars]
   name: ears
   description: Ultra-sensitive locators. Hear your fears.
   components:
@@ -100,7 +93,7 @@
 
 - type: entity
   id: OrganPredatorLungs
-  parent: [BasePredatorOrgan, BaseOrganLungs]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganLungs]
   name: lungs
   description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
   components:
@@ -134,7 +127,7 @@
 
 - type: entity
   id: OrganPredatorHeart
-  parent: [BasePredatorOrgan, BaseOrganHeart]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganHeart]
   name: predator heart
   description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every predator.
   components:
@@ -150,7 +143,7 @@
 
 - type: entity
   id: OrganPredatorStomach
-  parent: [BasePredatorOrgan, BaseOrganStomach]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganStomach]
   name: stomach
   description: A voracious pit.
   components:
@@ -175,7 +168,7 @@
 
 - type: entity
   id: OrganPredatorLiver
-  parent: [BasePredatorOrgan, BaseOrganLiver]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganLiver]
   name: liver
   description: A powerful detoxifier that neutralizes dangerous substances with ease.
   components:
@@ -190,7 +183,7 @@
 
 - type: entity
   id: OrganPredatorKidneys
-  parent: [BasePredatorOrgan, BaseOrganKidneys]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganKidneys]
   name: kidneys
   description: Paired filters, ruthlessly taking out anything superfluous.
   components:
@@ -205,7 +198,7 @@
 
 - type: entity
   id: OrganPredatorEyes
-  parent: [BasePredatorOrgan, BaseOrganEyes]
+  parent: [BasePredatorOrganUnGibbable, BaseOrganEyes]
   name: eyes
   description: I see YOU!
   components:

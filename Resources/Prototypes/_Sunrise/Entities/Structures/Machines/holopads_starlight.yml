@@ -1,0 +1,15 @@
+- type: entity
+  id: HolopadSecurityInternalAffairs
+  parent: HolopadSecurityLawyer
+  suffix: Security, Internal Affairs
+  components:
+  - type: Label
+    currentLabel: holopad-security-internal-affairs
+
+- type: entity
+  id: HolopadServiceLawyer
+  parent: HolopadSecurityLawyer
+  suffix: Service, Lawyer
+  components:
+  - type: Label
+    currentLabel: holopad-service-lawyer

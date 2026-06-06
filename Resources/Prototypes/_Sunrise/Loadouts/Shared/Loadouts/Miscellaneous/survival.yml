@@ -80,6 +80,25 @@
     back:
     - BoxSurvivalSyndicateWithoutGas
 
+# Sunrise Syndicate
+- type: loadout
+  id: SunriseEmergencyOxygenSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  storage:
+    back:
+    - SunriseBoxSurvivalSyndicate
+
+- type: loadout
+  id: SunriseEmergencyNitrogenSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - SunriseBoxSurvivalSyndicateNitrogen
+
 # Dwarf
 
 - type: loadoutEffectGroup

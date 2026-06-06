@@ -62,7 +62,8 @@
     # It fires processing on behalf of its connected circulators.
     - type: AtmosDevice
     - type: TegGenerator
-      thermalEfficiency: 0.1
+      thermalEfficiency: 0.03 # Sunrise-Edit
+      powerFactor: 1.75
 
     - type: DeviceNetwork
       deviceNetId: AtmosDevices

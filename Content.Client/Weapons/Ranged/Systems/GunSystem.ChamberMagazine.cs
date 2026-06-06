@@ -5,7 +5,6 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Random;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -19,19 +18,24 @@ public sealed partial class GunSystem
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, AppearanceChangeEvent>(OnChamberMagazineAppearance);
     }
 
-    private void OnChamberMagazineAppearance(EntityUid uid, ChamberMagazineAmmoProviderComponent component, ref AppearanceChangeEvent args)
+    private void OnChamberMagazineAppearance(Entity<ChamberMagazineAmmoProviderComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null ||
-            !_sprite.LayerMapTryGet((uid, args.Sprite), GunVisualLayers.Base, out var boltLayer, false) ||
-            !Appearance.TryGetData(uid, AmmoVisuals.BoltClosed, out bool boltClosed))
+            !_sprite.LayerMapTryGet((ent, args.Sprite), GunVisualLayers.Base, out var boltLayer, false) ||
+            !Appearance.TryGetData(ent, AmmoVisuals.BoltClosed, out bool boltClosed))
         {
             return;
         }
 
-        //starlight start
-        var prefix = string.IsNullOrEmpty(component.SelectedPrefix) ? "" : $"_{component.SelectedPrefix}";
-        _sprite.LayerSetRsiState((uid, args.Sprite), boltLayer, boltClosed ? $"base{prefix}" : $"bolt-open{prefix}");
-        //starlight end
+        // Maybe re-using base layer for this will bite me someday but screw you future sloth.
+        if (boltClosed)
+        {
+            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, "base");
+        }
+        else
+        {
+            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, "bolt-open");
+        }
     }
 
     protected override void OnMagazineSlotChange(EntityUid uid, MagazineAmmoProviderComponent component, ContainerModifiedMessage args)
@@ -51,17 +55,17 @@ public sealed partial class GunSystem
         // to avoid 6-7 additional entity spawns.
     }
 
-    private void OnChamberMagazineCounter(EntityUid uid, ChamberMagazineAmmoProviderComponent component, AmmoCounterControlEvent args)
+    private void OnChamberMagazineCounter(Entity<ChamberMagazineAmmoProviderComponent> ent, ref AmmoCounterControlEvent args)
     {
         args.Control = new ChamberMagazineStatusControl();
     }
 
-    private void OnChamberMagazineAmmoUpdate(EntityUid uid, ChamberMagazineAmmoProviderComponent component, UpdateAmmoCounterEvent args)
+    private void OnChamberMagazineAmmoUpdate(Entity<ChamberMagazineAmmoProviderComponent> ent, ref UpdateAmmoCounterEvent args)
     {
         if (args.Control is not ChamberMagazineStatusControl control) return;
 
-        var chambered = GetChamberEntity(uid);
-        var magEntity = GetMagazineEntity(uid);
+        var chambered = GetChamberEntity(ent);
+        var magEntity = GetMagazineEntity(ent);
         var ammoCountEv = new GetAmmoCountEvent();
 
         if (magEntity != null)

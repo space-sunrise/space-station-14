@@ -109,3 +109,839 @@
     intensitySlope: 1.5
     totalIntensity: 30
     canCreateVacuum: false
+
+- type: entity
+  abstract: true
+  id: BaseWeaponTurretRogueSiliconDeployable
+  components:
+  - type: Appearance
+  - type: DeployableTurret
+    retractedDamageModifierSetId: Metallic
+    deployedDamageModifierSetId: FlimsyMetallic
+
+- type: entity
+  id: WeaponTurretRogueSiliconBroken
+  name: rogue silicon turret base (broken)
+  description: A destroyed turret chassis with scorched maintenance panel.
+  parent: BaseStructure
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+    drawdepth: HighFloorObjects
+    layers:
+    - state: support
+      renderingStrategy: NoRotation
+    - state: cover_closed
+      renderingStrategy: NoRotation
+    - state: panel
+      renderingStrategy: NoRotation
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+
+- type: entity
+  parent: [BaseWeaponBallisticTurret, BaseWeaponTurretRogueSiliconDeployable]
+  id: WeaponTurretRogueSiliconSquall
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Squall
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_308.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: bal-308
+      map: [ "enum.DeployableTurretVisuals.Weapon" ]
+      visible: false
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_closed
+      map: [ "enum.DeployableTurretVisuals.Turret" ]
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_light_on
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      shader: "unshaded"
+      renderingStrategy: NoRotation
+      visible: false
+  - type: Gun
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - FullAuto
+    projectileSpeed: 16
+    fireRate: 12
+    burstFireRate: 15
+    shotsPerBurst: 15
+    burstCooldown: 4
+    minAngle: 1
+    maxAngle: 45
+    angleIncrease: 1
+    angleDecay: 25
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
+      params:
+        pitch: 0.8
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleHeavyArtillery
+    capacity: 160
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5
+          SpawnLootRogueSiliconTurretSquall:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: [BaseWeaponBallisticTurret, BaseWeaponTurretRogueSiliconDeployable]
+  id: WeaponTurretRogueSiliconQuadling
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Quadling
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_4.rsi
+    scale: 0.85, 0.85
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: bal-127
+      map: [ "enum.DeployableTurretVisuals.Weapon" ]
+      visible: false
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_closed
+      map: [ "enum.DeployableTurretVisuals.Turret" ]
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_light_on
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      shader: "unshaded"
+      renderingStrategy: NoRotation
+      visible: false
+  - type: Gun
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - FullAuto
+    burstFireRate: 8
+    shotsPerBurst: 6
+    burstCooldown: 3
+    minAngle: 6
+    maxAngle: 30
+    angleIncrease: 1
+    angleDecay: 15
+    projectileSpeed: 16
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        pitch: 1.9
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMateriel
+    capacity: 60
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5
+          SpawnLootRogueSiliconTurretQuadling:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: [BaseWeaponBallisticTurret, BaseWeaponTurretRogueSiliconDeployable]
+  id: WeaponTurretRogueSiliconVympel
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Vympel
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127_2.rsi
+    scale: 0.85, 0.85
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: bal-127-2
+      map: [ "enum.DeployableTurretVisuals.Weapon" ]
+      visible: false
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_closed
+      map: [ "enum.DeployableTurretVisuals.Turret" ]
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_light_on
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      shader: "unshaded"
+      renderingStrategy: NoRotation
+      visible: false
+  - type: Gun
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - FullAuto
+    burstFireRate: 6
+    shotsPerBurst: 4
+    burstCooldown: 1
+    minAngle: 5
+    maxAngle: 30
+    angleIncrease: 1
+    angleDecay: 20
+    projectileSpeed: 18
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        pitch: 1.2
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMateriel
+    capacity: 30
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5
+          SpawnLootRogueSiliconTurretVympel:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: [BaseWeaponBallisticTurret, BaseWeaponTurretRogueSiliconDeployable]
+  id: WeaponTurretRogueSiliconLongbow
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Longbow
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/bal_127.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: bal-127
+      map: [ "enum.DeployableTurretVisuals.Weapon" ]
+      visible: false
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_closed
+      map: [ "enum.DeployableTurretVisuals.Turret" ]
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_light_on
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      shader: "unshaded"
+      renderingStrategy: NoRotation
+      visible: false
+  - type: Gun
+    minAngle: 1
+    maxAngle: 3
+    projectileSpeed: 25
+    fireRate: 0.8
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
+      params:
+        pitch: 1.1
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMateriel
+    capacity: 7
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5
+          SpawnLootRogueSiliconTurretLongbow:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: [BaseWeaponBallisticTurret, BaseWeaponTurretRogueSiliconDeployable]
+  id: WeaponTurretRogueSiliconBullfrog
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Bullfrog
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Shuttles/exp_3600.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: bal-127
+      map: [ "enum.DeployableTurretVisuals.Weapon" ]
+      visible: false
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_closed
+      map: [ "enum.DeployableTurretVisuals.Turret" ]
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_light_on
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      shader: "unshaded"
+      renderingStrategy: NoRotation
+      visible: false
+  - type: Gun
+    projectileSpeed: 16
+    fireRate: 0.7
+    maxAngle: 15
+    minAngle: 1
+    angleIncrease: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        variation: 0.05
+        pitch: 0.85
+  - type: BallisticAmmoProvider
+    proto: ShellFragArtillery
+    capacity: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5
+          SpawnLootRogueSiliconTurretBullfrog:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: [BaseWeaponBallisticTurret, BaseWeaponTurretRogueSiliconDeployable]
+  id: WeaponTurretRogueSiliconAutocannon
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Autocannon
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/50cal.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
+      map: [ "enum.DeployableTurretVisuals.Weapon" ]
+      visible: false
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_closed
+      map: [ "enum.DeployableTurretVisuals.Turret" ]
+      renderingStrategy: NoRotation
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_light_on
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      shader: "unshaded"
+      renderingStrategy: NoRotation
+      visible: false
+  - type: Gun
+    fireRate: 15
+    minAngle: 1
+    maxAngle: 18
+    soundGunshot:
+      collection: m249
+      params:
+        volume: 8
+        pitch: 1.1
+  - type: BallisticAmmoProvider
+    proto: CartridgeMinigun
+    capacity: 800
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5
+          SpawnLootRogueSiliconTurretAutocannon:
+            min: 1
+            max: 1
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponTurretRogueSiliconStunner
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Stunner
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: HTN
+    enabled: true
+  - type: BatteryAmmoProvider
+    proto: BulletEnergyTurretDisabler
+    fireCost: 1
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletEnergyTurretDisabler
+      fireCost: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5
+          SpawnLootRogueSiliconTurretEnergy:
+            min: 1
+            max: 1
+
+- type: entity
+  id: SpawnLootRogueSiliconTurretSquall
+  name: rogue silicon turret loot spawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: CartridgeRifleHeavyArtillery
+        prob: 0.25
+      - id: RifleHeavyMagazineArtillery
+        prob: 0.25
+      - id: ShuttleGunSquallCircuitboard
+        prob: 0.2
+
+- type: entity
+  id: SpawnLootRogueSiliconTurretQuadling
+  name: rogue silicon turret loot spawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: MagazineBoxBelt127Empty
+        prob: 0.25
+      - id: MagazineBoxBelt127Empty
+        prob: 0.25
+      - id: ShuttleGunQuadlingCircuitboard
+        prob: 0.2
+
+- type: entity
+  id: SpawnLootRogueSiliconTurretVympel
+  name: rogue silicon turret loot spawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: MagazineBoxBelt127Empty
+        prob: 0.25
+      - id: MagazineBoxBelt127Empty
+        prob: 0.25
+      - id: ShuttleGunVympelCircuitboard
+        prob: 0.2
+
+- type: entity
+  id: SpawnLootRogueSiliconTurretLongbow
+  name: rogue silicon turret loot spawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: CartridgeAntiMateriel
+        prob: 0.25
+      - id: ShuttleGunLongbowCircuitboard
+        prob: 0.2
+
+- type: entity
+  id: SpawnLootRogueSiliconTurretBullfrog
+  name: rogue silicon turret loot spawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: MagazineGrenadeEmpty
+        prob: 0.25
+      - id: ShellFragArtillery
+        prob: 0.25
+      - id: ShellFragArtillery
+        prob: 0.25
+      - id: ShuttleGunBullfrogCircuitboard
+        prob: 0.2
+
+- type: entity
+  id: SpawnLootRogueSiliconTurretAutocannon
+  name: rogue silicon turret loot spawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: CartridgeMinigun
+        prob: 0.25
+      - id: CartridgeMinigun
+        prob: 0.25
+      - id: MagazineChainGun200
+        prob: 0.25
+      - id: MagazineChainGun100
+        prob: 0.25
+      - !type:GroupSelector
+        prob: 0.15
+        children:
+        - id: WeaponMachineGunLCG
+        - id: WeaponMechCombatChaingun
+
+- type: entity
+  id: SpawnLootRogueSiliconTurretEnergy
+  name: rogue silicon turret loot spawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:AllSelector
+      children:
+      - id: ScrapSteel
+        prob: 0.25
+      - id: ScrapAirlock1
+        prob: 0.25
+      - id: ScrapGlass
+        prob: 0.25
+      - id: WeaponEnergyTurretAIMachineCircuitboard
+        prob: 0.25
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponTurretRogueSiliconLaser
+  name: AI security turret
+  suffix: Rogue Silicon, AI, Laser
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpedition
+  - type: HTN
+    enabled: true
+  - type: BatteryAmmoProvider
+    proto: BulletEnergyTurretLaser
+    fireCost: 1
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletEnergyTurretLaser
+      fireCost: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WeaponTurretRogueSiliconBroken:
+            min: 1
+            max: 1
+          SheetSteel1:
+            min: 3
+            max: 5

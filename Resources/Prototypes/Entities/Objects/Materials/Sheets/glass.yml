@@ -218,6 +218,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: pglass
+  # Sunrise-Start
+  - type: FloorTile
+    outputs:
+    - FloorGlassPlasma
+  # Sunrise-End
   - type: Construction
     graph: Glass
     node: SheetPGlass
@@ -295,6 +300,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: rpglass
+  # Sunrise-Start
+  - type: FloorTile
+    outputs:
+    - FloorGlassPlasmaReinforced
+  # Sunrise-End
   - type: Construction
     graph: Glass
     node: SheetRPGlass
@@ -352,6 +362,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: uglass
+  # Sunrise-Start
+  - type: FloorTile
+    outputs:
+    - FloorGlassUranium
+  # Sunrise-End
   - type: Construction
     graph: Glass
     node: SheetUGlass
@@ -428,6 +443,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: ruglass
+  # Sunrise-Start
+  - type: FloorTile
+    outputs:
+    - FloorGlassUraniumReinforced
+  # Sunrise-End
   - type: Construction
     graph: Glass
     node: SheetRUGlass
@@ -485,6 +505,11 @@
       map: ["base"]
   - type: Item
     heldPrefix: cglass
+  # Sunrise-Start
+  - type: FloorTile
+    outputs:
+    - FloorGlassBronze
+  # Sunrise-End
   - type: Construction
     graph: Glass
     node: SheetClockworkGlass

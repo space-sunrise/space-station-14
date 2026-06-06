@@ -1,0 +1,237 @@
+- type: entity
+  id: LockerBrigmedicLargeFilled
+  suffix: Filled
+  parent: LockerBrigmedicLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponDisabler
+          amount: 2
+        - id: SecurityMedkit
+          amount: 2
+        - id: TrackingImplanter
+          amount: 4
+        - id: ClothingHeadHelmetSecurityMedic
+          amount: 2
+        - id: ClothingOuterHardsuitBrigmedicSunrise
+          amount: 2
+        - id: BoxSterileMask
+        - id: ClothingHeadHatBeretBrigmedic
+        - id: ClothingOuterCoatAMG
+        - id: ClothingUniformJumpsuitBrigmedic
+        - id: ClothingUniformJumpskirtBrigmedic
+        - id: ClothingUniformJumpskirtOfLife
+        - id: ClothingShoesBootsMagSec
+          amount: 2
+        - id: BedsheetBrigmedic
+        - id: MedkitFilled
+          amount: 2
+        - id: MedkitCombatFilled
+          prob: 0.6
+        - id: MedkitAdvancedFilled
+          prob: 0.4
+        - id: MedkitOxygenFilled
+          prob: 0.3
+        - id: MedkitBruteFilled
+          prob: 0.3
+        - id: MedkitToxinFilled
+          prob: 0.3
+        - id: MedkitBurnFilled
+          prob: 0.7
+        - id: RedBrutePack
+          prob: 0.5
+          amount: 2
+
+- type: entity
+  id: LockerWardenLargeFilled
+  suffix: Filled
+  parent: LockerWardenLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlashlightSeclite
+          amount: 2
+        - id: WeaponEnergyShotgun
+        - id: WeaponDisabler
+          amount: 2
+        - id: ClothingBeltSecurityFilled
+          amount: 2
+        - id: Flash
+          amount: 2
+        - id: ClothingEyesGlassesSecurity
+          amount: 2
+        - id: ClothingEyesHudSecurity
+          amount: 2
+        - id: ClothingHandsGlovesCombat
+          amount: 2
+        # Starlight used ClothingHeadsetSecurityWarden, which is not ported.
+        - id: ClothingHeadsetSecurity
+          amount: 2
+        - id: ClothingShoesBootsJack
+          amount: 2
+        - id: ClothingOuterCoatWarden
+          amount: 2
+        - id: ClothingOuterWinterWarden
+          amount: 2
+        - id: RubberStampWarden
+          amount: 2
+        - id: DoorRemoteArmory
+          amount: 2
+        - id: HoloprojectorSecurity
+          amount: 2
+        - id: BookSpaceLaw
+          amount: 2
+        - id: ClothingBackpackElectropack
+          amount: 4
+        - id: RemoteSignaller
+          amount: 4
+        - id: Binoculars
+          amount: 2
+        # Starlight also included NeuralLinkDisruptor, which is not ported.
+
+- type: entityTable
+  id: FillMiningSpecialistHardsuitSpaceHazard
+  table: !type:AllSelector
+    children:
+    - id: OxygenTankFilled
+    - id: ClothingShoesBootsMag
+    - id: ClothingOuterHardsuitSpaceHazard
+    - id: ClothingMaskGasExplorer
+
+- type: entityTable
+  id: LockerFillMiningSpecialist
+  table: !type:AllSelector
+    children:
+    - id: ToolboxMechanicalFilledAllTools
+    - id: RadioHandheld
+    - id: OreBag
+    - id: Nanopaste
+
+- type: entity
+  id: LockerMiningSpecialistLargeFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerMiningSpecialistLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FillMiningSpecialistHardsuitSpaceHazard
+          rolls: 2
+        - !type:NestedSelector
+          tableId: LockerFillMiningSpecialist
+          rolls: 2
+
+- type: entity
+  id: LockerMiningSpecialistLargeFilled
+  suffix: Filled
+  parent: LockerMiningSpecialistLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillMiningSpecialist
+          rolls: 2
+
+- type: entityTable
+  id: FillSalvageLeadHardsuitSpatio
+  table: !type:AllSelector
+    children:
+    - id: OxygenTankFilled
+    - id: ClothingShoesBootsMag
+    # Starlight used ClothingOuterHardsuitSpatioLead, which is not ported.
+    - id: ClothingOuterHardsuitSalvage
+    - id: ClothingMaskGasExplorer
+
+- type: entity
+  id: LockerSalvageLeadFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerSalvageSpecialist
+  components:
+  # Starlight parent LockerSalvageLead is not ported in this build.
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FillSalvageLeadHardsuitSpatio
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+- type: entity
+  id: LockerSalvageSpecialistLargeFilled
+  suffix: Filled
+  parent: LockerSalvageSpecialistLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+- type: entity
+  id: LockerSalvageSpecialistLargeFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerSalvageSpecialistLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FillSalvageSpecialistHardsuitSpatio
+        - !type:NestedSelector
+          tableId: FillSalvageSpecialistHardsuitSpatio
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+- type: entity
+  id: LockerSecurityLargeFilled
+  suffix: Filled
+  parent: LockerSecurityLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlashlightSeclite
+          amount: 2
+        - id: WeaponDisabler
+          amount: 2
+        - id: ClothingUniformJumpsuitSecGrey
+          prob: 0.6
+        - id: ClothingHeadHelmetBasic
+          amount: 2
+        - id: ClothingOuterArmorBasic
+          amount: 2
+        - id: ClothingBeltSecurityFilled
+          amount: 2
+        - id: Flash
+          amount: 2
+        - id: ClothingEyesGlassesSecurity
+          amount: 2
+        - id: ClothingEyesHudSecurity
+          amount: 2
+        - id: ClothingHeadsetSecurity
+          amount: 2
+        # Starlight used ClothingHandsGlovesSecurityRed, which is not ported.
+        - id: ClothingShoesBootsJack
+          amount: 2
+        - id: WeaponMeleeNeedle
+          prob: 0.5
+        - id: HoloprojectorSecurity
+          amount: 2
+        - id: BookSpaceLaw
+          amount: 2

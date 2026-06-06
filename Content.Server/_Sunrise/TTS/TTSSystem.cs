@@ -7,6 +7,7 @@ using Content.Server.Power.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.Radio.Components;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Components;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Events;
 using Robust.Shared.Audio;
@@ -124,7 +125,7 @@ public sealed partial class TTSSystem : EntitySystem
         RaiseLocalEvent(args.Source, accentEvent);
         var message = accentEvent.Text;
 
-        HandleRadio(args.Receivers, message, protoVoice, voiceEv.Effect);
+        HandleRadio(args.Receivers, message, protoVoice, args.ChannelId, voiceEv.Effect);
     }
 
     private async void OnCollectiveMindSpokeEvent(CollectiveMindSpokeEvent args)
@@ -342,13 +343,31 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
-    private async void HandleRadio(EntityUid[] uids, string message, TTSVoicePrototype voicePrototype, string? effect = null)
+    private async void HandleRadio(EntityUid[] uids, string message, TTSVoicePrototype voicePrototype, string channelId, string? effect = null)
     {
         var soundData = await GenerateTTS(message, voicePrototype, _radioEffect);
         if (soundData is null)
             return;
 
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, true), Filter.Entities(uids).RemovePlayers(_ignoredRecipients));
+        foreach (var receiver in uids)
+        {
+            if (!TryComp<ActorComponent>(receiver, out var actor))
+                continue;
+
+            if (_ignoredRecipients.Contains(actor.PlayerSession))
+                continue;
+
+            float volume = 1.0f;
+            if (TryComp<WearingHeadsetComponent>(receiver, out var wearing) && TryComp<HeadsetComponent>(wearing.Headset, out var headset))
+            {
+                volume = headset.ChannelVolumes.GetValueOrDefault(channelId, 1.0f);
+            }
+
+            if (volume <= 0f)
+                continue;
+
+            RaiseNetworkEvent(new PlayTTSEvent(soundData, null, true, volume), actor.PlayerSession);
+        }
     }
 
     // ReSharper disable once InconsistentNaming
