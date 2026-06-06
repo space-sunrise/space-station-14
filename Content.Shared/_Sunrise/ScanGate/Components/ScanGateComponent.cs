@@ -13,7 +13,7 @@ public sealed partial class ScanGateComponent : Component
     /// <summary>
     /// The delay between scans.
     /// </summary>
-    [DataField("scanDelay"), ViewVariables(VVAccess.ReadOnly)]
+    [DataField]
     public TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
     /// <summary>
@@ -23,33 +23,39 @@ public sealed partial class ScanGateComponent : Component
     public TimeSpan NextScanTime = TimeSpan.Zero;
 
     /// <summary>
+    /// The time when the scan gate visual state should return to idle.
+    /// </summary>
+    [AutoNetworkedField, AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan StateResetTime = TimeSpan.Zero;
+
+    /// <summary>
     /// The sound played when a scan is performed.
     /// </summary>
-    [DataField("scanSound")]
-    public SoundSpecifier ScanSound = new SoundCollectionSpecifier("ScanGateScan");
+    [DataField]
+    public SoundSpecifier? ScanSound = new SoundCollectionSpecifier("ScanGateScan");
 
     /// <summary>
     /// The sound played when a scan successfully detects an item.
     /// </summary>
-    [DataField("scanFailSound")]
-    public SoundSpecifier ScanFailSound = new SoundPathSpecifier("/Audio/_Sunrise/Effects/ScanGate/scan_fail.ogg");
+    [DataField]
+    public SoundSpecifier? ScanFailSound = new SoundPathSpecifier("/Audio/_Sunrise/Effects/ScanGate/scan_fail.ogg");
 
     /// <summary>
     /// Sprite state to set on successful scan.
     /// </summary>
-    [DataField("scanSuccessState")]
+    [DataField]
     public string ScanSuccessState = "success";
 
     /// <summary>
     /// Sprite state to set on failed scan.
     /// </summary>
-    [DataField("scanFailState")]
+    [DataField]
     public string ScanFailState = "fail";
 
     /// <summary>
     /// Sprite state to set when idle.
     /// </summary>
-    [DataField("idleState")]
+    [DataField]
     public string IdleState = "idle";
 
     /// <summary>

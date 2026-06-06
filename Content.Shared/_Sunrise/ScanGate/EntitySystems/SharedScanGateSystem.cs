@@ -16,14 +16,16 @@ namespace Content.Shared._Sunrise.ScanGate.EntitySystems;
 
 public sealed partial class SharedScanGateSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly PowerCellSystem _powerCellSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggleSystem = default!;
+    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
+
+    private static readonly TimeSpan StateResetDelay = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
     {
@@ -51,24 +53,60 @@ public sealed partial class SharedScanGateSystem : EntitySystem
     }
 
     #region Logic
-    private void OnCollide(EntityUid uid, ScanGateComponent component, ref StartCollideEvent args)
+    public override void Update(float frameTime)
     {
-        if (component.NextScanTime > _gameTiming.CurTime
-            || !_powerReceiverSystem.IsPowered(uid))
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<ScanGateComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (component.StateResetTime == TimeSpan.Zero)
+                continue;
+
+            if (component.StateResetTime > _timing.CurTime)
+                continue;
+
+            component.StateResetTime = TimeSpan.Zero;
+            Dirty(uid, component);
+
+            _appearance.SetData(uid, ScanGateVisuals.State, component.IdleState);
+        }
+    }
+
+    private void OnCollide(Entity<ScanGateComponent> ent, ref StartCollideEvent args)
+    {
+        if (ent.Comp.NextScanTime > _timing.CurTime)
             return;
 
-        component.NextScanTime = _gameTiming.CurTime + component.ScanDelay;
-        Dirty(uid, component);
+        if (!_powerReceiver.IsPowered(ent.Owner))
+            return;
 
-        var ev = new TryDetectItem(uid);
+        ent.Comp.NextScanTime = _timing.CurTime + ent.Comp.ScanDelay;
+        Dirty(ent);
+
+        var ev = new TryDetectItem(ent.Owner);
         RaiseLocalEvent(args.OtherEntity, ref ev);
 
-        if (!ev.ByPass // Bypass detection if set
-            && ev.EntityDetected
-            && !(TryComp<AccessReaderComponent>(uid, out var accessReader) && _accessReaderSystem.IsAllowed(args.OtherEntity, uid, accessReader)))
-            ItemDetected(uid, component); // Detected
-        else
-            NoItemDetected(uid, component); // Not detected
+        if (ev.ByPass)
+        {
+            NoItemDetected(ent);
+            return;
+        }
+
+        if (!ev.EntityDetected)
+        {
+            NoItemDetected(ent);
+            return;
+        }
+
+        if (TryComp<AccessReaderComponent>(ent.Owner, out var accessReader)
+            && _accessReader.IsAllowed(args.OtherEntity, ent.Owner, accessReader))
+        {
+            NoItemDetected(ent);
+            return;
+        }
+
+        ItemDetected(ent);
     }
 
     #endregion
@@ -78,76 +116,100 @@ public sealed partial class SharedScanGateSystem : EntitySystem
     /// <summary>
     /// An entity with <see cref="ScanDetectableComponent"/> has been detected by a scan gate.
     /// </summary>
-    private void OnDetect(EntityUid uid, ScanDetectableComponent component, ref TryDetectItem args) => args.EntityDetected = true;
+    private void OnDetect(Entity<ScanDetectableComponent> ent, ref TryDetectItem args)
+    {
+        args.EntityDetected = true;
+    }
 
     /// <summary>
     /// An entity with <see cref="ScanDetectableComponent"/> has been detected by a scan gate.
     /// </summary>
-    private void OnInventoryRelay(EntityUid uid, ScanDetectableComponent component, ref InventoryRelayedEvent<TryDetectItem> args) => args.Args.EntityDetected = true;
+    private void OnInventoryRelay(Entity<ScanDetectableComponent> ent, ref InventoryRelayedEvent<TryDetectItem> args)
+    {
+        args.Args.EntityDetected = true;
+    }
 
     /// <summary>
     /// An entity with <see cref="ScanDetectableComponent"/> has been detected by a scan gate.
     /// </summary>
-    private void OnHandRelay(EntityUid uid, ScanDetectableComponent component, ref HeldRelayedEvent<TryDetectItem> args) => args.Args.EntityDetected = true;
+    private void OnHandRelay(Entity<ScanDetectableComponent> ent, ref HeldRelayedEvent<TryDetectItem> args)
+    {
+        args.Args.EntityDetected = true;
+    }
 
     #endregion
 
     #region Storage Detection
 
-    private void OnDetectStorage(EntityUid uid, StorageComponent storage, ref TryDetectItem args)
+    private void OnDetectStorage(Entity<StorageComponent> ent, ref TryDetectItem args)
     {
         if (args.ByPass) // No need to check if already bypassed
             return;
 
-        foreach (var (entity, _) in storage.StoredItems)
+        foreach (var (entity, _) in ent.Comp.StoredItems)
         {
-            if (TryComp<ScanByPassComponent>(entity, out var component)
-            && (!component.Toggleable || _itemToggleSystem.IsActivated(entity))
-            && (!component.Powered || _powerReceiverSystem.IsPowered(entity) || _powerCellSystem.HasDrawCharge(entity)))
-            {
-                args.ByPass = true;
-                break;
-            }
             if (HasComp<ScanDetectableComponent>(entity))
                 args.EntityDetected = true; // Keep checking, in case there's a bypass item
+
+            if (!TryComp<ScanByPassComponent>(entity, out var component))
+                continue;
+
+            if (component.Toggleable && !_itemToggle.IsActivated(entity))
+                continue;
+
+            if (component.Powered && !_powerReceiver.IsPowered(entity) && !_powerCell.HasDrawCharge(entity))
+                continue;
+
+            args.ByPass = true;
+            break;
         }
     }
 
-    private void OnInventoryRelayStorage(EntityUid uid, StorageComponent storage, ref InventoryRelayedEvent<TryDetectItem> args)
+    private void OnInventoryRelayStorage(Entity<StorageComponent> ent, ref InventoryRelayedEvent<TryDetectItem> args)
     {
         if (args.Args.ByPass) // No need to check if already bypassed
             return;
 
-        foreach (var (entity, _) in storage.StoredItems)
+        foreach (var (entity, _) in ent.Comp.StoredItems)
         {
-            if (TryComp<ScanByPassComponent>(entity, out var component)
-            && (!component.Toggleable || _itemToggleSystem.IsActivated(entity))
-            && (!component.Powered || _powerReceiverSystem.IsPowered(entity) || _powerCellSystem.HasDrawCharge(entity)))
-            {
-                args.Args.ByPass = true;
-                break;
-            }
             if (HasComp<ScanDetectableComponent>(entity))
                 args.Args.EntityDetected = true;  // Keep checking, in case there's a bypass item
+
+            if (!TryComp<ScanByPassComponent>(entity, out var component))
+                continue;
+
+            if (component.Toggleable && !_itemToggle.IsActivated(entity))
+                continue;
+
+            if (component.Powered && !_powerReceiver.IsPowered(entity) && !_powerCell.HasDrawCharge(entity))
+                continue;
+
+            args.Args.ByPass = true;
+            break;
         }
     }
 
-    private void OnHandRelayStorage(EntityUid uid, StorageComponent storage, ref HeldRelayedEvent<TryDetectItem> args)
+    private void OnHandRelayStorage(Entity<StorageComponent> ent, ref HeldRelayedEvent<TryDetectItem> args)
     {
         if (args.Args.ByPass) // No need to check if already bypassed
             return;
 
-        foreach (var (entity, _) in storage.StoredItems)
+        foreach (var (entity, _) in ent.Comp.StoredItems)
         {
-            if (TryComp<ScanByPassComponent>(entity, out var component)
-            && (!component.Toggleable || _itemToggleSystem.IsActivated(entity))
-            && (!component.Powered || _powerReceiverSystem.IsPowered(entity) || _powerCellSystem.HasDrawCharge(entity)))
-            {
-                args.Args.ByPass = true;
-                break;
-            }
             if (HasComp<ScanDetectableComponent>(entity))
                 args.Args.EntityDetected = true;  // Keep checking, in case there's a bypass item
+
+            if (!TryComp<ScanByPassComponent>(entity, out var component))
+                continue;
+
+            if (component.Toggleable && !_itemToggle.IsActivated(entity))
+                continue;
+
+            if (component.Powered && !_powerReceiver.IsPowered(entity) && !_powerCell.HasDrawCharge(entity))
+                continue;
+
+            args.Args.ByPass = true;
+            break;
         }
     }
 
@@ -158,31 +220,43 @@ public sealed partial class SharedScanGateSystem : EntitySystem
     /// <summary>
     /// An entity with <see cref="ScanByPassComponent"/> is attempting to bypass scan gate detection.
     /// </summary>
-    private void OnBypass(EntityUid uid, ScanByPassComponent component, ref TryDetectItem args)
+    private void OnBypass(Entity<ScanByPassComponent> ent, ref TryDetectItem args)
     {
-        if ((!component.Toggleable || _itemToggleSystem.IsActivated(uid))
-            && (!component.Powered || _powerReceiverSystem.IsPowered(uid) || _powerCellSystem.HasDrawCharge(uid)))
-            args.ByPass = true;
+        if (ent.Comp.Toggleable && !_itemToggle.IsActivated(ent.Owner))
+            return;
+
+        if (ent.Comp.Powered && !_powerReceiver.IsPowered(ent.Owner) && !_powerCell.HasDrawCharge(ent.Owner))
+            return;
+
+        args.ByPass = true;
     }
 
     /// <summary>
     /// An entity with <see cref="ScanByPassComponent"/> is attempting to bypass scan gate detection.
     /// </summary>
-    private void OnInventoryRelayBypass(EntityUid uid, ScanByPassComponent component, ref InventoryRelayedEvent<TryDetectItem> args)
+    private void OnInventoryRelayBypass(Entity<ScanByPassComponent> ent, ref InventoryRelayedEvent<TryDetectItem> args)
     {
-        if ((!component.Toggleable || _itemToggleSystem.IsActivated(uid))
-            && (!component.Powered || _powerReceiverSystem.IsPowered(uid) || _powerCellSystem.HasDrawCharge(uid)))
-            args.Args.ByPass = true;
+        if (ent.Comp.Toggleable && !_itemToggle.IsActivated(ent.Owner))
+            return;
+
+        if (ent.Comp.Powered && !_powerReceiver.IsPowered(ent.Owner) && !_powerCell.HasDrawCharge(ent.Owner))
+            return;
+
+        args.Args.ByPass = true;
     }
 
     /// <summary>
     /// An entity with <see cref="ScanByPassComponent"/> is attempting to bypass scan gate detection.
     /// </summary>
-    private void OnHandRelayBypass(EntityUid uid, ScanByPassComponent component, ref HeldRelayedEvent<TryDetectItem> args)
+    private void OnHandRelayBypass(Entity<ScanByPassComponent> ent, ref HeldRelayedEvent<TryDetectItem> args)
     {
-        if ((!component.Toggleable || _itemToggleSystem.IsActivated(uid))
-            && (!component.Powered || _powerReceiverSystem.IsPowered(uid) || _powerCellSystem.HasDrawCharge(uid)))
-            args.Args.ByPass = true;
+        if (ent.Comp.Toggleable && !_itemToggle.IsActivated(ent.Owner))
+            return;
+
+        if (ent.Comp.Powered && !_powerReceiver.IsPowered(ent.Owner) && !_powerCell.HasDrawCharge(ent.Owner))
+            return;
+
+        args.Args.ByPass = true;
     }
 
     #endregion
@@ -192,31 +266,31 @@ public sealed partial class SharedScanGateSystem : EntitySystem
     /// <summary>
     /// Action which is performed when an item is detected by the scan gate.
     /// </summary>
-    private void ItemDetected(EntityUid uid, ScanGateComponent component)
+    private void ItemDetected(Entity<ScanGateComponent> ent)
     {
-        _audio.PlayPvs(component.ScanFailSound, uid); // Play fail sound, when detect something
-        SetState(uid, component, component.ScanFailState);
-        _deviceLink.InvokePort(uid, component.FailSignal);
+        _audio.PlayPvs(ent.Comp.ScanFailSound, ent.Owner); // Play fail sound, when detect something
+        SetState(ent, ent.Comp.ScanFailState);
+        _deviceLink.InvokePort(ent.Owner, ent.Comp.FailSignal);
     }
 
     /// <summary>
     /// Action which is performed when no item is detected by the scan gate.
     /// </summary>
-    private void NoItemDetected(EntityUid uid, ScanGateComponent component)
+    private void NoItemDetected(Entity<ScanGateComponent> ent)
     {
-        _audio.PlayPvs(component.ScanSound, uid); // Play scan sound
-        SetState(uid, component, component.ScanSuccessState);
-        _deviceLink.InvokePort(uid, component.SuccessSignal);
+        _audio.PlayPvs(ent.Comp.ScanSound, ent.Owner); // Play scan sound
+        SetState(ent, ent.Comp.ScanSuccessState);
+        _deviceLink.InvokePort(ent.Owner, ent.Comp.SuccessSignal);
     }
 
     /// <summary>
     /// Sets the visual state of the scan gate and resets it to idle after 1 second.
     /// </summary>
-    /// <param name="uid"></param>
-    private void SetState(EntityUid uid, ScanGateComponent component, string state)
+    private void SetState(Entity<ScanGateComponent> ent, string state)
     {
-        _appearanceSystem.SetData(uid, ScanGateVisuals.State, state);
-        Timer.Spawn(TimeSpan.FromSeconds(1), () => _appearanceSystem.SetData(uid, ScanGateVisuals.State, component.IdleState)); // Set back to idle after 1 second
+        _appearance.SetData(ent.Owner, ScanGateVisuals.State, state);
+        ent.Comp.StateResetTime = _timing.CurTime + StateResetDelay;
+        Dirty(ent);
     }
     #endregion
 }

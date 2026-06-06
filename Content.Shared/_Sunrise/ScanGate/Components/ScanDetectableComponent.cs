@@ -6,6 +6,4 @@ namespace Content.Shared._Sunrise.ScanGate.Components;
 /// Marks an entity as detectable by a scan gate.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ScanDetectableComponent : Component
-{
-}
+public sealed partial class ScanDetectableComponent : Component;

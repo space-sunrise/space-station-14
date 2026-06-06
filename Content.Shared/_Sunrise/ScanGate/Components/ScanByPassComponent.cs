@@ -6,15 +6,15 @@ namespace Content.Shared._Sunrise.ScanGate.Components;
 [RegisterComponent]
 public sealed partial class ScanByPassComponent : Component
 {
-    /// <summary> 
+    /// <summary>
     /// Whether the entity needs to be powered to bypass the scan gate.
     /// </summary>
-    [DataField("powered")]
+    [DataField]
     public bool Powered = true;
 
     /// <summary>
     /// Whether the bypass ability can be toggled on and off.
     /// </summary>
-    [DataField("toggleable")]
-    public bool Toggleable = false;
+    [DataField]
+    public bool Toggleable;
 }
