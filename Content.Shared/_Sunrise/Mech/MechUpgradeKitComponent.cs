@@ -9,7 +9,7 @@ namespace Content.Shared._Sunrise.Mech;
 public sealed partial class MechUpgradeKitComponent : Component
 {
     [DataField]
-    public float Delay = 3f;
+    public TimeSpan Delay = TimeSpan.FromSeconds(3);
 
     [DataField(required: true)]
     [AutoNetworkedField]
