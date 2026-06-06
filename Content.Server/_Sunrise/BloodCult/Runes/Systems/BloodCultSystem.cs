@@ -21,6 +21,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Gibbing;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Pulling.Systems;
@@ -46,7 +47,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly BloodCultRuleSystem _bloodCultRuleSystem = default!;
         [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-        [Dependency] private readonly BodySystem _bodySystem = default!;
+        [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly CuffableSystem _cuffable = default!;

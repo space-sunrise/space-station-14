@@ -13,3 +13,51 @@
   components:
   - type: AccessReader
     access: [["Ntrep"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsRobotics
+  suffix: Robotics, Locked
+  components:
+  - type: AccessReader
+    access: [["Robotics"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsParamedic
+  suffix: Paramedic, Locked
+  components:
+  - type: AccessReader
+    access: [["Paramedic"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSalvageMining
+  suffix: Salvage, Mining, Locked
+  components:
+  - type: AccessReader
+    access: [["Salvage"], ["Mining"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsInternalAffairs
+  suffix: Internal Affairs, Locked
+  components:
+  - type: AccessReader
+    access: [["IAA"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSecurityInternalAffairs
+  suffix: Security/Internal Affairs, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"], ["IAA"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBrigmed
+  suffix: Brigmed, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"], ["Cadet"], ["Command"]]

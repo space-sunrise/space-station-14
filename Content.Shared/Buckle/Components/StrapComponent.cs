@@ -49,6 +49,12 @@ public sealed partial class StrapComponent : Component
     public List<Vector2> BuckleOffsets { get; set; } = []; // Sunrise-Edit
 
     /// <summary>
+    /// The singular buckled entity offset, for backward compatibility with vanilla prototypes.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Vector2 BuckleOffset { get; set; } = Vector2.Zero; // Sunrise-Edit
+
+    /// <summary>
     /// The angle to rotate the player by when they get strapped
     /// </summary>
     [DataField]

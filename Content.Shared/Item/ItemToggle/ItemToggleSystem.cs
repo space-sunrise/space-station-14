@@ -168,6 +168,8 @@ public sealed class ItemToggleSystem : EntitySystem
                 return;
             if (itemInHand != ent.Owner)
                 return;
+            if (!ent.Comp.CanActivateInhand)
+                return;
         }
 
         if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))

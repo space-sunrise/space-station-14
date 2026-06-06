@@ -15,5 +15,5 @@ public sealed partial class SunriseCCVars
     ///     If empty, scoreboard music falls back to a random track from the lobby collection.
     /// </summary>
     public static readonly CVarDef<string> RoundEndMusicPool =
-        CVarDef.Create("music.round_end_music_pool", string.Empty, CVar.SERVERONLY);
+        CVarDef.Create("music.round_end_music_pool", "SunriseLobbyMusic", CVar.SERVERONLY);
 }

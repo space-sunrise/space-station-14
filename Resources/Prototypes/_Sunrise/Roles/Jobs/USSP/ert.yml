@@ -531,6 +531,7 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      job: CBURNAgentEVA
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst

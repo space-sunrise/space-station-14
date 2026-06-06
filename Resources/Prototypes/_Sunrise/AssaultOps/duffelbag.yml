@@ -7,8 +7,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: BoxSurvivalSyndicate
         - id: ChemistryBottleNocturine
         - id: FreedomImplanter
+        - id: DeathAcidifierImplanter
         - id: PinpointerIcarus
         - id: EncryptionKeySyndie

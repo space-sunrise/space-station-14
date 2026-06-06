@@ -60,10 +60,10 @@ public sealed partial class CCVars
         public static readonly CVarDef<float> InterfaceVolume =
             CVarDef.Create("audio.interface_volume", 0.50f, CVar.ARCHIVE | CVar.CLIENTONLY);
 
-    /// <summary>
-    ///     Lobby music collection string
-    /// </summary>
-    [CVarControl(AdminFlags.VarEdit)]
-    public static readonly CVarDef<string> LobbyMusicCollection =
-        CVarDef.Create("audio.lobby_music_collection", "SunriseLobbyMusic", CVar.REPLICATED | CVar.SERVER); // Sunrise-edit
+        /// <summary>
+        ///     Lobby music collection string
+        /// </summary>
+        [CVarControl(AdminFlags.VarEdit)]
+        public static readonly CVarDef<string> LobbyMusicCollection =
+            CVarDef.Create("audio.lobby_music_collection", "SunriseLobbyMusic", CVar.REPLICATED | CVar.SERVER); // Sunrise-edit
 }

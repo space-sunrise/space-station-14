@@ -1,0 +1,81 @@
+stack-carpet-deco-tile = deco carpet tile
+stack-dark-bitile-tile = dark bi tile
+stack-steel-bitile-tile = steel bi tile
+stack-white-bitile-tile = white bi tile
+stack-hierophant-tile = hierophant carpet tile
+stack-sepia-tile = sepia tile
+stack-terracotta-tile = terracotta tile
+stack-terracotta-diagonal-tile = diagonal terracotta tile
+stack-terracotta-small-tile = small terracotta tile
+stack-labeller-refill-paper = labeller refill paper
+stack-dark-wood-floor = dark wood floor
+stack-dark-wood-pattern-floor = dark wood pattern floor
+stack-dark-large-wood-floor = large dark wood floor
+black-wood-floor = black wooden floor
+dark-wood-floor = dark wooden floor
+light-wood-floor = light wooden floor
+red-wood-floor = red wooden floor
+large-black-wood-floor = large black wooden floor
+large-dark-wood-floor = large dark wooden floor
+large-light-wood-floor = large light wooden floor
+large-red-wood-floor = large red wooden floor
+parquet-wood-floor = wooden parquet
+parquet-black-wood-floor = black wooden parquet
+parquet-dark-wood-floor = dark wooden parquet
+parquet-light-wood-floor = light wooden parquet
+parquet-red-wood-floor = red wooden parquet
+chess-wood-floor = wooden chess floor
+chess-black-wood-floor = black wooden chess floor
+chess-dark-wood-floor = dark wooden chess floor
+chess-light-wood-floor = light wooden chess floor
+chess-red-wood-floor = red wooden chess floor
+stack-metal-dark-floor = dark metal floor
+stack-metal-brown-floor = brown metal floor
+stack-metal-blue-floor = blue metal floor
+stack-metal-purple-floor = purple metal floor
+stack-metal-red-floor = red metal floor
+stack-metal-green-floor = green metal floor
+stack-astro-dirt-floor = astro-dirt floor
+stack-3x3black-floor = 3x3 black floor
+stack-3x3brown-floor = 3x3 brown floor
+stack-3x3steel-floor = 3x3 steel floor
+stack-3x3white-floor = 3x3 white floor
+stack-old-concrete-bricks-floor = old concrete brick floor
+stack-old-concrete-tile-floor = old concrete tile floor
+stack-ornate-floor = ornate floor
+stack-rough-metal-floor = rough metal floor
+stack-rusty-metal-floor = rusty metal floor
+stack-steel-grate-floor = steel grate floor
+stack-tech-greeb-floor = tech maints greeb floor
+
+stack-bluespacecrystal = {$amount ->
+    [1] bluespace
+    *[other] bluespaces
+}
+
+stack-adamantine = {$amount ->
+    [1] adamantine bar
+    *[other] adamantine bars
+}
+
+stack-bluespace-tile = bluespace tile
+stack-sepia-xenobiology-tile = sepia tile
+
+stack-empty-oilpack = {$amount ->
+    [1] emptyoilpack
+    *[other] emptyoilpacks
+}
+
+stack-wizcoin = {$amount ->
+    [1] wizcoin
+    *[other] wizcoins
+}
+
+stack-abyssium-ore = {$amount ->
+    [1] abyssium ore
+    *[other] abyssium ores
+}
+stack-abyssium-bar = {$amount ->
+    [1] abyssium bar
+    *[other] abyssium bars
+}
