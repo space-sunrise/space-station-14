@@ -22,6 +22,10 @@ public sealed partial class DoorBoltWireAction : ComponentWireAction<DoorBoltCom
         if (!airlock.BoltsDown && IsPowered(wire.Owner))
             EntityManager.System<DoorSystem>().SetBoltsDown((wire.Owner, airlock), true, user);
 
+        // Sunrise-start
+        WireCutSparks(wire.Owner);
+        // Sunrise-end
+
         return true;
     }
 

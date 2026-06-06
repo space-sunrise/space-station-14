@@ -291,6 +291,11 @@ public sealed partial class DoorComponent : Component
     [DataField]
     public bool ClickOpen = true;
 
+    // Sunrise-start
+    [DataField]
+    public bool WireCutSparks = true;
+    // Sunrise-end
+
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int OpenDrawDepth = (int) DrawDepth.DrawDepth.Doors;
 
