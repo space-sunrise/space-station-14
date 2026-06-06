@@ -22,6 +22,9 @@ public abstract partial class ComponentWireAction<TComponent> : BaseWireAction w
     public override bool Cut(EntityUid user, Wire wire)
     {
         base.Cut(user, wire);
+        // Sunrise-start
+        WireCutSparks(wire.Owner);
+        // Sunrise-end
         // if the entity doesn't exist, we need to return true otherwise the wire sprite is never updated
         return EntityManager.TryGetComponent(wire.Owner, out TComponent? component) ? Cut(user, wire, component) : true;
     }

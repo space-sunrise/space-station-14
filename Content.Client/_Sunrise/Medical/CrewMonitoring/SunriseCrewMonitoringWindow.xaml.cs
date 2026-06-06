@@ -223,6 +223,7 @@ public sealed partial class SunriseCrewMonitoringWindow : FancyWindow
         var healthState = HealthStateHelper.GetHealthState(sensor.DamagePercentage, sensor.IsAlive);
         string rsiState = healthState switch
         {
+            CrewMonitoringHealthState.Alive => "alive",
             CrewMonitoringHealthState.Healthy => "health0",
             CrewMonitoringHealthState.Good => "health1",
             CrewMonitoringHealthState.NotGreat => "health2",

@@ -7,19 +7,11 @@ using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-
-#region Starlight
-using System.Linq;
-using Content.Shared.Body.Components;
-using Content.Shared.Mech.Components;
-using Content.Shared.Weapons.Reflect;
-using Robust.Shared.Maths;
-using Robust.Shared.Prototypes;
-#endregion Starlight
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
@@ -30,14 +22,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _log = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-#region Starlight
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-#endregion Starlight
-
     private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
-
-    private EntityQuery<HitscanReflectComponent> _reflectQuery; // Starlight
-    private EntityQuery<BloodstreamComponent> _bloodQuery; // Starlight
 
     public override void Initialize()
     {
@@ -45,51 +30,38 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
 
         _visualsQuery = GetEntityQuery<HitscanBasicVisualsComponent>();
 
-        _reflectQuery = GetEntityQuery<HitscanReflectComponent>(); // Starlight
-
         SubscribeLocalEvent<HitscanBasicRaycastComponent, HitscanTraceEvent>(OnHitscanFired);
     }
 
     private void OnHitscanFired(Entity<HitscanBasicRaycastComponent> ent, ref HitscanTraceEvent args)
     {
         var shooter = args.Shooter ?? args.Gun;
-        // Starlight start - handle the shooter being the mech, not the pilot
-        if (shooter != null && TryComp<MechPilotComponent>(shooter, out var pilotA))
-            shooter = pilotA.Mech;
-        // Starlight end
+        // Sunrise edit start - ignore shooter's mech for hitscan raycast
+        var ignored = shooter;
+        if (TryComp<Content.Shared.Mech.Components.MechPilotComponent>(ignored, out var pilot))
+        {
+            ignored = pilot.Mech;
+        }
+        // Sunrise edit end
         var mapCords = _transform.ToMapCoordinates(args.FromCoordinates);
         var ray = new CollisionRay(mapCords.Position, args.ShotDirection, (int) ent.Comp.CollisionMask);
-        var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, shooter, false);
+        var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, ignored, false);
 
-        var targets = args.Target;
+        var target = args.Target;
         // If you are in a container, use the raycast result
         // Otherwise:
-        //  1.) Hit the first entity that is in the targeted set.
+        //  1.) Hit the first entity that you targeted.
         //  2.) Hit the first entity that doesn't require you to aim at it specifically to be hit.
         var result = _container.IsEntityOrParentInContainer(shooter)
             ? rayCastResults.FirstOrNull()
-            : rayCastResults.FirstOrNull(hit =>
-                // If we have explicit targets, prefer any hit that is one of them.
-                (targets != null && hit.HitEntity is { } h && targets.Contains(h))
-                // Otherwise allow hitting entities that don't require being specifically targeted.
-                || CompOrNull<RequireProjectileTargetComponent>(hit.HitEntity)?.Active != true);
+            : rayCastResults.FirstOrNull(hit => hit.HitEntity == target
+                                                || CompOrNull<RequireProjectileTargetComponent>(hit.HitEntity)?.Active != true);
 
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 
-        // Starlight start
-        var isRoot = false;
-        if (args.OutputTrace is null)
-        {
-            args.OutputTrace = new List<HitscanTrace>();
-            isRoot = true;
-        }
-        // Starlight end
-
         // Do visuals without an event. They should always happen and putting it on the attempt event is weird!
         // If more stuff gets added here, it should probably be turned into an event.
-        // FireEffects(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), ent.Owner); // Starlight - comment out, as we want to aggregate these
-
-        args.OutputTrace.Add(GenerateTraceStep(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle())); // Starlight - add the visuals for this particular leg of the hitscan into the trace
+        FireEffects(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), ent.Owner);
 
         // Admin logging
         if (result?.HitEntity != null)
@@ -105,92 +77,18 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             Gun = args.Gun,
             Shooter = args.Shooter,
             HitEntity = result?.HitEntity,
-            OutputTrace = args.OutputTrace, // Starlight
         };
 
         var attemptEvent = new AttemptHitscanRaycastFiredEvent { Data = data };
         RaiseLocalEvent(ent, ref attemptEvent);
 
         if (attemptEvent.Cancelled)
-        { // Starlight start - added block with additional command before return
-            if (isRoot)
-                FireEffects(ent, args.OutputTrace);
-            // Starlight end
             return;
-        } // Starlight
 
         var hitEvent = new HitscanRaycastFiredEvent { Data = data };
         RaiseLocalEvent(ent, ref hitEvent);
-
-        // Starlight start
-        if (isRoot)
-            FireEffects(ent, args.OutputTrace);
-        // Starlight end
     }
 
-    private HitscanTrace GenerateTraceStep(EntityCoordinates fromCoordinates, float distance, Angle shotAngle)
-    {
-        var fromXform = Transform(fromCoordinates.EntityId);
-
-        var gridUid = fromXform.GridUid;
-        if (gridUid != fromCoordinates.EntityId && TryComp(gridUid, out TransformComponent? gridXform))
-        {
-            var (_, gridRot, gridInvMatrix) = _transform.GetWorldPositionRotationInvMatrix(gridXform);
-            var map = _transform.ToMapCoordinates(fromCoordinates);
-            fromCoordinates = new EntityCoordinates(gridUid.Value, Vector2.Transform(map.Position, gridInvMatrix));
-            shotAngle -= gridRot;
-        }
-        else
-        {
-            shotAngle -= _transform.GetWorldRotation(fromXform);
-        }
-
-        var shotVec = shotAngle.ToVec().Normalized();
-
-        return new() {
-            Angle = shotAngle,
-            Distance = distance,
-            // We don't draw muzzle or travel effects if we're at point-blank range, just impact effects
-            MuzzleCoordinates = distance > 1f ? GetNetCoordinates(fromCoordinates.Offset(shotVec / 2)) : null,
-            TravelCoordinates = distance > 1f ? GetNetCoordinates(fromCoordinates.Offset(shotVec * (distance + 0.5f) / 2)) : null,
-            ImpactCoordinates = GetNetCoordinates(fromCoordinates.Offset(shotVec * distance)),
-        };
-    }
-
-    private void FireEffects(EntityUid hitscan, List<HitscanTrace> traces)
-    {
-        if (!_visualsQuery.TryComp(hitscan, out var visuals))
-        {
-            // We're not going to display anything, so don't fire the event to display things
-            return;
-        }
-
-        // Trigger the render
-        var hitscanEvent = new SharedGunSystem.HitscanEvent
-        {
-            MuzzleFlash = visuals.MuzzleFlash,
-            TravelFlash = visuals.TravelFlash,
-            ImpactFlash = visuals.ImpactFlash,
-            Bullet = visuals.Bullet,
-            Speed = visuals.Speed,
-            Traces = traces,
-        };
-
-        // Figure out who might see the event on any of the bounces
-        var filter = Filter.Empty();
-        var sampledPositions = traces
-                .Select(x => GetCoordinates(x.MuzzleCoordinates))
-                .Where(x => x is not null)
-                .Select<EntityCoordinates?, EntityCoordinates>(x => x!.Value)
-                .Where(x => x.IsValid(EntityManager))
-                .ToList();
-        foreach (var pos in sampledPositions)
-            filter.Merge(Filter.Pvs(pos, entityMan: EntityManager));
-
-        RaiseNetworkEvent(hitscanEvent, filter);
-    }
-
-    /* Starlight - comment out upstream FireEffects
     /// <summary>
     /// Create visual effects for the fired hitscan weapon.
     /// </summary>
@@ -203,7 +101,9 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         if (distance == 0 || !_visualsQuery.TryComp(hitscanUid, out var vizComp))
             return;
 
-        var sprites = new List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale)>();
+        // Sunrise edit start - update sprites tuple type to include Color? and Vector2?
+        var sprites = new List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale, Color? Color, Vector2? Scale)>();
+        // Sunrise edit end
         var fromXform = Transform(fromCoordinates.EntityId);
 
         // We'll get the effects relative to the grid / map of the firer
@@ -222,6 +122,19 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             shotAngle -= _transform.GetWorldRotation(fromXform);
         }
 
+        // Sunrise edit start - custom bullet visuals with color and scale
+        var travelSprite = vizComp.TravelFlash;
+        Color? color = null;
+        Vector2? scale = null;
+
+        if (vizComp.Bullet != null)
+        {
+            travelSprite = vizComp.Bullet.Sprite;
+            color = vizComp.Bullet.SpriteColor;
+            scale = vizComp.Bullet.SpriteScale;
+        }
+        // Sunrise edit end
+
         if (distance >= 1f)
         {
             if (vizComp.MuzzleFlash != null)
@@ -229,15 +142,19 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
                 var coords = fromCoordinates.Offset(shotAngle.ToVec().Normalized() / 2);
                 var netCoords = GetNetCoordinates(coords);
 
-                sprites.Add((netCoords, shotAngle, vizComp.MuzzleFlash, 1f));
+                // Sunrise edit start - pass custom color and scale
+                sprites.Add((netCoords, shotAngle, vizComp.MuzzleFlash, 1f, color, scale));
+                // Sunrise edit end
             }
 
-            if (vizComp.TravelFlash != null)
+            if (travelSprite != null)
             {
                 var coords = fromCoordinates.Offset(shotAngle.ToVec() * (distance + 0.5f) / 2);
                 var netCoords = GetNetCoordinates(coords);
 
-                sprites.Add((netCoords, shotAngle, vizComp.TravelFlash, distance - 1.5f));
+                // Sunrise edit start - pass custom color and scale
+                sprites.Add((netCoords, shotAngle, travelSprite, distance - 1.5f, color, scale));
+                // Sunrise edit end
             }
         }
 
@@ -246,7 +163,9 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             var coords = fromCoordinates.Offset(shotAngle.ToVec() * distance);
             var netCoords = GetNetCoordinates(coords);
 
-            sprites.Add((netCoords, shotAngle.FlipPositive(), vizComp.ImpactFlash, 1f));
+            // Sunrise edit start - pass custom color and scale
+            sprites.Add((netCoords, shotAngle.FlipPositive(), vizComp.ImpactFlash, 1f, color, scale));
+            // Sunrise edit end
         }
 
         if (sprites.Count > 0)
@@ -257,5 +176,4 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             }, Filter.Pvs(fromCoordinates, entityMan: EntityManager));
         }
     }
-    */// Starlight - end of commenting out upstream FireEffects
 }

@@ -5,7 +5,7 @@
   playTimeTracker: JobCBURN
   setPreference: false
   startingGear: CBURNGear
-  icon: "JobIconNanotrasen"
+  icon: "JobIconCBURN"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   requirements:
@@ -52,37 +52,3 @@
   equipment:
     head: ClothingHeadHelmetCBURN
     neck: ClothingNeckScarfStripedBrown
-
-# Sunrise-start
-- type: startingGear
-  id: CBURNGearEVA
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBrown
-    back: ClothingBackpackDuffelCBURN
-    mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesSecurity
-    ears: ClothingHeadsetAltERT #Sunrise-Edit
-    outerClothing: ClothingOuterSoftsuitCBURN
-    shoes: ClothingShoesBootsCombatFilled
-    id: CBURNPDA
-    pocket1: RadioHandheld
-    pocket2: WeaponLaserGun
-    belt: ClothingBeltSalvageWebbing
-    head: ClothingHeadSoftsuitCBURN
-  storage:
-    back:
-    - GrenadeFlashBang
-    - GrenadeFlashBang
-    - GrenadeFlashBang
-    - PillAmbuzolPlus
-    - PillAmbuzol
-    - PillAmbuzol
-    - PillAmbuzol
-    - SyringeAmbuzol
-    - ClothingHandsPowerGlovesUplinkNTERTCBURN
-    - FireExtinguisherMini
-    - MedkitCombatFilled
-    - MedkitBurnFilled
-    - MedkitToxinFilled
-    - TacticalAxe
-# Sunrise-end
