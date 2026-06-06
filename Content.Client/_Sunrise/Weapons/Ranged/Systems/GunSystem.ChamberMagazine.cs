@@ -10,19 +10,19 @@ namespace Content.Client.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
-    partial void InitializeSunriseChamberMagazine()
-    {
+    partial void InitializeSunriseChamberMagazine() =>
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, AfterAutoHandleStateEvent>(OnSunriseChamberMagazineState);
-    }
 
     private void OnSunriseChamberMagazineState(Entity<ChamberMagazineAmmoProviderComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite) ||
-            !_sprite.LayerMapTryGet((ent.Owner, sprite), GunVisualLayers.Base, out var boltLayer, false) ||
-            !Appearance.TryGetData(ent.Owner, AmmoVisuals.BoltClosed, out bool boltClosed))
-        {
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
-        }
+
+        if (!_sprite.LayerMapTryGet((ent.Owner, sprite), GunVisualLayers.Base, out var boltLayer, false))
+            return;
+
+        if (!Appearance.TryGetData(ent.Owner, AmmoVisuals.BoltClosed, out bool boltClosed))
+            return;
 
         var prefix = string.IsNullOrEmpty(ent.Comp.SelectedPrefix) ? "" : $"_{ent.Comp.SelectedPrefix}";
         _sprite.LayerSetRsiState((ent.Owner, sprite), boltLayer, boltClosed ? $"base{prefix}" : $"bolt-open{prefix}");

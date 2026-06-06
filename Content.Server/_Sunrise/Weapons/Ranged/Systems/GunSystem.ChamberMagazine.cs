@@ -13,7 +13,7 @@ public sealed partial class GunSystem
 
     private void OnChamberMagazineMapInit(Entity<ChamberMagazineAmmoProviderComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.SelectedPrefix != null || ent.Comp.AvailablePrefixes.Count == 0)
+        if (ent.Comp.SelectedPrefix is not null || ent.Comp.AvailablePrefixes.Count == 0)
             return;
 
         ent.Comp.SelectedPrefix = _rand.Pick(ent.Comp.AvailablePrefixes);
