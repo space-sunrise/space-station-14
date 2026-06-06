@@ -43,7 +43,7 @@ public static class HealthStateHelper
             return CrewMonitoringHealthState.Dead;
 
         if (damagePercentage == null)
-            return CrewMonitoringHealthState.Unknown;
+            return CrewMonitoringHealthState.Healthy;
 
         var damageRatio = damagePercentage.Value;
 
