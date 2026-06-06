@@ -94,8 +94,8 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/ripley.rsi
-        state: paddy
+      - sprite: _Starlight/Objects/Specific/Mechs/Mechs/paddy.rsi
+        state: base
       - state: mechicon
   - type: ConditionalSpawner
     prototypes:
