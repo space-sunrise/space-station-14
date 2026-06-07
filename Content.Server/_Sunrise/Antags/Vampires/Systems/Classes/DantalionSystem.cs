@@ -2,9 +2,7 @@ using System.Linq;
 using Content.Server._Sunrise.Antags.Vampires.Components;
 using Content.Server.Bible.Components;
 using Content.Shared._Sunrise.Antags.Vampires.Events;
-using Content.Server._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
@@ -301,8 +299,13 @@ public sealed class DantalionSystem : EntitySystem
 
     private void OnThrallShutdown(EntityUid uid, VampireThrallComponent component, ComponentShutdown args)
     {
-        if (component.Master is not { } master || !TryComp(master, out DantalionComponent? dantalion)
-            || !dantalion.Thralls.Remove(uid))
+        if (component.Master is not { } master)
+            return;
+
+        if (!TryComp(master, out DantalionComponent? dantalion))
+            return;
+
+        if (!dantalion.Thralls.Remove(uid))
             return;
 
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
@@ -629,7 +632,7 @@ public sealed class DantalionSystem : EntitySystem
         if (life > TimeSpan.Zero)
         {
             var timed = EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(decoy);
-            timed.Lifetime = (float) life.TotalSeconds;
+            timed.Lifetime = (float)life.TotalSeconds;
         }
     }
 

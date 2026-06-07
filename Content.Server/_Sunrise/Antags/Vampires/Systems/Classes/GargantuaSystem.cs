@@ -3,15 +3,10 @@ using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Destructible;
 using Content.Shared._Sunrise.Antags.Vampires.Events;
-using Content.Server._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared._Sunrise.Antags.Vampires.Systems;
-using Content.Shared._Sunrise.Antags.Vampires.Systems.Abilities;
-using Content.Shared._Sunrise.Antags.Vampires.Systems.Classes;
 using Content.Shared.Actions;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
@@ -333,7 +328,7 @@ public sealed class GargantuaSystem : EntitySystem
         _audio.PlayPvs(args.Sound, args.Target, AudioParams.Default.WithVolume(3f));
 
         var distance = MathF.Min(args.Range, (args.Target.Position - xform.Coordinates.Position).Length());
-        var maxTiles = Math.Max(1, (int) MathF.Ceiling(distance));
+        var maxTiles = Math.Max(1, (int)MathF.Ceiling(distance));
         var tileInterval = args.ProjectileSpeed > 0f
             ? TimeSpan.FromSeconds(1f / args.ProjectileSpeed)
             : args.TileInterval;
@@ -398,7 +393,7 @@ public sealed class GargantuaSystem : EntitySystem
             if (TryComp<PhysicsComponent>(ent, out var physics)
                 && physics.BodyType == BodyType.Static
                 && physics.Hard
-                && (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
+                && (physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
             {
                 EntityManager.SpawnAttachedTo(active.EffectPrototype, tileCoords);
                 return true;

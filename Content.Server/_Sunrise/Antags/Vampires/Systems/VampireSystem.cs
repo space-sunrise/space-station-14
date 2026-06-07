@@ -5,9 +5,7 @@ using Content.Server._Sunrise.Antags.Vampires.Components;
 using Content.Shared._Sunrise.Antags.Vampires.Events;
 using Content.Shared._Sunrise.Antags.Vampires.UI;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared._Sunrise.Antags.Vampires.Prototypes;
 using Content.Shared.Alert;
@@ -134,8 +132,8 @@ public sealed partial class VampireSystem : EntitySystem
                 continue;
 
             var elapsed = comp.LastUpdate == TimeSpan.Zero
-                ? (float) comp.UpdateDelay.TotalSeconds
-                : MathF.Max(0f, (float) (now - comp.LastUpdate).TotalSeconds);
+                ? (float)comp.UpdateDelay.TotalSeconds
+                : MathF.Max(0f, (float)(now - comp.LastUpdate).TotalSeconds);
 
             comp.LastUpdate = now;
             comp.NextUpdate = now + comp.UpdateDelay;
@@ -372,7 +370,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (ent.Comp.BloodFullness <= 0f && ent.Comp.StarvationDrunkBloodDrainPerSecond > 0 && ent.Comp.DrunkBlood > 0)
         {
             ent.Comp.StarvationDrunkBloodDrainAccumulator += ent.Comp.StarvationDrunkBloodDrainPerSecond * elapsed;
-            var drained = Math.Min(ent.Comp.DrunkBlood, (int) ent.Comp.StarvationDrunkBloodDrainAccumulator);
+            var drained = Math.Min(ent.Comp.DrunkBlood, (int)ent.Comp.StarvationDrunkBloodDrainAccumulator);
             if (drained <= 0)
                 return changed;
 

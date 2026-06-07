@@ -1,8 +1,5 @@
-using Content.Server._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ensnaring;
 using Content.Shared.Ensnaring.Components;

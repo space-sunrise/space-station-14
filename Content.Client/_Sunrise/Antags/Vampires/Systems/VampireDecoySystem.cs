@@ -1,6 +1,3 @@
-using Content.Shared._Sunrise.Antags.Vampires.Components;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Robust.Client.GameObjects;
 
