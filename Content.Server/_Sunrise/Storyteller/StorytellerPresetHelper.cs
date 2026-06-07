@@ -13,7 +13,7 @@ public static class StorytellerPresetHelper
 
     private static readonly ProtoId<GamePresetPoolPrototype> PoolPrototypeId = "StorytellerPresetPool";
 
-    public static void AdjustPresetPool(Dictionary<string, int[]> presets, IConfigurationManager cfg)
+    public static void AdjustPresetPool(Dictionary<string, int[]> presets, IConfigurationManager cfg, int playerCount)
     {
         if (!cfg.GetCVar(SunriseCCVars.StorytellerEnabled))
             return;
@@ -43,20 +43,50 @@ public static class StorytellerPresetHelper
         if (rotationEnabled)
         {
             var state = cfg.GetCVar(SunriseCCVars.StorytellerRotationCounter);
-            ApplyRotationFilter(presets, state);
+            ApplyRotationFilter(presets, state, playerCount);
         }
     }
 
-    private static void ApplyRotationFilter(Dictionary<string, int[]> presets, int state)
+    private static void ApplyRotationFilter(Dictionary<string, int[]> presets, int state, int playerCount)
     {
+        // State meanings:
+        // 0 - no special exclusions
+        // 1 - Insane was played previously -> put Insane on cooldown
+        // 2 - Calm was played previously -> put Calm on cooldown (with safety checks)
+
         if (state == 1)
         {
             presets.Remove(StorytellerInsaneId);
+            return;
+        }
+
+        if (state == 2)
+        {
+            if (!presets.ContainsKey(StorytellerCalmId))
+                return;
+
+            var remainingEligible = 0;
+            foreach (var (key, limits) in presets)
+            {
+                if (key == StorytellerCalmId)
+                    continue;
+
+                var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
+                var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
+
+                if (playerCount >= minPlayers && playerCount <= maxPlayers)
+                    remainingEligible++;
+            }
+
+            if (remainingEligible > 0)
+            {
+                presets.Remove(StorytellerCalmId);
+            }
         }
     }
 
     public static bool ShouldBypassExclusion(string presetId)
     {
-        return presetId == StorytellerClassicId || presetId == StorytellerCalmId || presetId == StorytellerInsaneId;
+        return presetId == StorytellerClassicId;
     }
 }

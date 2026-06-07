@@ -13,9 +13,9 @@ using Content.Shared.Weapons.Melee.Events;
 namespace Content.Server._Sunrise.CarpQueen;
 
 /// <summary>
-/// System that handles discipline for tamed carps (hand-raised carps).
-/// If the owner hits their tamed carp with bare hands or gloves, the carp stops attacking its current target.
-/// The carp will resume attacking that target if the attacker damages the owner.
+/// Система обрабатывает дисциплину прирученных карпов, выращенных игроком.
+/// Если владелец бьет прирученного карпа голыми руками или перчатками, карп прекращает атаковать текущую цель.
+/// Карп продолжит атаковать эту цель, если атакующий повредит владельца.
 /// </summary>
 public sealed class CarpServantDisciplineSystem : EntitySystem
 {
@@ -27,71 +27,71 @@ public sealed class CarpServantDisciplineSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<CarpServantMemoryComponent, AttackedEvent>(OnCarpAttacked);
-        // Note: We don't subscribe to DamageChangedEvent here to avoid duplicate with CarpServantRetaliationSystem
-        // The discipline logic (removing from forbidden targets) is handled separately
+        // Не подписываемся на DamageChangedEvent здесь, чтобы не дублировать CarpServantRetaliationSystem.
+        // Логика дисциплины, удаляющая цели из запретного списка, обрабатывается отдельно.
     }
 
     private void OnCarpAttacked(EntityUid uid, CarpServantMemoryComponent memory, AttackedEvent args)
     {
-        // Only handle if this is a tamed carp (not a queen's servant)
+        // Обрабатываем только прирученного карпа, а не слугу королевы.
         if (HasComp<CarpQueenServantComponent>(uid))
             return;
 
-        // Check if attacker is one of the remembered friends (owner)
+        // Проверяем, является ли атакующий одним из запомненных друзей, то есть владельцем.
         if (!memory.RememberedFriends.Contains(args.User))
             return;
 
-        // Check if attack was made with bare hands or something in gloves slot
-        // Used == User means no weapon (bare hands)
-        // Or Used is an item equipped in the gloves slot of the user
+        // Проверяем, была ли атака выполнена голыми руками или предметом в слоте перчаток.
+        // Used == User означает отсутствие оружия, то есть голые руки.
+        // Либо Used — это предмет, экипированный в слот перчаток пользователя.
         var isBareHands = args.Used == args.User;
         var isGlovesSlotItem = _inventory.TryGetSlotEntity(args.User, "gloves", out var glovesSlotItem) && glovesSlotItem == args.Used;
 
         if (!isBareHands && !isGlovesSlotItem)
             return;
 
-        // Get current attack target from NPCMeleeCombatComponent or blackboard
+        // Получаем текущую цель атаки из NPCMeleeCombatComponent или blackboard.
         EntityUid? currentTarget = null;
         NPCMeleeCombatComponent? meleeCombat = null;
         HTNComponent? htn = null;
 
-        // Try to get from NPCMeleeCombatComponent first (most direct)
+        // Сначала пробуем NPCMeleeCombatComponent как самый прямой источник.
         if (TryComp<NPCMeleeCombatComponent>(uid, out meleeCombat) && meleeCombat.Target != EntityUid.Invalid)
         {
             currentTarget = meleeCombat.Target;
         }
-        // Fallback to blackboard - check common target keys
+        // Если не получилось, проверяем распространенные ключи цели в blackboard.
         else if (TryComp<HTNComponent>(uid, out htn))
         {
-            // Try CurrentOrderedTarget first (set by queen/orders)
+            // Сначала пробуем CurrentOrderedTarget, который задается королевой/приказами.
             if (htn.Blackboard.TryGetValue<EntityUid>(NPCBlackboard.CurrentOrderedTarget, out var orderedTarget, EntityManager) && orderedTarget != EntityUid.Invalid)
                 currentTarget = orderedTarget;
-            // Then try generic "Target" key
+            // Затем пробуем общий ключ "Target".
             else if (htn.Blackboard.TryGetValue<EntityUid>("Target", out var target, EntityManager) && target != EntityUid.Invalid)
                 currentTarget = target;
         }
 
-        // If there's a current target, add it to forbidden targets
+        // Если текущая цель есть, добавляем ее в запрещенные цели.
         if (currentTarget != null && currentTarget != args.User)
         {
             memory.ForbiddenTargets.Add(currentTarget.Value);
             Dirty(uid, memory);
 
-            // Add to faction exceptions to prevent attack
+            // Добавляем в исключения фракции, чтобы предотвратить атаку.
             var exception = EnsureComp<FactionExceptionComponent>(uid);
             if (!_npcFaction.IsIgnored((uid, exception), currentTarget.Value))
             {
                 _npcFaction.IgnoreEntity((uid, exception), (currentTarget.Value, null));
             }
 
-            // Clear the attack target from blackboard/combat component
+            // Очищаем цель атаки в blackboard или combat-компоненте.
             if (meleeCombat != null)
             {
                 meleeCombat.Target = EntityUid.Invalid;
             }
             else if (htn != null)
             {
-                // Clear target keys from blackboard
+                // Очищаем ключи цели в blackboard.
                 if (htn.Blackboard.ContainsKey("Target"))
                     _npc.SetBlackboard(uid, "Target", EntityUid.Invalid);
                 if (htn.Blackboard.ContainsKey(NPCBlackboard.CurrentOrderedTarget))
@@ -100,4 +100,3 @@ public sealed class CarpServantDisciplineSystem : EntitySystem
         }
     }
 }
-

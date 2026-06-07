@@ -21,6 +21,16 @@
     <ProjectReference Include="..\Content.Server\Content.Server.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
   </ItemGroup>
+  <PropertyGroup Condition="Exists('..\SunrisePrivate\Content.Tests') And Exists('..\SunrisePrivate\Content.Server') And Exists('..\SunrisePrivate\Content.Shared')">
+    <SunrisePrivateTestsEnabled>true</SunrisePrivateTestsEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(SunrisePrivateTestsEnabled)' == 'true'">
+    <DefineConstants>$(DefineConstants);SUNRISE_PRIVATE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(SunrisePrivateTestsEnabled)' == 'true'">
+    <Compile Include="..\SunrisePrivate\Content.Tests\**\*.cs"
+             Link="SunrisePrivate\%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
 
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
 </Project>

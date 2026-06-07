@@ -54,63 +54,63 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     private string _shuttlePath = string.Empty;
 
     /// <summary>
-    /// Time the shuttle waits at the station dock before forced departure.
+    /// Время ожидания шаттла у дока станции перед принудительным отправлением.
     /// </summary>
     private const float DockWaitTime = 15f;
 
     /// <summary>
-    /// FTL travel time for leaving departure (short, shuttle gets deleted after).
+    /// Время FTL-перелета при отправлении, после которого шаттл быстро удаляется.
     /// </summary>
     private const float DepartFtlTime = 5f;
 
     /// <summary>
-    /// FTL travel time when dispatching from queue to dock.
+    /// Время FTL-перелета при отправке из очереди к доку.
     /// </summary>
     private const float DispatchFtlTime = 5f;
 
     /// <summary>
-    /// Initial FTL travel time for the first arrival flight.
+    /// Начальное время FTL-перелета для первого рейса прибытия.
     /// </summary>
     private const float InitialFtlTime = 15f;
 
     /// <summary>
-    /// Delay after FTL completion before deleting the leaving shuttle.
+    /// Задержка после завершения FTL перед удалением улетающего шаттла.
     /// </summary>
     private const float DeleteDelayTime = 2f;
 
     /// <summary>
-    /// Maximum time a shuttle can exist before failsafe kicks in.
+    /// Максимальное время существования шаттла до срабатывания аварийной защиты.
     /// </summary>
     private static readonly TimeSpan FailsafeTimeout = TimeSpan.FromMinutes(2);
 
     /// <summary>
-    /// Buffer space between shuttles on the pool map.
+    /// Буферное расстояние между шаттлами на карте пула.
     /// </summary>
     private const float PoolBuffer = 10f;
 
     /// <summary>
-    /// Grace period after the player leaves the shuttle before it departs.
-    /// Gives them time to clear the airlock.
+    /// Grace period после выхода игрока из шаттла перед отправлением.
+    /// Дает время покинуть шлюз.
     /// </summary>
     private static readonly TimeSpan ExitGracePeriod = TimeSpan.FromSeconds(3);
 
     /// <summary>
-    /// Delay before greeting the player after spawn.
+    /// Задержка перед приветствием игрока после спавна.
     /// </summary>
     private static readonly TimeSpan GreetDelay = TimeSpan.FromSeconds(2);
 
     /// <summary>
-    /// Time after docking before issuing the evac warning.
+    /// Время после стыковки до предупреждения об эвакуации.
     /// </summary>
     private static readonly TimeSpan WarnDelay = TimeSpan.FromSeconds(8);
 
     /// <summary>
-    /// Wait time before warning the player that station docks are blocked.
+    /// Время ожидания перед предупреждением игрока, что доки станции заблокированы.
     /// </summary>
     private static readonly TimeSpan BlockedWarnDelay = TimeSpan.FromSeconds(20);
 
     /// <summary>
-    /// Interval between CC station announcements about blocked arrivals.
+    /// Интервал между сообщениями ЦК станции о заблокированных прибытиях.
     /// </summary>
     private static readonly TimeSpan StationWarnInterval = TimeSpan.FromMinutes(1);
 
@@ -157,7 +157,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             if (shuttleUid == null)
             {
                 Log.Error("Failed to spawn arrivals shuttle, falling back to station spawn");
-                return; // Let vanilla system handle it
+                return; // Даем vanilla system обработать fallback
             }
 
             var spawnLoc = FindShuttleSpawnPoint(shuttleUid.Value);
@@ -188,7 +188,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
             EnqueueShuttle(shuttleUid.Value);
 
-            // Put shuttle in infinite FTL so it appears to be in hyperspace
+            // Помещаем шаттл в бесконечный FTL, чтобы он выглядел находящимся в гиперпространстве
             var shuttleComp = Comp<ShuttleComponent>(shuttleUid.Value);
             _shuttle.FTLToCoordinates(shuttleUid.Value, shuttleComp,
                 Transform(shuttleUid.Value).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
@@ -199,7 +199,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         catch (Exception e)
         {
             Log.Error($"Exception in arrivals shuttle spawn: {e}");
-            // Don't set ev.SpawnResult — let vanilla system handle fallback
+            // Не задаем ev.SpawnResult, чтобы vanilla system обработала fallback
         }
     }
 
@@ -227,12 +227,12 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         }
         else
         {
-            // Failed to dock — re-enqueue so it retries on next dispatch cycle
+            // Стыковка не удалась — возвращаем в очередь для повтора на следующем dispatch cycle
             Log.Warning($"Arrivals shuttle {ToPrettyString(uid)} completed FTL but not docked, re-enqueueing");
             component.State = SunriseArrivalsShuttleState.Queued;
             EnqueueShuttle(uid);
 
-            // Put back into infinite FTL
+            // Возвращаем в бесконечный FTL
             var shuttleComp = Comp<ShuttleComponent>(uid);
             _shuttle.FTLToCoordinates(uid, shuttleComp,
                 Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
@@ -241,14 +241,14 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
     private void OnShuttleShutdown(EntityUid uid, SunriseArrivalsShuttleComponent component, ComponentShutdown args)
     {
-        // Clean up dock reservations
+        // Очищаем резервирования доков.
         foreach (var dock in component.ReservedDocks)
         {
             RemCompDeferred<FtlReservationComponent>(dock);
         }
         component.ReservedDocks.Clear();
 
-        // Remove from queue if present
+        // Удаляем из очереди, если там есть
         var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
         while (poolQuery.MoveNext(out _, out var pool))
         {
@@ -280,10 +280,10 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             switch (arrivals.State)
             {
                 case SunriseArrivalsShuttleState.Queued:
-                    // Handled by TryDispatchFromQueue
+                    // Обрабатывается в TryDispatchFromQueue
                     break;
                 case SunriseArrivalsShuttleState.Travelling:
-                    // Handled by OnFTLCompleted / failsafe
+                    // Обрабатывается в OnFTLCompleted или аварийной защите.
                     break;
                 case SunriseArrivalsShuttleState.Docked:
                     ProcessDocked(uid, arrivals, curTime);
@@ -299,25 +299,25 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Warns the player if their shuttle is stuck in orbit due to blocked docks.
+    /// Предупреждает игрока, если шаттл застрял на орбите из-за заблокированных docks.
     /// </summary>
     private void ProcessBlockedDock(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
     {
         if (arrivals.DockBlockedWarned || arrivals.Attendant == null)
             return;
 
-        // Start counting from SpawnTime or first attempt
+        // Начинаем отсчет от SpawnTime или первой попытки
         if (curTime < arrivals.SpawnTime + BlockedWarnDelay)
             return;
 
-        // Only warn if they aren't even travelling yet
+        // Предупреждаем только если шаттл еще даже не летит
         var msg = Loc.GetString("sunrise-arrivals-attendant-blocked", ("station", Name(arrivals.Station)));
         _chat.TrySendInGameICMessage(arrivals.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
         arrivals.DockBlockedWarned = true;
 
         Log.Warning($"Arrivals shuttle {ToPrettyString(uid)} is stuck in queue - docks blocked at {ToPrettyString(arrivals.Station)}");
 
-        // Station-wide CC announcement (throttled per station/globally)
+        // Станционное объявление ЦК с throttling по станции/глобально.
         var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
         while (poolQuery.MoveNext(out _, out var pool))
         {
@@ -332,8 +332,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Tries to dispatch shuttles from the queue to free docks.
-    /// Dispatches one shuttle per free dock per tick.
+    /// Пытается отправить шаттлы из очереди к свободным docks.
+    /// Отправляет один шаттл на каждый свободный док за тик.
     /// </summary>
     private void TryDispatchFromQueue(TimeSpan curTime)
     {
@@ -343,7 +343,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             if (pool.Queue.Count == 0)
                 continue;
 
-            // Process queue — try to dispatch as many as we have free docks
+            // Обрабатываем очередь и пытаемся отправить столько шаттлов, сколько есть свободных docks
             for (var i = 0; i < pool.Queue.Count; i++)
             {
                 var shuttleUid = pool.Queue[i];
@@ -363,7 +363,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
                 }
 
                 if (!TryDispatchShuttle(shuttleUid, arrivals))
-                    break; // No free docks — stop trying
+                    break; // Свободных docks нет — прекращаем попытки
 
                 pool.Queue.RemoveAt(i);
                 i--;
@@ -372,8 +372,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Attempts to dispatch a queued shuttle to the station dock.
-    /// Returns true if the shuttle was dispatched, false if no dock available.
+    /// Пытается отправить шаттл из очереди к доку станции.
+    /// Возвращает true, если шаттл отправлен, или false, если доступного дока нет.
     /// </summary>
     private bool TryDispatchShuttle(EntityUid uid, SunriseArrivalsShuttleComponent arrivals)
     {
@@ -387,14 +387,14 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         if (!TryComp<FTLComponent>(uid, out var ftl) || ftl.State != FTLState.Travelling)
             return false;
 
-        // Redirect the existing infinite FTL to the dock
+        // Перенаправляем существующий бесконечный FTL к доку.
         ftl.TargetCoordinates = config.Coordinates;
         ftl.TargetAngle = config.Angle;
         ftl.PriorityTag = new ProtoId<TagPrototype>("DockArrivals");
         ftl.TravelTime = DispatchFtlTime;
         ftl.StateTime = StartEndTime.FromCurTime(_timing, DispatchFtlTime);
 
-        // Reserve the docks
+        // Резервируем docks
         foreach (var docks in config.Docks)
         {
             var reservation = EnsureComp<FtlReservationComponent>(docks.DockBUid);
@@ -409,7 +409,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Processes greeting logic — delayed welcome message from attendant.
+    /// Обрабатывает логику приветствия: отложенное сообщение от сопровождающего.
     /// </summary>
     private void ProcessGreeting(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
     {
@@ -438,7 +438,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Failsafe: if a shuttle has existed for more than 2 minutes, teleport the player and delete it.
+    /// Failsafe: если шаттл существует больше 2 минут, телепортирует игрока и удаляет шаттл.
     /// </summary>
     private void ProcessFailsafe(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
     {
@@ -467,7 +467,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Processes docked state: warn, force evac, depart.
+    /// Обрабатывает состояние стыковки: предупреждение, принудительная эвакуация, отправление.
     /// </summary>
     private void ProcessDocked(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
     {
@@ -475,10 +475,10 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         if (!playerOnShuttle)
         {
-            // Player left — start the grace timer
+            // Игрок вышел — запускаем grace timer
             arrivals.PlayerExitTime ??= curTime;
 
-            // Depart after grace period so the airlock doesn't crush the player
+            // Отправляем после льготной паузы, чтобы шлюз не раздавил игрока.
             if (curTime >= arrivals.PlayerExitTime + ExitGracePeriod)
             {
                 StartDeparture(uid, arrivals);
@@ -487,13 +487,13 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         }
         else
         {
-            // Player came back — reset the exit timer
+            // Игрок вернулся — сбрасываем exit timer
             arrivals.PlayerExitTime = null;
         }
 
         var dockTime = arrivals.DockTime ?? curTime;
 
-        // Warning ~8 seconds after docking
+        // Предупреждение примерно через 8 секунд после docking
         if (!arrivals.Warned && curTime >= dockTime + WarnDelay)
         {
             if (arrivals.Attendant != null)
@@ -504,7 +504,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             arrivals.Warned = true;
         }
 
-        // Forced departure after DockWaitTime
+        // Принудительное отправление после DockWaitTime
         if (curTime >= dockTime + TimeSpan.FromSeconds(DockWaitTime))
         {
             TryTeleportPlayer(uid, arrivals);
@@ -513,12 +513,12 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Processes leaving state: wait for FTL to finish, then delete.
+    /// Обрабатывает состояние отправления: ждет завершения FTL, затем удаляет.
     /// </summary>
     private void ProcessLeaving(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, TimeSpan curTime)
     {
         if (HasComp<FTLComponent>(uid))
-            return; // Still in FTL
+            return; // Все еще в FTL
 
         if (arrivals.LeaveStartTime == null)
         {
@@ -537,8 +537,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     #region Main Logic
 
     /// <summary>
-    /// Initiates shuttle departure from the station dock.
-    /// Immediately frees dock reservations so queued shuttles can dispatch.
+    /// Запускает отправление шаттла от дока станции.
+    /// Сразу освобождает резервирования доков, чтобы шаттлы из очереди могли отправиться.
     /// </summary>
     private void StartDeparture(EntityUid uid, SunriseArrivalsShuttleComponent component)
     {
@@ -548,16 +548,16 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         component.State = SunriseArrivalsShuttleState.Leaving;
         component.LeaveStartTime = null;
 
-        // Clear dock reservations immediately so queued shuttles can dispatch on next tick
+        // Сразу очищаем резервирования доков, чтобы шаттлы из очереди могли отправиться на следующем тике.
         foreach (var dock in component.ReservedDocks)
         {
             RemCompDeferred<FtlReservationComponent>(dock);
         }
         component.ReservedDocks.Clear();
 
-        // Remove any existing FTL component (e.g. arrival cooldown) that would
-        // block TrySetupFTL. Without this, FTLToCoordinates silently fails and
-        // the shuttle stays docked for the entire 10s FTL cooldown.
+        // Удаляем существующий FTL-компонент, например cooldown прибытия, который
+        // заблокировал бы TrySetupFTL. Без этого FTLToCoordinates тихо падает,
+        // и шаттл остается пристыкованным на весь 10-секундный FTL cooldown.
         RemComp<FTLComponent>(uid);
 
         Log.Debug($"Arrivals shuttle {ToPrettyString(uid)} departing");
@@ -572,7 +572,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Teleports the player from the shuttle to a station spawn point.
+    /// Телепортирует игрока из шаттла в spawn point станции.
     /// </summary>
     private void TryTeleportPlayer(EntityUid gridUid, SunriseArrivalsShuttleComponent arrivals)
     {
@@ -599,7 +599,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Spawns a shuttle grid on the pool map.
+    /// Спавнит grid шаттла на карте пула.
     /// </summary>
     private EntityUid? SpawnShuttle(EntityUid station)
     {
@@ -611,7 +611,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             return null;
         }
 
-        // Offset the shuttle on the pool map
+        // Смещаем шаттл на карте пула.
         if (TryComp<MapGridComponent>(shuttleGrid.Value, out var grid))
         {
             var width = grid.LocalAABB.Width;
@@ -629,13 +629,13 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Cleans up a shuttle: teleport any remaining player, delete the entity.
+    /// Очищает шаттл: телепортирует оставшегося игрока и удаляет сущность.
     /// </summary>
     private void CleanupShuttle(EntityUid uid)
     {
         if (TryComp<SunriseArrivalsShuttleComponent>(uid, out var arrivals))
         {
-            // Safety: teleport player if still on shuttle
+            // Безопасность: телепортируем игрока, если он все еще на шаттле
             if (arrivals.Player != null && IsPlayerOnShuttle(uid))
             {
                 TryTeleportPlayer(uid, arrivals);
@@ -651,7 +651,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     #region Helpers
 
     /// <summary>
-    /// Gets or creates the shared pool map for arrivals shuttles.
+    /// Получает или создает общую карту пула для шаттлов прибытия.
     /// </summary>
     private (EntityUid MapUid, MapId MapId, SunriseArrivalsPoolComponent Pool) EnsurePoolMap()
     {
@@ -662,14 +662,14 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             return (uid, mapComp.MapId, pool);
         }
 
-        // Create new pool map
+        // Создаем новую карту пула.
         var mapUid = _mapSystem.CreateMap(out var mapId);
         var newPool = AddComp<SunriseArrivalsPoolComponent>(mapUid);
         return (mapUid, mapId, newPool);
     }
 
     /// <summary>
-    /// Adds a shuttle to the dispatch queue.
+    /// Добавляет шаттл в dispatch queue.
     /// </summary>
     private void EnqueueShuttle(EntityUid shuttleUid)
     {
@@ -679,7 +679,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Finds a late-join spawn point on the shuttle grid.
+    /// Ищет late-join spawn point на grid шаттла.
     /// </summary>
     private EntityCoordinates FindShuttleSpawnPoint(EntityUid shuttleGrid)
     {
@@ -694,11 +694,11 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Finds a spawn point on the station for emergency teleportation.
+    /// Ищет spawn point на станции для аварийной телепортации.
     /// </summary>
     private EntityCoordinates? FindStationSpawnPoint(EntityUid station)
     {
-        // 1. Late-join spawn points
+        // 1. Late-join spawn points.
         var spawnQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         while (spawnQuery.MoveNext(out var spawnUid, out var spawn, out var xform))
         {
@@ -706,7 +706,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
                 return xform.Coordinates;
         }
 
-        // 2. Cryopods as fallback
+        // 2. Cryopods как fallback
         var cryoQuery = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
         while (cryoQuery.MoveNext(out var cryoUid, out _, out var xform))
         {
@@ -714,7 +714,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
                 return xform.Coordinates;
         }
 
-        // 3. Grid center as last resort
+        // 3. Центр grid как последний вариант
         var targetGrid = _station.GetLargestGrid(station);
         if (targetGrid != null && TryComp<MapGridComponent>(targetGrid, out var grid))
             return new EntityCoordinates(targetGrid.Value, grid.LocalAABB.Center);
@@ -723,7 +723,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Finds the attendant NPC entity on the shuttle grid.
+    /// Ищет сущность NPC-сопровождающего на grid шаттла.
     /// </summary>
     private EntityUid? FindAttendant(EntityUid gridUid)
     {
@@ -738,7 +738,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks if any player (actor) is currently on the shuttle grid.
+    /// Проверяет, находится ли сейчас какой-либо игрок (actor) на grid шаттла.
     /// </summary>
     private bool IsPlayerOnShuttle(EntityUid gridUid)
     {
@@ -752,7 +752,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks if the shuttle is docked to any dock.
+    /// Проверяет, пристыкован ли шаттл к любому доку.
     /// </summary>
     private bool IsDocked(EntityUid uid)
     {
