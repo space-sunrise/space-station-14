@@ -14,7 +14,8 @@ public sealed partial class ActiveVampireRejuvenateComponent : Component
 
     [DataField] public TimeSpan TickInterval = TimeSpan.FromSeconds(3.5);
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextTick;
 
     [DataField] public Dictionary<string, FixedPoint2> HealGroups = new();
@@ -33,21 +34,24 @@ public sealed partial class ActiveVampireGlareDotComponent : Component
 
     [DataField] public TimeSpan TickInterval = TimeSpan.FromSeconds(1);
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextTick;
 }
 
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class ActiveVampirePacifyComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan EndTime;
 }
 
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class ActiveVampireInvisibilityComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan EndTime;
 
     [DataField] public bool HadStealthComponent;
@@ -74,7 +78,8 @@ public sealed partial class ActiveVampireBloodBondComponent : Component
 
     [DataField] public TimeSpan TickInterval = TimeSpan.FromSeconds(2);
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))][AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextTick;
 }
 
@@ -99,7 +104,8 @@ public sealed partial class ActiveVampireBloodBringersRiteComponent : Component
 
     [DataField] public EntProtoId BeamPrototype;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextTick;
 }
 
@@ -120,7 +126,8 @@ public sealed partial class ActiveVampireEternalDarknessComponent : Component
 
     [DataField] public float TempDropPerInterval;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextTick;
 }
 
@@ -139,10 +146,12 @@ public sealed partial class ActiveVampireShadowBoxingComponent : Component
 
     [DataField] public TimeSpan TickInterval = TimeSpan.FromSeconds(0.9);
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextTick;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan EndTime;
 }
 
@@ -161,7 +170,8 @@ public sealed partial class PendingVampireTendrilsComponent : Component
 
     [DataField] public FixedPoint2 ToxinDamage;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan TriggerTime;
 }
 
@@ -188,6 +198,7 @@ public sealed partial class ActiveVampireDemonicGraspComponent : Component
 
     [DataField] public EntProtoId ImmobilizedEffectPrototype = "VampireImmobilizedEffect";
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))] [AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextTileTime;
 }

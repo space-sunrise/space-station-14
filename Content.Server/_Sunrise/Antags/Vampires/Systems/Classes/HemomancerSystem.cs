@@ -70,13 +70,13 @@ public sealed class HemomancerSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
@@ -285,8 +285,8 @@ public sealed class HemomancerSystem : EntitySystem
                     continue;
                 }
 
-                var poisonSpec = new DamageSpecifier(_proto.Index<DamageTypePrototype>(PoisonTypeId), pending.ToxinDamage);
-                _damageableSystem.TryChangeDamage(target, poisonSpec, true, origin: performerUid);
+                var poisonSpec = new DamageSpecifier(_prototype.Index<DamageTypePrototype>(PoisonTypeId), pending.ToxinDamage);
+                _damageable.TryChangeDamage(target, poisonSpec, true, origin: performerUid);
                 _movementMod.TryAddMovementSpeedModDuration(target, MovementModStatusSystem.FlashSlowdown, pending.SlowDuration, pending.SlowMultiplier);
                 hitEnemies.Add(target);
             }
@@ -401,7 +401,7 @@ public sealed class HemomancerSystem : EntitySystem
 
     private bool TryActivateSanguinePool(EntityUid uid, VampireSanguinePoolActionEvent args)
     {
-        if (!_proto.TryIndex(args.PolymorphPrototype, out var polymorphProto))
+        if (!_prototype.TryIndex(args.PolymorphPrototype, out var polymorphProto))
         {
             _sawmill?.Error($"Missing polymorph prototype '{args.PolymorphPrototype}'.");
             return false;
@@ -521,11 +521,11 @@ public sealed class HemomancerSystem : EntitySystem
         if (!_vampire.CheckAndConsumeBloodCost((uid, comp), args.Action.Owner))
             return;
 
-        var blunt = _proto.Index<DamageTypePrototype>(BluntTypeId);
+        var blunt = _prototype.Index<DamageTypePrototype>(BluntTypeId);
         foreach (var targetUid in targetsToDamage)
         {
             var spec = new DamageSpecifier(blunt, args.Damage);
-            _damageableSystem.TryChangeDamage(targetUid, spec, true, origin: uid);
+            _damageable.TryChangeDamage(targetUid, spec, true, origin: uid);
         }
 
         foreach (var targetUid in targetsToVisualize)
@@ -733,17 +733,17 @@ public sealed class HemomancerSystem : EntitySystem
         var count = currentTargets.Count;
         if (count > 0)
         {
-            var bluntType = _proto.Index<DamageTypePrototype>(BluntTypeId);
+            var bluntType = _prototype.Index<DamageTypePrototype>(BluntTypeId);
             foreach (var target in currentTargets)
             {
                 var dmgSpec = new DamageSpecifier(bluntType, active.Damage);
-                _damageableSystem.TryChangeDamage(target, dmgSpec, true, origin: uid);
+                _damageable.TryChangeDamage(target, dmgSpec, true, origin: uid);
             }
 
             var selfHealSpec = new DamageSpecifier();
-            selfHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(BruteGroupId), -(active.HealBrute * count));
-            selfHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(BurnGroupId), -(active.HealBurn * count));
-            _damageableSystem.TryChangeDamage(uid, selfHealSpec, true);
+            selfHealSpec += new DamageSpecifier(_prototype.Index<DamageGroupPrototype>(BruteGroupId), -(active.HealBrute * count));
+            selfHealSpec += new DamageSpecifier(_prototype.Index<DamageGroupPrototype>(BurnGroupId), -(active.HealBurn * count));
+            _damageable.TryChangeDamage(uid, selfHealSpec, true);
 
             if (TryComp<StaminaComponent>(uid, out var stam))
                 _stamina.TakeStaminaDamage(uid, -active.HealStamina * count, stam);

@@ -126,7 +126,7 @@ public sealed class VampireSystem : EntitySystem
         }
 
         if (resolvedCost <= 0 && vac.BloodCost > 0)
-            resolvedCost = (int) vac.BloodCost;
+            resolvedCost = (int)vac.BloodCost;
 
         return true;
     }

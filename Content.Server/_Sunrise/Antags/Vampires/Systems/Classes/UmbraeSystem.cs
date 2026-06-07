@@ -44,12 +44,12 @@ public sealed class UmbraeSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
-    [Dependency] private readonly PoweredLightSystem _poweredLightSystem = default!;
-    [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
+    [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly SharedUmbraeSystem _sharedUmbrae = default!;
 
@@ -124,10 +124,10 @@ public sealed class UmbraeSystem : EntitySystem
         if (list.Count == 0)
             return;
 
-        var pick = _rand.Pick(list);
+        var pick = _random.Pick(list);
 
         if (TryComp<PoweredLightComponent>(pick, out var pl))
-            _poweredLightSystem.TryDestroyBulb(pick, pl);
+            _poweredLight.TryDestroyBulb(pick, pl);
     }
 
     private void OnShadowSnare(Entity<VampireComponent> ent, ref VampireShadowSnareActionEvent args)
@@ -226,7 +226,7 @@ public sealed class UmbraeSystem : EntitySystem
 
             if (TryComp<PoweredLightComponent>(target, out var light) && light.On)
             {
-                _poweredLightSystem.TryDestroyBulb(target, light);
+                _poweredLight.TryDestroyBulb(target, light);
                 count++;
             }
         }
@@ -413,7 +413,7 @@ public sealed class UmbraeSystem : EntitySystem
             var remaining = temp.CurrentTemperature - targetTemp;
             var drop = Math.Min(tempDrop, remaining);
 
-            _temperatureSystem.ForceChangeTemperature(target, temp.CurrentTemperature - drop, temp);
+            _temperature.ForceChangeTemperature(target, temp.CurrentTemperature - drop, temp);
         }
     }
 
@@ -597,8 +597,8 @@ public sealed class UmbraeSystem : EntitySystem
             var curDist = (_transform.GetWorldPosition(sourceXform) - _transform.GetWorldPosition(targetXform)).Length();
             if (curDist <= active.Range)
             {
-                var spec = new DamageSpecifier(_proto.Index<DamageTypePrototype>(BluntTypeId), FixedPoint2.New(active.BrutePerTick));
-                _damageableSystem.TryChangeDamage(target, spec, true, origin: uid);
+                var spec = new DamageSpecifier(_prototype.Index<DamageTypePrototype>(BluntTypeId), FixedPoint2.New(active.BrutePerTick));
+                _damageable.TryChangeDamage(target, spec, true, origin: uid);
 
                 if (active.HitSound is not null)
                     _audio.PlayPvs(active.HitSound, target);

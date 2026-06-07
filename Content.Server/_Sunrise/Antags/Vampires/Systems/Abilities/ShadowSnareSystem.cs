@@ -20,7 +20,7 @@ public sealed class ShadowSnareSystem : EntitySystem
     [Dependency] private readonly SharedEnsnareableSystem _ensnare = default!;
     [Dependency] private readonly SharedFlashSystem _flash = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PoweredLightSystem _poweredLightSystem = default!;
+    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
 
     public override void Initialize()
     {
@@ -85,7 +85,7 @@ public sealed class ShadowSnareSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange(center, radius))
         {
             if (TryComp<PoweredLightComponent>(ent, out var light))
-                _poweredLightSystem.SetState(ent, false, light);
+                _poweredLight.SetState(ent, false, light);
         }
     }
 }

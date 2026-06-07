@@ -61,10 +61,10 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly SharedFlashSystem _flash = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly EuiManager _euiMan = default!;
+    [Dependency] private readonly EuiManager _eui = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly RoleSystem _role = default!;
 
@@ -294,7 +294,7 @@ public sealed class DantalionSystem : EntitySystem
 
         //adds pop-up for target informing them they have been enthralled
         if (_player.TryGetSessionById(thrallMind.UserId, out var session))
-            _euiMan.OpenEui(new VampireThrallEui(), session);
+            _eui.OpenEui(new VampireThrallEui(), session);
     }
 
     private void OnThrallShutdown(EntityUid uid, VampireThrallComponent component, ComponentShutdown args)
@@ -462,7 +462,7 @@ public sealed class DantalionSystem : EntitySystem
             var healSpec = new DamageSpecifier();
             foreach (var (groupId, amount) in dantalion.ThrallHealGroups)
             {
-                if (amount <= 0 || !_proto.TryIndex<DamageGroupPrototype>(groupId, out var group))
+                if (amount <= 0 || !_prototype.TryIndex<DamageGroupPrototype>(groupId, out var group))
                     continue;
 
                 healSpec += new DamageSpecifier(group, -amount);
@@ -470,7 +470,7 @@ public sealed class DantalionSystem : EntitySystem
 
             foreach (var (typeId, amount) in dantalion.ThrallHealTypes)
             {
-                if (amount <= 0 || !_proto.TryIndex<DamageTypePrototype>(typeId, out var type))
+                if (amount <= 0 || !_prototype.TryIndex<DamageTypePrototype>(typeId, out var type))
                     continue;
 
                 healSpec += new DamageSpecifier(type, -amount);
@@ -479,7 +479,7 @@ public sealed class DantalionSystem : EntitySystem
             if (healSpec.Empty)
                 continue;
 
-            _damageableSystem.TryChangeDamage(thrall, healSpec, true);
+            _damageable.TryChangeDamage(thrall, healSpec, true);
         }
     }
 
@@ -938,7 +938,7 @@ public sealed class DantalionSystem : EntitySystem
             if (!Exists(other))
                 continue;
 
-            _damageableSystem.TryChangeDamage(other, redistributedDamage, ignoreResistances: true, origin: args.Origin);
+            _damageable.TryChangeDamage(other, redistributedDamage, ignoreResistances: true, origin: args.Origin);
         }
 
         dantalion.BloodBondProcessingDamage = false;

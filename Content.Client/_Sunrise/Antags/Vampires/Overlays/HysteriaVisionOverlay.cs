@@ -18,8 +18,8 @@ namespace Content.Client._Sunrise.Antags.Vampires.Overlays;
 /// </summary>
 public sealed class HysteriaVisionOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -40,15 +40,15 @@ public sealed class HysteriaVisionOverlay : Overlay
     public HysteriaVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _transform = _entManager.System<TransformSystem>();
-        _sprite = _entManager.System<SpriteSystem>();
-        _hysteriaQuery = _entManager.GetEntityQuery<HysteriaVisionComponent>();
-        _thrallQuery = _entManager.GetEntityQuery<VampireThrallComponent>();
+        _transform = _entity.System<TransformSystem>();
+        _sprite = _entity.System<SpriteSystem>();
+        _hysteriaQuery = _entity.GetEntityQuery<HysteriaVisionComponent>();
+        _thrallQuery = _entity.GetEntityQuery<VampireThrallComponent>();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        var player = _playerManager.LocalEntity;
+        var player = _player.LocalEntity;
         if (player is null)
             return false;
 
@@ -119,7 +119,7 @@ public sealed class HysteriaVisionOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        var player = _playerManager.LocalEntity;
+        var player = _player.LocalEntity;
         if (player is null || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria))
             return;
 
@@ -139,7 +139,7 @@ public sealed class HysteriaVisionOverlay : Overlay
         var worldBounds = args.WorldBounds.Enlarged(ViewBoundsMargin);
 
         // Query all humanoids
-        var query = _entManager.EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent, SpriteComponent>();
+        var query = _entity.EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent, SpriteComponent>();
 
         while (query.MoveNext(out var uid, out _, out var xform, out var sprite))
         {

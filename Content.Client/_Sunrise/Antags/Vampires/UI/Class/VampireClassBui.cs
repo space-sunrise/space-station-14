@@ -12,7 +12,7 @@ public sealed class VampireClassBui(EntityUid owner, Enum uiKey) : BoundUserInte
 {
     private SimpleRadialMenu? _menu;
     private bool _choiceMade;
-    private readonly IPrototypeManager _proto = IoCManager.Resolve<IPrototypeManager>();
+    private readonly IPrototypeManager _prototype = IoCManager.Resolve<IPrototypeManager>();
 
     protected override void Open()
     {
@@ -51,7 +51,7 @@ public sealed class VampireClassBui(EntityUid owner, Enum uiKey) : BoundUserInte
 
     private IEnumerable<RadialMenuActionOption<string>> CreateClassButtons()
     {
-        var protos = _proto.EnumeratePrototypes<VampireClassPrototype>();
+        var protos = _prototype.EnumeratePrototypes<VampireClassPrototype>();
 
         var buttons = new List<RadialMenuActionOption<string>>();
         foreach (var proto in protos)

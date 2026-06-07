@@ -90,7 +90,7 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     /// chem and amount to inject to targets.
     /// </summary>
     [DataField]
-    public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2>{ {"MuteToxin", 0.5} };
+    public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2> { { "MuteToxin", 0.5 } };
 
     /// <summary>
     /// Minimum dot product of vector between vampire direction facing and target direction to proc the forward facing portion of the glare ability
@@ -375,30 +375,27 @@ public sealed partial class VampireShadowAnchorActionEvent : InstantActionEvent
 }
 
 [Serializable, NetSerializable]
-public sealed partial class VampireShadowAnchorDoAfterEvent : SimpleDoAfterEvent
+public sealed partial class VampireShadowAnchorDoAfterEvent(
+    NetCoordinates coords,
+    EntProtoId beaconPrototype,
+    int bloodCost,
+    TimeSpan autoReturnDelay) : SimpleDoAfterEvent
 {
     [DataField(required: true)]
-    public NetCoordinates TargetCoordinates;
+    public NetCoordinates TargetCoordinates = coords;
 
     [DataField]
-    public EntProtoId BeaconPrototype = "VampireShadowAnchorBeacon";
+    public EntProtoId BeaconPrototype = beaconPrototype;
 
     [DataField]
-    public int BloodCost;
+    public int BloodCost = bloodCost;
 
     [DataField]
-    public TimeSpan AutoReturnDelay;
+    public TimeSpan AutoReturnDelay = autoReturnDelay;
 
     private VampireShadowAnchorDoAfterEvent()
+        : this(default, "VampireShadowAnchorBeacon", 0, default)
     {
-    }
-
-    public VampireShadowAnchorDoAfterEvent(NetCoordinates coords, EntProtoId beaconPrototype, int bloodCost, TimeSpan autoReturnDelay)
-    {
-        TargetCoordinates = coords;
-        BeaconPrototype = beaconPrototype;
-        BloodCost = bloodCost;
-        AutoReturnDelay = autoReturnDelay;
     }
 
     public override DoAfterEvent Clone() => this;

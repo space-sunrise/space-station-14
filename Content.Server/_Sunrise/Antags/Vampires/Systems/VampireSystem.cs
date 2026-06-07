@@ -53,7 +53,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly BloodstreamSystem _blood = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -63,13 +63,13 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly NumberObjectiveSystem _number = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly ILogManager _log = default!;
-    //[Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    //[Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
@@ -257,11 +257,11 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool ApplyGeneticSpaceDamage(Entity<VampireComponent, VampireSunlightComponent> ent)
     {
-        if (!_proto.TryIndex<DamageGroupPrototype>(GeneticGroupId, out var damageGroup))
+        if (!_prototype.TryIndex<DamageGroupPrototype>(GeneticGroupId, out var damageGroup))
             return true;
 
         var spec = new DamageSpecifier(damageGroup, ent.Comp2.GeneticDamagePerInterval);
-        _damageableSystem.TryChangeDamage(ent.Owner, spec, true);
+        _damageable.TryChangeDamage(ent.Owner, spec, true);
 
         if (!TryComp(ent, out DamageableComponent? damageable) ||
             damageable is null ||
@@ -281,15 +281,15 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void TryApplySpaceDamage(Entity<VampireComponent, VampireSunlightComponent> ent, bool isHealthy, float chance)
     {
-        if (!_rand.Prob(Math.Clamp(chance, 0f, 1f)))
+        if (!_random.Prob(Math.Clamp(chance, 0f, 1f)))
             return;
 
         if (isHealthy)
         {
-            if (_proto.TryIndex(HeatTypeId, out var heat))
+            if (_prototype.TryIndex(HeatTypeId, out var heat))
             {
                 var spec = new DamageSpecifier(heat, ent.Comp2.BurnDamage);
-                _damageableSystem.TryChangeDamage(ent.Owner, spec, true);
+                _damageable.TryChangeDamage(ent.Owner, spec, true);
             }
         }
         else
@@ -553,7 +553,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(ent.Comp.ChosenClassId))
             return;
 
-        if (!_proto.TryIndex<VampireClassPrototype>(ent.Comp.ChosenClassId, out var classProto))
+        if (!_prototype.TryIndex<VampireClassPrototype>(ent.Comp.ChosenClassId, out var classProto))
             return;
 
         foreach (var actionId in classProto.Actions)
@@ -600,7 +600,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {
-        if (_proto.TryIndex<EntityPrototype>(actionId, out var proto) &&
+        if (_prototype.TryIndex<EntityPrototype>(actionId, out var proto) &&
             proto.TryGetComponent<VampireActionComponent>(out var vac, _componentFactory))
             return vac.BloodToUnlock;
         return 0;
@@ -668,7 +668,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         ApplyGroupDamage(ent.Owner, BurnGroupId, 2f);
-        if (_rand.Prob(0.25f))
+        if (_random.Prob(0.25f))
             _flammable.AdjustFireStacks(ent.Owner, 2f, ignite: true);
     }
 
@@ -701,10 +701,10 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (_proto.TryIndex<DamageTypePrototype>(HeatTypeId, out var heat))
+        if (_prototype.TryIndex<DamageTypePrototype>(HeatTypeId, out var heat))
         {
             var spec = new DamageSpecifier(heat, FixedPoint2.New(3f));
-            _damageableSystem.TryChangeDamage(ent.Owner, spec, true);
+            _damageable.TryChangeDamage(ent.Owner, spec, true);
         }
     }
 
@@ -751,11 +751,11 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void ApplyGroupDamage(EntityUid uid, ProtoId<DamageGroupPrototype> groupId, float amount)
     {
-        if (!_proto.TryIndex<DamageGroupPrototype>(groupId, out var group))
+        if (!_prototype.TryIndex<DamageGroupPrototype>(groupId, out var group))
             return;
 
         var spec = new DamageSpecifier(group, FixedPoint2.New(amount));
-        _damageableSystem.TryChangeDamage(uid, spec, true);
+        _damageable.TryChangeDamage(uid, spec, true);
     }
 
     private void OpenClassUi(EntityUid uid, VampireComponent comp)
@@ -774,7 +774,7 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(msg.Choice) || !_proto.TryIndex<VampireClassPrototype>(msg.Choice, out var classProto))
+        if (string.IsNullOrWhiteSpace(msg.Choice) || !_prototype.TryIndex<VampireClassPrototype>(msg.Choice, out var classProto))
         {
             _ui.CloseUi(uid, VampireClassUiKey.Key);
             return;

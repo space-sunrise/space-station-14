@@ -57,8 +57,8 @@ public sealed class GargantuaSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly DestructibleSystem _destructible = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
@@ -66,7 +66,7 @@ public sealed class GargantuaSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -119,7 +119,7 @@ public sealed class GargantuaSystem : EntitySystem
         var spec = new DamageSpecifier();
         foreach (var (groupId, amount) in gargantua.PassiveHealGroups)
         {
-            if (amount <= FixedPoint2.Zero || !_proto.TryIndex<DamageGroupPrototype>(groupId, out var group))
+            if (amount <= FixedPoint2.Zero || !_prototype.TryIndex<DamageGroupPrototype>(groupId, out var group))
                 continue;
 
             spec += new DamageSpecifier(group, -amount);
@@ -128,7 +128,7 @@ public sealed class GargantuaSystem : EntitySystem
         if (spec.Empty)
             return;
 
-        _damageableSystem.TryChangeDamage(uid, spec, true);
+        _damageable.TryChangeDamage(uid, spec, true);
     }
 
     private bool TryGetVampireActionEvent<T>(VampireComponent vampire, string actionId, out T ev)
@@ -244,7 +244,7 @@ public sealed class GargantuaSystem : EntitySystem
             var direction = targetPos - worldPos;
 
             if (direction == Vector2.Zero)
-                direction = _rand.NextVector2();
+                direction = _random.NextVector2();
 
             direction = direction.Normalized();
 
@@ -568,7 +568,7 @@ public sealed class GargantuaSystem : EntitySystem
             {
                 var damageSpec = new DamageSpecifier();
                 damageSpec.DamageDict["Blunt"] = FixedPoint2.New(gargantua.ChargeStructuralDamage);
-                _damageableSystem.TryChangeDamage(other, damageSpec, true, origin: uid);
+                _damageable.TryChangeDamage(other, damageSpec, true, origin: uid);
             }
 
             EndCharge(ent);
@@ -581,7 +581,7 @@ public sealed class GargantuaSystem : EntitySystem
 
         var damageSpec = new DamageSpecifier();
         damageSpec.DamageDict["Blunt"] = gargantua.ChargeCreatureDamage;
-        _damageableSystem.TryChangeDamage(target, damageSpec, true, origin: uid);
+        _damageable.TryChangeDamage(target, damageSpec, true, origin: uid);
 
         // Throw the target
         _throwing.TryThrow(target, gargantua.ChargeDirectionVector * gargantua.ChargeCreatureThrowDistance, 6f, uid);

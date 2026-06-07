@@ -53,7 +53,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly BlindableSystem _blindable = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     private static readonly SoundSpecifier BiteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
@@ -625,8 +625,8 @@ public sealed partial class VampireSystem : EntitySystem
             //Biting Damage
             //A little bit of additional damage to disincentivize blood donations
             var biteDamage = new DamageSpecifier();
-            biteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(PierceTypeId), ent.Comp.SipPierceDamage * actualSipAmount); //5 pierce per 10u
-            _damageableSystem.TryChangeDamage(target, biteDamage, ignoreResistances: true);
+            biteDamage += new DamageSpecifier(_prototype.Index<DamageTypePrototype>(PierceTypeId), ent.Comp.SipPierceDamage * actualSipAmount); //5 pierce per 10u
+            _damageable.TryChangeDamage(target, biteDamage, ignoreResistances: true);
             _blood.TryModifyBleedAmount(target, 1);
 
 
@@ -641,11 +641,11 @@ public sealed partial class VampireSystem : EntitySystem
 
             // Base healing
             var baseHealSpec = new DamageSpecifier();
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(BruteGroupId), -ent.Comp.VampHealBrute);
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(BurnGroupId), -ent.Comp.VampHealBurn);
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(PoisonTypeId), -ent.Comp.VampHealPois);
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(OxyLossTypeId), -ent.Comp.VampHealAsphyxiation);
-            _damageableSystem.TryChangeDamage(ent.Owner, baseHealSpec, true);
+            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageGroupPrototype>(BruteGroupId), -ent.Comp.VampHealBrute);
+            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageGroupPrototype>(BurnGroupId), -ent.Comp.VampHealBurn);
+            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageTypePrototype>(PoisonTypeId), -ent.Comp.VampHealPois);
+            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageTypePrototype>(OxyLossTypeId), -ent.Comp.VampHealAsphyxiation);
+            _damageable.TryChangeDamage(ent.Owner, baseHealSpec, true);
 
             _audio.PlayPvs(BiteSound, target, AudioParams.Default.WithVolume(-7f));
             var targetCoords = Transform(target).Coordinates;
@@ -992,7 +992,7 @@ public sealed partial class VampireSystem : EntitySystem
             if (toRemove >= args.ReagentPurgeAmount)
                 break;
 
-            if (!_proto.TryIndex<ReagentPrototype>(quant.Reagent.Prototype, out var proto)
+            if (!_prototype.TryIndex<ReagentPrototype>(quant.Reagent.Prototype, out var proto)
                 || proto.Metabolisms is null
                 || !proto.Metabolisms.Keys.Any(k => args.PurgedMetabolismGroups.Contains(k.Id)))
                 continue;
@@ -1108,7 +1108,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         foreach (var (groupId, amount) in healGroups)
         {
-            if (amount <= FixedPoint2.Zero || !_proto.TryIndex<DamageGroupPrototype>(groupId, out var group))
+            if (amount <= FixedPoint2.Zero || !_prototype.TryIndex<DamageGroupPrototype>(groupId, out var group))
                 continue;
 
             healSpec += new DamageSpecifier(group, -amount);
@@ -1116,7 +1116,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         foreach (var (typeId, amount) in healTypes)
         {
-            if (amount <= FixedPoint2.Zero || !_proto.TryIndex<DamageTypePrototype>(typeId, out var type))
+            if (amount <= FixedPoint2.Zero || !_prototype.TryIndex<DamageTypePrototype>(typeId, out var type))
                 continue;
 
             healSpec += new DamageSpecifier(type, -amount);
@@ -1125,7 +1125,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (healSpec.Empty)
             return;
 
-        _damageableSystem.TryChangeDamage(uid, healSpec, true);
+        _damageable.TryChangeDamage(uid, healSpec, true);
     }
 
     private void OnClassSelect(Entity<VampireComponent> ent, ref VampireClassSelectActionEvent args)

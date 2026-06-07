@@ -12,12 +12,12 @@ namespace Content.Client._Sunrise.Antags.Vampires.Overlays;
 /// </summary>
 public sealed class HysteriaVisionSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
+    [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
-    private HysteriaVisionOverlay? _overlay;
+    private HysteriaVisionOverlay? _hysteriaOverlay;
 
     public override void Initialize()
     {
@@ -71,19 +71,19 @@ public sealed class HysteriaVisionSystem : EntitySystem
 
     private void AddOverlay()
     {
-        if (_overlay is not null)
+        if (_hysteriaOverlay is not null)
             return;
 
-        _overlay = new HysteriaVisionOverlay();
-        _overlayManager.AddOverlay(_overlay);
+        _hysteriaOverlay = new HysteriaVisionOverlay();
+        _overlay.AddOverlay(_hysteriaOverlay);
     }
 
     private void RemoveOverlay()
     {
-        if (_overlay is null)
+        if (_hysteriaOverlay is null)
             return;
 
-        _overlayManager.RemoveOverlay(_overlay);
-        _overlay = null;
+        _overlay.RemoveOverlay(_hysteriaOverlay);
+        _hysteriaOverlay = null;
     }
 }
