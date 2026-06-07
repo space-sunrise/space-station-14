@@ -9,7 +9,7 @@ using Content.Shared.NPC.Systems;
 namespace Content.Server._Sunrise.CarpQueen;
 
 /// <summary>
-/// System that makes tamed carps retaliate against entities that damage their remembered friends.
+/// Система заставляет прирученных карпов отвечать на атаку сущностей, которые вредят их запомненным друзьям.
 /// </summary>
 public sealed class CarpServantRetaliationSystem : EntitySystem
 {
@@ -23,30 +23,30 @@ public sealed class CarpServantRetaliationSystem : EntitySystem
 
     private void OnDamageChanged(EntityUid uid, DamageableComponent component, DamageChangedEvent args)
     {
-        // Only react to damage increases
+        // Реагируем только на увеличение урона.
         if (!args.DamageIncreased)
             return;
 
-        // Get the damaged entity (uid is the entity that received damage)
+        // Получаем пострадавшую сущность: uid — это сущность, получившая урон.
         var damagedEntity = uid;
 
-        // Get the attacker
+        // Получаем атакующего.
         if (args.Origin is not { } attacker)
             return;
 
-        // Don't retaliate against inanimate objects
+        // Не отвечаем на атаку неодушевленных объектов.
         if (!HasComp<MobStateComponent>(attacker))
             return;
 
-        // Find all carps that remember the damaged entity as a friend
+        // Ищем всех карпов, которые помнят пострадавшую сущность как друга.
         var query = EntityQueryEnumerator<CarpServantMemoryComponent>();
         while (query.MoveNext(out var carpUid, out var memory))
         {
-            // Skip if carp is being deleted
+            // Пропускаем карпа, если он удаляется.
             if (TerminatingOrDeleted(carpUid))
                 continue;
 
-            // Check if the damaged entity is one of this carp's remembered friends
+            // Проверяем, входит ли пострадавшая сущность в список запомненных друзей этого карпа.
             if (!memory.RememberedFriends.Contains(damagedEntity))
                 continue;
 
@@ -55,31 +55,30 @@ public sealed class CarpServantRetaliationSystem : EntitySystem
 
             if (isServant)
             {
-                // Servants only retaliate when the queen is harmed
+                // Слуги отвечают на атаку только при уроне королеве.
                 if (servant!.Queen != damagedEntity)
                     continue;
             }
             else
             {
-                // Free-roaming carp do not retaliate against other remembered friends
+                // Свободные карпы не отвечают на атаку других запомненных друзей.
                 if (attackerIsFriend)
                     continue;
             }
 
-            // Aggro on the attacker
+            // Переводим агрессию на атакующего.
             var exception = EnsureComp<FactionExceptionComponent>(carpUid);
 
-            // Also handle discipline logic: if attacker was in forbidden targets, remove it
-            // This allows the carp to attack again after the attacker damaged the owner
+            // Также обрабатываем дисциплину: если атакующий был в запрещенных целях, убираем его.
+            // Это позволяет карпу снова атаковать после того, как атакующий повредил владельца.
             if (memory.ForbiddenTargets.Remove(attacker))
             {
                 Dirty(carpUid, memory);
             }
 
-            // Unignore and aggro the attacker (allows attack after discipline was cleared)
+            // Снимаем игнор и агримся на атакующего, чтобы атака стала возможна после снятия дисциплины.
             _npcFaction.UnignoreEntity((carpUid, exception), attacker);
             _npcFaction.AggroEntity((carpUid, exception), (attacker, null));
         }
     }
 }
-

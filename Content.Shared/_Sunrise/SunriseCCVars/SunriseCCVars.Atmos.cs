@@ -5,8 +5,8 @@ namespace Content.Shared._Sunrise.SunriseCCVars;
 public sealed partial class SunriseCCVars
 {
     /// <summary>
-    /// These variables control modifications of various gas prices. If gas has no specified
-    /// modifier here, it will use default price from prototype
+    /// Эти переменные управляют модификаторами цен разных газов.
+    /// Если для газа нет отдельного модификатора, используется цена по умолчанию из прототипа.
     /// </summary>
 
     public static readonly CVarDef<float> DefaultGasPriceModifier =

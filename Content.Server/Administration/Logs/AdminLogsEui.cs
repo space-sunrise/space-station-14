@@ -48,10 +48,7 @@ public sealed class AdminLogsEui : BaseEui
         _filter = new LogFilter
         {
             CancellationToken = _logSendCancellation.Token,
-            // Sunrise edit start - request one extra record and keep cursor on visible page edge
-            LokiCursorOverfetch = 1,
-            Limit = _clientBatchSize + 1
-            // Sunrise edit end
+            Limit = _clientBatchSize
         };
     }
 
@@ -126,11 +123,7 @@ public sealed class AdminLogsEui : BaseEui
                     AllPlayers = request.AllPlayers,
                     IncludeNonPlayers = request.IncludeNonPlayers,
                     LastLogId = null,
-                    LastLogCursor = null,
-                    // Sunrise edit start - request one extra record and keep cursor on visible page edge
-                    LokiCursorOverfetch = 1,
-                    Limit = _clientBatchSize + 1
-                    // Sunrise edit end
+                    Limit = _clientBatchSize
                 };
 
                 var roundId = _filter.Round ??= CurrentRoundId;
@@ -167,17 +160,21 @@ public sealed class AdminLogsEui : BaseEui
         var logs = await Task.Run(async () => await _adminLogs.All(_filter, _adminLogListPool.Get),
             _filter.CancellationToken);
 
-        var hasNext = logs.Count > _clientBatchSize;
-        if (hasNext)
-            logs.RemoveRange(_clientBatchSize, logs.Count - _clientBatchSize);
-
         if (logs.Count > 0)
         {
             _filter.LogsSent += logs.Count;
-            _filter.LastLogId = logs[^1].Id;
+
+            var largestId = _filter.DateOrder switch
+            {
+                DateOrder.Ascending => 0,
+                DateOrder.Descending => ^1,
+                _ => throw new ArgumentOutOfRangeException(nameof(_filter.DateOrder), _filter.DateOrder, null)
+            };
+
+            _filter.LastLogId = logs[largestId].Id;
         }
 
-        var message = new NewLogs(logs, replace, hasNext);
+        var message = new NewLogs(logs, replace, logs.Count >= _filter.Limit);
 
         SendMessage(message);
 

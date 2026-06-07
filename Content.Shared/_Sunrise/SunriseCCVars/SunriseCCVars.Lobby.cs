@@ -7,14 +7,14 @@ public sealed partial class SunriseCCVars
 {
     /// <summary>
     /// ID прототипа набора фонов лобби.
-    /// All означает, что будут использованы все доступные фоны
+    /// All означает, что будут использованы все доступные фоны.
     /// </summary>
     public static readonly CVarDef<string> LobbyBackgroundPreset =
         CVarDef.Create("lobby.background_preset", "AllAllAll", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Определяет, какой тип фона лобби будет использован.
-    /// Random, Art, Animation или Parallax
+    /// Random, Art, Animation или Parallax.
     /// </summary>
     /// <seealso cref="LobbyArtPrototype"/>
     /// <seealso cref="LobbyAnimationPrototype"/>
@@ -24,7 +24,7 @@ public sealed partial class SunriseCCVars
 
     /// <summary>
     /// Определяет, какой лобби-арт будет использован. Позволяет игроку выбрать один арт, который будет использован постоянно.
-    /// Random означает, что будет выбираться случайно из списка
+    /// Random означает, что будет выбираться случайно из списка.
     /// </summary>
     /// <seealso cref="LobbyArtPrototype"/>
     public static readonly CVarDef<string> LobbyArt =
@@ -32,7 +32,7 @@ public sealed partial class SunriseCCVars
 
     /// <summary>
     /// Определяет, какая лобби-анимация будет использована. Позволяет игроку выбрать одну анимацию, который будет использован постоянно.
-    /// Random означает, что будет выбираться случайно из списка
+    /// Random означает, что будет выбираться случайно из списка.
     /// </summary>
     /// <seealso cref="LobbyAnimationPrototype"/>
     public static readonly CVarDef<string> LobbyAnimation =
@@ -40,14 +40,14 @@ public sealed partial class SunriseCCVars
 
     /// <summary>
     /// Определяет, какой лобби-параллакс будет использован. Позволяет игроку выбрать один параллакс, который будет использован постоянно.
-    /// Random означает, что будет выбираться случайно из списка
+    /// Random означает, что будет выбираться случайно из списка.
     /// </summary>
     /// <seealso cref="LobbyParallaxPrototype"/>
     public static readonly CVarDef<string> LobbyParallax =
         CVarDef.Create("lobby.parallax", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Whether to unload lobby resources from video memory when switching backgrounds or entering round.
+    /// Выгружать ли ресурсы лобби из видеопамяти при смене фона или входе в раунд.
     /// </summary>
     public static readonly CVarDef<bool> LobbyUnloadResources =
         CVarDef.Create("lobby.unload_resources", true, CVar.CLIENTONLY | CVar.ARCHIVE);

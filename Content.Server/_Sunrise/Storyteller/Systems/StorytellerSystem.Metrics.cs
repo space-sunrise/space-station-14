@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using Prometheus;
+using Content.Server.AlertLevel;
 using Content.Server._Sunrise.Storyteller.Components;
 using Content.Shared._Sunrise.Storyteller.Prototypes;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -190,6 +191,9 @@ public sealed partial class StorytellerSystem
     private static readonly Gauge StrengthMaterialsGauge = Metrics.CreateGauge("ss14_storyteller_strength_materials", "Station strength from lathe/silo material reserves.");
     private static readonly Gauge StressPowerGauge = Metrics.CreateGauge("ss14_storyteller_stress_power", "Stress from power grid deficit.");
     private static readonly Gauge StressAtmosphereGauge = Metrics.CreateGauge("ss14_storyteller_stress_atmosphere", "Stress from unsafe atmospheric conditions.");
+    private static readonly Gauge StressAntagonistGauge = Metrics.CreateGauge("ss14_storyteller_stress_antagonist", "Stress from active antagonists.");
+    private static readonly Gauge TotalPlayersGauge = Metrics.CreateGauge("ss14_storyteller_total_players", "Total number of active players currently in-game.");
+    private static readonly Gauge AlertLevelGauge = Metrics.CreateGauge("ss14_storyteller_alert_level", "Current station alert level (0 = Green, 1 = Blue, 2 = Violet, 3 = Yellow, 4 = Red, 5 = Gamma, 6 = Delta, 7 = Epsilon).");
 
     private static readonly Counter EventsTriggeredCounter = Metrics.CreateCounter(
         "ss14_storyteller_events_triggered_total",
@@ -203,6 +207,22 @@ public sealed partial class StorytellerSystem
     {
         _sawmill = Logger.GetSawmill("storyteller");
         _sawmill.Level = LogLevel.Info;
+    }
+
+    private double GetAlertLevelNumeric(string level)
+    {
+        return level.ToLowerInvariant() switch
+        {
+            "green" => 0,
+            "blue" => 1,
+            "violet" => 2,
+            "yellow" => 3,
+            "red" => 4,
+            "gamma" => 5,
+            "delta" => 6,
+            "epsilon" => 7,
+            _ => -1
+        };
     }
 
     private void UpdatePrometheusGauges(StorytellerRuleComponent comp, StationMetrics metrics)
@@ -268,7 +288,29 @@ public sealed partial class StorytellerSystem
 
         StressPowerGauge.Set(metrics.StressPower);
         StressAtmosphereGauge.Set(metrics.StressAtmosphere);
+        StressAntagonistGauge.Set(metrics.StressAntagonist);
+        TotalPlayersGauge.Set(metrics.TotalPlayers);
 
+        var alertQuery = EntityQueryEnumerator<AlertLevelComponent>();
+        AlertLevelComponent? mainAlertComp = null;
+        while (alertQuery.MoveNext(out _, out var alertComp))
+        {
+            if (alertComp.AlertLevelPrototype == "stationAlerts")
+            {
+                mainAlertComp = alertComp;
+                break;
+            }
+            mainAlertComp ??= alertComp;
+        }
+
+        if (mainAlertComp != null)
+        {
+            AlertLevelGauge.Set(GetAlertLevelNumeric(mainAlertComp.CurrentLevel));
+        }
+        else
+        {
+            AlertLevelGauge.Set(-1);
+        }
     }
 
     private void LogStorytellerState(StorytellerRuleComponent comp, StorytellerPacingState? oldState)

@@ -4,6 +4,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Shared.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents;
 using Content.Server.StationEvents.Components;
 using Content.Server._Sunrise.Storyteller.Components;
@@ -31,6 +32,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Containers;
 using Content.Server.Ghost.Roles;
 using Content.Server.Power.Components;
 using Content.Server.Jobs;
@@ -48,6 +50,8 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Damage.Components;
 using Content.Server.AlertLevel;
+using Content.Shared.Station.Components;
+using Robust.Shared.Map;
 
 
 namespace Content.Server._Sunrise.Storyteller.Systems;
@@ -105,6 +109,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
     private readonly List<TimeSpan> _joinTimestamps = new();
     private readonly List<TimeSpan> _leaveTimestamps = new();
@@ -163,6 +168,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         base.Added(uid, component, gameRule, args);
 
         component.NextCheckTime = Timing.CurTime + TimeSpan.FromSeconds(10);
+        component.LastAnyEventTime = Timing.CurTime;
+        component.LastHelpfulEventTime = Timing.CurTime;
+        component.LastNeutralEventTime = Timing.CurTime;
 
         component.StateTransitionTime = Timing.CurTime + TimeSpan.FromMinutes(_random.Next(15, 30));
         component.PacingState = StorytellerPacingState.Relaxation;
@@ -192,6 +200,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         LogStorytellerState(component, null);
 
         component.RuleStartTime = Timing.CurTime;
+        component.LastAnyEventTime = Timing.CurTime;
+        component.LastHelpfulEventTime = Timing.CurTime;
+        component.LastNeutralEventTime = Timing.CurTime;
         component.AlertLevelHistory.Clear();
         var query = EntityQueryEnumerator<AlertLevelComponent>();
         while (query.MoveNext(out var stationUid, out var alertComp))
@@ -576,13 +587,30 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         }
 
         var footprintsCount = 0;
+        var stationMaps = new HashSet<MapId>();
+        var stationQuery = EntityQueryEnumerator<StationDataComponent>();
+        while (stationQuery.MoveNext(out _, out var stationData))
+        {
+            foreach (var grid in stationData.Grids)
+            {
+                var gridXform = Transform(grid);
+                stationMaps.Add(gridXform.MapID);
+            }
+        }
+
         var footprintQuery = EntityQueryEnumerator<FootprintComponent, TransformComponent>();
         while (footprintQuery.MoveNext(out _, out _, out var xform))
         {
-            if (xform.GridUid == null || _stationSystem.GetOwningStation(xform.GridUid.Value) == null)
+            if (xform.GridUid != null && _stationSystem.GetOwningStation(xform.GridUid.Value) != null)
+            {
+                footprintsCount++;
                 continue;
+            }
 
-            footprintsCount++;
+            if (stationMaps.Contains(xform.MapID))
+            {
+                footprintsCount++;
+            }
         }
 
         var trashCount = 0;
@@ -599,6 +627,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 continue;
 
             if (_tagSystem.HasTag(tagUid, StorytellerIgnoreMessTag))
+                continue;
+
+            if (_containerSystem.IsEntityInContainer(tagUid))
                 continue;
 
             trashCount++;

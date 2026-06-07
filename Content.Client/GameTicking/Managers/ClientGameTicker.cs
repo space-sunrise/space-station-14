@@ -116,7 +116,7 @@ namespace Content.Client.GameTicking.Managers
 
         private void JoinLobby(TickerJoinLobbyEvent message)
         {
-            // Sunrise added start - stale lobby data must not leak into the next lobby transition
+            // Sunrise added start - устаревшие данные лобби не должны попасть в следующий lobby transition
             HasLobbyStatus = false;
             LobbyType = null;
             LobbyArt = null;
