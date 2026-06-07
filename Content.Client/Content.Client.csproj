@@ -27,6 +27,7 @@
     <Compile Include="..\SunrisePrivate\Content.Client\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\SunrisePrivate\Content.Client\**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <AdditionalFiles Include="..\SunrisePrivate\Content.Client\**\*.xaml" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="Launcher\LauncherConnecting.cs" Condition="Exists('..\SunrisePrivate\Content.Client\Launcher\LauncherConnecting.cs')" />
   </ItemGroup>
   <PropertyGroup Condition="Exists('..\SunrisePrivate\Content.Client')">
     <DefineConstants>$(DefineConstants);SUNRISE_PRIVATE</DefineConstants>

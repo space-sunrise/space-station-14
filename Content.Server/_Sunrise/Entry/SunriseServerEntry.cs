@@ -31,7 +31,6 @@ public sealed class SunriseServerEntry
 #if SUNRISE_PRIVATE
         IoCManager.Resolve<ISharedSponsorsManager>().Initialize();
         IoCManager.Resolve<IServerJoinQueueManager>().Initialize();
-        IoCManager.Resolve<IServerServiceAuthManager>().Initialize();
         IoCManager.Resolve<AntiNukeManager>().Initialize();
 #endif
     }
