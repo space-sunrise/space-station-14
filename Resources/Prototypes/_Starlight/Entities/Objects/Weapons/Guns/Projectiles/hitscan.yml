@@ -1050,7 +1050,7 @@
   - type: ProjectilePierce
     chance: 0.03
   - type: ProjectileRicochet # Sunrise-edit
-    chance: 0.2
+    chance: 0.75
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1143,7 +1143,7 @@
   - type: ProjectilePierce
     chance: 0
   - type: ProjectileRicochet # Sunrise-edit
-    chance: 0.2
+    chance: 0.3
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1175,6 +1175,8 @@
   - type: ProjectilePierce
     chance: 0.05
     pierceLevel: HardenedMetal
+  - type: ProjectileRicochet # Sunrise-edit
+    chance: 0.9
   - type: HitscanBasicVisuals
     bullet:
       sprite:
