@@ -516,13 +516,13 @@ public record struct SuffocationEvent;
 [ByRefEvent]
 public record struct StopSuffocatingEvent;
 
-// Sunrise-Start
+// Sunrise added start - breathing override hook for Sunrise systems
 /// <summary>
 /// Raised before a respirator inhales or exhales so other systems can block breathing.
 /// </summary>
 [ByRefEvent]
 public record struct CanBreatheEvent(bool Cancelled = false);
-// Sunrise-End
+// Sunrise added end
 
 /// <summary>
 /// An event raised to inhalation handlers that asks them nicely to simulate what it would be like to metabolize
