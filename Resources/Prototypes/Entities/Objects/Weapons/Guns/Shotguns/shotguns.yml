@@ -139,6 +139,12 @@
   - type: Appearance
   - type: StaticPrice
     price: 5000
+  # Sunrise-Start
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 2
+    dualWieldFireRatePenalty: 0.35
+    dualWieldRecoilPenalty: 0.35
+  # Sunrise-End
 
 - type: entity
   name: double-barreled shotgun

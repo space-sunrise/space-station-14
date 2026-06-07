@@ -654,7 +654,7 @@
     deviation: 0.05
     pierceLevel: Metal
   - type: ProjectileRicochet
-    chance: 0.5
+    chance: 0.7
 ### light rifle
 
 
