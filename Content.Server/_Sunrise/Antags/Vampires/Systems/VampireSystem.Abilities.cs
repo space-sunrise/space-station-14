@@ -513,18 +513,23 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        var target = args.Args.Target;
-        var canKeepDrinking = ent.Comp.FangsExtended
-            && target is not null
-            && HasComp<BloodstreamComponent>(target.Value);
-
-        if (!canKeepDrinking)
+        if (!ent.Comp.FangsExtended)
         {
             ent.Comp.IsDrinking = false;
             return;
         }
 
-        var targetUid = target.Value;
+        if (args.Args.Target is not { } targetUid)
+        {
+            ent.Comp.IsDrinking = false;
+            return;
+        }
+
+        if (!HasComp<BloodstreamComponent>(targetUid))
+        {
+            ent.Comp.IsDrinking = false;
+            return;
+        }
 
         if (IsInvalidDrinkTarget(ent.Owner, targetUid, showPopup: false))
         {

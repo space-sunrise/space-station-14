@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Shadegen.Components;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -279,16 +280,20 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         if (bulbUid == null || !TryComp<LightBulbComponent>(bulbUid.Value, out var lightBulb))
         {
             SetLight(uid, false, light: light);
+            RemComp<DarkLightComponent>(uid); // Sunrise-Edit
             powerReceiver.Load = 0;
             _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Empty, appearance);
             return;
         }
+
+        var darkLight = false; // Sunrise-Edit
 
         switch (lightBulb.State)
         {
             case LightBulbState.Normal:
                 if (powerReceiver.Powered && light.On)
                 {
+                    darkLight = HasComp<DarkLightComponent>(bulbUid.Value); // Sunrise-Edit
                     SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightBulb.LightEnergy, lightBulb.LightSoftness);
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
                     var time = GameTiming.CurTime;
@@ -314,6 +319,13 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Burned, appearance);
                 break;
         }
+
+        // Sunrise-Edit-Start
+        if (darkLight)
+            EnsureComp<DarkLightComponent>(uid);
+        else
+            RemComp<DarkLightComponent>(uid);
+        // Sunrise-Edit-End
 
         powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? lightBulb.PowerUse : 0;
     }

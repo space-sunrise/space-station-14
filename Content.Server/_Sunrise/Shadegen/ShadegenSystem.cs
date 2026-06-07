@@ -11,6 +11,7 @@ public sealed class ShadegenSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly HandheldLightSystem _handheldLight = default!;
+    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private EntityQuery<DarkLightComponent> _darkLightQuery;
@@ -57,6 +58,9 @@ public sealed class ShadegenSystem : EntitySystem
 
                 if (_handheldLightQuery.TryComp(light.Owner, out var handheld) && handheld.Activated)
                     _handheldLight.TurnOff((light.Owner, handheld), makeNoise: false);
+
+                if (component.DestroyLights && TryComp<PoweredLightComponent>(light.Owner, out var poweredLight) && poweredLight.On)
+                    _poweredLight.TryDestroyBulb(light.Owner, poweredLight);
             }
         }
     }

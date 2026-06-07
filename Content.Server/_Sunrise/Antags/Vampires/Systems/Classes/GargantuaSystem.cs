@@ -150,8 +150,6 @@ public sealed class GargantuaSystem : EntitySystem
 
     private void OnBloodSwellIncomingDamage(Entity<ActiveBloodSwellComponent> ent, ref StatusEffectRelayedEvent<BeforeDamageChangedEvent> args)
     {
-        var active = ent.Comp;
-
         foreach (var entry in args.Args.Damage.DamageDict.ToArray())
         {
             var type = entry.Key;
@@ -159,33 +157,28 @@ public sealed class GargantuaSystem : EntitySystem
             if (value <= 0)
                 continue;
 
-            if (active.ReducedDamageTypes.Contains(type))
-                args.Args.Damage.DamageDict[type] = value * active.IncomingDamageMultiplier;
+            if (ent.Comp.ReducedDamageTypes.Contains(type))
+                args.Args.Damage.DamageDict[type] = value * ent.Comp.IncomingDamageMultiplier;
         }
     }
 
     private void OnBloodSwellStaminaDamage(Entity<ActiveBloodSwellComponent> ent, ref StatusEffectRelayedEvent<BeforeStaminaDamageEvent> args)
     {
-        var active = ent.Comp;
-
         var ev = args.Args;
-        ev.Value *= active.StaminaDamageMultiplier;
+        ev.Value *= ent.Comp.StaminaDamageMultiplier;
         args.Args = ev;
     }
 
-    private void OnStatusEffectApplied(EntityUid effectUid, StatusEffectComponent effect, ref StatusEffectAppliedEvent args)
+    private void OnStatusEffectApplied(Entity<StatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
     {
         if (!_statusEffects.TryEffectsWithComp<ActiveBloodSwellComponent>(args.Target, out var effects))
             return;
 
-        if (effect.EndEffectTime is not { } end)
+        if (ent.Comp.EndEffectTime is not { } end)
             return;
 
         // Only affect the same set of status effects as before.
-        if (!HasComp<StunnedStatusEffectComponent>(effectUid)
-            && !HasComp<KnockdownStatusEffectComponent>(effectUid)
-            && !HasComp<MovementModStatusEffectComponent>(effectUid)
-            && !HasComp<ForcedSleepingStatusEffectComponent>(effectUid))
+        if (!IsBloodSwellExtendedStatus(ent.Owner))
             return;
 
         var now = _timing.CurTime;
@@ -194,7 +187,7 @@ public sealed class GargantuaSystem : EntitySystem
         if (remaining <= TimeSpan.Zero)
             return;
 
-        if (MetaData(effectUid).EntityPrototype is not { ID: var protoId })
+        if (MetaData(ent.Owner).EntityPrototype is not { ID: var protoId })
             return;
 
         var multiplier = 1f;
@@ -204,6 +197,20 @@ public sealed class GargantuaSystem : EntitySystem
         }
 
         _statusEffects.TrySetStatusEffectDuration(args.Target, protoId, remaining * multiplier);
+    }
+
+    private bool IsBloodSwellExtendedStatus(EntityUid effectUid)
+    {
+        if (HasComp<StunnedStatusEffectComponent>(effectUid))
+            return true;
+
+        if (HasComp<KnockdownStatusEffectComponent>(effectUid))
+            return true;
+
+        if (HasComp<MovementModStatusEffectComponent>(effectUid))
+            return true;
+
+        return HasComp<ForcedSleepingStatusEffectComponent>(effectUid);
     }
 
     #endregion
@@ -600,8 +607,10 @@ public sealed class GargantuaSystem : EntitySystem
         ent.Comp.ChargeCreatureThrowDistance = 0f;
         ent.Comp.ChargeStructuralDamage = 0f;
         ent.Comp.ChargeSound = null;
+
         if (TryComp<PhysicsComponent>(ent, out var physics))
             _physics.SetLinearVelocity(ent.Owner, Vector2.Zero, body: physics);
+
         Dirty(ent);
     }
 

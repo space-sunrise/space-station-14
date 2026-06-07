@@ -8,6 +8,7 @@ using Content.Shared._Sunrise.Antags.Vampires.Components;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared._Sunrise.Antags.Vampires.Systems.Classes;
+using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -282,9 +283,8 @@ public sealed class UmbraeSystem : EntitySystem
             umbrae.EternalDarknessLoopId++;
             if (umbrae.EternalDarknessAuraEntity is null || !Exists(umbrae.EternalDarknessAuraEntity))
             {
-                var aura = Spawn(args.AuraPrototype, Transform(ent).Coordinates);
+                var aura = SpawnAttachedTo(args.AuraPrototype, ent.Owner.ToCoordinates());
                 umbrae.EternalDarknessAuraEntity = aura;
-                _transform.SetParent(aura, ent);
             }
 
             var active = EnsureComp<ActiveVampireEternalDarknessComponent>(ent);

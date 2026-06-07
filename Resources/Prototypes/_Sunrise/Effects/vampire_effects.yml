@@ -252,16 +252,7 @@
       anchored: false
     - type: DarkLight
     - type: Shadegen
-      range: 4
-    - type: PointLight
-      enabled: true
-      radius: 6.0
-      energy: 1.0
-      softness: 4.0
-      color: "#6d00ff"
-      castShadows: false
-      autoBrightness: false
-      visible: false
+      range: 9
     - type: Tag
       tags:
         - HideContextMenu

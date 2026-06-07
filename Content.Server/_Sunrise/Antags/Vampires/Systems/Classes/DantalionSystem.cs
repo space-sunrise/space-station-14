@@ -23,6 +23,7 @@ using Content.Shared.Mindshield.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusIcon.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -265,6 +266,7 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         var thrallComp = EnsureComp<VampireThrallComponent>(target);
+        EnsureComp<StatusIconComponent>(target);
         thrallComp.Master = uid;
         Dirty(target, thrallComp);
 
@@ -297,15 +299,15 @@ public sealed class DantalionSystem : EntitySystem
             _eui.OpenEui(new VampireThrallEui(), session);
     }
 
-    private void OnThrallShutdown(EntityUid uid, VampireThrallComponent component, ComponentShutdown args)
+    private void OnThrallShutdown(Entity<VampireThrallComponent> ent, ref ComponentShutdown args)
     {
-        if (component.Master is not { } master)
+        if (ent.Comp.Master is not { } master)
             return;
 
-        if (!TryComp(master, out DantalionComponent? dantalion))
+        if (!TryComp<DantalionComponent>(master, out var dantalion))
             return;
 
-        if (!dantalion.Thralls.Remove(uid))
+        if (!dantalion.Thralls.Remove(ent.Owner))
             return;
 
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
@@ -341,7 +343,7 @@ public sealed class DantalionSystem : EntitySystem
             _role.MindRemoveRole<VampireThrallComponent>(mindId);
         }
 
-        if (comp.Master is { } master && TryComp(master, out DantalionComponent? dantalion))
+        if (comp.Master is { } master && TryComp<DantalionComponent>(master, out var dantalion))
         {
             dantalion.BloodBondLinkedThralls.Remove(thrall);
 
@@ -621,7 +623,7 @@ public sealed class DantalionSystem : EntitySystem
             Dirty(decoy, decoyAppearance);
         }
 
-        if (TryComp(uid, out MetaDataComponent? performerMeta))
+        if (TryComp<MetaDataComponent>(uid, out var performerMeta))
             _metaData.SetEntityName(decoy, performerMeta.EntityName);
 
         var decoyComp = EnsureComp<VampireDecoyComponent>(decoy);

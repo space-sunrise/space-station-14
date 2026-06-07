@@ -36,8 +36,7 @@ public sealed class ShadowSnareSystem : EntitySystem
 
     private void OnShadowSnareTriggered(Entity<ShadowSnareComponent> ent, ref StepTriggeredOffEvent args)
     {
-        var uid = ent.Owner;
-        var component = ent.Comp;
+        var (uid, component) = ent;
         var target = args.Tripper;
 
         // Only trigger on humanoids
@@ -59,7 +58,7 @@ public sealed class ShadowSnareSystem : EntitySystem
         ExtinguishNearbyLights(uid, component.LightExtinguishRadius);
 
         // Spawn ensnare entity and apply to target
-        var ensnareEnt = Spawn(component.EnsnarePrototype, Transform(target).Coordinates);
+        var ensnareEnt = EntityManager.SpawnAttachedTo(component.EnsnarePrototype, Transform(target).Coordinates);
         if (TryComp<EnsnaringComponent>(ensnareEnt, out var ensnaring))
         {
             ensnaring.WalkSpeed = component.WalkSpeed;

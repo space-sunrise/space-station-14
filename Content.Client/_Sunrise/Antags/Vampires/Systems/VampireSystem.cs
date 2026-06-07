@@ -18,7 +18,7 @@ public sealed class VampireSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private static readonly ProtoId<FactionIconPrototype> ThrallIcon = "VampireThrallIcon";
-    private static readonly ProtoId<FactionIconPrototype> MasterIcon = "VampireFaction";
+    private static readonly ProtoId<FactionIconPrototype> MasterIcon = "VampireMasterIcon";
     private const string VampireBloodAlert = "VampireBlood";
 
     public override void Initialize()

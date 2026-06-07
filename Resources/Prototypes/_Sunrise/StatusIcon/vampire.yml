@@ -1,11 +1,12 @@
 - type: factionIcon
   id: VampireThrallIcon
   priority: 1
+  locationPreference: Right
   showTo:
     components:
       - VampireThrall
       - Vampire
-  isShaded: true
+  isShaded: false
   icon:
     sprite: /Textures/_Sunrise/Vampire/hud_icons.rsi
     state: hudvampirethrall
@@ -13,19 +14,21 @@
 - type: factionIcon
   id: VampireMasterIcon
   priority: 1
+  locationPreference: Right
   showTo:
     components:
       - VampireThrall
       - Vampire
-  isShaded: true
+  isShaded: false
   icon:
     sprite: /Textures/_Sunrise/Vampire/hud_icons.rsi
     state: hudvampire
 
 - type: factionIcon
   id: VampireFaction
-  isShaded: true
+  isShaded: false
   priority: 11
+  locationPreference: Right
   showTo:
     components:
     - ShowAntagIcons
