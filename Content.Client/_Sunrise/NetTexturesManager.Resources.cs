@@ -9,15 +9,15 @@ public sealed partial class NetTexturesManager
 {
     #region Public API
     /// <summary>
-    /// Ensures that a network resource has been requested and returns whether it is already ready for use.
+    /// Гарантирует запрос сетевого ресурса и возвращает, готов ли он уже к использованию.
     /// </summary>
     /// <remarks>
-    /// Callers are expected to invoke this repeatedly from UI update paths until it returns true or
-    /// <see cref="ResourceLoaded"/> notifies that the resource became available.
+    /// Вызывающий код должен повторно дергать метод из путей обновления UI, пока он не вернет true или
+    /// <see cref="ResourceLoaded"/> не сообщит, что ресурс стал доступен.
     /// </remarks>
-    /// <param name="resourcePath">The rooted or relative resource path requested by the consumer.</param>
+    /// <param name="resourcePath">Rooted или relative путь ресурса, запрошенный потребителем.</param>
     /// <returns>
-    /// <see langword="true"/> when the resource is already ready for use; otherwise <see langword="false"/>.
+    /// <see langword="true"/>, если ресурс уже готов к использованию; иначе <see langword="false"/>.
     /// </returns>
     public bool EnsureResource(string resourcePath)
     {
@@ -51,12 +51,12 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Returns a ready-to-use texture that was loaded through the NetTextures pipeline.
+    /// Возвращает готовую к использованию текстуру, загруженную через pipeline NetTextures.
     /// </summary>
-    /// <param name="resourcePath">The resource path previously requested through <see cref="EnsureResource"/>.</param>
-    /// <param name="texture">The ready texture when the method returns <see langword="true"/>.</param>
+    /// <param name="resourcePath">Путь ресурса, ранее запрошенный через <see cref="EnsureResource"/>.</param>
+    /// <param name="texture">Готовая текстура, когда метод возвращает <see langword="true"/>.</param>
     /// <returns>
-    /// <see langword="true"/> when the texture is ready; otherwise <see langword="false"/>.
+    /// <see langword="true"/>, если текстура готова; иначе <see langword="false"/>.
     /// </returns>
     public bool TryGetTexture(string resourcePath, out Texture? texture)
     {
@@ -76,13 +76,13 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Returns a ready-to-use RSI animation state that was loaded through the NetTextures pipeline.
+    /// Возвращает готовое к использованию состояние RSI-анимации, загруженное через pipeline NetTextures.
     /// </summary>
-    /// <param name="resourcePath">The RSI resource path previously requested through <see cref="EnsureResource"/>.</param>
-    /// <param name="stateId">The RSI state identifier inside the uploaded resource.</param>
-    /// <param name="state">The ready animation state when the method returns <see langword="true"/>.</param>
+    /// <param name="resourcePath">Путь RSI-ресурса, ранее запрошенный через <see cref="EnsureResource"/>.</param>
+    /// <param name="stateId">Идентификатор RSI-состояния внутри загруженного ресурса.</param>
+    /// <param name="state">Готовое состояние анимации, когда метод возвращает <see langword="true"/>.</param>
     /// <returns>
-    /// <see langword="true"/> when the requested state is ready; otherwise <see langword="false"/>.
+    /// <see langword="true"/>, если запрошенное состояние готово; иначе <see langword="false"/>.
     /// </returns>
     public bool TryGetAnimationState(string resourcePath, string stateId, out NetTextureAnimationState? state)
     {
@@ -99,10 +99,10 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Resolves the in-memory uploaded path for a network resource.
+    /// Определяет in-memory путь загруженного сетевого ресурса.
     /// </summary>
-    /// <param name="resourcePath">The rooted or relative resource path used by consumers.</param>
-    /// <returns>The rooted path inside the mounted <c>/Uploaded</c> content root.</returns>
+    /// <param name="resourcePath">Rooted или relative путь ресурса, используемый потребителями.</param>
+    /// <returns>Rooted путь внутри смонтированного <c>/Uploaded</c> content root.</returns>
     public ResPath GetUploadedPath(string resourcePath)
     {
         var relativePath = ToResPath(resourcePath).ToRelativePath();
@@ -110,12 +110,12 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Sends a PDA photo capture to the server for dynamic NetTexture registration.
+    /// Отправляет снимок PDA на сервер для динамической регистрации NetTexture.
     /// </summary>
-    /// <param name="loaderUid">The net entity that initiated the photo capture.</param>
-    /// <param name="imageData">Encoded image bytes to register on the server.</param>
-    /// <param name="width">The pixel width of the captured image.</param>
-    /// <param name="height">The pixel height of the captured image.</param>
+    /// <param name="loaderUid">Net entity, инициировавшая снимок.</param>
+    /// <param name="imageData">Кодированные байты изображения для регистрации на сервере.</param>
+    /// <param name="width">Ширина снимка в пикселях.</param>
+    /// <param name="height">Высота снимка в пикселях.</param>
     public void SendPhotoToServer(NetEntity loaderUid, byte[] imageData, int width, int height)
     {
         if (!_netManager.IsConnected)
