@@ -25,7 +25,7 @@ public sealed class ContributorsManager
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly List<ContributorEntry> _contributorsList = new();
-    private bool _enable = true;
+    private bool _enable;
     private string _apiUrl = string.Empty;
     private string _projectName = string.Empty;
 
@@ -39,10 +39,10 @@ public sealed class ContributorsManager
     {
         _sawmill = _logManager.GetSawmill("contributors");
 
-        _cfg.OnValueChanged(SunriseCCVars.ContributorsEnable, OnContributorsEnableChanged);
         _cfg.OnValueChanged(SunriseCCVars.ContributorsApiUrl, OnApiUrlChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.ContributorsProjectName, OnProjectNameChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.ContributorsApiToken, OnApiTokenChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.ContributorsEnable, OnContributorsEnableChanged, true);
 
         _netMgr.RegisterNetMessage<MsgFullContributorsList>();
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;

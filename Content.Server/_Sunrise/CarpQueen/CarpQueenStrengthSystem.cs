@@ -5,7 +5,7 @@ using Content.Shared.Movement.Components;
 namespace Content.Server._Sunrise.CarpQueen;
 
 /// <summary>
-/// System that increases Carp Queen's pushing strength when in combat mode.
+/// Система увеличивает силу толкания королевы карпов в боевом режиме.
 /// </summary>
 public sealed class CarpQueenStrengthSystem : EntitySystem
 {
@@ -20,12 +20,11 @@ public sealed class CarpQueenStrengthSystem : EntitySystem
         if (!TryComp<MobCollisionComponent>(uid, out var mobCollision))
             return;
 
-        // Base strength for normal mode, boosted strength for combat mode
+        // Базовая сила для обычного режима и усиленная сила для боевого режима.
         const float baseStrength = 50f;
-        const float combatStrength = 200f; // 4x stronger in combat mode
+        const float combatStrength = 200f; // В боевом режиме в 4 раза сильнее.
 
         mobCollision.Strength = args.IsInCombatMode ? combatStrength : baseStrength;
         Dirty(uid, mobCollision);
     }
 }
-

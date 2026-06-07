@@ -274,7 +274,7 @@ namespace Content.IntegrationTests.Tests
                 .Where(p => !p.Abstract)
                 .Where(p => !pair.IsTestPrototype(p))
                 .Where(p => !excluded.Any(p.Components.ContainsKey))
-                // Sunrise added start - explicitly skip known entity-spawner components that intentionally violate this test invariant.
+                // Sunrise added start - явно пропускаем известные entity-spawner компоненты, которые намеренно нарушают этот тестовый инвариант.
                 .Where(p => !spawnLeakExcluded.Any(p.Components.ContainsKey))
                 // Sunrise added end
                 .Where(p => p.Categories.All(x => x.ID != SpawnerCategory))

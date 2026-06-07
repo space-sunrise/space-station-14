@@ -47,25 +47,25 @@ public sealed partial class StorytellerRuleComponent : Component
     /// <summary>
     /// The timestamp when the storyteller should evaluate the station state next.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextCheckTime;
 
     /// <summary>
     /// Last timestamp when any event was triggered.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan LastAnyEventTime;
 
     /// <summary>
     /// Last timestamp when a Helpful event was triggered.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan LastHelpfulEventTime;
 
     /// <summary>
     /// Last timestamp when a Neutral event was triggered.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan LastNeutralEventTime;
 
     /// <summary>
@@ -89,7 +89,7 @@ public sealed partial class StorytellerRuleComponent : Component
     /// <summary>
     /// The timestamp when the current pacing state is scheduled to transition.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan StateTransitionTime;
 
     /// <summary>
