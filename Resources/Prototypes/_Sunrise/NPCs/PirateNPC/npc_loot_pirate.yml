@@ -2344,7 +2344,6 @@
       prob: 0.7
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.5
-    - id: SovietMedicalSupplyRandomSpawner
 
 - type: entity
   parent: [MercenaryDuffelGiftBox, BaseSunriseNpcLootEquipSound]

@@ -1324,6 +1324,18 @@
   - !type:ListingLimitedStockCondition
     stock: 6
 
+- type: listing
+  id: ERTUplinkHyposprayERT
+  productEntity: HyposprayERT
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: hypospray_ert }
+  cost:
+    Crystallite: 20
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
 # Дополнительное:
 
 - type: listing
