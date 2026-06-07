@@ -5,10 +5,6 @@
   components:
   - type: Abductor
   - type: Interactions
-  - type: GhostPanelAntagonistMarker
-    name: ghost-panel-antagonist-abductor-name
-    description: ghost-panel-antagonist-abductor-description
-    priority: 65
   - type: Tag
     tags:
       - Abductor
