@@ -37,7 +37,7 @@ public sealed class VampireDecoySystem : EntitySystem
         _flash.FlashArea(uid, null, comp.FlashRange, comp.FlashDuration, slowTo: comp.SlowTo, displayPopup: comp.DisplayPopup, probability: comp.Probability);
         _audio.PlayPvs(comp.FlashSound, entityCoords, AudioParams.Default.WithVolume(1f).WithMaxDistance(comp.FlashRange));
 
-        EntityManager.SpawnEntity(comp.FlashEffectId, coords);
+        EntityManager.Spawn(comp.FlashEffectId, coords);
         QueueDel(uid);
     }
 }

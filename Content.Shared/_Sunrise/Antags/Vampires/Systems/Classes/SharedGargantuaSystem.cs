@@ -1,9 +1,5 @@
 using Content.Shared._Sunrise.Antags.Vampires.Events;
-using Content.Shared._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared.Actions.Events;
 using Content.Shared.Actions;
@@ -59,13 +55,11 @@ public sealed class SharedGargantuaSystem : EntitySystem
 
         var uid = args.Performer;
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity)
-            || !HasComp<GargantuaComponent>(uid)
-            || !_vampireActions.TryUse(uid, actionEntity)
-            || !_statusEffects.TrySetStatusEffectDuration(uid, BloodSwellStatusEffect, out var statusEffect, args.Duration))
-        {
+        if (!TryUseGargantuaAction(uid, actionEntity))
             return;
-        }
+
+        if (!_statusEffects.TrySetStatusEffectDuration(uid, BloodSwellStatusEffect, out var statusEffect, args.Duration))
+            return;
 
         var active = EnsureComp<ActiveBloodSwellComponent>(statusEffect.Value);
 
@@ -88,9 +82,13 @@ public sealed class SharedGargantuaSystem : EntitySystem
 
     private void OnBloodSwellMeleeDamage(Entity<ActiveBloodSwellComponent> ent, ref GetMeleeDamageEvent args)
     {
-        if (!TryComp<StatusEffectComponent>(ent, out var effect)
-            || effect.AppliedTo is not { } target
-            || !TryComp<VampireComponent>(target, out var vampire))
+        if (!TryComp<StatusEffectComponent>(ent, out var effect))
+            return;
+
+        if (effect.AppliedTo is not { } target)
+            return;
+
+        if (!TryComp<VampireComponent>(target, out var vampire))
             return;
 
         if (args.Weapon != target)
@@ -116,11 +114,11 @@ public sealed class SharedGargantuaSystem : EntitySystem
         if (args.Weapon == args.User)
             return;
 
-        if (!_statusEffects.TryEffectsWithComp<ActiveBloodSwellComponent>(args.User, out var effects)
-            || !TryComp<VampireComponent>(args.User, out var vampire))
-        {
+        if (!_statusEffects.TryEffectsWithComp<ActiveBloodSwellComponent>(args.User, out var effects))
             return;
-        }
+
+        if (!TryComp<VampireComponent>(args.User, out var vampire))
+            return;
 
         foreach (var effect in effects)
         {
@@ -140,13 +138,11 @@ public sealed class SharedGargantuaSystem : EntitySystem
 
         var uid = args.Performer;
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity)
-            || !HasComp<GargantuaComponent>(uid)
-            || !_vampireActions.TryUse(uid, actionEntity)
-            || !_statusEffects.TrySetStatusEffectDuration(uid, BloodRushStatusEffect, out var statusEffect, args.Duration))
-        {
+        if (!TryUseGargantuaAction(uid, actionEntity))
             return;
-        }
+
+        if (!_statusEffects.TrySetStatusEffectDuration(uid, BloodRushStatusEffect, out var statusEffect, args.Duration))
+            return;
 
         var active = EnsureComp<ActiveBloodRushComponent>(statusEffect.Value);
 
@@ -178,8 +174,10 @@ public sealed class SharedGargantuaSystem : EntitySystem
             return;
 
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity)
-            || !_vampireActions.TryUse(ent.Owner, actionEntity))
+        if (!Exists(actionEntity))
+            return;
+
+        if (!_vampireActions.TryUse(ent.Owner, actionEntity))
             return;
 
         ent.Comp.OverwhelmingForceActive = !ent.Comp.OverwhelmingForceActive;
@@ -235,15 +233,23 @@ public sealed class SharedGargantuaSystem : EntitySystem
 
     private void OnOverwhelmingForceBeforePry(Entity<GargantuaComponent> ent, ref UserBeforePryEvent args)
     {
-        if (!ent.Comp.OverwhelmingForceActive
-            || !TryComp<VampireComponent>(ent, out var vampire)
-            || vampire.DrunkBlood >= ent.Comp.OverwhelmingForceDoorPryBloodCost)
-        {
+        if (!ent.Comp.OverwhelmingForceActive)
             return;
-        }
+
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        if (vampire.DrunkBlood >= ent.Comp.OverwhelmingForceDoorPryBloodCost)
+            return;
 
         args.Cancelled = true;
         args.Message = "vampire-not-enough-blood";
     }
 
+    private bool TryUseGargantuaAction(EntityUid uid, EntityUid actionEntity)
+    {
+        return Exists(actionEntity)
+            && HasComp<GargantuaComponent>(uid)
+            && _vampireActions.TryUse(uid, actionEntity);
+    }
 }

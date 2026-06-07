@@ -1,9 +1,5 @@
 using Content.Shared._Sunrise.Antags.Vampires.Events;
-using Content.Shared._Sunrise.Antags.Vampires.Systems;
-using Content.Shared._Sunrise.Antags.Vampires.Components;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared.Actions;
 using Content.Shared.Popups;
@@ -52,9 +48,13 @@ public sealed class SharedDantalionSystem : EntitySystem
 
         var uid = args.Performer;
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity)
-            || !TryComp<DantalionComponent>(uid, out var dantalion)
-            || !_vampireActions.TryUse(uid, actionEntity))
+        if (!Exists(actionEntity))
+            return;
+
+        if (!TryComp<DantalionComponent>(uid, out var dantalion))
+            return;
+
+        if (!_vampireActions.TryUse(uid, actionEntity))
             return;
 
         Entity<DantalionComponent> ent = (uid, dantalion);

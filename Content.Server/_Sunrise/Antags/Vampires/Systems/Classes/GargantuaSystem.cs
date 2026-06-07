@@ -217,9 +217,11 @@ public sealed class GargantuaSystem : EntitySystem
 
         var uid = args.Performer;
         var actionEntity = args.Action.Owner;
-        if (!Exists(actionEntity)
-            || !HasComp<GargantuaComponent>(uid)
-            || !_vampireActions.TryUse(uid, actionEntity))
+        var canUseAction = Exists(actionEntity)
+            && HasComp<GargantuaComponent>(uid)
+            && _vampireActions.TryUse(uid, actionEntity);
+
+        if (!canUseAction)
             return;
 
         var xform = Transform(uid);
@@ -316,8 +318,7 @@ public sealed class GargantuaSystem : EntitySystem
         if (direction == Vector2.Zero)
             return;
 
-        if (!Exists(actionEntity)
-            || !_vampireActions.TryUse(uid, actionEntity))
+        if (!Exists(actionEntity) || !_vampireActions.TryUse(uid, actionEntity))
             return;
 
         args.Handled = true;
@@ -475,8 +476,7 @@ public sealed class GargantuaSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(uid, out var physics))
             return;
 
-        if (!Exists(actionEntity)
-            || !_vampireActions.TryUse(uid, actionEntity))
+        if (!Exists(actionEntity) || !_vampireActions.TryUse(uid, actionEntity))
             return;
 
         gargantua.IsCharging = true;

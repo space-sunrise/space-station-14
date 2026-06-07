@@ -172,7 +172,7 @@ public sealed class HemomancerSystem : EntitySystem
         }
 
         var coords = Transform(uid).Coordinates;
-        var claws = EntityManager.SpawnEntity("VampiricClawsItem", coords);
+        var claws = EntityManager.SpawnAttachedTo("VampiricClawsItem", coords);
         active.SpawnedClaws = claws;
 
         if (TryComp<VampireComponent>(uid, out var vampire))
@@ -203,19 +203,20 @@ public sealed class HemomancerSystem : EntitySystem
     private void OnHemomancerTendrils(VampireHemomancerTendrilsActionEvent args)
     {
         var action = args.Action.Owner;
-        if (args.Handled
-            || !TryComp<VampireComponent>(args.Performer, out var comp)
-            || !HasComp<HemomancerComponent>(args.Performer))
+
+        if (args.Handled)
+            return;
+
+        if (!TryComp<VampireComponent>(args.Performer, out var comp))
+            return;
+
+        if (!HasComp<HemomancerComponent>(args.Performer))
             return;
 
         var targetCoords = args.Target;
         var tileCoords = targetCoords.WithPosition(targetCoords.Position.Floored() + new Vector2(args.PositionOffset, args.PositionOffset));
 
-        if (_transform.GetGrid(tileCoords) is not { } gridUid
-            || !TryComp<MapGridComponent>(gridUid, out var gridComp)
-            || !_map.TryGetTileRef(gridUid, gridComp, tileCoords, out var tileRef)
-            || _turf.IsSpace(tileRef)
-            || _vampire.IsTileBlockedByEntities(tileCoords))
+        if (!IsValidTendrilTile(tileCoords))
         {
             _popup.PopupEntity(Loc.GetString("action-vampire-hemomancer-tendrils-wrong-place"), args.Performer, args.Performer);
             return;
@@ -270,20 +271,18 @@ public sealed class HemomancerSystem : EntitySystem
         foreach (var offset in TendrilOffsets)
         {
             var center = tileCoords.Offset(offset);
-            if (!_map.TryGetTileRef(gridUid.Value, gridComp, center, out var tileRef)
-                || _turf.IsSpace(tileRef)
-                || _vampire.IsTileBlockedByEntities(center))
+            if (!IsValidTendrilTile(gridUid.Value, gridComp, center))
                 continue;
 
             foreach (var target in _lookup.GetEntitiesInRange(center, pending.TargetRange, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
-                if (target == performerUid
-                    || hitEnemies.Contains(target)
-                    || !HasComp<HumanoidAppearanceComponent>(target)
-                    || !HasComp<DamageableComponent>(target))
-                {
+                var canHitTarget = target != performerUid
+                    && !hitEnemies.Contains(target)
+                    && HasComp<HumanoidAppearanceComponent>(target)
+                    && HasComp<DamageableComponent>(target);
+
+                if (!canHitTarget)
                     continue;
-                }
 
                 var poisonSpec = new DamageSpecifier(_prototype.Index<DamageTypePrototype>(PoisonTypeId), pending.ToxinDamage);
                 _damageable.TryChangeDamage(target, poisonSpec, true, origin: performerUid);
@@ -302,20 +301,42 @@ public sealed class HemomancerSystem : EntitySystem
         foreach (var offset in TendrilOffsets)
         {
             var coords = tileCoords.Offset(offset);
-            if (!_map.TryGetTileRef(gridUid.Value, gridComp, coords, out var tileRef)
-                || _turf.IsSpace(tileRef)
-                || _vampire.IsTileBlockedByEntities(coords))
+            if (!IsValidTendrilTile(gridUid.Value, gridComp, coords))
                 continue;
 
-            EntityManager.SpawnEntity(tendrilVisualId, coords);
+            EntityManager.SpawnAttachedTo(tendrilVisualId, coords);
         }
+    }
+
+    private bool IsValidTendrilTile(EntityCoordinates coords)
+    {
+        var gridUid = _transform.GetGrid(coords);
+        if (gridUid is null)
+            return false;
+
+        if (!TryComp<MapGridComponent>(gridUid.Value, out var gridComp))
+            return false;
+
+        return IsValidTendrilTile(gridUid.Value, gridComp, coords);
+    }
+
+    private bool IsValidTendrilTile(EntityUid gridUid, MapGridComponent gridComp, EntityCoordinates coords)
+    {
+        if (!_map.TryGetTileRef(gridUid, gridComp, coords, out var tileRef))
+            return false;
+
+        if (_turf.IsSpace(tileRef))
+            return false;
+
+        return !_vampire.IsTileBlockedByEntities(coords);
     }
 
     private void OnBloodBarrier(VampireBloodBarrierActionEvent args)
     {
-        if (args.Handled
-            || !TryComp<VampireComponent>(args.Performer, out var comp)
-            || !HasComp<HemomancerComponent>(args.Performer))
+        if (args.Handled || !TryComp<VampireComponent>(args.Performer, out var comp))
+            return;
+
+        if (!HasComp<HemomancerComponent>(args.Performer))
             return;
 
         var targetCoords = args.Target;
@@ -362,7 +383,7 @@ public sealed class HemomancerSystem : EntitySystem
         foreach (var pos in successfulPositions)
         {
             var barrierCoords = tileCoords.WithPosition(pos);
-            var barrier = EntityManager.SpawnEntity(args.BarrierPrototype, barrierCoords);
+            var barrier = EntityManager.SpawnAttachedTo(args.BarrierPrototype, barrierCoords);
             var preventComp = EnsureComp<PreventCollideComponent>(barrier);
             preventComp.Uid = args.Performer;
             Dirty(barrier, preventComp);
@@ -383,10 +404,12 @@ public sealed class HemomancerSystem : EntitySystem
         }
 
         var curCoords = Transform(uid).Coordinates;
-        if (_transform.GetGrid(curCoords) is not { } gridUid
-            || !TryComp<MapGridComponent>(gridUid, out var gridComp)
-            || !_map.TryGetTileRef(gridUid, gridComp, curCoords, out var tileRef)
-            || _turf.IsSpace(tileRef))
+        var isValidTile = _transform.GetGrid(curCoords) is { } gridUid
+            && TryComp<MapGridComponent>(gridUid, out var gridComp)
+            && _map.TryGetTileRef(gridUid, gridComp, curCoords, out var tileRef)
+            && !_turf.IsSpace(tileRef);
+
+        if (!isValidTile)
         {
             _popup.PopupEntity(Loc.GetString("action-vampire-sanguine-pool-invalid-tile"), uid, uid);
             return;
@@ -556,9 +579,13 @@ public sealed class HemomancerSystem : EntitySystem
     {
         var (uid, comp) = ent;
 
-        if (args.Handled
-            || !comp.ActionEntities.TryGetValue("ActionVampireBloodBringersRite", out var actionEntity)
-            || !TryComp<HemomancerComponent>(uid, out var hemomancer))
+        if (args.Handled)
+            return;
+
+        if (!comp.ActionEntities.TryGetValue("ActionVampireBloodBringersRite", out var actionEntity))
+            return;
+
+        if (!TryComp<HemomancerComponent>(uid, out var hemomancer))
             return;
 
         if (!comp.FullPower)
@@ -679,8 +706,10 @@ public sealed class HemomancerSystem : EntitySystem
         VampireComponent comp,
         HemomancerComponent hemomancer)
     {
-        if (!comp.ActionEntities.TryGetValue("ActionVampireBloodBringersRite", out var actionEntity)
-            || !hemomancer.BloodBringersRiteActive)
+        if (!hemomancer.BloodBringersRiteActive)
+            return false;
+
+        if (!comp.ActionEntities.TryGetValue("ActionVampireBloodBringersRite", out var actionEntity))
             return false;
 
         if (TryComp<MobStateComponent>(uid, out var mobState) &&

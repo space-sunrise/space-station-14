@@ -23,8 +23,10 @@ public sealed class GargantuaBloodSwellSystem : EntitySystem
 
     private void OnShotAttempted(Entity<GargantuaComponent> ent, ref ShotAttemptedEvent args)
     {
-        if (args.User != ent.Owner
-            || !_statusEffects.TryEffectsWithComp<ActiveBloodSwellComponent>(ent, out _))
+        if (args.User != ent.Owner)
+            return;
+
+        if (!_statusEffects.TryEffectsWithComp<ActiveBloodSwellComponent>(ent, out _))
             return;
 
         TryShowPopup(ent, args.Used);

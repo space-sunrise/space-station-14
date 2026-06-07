@@ -31,8 +31,10 @@ public sealed class VampireClassBui(EntityUid owner, Enum uiKey) : BoundUserInte
 
     private void OnMenuClosed()
     {
-        if (_choiceMade
-            || !EntMan.EntityExists(Owner) || !EntMan.TryGetComponent<MetaDataComponent>(Owner, out _))
+        if (_choiceMade || !EntMan.EntityExists(Owner))
+            return;
+
+        if (!EntMan.TryGetComponent<MetaDataComponent>(Owner, out _))
             return;
 
         SendMessage(new VampireClassClosedBuiMsg());

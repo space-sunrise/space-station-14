@@ -530,9 +530,13 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void TryRefreshVampireAction(EntityUid owner, EntityUid? actionEntity)
     {
-        if (actionEntity is null
-            || _actions.GetAction(actionEntity) is not { } action
-            || !TryComp<VampireComponent>(owner, out var vamp))
+        if (actionEntity is null)
+            return;
+
+        if (_actions.GetAction(actionEntity) is not { } action)
+            return;
+
+        if (!TryComp<VampireComponent>(owner, out var vamp))
             return;
 
         if (!TryComp<VampireActionComponent>(actionEntity.Value, out var vac))
@@ -739,12 +743,12 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp(uid, out DamageableComponent? damageable))
             return 100f;
 
-        if (!_mobThreshold.TryGetDeadThreshold(uid, out var deadThreshold, CompOrNull<MobThresholdsComponent>(uid))
-            || deadThreshold is null
-            || deadThreshold.Value == FixedPoint2.Zero)
-        {
-            return 100f - damageable.TotalDamage.Float();
-        }
+        var fallbackHealth = 100f - damageable.TotalDamage.Float();
+        if (!_mobThreshold.TryGetDeadThreshold(uid, out var deadThreshold, CompOrNull<MobThresholdsComponent>(uid)))
+            return fallbackHealth;
+
+        if (deadThreshold is null || deadThreshold.Value == FixedPoint2.Zero)
+            return fallbackHealth;
 
         return deadThreshold.Value.Float() - damageable.TotalDamage.Float();
     }

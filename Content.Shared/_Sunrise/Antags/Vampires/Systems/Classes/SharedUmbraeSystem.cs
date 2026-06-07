@@ -1,9 +1,6 @@
 using Content.Shared._Sunrise.Antags.Vampires.Events;
-using Content.Shared._Sunrise.Antags.Vampires.Systems;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Abilities;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
-using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
 using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Components;
@@ -71,12 +68,15 @@ public sealed class SharedUmbraeSystem : EntitySystem
     {
         var uid = args.Performer;
         var actionEntity = args.Action.Owner;
-        if (args.Handled
-            || !Exists(actionEntity)
-            || !_vampireActions.TryUse(uid, actionEntity))
-        {
+
+        if (args.Handled)
             return;
-        }
+
+        if (!Exists(actionEntity))
+            return;
+
+        if (!_vampireActions.TryUse(uid, actionEntity))
+            return;
 
         var umbrae = EnsureComp<UmbraeComponent>(uid);
         if (umbrae.CloakOfDarknessActive)
@@ -167,11 +167,12 @@ public sealed class SharedUmbraeSystem : EntitySystem
     {
         var uid = args.Performer;
         var actionEntity = args.Action.Owner;
-        if (args.Handled
-            || !Exists(actionEntity))
-        {
+
+        if (args.Handled)
             return;
-        }
+
+        if (!Exists(actionEntity))
+            return;
 
         if (TryComp<UmbraeComponent>(uid, out var umbrae) && umbrae.ShadowBoxingActive)
         {
@@ -181,15 +182,14 @@ public sealed class SharedUmbraeSystem : EntitySystem
         }
 
         var target = args.Target;
-        if (target == uid
-            || !Exists(target)
-            || !HasComp<HumanoidAppearanceComponent>(target)
-            || !TryComp<DamageableComponent>(target, out _)
-            || (TryComp<MobStateComponent>(target, out var mob) && mob.CurrentState == MobState.Dead)
-            || !_vampireActions.TryUse(uid, actionEntity))
-        {
+        if (target == uid)
             return;
-        }
+
+        if (!IsValidShadowBoxingTarget(target))
+            return;
+
+        if (!_vampireActions.TryUse(uid, actionEntity))
+            return;
 
         var attempt = new VampireShadowBoxingStartAttemptEvent(uid, target);
         RaiseLocalEvent(uid, ref attempt, true);
@@ -227,5 +227,22 @@ public sealed class SharedUmbraeSystem : EntitySystem
         RemComp<ActiveVampireShadowBoxingComponent>(uid);
         Dirty(uid, umbrae);
         _popup.PopupPredicted(Loc.GetString(popup), uid, uid);
+    }
+
+    private bool IsValidShadowBoxingTarget(EntityUid target)
+    {
+        if (!Exists(target))
+            return false;
+
+        if (!HasComp<HumanoidAppearanceComponent>(target))
+            return false;
+
+        if (!HasComp<DamageableComponent>(target))
+            return false;
+
+        if (TryComp<MobStateComponent>(target, out var mob) && mob.CurrentState == MobState.Dead)
+            return false;
+
+        return true;
     }
 }

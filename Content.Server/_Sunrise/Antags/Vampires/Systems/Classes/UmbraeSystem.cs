@@ -132,14 +132,16 @@ public sealed class UmbraeSystem : EntitySystem
 
     private void OnShadowSnare(Entity<VampireComponent> ent, ref VampireShadowSnareActionEvent args)
     {
-        if (args.Handled
-            || !TryComp<UmbraeComponent>(ent, out var umbrae))
+        if (args.Handled || !TryComp<UmbraeComponent>(ent, out var umbrae))
             return;
 
         var target = args.Target;
         var curXform = Transform(ent);
-        if (curXform.MapID != _transform.GetMapId(target)
-            || !_transform.GetGrid(target).HasValue)
+
+        if (curXform.MapID != _transform.GetMapId(target))
+            return;
+
+        if (!_transform.GetGrid(target).HasValue)
             return;
 
         if (!_vampire.IsValidTile(target))
@@ -164,7 +166,7 @@ public sealed class UmbraeSystem : EntitySystem
             }
         }
 
-        var snare = EntityManager.SpawnEntity(args.SnarePrototype, target);
+        var snare = EntityManager.SpawnAttachedTo(args.SnarePrototype, target);
         umbrae.PlacedSnares.Add(snare);
         Dirty<UmbraeComponent>((ent.Owner, umbrae));
 
@@ -174,19 +176,26 @@ public sealed class UmbraeSystem : EntitySystem
 
     private void OnDarkPassage(Entity<VampireComponent> ent, ref VampireDarkPassageActionEvent args)
     {
-        if (args.Handled
-            || !HasComp<UmbraeComponent>(ent))
+        if (args.Handled || !HasComp<UmbraeComponent>(ent))
             return;
 
         var target = args.Target;
         var curXform = Transform(ent);
-        if (curXform.MapID != _transform.GetMapId(target)
-            || !_transform.GetGrid(target).HasValue)
+
+        if (curXform.MapID != _transform.GetMapId(target))
             return;
 
-        if (!_vampire.IsValidTile(target)
-            || (!ent.Comp.FullPower
-                && !_interaction.InRangeUnobstructed(ent, target, range: 100, collisionMask: CollisionGroup.Impassable, popup: false)))
+        if (!_transform.GetGrid(target).HasValue)
+            return;
+
+        if (!_vampire.IsValidTile(target))
+        {
+            _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-wrong-place"), ent, ent);
+            return;
+        }
+
+        if (!ent.Comp.FullPower
+            && !_interaction.InRangeUnobstructed(ent, target, range: 100, collisionMask: CollisionGroup.Impassable, popup: false))
         {
             _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-wrong-place"), ent, ent);
             return;
@@ -195,12 +204,12 @@ public sealed class UmbraeSystem : EntitySystem
         if (!_vampire.CheckAndConsumeBloodCost(ent, args.Action.Owner))
             return;
 
-        EntityManager.SpawnEntity(args.MistInPrototype, curXform.Coordinates);
+        EntityManager.SpawnAttachedTo(args.MistInPrototype, curXform.Coordinates);
 
         _transform.SetCoordinates(ent, target);
         _transform.AttachToGridOrMap(ent, curXform);
 
-        EntityManager.SpawnEntity(args.MistOutPrototype, target);
+        EntityManager.SpawnAttachedTo(args.MistOutPrototype, target);
 
         _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-activated"), ent, ent);
         _audio.PlayPvs(args.Sound, ent, AudioParams.Default.WithVolume(-1f));
@@ -209,10 +218,16 @@ public sealed class UmbraeSystem : EntitySystem
 
     private void OnExtinguish(Entity<VampireComponent> ent, ref VampireExtinguishActionEvent args)
     {
-        if (args.Handled
-            || !ent.Comp.ActionEntities.TryGetValue("ActionVampireExtinguish", out var actionEntity)
-            || !HasComp<UmbraeComponent>(ent)
-            || !_vampire.CheckAndConsumeBloodCost(ent, actionEntity))
+        if (args.Handled)
+            return;
+
+        if (!ent.Comp.ActionEntities.TryGetValue("ActionVampireExtinguish", out var actionEntity))
+            return;
+
+        if (!HasComp<UmbraeComponent>(ent))
+            return;
+
+        if (!_vampire.CheckAndConsumeBloodCost(ent, actionEntity))
             return;
 
         var center = Transform(ent).Coordinates;
@@ -237,9 +252,7 @@ public sealed class UmbraeSystem : EntitySystem
 
     private void OnEternalDarkness(Entity<VampireComponent> ent, ref VampireEternalDarknessActionEvent args)
     {
-        if (args.Handled
-            || !TryComp<UmbraeComponent>(ent, out var umbrae)
-            || !HasComp<UmbraeComponent>(ent))
+        if (args.Handled || !TryComp<UmbraeComponent>(ent, out var umbrae))
             return;
 
         if (!umbrae.EternalDarknessActive)
@@ -310,12 +323,11 @@ public sealed class UmbraeSystem : EntitySystem
                 continue;
             }
 
-            if (!umbrae.EternalDarknessActive
-                || !ValidateEternalDarknessConditions(uid, comp, umbrae)
-                || !ConsumeEternalDarknessBlood((uid, comp, umbrae), active.BloodPerTick))
-            {
+            var canKeepActive = umbrae.EternalDarknessActive
+                && ValidateEternalDarknessConditions(uid, comp, umbrae)
+                && ConsumeEternalDarknessBlood((uid, comp, umbrae), active.BloodPerTick);
+            if (!canKeepActive)
                 continue;
-            }
 
             ProcessEternalDarknessEffects(uid, active.CurrentTick, active.TempDropInterval, active.FreezeRadius, active.TargetFreezeTemp,
                 active.TempDropPerInterval);
@@ -419,8 +431,7 @@ public sealed class UmbraeSystem : EntitySystem
 
     private void OnShadowAnchor(Entity<VampireComponent> ent, ref VampireShadowAnchorActionEvent args)
     {
-        if (args.Handled
-            || !TryComp<UmbraeComponent>(ent, out var umbrae))
+        if (args.Handled || !TryComp<UmbraeComponent>(ent, out var umbrae))
             return;
 
         if (umbrae.SpawnedShadowAnchorBeacon is not null && Exists(umbrae.SpawnedShadowAnchorBeacon))
@@ -491,7 +502,7 @@ public sealed class UmbraeSystem : EntitySystem
             return;
 
         var coords = GetCoordinates(args.TargetCoordinates);
-        var newBeacon = EntityManager.SpawnEntity(args.BeaconPrototype, coords);
+        var newBeacon = EntityManager.SpawnAttachedTo(args.BeaconPrototype, coords);
         umbrae.SpawnedShadowAnchorBeacon = newBeacon;
         umbrae.ShadowAnchorLoopId++;
         umbrae.ShadowAnchorAutoReturnTime = _timing.CurTime + args.AutoReturnDelay;
@@ -554,9 +565,14 @@ public sealed class UmbraeSystem : EntitySystem
     {
         var uid = ev.Performer;
         var target = ev.Target;
-        if (!HasComp<BibleUserComponent>(target)
-            || TryComp<VampireComponent>(uid, out var vampire) && vampire.FullPower
-            || !HasComp<VampireComponent>(uid))
+
+        if (!HasComp<BibleUserComponent>(target))
+            return;
+
+        if (!TryComp<VampireComponent>(uid, out var vampire))
+            return;
+
+        if (vampire.FullPower)
             return;
 
         _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, PopupType.MediumCaution);
@@ -578,9 +594,7 @@ public sealed class UmbraeSystem : EntitySystem
             }
 
             var target = active.Target;
-            if (!Exists(target)
-                || !HasComp<DamageableComponent>(target)
-                || (TryComp<MobStateComponent>(target, out var mob) && mob.CurrentState == Shared.Mobs.MobState.Dead))
+            if (!IsValidActiveShadowBoxingTarget(target))
             {
                 active.NextTick = now + active.TickInterval;
                 continue;
@@ -610,6 +624,20 @@ public sealed class UmbraeSystem : EntitySystem
 
             active.NextTick = now + active.TickInterval;
         }
+    }
+
+    private bool IsValidActiveShadowBoxingTarget(EntityUid target)
+    {
+        if (!Exists(target))
+            return false;
+
+        if (!HasComp<DamageableComponent>(target))
+            return false;
+
+        if (TryComp<MobStateComponent>(target, out var mob) && mob.CurrentState == MobState.Dead)
+            return false;
+
+        return true;
     }
 
     private void OnFullPower(Entity<UmbraeComponent> ent, ref VampireFullPowerAchievedEvent args)

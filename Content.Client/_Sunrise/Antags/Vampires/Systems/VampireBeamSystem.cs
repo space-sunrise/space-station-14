@@ -140,13 +140,14 @@ public sealed class VampireBeamSystem : EntitySystem
     {
         var key = (kind, source, target);
 
-        if (_activeBeamVisuals.TryGetValue(key, out var existingBeam))
+        var hasExistingBeam = _activeBeamVisuals.TryGetValue(key, out var existingBeam) && Exists(existingBeam);
+
+        if (hasExistingBeam)
         {
-            if (Exists(existingBeam) && !replaceExisting)
+            if (!replaceExisting)
                 return;
 
-            if (Exists(existingBeam))
-                QueueDel(existingBeam);
+            QueueDel(existingBeam);
         }
 
         var beam = Spawn(visualPrototype, Transform(source).Coordinates);
@@ -207,11 +208,11 @@ public sealed class VampireBeamSystem : EntitySystem
 
     private void UpdateBeamVisual(EntityUid beam, EntityUid source, EntityUid target)
     {
-        if (!TryComp<SpriteComponent>(beam, out var sprite)
-            || !_beamVisualQuery.TryComp(beam, out var beamVisual))
-        {
+        if (!TryComp<SpriteComponent>(beam, out var sprite))
             return;
-        }
+
+        if (!_beamVisualQuery.TryComp(beam, out var beamVisual))
+            return;
 
         var sourcePos = _transform.GetWorldPosition(source);
         var targetPos = _transform.GetWorldPosition(target);
