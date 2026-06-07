@@ -6,4 +6,4 @@ ent-SyndicateVisceratorClusterGrenade = висцераторная гранат�
     .desc = Кластерная граната Синдиката, выпускающая рой висцераторов.
 ent-RogueSiliconVisceratorClusterGrenade = висцераторная граната
     .desc = Кластерная граната ренегатских силиконов, выпускающая рой висцераторов.
-    .suffix = RogueSilicon
+    .suffix = NPC, Ренегат Силиконы

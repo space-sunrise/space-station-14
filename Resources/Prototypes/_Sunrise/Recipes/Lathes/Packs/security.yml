@@ -315,9 +315,13 @@
     - MagazineRifleHeavyIncendiary
     - MagazineRifleHeavyAP
     - MagazineRifleHeavyUranium
+    - RifleHeavyMagazineEmpty
     - RifleHeavyMagazineFMJ
     - RifleHeavyMagazineHP
     - RifleHeavyMagazineSP
+    - RifleHeavyMagazineAP
+    - RifleHeavyMagazineIncendiary
+    - RifleHeavyMagazineUranium
   # Shotgun
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium

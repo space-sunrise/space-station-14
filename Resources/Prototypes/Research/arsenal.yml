@@ -328,8 +328,10 @@
   # Sunrise-end
   technologyPrerequisites:
   - BasicShuttleArmament
+  # Sunrise-start
   - ArmorPenetrationMunitions
   - DraconicMunitions
   - UraniumMunitions
+  # Sunrise-end
   radioChannels: # Sunrise-Add
   - Security

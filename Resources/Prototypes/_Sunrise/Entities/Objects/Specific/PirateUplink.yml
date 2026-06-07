@@ -254,3 +254,36 @@
   - type: Tag
     tags:
     - Commission
+
+- type: entity
+  parent: ComputerPirateUplink
+  id: ComputerPirateUplinkExpedition
+  suffix: Expedition
+  components:
+  - type: RadarBlip
+    color: "#ffb000"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false
+
+- type: entity
+  parent: ComputerPirateExchanger
+  id: ComputerPirateExchangerExpedition
+  suffix: Expedition
+  components:
+  - type: RadarBlip
+    color: "#ffb000"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false
+
+- type: entity
+  parent: ComputerPirateExchangerWallmount
+  id: ComputerPirateExchangerWallmountExpedition
+  suffix: Expedition
+  components:
+  - type: RadarBlip
+    color: "#ffb000"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false
