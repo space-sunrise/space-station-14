@@ -27,10 +27,8 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using Content.Server.Discord;
 using Content.Shared._Sunrise.SunriseCCVars;
-using JetBrains.Annotations;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
-using Content.Sunrise.Interfaces.Server;
 
 namespace Content.Server.Administration.Managers;
 
@@ -53,8 +51,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     // Sunrise added start - поддержка прокси
     [Dependency] private readonly DiscordWebhook _discord = default!;
     // Sunrise added end
-
-    private IServerServiceAuthManager? _serviceAuth;
 
     private ISawmill _sawmill = default!;
 
@@ -81,6 +77,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         // Sunrise added start - поддержка прокси
         _httpClient = _discord.GetClient();
         // Sunrise added end
+        // Sunrise added start - необязательные ban webhook integrations живут в Sunrise partial.
+        InitializeSunriseBanWebhookHooks();
+        // Sunrise added end
 
         _netManager.RegisterNetMessage<MsgRoleBans>();
 
@@ -97,8 +96,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _cfg.OnValueChanged(SunriseCCVars.DiscordBanWebhook, OnWebhookChanged, true);
         _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.IpWhitelist, OnIpWhitelistChanged, true);
-
-        IoCManager.Instance!.TryResolveType(out _serviceAuth);
     }
 
     private void OnServerNameChanged(string obj)
@@ -264,11 +261,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
 
-        var ban = await _db.GetServerBanAsync(null, target, null, null);
-        if (ban != null)
-            SendWebhook(await GenerateBanPayload(ban, minutes));
-
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
+        // Sunrise added start - получаем сохраненные данные бана перед отправкой Discord webhook.
+        _ = SendServerBanWebhookBestEffort(banDef, minutes);
+        // Sunrise added end
     }
 
     private void KickMatchingConnectedPlayers(ServerBanDef def, string source)
@@ -427,32 +423,39 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     public async void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
     {
-        _systems.TryGetEntitySystem(out GameTicker? ticker);
-        int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
-        var playtime = target == null ? TimeSpan.Zero : (await _db.GetPlayTimes(target.Value)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall)?.TimeSpent ?? TimeSpan.Zero;
-
-        DateTimeOffset? expires = null;
-        if (minutes > 0)
+        try
         {
-            expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
+            _systems.TryGetEntitySystem(out GameTicker? ticker);
+            int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
+            var playtime = target == null ? TimeSpan.Zero : (await _db.GetPlayTimes(target.Value)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall)?.TimeSpent ?? TimeSpan.Zero;
+
+            DateTimeOffset? expires = null;
+            if (minutes > 0)
+            {
+                expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
+            }
+
+            var banDef = new ServerRoleBanDef(
+                null,
+                target,
+                addressRange,
+                hwid,
+                timeOfBan,
+                expires,
+                roundId,
+                playtime,
+                reason,
+                severity,
+                banningAdmin,
+                null,
+                "plug");
+
+            await SendWebhook(await GenerateJobBanPayload(banDef, roles, minutes));
         }
-
-        var banDef = new ServerRoleBanDef(
-            null,
-            target,
-            addressRange,
-            hwid,
-            timeOfBan,
-            expires,
-            roundId,
-            playtime,
-            reason,
-            severity,
-            banningAdmin,
-            null,
-            "plug");
-
-        SendWebhook(await GenerateJobBanPayload(banDef, roles, minutes));
+        catch (Exception ex)
+        {
+            _sawmill.Warning("Failed to send role ban webhook: {Message}", ex.Message);
+        }
     }
 
     public async Task<string> PardonRoleBan(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
@@ -600,7 +603,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     }
 
     #region Webhook
-    private async void SendWebhook(WebhookPayload payload)
+    private async Task SendWebhook(WebhookPayload payload)
     {
         if (_webhookUrl == string.Empty) return;
 
@@ -648,41 +651,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         foreach (var role in roles)
             rolesString += $"\n> `{role}`";
 
-        string? adminDiscordId = null;
-        string? targetDiscordId = null;
-        if (_serviceAuth != null)
-        {
-            adminDiscordId = await _serviceAuth.GetDiscordUserId(banDef.BanningAdmin);
-            targetDiscordId = await _serviceAuth.GetDiscordUserId(banDef.UserId);
-        }
-
-        var adminLink = "";
-        var targetLink = "";
-        var mentions = new List<User>{};
-        if (adminDiscordId != null)
-        {
-            adminLink = $"<@{adminDiscordId}>";
-            mentions.Add(new User(){Id = adminDiscordId});
-        }
-
-        if (targetDiscordId != null)
-        {
-            targetLink = $"<@{targetDiscordId}>";
-            mentions.Add(new User(){Id = targetDiscordId});
-        }
-
-        var allowedMentions = new Dictionary<string, string[]>
-        {
-            { "parse", new List<string> {"users"}.ToArray() }
-        };
+        // Sunrise added start - необязательные Discord identity mentions разрешаются в Sunrise partial.
+        var mentionData = await GetSunriseBanWebhookMentions(banDef.BanningAdmin, banDef.UserId);
+        // Sunrise added end
 
         if (banDef.ExpirationTime != null && minutes != null)
             return new WebhookPayload
             {
                 Username = _webhookName,
                 AvatarUrl = _webhookAvatarUrl,
-                AllowedMentions = allowedMentions,
-                Mentions = mentions,
+                AllowedMentions = mentionData.AllowedMentions,
+                Mentions = mentionData.Mentions,
                 Embeds = new List<Embed>
                 {
                     new()
@@ -690,8 +669,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Description = Loc.GetString(
                             "server-role-ban-string",
                             ("targetName", targetName),
-                            ("targetLink", targetLink),
-                            ("adminLink", adminLink),
+                            ("targetLink", mentionData.TargetLink),
+                            ("adminLink", mentionData.AdminLink),
                             ("adminName", adminName),
                             ("TimeNow", timeNow),
                             ("roles", rolesString),
@@ -721,8 +700,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             {
                 Username = _webhookName,
                 AvatarUrl = _webhookAvatarUrl,
-                AllowedMentions = allowedMentions,
-                Mentions = mentions,
+                AllowedMentions = mentionData.AllowedMentions,
+                Mentions = mentionData.Mentions,
                 Embeds = new List<Embed>
                 {
                     new()
@@ -730,8 +709,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Description = Loc.GetString(
                             "server-perma-role-ban-string",
                             ("targetName", targetName),
-                            ("targetLink", targetLink),
-                            ("adminLink", adminLink),
+                            ("targetLink", mentionData.TargetLink),
+                            ("adminLink", mentionData.AdminLink),
                             ("adminName", adminName),
                             ("TimeNow", timeNow),
                             ("roles", rolesString),
@@ -781,41 +760,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             DateTime.UtcNow,
             TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
 
-        string? adminDiscordId = null;
-        string? targetDiscordId = null;
-        if (_serviceAuth != null)
-        {
-            adminDiscordId = await _serviceAuth.GetDiscordUserId(banDef.BanningAdmin);
-            targetDiscordId = await _serviceAuth.GetDiscordUserId(banDef.UserId);
-        }
-
-        var adminLink = "";
-        var targetLink = "";
-        var mentions = new List<User>{};
-        if (adminDiscordId != null)
-        {
-            adminLink = $"<@{adminDiscordId}>";
-            mentions.Add(new User(){Id = adminDiscordId});
-        }
-
-        if (targetDiscordId != null)
-        {
-            targetLink = $"<@{targetDiscordId}>";
-            mentions.Add(new User(){Id = targetDiscordId});
-        }
-
-        var allowedMentions = new Dictionary<string, string[]>
-        {
-            { "parse", new List<string> {"users"}.ToArray() }
-        };
+        // Sunrise added start - необязательные Discord identity mentions разрешаются в Sunrise partial.
+        var mentionData = await GetSunriseBanWebhookMentions(banDef.BanningAdmin, banDef.UserId);
+        // Sunrise added end
 
         if (banDef.ExpirationTime != null && minutes != null)
             return new WebhookPayload
             {
                 Username = _webhookName,
                 AvatarUrl = _webhookAvatarUrl,
-                AllowedMentions = allowedMentions,
-                Mentions = mentions,
+                AllowedMentions = mentionData.AllowedMentions,
+                Mentions = mentionData.Mentions,
                 Embeds = new List<Embed>
                 {
                     new()
@@ -823,8 +778,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Description = Loc.GetString(
                             "server-time-ban-string",
                             ("targetName", targetName),
-                            ("targetLink", targetLink),
-                            ("adminLink", adminLink),
+                            ("targetLink", mentionData.TargetLink),
+                            ("adminLink", mentionData.AdminLink),
                             ("adminName", adminName),
                             ("TimeNow", timeNow),
                             ("expiresString", expiresString),
@@ -853,8 +808,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             {
                 Username = _webhookName,
                 AvatarUrl = _webhookAvatarUrl,
-                AllowedMentions = allowedMentions,
-                Mentions = mentions,
+                AllowedMentions = mentionData.AllowedMentions,
+                Mentions = mentionData.Mentions,
                 Embeds = new List<Embed>
                 {
                     new()
@@ -862,8 +817,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Description = Loc.GetString(
                             "server-perma-ban-string",
                             ("targetName", targetName),
-                            ("targetLink", targetLink),
-                            ("adminLink", adminLink),
+                            ("targetLink", mentionData.TargetLink),
+                            ("adminLink", mentionData.AdminLink),
                             ("adminName", adminName),
                             ("TimeNow", timeNow),
                             ("reason", reason),
@@ -1035,8 +990,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         {
         }
     }
+
     #endregion
 
-    [UsedImplicitly]
-    private sealed record DiscordUserResponse(string UserId, string Username);
 }

@@ -379,7 +379,7 @@ namespace Content.Server.GameTicking
                 return;
 
             _startingRound = true;
-            // Sunrise added start - roundstart rule conditions depend on round duration from the real start point.
+            // Sunrise added start - условия roundstart rules зависят от длительности раунда от реальной точки старта.
             RoundStartTimeSpan = _gameTiming.CurTime;
             // Sunrise added end
 
@@ -461,7 +461,7 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
-            // Sunrise edit start - moved above StartGamePresetRules to avoid incorrect RoundDurationCondition during roundstart.
+            // Sunrise edit start - перенесено выше StartGamePresetRules, чтобы RoundDurationCondition не ошибался на roundstart.
             // RoundStartTimeSpan = _gameTiming.CurTime;
             // Sunrise edit end
             SendStatusToAll();
@@ -645,7 +645,7 @@ namespace Content.Server.GameTicking
                 sound
             );
             RaiseNetworkEvent(roundEndMessageEvent);
-            // Sunrise added start - scoreboard music is separate from round-restart sounds.
+            // Sunrise added start - музыка scoreboard отделена от round-restart sounds.
             RaiseRoundEndMusicEvent(roundDuration);
             // Sunrise added end
             RaiseLocalEvent(roundEndMessageEvent);
@@ -721,7 +721,7 @@ namespace Content.Server.GameTicking
             ResettingCleanup();
             IncrementRoundNumber();
 
-            // Sunrise added start - let systems send fresh lobby-only state after cleanup finishes.
+            // Sunrise added start - даем системам отправить свежий lobby-only state после завершения cleanup.
             RaiseRoundLobbyReadyEvent();
             // Sunrise added end
 

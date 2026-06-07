@@ -76,7 +76,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
         CacheDecals();
 
-        InitSunriseAtmosCVars(); // Sunrise edit - Atmos CVars
+        InitSunriseAtmosCVars(); // Sunrise edit - сивары Atmos
     }
 
     public override void Shutdown()
@@ -85,7 +85,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
         ShutdownCommands();
 
-        ShutdownSunriseAtmosCVars(); // Sunrise edit - Atmos CVars
+        ShutdownSunriseAtmosCVars(); // Sunrise edit - сивары Atmos
     }
 
     private void OnTileChanged(ref TileChangedEvent ev)

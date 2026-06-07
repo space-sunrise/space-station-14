@@ -6,83 +6,83 @@ namespace Content.Server._Sunrise.Shuttles.Components;
 public sealed partial class SunriseArrivalsShuttleComponent : Component
 {
     /// <summary>
-    /// The station this shuttle is heading to.
+    /// Станция, к которой направляется этот шаттл.
     /// </summary>
     public EntityUid Station;
 
     /// <summary>
-    /// The player's mob currently on the shuttle.
+    /// Моб игрока, сейчас находящийся на шаттле.
     /// </summary>
     public EntityUid? Player;
 
     /// <summary>
-    /// Current state of the shuttle lifecycle.
+    /// Текущее состояние жизненного цикла шаттла.
     /// </summary>
     public SunriseArrivalsShuttleState State = SunriseArrivalsShuttleState.Queued;
 
     /// <summary>
-    /// Time when the shuttle was created (for failsafe timeout).
+    /// Время создания шаттла для таймаута аварийной защиты.
     /// </summary>
     [AutoPausedField]
     public TimeSpan SpawnTime;
 
     /// <summary>
-    /// Time when the shuttle docked at the station.
+    /// Время стыковки шаттла со станцией.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan? DockTime;
 
     /// <summary>
-    /// The attendant entity on the shuttle that provides voice feedback.
+    /// Сущность сопровождающего на шаттле, которая дает голосовые ответы.
     /// </summary>
     public EntityUid? Attendant;
 
     /// <summary>
-    /// Whether the player has been greeted by the attendant.
+    /// Был ли игрок уже поприветствован сопровождающим.
     /// </summary>
     public bool Greeted;
 
     /// <summary>
-    /// Stored player name for the welcome message.
+    /// Сохраненное имя игрока для приветственного сообщения.
     /// </summary>
     public string PlayerName = string.Empty;
 
     /// <summary>
-    /// Stored job name for the welcome message.
+    /// Сохраненное название должности для приветственного сообщения.
     /// </summary>
     public string PlayerJob = string.Empty;
 
     /// <summary>
-    /// Time when the welcome message should be sent.
+    /// Время, когда нужно отправить приветственное сообщение.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan? GreetTime;
 
     /// <summary>
-    /// Whether the evac warning has been issued.
+    /// Было ли уже выдано предупреждение об эвакуации.
     /// </summary>
     public bool Warned;
 
     /// <summary>
-    /// Whether the steward has warned the player about blocked docks.
+    /// Предупреждал ли стюард игрока о заблокированных docks.
     /// </summary>
     public bool DockBlockedWarned;
 
     /// <summary>
-    /// Time when the shuttle started leaving (for delayed delete).
+    /// Время, когда шаттл начал улетать, для отложенного удаления.
     /// </summary>
     [AutoPausedField]
     public TimeSpan? LeaveStartTime;
 
     /// <summary>
-    /// Time when the player was last detected as having left the shuttle.
-    /// Used for a short grace period before departure so the airlock doesn't crush them.
+    /// Время, когда игрок в последний раз был замечен вне шаттла.
+    /// Используется для короткой льготной паузы перед отправлением, чтобы шлюз не раздавил игрока.
     /// </summary>
     [AutoPausedField]
     public TimeSpan? PlayerExitTime;
 
     /// <summary>
-    /// Docks reserved by this shuttle on the target station.
+    /// Docks, зарезервированные этим шаттлом на целевой станции.
     /// </summary>
     public List<EntityUid> ReservedDocks = new();
 }

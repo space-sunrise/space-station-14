@@ -95,8 +95,8 @@ public abstract class SharedCarpQueenSystem : EntitySystem
     }
 
     /// <summary>
-    /// Converts CarpQueenOrderType to RatKingOrderType for HTN compatibility.
-    /// HTN compounds use RatKingOrderType, so we need to map our order types to them.
+    /// Конвертирует CarpQueenOrderType в RatKingOrderType для совместимости с HTN.
+    /// HTN-компаунды используют RatKingOrderType, поэтому приказы нужно сопоставить с ними.
     /// </summary>
     public static RatKingOrderType ConvertToRatKingOrder(CarpQueenOrderType orderType)
     {
@@ -110,5 +110,4 @@ public abstract class SharedCarpQueenSystem : EntitySystem
         };
     }
 }
-
 
