@@ -116,7 +116,7 @@
 #USSP Officer Soldier
 - type: job
   id: USSPOfficerAlt
-  name: job-name-usspofficer
+  name: job-name-ussp-officer-alt
   description: job-description-usspsoldier
   playTimeTracker: JobUSSPOfficeraAlt
   setPreference: false

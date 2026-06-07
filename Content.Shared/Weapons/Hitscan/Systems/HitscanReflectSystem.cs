@@ -43,7 +43,6 @@ public sealed class HitscanReflectSystem : EntitySystem
             ShotDirection = ev.Direction,
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,
-            OutputTrace = data.OutputTrace, // Starlight
         };
 
         RaiseLocalEvent(hitscan, ref hitFiredEvent);

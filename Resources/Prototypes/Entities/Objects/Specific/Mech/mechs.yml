@@ -120,6 +120,8 @@
         type: MechBoundUserInterface
   - type: MeleeWeapon
     hidden: true
+    animation: WeaponArcMechDisabled # Sunrise-Edit
+    wideAnimation: WeaponArcMechDisabled # Sunrise-Edit
     attackRate: 0.75
     damage:
       types:

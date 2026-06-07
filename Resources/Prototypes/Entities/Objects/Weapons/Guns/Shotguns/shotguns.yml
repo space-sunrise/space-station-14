@@ -142,7 +142,7 @@
 
 - type: entity
   name: double-barreled shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityBartenderContraband]
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityBartenderContraband] # Sunrise-Edit
   id: WeaponShotgunDoubleBarreled
   description: An immortal classic. Uses .50 shotgun shells.
   components:
@@ -161,6 +161,23 @@
     graph: ShotgunSawn
     node: start
     deconstructionTarget: null
+  # Sunrise-Start
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+      - SpeedLoaderShotgun
+    proto: ShellShotgun
+    capacity: 2
+    chambers: [ True, True ]
+    ammoSlots: [ null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
+  # Sunrise-End
 
 - type: entity
   name: double-barreled shotgun
@@ -224,7 +241,7 @@
 
 - type: entity
   name: sawn-off shotgun
-  parent: [ BaseWeaponShotgun, BaseSecurityBartenderContraband ]
+  parent: [ BaseWeaponShotgunAny, BaseSecurityBartenderContraband ] # Sunrise-Edit
   id: WeaponShotgunSawn
   description: Groovy! Uses .50 shotgun shells.
   components: # needs to be super inaccurate because you don't need to wield it
@@ -253,6 +270,34 @@
     graph: ShotgunSawn
     node: shotgunsawn
     deconstructionTarget: null
+  # Sunrise-Start
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+      - SpeedLoaderShotgun
+    proto: ShellShotgun
+    capacity: 2
+    chambers: [ True, True ]
+    ammoSlots: [ null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 3
+        staminaMultiplier: 20
+      Felinid:
+        knockback: 1.5 #half of what resomi take
+        staminaMultiplier: 20
+      AnomalyHost:
+        knockback: 0.4
+        staminaMultiplier: 15
+  # Sunrise-End
 
 - type: entity
   name: sawn-off shotgun

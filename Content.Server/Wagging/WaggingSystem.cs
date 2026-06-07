@@ -80,9 +80,18 @@ public sealed class WaggingSystem : EntitySystem
             var currentMarkingId = markings[idx].MarkingId;
             string newMarkingId;
 
+            // Sunrise-Edit
             if (wagging.Wagging)
             {
-                newMarkingId = $"{currentMarkingId}{wagging.Suffix}";
+                var animId = $"{currentMarkingId}{wagging.Suffix}";
+                if (_prototype.HasIndex<MarkingPrototype>(animId))
+                {
+                    newMarkingId = animId;
+                }
+                else
+                {
+                    continue;
+                }
             }
             else
             {
@@ -92,15 +101,8 @@ public sealed class WaggingSystem : EntitySystem
                 }
                 else
                 {
-                    newMarkingId = currentMarkingId;
-                    Log.Warning($"Unable to revert wagging for {currentMarkingId}");
+                    continue;
                 }
-            }
-
-            if (!_prototype.HasIndex<MarkingPrototype>(newMarkingId))
-            {
-                Log.Warning($"{ToPrettyString(uid)} tried toggling wagging but {newMarkingId} marking doesn't exist");
-                continue;
             }
 
             _humanoidAppearance.SetMarkingId(uid, MarkingCategories.Tail, idx, newMarkingId,

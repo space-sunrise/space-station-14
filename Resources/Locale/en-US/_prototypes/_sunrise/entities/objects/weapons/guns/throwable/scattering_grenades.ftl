@@ -2,3 +2,7 @@ ent-ClusterSyndyFlashGrenade = Godkiss
     .desc = The probability that you will be banned for using this grenade is 99.9%.
 ent-SyndyClusterGrenade = syndyclustergrenade
     .desc = If you don't care about accuracy, then this choice is for you.
+ent-SyndicateVisceratorClusterGrenade = viscerator cluster grenade
+    .desc = A syndicate cluster grenade that releases a swarm of viscerator drones.
+ent-RogueSiliconVisceratorClusterGrenade = viscerator cluster grenade
+    .desc = A rogue silicon cluster grenade that releases a swarm of viscerator drones.

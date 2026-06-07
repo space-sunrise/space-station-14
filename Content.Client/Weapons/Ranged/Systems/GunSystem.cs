@@ -1,74 +1,49 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client.Animations;
-using Content.Client.DisplacementMap;
 using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
-using Content.Shared._Starlight.Effects;
-using Content.Shared._Starlight.Weapon.Components;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Camera;
 using Content.Shared.CombatMode;
-using Content.Shared.Mech.Components;
+using Content.Shared.Damage;
+using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared.Starlight.Utility;
 using Robust.Client.Animations;
-using Robust.Client.ComponentTrees;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Animations;
+using Robust.Shared.Audio;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Robust.Shared.Configuration;
-using Content.Shared.Damage;
-using Robust.Shared.Audio;
-using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
-// There’ve been so many radical changes here that you can basically consider the entire file as being under the Starlight folder now.
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IStateManager _state = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly AnimationPlayerSystem _animPlayer = default!;
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
-    [ValidatePrototypeId<EntityPrototype>]
-    public const string HitscanProto = "HitscanEffect";
-    public const string ImpactProto = "ImpactEffect";
-    private DisplacementEffect _displacementEffect = null!;
-    private bool _tracesEnabled = true;
-    public override void Shutdown()
-    {
-        base.Shutdown();
-        _cfg.UnsubValueChanged(SunriseCCVars.TracesEnabled, OnTracesEnabledChanged);
-    }
-    private void OnTracesEnabledChanged(bool tracesEnabled)
-        => _tracesEnabled = tracesEnabled;
+    public static readonly EntProtoId HitscanProto = "HitscanEffect";
 
     public bool SpreadOverlay
     {
@@ -103,8 +78,6 @@ public sealed partial class GunSystem : SharedGunSystem
     public override void Initialize()
     {
         base.Initialize();
-        _cfg.OnValueChanged(SunriseCCVars.TracesEnabled, OnTracesEnabledChanged, true);
-
         UpdatesOutsidePrediction = true;
         SubscribeLocalEvent<AmmoCounterComponent, ItemStatusCollectMessage>(OnAmmoCounterCollect);
         SubscribeAllEvent<MuzzleFlashEvent>(OnMuzzleFlash);
@@ -114,8 +87,6 @@ public sealed partial class GunSystem : SharedGunSystem
 
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
-
-        _displacementEffect = _proto.Index<DisplacementEffect>("displacementEffect");
     }
 
 
@@ -128,228 +99,65 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void OnHitscan(HitscanEvent ev)
     {
-        foreach (var trace in ev.Traces)
+        // ALL I WANT IS AN ANIMATED EFFECT
+
+        // TODO EFFECTS
+        // This is very jank
+        // because the effect consists of three unrelatd entities, the hitscan beam can be split appart.
+        // E.g., if a grid rotates while part of the beam is parented to the grid, and part of it is parented to the map.
+        // Ideally, there should only be one entity, with one sprite that has multiple layers
+        // Or at the very least, have the other entities parented to the same entity to make sure they stick together.
+        foreach (var a in ev.Sprites)
         {
-            var delay = 0f;
-            delay = FireEffect(ev, delay, trace);
-        }
-    }
+            if (a.Sprite is not SpriteSpecifier.Rsi rsi)
+                continue;
 
-    private float FireEffect(HitscanEvent visuals, float delay, HitscanTrace trace)
-    {
-        //The real bullet speed is so high that the bullet isn’t visible at all. So, let's slow it down 5x.
-        var length = trace.Distance / (visuals.Speed / 5000);
-        if (trace.MuzzleCoordinates is { } muzzleCoordinates)
-        {
-            if (visuals.MuzzleFlash is { } mozzle && (_tracesEnabled || visuals.Bullet is null))
-                RenderFlash(muzzleCoordinates, trace.Angle, mozzle, 1f, false, false, length, delay);
+            var coords = GetCoordinates(a.coordinates);
 
-            if (visuals.Bullet is { } bullet)
-                RenderBullet(muzzleCoordinates, trace.Angle, bullet, trace.Distance - 1.5f, length, delay);
-        }
-        if (visuals.TravelFlash is { } travel && trace.TravelCoordinates is { } travelCoordinates && (_tracesEnabled || visuals.Bullet is null))
-            RenderFlash(travelCoordinates, trace.Angle, travel, trace.Distance - 1.5f, true, false, length, delay);
-        delay += length;
+            if (!TryComp(coords.EntityId, out TransformComponent? relativeXform))
+                continue;
 
-        if ((visuals.ImpactFlash is not null || trace.ImpactedEnt is not null) && (_tracesEnabled || visuals.Bullet is null))
-            Timer.Spawn((int)delay, () =>
+            var ent = Spawn(HitscanProto, coords);
+            var sprite = Comp<SpriteComponent>(ent);
+
+            var xform = Transform(ent);
+            var targetWorldRot = a.angle + _xform.GetWorldRotation(relativeXform);
+            var delta = targetWorldRot - _xform.GetWorldRotation(xform);
+            _xform.SetLocalRotationNoLerp(ent, xform.LocalRotation + delta, xform);
+
+            sprite[EffectLayers.Unshaded].AutoAnimated = false;
+            _sprite.LayerSetSprite((ent, sprite), EffectLayers.Unshaded, rsi);
+            _sprite.LayerSetRsiState((ent, sprite), EffectLayers.Unshaded, rsi.RsiState);
+
+            // Sunrise edit start - apply custom scale and color from hitscan event
+            var baseScale = a.Scale ?? Vector2.One;
+            _sprite.SetScale((ent, sprite), new Vector2(a.Distance * baseScale.X, baseScale.Y));
+            if (a.Color != null)
             {
-                if (visuals.ImpactFlash is { } impact)
-                    RenderFlash(trace.ImpactCoordinates, trace.Angle, impact, 1f, false, true, length, delay);
+                _sprite.LayerSetColor((ent, sprite), EffectLayers.Unshaded, a.Color.Value);
+            }
+            // Sunrise edit end
 
-                if (trace.ImpactedEnt is { } netEnt && GetEntity(netEnt) is EntityUid ent)
-                    RenderDisplacementImpact(GetCoordinates(trace.ImpactCoordinates), trace.Angle, ent);
-            });
-        return delay;
-    }
+            sprite[EffectLayers.Unshaded].Visible = true;
 
-    private void RenderDisplacementImpact(EntityCoordinates coords, Angle angle, EntityUid target)
-    {
-        if (!TryComp<SpriteComponent>(target, out var sprite))
-            return;
-
-        if (!TryComp(coords.EntityId, out TransformComponent? relativeXform))
-            return;
-
-        if (!sprite!.AllLayers.TryFirstOrDefault(x => (x.ActualRsi ?? x.Rsi) != null && x.RsiState != null, out var layer))
-            return;
-
-        if (layer.PixelSize.X != 32 || layer.PixelSize.Y != 32)
-            return;
-
-        var ent = Spawn(ImpactProto, coords);
-        var spriteComp = Comp<SpriteComponent>(ent);
-
-        var xform = Transform(ent);
-        var targetWorldRot = angle + _xform.GetWorldRotation(relativeXform);
-        var delta = targetWorldRot - _xform.GetWorldRotation(xform);
-        _xform.SetLocalRotationNoLerp(ent, xform.LocalRotation + delta, xform);
-
-        _sprite.LayerSetRsi((ent, spriteComp), "unshaded", (layer!.ActualRsi ?? layer.Rsi)!);
-        _sprite.LayerSetRsiState((ent, spriteComp), "unshaded", layer.RsiState);
-        spriteComp["unshaded"].Visible = true;
-        _displacement.TryAddDisplacement(_displacementEffect.Displacement, (ent, spriteComp), 0, "unshaded", out _);
-    }
-    private void RenderBullet(NetCoordinates coordinates, Angle angle, ExtendedSpriteSpecifier sprite, float distance, float length, float delay)
-    {
-        if (sprite.Sprite is not SpriteSpecifier.Rsi rsi)
-            return;
-
-        var coords = GetCoordinates(coordinates);
-
-        if (!TryComp(coords.EntityId, out TransformComponent? relativeXform))
-            return;
-
-        var ent = Spawn(HitscanProto, coords);
-        var spriteComp = Comp<SpriteComponent>(ent);
-        var spriteEnt = (ent, spriteComp);
-
-        var xform = Transform(ent);
-        var targetWorldRot = angle + _xform.GetWorldRotation(relativeXform);
-        var delta = targetWorldRot - _xform.GetWorldRotation(xform);
-        _xform.SetLocalRotationNoLerp(ent, xform.LocalRotation + delta, xform);
-
-        spriteComp[EffectLayers.Unshaded].AutoAnimated = false;
-        spriteComp[EffectLayers.Unshaded].Visible = true;
-        _sprite.LayerSetSprite(spriteEnt, EffectLayers.Unshaded, rsi);
-        _sprite.LayerSetRsiState(spriteEnt, EffectLayers.Unshaded, rsi.RsiState);
-        _sprite.SetOffset(spriteEnt, new Vector2(1f, 0f));
-        _sprite.SetRotation(spriteEnt, 1.5708f);
-        _sprite.SetColor(spriteEnt, sprite.SpriteColor);
-        _sprite.SetVisible(spriteEnt, delay == 0);
-
-        var time = delay + length;
-
-        var despawn = Comp<TimedDespawnComponent>(ent);
-        despawn.Lifetime = (time / 1000) + 1000;
-
-        if (delay != 0)
-            Timer.Spawn((int)delay, () =>
+            var anim = new Animation()
             {
-                if (TryComp(ent, out spriteComp))
-                    _sprite.SetVisible((ent, spriteComp), true);
-            });
-
-        Timer.Spawn((int)time, () =>
-        {
-            if (TryComp(ent, out spriteComp))
-                _sprite.SetVisible((ent, spriteComp), false);
-        });
-
-        var anim = new Animation()
-        {
-            Length = TimeSpan.FromMilliseconds(time),
-            AnimationTracks =
-                {
-                    new AnimationTrackComponentProperty()
-                    {
-                        ComponentType = typeof(SpriteComponent),
-                        Property = nameof(SpriteComponent.Offset),
-                        KeyFrames =
-                        {
-                            new AnimationTrackProperty.KeyFrame(new Vector2(1f, 0f), delay / 1000),
-                            new AnimationTrackProperty.KeyFrame(new Vector2(distance + 1.0f, 0f), time / 1000),
-                            new AnimationTrackProperty.KeyFrame(new Vector2(distance + 1.0f, 0f), (time + 1000) / 1000),
-                        },
-                        InterpolationMode = AnimationInterpolationMode.Linear
-                    }
-                }
-        };
-
-        _animPlayer.Play(ent, anim, "hitscan-effect");
-    }
-    private void RenderFlash(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float distance, bool travel, bool end, float length, float delay)
-    {
-        if (end) length = 0;
-        var time = delay + length + 100;
-
-        if (sprite is not SpriteSpecifier.Rsi rsi)
-            return;
-
-        var coords = GetCoordinates(coordinates);
-
-        if (!TryComp(coords.EntityId, out TransformComponent? relativeXform))
-            return;
-
-        var ent = Spawn(HitscanProto, coords);
-        var spriteComp = Comp<SpriteComponent>(ent);
-        var spriteEnt = (ent, spriteComp);
-
-        var xform = Transform(ent);
-        var targetWorldRot = angle + _xform.GetWorldRotation(relativeXform);
-        var delta = targetWorldRot - _xform.GetWorldRotation(xform);
-        _xform.SetLocalRotationNoLerp(ent, xform.LocalRotation + delta, xform);
-
-        spriteComp[EffectLayers.Unshaded].AutoAnimated = false;
-        _sprite.LayerSetSprite(spriteEnt, EffectLayers.Unshaded, rsi);
-        _sprite.LayerSetRsiState(spriteEnt, EffectLayers.Unshaded, rsi.RsiState);
-        if (travel)
-        {
-            _sprite.SetScale(spriteEnt, new Vector2(0.05f, 0.5f));
-            _sprite.SetOffset(spriteEnt, new Vector2(distance * -0.5f, 0f));
-        }
-        else
-            _sprite.SetScale(spriteEnt, new Vector2(1f, 0.5f));
-
-        spriteComp[EffectLayers.Unshaded].Visible = true;
-
-        var despawn = Comp<TimedDespawnComponent>(ent);
-        despawn.Lifetime = (time / 1000) + 1000;
-
-        if (delay != 0)
-            Timer.Spawn((int)delay, () => spriteComp.Visible = true);
-
-        Timer.Spawn((int)time, () =>
-        {
-            if (!Deleted(ent))
-                _sprite.SetVisible(spriteEnt, false);
-        });
-
-        var anim = new Animation()
-        {
-            Length = TimeSpan.FromMilliseconds(time),
-            AnimationTracks =
+                Length = TimeSpan.FromSeconds(0.48f),
+                AnimationTracks =
                 {
                     new AnimationTrackSpriteFlick()
                     {
                         LayerKey = EffectLayers.Unshaded,
                         KeyFrames =
                         {
-                            new AnimationTrackSpriteFlick.KeyFrame(rsi.RsiState, (time - 100) / 1000),
+                            new AnimationTrackSpriteFlick.KeyFrame(rsi.RsiState, 0f),
                         }
                     }
                 }
-        };
+            };
 
-        if (travel)
-        {
-            anim.AnimationTracks.Add(new AnimationTrackComponentProperty()
-            {
-                ComponentType = typeof(SpriteComponent),
-                Property = nameof(SpriteComponent.Scale),
-                KeyFrames =
-                        {
-                            new AnimationTrackProperty.KeyFrame(new Vector2(0.05f, 0.5f), delay / 1000),
-                            new AnimationTrackProperty.KeyFrame(new Vector2(distance, 0.5f), (time - 100) / 1000),
-                            new AnimationTrackProperty.KeyFrame(new Vector2(distance, 0.5f), time / 1000),
-                        },
-                InterpolationMode = AnimationInterpolationMode.Cubic
-            });
-            anim.AnimationTracks.Add(new AnimationTrackComponentProperty()
-            {
-                ComponentType = typeof(SpriteComponent),
-                Property = nameof(SpriteComponent.Offset),
-                KeyFrames =
-                        {
-                            new AnimationTrackProperty.KeyFrame(new Vector2(distance * -0.5f, 0f), delay / 1000),
-                            new AnimationTrackProperty.KeyFrame(new Vector2(0, 0f), (time - 100) / 1000),
-                            new AnimationTrackProperty.KeyFrame(new Vector2(0, 0f), time / 1000),
-                        },
-                InterpolationMode = AnimationInterpolationMode.Cubic
-            });
+            _animPlayer.Play(ent, anim, "hitscan-effect");
         }
-
-        _animPlayer.Play(ent, anim, "hitscan-effect");
     }
 
     public override void Update(float frameTime)
@@ -367,11 +175,6 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         var entity = entityNull.Value;
-
-        if (TryComp<MechPilotComponent>(entity, out var mechPilot))
-        {
-            entity = mechPilot.Mech;
-        }
 
         if (!TryGetGun(entity, out var gunUid, out var gun))
         {
@@ -403,25 +206,15 @@ public sealed partial class GunSystem : SharedGunSystem
         // Define target coordinates relative to gun entity, so that network latency on moving grids doesn't fuck up the target location.
         var coordinates = TransformSystem.ToCoordinates(entity, mousePos);
 
-        // Sunrise-Start
-        var targets = new List<NetEntity>();
+        NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)
-        {
-            var spriteTree = EntityManager.EntitySysManager.GetEntitySystem<SpriteTreeSystem>();
-            var entities = spriteTree.QueryAabb(mousePos.MapId, Box2.CenteredAround(mousePos.Position, new Vector2(1.5f, 1.5f)));
-
-            foreach (var ent in entities)
-            {
-                targets.Add(GetNetEntity(ent.Uid));
-            }
-        }
-        // Sunrise-End
+            target = GetNetEntity(screen.GetClickedEntity(mousePos));
 
         Log.Debug($"Sending shoot request tick {Timing.CurTick} / {Timing.CurTime}");
 
         RaisePredictiveEvent(new RequestShootEvent
         {
-            Targets = targets, // Sunrise-Edit
+            Target = target,
             Coordinates = GetNetCoordinates(coordinates),
             Gun = GetNetEntity(gunUid),
         });
@@ -450,28 +243,9 @@ public sealed partial class GunSystem : SharedGunSystem
                 continue;
             }
 
+            // TODO: Clean this up in a gun refactor at some point - too much copy pasting
             switch (shootable)
             {
-                //🌟Starlight🌟
-                case HitScanCartridgeAmmoComponent cartridge:
-                    if (!cartridge.Spent)
-                    {
-                        SetCartridgeSpent(ent!.Value, cartridge, true);
-                        MuzzleFlash(gunUid, cartridge, worldAngle, user);
-                        Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
-                        Recoil(user, direction, gun.CameraRecoilScalarModified);
-                    }
-                    else
-                    {
-                        userImpulse = false;
-                        Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
-                    }
-
-                    if (IsClientSide(ent!.Value))
-                        Del(ent.Value);
-
-                    break;
-
                 case CartridgeAmmoComponent cartridge:
                     if (!cartridge.Spent)
                     {
@@ -502,7 +276,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     else
                         RemoveShootable(ent.Value);
                     break;
-                case HitscanPrototype:
+                case HitscanAmmoComponent:
                     Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
                     Recoil(user, direction, gun.CameraRecoilScalarModified);
                     break;
@@ -561,14 +335,22 @@ public sealed partial class GunSystem : SharedGunSystem
 
         if (tracked != null)
         {
+            // Sunrise edit start - do not track mechs/mech pilots so smoke stays static in the world
+            if (TryComp<Content.Shared.Mech.Components.MechPilotComponent>(tracked.Value, out _) ||
+                HasComp<Content.Shared.Mech.Components.MechComponent>(tracked.Value))
+            {
+                return;
+            }
+
             var track = EnsureComp<TrackUserComponent>(ent);
             track.User = tracked;
             track.Offset = Vector2.UnitX / 2f;
+            // Sunrise edit end
         }
 
         var lifetime = 0.4f;
 
-        if (TryComp<TimedDespawnComponent>(ent, out var despawn)) // Sunrise-Edit
+        if (TryComp<TimedDespawnComponent>(gunUid, out var despawn))
         {
             lifetime = despawn.Lifetime;
         }
@@ -641,5 +423,6 @@ public sealed partial class GunSystem : SharedGunSystem
         _animPlayer.Play((gunUid, uidPlayer), animTwo, "muzzle-flash-light");
     }
 
+    // TODO: Move RangedDamageSoundComponent to shared so this can be predicted.
     public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound) {}
 }

@@ -36,6 +36,9 @@
     },
     {
       "name": "stamp-specops"
+    },
+    {
+      "name": "stamp-commander-blueshield"
     }
   ]
 }

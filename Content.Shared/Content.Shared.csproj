@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup Condition="Exists('..\SunrisePrivate\Content.Shared')">
     <Compile Include="..\SunrisePrivate\Content.Shared\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="_Starlight\Combat\Ranged\Pierce\PierceableComponent.cs" />
+    <Compile Remove="_Starlight\Weapon\Hitscan\Components\HitscanPierceComponent.cs" />
+    <Compile Remove="_Starlight\Weapon\Hitscan\Systems\HitscanRicochetSystem.cs" />
   </ItemGroup>
   <PropertyGroup Condition="Exists('..\SunrisePrivate\Content.Shared')">
     <DefineConstants>$(DefineConstants);SUNRISE_PRIVATE</DefineConstants>

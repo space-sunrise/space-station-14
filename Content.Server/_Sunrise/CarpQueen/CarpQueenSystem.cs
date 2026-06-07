@@ -59,7 +59,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (component.ArmyMobSpawnOptions.Count == 0)
             return;
 
-        // Limit total eggs + servants to MaxArmySize. Prune invalid references first.
+        // Ограничиваем суммарное количество яиц и слуг значением MaxArmySize. Сначала убираем невалидные ссылки.
         var toRemoveServants = new List<EntityUid>();
         var aliveServants = 0;
         foreach (var s in component.Servants)
@@ -92,7 +92,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
             return;
         }
 
-        // Hunger cost like Rat King
+        // Стоимость голода работает как у крысиного короля.
         if (!TryComp<HungerComponent>(uid, out var hungerComp))
             return;
 
@@ -104,14 +104,14 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         args.Handled = true;
         _hunger.ModifyHunger(uid, -component.HungerPerSummon, hungerComp);
-        // Spawn egg instead of immediate servant
+        // Создаем яйцо вместо мгновенного слуги.
         var egg = Spawn("MobCarpEgg", Transform(uid).Coordinates);
         var eggComp = EnsureComp<CarpEggComponent>(egg);
         eggComp.Queen = uid;
         Dirty(egg, eggComp);
         component.Eggs.Add(egg);
 
-        // Trigger hatch check now that queen is assigned (covers tiles already containing liquid/FloorWater)
+        // Запускаем проверку вылупления после назначения королевы, включая тайлы с уже существующей жидкостью/FloorWater.
         _carpEggs.RequestHatchCheck(egg);
         _popup.PopupEntity(Loc.GetString("carp-queen-summon-popup"), uid, uid);
     }
@@ -133,7 +133,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (!Exists(target))
             return;
 
-        // Accept any living mob (players or AI). Ignore objects.
+        // Принимаем любого живого моба, включая игроков и AI. Объекты игнорируем.
         var valid = false;
         if (TryComp<MobStateComponent>(target, out var mobState))
             valid = mobState.CurrentState != MobState.Dead;
@@ -147,7 +147,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
 
         foreach (var servant in component.Servants)
         {
-            // Skip if servant is being deleted or doesn't exist
+            // Пропускаем слугу, если он удаляется или уже не существует.
             if (TerminatingOrDeleted(servant))
                 continue;
 
@@ -173,7 +173,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
     {
         base.Update(frameTime);
 
-        // Small self-heal when hunger increases (i.e., when eating).
+        // Небольшое самолечение при росте голода, то есть при еде.
         var query = EntityQueryEnumerator<CarpQueenComponent, HungerComponent>();
         while (query.MoveNext(out var uid, out var queen, out var hunger))
         {
@@ -187,7 +187,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
                     var spec = new DamageSpecifier();
                     spec.DamageDict["Blunt"] = -heal / 2f;
                     spec.DamageDict["Slash"] = -heal / 2f;
-                    spec.DamageDict["Heat"] = 0f; // leave as 0; can be adjusted later
+                    spec.DamageDict["Heat"] = 0f; // Оставляем 0, при необходимости можно настроить позже.
                     _damageable.TryChangeDamage(uid, spec, true, false);
                 }
             }
@@ -200,7 +200,7 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
     {
         base.UpdateServantNpc(uid, orderType);
 
-        // Only update if this is actually a servant (has CarpQueenServantComponent)
+        // Обновляем только настоящих слуг с CarpQueenServantComponent.
         if (!TryComp<CarpQueenServantComponent>(uid, out var servant) || servant.Queen == null || !Exists(servant.Queen.Value))
             return;
 
@@ -210,11 +210,11 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         if (htn.Plan != null)
             _htn.ShutdownPlan(htn);
 
-        // Servant always follows queen and executes her commands
+        // Слуга всегда следует за королевой и выполняет ее приказы.
         _npc.SetBlackboard(uid, NPCBlackboard.FollowTarget, new EntityCoordinates(servant.Queen.Value, Vector2.Zero));
 
-        // Configure order and follow distances as requested (close follow ~1 tile)
-        // Convert CarpQueenOrderType to RatKingOrderType for HTN compatibility
+        // Настраиваем приказ и дистанции следования: близкое следование примерно в 1 тайл.
+        // Конвертируем CarpQueenOrderType в RatKingOrderType для совместимости с HTN.
         var ratKingOrder = SharedCarpQueenSystem.ConvertToRatKingOrder(orderType);
         _npc.SetBlackboard(uid, NPCBlackboard.CurrentOrders, ratKingOrder);
         _npc.SetBlackboard(uid, "FollowCloseRange", 1.0f);
@@ -235,5 +235,4 @@ public sealed class CarpQueenSystem : SharedCarpQueenSystem
         _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, true);
     }
 }
-
 

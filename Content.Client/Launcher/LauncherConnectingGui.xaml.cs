@@ -23,12 +23,15 @@ namespace Content.Client.Launcher
     {
         [Dependency] private readonly IUriOpener _uri = default!; // Sunrise-Edit
 
-        private const float RedialWaitTimeSeconds = 10f; // Sunrise-edit
+        private const float RedialWaitTimeSeconds = 10f; // Sunrise-Edit
         private readonly LauncherConnecting _state;
         private float _waitTime;
 
-        // Pressing reconnect will redial instead of simply reconnecting.
+        // Нажатие reconnect выполнит redial вместо обычного переподключения.
         private bool _redial;
+        // Sunrise added start - автопереподключение после несовпадения canonical username.
+        private bool _autoRedialTriggered;
+        // Sunrise added end
 
         private readonly IRobustRandom _random;
         private readonly IPrototypeManager _prototype;
@@ -148,10 +151,16 @@ namespace Content.Client.Launcher
             {
                 _waitTime = 0;
                 _redial = false;
+                // Sunrise added start - сбрасываем состояние автопереподключения вместе с disconnect state.
+                _autoRedialTriggered = false;
+                // Sunrise added end
             }
             else
             {
                 _redial = reason.RedialFlag;
+                // Sunrise added start - свежая причина отключения может один раз запустить автопереподключение.
+                _autoRedialTriggered = false;
+                // Sunrise added end
 
                 if (reason.Message.Int32Of("delay") is { } delay)
                 {
@@ -199,6 +208,17 @@ namespace Content.Client.Launcher
             _waitTime -= args.DeltaSeconds;
             if (_waitTime <= 0)
             {
+                // Sunrise added start - автоматически переподключаемся после исправления Makura canonical username.
+                if (_redial
+                    && !_autoRedialTriggered
+                    && _state.CurrentPage == LauncherConnecting.Page.Disconnected)
+                {
+                    _autoRedialTriggered = true;
+                    if (_state.Redial())
+                        return;
+                }
+                // Sunrise added end
+
                 button.Disabled = false;
                 var key = _redial
                     ? "connecting-redial"

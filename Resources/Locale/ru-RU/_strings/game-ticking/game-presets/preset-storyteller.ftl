@@ -1,8 +1,12 @@
-storyteller-preset-title = Рассказчик
-storyteller-preset-description = Судьба станции находится в руках незримого рассказчика. Он будет динамически настраивать происходящее, создавая уникальную историю в зависимости от ваших успехов и неудач.
+storyteller-preset-title = Рассказчик: Классический
+storyteller-preset-description = Судьба станции — в руках незримого режиссера. Он чутко реагирует на происходящее, создавая уникальную историю взлетов и падений вашего экипажа.
 
-ui-vote-storyteller-type-title = Выберите тип Рассказчика:
-# Sunrise-Edit
+storyteller-preset-calm-title = Рассказчик: Спокойный
+storyteller-preset-calm-description = Затишье в космосе. Рассказчик предпочитает размеренное развитие сюжета, давая экипажу больше времени на передышку и стараясь не разводить лишний хаос.
+
+storyteller-preset-insane-title = Рассказчик: Безумный
+storyteller-preset-insane-description = Абсолютный хаос. Рассказчик будет безжалостно бросать на станцию одну угрозу за другой, пуская в ход самые коварные и разрушительные события.
+
 ui-vote-storyteller-type-calm = Спокойный
 ui-vote-storyteller-type-classic = Классический
 ui-vote-storyteller-type-insane = Безумный
@@ -13,7 +17,6 @@ ui-vote-storyteller-type-calm-name = Спокойный
 ui-vote-storyteller-type-classic-name = Классический
 ui-vote-storyteller-type-insane-name = Безумный
 
-# Sunrise-Edit
 round-end-summary-window-storyteller-name-label = Активный рассказчик: [color=#7DF9FF]{$storyteller}[/color]
 round-end-summary-window-storyteller-history-tab-title = История Рассказчика
 round-end-summary-window-storyteller-history-empty = История пуста. В этом раунде не произошло ничего примечательного.

@@ -61,7 +61,7 @@ namespace Content.Server.Sandbox
             {
                 if (IsSandboxEnabled)
                 {
-                    // Sunrise edit start - run content-side placement replacement before engine placement
+                    // Sunrise edit start - выполняем content-side замену placement до engine placement
                     return _mappingReplacement.TryHandlePlacementReplacement(placement);
                     // Sunrise edit end
                 }
