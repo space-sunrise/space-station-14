@@ -5,3 +5,4 @@
   setPreference: false
   playTimeTracker: AntagTerminator # Sunrise-Edit
   objective: roles-antag-terminator-objective
+  storytellerStress: 6.0 # Sunrise-Edit

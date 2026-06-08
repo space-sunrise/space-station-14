@@ -89,3 +89,14 @@ ent-RandomHumanoidSpawnerERTEngineerAmberEVA = ОБР инженер
 ent-RandomHumanoidSpawnerERTEngineerAmberEVAVeteran = ОБР инженер
     .suffix = Роль ОБР, Амбер, EVA, Ветеран
     .desc = { ent-RandomHumanoidSpawnerERTEngineerAmberEVA.desc }
+
+job-name-cburn-eva = Карантинный Офицер Центком (EVA)
+job-description-cburn-eva = Отправляйтесь на станцию и устраните любые биологические угрозы. Теперь и в космосе!
+job-name-cburn-leader = Лидер карантинной группы Центком
+job-description-cburn-leader = Возглавьте свою команду карантинных офицеров для устранения любых биологических угроз.
+
+job-name-ussp-crew = Экипаж USSP
+job-name-ussp-officer = Офицер USSP
+job-name-ussp-officer-alt = Офицер USSP (альт)
+job-name-ussp-soldier = Солдат USSP
+job-name-ussp-captain = Капитан USSP

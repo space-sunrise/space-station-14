@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared._Sunrise.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -6,6 +6,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Standing;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Footprints;
 
@@ -16,6 +17,7 @@ public sealed class PuddleFootprintSystem : EntitySystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -38,6 +40,9 @@ public sealed class PuddleFootprintSystem : EntitySystem
             || !TryComp<SolutionContainerManagerComponent>(ent, out var solutionManager)
             || !_solutionSystem.ResolveSolution((ent, solutionManager), puddle.SolutionName, ref puddle.Solution, out var puddleSolutions)
             || !TryComp<SolutionContainerManagerComponent>(args.OtherEntity, out var emitterSolutionManager))
+            return;
+
+        if (_gameTiming.CurTime < emitter.PuddleAbsorptionCooldownUntil)
             return;
 
         var stand = !_standingStateSystem.IsDown(args.OtherEntity);

@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "IMPERIAL SPACE",
+    "copyright": "IMPERIAL SPACE (all besides following), dotCatshark (Dragging-2 & -5), Ratwood keep (https://github.com/Rotwood-Vale/Ratwood-Keep) (Dragging-1 & -3), (Goonstation https://github.com/goonstation/goonstation/) (Dragging-4), tracked and heavy variants by KaiserMaus ( github)",
     "states": [
         {
             "name": "footprint-left-bare-diona"
@@ -66,6 +66,24 @@
         },
         {
             "name": "dragging-test"
+        },
+        {
+            "name": "footprint-tracked"
+        },
+        {
+            "name": "footprint-tracked-heavy"
+        },
+        {
+            "name": "footprint-suit-heavy"
+        },
+        {
+            "name": "footprint-mech-heavy"
+        },
+        {
+            "name": "footprint-left-bare-cat"
+        },
+        {
+            "name": "footprint-right-bare-cat"
         }
     ]
 }

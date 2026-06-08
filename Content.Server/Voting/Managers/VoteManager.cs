@@ -411,7 +411,7 @@ namespace Content.Server.Voting.Managers
             // Still allow vote if availbable one is different from current one
             if (voteType == StandardVoteType.Preset)
             {
-                var presets = GetGamePresets();
+                var presets = GetGamePresetsSunrise(); // Sunrise-Start
                 if (presets.Count == 1 && presets.Select(x => x.Key).Single() == _entityManager.System<GameTicker>().Preset?.ID)
                     return false;
             }
@@ -551,7 +551,7 @@ namespace Content.Server.Voting.Managers
             return true;
         }
 
-        // Sunrise added start - safely retrieve playtime without throwing InvalidOperationException
+        // Sunrise added start - безопасно читаем playtime без InvalidOperationException
         /// <summary>
         /// Safely retrieves the overall playtime for a player.
         /// Returns false if playtime data has not been loaded from the database yet,

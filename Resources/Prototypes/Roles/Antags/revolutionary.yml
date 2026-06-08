@@ -22,6 +22,7 @@
   playTimeTracker: AntagRevolutionary # Sunrise-Edit
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
+  storytellerStress: 0.5 # Sunrise-Edit
 
 - type: startingGear
   id: HeadRevGear

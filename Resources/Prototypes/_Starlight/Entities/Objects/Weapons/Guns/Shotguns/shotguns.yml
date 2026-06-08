@@ -43,6 +43,10 @@
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
+  - type: CanDualWield # Sunrise-Edit
+    dualWieldInaccuracyPenalty: 0.2
+    dualWieldFireRatePenalty: 0.2
+    dualWieldRecoilPenalty: 0.2
 
 - type: entity
   parent: WeaponShotgunRiotSawn

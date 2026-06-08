@@ -57,7 +57,7 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         if (validStations.Count == 0)
             return;
 
-        var station = RobustRandom.Pick(_station.GetStations());
+        var station = RobustRandom.Pick(validStations); // Sunrise-Edit
         if (_station.GetLargestGrid(station) is not { } grid)
             return;
 

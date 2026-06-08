@@ -10,7 +10,7 @@ using Robust.Shared.Map;
 
 namespace Content.Server.Shuttles.Systems;
 
-// Sunrise-Edit - split with Sunrise partial for radar blips / laser traces.
+// Sunrise-Edit - разделено с Sunrise partial для radar blips / laser traces.
 public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
 {
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
@@ -55,7 +55,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
             }
 
             state.RotateWithEntity = !component.FollowEntity;
-            PopulateSunriseRadarState(uid, state); // Sunrise-Edit - populate Sunrise radar overlays in partial.
+            PopulateSunriseRadarState(uid, state); // Sunrise-Edit - заполняем Sunrise radar overlays в partial.
 
             _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state));
         }
