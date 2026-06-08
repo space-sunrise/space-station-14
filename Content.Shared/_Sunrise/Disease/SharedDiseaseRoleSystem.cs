@@ -18,7 +18,7 @@ public abstract class SharedDiseaseRoleSystem : EntitySystem
         ev.Handled = true;
 
         if (!TryComp<DiseaseRoleComponent>(ev.Performer, out var comp)) return;
-        if (!HasComp<HumanoidAppearanceComponent>(ev.Target)) return;
+        if (!HasComp<HumanoidProfileComponent>(ev.Target)) return;
         if (HasComp<DiseaseImmuneComponent>(ev.Target)) return;
         if (HasComp<SickComponent>(ev.Target)) return;
 

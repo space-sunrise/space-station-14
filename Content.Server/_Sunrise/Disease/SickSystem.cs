@@ -270,7 +270,7 @@ public sealed class SickSystem : SharedSickSystem
                         {
                             if (_robustRandom.Prob(disease.CoughSneezeInfectChance))
                             {
-                                if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+                                if (HasComp<HumanoidProfileComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
                                     OnInfected(entity, component.owner, disease.CoughSneezeInfectChance);
                                 }
@@ -288,7 +288,7 @@ public sealed class SickSystem : SharedSickSystem
                         {
                             if (_robustRandom.Prob(disease.CoughSneezeInfectChance))
                             {
-                                if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+                                if (HasComp<HumanoidProfileComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
                                 {
                                     OnInfected(entity, component.owner, disease.CoughSneezeInfectChance);
                                 }

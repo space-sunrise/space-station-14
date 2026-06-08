@@ -275,7 +275,7 @@ public sealed partial class VampireSystem
     }
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {
-        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
+        if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
 
         if (args.Target == uid)
@@ -393,7 +393,7 @@ public sealed partial class VampireSystem
             if (HasComp<VampireComponent>(entity))
                 continue;
 
-            if (HasComp<HumanoidAppearanceComponent>(entity))
+            if (HasComp<HumanoidProfileComponent>(entity))
             {
                 _stun.TryAddParalyzeDuration(entity, duration ?? TimeSpan.FromSeconds(3));
                 _chat.TryEmoteWithoutChat(entity, _prototypeManager.Index<EmotePrototype>(VampireComponent.ScreamEmoteProto), true);
@@ -462,7 +462,7 @@ public sealed partial class VampireSystem
             if (entity == vampire.Owner)
                 continue;
 
-            if (!HasComp<HumanoidAppearanceComponent>(entity))
+            if (!HasComp<HumanoidProfileComponent>(entity))
                 continue;
 
             if (_rotting.IsRotten(entity))

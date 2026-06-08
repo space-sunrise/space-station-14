@@ -9,9 +9,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Interaction;
 using Content.Shared._Sunrise.Razor;
-using Robust.Packaging.AssetProcessing;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Razor;
 
@@ -215,8 +213,13 @@ public sealed class RazorSystem : SharedRazorSystem
     }
     private void OnAddSlotDoAfter(EntityUid uid, RazorComponent component, RazorAddSlotDoAfterEvent args)
     {
-        if (args.Handled || args.Target == null || args.Cancelled || !TryComp(component.Target, out HumanoidAppearanceComponent? humanoid))
+        if (args.Handled ||
+            args.Target == null ||
+            args.Cancelled ||
+            !TryComp<HumanoidProfileComponent>(component.Target, out var profile))
+        {
             return;
+        }
 
         MarkingCategories category;
 
@@ -232,7 +235,7 @@ public sealed class RazorSystem : SharedRazorSystem
                 return;
         }
 
-        var marking = _markings.MarkingsByCategoryAndSpecies(category, humanoid.Species).Keys.FirstOrDefault();
+        var marking = _markings.MarkingsByCategoryAndSpecies(category, profile.Species).Keys.FirstOrDefault();
 
         if (string.IsNullOrEmpty(marking))
             return;

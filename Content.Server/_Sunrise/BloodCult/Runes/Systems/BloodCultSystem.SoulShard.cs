@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.BloodCult.Runes.Comps;
+using Content.Server._Sunrise.BloodCult.Runes.Comps;
 using Content.Server.Roles;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
@@ -31,7 +31,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return;
 
             if (!TryComp<MindContainerComponent>(target, out var mindComponent) || !mindComponent.Mind.HasValue ||
-                !TryComp<HumanoidAppearanceComponent>(target, out _))
+                !TryComp<HumanoidProfileComponent>(target, out _))
                 return;
 
             _mindSystem.TransferTo(mindComponent.Mind.Value, uid);

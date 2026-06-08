@@ -18,7 +18,7 @@ public sealed class DiseaseRoleSystem : EntitySystem
         var target = GetEntity(ev.Infected);
         var performer = GetEntity(ev.Owner);
 
-        if (!TryComp<HumanoidAppearanceComponent>(target, out var body))
+        if (!TryComp<HumanoidProfileComponent>(target, out var body))
             return;
 
         var sick = EnsureComp<SickComponent>(target);

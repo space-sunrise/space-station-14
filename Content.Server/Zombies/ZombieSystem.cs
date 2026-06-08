@@ -128,7 +128,7 @@ namespace Content.Server.Zombies
             EntityUid? nearestUid = default!;
             TransformComponent? nearestXform = default!;
             float? minDistance = null;
-            var query = AllEntityQuery<HumanoidAppearanceComponent>();
+            var query = AllEntityQuery<HumanoidProfileComponent>();
             while (query.MoveNext(out var targetUid, out var humanoidAppearanceComponent))
             {
                 // Зомби не должны чувствовать тех, у кого иммунитет к ним.

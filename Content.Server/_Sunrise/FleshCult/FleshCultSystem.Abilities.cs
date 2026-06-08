@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.Body.Components;
 using Content.Server.Construction.Components;
@@ -133,7 +133,7 @@ public sealed partial class FleshCultSystem
             switch (targetState.CurrentState)
             {
                 case MobState.Dead:
-                    if (EntityManager.TryGetComponent(target, out HumanoidAppearanceComponent? humanoidAppearance))
+                    if (EntityManager.TryGetComponent(target, out HumanoidProfileComponent? humanoidAppearance))
                     {
                         if (!_speciesWhitelist.Contains(humanoidAppearance.Species))
                         {
@@ -229,7 +229,7 @@ public sealed partial class FleshCultSystem
             _bloodstreamSystem.SpillAllSolutions((args.Args.Target.Value, bloodstream));
         }
 
-        if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var HuAppComponent))
+        if (TryComp<HumanoidProfileComponent>(args.Args.Target, out var HuAppComponent))
         {
             if (TryComp(args.Args.Target.Value, out ContainerManagerComponent? container))
             {
@@ -270,7 +270,7 @@ public sealed partial class FleshCultSystem
             {
                 if (key != HumanoidVisualLayers.Head)
                 {
-                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: HuAppComponent);
+                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id);
                 }
             }
 

@@ -337,46 +337,6 @@ namespace Content.Client.Hands.Systems
             RaiseLocalEvent(held, new HeldVisualsUpdatedEvent(ent, revealedLayers), true);
         }
 
-        /// <summary>
-        ///     Get the appropriate displacement map for a hand, considering body type and hand location.
-        /// </summary>
-        private DisplacementData? GetHandDisplacement(EntityUid uid, HandLocation handLocation, HandsComponent handComp)
-        {
-            string? bodyTypeName = null;
-            if (TryComp(uid, out HumanoidAppearanceComponent? humanoid))
-            {
-                bodyTypeName = _prototype.Index(humanoid.BodyType).Name;
-            }
-
-            // First try to get body type specific displacement maps
-            if (bodyTypeName != null)
-            {
-                switch (handLocation)
-                {
-                    case HandLocation.Left:
-                        if (handComp.LeftHandBodyTypeDisplacements.TryGetValue(bodyTypeName, out var leftBodyTypeDisplacement))
-                            return leftBodyTypeDisplacement;
-                        break;
-                    case HandLocation.Right:
-                        if (handComp.RightHandBodyTypeDisplacements.TryGetValue(bodyTypeName, out var rightBodyTypeDisplacement))
-                            return rightBodyTypeDisplacement;
-                        break;
-                }
-
-                // Try generic body type displacement
-                if (handComp.BodyTypeDisplacements.TryGetValue(bodyTypeName, out var bodyTypeDisplacement))
-                    return bodyTypeDisplacement;
-            }
-
-            // Fall back to the original logic
-            return handLocation switch
-            {
-                HandLocation.Left => handComp.LeftHandDisplacement,
-                HandLocation.Right => handComp.RightHandDisplacement,
-                _ => handComp.HandDisplacement
-            };
-        }
-
         private void OnVisualsChanged(EntityUid uid, HandsComponent component, VisualsChangedEvent args)
         {
             // update hands visuals if this item is in a hand (rather then inventory or other container).

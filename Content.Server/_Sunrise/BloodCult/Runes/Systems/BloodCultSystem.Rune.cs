@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server._Sunrise.BloodCult.Objectives.Components;
@@ -586,7 +586,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 _lookup.GetEntitiesInRange(uid, component.RangeTarget, LookupFlags.Dynamic | LookupFlags.Sundries);
 
             targets.RemoveWhere(x =>
-                !_entityManager.HasComponent<HumanoidAppearanceComponent>(x) ||
+                !_entityManager.HasComponent<HumanoidProfileComponent>(x) ||
                 !_entityManager.HasComponent<BloodCultistComponent>(x));
 
             if (targets.Count == 0)
@@ -708,7 +708,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             {
                 if (TryComp<PullableComponent>(target, out var pullable))
                     _pulling.TryStopPull(target, pullable);
-                if (HasComp<HumanoidAppearanceComponent>(target) && TryComp<TransformComponent>(target, out TransformComponent? targetm))
+                if (HasComp<HumanoidProfileComponent>(target) && TryComp<TransformComponent>(target, out TransformComponent? targetm))
                 {
                     _entityManager.SpawnEntity(TeleportInEffect, xFormSelected.Coordinates);
                     _entityManager.SpawnEntity(TeleportOutEffect, targetm.Coordinates);
@@ -859,7 +859,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 _lookup.GetEntitiesInRange(uid, component.RangeTarget, LookupFlags.Dynamic | LookupFlags.Sundries);
 
             targets.RemoveWhere(x =>
-                !_entityManager.HasComponent<HumanoidAppearanceComponent>(x) || !HasComp<BloodCultistComponent>(x));
+                !_entityManager.HasComponent<HumanoidProfileComponent>(x) || !HasComp<BloodCultistComponent>(x));
 
             if (targets.Count == 0)
                 return;
@@ -1115,7 +1115,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             var inRange = _lookup.GetEntitiesInRange(rune, component.ProjectileRange * severity, LookupFlags.Dynamic);
             inRange.RemoveWhere(x =>
-                !_entityManager.HasComponent<HumanoidAppearanceComponent>(x) ||
+                !_entityManager.HasComponent<HumanoidProfileComponent>(x) ||
                 _entityManager.HasComponent<BloodCultistComponent>(x) ||
                 _entityManager.HasComponent<ConstructComponent>(x));
 

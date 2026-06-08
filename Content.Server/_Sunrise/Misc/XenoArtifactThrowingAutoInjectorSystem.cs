@@ -44,7 +44,7 @@ public sealed class XenoArtifactThrowingAutoInjectorSystem : EntitySystem
     {
         var target = args.OtherEntity;
 
-        if (!HasComp<HumanoidAppearanceComponent>(target))
+        if (!HasComp<HumanoidProfileComponent>(target))
             return;
 
         if (HasComp<XenoArtifactThrowingAutoInjectorMarkComponent>(target))

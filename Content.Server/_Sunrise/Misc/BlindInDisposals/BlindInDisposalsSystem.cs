@@ -1,4 +1,4 @@
-﻿using Content.Server.Disposal.Unit;
+using Content.Server.Disposal.Unit;
 using Content.Shared._Sunrise.VentCraw;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
@@ -57,7 +57,7 @@ public sealed class BlindInDisposalsSystem : EntitySystem
         if (!HasComp<VentCrawlerComponent>(uid))
             return false;
 
-        if (HasComp<HumanoidAppearanceComponent>(uid))
+        if (HasComp<HumanoidProfileComponent>(uid))
             return false;
 
         return true;

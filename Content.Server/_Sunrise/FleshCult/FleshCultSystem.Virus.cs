@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.FleshCult.GameRule;
+using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
@@ -88,7 +88,7 @@ public sealed partial class FleshCultSystem
                         break;
                     }
 
-                    if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearance))
+                    if (!TryComp<HumanoidProfileComponent>(uid, out var humanoidAppearance))
                         break;
 
                     if (!_speciesWhitelist.Contains(humanoidAppearance.Species))
