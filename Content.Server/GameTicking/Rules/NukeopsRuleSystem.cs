@@ -23,6 +23,7 @@ using Content.Shared.Store;
 using Content.Shared.Tag;
 using Content.Shared.Zombies;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
@@ -47,6 +48,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosions = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
@@ -159,7 +161,12 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                     }
 
                     if (correctStation)
+                    {
+                        // Sunrise edit start - call/accelerate evac shuttle even on correct station explosion
+                        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
+                        // Sunrise edit end
                         continue;
+                    }
                 }
 
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
@@ -179,7 +186,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 var handled = false;
                 foreach (var cond in nukeops.WinConditions)
                 {
-                    if (cond.ToString().ToLower() == "NukeExplodedOnCorrectStation") // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
+                    if (cond == WinCondition.NukeExplodedOnCorrectStation) // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
                     {
                         _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
                         handled = true;
@@ -507,7 +514,16 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         // Sunrise edit start - when operatives die, explode their shuttle, delete their base map, and end the game rule.
         if (shuttle != null)
         {
-            _explosions.QueueExplosion(shuttle.Value, "Default", 500f, 3f, 30f);
+            if (TryComp<MapGridComponent>(shuttle.Value, out var grid))
+            {
+                var centerLocal = grid.LocalAABB.Center;
+                var epicenter = _transformSystem.ToMapCoordinates(new EntityCoordinates(shuttle.Value, centerLocal));
+                _explosions.QueueExplosion(epicenter, "DemolitionCharge", 30000f, 5f, 100f, cause: shuttle.Value);
+            }
+            else
+            {
+                _explosions.QueueExplosion(shuttle.Value, "DemolitionCharge", 30000f, 5f, 100f);
+            }
         }
 
         if (TryComp<RuleGridsComponent>(ent, out var ruleGrids) && ruleGrids.Map != null)

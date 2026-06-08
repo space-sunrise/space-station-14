@@ -6,6 +6,7 @@ using Content.Server.Mind;
 using Content.Server.Revolutionary.Components;
 using Content.Server.Explosion.EntitySystems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Content.Server.Station.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
@@ -40,6 +41,7 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosions = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     [ValidatePrototypeId<TagPrototype>]
     private const string UplinkTagPrototype = "AssaultOpsUplink";
@@ -91,27 +93,11 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
 
     protected override void Ended(EntityUid uid, AssaultOpsRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
-        var assaultOperativesQuery = EntityQueryEnumerator<AssaultOperativeComponent>();
-        while (assaultOperativesQuery.MoveNext(out var operativeUid, out _))
-        {
-            QueueDel(operativeUid);
-        }
-
         var icarusKeysQuery = EntityQueryEnumerator<IcarusKeyComponent>();
         while (icarusKeysQuery.MoveNext(out var icarusKeyUid, out _))
         {
             QueueDel(icarusKeyUid);
         }
-
-        var assaultOpsShuttlequery = EntityQueryEnumerator<AssaultOpsShuttleComponent>();
-        while (assaultOpsShuttlequery.MoveNext(out var assaultOpsShuttleUid, out var shuttle))
-        {
-            if (shuttle.AssociatedRule == uid)
-            {
-                QueueDel(assaultOpsShuttleUid);
-            }
-        }
-        QueueDel(uid);
     }
 
     private void OnRuleLoadedGrids(Entity<AssaultOpsRuleComponent> ent, ref RuleLoadedGridsEvent args)
@@ -340,13 +326,25 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
                 }
             }
 
+            if (operativesAlive)
+                continue;
+
             assaultops.WinType = WinType.CrewMajor;
             assaultops.WinConditions.Add(WinCondition.AllOpsDead);
 
             var shuttle = GetShuttle(uid);
             if (shuttle != null)
             {
-                _explosions.QueueExplosion(shuttle.Value, "Default", 500f, 3f, 30f);
+                if (TryComp<MapGridComponent>(shuttle.Value, out var grid))
+                {
+                    var centerLocal = grid.LocalAABB.Center;
+                    var epicenter = _transformSystem.ToMapCoordinates(new EntityCoordinates(shuttle.Value, centerLocal));
+                    _explosions.QueueExplosion(epicenter, "DemolitionCharge", 30000f, 5f, 100f, cause: shuttle.Value);
+                }
+                else
+                {
+                    _explosions.QueueExplosion(shuttle.Value, "DemolitionCharge", 30000f, 5f, 100f);
+                }
             }
 
             if (TryComp<RuleGridsComponent>(uid, out var ruleGrids) && ruleGrids.Map != null)

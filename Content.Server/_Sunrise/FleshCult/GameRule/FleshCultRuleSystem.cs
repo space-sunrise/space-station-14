@@ -72,7 +72,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         {
             RemComp<FleshCultistComponent>(cultist);
         }
-        QueueDel(uid);
     }
 
     private void OnObjectivesTextPrepend(EntityUid uid, FleshCultRuleComponent comp, ref ObjectivesTextPrependEvent args)
