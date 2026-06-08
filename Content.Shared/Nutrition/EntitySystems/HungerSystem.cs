@@ -46,6 +46,7 @@ public sealed class HungerSystem : EntitySystem
         SubscribeLocalEvent<HungerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<HungerComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<HungerComponent, RejuvenateEvent>(OnRejuvenate);
+        SubscribeLocalEvent<HungerComponent, HungerManglenessChangedEvent>(OnHungerManglenessChanged);
     }
 
     private void OnMapInit(EntityUid uid, HungerComponent component, MapInitEvent args)
@@ -175,20 +176,10 @@ public sealed class HungerSystem : EntitySystem
 
         if (component.HungerThresholdDecayModifiers.TryGetValue(component.CurrentThreshold, out var modifier))
         {
-            // Sunrise-Start
-            // component.ActualDecayRate = component.BaseDecayRate * modifier;
-            var preservedHunger = GetHunger(component); // Preserve hunger value before changing decay rate
-            var sunriseModifier = modifier;
-            if (_damageable.HasMangleness(uid))
-            {
-                if (component.CurrentThreshold >= HungerThreshold.Okay)
-                    sunriseModifier *= component.ManglenessDecayMultOkay;
-                else if (component.CurrentThreshold == HungerThreshold.Peckish)
-                    sunriseModifier *= component.ManglenessDecayMultPeckish;
-            }
-
-            component.ActualDecayRate = component.BaseDecayRate * sunriseModifier;
-            // Sunrise-End
+            var preservedHunger = GetHunger(component);
+            var ev = new HungerDecayRateModifierEvent(component, component.BaseDecayRate * modifier);
+            RaiseLocalEvent(uid, ev);
+            component.ActualDecayRate = ev.ActualDecayRate;
             DirtyField(uid, component, nameof(HungerComponent.ActualDecayRate));
             SetAuthoritativeHungerValue((uid, component), preservedHunger);
         }
@@ -302,38 +293,11 @@ public sealed class HungerSystem : EntitySystem
 
             UpdateCurrentThreshold(uid, hunger);
             DoContinuousHungerEffects(uid, hunger);
-
-            // Sunrise-Start
-            TickManglenessRecovery(uid, hunger);
-            // Sunrise-End
         }
     }
 
-    private void TickManglenessRecovery(EntityUid uid, HungerComponent hunger)
+    private void OnHungerManglenessChanged(EntityUid uid, HungerComponent component, HungerManglenessChangedEvent args)
     {
-        var hasMangleness = _damageable.HasMangleness(uid);
-
-        if (hasMangleness != hunger.HadMangleness)
-        {
-            hunger.HadMangleness = hasMangleness;
-            DirtyField(uid, hunger, nameof(HungerComponent.HadMangleness));
-            DoHungerThresholdEffects(uid, hunger, force: true);
-        }
-
-        if (hasMangleness)
-        {
-            if (hunger.CurrentThreshold >= HungerThreshold.Okay && _timing.IsFirstTimePredicted)
-            {
-                var heal = new DamageSpecifier();
-                heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingOkay);
-                _damageable.TryChangeDamage(uid, heal, true, false);
-            }
-            else if (hunger.CurrentThreshold == HungerThreshold.Peckish && _timing.IsFirstTimePredicted)
-            {
-                var heal = new DamageSpecifier();
-                heal.DamageDict.Add("Mangleness", hunger.ManglenessHealingPeckish);
-                _damageable.TryChangeDamage(uid, heal, true, false);
-            }
-        }
+        DoHungerThresholdEffects(uid, component, force: true);
     }
 }

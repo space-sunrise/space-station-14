@@ -46,6 +46,7 @@ public sealed class ThirstSystem : EntitySystem
         SubscribeLocalEvent<ThirstComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<ThirstComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ThirstComponent, RejuvenateEvent>(OnRejuvenate);
+        SubscribeLocalEvent<ThirstComponent, ThirstManglenessChangedEvent>(OnThirstManglenessChanged);
     }
 
     private void OnMapInit(EntityUid uid, ThirstComponent component, MapInitEvent args)
@@ -196,42 +197,22 @@ public sealed class ThirstSystem : EntitySystem
         var ev = new MoodEffectEvent("Thirst" + component.CurrentThirstThreshold);
         RaiseLocalEvent(uid, ev);
 
-        var hasMangleness = _damageable.HasMangleness(uid);
-
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                // Sunrise-Start
-                var overhydratedMult = 1.0f;
-                if (hasMangleness)
-                    overhydratedMult = component.ManglenessDecayMultOverhydrated;
-
-                component.ActualDecayRate = component.BaseDecayRate * 1.2f * overhydratedMult;
-                // Sunrise-End
+                component.ActualDecayRate = RaiseThirstDecayRateModifier(uid, component, component.BaseDecayRate * 1.2f);
                 return;
 
             case ThirstThreshold.Okay:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                // Sunrise-Start
-                var okayMult = 1.0f;
-                if (hasMangleness)
-                    okayMult = component.ManglenessDecayMultOkay;
-
-                component.ActualDecayRate = component.BaseDecayRate * okayMult;
-                // Sunrise-End
+                component.ActualDecayRate = RaiseThirstDecayRateModifier(uid, component, component.BaseDecayRate);
                 return;
 
             case ThirstThreshold.Thirsty:
                 // Same as okay except with UI icon saying drink soon.
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                // Sunrise-Start
-                var thirstyMult = 1.0f;
-                if (hasMangleness)
-                    thirstyMult = component.ManglenessDecayMultThirsty;
-
-                component.ActualDecayRate = component.BaseDecayRate * 0.8f * thirstyMult;
-                // Sunrise-End
+                component.ActualDecayRate = RaiseThirstDecayRateModifier(uid, component, component.BaseDecayRate * 0.8f);
                 return;
             case ThirstThreshold.Parched:
                 _movement.RefreshMovementSpeedModifiers(uid);
@@ -262,8 +243,6 @@ public sealed class ThirstSystem : EntitySystem
 
             ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
             DoContinuousThirstEffects(uid, thirst);
-            
-            TickManglenessRecovery(uid, thirst); // Sunrise-edit
 
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
@@ -275,31 +254,15 @@ public sealed class ThirstSystem : EntitySystem
         }
     }
 
-    private void TickManglenessRecovery(EntityUid uid, ThirstComponent thirst)
+    private float RaiseThirstDecayRateModifier(EntityUid uid, ThirstComponent component, float actualDecayRate)
     {
-        var hasMangleness = _damageable.HasMangleness(uid);
+        var ev = new ThirstDecayRateModifierEvent(component, actualDecayRate);
+        RaiseLocalEvent(uid, ev);
+        return ev.ActualDecayRate;
+    }
 
-        if (hasMangleness != thirst.HadMangleness)
-        {
-            thirst.HadMangleness = hasMangleness;
-            DirtyField(uid, thirst, nameof(ThirstComponent.HadMangleness));
-            UpdateEffects(uid, thirst);
-        }
-
-        if (hasMangleness)
-        {
-            if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay && _timing.IsFirstTimePredicted)
-            {
-                var heal = new DamageSpecifier();
-                heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingOkay);
-                _damageable.TryChangeDamage(uid, heal, true, false);
-            }
-            else if (thirst.CurrentThirstThreshold == ThirstThreshold.Thirsty && _timing.IsFirstTimePredicted)
-            {
-                var heal = new DamageSpecifier();
-                heal.DamageDict.Add("Mangleness", thirst.ManglenessHealingThirsty);
-                _damageable.TryChangeDamage(uid, heal, true, false);
-            }
-        }
+    private void OnThirstManglenessChanged(EntityUid uid, ThirstComponent component, ThirstManglenessChangedEvent args)
+    {
+        UpdateEffects(uid, component);
     }
 }

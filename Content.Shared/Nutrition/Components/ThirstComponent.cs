@@ -7,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Nutrition.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem), Other = AccessPermissions.ReadWriteExecute)]
 [AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class ThirstComponent : Component
 {
@@ -109,6 +109,7 @@ public sealed partial class ThirstComponent : Component
     /// </summary>
     [ViewVariables]
     [AutoNetworkedField]
+    [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool HadMangleness;
     // Sunrise-End
 }

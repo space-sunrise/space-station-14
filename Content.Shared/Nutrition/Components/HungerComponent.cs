@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 
 namespace Content.Shared.Nutrition.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(HungerSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(HungerSystem), Other = AccessPermissions.ReadWriteExecute)]
 [AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class HungerComponent : Component
 {
@@ -137,6 +137,12 @@ public sealed partial class HungerComponent : Component
     public float ManglenessDecayMultOkay = 4.0f;
 
     /// <summary>
+    /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Overfed.
+    /// </summary>
+    [DataField]
+    public float ManglenessDecayMultOverfed = 4.0f;
+
+    /// <summary>
     /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Peckish.
     /// </summary>
     [DataField]
@@ -145,7 +151,7 @@ public sealed partial class HungerComponent : Component
     /// <summary>
     /// Tracks whether the entity previously had active Mangleness damage. Used to trigger threshold updates when state changes.
     /// </summary>
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField, Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool HadMangleness;
     // Sunrise-End
 
