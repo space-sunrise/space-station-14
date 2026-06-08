@@ -6,4 +6,5 @@
     icon: { sprite: Objects/Devices/encryption_keys.rsi, state: crypt_gray }
     useDelay: 1
   - type: InstantAction
-    event: !type:ToggleHeadsetActionEvent
+    event: !type:OpenUiActionEvent
+      key: enum.HeadsetUiKey.Key

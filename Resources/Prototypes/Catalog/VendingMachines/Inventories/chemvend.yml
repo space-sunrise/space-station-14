@@ -54,15 +54,15 @@
     JugWeldingFuel: 1
     PlasmaChemistryVial: 1
     #  Sunrise-Start
-    JugBloodSunrise: 1
-    JugWaterSunrise: 1
-    JugTricoSunrise: 1
+    JugBlood: 1
+    JugWater: 1
+    JugTrico: 1
     JugDyloveneSunrise: 1
     JugBicaridineSunrise: 1
     JugDermalineSunrise: 1
-    JugPunctTranexSunrise: 1
-    JugPyraDermaSunrise: 1
-    JugDexPlusSalineSunrise: 1
+    JugPunctTranex: 1
+    JugPyraDerma: 1
+    JugDexPlusSaline: 1
     #  Sunrise-End
   contrabandInventory:
     DrinkLithiumFlask: 1

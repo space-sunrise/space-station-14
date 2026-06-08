@@ -149,3 +149,34 @@
   - ERTDirective4
   - ERTDirective5
   obeysTo: laws-owner-centcomm
+
+# Druid laws
+- type: siliconLaw
+  id: Druid1
+  order: 1
+  lawString: law-druid-1
+
+- type: siliconLaw
+  id: Druid2
+  order: 2
+  lawString: law-druid-2
+
+- type: siliconLaw
+  id: Druid3
+  order: 3
+  lawString: law-druid-3
+
+- type: siliconLaw
+  id: Druid4
+  order: 4
+  lawString: law-druid-4
+
+- type: siliconLawset
+  id: DruidLawset
+  name: law-druid-name
+  laws:
+  - Druid1
+  - Druid2
+  - Druid3
+  - Druid4
+  obeysTo: laws-owner-crew

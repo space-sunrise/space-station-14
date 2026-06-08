@@ -7,11 +7,15 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Content.Shared.Standing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
+using Content.Server.Fluids.EntitySystems;
+using System.Collections.Generic;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Footprints;
 
@@ -32,6 +36,8 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly PuddleSystem _puddleSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     #endregion
 
@@ -47,14 +53,9 @@ public sealed class FootprintSystem : EntitySystem
 
     #endregion
 
-    public static readonly float FootsVolume = 5;
-    public static readonly float BodySurfaceVolume = 15;
-
-    // Dictionary to track footprints per tile to prevent overcrowding
-    private const int MaxFootprintsPerTile = 6;
-    private const int MaxMarksPerTile = 3;
-
-    private readonly HashSet<Entity<FootprintComponent>> _entities = [];
+    public const float PuddleMergeThreshold = 15f;
+    public static readonly float FootsVolume = 15f;
+    public static readonly float BodySurfaceVolume = 30f;
 
     #region Initialization
     /// <summary>
@@ -75,6 +76,7 @@ public sealed class FootprintSystem : EntitySystem
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentInit>(OnFootprintEmitterInit);
+        SubscribeLocalEvent<FootprintComponent, ComponentStartup>(OnFootprintStartup);
     }
 
     private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
@@ -97,24 +99,121 @@ public sealed class FootprintSystem : EntitySystem
     #region Event Handlers
 
     /// <summary>
+    /// Handles footprint component startup and triggers the tile merge check.
+    /// </summary>
+    private void OnFootprintStartup(Entity<FootprintComponent> ent, ref ComponentStartup args)
+    {
+        MergeTileFootprints(ent);
+    }
+
+    /// <summary>
     /// Handles entity movement and creates footprints when appropriate.
     /// </summary>
     private void OnEntityMove(Entity<FootprintEmitterComponent> ent, ref MoveEvent args)
     {
-        if (!_solutionQuery.TryComp(ent, out var container))
+        if (TerminatingOrDeleted(ent))
             return;
 
-        // Eсли нет компонента StandingState, считаем, что мы стоим. Следы приоритетнее, чем мазня.
-        var stand = !_standingQuery.TryComp(ent, out var standing) || standing.Standing;
+        TryEmitFootprint(ent);
+    }
+
+    #endregion
+
+    #region Public API
+
+    /// <summary>
+    /// Attempts to emit a footprint for the given emitter.
+    /// </summary>
+    public bool TryEmitFootprint(Entity<FootprintEmitterComponent> ent)
+    {
+        if (!CanEmitFootprint(ent, out var stand, out var solComp, out var solution, out var gridUid, out var grid, out var tileRef, out var transform))
+            return false;
+
+        EmitFootprint(ent, stand, solComp, solution, gridUid, grid, tileRef, transform);
+        return true;
+    }
+
+    /// <summary>
+    /// Scans the tile under the footprint and merges footprints if their total volume reaches or exceeds the threshold.
+    /// </summary>
+    public void MergeTileFootprints(Entity<FootprintComponent> ent)
+    {
+        var transform = Transform(ent);
+        var mapCoords = _transform.GetMapCoordinates((ent, transform));
+        if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid))
+            return;
+
+        var tileRef = _mapSystem.GetTileRef((gridUid, grid), transform.Coordinates);
+        var footprintsOnTile = new HashSet<Entity<FootprintComponent>>();
+        _lookup.GetLocalEntitiesIntersecting(gridUid, tileRef.GridIndices, footprintsOnTile);
+
+        var totalFootprintsVolume = 0f;
+        foreach (var footprint in footprintsOnTile)
+        {
+            if (_solution.TryGetSolution(footprint.Owner, footprint.Comp.ContainerName, out var stepSol))
+            {
+                totalFootprintsVolume += stepSol.Value.Comp.Solution.Volume.Float();
+            }
+        }
+
+        if (totalFootprintsVolume >= PuddleMergeThreshold)
+        {
+            var emitters = new HashSet<Entity<FootprintEmitterComponent>>();
+            _lookup.GetLocalEntitiesIntersecting(gridUid, tileRef.GridIndices, emitters);
+            foreach (var emitter in emitters)
+            {
+                emitter.Comp.PuddleAbsorptionCooldownUntil = _gameTiming.CurTime + TimeSpan.FromSeconds(1.5f);
+            }
+
+            var mergedSolution = new Solution();
+            foreach (var footprint in footprintsOnTile)
+            {
+                if (_solution.TryGetSolution(footprint.Owner, footprint.Comp.ContainerName, out var stepSol))
+                {
+                    mergedSolution.AddSolution(stepSol.Value.Comp.Solution, _prototype);
+                }
+                QueueDel(footprint.Owner);
+            }
+
+            _puddleSystem.TrySpillAt(tileRef, mergedSolution, out _, sound: false);
+        }
+    }
+
+    #endregion
+
+    #region Interaction Flow Logic
+
+    /// <summary>
+    /// Checks if a footprint can be created and resolves the emitter's state.
+    /// </summary>
+    public bool CanEmitFootprint(
+        Entity<FootprintEmitterComponent> ent,
+        out bool stand,
+        out Entity<SolutionComponent> solComp,
+        out Solution solution,
+        out EntityUid gridUid,
+        out MapGridComponent grid,
+        out TileRef tileRef,
+        out TransformComponent transform)
+    {
+        stand = default;
+        solComp = default;
+        solution = default!;
+        gridUid = default;
+        grid = default!;
+        tileRef = default;
+        transform = default!;
+
+        if (!_solutionQuery.TryComp(ent, out var container))
+            return false;
+
+        stand = !_standingQuery.TryComp(ent, out var standing) || standing.Standing;
 
         var solCont = (ent, container);
-        Solution solution;
-        Entity<SolutionComponent> solComp;
-
         if (stand)
         {
             if (!_solution.ResolveSolution(solCont, ent.Comp.FootsSolutionName, ref ent.Comp.FootsSolution, out var footsSolution))
-                return;
+                return false;
 
             solution = footsSolution;
             solComp = ent.Comp.FootsSolution.Value;
@@ -122,73 +221,61 @@ public sealed class FootprintSystem : EntitySystem
         else
         {
             if (!_solution.ResolveSolution(solCont, ent.Comp.BodySurfaceSolutionName, ref ent.Comp.BodySurfaceSolution, out var bodySurfaceSolution))
-                return;
+                return false;
 
             solution = bodySurfaceSolution;
             solComp = ent.Comp.BodySurfaceSolution.Value;
         }
 
         if (solution.Volume <= 0)
-            return;
+            return false;
 
-        // Check if footprints should be created
         if (!_physicsQuery.TryComp(ent, out var body))
-            return;
+            return false;
 
         if (body.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(ent.Owner))
-            return;
+            return false;
 
-        var transform = Transform(ent);
+        transform = Transform(ent);
         var mapCoords = _transform.GetMapCoordinates((ent, transform));
-        if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid))
-            return;
+        if (!_mapManager.TryFindGridAt(mapCoords, out gridUid, out var mapGrid))
+            return false;
+
+        grid = mapGrid;
 
         var distanceMoved = (transform.LocalPosition - ent.Comp.LastStepPosition).Length();
         var requiredDistance = stand ? ent.Comp.WalkStepInterval : ent.Comp.DragMarkInterval;
 
         if (!(distanceMoved > requiredDistance))
-            return;
+            return false;
 
-        var tileRef = _mapSystem.GetTileRef((gridUid, grid), transform.Coordinates);
+        tileRef = _mapSystem.GetTileRef((gridUid, grid), transform.Coordinates);
 
-        _entities.Clear();
-        _lookup.GetLocalEntitiesIntersecting(gridUid, tileRef.GridIndices, _entities);
-        var dragMarkCount = 0;
-        var footPrintCount = 0;
+        if (_puddleSystem.TryGetPuddle(tileRef, out _))
+            return false;
 
-        foreach (var footPrint in _entities)
-        {
-            switch (footPrint.Comp.PrintType)
-            {
-                case PrintType.Foot:
-                    footPrintCount += 1;
-                    break;
-                case PrintType.DragMark:
-                    dragMarkCount += 1;
-                    break;
-            }
-        }
+        return true;
+    }
 
-        if (stand)
-        {
-            if (footPrintCount >= MaxFootprintsPerTile)
-                return;
-        }
-        else
-        {
-            if (dragMarkCount >= MaxMarksPerTile)
-                return;
-        }
-
+    /// <summary>
+    /// Emits a footprint and manages the state update.
+    /// </summary>
+    public void EmitFootprint(
+        Entity<FootprintEmitterComponent> ent,
+        bool stand,
+        Entity<SolutionComponent> solComp,
+        Solution solution,
+        EntityUid gridUid,
+        MapGridComponent grid,
+        TileRef tileRef,
+        TransformComponent transform)
+    {
         ent.Comp.IsRightStep = !ent.Comp.IsRightStep;
 
-        // Create new footprint entity
         var footprintEntity = SpawnFootprint(gridUid, ent.Comp, solution, ent, transform, stand);
 
-        // Update footprint and emitter state
         UpdateFootprint(footprintEntity, (ent, ent.Comp), solComp, transform, stand);
 
-        // Update emitter state.
         UpdateEmitterState(ent.Comp, transform);
     }
 

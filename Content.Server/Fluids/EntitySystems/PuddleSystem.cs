@@ -14,6 +14,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared.Tag;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -36,8 +37,13 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     private EntityQuery<PuddleComponent> _puddleQuery;
+
+    // Sunrise-Edit start
+    private static readonly ProtoId<TagPrototype> StorytellerIgnoreMessTag = "StorytellerIgnoreMess";
+    // Sunrise-Edit end
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -80,7 +86,11 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             foreach (var neighbor in args.NeighborFreeTiles)
             {
                 var split = overflow.SplitSolution(spillAmount);
-                TrySpillAt(_map.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices), split, out _, false);
+                TrySpillAt(_map.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices), split, out var spawned, false); // Sunrise-Edit
+                // Sunrise-Edit start
+                if (_tag.HasTag(entity.Owner, StorytellerIgnoreMessTag))
+                    _tag.AddTag(spawned, StorytellerIgnoreMessTag);
+                // Sunrise-Edit end
                 args.Updates--;
 
                 if (args.Updates <= 0)

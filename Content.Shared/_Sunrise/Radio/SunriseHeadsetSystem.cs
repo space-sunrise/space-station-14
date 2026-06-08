@@ -1,11 +1,14 @@
 using Content.Shared.Chat;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
+using Content.Shared.UserInterface;
 
 namespace Content.Shared._Sunrise.Radio;
 
 public sealed class SunriseHeadsetSystem : EntitySystem
 {
+    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();

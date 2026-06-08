@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.Graphics;
 using Content.Shared._Sunrise.Radio;
 
 namespace Content.Client._Sunrise.Radio.Ui;
@@ -30,13 +31,28 @@ public sealed partial class HeadsetSettingsWindow : DefaultWindow
             if (!proto.TryIndex(channelId, out var channel))
                 continue;
 
+            // Sunrise-Start: Style each channel row using its custom channel color
             var row = new BoxContainer
             {
                 Orientation = BoxContainer.LayoutOrientation.Horizontal,
                 SeparationOverride = 8,
                 HorizontalExpand = true,
-                Margin = new Thickness(0, 4)
+                Margin = new Thickness(8, 6)
             };
+
+            var panel = new PanelContainer
+            {
+                PanelOverride = new StyleBoxFlat
+                {
+                    BackgroundColor = channel.Color.WithAlpha(0.08f),
+                    BorderColor = channel.Color.WithAlpha(0.18f),
+                    BorderThickness = new Thickness(1)
+                },
+                Margin = new Thickness(0, 4),
+                HorizontalExpand = true
+            };
+            panel.AddChild(row);
+            // Sunrise-End
 
             var enabled = component.EnabledChannels.GetValueOrDefault(channelId, true);
 
@@ -84,7 +100,7 @@ public sealed partial class HeadsetSettingsWindow : DefaultWindow
             };
             row.AddChild(slider);
 
-            ChannelList.AddChild(row);
+            ChannelList.AddChild(panel);
         }
     }
 }

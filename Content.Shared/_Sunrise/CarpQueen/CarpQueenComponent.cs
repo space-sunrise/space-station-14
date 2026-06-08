@@ -41,25 +41,25 @@ public sealed partial class CarpQueenComponent : Component
     public EntityUid? ActionOrderLooseEntity;
 
     /// <summary>
-    /// Current order applied to servants.
+    /// Текущий приказ, примененный к слугам.
     /// </summary>
     [DataField("currentOrders"), AutoNetworkedField]
     public CarpQueenOrderType CurrentOrder = CarpQueenOrderType.Loose;
 
     /// <summary>
-    /// List of spawned servants controlled by the queen.
+    /// Список созданных слуг под контролем королевы.
     /// </summary>
     [DataField("servants")]
     public HashSet<EntityUid> Servants = new();
 
     /// <summary>
-    /// Active eggs spawned by the queen (not yet hatched).
+    /// Активные яйца, созданные королевой и еще не вылупившиеся.
     /// </summary>
     [DataField("eggs")]
     public HashSet<EntityUid> Eggs = new();
 
     /// <summary>
-    /// Pool of carp servant prototype IDs to randomly pick from when summoning.
+    /// Пул ID прототипов карпов-слуг для случайного выбора при призыве.
     /// </summary>
     [DataField("armyMobSpawnOptions")]
     public List<string> ArmyMobSpawnOptions = new()
@@ -72,7 +72,7 @@ public sealed partial class CarpQueenComponent : Component
     };
 
     /// <summary>
-    /// Dataset mapping for order callouts (spoken lines on order change).
+    /// Соответствие dataset для реплик приказов, произносимых при смене приказа.
     /// </summary>
     [DataField("orderCallouts")]
     public Dictionary<CarpQueenOrderType, string> OrderCallouts = new()
@@ -84,39 +84,39 @@ public sealed partial class CarpQueenComponent : Component
     };
 
     /// <summary>
-    /// Hunger consumed per summon use.
+    /// Голод, расходуемый на одно использование призыва.
     /// </summary>
     [DataField("hungerPerSummon")]
     public float HungerPerSummon = 25f;
 
     /// <summary>
-    /// Tracks last observed hunger to grant small healing when eating.
-    /// Server-side only; not networked.
+    /// Отслеживает последний замеченный голод для небольшого лечения при еде.
+    /// Только на сервере, не синхронизируется по сети.
     /// </summary>
     public float LastObservedHunger;
 
     /// <summary>
-    /// Maximum total servants + eggs the queen can have at once.
+    /// Максимальное суммарное количество слуг и яиц у королевы одновременно.
     /// </summary>
     [DataField("maxArmySize")]
     public int MaxArmySize = 5;
 
     /// <summary>
-    /// HP healed per 1 unit of hunger gained (when eating).
+    /// HP, восстанавливаемое за 1 единицу полученного голода при еде.
     /// </summary>
     [DataField("healPerHunger")]
     public float HealPerHunger = 0.2f;
 
     /// <summary>
-    /// Maximum HP healed per tick from eating.
+    /// Максимальное HP, восстанавливаемое за тик от еды.
     /// </summary>
     [DataField("maxHealPerTick")]
     public float MaxHealPerTick = 5f;
 
     /// <summary>
-    /// Spawn chances for different carp types when hatching from egg.
-    /// Key: prototype ID, Value: chance (0-100).
-    /// If sum is less than 100, remaining chance goes to default (MobCarpServantRainbow).
+    /// Шансы спавна разных типов карпов при вылуплении из яйца.
+    /// Ключ: ID прототипа, значение: шанс (0-100).
+    /// Если сумма меньше 100, оставшийся шанс уходит в значение по умолчанию (MobCarpServantRainbow).
     /// </summary>
     [DataField("spawnChances")]
     public Dictionary<string, int> SpawnChances = new()
@@ -126,5 +126,4 @@ public sealed partial class CarpQueenComponent : Component
         { "MobCarpServantDungeon", 10 }
     };
 }
-
 
