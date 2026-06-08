@@ -6,6 +6,7 @@
   playTimeTracker: AntagNinja # Sunrise-Edit
   objective: roles-antag-space-ninja-objective
   guides: [ SpaceNinja ]
+  storytellerStress: 6.0 # Sunrise-Edit
 
 #Ninja Gear
 - type: startingGear

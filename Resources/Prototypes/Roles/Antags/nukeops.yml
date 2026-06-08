@@ -13,6 +13,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: nuke_operative
+  storytellerStress: 5.0 # Sunrise-Edit
 
 - type: antag
   id: NukeopsMedic
@@ -32,6 +33,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: nuke_medic
+  storytellerStress: 5.0 # Sunrise-Edit
 
 - type: antag
   id: NukeopsCommander
@@ -52,6 +54,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: nuke_commander
+  storytellerStress: 8.0 # Sunrise-Edit
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink

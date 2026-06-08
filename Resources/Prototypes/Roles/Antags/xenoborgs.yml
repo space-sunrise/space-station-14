@@ -12,6 +12,7 @@
     time: 18000 # 5 hrs
   # Sunrise-end
   guides: [ Xenoborgs ]
+  storytellerStress: 5.0 # Sunrise-Edit
 
 - type: antag
   id: Xenoborg
@@ -27,3 +28,4 @@
     time: 18000 # 5 hrs
   # Sunrise-end
   guides: [ Xenoborgs ]
+  storytellerStress: 0.5 # Sunrise-Edit

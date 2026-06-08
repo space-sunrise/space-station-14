@@ -13,6 +13,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: thief
+  storytellerStress: 1.0 # Sunrise-Edit
 
 - type: startingGear
   id: ThiefGear
