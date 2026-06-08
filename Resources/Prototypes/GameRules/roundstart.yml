@@ -381,7 +381,7 @@
       fallbackRoles: [ HeadRev ]
       max: 40
       playerRatio: 2
-      ignorePrefCheck: true
+      ignorePrefCheck: False
       blacklist:
         components:
         - CommandStaff
