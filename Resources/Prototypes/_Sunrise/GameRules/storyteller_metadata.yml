@@ -316,29 +316,29 @@
 - type: storytellerMetadata
   id: GreytideVirus
   threatType: MajorCalm
-  threatCost: 30
-  maxStress: 80
+  threatCost: 60
+  maxStress: 85
 
 - type: storytellerMetadata
   id: ImmovableRodSpawn
   threatType: MajorCalm
-  threatCost: 40
-  minStationStrength: 30
-  maxStress: 50
+  threatCost: 80
+  minStationStrength: 15
+  maxStress: 70
 
 - type: storytellerMetadata
   id: GameRuleMeteorSwarmMedium
   threatType: MajorCalm
-  threatCost: 45
-  minStationStrength: 20
+  threatCost: 90
+  minStationStrength: 10
   maxStress: 80
 
 - type: storytellerMetadata
   id: GameRuleMeteorSwarmLarge
   threatType: MajorCalm
-  threatCost: 50
-  minStationStrength: 20
-  maxStress: 70
+  threatCost: 110
+  minStationStrength: 15
+  maxStress: 75
 
 
 # =============================================================================
@@ -348,28 +348,28 @@
 - type: storytellerMetadata
   id: KingRatMigration
   threatType: MinorAntag
-  threatCost: 15
-  minStationStrength: 10
+  threatCost: 30
+  minStationStrength: 5
   maxStress: 100
 
 - type: storytellerMetadata
   id: KingRatMigrationHighPop
   threatType: MinorAntag
-  threatCost: 30
-  minStationStrength: 30
+  threatCost: 60
+  minStationStrength: 15
   maxStress: 80
 
 - type: storytellerMetadata
   id: RevenantSpawn
   threatType: MinorAntag
-  threatCost: 20
-  minStationStrength: 20
+  threatCost: 40
+  minStationStrength: 10
   maxStress: 80
 
 - type: storytellerMetadata
   id: Thief
   threatType: MinorAntag
-  threatCost: 20
+  threatCost: 40
   minStationStrength: 0
   maxStress: 90
   weightModifier: 4.0
@@ -377,15 +377,15 @@
 - type: storytellerMetadata
   id: PirateSmall
   threatType: MinorAntag
-  threatCost: 30
-  minStationStrength: 20
+  threatCost: 60
+  minStationStrength: 10
   maxStress: 80
   weightModifier: 2.0
 
 - type: storytellerMetadata
   id: Fugitive
   threatType: MinorAntag
-  threatCost: 15
+  threatCost: 30
   maxStress: 80
   minStationStrength: 0
   weightModifier: 2.0
@@ -393,30 +393,30 @@
 - type: storytellerMetadata
   id: TerminatorSpawn
   threatType: MinorAntag
-  threatCost: 20
+  threatCost: 40
   maxStress: 80
-  minStationStrength: 20
+  minStationStrength: 10
   weightModifier: 3.0
 
 - type: storytellerMetadata
   id: SpiderClownSpawn
   threatType: MinorAntag
-  threatCost: 30
-  minStationStrength: 30
+  threatCost: 60
+  minStationStrength: 15
   maxStress: 70
 
 - type: storytellerMetadata
   id: UnknownShuttleInstigator
   threatType: MinorAntag
-  threatCost: 30
-  minStationStrength: 30
+  threatCost: 60
+  minStationStrength: 15
   maxStress: 75
 
 - type: storytellerMetadata
   id: UnknownShuttleManOWar
   threatType: MinorAntag
-  threatCost: 15
-  minStationStrength: 15
+  threatCost: 30
+  minStationStrength: 10
   maxStress: 75
   weightModifier: 5.0
 
@@ -427,130 +427,130 @@
 - type: storytellerMetadata
   id: DragonSpawn
   threatType: MajorAntag
-  threatCost: 70
-  minStationStrength: 50
-  maxStress: 60
+  threatCost: 100
+  minStationStrength: 20
+  maxStress: 75
 
 - type: storytellerMetadata
   id: NinjaSpawn
   threatType: MajorAntag
-  threatCost: 100
-  minStationStrength: 30
-  maxStress: 60
+  threatCost: 120
+  minStationStrength: 15
+  maxStress: 75
 
 - type: storytellerMetadata
   id: ZombieOutbreak
   threatType: MajorAntag
-  threatCost: 150
-  minStationStrength: 60
-  maxStress: 60
+  threatCost: 220
+  minStationStrength: 30
+  maxStress: 75
 
 - type: storytellerMetadata
   id: LoneOpsSpawn
   threatType: MajorAntag
-  threatCost: 60
-  minStationStrength: 30
-  maxStress: 70
+  threatCost: 90
+  minStationStrength: 15
+  maxStress: 80
 
 - type: storytellerMetadata
   id: WizardSpawn
   threatType: MajorAntag
-  threatCost: 110
-  minStationStrength: 50
-  maxStress: 65
+  threatCost: 140
+  minStationStrength: 25
+  maxStress: 75
 
 - type: storytellerMetadata
   id: AbductorsSpawn
   threatType: MajorAntag
-  threatCost: 90
-  minStationStrength: 25
-  maxStress: 70
+  threatCost: 110
+  minStationStrength: 15
+  maxStress: 80
   weightModifier: 2.0
 
 - type: storytellerMetadata
   id: Traitor
   threatType: MajorAntag
-  threatCost: 80
-  minStationStrength: 20
-  maxStress: 70
+  threatCost: 100
+  minStationStrength: 10
+  maxStress: 85
   weightModifier: 3.0
 
 - type: storytellerMetadata
   id: SleeperAgents
   threatType: MajorAntag
-  threatCost: 60
-  minStationStrength: 35
-  maxStress: 70
+  threatCost: 90
+  minStationStrength: 20
+  maxStress: 80
   weightModifier: 5.0
 
 - type: storytellerMetadata
   id: Nukeops
   threatType: MajorAntag
-  threatCost: 150
-  minStationStrength: 50
-  maxStress: 75
+  threatCost: 250
+  minStationStrength: 30
+  maxStress: 85
   weightModifier: 2.0
 
 - type: storytellerMetadata
   id: Revolutionary
   threatType: MajorAntag
-  threatCost: 150
-  minStationStrength: 50
-  maxStress: 70
+  threatCost: 220
+  minStationStrength: 25
+  maxStress: 85
   weightModifier: 0.5
 
 - type: storytellerMetadata
   id: Zombie
   threatType: MajorAntag
-  threatCost: 150
-  minStationStrength: 60
-  maxStress: 60
+  threatCost: 220
+  minStationStrength: 30
+  maxStress: 75
   weightModifier: 0.5
 
 - type: storytellerMetadata
   id: Wizard
   threatType: MajorAntag
-  threatCost: 110
-  minStationStrength: 50
-  maxStress: 60
+  threatCost: 140
+  minStationStrength: 25
+  maxStress: 75
   weightModifier: 1.0
 
 - type: storytellerMetadata
   id: PirateMedium
   threatType: MajorAntag
-  threatCost: 70
-  minStationStrength: 35
-  maxStress: 70
+  threatCost: 100
+  minStationStrength: 20
+  maxStress: 80
   weightModifier: 1.5
 
 - type: storytellerMetadata
   id: BloodCult
   threatType: MajorAntag
-  threatCost: 140
-  minStationStrength: 50
-  maxStress: 60
+  threatCost: 220
+  minStationStrength: 30
+  maxStress: 75
   weightModifier: 1.0
 
 - type: storytellerMetadata
   id: FleshCult
   threatType: MajorAntag
-  threatCost: 140
-  minStationStrength: 50
-  maxStress: 60
+  threatCost: 220
+  minStationStrength: 30
+  maxStress: 75
   weightModifier: 1.0
 
 - type: storytellerMetadata
   id: AssaultOps
   threatType: MajorAntag
-  threatCost: 80
-  minStationStrength: 30
-  maxStress: 60
+  threatCost: 120
+  minStationStrength: 15
+  maxStress: 75
   weightModifier: 1.0
 
 - type: storytellerMetadata
   id: SubXenoborgs
   threatType: MajorAntag
-  threatCost: 100
-  minStationStrength: 40
-  maxStress: 60
+  threatCost: 150
+  minStationStrength: 20
+  maxStress: 75
   weightModifier: 1.0

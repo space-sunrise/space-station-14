@@ -1,4 +1,6 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Prototypes;
+using Content.Shared.Roles;
 
 namespace Content.Server._Sunrise.Storyteller.Components;
 
@@ -8,6 +10,12 @@ namespace Content.Server._Sunrise.Storyteller.Components;
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class StorytellerRuleComponent : Component
 {
+    /// <summary>
+    /// The department prototype ID representing ERT / Special Operations.
+    /// </summary>
+    [DataField]
+    public ProtoId<DepartmentPrototype> ErtDepartment = "SpecialOperations";
+
     /// <summary>
     /// The current stress rating of the crew (0 to 100).
     /// </summary>
@@ -36,7 +44,7 @@ public sealed partial class StorytellerRuleComponent : Component
     /// How much threat budget is generated per second by default.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float BaseBudgetPerSecond = 0.1f;
+    public float BaseBudgetPerSecond = 0.08f;
 
     /// <summary>
     /// Current pacing state.
@@ -69,22 +77,28 @@ public sealed partial class StorytellerRuleComponent : Component
     public TimeSpan LastNeutralEventTime;
 
     /// <summary>
+    /// Last timestamp when a warning about events being disabled was logged.
+    /// </summary>
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LastDisabledWarningTime;
+
+    /// <summary>
     /// Global cooldown between any storyteller events (in minutes).
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float GlobalEventCooldownMinutes = 3f;
+    public float GlobalEventCooldownMinutes = 1f;
 
     /// <summary>
     /// Cooldown between Helpful events (in minutes).
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float HelpfulEventCooldownMinutes = 8f;
+    public float HelpfulEventCooldownMinutes = 5f;
 
     /// <summary>
     /// Cooldown between Neutral events (in minutes).
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float NeutralEventCooldownMinutes = 6f;
+    public float NeutralEventCooldownMinutes = 3f;
 
     /// <summary>
     /// The timestamp when the current pacing state is scheduled to transition.

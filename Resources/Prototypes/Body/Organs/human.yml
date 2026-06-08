@@ -81,6 +81,7 @@
   - type: Item
     size: Small
     heldPrefix: eyeballs
+  - type: OrganEyes # Sunrise-Edit - support blindness checking without permanent blindness
 
 - type: entity
   id: OrganHumanTongue

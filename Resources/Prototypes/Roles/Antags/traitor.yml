@@ -25,6 +25,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 1h
+  storytellerStress: 1.0 # Sunrise-Edit
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear

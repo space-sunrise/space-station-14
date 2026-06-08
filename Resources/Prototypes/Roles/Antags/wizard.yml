@@ -4,6 +4,7 @@
   antagonist: true
   objective: roles-antag-survivor-objective
   playTimeTracker: AntagSurvivor # Sunrise-Edit
+  storytellerStress: 1.0 # Sunrise-Edit
   # guides: [  ]
 
 - type: antag
@@ -17,5 +18,6 @@
     time: 5h
   playTimeTracker: AntagWizard # Sunrise-Edit
   guides: [ Wizard ]
+  storytellerStress: 8.0 # Sunrise-Edit
 
 # See wizard_startinggear for wiz start gear options
