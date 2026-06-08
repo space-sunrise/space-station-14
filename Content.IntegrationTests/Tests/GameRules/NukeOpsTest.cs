@@ -251,11 +251,13 @@ public sealed class NukeOpsTest
                     Is.False,
                     $"The round ended, but {nukies.Length - i - 1} nukies are still alive!");
             }
-            // Delete the last nukie and make sure the round ends.
+            // Delete the last nukie and make sure the game rule ends (but the round does not)
             entMan.DeleteEntity(nukies[^1]);
 
-            Assert.That(roundEndSys.IsRoundEndRequested,
-                "All nukies were deleted, but the round didn't end!");
+            // Sunrise edit start - death of nukies ends the rule, not the round
+            Assert.That(ticker.IsGameRuleActive(rule.Uid), Is.False, "Game rule should have ended");
+            Assert.That(roundEndSys.IsRoundEndRequested, Is.False, "Round should not have ended");
+            // Sunrise edit end
         });
 
         ticker.SetGamePreset((GamePresetPrototype?) null);
