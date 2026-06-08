@@ -38,5 +38,6 @@
   - BaseStationDeliveries
   - BaseStationTransitHub
   - BaseStationCorporateLaw
+  - BaseStationMainStation
   components:
   - type: Transform

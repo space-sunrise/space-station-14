@@ -21,14 +21,16 @@ public sealed partial class StorytellerSystem
     private static readonly Gauge ThreatBudgetGauge = Metrics.CreateGauge(
         "ss14_storyteller_threat_budget",
         "Current threat budget available to spend on challenging events.");
-
     private static readonly Gauge MajorThreatBudgetGauge = Metrics.CreateGauge(
         "ss14_storyteller_major_threat_budget",
         "Current major threat budget available to spend on major antag/calm events.");
-
     private static readonly Gauge PacingStateGauge = Metrics.CreateGauge(
         "ss14_storyteller_pacing_state",
         "Current storyteller pacing state (0 = Relaxation, 1 = BuildUp, 2 = Peak, 3 = Recovery).");
+
+    private static readonly Gauge StorytellerTypeGauge = Metrics.CreateGauge(
+        "ss14_storyteller_type",
+        "Current storyteller type (0 = Calm, 1 = Classic, 2 = Insane).");
 
     private static readonly Gauge AlivePlayersGauge = Metrics.CreateGauge(
         "ss14_storyteller_alive_players",
@@ -232,6 +234,8 @@ public sealed partial class StorytellerSystem
         MajorThreatBudgetGauge.Set(comp.MajorThreatBudget);
         MaxThreatBudgetGauge.Set(comp.MaxThreatBudget);
         PacingStateGauge.Set((double)comp.PacingState);
+
+        StorytellerTypeGauge.Set((double)comp.StorytellerType);
         AlivePlayersGauge.Set(metrics.AliveCount);
         DeadPlayersGauge.Set(metrics.DeadCount);
         GhostPlayersGauge.Set(metrics.GhostCount);
@@ -332,10 +336,34 @@ public sealed partial class StorytellerSystem
         static string F2(float v, IFormatProvider p) => v.ToString("F2", p);
         static string F4(float v, IFormatProvider p) => v.ToString("F4", p);
 
+        var maxBudgetModifier = 1f;
+        if (_protoManager.TryIndex<StorytellerTypePrototype>(comp.StorytellerType.ToString(), out var typeProto))
+        {
+            maxBudgetModifier = typeProto.MaxBudgetModifier;
+        }
+        var maxBudget = comp.MaxThreatBudget * maxBudgetModifier;
+
+        var alertLevel = "green";
+        var alertQuery = EntityQueryEnumerator<AlertLevelComponent>();
+        AlertLevelComponent? mainAlertComp = null;
+        while (alertQuery.MoveNext(out _, out var alertComp))
+        {
+            if (alertComp.AlertLevelPrototype == "stationAlerts")
+            {
+                mainAlertComp = alertComp;
+                break;
+            }
+            mainAlertComp ??= alertComp;
+        }
+        if (mainAlertComp != null)
+        {
+            alertLevel = mainAlertComp.CurrentLevel;
+        }
+
         var message =
-            $"Tick - State: {comp.PacingState}, Type: {comp.StorytellerType}, " +
-            $"Crew Stress: {F2(comp.CrewStress, inv)}, Threat Budget: {F2(comp.ThreatBudget, inv)}/{F1(comp.MaxThreatBudget, inv)}, " +
-            $"Major Budget: {F2(comp.MajorThreatBudget, inv)}/{F1(comp.MaxThreatBudget, inv)}, " +
+            $"Tick - State: {comp.PacingState}, Type: {comp.StorytellerType}, Alert: {alertLevel}, " +
+            $"Crew Stress: {F2(comp.CrewStress, inv)}, Threat Budget: {F2(comp.ThreatBudget, inv)}/{F1(maxBudget, inv)}, " +
+            $"Major Budget: {F2(comp.MajorThreatBudget, inv)}/{F1(maxBudget, inv)}, " +
             $"Players: {metrics.AliveCount}/{metrics.TotalPlayers} (Dead: {metrics.DeadCount}, Ghosts: {metrics.GhostCount}, Sec: {metrics.SecurityCount}), " +
             $"Roster: {metrics.CrewRosterCount} (Command/Crew: {metrics.RosterCommandCount}/{metrics.RosterCrewCount}, Dead Cmd/Crew: {metrics.DeadCommandCount}/{metrics.DeadCrewCount}), " +
             $"Join/Leave Rate: {F1(metrics.PlayerJoinRate, inv)}/{F1(metrics.PlayerLeaveRate, inv)}, " +
