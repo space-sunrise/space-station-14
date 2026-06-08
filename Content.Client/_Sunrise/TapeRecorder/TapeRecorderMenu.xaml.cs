@@ -28,6 +28,10 @@ public sealed partial class TapeRecorderMenu : FancyWindow
             "tape-recorder-ui-cassette",
             ("cassette", state.CassetteName));
 
+        PlaybackSlider.MaxValue = state.CapacitySeconds;
+        PlaybackSlider.SetValueWithoutEvent(state.PositionSeconds);
+        PlaybackSlider.Disabled = true;
+
         TimeLabel.Text = Loc.GetString(
             "tape-recorder-ui-time",
             ("position", FormatTime(state.PositionSeconds)),

@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.TapeRecorder;
 
@@ -21,12 +22,28 @@ public sealed partial class TapeCassetteComponent : Component
     /// <summary>
     /// Recorded speech lines.
     /// </summary>
+    [AutoNetworkedField]
     public List<TapeCassetteRecord> Records = [];
 }
 
+/// <summary>
+/// A single speech line recorded on a cassette.
+/// </summary>
+[Serializable, NetSerializable]
 public sealed class TapeCassetteRecord
 {
-    public float Time;
-    public string Speaker = string.Empty;
-    public string Message = string.Empty;
+    /// <summary>
+    /// Tape position in seconds where the speech line starts.
+    /// </summary>
+    public float Time { get; set; }
+
+    /// <summary>
+    /// Display name of the speaker that was recorded.
+    /// </summary>
+    public string Speaker { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Recorded speech text.
+    /// </summary>
+    public string Message { get; set; } = string.Empty;
 }

@@ -1,8 +1,10 @@
 using System.Linq;
 using Content.Server._Sunrise.TTS;
+using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.TapeRecorder;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.Chat;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Paper;
 using Content.Shared.Speech;
@@ -21,6 +23,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
@@ -38,8 +41,12 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         SubscribeLocalEvent<TapeRecorderComponent, EntRemovedFromContainerMessage>(OnCassetteRemoved);
         SubscribeLocalEvent<TapeRecorderComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<TapeRecorderComponent, ListenEvent>(OnListen);
-        SubscribeLocalEvent<TapeRecorderComponent, TapeRecorderSetModeMessage>(OnSetMode);
-        SubscribeLocalEvent<TapeRecorderComponent, TapeRecorderPrintMessage>(OnPrint);
+
+        Subs.BuiEvents<TapeRecorderComponent>(TapeRecorderUiKey.Key, subs =>
+        {
+            subs.Event<TapeRecorderSetModeMessage>(OnSetMode);
+            subs.Event<TapeRecorderPrintMessage>(OnPrint);
+        });
     }
 
     private void OnMapInit(Entity<TapeRecorderComponent> ent, ref MapInitEvent args)
@@ -245,6 +252,15 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 
     private async void PlayRecord(Entity<TapeRecorderComponent> recorder, TapeCassetteRecord record)
     {
+        _chat.TrySendInGameICMessage(
+            recorder,
+            record.Message,
+            InGameICChatType.Speak,
+            ChatTransmitRange.Normal,
+            nameOverride: GetPlaybackSpeakerName(recorder, record),
+            checkRadioPrefix: false,
+            ignoreActionBlocker: true);
+
         if (!_prototype.TryIndex<TTSVoicePrototype>(recorder.Comp.PlaybackVoice, out var voice))
             return;
 
@@ -359,6 +375,11 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     private string GetSpeakerName(Entity<TapeRecorderComponent> recorder, EntityUid source)
     {
         return Exists(source) ? Name(source) : Loc.GetString(recorder.Comp.UnknownSpeaker);
+    }
+
+    private string GetPlaybackSpeakerName(Entity<TapeRecorderComponent> recorder, TapeCassetteRecord record)
+    {
+        return $"{Name(recorder)} ({record.Speaker})";
     }
 
     private static string FormatTime(float seconds)
