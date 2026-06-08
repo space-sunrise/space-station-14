@@ -26,7 +26,7 @@ public sealed class SunriseHeadsetSystem : EntitySystem
     {
         if (TryComp<HeadsetComponent>(ent, out var headset) &&
             args.Component.Channels.Contains(SharedChatSystem.CommonChannel) &&
-            headset.EnabledChannels.TryAdd(SharedChatSystem.CommonChannel.Id, true))
+            headset.EnabledChannels.TryAdd(SharedChatSystem.CommonChannel.Id, false))
         {
             Dirty(ent, headset);
         }
