@@ -5,7 +5,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobPassenger
-      time: 125h
+      time: 140h
   storage:
     back:
       - RubberStampGreytide
@@ -17,7 +17,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobPassenger
-      time: 80h
+      time: 95h
   storage:
     back:
       - ToyFigurineGreytider
