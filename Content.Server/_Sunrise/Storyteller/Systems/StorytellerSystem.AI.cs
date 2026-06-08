@@ -134,7 +134,6 @@ public sealed partial class StorytellerSystem
             entity.Comp.CrewStress = Math.Clamp(entity.Comp.CrewStress + decision.AdjustStress.Value, 0f, 100f);
         }
 
-        // Apply budget adjustments
         if (decision.AdjustBudget.HasValue)
         {
             entity.Comp.ThreatBudget = Math.Clamp(entity.Comp.ThreatBudget + decision.AdjustBudget.Value, 0f, entity.Comp.MaxThreatBudget);
