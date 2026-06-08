@@ -429,7 +429,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         }
     }
 
-    private void SetWinType(Entity<NukeopsRuleComponent> ent, WinType type, bool endRound = true)
+    private void SetWinType(Entity<NukeopsRuleComponent> ent, WinType type, bool endRound = false) // Sunrise-Edit
     {
         ent.Comp.WinType = type;
 
