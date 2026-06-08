@@ -292,7 +292,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             return false;
         }
 
-        var paper = Spawn(ent.Comp.PaperPrototype, Transform(ent.Owner).Coordinates);
+        var paper = Spawn(ent.Comp.PaperPrototype, Transform(user).Coordinates);
         if (!TryComp<PaperComponent>(paper, out var paperComp))
             return false;
 

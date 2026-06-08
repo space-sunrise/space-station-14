@@ -1,18 +1,18 @@
 <ui:FancyWindow xmlns="https://spacestation14.io"
                 xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
-                SetSize="420 190"
+                SetSize="560 190"
                 Title="{Loc 'tape-recorder-ui-title'}"
                 Resizable="False">
     <BoxContainer Margin="6 4" Orientation="Vertical" SeparationOverride="4">
         <Label Name="CassetteLabel" Text="{Loc 'tape-recorder-ui-no-cassette'}" />
         <Slider Name="PlaybackSlider" HorizontalExpand="True" Disabled="True" />
-        <Label Name="TimeLabel" Text="00:00 / 00:00" />
+        <Label Name="TimeLabel" Text="" />
         <PanelContainer StyleClasses="LowDivider" />
         <BoxContainer Orientation="Horizontal" SeparationOverride="4">
-            <Button Name="StopButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-stop'}" />
-            <Button Name="RecordButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-record'}" />
-            <Button Name="PlayButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-play'}" />
-            <Button Name="RewindButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-rewind'}" />
+            <Button Name="StopButton" MinWidth="132" MaxWidth="132" Text="{Loc 'tape-recorder-ui-button-stop'}" />
+            <Button Name="RecordButton" MinWidth="132" MaxWidth="132" Text="{Loc 'tape-recorder-ui-button-record'}" />
+            <Button Name="PlayButton" MinWidth="132" MaxWidth="132" Text="{Loc 'tape-recorder-ui-button-play'}" />
+            <Button Name="RewindButton" MinWidth="132" MaxWidth="132" Text="{Loc 'tape-recorder-ui-button-rewind'}" />
         </BoxContainer>
         <Button Name="PrintButton" HorizontalExpand="True" Text="{Loc 'tape-recorder-ui-button-print'}" />
     </BoxContainer>
