@@ -22,3 +22,4 @@
   playTimeTracker: AntagZombie # Sunrise-Edit
   objective: roles-antag-zombie-objective
   guides: [ Zombies ]
+  storytellerStress: 0.3 # Sunrise-Edit
