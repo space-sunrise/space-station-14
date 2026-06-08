@@ -73,13 +73,13 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
             var target = comp.Target.Value;
 
-            if (!Exists(target) || Deleted(target))
+            if (!Exists(target) || Deleted(target) || Terminating(target))
             {
                 RemComp<ActiveCarrierComponent>(uid);
                 continue;
             }
 
-            if (!TryComp<TransformComponent>(target, out var targetXform))
+            if (!TryComp(target, out TransformComponent? targetXform))
             {
                 RemComp<ActiveCarrierComponent>(uid);
                 continue;
@@ -249,7 +249,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var target = ent.Comp.Target.Value;
 
-        if (!Exists(target) || Deleted(target))
+        if (!Exists(target) || Deleted(target) || Terminating(target))
             return;
 
         UpdateCarriedTransform(ent.Owner, target);
@@ -308,7 +308,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void OnInteractionAttempt(Entity<ActiveCanBeCarriedComponent> ent, ref InteractionAttemptEvent args)
     {
-        if (args.Target == null || !TryComp<TransformComponent>(args.Target.Value, out var targetXform))
+        if (args.Target == null)
+            return;
+
+        if (!TryComp(args.Target.Value, out TransformComponent? targetXform))
             return;
 
         var targetParent = targetXform.ParentUid;
@@ -383,7 +386,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void UpdateCarriedTransform(EntityUid carrier, EntityUid target)
     {
+        if (!TryComp(target, out TransformComponent? targetXform))
+            return;
+
         var carrierRotation = _transform.GetWorldRotation(carrier);
-        _transform.SetCoordinates(target, Transform(target), GetCarriedCoordinates(carrier), rotation: Angle.Zero - carrierRotation);
+        _transform.SetCoordinates(target, targetXform, GetCarriedCoordinates(carrier), rotation: Angle.Zero - carrierRotation);
     }
 }

@@ -13,3 +13,6 @@ reagent-desc-grcoffee = Измельченные зерна кофе.
 
 reagent-name-inc = чернила
 reagent-desc-inc = чернила
+
+reagent-name-universal-evaporator = универсальный испаритель
+reagent-desc-universal-evaporator = Испаряет жидкие реагенты, расщепляя ингибиторы, не позволяющие им переходить в газ.

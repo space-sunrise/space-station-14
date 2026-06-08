@@ -5,7 +5,7 @@
   components:
   - type: HitscanBasicRaycast
     maxDistance: 45.0
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 10
@@ -27,19 +27,19 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.1
     damage:
       types:
         Piercing: 25
         Structural: 10
-  - type: HitscanStaminaDamage
-    staminaDamage: 15
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 15
+  - type: ProjectilePierce
     chance: 0.40
     deviation: 0.05
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.30
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -61,17 +61,17 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: -0.75
     damage:
       types:
         Piercing: 30 # +30%
-  - type: HitscanStaminaDamage
-    staminaDamage: 30
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 30
+  - type: ProjectilePierce
     chance: 0.05
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.15
 
 - type: entity
@@ -79,19 +79,19 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.25
     damage:
       types:
         Piercing: 20 #- 30%
         Structural: 5
-  - type: HitscanStaminaDamage
-    staminaDamage: 10
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 10
+  - type: ProjectilePierce
     chance: 0.8
     deviation: 0.05
     pierceLevel: Metal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -113,14 +113,14 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Blunt: 5
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.5
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.8
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -142,16 +142,16 @@
   parent: BulletRifleTraceHeavyPractice
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.3
     damage:
       types:
         Piercing: 40
         Structural: 80
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.3
     deviation: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.3
 
 - type: entity
@@ -159,19 +159,19 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     armorPenetration: 0.69
     damage:
       types:
         Piercing: 15 #- 40%
         Structural: 2
-  - type: HitscanStaminaDamage
-    staminaDamage: 8
-  - type: HitscanPierce
+  - type: StaminaDamageOnCollide
+    damage: 8
+  - type: ProjectilePierce
     chance: 0.9
     deviation: 0.05
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.3
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -193,16 +193,16 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Radiation: 10
         Piercing: 12
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.95
     deviation: 0.05
     pierceLevel: HardenedMetal
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.80
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -225,18 +225,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanStaminaDamage
-    staminaDamage: 20
-  - type: HitscanBasicDamage
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: Projectile
     armorPenetration: -0.99
     damage:
       types:
         Blunt: 5
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.05
     deviation: 0.05
     pierceLevel: Wood
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.70
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -258,18 +258,18 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanStaminaDamage
-    staminaDamage: 8.5
-  - type: HitscanBasicDamage
+  - type: StaminaDamageOnCollide
+    damage: 8.5
+  - type: Projectile
     armorPenetration: -0.99
     damage:
       types:
         Blunt: 3
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.05
     deviation: 0.05
     pierceLevel: Wood
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.6
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -293,15 +293,22 @@
   components:
   - type: HitscanReflect
     reflectiveType: None
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.99
     deviation: 0.005
     pierceLevel: Rock
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Heat: 15
         Radiation: 10
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+    - state: xray
+      shader: unshaded
+    rotation: 90
+    noRot: false
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -312,31 +319,35 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_xray
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+        state: xray
 
 - type: entity
   id: AdvancedDisablerBolt
   parent: DisablerBolt
   components:
-  - type: HitscanStaminaDamage
-    staminaDamage: 35
+  - type: StaminaDamageOnCollide
+    damage: 35
 
 - type: entity
   id: PelletShotgunImprovisedSpreadTraceLarge
   parent: PelletShotgunImprovisedTrace
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Projectile
     damage:
       types:
         Piercing: 3
         Slash: 3
         Structural: 5
-  - type: HitscanPierce
+  - type: ProjectilePierce
     chance: 0.05
-  - type: HitscanRicochet
+  - type: ProjectileRicochet
     chance: 0.5
-  - type: HitscanStaminaDamage
-    staminaDamage: 6
+  - type: StaminaDamageOnCollide
+    damage: 6
   - type: ProjectileSpread
     proto: PelletShotgunImprovisedSpreadTraceLarge
     count: 24

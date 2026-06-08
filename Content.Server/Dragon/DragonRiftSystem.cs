@@ -89,7 +89,7 @@ public sealed class DragonRiftSystem : EntitySystem
 
             if (comp.SpawnAccumulator > comp.SpawnCooldown)
             {
-                // Sunrise edit start - allow random spawn prototype selection from configured list
+                // Sunrise edit start - разрешаем случайный выбор spawn-прототипа из настроенного списка
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
                 var spawnPrototype = comp.SpawnPrototypes.Count > 0
                     ? _random.Pick(comp.SpawnPrototypes)

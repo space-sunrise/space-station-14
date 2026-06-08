@@ -17,6 +17,7 @@
     bodyType: Dynamic
     linearDamping: 0
     angularDamping: 0
+    fixedRotation: true
   - type: Fixtures
     fixtures:
       projectile:

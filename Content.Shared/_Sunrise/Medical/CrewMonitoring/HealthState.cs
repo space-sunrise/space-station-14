@@ -15,7 +15,8 @@ public enum CrewMonitoringHealthState
     Bad,
     Terrible,
     Critical,
-    Dead
+    Dead,
+    Alive
 }
 
 public static class HealthStateHelper
@@ -43,7 +44,7 @@ public static class HealthStateHelper
             return CrewMonitoringHealthState.Dead;
 
         if (damagePercentage == null)
-            return CrewMonitoringHealthState.Unknown;
+            return CrewMonitoringHealthState.Alive;
 
         var damageRatio = damagePercentage.Value;
 
