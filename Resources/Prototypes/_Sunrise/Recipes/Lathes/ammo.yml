@@ -1046,6 +1046,13 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: SpeedLoaderShotgunBirdshot
+  result: SpeedLoaderShotgunBirdshot
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: SpeedLoaderShotgunBeanbag
   result: SpeedLoaderShotgunBeanbag
   materials:

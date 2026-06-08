@@ -94,6 +94,7 @@
     - MagazineRifleHeavyEmpty
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunBirdshot
     - SpeedLoaderShotgunEmpty
     - SpeedLoaderShotgunSlug
     - SpeedLoaderShotgunBeanbag
@@ -187,6 +188,7 @@
     - MagazineRifleHeavyEmpty
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunBirdshot
     - SpeedLoaderShotgunEmpty
     - SpeedLoaderShotgunSlug
     - SpeedLoaderShotgunBeanbag
@@ -387,6 +389,7 @@
     - MagazineRifleFMJ
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunBirdshot
     - SpeedLoaderShotgunSlug
     # Shuttle stuff
     - MagazineGrenadeEmpty

@@ -1228,6 +1228,34 @@
     spread: 10
 
 - type: entity
+  id: PelletShotgunBirdshotTrace
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    armorPenetration: -0.5
+    damage:
+      types:
+        Piercing: 1
+  - type: ProjectilePierce
+    chance: 0.001
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: buckshot
+
+- type: entity
+  id: PelletShotgunBirdshotSpreadTrace
+  parent: PelletShotgunBirdshotTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunBirdshotTrace
+    count: 18
+    spread: 25
+
+- type: entity
   id: PelletShotgunBreachTrace
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
