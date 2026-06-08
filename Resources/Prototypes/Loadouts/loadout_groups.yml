@@ -268,8 +268,6 @@
   minLimit: 0
   loadouts:
   - LizardPlushiePassenger
-  - RubberStampPassenger # Sunrise-Edit
-  - ToyFigurinePassenger # Sunrise-Edit
 
 - type: loadoutGroup
   id: BartenderHead

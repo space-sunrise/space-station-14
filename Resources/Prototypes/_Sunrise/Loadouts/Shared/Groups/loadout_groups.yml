@@ -974,6 +974,15 @@
   - TrinketsMedicalCNSG
 
 - type: loadoutGroup
+  id: SunrisePassengerJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushiePassenger
+  - SunriseRubberStampPassenger
+  - SunriseToyFigurinePassenger
+
+- type: loadoutGroup
   id: SeniorEngineerJumpsuit
   name: loadout-group-senior-engineer-jumpsuit
   loadouts:
