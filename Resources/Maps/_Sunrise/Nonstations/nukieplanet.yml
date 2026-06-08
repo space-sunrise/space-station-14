@@ -10657,7 +10657,7 @@ entities:
     - type: Transform
       pos: 11.5,-6.5
       parent: 104
-- proto: HandheldStationMapUnpowered
+- proto: HandheldStationMapNukeops
   entities:
   - uid: 1703
     components:

@@ -13,31 +13,31 @@ public sealed partial class SunriseCCVars : CVars
      */
 
     /// <summary>
-    /// URL of the TTS server API.
+    /// URL серверного API TTS.
     /// </summary>
     public static readonly CVarDef<bool> TTSEnabled =
         CVarDef.Create("tts.enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     /// <summary>
-    /// URL of the TTS server API.
+    /// URL серверного API TTS.
     /// </summary>
     public static readonly CVarDef<string> TTSApiUrl =
         CVarDef.Create("tts.api_url", "", CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Auth token of the TTS server API.
+    /// Токен авторизации серверного API TTS.
     /// </summary>
     public static readonly CVarDef<string> TTSApiToken =
         CVarDef.Create("tts.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    /// Amount of seconds before timeout for API
+    /// Таймаут API в секундах.
     /// </summary>
     public static readonly CVarDef<int> TTSApiTimeout =
         CVarDef.Create("tts.api_timeout", 10, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Option to disable TTS events for client
+    /// Настройка для отключения TTS-событий на клиенте.
     /// </summary>
     public static readonly CVarDef<bool> TTSClientEnabled =
         CVarDef.Create("tts.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -46,13 +46,13 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("tts.radio_ghost_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Option to disable TTS queue in radio for client
+    /// Настройка для отключения очереди TTS в радио на клиенте.
     /// </summary>
     public static readonly CVarDef<bool> TTSClientQueueEnabled =
         CVarDef.Create("tts.queue_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Default volume setting of TTS sound
+    /// Настройка громкости TTS-звука по умолчанию.
     /// </summary>
     public static readonly CVarDef<float> TTSVolume =
         CVarDef.Create("tts.volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -67,43 +67,21 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("tts.announce_effect", "tiny_room", CVar.SERVERONLY | CVar.ARCHIVE);
 
     /**
-     * Ban Webhook
+     * Вебхук банов
      */
 
     public static readonly CVarDef<string> DiscordBanWebhook =
         CVarDef.Create("discord.ban_webhook", string.Empty, CVar.SERVERONLY);
 
     /*
-     * Service Authorization
-     */
-
-    public static readonly CVarDef<bool> ServiceAuthEnabled =
-        CVarDef.Create("service_auth.enabled", false, CVar.SERVER | CVar.REPLICATED);
-
-    public static readonly CVarDef<string> ServiceAuthApiUrl =
-        CVarDef.Create("service_auth.api_url", "", CVar.SERVERONLY);
-
-    public static readonly CVarDef<string> ServiceAuthApiToken =
-        CVarDef.Create("service_auth.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    public static readonly CVarDef<bool> ServiceAuthCheckTelegramMember =
-        CVarDef.Create("service_auth.check_telegram_member", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> ServiceAuthCheckDiscordMember =
-        CVarDef.Create("service_auth.check_discord_member", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<string> ServiceAuthProjectName =
-        CVarDef.Create("service_auth.project_name", string.Empty, CVar.SERVERONLY);
-
-    /*
-     * GodMode RoundEnd
+     * GodMode в конце раунда
      */
 
     public static readonly CVarDef<bool> GodModeRoundEnd =
         CVarDef.Create("game.godmode_end", false, CVar.SERVERONLY);
 
     /*
-     * Queue
+     * Очередь
      */
 
     public static readonly CVarDef<bool>
@@ -112,6 +90,9 @@ public sealed partial class SunriseCCVars : CVars
     /*
      *  Sponsor API
      */
+
+    public static readonly CVarDef<bool> SponsorEnabled =
+        CVarDef.Create("sponsor.enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> SponsorApiUrl =
         CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
@@ -132,7 +113,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("sponsor.min_playtime_hours", 0, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /*
-     *  Greetings
+     *  Приветствия
      */
 
     public static readonly CVarDef<bool> GreetingsEnable =
@@ -188,17 +169,17 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("tape_player.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
-     * INFOLINKS
+     * Информационные ссылки
      */
 
     /// <summary>
-    /// Link to boosty to show in the launcher.
+    /// Ссылка на Boosty для показа в лаунчере.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
-    /// Link to replays to show in menus.
+    /// Ссылка на повторы для показа в меню.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksReplays =
         CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
@@ -227,20 +208,20 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("roadmap.id", "SunriseRoadmap");
 
     /// <summary>
-    /// Roadmap text hashset - to show roadmap to player when we change something.
+    /// Хеш текста Roadmap, чтобы показывать Roadmap игроку при изменениях.
     /// </summary>
     public static readonly CVarDef<string> RoadmapLastSeenHash =
         CVarDef.Create("roadmap.last_seen_hash", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /**
-     * Lobby Changelog
+     * Changelog лобби
      */
 
     public static readonly CVarDef<string> LobbyChangelogsList =
         CVarDef.Create("lobby_changelog.list", "ChangelogSunrise.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
 
     /*
-     * Cryoteleport
+     * Криотелепорт
      */
 
     public static readonly CVarDef<bool> CryoTeleportEnable =
@@ -399,14 +380,14 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("vigers_ray.victims", "", CVar.SERVERONLY);
 
     /// <summary>
-    /// List of usernames that cannot be kicked by kick or ghostkick commands.
-    /// Usernames are comma-separated.
+    /// Список имен пользователей, которых нельзя кикнуть командами kick или ghostkick.
+    /// Имена пользователей разделяются запятыми.
     /// </summary>
     public static readonly CVarDef<string> ProtectedKickUsernames =
         CVarDef.Create("admin.protected_kick_usernames", "", CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
-    ///     Flavor Profile
+    ///     Флейвор-профиль.
     /// </summary>
     public static readonly CVarDef<bool> FlavorTextSponsorOnly =
         CVarDef.Create("flavor_text.sponsor_only", true, CVar.SERVER | CVar.REPLICATED);
@@ -428,14 +409,14 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("damage_overlay.structures", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
-     * Mute new ghost role sound
+     * Отключение звука новой ghost role
      */
 
     public static readonly CVarDef<bool> MuteGhostRoleNotification =
         CVarDef.Create("ghost.mute_role_notification", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
-     * Heartbeat sound
+     * Звук сердцебиения
      */
 
     public static readonly CVarDef<bool> PlayHeartBeatSound =
@@ -511,7 +492,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("custom_loadout.pool", "SunriseLoadout", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     /*
-     * Trusted Proxy (UDP Relay)
+     * Доверенный прокси (UDP Relay)
      */
 
     /// <summary>
@@ -549,42 +530,42 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("trusted_proxy.poll_interval_ms", 2000, CVar.SERVERONLY);
 
     /// <summary>
-    ///     Whether each late-joining player should arrive on their own small shuttle.
-    ///     This is an alternative to the large rolling arrivals shuttle.
+    ///     Должен ли каждый поздний игрок прибывать на своем маленьком шаттле.
+    ///     Это альтернатива большому rolling arrivals shuttle.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsSingleShuttle =
         CVarDef.Create("shuttle.arrivals_single_shuttle", true, CVar.SERVERONLY);
 
     /// <summary>
-    ///     The map to use for the single-person arrivals shuttle.
+    ///     Карта для персонального arrivals shuttle.
     /// </summary>
     public static readonly CVarDef<string> ArrivalsSingleShuttlePath =
         CVarDef.Create("shuttle.arrivals_single_shuttle_path", "/Maps/_Sunrise/Shuttles/depart.yml", CVar.SERVERONLY);
 
     /// <summary>
-    ///     The visual speed of all shuttles when in FTL map.
+    ///     Визуальная скорость всех шаттлов на FTL-карте.
     /// </summary>
     public static readonly CVarDef<float> FTLSpeed =
         CVarDef.Create("shuttle.ftl_speed", 100.0f, CVar.SERVERONLY);
 
     /**
-     * Photo Uploads
+     * Загрузка фотографий
      */
 
     /// <summary>
-    /// Whether image loading/uploading in PDA messenger and news console is enabled.
+    /// Включена ли загрузка изображений в PDA messenger и консоли новостей.
     /// </summary>
     public static readonly CVarDef<bool> PhotoUploadEnabled =
         CVarDef.Create("photo.upload_enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     /// <summary>
-    /// Whether taking photos with the PDA camera is enabled.
+    /// Включена ли съемка фотографий через PDA camera.
     /// </summary>
     public static readonly CVarDef<bool> PhotoCaptureEnabled =
         CVarDef.Create("photo.capture_enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     /// <summary>
-    /// The ID of the corporate law set prototype to use in the PDA application.
+    /// ID прототипа набора корпоративных законов для PDA-приложения.
     /// </summary>
     public static readonly CVarDef<string> CorporateLawSet =
         CVarDef.Create("sunrise.corporate_law_set", "StandardCorporateLaw", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
@@ -600,4 +581,6 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
         CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
+
+
 }

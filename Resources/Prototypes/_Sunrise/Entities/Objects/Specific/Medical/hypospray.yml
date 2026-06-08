@@ -350,6 +350,45 @@
       - state: base-colorB-inhand-right
 
 - type: entity
+  name: beer medipen
+  parent: ChemicalMedipen
+  id: BeerMedipen
+  description: A single-dose, non-refillable medipen filled with beer and vodkizine.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#d69a22"
+      - state: base-colorB-inhand-left
+        color: "#8a4d1c"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#d69a22"
+      - state: base-colorB-inhand-right
+        color: "#8a4d1c"
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Beer
+          Quantity: 11
+        - ReagentId: Vodkizine
+          Quantity: 4
+
+- type: entity
   name: coal auto-injector
   parent: ChemicalMedipen
   id: CoalAutoInjector

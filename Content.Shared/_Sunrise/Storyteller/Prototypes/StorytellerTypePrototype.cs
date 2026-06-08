@@ -42,29 +42,28 @@ public sealed partial class StorytellerTypePrototype : IPrototype
     [DataField]
     public float RecoveryMaxMinutes = 20f;
 
-    // Budget Preservation
+    // Cooldowns (in minutes)
     [DataField]
-    public float BuildUpPreservationThreshold = 40f;
+    public float GlobalEventCooldownMinutes = 2f;
 
-    // Station Strength Coefficients
+    [DataField]
+    public float HelpfulEventCooldownMinutes = 5f;
+
+    [DataField]
+    public float NeutralEventCooldownMinutes = 5f;
+
+    // Station strength normalization: value at which a component reaches its cap (see StorytellerSystem).
     [DataField]
     public float StrengthArmedCrewCoefficient = 10f;
     [DataField]
     public float StrengthSecurityCoefficient = 15f;
-
     [DataField]
-    public float StrengthCargoCoefficient = 0.0005f;
-
+    public float StrengthCargoFullScale = 200_000f;
+    /// <summary>
+    /// Denominator for technology strength. Zero uses the weighted sum of all technologies in the content pack.
+    /// </summary>
     [DataField]
-    public float StrengthTechnologyCoefficient = 3.0f;
-
-    // Threat Scaling Coefficients
+    public float StrengthTechnologyFullScale;
     [DataField]
-    public float HighBudgetThreshold = 40f;
-    [DataField]
-    public float MajorThreatWeightMultiplier = 8f;
-    [DataField]
-    public float MinorThreatWeightMultiplier = 0.1f;
-    [DataField]
-    public float StationStrengthScalingFactor = 50f;
+    public float StrengthMaterialsFullScale = 50_000f;
 }

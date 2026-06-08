@@ -5,8 +5,7 @@
   playTimeTracker: JobDeathSquad
   setPreference: false
   startingGear: DeathSquadGear
-  icon: "JobIconDeathsquad" # Sunrise-edit
-  overrideConsoleVisibility: false # Sunrise added
+  icon: "JobIconDeathSquad"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

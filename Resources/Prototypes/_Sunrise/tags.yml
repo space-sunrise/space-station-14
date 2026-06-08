@@ -143,6 +143,9 @@
   id: PlantAnalyzer
 
 - type: Tag
+  id: RadarConsoleCircuitboard
+
+- type: Tag
   id: SunriseBlueprintXenoborg
 
 - type: Tag

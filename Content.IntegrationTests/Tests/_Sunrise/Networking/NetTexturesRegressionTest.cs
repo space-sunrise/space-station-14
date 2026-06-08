@@ -796,7 +796,12 @@ public sealed class NetTexturesRegressionTest
         await pair.Server.WaitAssertion(() => Assert.That(pair.Server.ResolveDependency<Robust.Server.Player.IPlayerManager>().PlayerCount, Is.EqualTo(0)));
 
         pair.Client.SetConnectTarget(pair.Server);
-        await pair.Client.WaitPost(() => netManager.ClientConnect(null!, 0, username));
+        var baseClient = pair.Client.ResolveDependency<Robust.Client.IBaseClient>();
+        await pair.Client.WaitPost(() =>
+        {
+            baseClient.PlayerNameOverride = username;
+            baseClient.ConnectToServer(new System.Net.DnsEndPoint("localhost", 1212));
+        });
         await pair.RunTicksSync(10);
         await Task.WhenAll(pair.Client.WaitIdleAsync(), pair.Server.WaitIdleAsync());
 

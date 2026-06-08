@@ -1,3 +1,4 @@
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Power;
@@ -16,6 +17,7 @@ public sealed class TelecomThermalSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly TemperatureSystem _tempSystem = default!;
 
     private EntityQuery<AmbientSoundComponent> _ambientQuery;
@@ -50,7 +52,16 @@ public sealed class TelecomThermalSystem : EntitySystem
                 _ambient.SetRange(uid, server.BaseAmbientRange + (ratio * server.AmbientRangeMultiplier), ambient);
             }
 
-            if (temp.CurrentTemperature >= server.MaxTemperature)
+            var pressure = _atmosphere.GetContainingMixture(uid, true)?.Pressure;
+            var pressureUnsafe = pressure >= server.MaxPressure;
+            var pressureSafe = pressure == null || pressure <= server.HysteresisPressure;
+
+            var temperatureUnsafe = temp.CurrentTemperature >= server.MaxTemperature ||
+                                    temp.CurrentTemperature <= server.MinTemperature;
+            var temperatureSafe = temp.CurrentTemperature <= server.HysteresisTemperature &&
+                                  temp.CurrentTemperature >= server.HysteresisMinTemperature;
+
+            if (temperatureUnsafe || pressureUnsafe)
             {
                 if (!server.Overheated)
                 {
@@ -58,7 +69,7 @@ public sealed class TelecomThermalSystem : EntitySystem
                     _appearance.SetData(uid, PowerDeviceVisuals.VisualState, 1);
                 }
             }
-            else if (server.Overheated && temp.CurrentTemperature <= server.HysteresisTemperature)
+            else if (server.Overheated && temperatureSafe && pressureSafe)
             {
                 server.Overheated = false;
                 _appearance.SetData(uid, PowerDeviceVisuals.VisualState, 0);

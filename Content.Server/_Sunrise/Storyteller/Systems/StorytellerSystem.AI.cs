@@ -64,11 +64,11 @@ public sealed partial class StorytellerSystem
             SciencePoints = metrics.SciencePoints,
             CrewStress = entity.Comp.CrewStress,
             ThreatBudget = entity.Comp.ThreatBudget,
+            MajorThreatBudget = entity.Comp.MajorThreatBudget,
             PacingState = entity.Comp.PacingState.ToString(),
             RecentEvents = entity.Comp.EventHistory.Skip(Math.Max(0, entity.Comp.EventHistory.Count - 10)).ToList(),
 
-            AtmosphereBreachRatio = metrics.AtmosphereBreachRatio,
-            DangerousGasesRatio = metrics.DangerousGasesRatio,
+            AtmosphereUnsafeRatio = metrics.AtmosphereUnsafeRatio,
             PowerGridDeficitRatio = metrics.PowerGridDeficitRatio,
             CrewWeaponCount = metrics.CrewWeaponCount,
             ActiveAntagonistCount = metrics.ActiveAntagonistCount,
@@ -77,9 +77,13 @@ public sealed partial class StorytellerSystem
             SingularityContained = metrics.SingularityContained,
             TeslaActive = metrics.TeslaActive,
             TeslaContained = metrics.TeslaContained,
-            SupermatterIntegrity = metrics.SupermatterIntegrity,
-            UnlockedResearchTiers = metrics.UnlockedResearchTiers,
+            ResearchStorytellerScore = metrics.ResearchStorytellerScore,
+            UnlockedTechnologyCount = metrics.UnlockedTechnologyCount,
+            TotalTechnologyCount = metrics.TotalTechnologyCount,
+            MaxResearchStorytellerScore = metrics.MaxResearchStorytellerScore,
             StationStrength = metrics.StationStrength,
+            CrewRosterCount = metrics.CrewRosterCount,
+            MaterialStrengthScore = metrics.MaterialStrengthScore,
             CrewDistribution = metrics.CrewDistribution,
             PlayerJoinRate = metrics.PlayerJoinRate,
             PlayerLeaveRate = metrics.PlayerLeaveRate,
@@ -130,10 +134,10 @@ public sealed partial class StorytellerSystem
             entity.Comp.CrewStress = Math.Clamp(entity.Comp.CrewStress + decision.AdjustStress.Value, 0f, 100f);
         }
 
-        // Apply budget adjustments
         if (decision.AdjustBudget.HasValue)
         {
             entity.Comp.ThreatBudget = Math.Clamp(entity.Comp.ThreatBudget + decision.AdjustBudget.Value, 0f, entity.Comp.MaxThreatBudget);
+            entity.Comp.MajorThreatBudget = Math.Clamp(entity.Comp.MajorThreatBudget + decision.AdjustBudget.Value, 0f, entity.Comp.MaxThreatBudget);
         }
 
         if (!string.IsNullOrEmpty(decision.Message))
@@ -170,11 +174,11 @@ public sealed partial class StorytellerSystem
         public int SciencePoints { get; set; }
         public float CrewStress { get; set; }
         public float ThreatBudget { get; set; }
+        public float MajorThreatBudget { get; set; }
         public string PacingState { get; set; } = string.Empty;
         public List<string> RecentEvents { get; set; } = new();
 
-        public float AtmosphereBreachRatio { get; set; }
-        public float DangerousGasesRatio { get; set; }
+        public float AtmosphereUnsafeRatio { get; set; }
         public float PowerGridDeficitRatio { get; set; }
         public int CrewWeaponCount { get; set; }
         public int ActiveAntagonistCount { get; set; }
@@ -183,9 +187,13 @@ public sealed partial class StorytellerSystem
         public bool SingularityContained { get; set; }
         public bool TeslaActive { get; set; }
         public bool TeslaContained { get; set; }
-        public float SupermatterIntegrity { get; set; }
-        public int UnlockedResearchTiers { get; set; }
+        public float ResearchStorytellerScore { get; set; }
+        public int UnlockedTechnologyCount { get; set; }
+        public int TotalTechnologyCount { get; set; }
+        public float MaxResearchStorytellerScore { get; set; }
         public float StationStrength { get; set; }
+        public int CrewRosterCount { get; set; }
+        public float MaterialStrengthScore { get; set; }
         public Dictionary<string, int> CrewDistribution { get; set; } = new();
         public float PlayerJoinRate { get; set; }
         public float PlayerLeaveRate { get; set; }

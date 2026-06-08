@@ -4,22 +4,17 @@
   id: Calm
   budgetModifier: 0.5
   maxBudgetModifier: 0.5
-  durationMultiplier: 1.5
-  relaxationMinMinutes: 30
-  relaxationMaxMinutes: 60
-  buildUpMinMinutes: 20
-  buildUpMaxMinutes: 40
-  peakMinMinutes: 8
-  peakMaxMinutes: 15
+  durationMultiplier: 1
+  relaxationMinMinutes: 20
+  relaxationMaxMinutes: 40
+  buildUpMinMinutes: 5
+  buildUpMaxMinutes: 10
+  peakMinMinutes: 10
+  peakMaxMinutes: 20
   recoveryMinMinutes: 15
   recoveryMaxMinutes: 30
-  buildUpPreservationThreshold: 50
   strengthArmedCrewCoefficient: 8
   strengthSecurityCoefficient: 12
-  highBudgetThreshold: 50
-  majorThreatWeightMultiplier: 4
-  minorThreatWeightMultiplier: 0.3
-  stationStrengthScalingFactor: 70
 
 - type: storytellerType
   id: Classic
@@ -30,35 +25,25 @@
   relaxationMaxMinutes: 20
   buildUpMinMinutes: 15
   buildUpMaxMinutes: 30
-  peakMinMinutes: 12
-  peakMaxMinutes: 24
-  recoveryMinMinutes: 8
-  recoveryMaxMinutes: 16
-  buildUpPreservationThreshold: 40
+  peakMinMinutes: 10
+  peakMaxMinutes: 20
+  recoveryMinMinutes: 10
+  recoveryMaxMinutes: 20
   strengthArmedCrewCoefficient: 10
   strengthSecurityCoefficient: 15
-  highBudgetThreshold: 60
-  majorThreatWeightMultiplier: 8
-  minorThreatWeightMultiplier: 0.1
-  stationStrengthScalingFactor: 50
 
 - type: storytellerType
   id: Insane
   budgetModifier: 2.0
   maxBudgetModifier: 1.5
-  durationMultiplier: 0.6
+  durationMultiplier: 1
   relaxationMinMinutes: 5
-  relaxationMaxMinutes: 12
-  buildUpMinMinutes: 5
-  buildUpMaxMinutes: 15
-  peakMinMinutes: 15
-  peakMaxMinutes: 30
+  relaxationMaxMinutes: 10
+  buildUpMinMinutes: 10
+  buildUpMaxMinutes: 20
+  peakMinMinutes: 5
+  peakMaxMinutes: 10
   recoveryMinMinutes: 5
   recoveryMaxMinutes: 10
-  buildUpPreservationThreshold: 30
   strengthArmedCrewCoefficient: 12
   strengthSecurityCoefficient: 18
-  highBudgetThreshold: 30
-  majorThreatWeightMultiplier: 15
-  minorThreatWeightMultiplier: 0.05
-  stationStrengthScalingFactor: 30

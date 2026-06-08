@@ -185,7 +185,7 @@ public abstract partial class SharedCarryingSystem
     {
         OnCarryDropped(carrier, target);
 
-        if (Exists(target) && !Deleted(target))
+        if (Exists(target) && !Deleted(target) && !Terminating(target))
         {
             RemComp<KnockedDownComponent>(target);
             RemComp<ActiveCanBeCarriedComponent>(target);

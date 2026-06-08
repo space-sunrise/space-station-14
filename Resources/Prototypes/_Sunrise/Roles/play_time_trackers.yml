@@ -166,6 +166,10 @@
 - type: playTimeTracker
   id: AntagVampireThrall
 # Sunrise-Edit start - Missing antag playTimeTrackers to prevent UnknownPrototypeExceptions
+
+- type: playTimeTracker
+  id: JobCBURNLeader
+
 - type: playTimeTracker
   id: AntagChangeling
 
@@ -231,4 +235,3 @@
 
 - type: playTimeTracker
   id: AntagZombie
-# Sunrise-Edit end
