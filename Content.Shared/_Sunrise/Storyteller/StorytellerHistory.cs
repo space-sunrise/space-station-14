@@ -9,15 +9,19 @@ namespace Content.Shared._Sunrise.Storyteller;
 [Serializable, NetSerializable]
 public enum StorytellerHistoryType : byte
 {
-    Event,
-    Threat,
+    NeutralEvent,
+    HelpfulEvent,
+    MinorCalmEvent,
+    MajorCalmEvent,
+    MinorAntagEvent,
+    MajorAntagEvent,
     Death,
-    ContainmentBreach,
-    Supermatter,
+    AnomalyEngine,
     Explosion,
     Research,
     Arrival,
-    Departure
+    Departure,
+    StationEvent
 }
 
 /// <summary>

@@ -72,7 +72,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         {
             RemComp<FleshCultistComponent>(cultist);
         }
-        QueueDel(uid);
     }
 
     private void OnObjectivesTextPrepend(EntityUid uid, FleshCultRuleComponent comp, ref ObjectivesTextPrependEvent args)
@@ -111,7 +110,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
                 {
                     if (fleshCult.FleshHearts.ContainsKey(ev.FleshHeartUid))
                         fleshCult.FleshHearts[ev.FleshHeartUid] = FleshHeartStatus.Final;
-                    _roundEndSystem.EndRound();
+                    _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
                     break;
                 }
             }

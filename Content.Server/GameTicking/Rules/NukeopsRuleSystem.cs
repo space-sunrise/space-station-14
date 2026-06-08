@@ -7,6 +7,7 @@ using Content.Server.Pinpointer;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
@@ -35,6 +36,7 @@ using Content.Shared.Zombies;
 using Robust.Server.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -62,6 +64,9 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly ExplosionSystem _explosions = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
@@ -228,12 +233,17 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
                         }
 
                         nukeops.WinConditions.Add(WinCondition.NukeExplodedOnCorrectStation);
-                        SetWinType((uid, nukeops), WinType.OpsMajor);
+                        SetWinType((uid, nukeops), WinType.OpsMajor, false); // Sunrise-Edit
                         correctStation = true;
                     }
 
                     if (correctStation)
+                    {
+                        // Sunrise edit start - call/accelerate evac shuttle even on correct station explosion
+                        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
+                        // Sunrise edit end
                         continue;
+                    }
                 }
 
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
@@ -243,18 +253,19 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
             }
 
-            if (GameTicker.IsGameRuleActive(NukeopsGameRule)) // If it's Nukeops then end the round on any detonation
+            // Sunrise edit start - replace instant end of round with calling/accelerating evac shuttle
+            if (GameTicker.IsGameRuleActive(NukeopsGameRule))
             {
-                _roundEndSystem.EndRound();
+                _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
             }
             else
             { // It's a LoneOp. Only end the round if the station was destroyed
                 var handled = false;
                 foreach (var cond in nukeops.WinConditions)
                 {
-                    if (cond.ToString().ToLower() == "NukeExplodedOnCorrectStation") // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
+                    if (cond == WinCondition.NukeExplodedOnCorrectStation) // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
                     {
-                        _roundEndSystem.EndRound(); // end the round!
+                        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
                         handled = true;
                         break;
                     }
@@ -264,6 +275,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
                     GameTicker.EndGameRule(uid);
                 }
             }
+            // Sunrise edit end
         }
     }
 
@@ -510,7 +522,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         }
     }
 
-    private void SetWinType(Entity<NukeopsRuleComponent> ent, WinType type, bool endRound = true)
+    private void SetWinType(Entity<NukeopsRuleComponent> ent, WinType type, bool endRound = false) // Sunrise-Edit
     {
         ent.Comp.WinType = type;
 
@@ -585,15 +597,31 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         if (nukeops.RoundEndBehavior == RoundEndBehavior.Nothing) // It's still worth checking if operatives have all died, even if the round-end behaviour is nothing.
             return; // Shouldn't actually try to end the round in the case of nothing though.
 
-        _roundEndSystem.DoRoundEndBehavior(nukeops.RoundEndBehavior,
-        nukeops.EvacShuttleTime,
-        nukeops.RoundEndTextSender,
-        nukeops.RoundEndTextShuttleCall,
-        nukeops.RoundEndTextAnnouncement);
+        // Sunrise edit start - when operatives die, explode their shuttle, delete their base map, and end the game rule.
+        if (shuttle != null)
+        {
+            if (TryComp<MapGridComponent>(shuttle.Value, out var grid))
+            {
+                var centerLocal = grid.LocalAABB.Center;
+                var epicenter = _transform.ToMapCoordinates(new EntityCoordinates(shuttle.Value, centerLocal));
+                _explosions.QueueExplosion(epicenter, "DemolitionCharge", 30000f, 5f, 100f, cause: shuttle.Value);
+            }
+            else
+            {
+                _explosions.QueueExplosion(shuttle.Value, "DemolitionCharge", 30000f, 5f, 100f);
+            }
+        }
 
+        if (TryComp<RuleGridsComponent>(ent, out var ruleGrids) && ruleGrids.Map != null)
+        {
+            _mapSystem.DeleteMap(ruleGrids.Map.Value);
+        }
+
+        GameTicker.EndGameRule(ent);
 
         // prevent it called multiple times
         nukeops.RoundEndBehavior = RoundEndBehavior.Nothing;
+        // Sunrise edit end
     }
 
     private void OnAfterAntagEntSelected(Entity<NukeopsRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
@@ -715,23 +743,6 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         if (_idCard.TryFindIdCard(carrier, out var idCard))
             job = idCard.Comp.LocalizedJobTitle ?? job;
     }
-}
-
-/// <summary>
-/// Raised when a station has been assigned as a target for the NukeOps rule.
-/// </summary>
-[ByRefEvent]
-public readonly struct NukeopsTargetStationSelectedEvent(EntityUid ruleEntity, EntityUid? targetStation)
-{
-    /// <summary>
-    /// The entity containing the NukeOps gamerule.
-    /// </summary>
-    public readonly EntityUid RuleEntity = ruleEntity;
-
-    /// <summary>
-    /// The target station, if it exists.
-    /// </summary>
-    public readonly EntityUid? TargetStation = targetStation;
 }
 
 /// <summary>
