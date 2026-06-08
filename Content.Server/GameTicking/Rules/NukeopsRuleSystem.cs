@@ -6,6 +6,7 @@ using Content.Server.NukeOps;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
@@ -44,6 +45,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly ExplosionSystem _explosions = default!;
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
@@ -151,7 +154,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                         }
 
                         nukeops.WinConditions.Add(WinCondition.NukeExplodedOnCorrectStation);
-                        SetWinType((uid, nukeops), WinType.OpsMajor);
+                        SetWinType((uid, nukeops), WinType.OpsMajor, false); // Sunrise-Edit
                         correctStation = true;
                     }
 
@@ -166,9 +169,10 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
             }
 
-            if (GameTicker.IsGameRuleActive("Nukeops")) // If it's Nukeops then end the round on any detonation
+            // Sunrise edit start - replace instant end of round with calling/accelerating evac shuttle
+            if (GameTicker.IsGameRuleActive("Nukeops"))
             {
-                _roundEndSystem.EndRound();
+                _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
             }
             else
             { // It's a LoneOp. Only end the round if the station was destroyed
@@ -177,7 +181,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 {
                     if (cond.ToString().ToLower() == "NukeExplodedOnCorrectStation") // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
                     {
-                        _roundEndSystem.EndRound(); // end the round!
+                        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
                         handled = true;
                         break;
                     }
@@ -187,6 +191,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                     GameTicker.EndGameRule(uid);
                 }
             }
+            // Sunrise edit end
         }
     }
 
@@ -499,15 +504,22 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         if (nukeops.RoundEndBehavior == RoundEndBehavior.Nothing) // It's still worth checking if operatives have all died, even if the round-end behaviour is nothing.
             return; // Shouldn't actually try to end the round in the case of nothing though.
 
-        _roundEndSystem.DoRoundEndBehavior(nukeops.RoundEndBehavior,
-        nukeops.EvacShuttleTime,
-        nukeops.RoundEndTextSender,
-        nukeops.RoundEndTextShuttleCall,
-        nukeops.RoundEndTextAnnouncement);
+        // Sunrise edit start - when operatives die, explode their shuttle, delete their base map, and end the game rule.
+        if (shuttle != null)
+        {
+            _explosions.QueueExplosion(shuttle.Value, "Default", 500f, 3f, 30f);
+        }
 
+        if (TryComp<RuleGridsComponent>(ent, out var ruleGrids) && ruleGrids.Map != null)
+        {
+            _mapSystem.DeleteMap(ruleGrids.Map.Value);
+        }
+
+        GameTicker.EndGameRule(ent);
 
         // prevent it called multiple times
         nukeops.RoundEndBehavior = RoundEndBehavior.Nothing;
+        // Sunrise edit end
     }
 
     private void OnAfterAntagEntSelected(Entity<NukeopsRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)

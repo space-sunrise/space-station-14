@@ -234,7 +234,7 @@ public sealed class IcarusTerminalSystem : EntitySystem
                 _alertLevel.SetLevel(targetStation.Value, "delta", true, true, true);
             }
 
-            _roundEndSystem.DoRoundEndBehavior(RoundEndBehavior.ShuttleCall, TimeSpan.FromMinutes(1));
+            _roundEndSystem.ForceSetCountdown(TimeSpan.FromMinutes(1), cantRecall: true);
         });
     }
 
