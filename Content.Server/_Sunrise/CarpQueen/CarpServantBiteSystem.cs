@@ -12,8 +12,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Sunrise.CarpQueen;
 
 /// <summary>
-/// System that handles carp servant bite mechanics:
-/// Injects 1u of each remembered reagent from the liquid the carp hatched from.
+/// Система обрабатывает укусы карпов-слуг:
+/// вводит 1 единицу каждого реагента из жидкости, в которой вылупился карп.
 /// </summary>
 public sealed class CarpServantBiteSystem : EntitySystem
 {
@@ -31,13 +31,13 @@ public sealed class CarpServantBiteSystem : EntitySystem
         if (memory.RememberedReagents.Count == 0)
             return;
 
-        // Inject 1u of each remembered reagent into each hit target
+        // Вводим 1 единицу каждого запомненного реагента в каждую пораженную цель.
         foreach (var target in args.HitEntities)
         {
             if (!TryComp<BloodstreamComponent>(target, out var bloodstream))
                 continue;
 
-            // Create solution with configured amount of each remembered reagent
+            // Создаем раствор с настроенным количеством каждого запомненного реагента.
             var solution = new Solution();
             foreach (var (reagentId, _) in memory.RememberedReagents)
             {
@@ -54,4 +54,3 @@ public sealed class CarpServantBiteSystem : EntitySystem
         }
     }
 }
-

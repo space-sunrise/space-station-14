@@ -15,6 +15,7 @@ using Content.Shared.Body.Events;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.Gibbing;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;

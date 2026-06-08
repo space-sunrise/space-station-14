@@ -1,0 +1,11 @@
+- type: reaction
+  id: BZElectrolysis
+  source: true
+  requiredMixerCategories:
+  - Electrolysis
+  reactants:
+    BZ:
+      amount: 2.1
+  products:
+    Halon: 4.2
+    Oxygen: 0.42

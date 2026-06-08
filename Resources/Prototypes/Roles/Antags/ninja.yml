@@ -6,20 +6,21 @@
   playTimeTracker: AntagNinja # Sunrise-Edit
   objective: roles-antag-space-ninja-objective
   guides: [ SpaceNinja ]
+  storytellerStress: 6.0 # Sunrise-Edit
 
 #Ninja Gear
 - type: startingGear
   id: SpaceNinjaGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNinja
-    back: ClothingBackpackSatchel
+    back: ClothingBackpackSatchelNinja
     mask: ClothingMaskNinja
     head: ClothingHeadHelmetSpaceNinja
     eyes: ClothingEyesVisorNinja
     gloves: ClothingHandsGlovesSpaceNinja
     outerClothing: ClothingOuterSuitSpaceNinja
     shoes: ClothingShoesSpaceNinjaBiocode # Sunrise-Edit
-    id: AgentIDCard
+    id: NinjaPDA
     ears: ClothingHeadsetNinja
     pocket1: SpiderCharge
     pocket2: PinpointerStation
@@ -43,7 +44,7 @@
 - type: chameleonOutfit
   id: NinjaChameleonOutfit
   name: roles-antag-space-ninja-name
+  icon: "JobIconNinja"
   startingGear: SpaceNinjaGear
   equipment:
-    id: PassengerPDA
     neck: ClothingNeckGoldmedal

@@ -119,23 +119,3 @@
     collection: FootstepPlating
   friction: 1.5
   heatCapacity: 10000
-
-- type: tile
-  id: FloorAstroIronsand
-  name: tiles-astro-ironsand
-  parent: FloorAsteroidIronsand
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroIronsand
-  weather: false
-
-- type: tile
-  id: FloorAstroIronsandBorderless
-  name: tiles-astro-ironsand-borderless
-  parent: FloorAsteroidIronsandBorderless
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroIronsandBorderless
-  weather: false

@@ -18,6 +18,11 @@
   result: BorgModuleMiningCombat
 
 - type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleAdvancedChemical
+  result: SunriseBorgModuleAdvancedChemical
+
+- type: latheRecipe
   parent: BaseBorgModuleRecipe
   id: BorgModuleRobotics
   result: BorgModuleRobotics

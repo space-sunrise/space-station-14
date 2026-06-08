@@ -355,7 +355,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
-        // Sunrise edit - queued.Proto.ID -> queued.Proto
+        // Sunrise edit - меняем queued.Proto.ID на queued.Proto
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
         // Sunrise-Edit

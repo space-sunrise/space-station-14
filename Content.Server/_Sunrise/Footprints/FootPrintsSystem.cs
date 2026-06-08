@@ -1,4 +1,4 @@
-using Content.Server.Atmos.Components;
+﻿using Content.Server.Atmos.Components;
 using Content.Server.Gravity;
 using Content.Shared._Sunrise.Footprints;
 using Content.Shared.Chemistry.Components;
@@ -111,6 +111,9 @@ public sealed class FootprintSystem : EntitySystem
     /// </summary>
     private void OnEntityMove(Entity<FootprintEmitterComponent> ent, ref MoveEvent args)
     {
+        if (TerminatingOrDeleted(ent))
+            return;
+
         TryEmitFootprint(ent);
     }
 

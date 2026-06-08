@@ -322,7 +322,7 @@ namespace Content.Server.Voting.Managers
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
                 DisplayVotes = _cfg.GetCVar(SunriseCCVars.ShowMapVotes), // Sunrise-Edit
-                DisplayVotesAdmins = _cfg.GetCVar(SunriseCCVars.ShowMapVotes), // Sunrise-Edit
+                DisplayVotesAdmins = true, // Sunrise-Edit
             };
 
             if (alone)
@@ -672,7 +672,7 @@ namespace Content.Server.Voting.Managers
             {
                 // Sunrise-Start
                 var poolPresets = new Dictionary<string, int[]>(presetPoolProto.Presets);
-                _Sunrise.Storyteller.StorytellerPresetHelper.AdjustPresetPool(poolPresets, _cfg);
+                _Sunrise.Storyteller.StorytellerPresetHelper.AdjustPresetPool(poolPresets, _cfg, _playerManager.PlayerCount);
                 // Sunrise-End
 
                 foreach (var (presetId, limits) in poolPresets)
