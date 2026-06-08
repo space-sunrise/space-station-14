@@ -160,7 +160,12 @@
 - type: playTimeTracker
   id: JobTSFMarine
 
-# Sunrise-Edit start - Missing antag playTimeTrackers to prevent UnknownPrototypeExceptions
+- type: playTimeTracker
+  id: JobCBURNAgentEVA
+
+- type: playTimeTracker
+  id: JobCBURNLeader
+
 - type: playTimeTracker
   id: AntagChangeling
 
@@ -226,4 +231,3 @@
 
 - type: playTimeTracker
   id: AntagZombie
-# Sunrise-Edit end

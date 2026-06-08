@@ -95,7 +95,7 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
             LoadConfigAndUserData = false,
         };
 
-        // Sunrise edit start - replace client MIDI backend before IoC graph build to keep instrument tests headless
+        // Sunrise edit start - подменяем клиентский MIDI backend до сборки IoC graph, чтобы instrument tests оставались headless
         var previousInitIoC = opts.InitIoC;
         opts.InitIoC = () =>
         {

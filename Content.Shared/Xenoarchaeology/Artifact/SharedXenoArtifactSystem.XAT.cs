@@ -18,7 +18,7 @@ public abstract partial class SharedXenoArtifactSystem
     private void InitializeXAT()
     {
         XATRelayLocalEvent<DamageChangedEvent>();
-        // Sunrise added start - relay health-analyzer scans to artifact trigger nodes
+        // Sunrise added start - передаем сканы health analyzer в artifact trigger nodes
         XATRelayLocalEvent<EntityAnalyzedEvent>();
         // Sunrise added end
         XATRelayLocalEvent<InteractUsingEvent>();

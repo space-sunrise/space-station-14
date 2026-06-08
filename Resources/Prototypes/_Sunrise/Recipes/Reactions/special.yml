@@ -1,0 +1,11 @@
+- type: reaction
+  id: UE
+  impact: High
+  minTemp: 600
+  reactants:
+    Plasma:
+      amount: 1
+    Radium:
+      amount: 1
+  products:
+    UE: 2

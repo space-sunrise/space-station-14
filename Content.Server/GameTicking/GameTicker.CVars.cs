@@ -73,7 +73,7 @@ namespace Content.Server.GameTicking
                 }
             }, true);
             Subs.CVar(_cfg, CCVars.RoundEndSoundCollection, value => RoundEndSoundCollection = value, true);
-            // Sunrise added start - extra round-end music configuration lives in the Sunrise partial.
+            // Sunrise added start - дополнительная конфигурация round-end music живет в Sunrise partial.
             InitializeSunriseCVars();
             // Sunrise added end
 #if EXCEPTION_TOLERANCE

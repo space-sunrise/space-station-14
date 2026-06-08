@@ -8,12 +8,12 @@ public sealed partial class CarpQueenSummonActionEvent : InstantActionEvent
 }
 
 /// <summary>
-/// Event for carp queen order actions (Stay, Follow, Kill, Loose).
+/// Событие для действий приказа королевы карпов (Stay, Follow, Kill, Loose).
 /// </summary>
 public sealed partial class CarpQueenOrderActionEvent : InstantActionEvent
 {
     /// <summary>
-    /// The type of order being given
+    /// Тип отдаваемого приказа.
     /// </summary>
     [DataField("type")]
     public CarpQueenOrderType Type;
@@ -27,5 +27,4 @@ public enum CarpQueenOrderType : byte
     Kill,
     Loose
 }
-
 

@@ -45,7 +45,7 @@
     whitelist:
       tags:
         - CartridgePistol
-    capacity: 16
+    capacity: 15
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -764,72 +764,7 @@
       - state: inhand-right-stripe
         color: "#00cd42"
 
-- type: entity
-  id: MagazinePistolHighCapacityEmpty
-  name: machine pistol magazine (.35 auto any)
-  suffix: empty
-  parent: BaseMagazinePistolHighCapacity
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
 
-# - type: entity # Sunrise-Edit
-#   id: MagazinePistolHighCapacity
-#   name: machine pistol magazine (.35 auto)
-#   parent: BaseMagazinePistolHighCapacity
-#   components:
-#   - type: BallisticAmmoProvider
-#     proto: CartridgePistol
-#   - type: Sprite
-#     layers:
-#     - state: base
-#       map: ["enum.GunVisualLayers.Base"]
-#     - state: mag-1
-#       map: ["enum.GunVisualLayers.Mag"]
-#   - type: Item
-#     inhandVisuals:
-#       left:
-#       - state: inhand-left-mag
-#       right:
-#       - state: inhand-right-mag
-
-- type: entity
-  id: MagazinePistolHighCapacityPractice
-  name: machine pistol magazine (.35 auto practice)
-  parent: BaseMagazinePistolHighCapacity
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolPractice # Sunrise-Edit
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#dbdbdb"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#dbdbdb"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#dbdbdb"
 
 - type: entity #  Sunrise-Edit
   id: MagazinePistolSubMachineGun
@@ -984,13 +919,14 @@
         color: "#F5514C"
 
 - type: entity
-  id: MagazinePistolSubMachineGunFMJ
-  name: SMG magazine (.35 auto FMJ)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: BaseMagazinePistolHighCapacity
+  id: MagazinePistolHighCapacityEmpty
+  name: machine pistol magazine (.35 auto any)
+  suffix: empty
+  description: Custom 15-round double-stack magazine for the Viper pistol.
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
-    proto: CartridgePistolFMJ
+    proto: Null # Sunrise-Edit
     whitelist:
       tags:
       - CartridgePistol
@@ -1014,12 +950,12 @@
         color: "#080706"
 
 - type: entity
-  id: MagazinePistolSubMachineGunAP
-  name: SMG magazine (.35 auto AP)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: BaseMagazinePistolHighCapacity
+  id: MagazinePistolHighCapacity
+  name: machine pistol magazine (.35 auto)
+  description: Custom 15-round double-stack magazine for the Viper pistol. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: CartridgePistolAP
     whitelist:
       tags:
@@ -1046,10 +982,10 @@
         color: "#540000"
 
 - type: entity
-  id: MagazinePistolSubMachineGunPractice
-  name: SMG magazine (.35 auto practice)
-  parent: BaseMagazinePistolSubMachineGun
-  description: 30-round double-stack magazine for submachine guns. Intended to hold non-harmful chalk ammunition.
+  parent: BaseMagazinePistolHighCapacity
+  id: MagazinePistolHighCapacityPractice
+  name: machine pistol magazine (.35 auto practice)
+  description: Custom 15-round double-stack magazine for the Viper pistol. Intended to hold harmless practice ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
