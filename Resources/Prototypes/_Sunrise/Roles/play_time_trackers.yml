@@ -161,6 +161,9 @@
   id: JobTSFMarine
 
 - type: playTimeTracker
+  id: JobCBURNAgentEVA
+
+- type: playTimeTracker
   id: AntagVampire
 
 - type: playTimeTracker
