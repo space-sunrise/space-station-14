@@ -1,0 +1,18 @@
+<ui:FancyWindow xmlns="https://spacestation14.io"
+                xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                SetSize="420 170"
+                Title="{Loc 'tape-recorder-ui-title'}"
+                Resizable="False">
+    <BoxContainer Margin="6 4" Orientation="Vertical" SeparationOverride="4">
+        <Label Name="CassetteLabel" Text="{Loc 'tape-recorder-ui-no-cassette'}" />
+        <Label Name="TimeLabel" Text="00:00 / 00:00" />
+        <PanelContainer StyleClasses="LowDivider" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Button Name="StopButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-stop'}" />
+            <Button Name="RecordButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-record'}" />
+            <Button Name="PlayButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-play'}" />
+            <Button Name="RewindButton" MinWidth="96" MaxWidth="96" Text="{Loc 'tape-recorder-ui-button-rewind'}" />
+        </BoxContainer>
+        <Button Name="PrintButton" HorizontalExpand="True" Text="{Loc 'tape-recorder-ui-button-print'}" />
+    </BoxContainer>
+</ui:FancyWindow>

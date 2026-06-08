@@ -1,0 +1,16 @@
+tape-recorder-ui-title = Cassette tape recorder
+tape-recorder-ui-no-cassette = No cassette
+tape-recorder-ui-cassette = Cassette: {$cassette}
+tape-recorder-ui-time = Time: {$position} / {$capacity} | left: {$remaining} | records: {$records}
+tape-recorder-ui-button-stop = Pause
+tape-recorder-ui-button-record = Record
+tape-recorder-ui-button-play = Play
+tape-recorder-ui-button-rewind = Rewind
+tape-recorder-ui-button-print = Print transcript
+tape-recorder-popup-no-cassette = No cassette inserted.
+tape-recorder-popup-tape-full = The cassette is full.
+tape-recorder-popup-tape-empty = The cassette is empty.
+tape-recorder-speaker-unknown = Unknown
+tape-recorder-transcript-start = Start of tape transcript
+tape-recorder-transcript-line = [{$time}] {$speaker}: {$message}
+tape-recorder-transcript-end = End of tape transcript

@@ -1,0 +1,39 @@
+- type: entity
+  parent: BaseItem
+  id: TapeRecorder
+  name: cassette tape recorder
+  description: A compact recorder for preserving nearby speech on magnetic tape.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/tape_recorder.rsi
+    state: icon
+  - type: TapeRecorder
+    rewindSpeed: 12
+    cassetteSlot:
+      insertSound: /Audio/_Sunrise/TapePlayer/insert_tape.ogg
+      ejectSound: /Audio/_Sunrise/TapePlayer/eject_tape.ogg
+      whitelist:
+        components:
+        - TapeCassette
+  - type: Item
+    size: Small
+    sprite: _Sunrise/Objects/Devices/tape_recorder.rsi
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      cassette: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.TapeRecorderUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.TapeRecorderUiKey.Key:
+        type: TapeRecorderBoundUserInterface
+
+- type: entity
+  parent: Paper
+  id: TapeRecorderTranscript
+  name: tape transcript
+  description: A printed transcript from a cassette tape recorder.
+  components:
+  - type: Paper
+    content: ""

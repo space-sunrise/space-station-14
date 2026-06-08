@@ -1,0 +1,16 @@
+tape-recorder-ui-title = Кассетный диктофон
+tape-recorder-ui-no-cassette = Кассета не вставлена
+tape-recorder-ui-cassette = Аудиокассета: {$cassette}
+tape-recorder-ui-time = Время: {$position} / {$capacity} | осталось: {$remaining} | записей: {$records}
+tape-recorder-ui-button-stop = Пауза
+tape-recorder-ui-button-record = Запись
+tape-recorder-ui-button-play = Воспроизведение
+tape-recorder-ui-button-rewind = Перемотка
+tape-recorder-ui-button-print = Распечатать расшифровку записи
+tape-recorder-popup-no-cassette = Кассета не вставлена.
+tape-recorder-popup-tape-full = На кассете закончилось место.
+tape-recorder-popup-tape-empty = Кассета пуста.
+tape-recorder-speaker-unknown = Неизвестный
+tape-recorder-transcript-start = Начало расшифровки записи
+tape-recorder-transcript-line = [{$time}] {$speaker}: {$message}
+tape-recorder-transcript-end = Конец расшифровки записи

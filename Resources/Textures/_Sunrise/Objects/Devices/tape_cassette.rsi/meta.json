@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Provided by task author",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "red"
+        },
+        {
+            "name": "yellow"
+        },
+        {
+            "name": "green"
+        }
+    ]
+}
