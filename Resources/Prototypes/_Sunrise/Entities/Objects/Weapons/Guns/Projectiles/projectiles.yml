@@ -1195,7 +1195,7 @@
       types:
         Heat: 13
         Slash: 13
-        Structural: 23
+        Structural: 30
     penetrationThreshold: 800
     penetrationDamageTypeRequirement:
     - Structural

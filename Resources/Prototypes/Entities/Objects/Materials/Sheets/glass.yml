@@ -52,7 +52,7 @@
         canReact: false
 
 - type: entity
-  parent: SheetGlassBase
+  parent: [SheetGlassBase, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetGlass
   suffix: Full
   components:
@@ -87,6 +87,8 @@
         reagents:
         - ReagentId: Silicon
           Quantity: 10
+  - type: QuickConstructable # Sunrise-Edit
+    category: Glass
 
 - type: entity
   parent: SheetGlass
@@ -111,7 +113,7 @@
     count: 1
 
 - type: entity
-  parent: SheetGlassBase
+  parent: [SheetGlassBase, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetRGlass
   name: reinforced glass
   description: A reinforced sheet of glass.
@@ -164,6 +166,8 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: QuickConstructable # Sunrise-Edit
+    category: ReinforcedGlass
 
 - type: entity
   parent: SheetRGlass
@@ -191,7 +195,7 @@
         canReact: false
 
 - type: entity
-  parent: SheetGlassBase
+  parent: [SheetGlassBase, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetPGlass
   name: plasma glass
   description: A sheet of translucent plasma.
@@ -246,6 +250,8 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: QuickConstructable # Sunrise-Edit
+    category: PlasmaGlass
 
 - type: entity
   parent: SheetPGlass
@@ -271,7 +277,7 @@
         canReact: false
 
 - type: entity
-  parent: SheetPGlass
+  parent: [SheetPGlass, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetRPGlass
   name: reinforced plasma glass
   description: A reinforced sheet of translucent plasma.
@@ -317,6 +323,8 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
+  - type: QuickConstructable # Sunrise-Edit
+    category: ReinforcedPlasmaGlass
 
 - type: entity
   parent: SheetRPGlass
@@ -331,7 +339,7 @@
     count: 1
 
 - type: entity
-  parent: SheetGlassBase
+  parent: [SheetGlassBase, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetUGlass
   name: uranium glass
   description: A sheet of uranium glass.
@@ -397,6 +405,8 @@
         - ReagentId: Uranium
           Quantity: 10
         canReact: false
+  - type: QuickConstructable # Sunrise-Edit
+    category: UraniumGlass
 
 - type: entity
   parent: SheetUGlass
@@ -411,7 +421,7 @@
     count: 1
 
 - type: entity
-  parent: SheetUGlass
+  parent: [SheetUGlass, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetRUGlass
   name: reinforced uranium glass
   description: A reinforced sheet of uranium.
@@ -456,6 +466,8 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
+  - type: QuickConstructable # Sunrise-Edit
+    category: ReinforcedUraniumGlass
 
 - type: entity
   parent: SheetRUGlass
@@ -470,7 +482,7 @@
     count: 1
 
 - type: entity
-  parent: SheetGlassBase
+  parent: [SheetGlassBase, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetClockworkGlass
   name: clockwork glass
   description: A sheet of brass-hardened glass, primarily used by clockwork enthusiasts and remnants of Ratvarian cults.
@@ -538,6 +550,8 @@
         - ReagentId: Copper
           Quantity: 6.7
         canReact: false
+  - type: QuickConstructable # Sunrise-Edit
+    category: ClockworkGlass
 
 - type: entity
   parent: SheetClockworkGlass

@@ -6,3 +6,5 @@ ent-VendingMachinePrisonDrobe = PrisonDrobe
     .desc = A legacy of old penitentiary modules, adapted for modern facilities with full isolation of staff and inmates.
 ent-VendingMachineEVASuitDispenser = EVA suit dispenser
     .desc = A vendor for dispensing EVA suits and helmets for emergency use.
+ent-VendingMachineMedicalSecuritySalvaged = salvaged NanoMed Security
+    .desc = A battered medical drug dispenser with the previous shift's leftovers inside.

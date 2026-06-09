@@ -175,6 +175,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         component.LastAnyEventTime = Timing.CurTime;
         component.LastHelpfulEventTime = Timing.CurTime;
         component.LastNeutralEventTime = Timing.CurTime;
+        component.LastMajorEventTime = Timing.CurTime;
 
         component.StateTransitionTime = Timing.CurTime + TimeSpan.FromMinutes(_random.Next(15, 30));
         component.PacingState = StorytellerPacingState.Relaxation;
@@ -195,6 +196,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             component.GlobalEventCooldownMinutes = typeProto.GlobalEventCooldownMinutes;
             component.HelpfulEventCooldownMinutes = typeProto.HelpfulEventCooldownMinutes;
             component.NeutralEventCooldownMinutes = typeProto.NeutralEventCooldownMinutes;
+            component.MajorEventCooldownMinutes = typeProto.MajorEventCooldownMinutes;
         }
     }
 
@@ -207,6 +209,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         component.LastAnyEventTime = Timing.CurTime;
         component.LastHelpfulEventTime = Timing.CurTime;
         component.LastNeutralEventTime = Timing.CurTime;
+        component.LastMajorEventTime = Timing.CurTime;
         component.AlertLevelHistory.Clear();
         var query = EntityQueryEnumerator<AlertLevelComponent, MainStationComponent>();
         while (query.MoveNext(out var stationUid, out var alertComp, out _))
@@ -340,6 +343,13 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             return;
         }
 
+        // Sunrise-Edit: Split regular and major event flows to prevent minor event spam from locking out major threats
+        ExecuteRegularEventsFlow(entity, metrics);
+        ExecuteMajorEventsFlow(entity, metrics);
+    }
+
+    private void ExecuteRegularEventsFlow(Entity<StorytellerRuleComponent> entity, StationMetrics metrics)
+    {
         if (Timing.CurTime - entity.Comp.LastAnyEventTime < TimeSpan.FromMinutes(entity.Comp.GlobalEventCooldownMinutes))
             return;
 
@@ -351,10 +361,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 rollChance = 0.15f; // low pop/relaxing events
                 break;
             case StorytellerPacingState.BuildUp:
-                rollChance = 0.35f; // building events
+                rollChance = 0.33f; // building events
                 break;
             case StorytellerPacingState.Peak:
-                rollChance = 0.50f; //
+                rollChance = 0.66f;
                 break;
             case StorytellerPacingState.Recovery:
                 // Recovery is meant for quiet breathing room unless crew is severely stressed, in which case we trigger Helpful events
@@ -365,12 +375,46 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         if (!_random.Prob(rollChance))
             return;
 
-        var eligibleEvents = GetEligibleHeuristicEvents(entity.Comp, metrics);
+        var eligibleEvents = GetEligibleHeuristicEvents(entity.Comp, metrics, isMajor: false);
+        if (eligibleEvents.Count == 0)
+            return;
+
+        // Weighted random pick
+        var selected = PickEventFromEligible(eligibleEvents);
+        if (selected == null)
+            return;
+
+        TriggerEvent(entity, selected.Value.Item1, selected.Value.Item2);
+    }
+
+    private void ExecuteMajorEventsFlow(Entity<StorytellerRuleComponent> entity, StationMetrics metrics)
+    {
+        if (Timing.CurTime - entity.Comp.LastMajorEventTime < TimeSpan.FromMinutes(entity.Comp.MajorEventCooldownMinutes))
+            return;
+
+        var rollChance = 0f;
+        switch (entity.Comp.PacingState)
+        {
+            case StorytellerPacingState.Relaxation:
+                rollChance = 0f;
+                break;
+            case StorytellerPacingState.BuildUp:
+                rollChance = 0f;
+                break;
+            case StorytellerPacingState.Peak:
+                rollChance = 0.33f;
+                break;
+            case StorytellerPacingState.Recovery:
+                rollChance = 0f;
+                break;
+        }
+
+        if (rollChance <= 0f || !_random.Prob(rollChance))
+            return;
+
+        var eligibleEvents = GetEligibleHeuristicEvents(entity.Comp, metrics, isMajor: true);
         if (eligibleEvents.Count == 0)
         {
-            var warningMsg = $"Storyteller evaluated, but eligibleEvents.Count is 0! Stress: {entity.Comp.CrewStress}, Budget: {entity.Comp.ThreatBudget}, MajorBudget: {entity.Comp.MajorThreatBudget}, PacingState: {entity.Comp.PacingState}, StorytellerType: {entity.Comp.StorytellerType}";
-            _sawmill.Warning(warningMsg);
-
             if ((entity.Comp.ThreatBudget > 80f || entity.Comp.MajorThreatBudget > 80f) && Timing.CurTime - _lastStarvationWarningTime > TimeSpan.FromMinutes(5))
             {
                 _lastStarvationWarningTime = Timing.CurTime;
@@ -1032,7 +1076,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         return false;
     }
 
-    private Dictionary<EntityPrototype, StorytellerMetadataPrototype> GetEligibleHeuristicEvents(StorytellerRuleComponent comp, StationMetrics metrics)
+    private Dictionary<EntityPrototype, StorytellerMetadataPrototype> GetEligibleHeuristicEvents(StorytellerRuleComponent comp, StationMetrics metrics, bool isMajor)
     {
         var result = new Dictionary<EntityPrototype, StorytellerMetadataPrototype>();
         var currentDuration = GameTicker.RoundDuration();
@@ -1044,6 +1088,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 continue;
 
             if (!_protoManager.TryIndex<StorytellerMetadataPrototype>(proto.ID, out var metadata))
+                continue;
+
+            var isEventMajorAntag = metadata.ThreatType == StorytellerThreatType.MajorAntag;
+            if (isMajor != isEventMajorAntag)
                 continue;
 
             if (metadata.ThreatType == StorytellerThreatType.Helpful)
@@ -1195,7 +1243,16 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         entity.Comp.EventHistory.Add(proto.ID);
 
         // Update cooldown tracking
-        entity.Comp.LastAnyEventTime = Timing.CurTime;
+        var isEventMajorAntag = metadata.ThreatType == StorytellerThreatType.MajorAntag;
+        if (isEventMajorAntag)
+        {
+            entity.Comp.LastMajorEventTime = Timing.CurTime;
+        }
+        else
+        {
+            entity.Comp.LastAnyEventTime = Timing.CurTime;
+        }
+
         if (metadata.ThreatType == StorytellerThreatType.Helpful)
         {
             entity.Comp.LastHelpfulEventTime = Timing.CurTime;

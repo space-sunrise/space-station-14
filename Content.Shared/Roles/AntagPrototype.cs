@@ -71,6 +71,6 @@ public sealed partial class AntagPrototype : IPrototype
     /// <summary>
     ///     How much stress this antagonist adds to the storyteller.
     /// </summary>
-    [DataField("storytellerStress")]
-    public float StorytellerStress = 4f;
+    [DataField]
+    public float StorytellerStress = 1f;
 }

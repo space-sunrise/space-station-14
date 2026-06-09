@@ -1,3 +1,6 @@
+ent-SunriseAdvancedSalvageMagnetMachineCircuitboard = продвинутый магнит обломков (машинная плата)
+    .desc = Машинная печатная плата для продвинутого магнита обломков.
+
 ent-CopyMachineMachineCircuitboard = плата принтера документов
     .desc = Машинная печатная плата для принтера документов. Позволяет печатать документы NanoTrasen, пока хватает бумаги и чернил.
 ent-PacificatorCircuitboard = плата генератора пацифизма

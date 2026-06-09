@@ -20,18 +20,18 @@
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
-        knockback: 10
-        staminaMultiplier: 8
+        knockback: 4
+        staminaMultiplier: 16
       Felinid:
-        knockback: 5
-        staminaMultiplier: 8
+        knockback: 3
+        staminaMultiplier: 16
       AnomalyHost:
-        knockback: 1 #half of what Xeno take
-        staminaMultiplier: 5
+        knockback: 0.5 #half of what Xeno take
+        staminaMultiplier: 8
       HumanoidXeno:
-        knockback: 1
-        staminaMultiplier: 4
+        knockback: 0.5
+        staminaMultiplier: 8
       Predator:
-        knockback: 1
-        staminaMultiplier: 4
+        knockback: 0.5
+        staminaMultiplier: 8
   # Sunrise-End
