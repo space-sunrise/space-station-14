@@ -94,6 +94,7 @@
     - MagazineRifleHeavyEmpty
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunBirdshot
     - SpeedLoaderShotgunEmpty
     - SpeedLoaderShotgunSlug
     - SpeedLoaderShotgunBeanbag
@@ -187,6 +188,7 @@
     - MagazineRifleHeavyEmpty
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunBirdshot
     - SpeedLoaderShotgunEmpty
     - SpeedLoaderShotgunSlug
     - SpeedLoaderShotgunBeanbag
@@ -315,9 +317,13 @@
     - MagazineRifleHeavyIncendiary
     - MagazineRifleHeavyAP
     - MagazineRifleHeavyUranium
+    - RifleHeavyMagazineEmpty
     - RifleHeavyMagazineFMJ
     - RifleHeavyMagazineHP
     - RifleHeavyMagazineSP
+    - RifleHeavyMagazineAP
+    - RifleHeavyMagazineIncendiary
+    - RifleHeavyMagazineUranium
   # Shotgun
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderShotgunUranium
@@ -383,6 +389,7 @@
     - MagazineRifleFMJ
     # Shotgun Speedloader
     - SpeedLoaderShellShotgun
+    - SpeedLoaderShotgunBirdshot
     - SpeedLoaderShotgunSlug
     # Shuttle stuff
     - MagazineGrenadeEmpty
@@ -399,10 +406,10 @@
     - MagazineBoxBelt127
     - MagazineBoxBelt127Artillery
     # .308 Cannon
+    - RifleHeavyMagazineEmpty
     - RifleHeavyMagazineFMJ
     - RifleHeavyMagazineHP
     - RifleHeavyMagazineSP
-    - RifleHeavyMagazineArtillery
     # Structure
     - PowerCageRechargerCircuitboard
     - ShuttleGunDusterCircuitboard
@@ -424,6 +431,7 @@
   - MagazineBoxBelt127Frag
   - MagazineBoxBelt127Blast
   - MagazineBoxBelt127Emp
+  - RifleHeavyMagazineArtillery
   - ShuttleGunQuadlingCircuitboard
   - ShuttleGunTeslaHyperionCircuitboard
   - ShuttleGunBullfrogCircuitboard
@@ -433,6 +441,8 @@
   - MagazineShotgunSlug
   # # # AP
   - RifleHeavyMagazineAP
+  - RifleHeavyMagazineIncendiary
+  - RifleHeavyMagazineUranium
   - MagazineBoxLightRifleAP
   - MagazineBoxMagnumAP
   - MagazineBoxPistolAP

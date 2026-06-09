@@ -11998,7 +11998,7 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: ComputerPirateUplink
+- proto: ComputerPirateUplinkExpedition
   entities:
   - uid: 2345
     components:

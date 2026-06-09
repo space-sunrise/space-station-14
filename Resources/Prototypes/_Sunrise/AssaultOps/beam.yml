@@ -6,6 +6,8 @@
   components:
   - type: Clickable
   - type: MovementIgnoreGravity
+    weightless: true
+  - type: GravityAffected
   - type: TileFrictionModifier
     modifier: 0
   - type: Sprite

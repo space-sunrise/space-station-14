@@ -48,26 +48,6 @@
   - type: TrashOnSolutionEmpty
     solution: pen
 
-- type: entity
-  name: ERT hypospray
-  parent: [Hypospray, BaseCentcommContraband]
-  description: A sterile injector for rapid administration of drugs to patients.
-  id: HyposprayERT
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/hypospray.rsi
-    state: combat_hypo
-  - type: Item
-    sprite: Objects/Specific/Medical/hypospray.rsi
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 20
-  - type: UseDelay
-    delay: 0.15
-  - type: StaticPrice
-    price: 1500
-
 # - type: entity # Sunrise-todo: change to jet injector
 #   parent: [ BaseItem, BaseSyndicateContraband ]
 #   id: HyposprayMedicalNoFilterBox

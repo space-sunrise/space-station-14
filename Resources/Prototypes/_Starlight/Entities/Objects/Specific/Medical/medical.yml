@@ -237,6 +237,20 @@
   parent: RedOintment
   suffix: Full
   components:
+  - type: Healing
+    damageContainers:
+    - Biological
+    delay: 1.6
+    damage:
+      types:
+        Heat: -6
+        Cold: -6
+        Shock: -6
+        Caustic: -3
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
   - type: Stack
     stackType: SyndicateOintment
     count: 20
