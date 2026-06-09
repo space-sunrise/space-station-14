@@ -145,7 +145,10 @@ namespace Content.IntegrationTests.Tests.Commands
             // Reconnect client. Slightly faster than dirtying the pair.
             Assert.That(sPlayerManager.Sessions, Is.Empty);
             client.SetConnectTarget(server);
-            await client.WaitPost(() => netMan.ClientConnect(null!, 0, null!));
+            // Sunrise edit start - fix RobustToolbox 270.1.0 run level transitions
+            var baseClient = client.ResolveDependency<Robust.Client.IBaseClient>();
+            await client.WaitPost(() => baseClient.ConnectToServer(new System.Net.DnsEndPoint("localhost", 1212)));
+            // Sunrise edit end
             await pair.RunTicksSync(5);
             Assert.That(sPlayerManager.Sessions, Has.Length.EqualTo(1));
 

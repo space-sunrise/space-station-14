@@ -223,3 +223,102 @@
       tags:
       - CartridgePistol
     capacity: 18
+
+- type: entity
+  id: MagazinePistolSubMachineGunFMJ
+  name: SMG magazine (.35 auto FMJ)
+  parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgePistolFMJ
+    whitelist:
+      tags:
+      - CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#6e6e6e"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#6e6e6e"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#6e6e6e"
+
+- type: entity
+  id: MagazinePistolSubMachineGunPractice
+  name: SMG magazine (.35 auto practice)
+  parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold non-lethal practice ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgePistolPractice
+    whitelist:
+      tags:
+      - CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#bf8e24"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#bf8e24"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#bf8e24"
+
+- type: entity
+  id: MagazinePistolSubMachineGunAP
+  name: SMG magazine (.35 auto AP)
+  parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold armor-piercing kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgePistolAP
+    whitelist:
+      tags:
+      - CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#383838"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#383838"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#383838"

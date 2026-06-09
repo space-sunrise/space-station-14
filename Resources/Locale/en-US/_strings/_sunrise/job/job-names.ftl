@@ -1,7 +1,7 @@
 job-name-magistrat = магистрат
 job-name-centcomop = оператор Центком
 job-name-blueshield-officer = офицер «Синий щит»
-job-name-blueshield-operative = оперативник «Синий щит»
+job-name-blueshield-operative = BlueShield operative
 job-name-blueshield-ensign = командир «Синий щит»
 job-name-iaa = агент внутренних дел
 job-name-senior-engineer = ведущий инженер
@@ -43,8 +43,8 @@ job-name-usspsoldier = солдат СССП
 job-name-usspofficer = офицер СССП
 job-name-usspcaptain = капитан СССП
 # NTR
-job-name-ntrguard = оперативник ИСН
-job-name-ntrleader = командир ИСН
+job-name-ntrguard = NTR guard
+job-name-ntrleader = NTR leader
 job-name-ntrofficer = офицер ИСН
 job-name-commaid = горничная командования
 # Перевод трекеров времени

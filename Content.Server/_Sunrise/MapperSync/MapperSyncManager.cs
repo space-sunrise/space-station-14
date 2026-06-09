@@ -54,6 +54,11 @@ public sealed class MapperSyncManager
     public bool IsFetching => _isFetching;
 
     /// <summary>
+    /// Returns true if MapperSync (pullmap) is configured/connected.
+    /// </summary>
+    public bool IsEnabled => !string.IsNullOrWhiteSpace(_cfg.GetCVar(SunriseCCVars.MapperSyncServerUrl));
+
+    /// <summary>
     /// Gets the list of available remote maps.
     /// </summary>
     public IReadOnlyList<string> GetRemoteMaps()

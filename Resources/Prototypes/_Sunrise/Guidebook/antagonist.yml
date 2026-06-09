@@ -1,9 +1,4 @@
 - type: guideEntry
-  id: Disease
-  name: guide-entry-disease
-  text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/Disease.xml"
-
-- type: guideEntry
   id: Changelings
   name: guide-entry-changelings
   text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/Changelings.xml"
@@ -12,4 +7,9 @@
   id: FleshCult
   name: guide-entry-flesh-cult
   text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/FleshCult.xml"
+
+- type: guideEntry
+  id: SELFAgent
+  name: roles-antag-selfagent-name
+  text: "/ServerInfo/Guidebook/_Sunrise/Antagonist/SiliconLiberation.xml"
 

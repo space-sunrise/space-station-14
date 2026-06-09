@@ -49,10 +49,12 @@
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleRanged
   id: MobRogueSiliconBase
+  suffix: AI, Rogue silicon
   components:
   - type: Damageable
     damageContainer: Silicon
-    damageModifierSet: Metallic
+    damageModifierSet: MobRogueSilicon
+  - type: Insulated
   - type: NpcFactionMember
     factions:
     - SiliconsExpedition
@@ -62,6 +64,8 @@
     name: ghost-panel-antagonist-silicon-name
     description: ghost-panel-antagonist-silicon-description
     priority: 45
+  - type: GhostOnMove
+    mustBeDead: true
   - type: Tag
     tags:
     - CanPilot
@@ -97,6 +101,17 @@
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TimedDespawn
+    lifetime: 3600
+  - type: AddComponentsOnTrigger
+    triggerOnce: true
+    removeExisting: true
+    components:
+    - type: TimedDespawn
+      lifetime: 600
   - type: SlowOnDamage
     speedModifierThresholds:
       40: 0.7
@@ -308,8 +323,8 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrap
-  categories: [ HideSpawnMenu ]
+  id: MobRogueSiliconT1Scrap
+
   components:
   - type: RandomSprite
     available:
@@ -372,8 +387,8 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThreads
-  categories: [ HideSpawnMenu ]
+  id: MobRogueSiliconT1ScrapThreads
+
   components:
   - type: RandomSprite
     available:
@@ -423,8 +438,8 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThrusters
-  categories: [ HideSpawnMenu ]
+  id: MobRogueSiliconT1ScrapThrusters
+
   components:
   - type: RandomSprite
     available:
@@ -495,9 +510,9 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconScrapThrusters
-  id: MobRogueSiliconScrapThrustersRanged
-  categories: [ HideSpawnMenu ]
+  - MobRogueSiliconT1ScrapThrusters
+  id: MobRogueSiliconT1ScrapThrustersRanged
+
   components:
   - type: BatteryAmmoProvider
     proto: RedLightLaser
@@ -523,8 +538,8 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapFlayer
-  categories: [ HideSpawnMenu ]
+  id: MobRogueSiliconT1ScrapFlayer
+
   components:
   - type: MeleeWeapon
     attackRate: 1.0
@@ -582,9 +597,9 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  id: MobRogueSiliconDroneLethals
+  id: MobRogueSiliconT1DroneLethals
   description: Hacked by a rogue AI, these security drones are programmed to kill.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -606,9 +621,9 @@
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  id: MobRogueSiliconDroneNonLethals
+  id: MobRogueSiliconT1DroneNonLethals
   description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -628,14 +643,45 @@
   - type: BatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 100
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+
+- type: entity
+  parent:
+  - MobRogueSiliconT1DroneNonLethals
+  id: MobRogueSiliconT1DroneNonLethalsBuff
+  description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#653302"
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#0055cc"
+  - type: BatteryAmmoProvider
+    proto: BulletTaser
+    fireCost: 100
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser.ogg
 
 - type: entity
   parent:
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
-  id: MobRogueSiliconDroneScience
+  id: MobRogueSiliconT1DroneScience
   description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -654,16 +700,43 @@
   - type: BatteryAmmoProvider
     proto: BulletKinetic
     fireCost: 100
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+
+- type: entity
+  parent:
+  - MobRogueSiliconT1DroneScience
+  id: MobRogueSiliconT1DroneScienceBuff
+  description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#51049e"
+    - sprite: _Sunrise/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#ffd000"
+  - type: BatteryAmmoProvider
+    proto: BulletKineticShuttle
+    fireCost: 100
 
 - type: entity
   parent:
   - MobMovementSpeedModifierSpecial
   - MobRogueSiliconDroneBase
   - MobRogueSiliconPassiveRegen
-  id: MobRogueSiliconViscerator
+  id: MobRogueSiliconT1Viscerator
   name: viscerator unit
   description: Small, quick, and nimble, these drones are designed to chase its targets through narrow areas and incapacitate those it catches. Often accompanies catcher units.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Tag
     tags:
@@ -675,6 +748,11 @@
   - type: CanMoveInAir
   - type: ProtectedFromStepTriggers
   - type: NoSlip
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 30
   - type: Sprite
     drawdepth: Mobs
     sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
@@ -688,14 +766,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      10: Critical
+      15: Critical
       80: Dead
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.13
+          radius: 0.10
         density: 100
         mask:
           - FlyingMobMask
@@ -713,21 +791,158 @@
         Base: destroyed
   - type: SlowOnDamage
     speedModifierThresholds:
-      7: 0.7
-      10: 0.5
+      5: 1.5
+      8: 1.7
   - type: MeleeWeapon
     range: 0.65
-    attackRate: 5.0
+    attackRate: 6.0
     animation: WeaponArcDisarm
     damage:
       types:
-        Slash: 1
-        Structural: 4
+        Slash: 2
+        Structural: 5
     soundHit:
       path: /Audio/Effects/saw.ogg
       params:
         volume: 1
         variation: 0.050
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Warfarin
+          Quantity: 90
+        maxVol: 90
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 2
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT0
+
+- type: entity
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - MobStaminaBoss
+  - MobNonHumanHostileBase
+  - MobRogueSiliconAISimpleMelee
+  id: MobSyndicateViscerator
+  name: viscerator
+  description: A compact syndicate strike drone built to rush targets after deployment.
+  suffix: AI, Syndicate
+  components:
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: MobRogueSilicon
+  - type: Insulated
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: NameIdentifier
+    group: Silicon
+  - type: Loadout
+    prototypes: []
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: CanMoveInAir
+  - type: ProtectedFromStepTriggers
+  - type: NoSlip
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 30
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/RogueSilicons/viscerator.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: base_lights
+      shader: unshaded
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      20: Critical
+      50: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.10
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+        BaseUnshaded: base_lights
+      Critical:
+        Base: crit
+        BaseUnshaded: crit_lights
+      Dead:
+        Base: destroyed
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      5: 1.5
+      8: 1.7
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: Repairable
+    doAfterDelay: 10
+    allowSelfRepair: true
+  - type: MeleeWeapon
+    range: 0.65
+    attackRate: 6.0
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Slash: 2
+        Structural: 5
+    soundHit:
+      path: /Audio/Effects/saw.ogg
+      params:
+        volume: 1
+        variation: 0.050
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Warfarin
+          Quantity: 90
+        maxVol: 90
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1
+  - type: Speech
+    speechSounds: SyndieBorg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_Sunrise/Effects/silence.ogg
+  - type: SoundWhileAlive
+  - type: ToggleableNightVision
+    effect: EffectNightVisionSyndie
+  - type: TTS
+    voice: Sentrybot
 
 #region Tier 2
 - type: entity
@@ -736,10 +951,10 @@
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconServo
+  id: MobRogueSiliconT2Servo
   name: servo unit
   description: With its programming rewritten, this crash test dummy will stop at nothing in exacting its revenge.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -774,10 +989,10 @@
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconHerder
+  id: MobRogueSiliconT2Herder
   name: herder unit
   description: This rogue silicon unit's primary directive is to corral and herd captives. Its stun prod can be used to good effect, take caution.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -832,10 +1047,10 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
-  id: MobRogueSiliconHunter
+  id: MobRogueSiliconT2Hunter
   name: hunter unit
   description: These mobile drones are tasked with reconnaissance, threat identification, and target elimination.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -889,10 +1104,10 @@
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
-  id: MobRogueSiliconCatcher
+  id: MobRogueSiliconT2Catcher
   name: catcher unit
   description: Equipped with viscerators, this unit is designed to slow, capture, and detain targets.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -926,7 +1141,7 @@
     defaultRotation: 90
     horizontalRotation: 90
   - type: BasicEntityAmmoProvider
-    proto: MobRogueSiliconViscerator
+    proto: MobRogueSiliconT1Viscerator
     capacity: 1
     count: 1
   - type: Gun
@@ -948,10 +1163,10 @@
   - MobRogueSiliconPassiveRegen
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconTerminatorT3
+  id: MobRogueSiliconT3Terminator
   name: nt-800 "exterminator"
   description: A captured NT-800 endoskeleton repurposed by a rogue silicon hive. Extremely durable and relentless.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: NpcFactionMember
     factions:
@@ -977,8 +1192,8 @@
     - NpcVeteranLeader
   - type: SlowOnDamage
     speedModifierThresholds:
-      120: 0.85
-      160: 0.7
+      120: 1.1
+      160: 1.25
   - type: MeleeWeapon
     attackRate: 1.1
     animation: WeaponArcPunch
@@ -1010,10 +1225,10 @@
   - MobRogueSiliconBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconTesla
+  id: MobRogueSiliconT3Tesla
   name: tesla unit
   description: Originally designed to service tesla power generators, this silicon's equipment has been repurposed as a makeshift stun gun.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -1063,9 +1278,9 @@
     maxCharge: 300
     startingCharge: 300
   - type: Gun
-    projectileSpeed: 9
+    projectileSpeed: 8
     showExamineText: false
-    fireRate: 0.3
+    fireRate: 0.25
     minAngle: 5
     maxAngle: 25
     angleIncrease: 15
@@ -1085,14 +1300,26 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
-  id: MobRogueSiliconGuardian
+  id: MobRogueSiliconBossGuardian
   name: guardian unit
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
-  categories: [ HideSpawnMenu ]
+
   components:
+  - type: RadarBlip
+    color: "#47F8FFFF"
+    scale: 2
+    shape: Triangle
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: Loadout
     prototypes:
-    - MobRogueSiliconLootT3
+    - MobRogueSiliconLootBoss
   - type: Tag
     tags:
     - CanPilot
@@ -1138,8 +1365,8 @@
       96: 0.7
       130: 0.5
   - type: BatteryAmmoProvider
-    proto: RedLaserPractice
-    fireCost: 10
+    proto: RedLightLaser
+    fireCost: 6
   - type: Gun
     showExamineText: false
     fireRate: 8
@@ -1172,12 +1399,17 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconGuardian
-  id: MobRogueSiliconGuardianLCG
+  - MobRogueSiliconBossGuardian
+  id: MobRogueSiliconBossGuardianLCG
   name: guardian unit
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
-  categories: [ HideSpawnMenu ]
+
   components:
+  - type: RadarBlip
+    color: "#A8F8FFFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
   - type: BatteryAmmoProvider
     proto: CartridgeMinigun
     fireCost: 15
@@ -1204,11 +1436,23 @@
   id: MobRogueSiliconBoss
   name: one star unit
   description: An autonomous combat-grade mech, typically used for offensive operations. Now a rogue AI's elite guard. Equipped with missile launchers, exercise extreme caution.
-  categories: [ HideSpawnMenu ]
+
   components:
+  - type: RadarBlip
+    color: "#FF335DFF"
+    scale: 2
+    shape: Square
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: Loadout
     prototypes:
-    - MobRogueSiliconLootT3
+    - MobRogueSiliconLootBoss
   - type: Tag
     tags:
     - CanPilot
@@ -1287,6 +1531,11 @@
   - MobRogueSiliconPassiveRegen
   id: MobRogueSiliconBossSkullHouse
   components:
+  - type: RadarBlip
+    color: "#8B5CFFFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
   - type: CyborgSparkEffect
   - type: MechVulnerableToEMP
   - type: Damageable
@@ -1341,6 +1590,10 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: SpawnEntityTableOnTrigger
     table: !type:AllSelector
       children:
@@ -1461,9 +1714,9 @@
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapAsteroid
+  id: MobRogueSiliconT1ScrapAsteroid
   name: malfunctioning scrap unit
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -1526,9 +1779,9 @@
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThreadsAsteroid
+  id: MobRogueSiliconT1ScrapThreadsAsteroid
   name: malfunctioning scrap unit
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -1578,9 +1831,9 @@
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapThrustersAsteroid
+  id: MobRogueSiliconT1ScrapThrustersAsteroid
   name: malfunctioning scrap unit
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -1654,9 +1907,9 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconScrapThrustersAsteroid
-  id: MobRogueSiliconScrapThrustersRangedAsteroid
-  categories: [ HideSpawnMenu ]
+  - MobRogueSiliconT1ScrapThrustersAsteroid
+  id: MobRogueSiliconT1ScrapThrustersRangedAsteroid
+
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.6
@@ -1695,7 +1948,6 @@
   - type: CyborgSparkEffect
   - type: Sprite
     drawdepth: Mobs
-
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: derelict
@@ -1712,16 +1964,21 @@
         Base: derelict
       Dead:
         Base: derelict
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      999: Dead
 
 - type: entity
-  id: MobRogueSiliconDerelictBorg
+  id: MobRogueSiliconT1DerelictBorg
   parent:
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconDerelictBorgBase
   - MobRogueSiliconAISimpleMelee
   name: derelict rogue brawler
   description: A derelict cyborg configured for brute-force melee assaults.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -1737,14 +1994,14 @@
         Structural: 14
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgEngineering
+  id: MobRogueSiliconT1DerelictBorgEngineering
   parent:
   - MobMovementSpeedModifierMelee
   - MobRogueSiliconDerelictBorgBase
   - MobRogueSiliconAISimpleMelee
   name: derelict rogue engineer cyborg
   description: A crystallized engineering chassis repurposed by rogue silicon directives.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -1798,14 +2055,14 @@
     color: "#4080FF"
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgJanitor
+  id: MobRogueSiliconT1DerelictBorgJanitor
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
   - MobRogueSiliconAISimpleRanged
   name: derelict rogue janitor cyborg
   description: A derelict janitorial chassis now weaponized by rogue silicon logic.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -1859,22 +2116,22 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: NoSlip
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgMedical
+  id: MobRogueSiliconT1DerelictBorgMedical
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
   name: derelict rogue medical cyborg
   description: A degraded medical chassis with failing safeguards and hostile routines.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootDerelictBorgMedical
   - type: Sprite
     drawdepth: Mobs
-
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: medical_derelict
@@ -1891,6 +2148,7 @@
         Base: medical_derelict
       Dead:
         Base: medical_derelict
+  - type: NoSlip
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -1920,20 +2178,19 @@
       path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgMining
+  id: MobRogueSiliconT1DerelictBorgMining
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
   name: derelict rogue salvage cyborg
   description: A salvage-frame derelict unit adapted into a hostile roaming threat.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootDerelictBorgMining
   - type: Sprite
     drawdepth: Mobs
-
     sprite: Mobs/Silicon/chassis.rsi
     layers:
     - state: miner_derelict
@@ -1983,15 +2240,16 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: NoSlip
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgAssaultT1
+  id: MobRogueSiliconT2DerelictBorgAssault
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
   name: derelict rogue assault cyborg
   description: A derelict assault chassis fielded as a frontline rogue silicon unit.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -2021,8 +2279,8 @@
     autoRechargePauseTime: 5
     autoRechargeRate: 99
   - type: Battery
-    maxCharge: 15
-    startingCharge: 15
+    maxCharge: 30
+    startingCharge: 30
     pricePerJoule: 0
   - type: Gun
     showExamineText: false
@@ -2040,43 +2298,44 @@
         pitch: 0.8
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgAssaultT2
-  parent: MobRogueSiliconDerelictBorgAssaultT1
-  categories: [ HideSpawnMenu ]
+  id: MobRogueSiliconT2DerelictBorgAssaultHeavy
+  parent: MobRogueSiliconT2DerelictBorgAssault
+
   components:
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootDerelictBorgAssaultT2
   - type: BatteryAmmoProvider
-    proto: CartridgeRifleSP
+    proto: CartridgeLightRifleImprovised
   - type: Battery
-    maxCharge: 20
-    startingCharge: 20
+    maxCharge: 30
+    startingCharge: 30
     pricePerJoule: 0
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgAssaultT3
-  parent: MobRogueSiliconDerelictBorgAssaultT1
-  categories: [ HideSpawnMenu ]
+  id: MobRogueSiliconT3DerelictBorgAssault
+  parent: MobRogueSiliconT2DerelictBorgAssault
+
   components:
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootDerelictBorgAssaultT3
   - type: BatteryAmmoProvider
-    proto: CartridgeRifleIncendiary
+    proto: CartridgeRifleUranium
   - type: Battery
     maxCharge: 20
     startingCharge: 20
     pricePerJoule: 0
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgSyndicateSaboteur
+  id: MobRogueSiliconT3DerelictBorgSyndicateSaboteur
   parent:
-  - MobMovementSpeedModifierRanged
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconDerelictBorgBase
+  - MobRogueSiliconAISimpleMelee
   name: derelict rogue saboteur cyborg
   description: A saboteur frame reconstructed into a mobile breach-and-harass platform.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -2100,25 +2359,40 @@
         Base: spider
       Dead:
         Base: spider
-  - type: BatteryAmmoProvider
-    proto: RedLightLaser
-    fireCost: 40
-  - type: Gun
-    showExamineText: false
-    fireRate: 1.5
-    minAngle: 4
-    maxAngle: 15
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: MeleeWeapon
+    attackRate: 2.4
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 12
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+    soundNoDamage:
+      path: /Audio/Weapons/punchmiss.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Nocturine
+          Quantity: 120
+        maxVol: 120
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 3
 
 - type: entity
-  id: MobRogueSiliconDerelictBorgSyndicateMedical
+  id: MobRogueSiliconT2DerelictBorgSyndicateMedical
   parent:
   - MobMovementSpeedModifierRanged
   - MobRogueSiliconDerelictBorgBase
   name: derelict rogue syndicate medical cyborg
   description: A syndicate medical chassis that now supports rogue assault units with suppressive fire.
-  categories: [ HideSpawnMenu ]
+
   components:
   - type: Loadout
     prototypes:
@@ -2161,4 +2435,6 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+  - type: NoSlip
+
 # endregion Derelict Borg Units

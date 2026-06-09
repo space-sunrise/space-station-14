@@ -803,21 +803,21 @@
   id: RifleHeavyMagazineSP
   result: RifleHeavyMagazineSP
   materials:
-    Steel: 1412
+    Steel: 2100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: RifleHeavyMagazineHP
   result: RifleHeavyMagazineHP
   materials:
-    Steel: 1412
+    Steel: 2100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: RifleHeavyMagazineFMJ
   result: RifleHeavyMagazineFMJ
   materials:
-    Steel: 1412
+    Steel: 2600
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -825,8 +825,8 @@
   result: RifleHeavyMagazineUranium
   materials:
     Steel: 100
-    Plastic: 1080
-    Uranium: 1080
+    Plastic: 875
+    Uranium: 875
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -834,15 +834,17 @@
   result: RifleHeavyMagazineIncendiary
   materials:
     Steel: 100
-    Plastic: 1350
+    Plastic: 875
+    Plasma: 875
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: RifleHeavyMagazineAP
   result: RifleHeavyMagazineAP
   materials:
-    Steel: 1312
-    Uranium: 1312
+    Steel: 1600
+    Plasteel: 750
+    Uranium: 250
 
 ## 15мм/.60
 - type: latheRecipe
@@ -1044,6 +1046,13 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: SpeedLoaderShotgunBirdshot
+  result: SpeedLoaderShotgunBirdshot
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: SpeedLoaderShotgunBeanbag
   result: SpeedLoaderShotgunBeanbag
   materials:
@@ -1160,24 +1169,6 @@
     Steel: 850
 
 - type: latheRecipe
-  id: MagazineGlock22
-  result: MagazineGlock22
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-# - type: latheRecipe
-#   id: MagazineVP78
-#   result: MagazineVP78
-#   categories:
-#   - Ammo
-#   completetime: 5
-#   materials:
-#     Steel: 250
-
-- type: latheRecipe
   id: MagazineHIBrowning
   result: MagazineHIBrowning
   categories:
@@ -1193,7 +1184,7 @@
   - Ammo
   completetime: 5
   materials:
-    Steel: 193
+    Steel: 220
 
 #
 #- type: latheRecipe  # Отдельной технологией

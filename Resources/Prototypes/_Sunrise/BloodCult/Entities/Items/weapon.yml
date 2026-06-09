@@ -213,7 +213,8 @@
     state: icon
   - type: MeleeWeapon
     range: 2
-    angle: 30
+    angle: 60
+    wideAnimationRotation: -90
     animation: WeaponArcSmash
     attackRate: 1
     damage:

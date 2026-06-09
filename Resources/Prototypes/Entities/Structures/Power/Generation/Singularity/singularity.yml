@@ -4,6 +4,11 @@
   description: A mesmerizing swirl of darkness that sucks in everything. If it's moving towards you, run.
   components:
   - type: Clickable
+  - type: RadarBlip # Sunrise-Edit
+    color: "#8B5CFFFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
   - type: AmbientSound
     volume: -4
     range: 14

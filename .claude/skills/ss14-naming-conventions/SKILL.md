@@ -5,7 +5,7 @@ description: Strict naming standards in Space Station 14 for C#, YAML prototypes
 
 # Claude Bridge
 
-Canonical bridge skill file:
-../../../.agent/skills/ss14-naming-conventions/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-naming-conventions/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

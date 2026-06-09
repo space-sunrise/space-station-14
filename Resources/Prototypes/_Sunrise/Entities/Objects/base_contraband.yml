@@ -15,6 +15,15 @@
     allowedJobs: [ SalvageSpecialist ]
 
 - type: entity
+  id: BaseSecuritySalvageContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security ]
+    allowedJobs: [ SalvageSpecialist ]
+
+- type: entity
   id: BaseMiningContraband
   parent: BaseRestrictedContraband
   abstract: true

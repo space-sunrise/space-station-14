@@ -13,13 +13,12 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
-using Robust.Server.Player;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Edit - логика OOC-оформления для спонсоров
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Chat.Managers;
 
@@ -47,8 +46,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
-
-    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Edit - логика OOC-оформления для спонсоров
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -69,8 +67,7 @@ internal sealed partial class ChatManager : IChatManager
         _configurationManager.OnValueChanged(CCVars.AdminOocEnabled, OnAdminOocEnabledChanged, true);
 
         RegisterRateLimits();
-
-        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Edit - логика OOC-оформления для спонсоров
     }
 
     private void OnOocEnabledChanged(bool val)
@@ -272,43 +269,80 @@ internal sealed partial class ChatManager : IChatManager
 
     private void SendOOC(ICommonSession player, string message)
     {
-        if (!_oocEnabled)
+        static string FormatTitledDisplayName(string title, string playerName)
         {
-            if (_adminManager.IsAdmin(player))
-            {
-                if (!_adminOocEnabled)
-                    return;
-            }
-            else
+            return $"\\[{FormattedMessage.EscapeText(title)}\\] {playerName}";
+        }
+
+        if (_adminManager.IsAdmin(player))
+        {
+            if (!_adminOocEnabled)
             {
                 return;
             }
         }
+        else if (!_oocEnabled)
+        {
+            return;
+        }
 
         Color? colorOverride = null;
-        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
+        var escapedMessage = FormattedMessage.EscapeText(message);
+        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", player.Name), ("message", escapedMessage));
+
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
             colorOverride = prefs.AdminOOCColor;
         }
-        if (  _netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
+
+        // Sunrise added start - логика OOC-оформления для спонсоров
+        string? sponsorTitle = null;
+        Color? sponsorColor = null;
+
+        if (_sponsorsManager != null)
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            _sponsorsManager.TryGetOocTitle(player.UserId, out sponsorTitle);
+            _sponsorsManager.TryGetOocColor(player.UserId, out sponsorColor);
         }
 
-        // Sunrise-start
-        if (_sponsorsManager != null && _sponsorsManager.TryGetOocColor(player.UserId, out var oocColor) && _sponsorsManager.TryGetOocTitle(player.UserId, out var sponsorTitle))
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", oocColor), ("patronTitle", $"\\[{sponsorTitle}\\] "),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
-        }
+        var sponsorDisplayName = string.IsNullOrWhiteSpace(sponsorTitle)
+            ? player.Name
+            : FormatTitledDisplayName(sponsorTitle, player.Name);
 
-        var data = _adminManager.GetAdminData(player);
-        if (data != null && data.Title != null)
+        if (sponsorColor != null)
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-wrap-message", ("patronTitle", $"\\[{data.Title}\\] "),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-sponsor-wrap-message",
+                ("sponsorColor", sponsorColor.Value.ToHex()),
+                ("playerName", sponsorDisplayName),
+                ("message", escapedMessage));
         }
-        // Sunrise-end
+        else if (sponsorDisplayName != player.Name)
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message",
+                ("playerName", sponsorDisplayName),
+                ("message", escapedMessage));
+        }
+        else if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
+                 player.Channel.UserData.PatronTier is { } patron &&
+                 PatronOocColors.TryGetValue(patron, out var patronColor))
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message",
+                ("patronColor", patronColor),
+                ("playerName", player.Name),
+                ("message", escapedMessage));
+        }
+        // Sunrise added end
+
+        // Sunrise added start - отдельный префикс администратора поверх sponsor/patron pipeline
+        var adminTitle = _adminManager.GetAdminData(player)?.Title;
+        if (!string.IsNullOrWhiteSpace(adminTitle))
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message",
+                ("playerName", FormatTitledDisplayName(adminTitle, player.Name)),
+                ("message", escapedMessage));
+        }
+        // Sunrise added end
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

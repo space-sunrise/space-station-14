@@ -1,0 +1,12 @@
+quickconstruction-category-pipe = pipes
+quickconstruction-category-tile = tiles
+quickconstruction-category-railing = railings
+quickconstruction-category-steel = steel
+quickconstruction-category-metal-rod = rods
+quickconstruction-category-glass = glass
+quickconstruction-category-reinforced-glass = reinforced glass
+quickconstruction-category-uranium-glass = uranium glass
+quickconstruction-category-reinforced-uranium-glass = reinforced uranium glass
+quickconstruction-category-plasma-glass = plasma glass
+quickconstruction-category-reinforced-plasma-glass = reinforced plasma glass
+quickconstruction-category-clockwork-glass = clockwork glass

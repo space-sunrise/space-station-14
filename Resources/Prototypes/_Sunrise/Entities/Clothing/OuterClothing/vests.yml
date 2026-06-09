@@ -74,3 +74,43 @@
     - type: Construction
       graph: UpgradeArmorVestBlueshield
       node: webvest
+
+- type: entity
+  parent: [ClothingOuterVestWeb, BaseChameleon]
+  id: ClothingOuterVestWebChameleon
+  name: chameleon web vest
+  description: A synthetic armor vest with holographic plates hidden under the webbing.
+  suffix: Chameleon
+  components:
+    - type: Tag
+      tags: []
+    - type: ChameleonClothing
+      slot: [outerClothing]
+      default: ClothingOuterVestWeb
+      requireTag: Vest
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+        enum.ChameleonUiKey.Key:
+          type: ChameleonBoundUserInterface
+
+- type: entity
+  parent: [ClothingOuterVestWebElite, BaseChameleon]
+  id: ClothingOuterVestWebEliteChameleon
+  name: elite chameleon vest
+  description: An elite synthetic armor vest with holographic plates hidden under the heat resistant fibers.
+  suffix: Chameleon
+  components:
+    - type: Tag
+      tags: []
+    - type: ChameleonClothing
+      slot: [outerClothing]
+      default: ClothingOuterVestWebElite
+      requireTag: Vest
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+        enum.ChameleonUiKey.Key:
+          type: ChameleonBoundUserInterface

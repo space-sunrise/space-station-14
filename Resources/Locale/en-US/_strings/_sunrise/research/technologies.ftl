@@ -24,3 +24,6 @@ research-technology-basic-thermals = Thermal Scanners
 research-technology-slop-dispenser = Nutritious, full stop
 research-technology-cloning = Cloning Systems
 research-technology-bluespace-gas-tanks = Bluespace Gas Tanks
+research-technology-budget-cyber-organs = Budget CyberOrgans
+research-technology-advanced-cyberlimbs = Advanced cyberorgans
+research-technology-ion-weaponry = Ion Weaponry

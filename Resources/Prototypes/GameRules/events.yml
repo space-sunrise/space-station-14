@@ -52,6 +52,7 @@
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
+
 #Sunrise-start
 - type: entityTable
   id: DerelictBorgEventTable #For Derelict Borg spawns
@@ -162,7 +163,7 @@
     startAudio:
       path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     minimumPlayers: 25
-    weight: 3
+    weight: 0 # Sunrise-edit
     duration: 1
   - type: BureaucraticErrorRule
     ignoredJobs:
@@ -256,7 +257,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalEVA
+      - RoleSurvivalSpaceNinja
       briefing:
         text: ninja-role-greeting
         color: Green

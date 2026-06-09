@@ -1,5 +1,115 @@
-﻿- type: xenoArchTrigger
+- type: xenoArchTrigger
   id: TriggerHealthAnalyzer
   tip: artifact-trigger-hint-health-analyzer
   components:
   - type: ArtifactHealthAnalyzerInteractionTrigger
+
+- type: xenoArchTrigger
+  id: TriggerElectrovae
+  tip: xenoarch-trigger-tip-electrovae
+  components:
+  - type: XATGas
+    targetGas: Electrovae
+  - type: XATReactive
+    reagents:
+    - Electrovae
+
+- type: xenoArchTrigger
+  id: TriggerChargedElectrovae
+  tip: xenoarch-trigger-tip-charged-electrovae
+  components:
+  - type: XATGas
+    targetGas: ChargedElectrovae
+  - type: XATReactive
+    reagents:
+    - ChargedElectrovae
+
+- type: xenoArchTrigger
+  id: TriggerHalon
+  tip: xenoarch-trigger-tip-halon
+  components:
+  - type: XATGas
+    targetGas: Halon
+  - type: XATReactive
+    reagents:
+    - Halon
+
+- type: xenoArchTrigger
+  id: TriggerPluoxium
+  tip: xenoarch-trigger-tip-pluoxium
+  components:
+  - type: XATGas
+    targetGas: Pluoxium
+  - type: XATReactive
+    reagents:
+    - Pluoxium
+
+- type: xenoArchTrigger
+  id: TriggerBZ
+  tip: xenoarch-trigger-tip-bz
+  components:
+  - type: XATGas
+    targetGas: BZ
+  - type: XATReactive
+    reagents:
+    - BZ
+
+- type: xenoArchTrigger
+  id: TriggerHealium
+  tip: xenoarch-trigger-tip-healium
+  components:
+  - type: XATGas
+    targetGas: Healium
+  - type: XATReactive
+    reagents:
+    - Healium
+
+- type: xenoArchTrigger
+  id: TriggerNitrium
+  tip: xenoarch-trigger-tip-nitrium
+  components:
+  - type: XATGas
+    targetGas: Nitrium
+  - type: XATReactive
+    reagents:
+    - Nitrium
+
+- type: xenoArchTrigger
+  id: TriggerZauker
+  tip: xenoarch-trigger-tip-zauker
+  components:
+  - type: XATGas
+    targetGas: Zauker
+  - type: XATReactive
+    reagents:
+    - Zauker
+
+- type: xenoArchTrigger
+  id: TriggerHydrogen
+  tip: xenoarch-trigger-tip-hydrogen
+  components:
+  - type: XATGas
+    targetGas: Hydrogen
+  - type: XATReactive
+    reagents:
+    - Hydrogen
+
+- type: xenoArchTrigger
+  id: TriggerProtoNitrate
+  tip: xenoarch-trigger-tip-proto-nitrate
+  components:
+  - type: XATGas
+    targetGas: ProtoNitrate
+  - type: XATReactive
+    reagents:
+    - Proto-Nitrate
+
+- type: xenoArchTrigger
+  id: TriggerHelium
+  tip: xenoarch-trigger-tip-helium
+  components:
+  - type: XATGas
+    targetGas: Helium
+  - type: XATReactive
+    reagents:
+    - Helium
