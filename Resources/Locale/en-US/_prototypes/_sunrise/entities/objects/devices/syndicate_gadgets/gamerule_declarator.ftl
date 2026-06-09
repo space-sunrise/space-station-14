@@ -9,3 +9,4 @@ ent-SunrisePowerGridCheckDeclarator = power grid declarator
 
 ent-SunriseMeteorDustDeclarator = meteor declarator
     .desc = A single-use device that signals Syndicate satellites to nudge a small portion of meteorites in the sector. Activation will cause a meteor swarm around the station.
+
