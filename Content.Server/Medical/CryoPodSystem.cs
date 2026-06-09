@@ -60,7 +60,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         UI.ServerSendUiMessage(
             entity.Owner,
             CryoPodUiKey.Key,
-            new CryoPodUserMessage(gasMix, health, beakerCapacity, beaker, injecting, cureProgress: infectionLevel) // Sunrise-disease-edit
+            new CryoPodUserMessage(gasMix, health, beakerCapacity, beaker, injecting)
         );
     }
 

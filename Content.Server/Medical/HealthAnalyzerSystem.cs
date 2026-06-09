@@ -255,7 +255,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         RaiseLocalEvent(entity, new EntityAnalyzedEvent());
 
         float? infectionLevel = null;
-        if (TryComp<DiseaseComponent>(target, out var virus))
+        if (TryComp<DiseaseComponent>(entity, out var virus))
         {
             var curProg = virus.Data.MaxThreshold > 0f
                 ? virus.Data.Threshold / virus.Data.MaxThreshold
