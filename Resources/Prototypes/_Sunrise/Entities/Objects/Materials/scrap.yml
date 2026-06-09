@@ -1,0 +1,9 @@
+- type: entity
+  parent: ScrapCamera
+  id: ScrapCameraTiny
+  name: tiny broken camera
+  description: A small piece of a broken camera.
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1

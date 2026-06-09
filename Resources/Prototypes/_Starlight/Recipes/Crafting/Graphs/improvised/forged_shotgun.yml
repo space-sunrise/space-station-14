@@ -16,7 +16,7 @@
           sprite: _Starlight/Objects/Misc/modular_barrel.rsi
           state: icon
         name: crafting-menu-name-MB
-      - tag: ModularReceiver
+      - tag: ModularReceiverForged # Sunrise-Edit
         icon:
           sprite: Objects/Misc/modular_receiver.rsi
           state: icon

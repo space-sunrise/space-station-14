@@ -111,6 +111,8 @@ uplink-clothing-chameleon-thieving-gloves-name = Воровские перчат
 uplink-clothing-chameleon-thieving-gloves-desc = Незаметно обчищайте карманы и повышайте свой навык воровства с помощью этих новых модных перчаток, которые могут менять свой облик! Учтите что волокна остануться уникальные для этих перчаток.
 uplink-50blessing-name = Подарочный набор 50 благословений
 uplink-50blessing-desc = Для агентов, которые хотят скрыть свою личность стильно, с любовью от Егора Семёнова
+uplink-slipknotset-name = Подарочный набор масок slipknot
+uplink-slipknotset-desc = Пять масок. Пять душ. Номера 7, 8, 6, 1 и 5 в чёрной коробке - грязная ярость Айовы.
 uplink-clothing-murder-socks-name = чулочки убийцы
 uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
 uplink-syndie-maid-raid-name = рейдерка горничной
@@ -210,6 +212,8 @@ uplink-mech-equipment-tesla-cannon-name = тесла-пушка P-X
 uplink-mech-equipment-tesla-cannon-desc = Оружие для боевых мехов, стреляющее энергетическими шарами, основанное на принципе экспериментального двигателя Теслы.
 uplink-mech-equipment-shotgun-name = LBX AC 10 "Залп"
 uplink-mech-equipment-shotgun-desc = Навесной нелетальный электрошокер, позволяющий оглушить злоумышленников.
+uplink-mech-equipment-kord-name = пулемёт "Корд"
+uplink-mech-equipment-kord-desc = Громоздкий тяжелый пулемёт со скорострельностью 300 пуль в минуту. Очень эффективен против любых врагов в легкой броне.
 uplink-mech-equipment-shotgun-incendiary-name = карабин FNX-99 "Аид"
 uplink-mech-equipment-shotgun-incendiary-desc = Навесной карабин, стреляющий зажигательными патронами.
 uplink-mech-equipment-ultra-rifle-name = AC-2 "Ультра"
@@ -222,8 +226,6 @@ uplink-mech-equipment-vindictor-name = Устанавливаемый MG-100 Vin
 uplink-mech-equipment-vindictor-desc = Тяжёлое оружие массового поражения.
 uplink-mech-equipment-uvm31-name = UVM-31 "Дрейк"
 uplink-mech-equipment-uvm31-desc = Тяжёлое оружие массового поражения разработанное Cybersun на основе минигана. теперь на прочном штативе позволяющем вести огонь прямо из МЕХа!
-uplink-mech-teleporter-medium-name = Телепорт среднего меха
-uplink-mech-teleporter-medium-desc = Содержит среднебронированный мех Cybersun с AC-2 "Ультра" и ракетной установкой BRM-8.
 uplink-clothing-glasses-nvg-name = Модульные Очки
 uplink-clothing-glasses-nvg-desc = Качественно исполненные солнцезащитные очки, производства компании "Горлакс секьюрити". Использует модульные части для улучшения видимости в условиях низкой освещенности.
 
@@ -290,6 +292,9 @@ uplink-energy-dome-name = Личный энергетический купол
 uplink-energy-dome-desc = Персональный генератор щита, который защищает владельца от лазеров и пуль, но не позволяет использовать дистанционное оружие. Поставляется с небольшим энергетическим элементом.
 uplink-syndicate-teleporter-name = Ручной телепорт Синдиката
 uplink-syndicate-teleporter-desc = Экспериментальное устройство ручного телепорта. Телепортирует владельца на небольшое расстояние вперед. Будьте осторожны, чтобы не оказаться в стене.
+
+uplink-viscerator-cluster-grenade-name = Висцераторная граната
+uplink-viscerator-cluster-grenade-desc = После короткого таймера выпускает восемь висцераторов Синдиката.
 
 ## Disruption
 

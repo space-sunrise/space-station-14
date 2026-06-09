@@ -24,6 +24,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Sunrise.Tutorial.Prototypes;
 
 namespace Content.Server.Database
 {
@@ -1873,7 +1874,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         # endregion
 
         // Sunrise-start
-        # region MentorHelp
+        #region MentorHelp
 
         public async Task AddMentorHelpTicketAsync(MentorHelpTicket ticket)
         {
@@ -2057,9 +2058,159 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(m => m.TicketId == ticketId)
                 .ToListAsync();
         }
-        #endregion
-        // Sunrise-End
+        # endregion
 
+        #region Tutorial
+        public async Task<bool> AddTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial, TimeSpan? accountAge = null)
+        {
+            await using var db = await GetDb();
+            var entry = await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Where(w => w.TutorialId == tutorial.Id)
+                .SingleOrDefaultAsync();
+
+            var now = DateTimeOffset.UtcNow;
+            var accountAgeDays = accountAge != null ? (double?)accountAge.Value.TotalDays : null;
+            var isNew = entry == null;
+
+            if (isNew)
+            {
+                entry = new TutorialCompletion
+                {
+                    PlayerUserId = player,
+                    TutorialId = tutorial.Id,
+                    CompletedAt = now,
+                    AccountAgeDays = accountAgeDays,
+                    CompletionCount = 1
+                };
+                db.DbContext.TutorialCompletions.Add(entry);
+            }
+            else
+            {
+                entry!.CompletedAt = now;
+                entry.CompletionCount++;
+                if (accountAgeDays != null)
+                    entry.AccountAgeDays = accountAgeDays;
+            }
+
+            await db.DbContext.SaveChangesAsync();
+            return isNew;
+        }
+
+        public async Task<List<string>> GetTutorial(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Select(w => w.TutorialId)
+                .ToListAsync(cancellationToken: cancel);
+        }
+
+        public async Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Where(w => w.TutorialId == tutorial.Id)
+                .AnyAsync();
+        }
+
+        public async Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
+        {
+            await using var db = await GetDb();
+            var entry = await db.DbContext.TutorialCompletions
+                .Where(w => w.PlayerUserId == player)
+                .Where(w => w.TutorialId == tutorial.Id)
+                .SingleOrDefaultAsync();
+
+            if (entry == null)
+                return false;
+
+            db.DbContext.TutorialCompletions.Remove(entry);
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var isSqlite = db.DbContext.Database.ProviderName?.Contains("Sqlite") == true;
+
+            if (isSqlite)
+            {
+                var metrics = await db.DbContext.TutorialCompletions
+                    .AsNoTracking()
+                    .GroupBy(completion => completion.TutorialId)
+                    .Select(group => new
+                    {
+                        TutorialId = group.Key,
+                        CompletedPlayers = group.Count(),
+                        CompletionCount = group.Sum(completion => completion.CompletionCount),
+                        AccountAgeSamples = group.Count(completion => completion.AccountAgeDays != null),
+                        AverageAccountAgeDays = group.Average(completion => completion.AccountAgeDays)
+                    })
+                    .ToListAsync(cancellationToken: cancel);
+
+                var lastCompletedAt = await db.DbContext.TutorialCompletions
+                    .AsNoTracking()
+                    .Select(completion => new
+                    {
+                        completion.TutorialId,
+                        completion.CompletedAt
+                    })
+                    .ToListAsync(cancellationToken: cancel);
+
+                var lastCompletedAtByTutorial = lastCompletedAt
+                    .GroupBy(completion => completion.TutorialId)
+                    .ToDictionary(
+                        group => group.Key,
+                        group => group.Max(completion => completion.CompletedAt));
+
+                return metrics
+                    .Select(metric => new TutorialCompletionMetrics(
+                        metric.TutorialId,
+                        metric.CompletedPlayers,
+                        metric.CompletionCount,
+                        metric.AccountAgeSamples,
+                        metric.AverageAccountAgeDays,
+                        lastCompletedAtByTutorial[metric.TutorialId]))
+                    .ToList();
+            }
+
+            return await db.DbContext.TutorialCompletions
+                .AsNoTracking()
+                .GroupBy(w => w.TutorialId)
+                .Select(group => new TutorialCompletionMetrics(
+                    group.Key,
+                    group.Count(),
+                    group.Sum(w => w.CompletionCount),
+                    group.Count(w => w.AccountAgeDays != null),
+                    group.Average(w => w.AccountAgeDays),
+                    group.Max(w => w.CompletedAt)))
+                .ToListAsync(cancellationToken: cancel);
+        }
+
+        public async Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var validList = validTutorialIds.ToList();
+            if (validList.Count == 0)
+                return 0;
+
+            IQueryable<TutorialCompletion> query = db.DbContext.TutorialCompletions;
+            query = query.Where(w => !validList.Contains(w.TutorialId));
+
+            var toRemove = await query.ToListAsync(cancellationToken: cancel);
+            if (toRemove.Count == 0)
+                return 0;
+
+            db.DbContext.TutorialCompletions.RemoveRange(toRemove);
+            await db.DbContext.SaveChangesAsync();
+            return toRemove.Count;
+        }
+
+        #endregion
+        // Sunrise-end
         # region IPIntel
 
         public async Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score)

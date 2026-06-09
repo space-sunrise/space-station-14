@@ -8,7 +8,7 @@ namespace Content.Client.Shuttles.UI;
 
 public sealed partial class ShuttleNavControl
 {
-    // Sunrise-Edit - shaped radar blips and laser beam lines
+    // Sunrise-Edit - формы radar blips и линии laser beam
     private void DrawSunriseRadarOverlays(
         DrawingHandleScreen handle,
         MapCoordinates mapPos,

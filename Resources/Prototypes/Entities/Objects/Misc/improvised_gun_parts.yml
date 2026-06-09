@@ -15,6 +15,7 @@
     - type: Tag
       tags:
       - ModularReceiver
+      - ModularReceiverForged # Sunrise-Edit
       - Metal
 
 - type: entity

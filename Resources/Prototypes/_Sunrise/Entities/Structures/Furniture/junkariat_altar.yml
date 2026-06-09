@@ -1,0 +1,19 @@
+- type: entity
+  id: AltarJunkariat
+  parent: AltarNanotrasen
+  name: junkariat altar
+  description: An altar of those who worship junk. Smells like rust and engine oil.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/Altars/junkariat.rsi
+    layers:
+    - state: junkariat
+    - state: junkariat_lightning
+      shader: unshaded
+  - type: Icon
+    sprite: _Sunrise/Structures/Furniture/Altars/junkariat.rsi
+    state: junkariat
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#ffa500"

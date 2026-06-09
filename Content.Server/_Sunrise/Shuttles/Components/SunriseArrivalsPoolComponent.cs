@@ -1,25 +1,25 @@
 namespace Content.Server._Sunrise.Shuttles.Components;
 
 /// <summary>
-/// Singleton component on the shared pool map where all arrivals shuttles are spawned.
-/// Instead of creating a separate map per player, shuttles are placed on a single map
-/// with X-offset spacing.
+/// Singleton-компонент на общей карте пула, где спавнятся все шаттлы прибытия.
+/// Вместо отдельной карты на игрока шаттлы размещаются на одной карте
+/// со смещением по X.
 /// </summary>
 [RegisterComponent]
 public sealed partial class SunriseArrivalsPoolComponent : Component
 {
     /// <summary>
-    /// Next X-offset on the pool map for spawning another shuttle grid.
+    /// Следующее смещение по X на карте пула для спавна очередного grid шаттла.
     /// </summary>
     public float NextOffset;
 
     /// <summary>
-    /// Ordered queue of shuttle EntityUids waiting to be dispatched to a station.
+    /// Упорядоченная очередь EntityUid шаттлов, ожидающих отправки на станцию.
     /// </summary>
     public List<EntityUid> Queue = new();
 
     /// <summary>
-    /// Last time a station was alerted about blocked arrivals docks.
+    /// Последнее время, когда станции сообщали о заблокированных доках прибытия.
     /// </summary>
     public TimeSpan LastAlertTime;
 }

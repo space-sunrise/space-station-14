@@ -1,0 +1,11 @@
+- type: entity
+  parent: SalvageMagnet
+  id: SunriseAdvancedSalvageMagnet
+  name: advanced salvage magnet
+  description: A reinforced salvage magnet with independent targeting systems.
+  components:
+  - type: SalvageMagnetData
+  - type: Machine
+    board: SunriseAdvancedSalvageMagnetMachineCircuitboard
+  - type: ApcPowerReceiver
+    powerLoad: 5000

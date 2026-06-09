@@ -10,3 +10,6 @@ ent-WeaponShotgunTrenchgun4034Sawn = обрез Trenchgun L-4034
 ent-WeaponShotgunTrenchgun4034SawnEmpty = обрез Trenchgun L-4034
     .desc = { ent-WeaponShotgunTrenchgun4034Sawn.desc }
     .suffix = Пусто
+ent-WeaponShotgunMinotaurAdmeme = дробовик AS-12 "Hasta la vista"
+    .desc = Плавный, мощный, крайне нелегальный. Полностью автоматический дробовик, доступный на рынке и использующий стандартные барабанные магазины 12-го калибра. Собственность Admeme-Marauders, которую можно использовать в паре с другим AS-12 для максимальной бойни.
+    .suffix = Адмем

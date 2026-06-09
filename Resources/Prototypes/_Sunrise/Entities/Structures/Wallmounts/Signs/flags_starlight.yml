@@ -1,0 +1,29 @@
+- type: entity
+  id: CybersunFlag
+  parent: SyndieFlag
+  name: CyberSun flag
+  description: Paper, Suit, Progress.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/flags/cybersunflag.rsi
+    state: cybersun
+
+- type: entity
+  id: DonkFlag
+  parent: NTFlag
+  name: DONK CO flag
+  description: Put a DONK on it!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/flags/donkflag.rsi
+    state: donk
+
+- type: entity
+  id: InterdyneFlag
+  parent: SyndieFlag
+  name: Interdyne Pharmaceutics flag
+  description: For Everyone's Health.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/flags/interdyneflag.rsi
+    state: interdyne

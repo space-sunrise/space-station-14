@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "icon-bartender and icon-cook by crestoedge(github)",
+    "copyright": "icon-bartender and icon-cook by crestoedge(github), robotics by @4_ydo",
     "size": {
         "x": 32,
         "y": 32
@@ -12,6 +12,27 @@
         },
         {
             "name": "icon-bartender"
+        },
+        {
+            "name": "icon-robotics"
+        },
+        {
+            "name": "icon-stuh"
+        },
+        {
+            "name": "icon-peace"
+        },
+        {
+            "name": "icon-syndicate-treatment"
+        },
+        {
+            "name": "icon-NT"
+        },
+        {
+            "name": "NT"
+        },
+        {
+            "name": "icon-combat"
         }
     ]
 
