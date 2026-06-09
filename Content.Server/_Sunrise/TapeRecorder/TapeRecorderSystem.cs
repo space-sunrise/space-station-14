@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
@@ -21,6 +22,7 @@ namespace Content.Server._Sunrise.TapeRecorder;
 
 public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 {
+    [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -31,9 +33,13 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private readonly TTSSystem _tts = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
+    private ISawmill _sawmill = default!;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _sawmill = _log.GetSawmill("tape_recorder");
 
         SubscribeLocalEvent<TapeRecorderComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<TapeRecorderComponent, ComponentShutdown>(OnShutdown);
@@ -240,34 +246,41 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
                 continue;
 
             recorder.Comp.NextPlaybackLineTime = _timing.CurTime + recorder.Comp.PlaybackLineCooldown;
-            PlayRecord(recorder, record);
+            _ = PlayRecord(recorder, record);
             return;
         }
     }
 
-    private async void PlayRecord(Entity<TapeRecorderComponent> recorder, TapeCassetteRecord record)
+    private async Task PlayRecord(Entity<TapeRecorderComponent> recorder, TapeCassetteRecord record)
     {
-        _chat.TrySendInGameICMessage(
-            recorder,
-            record.Message,
-            InGameICChatType.Speak,
-            ChatTransmitRange.Normal,
-            nameOverride: GetPlaybackSpeakerName(recorder, record),
-            checkRadioPrefix: false,
-            ignoreActionBlocker: true);
+        try
+        {
+            _chat.TrySendInGameICMessage(
+                recorder,
+                record.Message,
+                InGameICChatType.Speak,
+                ChatTransmitRange.Normal,
+                nameOverride: GetPlaybackSpeakerName(recorder, record),
+                checkRadioPrefix: false,
+                ignoreActionBlocker: true);
 
-        if (!_prototype.TryIndex<TTSVoicePrototype>(recorder.Comp.PlaybackVoice, out var voice))
-            return;
+            if (!_prototype.TryIndex<TTSVoicePrototype>(recorder.Comp.PlaybackVoice, out var voice))
+                return;
 
-        var recipients = Filter.Pvs(recorder.Owner);
-        if (!recipients.Recipients.Any())
-            return;
+            var recipients = Filter.Pvs(recorder.Owner);
+            if (!recipients.Recipients.Any())
+                return;
 
-        var soundData = await _tts.GenerateTTS(record.Message, voice);
-        if (soundData == null)
-            return;
+            var soundData = await _tts.GenerateTTS(record.Message, voice);
+            if (soundData == null)
+                return;
 
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(recorder.Owner)), recipients);
+            RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(recorder.Owner)), recipients);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Failed to play tape recorder TTS for {ToPrettyString(recorder)}: {ex}");
+        }
     }
 
     private bool TryPrintTranscript(Entity<TapeRecorderComponent> ent, EntityUid user)

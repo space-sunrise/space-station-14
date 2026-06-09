@@ -19,8 +19,6 @@
   description: A small magnetic tape cassette with one minute of recording time.
   suffix: 1 minute
   components:
-  - type: Sprite
-    state: red
   - type: TapeCassette
     capacity: 60
 

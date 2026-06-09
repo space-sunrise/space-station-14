@@ -9,7 +9,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.TapeRecorder;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 [Access(typeof(SharedTapeRecorderSystem))]
 public sealed partial class TapeRecorderComponent : Component
 {
@@ -18,7 +18,6 @@ public sealed partial class TapeRecorderComponent : Component
     /// <summary>
     /// Current tape recorder mode.
     /// </summary>
-    [AutoNetworkedField]
     public TapeRecorderMode Mode = TapeRecorderMode.Stopped;
 
     /// <summary>
@@ -71,6 +70,7 @@ public sealed partial class TapeRecorderComponent : Component
 
     /// <summary>
     /// Maximum amount of recorded lines stored on one cassette.
+    /// Values less than or equal to zero disable adding new records.
     /// </summary>
     [DataField]
     public int MaxRecords = 120;
