@@ -1,19 +1,11 @@
 using System.Linq;
+using Content.Shared._Sunrise.NPC;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
-using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Projectiles;
-using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.Verbs;
-using Content.Shared.Weapons.Hitscan.Components;
-using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -53,6 +45,10 @@ public sealed partial class ExecutionSystem
 
         // You can't execute borgs
         if (HasComp<BorgChassisComponent>(victim))
+            return false;
+
+        // You can't execute veteran followers.
+        if (HasComp<NpcVeteranFollowerComponent>(victim))
             return false;
 
         // You're not allowed to execute dead people (no fun allowed)
@@ -289,7 +285,6 @@ public sealed partial class ExecutionSystem
                 continue;
             }
 
-            // Сделано по патерну SharedSuicideSystem
             result.DamageDict[type] = Math.Ceiling((double)(value * total / weightsTotal));
         }
 

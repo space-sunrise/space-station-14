@@ -226,8 +226,6 @@ uplink-mech-equipment-vindictor-name = Устанавливаемый MG-100 Vin
 uplink-mech-equipment-vindictor-desc = Тяжёлое оружие массового поражения.
 uplink-mech-equipment-uvm31-name = UVM-31 "Дрейк"
 uplink-mech-equipment-uvm31-desc = Тяжёлое оружие массового поражения разработанное Cybersun на основе минигана. теперь на прочном штативе позволяющем вести огонь прямо из МЕХа!
-uplink-mech-teleporter-medium-name = Телепорт среднего меха
-uplink-mech-teleporter-medium-desc = Содержит среднебронированный мех Cybersun с AC-2 "Ультра" и ракетной установкой BRM-8.
 uplink-clothing-glasses-nvg-name = Модульные Очки
 uplink-clothing-glasses-nvg-desc = Качественно исполненные солнцезащитные очки, производства компании "Горлакс секьюрити". Использует модульные части для улучшения видимости в условиях низкой освещенности.
 
@@ -295,6 +293,9 @@ uplink-energy-dome-desc = Персональный генератор щита, 
 uplink-syndicate-teleporter-name = Ручной телепорт Синдиката
 uplink-syndicate-teleporter-desc = Экспериментальное устройство ручного телепорта. Телепортирует владельца на небольшое расстояние вперед. Будьте осторожны, чтобы не оказаться в стене.
 
+uplink-viscerator-cluster-grenade-name = Висцераторная граната
+uplink-viscerator-cluster-grenade-desc = После короткого таймера выпускает восемь висцераторов Синдиката.
+
 ## Disruption
 
 uplink-cleaner-kit-name = Набор уборщика
@@ -324,3 +325,9 @@ uplink-longbow-bundle-name = ящик BAL-15 «Лонгбоу»
 uplink-longbow-bundle-desc = Набор с комплектующими для сборки шаттл-пушки BAL-15 «Лонгбоу».
 uplink-quadling-bundle-name = ящик BAL-15-4 «Квадлинг»
 uplink-quadling-bundle-desc = Набор с комплектующими для сборки шаттл-пушки BAL-15-4 «Квадлинг».
+uplink-ecronizer-name = Экронайзер
+uplink-ecronizer-desc = Небольшое устройство, позволяющее обходить большинство сканирующих устройств и скрывать вас и ваши предметы от них.
+uplink-lube-grenade-name = Граната со смазкой
+uplink-lube-grenade-desc = Граната, создающая в зоне детонации скользкое облако смазки.
+uplink-glue-grenade-name = Граната с клеем
+uplink-glue-grenade-desc = Граната, создающая в зоне детонации липкое облако клея.

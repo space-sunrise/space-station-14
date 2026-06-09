@@ -22,12 +22,14 @@
   - type: Sprite
   - type: Item
     size: Small
+  # Sunrise-start
   - type: Tool
     qualities:
+      - Cutting
       - Slicing
+    speedModifier: 0.6
     useSound:
-      path: /Audio/Items/Culinary/chop.ogg
-  # Sunrise-start
+      path: /Audio/Items/wirecutter.ogg
   - type: Scalpel
   - type: SurgeryTool
     successRate: 0.9
@@ -358,6 +360,7 @@
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
     offset: -0.15,0.0
+    removalTime: 1.5
   - type: LandAtCursor
   - type: DamageOtherOnHit
     ignoreResistances: true
@@ -370,7 +373,7 @@
   - type: ThrowingAngle
     angle: 225
   - type: StaticPrice
-    price: 500 # 2000 for a set of 4
+    price: 500 # 4000 for a set of 8
   - type: Fixtures
     fixtures:
       fix1:

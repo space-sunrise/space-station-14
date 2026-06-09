@@ -12,6 +12,21 @@
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: Metallic
+    # Sunrise-Start
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ScrapCameraTiny:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    # Sunrise-End
     - type: Rotatable
       rotateWhileAnchored: true
     - type: Fixtures

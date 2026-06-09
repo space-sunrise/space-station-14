@@ -42,8 +42,6 @@ public sealed class SunriseClientEntry
 #if SUNRISE_PRIVATE
         IoCManager.Resolve<ISharedSponsorsManager>().Initialize();
         IoCManager.Resolve<IClientJoinQueueManager>().Initialize();
-        IoCManager.Resolve<IClientServiceAuthManager>().Initialize();
-        IoCManager.Resolve<IClientServiceCheckMemberManager>().Initialize();
 #endif
     }
 }

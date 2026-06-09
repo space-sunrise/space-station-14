@@ -1,10 +1,13 @@
 id: ss14-dependency-field-must-start-with-underscore
 language: CSharp
 severity: error
-message: "Private `[Dependency]` fields in `_Sunrise` code must start with `_` per `ss14-naming-conventions`."
+message: "Private `[Dependency]` fields in fork project code must start with `_` per `ss14-naming-conventions`."
 note: "This encodes the low-noise part of the dependency naming rule. Canonical alias selection still needs review context because the repo contains legacy variations."
 files:
   - "Content.*/_Sunrise/**/*.cs"
+  - "Content.*/_Scp/**/*.cs"
+  - "Content.*/_Fish/**/*.cs"
+  - "Content.*/_Lust/**/*.cs"
 rule:
   any:
     - pattern:

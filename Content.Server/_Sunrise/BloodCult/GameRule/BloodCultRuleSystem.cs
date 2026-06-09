@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Sunrise.BloodCult.Objectives.Components;
 using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
@@ -19,6 +19,7 @@ using Content.Shared.Actions.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clumsy;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Gibbing;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
@@ -43,7 +44,6 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
@@ -57,6 +57,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
 
     private readonly EntProtoId _mindRoleCultistPrototypeId = "MindRoleCultist";
     private readonly EntProtoId _cultistKillObjective = "CultistKillObjective";
@@ -328,7 +329,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         var query = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
         var aliveCultistsCount = 0;
 
-        while (query.MoveNext(out _, out var cultRuleComponent, out _))
+        while (query.MoveNext(out var uid, out var cultRuleComponent, out _))
         {
             var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
             while (cultisQuery.MoveNext(out var cultistUid, out _))
@@ -349,7 +350,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                 continue;
 
             cultRuleComponent.WinCondition = CultWinCondition.CultFailure;
-            _roundEndSystem.EndRound();
+            GameTicker.EndGameRule(uid);
         }
     }
 
@@ -562,9 +563,11 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             var reaper = Spawn(BloodCultSystem.ReaperConstructPrototypeId, Transform(mobState.Owner).Coordinates);
             _mindSystem.TransferTo(mindContainer.Mind.Value, reaper);
 
-            _bodySystem.GibBody(mobState.Owner);
+            _gibbingSystem.Gib(mobState.Owner);
         }
 
-        _roundEndSystem.EndRound();
+        // Sunrise edit start - Nar'sie summon triggers evac shuttle instead of instant round end
+        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
+        // Sunrise edit end
     }
 }

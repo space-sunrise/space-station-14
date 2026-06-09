@@ -3,55 +3,80 @@ using Content.Server.Communications;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Nuke;
 using Content.Server.NukeOps;
+using Content.Server.Pinpointer;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
+using Content.Server.StationRecords.Systems;
 using Content.Server.Store.Systems;
+using Content.Shared.Access.Systems;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nuke;
 using Content.Shared.NukeOps;
+using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
+using Content.Shared.Roles.Jobs;
+using Content.Shared.Station;
+using Content.Shared.Station.Components;
+using Content.Shared.StationRecords;
 using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.Tag;
 using Content.Shared.Zombies;
+using Robust.Server.Player;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Station.Components;
-using Content.Server.Traitor.Uplink;
-using Content.Shared.FixedPoint;
-using Content.Shared.Roles;
-using Content.Shared.Store.Components;
-using Robust.Shared.Prototypes;
+using System.Text;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
+public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
+    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly ExplosionSystem _explosions = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
 
-    // Sunrise-Start
-    [ValidatePrototypeId<AntagPrototype>]
-    private const string CommanderAntagProto = "NukeopsCommander";
-    // Sunrise-End
+    // TODO: This shouldn't be matching by ProtoId.
+    // It would be better if this were checked by component or something,
+    // but it needs to be distinct between the full Nukeops and Loneops rules,
+    // which NukeopsRuleComponent currently isn't.
+    // Better yet, maybe the behaviors this is used for could be moved to the rule component.
+    private static readonly EntProtoId NukeopsGameRule = "Nukeops";
 
     public override void Initialize()
     {
@@ -94,6 +119,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             return;
 
         component.TargetStation = RobustRandom.Pick(eligible);
+        var ev = new NukeopsTargetStationSelectedEvent(uid, component.TargetStation);
+        RaiseLocalEvent(ref ev);
     }
 
     #region Event Handlers
@@ -109,6 +136,63 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         {
             var text = Loc.GetString($"nukeops-cond-{cond.ToString().ToLower()}");
             args.AddLine(text);
+        }
+
+        // Print disk location if nuke didn't explode and is not armed
+        List<WinCondition> diskWinConditions = [WinCondition.NukeDiskOnCentCom, WinCondition.NukeDiskNotOnCentCom];
+        if (component.WinConditions.Any(diskWinConditions.Contains))
+        {
+            var diskQuery = AllEntityQuery<NukeDiskComponent, TransformComponent>();
+            while (diskQuery.MoveNext(out var diskUid, out _, out var transform))
+            {
+                StringBuilder text = new StringBuilder(Loc.GetString("nukeops-disk-location-title"));
+
+                List<string> containers = new();
+                bool carriedByMob = false;
+
+                var tempParent = diskUid;
+                while (_containers.TryGetContainingContainer((tempParent, null), out var container) && !carriedByMob)
+                {
+                    if (HasComp<MindContainerComponent>(container.Owner))
+                    {
+                        carriedByMob = true;
+                    }
+                    var containermeta = MetaData(container.Owner);
+                    containers.Add(containermeta.EntityName);
+                    tempParent = container.Owner;
+                }
+
+                string location = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((diskUid, transform)));
+
+                if (carriedByMob)
+                {
+                    GetDiskCarrierData(tempParent, out var name, out var job, out var username);
+                    text.Append(Loc.GetString("nukeops-disk-carried-by",
+                        ("name", name),
+                        ("job", job),
+                        ("user", username),
+                        ("location", location)));
+                }
+                else
+                {
+                    if (containers.Count > 0)
+                    {
+                        string hierarchy = string.Empty;
+                        for (var i = 0; i < containers.Count; i++)
+                        {
+                            hierarchy = (Loc.GetString(
+                                "storage-hierarchy-list",
+                                ("item", containers[i]),
+                                ("existing-text", hierarchy),
+                                ("items-left", containers.Count - i - 1)));
+                        }
+                        text.Append(hierarchy);
+                    }
+                    text.Append(" ");
+                    text.Append(location);
+                }
+                args.AddLine(text.ToString());
+            }
         }
 
         args.AddLine(Loc.GetString("nukeops-list-start"));
@@ -132,8 +216,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 if (ev.OwningStation == GetOutpost(uid))
                 {
                     nukeops.WinConditions.Add(WinCondition.NukeExplodedOnNukieOutpost);
-                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive("Nukeops")); // End the round ONLY if the actual gamemode is NukeOps.
-                    if (!GameTicker.IsGameRuleActive("Nukeops")) // End the rule if the LoneOp shuttle got nuked, because that particular LoneOp clearly failed, and should not be considered a Syndie victory even if a future LoneOp wins.
+                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive(NukeopsGameRule)); // End the round ONLY if the actual gamemode is NukeOps.
+                    if (!GameTicker.IsGameRuleActive(NukeopsGameRule)) // End the rule if the LoneOp shuttle got nuked, because that particular LoneOp clearly failed, and should not be considered a Syndie victory even if a future LoneOp wins.
                         GameTicker.EndGameRule(uid);
                     continue;
                 }
@@ -149,12 +233,17 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                         }
 
                         nukeops.WinConditions.Add(WinCondition.NukeExplodedOnCorrectStation);
-                        SetWinType((uid, nukeops), WinType.OpsMajor);
+                        SetWinType((uid, nukeops), WinType.OpsMajor, false); // Sunrise-Edit
                         correctStation = true;
                     }
 
                     if (correctStation)
+                    {
+                        // Sunrise edit start - call/accelerate evac shuttle even on correct station explosion
+                        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
+                        // Sunrise edit end
                         continue;
+                    }
                 }
 
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
@@ -164,18 +253,19 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
             }
 
-            if (GameTicker.IsGameRuleActive("Nukeops")) // If it's Nukeops then end the round on any detonation
+            // Sunrise edit start - replace instant end of round with calling/accelerating evac shuttle
+            if (GameTicker.IsGameRuleActive(NukeopsGameRule))
             {
-                _roundEndSystem.EndRound();
+                _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
             }
             else
             { // It's a LoneOp. Only end the round if the station was destroyed
                 var handled = false;
                 foreach (var cond in nukeops.WinConditions)
                 {
-                    if (cond.ToString().ToLower() == "NukeExplodedOnCorrectStation") // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
+                    if (cond == WinCondition.NukeExplodedOnCorrectStation) // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
                     {
-                        _roundEndSystem.EndRound(); // end the round!
+                        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
                         handled = true;
                         break;
                     }
@@ -185,6 +275,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                     GameTicker.EndGameRule(uid);
                 }
             }
+            // Sunrise edit end
         }
     }
 
@@ -207,7 +298,9 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             return;
 
         var nukeQuery = AllEntityQuery<NukeComponent, TransformComponent>();
-        var transitHub = _emergency.GetTransitHubMaps();
+        // Sunrise-Edit start - vanilla GetCentcommMaps() is unavailable in this fork API
+        var centcomms = _emergency.GetTransitHubMaps();
+        // Sunrise-Edit end
 
         while (nukeQuery.MoveNext(out var nuke, out var nukeTransform))
         {
@@ -215,7 +308,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 continue;
 
             // UH OH
-            if (nukeTransform.MapUid != null && transitHub.Contains(nukeTransform.MapUid.Value))
+            if (nukeTransform.MapUid != null && centcomms.Contains(nukeTransform.MapUid.Value))
             {
                 ent.Comp.WinConditions.Add(WinCondition.NukeActiveAtCentCom);
                 SetWinType((ent, ent), WinType.OpsMajor);
@@ -254,7 +347,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         var diskQuery = AllEntityQuery<NukeDiskComponent, TransformComponent>();
         while (diskQuery.MoveNext(out var diskUid, out _, out var transform))
         {
-            diskAtCentCom = transform.MapUid != null && transitHub.Contains(transform.MapUid.Value);
+            diskAtCentCom = transform.MapUid != null && centcomms.Contains(transform.MapUid.Value);
             diskAtCentCom |= _emergency.IsTargetEscaping(diskUid);
 
             // TODO: The target station should be stored, and the nuke disk should store its original station.
@@ -403,6 +496,11 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
     private void DistributeExtraTc(Entity<NukeopsRuleComponent> nukieRule)
     {
+        // Sunrise-Edit start - custom commander uplink TC distribution moved to partial
+        if (TryDistributeExtraTcSunrise(nukieRule))
+            return;
+        // Sunrise-Edit end
+
         var enumerator = EntityQueryEnumerator<StoreComponent>();
         while (enumerator.MoveNext(out var uid, out var component))
         {
@@ -415,14 +513,16 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             if (Transform(uid).MapID != Transform(outpost).MapID) // Will receive bonus TC only on their start outpost
                 continue;
 
-            _store.TryAddCurrency(new() { { TelecrystalCurrencyPrototype, nukieRule.Comp.WarTcAmountPerNukie * nukieRule.Comp.RoundstartOperatives } }, uid, component); // Sunrise-Edit
+            // Sunrise-Edit-Start - TC distribution logic differs from vanilla multiplier by roundstart operatives
+            _store.TryAddCurrency(new() { { TelecrystalCurrencyPrototype, nukieRule.Comp.WarTcAmountPerNukie } }, uid, component);
+            // Sunrise-Edit-End
 
             var msg = Loc.GetString("store-currency-war-boost-given", ("target", uid));
             _popupSystem.PopupEntity(msg, uid);
         }
     }
 
-    private void SetWinType(Entity<NukeopsRuleComponent> ent, WinType type, bool endRound = true)
+    private void SetWinType(Entity<NukeopsRuleComponent> ent, WinType type, bool endRound = false) // Sunrise-Edit
     {
         ent.Comp.WinType = type;
 
@@ -497,15 +597,31 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         if (nukeops.RoundEndBehavior == RoundEndBehavior.Nothing) // It's still worth checking if operatives have all died, even if the round-end behaviour is nothing.
             return; // Shouldn't actually try to end the round in the case of nothing though.
 
-        _roundEndSystem.DoRoundEndBehavior(nukeops.RoundEndBehavior,
-        nukeops.EvacShuttleTime,
-        nukeops.RoundEndTextSender,
-        nukeops.RoundEndTextShuttleCall,
-        nukeops.RoundEndTextAnnouncement);
+        // Sunrise edit start - when operatives die, explode their shuttle, delete their base map, and end the game rule.
+        if (shuttle != null)
+        {
+            if (TryComp<MapGridComponent>(shuttle.Value, out var grid))
+            {
+                var centerLocal = grid.LocalAABB.Center;
+                var epicenter = _transform.ToMapCoordinates(new EntityCoordinates(shuttle.Value, centerLocal));
+                _explosions.QueueExplosion(epicenter, "DemolitionCharge", 30000f, 5f, 100f, cause: shuttle.Value);
+            }
+            else
+            {
+                _explosions.QueueExplosion(shuttle.Value, "DemolitionCharge", 30000f, 5f, 100f);
+            }
+        }
 
+        if (TryComp<RuleGridsComponent>(ent, out var ruleGrids) && ruleGrids.Map != null)
+        {
+            _mapSystem.DeleteMap(ruleGrids.Map.Value);
+        }
+
+        GameTicker.EndGameRule(ent);
 
         // prevent it called multiple times
         nukeops.RoundEndBehavior = RoundEndBehavior.Nothing;
+        // Sunrise edit end
     }
 
     private void OnAfterAntagEntSelected(Entity<NukeopsRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
@@ -519,48 +635,9 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             Color.Red,
             ent.Comp.GreetSoundNotification);
 
-        // Sunrise-Start
-        ent.Comp.RoundstartOperatives += 1;
-
-        if (args.Def.PrefRoles.Contains(CommanderAntagProto))
-        {
-            var uplink = SetupUplink(args.EntityUid, ent.Comp);
-            ent.Comp.UplinkEnt = uplink;
-
-            if (uplink == null)
-                return;
-
-            var totalTc = ent.Comp.WarTcAmountPerNukie * ent.Comp.RoundstartOperatives;
-            var store = EnsureComp<StoreComponent>(uplink.Value);
-            _store.TryAddCurrency(
-                new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, totalTc } },
-                uplink.Value,
-                store);
-        }
-
-        else if (ent.Comp.UplinkEnt != null)
-        {
-            var giveTcCount = ent.Comp.WarTcAmountPerNukie;
-            var store = EnsureComp<StoreComponent>(ent.Comp.UplinkEnt.Value);
-            _store.TryAddCurrency(
-                new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, giveTcCount } },
-                ent.Comp.UplinkEnt.Value,
-                store);
-        }
-        // Sunrise-End
+        // Sunrise-Edit - custom commander/fighter uplink setup and TC grants moved to partial
+        OnAfterAntagEntSelectedSunrise(ent, ref args);
     }
-
-    // Sunrise-Start
-    private EntityUid? SetupUplink(EntityUid user, NukeopsRuleComponent rule)
-    {
-        var uplink = _uplinkSystem.FindUplinkByTag(user, NukeOpsUplinkTagPrototype);
-        if (uplink == null)
-            return null;
-
-        _uplinkSystem.SetUplink(user, uplink.Value, 0, true);
-        return uplink;
-    }
-    // Sunrise-End
 
     private void OnGetBriefing(Entity<NukeopsRoleComponent> role, ref GetBriefingEvent args)
     {
@@ -598,4 +675,89 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         return null;
     }
+
+    private void GetDiskCarrierData(EntityUid carrier,
+        out string name,
+        out string job,
+        out string username)
+    {
+        name = Name(carrier);
+        job = Loc.GetString("job-name-unknown");
+        username = "unknown"; // magic word in Fluent selector
+
+        Entity<MindComponent>? mind = null;
+
+        if (_mind.TryGetMind(carrier, out _, out var mindComp))
+        {
+            mind = (carrier, mindComp);
+        }
+        else
+        {
+            var allMinds = EntityQueryEnumerator<MindComponent>();
+            while (allMinds.MoveNext(out _, out mindComp))
+            {
+                if (mindComp.CharacterName != name)
+                    continue;
+
+                mind = (carrier, mindComp);
+                break;
+            }
+        }
+
+        if (mind is not null)
+        {
+            NetUserId? userId = mind.Value.Comp.UserId;
+            if (userId is not null && _player.TryGetPlayerData(userId.Value, out var sessionData))
+                username = sessionData.UserName;
+
+            // Role/job is the trickiest since it can be unknown in some cases
+            // For example, after "make ghost role" verb
+            var roles = _roles.MindGetAllRoleInfo(mind.Value.Owner);
+            if (roles.Count > 0)
+            {
+                job = Loc.GetString(roles.First().Name);
+                return;
+            }
+
+            if (_jobs.MindTryGetJobName(mind, out var jobName))
+            {
+                job = jobName;
+                return;
+            }
+        }
+
+        // Try station records
+        var xform = Transform(carrier);
+        var station = _station.GetStationInMap(xform.MapID);
+        if (station != null && _records.GetRecordByName(station.Value, name) is { } id)
+        {
+            var key = new StationRecordKey(id, station.Value);
+            if (_records.TryGetRecord<GeneralStationRecord>(key, out var record))
+            {
+                job = record.JobTitle;
+                return;
+            }
+        }
+
+        // Fallback to ID
+        if (_idCard.TryFindIdCard(carrier, out var idCard))
+            job = idCard.Comp.LocalizedJobTitle ?? job;
+    }
+}
+
+/// <summary>
+/// Raised when a station has been assigned as a target for the NukeOps rule.
+/// </summary>
+[ByRefEvent]
+public readonly struct NukeopsTargetStationSelectedEvent(EntityUid ruleEntity, EntityUid? targetStation)
+{
+    /// <summary>
+    /// The entity containing the NukeOps gamerule.
+    /// </summary>
+    public readonly EntityUid RuleEntity = ruleEntity;
+
+    /// <summary>
+    /// The target station, if it exists.
+    /// </summary>
+    public readonly EntityUid? TargetStation = targetStation;
 }

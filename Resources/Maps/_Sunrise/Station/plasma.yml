@@ -135573,8 +135573,6 @@ entities:
           showEnts: False
           occludes: False
           ent: 10501
-    - type: DiseaseTempImmune
-      prob: 0.35
   - uid: 10516
     components:
     - type: Transform
@@ -135614,8 +135612,6 @@ entities:
           showEnts: False
           occludes: False
           ent: null
-    - type: DiseaseTempImmune
-      prob: 0.35
     - type: ReplacementAccent
       accent: cowboy
 - proto: Matchbox

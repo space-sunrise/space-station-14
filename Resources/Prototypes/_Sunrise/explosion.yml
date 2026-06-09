@@ -12,3 +12,17 @@
   texturePath: /Textures/Effects/fire.rsi
   fireStates: 3
   effectType: Standard
+
+- type: explosion
+  id: DragonBreathExplosion
+  damagePerIntensity:
+    types:
+      Heat: 15
+      Blunt: 2
+      Piercing: 3
+      Structural: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+  fireStacks: 2
+  temperature: 1500

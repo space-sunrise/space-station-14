@@ -123,3 +123,9 @@
   abstract: true
   components:
   - type: StationCorporateLaw
+
+- type: entity
+  id: BaseStationMainStation
+  abstract: true
+  components:
+  - type: MainStation

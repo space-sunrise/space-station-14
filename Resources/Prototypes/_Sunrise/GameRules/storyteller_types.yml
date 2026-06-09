@@ -1,0 +1,55 @@
+# Sunrise-Edit
+
+- type: storytellerType
+  id: Calm
+  budgetModifier: 0.5
+  maxBudgetModifier: 0.5
+  durationMultiplier: 1
+  relaxationMinMinutes: 20
+  relaxationMaxMinutes: 40
+  buildUpMinMinutes: 5
+  buildUpMaxMinutes: 10
+  peakMinMinutes: 10
+  peakMaxMinutes: 20
+  recoveryMinMinutes: 15
+  recoveryMaxMinutes: 30
+  strengthArmedCrewCoefficient: 8
+  strengthSecurityCoefficient: 12
+  globalEventCooldownMinutes: 3
+  majorEventCooldownMinutes: 5
+
+- type: storytellerType
+  id: Classic
+  budgetModifier: 1.0
+  maxBudgetModifier: 1.0
+  durationMultiplier: 1.0
+  relaxationMinMinutes: 10
+  relaxationMaxMinutes: 20
+  buildUpMinMinutes: 15
+  buildUpMaxMinutes: 30
+  peakMinMinutes: 10
+  peakMaxMinutes: 20
+  recoveryMinMinutes: 10
+  recoveryMaxMinutes: 20
+  strengthArmedCrewCoefficient: 10
+  strengthSecurityCoefficient: 15
+  globalEventCooldownMinutes: 1
+  majorEventCooldownMinutes: 3
+
+- type: storytellerType
+  id: Insane
+  budgetModifier: 2.0
+  maxBudgetModifier: 1.5
+  durationMultiplier: 1
+  relaxationMinMinutes: 5
+  relaxationMaxMinutes: 10
+  buildUpMinMinutes: 10
+  buildUpMaxMinutes: 20
+  peakMinMinutes: 5
+  peakMaxMinutes: 10
+  recoveryMinMinutes: 5
+  recoveryMaxMinutes: 10
+  strengthArmedCrewCoefficient: 12
+  strengthSecurityCoefficient: 18
+  globalEventCooldownMinutes: 1
+  majorEventCooldownMinutes: 1

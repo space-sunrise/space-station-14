@@ -1,18 +1,16 @@
 using Content.Shared.Clothing;
-using Content.Shared.Clothing.Components;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Inventory;
-using Content.Shared.Tag;
-using Content.Shared.Eye;
-using Content.Shared.Sunrise.Eye;
-using Content.Shared.Sunrise.Clothing.Components;
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Item.ItemToggle.Components;
 
 namespace Content.Shared.Sunrise.Eye;
 
 public sealed class VisionDarkenerSystem : EntitySystem
 {
     [Dependency] private readonly SharedDarkenedVisionSystem _darkenedVision = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -22,15 +20,43 @@ public sealed class VisionDarkenerSystem : EntitySystem
 
         SubscribeLocalEvent<VisionDarkenerComponent, ClothingGotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<VisionDarkenerComponent, ClothingGotUnequippedEvent>(OnGotUnquipped);
+
+        SubscribeLocalEvent<VisionDarkenerComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<VisionDarkenerComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<VisionDarkenerComponent, ItemToggledEvent>(OnToggled);
+    }
+
+    private void OnStartup(Entity<VisionDarkenerComponent> ent, ref ComponentStartup args)
+    {
+        if (_inventory.TryGetContainingSlot(ent.Owner, out var slot) && Transform(ent).ParentUid is { Valid: true } wearer)
+        {
+            _darkenedVision.UpdateVisionDarkening(wearer);
+        }
+    }
+
+    private void OnShutdown(Entity<VisionDarkenerComponent> ent, ref ComponentShutdown args)
+    {
+        if (_inventory.TryGetContainingSlot(ent.Owner, out var slot) && Transform(ent).ParentUid is { Valid: true } wearer)
+        {
+            _darkenedVision.UpdateVisionDarkening(wearer);
+        }
     }
 
     private void OnGetVisionDarkening(Entity<VisionDarkenerComponent> ent, ref GetVisionDarkeningEvent args)
     {
+        if (ent.Comp.LifeStage > ComponentLifeStage.Running)
+            return;
+        if (TryComp<ItemToggleComponent>(ent, out var toggle) && !_itemToggle.IsActivated((ent.Owner, toggle)))
+            return;
         args.Strength += ent.Comp.Strength;
     }
 
     private void OnGetVisionDarkening(Entity<VisionDarkenerComponent> ent, ref InventoryRelayedEvent<GetVisionDarkeningEvent> args)
     {
+        if (ent.Comp.LifeStage > ComponentLifeStage.Running)
+            return;
+        if (TryComp<ItemToggleComponent>(ent, out var toggle) && !_itemToggle.IsActivated((ent.Owner, toggle)))
+            return;
         args.Args.Strength += ent.Comp.Strength;
     }
 
@@ -42,5 +68,13 @@ public sealed class VisionDarkenerSystem : EntitySystem
     private void OnGotUnquipped(Entity<VisionDarkenerComponent> ent, ref ClothingGotUnequippedEvent args)
     {
         _darkenedVision.UpdateVisionDarkening(args.Wearer);
+    }
+
+    private void OnToggled(Entity<VisionDarkenerComponent> ent, ref ItemToggledEvent args)
+    {
+        if (_inventory.TryGetContainingSlot(ent.Owner, out var slot) && Transform(ent).ParentUid is { Valid: true } wearer)
+        {
+            _darkenedVision.UpdateVisionDarkening(wearer);
+        }
     }
 }

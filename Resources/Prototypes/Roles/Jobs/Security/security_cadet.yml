@@ -22,6 +22,7 @@
   - job-alt-title-security-recruit
   # Sunrise-End
   access:
+  - Cadet # Sunrise-edit
   - Security
   - Brig
   # - Maintenance # sunrise-edit

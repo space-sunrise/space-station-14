@@ -28,6 +28,11 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmallNuclear
         disableEject: true
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
         swap: false
 
 - type: entity

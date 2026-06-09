@@ -1,4 +1,4 @@
-﻿using Content.Server.Disposal.Unit;
+using Content.Server.Disposal.Unit;
 using Content.Shared._Sunrise.VentCraw;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
@@ -19,7 +19,7 @@ public sealed class BlindInDisposalsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BeingDisposedComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<BeingDisposedComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<BeingDisposedComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<BeingDisposedComponent, CanSeeAttemptEvent>(OnCanSee);
     }
 
@@ -33,7 +33,7 @@ public sealed class BlindInDisposalsSystem : EntitySystem
         _blindable.UpdateIsBlind(ent.Owner);
     }
 
-    private void OnRemove(Entity<BeingDisposedComponent> ent, ref ComponentRemove args)
+    private void OnShutdown(Entity<BeingDisposedComponent> ent, ref ComponentShutdown args)
     {
         if (!HasComp<BlindableComponent>(ent))
             return;
@@ -43,6 +43,9 @@ public sealed class BlindInDisposalsSystem : EntitySystem
 
     private void OnCanSee(Entity<BeingDisposedComponent> ent, ref CanSeeAttemptEvent args)
     {
+        if (ent.Comp.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (!HasComp<BlindableComponent>(ent))
             return;
 

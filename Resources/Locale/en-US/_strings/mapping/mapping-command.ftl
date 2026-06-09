@@ -19,3 +19,4 @@ cmd-hint-mapping-id = [MapID]
 cmd-mapping-hint-grid = [Grid]
 cmd-hint-mapping-path = [Path]
 cmd-mapping-exists = Map {$mapId} already exists.
+cmd-mapping-pullmap-error = Mapping is forbidden here. To map, connect to the mapping server. To download maps from it, use pullmap.

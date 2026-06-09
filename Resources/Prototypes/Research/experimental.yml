@@ -11,8 +11,11 @@
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
-  - Nanopaste # Sunrise-Add
-  - HandheldRoboAnalyzer # Sunrise-Add
+  # Sunrise-Edit-Start
+  - Nanopaste
+  - HandheldRoboAnalyzer
+  - BorgModuleRobotics
+  # Sunrise-Edit-End
 
 - type: technology
   id: BasicAnomalousResearch

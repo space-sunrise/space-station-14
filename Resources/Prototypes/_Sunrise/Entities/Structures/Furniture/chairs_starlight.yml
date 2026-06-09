@@ -1,0 +1,17 @@
+- type: entity
+  id: ComfyChairRed
+  parent: ComfyChair
+  name: comfy chair
+  suffix: Red
+  description: It looks comfy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
+    layers:
+    - state: base
+      color: "#8c4141"
+    noRot: true
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
+    state: base
+  # Starlight construction graph ChairSL is not ported.

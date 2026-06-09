@@ -233,6 +233,7 @@
   - ShellFlashArtillery # Sunrise-Edit
   - ShellBlastArtillery # Sunrise-Edit
   - ShellFragArtillery # Sunrise-Add
+  - RifleHeavyMagazineEmpty # Sunrise-Add
   - RifleHeavyMagazineFMJ # Sunrise-Add
   - RifleHeavyMagazineHP # Sunrise-Add
   - RifleHeavyMagazineSP # Sunrise-Add
@@ -321,8 +322,16 @@
   #- MagazineBoxBelt127Blast # To much
   - MagazineBoxBelt127Frag
   - MagazineBoxBelt127Emp
+  - RifleHeavyMagazineAP # Sunrise-Add
+  - RifleHeavyMagazineIncendiary # Sunrise-Add
+  - RifleHeavyMagazineUranium # Sunrise-Add
   # Sunrise-end
   technologyPrerequisites:
   - BasicShuttleArmament
+  # Sunrise-start
+  - ArmorPenetrationMunitions
+  - DraconicMunitions
+  - UraniumMunitions
+  # Sunrise-end
   radioChannels: # Sunrise-Add
   - Security

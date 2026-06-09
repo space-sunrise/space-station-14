@@ -670,6 +670,19 @@
       tags:
       - AssaultOpsUplink
 
+- type: listing
+  id: UplinkSyndicateVisceratorClusterGrenade
+  name: uplink-viscerator-cluster-grenade-name
+  description: uplink-viscerator-cluster-grenade-desc
+  productEntity: SyndicateVisceratorClusterGrenade
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkExplosives
+
 # For the China-Lake
 - type: listing
   id: UplinkGrenadeFragTimer
@@ -1787,28 +1800,6 @@
       - SurplusBundle
 
 - type: listing
-  id: UplinkDarkDurand
-  name: uplink-mech-teleporter-medium-name
-  description: uplink-mech-teleporter-medium-desc
-  icon: { sprite: Objects/Specific/Mech/durand.rsi, state: darkdurand }
-  productEntity: CrateCybersunRoverBundle
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 50
-  cost:
-    Telecrystal: 80
-  categories:
-  - UplinkMechs
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
   id: UplinkDarkGygaxLoneOps
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
@@ -2211,7 +2202,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - NukeOpsUplink
       - LoneOpsUplink
   - !type:BuyerWhitelistCondition
     blacklist:

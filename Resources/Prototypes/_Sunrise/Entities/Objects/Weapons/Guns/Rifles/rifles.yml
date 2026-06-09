@@ -502,7 +502,7 @@
     maxAngle: 30
     angleIncrease: 3
     angleDecay: 15
-    fireRate: 3
+    fireRate: 2.85
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ash12/fire.ogg
       params:
@@ -645,8 +645,8 @@
     dismantleChance: 0.004 # Примерно 150-200 патронов
     selfDamage:
       types:
-        Blunt: 5
-        Heat: 5
+        Blunt: 8
+        Heat: 8
     items:
       - id: ModularBarrel
         launchAngle: 0
