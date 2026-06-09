@@ -1,10 +1,10 @@
 using System.Linq;
+using Robust.Shared.Enums;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
-using Content.Server.Station.Components;
 using Content.Server.StationEvents;
 using Content.Server.StationEvents.Components;
 using Content.Server._Sunrise.Storyteller.Components;
@@ -51,6 +51,8 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Damage.Components;
 using Content.Server.AlertLevel;
+using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Atmos.Monitor;
 using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 
@@ -111,6 +113,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     private readonly List<TimeSpan> _joinTimestamps = new();
     private readonly List<TimeSpan> _leaveTimestamps = new();
@@ -172,6 +175,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         component.LastAnyEventTime = Timing.CurTime;
         component.LastHelpfulEventTime = Timing.CurTime;
         component.LastNeutralEventTime = Timing.CurTime;
+        component.LastMajorEventTime = Timing.CurTime;
 
         component.StateTransitionTime = Timing.CurTime + TimeSpan.FromMinutes(_random.Next(15, 30));
         component.PacingState = StorytellerPacingState.Relaxation;
@@ -192,6 +196,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             component.GlobalEventCooldownMinutes = typeProto.GlobalEventCooldownMinutes;
             component.HelpfulEventCooldownMinutes = typeProto.HelpfulEventCooldownMinutes;
             component.NeutralEventCooldownMinutes = typeProto.NeutralEventCooldownMinutes;
+            component.MajorEventCooldownMinutes = typeProto.MajorEventCooldownMinutes;
         }
     }
 
@@ -204,9 +209,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         component.LastAnyEventTime = Timing.CurTime;
         component.LastHelpfulEventTime = Timing.CurTime;
         component.LastNeutralEventTime = Timing.CurTime;
+        component.LastMajorEventTime = Timing.CurTime;
         component.AlertLevelHistory.Clear();
-        var query = EntityQueryEnumerator<AlertLevelComponent>();
-        while (query.MoveNext(out var stationUid, out var alertComp))
+        var query = EntityQueryEnumerator<AlertLevelComponent, MainStationComponent>();
+        while (query.MoveNext(out var stationUid, out var alertComp, out _))
         {
             RecordAlertLevelChange(component, stationUid, alertComp.CurrentLevel);
         }
@@ -235,20 +241,19 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         // Check pacing state transitions
         if (Timing.CurTime >= component.StateTransitionTime)
         {
-            TransitionPacingState(uid, component);
+            TransitionPacingState(component);
         }
 
         // Periodic evaluation
         if (Timing.CurTime >= component.NextCheckTime)
         {
             var interval = _cfg.GetCVar(SunriseCCVars.StorytellerCheckInterval);
-            _sawmill.Info($"ActiveTick: Timing.CurTime ({Timing.CurTime.TotalSeconds:F1}s) >= NextCheckTime ({component.NextCheckTime.TotalSeconds:F1}s). Triggering EvaluateStoryteller.");
             component.NextCheckTime = Timing.CurTime + TimeSpan.FromSeconds(interval);
             EvaluateStoryteller((uid, component));
         }
     }
 
-    private void TransitionPacingState(EntityUid uid, StorytellerRuleComponent comp)
+    private void TransitionPacingState(StorytellerRuleComponent comp)
     {
         var oldState = comp.PacingState;
 
@@ -295,19 +300,14 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 break;
         }
 
-        _sawmill.Info($"TransitionPacingState: Pacing state changed from {oldState} to {comp.PacingState}. Next transition scheduled at {comp.StateTransitionTime.TotalSeconds:F1}s.");
         LogStorytellerState(comp, oldState);
     }
 
     private void EvaluateStoryteller(Entity<StorytellerRuleComponent> entity)
     {
-        _sawmill.Info("EvaluateStoryteller: Entered method.");
-
         var roundEndRequested = _roundEnd.IsRoundEndRequested();
-        _sawmill.Info($"EvaluateStoryteller: RoundEndRequested status is {roundEndRequested}.");
         if (roundEndRequested)
         {
-            _sawmill.Info("EvaluateStoryteller: Exiting early because RoundEndRequested is true.");
             return;
         }
 
@@ -323,13 +323,11 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         // AI storyteller branch
         if (_cfg.GetCVar(SunriseCCVars.StorytellerAiEnabled) && !string.IsNullOrWhiteSpace(_cfg.GetCVar(SunriseCCVars.StorytellerAiUrl)))
         {
-            _sawmill.Info("EvaluateStoryteller: AI Storyteller is enabled, requesting recommendation.");
             RequestAiEventRecommendation(entity, metrics);
             return;
         }
 
         // Default heuristic branch
-        _sawmill.Info("EvaluateStoryteller: Running default heuristic storyteller.");
         ExecuteHeuristicStoryteller(entity, metrics);
     }
 
@@ -345,6 +343,13 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             return;
         }
 
+        // Sunrise-Edit: Split regular and major event flows to prevent minor event spam from locking out major threats
+        ExecuteRegularEventsFlow(entity, metrics);
+        ExecuteMajorEventsFlow(entity, metrics);
+    }
+
+    private void ExecuteRegularEventsFlow(Entity<StorytellerRuleComponent> entity, StationMetrics metrics)
+    {
         if (Timing.CurTime - entity.Comp.LastAnyEventTime < TimeSpan.FromMinutes(entity.Comp.GlobalEventCooldownMinutes))
             return;
 
@@ -356,10 +361,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 rollChance = 0.15f; // low pop/relaxing events
                 break;
             case StorytellerPacingState.BuildUp:
-                rollChance = 0.35f; // building events
+                rollChance = 0.33f; // building events
                 break;
             case StorytellerPacingState.Peak:
-                rollChance = 0.05f; // clamp events during peak
+                rollChance = 0.66f;
                 break;
             case StorytellerPacingState.Recovery:
                 // Recovery is meant for quiet breathing room unless crew is severely stressed, in which case we trigger Helpful events
@@ -370,12 +375,46 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         if (!_random.Prob(rollChance))
             return;
 
-        var eligibleEvents = GetEligibleHeuristicEvents(entity.Comp, metrics);
+        var eligibleEvents = GetEligibleHeuristicEvents(entity.Comp, metrics, isMajor: false);
+        if (eligibleEvents.Count == 0)
+            return;
+
+        // Weighted random pick
+        var selected = PickEventFromEligible(eligibleEvents);
+        if (selected == null)
+            return;
+
+        TriggerEvent(entity, selected.Value.Item1, selected.Value.Item2);
+    }
+
+    private void ExecuteMajorEventsFlow(Entity<StorytellerRuleComponent> entity, StationMetrics metrics)
+    {
+        if (Timing.CurTime - entity.Comp.LastMajorEventTime < TimeSpan.FromMinutes(entity.Comp.MajorEventCooldownMinutes))
+            return;
+
+        var rollChance = 0f;
+        switch (entity.Comp.PacingState)
+        {
+            case StorytellerPacingState.Relaxation:
+                rollChance = 0f;
+                break;
+            case StorytellerPacingState.BuildUp:
+                rollChance = 0f;
+                break;
+            case StorytellerPacingState.Peak:
+                rollChance = 0.33f;
+                break;
+            case StorytellerPacingState.Recovery:
+                rollChance = 0f;
+                break;
+        }
+
+        if (rollChance <= 0f || !_random.Prob(rollChance))
+            return;
+
+        var eligibleEvents = GetEligibleHeuristicEvents(entity.Comp, metrics, isMajor: true);
         if (eligibleEvents.Count == 0)
         {
-            var warningMsg = $"Storyteller evaluated, but eligibleEvents.Count is 0! Stress: {entity.Comp.CrewStress}, Budget: {entity.Comp.ThreatBudget}, MajorBudget: {entity.Comp.MajorThreatBudget}, PacingState: {entity.Comp.PacingState}, StorytellerType: {entity.Comp.StorytellerType}";
-            _sawmill.Warning(warningMsg);
-
             if ((entity.Comp.ThreatBudget > 80f || entity.Comp.MajorThreatBudget > 80f) && Timing.CurTime - _lastStarvationWarningTime > TimeSpan.FromMinutes(5))
             {
                 _lastStarvationWarningTime = Timing.CurTime;
@@ -410,7 +449,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         foreach (var session in _playerManager.Sessions)
         {
-            if (session.Status != Robust.Shared.Enums.SessionStatus.InGame)
+            if (session.Status != SessionStatus.InGame)
                 continue;
 
             totalPlayers++;
@@ -433,7 +472,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                             (bodyMob.CurrentState == MobState.Alive || bodyMob.CurrentState == MobState.Critical))
                         {
                             var onMainStation = true;
-                            if (TryComp<TransformComponent>(mind.OwnedEntity.Value, out var xform) && xform.GridUid != null)
+                            if (TryComp(mind.OwnedEntity.Value, out TransformComponent? xform) && xform.GridUid != null)
                             {
                                 var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
                                 if (station != null && !HasComp<MainStationComponent>(station.Value))
@@ -462,7 +501,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                         if (TryComp<MobStateComponent>(bodyUid.Value, out var bodyMob) && bodyMob.CurrentState == MobState.Dead)
                         {
                             var onMainStation = true;
-                            if (TryComp<TransformComponent>(bodyUid.Value, out var xform) && xform.GridUid != null)
+                            if (TryComp(bodyUid.Value, out TransformComponent? xform) && xform.GridUid != null)
                             {
                                 var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
                                 if (station != null && !HasComp<MainStationComponent>(station.Value))
@@ -479,7 +518,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
             if (TryComp<MobStateComponent>(entity, out var mobState))
             {
-                if (TryComp<TransformComponent>(entity, out var xform) && xform.GridUid != null)
+                if (TryComp(entity, out TransformComponent? xform) && xform.GridUid != null)
                 {
                     var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
                     if (station != null && !HasComp<MainStationComponent>(station.Value))
@@ -508,7 +547,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             }
             else
             {
-                if (TryComp<TransformComponent>(entity, out var xform) && xform.GridUid != null)
+                if (TryComp(entity, out TransformComponent? xform) && xform.GridUid != null)
                 {
                     var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
                     if (station != null && !HasComp<MainStationComponent>(station.Value))
@@ -591,7 +630,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         var dangerousArtifactNodes = 0;
         var artifactQuery = EntityQueryEnumerator<XenoArtifactComponent, TransformComponent>();
-        while (artifactQuery.MoveNext(out var artifactUid, out var artifact, out var xform))
+        while (artifactQuery.MoveNext(out _, out var artifact, out var xform))
         {
             if (xform.GridUid == null)
                 continue;
@@ -701,7 +740,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         var crewWithMindCount = 0;
         foreach (var session in _playerManager.Sessions)
         {
-            if (session.Status != Robust.Shared.Enums.SessionStatus.InGame)
+            if (session.Status != SessionStatus.InGame)
                 continue;
 
             if (session.AttachedEntity is not { Valid: true } entityUid || Deleted(entityUid))
@@ -898,7 +937,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             ? typeProto.StrengthTechnologyFullScale
             : _maxResearchStorytellerScore;
 
-        var dynamicArmedScale = MathF.Max(armedScale, (float) aliveCrewCount);
+        var dynamicArmedScale = MathF.Max(armedScale, aliveCrewCount);
 
         var dynamicSecurityScale = MathF.Max(securityScale, aliveCount * 0.20f);
 
@@ -933,7 +972,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         var score = 0f;
         foreach (var (material, amount) in aggregated)
+        {
             score += amount * GetMaterialStrengthWeight(material);
+        }
 
         return score;
     }
@@ -973,7 +1014,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
             if (mind.OwnedEntity is { } ownedBody && Exists(ownedBody))
             {
-                if (TryComp<TransformComponent>(ownedBody, out var xform) && xform.GridUid != null)
+                if (TryComp(ownedBody, out TransformComponent? xform) && xform.GridUid != null)
                 {
                     var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
                     if (station != null && !HasComp<MainStationComponent>(station.Value))
@@ -1035,7 +1076,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         return false;
     }
 
-    private Dictionary<EntityPrototype, StorytellerMetadataPrototype> GetEligibleHeuristicEvents(StorytellerRuleComponent comp, StationMetrics metrics)
+    private Dictionary<EntityPrototype, StorytellerMetadataPrototype> GetEligibleHeuristicEvents(StorytellerRuleComponent comp, StationMetrics metrics, bool isMajor)
     {
         var result = new Dictionary<EntityPrototype, StorytellerMetadataPrototype>();
         var currentDuration = GameTicker.RoundDuration();
@@ -1047,6 +1088,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 continue;
 
             if (!_protoManager.TryIndex<StorytellerMetadataPrototype>(proto.ID, out var metadata))
+                continue;
+
+            var isEventMajorAntag = metadata.ThreatType == StorytellerThreatType.MajorAntag;
+            if (isMajor != isEventMajorAntag)
                 continue;
 
             if (metadata.ThreatType == StorytellerThreatType.Helpful)
@@ -1198,7 +1243,16 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         entity.Comp.EventHistory.Add(proto.ID);
 
         // Update cooldown tracking
-        entity.Comp.LastAnyEventTime = Timing.CurTime;
+        var isEventMajorAntag = metadata.ThreatType == StorytellerThreatType.MajorAntag;
+        if (isEventMajorAntag)
+        {
+            entity.Comp.LastMajorEventTime = Timing.CurTime;
+        }
+        else
+        {
+            entity.Comp.LastAnyEventTime = Timing.CurTime;
+        }
+
         if (metadata.ThreatType == StorytellerThreatType.Helpful)
         {
             entity.Comp.LastHelpfulEventTime = Timing.CurTime;
@@ -1222,7 +1276,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
-        if (e.NewStatus == Robust.Shared.Enums.SessionStatus.Disconnected)
+        if (e.NewStatus == SessionStatus.Disconnected)
         {
             _leaveTimestamps.Add(Timing.CurTime);
         }
@@ -1247,7 +1301,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         // This is highly accurate and ignores tiles under walls or unsimulated areas.
         var monitorQuery = EntityQueryEnumerator<Content.Server.Atmos.Monitor.Components.AtmosMonitorComponent, TransformComponent>();
-        var atmosSystem = EntityManager.System<Content.Server.Atmos.EntitySystems.AtmosphereSystem>(); // Fetch atmosphere system to read real tile gas if sensor is unpowered
+        var atmosSystem = EntityManager.System<AtmosphereSystem>(); // Fetch atmosphere system to read real tile gas if sensor is unpowered
         while (monitorQuery.MoveNext(out var uid, out var monitor, out var xform))
         {
             if (monitor.MonitorsPipeNet)
@@ -1273,7 +1327,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             {
                 // Dynamic threshold evaluation based on the sensor's own YAML/prototype configuration.
                 // This completely eliminates hardcoded gas, temperature, and pressure limits.
-                var state = Content.Shared.Atmos.Monitor.AtmosAlarmType.Normal;
+                var state = AtmosAlarmType.Normal;
 
                 if (monitor.PressureThreshold != null && monitor.PressureThreshold.CheckThreshold(air.Pressure, out var pressureState))
                 {
@@ -1306,7 +1360,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                     state = monitor.LastAlarmState;
                 }
 
-                if (state != Content.Shared.Atmos.Monitor.AtmosAlarmType.Normal)
+                if (state != AtmosAlarmType.Normal)
                     unsafeSensors++;
             }
         }
@@ -1348,7 +1402,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         if (!HasComp<HumanoidAppearanceComponent>(mob) && !HasComp<BorgChassisComponent>(mob))
             return false;
 
-        if (TryComp<TransformComponent>(mob, out var xform) && xform.GridUid != null)
+        if (TryComp(mob, out TransformComponent? xform) && xform.GridUid != null)
         {
             var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
             if (station != null && !HasComp<MainStationComponent>(station.Value))
@@ -1364,10 +1418,10 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         if (!_jobSystem.MindTryGetJob(mindId, out var job))
             return false;
 
-        if (job?.JobEntity != null)
+        if (job.JobEntity != null)
             return false;
 
-        if (job == null || IsSecurityJob(job))
+        if (IsSecurityJob(job))
             return false;
 
         if (excludeAntags && _roleSystem.MindIsAntagonist(mindId))
@@ -1553,7 +1607,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         foreach (var session in _playerManager.Sessions)
         {
-            if (session.Status != Robust.Shared.Enums.SessionStatus.InGame)
+            if (session.Status != SessionStatus.InGame)
                 continue;
 
             if (session.AttachedEntity is not { Valid: true } entity || Deleted(entity))
@@ -1573,7 +1627,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                     {
                         isAntag = true;
                         var stressVal = 4f; // Default fallback
-                        if (roleComp.AntagPrototype != null && _protoManager.TryIndex<AntagPrototype>(roleComp.AntagPrototype, out var antagProto))
+                        if (roleComp.AntagPrototype != null && _protoManager.TryIndex(roleComp.AntagPrototype, out var antagProto))
                         {
                             stressVal = antagProto.StorytellerStress;
                         }
@@ -1658,7 +1712,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         {
             if (entityXform.MapID == fieldXform.MapID)
             {
-                var distance = (entityXform.WorldPosition - fieldXform.WorldPosition).Length();
+                var distance = (_transformSystem.GetWorldPosition(entityXform) - _transformSystem.GetWorldPosition(fieldXform)).Length();
                 if (distance <= 10.0f)
                 {
                     return true;
@@ -1717,7 +1771,9 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                 continue;
 
             foreach (var techId in techDb.UnlockedTechnologies)
+            {
                 uniqueTechs.Add(techId.Id);
+            }
         }
 
         unlockedTechnologyCount = uniqueTechs.Count;
@@ -1744,7 +1800,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         foreach (var session in _playerManager.Sessions)
         {
-            if (session.Status != Robust.Shared.Enums.SessionStatus.InGame)
+            if (session.Status != SessionStatus.InGame)
                 continue;
 
             if (session.AttachedEntity is not { Valid: true } entity || Deleted(entity))
@@ -1793,8 +1849,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             }
         }
 
-        var skippedCount = 0;
-        var totalCount = 0;
         var reasons = new Dictionary<string, int>();
 
         foreach (var proto in _protoManager.EnumeratePrototypes<EntityPrototype>())
@@ -1804,8 +1858,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
             if (!_protoManager.TryIndex<StorytellerMetadataPrototype>(proto.ID, out var metadata))
                 continue;
-
-            totalCount++;
 
             if (metadata.ThreatType == StorytellerThreatType.Helpful)
             {
@@ -1915,7 +1967,6 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (GameTicker.IsGameRuleActive(proto.ID))
             {
                 IncrementReason("GameRuleActive");
-                continue;
             }
         }
 
@@ -1927,12 +1978,14 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         void IncrementReason(string reason)
         {
             reasons[reason] = reasons.GetValueOrDefault(reason) + 1;
-            skippedCount++;
         }
     }
 
     private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
+        if (!HasComp<MainStationComponent>(ev.Station))
+            return;
+
         var query = EntityQueryEnumerator<StorytellerRuleComponent>();
         while (query.MoveNext(out _, out var comp))
         {
@@ -1959,7 +2012,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     private void PruneAlertLevelHistory(StorytellerRuleComponent comp)
     {
         var cutoff = Timing.CurTime - TimeSpan.FromHours(1);
-        foreach (var (station, history) in comp.AlertLevelHistory)
+        foreach (var (_, history) in comp.AlertLevelHistory)
         {
             if (history.Count <= 1)
                 continue;
@@ -1986,12 +2039,12 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
     public float CalculateAlertLevelStress(StorytellerRuleComponent comp)
     {
-        var T = Timing.CurTime;
-        var windowStart = T - TimeSpan.FromHours(1);
+        var t = Timing.CurTime;
+        var windowStart = t - TimeSpan.FromHours(1);
         if (windowStart < comp.RuleStartTime)
             windowStart = comp.RuleStartTime;
 
-        var totalWindowSeconds = (T - windowStart).TotalSeconds;
+        var totalWindowSeconds = (t - windowStart).TotalSeconds;
         if (totalWindowSeconds <= 0)
             return 0f;
 
@@ -1999,7 +2052,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
 
         foreach (var (station, history) in comp.AlertLevelHistory)
         {
-            if (!Exists(station) || !HasComp<StationDataComponent>(station))
+            if (!Exists(station) || !HasComp<MainStationComponent>(station))
                 continue;
 
             double greenDuration = 0;
@@ -2059,7 +2112,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
                     currentIntervalStart = entry.Time;
                 }
 
-                var lastDuration = (T - currentIntervalStart).TotalSeconds;
+                var lastDuration = (t - currentIntervalStart).TotalSeconds;
                 if (activeLevel.Equals(defaultLevel, StringComparison.OrdinalIgnoreCase))
                 {
                     greenDuration += lastDuration;
