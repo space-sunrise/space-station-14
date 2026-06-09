@@ -118,6 +118,22 @@
   - UplinkWearables
 
 - type: listing
+  id: UplinkClothingOuterVestWebChameleon
+  productEntity: ClothingOuterVestWebChameleon
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkClothingOuterVestWebEliteChameleon
+  productEntity: ClothingOuterVestWebEliteChameleon
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+
+- type: listing
   id: UplinkMiscSyndiePowercage
   name: uplink-objects-power-syndie-powercell-name
   description: uplink-objects-power-syndie-powercell-desc
