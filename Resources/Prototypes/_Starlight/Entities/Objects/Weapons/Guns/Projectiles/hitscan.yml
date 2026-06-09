@@ -654,7 +654,7 @@
     deviation: 0.05
     pierceLevel: Metal
   - type: ProjectileRicochet
-    chance: 0.5
+    chance: 0.7
 ### light rifle
 
 
@@ -1050,7 +1050,7 @@
   - type: ProjectilePierce
     chance: 0.03
   - type: ProjectileRicochet # Sunrise-edit
-    chance: 0.2
+    chance: 0.75
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1143,7 +1143,7 @@
   - type: ProjectilePierce
     chance: 0
   - type: ProjectileRicochet # Sunrise-edit
-    chance: 0.2
+    chance: 0.3
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1175,6 +1175,8 @@
   - type: ProjectilePierce
     chance: 0.05
     pierceLevel: HardenedMetal
+  - type: ProjectileRicochet # Sunrise-edit
+    chance: 0.9
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1224,6 +1226,34 @@
     proto: PelletShotgunFlechetteTrace
     count: 8
     spread: 10
+
+- type: entity
+  id: PelletShotgunBirdshotTrace
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    armorPenetration: -0.5
+    damage:
+      types:
+        Piercing: 1
+  - type: ProjectilePierce
+    chance: 0.001
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: buckshot
+
+- type: entity
+  id: PelletShotgunBirdshotSpreadTrace
+  parent: PelletShotgunBirdshotTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunBirdshotTrace
+    count: 18
+    spread: 25
 
 - type: entity
   id: PelletShotgunBreachTrace

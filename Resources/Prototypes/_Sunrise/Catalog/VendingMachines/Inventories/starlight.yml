@@ -114,3 +114,46 @@
     StrangePill: 1
     SyndicateBrutePack: 1
     SyndicateOintment: 1
+
+- type: vendingMachineInventory
+  id: NanoMedSecurityInventorySalvaged
+  startingInventory:
+    HandheldHealthAnalyzer: 1
+    BodyBagFolded: 1
+    Brutepack: 1
+    RedBrutePack: 1
+    Ointment: 1
+    RedOintment: 1
+    Blueointment20: 1
+    RedPunctPack: 1
+    RedLacePack: 1
+    RedBruizPack: 1
+    RegenerativeMesh: 1
+    MedicatedSuture: 1
+    Bloodpack: 1
+    Tourniquet: 1
+    ChemistryBottleEpinephrine: 1
+    ChemistryBottleBicaridine: 1
+    ChemistryBottleBruizine: 1
+    ChemistryBottleDermaline: 1
+    ChemistryBottleDexalin: 1
+    ChemistryBottleDylovene: 1
+    Syringe: 1
+    PillCanisterTricordrazine: 1
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    PillCanisterHyronalin: 1
+    PillCanisterCharcoal: 1
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    ToyFigurineBrigmedic: 1
+    BeerMedipen: 1
+    FoodSnackSwirlLollipop: 1
+    FoodLollipop: 1
+  emaggedInventory:
+    StrangePill: 1
+    SyndicateBrutePack: 1
+    SyndicateOintment: 1

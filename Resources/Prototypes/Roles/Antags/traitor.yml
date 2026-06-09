@@ -9,6 +9,7 @@
   - !type:OverallPlaytimeRequirement
     time: 1h
   playTimeTracker: AntagSyndicateAgent # Sunrise-Edit
+  storytellerStress: 2
   # Sunrise-Edit
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
@@ -25,6 +26,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 1h
+  storytellerStress: 1.0 # Sunrise-Edit
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear

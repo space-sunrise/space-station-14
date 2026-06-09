@@ -453,7 +453,22 @@ namespace Content.Server.RoundEnd
         {
             return ExpectedCountdownEnd != null;
         }
-        // Sunrise-end
+
+        // Sunrise-Start - force set the countdown and call the evac shuttle
+        public void ForceSetCountdown(TimeSpan countdownTime, bool cantRecall = true)
+        {
+            if (_gameTicker.RunLevel != GameRunLevel.InRound)
+                return;
+
+            if (_countdownTokenSource != null)
+            {
+                _countdownTokenSource.Cancel();
+                _countdownTokenSource = null;
+            }
+
+            RequestRoundEnd(countdownTime, null, false, cantRecall: cantRecall);
+        }
+        // Sunrise-End
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs

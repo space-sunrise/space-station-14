@@ -796,6 +796,11 @@
         prob: 0.25
       - id: MagazineBoxBelt127Empty
         prob: 0.25
+      - id: ScrapAirlock1
+        amount: 2
+      - id: ScrapGlass
+      - id: MagazineBoxBelt127Empty
+        amount: 2
       - id: ShuttleGunVympelCircuitboard
         prob: 0.2
 

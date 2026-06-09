@@ -119,7 +119,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiStart(InstrumentStartMidiEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out _, out var instrument, requireActiveInstrument: true))
             return;
         // Sunrise edit end
@@ -130,7 +130,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiStop(InstrumentStopMidiEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out _, out var instrument, requireActiveInstrument: true))
             return;
         // Sunrise edit end
@@ -141,7 +141,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiSetChannels(InstrumentSetChannelsEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out _, out _, requireActiveInstrument: true)
             || !TryComp(uid, out ActiveInstrumentComponent? activeInstrument))
             return;
@@ -181,7 +181,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
     {
         var master = GetEntity(msg.Master);
 
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out var user, out var instrument, requireActiveInstrument: true))
             return;
         // Sunrise edit end
@@ -210,7 +210,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiSetFilteredChannel(InstrumentSetFilteredChannelEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out var user, out var instrument, requireActiveInstrument: true))
             return;
 
@@ -226,7 +226,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         if (msg.Value)
         {
             // Prevent stuck notes when turning off a channel... Shrimple.
-            // Sunrise edit start - scope all-notes-off to nearby listeners
+            // Sunrise edit start - ограничиваем all-notes-off ближайшими слушателями
             RaiseInstrumentMidiEvent(uid,
                 new InstrumentMidiEventEvent(msg.Uid, new[] { RobustMidiEvent.AllNotesOff((byte) msg.Channel, 0) }),
                 user);
@@ -319,7 +319,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             var netUid = GetNetEntity(uid);
 
             // Reset puppet instruments too.
-            // Sunrise edit start - scope shutdown MIDI events to nearby listeners
+            // Sunrise edit start - ограничиваем shutdown MIDI events ближайшими слушателями
             RaiseInstrumentMidiEvent(uid, new InstrumentMidiEventEvent(netUid, new[] { RobustMidiEvent.SystemReset(0) }));
             RaiseInstrumentStopEvent(uid, new InstrumentStopMidiEvent(netUid));
             // Sunrise edit end
@@ -336,7 +336,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiEventRx(InstrumentMidiEventEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid,
                 args,
                 out var uid,
@@ -419,7 +419,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
         instrument.LastSequencerTick = Math.Max(maxTick, minTick);
 
-        // Sunrise edit start - scope forwarded MIDI traffic to nearby listeners
+        // Sunrise edit start - ограничиваем forwarded MIDI traffic ближайшими слушателями
         if (!send)
             return;
 

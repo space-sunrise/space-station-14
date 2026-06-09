@@ -32,6 +32,27 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtBrigmedic
 
+- type: loadout
+  id: BrigmedicCoatLab
+  equipment:
+    outerClothing: ClothingOuterCoatLabSecurityMedic
+
+- type: loadout
+  id: BrigmedicArmoredRobe
+  equipment:
+    outerClothing: ClothingOuterCoatAMG
+
+- type: loadout
+  id: BrigmedicBulletproof
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBrigmedic
+      time: 50h
+  equipment:
+    outerClothing: ClothingOuterVestArmorMedSec
+
 # Injectors
 - type: loadout
   id: AutoInjectorEmergency1

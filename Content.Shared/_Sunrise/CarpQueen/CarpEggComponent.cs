@@ -8,47 +8,46 @@ public sealed partial class CarpEggComponent : Component
     [DataField("queen")] public EntityUid? Queen;
 
     /// <summary>
-    /// Required puddle volume (u) to hatch.
+    /// Требуемый объем лужи в единицах для вылупления.
     /// </summary>
     [DataField("requiredVolume")] public float RequiredVolume = 15f;
 
     /// <summary>
-    /// Seconds between hatch checks.
+    /// Секунды между проверками вылупления.
     /// </summary>
     [DataField("checkInterval")] public float CheckInterval = 3f;
 
     [DataField("accum")] public float Accum;
 
     /// <summary>
-    /// Seconds the egg must remain on valid liquid before hatching.
+    /// Сколько секунд яйцо должно оставаться на подходящей жидкости перед вылуплением.
     /// </summary>
     [DataField("hatchDelay")] public float HatchDelay = 5f;
 
     /// <summary>
-    /// Whether current tile conditions are sufficient for hatching.
+    /// Достаточны ли текущие условия тайла для вылупления.
     /// </summary>
     [DataField("eligible")] public bool Eligible;
 
     /// <summary>
-    /// Accumulated time spent waiting without valid liquid. If exceeds MaxWaitWithoutLiquid, egg breaks.
+    /// Накопленное время ожидания без подходящей жидкости. Если превышает MaxWaitWithoutLiquid, яйцо ломается.
     /// </summary>
     [DataField("waitElapsed")] public float WaitElapsed;
 
     /// <summary>
-    /// Max seconds to wait for liquid to appear before breaking the egg.
+    /// Максимальное число секунд ожидания появления жидкости перед разрушением яйца.
     /// </summary>
     [DataField("maxWaitWithoutLiquid")] public float MaxWaitWithoutLiquid = 30f;
 
     /// <summary>
-    /// Range (in tiles) to check if queen is nearby when hatching.
-    /// If queen is within this range, carp becomes servant; otherwise, it imprints on nearby players.
+    /// Радиус в тайлах для проверки, находится ли королева рядом при вылуплении.
+    /// Если королева в этом радиусе, карп становится слугой; иначе запоминает ближайших игроков.
     /// </summary>
     [DataField("queenCheckRange")] public float QueenCheckRange = 3f;
 
     /// <summary>
-    /// Range (in tiles) to search for nearby players to imprint on when queen is not nearby.
+    /// Радиус в тайлах для поиска ближайших игроков, которых нужно запомнить, если королевы рядом нет.
     /// </summary>
     [DataField("friendSearchRange")] public float FriendSearchRange = 3f;
 }
-
 

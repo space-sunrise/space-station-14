@@ -77,9 +77,7 @@
   - type: Battery
     maxCharge: 360
     startingCharge: 360
-  - type: Tag
-    tags:
-      - PowerCellSmall
+  # Sunrise-Edit: removed legacy PowerCellSmall tag, now relying on PowerCell whitelist
 
 - type: entity
   id: PowerCellSmallPrinted

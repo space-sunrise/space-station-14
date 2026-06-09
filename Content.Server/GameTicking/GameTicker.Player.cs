@@ -9,13 +9,11 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
-using Content.Sunrise.Interfaces.Server;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking
@@ -60,12 +58,10 @@ namespace Content.Server.GameTicking
 
                     // Make the player actually join the game.
                     // timer time must be > tick length
-                    // Sunrise-Queue-Start
-                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
-                        Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
-                    else
-                        _userDb.ClientConnected(session);
-                    // Sunrise-Queue-End
+                    // Sunrise edit start - единый Sunrise pipeline не дает Makura gate ломать vanilla userDb lifecycle.
+                    if (await CanPassSunriseJoinGateAsync(session))
+                        SendToJoinPipeline(session);
+                    // Sunrise edit end
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
@@ -107,10 +103,10 @@ namespace Content.Server.GameTicking
 
                 case SessionStatus.InGame:
                 {
-                    // Sunrise-Queue-Start
-                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
-                        _userDb.ClientConnected(session);
-                    // Sunrise-Queue-End
+                    // Sunrise edit start - шлюз Makura gate блокирует прямой InGame до userDb, лобби и спавна.
+                    if (!TryEnterGameAfterSunriseGate(session))
+                        break;
+                    // Sunrise edit end
 
                     if (mind == null)
                     {
@@ -159,11 +155,9 @@ namespace Content.Server.GameTicking
                         _pvsOverride.RemoveSessionOverride(mindId.Value, session);
                     }
 
-                    // Sunrise edit start - always clean up database data on disconnect to prevent memory leaks and reconnect assertions
-                    _userDb.ClientDisconnected(session);
+                    // Sunrise edit start - закрываем только userDb load, который стартовал Sunrise pipeline.
+                    StopUserDbLoad(session);
                     // Sunrise edit end
-
-                    _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} disconnected from the game.");
                     break;
                 }
             }

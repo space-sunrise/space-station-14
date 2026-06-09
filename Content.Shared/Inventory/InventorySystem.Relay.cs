@@ -31,6 +31,7 @@ using Content.Shared.Weapons.Melee.Events; // Sunrise-Edit
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Wieldable;
 using Content.Shared.Zombies;
+using Content.Shared._Sunrise.ScanGate; // Sunrise-Edit
 
 namespace Content.Shared.Inventory;
 
@@ -81,6 +82,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, WieldAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, UnwieldAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, IngestionAttemptEvent>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, TryDetectItem>(RefRelayInventoryEvent); // Sunrise-Edit
 
         // Eye/vision events
         SubscribeLocalEvent<InventoryComponent, CanSeeAttemptEvent>(RelayInventoryEvent);

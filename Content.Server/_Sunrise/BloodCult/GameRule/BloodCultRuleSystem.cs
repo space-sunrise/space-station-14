@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Sunrise.BloodCult.Objectives.Components;
 using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
@@ -329,7 +329,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         var query = EntityQueryEnumerator<BloodCultRuleComponent, GameRuleComponent>();
         var aliveCultistsCount = 0;
 
-        while (query.MoveNext(out _, out var cultRuleComponent, out _))
+        while (query.MoveNext(out var uid, out var cultRuleComponent, out _))
         {
             var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
             while (cultisQuery.MoveNext(out var cultistUid, out _))
@@ -350,7 +350,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
                 continue;
 
             cultRuleComponent.WinCondition = CultWinCondition.CultFailure;
-            _roundEndSystem.EndRound();
+            GameTicker.EndGameRule(uid);
         }
     }
 
@@ -566,6 +566,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             _gibbingSystem.Gib(mobState.Owner);
         }
 
-        _roundEndSystem.EndRound();
+        // Sunrise edit start - Nar'sie summon triggers evac shuttle instead of instant round end
+        _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
+        // Sunrise edit end
     }
 }

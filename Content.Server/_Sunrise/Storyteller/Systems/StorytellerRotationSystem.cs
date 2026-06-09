@@ -36,7 +36,23 @@ public sealed class StorytellerRotationSystem : EntitySystem
             if (currentPreset == null)
                 return;
 
-            var nextState = currentPreset.ID == StorytellerInsaneId ? 1 : 0;
+            var prevState = _cfg.GetCVar(SunriseCCVars.StorytellerRotationCounter);
+
+            int nextState;
+            // If Calm was played previously (state == 2) and now Insane is selected, we want to
+            // reset back to 0 (return all modes). Otherwise, selecting Insane puts it on cooldown.
+            if (currentPreset.ID == StorytellerInsaneId)
+            {
+                nextState = prevState == 2 ? 0 : 1;
+            }
+            else if (currentPreset.ID == StorytellerPresetHelper.StorytellerCalmId)
+            {
+                nextState = 2;
+            }
+            else
+            {
+                nextState = 0;
+            }
 
             _cfg.SetCVar(SunriseCCVars.StorytellerRotationCounter, nextState);
 

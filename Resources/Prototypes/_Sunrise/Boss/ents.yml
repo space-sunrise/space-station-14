@@ -49,6 +49,18 @@
   # categories: [ HideSpawnMenu ]
   suffix: Boss
   components:
+  - type: RadarBlip
+    color: "#FF2A2AFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: RadarBlip
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: HellSpawnBoss
@@ -285,6 +297,16 @@
   - type: HellSpawnConsole
   - type: Godmode
   - type: BlockedTool
+  - type: RadarBlip
+    color: "#780a0a81"
+    scale: 2.5
+    shape: Circle
+    requireInSpace: false
+  - type: PointLight
+    radius: 1
+    energy: 4.5
+    color: "#ff4242"
+    castShadows: true
 
 - type: entity
   name: boss battle altar spawner

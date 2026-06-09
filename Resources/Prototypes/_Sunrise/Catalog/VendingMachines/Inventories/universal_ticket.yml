@@ -84,6 +84,17 @@
     stock: 9
 
 - type: listing
+  id: VendorTicketReviverImplant
+  productEntity: ReviverImplant
+  cost:
+    SalvageTicket: 800
+  categories:
+  - TicketConsumeables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
   id: VendorMiningAmpulaBica
   productEntity: AmpulaBica
   cost:

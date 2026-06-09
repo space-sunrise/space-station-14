@@ -3,16 +3,16 @@ using Content.Shared.Actions.Components;
 using Content.Shared.Chat;
 using Content.Shared.Interaction;
 using Content.Shared.PowerCell;
-using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
-using Content.Shared._Sunrise.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
 using Content.Shared._Sunrise.TTS;
 using Robust.Server.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Audio.Systems;
+using Content.Server.Power.EntitySystems;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -22,6 +22,8 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     public override void Initialize()
@@ -141,6 +143,21 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
 
         if (!_powerCell.TryUseCharge(ent.Owner, ent.Comp.ReceiveChargeCost))
             return;
+
+        ent.Comp.ReceivedMessagesSinceLastNotify++;
+        if (ent.Comp.ReceivedMessagesSinceLastNotify % 5 == 0)
+        {
+            if (_powerCell.TryGetBatteryFromSlotOrEntity(ent.Owner, out var battery))
+            {
+                var level = _battery.GetChargeLevel(battery.Value.AsNullable());
+                if (level <= 0.10f)
+                {
+                    var parentUid = Transform(ent).ParentUid;
+                    if (parentUid.IsValid())
+                        _audio.PlayPvs(ent.Comp.LowBatteryNotifySound, parentUid);
+                }
+            }
+        }
         // Sunrise-End
 
         // TODO: change this when a code refactor is done

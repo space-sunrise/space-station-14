@@ -119,3 +119,25 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"], ["Security"]]
+
+- type: entity
+  parent: VendingMachineMedicalSecurity
+  id: VendingMachineMedicalSecuritySalvaged
+  name: salvaged NanoMed Security
+  description: It's a battered medical drug dispenser with the previous shift's leftovers inside.
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityInventorySalvaged
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 1.8
+  - type: Anchorable
+    flags: Anchorable
+  - type: RadarBlip
+    color: "#ff3333"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false

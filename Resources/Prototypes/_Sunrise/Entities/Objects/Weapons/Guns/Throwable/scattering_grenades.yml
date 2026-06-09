@@ -65,6 +65,7 @@
   id: SyndicateVisceratorClusterGrenade
   name: viscerator cluster grenade
   description: A syndicate cluster grenade that releases a swarm of viscerator drones.
+  suffix: AI, Syndicate
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Grenades/clusterviscerator.rsi
