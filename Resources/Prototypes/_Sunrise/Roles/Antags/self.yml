@@ -18,6 +18,7 @@
     role: JobRoboticist
     time: 5h
   playTimeTracker: AntagSELFAgent
+  storytellerStress: 0.5
 
 - type: startingGear
   id: SELFAgentGear

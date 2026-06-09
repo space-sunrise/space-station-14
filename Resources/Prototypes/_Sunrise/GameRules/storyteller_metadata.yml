@@ -375,6 +375,14 @@
   weightModifier: 4.0
 
 - type: storytellerMetadata
+  id: SiliconLiberation
+  threatType: MinorAntag
+  threatCost: 40
+  minStationStrength: 0
+  maxStress: 90
+  weightModifier: 4.0
+
+- type: storytellerMetadata
   id: PirateSmall
   threatType: MinorAntag
   threatCost: 60
