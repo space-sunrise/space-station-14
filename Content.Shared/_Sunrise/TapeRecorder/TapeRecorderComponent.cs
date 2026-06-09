@@ -1,11 +1,11 @@
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Paper;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Sunrise.TapeRecorder;
 
@@ -20,12 +20,6 @@ public sealed partial class TapeRecorderComponent : Component
     /// </summary>
     [AutoNetworkedField]
     public TapeRecorderMode Mode = TapeRecorderMode.Stopped;
-
-    /// <summary>
-    /// Cassette currently inserted into the recorder.
-    /// </summary>
-    [AutoNetworkedField]
-    public EntityUid? InsertedCassette;
 
     /// <summary>
     /// Slot that accepts recordable cassettes.
@@ -61,7 +55,7 @@ public sealed partial class TapeRecorderComponent : Component
     /// Paper prototype spawned by transcript printing.
     /// </summary>
     [DataField]
-    public EntProtoId PaperPrototype = "TapeRecorderTranscript";
+    public EntProtoId<PaperComponent> PaperPrototype = "TapeRecorderTranscript";
 
     /// <summary>
     /// Cooldown between transcript prints.
@@ -72,8 +66,14 @@ public sealed partial class TapeRecorderComponent : Component
     /// <summary>
     /// Next time when transcript printing is allowed.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    [AutoPausedField]
     public TimeSpan NextPrintTime;
+
+    /// <summary>
+    /// Maximum amount of recorded lines stored on one cassette.
+    /// </summary>
+    [DataField]
+    public int MaxRecords = 120;
 
     /// <summary>
     /// Sound played when changing recorder mode.
@@ -99,12 +99,13 @@ public sealed partial class TapeRecorderComponent : Component
     /// <summary>
     /// Last server time used for active mode simulation.
     /// </summary>
-    [AutoNetworkedField]
+    [AutoPausedField]
     public TimeSpan LastUpdateTime;
 
     /// <summary>
     /// Next time when playback may emit a TTS line.
     /// </summary>
+    [AutoPausedField]
     public TimeSpan NextPlaybackLineTime;
 }
 
@@ -121,15 +122,15 @@ public sealed class TapeRecorderPrintMessage : BoundUserInterfaceMessage;
 public sealed class TapeRecorderBoundUserInterfaceState(
     string cassetteName,
     TapeRecorderMode mode,
-    float positionSeconds,
-    float capacitySeconds,
+    TimeSpan position,
+    TimeSpan capacity,
     int recordCount,
     bool hasCassette) : BoundUserInterfaceState
 {
     public string CassetteName { get; } = cassetteName;
     public TapeRecorderMode Mode { get; } = mode;
-    public float PositionSeconds { get; } = positionSeconds;
-    public float CapacitySeconds { get; } = capacitySeconds;
+    public TimeSpan Position { get; } = position;
+    public TimeSpan Capacity { get; } = capacity;
     public int RecordCount { get; } = recordCount;
     public bool HasCassette { get; } = hasCassette;
 }

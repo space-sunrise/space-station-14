@@ -18,7 +18,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobDetective
-      time: 36000 # 10 hrs
+      time: 10h
 
 - type: loadoutEffectGroup
   id: MasterDetective

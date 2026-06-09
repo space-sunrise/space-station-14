@@ -8,21 +8,20 @@ namespace Content.Shared._Sunrise.TapeRecorder;
 public sealed partial class TapeCassetteComponent : Component
 {
     /// <summary>
-    /// Maximum recording length in seconds.
+    /// Maximum recording length.
     /// </summary>
     [DataField]
-    public float CapacitySeconds = 60f;
+    public TimeSpan Capacity = TimeSpan.FromSeconds(60);
 
     /// <summary>
-    /// Current tape head position in seconds.
+    /// Current tape head position.
     /// </summary>
     [AutoNetworkedField]
-    public float PositionSeconds;
+    public TimeSpan Position;
 
     /// <summary>
     /// Recorded speech lines.
     /// </summary>
-    [AutoNetworkedField]
     public List<TapeCassetteRecord> Records = [];
 }
 
@@ -30,20 +29,4 @@ public sealed partial class TapeCassetteComponent : Component
 /// A single speech line recorded on a cassette.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class TapeCassetteRecord
-{
-    /// <summary>
-    /// Tape position in seconds where the speech line starts.
-    /// </summary>
-    public float Time { get; set; }
-
-    /// <summary>
-    /// Display name of the speaker that was recorded.
-    /// </summary>
-    public string Speaker { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Recorded speech text.
-    /// </summary>
-    public string Message { get; set; } = string.Empty;
-}
+public readonly record struct TapeCassetteRecord(TimeSpan Time, string Speaker, string Message);

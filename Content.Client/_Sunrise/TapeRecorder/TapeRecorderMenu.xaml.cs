@@ -8,8 +8,8 @@ namespace Content.Client._Sunrise.TapeRecorder;
 [GenerateTypedNameReferences]
 public sealed partial class TapeRecorderMenu : FancyWindow
 {
-    public Action<TapeRecorderMode>? OnModePressed;
-    public Action? OnPrintPressed;
+    public event Action<TapeRecorderMode>? OnModePressed;
+    public event Action? OnPrintPressed;
 
     public TapeRecorderMenu()
     {
@@ -28,21 +28,21 @@ public sealed partial class TapeRecorderMenu : FancyWindow
             "tape-recorder-ui-cassette",
             ("cassette", state.CassetteName));
 
-        PlaybackSlider.MaxValue = state.CapacitySeconds;
-        PlaybackSlider.SetValueWithoutEvent(state.PositionSeconds);
+        PlaybackSlider.MaxValue = (float) state.Capacity.TotalSeconds;
+        PlaybackSlider.SetValueWithoutEvent((float) state.Position.TotalSeconds);
         PlaybackSlider.Disabled = true;
 
         TimeLabel.Text = Loc.GetString(
             "tape-recorder-ui-time",
-            ("position", FormatTime(state.PositionSeconds)),
-            ("capacity", FormatTime(state.CapacitySeconds)),
-            ("remaining", FormatTime(Math.Max(0f, state.CapacitySeconds - state.PositionSeconds))),
+            ("position", FormatTime(state.Position)),
+            ("capacity", FormatTime(state.Capacity)),
+            ("remaining", FormatTime(state.Capacity > state.Position ? state.Capacity - state.Position : TimeSpan.Zero)),
             ("records", state.RecordCount));
 
         StopButton.Disabled = state.Mode == TapeRecorderMode.Stopped;
-        RecordButton.Disabled = !state.HasCassette || state.PositionSeconds >= state.CapacitySeconds;
+        RecordButton.Disabled = !state.HasCassette || state.Position >= state.Capacity;
         PlayButton.Disabled = !state.HasCassette || state.RecordCount == 0;
-        RewindButton.Disabled = !state.HasCassette || state.PositionSeconds <= 0f;
+        RewindButton.Disabled = !state.HasCassette || state.Position <= TimeSpan.Zero;
         PrintButton.Disabled = !state.HasCassette || state.RecordCount == 0;
 
         RecordButton.ModulateSelfOverride = state.Mode == TapeRecorderMode.Recording ? Color.DarkGreen : null;
@@ -50,8 +50,6 @@ public sealed partial class TapeRecorderMenu : FancyWindow
         RewindButton.ModulateSelfOverride = state.Mode == TapeRecorderMode.Rewinding ? Color.DarkGreen : null;
     }
 
-    private static string FormatTime(float seconds)
-    {
-        return TimeSpan.FromSeconds(seconds).ToString(@"mm\:ss");
-    }
+    private static string FormatTime(TimeSpan time) =>
+        time.ToString(@"mm\:ss");
 }

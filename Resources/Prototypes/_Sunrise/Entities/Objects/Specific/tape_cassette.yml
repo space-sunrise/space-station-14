@@ -22,7 +22,7 @@
   - type: Sprite
     state: red
   - type: TapeCassette
-    capacitySeconds: 60
+    capacity: 60
 
 - type: entity
   parent: BaseTapeCassette
@@ -34,7 +34,7 @@
   - type: Sprite
     state: yellow
   - type: TapeCassette
-    capacitySeconds: 120
+    capacity: 120
 
 - type: entity
   parent: BaseTapeCassette
@@ -46,4 +46,4 @@
   - type: Sprite
     state: green
   - type: TapeCassette
-    capacitySeconds: 180
+    capacity: 180
