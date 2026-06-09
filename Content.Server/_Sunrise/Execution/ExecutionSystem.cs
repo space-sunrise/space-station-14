@@ -14,6 +14,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Body.Systems;
+using Content.Shared.ActionBlocker;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -22,6 +23,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Weapons.Hitscan.Components;
 using Robust.Shared.Random;
 
@@ -40,6 +42,9 @@ public sealed partial class ExecutionSystem : SharedExecutionSystem
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
 
     private const float OverkillFractionMin = 0.05f;
     private const float OverkillFractionMax = 0.20f;
