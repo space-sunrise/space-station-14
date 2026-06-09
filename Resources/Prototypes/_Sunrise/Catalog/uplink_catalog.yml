@@ -3460,7 +3460,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - AssaultOpsUplink
       - LoneOpsUplink
       - NukeOpsUplink
 
