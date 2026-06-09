@@ -88,6 +88,12 @@
       slot: [outerClothing]
       default: ClothingOuterVestWeb
       requireTag: Vest
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+        enum.ChameleonUiKey.Key:
+          type: ChameleonBoundUserInterface
 
 - type: entity
   parent: [ClothingOuterVestWebElite, BaseChameleon]
@@ -102,3 +108,9 @@
       slot: [outerClothing]
       default: ClothingOuterVestWebElite
       requireTag: Vest
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+        enum.ChameleonUiKey.Key:
+          type: ChameleonBoundUserInterface
