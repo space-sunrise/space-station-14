@@ -14,3 +14,5 @@ ent-ClothingHeadHatSecsoftSecred = { ent-ClothingHeadHatSecsoft }
     .desc = { ent-ClothingHeadHatSecsoft.desc }
 ent-ClothingHeadHatSecsoftFlippedSecred = { ent-ClothingHeadHatSecsoftFlipped }
     .desc = { ent-ClothingHeadHatSecsoftFlipped.desc }
+ent-ClothingHeadHatWardenSecred = red warden's cap
+    .desc = To remind everyone who's in charge here.

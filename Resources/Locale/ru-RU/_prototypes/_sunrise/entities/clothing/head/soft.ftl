@@ -14,3 +14,5 @@ ent-ClothingHeadHatSecsoftSecred = { ent-ClothingHeadHatSecsoft }
     .desc = { ent-ClothingHeadHatSecsoft.desc }
 ent-ClothingHeadHatSecsoftFlippedSecred = { ent-ClothingHeadHatSecsoftFlipped }
     .desc = { ent-ClothingHeadHatSecsoftFlipped.desc }
+ent-ClothingHeadHatWardenSecred = красная фуражка смотрителя
+    .desc = Чтобы напомнить всем, кто здесь главный.

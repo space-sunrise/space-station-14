@@ -115,7 +115,7 @@
   name: loadout-group-warden-head
   minLimit: 0
   loadouts:
-  - WardenBeretSecred
+  - SecurityBeretSecred
   - ClothingHeadHatBeretWarden
   - ClothingHeadHatWarden
   - WardenHatSecred
