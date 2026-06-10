@@ -12,6 +12,9 @@
         Quantity: 3
       - ReagentId: Blood
         Quantity: 10
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidXeno
 
 - type: entity
   id: TorsoHumanoidXeno

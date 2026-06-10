@@ -11,6 +11,9 @@
         Quantity: 3
       - ReagentId: Sugar
         Quantity: 10
+  - type: VisualOrganMarkings
+    markingData:
+      group: Abductor
 
 - type: entity
   id: TorsoAbductor

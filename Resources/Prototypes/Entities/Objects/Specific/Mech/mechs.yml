@@ -335,7 +335,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -398,7 +398,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -695,7 +695,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 2.5
     speed: 15
@@ -767,7 +767,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 4
     speed: 18
@@ -846,7 +846,7 @@
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 5
     speed: 20
@@ -935,7 +935,7 @@
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 5
     speed: 20
@@ -1027,7 +1027,7 @@
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 3
     speed: 15
@@ -1120,7 +1120,7 @@
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 5
     speed: 20

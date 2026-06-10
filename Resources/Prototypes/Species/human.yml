@@ -3,7 +3,17 @@
   name: species-name-human
   roundStart: true
   prototype: MobHuman
-  dollPrototype: AppearanceHuman
+  bodyTypes: # Sunrise-Edit
+  - HumanNormal
+  - HumanSlimFemale
+  - HumanSlimMale
+  - HumanGigaFemale
+  - HumanGigaMale
+  - HumanFatFemale
+  - HumanFatMale
+  - HumanDistrofikFemale
+  - HumanDistrofikMale
+  dollPrototype: SunriseAppearanceHuman # Sunrise-Edit
   skinColoration: HumanToned
   # Sunrise-Edit
   buttScan:

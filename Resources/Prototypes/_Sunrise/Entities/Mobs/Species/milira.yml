@@ -3,28 +3,26 @@
   id: AppearanceMilira
   name: milira appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoMilira
-        - id: HeadMilira
-        - id: LeftArmMilira
-        - id: RightArmMilira
-        - id: LeftHandMilira
-        - id: RightHandMilira
-        - id: LeftLegMilira
-        - id: RightLegMilira
-        - id: LeftFootMilira
-        - id: RightFootMilira
-        - id: OrganHumanBrain
-        - id: OrganHumanEyes
-        - id: OrganHumanTongue
-        - id: OrganHumanHeart
-        - id: OrganHumanLungs
-        - id: OrganHumanStomach
-        - id: OrganHumanLiver
-        - id: OrganHumanKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoMilira
+      Head: HeadMilira
+      ArmLeft: LeftArmMilira
+      ArmRight: RightArmMilira
+      HandRight: RightHandMilira
+      HandLeft: LeftHandMilira
+      LegLeft: LeftLegMilira
+      LegRight: RightLegMilira
+      FootLeft: LeftFootMilira
+      FootRight: RightFootMilira
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganHumanHeart
+      Lungs: OrganHumanLungs
+      Stomach: OrganHumanStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
 
 - type: entity
   save: false
@@ -67,8 +65,10 @@
     spawned:
     - id: FoodMeatMilira
       amount: 5
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Milira
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 42
@@ -106,8 +106,10 @@
   categories: [ HideSpawnMenu ]
   description: A dummy milira meant to be used in character setup.
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Milira
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: MoodVisuals
     sprite:
       sprite: _Sunrise/Mobs/Effects/Milira/mood.rsi

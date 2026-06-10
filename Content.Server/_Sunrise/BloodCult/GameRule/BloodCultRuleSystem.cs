@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Sunrise.BloodCult.Objectives.Components;
 using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
@@ -14,6 +14,7 @@ using Content.Server.Storage.EntitySystems;
 using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.CollectiveMind;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Body.Systems;
@@ -58,6 +59,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!;
 
     private readonly EntProtoId _mindRoleCultistPrototypeId = "MindRoleCultist";
     private readonly EntProtoId _cultistKillObjective = "CultistKillObjective";
@@ -334,7 +336,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
             while (cultisQuery.MoveNext(out var cultistUid, out _))
             {
-                if (!HasComp<HumanoidAppearanceComponent>(cultistUid))
+                if (!HasComp<HumanoidProfileComponent>(cultistUid))
                     continue;
 
                 if (!TryComp<MobStateComponent>(cultistUid, out var mobState))
@@ -410,11 +412,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void RemoveCultistAppearance(EntityUid cultist)
     {
-        if (TryComp<HumanoidAppearanceComponent>(cultist, out var appearanceComponent))
-        {
-            appearanceComponent.EyeColor = Color.White;
-            Dirty(cultist, appearanceComponent);
-        }
+        if (HasComp<HumanoidProfileComponent>(cultist))
+            _sunriseBody.SetEyeColor(cultist, Color.White);
 
         RemComp<PentagramComponent>(cultist);
     }
@@ -429,7 +428,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         var cultisQuery = EntityQueryEnumerator<BloodCultistComponent>();
         while (cultisQuery.MoveNext(out var cultistUid, out _))
         {
-            if (HasComp<HumanoidAppearanceComponent>(cultistUid))
+            if (HasComp<HumanoidProfileComponent>(cultistUid))
                 cultists.Add(cultistUid);
         }
 
@@ -451,11 +450,8 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         foreach (var cultist in cultists)
         {
-            if (TryComp<HumanoidAppearanceComponent>(cultist, out var appearanceComponent))
-            {
-                appearanceComponent.EyeColor = rule.EyeColor;
-                Dirty(cultist, appearanceComponent);
-            }
+            if (HasComp<HumanoidProfileComponent>(cultist))
+                _sunriseBody.SetEyeColor(cultist, rule.EyeColor);
 
             if (totalCultMembers < pentagramThreshold)
                 return;
@@ -468,7 +464,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     {
         var potentialTargets = new List<EntityUid>();
 
-        var query = EntityQueryEnumerator<MindContainerComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
+        var query = EntityQueryEnumerator<MindContainerComponent, AntagTargetComponent, HumanoidProfileComponent>();
         while (query.MoveNext(out var uid, out var mind, out _, out _))
         {
             if (mind.Mind == null || HasComp<BloodCultistComponent>(uid))
@@ -490,7 +486,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         _roles.MindAddRole(mindId, _mindRoleCultistPrototypeId);
 
-        var isHumanoid = HasComp<HumanoidAppearanceComponent>(cultist);
+        var isHumanoid = HasComp<HumanoidProfileComponent>(cultist);
 
         var cultistComponent = EnsureComp<BloodCultistComponent>(cultist);
 

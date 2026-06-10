@@ -1,3 +1,40 @@
+- type: markingsGroup
+  id: Abductor
+  limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
 - type: species
   id: Abductor
   name: species-name-abductor
@@ -5,7 +42,6 @@
   prototype: MobAbductor
   bodyTypes:
   - MobAbductorSprites
-  markingLimits: MobHumanMarkingLimits
   dollPrototype: MobAbductorDummy
   skinColoration: HumanToned
   defaultSkinTone: "#BFC2C7"

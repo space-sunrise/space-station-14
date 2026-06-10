@@ -5,6 +5,10 @@
   parent: OrganBase
   name: "demon body part"
   abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Demon
 
 
 - type: entity

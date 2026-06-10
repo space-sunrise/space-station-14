@@ -3,6 +3,8 @@
   name: species-name-arachnid
   roundStart: true
   prototype: MobArachnid
+  bodyTypes: # Sunrise-Edit
+  - ArachnidNormal
   defaultSkinTone: "#385878"
   dollPrototype: AppearanceArachnid
   skinColoration: Hues

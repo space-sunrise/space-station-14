@@ -3,6 +3,8 @@
   name: species-name-reptilian
   roundStart: true
   prototype: MobReptilian
+  bodyTypes: # Sunrise-Edit
+  - ReptilianNormal
   defaultSkinTone: "#34a223"
   dollPrototype: AppearanceReptilian
   skinColoration: Hues

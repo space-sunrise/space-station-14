@@ -3,27 +3,25 @@
   id: AppearanceAbductor
   name: abductor appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoAbductor
-        - id: HeadAbductor
-        - id: LeftArmAbductor
-        - id: RightArmAbductor
-        - id: LeftHandAbductor
-        - id: RightHandAbductor
-        - id: LeftLegAbductor
-        - id: RightLegAbductor
-        - id: LeftFootAbductor
-        - id: RightFootAbductor
-        - id: OrganAbductorBrain
-        - id: OrganAbductorEyes
-        - id: OrganAbductorHeart
-        - id: OrganAbductorLungs
-        - id: OrganAbductorStomach
-        - id: OrganAbductorLiver
-        - id: OrganAbductorKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoAbductor
+      Head: HeadAbductor
+      ArmLeft: LeftArmAbductor
+      ArmRight: RightArmAbductor
+      HandRight: RightHandAbductor
+      HandLeft: LeftHandAbductor
+      LegLeft: LeftLegAbductor
+      LegRight: RightLegAbductor
+      FootLeft: LeftFootAbductor
+      FootRight: RightFootAbductor
+      Brain: OrganAbductorBrain
+      Eyes: OrganAbductorEyes
+      Heart: OrganAbductorHeart
+      Lungs: OrganAbductorLungs
+      Stomach: OrganAbductorStomach
+      Liver: OrganAbductorLiver
+      Kidneys: OrganAbductorKidneys
 
 - type: entity
   save: false
@@ -37,8 +35,10 @@
   abstract: true
   components:
   - type: Muted
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Abductor
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Icon
     sprite: _Sunrise/Abductor/Mobs/Species/Abductor/parts.rsi
     state: full
@@ -83,5 +83,7 @@
   id: MobAbductorDummy
   categories: [ HideSpawnMenu ]
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Abductor
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers

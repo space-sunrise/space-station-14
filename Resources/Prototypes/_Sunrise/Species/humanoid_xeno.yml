@@ -7,7 +7,6 @@
   prototype: MobHumanoidXeno
   bodyTypes:
   - HumanoidXenoNormal
-  markingLimits: MobHumanoidXenoMarkingLimits
   dollPrototype: MobXenoDummy
   skinColoration: Hues
   maleFirstNames: names_xeno_first
@@ -46,35 +45,53 @@
     LFoot: MobHumanoidXenoLFoot
     RFoot: MobHumanoidXenoRFoot
 
-- type: markingPoints
-  id: MobHumanoidXenoMarkingLimits
-  onlyWhitelisted: true
-  points:
-    Hair:
-      points: 0
+- type: markingsGroup
+  id: HumanoidXeno
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 0
       required: false
-    FacialHair:
-      points: 0
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 0
       required: false
-    Tail:
-      points: 1
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
       required: true
-      defaultMarkings: [ HumanoidXenoTailsDefault ]
-    Head:
-      points: 1
+      default: [ HumanoidXenoTailsDefault ]
+    enum.HumanoidVisualLayers.Head:
+      limit: 1
       required: true
-      defaultMarkings: [ HumanoidXenoHeadDefault ]
-    HeadTop:
-      points: 0
+      default: [ HumanoidXenoHeadDefault ]
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 0
       required: false
-    Chest:
-      points: 1
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
       required: false
-    Legs:
-      points: 1
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
       required: false
-    Arms:
-      points: 1
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
       required: false
 
 - type: humanoidBaseSprite

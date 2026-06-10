@@ -3,28 +3,26 @@
   id: AppearanceSwine
   name: swine appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoSwine
-        - id: HeadSwine
-        - id: LeftArmSwine
-        - id: RightArmSwine
-        - id: LeftHandSwine
-        - id: RightHandSwine
-        - id: LeftLegSwine
-        - id: RightLegSwine
-        - id: LeftFootSwine
-        - id: RightFootSwine
-        - id: OrganHumanBrain
-        - id: OrganHumanEyes
-        - id: OrganHumanTongue
-        - id: OrganAnimalHeart
-        - id: OrganHumanLungs
-        - id: OrganSwineStomach
-        - id: OrganAnimalLiver
-        - id: OrganHumanKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoSwine
+      Head: HeadSwine
+      ArmLeft: LeftArmSwine
+      ArmRight: RightArmSwine
+      HandRight: RightHandSwine
+      HandLeft: LeftHandSwine
+      LegLeft: LeftLegSwine
+      LegRight: RightLegSwine
+      FootLeft: LeftFootSwine
+      FootRight: RightFootSwine
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganAnimalHeart
+      Lungs: OrganHumanLungs
+      Stomach: OrganSwineStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
 
 - type: entity
   name: Urist McPig
@@ -35,8 +33,10 @@
   abstract: true
   components:
   - type: Interactions
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Swine
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Hunger
     baseDecayRate: 0.08
   - type: Thirst
@@ -101,5 +101,7 @@
   categories: [ HideSpawnMenu ]
   description: A dummy swine meant to be used in character setup.
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Swine
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers

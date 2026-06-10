@@ -11,6 +11,8 @@
   name: species-name-vulpkanin
   roundStart: true
   prototype: MobVulpkanin
+  bodyTypes: # Sunrise-Edit
+  - VulpkaninNormal
   defaultSkinTone: "#5a3f2d"
   dollPrototype: AppearanceVulpkanin
   skinColoration: VulpkaninColors

@@ -1,5 +1,5 @@
 - type: markingsGroup
-  parent: Undergarments
+  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
   id: Vox
   limits:
     enum.HumanoidVisualLayers.Hair:
@@ -57,14 +57,16 @@
       limit: 1
       required: true
       default: [ VoxTail ]
-    enum.HumanoidVisualLayers.UndergarmentTop:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentTopTanktopVox ]
-    enum.HumanoidVisualLayers.UndergarmentBottom:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentBottomBoxersVox ]
+    # Sunrise edit start - underwear is handled by separate clothing layers.
+    # enum.HumanoidVisualLayers.UndergarmentTop:
+    #   limit: 1
+    #   required: false
+    #   nudityDefault: [ UndergarmentTopTanktopVox ]
+    # enum.HumanoidVisualLayers.UndergarmentBottom:
+    #   limit: 1
+    #   required: false
+    #   nudityDefault: [ UndergarmentBottomBoxersVox ]
+    # Sunrise edit end
 
 - type: entity
   parent: BaseSpeciesAppearance
@@ -151,13 +153,6 @@
     species: Vox
     #undergarmentTop: UndergarmentTopTanktopVox # Sunrise-edit
     #undergarmentBottom: UndergarmentBottomBoxersVox # Sunrise-edit
-    markingsDisplacement:
-      Hair:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: hair
-
 - type: entity
   parent:
   - AppearanceVox
@@ -289,6 +284,12 @@
   - type: VisualOrganMarkings
     markingData:
       group: Vox
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: hair
 
 - type: entity
   parent: [ OrganVox, OrganVoxVisual ]

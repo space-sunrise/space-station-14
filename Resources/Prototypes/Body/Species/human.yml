@@ -1,5 +1,5 @@
 - type: markingsGroup
-  parent: Undergarments
+  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
   id: Human
   limits:
     enum.HumanoidVisualLayers.Hair:
@@ -75,6 +75,7 @@
       Kidneys: OrganHumanKidneys
   - type: HumanoidProfile
     species: Human
+  - type: HideableHumanoidLayers
     hideLayersOnEquip:
     - Hair
     - Snout
@@ -86,7 +87,7 @@
 
 - type: entity
   parent:
-  - AppearanceHuman
+  - SunriseAppearanceHuman # Sunrise-Edit
   - BaseSpeciesMobOrganic
   id: MobHuman
   name: Urist McHands

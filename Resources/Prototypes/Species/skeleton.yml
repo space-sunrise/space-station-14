@@ -3,6 +3,8 @@
   name: species-name-skeleton
   roundStart: false
   prototype: MobSkeletonPerson
+  bodyTypes: # Sunrise-Edit
+  - SkeletonNormal
   defaultSkinTone: "#fff9e2"
   maleFirstNames: NamesSkeletonFirst
   femaleFirstNames: NamesSkeletonFirst

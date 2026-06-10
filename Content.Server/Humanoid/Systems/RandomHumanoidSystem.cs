@@ -1,5 +1,6 @@
 using Content.Server.Humanoid.Components;
 using Content.Server.RandomMetadata;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Body;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
@@ -20,6 +21,7 @@ public sealed class RandomHumanoidSystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -60,6 +62,7 @@ public sealed class RandomHumanoidSystem : EntitySystem
 
         _visualBody.ApplyProfileTo(humanoid, profile);
         _humanoidProfile.ApplyProfileTo(humanoid, profile);
+        _sunriseProfile.ApplyProfileTo(humanoid, profile); // Sunrise-Edit
 
         return humanoid;
     }

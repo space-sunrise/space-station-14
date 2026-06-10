@@ -3,6 +3,8 @@
   name: species-name-slime
   roundStart: true
   prototype: MobSlimePerson
+  bodyTypes: # Sunrise-Edit
+  - SlimePersonNormal
   defaultSkinTone: "#b8b8b8"
   dollPrototype: AppearanceSlimePerson
   skinColoration: Hues

@@ -1,3 +1,7 @@
+- type: markingsGroup
+  id: Terminator
+  onlyGroupWhitelisted: true
+
 - type: species
   id: Terminator
   name: Terminator
@@ -6,7 +10,6 @@
   bodyTypes:
   - TerminatorNormal
   defaultSkinTone: "#fff9e2"
-  markingLimits: MobHumanMarkingLimits
   maleFirstNames: NamesSkeletonFirst
   femaleFirstNames: NamesSkeletonFirst
   dollPrototype: AppearanceTerminator

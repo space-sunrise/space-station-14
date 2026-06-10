@@ -14,6 +14,9 @@
         Quantity: 30
   - type: Item
     size: Normal
+  - type: VisualOrganMarkings
+    markingData:
+      group: None
 
 - type: entity
   id: CyberEyeNightVision
@@ -31,6 +34,11 @@
   - type: OrganVisualization
     layer: Eyes
     prototype: CyberEyesNightVision
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: None
 
 - type: entity
   id: CyberEyeThermal
@@ -48,3 +56,8 @@
   - type: OrganVisualization
     layer: Eyes
     prototype: CyberEyesThermalVision
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: None

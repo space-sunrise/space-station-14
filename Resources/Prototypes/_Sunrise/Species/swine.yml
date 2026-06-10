@@ -5,7 +5,6 @@
   prototype: MobSwine
   bodyTypes:
   - SwineNormal
-  markingLimits: MobSwineMarkingLimits
   dollPrototype: MobSwineDummy
   skinColoration: Hues
   buttScan:
@@ -34,27 +33,45 @@
     LFoot: MobSwineLFoot
     RFoot: MobSwineRFoot
 
-- type: markingPoints
-  id: MobSwineMarkingLimits
-  points:
-    Hair:
-      points: 1
+- type: markingsGroup
+  id: Swine
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
       required: false
-    FacialHair:
-      points: 1
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
       required: false
-    HeadTop:
-      points: 1
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
       required: true
-      defaultMarkings: [ SwineEars ]
-    Chest:
-      points: 1
+      default: [ SwineEars ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
       required: false
-    Legs:
-      points: 2
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
       required: false
-    Arms:
-      points: 2
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
       required: false
 
 - type: humanoidBaseSprite

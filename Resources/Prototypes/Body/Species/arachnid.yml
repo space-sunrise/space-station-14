@@ -1,5 +1,5 @@
 - type: markingsGroup
-  parent: Undergarments
+  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
   id: Arachnid
   onlyGroupWhitelisted: true
   limits:

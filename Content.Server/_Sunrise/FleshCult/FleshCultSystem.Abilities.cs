@@ -270,7 +270,7 @@ public sealed partial class FleshCultSystem
             {
                 if (key != HumanoidVisualLayers.Head)
                 {
-                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id);
+                    _sunriseBody.SetBaseLayerId(args.Args.Target.Value, key, id);
                 }
             }
 

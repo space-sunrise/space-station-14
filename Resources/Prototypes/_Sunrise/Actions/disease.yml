@@ -16,7 +16,7 @@
   - type: EntityTargetAction
     whitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
     canTargetSelf: false
     event: !type:InfectEvent
 

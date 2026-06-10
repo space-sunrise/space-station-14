@@ -128,8 +128,10 @@
   id: AppearanceTerminator
   name: terminator appearance
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Terminator
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: EntityTableContainerFill
     containers:
       body_organs: !type:AllSelector
@@ -157,8 +159,10 @@
   name: nt-800 "exterminator" endoskeleton
   description: The inner powerhouse of Susnet's infiltrator androids. Ridiculously hard alloy on the inside, unassuming flesh on the outside.
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Terminator
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 3.0

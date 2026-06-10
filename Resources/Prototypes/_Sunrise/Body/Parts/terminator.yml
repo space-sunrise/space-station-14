@@ -13,6 +13,9 @@
     damageModifierSet: Cybernetic
   - type: StaticPrice
     price: 200
+  - type: VisualOrganMarkings
+    markingData:
+      group: Terminator
 
 - type: entity
   parent: [PartTerminator, OrganBaseTorso]

@@ -3,28 +3,26 @@
   id: AppearanceDemon
   name: demon appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoDemon
-        - id: HeadDemon
-        - id: LeftArmDemon
-        - id: RightArmDemon
-        - id: LeftHandDemon
-        - id: RightHandDemon
-        - id: LeftLegDemon
-        - id: RightLegDemon
-        - id: LeftFootDemon
-        - id: RightFootDemon
-        - id: OrganHumanBrain
-        - id: OrganHumanEyes
-        - id: OrganHumanTongue
-        - id: OrganAnimalHeart
-        - id: OrganHumanLungs
-        - id: OrganDemonStomach
-        - id: OrganAnimalLiver
-        - id: OrganHumanKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoDemon
+      Head: HeadDemon
+      ArmLeft: LeftArmDemon
+      ArmRight: RightArmDemon
+      HandRight: RightHandDemon
+      HandLeft: LeftHandDemon
+      LegLeft: LeftLegDemon
+      LegRight: RightLegDemon
+      FootLeft: LeftFootDemon
+      FootRight: RightFootDemon
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganAnimalHeart
+      Lungs: OrganHumanLungs
+      Stomach: OrganDemonStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
 
 - type: entity
   save: false
@@ -36,8 +34,10 @@
   abstract: true
   components:
   - type: Interactions
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Demon
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Hunger
   - type: Thirst
     dehydrationDamage:
@@ -107,8 +107,10 @@
   categories: [ HideSpawnMenu ]
   description: A dummy reptilian meant to be used in character setup.
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Demon
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Inventory
     femaleDisplacements:
       jumpsuit:

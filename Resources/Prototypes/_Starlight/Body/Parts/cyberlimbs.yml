@@ -9,6 +9,9 @@
       reagents:
       - ReagentId: Iron
         Quantity: 30
+  - type: VisualOrganMarkings
+    markingData:
+      group: None
 
 - type: entity
   id: LeftArmCyber

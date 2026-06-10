@@ -1,5 +1,5 @@
 - type: markingsGroup
-  parent: Undergarments
+  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
   id: Moth
   onlyGroupWhitelisted: true
   limits:
@@ -141,6 +141,7 @@
       Kidneys: OrganMothKidneys
   - type: HumanoidProfile
     species: Moth
+  - type: HideableHumanoidLayers
     hideLayersOnEquip:
     - HeadTop
 

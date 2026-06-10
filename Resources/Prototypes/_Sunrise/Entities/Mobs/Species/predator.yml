@@ -4,27 +4,25 @@
   id: AppearancePredator
   name: predator appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoPredator
-        - id: HeadPredator
-        - id: LeftArmPredator
-        - id: RightArmPredator
-        - id: LeftHandPredator
-        - id: RightHandPredator
-        - id: LeftLegPredator
-        - id: RightLegPredator
-        - id: LeftFootPredator
-        - id: RightFootPredator
-        - id: OrganPredatorBrain
-        - id: OrganPredatorEyes
-        - id: OrganPredatorHeart
-        - id: OrganPredatorLungs
-        - id: OrganPredatorStomach
-        - id: OrganPredatorLiver
-        - id: OrganPredatorKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoPredator
+      Head: HeadPredator
+      ArmLeft: LeftArmPredator
+      ArmRight: RightArmPredator
+      HandRight: RightHandPredator
+      HandLeft: LeftHandPredator
+      LegLeft: LeftLegPredator
+      LegRight: RightLegPredator
+      FootLeft: LeftFootPredator
+      FootRight: RightFootPredator
+      Brain: OrganPredatorBrain
+      Eyes: OrganPredatorEyes
+      Heart: OrganPredatorHeart
+      Lungs: OrganPredatorLungs
+      Stomach: OrganPredatorStomach
+      Liver: OrganPredatorLiver
+      Kidneys: OrganPredatorKidneys
 
 - type: entity
   parent:
@@ -45,8 +43,10 @@
         Bloodloss: 0.5
         Asphyxiation: 0.5
   - type: Perishable
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Predator
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Fixtures
     fixtures:
       fix1:
@@ -92,5 +92,7 @@
   id: MobPredatorDummy
   categories: [ HideSpawnMenu ]
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Predator
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers

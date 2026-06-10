@@ -4,28 +4,26 @@
   id: AppearanceHumanoidXeno
   name: humanoid xeno appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoHumanoidXeno
-        - id: HeadHumanoidXeno
-        - id: LeftArmHumanoidXeno
-        - id: RightArmHumanoidXeno
-        - id: LeftHandHumanoidXeno
-        - id: RightHandHumanoidXeno
-        - id: LeftLegHumanoidXeno
-        - id: RightLegHumanoidXeno
-        - id: LeftFootHumanoidXeno
-        - id: RightFootHumanoidXeno
-        - id: OrganHumanoidXenoBrain
-        - id: OrganHumanoidXenoEyes
-        - id: OrganHumanTongue
-        - id: OrganHumanoidXenoHeart
-        - id: OrganHumanoidXenoLungs
-        - id: OrganHumanoidXenoStomach
-        - id: OrganHumanoidXenoLiver
-        - id: OrganHumanoidXenoKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoHumanoidXeno
+      Head: HeadHumanoidXeno
+      ArmLeft: LeftArmHumanoidXeno
+      ArmRight: RightArmHumanoidXeno
+      HandRight: RightHandHumanoidXeno
+      HandLeft: LeftHandHumanoidXeno
+      LegLeft: LeftLegHumanoidXeno
+      LegRight: RightLegHumanoidXeno
+      FootLeft: LeftFootHumanoidXeno
+      FootRight: RightFootHumanoidXeno
+      Brain: OrganHumanoidXenoBrain
+      Eyes: OrganHumanoidXenoEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganHumanoidXenoHeart
+      Lungs: OrganHumanoidXenoLungs
+      Stomach: OrganHumanoidXenoStomach
+      Liver: OrganHumanoidXenoLiver
+      Kidneys: OrganHumanoidXenoKidneys
 
 - type: entity
   parent:
@@ -256,8 +254,10 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: HumanoidXeno
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Tag
     tags:
       - HumanoidXeno
@@ -274,8 +274,10 @@
   id: MobXenoDummy
   categories: [ HideSpawnMenu ]
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: HumanoidXeno
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Inventory
     speciesId: reptilian
     templateId: humanoidxeno

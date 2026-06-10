@@ -197,3 +197,8 @@
   components:
   - type: Sprite
     state: eyes
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: HumanoidXeno

@@ -76,6 +76,11 @@
   - type: OrganVisualization
     layer: Eyes
     prototype: MobAbductorEyes
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: Abductor
 
 - type: entity
   id: OrganAbductorEars

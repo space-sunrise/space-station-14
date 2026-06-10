@@ -3,6 +3,8 @@
   name: species-name-diona
   roundStart: true
   prototype: MobDiona
+  bodyTypes: # Sunrise-Edit
+  - DionaNormal
   defaultSkinTone: "#cdb369"
   dollPrototype: AppearanceDiona
   skinColoration: Hues

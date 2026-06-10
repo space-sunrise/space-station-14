@@ -206,3 +206,8 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: Predator

@@ -3,6 +3,8 @@
   name: species-name-moth
   roundStart: true
   prototype: MobMoth
+  bodyTypes: # Sunrise-Edit
+  - MothNormal
   defaultSkinTone: "#ffda93"
   dollPrototype: AppearanceMoth
   skinColoration: Hues

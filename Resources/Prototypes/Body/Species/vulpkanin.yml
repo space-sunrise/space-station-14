@@ -1,5 +1,5 @@
 - type: markingsGroup
-  parent: Undergarments
+  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
   id: Vulpkanin
   limits:
     enum.HumanoidVisualLayers.Hair:
@@ -51,14 +51,16 @@
     enum.HumanoidVisualLayers.RFoot:
       limit: 2
       required: false
-    enum.HumanoidVisualLayers.UndergarmentTop:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentTopTanktopVulpkanin ]
-    enum.HumanoidVisualLayers.UndergarmentBottom:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentBottomBoxersVulpkanin ]
+    # Sunrise-start
+    #enum.HumanoidVisualLayers.UndergarmentTop:
+      #limit: 1
+      #required: false
+      #nudityDefault: [ UndergarmentTopTanktopVulpkanin ]
+    #enum.HumanoidVisualLayers.UndergarmentBottom:
+      #limit: 1
+      #required: false
+      #nudityDefault: [ UndergarmentBottomBoxersVulpkanin ]
+    # Sunrise-end
 
 - type: entity
   parent: BaseSpeciesAppearance
@@ -91,6 +93,7 @@
     species: Vulpkanin
     #undergarmentTop: UndergarmentTopTanktopVulpkanin # Sunrise-edit
     #undergarmentBottom: UndergarmentBottomBoxersVulpkanin # Sunrise-edit
+  - type: HideableHumanoidLayers
     hideLayersOnEquip:
     - Snout
     - SnoutCover
@@ -98,12 +101,6 @@
     - HeadSide
     - FacialHair
     - Hair
-    markingsDisplacement:
-      Hair:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: hair
   - type: Inventory
     speciesId: vulpkanin
     displacements:
@@ -251,6 +248,12 @@
   - type: VisualOrganMarkings
     markingData:
       group: Vulpkanin
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vulpkanin/displacement.rsi
+            state: hair
 
 - type: entity
   parent: [ OrganVulpkanin, OrganVulpkaninVisual ]

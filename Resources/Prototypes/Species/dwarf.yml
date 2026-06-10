@@ -3,6 +3,8 @@
   name: species-name-dwarf
   roundStart: true
   prototype: MobDwarf
+  bodyTypes: # Sunrise-Edit
+  - HumanNormal
   dollPrototype: AppearanceDwarf
   skinColoration: HumanToned
   # Sunrise-Edit

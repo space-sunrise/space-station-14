@@ -7,7 +7,6 @@
   prototype: MobPredator
   bodyTypes:
   - PredatorNormal
-  markingLimits: MobPredatorMarkingLimits
   dollPrototype: MobPredatorDummy
   skinColoration: Hues
   defaultHeight: 1.05
@@ -39,32 +38,50 @@
     Dreadlocks: MobPredatorDreadlocks
     Rings: MobPredatorRings
 
-- type: markingPoints
-  id: MobPredatorMarkingLimits
-  points:
-    Hair:
-      points: 0
+- type: markingsGroup
+  id: Predator
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 0
       required: false
-    FacialHair:
-      points: 0
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 0
       required: false
-    Tail:
-      points: 0
+    enum.HumanoidVisualLayers.Tail:
+      limit: 0
       required: false
-    Dreadlocks:
-      points: 1
+    enum.HumanoidVisualLayers.Dreadlocks:
+      limit: 1
       required: false
-    Chest:
-      points: 1
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
       required: false
-    Legs:
-      points: 1
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
       required: false
-    Arms:
-      points: 1
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
       required: false
-    Rings:
-      points: 1
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Rings:
+      limit: 1
       required: false
 
 - type: humanoidBaseSprite

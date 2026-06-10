@@ -6,7 +6,6 @@
   prototype: MobMilira
   bodyTypes:
   - MiliraNormal
-  markingLimits: MobMiliraMarkingLimits
   dollPrototype: MobMiliraDummy
   skinColoration: MiliraLightTones
   youngAge: 18
@@ -44,31 +43,49 @@
     LFoot: MobMiliraLFoot
     RFoot: MobMiliraRFoot
 
-- type: markingPoints
-  id: MobMiliraMarkingLimits
-  points:
-    Hair:
-      points: 1
+- type: markingsGroup
+  id: Milira
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
       required: false
-    FacialHair:
-      points: 1
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
       required: false
-    Tail:
-      points: 1
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
       required: true
-      defaultMarkings: [ MiliraWingBasic ]
-    HeadTop:
-      points: 1
+      default: [ MiliraWingBasic ]
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
       required: true
-      defaultMarkings: [ MiliraEars ]
-    Chest:
-      points: 1
+      default: [ MiliraEars ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
       required: false
-    Legs:
-      points: 2
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
       required: false
-    Arms:
-      points: 2
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
       required: false
 
 - type: humanoidBaseSprite

@@ -3,28 +3,26 @@
   id: AppearanceResomi
   name: resomi appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoResomi
-        - id: HeadResomi
-        - id: LeftArmResomi
-        - id: RightArmResomi
-        - id: LeftHandResomi
-        - id: RightHandResomi
-        - id: LeftLegResomi
-        - id: RightLegResomi
-        - id: LeftFootResomi
-        - id: RightFootResomi
-        - id: OrganHumanBrain
-        - id: OrganResomiEyes
-        - id: OrganHumanTongue
-        - id: OrganHumanHeart
-        - id: OrganHumanLungs
-        - id: OrganHumanStomach
-        - id: OrganHumanLiver
-        - id: OrganHumanKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoResomi
+      Head: HeadResomi
+      ArmLeft: LeftArmResomi
+      ArmRight: RightArmResomi
+      HandRight: RightHandResomi
+      HandLeft: LeftHandResomi
+      LegLeft: LeftLegResomi
+      LegRight: RightLegResomi
+      FootLeft: LeftFootResomi
+      FootRight: RightFootResomi
+      Brain: OrganHumanBrain
+      Eyes: OrganResomiEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganHumanHeart
+      Lungs: OrganHumanLungs
+      Stomach: OrganHumanStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
 
 - type: entity
   save: false
@@ -65,8 +63,10 @@
     sprite: _Sunrise/Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Resomi
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Fixtures
     fixtures:
       fix1:
@@ -302,8 +302,10 @@
   categories: [ HideSpawnMenu ]
   description: A dummy resomi meant to be used in character setup.
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Resomi
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Inventory
     templateId: nonUnderwear
     speciesId: resomi

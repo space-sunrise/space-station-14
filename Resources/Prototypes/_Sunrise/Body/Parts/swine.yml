@@ -8,6 +8,9 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Swine/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Swine
 
 - type: entity
   id: TorsoSwine

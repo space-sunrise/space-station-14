@@ -3,6 +3,8 @@
   name: species-name-vox
   roundStart: true
   prototype: MobVox
+  bodyTypes: # Sunrise-Edit
+  - VoxNormal
   dollPrototype: AppearanceVox
   skinColoration: VoxFeathers
   defaultSkinTone: "#6c741d"

@@ -12,6 +12,9 @@
         Quantity: 3
       - ReagentId: FluorosulfuricAcidHumanoidXeno
         Quantity: 10
+  - type: VisualOrganMarkings
+    markingData:
+      group: Predator
 
 - type: entity
   id: TorsoPredator

@@ -11,6 +11,9 @@
         Quantity: 3
       - ReagentId: Blood
         Quantity: 10
+  - type: VisualOrganMarkings
+    markingData:
+      group: Milira
 
 - type: entity
   id: TorsoMilira

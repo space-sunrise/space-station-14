@@ -1,6 +1,7 @@
 using Content.Shared.Body;
 using Content.Shared.DetailExaminable;
 using Content.Shared.Forensics.Systems;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
@@ -14,6 +15,7 @@ public sealed class DnaScrambleOnTriggerSystem : XOnTriggerSystem<DnaScrambleOnT
 {
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
+    [Dependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
@@ -35,6 +37,7 @@ public sealed class DnaScrambleOnTriggerSystem : XOnTriggerSystem<DnaScrambleOnT
         var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
         _visualBody.ApplyProfileTo(target, newProfile);
         _humanoidProfile.ApplyProfileTo(target, newProfile);
+        _sunriseProfile.ApplyProfileTo(target, newProfile); // Sunrise-Edit
         _metaData.SetEntityName(target, newProfile.Name, raiseEvents: false); // raising events would update ID card, station record, etc.
 
         // If the entity has the respective components, then scramble the dna and fingerprint strings.

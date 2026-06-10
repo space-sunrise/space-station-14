@@ -3,29 +3,27 @@
   id: AppearanceTajaran
   name: tajaran appearance
   components:
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: TorsoTajaran
-        - id: HeadTajaran
-        - id: LeftArmTajaran
-        - id: RightArmTajaran
-        - id: LeftHandTajaran
-        - id: RightHandTajaran
-        - id: LeftLegTajaran
-        - id: RightLegTajaran
-        - id: LeftFootTajaran
-        - id: RightFootTajaran
-        - id: TailTajaran
-        - id: OrganHumanBrain
-        - id: OrganTajaranEyes
-        - id: OrganHumanTongue
-        - id: OrganAnimalHeart
-        - id: OrganHumanLungs
-        - id: OrganTajaranStomach
-        - id: OrganAnimalLiver
-        - id: OrganHumanKidneys
+  - type: InitialBody
+    organs:
+      Torso: TorsoTajaran
+      Head: HeadTajaran
+      ArmLeft: LeftArmTajaran
+      ArmRight: RightArmTajaran
+      HandRight: RightHandTajaran
+      HandLeft: LeftHandTajaran
+      LegLeft: LeftLegTajaran
+      LegRight: RightLegTajaran
+      FootLeft: LeftFootTajaran
+      FootRight: RightFootTajaran
+      Tail: TailTajaran
+      Brain: OrganHumanBrain
+      Eyes: OrganTajaranEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganAnimalHeart
+      Lungs: OrganHumanLungs
+      Stomach: OrganTajaranStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
 
 - type: entity
   parent:
@@ -35,8 +33,11 @@
   abstract: true
   components:
   - type: Interactions
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Tajaran
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
+  - type: HideableHumanoidLayers
     hideLayersOnEquip:
     - Snout
     - HeadTop
@@ -192,8 +193,10 @@
   categories: [ HideSpawnMenu ]
   description: A dummy tajaran meant to be used in character setup.
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Tajaran
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
   - type: Inventory
     speciesId: human
     femaleDisplacements:

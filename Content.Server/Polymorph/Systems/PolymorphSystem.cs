@@ -1,7 +1,7 @@
 using Content.Server.Actions;
-using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Body;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
@@ -46,6 +46,8 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!; // Sunrise-Edit
+    [Dependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
@@ -283,6 +285,11 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (configuration.TransferHumanoidAppearance)
         {
             _visualBody.CopyAppearanceFrom(uid, child);
+            // Sunrise edit start - transfer Sunrise humanoid profile extensions
+            _sunriseBody.CloneHumanoidProfile(uid, child);
+            _sunriseProfile.CloneProfile(uid, child);
+            _sunriseBody.CloneBaseLayers(uid, child);
+            // Sunrise edit end
         }
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))

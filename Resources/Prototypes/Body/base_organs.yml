@@ -4,15 +4,17 @@
 
 - type: markingsGroup
   id: Undergarments
-  limits:
-    enum.HumanoidVisualLayers.UndergarmentTop:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentTopTanktop ]
-    enum.HumanoidVisualLayers.UndergarmentBottom:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentBottomBoxers ]
+  # Sunrise edit start - underwear is handled by separate clothing layers.
+  # limits:
+  #   enum.HumanoidVisualLayers.UndergarmentTop:
+  #     limit: 1
+  #     required: false
+  #     nudityDefault: [ UndergarmentTopTanktop ]
+  #   enum.HumanoidVisualLayers.UndergarmentBottom:
+  #     limit: 1
+  #     required: false
+  #     nudityDefault: [ UndergarmentBottomBoxers ]
+  # Sunrise edit end
 
 - type: entity
   id: OrganBase
@@ -42,8 +44,8 @@
       - Chest
       - Tail
       - Overlay
-      - UndergarmentTop
-      - UndergarmentBottom
+      #- UndergarmentTop # Sunrise edit
+      # - UndergarmentBottom # Sunrise edit
 
 - type: entity
   parent: OrganBase

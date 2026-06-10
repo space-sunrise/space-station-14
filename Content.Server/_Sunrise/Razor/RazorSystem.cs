@@ -1,14 +1,11 @@
-﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
 
-using System.Linq;
 using Content.Server.DoAfter;
-using Content.Server.Humanoid;
+using Content.Shared._Sunrise.Humanoid;
+using Content.Shared._Sunrise.Razor;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
 using Content.Shared.Interaction;
-using Content.Shared._Sunrise.Razor;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Sunrise.Razor;
@@ -17,8 +14,7 @@ public sealed class RazorSystem : SharedRazorSystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly MarkingManager _markings = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private readonly SunriseHumanoidMarkingSystem _sunriseMarking = default!;
 
     public override void Initialize()
     {
@@ -87,21 +83,8 @@ public sealed class RazorSystem : SharedRazorSystem
         if (component.Target != args.Target)
             return;
 
-        MarkingCategories category;
-
-        switch (args.Category)
-        {
-            case RazorCategory.Hair:
-                category = MarkingCategories.Hair;
-                break;
-            case RazorCategory.FacialHair:
-                category = MarkingCategories.FacialHair;
-                break;
-            default:
-                return;
-        }
-
-        _humanoid.SetMarkingId(component.Target.Value, category, args.Slot, args.Marking);
+        var layer = LayerFromCategory(args.Category);
+        _sunriseMarking.SetMarkingId(component.Target.Value, layer, args.Slot, args.Marking);
 
         UpdateInterface(uid, component.Target.Value, component);
     }
@@ -154,21 +137,8 @@ public sealed class RazorSystem : SharedRazorSystem
         if (component.Target != args.Target)
             return;
 
-        MarkingCategories category;
-
-        switch (args.Category)
-        {
-            case RazorCategory.Hair:
-                category = MarkingCategories.Hair;
-                break;
-            case RazorCategory.FacialHair:
-                category = MarkingCategories.FacialHair;
-                break;
-            default:
-                return;
-        }
-
-        _humanoid.RemoveMarking(component.Target.Value, category, args.Slot);
+        var layer = LayerFromCategory(args.Category);
+        _sunriseMarking.RemoveMarking(component.Target.Value, layer, args.Slot);
 
         UpdateInterface(uid, component.Target.Value, component);
     }
@@ -211,39 +181,19 @@ public sealed class RazorSystem : SharedRazorSystem
         component.DoAfter = doAfterId;
         _audio.PlayPvs(component.ChangeHairSound, uid);
     }
+
     private void OnAddSlotDoAfter(EntityUid uid, RazorComponent component, RazorAddSlotDoAfterEvent args)
     {
-        if (args.Handled ||
-            args.Target == null ||
-            args.Cancelled ||
-            !TryComp<HumanoidProfileComponent>(component.Target, out var profile))
-        {
-            return;
-        }
-
-        MarkingCategories category;
-
-        switch (args.Category)
-        {
-            case RazorCategory.Hair:
-                category = MarkingCategories.Hair;
-                break;
-            case RazorCategory.FacialHair:
-                category = MarkingCategories.FacialHair;
-                break;
-            default:
-                return;
-        }
-
-        var marking = _markings.MarkingsByCategoryAndSpecies(category, profile.Species).Keys.FirstOrDefault();
-
-        if (string.IsNullOrEmpty(marking))
+        if (args.Handled || args.Target == null || args.Cancelled)
             return;
 
-        _humanoid.AddMarking(component.Target.Value, marking, Color.Black);
+        if (component.Target != args.Target)
+            return;
+
+        var layer = LayerFromCategory(args.Category);
+        _sunriseMarking.AddFirstAvailableMarking(component.Target.Value, layer, Color.Black);
 
         UpdateInterface(uid, component.Target.Value, component);
-
     }
 
     private void OnUiClosed(Entity<RazorComponent> ent, ref BoundUIClosedEvent args)

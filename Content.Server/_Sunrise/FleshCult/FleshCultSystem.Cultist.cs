@@ -172,14 +172,12 @@ public sealed partial class FleshCultSystem
 
     private void InitializeAppearance(EntityUid uid)
     {
-        if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
-        {
-            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.RLeg);
-            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.LLeg);
-            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.RFoot);
-            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.LFoot);
-            Dirty(uid, appearance);
-        }
+        var hideable = EnsureComp<HideableHumanoidLayersComponent>(uid);
+        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.RLeg);
+        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.LLeg);
+        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.RFoot);
+        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.LFoot);
+        Dirty(uid, hideable);
     }
 
     private void OnShutdown(EntityUid uid, FleshCultistComponent component, ComponentShutdown args)
