@@ -339,29 +339,16 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     private string BuildTranscript(Entity<TapeCassetteComponent> cassette)
     {
         var transcript = new StringBuilder();
-        var voiceNumbers = new Dictionary<string, int>();
         foreach (var record in cassette.Comp.Records)
         {
             transcript.AppendLine(Loc.GetString(
                 "tape-recorder-transcript-line",
                 ("time", FormatTime(record.Time)),
-                ("speaker", GetTranscriptSpeaker(record, voiceNumbers)),
+                ("speaker", record.Speaker),
                 ("message", record.Message)));
         }
 
         return transcript.ToString().TrimEnd();
-    }
-
-    private string GetTranscriptSpeaker(TapeCassetteRecord record, Dictionary<string, int> voiceNumbers)
-    {
-        var voiceKey = record.VoiceId?.ToString() ?? record.Speaker;
-        if (!voiceNumbers.TryGetValue(voiceKey, out var number))
-        {
-            number = voiceNumbers.Count + 1;
-            voiceNumbers[voiceKey] = number;
-        }
-
-        return Loc.GetString("tape-recorder-transcript-speaker", ("number", number));
     }
 
     private bool TryGetCassette(Entity<TapeRecorderComponent> recorder, out Entity<TapeCassetteComponent> cassette)

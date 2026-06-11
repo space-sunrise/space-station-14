@@ -7,7 +7,7 @@ namespace Content.Client._Sunrise.TapeRecorder;
 public sealed class TapeRecorderTimeline : Control
 {
     private static readonly Color BackgroundColor = new(0.08f, 0.09f, 0.10f);
-    private static readonly Color EmptyTapeColor = new(0.18f, 0.22f, 0.20f);
+    private static readonly Color EmptyTapeColor = new(0.16f, 0.64f, 0.26f);
     private static readonly Color UsedTapeColor = new(0.82f, 0.18f, 0.14f);
     private static readonly Color PositionColor = new(0.62f, 0.96f, 0.50f);
     private static readonly Color BorderColor = new(0.02f, 0.02f, 0.02f);
