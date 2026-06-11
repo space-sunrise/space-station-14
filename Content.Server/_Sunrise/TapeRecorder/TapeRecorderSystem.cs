@@ -340,7 +340,6 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     {
         var transcript = new StringBuilder();
         var voiceNumbers = new Dictionary<string, int>();
-        transcript.AppendLine(Loc.GetString("tape-recorder-transcript-start"));
         foreach (var record in cassette.Comp.Records)
         {
             transcript.AppendLine(Loc.GetString(
@@ -350,8 +349,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
                 ("message", record.Message)));
         }
 
-        transcript.Append(Loc.GetString("tape-recorder-transcript-end"));
-        return transcript.ToString();
+        return transcript.ToString().TrimEnd();
     }
 
     private string GetTranscriptSpeaker(TapeCassetteRecord record, Dictionary<string, int> voiceNumbers)
