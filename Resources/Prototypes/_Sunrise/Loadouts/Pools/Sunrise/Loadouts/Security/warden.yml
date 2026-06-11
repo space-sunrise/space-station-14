@@ -1,8 +1,5 @@
 # Head
-- type: loadout
-  id: SecurityBeretSecred
-  equipment:
-    head: ClothingHeadHatBeretSecuritySecred
+
 
 - type: loadout
   id: WardenHatSecred
