@@ -1,11 +1,12 @@
 <ui:FancyWindow xmlns="https://spacestation14.io"
                 xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                xmlns:tape="clr-namespace:Content.Client._Sunrise.TapeRecorder"
                 SetSize="560 190"
                 Title="{Loc 'tape-recorder-ui-title'}"
                 Resizable="False">
     <BoxContainer Margin="6 4" Orientation="Vertical" SeparationOverride="4">
         <Label Name="CassetteLabel" Text="{Loc 'tape-recorder-ui-no-cassette'}" />
-        <Slider Name="PlaybackSlider" HorizontalExpand="True" Disabled="True" />
+        <tape:TapeRecorderTimeline Name="PlaybackTimeline" HorizontalExpand="True" MinSize="0 18" />
         <Label Name="TimeLabel" Text="" />
         <PanelContainer StyleClasses="LowDivider" />
         <BoxContainer Orientation="Horizontal" SeparationOverride="4">

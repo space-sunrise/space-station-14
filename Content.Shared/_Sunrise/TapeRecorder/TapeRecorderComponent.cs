@@ -124,15 +124,21 @@ public sealed class TapeRecorderBoundUserInterfaceState(
     TapeRecorderMode mode,
     TimeSpan position,
     TimeSpan capacity,
+    List<TapeCassetteRecordedRange> recordedRanges,
     int recordCount,
-    bool hasCassette) : BoundUserInterfaceState
+    bool hasCassette,
+    bool canRecord,
+    bool canPlay) : BoundUserInterfaceState
 {
     public string CassetteName { get; } = cassetteName;
     public TapeRecorderMode Mode { get; } = mode;
     public TimeSpan Position { get; } = position;
     public TimeSpan Capacity { get; } = capacity;
+    public List<TapeCassetteRecordedRange> RecordedRanges { get; } = recordedRanges;
     public int RecordCount { get; } = recordCount;
     public bool HasCassette { get; } = hasCassette;
+    public bool CanRecord { get; } = canRecord;
+    public bool CanPlay { get; } = canPlay;
 }
 
 [Serializable, NetSerializable]

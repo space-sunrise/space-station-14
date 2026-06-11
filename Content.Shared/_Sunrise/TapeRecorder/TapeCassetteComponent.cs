@@ -1,5 +1,7 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared._Sunrise.TTS;
 
 namespace Content.Shared._Sunrise.TapeRecorder;
 
@@ -23,10 +25,25 @@ public sealed partial class TapeCassetteComponent : Component
     /// Recorded speech lines.
     /// </summary>
     public List<TapeCassetteRecord> Records = [];
+
+    /// <summary>
+    /// Tape spans that have already been used for recording.
+    /// </summary>
+    public List<TapeCassetteRecordedRange> RecordedRanges = [];
 }
 
 /// <summary>
 /// A single speech line recorded on a cassette.
 /// </summary>
 [Serializable, NetSerializable]
-public readonly record struct TapeCassetteRecord(TimeSpan Time, string Speaker, string Message);
+public readonly record struct TapeCassetteRecord(
+    TimeSpan Time,
+    string Speaker,
+    string Message,
+    ProtoId<TTSVoicePrototype>? VoiceId);
+
+/// <summary>
+/// A used tape span that cannot be recorded over.
+/// </summary>
+[Serializable, NetSerializable]
+public readonly record struct TapeCassetteRecordedRange(TimeSpan Start, TimeSpan End);

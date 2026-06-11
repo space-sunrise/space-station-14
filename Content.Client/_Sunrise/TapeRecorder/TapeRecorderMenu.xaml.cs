@@ -28,9 +28,7 @@ public sealed partial class TapeRecorderMenu : FancyWindow
             "tape-recorder-ui-cassette",
             ("cassette", state.CassetteName));
 
-        PlaybackSlider.MaxValue = (float) state.Capacity.TotalSeconds;
-        PlaybackSlider.SetValueWithoutEvent((float) state.Position.TotalSeconds);
-        PlaybackSlider.Disabled = true;
+        PlaybackTimeline.UpdateState(state.Position, state.Capacity, state.RecordedRanges);
 
         TimeLabel.Text = Loc.GetString(
             "tape-recorder-ui-time",
@@ -40,8 +38,8 @@ public sealed partial class TapeRecorderMenu : FancyWindow
             ("records", state.RecordCount));
 
         StopButton.Disabled = state.Mode == TapeRecorderMode.Stopped;
-        RecordButton.Disabled = !state.HasCassette || state.Position >= state.Capacity;
-        PlayButton.Disabled = !state.HasCassette || state.RecordCount == 0;
+        RecordButton.Disabled = !state.HasCassette || !state.CanRecord;
+        PlayButton.Disabled = !state.HasCassette || !state.CanPlay;
         RewindButton.Disabled = !state.HasCassette || state.Position <= TimeSpan.Zero;
         PrintButton.Disabled = !state.HasCassette || state.RecordCount == 0;
 

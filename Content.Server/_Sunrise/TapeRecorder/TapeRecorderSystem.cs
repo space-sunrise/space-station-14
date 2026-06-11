@@ -8,6 +8,7 @@ using Content.Shared._Sunrise.TapeRecorder;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Chat;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Paper;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
@@ -27,6 +28,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -90,6 +92,9 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         if (ent.Comp.Mode != TapeRecorderMode.Recording)
             return;
 
+        if (!IsLivePlayerSpeechSource(args.Source))
+            return;
+
         if (!TryGetCassette(ent, out var cassette))
             return;
 
@@ -110,7 +115,8 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         cassette.Comp.Records.Add(new TapeCassetteRecord(
             cassette.Comp.Position,
             GetSpeakerName(ent, args.Source),
-            args.Message));
+            args.Message,
+            GetSpeakerVoice(args.Source)));
 
         Dirty(cassette);
         UpdateUserInterface(ent);
@@ -181,7 +187,14 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             return false;
         }
 
-        if (mode == TapeRecorderMode.Playing && cassette.Comp.Records.Count == 0)
+        if (mode == TapeRecorderMode.Recording && IsTapePositionUsed(cassette, cassette.Comp.Position))
+        {
+            if (!quiet)
+                _popup.PopupEntity(Loc.GetString("tape-recorder-popup-tape-used"), ent, user);
+            return false;
+        }
+
+        if (mode == TapeRecorderMode.Playing && !HasUsedTape(cassette))
         {
             if (!quiet)
                 _popup.PopupEntity(Loc.GetString("tape-recorder-popup-tape-empty"), ent, user);
@@ -206,13 +219,24 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         switch (ent.Comp.Mode)
         {
             case TapeRecorderMode.Recording:
-                cassette.Comp.Position = Min(cassette.Comp.Capacity, cassette.Comp.Position + elapsed);
+                var oldPosition = cassette.Comp.Position;
+                var requestedPosition = Min(cassette.Comp.Capacity, cassette.Comp.Position + elapsed);
+                var nextUsedPosition = GetNextUsedPosition(cassette, oldPosition);
+                cassette.Comp.Position = Min(requestedPosition, nextUsedPosition);
+                AddRecordedRange(cassette, oldPosition, cassette.Comp.Position);
+
                 if (cassette.Comp.Position >= cassette.Comp.Capacity)
+                {
                     Stop(ent);
+                }
+                else if (cassette.Comp.Position < requestedPosition)
+                {
+                    Stop(ent);
+                }
                 break;
 
             case TapeRecorderMode.Playing:
-                var oldPosition = cassette.Comp.Position;
+                oldPosition = cassette.Comp.Position;
                 cassette.Comp.Position = Min(cassette.Comp.Capacity, cassette.Comp.Position + elapsed);
                 PlayDueRecords(ent, cassette, oldPosition, cassette.Comp.Position);
                 if (cassette.Comp.Position >= cassette.Comp.Capacity)
@@ -264,7 +288,8 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
                 checkRadioPrefix: false,
                 ignoreActionBlocker: true);
 
-            if (!_prototype.TryIndex<TTSVoicePrototype>(recorder.Comp.PlaybackVoice, out var voice))
+            var voiceId = record.VoiceId ?? recorder.Comp.PlaybackVoice;
+            if (!_prototype.TryIndex<TTSVoicePrototype>(voiceId, out var voice))
                 return;
 
             var recipients = Filter.Pvs(recorder.Owner);
@@ -314,18 +339,31 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
     private string BuildTranscript(Entity<TapeCassetteComponent> cassette)
     {
         var transcript = new StringBuilder();
+        var voiceNumbers = new Dictionary<string, int>();
         transcript.AppendLine(Loc.GetString("tape-recorder-transcript-start"));
         foreach (var record in cassette.Comp.Records)
         {
             transcript.AppendLine(Loc.GetString(
                 "tape-recorder-transcript-line",
                 ("time", FormatTime(record.Time)),
-                ("speaker", record.Speaker),
+                ("speaker", GetTranscriptSpeaker(record, voiceNumbers)),
                 ("message", record.Message)));
         }
 
         transcript.Append(Loc.GetString("tape-recorder-transcript-end"));
         return transcript.ToString();
+    }
+
+    private string GetTranscriptSpeaker(TapeCassetteRecord record, Dictionary<string, int> voiceNumbers)
+    {
+        var voiceKey = record.VoiceId?.ToString() ?? record.Speaker;
+        if (!voiceNumbers.TryGetValue(voiceKey, out var number))
+        {
+            number = voiceNumbers.Count + 1;
+            voiceNumbers[voiceKey] = number;
+        }
+
+        return Loc.GetString("tape-recorder-transcript-speaker", ("number", number));
     }
 
     private bool TryGetCassette(Entity<TapeRecorderComponent> recorder, out Entity<TapeCassetteComponent> cassette)
@@ -363,7 +401,10 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         var position = TimeSpan.Zero;
         var capacity = TimeSpan.Zero;
         var records = 0;
+        var recordedRanges = new List<TapeCassetteRecordedRange>();
         var hasCassette = false;
+        var canRecord = false;
+        var canPlay = false;
 
         if (TryGetCassette(ent, out var cassette))
         {
@@ -371,7 +412,10 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             position = cassette.Comp.Position;
             capacity = cassette.Comp.Capacity;
             records = cassette.Comp.Records.Count;
+            recordedRanges = cassette.Comp.RecordedRanges.ToList();
             hasCassette = true;
+            canRecord = position < capacity && !IsTapePositionUsed(cassette, position);
+            canPlay = HasUsedTape(cassette);
         }
 
         _ui.SetUiState(ent.Owner, TapeRecorderUiKey.Key, new TapeRecorderBoundUserInterfaceState(
@@ -379,8 +423,11 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             ent.Comp.Mode,
             position,
             capacity,
+            recordedRanges,
             records,
-            hasCassette));
+            hasCassette,
+            canRecord,
+            canPlay));
     }
 
     private string GetSpeakerName(Entity<TapeRecorderComponent> recorder, EntityUid source) =>
@@ -388,6 +435,70 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 
     private string GetPlaybackSpeakerName(Entity<TapeRecorderComponent> recorder, TapeCassetteRecord record) =>
         $"{Name(recorder)} ({record.Speaker})";
+
+    private ProtoId<TTSVoicePrototype>? GetSpeakerVoice(EntityUid source)
+    {
+        if (!TryComp<TTSComponent>(source, out var ttsComponent))
+            return null;
+
+        var voiceId = ttsComponent.VoicePrototypeId;
+        if (voiceId == null || string.IsNullOrWhiteSpace(voiceId.Value))
+            return null;
+
+        var voiceEv = new TransformSpeakerVoiceEvent(source, voiceId.Value);
+        RaiseLocalEvent(source, voiceEv);
+        return voiceEv.VoiceId;
+    }
+
+    private bool IsLivePlayerSpeechSource(EntityUid source) =>
+        HasComp<ActorComponent>(source) && _mobState.IsAlive(source);
+
+    private static bool IsTapePositionUsed(Entity<TapeCassetteComponent> cassette, TimeSpan position)
+    {
+        foreach (var range in cassette.Comp.RecordedRanges)
+        {
+            if (position >= range.Start && position < range.End)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool HasUsedTape(Entity<TapeCassetteComponent> cassette) =>
+        cassette.Comp.Records.Count > 0 || cassette.Comp.RecordedRanges.Count > 0;
+
+    private static TimeSpan GetNextUsedPosition(Entity<TapeCassetteComponent> cassette, TimeSpan position)
+    {
+        var next = cassette.Comp.Capacity;
+        foreach (var range in cassette.Comp.RecordedRanges)
+        {
+            if (range.Start > position && range.Start < next)
+                next = range.Start;
+        }
+
+        return next;
+    }
+
+    private static void AddRecordedRange(Entity<TapeCassetteComponent> cassette, TimeSpan start, TimeSpan end)
+    {
+        if (end <= start)
+            return;
+
+        cassette.Comp.RecordedRanges.Add(new TapeCassetteRecordedRange(start, end));
+        cassette.Comp.RecordedRanges.Sort(static (a, b) => a.Start.CompareTo(b.Start));
+
+        for (var i = 0; i < cassette.Comp.RecordedRanges.Count - 1; i++)
+        {
+            var current = cassette.Comp.RecordedRanges[i];
+            var next = cassette.Comp.RecordedRanges[i + 1];
+            if (current.End < next.Start)
+                continue;
+
+            cassette.Comp.RecordedRanges[i] = new TapeCassetteRecordedRange(current.Start, Max(current.End, next.End));
+            cassette.Comp.RecordedRanges.RemoveAt(i + 1);
+            i--;
+        }
+    }
 
     private static bool IsValidMode(TapeRecorderMode mode) =>
         Enum.IsDefined(typeof(TapeRecorderMode), mode);

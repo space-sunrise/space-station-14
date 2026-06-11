@@ -18,12 +18,14 @@ using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 
 namespace Content.Server.Communications
 {
@@ -34,6 +36,7 @@ namespace Content.Server.Communications
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
+        [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -297,7 +300,8 @@ namespace Content.Server.Communications
                 msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
             // Sunrise-start
             var voice = comp.AnnounceVoice;
-            if (TryComp<TTSComponent>(message.Actor, out var ttsComponent))
+            if (IsLivePlayerSpeechSource(message.Actor) &&
+                TryComp<TTSComponent>(message.Actor, out var ttsComponent))
             {
                 voice = ttsComponent.VoicePrototypeId;
             }
@@ -402,12 +406,20 @@ namespace Content.Server.Communications
             if (!this.IsPowered(uid, EntityManager))
                 return;
 
+            if (!IsLivePlayerSpeechSource(ev.Source))
+                return;
+
             var voice = comp.AnnounceVoice;
             if (TryComp<TTSComponent>(ev.Source, out var ttsComponent))
             {
                 voice = ttsComponent.VoicePrototypeId;
             }
             _chatSystem.DispatchStationAnnouncement(uid, ev.Message, sender: Loc.GetString(comp.Title), playDefault: false, playTts: true, colorOverride: comp.Color, announceVoice: voice);
+        }
+
+        private bool IsLivePlayerSpeechSource(EntityUid source)
+        {
+            return HasComp<ActorComponent>(source) && _mobState.IsAlive(source);
         }
 
         private void StopRelay(EntityUid uid, CommunicationsConsoleComponent comp, bool announce)
