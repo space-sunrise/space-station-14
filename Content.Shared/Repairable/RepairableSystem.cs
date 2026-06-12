@@ -122,15 +122,22 @@ public sealed partial class RepairableSystem : EntitySystem
         // Sunrise-start - use unrepairable types from component
         private bool CanRepair(EntityUid uid, Dictionary<string, FixedPoint2> damage, RepairableComponent component)
         {
-            if (component.Damage == null)
-            {
-                return true;
-            }
-
             var unrepairableTypes = new HashSet<string>();
             if (TryComp<UnrepairableDamageComponent>(uid, out var unrepairable))
             {
                 unrepairableTypes = unrepairable.Types;
+            }
+
+            if (component.Damage == null)
+            {
+                foreach (var type in damage)
+                {
+                    if (type.Value > 0 && !unrepairableTypes.Contains(type.Key))
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
 
             foreach (var type in component.Damage.DamageDict)
