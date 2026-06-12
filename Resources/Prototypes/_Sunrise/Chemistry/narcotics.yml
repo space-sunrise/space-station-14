@@ -1,8 +1,8 @@
 - type: reagent
-  id: Fentanyl
-  name: reagent-name-fentanyl
+  id: Fentamyl
+  name: reagent-name-fentamyl
   group: Narcotics
-  desc: reagent-desc-fentanyl
+  desc: reagent-desc-fentamyl
   physicalDesc: reagent-physical-desc-oily
   flavor: medicine
   color: "#6B4C3B"
