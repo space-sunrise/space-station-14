@@ -99,8 +99,8 @@ public sealed partial class RepairableSystem : EntitySystem
         if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
             return;
 
-        // Sunrise-start
-        if (!CanRepair(damageable.Damage.DamageDict, ent.Comp))
+        // Sunrise-start - check unrepairable component
+        if (!CanRepair(ent.Owner, damageable.Damage.DamageDict, ent.Comp))
             return;
         // Sunrise-end
 
@@ -119,17 +119,23 @@ public sealed partial class RepairableSystem : EntitySystem
         args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairDoAfterEvent(), ent.Comp.FuelCost);
     }
 
-        // Sunrise-start
-        private bool CanRepair(Dictionary<string, FixedPoint2> damage, RepairableComponent component)
+        // Sunrise-start - use unrepairable types from component
+        private bool CanRepair(EntityUid uid, Dictionary<string, FixedPoint2> damage, RepairableComponent component)
         {
             if (component.Damage == null)
             {
                 return true;
             }
 
+            var unrepairableTypes = new HashSet<string>();
+            if (TryComp<UnrepairableDamageComponent>(uid, out var unrepairable))
+            {
+                unrepairableTypes = unrepairable.Types;
+            }
+
             foreach (var type in component.Damage.DamageDict)
             {
-                if (damage.TryGetValue(type.Key, out var value) && value > 0 && type.Key != "Mangleness" && type.Key != "Deterioration")
+                if (damage.TryGetValue(type.Key, out var value) && value > 0 && !unrepairableTypes.Contains(type.Key))
                 {
                     return true;
                 }

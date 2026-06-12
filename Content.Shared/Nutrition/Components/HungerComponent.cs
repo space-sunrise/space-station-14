@@ -117,7 +117,8 @@ public sealed partial class HungerComponent : Component
     [DataField("starvationDamage")]
     public DamageSpecifier? StarvationDamage;
 
-    // Sunrise-Start
+    // Sunrise-Start - Fields migrated to HungerComponent.Sunrise.cs
+    /*
     /// <summary>
     /// Mangleness healing amount when hunger level is Okay or higher. Negative values indicate healing.
     /// </summary>
@@ -153,6 +154,7 @@ public sealed partial class HungerComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField, Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool HadMangleness;
+    */
     // Sunrise-End
 
     /// <summary>

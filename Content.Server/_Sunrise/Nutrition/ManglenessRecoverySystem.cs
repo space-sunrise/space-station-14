@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
@@ -16,8 +17,40 @@ public sealed class ManglenessRecoverySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<HungerComponent, ComponentInit>(OnHungerInit);
+        SubscribeLocalEvent<ThirstComponent, ComponentInit>(OnThirstInit);
+        SubscribeLocalEvent<DamageableComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<HungerComponent, HungerDecayRateModifierEvent>(OnHungerDecayRateModifier);
         SubscribeLocalEvent<ThirstComponent, ThirstDecayRateModifierEvent>(OnThirstDecayRateModifier);
+    }
+
+    private void OnHungerInit(EntityUid uid, HungerComponent component, ComponentInit args)
+    {
+        component.HadMangleness = _damageable.HasMangleness(uid);
+    }
+
+    private void OnThirstInit(EntityUid uid, ThirstComponent component, ComponentInit args)
+    {
+        component.HadMangleness = _damageable.HasMangleness(uid);
+    }
+
+    private void OnDamageChanged(EntityUid uid, DamageableComponent component, DamageChangedEvent args)
+    {
+        var hasMangleness = _damageable.HasMangleness(uid);
+
+        if (TryComp<HungerComponent>(uid, out var hunger) && hunger.HadMangleness != hasMangleness)
+        {
+            hunger.HadMangleness = hasMangleness;
+            DirtyField(uid, hunger, nameof(HungerComponent.HadMangleness));
+            RaiseLocalEvent(uid, new HungerManglenessChangedEvent(hasMangleness));
+        }
+
+        if (TryComp<ThirstComponent>(uid, out var thirst) && thirst.HadMangleness != hasMangleness)
+        {
+            thirst.HadMangleness = hasMangleness;
+            DirtyField(uid, thirst, nameof(ThirstComponent.HadMangleness));
+            RaiseLocalEvent(uid, new ThirstManglenessChangedEvent(hasMangleness));
+        }
     }
 
     public override void Update(float frameTime)
@@ -30,15 +63,7 @@ public sealed class ManglenessRecoverySystem : EntitySystem
             if (_timing.CurTime < hunger.NextThresholdUpdateTime || _mobState.IsDead(uid))
                 continue;
 
-            var hasMangleness = _damageable.HasMangleness(uid);
-            if (hasMangleness != hunger.HadMangleness)
-            {
-                hunger.HadMangleness = hasMangleness;
-                DirtyField(uid, hunger, nameof(HungerComponent.HadMangleness));
-                RaiseLocalEvent(uid, new HungerManglenessChangedEvent(hasMangleness));
-            }
-
-            if (!hasMangleness)
+            if (!hunger.HadMangleness)
                 continue;
 
             if (hunger.CurrentThreshold >= HungerThreshold.Okay)
@@ -61,15 +86,7 @@ public sealed class ManglenessRecoverySystem : EntitySystem
             if (_timing.CurTime < thirst.NextUpdateTime || _mobState.IsDead(uid))
                 continue;
 
-            var hasMangleness = _damageable.HasMangleness(uid);
-            if (hasMangleness != thirst.HadMangleness)
-            {
-                thirst.HadMangleness = hasMangleness;
-                DirtyField(uid, thirst, nameof(ThirstComponent.HadMangleness));
-                RaiseLocalEvent(uid, new ThirstManglenessChangedEvent(hasMangleness));
-            }
-
-            if (!hasMangleness)
+            if (!thirst.HadMangleness)
                 continue;
 
             if (thirst.CurrentThirstThreshold >= ThirstThreshold.Okay)
@@ -89,7 +106,7 @@ public sealed class ManglenessRecoverySystem : EntitySystem
 
     private void OnHungerDecayRateModifier(EntityUid uid, HungerComponent component, HungerDecayRateModifierEvent args)
     {
-        if (!_damageable.HasMangleness(uid))
+        if (!component.HadMangleness)
             return;
 
         switch (component.CurrentThreshold)
@@ -108,7 +125,7 @@ public sealed class ManglenessRecoverySystem : EntitySystem
 
     private void OnThirstDecayRateModifier(EntityUid uid, ThirstComponent component, ThirstDecayRateModifierEvent args)
     {
-        if (!_damageable.HasMangleness(uid))
+        if (!component.HadMangleness)
             return;
 
         switch (component.CurrentThirstThreshold)

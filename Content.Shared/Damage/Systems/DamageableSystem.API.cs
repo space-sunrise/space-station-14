@@ -106,7 +106,7 @@ public sealed partial class DamageableSystem
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
         newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, ignoreVariance); // Sunrise-Edit
-        return !newDamage.Empty;
+        return !damage.Empty;
     }
 
     /// <summary>
@@ -167,9 +167,7 @@ public sealed partial class DamageableSystem
                 ent.Comp.DamageModifierSetId != null &&
                 _prototypeManager.Resolve(ent.Comp.DamageModifierSetId, out var modifierSet)
             )
-                // Sunrise edit start - respect armor penetration and healing prevention in base damage modifier set
-                damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet, armorPenetration, canHeal);
-                // Sunrise edit end
+                damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
 
             // TODO DAMAGE
             // byref struct event.
@@ -468,4 +466,21 @@ public sealed partial class DamageableSystem
 
         Dirty(ent);
     }
+
+    // Sunrise-Start - Migrated to DamageableSystem.Sunrise.cs
+    /*
+    /// <summary>
+    /// Checks if an entity has Mangleness damage greater than zero.
+    /// </summary>
+    /// <param name="uid">The entity to check</param>
+    /// <returns>True if the entity has Mangleness damage greater than zero</returns>
+    public bool HasMangleness(EntityUid uid)
+    {
+        if (!_damageableQuery.TryGetComponent(uid, out var damageable))
+            return false;
+
+        return damageable.Damage.DamageDict.GetValueOrDefault("Mangleness", FixedPoint2.Zero) > FixedPoint2.Zero;
+    }
+    */
+    // Sunrise-End
 }

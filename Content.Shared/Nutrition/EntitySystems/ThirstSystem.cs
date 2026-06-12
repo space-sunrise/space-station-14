@@ -23,7 +23,9 @@ using Content.Shared.FixedPoint;
 namespace Content.Shared.Nutrition.EntitySystems;
 
 [UsedImplicitly]
-public sealed class ThirstSystem : EntitySystem
+// Sunrise edit start - make partial
+public sealed partial class ThirstSystem : EntitySystem
+// Sunrise edit end
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -261,8 +263,12 @@ public sealed class ThirstSystem : EntitySystem
         return ev.ActualDecayRate;
     }
 
+    // Sunrise-Start - Migrated to ThirstSystem.Sunrise.cs
+    /*
     private void OnThirstManglenessChanged(EntityUid uid, ThirstComponent component, ThirstManglenessChangedEvent args)
     {
         UpdateEffects(uid, component);
     }
+    */
+    // Sunrise-End
 }

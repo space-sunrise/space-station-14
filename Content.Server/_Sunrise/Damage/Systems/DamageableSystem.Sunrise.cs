@@ -62,6 +62,6 @@ public static class DamageableSystemExtensions
             damage *= varianceMultiplier;
         }
 
-        return system.ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, armorPenetration, canHeal);
+        return system.ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, ignoreVariance, armorPenetration, canHeal);
     }
 }

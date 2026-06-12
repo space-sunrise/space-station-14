@@ -47,9 +47,11 @@ public sealed partial class ThirstComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan UpdateRate = TimeSpan.FromSeconds(1);
 
-    // Sunrise-Start
+    // Sunrise-Start - Fields migrated to ThirstComponent.Sunrise.cs
+    /*
     [DataField]
     public DamageSpecifier? DehydrationDamage;
+    */
     // Sunrise-End
 
     [DataField("thresholds")]
@@ -73,7 +75,8 @@ public sealed partial class ThirstComponent : Component
         {ThirstThreshold.Dead, "Parched"},
     };
 
-    // Sunrise-Start
+    // Sunrise-Start - Fields migrated to ThirstComponent.Sunrise.cs
+    /*
     /// <summary>
     /// Mangeliness healing amount when thirst level is Okay or higher. Negative values indicate healing (damage recovery signal).
     /// </summary>
@@ -111,6 +114,7 @@ public sealed partial class ThirstComponent : Component
     [AutoNetworkedField]
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool HadMangleness;
+    */
     // Sunrise-End
 }
 

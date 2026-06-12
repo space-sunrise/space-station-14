@@ -21,7 +21,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public sealed class HungerSystem : EntitySystem
+// Sunrise edit start - make partial
+public sealed partial class HungerSystem : EntitySystem
+// Sunrise edit end
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -296,8 +298,12 @@ public sealed class HungerSystem : EntitySystem
         }
     }
 
+    // Sunrise-Start - Migrated to HungerSystem.Sunrise.cs
+    /*
     private void OnHungerManglenessChanged(EntityUid uid, HungerComponent component, HungerManglenessChangedEvent args)
     {
         DoHungerThresholdEffects(uid, component, force: true);
     }
+    */
+    // Sunrise-End
 }
