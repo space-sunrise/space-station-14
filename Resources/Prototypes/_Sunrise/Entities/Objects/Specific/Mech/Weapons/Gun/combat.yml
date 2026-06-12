@@ -376,21 +376,22 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_kord_inhands.rsi
     size: Ginormous
   - type: Gun
-    minAngle: 18
+    minAngle: 1
     maxAngle: 50
-    angleIncrease: 1
-    angleDecay: 18
-    fireRate: 5
+    angleIncrease: 5
+    angleDecay: 30
+    fireRate: 4.5
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/ump45-1.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
       params:
-        volume: -1
+        volume: 15
+        pitch: 1.9
   - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavy127mm
-    fireCost: 6
+    fireCost: 9
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice

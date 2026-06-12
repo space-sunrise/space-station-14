@@ -17,8 +17,10 @@
   - type: Clothing
     equippedPrefix: charging
     quickEquip: false
+    sprite: Objects/Power/portable_recharger.rsi
     slots:
     - back
+    - suitStorage # Sunrise-Edit
   - type: Charger
     slotId: charger_slot
     portable: true

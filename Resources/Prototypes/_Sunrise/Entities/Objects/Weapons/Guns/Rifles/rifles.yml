@@ -645,8 +645,8 @@
     dismantleChance: 0.004 # Примерно 150-200 патронов
     selfDamage:
       types:
-        Blunt: 5
-        Heat: 5
+        Blunt: 8
+        Heat: 8
     items:
       - id: ModularBarrel
         launchAngle: 0

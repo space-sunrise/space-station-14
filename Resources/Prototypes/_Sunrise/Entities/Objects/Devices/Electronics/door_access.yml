@@ -60,4 +60,4 @@
   suffix: Brigmed, Locked
   components:
   - type: AccessReader
-    access: [["Security"], ["Cadet"], ["Command"]]
+    access: [["Security"], ["Cadet"], ["Command"], ["Brigmedic"]]

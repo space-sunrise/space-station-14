@@ -167,6 +167,9 @@
   id: JobCBURNLeader
 
 - type: playTimeTracker
+  id: AntagSELFAgent
+
+- type: playTimeTracker
   id: AntagChangeling
 
 - type: playTimeTracker

@@ -13,6 +13,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: head_rev
+  storytellerStress: 2
 
 - type: antag
   id: Rev
@@ -22,7 +23,7 @@
   playTimeTracker: AntagRevolutionary # Sunrise-Edit
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
-  storytellerStress: 0.5 # Sunrise-Edit
+  storytellerStress: 0.2 # Sunrise-Edit
 
 - type: startingGear
   id: HeadRevGear

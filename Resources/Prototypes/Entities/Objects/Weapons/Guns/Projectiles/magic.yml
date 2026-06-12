@@ -59,7 +59,7 @@
     duration: 2
   # Sunrise-End
   - type: Explosive
-    explosionType: FireBomb
+    explosionType: DragonBreathExplosion # Sunrise-Edit
     totalIntensity: 5 # low intensity, the point is to burn attackers not to break open walls, dragons can just eat them
     intensitySlope: 1
     maxIntensity: 3

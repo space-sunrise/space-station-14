@@ -5,6 +5,7 @@
   setPreference: false
   playTimeTracker: AntagFugitive
   objective: roles-antag-fugitive-objective
+  storytellerStress: 0.5
 
 - type: startingGear
   id: FugitiveStartingGear

@@ -291,6 +291,8 @@ ghost-role-information-artifact-name = Разумный артефакт
 ghost-role-information-artifact-description = Осуществляйте свои инопланетные прихоти. Принудительно активируйте свои узлы во благо или во зло.
 ghost-role-information-syndie-assaultborg-name = Штурмовой киборг Синдиката
 ghost-role-information-syndie-assaultborg-description = Ядерным оперативникам требуется подкрепление. Вы, хладнокремниевая машина для убийств, будете им помогать. Больше дакки!
+ghost-role-information-emotional-support-scurret-name = Скуррет эмоциональной поддержки
+ghost-role-information-emotional-support-scurret-description = Поддерживайте экипаж, будьте очаровательным и почаще говорите «ва».
 ghost-role-information-expedition-pirate-rules = Вы [color=red][bold]Умный Пират[/bold][/color] более умный ваших товарищей, не дайте утилизаторам вас ограбить. Вам [color=red][bold]запрещено[/bold][/color] покидать комплекс и саму экспедицию на шаттле.
 ghost-role-information-rules-expedition-pirate-antagonist =
     Вы — [color=red][bold]NPC-пират[/bold][/color]. Ваши намерения вредят станции и её экипажу.

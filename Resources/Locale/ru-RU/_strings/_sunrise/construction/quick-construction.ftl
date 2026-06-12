@@ -1,0 +1,12 @@
+quickconstruction-category-pipe = трубы
+quickconstruction-category-tile = плитка
+quickconstruction-category-railing = перила
+quickconstruction-category-steel = сталь
+quickconstruction-category-metal-rod = прутья
+quickconstruction-category-glass = стекло
+quickconstruction-category-reinforced-glass = армированное стекло
+quickconstruction-category-uranium-glass = урановое стекло
+quickconstruction-category-reinforced-uranium-glass = армированное урановое стекло
+quickconstruction-category-plasma-glass = плазменное стекло
+quickconstruction-category-reinforced-plasma-glass = армированное плазменное стекло
+quickconstruction-category-clockwork-glass = часовое стекло

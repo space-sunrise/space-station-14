@@ -217,7 +217,7 @@
 - type: entity
   id: ShellShotgunFlechette
   name: shell (.50 flechette)
-  parent: [ BaseShellShotgun, BaseSyndicateContraband ]
+  parent: [ BaseShellShotgun, BaseMajorContraband ]
   components:
   - type: Sprite
     layers:
@@ -234,6 +234,32 @@
     proto: PelletShotgunFlechetteSpreadTrace
   - type: Tag
     tags:
+    - Cartridge
+    - ShellShotgun
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecuritySalvageContraband ]
+  id: ShellShotgunBirdshot
+  name: 12 gauge birdshot
+  description: A wide-spread shell loaded with dozens of tiny pellets. Devastating up close, nearly useless at range.
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B87333"
+      - state: spent
+        map: [ "enum.AmmoVisualLayers.Spent" ]
+        visible: false
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+    proto: PelletShotgunBirdshotSpreadTrace
+  - type: Tag
+    tags:
+    - Cartridge
     - ShellShotgun
 
 - type: entity

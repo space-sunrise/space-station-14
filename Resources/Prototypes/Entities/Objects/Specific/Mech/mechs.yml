@@ -118,6 +118,10 @@
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
+      # Sunrise edit start - radial active equipment selector
+      enum.MechEquipmentSelectUiKey.Key:
+        type: MechEquipmentSelectBoundUserInterface
+      # Sunrise edit end
   - type: MeleeWeapon
     hidden: true
     animation: WeaponArcMechDisabled # Sunrise-Edit

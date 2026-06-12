@@ -1193,10 +1193,10 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Heat: 13
-        Slash: 13
-        Structural: 23
-    penetrationThreshold: 800
+        Heat: 11
+        Slash: 11
+        Structural: 28
+    penetrationThreshold: 300
     penetrationDamageTypeRequirement:
     - Structural
   - type: Ammo

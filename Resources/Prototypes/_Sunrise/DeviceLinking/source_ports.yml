@@ -2,3 +2,13 @@
   id: WrongCode
   name: signal-port-name-wrong-code
   description: signal-port-description-wrong-code
+
+- type: sourcePort
+  id: ScanGateSuccess
+  name: signal-port-name-scan-gate-success
+  description: signal-port-description-scan-gate-success
+
+- type: sourcePort
+  id: ScanGateFail
+  name: signal-port-name-scan-gate-fail
+  description: signal-port-description-scan-gate-fail

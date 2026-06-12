@@ -27,6 +27,11 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
   - type: Projectile
     armorPenetration: -0.1
     damage:
@@ -61,6 +66,11 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
   - type: Projectile
     armorPenetration: -0.75
     damage:
@@ -79,6 +89,11 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
   - type: Projectile
     armorPenetration: 0.25
     damage:
@@ -113,6 +128,11 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
   - type: Projectile
     damage:
       types:
@@ -143,22 +163,30 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
-    armorPenetration: 0.3
+    armorPenetration: 0.4
     damage:
       types:
         Piercing: 40
         Structural: 80
+    penetrationThreshold: 360
+    penetrationDamageTypeRequirement:
+    - Structural
   - type: ProjectilePierce
-    chance: 0.3
+    chance: 0.4
     deviation: 0.05
   - type: ProjectileRicochet
-    chance: 0.3
+    chance: 0.4
 
 - type: entity
   id: BulletRifleTraceHeavyAP
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
   - type: Projectile
     armorPenetration: 0.69
     damage:
@@ -193,6 +221,11 @@
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
   - type: Projectile
     damage:
       types:

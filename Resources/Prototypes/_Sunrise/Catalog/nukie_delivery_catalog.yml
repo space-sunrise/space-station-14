@@ -1,0 +1,46 @@
+# The Nukie Catalog is -not- meant to be a "here's free equipment lmao" shop.
+# Anything listed in here should aim to leverage the actual benefits of the console:
+# 1. Equipment that should only be available in -limited numbers- for the Nukie team as a whole.
+# 2. Equipment that should be timegated/locked to the Nukie planet.
+# 3. Equipment that benefit from the team knowing it's been purchased/claimed.
+# If you can't justify these benefits, consider other options: Uplinks, Starting Loadouts & Mapping on the planet/shuttle.
+# NOTE: At the moment of writing the store doesn't take TC, but if you can find a scenario where pooling TC works with the above benefits, that could be changed.
+
+- type: listing
+  id: NukieDeliveryAmmoIncendiaryBundle
+  name: nukie-delivery-ammo-incendiary-bundle-name
+  description: nukie-delivery-ammo-incendiary-bundle-desc
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: burnkit }
+  productEntity: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+  categories:
+  - NukieDelivery
+  restockTime: 1800 # 30min
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: NukieDeliveryAmmoUraniumBundle
+  name: nukie-delivery-ammo-uranium-bundle-name
+  description: nukie-delivery-ammo-uranium-bundle-desc
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: radkit }
+  productEntity: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
+  categories:
+  - NukieDelivery
+  restockTime: 3600 # 1h
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: NukieDeliveryDarkDurandBundle
+  name: nukie-delivery-rover-bundle-name
+  description: nukie-delivery-rover-bundle-desc
+  icon: { sprite: Objects/Specific/Mech/durand.rsi, state: darkdurand }
+  productEntity: CrateCybersunRoverBundle
+  categories:
+  - NukieDelivery
+  restockTime: 7200 # 2h
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

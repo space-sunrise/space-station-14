@@ -118,6 +118,22 @@
   - UplinkWearables
 
 - type: listing
+  id: UplinkClothingOuterVestWebChameleon
+  productEntity: ClothingOuterVestWebChameleon
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkClothingOuterVestWebEliteChameleon
+  productEntity: ClothingOuterVestWebEliteChameleon
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkWearables
+
+- type: listing
   id: UplinkMiscSyndiePowercage
   name: uplink-objects-power-syndie-powercell-name
   description: uplink-objects-power-syndie-powercell-desc
@@ -1800,28 +1816,6 @@
       - SurplusBundle
 
 - type: listing
-  id: UplinkDarkDurand
-  name: uplink-mech-teleporter-medium-name
-  description: uplink-mech-teleporter-medium-desc
-  icon: { sprite: Objects/Specific/Mech/durand.rsi, state: darkdurand }
-  productEntity: CrateCybersunRoverBundle
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 50
-  cost:
-    Telecrystal: 80
-  categories:
-  - UplinkMechs
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
   id: UplinkDarkGygaxLoneOps
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
@@ -2224,7 +2218,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - NukeOpsUplink
       - LoneOpsUplink
   - !type:BuyerWhitelistCondition
     blacklist:
@@ -3091,6 +3084,150 @@
       - NukeOpsUplink
 
 - type: listing
+  id: UplinkSunriseClericalErrorDeclarator
+  productEntity: SunriseClericalErrorDeclarator
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SyndieAgentUplink
+      - LoneOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSunriseClericalErrorDeclaratorNuke
+  productEntity: SunriseClericalErrorDeclarator
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSunriseBreakerFlipDeclarator
+  productEntity: SunriseBreakerFlipDeclarator
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SyndieAgentUplink
+      - LoneOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSunriseBreakerFlipDeclaratorNuke
+  productEntity: SunriseBreakerFlipDeclarator
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSunrisePowerGridCheckDeclarator
+  productEntity: SunrisePowerGridCheckDeclarator
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SyndieAgentUplink
+      - LoneOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSunrisePowerGridCheckDeclaratorNuke
+  productEntity: SunrisePowerGridCheckDeclarator
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSunriseMeteorDustDeclarator
+  productEntity: SunriseMeteorDustDeclarator
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SyndieAgentUplink
+      - LoneOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSunriseMeteorDustDeclaratorNuke
+  productEntity: SunriseMeteorDustDeclarator
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkHeadsetEncryptionKeyMaster
   icon: { sprite: Objects/Devices/encryption_keys.rsi, state: crypt_red2 }
   productEntity: EncryptionKeySyndieMaster
@@ -3316,7 +3453,6 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
-      - AssaultOpsUplink
       - LoneOpsUplink
       - NukeOpsUplink
 

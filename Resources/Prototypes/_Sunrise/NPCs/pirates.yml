@@ -121,6 +121,7 @@
   - MobHumanoidInvetorySimplified
   - MobPassiveRegen
   id: MobPirateBase
+  suffix: AI, Pirate
   components:
   # Allows ghosts/admins to quickly warp to pirates from the ghost teleport panel
   - type: GhostPanelAntagonistMarker
@@ -4044,6 +4045,25 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
+  - type: RadarBlip
+    color: "#FF7A33FF"
+    scale: 2
+    shape: Triangle
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobPirateGearMeleeT4Alt
@@ -4120,6 +4140,25 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT2Ranged]
   id: MobPirateT2Boss
   components:
+  - type: RadarBlip
+    color: "#FFD447FF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobPirateGearRangedT4
@@ -4180,6 +4219,11 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
+  - type: RadarBlip
+    color: "#C642FFFF"
+    scale: 2
+    shape: Square
+    requireInSpace: false
   - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     delay: 2
@@ -4231,6 +4275,17 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobPirateT3Revolver
   - type: GibOnTrigger

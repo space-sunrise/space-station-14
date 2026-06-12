@@ -1,0 +1,103 @@
+# region Station Rule
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: SunriseClericalErrorDeclarator
+  name: clerical error declarator
+  description: A single-use device capable of erasing part of the station records with one decisive press. Do not ask how, we have connections.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/declaration_of_war.rsi
+    layers:
+    - state: declarator
+  - type: Item
+  - type: TriggerOnUse
+  - type: AddGameRuleOnTrigger
+    gameRule: ClericalError
+  - type: DeleteOnTrigger
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: SunriseBreakerFlipDeclarator
+  name: APC outage declarator
+  description: A single-use device that disrupts the station by randomly switching APCs. The APCs will need to be switched back manually.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/declaration_of_war.rsi
+    layers:
+    - state: declarator
+  - type: Item
+  - type: TriggerOnUse
+  - type: AddGameRuleOnTrigger
+    gameRule: BreakerFlip
+  - type: DeleteOnTrigger
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: SunrisePowerGridCheckDeclarator
+  name: power grid declarator
+  description: A single-use device that forcibly starts a station power grid check, temporarily cutting power across the entire station.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/declaration_of_war.rsi
+    layers:
+    - state: declarator
+  - type: Item
+  - type: TriggerOnUse
+  - type: AddGameRuleOnTrigger
+    gameRule: PowerGridCheck
+  - type: DeleteOnTrigger
+
+
+# region meteors
+- type: entity
+  id: SunriseMeteorSwarmMediumRuleTrigger
+  name: meteor swarm trigger
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: TriggerOnSpawn
+  - type: AddGameRuleOnTrigger
+    gameRule: GameRuleMeteorSwarmMedium
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: SunriseSpaceDustMinorRuleTrigger
+  name: space dust trigger
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: TriggerOnSpawn
+  - type: AddGameRuleOnTrigger
+    gameRule: GameRuleSpaceDustMinor
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: SunriseSpaceDustMinorSecondRuleTrigger
+  name: space dust trigger
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: TriggerOnSpawn
+  - type: AddGameRuleOnTrigger
+    gameRule: GameRuleSpaceDustMinor
+  - type: DeleteOnTrigger
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: SunriseMeteorDustDeclarator
+  name: meteor declarator
+  description: A single-use device that signals Syndicate satellites to nudge a small portion of meteorites in the sector. Activation will cause a meteor swarm around the station.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/declaration_of_war.rsi
+    layers:
+    - state: declarator
+  - type: Item
+  - type: TriggerOnUse
+  - type: SpawnEntityTableOnTrigger
+    table: !type:AllSelector
+      children:
+      - id: SunriseMeteorSwarmMediumRuleTrigger
+      - id: SunriseSpaceDustMinorRuleTrigger
+      - id: SunriseSpaceDustMinorSecondRuleTrigger
+  - type: DeleteOnTrigger

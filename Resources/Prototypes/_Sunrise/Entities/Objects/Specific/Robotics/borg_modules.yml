@@ -619,6 +619,49 @@
       sprite: Interface/Actions/actions_borg.rsi
       state: gardening-module
 
+# region Medical
+
+- type: entity
+  id: BorgModuleOrganPlaceholder
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-off
+
+- type: entity
+  id: BorgModuleSurgical
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: surgery cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-treatment
+  - type: ItemBorgModule
+    hands:
+    - item: Scalpel
+    - item: Hemostat
+    - item: Retractor
+    - item: BoneSetter
+    - item: Cautery
+    - item: SawElectric
+    - item: Drill
+    - item: BoneGel
+    - hand:
+        emptyLabel: borg-slot-organs-empty
+        emptyRepresentative: BorgModuleOrganPlaceholder
+        whitelist:
+          components:
+          - Organ
+          - OrganDamage
+          - FunctionalOrgan
+          - BodyPart
+  - type: BorgModuleIcon
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: treatment-module
+
 # region BorgChassisSyndicateSpider
 
 - type: entity

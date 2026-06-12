@@ -41,6 +41,7 @@
   id: JobBrigmedic
   groups:
   - BrigmedicJumpsuit
+  - BrigmedicOuterClothing
   - BrigmedicBackpack
   - BrigmedicInjectors
   - SunriseSurvivalSecurity

@@ -1,0 +1,143 @@
+- type: entity
+  id: CrateSyndicateSurplusBundleNuke
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate surplus crate
+  description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+  suffix: NUKE
+  components:
+  - type: SurplusBundle
+    totalPrice: 50
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  id: CrateSyndicateSuperSurplusBundleNuke
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  suffix: NUKE
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  id: CratePirateSurplusBundle
+  parent: [ CratePirate, StorePresetPirateUplink, BaseSyndicateContraband ]
+  name: pirate chest
+  description: Contains 125 doubloon worth of completely random pirate items.
+  suffix: Pirate
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - PirateUplink
+
+- type: entity
+  id: CratePirateSuperSurplusBundle
+  parent: [ CratePirate, StorePresetPirateUplink, BaseSyndicateContraband ]
+  name: pirate super chest
+  description: Contains 250 doubloon worth of completely random pirate items.
+  suffix: Pirate
+  components:
+  - type: SurplusBundle
+    totalPrice: 250
+  - type: Tag
+    tags:
+    - PirateUplink
+
+- type: entity
+  id: CrateCybersunDarkGygaxBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun gygax bundle
+  description: Contains a set of Cybersun light armored mechs.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MechGygaxSyndieFilled
+        - id: ToolboxSyndicateFilledRepair
+        - id: ToyGygax
+
+- type: entity
+  id: CrateCybersunRoverBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun rover bundle
+  description: Contains a set of Cybersun medium armored mechs.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MechRoverSyndieFilled
+        - id: ToolboxSyndicateFilledRepair
+        - id: ToyDurand
+
+- type: entity
+  id: CrateCybersunMaulerBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun mauler bundle
+  description: Contains a set of Cybersun heavy armored mechs.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MechMaulerSyndieFilled
+        - id: ToolboxSyndicateFilledRepair
+        - id: ToyMauler
+        - id: MechPaintMaulerMeowler
+          prob: 0.25
+
+- type: entity
+  id: CratePirateMechYarrkeBundle
+  suffix: Filled
+  parent: CrateLivestock
+  name: Blackmarket salvage mech bundle
+  description: Contains a set of Cybersun light armored mechs.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MechBigYarrkeBattery
+        - id: ToolboxSyndicateFilledRepair
+
+- type: entity
+  id: CratePirateMechDollHouseBundle
+  suffix: Filled
+  parent: CrateLivestock
+  name: Blackmarket USSP mech bundle
+  description: Contains a set of Cybersun medium armored mechs.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MechDollHouseFilled
+        - id: ToolboxSyndicateFilledRepair
+        - id: MechPaintDollHouseWarboss
+          prob: 0.25
+
+- type: entity
+  id: CrateCybersunRipleyBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun death bundle
+  description: Contains a Death Ripley MK-II mech with basic maintenance supplies.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MechRipley2DeathBattery
+        - id: ToolboxSyndicateFilledRepair
+        - id: ToyDeathRipley
