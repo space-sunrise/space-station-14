@@ -1,8 +1,5 @@
 using Content.Shared.Atmos;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Serialization.Manager.Attributes;
-using Robust.Shared.ViewVariables;
 
 namespace Content.Shared._Sunrise.Radio;
 
@@ -34,13 +31,13 @@ public sealed partial class TelecomThermalComponent : Component
     /// Ambient temperature threshold below which the server stops relaying traffic.
     /// </summary>
     [DataField]
-    public float MinTemperature = Atmospherics.T0C - 50f;
+    public float MinTemperature = Atmospherics.T0C;
 
     /// <summary>
     /// Ambient temperature threshold above which cold shutdown clears.
     /// </summary>
     [DataField]
-    public float HysteresisMinTemperature = Atmospherics.T0C - 40f;
+    public float HysteresisMinTemperature = Atmospherics.T0C + 10f;
 
     /// <summary>
     /// Ambient pressure threshold above which the server stops relaying traffic.

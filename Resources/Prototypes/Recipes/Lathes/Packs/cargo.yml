@@ -19,6 +19,7 @@
   id: Mining
   recipes:
   - MiningDrill
+  - SunriseAdvancedSalvageMagnetMachineCircuitboard # Sunrise-Edit
   - MiningDrillDiamond
   - MineralScannerEmpty
   - AdvancedMineralScannerEmpty

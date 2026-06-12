@@ -21,7 +21,7 @@
     # Sunrise-End
   # Sunrise-Start
   - name: armor
-    slotTexture: outerclothing
+    slotTexture: suit # Sunrise-Edit
     slotFlags: OUTERCLOTHING
     uiWindowPos: 1,0
     strippingWindowPos: 0,1
@@ -50,7 +50,7 @@
       - NightVisionDevice
       - NVDHandcrafted
   - name: armor
-    slotTexture: outerclothing
+    slotTexture: suit # Sunrise-Edit
     slotFlags: OUTERCLOTHING
     uiWindowPos: 1,0
     strippingWindowPos: 0,1
@@ -79,7 +79,7 @@
       - NightVisionDevice
       - NVDHandcrafted
   - name: armor
-    slotTexture: outerclothing
+    slotTexture: suit # Sunrise-Edit
     slotFlags: OUTERCLOTHING
     uiWindowPos: 1,0
     strippingWindowPos: 0,1
@@ -109,7 +109,7 @@
       - NightVisionDevice
       - NVDHandcrafted
   - name: armor
-    slotTexture: outerclothing
+    slotTexture: suit # Sunrise-Edit
     slotFlags: OUTERCLOTHING
     uiWindowPos: 1,0
     strippingWindowPos: 0,1

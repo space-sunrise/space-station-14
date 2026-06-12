@@ -282,6 +282,8 @@ ent-VendingMachineWallMedicalCivilianSyndicate = коммерческая апт
     .desc = Настенный раздатчик медицинского оборудования от Interdyne Pharmaceutics.
 ent-VendingMachineMedicalSecurity = НаноМед СБ
     .desc = Раздатчик медицинских препаратов для службы безопасности. Только натуральные химикаты!
+ent-VendingMachineMedicalSecuritySalvaged = потрёпанный НаноМед СБ
+    .desc = Побитый раздатчик медицинских препаратов, внутри которого остались пожитки прошлой смены.
 
 ent-CybersunFlag = флаг CyberSun
     .desc = Бумага, костюм, прогресс.

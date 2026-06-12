@@ -38,6 +38,7 @@ ent-MobRogueSiliconT1DroneScienceBuff = reinforced science drone
 ent-MobRogueSiliconT1Viscerator = viscerator unit
 ent-MobSyndicateViscerator = viscerator
     .desc = A compact syndicate strike drone built to rush targets after deployment.
+    .suffix = Syndicate
 ent-MobRogueSiliconT2Servo = servo unit
 ent-MobRogueSiliconT2Herder = herder unit
 ent-MobRogueSiliconT2Hunter = hunter unit

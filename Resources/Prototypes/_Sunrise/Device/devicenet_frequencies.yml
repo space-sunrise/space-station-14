@@ -7,3 +7,13 @@
   id: Messenger
   name: device-frequency-prototype-name-messenger
   frequency: 2203
+
+- type: deviceFrequency
+  id: TurretControlCentralCommand
+  name: device-frequency-prototype-name-turret-control
+  frequency: 2620
+
+- type: deviceFrequency
+  id: TurretCentralCommand
+  name: device-frequency-prototype-name-turret
+  frequency: 2621

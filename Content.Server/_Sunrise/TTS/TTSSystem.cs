@@ -292,9 +292,10 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void HandleSay(EntityUid uid, string message, TTSVoicePrototype voicePrototype, string? effect)
     {
+
         var recipients = Filter.Pvs(uid, 1F).RemovePlayers(_ignoredRecipients);
 
-        // Если нету получаетей ттса то зачем вообще генерировать его?
+        // Если нету получателей TTS, то зачем вообще генерировать его?
         if (!recipients.Recipients.Any())
             return;
 

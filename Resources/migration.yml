@@ -1016,6 +1016,10 @@ LockerPrisoner8: PrisonCellLocker8
 ComputerCriminalRecords: SunriseComputerCriminalRecords
 #2026-04-19
 AtmosDeviceFanDirectionalInvisible: AtmosDeviceFanDirectional
+#2026-04-25
+WeaponPistolG22: WeaponPistolEnforcer
+WeaponPistolG22Auto: WeaponPistolEnforcer
+MagazineGlock22: MagazinePistol
 #2026-05-10
 SunriseBorgModuleChemical: BorgModuleChemical
 HandheldMachineAnalyzer: HandheldRoboAnalyzer
@@ -1062,4 +1066,5 @@ SpawnMobRogueSiliconVisceratorSquad: SpawnMobRogueSiliconT1VisceratorSquad
 SpawnMobRogueSiliconGuardian: SpawnMobRogueSiliconBossGuardian
 SpawnMobRogueSiliconGuardianLCG: SpawnMobRogueSiliconBossGuardianLCG
 SpawnMobRogueSiliconTerminator: SpawnMobRogueSiliconT3Terminator
+HyposprayERT: Hypospray
 # region Sunrise-End

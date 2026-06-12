@@ -2,7 +2,7 @@
   parent: BaseItem
   id: GlockBox
   name: glock box
-  description: It contains a Glock22 and a rubber magazine for it. Did you want something else?
+  description: It contains a pistol and a magazine for it. Did you want something else?
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Storage/glockbox.rsi
@@ -14,8 +14,8 @@
     size: Normal
   - type: SpawnItemsOnUse
     items:
-    - id: MagazinePistolHighCapacityRubber
-    - id: WeaponPistolG22
+    - id: MagazinePistolRubber
+    - id: WeaponPistolEnforcer
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -23,7 +23,7 @@
   parent: GlockBox
   id: ACP14Box
   name: ACP14 box
-  description: It contains a ACP14 and a rubber magazine for it. Did you want something else?
+  description: It contains a pistol and a magazine for it. Did you want something else?
   components:
   - type: SpawnItemsOnUse
     items:
@@ -55,8 +55,8 @@
 - type: entity
   parent: GlockBox
   id: SnubRevolverBox
-  name: Snub Revolver box
-  description: Inside rests a snub-nosed revolver with a rubber speedloader. Old-school firepower, ready at hand.
+  name: snub-nosed revolver box
+  description: Inside rests a snub-nosed revolver and a rubber speedloader. Old school, ready for action.
   components:
   - type: SpawnItemsOnUse
     items:
@@ -67,7 +67,7 @@
   parent: GlockBox
   id: VP78Box
   name: VP78 box
-  description: It contains a ACP14 and a rubber magazine for it. Did you want something else?
+  description: It contains a VP78 and a whole pouch of magazines for it. You will definitely have enough.
   components:
   - type: SpawnItemsOnUse
     items:

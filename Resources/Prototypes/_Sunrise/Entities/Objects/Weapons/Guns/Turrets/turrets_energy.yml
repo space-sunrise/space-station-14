@@ -1,0 +1,29 @@
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretCentralCommand
+  suffix: CentralCommand
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - CentralCommand
+  - type: Machine
+    board: WeaponEnergyTurretCentralCommandCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControlCentralCommand
+    transmitFrequencyId: TurretCentralCommand
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretSyndicate
+  suffix: Syndicate
+  components:
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: Machine
+    board: WeaponEnergyTurretSyndicateCircuitboard

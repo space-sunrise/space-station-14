@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: ru-RU
+tone_instructions: "Before reviewing, detect the PR author's language from the title, description, and comments. Write the review in that language; if unclear, use Russian."
 
 knowledge_base:
   learnings:
@@ -24,11 +25,11 @@ reviews:
          Treat the repository instruction stack as the source of truth for this codebase.
          Always apply the root `AGENTS.md` first, because it defines how repository rules and skills must be selected for each task.
          Use `.agents/rules/*.md` and `.agents/skills/*/SKILL.md` as the Codex-facing review knowledge base.
-         When a bridge file points to `.agent/rules/*` or `.agent/skills/*/SKILL.md`, prefer the canonical `.agent` source if the bridge wording ever diverges.
+         Treat `.agents/` as the canonical source tree. Treat `.agent/`, `.claude/`, `.cursor/`, and `.github/` as compatibility bridge trees.
          Prefer repository-specific rules and skills over generic framework advice or web-derived guidance when they conflict.
-         When inferring the fork from a git remote slug or GitHub repository identifier, ignore the owner or organization segment and use only the repository name. For example, evaluate `space-sunrise/sunrise-station` by `sunrise-station`, not by `space-sunrise`.
-         This repository's repository name is `sunrise-station`, so use the `Sunrise` prefix, the `_Sunrise` project folder, and `Sunrise-Edit` / `Sunrise edit start/end` markers for unavoidable upstream edits.
-         For a single-line upstream edit, a single-line marker such as `Sunrise-Edit` in the file's native comment syntax is sufficient. Do not require `edit start/end` or `added start/end` blocks unless the fork edit spans multiple lines.
+         When inferring the active fork from a git remote slug or GitHub repository identifier, ignore the owner or organization segment and use only the repository name plus the actual project folder and local edit markers. For example, evaluate `space-sunrise/project-fire` by `project-fire`, not by `space-sunrise`.
+         Do not hard-code Sunrise from the `space-sunrise` organization name. If the exact repository slug is `project-fire` or the active project folder is `_Scp`, review as Fire: use the `Fire` prefix, `_Scp` project folder, and `Fire edit` / `Fire added` markers. If the exact repository slug is `sunrise-station` or the active project folder is `_Sunrise`, review as Sunrise.
+         For a single-line upstream edit, a single-line marker in the active fork's native style is sufficient. Do not require `edit start/end` or `added start/end` blocks unless the fork edit spans multiple lines.
          Ignore a leading UTF-8 BOM (`U+FEFF`) at the start of a text file. Do not request BOM removal unless the PR is explicitly about file encoding.
     - path: "**/*.cs"
       instructions: |
@@ -36,15 +37,15 @@ reviews:
         - Always apply `ss14-naming-conventions`, `ss14-ecs-prototypes`, and `ss14-upstream-maintenance`.
         - Also apply `ss14-ecs-components`, `ss14-ecs-entities`, `ss14-ecs-systems`, `ss14-events`, and `ss14-prediction`.
         - Apply `ss14-documentation-writing` for large C# changes and `ss14-standard-optimizations` when hot paths, `Update()`, or frequently raised events are touched.
-        Enforce the interaction rule from `.agent/rules/ss14-interaction-flow.md`: `OnEvent -> TryDo -> CanDo -> Do`.
-        Prefer minimal hooks in vanilla files and keep new logic in `_Sunrise` files or partial classes when possible.
+        Enforce the interaction rule from `.agents/rules/ss14-interaction-flow.md`: `OnEvent -> TryDo -> CanDo -> Do`.
+        Prefer minimal hooks in vanilla files and keep new logic in the active fork project folder (`_Scp` for Fire, `_Sunrise` for Sunrise, `_Fish` for Fish, `_Lust` for Lust) or partial classes when possible.
     - path: "Content.*/**/*System*.cs"
       instructions: |
         For `*System*.cs`, apply `ss14-ecs-systems`, `ss14-events`, `ss14-prediction`, `ss14-standard-optimizations`, and `ss14-upstream-maintenance` as mandatory review context.
         Keep the stable system member order from `ss14-ecs-systems`: dependencies, constants/static readonly, runtime cache/state, `Initialize()` / `Shutdown()`, event handlers, main API, overrides, helpers, private nested types.
         `SubscribeLocalEvent` and `SubscribeNetworkEvent` belong in `Initialize()` only, not in lifecycle callbacks, startup code, or ad-hoc helper methods.
         When `Update()` or frequently raised handlers do repeated component access, prefer cached `EntityQuery<T>` and allocation-light loops over repeated uncached `TryComp` / `HasComp`, LINQ, or per-tick collection allocation.
-        In vanilla system files outside `_Sunrise`, only minimal hooks should stay inline. Prefer moving new Sunrise logic into `_Sunrise` partials or adjacent Sunrise-only systems.
+        In vanilla system files outside the active fork project folder, only minimal hooks should stay inline. Prefer moving new fork logic into active-fork partials or adjacent fork-only systems.
     - path: "**/*.{yml,yaml}"
       instructions: |
         For YAML changes, always apply `ss14-naming-conventions`, `ss14-ecs-prototypes`, and `ss14-upstream-maintenance`.
@@ -60,7 +61,7 @@ reviews:
       instructions: |
         Apply `ss14-naming-conventions` and `ss14-localization-strings` as strict review criteria for locale files.
         Require explicit `OOC:` markers for out-of-character hints, controls, or gameplay instructions.
-        If a rendered text line starts with `[`, require proper Fluent escaping for the leading tag instead of treating it as valid unescaped syntax.
+        Require Fluent escaping for a leading tag only when an FTL value starts on an indented multiline continuation line after an empty assignment, for example `key =` followed by `    [bold]...`. Do not flag inline values such as `key = [bold]...[/bold]`, including when they later continue onto additional indented lines.
         Use `## Group Name` headers sparingly and only as real FTL comment headers that improve grouping; do not ask for decorative or excessive headers.
         Flag duplicate keys in touched locale files because Fluent override order is easy to miss in review.
         Keep comments in the locale of the file when practical, and do not complain about a leading UTF-8 BOM by itself.
@@ -74,37 +75,46 @@ reviews:
         For server+client tests, verify that client and server assertions account for synchronization and tick propagation instead of assuming same-tick visibility.
     - path: ".agent/**"
       instructions: |
-        Treat `.agent/` as the canonical source tree for repository rules and skills.
-        If rules or skills change here, matching bridges in `.agents/`, `.claude/`, `.cursor/`, and `.github/` must stay synchronized per the authoring policies.
+        Treat `.agent/` as a compatibility bridge tree for repository rules and skills.
+        If rules or skills change here, matching canonical files in `.agents/` and bridges in `.claude/`, `.cursor/`, and `.github/` must stay synchronized per the authoring policies.
         Flag missing bridge updates and suggest running `pwsh ./.agents/rules/check-rule-bridges.ps1` and `pwsh ./.agents/skills/check-skill-bridges.ps1` when these files change.
     - path: ".agents/**"
       instructions: |
-        Treat `.agents/` as the Codex bridge layer for repository rules and skills.
-        Ensure every bridge still points back to the correct `.agent/` source and stays synchronized with canonical content and trigger metadata.
+        Treat `.agents/` as the canonical source tree for repository rules and skills.
+        Ensure every bridge still points back to the correct `.agents/` source and stays synchronized with canonical content and trigger metadata.
   pre_merge_checks:
     override_requested_reviewers_only: true
     custom_checks:
       - mode: error
         name: "SS14 bridge sync"
         instructions: |
-          Fail if this PR changes any canonical rule or skill under `.agent/rules/` or `.agent/skills/` without updating every required bridge in `.agents/`, `.claude/`, `.cursor/`, and `.github/` in the same PR.
+          Fail if this PR changes any canonical rule or skill under `.agents/rules/` or `.agents/skills/` without updating every required bridge in `.agent/`, `.claude/`, `.cursor/`, and `.github/` in the same PR.
           Required rule bridges:
-          - `.agents/rules/<same-file>.md`
+          - `.agent/rules/<same-file>.md`
           - `.claude/rules/<same-file>.md`
           - `.cursor/rules/<same-file>.md`
           - `.github/rules/<same-file>.md`
           Required skill bridges:
-          - `.agents/skills/<skill-name>/SKILL.md`
+          - `.agent/skills/<skill-name>/SKILL.md`
           - `.claude/skills/<skill-name>/SKILL.md`
           - `.cursor/skills/<skill-name>/SKILL.md`
           - `.github/skills/<skill-name>/SKILL.md`
-          Also fail if a changed bridge points to the wrong `.agent` source path or if synchronized trigger/name/description metadata diverges from the canonical source.
+          Also fail if a changed bridge points to the wrong `.agents` source path or if synchronized trigger/name/description metadata diverges from the canonical source.
           Pass only if all changed canonical files and bridge files remain synchronized.
+      - mode: error
+        name: "SS14 fork/project folder selection"
+        instructions: |
+          Run this check for every PR that adds or moves fork-owned code, prototypes, assets, or upstream edit markers.
+          Determine the active fork using `.agents/rules/ss14-codebase-prefix-detection.md`. Ignore the GitHub owner or organization segment: `space-sunrise` alone must not imply Sunrise.
+          Fail if exact Fire signals (`project-fire`, `_Scp`, or Fire markers) are reviewed as Sunrise or if new Fire-owned files are placed under `_Sunrise` instead of `_Scp`.
+          Fail if exact Sunrise signals (`sunrise-station`, `_Sunrise`, or Sunrise markers) are reviewed as Fire or if new Sunrise-owned files are placed under `_Scp` instead of `_Sunrise`.
+          Do not fail merely because the PR touches vanilla files. New fork logic still belongs in the active fork project folder, while vanilla files should contain only minimal hooks with the active fork's markers.
+          Pass only if the project folder and edit markers match the active fork.
       - mode: error
         name: "SS14 C# rules"
         instructions: |
           Run this check only when the PR changes `.cs` files.
-          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed C# code:
+          Treat `AGENTS.md`, `.agents/rules/*.md`, and the following skills as mandatory review criteria for changed C# code:
           - `ss14-naming-conventions`
           - `ss14-ecs-prototypes`
           - `ss14-upstream-maintenance`
@@ -116,17 +126,17 @@ reviews:
           Fail if changed C# files violate these repo rules. Deterministic failing examples include:
           - a `[RegisterComponent]` class name not ending with `Component`
           - an `EntitySystem` subclass name not ending with `System`
-          - a private `[Dependency]` field in `_Sunrise` code that does not start with `_`
+          - a private `[Dependency]` field in active fork code (`_Scp`, `_Sunrise`, `_Fish`, or `_Lust`) that does not start with `_`
           - newly added interaction or action logic that breaks the required `OnEvent -> TryDo -> CanDo -> Do` flow
-          - substantial new fork logic added directly in vanilla files instead of `_Sunrise` or partial classes, unless it is only a minimal hook
-          - new vanilla-file fork edits missing `Sunrise-Edit` / `Sunrise edit start/end` / `Sunrise added start/end` markers where markers are needed
-          Treat a one-line upstream fork edit marked with single-line `Sunrise-Edit` as valid; do not require block markers for one-line changes.
+          - substantial new fork logic added directly in vanilla files instead of the active fork folder or partial classes, unless it is only a minimal hook
+          - new vanilla-file fork edits missing the active fork's edit/add markers where markers are needed
+          Treat a one-line upstream fork edit marked with the active fork's single-line marker as valid; do not require block markers for one-line changes.
           Pass only if none of these problems appear in the changed `.cs` files.
       - mode: error
         name: "SS14 YAML/FTL rules"
         instructions: |
           Run this check only when the PR changes `.yml`, `.yaml`, or `.ftl` files.
-          Treat `AGENTS.md`, `.agent/rules/*.md`, and the following skills as mandatory review criteria for changed content files:
+          Treat `AGENTS.md`, `.agents/rules/*.md`, and the following skills as mandatory review criteria for changed content files:
           - `ss14-naming-conventions`
           - `ss14-ecs-prototypes`
           - `ss14-upstream-maintenance`
@@ -134,12 +144,13 @@ reviews:
           Fail if changed content files violate these repo rules. Deterministic failing examples include:
           - any YAML component entry written as `- type: SomethingComponent`
           - prototype IDs that are not `CamelCase`
-          - fork-only prototype IDs missing a `Sunrise` prefix when they are unique fork content or forked copies of vanilla entities
+          - fork-only prototype IDs missing the active fork prefix when they are unique fork content or forked copies of vanilla entities
           - non-English YAML fallback `name` / `description`, including Cyrillic fallback text
           - FTL entity keys not starting with `ent-`
           - non-entity FTL keys not using `kebab-case`
-          - broad direct rewrites of vanilla prototypes where a parent-based `_Sunrise` override plus `Resources/migration.yml` is the expected upstream-friendly pattern
-          Do not fail a PR only because an FTL comment is written in the locale of the file, do not require block edit markers when a single-line `Sunrise-Edit` comment is sufficient for a one-line content change, and do not fail or comment solely because a text file starts with a UTF-8 BOM (`U+FEFF`).
+          - multiline FTL values whose first content line is an indented continuation line starting with an unescaped tag, for example `key =` followed by `    [bold]...`; inline `key = [bold]...[/bold]`, even with later continuation lines, is valid for this rule
+          - broad direct rewrites of vanilla prototypes where a parent-based active-fork override plus `Resources/migration.yml` is the expected upstream-friendly pattern
+          Do not fail a PR only because an FTL comment is written in the locale of the file, do not require block edit markers when a single-line active-fork marker is sufficient for a one-line content change, and do not fail or comment solely because a text file starts with a UTF-8 BOM (`U+FEFF`).
           Pass only if none of these problems appear in the changed `.yml`, `.yaml`, or `.ftl` files.
       - mode: error
         name: "SS14 Prototype ↔ FTL parity"
@@ -151,7 +162,7 @@ reviews:
           - a new player-facing prototype ID without a matching `ent-<PrototypeId>` localization entry in the touched locale set
           - a prototype rename where the old `ent-*` key is left in place but the new `ent-*` key is not added
           - a changed player-facing prototype `name` / `description` / `suffix` intent without the corresponding `ent-*`, `.desc`, or `.suffix` updates
-          - a `_Sunrise` replacement or migration that changes the user-visible prototype ID but leaves localization parity behind
+          - an active-fork replacement or migration that changes the user-visible prototype ID but leaves localization parity behind
           Do not require parity for obviously abstract, hidden, purely technical, or test-only prototypes that are not meant to surface to players.
           Pass only if changed player-facing prototype IDs and touched FTL entries stay aligned.
       - mode: error
