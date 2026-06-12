@@ -47,8 +47,8 @@
             Cold: 0.5
             Caustic: 0.5
       - !type:MovementSpeedModifier
-        walkSpeedModifier: 1.0
-        sprintSpeedModifier: 1.0
+        walkSpeedModifier: 1.2
+        sprintSpeedModifier: 1.2
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
