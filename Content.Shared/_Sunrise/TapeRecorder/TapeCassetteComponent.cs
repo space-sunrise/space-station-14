@@ -40,8 +40,7 @@ public readonly record struct TapeCassetteRecord(
     TimeSpan Time,
     string Speaker,
     string Message,
-    ProtoId<TTSVoicePrototype>? VoiceId,
-    TimeSpan RecordedAt);
+    ProtoId<TTSVoicePrototype>? VoiceId);
 
 /// <summary>
 /// A used tape span that cannot be recorded over.
