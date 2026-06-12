@@ -10,8 +10,9 @@
     deleteOnSpawn: true
     proto: XrayLaserBeam
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     layers:
-    - state: base
+    - state: xray
+      shader: unshaded
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance

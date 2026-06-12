@@ -2,6 +2,7 @@
   id: Biochemical
   name: research-discipline-biochemical
   color: "#52B4E9"
+  storytellerUsefulness: 1.2
   icon:
     sprite: Interface/Misc/research_disciplines.rsi
     state: biochemical

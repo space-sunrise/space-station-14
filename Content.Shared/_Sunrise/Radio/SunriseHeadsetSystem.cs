@@ -1,11 +1,14 @@
 using Content.Shared.Chat;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
+using Content.Shared.UserInterface;
 
 namespace Content.Shared._Sunrise.Radio;
 
 public sealed class SunriseHeadsetSystem : EntitySystem
 {
+    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -23,7 +26,7 @@ public sealed class SunriseHeadsetSystem : EntitySystem
     {
         if (TryComp<HeadsetComponent>(ent, out var headset) &&
             args.Component.Channels.Contains(SharedChatSystem.CommonChannel) &&
-            headset.EnabledChannels.TryAdd(SharedChatSystem.CommonChannel.Id, false))
+            headset.EnabledChannels.TryAdd(SharedChatSystem.CommonChannel.Id, true))
         {
             Dirty(ent, headset);
         }

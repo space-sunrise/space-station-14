@@ -19,7 +19,7 @@ using Content.Shared._Sunrise.Messenger;
 namespace Content.Client._Sunrise.MentorHelp
 {
     /// <summary>
-    /// Main control for mentor help interface
+    /// Основной контрол интерфейса менторской помощи.
     /// </summary>
     [GenerateTypedNameReferences]
     public sealed partial class MentorHelpControl : Control
@@ -80,17 +80,17 @@ namespace Content.Client._Sunrise.MentorHelp
             PlaySound.OnToggled += OnPlaySoundToggled;
             AutoOpenTickets.OnToggled += OnAutoOpenTicketsToggled;
 
-            // Wire up button events
+            // Подключаем обработчики кнопок.
             NewTicketButton.OnPressed += _ => OpenNewTicketDialog();
             StatisticsButton.OnPressed += _ => _ui.GetUIController<MentorHelpStatisticsUIController>().ToggleStatistics();
             BackToListButton.OnPressed += _ => SwitchState(ViewState.TicketsList);
 
-            // Wire up ticket action buttons
+            // Подключаем кнопки действий с тикетом.
             ClaimButton.OnPressed += _ => ClaimTicket();
             UnassignButton.OnPressed += _ => UnassignTicket();
             CloseTicketButton.OnPressed += _ => CloseTicket();
 
-            // Handle enter key in reply input
+            // Обрабатываем Enter в поле ответа.
             ReplyInput.OnTextEntered += _ => SendReply();
             ReplyInput.OnTextChanged += Input_OnTextChanged;
             EmojiButton.OnPressed += _ =>
@@ -115,11 +115,11 @@ namespace Content.Client._Sunrise.MentorHelp
 
             UpdateTypingIndicator();
 
-            // Setup tab container like in AdminMenuWindow
+            // Настраиваем контейнер вкладок по аналогии с AdminMenuWindow.
             TicketsTabContainer.SetTabTitle(0, _loc.GetString("mentor-help-tab-open"));
             TicketsTabContainer.SetTabTitle(1, _loc.GetString("mentor-help-tab-closed"));
 
-            // Handle tab changes to load closed tickets when needed
+            // Обрабатываем смену вкладок, чтобы при необходимости загружать закрытые тикеты.
             TicketsTabContainer.OnTabChanged += OnTabChanged;
 
             AdminWhoButton.OnPressed += _ =>
@@ -128,7 +128,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 ctrl.Toggle();
             };
 
-            // Set initial state
+            // Задаем начальное состояние.
             SwitchState(ViewState.TicketsList);
 
             MessagesContainer.OnChildAdded += _ =>
@@ -169,7 +169,7 @@ namespace Content.Client._Sunrise.MentorHelp
         /// </summary>
         public void TryOpenTicket(int ticketId)
         {
-            // If we already have the ticket loaded, select it immediately
+            // Если тикет уже загружен, сразу выбираем его.
             var ticket = _tickets.FirstOrDefault(t => t.Id == ticketId);
             if (ticket != null)
             {
@@ -177,7 +177,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 return;
             }
 
-            // Otherwise, remember to open when the list arrives and request tickets from server
+            // Иначе запоминаем, что его нужно открыть после получения списка, и запрашиваем тикеты с сервера.
             _pendingOpenTicketId = ticketId;
             _mentorHelpSystem?.RequestTickets(onlyMine: !_hasMentorPermissions);
         }
@@ -188,14 +188,14 @@ namespace Content.Client._Sunrise.MentorHelp
             _ownerUserId = ownerUserId;
             _hasMentorPermissions = hasMentorPermissions;
 
-            // Show/hide buttons based on permissions
+            // Показываем или скрываем кнопки по правам.
             StatisticsButton.Visible = _hasMentorPermissions;
             UpdateTicketActionButtons();
         }
 
         private void OnTabChanged(int tabIndex)
         {
-            // When switching to closed tickets tab, request all tickets including closed ones
+            // При переходе на вкладку закрытых тикетов запрашиваем список с учетом закрытых.
             if (tabIndex == 1 && _hasMentorPermissions)
                 _mentorHelpSystem?.RequestTickets(onlyMine: false);
 
@@ -203,7 +203,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 _mentorHelpSystem?.RequestTickets(onlyMine: true);
         }
 
-        // State switching like in LobbyGui
+        // Переключение состояний по аналогии с LobbyGui.
         private void SwitchState(ViewState state)
         {
             if (state == ViewState.TicketsList && _selectedTicket != null)
@@ -240,7 +240,7 @@ namespace Content.Client._Sunrise.MentorHelp
             PruneLocalTicketState();
             RefreshTicketsList();
 
-            // If we were asked to open a specific ticket once the list arrives, do it now
+            // Если нужно было открыть конкретный тикет после получения списка, делаем это сейчас.
             if (_pendingOpenTicketId.HasValue)
             {
                 var id = _pendingOpenTicketId.Value;
@@ -252,23 +252,23 @@ namespace Content.Client._Sunrise.MentorHelp
             }
         }
 
-        // Refresh tickets like in ContributorsTop
+        // Обновляем тикеты по аналогии с ContributorsTop.
         private void RefreshTicketsList()
         {
             var openTickets = _tickets.Where(t => t.Status != MentorHelpTicketStatus.Closed).ToList();
             var closedTickets = _tickets.Where(t => t.Status == MentorHelpTicketStatus.Closed).ToList();
 
-            // Filter for players to show only their tickets
+            // Для игроков оставляем только их тикеты.
             if (!_hasMentorPermissions)
             {
                 openTickets = openTickets.Where(t => t.PlayerId == _ownerUserId).ToList();
                 closedTickets = closedTickets.Where(t => t.PlayerId == _ownerUserId).ToList();
             }
 
-            // Update open tickets
+            // Обновляем открытые тикеты.
             RefreshTicketTab(openTickets, _openTicketControls, OpenTicketsList);
 
-            // Update closed tickets
+            // Обновляем закрытые тикеты.
             RefreshTicketTab(closedTickets, _closedTicketControls, ClosedTicketsList);
         }
 
@@ -276,7 +276,7 @@ namespace Content.Client._Sunrise.MentorHelp
         {
             var sortedTickets = tickets.OrderByDescending(GetDisplayedUpdatedAt).ToList();
 
-            // Remove tickets that no longer exist
+            // Удаляем тикеты, которых больше нет.
             var toRemove = controls.Keys.Where(id => !sortedTickets.Any(t => t.Id == id)).ToList();
 
             foreach (var id in toRemove)
@@ -288,7 +288,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 }
             }
 
-            // Add or update existing tickets
+            // Добавляем новые тикеты или обновляем существующие.
             foreach (var ticket in sortedTickets)
             {
                 if (controls.TryGetValue(ticket.Id, out var existingControl))
@@ -326,10 +326,10 @@ namespace Content.Client._Sunrise.MentorHelp
             RefreshTicketsList();
             SwitchState(ViewState.TicketView);
 
-            // Clear previous messages first
+            // Сначала очищаем предыдущие сообщения.
             MessagesContainer.RemoveAllChildren();
 
-            // Request messages for this ticket
+            // Запрашиваем сообщения этого тикета.
             _mentorHelpSystem?.RequestTicketMessages(ticket.Id);
         }
 
@@ -381,7 +381,7 @@ namespace Content.Client._Sunrise.MentorHelp
 
         public void UpdateTicket(MentorHelpTicketData ticket)
         {
-            // Update ticket in our list
+            // Обновляем тикет в локальном списке.
             var index = _tickets.FindIndex(t => t.Id == ticket.Id);
 
             ClearDisplayedUpdatedAtIfCovered(ticket);
@@ -393,7 +393,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 _tickets.Add(ticket);
 
 
-            // Update selected ticket if it's the one that changed
+            // Обновляем выбранный тикет, если изменился именно он.
             if (_selectedTicket?.Id == ticket.Id)
             {
                 _selectedTicket = ticket;
@@ -404,7 +404,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 }
             }
 
-            // If admin closed the ticket while player was viewing it, return to list
+            // Если админ закрыл тикет, пока игрок его смотрел, возвращаем игрока к списку.
             if (ticket.Status == MentorHelpTicketStatus.Closed &&
                 _selectedTicket?.Id == ticket.Id &&
                 !_hasMentorPermissions &&
@@ -413,7 +413,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 SwitchState(ViewState.TicketsList);
             }
 
-            // Refresh the list to show updated status
+            // Обновляем список, чтобы показать новый статус.
             RefreshTicketsList();
         }
 
@@ -500,7 +500,7 @@ namespace Content.Client._Sunrise.MentorHelp
             var isOpen = _selectedTicket.Status != MentorHelpTicketStatus.Closed;
             var isUnassigned = _selectedTicket.AssignedToUserId == null;
 
-            // Hide reply panel for closed tickets
+            // Скрываем панель ответа для закрытых тикетов.
             ReplyPanel.Visible = canReply;
 
             if (!isOpen)
@@ -516,7 +516,7 @@ namespace Content.Client._Sunrise.MentorHelp
             {
                 ClaimButton.Visible = false;
                 UnassignButton.Visible = false;
-                CloseTicketButton.Visible = isOpen; // Players can close their own tickets
+                CloseTicketButton.Visible = isOpen; // Игроки могут закрывать свои тикеты.
             }
         }
 

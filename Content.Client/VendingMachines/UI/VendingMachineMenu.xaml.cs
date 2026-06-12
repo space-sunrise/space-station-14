@@ -128,10 +128,10 @@ namespace Content.Client.VendingMachines.UI
                     continue;
                 }
 
-                if (!_dummies.TryGetValue(entry.ID, out var dummy))
+                if (!_dummies.TryGetValue(entry.ID, out var dummy) || !_entityManager.EntityExists(dummy))
                 {
                     dummy = _entityManager.Spawn(entry.ID);
-                    _dummies.Add(entry.ID, dummy);
+                    _dummies[entry.ID] = dummy; // Sunrise-Edit
                 }
 
                 var itemName = Identity.Name(dummy, _entityManager);
@@ -165,6 +165,12 @@ namespace Content.Client.VendingMachines.UI
                     continue;
 
                 var dummy = _dummies[proto];
+                if (!_entityManager.EntityExists(dummy))
+                {
+                    dummy = _entityManager.Spawn(proto);
+                    _dummies[proto] = dummy; // Sunrise-Edit
+                }
+
                 if (!cachedInventory.TryFirstOrDefault(o => o.ID == proto, out var entry))
                     continue;
                 var amount = entry.Amount;

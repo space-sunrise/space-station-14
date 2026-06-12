@@ -16,7 +16,7 @@ public sealed partial class HeadsetComponent
     public float SendChargeCost = 10f;
 
     [DataField]
-    public float ReceiveChargeCost = 2f;
+    public float ReceiveChargeCost = 3f;
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ToggleAction = "ActionToggleHeadset";

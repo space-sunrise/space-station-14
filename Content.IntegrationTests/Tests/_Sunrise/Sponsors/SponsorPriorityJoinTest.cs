@@ -1,3 +1,4 @@
+// Sunrise-Edit
 using System.Net;
 using System.Threading.Tasks;
 using Content.Shared.CCVar;
@@ -26,41 +27,77 @@ namespace Content.IntegrationTests.Tests._Sunrise.Sponsors
             var client = pair.Client;
 
             var cfg = server.ResolveDependency<IConfigurationManager>();
-            
-            // 1. Setup: Server is "full" and queue is disabled
-            await server.WaitPost(() => {
-                cfg.SetCVar(CCVars.SoftMaxPlayers, 0);
-                cfg.SetCVar(SunriseCCVars.QueueEnabled, false);
-            });
 
-            // 2. Setup: Mock sponsor manager that grants priority join
-            var sponsorMock = new Mock<ISharedSponsorsManager>();
-            sponsorMock.Setup(m => m.HavePriorityJoin(It.IsAny<NetUserId>())).Returns(true);
-            
-            await server.WaitPost(() => {
-                var connMgr = IoCManager.Resolve<IConnectionManager>();
-                var field = typeof(ConnectionManager).GetField("_sponsorsMgr", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                field!.SetValue(connMgr, sponsorMock.Object);
-            });
+            // Save original settings
+            var originalSoftMaxPlayers = cfg.GetCVar(CCVars.SoftMaxPlayers);
+            var originalQueueEnabled = cfg.GetCVar(SunriseCCVars.QueueEnabled);
+            object? originalSponsorsMgr = null;
+            var connMgr = server.ResolveDependency<IConnectionManager>();
+            var field = typeof(ConnectionManager).GetField("_sponsorsMgr", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (field != null)
+            {
+                originalSponsorsMgr = field.GetValue(connMgr);
+            }
 
-            // 3. Action: Disconnect and reconnect
-            var clientNetManager = client.ResolveDependency<IClientNetManager>();
-            var clientConsole = client.ResolveDependency<IClientConsoleHost>();
-            var baseClient = client.ResolveDependency<IBaseClient>();
+            try
+            {
+                // 1. Setup: Server is "full" and queue is disabled
+                await server.WaitPost(() => {
+                    cfg.SetCVar(CCVars.SoftMaxPlayers, 0);
+                    cfg.SetCVar(SunriseCCVars.QueueEnabled, false);
+                });
 
-            await client.WaitPost(() => clientConsole.ExecuteCommand("disconnect"));
-            await pair.RunTicksSync(10);
+                // 2. Setup: Mock sponsor manager that grants priority join
+                var sponsorMock = new Mock<ISharedSponsorsManager>();
+                sponsorMock.Setup(m => m.HavePriorityJoin(It.IsAny<NetUserId>())).Returns(true);
 
-            client.SetConnectTarget(server);
-            // Use IBaseClient to ensure correct state machine transitions (RunLevel)
-            await client.WaitPost(() => baseClient.ConnectToServer(new DnsEndPoint("localhost", 1212)));
-            
-            // 4. Verification: Should connect successfully despite the soft cap
-            await pair.RunTicksSync(20);
-            
-            Assert.That(clientNetManager.IsConnected, "Client should be connected despite soft cap because of priority join.");
+                await server.WaitPost(() => {
+                    field!.SetValue(connMgr, sponsorMock.Object);
+                });
 
-            await pair.CleanReturnAsync();
+                // 3. Action: Disconnect and reconnect
+                var clientNetManager = client.ResolveDependency<IClientNetManager>();
+                var clientConsole = client.ResolveDependency<IClientConsoleHost>();
+                var baseClient = client.ResolveDependency<IBaseClient>();
+
+                await client.WaitPost(() => clientConsole.ExecuteCommand("disconnect"));
+                await pair.RunTicksSync(10);
+
+                client.SetConnectTarget(server);
+                // Use IBaseClient to ensure correct state machine transitions (RunLevel)
+                await client.WaitPost(() => baseClient.ConnectToServer(new DnsEndPoint("localhost", 1212)));
+
+                // 4. Verification: Should connect successfully despite the soft cap
+                await pair.RunTicksSync(20);
+
+                Assert.That(clientNetManager.IsConnected, "Client should be connected despite soft cap because of priority join.");
+            }
+            finally
+            {
+                // Restore settings
+                await server.WaitPost(() => {
+                    cfg.SetCVar(CCVars.SoftMaxPlayers, originalSoftMaxPlayers);
+                    cfg.SetCVar(SunriseCCVars.QueueEnabled, originalQueueEnabled);
+                    if (field != null)
+                    {
+                        field.SetValue(connMgr, originalSponsorsMgr);
+                    }
+                });
+
+                // Reconnect client in case it got disconnected
+                var clientNetManager = client.ResolveDependency<IClientNetManager>();
+                var baseClient = client.ResolveDependency<IBaseClient>();
+                bool isConnected = false;
+                await client.WaitPost(() => isConnected = clientNetManager.IsConnected);
+                if (!isConnected)
+                {
+                    client.SetConnectTarget(server);
+                    await client.WaitPost(() => baseClient.ConnectToServer(new DnsEndPoint("localhost", 1212)));
+                    await pair.RunTicksSync(20);
+                }
+
+                await pair.CleanReturnAsync();
+            }
         }
 
         [Test]
@@ -71,40 +108,76 @@ namespace Content.IntegrationTests.Tests._Sunrise.Sponsors
             var client = pair.Client;
 
             var cfg = server.ResolveDependency<IConfigurationManager>();
-            
-            // 1. Setup: Server is "full" and queue is disabled
-            await server.WaitPost(() => {
-                cfg.SetCVar(CCVars.SoftMaxPlayers, 0);
-                cfg.SetCVar(SunriseCCVars.QueueEnabled, false);
-            });
 
-            // 2. Setup: Mock sponsor manager that DENIES priority join
-            var sponsorMock = new Mock<ISharedSponsorsManager>();
-            sponsorMock.Setup(m => m.HavePriorityJoin(It.IsAny<NetUserId>())).Returns(false);
-            
-            await server.WaitPost(() => {
-                var connMgr = IoCManager.Resolve<IConnectionManager>();
-                var field = typeof(ConnectionManager).GetField("_sponsorsMgr", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                field!.SetValue(connMgr, sponsorMock.Object);
-            });
+            // Save original settings
+            var originalSoftMaxPlayers = cfg.GetCVar(CCVars.SoftMaxPlayers);
+            var originalQueueEnabled = cfg.GetCVar(SunriseCCVars.QueueEnabled);
+            object? originalSponsorsMgr = null;
+            var connMgr = server.ResolveDependency<IConnectionManager>();
+            var field = typeof(ConnectionManager).GetField("_sponsorsMgr", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (field != null)
+            {
+                originalSponsorsMgr = field.GetValue(connMgr);
+            }
 
-            // 3. Action: Disconnect and reconnect
-            var clientNetManager = client.ResolveDependency<IClientNetManager>();
-            var clientConsole = client.ResolveDependency<IClientConsoleHost>();
-            var baseClient = client.ResolveDependency<IBaseClient>();
+            try
+            {
+                // 1. Setup: Server is "full" and queue is disabled
+                await server.WaitPost(() => {
+                    cfg.SetCVar(CCVars.SoftMaxPlayers, 0);
+                    cfg.SetCVar(SunriseCCVars.QueueEnabled, false);
+                });
 
-            await client.WaitPost(() => clientConsole.ExecuteCommand("disconnect"));
-            await pair.RunTicksSync(10);
+                // 2. Setup: Mock sponsor manager that DENIES priority join
+                var sponsorMock = new Mock<ISharedSponsorsManager>();
+                sponsorMock.Setup(m => m.HavePriorityJoin(It.IsAny<NetUserId>())).Returns(false);
 
-            client.SetConnectTarget(server);
-            await client.WaitPost(() => baseClient.ConnectToServer(new DnsEndPoint("localhost", 1212)));
-            
-            // 4. Verification: Should NOT connect successfully
-            await pair.RunTicksSync(20);
-            
-            Assert.That(!clientNetManager.IsConnected, "Client should NOT be connected because server is full and they have no priority join.");
+                await server.WaitPost(() => {
+                    field!.SetValue(connMgr, sponsorMock.Object);
+                });
 
-            await pair.CleanReturnAsync();
+                // 3. Action: Disconnect and reconnect
+                var clientNetManager = client.ResolveDependency<IClientNetManager>();
+                var clientConsole = client.ResolveDependency<IClientConsoleHost>();
+                var baseClient = client.ResolveDependency<IBaseClient>();
+
+                await client.WaitPost(() => clientConsole.ExecuteCommand("disconnect"));
+                await pair.RunTicksSync(10);
+
+                client.SetConnectTarget(server);
+                await client.WaitPost(() => baseClient.ConnectToServer(new DnsEndPoint("localhost", 1212)));
+
+                // 4. Verification: Should NOT connect successfully
+                await pair.RunTicksSync(20);
+
+                Assert.That(!clientNetManager.IsConnected, "Client should NOT be connected because server is full and they have no priority join.");
+            }
+            finally
+            {
+                // Restore settings
+                await server.WaitPost(() => {
+                    cfg.SetCVar(CCVars.SoftMaxPlayers, originalSoftMaxPlayers);
+                    cfg.SetCVar(SunriseCCVars.QueueEnabled, originalQueueEnabled);
+                    if (field != null)
+                    {
+                        field.SetValue(connMgr, originalSponsorsMgr);
+                    }
+                });
+
+                // Reconnect client so the pair is returned to the pool in a fully connected state
+                var clientNetManager = client.ResolveDependency<IClientNetManager>();
+                var baseClient = client.ResolveDependency<IBaseClient>();
+                bool isConnected = false;
+                await client.WaitPost(() => isConnected = clientNetManager.IsConnected);
+                if (!isConnected)
+                {
+                    client.SetConnectTarget(server);
+                    await client.WaitPost(() => baseClient.ConnectToServer(new DnsEndPoint("localhost", 1212)));
+                    await pair.RunTicksSync(20);
+                }
+
+                await pair.CleanReturnAsync();
+            }
         }
     }
 }

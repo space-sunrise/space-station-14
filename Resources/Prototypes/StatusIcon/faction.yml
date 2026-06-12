@@ -48,18 +48,6 @@
 
 # sunrise-start
 - type: factionIcon
-  id: VampireFaction
-  isShaded: true
-  priority: 11
-  showTo:
-    components:
-      - ShowAntagIcons
-      - VampireIcon
-  icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: Vampire
-
-- type: factionIcon
   id: PirateFaction
   isShaded: true
   priority: 11

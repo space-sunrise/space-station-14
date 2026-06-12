@@ -1,0 +1,12 @@
+- type: construction
+  id: WallmountRadar
+  graph: WallmountRadar
+  startNode: start
+  targetNode: mass_scanner
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}

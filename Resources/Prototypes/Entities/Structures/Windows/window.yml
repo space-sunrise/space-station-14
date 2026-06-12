@@ -245,6 +245,8 @@
   - type: Icon
     sprite: Structures/Windows/directional.rsi
     state: frosted_window
+  - type: Occluder                        # Sunrise-Edit
+    boundingBox: "-0.5,-0.5,0.5,-0.28125" # Sunrise-Edit
   - type: StaticPrice
     price: 35
 

@@ -246,20 +246,3 @@
     exitPolymorphSound: /Audio/Magic/ethereal_exit.ogg
     duration: 120
     effectProto: EffectDesynchronizer
-
-#Vampire
-- type: polymorph
-  id: VampireMouse
-  configuration:
-    entity: MobMouse
-    revertOnDeath: true
-    revertOnCrit: true
-    duration: 180 #Sunrise-Edit
-
-- type: polymorph
-  id: VampireBat
-  configuration:
-    entity: MobBat
-    revertOnDeath: true
-    revertOnCrit: true
-    duration: 180 #Sunrise-Edit

@@ -295,6 +295,9 @@ uplink-energy-dome-desc = Персональный генератор щита, 
 uplink-syndicate-teleporter-name = Ручной телепорт Синдиката
 uplink-syndicate-teleporter-desc = Экспериментальное устройство ручного телепорта. Телепортирует владельца на небольшое расстояние вперед. Будьте осторожны, чтобы не оказаться в стене.
 
+uplink-viscerator-cluster-grenade-name = Висцераторная граната
+uplink-viscerator-cluster-grenade-desc = После короткого таймера выпускает восемь висцераторов Синдиката.
+
 ## Disruption
 
 uplink-cleaner-kit-name = Набор уборщика

@@ -73,7 +73,13 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
             var target = comp.Target.Value;
 
-            if (!Exists(target) || Deleted(target))
+            if (!Exists(target) || Deleted(target) || Terminating(target))
+            {
+                RemComp<ActiveCarrierComponent>(uid);
+                continue;
+            }
+
+            if (!TryComp(target, out TransformComponent? targetXform))
             {
                 RemComp<ActiveCarrierComponent>(uid);
                 continue;
@@ -81,7 +87,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
             var expectedCoordinates = GetCarriedCoordinates(uid);
 
-            if (!expectedCoordinates.TryDistance(EntityManager, Transform(target).Coordinates, out var distance)
+            if (!expectedCoordinates.TryDistance(EntityManager, targetXform.Coordinates, out var distance)
                 || distance > carrier.MaxSeparation)
             {
                 DropCarried(uid, target);
@@ -243,7 +249,7 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
         var target = ent.Comp.Target.Value;
 
-        if (!Exists(target) || Deleted(target))
+        if (!Exists(target) || Deleted(target) || Terminating(target))
             return;
 
         UpdateCarriedTransform(ent.Owner, target);
@@ -305,7 +311,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        var targetParent = Transform(args.Target.Value).ParentUid;
+        if (!TryComp(args.Target.Value, out TransformComponent? targetXform))
+            return;
+
+        var targetParent = targetXform.ParentUid;
 
         if (args.Target.Value != ent.Owner &&
             args.Target.Value != ent.Comp.Carrier &&
@@ -377,7 +386,10 @@ public abstract partial class SharedCarryingSystem : EntitySystem
 
     private void UpdateCarriedTransform(EntityUid carrier, EntityUid target)
     {
+        if (!TryComp(target, out TransformComponent? targetXform))
+            return;
+
         var carrierRotation = _transform.GetWorldRotation(carrier);
-        _transform.SetCoordinates(target, Transform(target), GetCarriedCoordinates(carrier), rotation: Angle.Zero - carrierRotation);
+        _transform.SetCoordinates(target, targetXform, GetCarriedCoordinates(carrier), rotation: Angle.Zero - carrierRotation);
     }
 }

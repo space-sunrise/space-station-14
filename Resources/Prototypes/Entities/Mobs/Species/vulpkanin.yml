@@ -6,9 +6,6 @@
   name: Urist McBark
   components:
   - type: Interactions
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
-  # Sunrise-start
   - type: Hunger
     starvationDamage:
       types:
@@ -154,6 +151,8 @@
             state: hair
   # Sunrise-start
   - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
   # Sunrise-end
   - type: Inventory
 # SUNRISE EDIT

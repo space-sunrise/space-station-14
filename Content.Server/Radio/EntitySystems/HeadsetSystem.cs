@@ -31,7 +31,6 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         SubscribeLocalEvent<HeadsetComponent, EncryptionChannelsChangedEvent>(OnKeysChanged);
         // Sunrise-Start
         SubscribeLocalEvent<HeadsetComponent, ActivateInWorldEvent>(OnActivate);
-        SubscribeLocalEvent<HeadsetComponent, ToggleHeadsetActionEvent>(OnToggleAction);
         // Sunrise-End
         SubscribeLocalEvent<WearingHeadsetComponent, EntitySpokeEvent>(OnSpeak);
     }

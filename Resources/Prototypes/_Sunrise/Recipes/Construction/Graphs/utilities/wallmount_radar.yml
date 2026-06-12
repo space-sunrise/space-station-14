@@ -1,0 +1,78 @@
+- type: constructionGraph
+  id: WallmountRadar
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: assembly
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2.0
+
+  - node: assembly
+    entity: WallmountRadarAssembly
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: wired
+      steps:
+      - material: Cable
+        amount: 2
+        doAfter: 1
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Welding
+        doAfter: 2
+
+  - node: wired
+    entity: WallmountRadarAssembly
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: electronics
+      steps:
+      - tag: RadarConsoleCircuitboard
+        store: board
+        name: construction-graph-tag-radar-console-board
+        icon:
+          sprite: Objects/Misc/module.rsi
+          state: cpuboard
+        doAfter: 1
+    - to: assembly
+      completed:
+      - !type:GivePrototype
+        prototype: CableApcStack1
+        amount: 2
+      steps:
+      - tool: Cutting
+        doAfter: 1
+
+  - node: electronics
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: mass_scanner
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: mass_scanner
+    entity: WallmountRadar
+    edges:
+    - to: wired
+      conditions:
+      - !type:ContainerNotEmpty
+        container: board
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 1

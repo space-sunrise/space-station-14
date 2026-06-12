@@ -1,5 +1,5 @@
 # Security Modules
- 
+
 - type: latheRecipe
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedCombat
@@ -16,3 +16,13 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleMiningCombat
   result: BorgModuleMiningCombat
+
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleAdvancedChemical
+  result: SunriseBorgModuleAdvancedChemical
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleRobotics
+  result: BorgModuleRobotics

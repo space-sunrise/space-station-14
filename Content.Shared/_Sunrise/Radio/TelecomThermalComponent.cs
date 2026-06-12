@@ -1,3 +1,4 @@
+using Content.Shared.Atmos;
 using Robust.Shared.Audio;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization.Manager.Attributes;
@@ -28,6 +29,30 @@ public sealed partial class TelecomThermalComponent : Component
 
     [DataField]
     public float HysteresisTemperature = 360f;
+
+    /// <summary>
+    /// Ambient temperature threshold below which the server stops relaying traffic.
+    /// </summary>
+    [DataField]
+    public float MinTemperature = Atmospherics.T0C - 50f;
+
+    /// <summary>
+    /// Ambient temperature threshold above which cold shutdown clears.
+    /// </summary>
+    [DataField]
+    public float HysteresisMinTemperature = Atmospherics.T0C - 40f;
+
+    /// <summary>
+    /// Ambient pressure threshold above which the server stops relaying traffic.
+    /// </summary>
+    [DataField]
+    public float MaxPressure = Atmospherics.HazardHighPressure;
+
+    /// <summary>
+    /// Ambient pressure threshold below which pressure shutdown clears.
+    /// </summary>
+    [DataField]
+    public float HysteresisPressure = Atmospherics.WarningHighPressure;
 
     [ViewVariables]
     public bool Overheated = false;

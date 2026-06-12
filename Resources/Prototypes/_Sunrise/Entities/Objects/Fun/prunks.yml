@@ -152,6 +152,15 @@
     node: doubletoy
 
 - type: entity
+  id: ToySwordFake
+  parent: ToySword
+  suffix: Fake
+  components:
+  - type: Construction
+    graph: EnergySwordDoubleGraph
+    node: toy
+
+- type: entity
   name: packaged anomaly
   description: A universal assembly package used to create a fake anomaly. Specially from Hohohonkers!
   id: FaketAnomalyIceFlatpack
