@@ -2,6 +2,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Telephone;
+using Content.Server._Sunrise.Silicons.StationAi;
 using Content.Shared.Access.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Chat;
@@ -40,6 +41,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PvsOverrideSystem _pvs = default!;
+    [Dependency] private readonly StationAiBodySystem _stationAiBody = default!; // Sunrise-Edit
 
     private float _updateTimer = 1.0f;
     private const float UpdateTime = 1.0f;
@@ -115,26 +117,29 @@ public sealed class HolopadSystem : SharedHolopadSystem
         if (!TryComp<TelephoneComponent>(receiver, out var receiverTelephone))
             return;
 
-        if (TryComp<StationAiHeldComponent>(args.Actor, out var userAiHeld))
+        // Sunrise-Edit
+        if (_stationAiSystem.TryGetCoreForAiActor(args.Actor, out var stationAiCore, out var stationAi))
         {
             var source = GetLinkedHolopads(receiver).FirstOrNull();
 
             if (source != null)
             {
                 // Close any AI request windows
-                if (_stationAiSystem.TryGetCore(args.Actor, out var stationAiCore))
-                    _userInterfaceSystem.CloseUi(receiver.Owner, HolopadUiKey.AiRequestWindow, args.Actor);
+                _userInterfaceSystem.CloseUi(receiver.Owner, HolopadUiKey.AiRequestWindow, args.Actor);
+
+                if (args.Actor != stationAi && !_stationAiBody.TryExitBody(stationAi))
+                    return;
 
                 // Try to warn the AI if the source of the call is out of its range
                 if (TryComp<TelephoneComponent>(stationAiCore, out var stationAiTelephone) &&
                     TryComp<TelephoneComponent>(source, out var sourceTelephone) &&
                     !_telephoneSystem.IsSourceInRangeOfReceiver((stationAiCore.Owner, stationAiTelephone), (source.Value.Owner, sourceTelephone)))
                 {
-                    _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-reach-holopad"), receiver, args.Actor);
+                    _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-reach-holopad"), receiver, stationAi);
                     return;
                 }
 
-                ActivateProjector(source.Value, args.Actor);
+                ActivateProjector(source.Value, stationAi);
             }
 
             return;
@@ -230,7 +235,9 @@ public sealed class HolopadSystem : SharedHolopadSystem
             if (!_stationAiSystem.TryGetHeld((receiver, receiverStationAiCore), out var insertedAi))
                 continue;
 
-            if (_userInterfaceSystem.TryOpenUi(receiverUid, HolopadUiKey.AiRequestWindow, insertedAi.Value))
+            var activeAiActor = _stationAiSystem.GetActiveAiActor(insertedAi.Value); // Sunrise-Edit
+
+            if (_userInterfaceSystem.TryOpenUi(receiverUid, HolopadUiKey.AiRequestWindow, activeAiActor)) // Sunrise-Edit
                 LinkHolopadToUser(entity, args.Actor);
         }
 

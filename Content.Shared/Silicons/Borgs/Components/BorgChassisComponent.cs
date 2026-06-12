@@ -120,6 +120,18 @@ public sealed partial class BorgChassisComponent : Component
 
     [DataField]
     public string NoMindState = string.Empty;
+
+    // Sunrise-Edit
+    /// <summary>
+    /// Resolved client visual layer used when the borg has a mind.
+    /// </summary>
+    public PrototypeLayerData? HasMindLayerData;
+
+    // Sunrise-Edit
+    /// <summary>
+    /// Resolved client visual layer used when the borg has no mind.
+    /// </summary>
+    public PrototypeLayerData? NoMindLayerData;
     #endregion
 
     /// <summary>

@@ -62,4 +62,5 @@ public enum StationAiCustomizationType : byte
 {
     CoreIconography,
     Hologram,
+    BodyAppearance, // Sunrise-Edit
 }

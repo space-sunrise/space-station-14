@@ -132,23 +132,30 @@ public abstract partial class SharedStationAiSystem
         if (ev.Actor == ev.Target)
             return;
 
-        if (TryComp(ev.Actor, out StationAiHeldComponent? aiComp) &&
-           (!TryComp(ev.Target, out StationAiWhitelistComponent? whitelistComponent) ||
-            !ValidateAi((ev.Actor, aiComp))))
-        {
-            // Don't allow the AI to interact with anything that isn't powered.
-            if (!PowerReceiver.IsPowered(ev.Target))
-            {
-                ShowDeviceNotRespondingPopup(ev.Actor);
-                ev.Cancel();
-                return;
-            }
+        // Sunrise-Edit
+        if (!TryGetCoreForAiActor(ev.Actor, out _, out _))
+            return;
 
-            // Don't allow the AI to interact with anything that it isn't allowed to (ex. AI wire is cut)
-            if (whitelistComponent is { Enabled: false })
-            {
-                ShowDeviceNotRespondingPopup(ev.Actor);
-            }
+        // Sunrise-Edit
+        if (!TryComp(ev.Target, out StationAiWhitelistComponent? whitelistComponent) ||
+            !ValidateAiActor(ev.Actor))
+        {
+            ev.Cancel();
+            return;
+        }
+
+        // Don't allow the AI to interact with anything that isn't powered.
+        if (!PowerReceiver.IsPowered(ev.Target))
+        {
+            ShowDeviceNotRespondingPopup(ev.Actor);
+            ev.Cancel();
+            return;
+        }
+
+        // Don't allow the AI to interact with anything that it isn't allowed to (ex. AI wire is cut)
+        if (!whitelistComponent.Enabled)
+        {
+            ShowDeviceNotRespondingPopup(ev.Actor);
             ev.Cancel();
         }
     }
@@ -172,7 +179,7 @@ public abstract partial class SharedStationAiSystem
             return;
 
         if (!args.CanComplexInteract
-            || !HasComp<StationAiHeldComponent>(args.User)
+            || !TryGetCoreForAiActor(args.User, out _, out _) // Sunrise-Edit
             || !args.CanInteract)
         {
             return;

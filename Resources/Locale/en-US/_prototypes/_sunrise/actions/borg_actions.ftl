@@ -14,3 +14,5 @@ ent-PieThrow = { "" }
     .desc = { "" }
 ent-ActionViewCrewManifest = View Crew Manifest
     .desc = View the View crew manifest station.
+ent-ActionChangeBorgGender = Change Borg Gender
+    .desc = Change the cyborg body gender model if the selected type supports it.

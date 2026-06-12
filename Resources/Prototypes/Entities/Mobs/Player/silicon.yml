@@ -435,11 +435,15 @@
   - type: ActionGrant
     actions:
     - ActionViewLaws
+  - type: StationAiBodyController # Sunrise-Edit
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
         requireInputValidation: false
+      enum.StationAiBodyUiKey.Key: # Sunrise-Edit
+        type: StationAiBodyBoundUserInterface # Sunrise-Edit
+        requireInputValidation: false # Sunrise-Edit
   - type: ComplexInteraction
   - type: Actions
   - type: Access

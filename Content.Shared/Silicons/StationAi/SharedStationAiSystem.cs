@@ -173,7 +173,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     private void OnAiBuiCheck(Entity<StationAiWhitelistComponent> ent, ref BoundUserInterfaceCheckRangeEvent args)
     {
-        if (!HasComp<StationAiHeldComponent>(args.Actor))
+        if (!TryGetCoreForAiActor(args.Actor, out _, out _)) // Sunrise-Edit
             return;
 
         args.Result = BoundUserInterfaceRangeResult.Fail;
@@ -304,7 +304,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (TryGetHeld((args.Target.Value, targetHolder), out var held))
         {
             var ev = new ChatNotificationEvent(_downloadChatNotificationPrototype, args.Used, args.User);
-            RaiseLocalEvent(held.Value, ref ev);
+            RaiseLocalEvent(GetActiveAiActor(held.Value), ref ev); // Sunrise-Edit
         }
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, cardHasAi ? intelliComp.UploadTime : intelliComp.DownloadTime, new IntellicardDoAfterEvent(), args.Target, ent.Owner)

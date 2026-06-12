@@ -4,3 +4,7 @@ ent-ActionSurvCameraLights = Toggle camera lights
     .desc = Enable surveillance camera lights near wherever you're viewing.
 ent-ActionAIViewLaws = View Laws
     .desc = View the laws that you must follow.
+ent-ActionStationAiBodyMenu = Manage AI bodies
+    .desc = Open the list of available AI bodies.
+ent-ActionStationAiBodyExit = Leave AI body
+    .desc = Return your mind to the AI core.

@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Placeholders copied from Mobs/Silicon/holograms.rsi and Mobs/Silicon/chassis.rsi. Replace with final station AI body sprites.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "male"
+        },
+        {
+            "name": "female"
+        },
+        {
+            "name": "borg",
+            "directions": 4
+        }
+    ]
+}

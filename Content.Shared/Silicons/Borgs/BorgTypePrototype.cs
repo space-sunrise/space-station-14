@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Interaction.Components;
+using Content.Shared._Sunrise.Silicons.Borgs;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
 using Content.Shared.Roles;
@@ -125,6 +126,13 @@ public sealed partial class BorgTypePrototype : IPrototype
     /// </summary>
     [DataField]
     public string SpriteToggleLightState { get; set; } = "robot_l";
+
+    // Sunrise-Edit
+    /// <summary>
+    /// Optional sprite layer overrides for gender variants.
+    /// </summary>
+    [DataField]
+    public Dictionary<BorgGender, BorgGenderSpriteSet> GenderSprites { get; set; } = new();
 
     //
     // Minor information

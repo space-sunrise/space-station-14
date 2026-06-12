@@ -10,6 +10,7 @@ using Content.Server.Roles;
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.Silicons.StationAi;
 using Content.Shared.Alert;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Containers.ItemSlots;
@@ -163,8 +164,9 @@ public sealed class StationAiSystem : SharedStationAiSystem
     {
         base.OnAiRemove(ent, ref args);
 
-        _alerts.ClearAlert(args.Entity, _batteryAlert);
-        _alerts.ClearAlert(args.Entity, _damageAlert);
+        var activeActor = GetActiveAiActor(args.Entity); // Sunrise-Edit
+        _alerts.ClearAlert(activeActor, _batteryAlert); // Sunrise-Edit
+        _alerts.ClearAlert(activeActor, _damageAlert); // Sunrise-Edit
 
         if (TryComp<DamagedSiliconAccentComponent>(args.Entity, out var accent))
         {
@@ -224,7 +226,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             return;
 
         var ev = new ChatNotificationEvent(_aiLosingPowerChatNotificationPrototype, ent);
-        RaiseLocalEvent(held.Value, ref ev);
+        RaiseLocalEvent(GetActiveAiActor(held.Value), ref ev); // Sunrise-Edit
     }
 
     private void OnChargeChanged(Entity<StationAiCoreComponent> entity, ref ChargeChangedEvent args)
@@ -245,7 +247,9 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
             return;
 
-        if (!TryComp<DamagedSiliconAccentComponent>(held, out var accent))
+        var activeActor = GetActiveAiActor(held.Value); // Sunrise-Edit
+
+        if (!TryComp<DamagedSiliconAccentComponent>(activeActor, out var accent)) // Sunrise-Edit
             return;
 
         if (TryComp<BatteryComponent>(ent, out var battery))
@@ -257,7 +261,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (TryComp<DestructibleComponent>(ent, out var destructible))
             accent.DamageAtMaxCorruption = _destructible.DestroyedAt(ent, destructible);
 
-        Dirty(held.Value, accent);
+        Dirty(activeActor, accent); // Sunrise-Edit
     }
 
     private void UpdateBatteryAlert(Entity<StationAiCoreComponent> ent)
@@ -273,15 +277,18 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         var chargePercent = _battery.GetChargeLevel((ent.Owner, battery));
         var chargeLevel = Math.Round(chargePercent * proto.MaxSeverity);
+        var activeActor = GetActiveAiActor(held.Value); // Sunrise-Edit
 
-        _alerts.ShowAlert(held.Value, _batteryAlert, (short)Math.Clamp(chargeLevel, 0, proto.MaxSeverity));
+        _alerts.ShowAlert(activeActor, _batteryAlert, (short)Math.Clamp(chargeLevel, 0, proto.MaxSeverity)); // Sunrise-Edit
+        if (activeActor != held.Value) // Sunrise-Edit
+            _alerts.ClearAlert(held.Value, _batteryAlert); // Sunrise-Edit
 
         if (TryComp<ApcPowerReceiverBatteryComponent>(ent, out var apcBattery) &&
             apcBattery.Enabled &&
             chargePercent < 0.2)
         {
             var ev = new ChatNotificationEvent(_aiCriticalPowerChatNotificationPrototype, ent);
-            RaiseLocalEvent(held.Value, ref ev);
+            RaiseLocalEvent(activeActor, ref ev); // Sunrise-Edit
         }
     }
 
@@ -301,8 +308,11 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         var damagePercent = damageable.TotalDamage / _destructible.DestroyedAt(ent, destructible);
         var damageLevel = Math.Round(damagePercent.Float() * proto.MaxSeverity);
+        var activeActor = GetActiveAiActor(held.Value); // Sunrise-Edit
 
-        _alerts.ShowAlert(held.Value, _damageAlert, (short)Math.Clamp(damageLevel, 0, proto.MaxSeverity));
+        _alerts.ShowAlert(activeActor, _damageAlert, (short)Math.Clamp(damageLevel, 0, proto.MaxSeverity)); // Sunrise-Edit
+        if (activeActor != held.Value) // Sunrise-Edit
+            _alerts.ClearAlert(held.Value, _damageAlert); // Sunrise-Edit
     }
 
     private void OnDoAfterAttempt(Entity<StationAiCoreComponent> ent, ref DoAfterAttemptEvent<IntellicardDoAfterEvent> args)
@@ -365,7 +375,8 @@ public sealed class StationAiSystem : SharedStationAiSystem
         {
             var stationAiCore = new Entity<StationAiCoreComponent?>(ent, entStationAiCore);
 
-            if (!TryGetHeld(stationAiCore, out var insertedAi) || !TryComp(insertedAi, out ActorComponent? actor))
+            if (!TryGetHeld(stationAiCore, out var insertedAi) ||
+                !TryComp(GetActiveAiActor(insertedAi.Value), out ActorComponent? actor)) // Sunrise-Edit
                 continue;
 
             if (stationAiCore.Comp?.RemoteEntity == null || stationAiCore.Comp.Remote)
@@ -470,6 +481,17 @@ public sealed class StationAiSystem : SharedStationAiSystem
         {
             if (!TryGetHeld((stationAiCore, stationAiCore.Comp), out var insertedAi))
                 continue;
+
+            // Sunrise-Start
+            if (TryComp<StationAiBodyControllerComponent>(insertedAi.Value, out var controller) &&
+                controller.CurrentBody is { } currentBody &&
+                TryComp<StationAiBodyComponent>(currentBody, out var body) &&
+                body.LinkedAi == insertedAi)
+            {
+                hashSet.Add(currentBody);
+                continue;
+            }
+            // Sunrise-End
 
             hashSet.Add(insertedAi.Value);
         }

@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared._Sunrise.Silicons.Borgs;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
@@ -12,7 +13,7 @@ namespace Content.Shared.Silicons.Borgs;
 /// Implements borg type switching.
 /// </summary>
 /// <seealso cref="BorgSwitchableTypeComponent"/>
-public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
+public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem // Sunrise-Edit
 {
     // TODO: Allow borgs to be reset to default configuration.
 
@@ -20,6 +21,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
     [Dependency] private readonly InteractionPopupSystem _interactionPopup = default!;
+    [Dependency] private readonly SharedBorgGenderSystem _borgGender = default!; // Sunrise-Edit
 
     public static readonly EntProtoId ActionId = "ActionSelectBorgType";
 
@@ -30,6 +32,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         SubscribeLocalEvent<BorgSwitchableTypeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<BorgSwitchableTypeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<BorgSwitchableTypeComponent, BorgToggleSelectTypeEvent>(OnSelectBorgTypeAction);
+        SubscribeLocalEvent<BorgSwitchableTypeComponent, BorgGenderChangedEvent>(OnBorgGenderChanged); // Sunrise-Edit
 
         Subs.BuiEvents<BorgSwitchableTypeComponent>(BorgSwitchableTypeUiKey.SelectBorgType,
             sub =>
@@ -79,6 +82,12 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         SelectBorgModule(ent, args.Prototype);
     }
 
+    // Sunrise-Edit
+    private void OnBorgGenderChanged(Entity<BorgSwitchableTypeComponent> ent, ref BorgGenderChangedEvent args)
+    {
+        RefreshEntityAppearance(ent.AsNullable());
+    }
+
     //
     // Implementation
     //
@@ -95,15 +104,18 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
 
         _userInterface.CloseUi((ent.Owner, null), BorgSwitchableTypeUiKey.SelectBorgType);
 
-        UpdateEntityAppearance(ent);
+        RefreshEntityAppearance(ent.AsNullable());
     }
 
-    protected void UpdateEntityAppearance(Entity<BorgSwitchableTypeComponent> entity)
+    public void RefreshEntityAppearance(Entity<BorgSwitchableTypeComponent?> entity)
     {
+        if (!Resolve(entity, ref entity.Comp))
+            return;
+
         if (!Prototypes.Resolve(entity.Comp.SelectedBorgType, out var proto))
             return;
 
-        UpdateEntityAppearance(entity, proto);
+        UpdateEntityAppearance((entity.Owner, entity.Comp), proto);
     }
 
     protected virtual void UpdateEntityAppearance(
@@ -121,19 +133,14 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
             footstepModifier.FootstepSoundCollection = prototype.FootstepCollection;
         }
 
-        if (prototype.SpriteBodyMovementState is { } movementState)
+        var visuals = _borgGender.ResolveVisuals(entity.Owner, prototype); // Sunrise-Edit
+        if (visuals.BodyMovement is { } movementLayer)
         {
             var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
             spriteMovement.NoMovementLayers.Clear();
-            spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
-            {
-                State = prototype.SpriteBodyState,
-            };
+            spriteMovement.NoMovementLayers["movement"] = visuals.Body;
             spriteMovement.MovementLayers.Clear();
-            spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
-            {
-                State = movementState,
-            };
+            spriteMovement.MovementLayers["movement"] = movementLayer;
         }
         else
         {
