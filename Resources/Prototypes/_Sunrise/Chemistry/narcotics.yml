@@ -17,7 +17,7 @@
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
-          reagent: Fentanyl
+          reagent: Fentamyl
           min: 5
         damage:
           types:
@@ -27,7 +27,7 @@
         probability: 0.05
         conditions:
         - !type:ReagentCondition
-          reagent: Fentanyl
+          reagent: Fentamyl
           min: 5
         damage:
           types:
@@ -36,7 +36,7 @@
         probability: 0.03
         conditions:
         - !type:ReagentCondition
-          reagent: Fentanyl
+          reagent: Fentamyl
           min: 10
         damage:
           types:
@@ -61,7 +61,7 @@
         probability: 0.15
         conditions:
         - !type:ReagentCondition
-          reagent: Fentanyl
+          reagent: Fentamyl
           min: 5
         key: Paralyzed
         time: 4.0
@@ -78,7 +78,7 @@
         probability: 0.02
         conditions:
         - !type:ReagentCondition
-          reagent: Fentanyl
+          reagent: Fentamyl
           min: 15
         key: ForcedSleeping
         component: ForcedSleeping
@@ -232,7 +232,7 @@
         probability: 0.01
         conditions:
         - !type:ReagentCondition
-          reagent: Fentanyl
+          reagent: Fentamyl
           min: 15
       - !type:ModifyBleed
         amount: -0.5
