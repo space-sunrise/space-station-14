@@ -19,7 +19,7 @@ public sealed class ManglenessRecoverySystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<HungerComponent, ComponentInit>(OnHungerInit);
         SubscribeLocalEvent<ThirstComponent, ComponentInit>(OnThirstInit);
-        SubscribeLocalEvent<DamageableComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<HungerComponent, HungerDecayRateModifierEvent>(OnHungerDecayRateModifier);
         SubscribeLocalEvent<ThirstComponent, ThirstDecayRateModifierEvent>(OnThirstDecayRateModifier);
     }
@@ -34,8 +34,9 @@ public sealed class ManglenessRecoverySystem : EntitySystem
         component.HadMangleness = _damageable.HasMangleness(uid);
     }
 
-    private void OnDamageChanged(EntityUid uid, DamageableComponent component, DamageChangedEvent args)
+    private void OnDamageChanged(DamageChangedEvent args)
     {
+        var uid = args.Damageable.Owner;
         var hasMangleness = _damageable.HasMangleness(uid);
 
         if (TryComp<HungerComponent>(uid, out var hunger) && hunger.HadMangleness != hasMangleness)
