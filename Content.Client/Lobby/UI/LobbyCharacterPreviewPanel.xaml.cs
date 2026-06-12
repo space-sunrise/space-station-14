@@ -121,7 +121,7 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         {
             OverrideDirection = Direction.South,
             Scale = new Vector2(4f, 4f),
-            MaxSize = new Vector2(112, 112),
+            MaxSize = new Vector2(9999, 9999), // Sunrise-Edit
             Stretch = SpriteView.StretchMode.Fill,
         };
         _characterSpriteView.SetEntity(uid);
