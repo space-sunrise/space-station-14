@@ -106,17 +106,20 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             return;
         }
 
-        if (ent.Comp.MaxRecords <= 0)
-            return;
+        // Determine effective max records based on cassette capacity: 60s->120, 120s->240, 180s->360
+        var effectiveMax = (int)(cassette.Comp.Capacity.TotalSeconds * 2);
+        if (effectiveMax <= 0)
+            effectiveMax = ent.Comp.MaxRecords > 0 ? ent.Comp.MaxRecords : 120;
 
-        if (cassette.Comp.Records.Count >= ent.Comp.MaxRecords)
+        if (cassette.Comp.Records.Count >= effectiveMax)
             cassette.Comp.Records.RemoveAt(0);
 
         cassette.Comp.Records.Add(new TapeCassetteRecord(
             cassette.Comp.Position,
             GetSpeakerName(ent, args.Source),
             args.Message,
-            GetSpeakerVoice(args.Source)));
+            GetSpeakerVoice(args.Source),
+            _timing.CurTime));
 
         Dirty(cassette);
         UpdateUserInterface(ent);
@@ -336,15 +339,29 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
         return true;
     }
 
-    private string BuildTranscript(Entity<TapeCassetteComponent> cassette)
+    private string BuildTranscript(Entity<(TapeCassetteComponent)> cassette)
     {
         var transcript = new StringBuilder();
+        var speakerMap = new Dictionary<string, int>();
+        var nextSpeaker = 1;
+
         foreach (var record in cassette.Comp.Records)
         {
+            if (!speakerMap.TryGetValue(record.Speaker, out var idx))
+            {
+                idx = nextSpeaker++;
+                speakerMap[record.Speaker] = idx;
+            }
+
+            var speakerLabel = Loc.GetString("tape-recorder-transcript-speaker", ("number", idx));
+            var serverTime = FormatTime(record.RecordedAt); // hh:mm:ss
+            var pos = FormatPosition(record.Time); // mm:ss
+
             transcript.AppendLine(Loc.GetString(
                 "tape-recorder-transcript-line",
-                ("time", FormatTime(record.Time)),
-                ("speaker", record.Speaker),
+                ("time", serverTime),
+                ("position", pos),
+                ("speaker", speakerLabel),
                 ("message", record.Message)));
         }
 
@@ -490,6 +507,9 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 
     private static string FormatTime(TimeSpan time) =>
         time.ToString(@"hh\:mm\:ss");
+
+    private static string FormatPosition(TimeSpan time) =>
+        time.ToString(@"mm\:ss");
 
     private static TimeSpan Min(TimeSpan a, TimeSpan b) =>
         a <= b ? a : b;
