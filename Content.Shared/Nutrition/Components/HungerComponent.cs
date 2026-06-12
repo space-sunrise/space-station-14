@@ -117,46 +117,6 @@ public sealed partial class HungerComponent : Component
     [DataField("starvationDamage")]
     public DamageSpecifier? StarvationDamage;
 
-    // Sunrise-Start - Fields migrated to HungerComponent.Sunrise.cs
-    /*
-    /// <summary>
-    /// Mangleness healing amount when hunger level is Okay or higher. Negative values indicate healing.
-    /// </summary>
-    [DataField]
-    public float ManglenessHealingOkay = -0.01f;
-
-    /// <summary>
-    /// Mangleness healing amount when hunger level is Peckish. Negative values indicate healing.
-    /// </summary>
-    [DataField]
-    public float ManglenessHealingPeckish = -0.005f;
-
-    /// <summary>
-    /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Okay or higher.
-    /// </summary>
-    [DataField]
-    public float ManglenessDecayMultOkay = 4.0f;
-
-    /// <summary>
-    /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Overfed.
-    /// </summary>
-    [DataField]
-    public float ManglenessDecayMultOverfed = 4.0f;
-
-    /// <summary>
-    /// Mangleness decay rate multiplier applied when entity has Mangleness damage and hunger level is Peckish.
-    /// </summary>
-    [DataField]
-    public float ManglenessDecayMultPeckish = 2.0f;
-
-    /// <summary>
-    /// Tracks whether the entity previously had active Mangleness damage. Used to trigger threshold updates when state changes.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField, Access(Other = AccessPermissions.ReadWriteExecute)]
-    public bool HadMangleness;
-    */
-    // Sunrise-End
-
     /// <summary>
     /// The time when the hunger threshold will update next.
     /// </summary>
