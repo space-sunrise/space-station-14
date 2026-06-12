@@ -14,5 +14,5 @@ tape-recorder-popup-tape-used = This part of the cassette has already been used.
 tape-recorder-speaker-unknown = Unknown
 tape-recorder-transcript-speaker = Voice {$number}
 tape-recorder-transcript-start = Start of tape transcript
-tape-recorder-transcript-line = [{$time}] [{$position}] {$speaker}: {$message}
+tape-recorder-transcript-line = [{$position}] {$speaker}: {$message}
 tape-recorder-transcript-end = End of tape transcript

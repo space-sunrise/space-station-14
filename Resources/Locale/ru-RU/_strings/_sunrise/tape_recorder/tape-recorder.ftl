@@ -14,5 +14,5 @@ tape-recorder-popup-tape-used = Эта часть кассеты уже испо
 tape-recorder-speaker-unknown = Неизвестный
 tape-recorder-transcript-speaker = Голос {$number}
 tape-recorder-transcript-start = Начало расшифровки записи
-tape-recorder-transcript-line = [{$time}] [{$position}] {$speaker}: {$message}
+tape-recorder-transcript-line = [{$position}] {$speaker}: {$message}
 tape-recorder-transcript-end = Конец расшифровки записи
