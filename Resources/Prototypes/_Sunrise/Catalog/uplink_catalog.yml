@@ -3443,7 +3443,7 @@
   id: UplinkClothingChameleonSilent
   name: uplink-clothing-chameleon-silent-name
   description: uplink-clothing-chameleon-silent-desc
-  productEntity: ClothingShoesChameleonSilent
+  productEntity: ChameleonSilentShoesBox
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 1
