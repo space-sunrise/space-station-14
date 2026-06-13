@@ -2,11 +2,14 @@ using System.Numerics;
 using Content.Shared._Sunrise.Movement.Standing.Components;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Movement.Standing.Systems;
 
 public abstract partial class SharedSunriseStandingStateSystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!;
+
     private EntityQuery<CrawlerComponent> _crawlerQuery;
 
     private void InitializeProneCrawlMovement()
@@ -19,6 +22,9 @@ public abstract partial class SharedSunriseStandingStateSystem
 
     private void OnProneCrawlMovementDowned(Entity<StandingStateComponent> ent, ref DownedEvent args)
     {
+        if (_timing.ApplyingState)
+            return;
+
         if (!_crawlerQuery.HasComp(ent))
             return;
 
@@ -28,6 +34,9 @@ public abstract partial class SharedSunriseStandingStateSystem
 
     private void OnProneCrawlMovementStood(Entity<StandingStateComponent> ent, ref StoodEvent args)
     {
+        if (_timing.ApplyingState)
+            return;
+
         if (!_crawlerQuery.HasComp(ent))
             return;
 

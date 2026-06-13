@@ -576,5 +576,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
         CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
 
-
+    public static readonly CVarDef<bool> LyingAnimationEnabled =
+        CVarDef.Create("lying.animation_enabled", false, CVar.REPLICATED | CVar.ARCHIVE);
 }
