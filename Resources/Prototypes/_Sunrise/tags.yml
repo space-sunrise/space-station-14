@@ -592,6 +592,9 @@
 - type: Tag
   id: BluespaceBox
 
+- type: Tag # ! GRAVEYARD OVERHAUL
+  id: Coffin
+
 - type: Tag
   id: ClownKudzu
 

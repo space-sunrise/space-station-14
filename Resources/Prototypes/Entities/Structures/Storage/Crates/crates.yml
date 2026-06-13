@@ -757,6 +757,11 @@
   name: coffin
   description: A comfy coffin, excellent place for the vampires and corpses.
   components:
+# ! SUNRISE ADD START :: GRAVEYARD OVERHAUL
+  - type: Tag
+    tags:
+      - Coffin
+# ! SUNRISE ADD END
   - type: Sprite
     sprite: Structures/Storage/Crates/coffin.rsi
     layers:
@@ -855,6 +860,16 @@
       path: /Audio/Items/shovel_dig.ogg
     openSound:
       path: /Audio/Items/shovel_dig.ogg
+# ! SUNRISE ADD START :: GRAVEYARD OVERHAUL
+    # whitelist:
+    #   tags:
+    #     - Coffin
+    #     - BodyBag
+    #     - CanPilot
+    #     - VimPilot
+    #   components:
+    #     - Buriable
+# ! SUNRISE ADD END
 
 - type: entity
   parent: CrateWoodenGrave
