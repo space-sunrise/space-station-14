@@ -70,6 +70,8 @@ uplink-slipknotset-name = slipknot masks gift set
 uplink-slipknotset-desc = Five masks. Five souls. Numbers 7, 8, 6, 1 and 5 inside a black box — filthy Iowa fury.
 uplink-clothing-murder-socks-name = Murder Socks
 uplink-clothing-murder-socks-desc = For the agent who truly understands style.
+uplink-clothing-chameleon-silent-name = Silent shoes
+uplink-clothing-chameleon-silent-desc = Specialized shoes designed for silent movement. Every step disappears into the void.
 uplink-syndie-maid-raid-name = Maid Raider
 uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female agents, yet for some reason only men ever wear it.
 
