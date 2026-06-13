@@ -1,10 +1,12 @@
 using System.Numerics;
 using Content.Shared._Sunrise.Movement.Standing;
 using Content.Shared._Sunrise.Movement.Standing.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Stunnable;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.Movement.Standing;
@@ -14,11 +16,15 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private const float PullBackPeak = 0.35f;
 
     private static readonly Vector2 FallbackOffset = Vector2.Zero;
     private static readonly Vector2 FallbackScale = Vector2.One;
+
+    // TODO: Убрать, когда анимация будет полностью исправлена и не перестанет вызывать визуальных багов.
+    private bool _animationEnabled;
 
     public override void Initialize()
     {
@@ -27,10 +33,15 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         SubscribeLocalEvent<ActiveProneCrawlMovementComponent, ProneCrawlPullStartedEvent>(OnPullStarted);
         SubscribeLocalEvent<ActiveProneCrawlMovementComponent, ComponentShutdown>(OnMovementShutdown);
         SubscribeLocalEvent<ProneCrawlAnimationComponent, AnimationCompletedEvent>(OnAnimationCompleted);
+
+        Subs.CVar(_cfg, SunriseCCVars.LyingAnimationEnabled, OnAnimationToggled, true);
     }
 
     private void OnPullStarted(Entity<ActiveProneCrawlMovementComponent> ent, ref ProneCrawlPullStartedEvent args)
     {
+        if (!_animationEnabled)
+            return;
+
         if (!_timing.IsFirstTimePredicted)
             return;
 
@@ -89,6 +100,9 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
 
     private void OnAnimationCompleted(Entity<ProneCrawlAnimationComponent> ent, ref AnimationCompletedEvent args)
     {
+        if (!_animationEnabled)
+            return;
+
         if (!TryComp<CrawlerComponent>(ent, out var crawl))
             return;
 
@@ -100,6 +114,12 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
 
     private void OnMovementShutdown(Entity<ActiveProneCrawlMovementComponent> ent, ref ComponentShutdown args)
     {
+        if (!_animationEnabled)
+            return;
+
+        if (_timing.ApplyingState)
+            return;
+
         if (!TryComp<CrawlerComponent>(ent, out var crawl) || !TryComp<ProneCrawlAnimationComponent>(ent, out var animationState))
             return;
 
@@ -130,5 +150,10 @@ public sealed class ProneCrawlAnimationSystem : EntitySystem
         component.BaseOffset = useSpriteDefaults ? sprite.Offset : FallbackOffset;
         component.BaseScale = useSpriteDefaults ? sprite.Scale : FallbackScale;
         component.BaseStateCaptured = true;
+    }
+
+    private void OnAnimationToggled(bool value)
+    {
+        _animationEnabled = value;
     }
 }
