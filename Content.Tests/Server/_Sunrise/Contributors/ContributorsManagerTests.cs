@@ -16,24 +16,24 @@ namespace Content.Tests.Server._Sunrise.Contributors;
 public sealed class ContributorsManagerTests
 {
     [Test]
-    public void InitializeAppliesDefaultDisabledState()
+    public void InitializeAppliesDefaultEnabledState()
     {
         var manager = CreateManager(out _);
 
         manager.Initialize();
 
-        Assert.That(GetEnabled(manager), Is.False);
+        Assert.That(GetEnabled(manager), Is.True);
     }
 
     [Test]
-    public void InitializeAppliesConfiguredEnabledStateImmediately()
+    public void InitializeAppliesConfiguredDisabledStateImmediately()
     {
         var manager = CreateManager(out var cfg);
-        cfg.SetCVar(SunriseCCVars.ContributorsEnable, true);
+        cfg.SetCVar(SunriseCCVars.ContributorsEnable, false);
 
         manager.Initialize();
 
-        Assert.That(GetEnabled(manager), Is.True);
+        Assert.That(GetEnabled(manager), Is.False);
     }
 
     private static ContributorsManager CreateManager(out IConfigurationManager cfg)
