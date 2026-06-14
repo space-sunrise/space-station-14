@@ -15,15 +15,15 @@ public sealed partial class GibOnTriggerComponent : BaseXOnTriggerComponent
     [DataField, AutoNetworkedField]
     public bool DeleteItems = false;
 
-    // Sunrise added start - поддержка растворителя снаряжения без удаления тела
+    // Sunrise added start - support gear acidifier without deleting the body
     /// <summary>
-    /// Нужно ли гибать саму сущность.
+    /// Whether the triggered entity itself should be gibbed.
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool GibBody = true;
 
     /// <summary>
-    /// Нужно ли создавать гибы при удалении тела.
+    /// Whether giblets should be spawned when gibbing the body.
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool GibOrgans = true;

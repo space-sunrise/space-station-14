@@ -20,7 +20,7 @@ public sealed class GibOnTriggerSystem : XOnTriggerSystem<GibOnTriggerComponent>
             }
         }
 
-        // Sunrise edit start - поддержка растворителя снаряжения без удаления тела
+        // Sunrise edit start - support gear acidifier without deleting the body
         if (ent.Comp.GibBody)
             _gibbing.Gib(target, dropGiblets: ent.Comp.GibOrgans, user: args.User);
         // Sunrise edit end
