@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Silicons.StationAi;
 
@@ -19,6 +20,12 @@ public sealed partial class StationAiBodyControllerComponent : Component
     /// </summary>
     [AutoNetworkedField, ViewVariables]
     public List<StationAiBodyEntry> Bodies = [];
+
+    /// <summary>
+    /// Action prototype granted to the station AI brain to open the body selector UI.
+    /// </summary>
+    [DataField]
+    public EntProtoId BodyMenuActionPrototype = "ActionStationAiBodyMenu";
 
     /// <summary>
     /// Granted action entity used by the AI brain to open the body selector UI.

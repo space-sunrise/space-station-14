@@ -30,19 +30,26 @@ public sealed partial class StationAiBodyComponent : Component
     public EntityUid? LinkedAi;
 
     /// <summary>
-    /// Granted action entity used by the controlled body to reopen the body selector UI.
+    /// Action prototypes granted to the borg chassis while it is controlled as a station AI body.
     /// </summary>
-    [ViewVariables]
-    public EntityUid? BodyMenuAction;
+    [DataField]
+    public List<EntProtoId> ControlledBodyActions =
+    [
+        "ActionStationAiBodyMenu",
+        "ActionStationAiBodyExit",
+    ];
 
     /// <summary>
-    /// Granted action entity used by the controlled body to return control to the AI brain.
+    /// Action entities granted from <see cref="ControlledBodyActions"/> during active control.
     /// </summary>
-    [ViewVariables]
-    public EntityUid? BodyExitAction;
+    [NonSerialized, ViewVariables]
+    public List<EntityUid> ControlledBodyActionEntities = [];
 
-    [AutoNetworkedField, ViewVariables]
-    public Dictionary<string, HashSet<ProtoId<RadioChannelPrototype>>> CachedChannels = new ();
+    /// <summary>
+    /// Original radio channels of the body before station AI channels were inherited.
+    /// </summary>
+    [NonSerialized, ViewVariables]
+    public Dictionary<string, HashSet<ProtoId<RadioChannelPrototype>>> CachedRadioChannels = new();
 }
 
 [Serializable, NetSerializable]

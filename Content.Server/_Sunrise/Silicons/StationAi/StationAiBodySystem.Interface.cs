@@ -22,8 +22,6 @@ public sealed partial class StationAiBodySystem
 
     private const string BodyUiClientType = "StationAiBodyBoundUserInterface";
 
-    private static readonly EntProtoId BodyMenuAction = "ActionStationAiBodyMenu";
-    private static readonly EntProtoId BodyExitAction = "ActionStationAiBodyExit";
     private static readonly SpriteSpecifier BodyEnterVerbIcon =
         new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/in.svg.192dpi.png"));
 
@@ -137,24 +135,33 @@ public sealed partial class StationAiBodySystem
 
     #region Actions
 
-    private void AddBodyActions(Entity<StationAiBodyComponent> body)
+    private void GrantControlledBodyActions(Entity<StationAiBodyComponent> body)
     {
-        _actions.AddAction(body.Owner, ref body.Comp.BodyMenuAction, BodyMenuAction);
-        _actions.AddAction(body.Owner, ref body.Comp.BodyExitAction, BodyExitAction);
+        RevokeControlledBodyActions(body);
+
+        foreach (var action in body.Comp.ControlledBodyActions)
+        {
+            EntityUid? actionEnt = null;
+            _actions.AddAction(body.Owner, ref actionEnt, action);
+
+            if (actionEnt != null)
+                body.Comp.ControlledBodyActionEntities.Add(actionEnt.Value);
+        }
     }
 
-    private void RemoveBodyActions(Entity<StationAiBodyComponent> body)
+    private void RevokeControlledBodyActions(Entity<StationAiBodyComponent> body)
     {
-        _actions.RemoveAction(body.Owner, body.Comp.BodyMenuAction);
-        body.Comp.BodyMenuAction = null;
+        foreach (var actionEnt in body.Comp.ControlledBodyActionEntities)
+        {
+            _actions.RemoveAction(body.Owner, actionEnt);
+        }
 
-        _actions.RemoveAction(body.Owner, body.Comp.BodyExitAction);
-        body.Comp.BodyExitAction = null;
+        body.Comp.ControlledBodyActionEntities.Clear();
     }
 
     private void EnsureControllerActions(Entity<StationAiBodyControllerComponent> stationAi)
     {
-        _actions.AddAction(stationAi.Owner, ref stationAi.Comp.BodyMenuAction, BodyMenuAction);
+        _actions.AddAction(stationAi.Owner, ref stationAi.Comp.BodyMenuAction, stationAi.Comp.BodyMenuActionPrototype);
         Dirty(stationAi.Owner, stationAi.Comp);
     }
 

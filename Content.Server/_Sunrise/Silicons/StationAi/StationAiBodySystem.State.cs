@@ -422,7 +422,8 @@ public sealed partial class StationAiBodySystem
             Dirty(ai, controller);
         }
 
-        DisableBodyAccess(body.Owner);
+        RevokeControlledBodyActions(body);
+        RevokeStationAiRadioChannels(body);
 
         RemCompDeferred<StationAiBodyComponent>(body.Owner);
         UpdateAllBodyUiData();
@@ -441,7 +442,6 @@ public sealed partial class StationAiBodySystem
         RemComp<NameIdentifierComponent>(chassis);
 
         _metaData.SetEntityName(chassis, GetFreeBodyName(body.BodyNumber));
-        SetFreeBodyAccess(chassis);
 
         Dirty(chassis, body);
         UpdateAllBodyUiData();
@@ -470,9 +470,8 @@ public sealed partial class StationAiBodySystem
 
         _mind.TransferTo(mindId, body.Owner, mind: mind);
         _metaData.SetEntityName(body.Owner, aiName);
-        SetControlledBodyAccess(body.Owner);
-        SetStationAiRadio(stationAi, body);
-        AddBodyActions(body);
+        GrantStationAiRadioChannels(stationAi, body);
+        GrantControlledBodyActions(body);
 
         Dirty(body);
         Dirty(stationAi, controller);
@@ -513,7 +512,8 @@ public sealed partial class StationAiBodySystem
 
         body.Comp.LinkedAi = null;
         controller.CurrentBody = null;
-        RemoveBodyActions(body);
+        RevokeControlledBodyActions(body);
+        RevokeStationAiRadioChannels(body);
 
         _mind.TransferTo(mindId, stationAi, mind: mind);
 
@@ -528,9 +528,9 @@ public sealed partial class StationAiBodySystem
             return;
 
         body.Comp.LinkedAi = null;
-        RemoveBodyActions(body);
+        RevokeControlledBodyActions(body);
+        RevokeStationAiRadioChannels(body);
         _metaData.SetEntityName(body.Owner, GetFreeBodyName(body.Comp.BodyNumber));
-        SetFreeBodyAccess(body.Owner);
 
         Dirty(body);
     }
