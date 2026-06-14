@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Server.Silicons.Laws;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Sunrise.Silicons.StationAi;
@@ -5,11 +6,11 @@ using Content.Shared.Actions;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Containers;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.NameIdentifier;
-using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Laws.Components;
@@ -35,20 +36,6 @@ public sealed class StationAiBodySystem : EntitySystem
     [Dependency] private readonly BorgSwitchableTypeSystem _borgSwitchableType = default!;
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-
-    private static readonly ProtoId<RadioChannelPrototype>[] StationAiRadioChannels =
-    [
-        "Binary",
-        "Common",
-        "Command",
-        "Engineering",
-        "Law",
-        "Medical",
-        "Science",
-        "Security",
-        "Service",
-        "Supply",
-    ];
 
     private const string BodyUiClientType = "StationAiBodyBoundUserInterface";
 
@@ -121,15 +108,16 @@ public sealed class StationAiBodySystem : EntitySystem
 
     private void OnStationAiBrainGotRemovedFromCore(Entity<StationAiBodyControllerComponent> stationAi, ref EntGotRemovedFromContainerMessage args)
     {
-        if (args.Container.ID != StationAiCoreComponent.Container ||
-            !HasComp<StationAiCoreComponent>(args.Container.Owner))
+        if (args.Container.ID != StationAiCoreComponent.Container)
+            return;
+
+        if (!HasComp<StationAiCoreComponent>(args.Container.Owner))
             return;
 
         if (stationAi.Comp.CurrentBody == null)
             return;
 
-        if (HasComp<RelayInputMoverComponent>(stationAi.Owner))
-            RemComp<RelayInputMoverComponent>(stationAi.Owner);
+        RemComp<RelayInputMoverComponent>(stationAi.Owner);
 
         if (TryComp<InputMoverComponent>(stationAi.Owner, out var mover))
         {
@@ -368,18 +356,6 @@ public sealed class StationAiBodySystem : EntitySystem
     }
 
     /// <summary>
-    /// Selects the borg chassis type used by the currently controlled AI body.
-    /// </summary>
-    public bool TrySelectBodyType(EntityUid stationAi, ProtoId<BorgTypePrototype> borgType)
-    {
-        if (!CanSelectBodyType(stationAi, borgType, out var body, out var switchable))
-            return false;
-
-        DoSelectBodyType((body, switchable), borgType);
-        return true;
-    }
-
-    /// <summary>
     /// Returns whether the AI may select a borg chassis type for its active body.
     /// </summary>
     public bool CanSelectBodyType(
@@ -574,8 +550,7 @@ public sealed class StationAiBodySystem : EntitySystem
         body.Board = board;
         body.LinkedAi = null;
 
-        if (HasComp<NameIdentifierComponent>(chassis))
-            RemComp<NameIdentifierComponent>(chassis);
+        RemComp<NameIdentifierComponent>(chassis);
 
         _metaData.SetEntityName(chassis, GetFreeBodyName(body.BodyNumber));
         SetFreeBodyAccess(chassis);
@@ -608,7 +583,7 @@ public sealed class StationAiBodySystem : EntitySystem
         _mind.TransferTo(mindId, body.Owner, mind: mind);
         _metaData.SetEntityName(body.Owner, aiName);
         SetControlledBodyAccess(body.Owner);
-        SetStationAiRadio(body.Owner);
+        SetStationAiRadio(stationAi, body);
         AddBodyActions(body);
 
         Dirty(body);
@@ -659,16 +634,6 @@ public sealed class StationAiBodySystem : EntitySystem
         UpdateAllBodyUiData();
     }
 
-    private void DoSelectBodyType(
-        Entity<BorgSwitchableTypeComponent> body,
-        ProtoId<BorgTypePrototype> borgType)
-    {
-        if (!_borgSwitchableType.TrySelectBorgType(body.AsNullable(), borgType))
-            return;
-
-        SetStationAiRadio(body.Owner);
-    }
-
     private void DoReleaseBody(Entity<StationAiBodyComponent> body, EntityUid stationAi)
     {
         if (body.Comp.LinkedAi != stationAi)
@@ -704,19 +669,52 @@ public sealed class StationAiBodySystem : EntitySystem
         _accessReader.SetActive((chassis, accessReader), true);
     }
 
-    private void SetStationAiRadio(EntityUid body)
+    private void SetStationAiRadio(EntityUid stationAi, Entity<StationAiBodyComponent> body)
     {
-        if (TryComp<IntrinsicRadioTransmitterComponent>(body, out var transmitter))
+        if (!TryGetRadioChannelsHolderByAiCore(stationAi, out var radioChannelsHolder))
+            return;
+
+        if (TryComp<IntrinsicRadioTransmitterComponent>(body, out var transmitterReceiver)
+            && TryComp<IntrinsicRadioTransmitterComponent>(radioChannelsHolder, out var transmitterTransmitter))
         {
-            transmitter.Channels = [..StationAiRadioChannels];
-            Dirty(body, transmitter);
+            body.Comp.CachedChannels[nameof(IntrinsicRadioTransmitterComponent)] = [..transmitterReceiver.Channels];
+
+            transmitterReceiver.Channels.UnionWith(transmitterTransmitter.Channels);
+            Dirty(body, transmitterReceiver);
         }
 
-        if (TryComp<ActiveRadioComponent>(body, out var activeRadio))
+        if (TryComp<ActiveRadioComponent>(body, out var activeRadioReceiver)
+            && TryComp<ActiveRadioComponent>(radioChannelsHolder, out var activeRadioTransmitter))
         {
-            activeRadio.Channels = [..StationAiRadioChannels];
-            Dirty(body, activeRadio);
+            body.Comp.CachedChannels[nameof(ActiveRadioComponent)] = [..activeRadioReceiver.Channels];
+
+            activeRadioReceiver.Channels.UnionWith(activeRadioTransmitter.Channels);
+            Dirty(body, activeRadioReceiver);
         }
+
+        Dirty(body);
+    }
+
+    private bool TryGetRadioChannelsHolderByAiCore(EntityUid stationAi, [NotNullWhen(true)] out EntityUid? radioChannelsHolder)
+    {
+        radioChannelsHolder = null;
+        if (!TryComp<ContainerCompComponent>(stationAi, out var containerComp))
+            return false;
+
+        if (!_container.TryGetContainer(stationAi, containerComp.Container, out var container))
+            return false;
+
+        foreach (var containedEntity in container.ContainedEntities)
+        {
+            var proto = Prototype(containedEntity);
+            if (proto == null || proto != containerComp.Proto)
+                continue;
+
+            radioChannelsHolder = containedEntity;
+            return true;
+        }
+
+        return false;
     }
 
     private void AddBodyActions(Entity<StationAiBodyComponent> body)

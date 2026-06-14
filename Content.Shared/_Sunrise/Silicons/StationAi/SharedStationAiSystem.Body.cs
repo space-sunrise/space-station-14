@@ -49,10 +49,10 @@ public abstract partial class SharedStationAiSystem
     {
         activeActor = stationAi;
 
-        if (TryComp<StationAiBodyControllerComponent>(stationAi, out var controller) &&
-            controller.CurrentBody is { } currentBody &&
-            TryComp<StationAiBodyComponent>(currentBody, out var body) &&
-            body.LinkedAi == stationAi)
+        if (TryComp<StationAiBodyControllerComponent>(stationAi, out var controller)
+            && controller.CurrentBody is { } currentBody
+            && TryComp<StationAiBodyComponent>(currentBody, out var body)
+            && body.LinkedAi == stationAi)
         {
             activeActor = currentBody;
         }
@@ -72,12 +72,12 @@ public abstract partial class SharedStationAiSystem
     /// <summary>
     /// Keeps legacy station AI body appearance customization from overriding borg body visuals.
     /// </summary>
-    protected void UpdateStationAiBodyAppearance(Entity<StationAiCustomizationComponent> stationAi)
+    private void UpdateStationAiBodyAppearance(Entity<StationAiCustomizationComponent> stationAi)
     {
-        if (!TryComp<StationAiBodyControllerComponent>(stationAi.Owner, out var controller) ||
-            controller.CurrentBody is not { } currentBody ||
-            !TryComp<StationAiBodyComponent>(currentBody, out var body) ||
-            body.LinkedAi != stationAi.Owner)
+        if (!TryComp<StationAiBodyControllerComponent>(stationAi.Owner, out var controller)
+            || controller.CurrentBody is not { } currentBody
+            || !TryComp<StationAiBodyComponent>(currentBody, out var body)
+            || body.LinkedAi != stationAi.Owner)
         {
             return;
         }
