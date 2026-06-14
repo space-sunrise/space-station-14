@@ -297,7 +297,7 @@
       - ShellShotgun
     proto: ShellShotgun
     capacity: 2
-    chambers: [ False, False ]
+    chambers: [ True, True ]
     ammoSlots: [ null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
@@ -338,7 +338,7 @@
       - ShellShotgun
     proto: null
     capacity: 2
-    chambers: [ True, True ]
+    chambers: [ null, null ]
     ammoSlots: [ null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
