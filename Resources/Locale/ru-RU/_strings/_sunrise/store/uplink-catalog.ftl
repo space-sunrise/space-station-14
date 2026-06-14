@@ -115,6 +115,8 @@ uplink-slipknotset-name = Подарочный набор масок slipknot
 uplink-slipknotset-desc = Пять масок. Пять душ. Номера 7, 8, 6, 1 и 5 в чёрной коробке - грязная ярость Айовы.
 uplink-clothing-murder-socks-name = чулочки убийцы
 uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
+uplink-clothing-chameleon-silent-name = Бесшумная обувь
+uplink-clothing-chameleon-silent-desc = Специальная обувь, созданная для бесшумного передвижения. Каждый шаг растворяется в пустоте.
 uplink-syndie-maid-raid-name = рейдерка горничной
 uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
