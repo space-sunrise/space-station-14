@@ -1,0 +1,76 @@
+# MedTak belt fills
+- type: entity
+  id: ClothingBeltMedTakFilledHeavy
+  parent: ClothingBeltMedTak
+  suffix: Filled, Security, Heavy
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLife
+        - id: MagazineRifleHeavyHP
+          amount: 2
+        - id: MagazineRifleHeavySP
+          amount: 2
+        - id: MagazinePistol40SP
+        - id: Tourniquet
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponPistolMedTak
+
+- type: entity
+  id: ClothingBeltMedTakFilledRifle
+  parent: ClothingBeltMedTak
+  suffix: Filled, Security, Rifle
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLife
+        - id: MagazineRifleM52HP
+          amount: 2
+        - id: MagazineRifleM52SP
+          amount: 2
+        - id: MagazinePistol40SP
+        - id: Tourniquet
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponPistolMedTak
+
+- type: entity
+  id: ClothingBeltMedTakFilledMedic
+  parent: ClothingBeltMedTak
+  suffix: Filled, Medic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLife
+        - id: BottleCaseMedTakFilled
+        - id: MedipenCombatInjector
+        - id: MedicatedSuture
+          amount: 2
+        - id: RegenerativeMesh
+        - id: MagazinePistol40SP
+          amount: 2
+        - id: WeaponPistolMedTak
+
+- type: entity
+  id: ClothingBeltMedTakFilledPilot
+  parent: ClothingBeltMedTak
+  suffix: Filled, Pilot
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyndicateJawsOfLife
+        - id: PowerDrill
+        - id: WelderExperimental
+        - id: Multitool
+        - id: MagazinePistol40SP
+          amount: 2
+        - id: Tourniquet
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponPistolMedTak

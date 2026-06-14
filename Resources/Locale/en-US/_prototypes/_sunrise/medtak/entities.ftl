@@ -1,0 +1,116 @@
+ent-ClothingHeadsetAltMedTak = MedTak headset
+    .desc = A headset used by MedTak operators.
+
+ent-ShelfMedTak = MedTak shelf
+    .desc = A sturdy and compact shelf for holding medical supplies.
+ent-ShelfMedTakSecure = secure MedTak shelf
+    .desc = { ent-ShelfMedTak.desc }
+    .suffix = Secure
+
+ent-ClothingBackpackMedTak = MedTak backpack
+    .desc = A spacious backpack with lots of pockets, worn by MedTak operators.
+ent-ClothingBeltMedTak = MedTak belt
+    .desc = A versatile belt worn by MedTak operators.
+ent-ClothingEyesVisorMedTak = MedTak visor
+    .desc = A visor for MedTak operators with a built in heads up display and active flash adjustment.
+ent-ClothingOuterHardsuitMedTak = MedTak hardsuit
+    .desc = An armoured hardsuit worn by MedTak operators.
+ent-ClothingOuterHardsuitMedTakLeader = MedTak leader hardsuit
+    .desc = An armoured hardsuit worn by MedTak team leaders.
+
+ent-BorgChassisMedTak = MedTak silicon
+    .desc = A multirole heavy silicon chassis designed to support MedTak units.
+ent-BorgModuleMedTakMedical = MedTak medical module
+    .desc = A MedTak cyborg module for medical support.
+ent-BorgModuleMedTakRifle = MedTak rifle module
+    .desc = A MedTak cyborg module equipped with a cut down CODE-9 and a breaching hammer.
+
+ent-DeathRattleImplantMedTak = MedTak beacon
+    .desc = This implant will inform the nearest MedTak unit should the user fall into critical condition or die.
+ent-MedTakMindShieldImplant = MedTak mindshield implant
+    .desc = This implant protects operators from mind control devices.
+ent-MedTakMindShieldImplanter = MedTak mindshield implanter
+    .desc = { ent-BaseImplantOnlyImplanter.desc }
+ent-MedTakDeathRattleImplanter = MedTak beacon implanter
+    .desc = { ent-BaseImplantOnlyImplanter.desc }
+
+ent-MedTakMedicPDA = MedTak medic PDA
+    .desc = Is it blood or red paint?
+ent-MedTakPilotPDA = MedTak pilot PDA
+    .desc = It's red paint.
+ent-MedTakSecurityPDA = MedTak security PDA
+    .desc = It's blood.
+ent-MedTakTeamLeadPDA = MedTak team leader PDA
+    .desc = It's blood.
+ent-MedTakDispatcherPDA = MedTak dispatcher PDA
+    .desc = It's red paint.
+
+ent-MedTakTeamLeadIDCard = MedTak leader ID
+    .desc = { ent-IDCardStandard.desc }
+ent-MedTakDispatcherIDCard = MedTak dispatcher ID
+    .desc = { ent-IDCardStandard.desc }
+ent-MedTakMedicIDCard = MedTak medic ID
+    .desc = { ent-IDCardStandard.desc }
+ent-MedTakPilotIDCard = MedTak pilot ID
+    .desc = { ent-IDCardStandard.desc }
+ent-MedTakSecurityIDCard = MedTak security ID
+    .desc = { ent-IDCardStandard.desc }
+
+ent-RubberStampMedTak = MedTak rubber stamp
+    .desc = { ent-RubberStampBase.desc }
+ent-DoorElectronicsMedTak = MedTak door electronics
+    .desc = { ent-DoorElectronics.desc }
+    .suffix = MedTak, Locked
+
+ent-BodyBagMedTak = secure body bag
+    .desc = A reinforced body bag with a MedTak access lock.
+ent-BodyBagMedTakFolded = secure body bag
+    .desc = { ent-BodyBagMedTak.desc }
+    .suffix = folded
+ent-MedTakHoverBed = MedTak hover-stretcher
+    .desc = A repulsor-suspended stretcher system used by MedTak operators to transport patients.
+ent-MedTakHoverBedSpawnFolded = MedTak hover-stretcher
+    .desc = { ent-MedTakHoverBed.desc }
+    .suffix = folded
+ent-StasisBedMedTak = MedTak bed
+    .desc = A dual stasis and medical bed built for MedTak AV-40 shuttles. Ensure stasis is disabled before applying chemicals.
+
+ent-BottleCaseMedTak = chemical case
+    .desc = A reinforced case with padded slots for bottles.
+ent-MedkitCombatMedTak = MedTak combat kit
+    .desc = An operator's personal medical kit.
+ent-PenPackMedTak = autoinjector pack
+    .desc = A pouch loaded with autoinjectors.
+ent-SurgicalKitMedTak = surgical kit
+    .desc = A compact kit of surgical tools.
+ent-BoxFolderMedTak = MedTak invoice folder
+    .desc = { ent-BoxFolderBase.desc }
+    .suffix = MedTak invoices
+
+ent-WeaponLightMachineGunMedTak = CODE-6 "Arbitration"
+    .desc = An ultralight assault LMG developed for MedTak security. Accepts .30 box magazines.
+ent-WeaponRifleMedTak = CODE-9 "Compliance"
+    .desc = A bullpuped heavy rifle designed for MedTak operators. Accepts heavy .20 rifle magazines.
+ent-WeaponRifleMedTakROW = CODE-9 ROW
+    .desc = A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator.
+ent-WeaponPistolMedTak = CODE-4 "Triage"
+    .desc = A heavy sidearm issued to MedTak operators. Accepts .40 pistol magazines.
+ent-HammerMedTakOneHanded = CODE-12 "Breacher"
+    .desc = A charged concussive breaching hammer meant to put a sizeable hole in anything separating you from your client.
+    .suffix = One-Handed
+ent-HammerMedTak = CODE-12 "Breacher"
+    .desc = { ent-HammerMedTakOneHanded.desc }
+    .suffix = Wieldable
+
+ent-AirlockMedTakLocked = MedTak airlock
+    .desc = { ent-AirlockMedical.desc }
+    .suffix = MedTak, Locked
+ent-AirlockMedTakGlassLocked = MedTak glass airlock
+    .desc = { ent-AirlockMedicalGlass.desc }
+    .suffix = MedTak, Locked
+ent-AirlockGlassShuttleMedTakLocked = MedTak shuttle airlock
+    .desc = { ent-AirlockGlassShuttle.desc }
+    .suffix = Glass, Docking, MedTak, Locked
+ent-WindoorSecureMedTakLocked = MedTak windoor
+    .desc = { ent-WindoorSecure.desc }
+    .suffix = MedTak, Locked

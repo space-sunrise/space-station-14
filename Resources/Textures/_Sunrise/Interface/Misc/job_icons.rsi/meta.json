@@ -129,6 +129,27 @@
         },
         {
             "name": "Magistrat"
+        },
+        {
+            "name": "MedTakLeader"
+        },
+        {
+            "name": "MedTakDispatcher"
+        },
+        {
+            "name": "MedTakMedic"
+        },
+        {
+            "name": "MedTakPilot"
+        },
+        {
+            "name": "MedTakSecurity"
+        },
+        {
+            "name": "MedTakBorg"
+        },
+        {
+            "name": "MedTak_Mindshield"
         }
     ]
 }

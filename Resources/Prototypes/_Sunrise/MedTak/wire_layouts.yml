@@ -1,0 +1,4 @@
+﻿# MedTak airlock wire layout
+- type: wireLayout
+  parent: Airlock
+  id: AirlockMedTak
