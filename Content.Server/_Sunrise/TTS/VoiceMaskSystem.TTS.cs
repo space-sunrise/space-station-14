@@ -1,6 +1,7 @@
 ﻿using Content.Server._Sunrise.TTS;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.VoiceMask;
+using Content.Shared.Silicons.StationAi;
 
 namespace Content.Server.VoiceMask;
 
@@ -20,6 +21,15 @@ public partial class VoiceMaskSystem
 
     private void OnChangeVoice(EntityUid uid, VoiceMaskComponent component, VoiceMaskChangeVoiceMessage message)
     {
+        if (!_proto.TryIndex<TTSVoicePrototype>(message.Voice, out var voiceProto))
+            return;
+
+        if (HasComp<StationAiHeldComponent>(message.Actor))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("voice-mask-ai-cannot-use-this-voice"), uid);
+            return;
+        }
+
         component.VoiceId = message.Voice;
 
         if (TryComp<VoiceMaskerComponent>(message.Actor, out var maskerComponent))
@@ -35,9 +45,7 @@ public partial class VoiceMaskSystem
     private void TrySetLastKnownVoice(EntityUid maskWearer, string voiceId)
     {
         if (!TryComp<VoiceMaskComponent>(maskWearer, out var maskComp))
-        {
             return;
-        }
 
         maskComp.VoiceId = voiceId;
     }

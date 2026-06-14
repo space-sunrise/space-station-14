@@ -57,9 +57,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#555555"
-      - state: spent
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
@@ -169,9 +166,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#149A1E"
-      - state: spent
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     proto: PelletShotgunBooze
   - type: ChemicalAmmo
@@ -203,9 +197,6 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#e4e4e4"
       - state: holy
-      - state: spent-long
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     proto: PelletShotgunHoly
   - type: ChemicalAmmo
@@ -226,7 +217,7 @@
 - type: entity
   id: ShellShotgunFlechette
   name: shell (.50 flechette)
-  parent: [ BaseShellShotgun, BaseSyndicateContraband ]
+  parent: [ BaseShellShotgun, BaseMajorContraband ]
   components:
   - type: Sprite
     layers:
@@ -237,15 +228,38 @@
         color: "#5da0b5"
       - state: holy
         color: "#07252eb5"
-      - state: spent-long
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
     proto: PelletShotgunFlechetteSpreadTrace
   - type: Tag
     tags:
+    - Cartridge
+    - ShellShotgun
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecuritySalvageContraband ]
+  id: ShellShotgunBirdshot
+  name: 12 gauge birdshot
+  description: A wide-spread shell loaded with dozens of tiny pellets. Devastating up close, nearly useless at range.
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B87333"
+      - state: spent
+        map: [ "enum.AmmoVisualLayers.Spent" ]
+        visible: false
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+    proto: PelletShotgunBirdshotSpreadTrace
+  - type: Tag
+    tags:
+    - Cartridge
     - ShellShotgun
 
 - type: entity
@@ -260,9 +274,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#0096FF"
-      - state: spent
-        map: [ "enum.AmmoVisualLayers.Spent" ]
-        visible: false
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject

@@ -6,7 +6,7 @@ namespace Content.Shared._Sunrise.TTS;
 /// <summary>
 /// Event raised when a cyborg wants to change their TTS voice.
 /// </summary>
-public sealed partial class BorgVoiceChangeActionEvent : InstantActionEvent
+public sealed partial class SiliconVoiceChangeActionEvent : InstantActionEvent
 {
 }
 

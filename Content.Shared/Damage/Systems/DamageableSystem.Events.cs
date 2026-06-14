@@ -247,14 +247,32 @@ public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid?
 public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f, bool canHeal = false) // 🌟Starlight🌟
     : EntityEventArgs, IInventoryRelayEvent
 {
-    // Whenever locational damage is a thing, this should just check only that bit of armour.
+    /// <inheritdoc/>
+    /// <remarks>
+    ///     Whenever locational damage is a thing, this should just check only that bit of armor.
+    /// </remarks>
     public SlotFlags TargetSlots => ~SlotFlags.POCKET;
 
+    /// <summary>
+    ///     Contains the original damage, prior to any modifers.
+    /// </summary>
     public readonly DamageSpecifier OriginalDamage = damage;
+
+    /// <summary>
+    ///     Contains the damage after modifiers have been applied.
+    ///     This is the damage that will be inflicted.
+    /// </summary>
     public DamageSpecifier Damage = damage;
-    public float ArmorPenetration = armorPenetration;   // 🌟Starlight🌟
-    public bool CanHeal = canHeal;  // 🌟Starlight🌟
-    public EntityUid? Origin = origin; //Starlight, but this is clearly a upstream bug
+
+    /// <summary>
+    ///     Contains the entity which caused the damage, if any was responsible.
+    /// </summary>
+    public readonly EntityUid? Origin = origin;
+
+    // Sunrise edit start - Starlight armor penetration integration
+    public float ArmorPenetration = armorPenetration;
+    public bool CanHeal = canHeal;
+    // Sunrise edit end
 }
 
 public sealed class DamageChangedEvent : EntityEventArgs

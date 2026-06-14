@@ -36,7 +36,6 @@ entities:
       name: SR-4S3 "Экспедитор"
     - type: Transform
       pos: 3.7300644,-8.3846245
-      parent: invalid
     - type: SalvageShuttle
     - type: MapGrid
       chunks:
@@ -391,7 +390,6 @@ entities:
   - uid: 11
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,3.5
       parent: 1
 - proto: APCHyperCapacity
@@ -1628,7 +1626,7 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 186
-- proto: FireAxeCabinetFilled
+- proto: FireAxeCabinetOpen
   entities:
   - uid: 190
     components:

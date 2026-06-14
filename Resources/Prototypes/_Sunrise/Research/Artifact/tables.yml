@@ -1,4 +1,4 @@
-﻿# Эффекты
+# Эффекты
 
 - type: entityTable
   id: SunriseArtifactEffectsDefaultTable
@@ -48,6 +48,30 @@
       # поджигает всех в радиусе
     - id: SunriseEffectIgnite
       weight: 1
+      # создают различные газы
+    - id: XenoArtifactEffectCreationGasElectrovae
+      weight: 1.0
+    - id: XenoArtifactEffectCreationGasBZ
+      weight: 0.5
+    - id: XenoArtifactEffectCreationGasHealium
+      weight: 0.5
+    - id: XenoArtifactEffectCreationGasNitrium
+      weight: 0.5
+    - id: XenoArtifactEffectCreationGasChargedElectrovae
+      weight: 0.8
+    - id: XenoArtifactEffectCreationGasHalon
+      weight: 0.2
+    - id: XenoArtifactEffectCreationGasPluoxium
+      weight: 0.2
+    - id: XenoArtifactEffectCreationGasZauker
+      weight: 0.1
+    - id: XenoArtifactEffectCreationGasHydrogen
+      weight: 1.0
+    - id: XenoArtifactEffectCreationGasProtoNitrate
+      weight: 0.1
+    - id: XenoArtifactEffectCreationGasHelium
+      weight: 1.0
+      
 
 - type: entityTable
   id: SunriseArtifactEffectsUltraFunnyTable

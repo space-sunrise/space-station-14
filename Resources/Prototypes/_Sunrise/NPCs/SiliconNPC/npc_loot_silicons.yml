@@ -558,7 +558,7 @@
       prob: 0.35
     - id: BorgModuleTopicals
       prob: 0.3
-    - id: SunriseBorgModuleChemical
+    - id: BorgModuleChemical
       prob: 0.25
     - id: BorgModuleRescue
       prob: 0.2

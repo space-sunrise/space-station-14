@@ -35,10 +35,17 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageMagnetComponent, MagnetClaimOfferEvent>(OnMagnetClaim);
         SubscribeLocalEvent<SalvageMagnetComponent, ComponentStartup>(OnMagnetStartup);
         SubscribeLocalEvent<SalvageMagnetComponent, AnchorStateChangedEvent>(OnMagnetAnchored);
+
+        InitializeAdvancedMagnet(); // Sunrise-Edit
     }
 
     private void OnMagnetClaim(EntityUid uid, SalvageMagnetComponent component, ref MagnetClaimOfferEvent args)
     {
+        // Sunrise-Start
+        if (IsLocalMagnet(uid))
+            return;
+        // Sunrise-End
+
         var station = _station.GetOwningStation(uid);
 
         if (!TryComp(station, out SalvageMagnetDataComponent? dataComp) ||
@@ -222,10 +229,18 @@ public sealed partial class SalvageSystem
     // Just need something to announce.
     private Entity<SalvageMagnetComponent>? GetMagnet(Entity<SalvageMagnetDataComponent> data)
     {
+        // Sunrise-Start
+        if (TryGetLocalMagnet(data, out var localMagnet))
+            return localMagnet;
+        // Sunrise-End
         var query = AllEntityQuery<SalvageMagnetComponent, TransformComponent>();
 
         while (query.MoveNext(out var magnetUid, out var magnet, out var xform))
         {
+            // Sunrise-Start
+            if (IsLocalMagnet(magnetUid))
+                continue;
+            // Sunrise-End
             var stationUid = _station.GetOwningStation(magnetUid, xform);
 
             if (stationUid != data.Owner)
@@ -257,10 +272,19 @@ public sealed partial class SalvageSystem
 
     private void UpdateMagnetUIs(Entity<SalvageMagnetDataComponent> data)
     {
+        // Sunrise-Start
+        if (TryUpdateLocalMagnetUI(data))
+            return;
+        // Sunrise-End
         var query = AllEntityQuery<SalvageMagnetComponent, TransformComponent>();
 
         while (query.MoveNext(out var magnetUid, out var magnet, out var xform))
         {
+            // Sunrise-Start
+            if (IsLocalMagnet(magnetUid))
+                continue;
+            // Sunrise-End
+
             var station = _station.GetOwningStation(magnetUid, xform);
 
             if (station != data.Owner)

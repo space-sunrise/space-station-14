@@ -38,6 +38,11 @@
   name: ball lightning
   description: A giant ball of pure energy. The space around it is humming and melting.
   components:
+  - type: RadarBlip # Sunrise-Edit
+    color: "#47F8FFFF"
+    scale: 2
+    shape: Triangle
+    requireInSpace: false
   - type: Fixtures
     fixtures:
       EventHorizonCollider:

@@ -53,6 +53,7 @@
   rules:
   - StorytellerClassicRule
   - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
 
 - type: gamePreset
   id: StorytellerCalm
@@ -67,6 +68,7 @@
   rules:
   - StorytellerCalmRule
   - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
 
 - type: gamePreset
   id: StorytellerInsane
@@ -81,4 +83,5 @@
   rules:
   - StorytellerInsaneRule
   - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
 

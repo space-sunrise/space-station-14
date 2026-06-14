@@ -18,14 +18,14 @@ using ByteHelpers = Robust.Shared.Utility.ByteHelpers;
 namespace Content.Server._Sunrise;
 
 /// <summary>
-/// Manager that handles dynamic loading of network textures from server to client.
-/// Uses High Bandwidth Transfer (WebSocket) to avoid blocking main game traffic.
-/// Textures are loaded into MemoryContentRoot on the client.
+/// Менеджер динамической загрузки сетевых текстур с сервера на клиент.
+/// Использует High Bandwidth Transfer (WebSocket), чтобы не блокировать основной игровой трафик.
+/// На клиенте текстуры загружаются в MemoryContentRoot.
 /// </summary>
 public sealed class NetTexturesManager
 {
     /// <summary>
-    /// Transfer key for server -> client texture downloads via WebSocket
+    /// Ключ передачи для загрузки текстур server -> client через WebSocket.
     /// </summary>
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
     private const int MaxConcurrentTransferWorkers = 2;
@@ -40,8 +40,8 @@ public sealed class NetTexturesManager
     private const string AllowedPrefix = "/NetTextures/";
 
     /// <summary>
-    /// Dynamically registered in-memory resources that are not present on disk.
-    /// Key is the relative upload path used on the client (e.g. "NetTextures/Messenger/photo_123.png").
+    /// Динамически зарегистрированные in-memory ресурсы, которых нет на диске.
+    /// Ключом служит относительный путь загрузки, используемый на клиенте (например, "NetTextures/Messenger/photo_123.png").
     /// </summary>
     private readonly Dictionary<ResPath, byte[]> _dynamicResources = new();
     private readonly Lock _dynamicResourcesLock = new();
@@ -53,12 +53,12 @@ public sealed class NetTexturesManager
     private int _activeTransferWorkers;
 
     /// <summary>
-    /// Callback for handling photo captures. PhotoCartridgeSystem registers itself here.
+    /// Callback для обработки снимков. PhotoCartridgeSystem регистрирует здесь себя.
     /// </summary>
     public Action<PdaPhotoCaptureMessage>? OnPhotoCaptureMessage { get; set; }
 
     /// <summary>
-    /// Registers the request, fallback, and photo handlers used by the server-side NetTextures pipeline.
+    /// Регистрирует обработчики запросов, fallback и фото для серверного pipeline NetTextures.
     /// </summary>
     public void Initialize()
     {
@@ -74,7 +74,7 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Clears round-scoped NetTextures caches during round restarts to prevent memory growth.
+    /// Очищает привязанные к раунду кэши NetTextures при рестарте раунда, чтобы не росла память.
     /// </summary>
     public void ClearRoundCaches()
     {
@@ -93,9 +93,9 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Handles a client resource request after resolving the sender session and validating the path.
+    /// Обрабатывает клиентский запрос ресурса после определения сессии отправителя и проверки пути.
     /// </summary>
-    /// <param name="msg">The incoming resource request.</param>
+    /// <param name="msg">Входящий запрос ресурса.</param>
     private void OnRequestNetworkResource(RequestNetworkResourceMessage msg)
     {
         if (!_playerManager.TryGetSessionByChannel(msg.MsgChannel, out var session))
@@ -125,8 +125,8 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Validates that a resource path is safe and within allowed directories.
-    /// Prevents path traversal attacks by ensuring paths don't escape allowed directories.
+    /// Проверяет, что путь ресурса безопасен и находится внутри разрешенных директорий.
+    /// Предотвращает path traversal атаки, проверяя, что путь не выходит из разрешенных директорий.
     /// </summary>
     private bool ValidateResourcePath(ResPath path, out string? errorMessage)
     {
@@ -164,10 +164,10 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Enqueues one validated resource send request onto a bounded background worker pool.
+    /// Ставит один проверенный запрос отправки ресурса в ограниченный пул фоновых worker'ов.
     /// </summary>
-    /// <param name="session">The recipient session.</param>
-    /// <param name="resourcePath">The validated rooted resource path.</param>
+    /// <param name="session">Сессия получателя.</param>
+    /// <param name="resourcePath">Проверенный rooted путь ресурса.</param>
     private void EnqueueResourceSend(ICommonSession session, ResPath resourcePath)
     {
         var shouldStartWorker = false;
@@ -188,7 +188,7 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Drains queued transfer requests on a small fixed-size worker pool.
+    /// Обрабатывает очередь запросов передачи в небольшом пуле worker'ов фиксированного размера.
     /// </summary>
     private async Task ProcessTransferQueueWorker()
     {
@@ -238,12 +238,12 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Sends a resource (file or directory) to the client using High Bandwidth Transfer (WebSocket).
-    /// If the path points to a directory (e.g., .rsi), all files in that directory are sent.
-    /// If the path points to a file, only that file is sent.
+    /// Отправляет ресурс (файл или директорию) клиенту через High Bandwidth Transfer (WebSocket).
+    /// Если путь указывает на директорию (например, .rsi), отправляются все файлы в этой директории.
+    /// Если путь указывает на файл, отправляется только этот файл.
     /// </summary>
-    /// <param name="session">The recipient session.</param>
-    /// <param name="resourcePath">The validated rooted resource path to send.</param>
+    /// <param name="session">Сессия получателя.</param>
+    /// <param name="resourcePath">Проверенный rooted путь ресурса для отправки.</param>
     private async Task SendResourceAsync(ICommonSession session, ResPath resourcePath)
     {
         var startTime = DateTime.UtcNow;
@@ -295,11 +295,11 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Collects the files that should be sent for a requested resource path.
-    /// Dynamic in-memory resources are resolved immediately, while static content resources share an in-flight cache.
+    /// Собирает файлы, которые нужно отправить для запрошенного пути ресурса.
+    /// Динамические in-memory ресурсы резолвятся сразу, а статические content resources делят in-flight кэш.
     /// </summary>
-    /// <param name="resourcePath">The validated rooted resource path.</param>
-    /// <returns>The ordered list of uploaded files to transfer.</returns>
+    /// <param name="resourcePath">Проверенный rooted путь ресурса.</param>
+    /// <returns>Упорядоченный список загруженных файлов для передачи.</returns>
     private async Task<IReadOnlyList<TransferResourceEntry>> CollectFilesToSendAsync(ResPath resourcePath)
     {
         var relativeUploadPath = resourcePath.ToRelativePath();
@@ -315,10 +315,10 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Gets a cached static transfer bundle or builds it once for all concurrent requesters.
+    /// Возвращает кэшированный static transfer bundle или собирает его один раз для всех параллельных запросов.
     /// </summary>
-    /// <param name="resourcePath">The rooted static content path requested by the client.</param>
-    /// <returns>The cached bundle, or <see langword="null"/> if the resource does not exist.</returns>
+    /// <param name="resourcePath">Rooted static content path, запрошенный клиентом.</param>
+    /// <returns>Кэшированный bundle или <see langword="null"/>, если ресурс не существует.</returns>
     private async Task<StaticTransferBundle?> GetOrCreateStaticBundleAsync(ResPath resourcePath)
     {
         Task<StaticTransferBundle?> bundleTask;
@@ -359,10 +359,10 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Builds the immutable transfer manifest for a static content file or directory.
+    /// Собирает immutable transfer manifest для статического content-файла или директории.
     /// </summary>
-    /// <param name="resourcePath">The rooted static content path requested by the client.</param>
-    /// <returns>The static transfer bundle, or <see langword="null"/> if the resource does not exist.</returns>
+    /// <param name="resourcePath">Rooted static content path, запрошенный клиентом.</param>
+    /// <returns>Static transfer bundle или <see langword="null"/>, если ресурс не существует.</returns>
     private StaticTransferBundle? BuildStaticTransferBundle(ResPath resourcePath)
     {
         var filesToSend = new List<TransferResourceEntry>();
@@ -395,12 +395,12 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Collects one static content file into the transfer manifest.
+    /// Добавляет один static content file в transfer manifest.
     /// </summary>
-    /// <param name="filePath">The rooted file path to collect.</param>
-    /// <param name="relativePath">The relative upload path the client should store.</param>
-    /// <param name="filesToSend">The destination collection for the transfer payload.</param>
-    /// <returns><see langword="true"/> if the file was read successfully.</returns>
+    /// <param name="filePath">Rooted путь файла для добавления.</param>
+    /// <param name="relativePath">Относительный путь загрузки, который клиент должен сохранить.</param>
+    /// <param name="filesToSend">Целевая коллекция для payload передачи.</param>
+    /// <returns><see langword="true"/>, если файл успешно прочитан.</returns>
     private bool TryAddContentFile(ResPath filePath, ResPath relativePath, List<TransferResourceEntry> filesToSend)
     {
         var relativePathLength = Encoding.UTF8.GetByteCount(relativePath.CanonPath);
@@ -433,10 +433,10 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Fallback method: sends resources via regular network messages if WebSocket transfer fails.
+    /// Fallback-метод: отправляет ресурсы обычными сетевыми сообщениями, если WebSocket-передача падает.
     /// </summary>
-    /// <param name="session">The recipient session.</param>
-    /// <param name="files">The files that still need to be delivered.</param>
+    /// <param name="session">Сессия получателя.</param>
+    /// <param name="files">Файлы, которые еще нужно доставить.</param>
     private void SendResourceFallback(ICommonSession session, IReadOnlyList<TransferResourceEntry> files)
     {
         var chunkCount = 0;
@@ -461,11 +461,11 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Streams one static content file through the fallback chunked transport without materializing the whole file.
+    /// Отправляет один static content file через fallback chunked transport без полной материализации файла.
     /// </summary>
-    /// <param name="session">The recipient session.</param>
-    /// <param name="file">The static file descriptor to send.</param>
-    /// <returns>The number of chunk messages emitted for this file.</returns>
+    /// <param name="session">Сессия получателя.</param>
+    /// <param name="file">Дескриптор static file для отправки.</param>
+    /// <returns>Количество chunk messages, отправленных для этого файла.</returns>
     private int SendContentFileFallback(ICommonSession session, TransferResourceEntry file)
     {
         if (file.ContentPath == null)
@@ -504,12 +504,12 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Splits one uploaded file into ordered chunk messages for the fallback transport path.
+    /// Делит один загруженный файл на упорядоченные chunk messages для fallback transport path.
     /// </summary>
-    /// <param name="relativePath">The relative client upload path of the file.</param>
-    /// <param name="data">The raw file bytes to split.</param>
-    /// <param name="chunkSize">The target maximum chunk size in bytes.</param>
-    /// <returns>The chunk sequence needed to reconstruct the file on the client.</returns>
+    /// <param name="relativePath">Относительный клиентский путь загрузки файла.</param>
+    /// <param name="data">Сырые байты файла для разделения.</param>
+    /// <param name="chunkSize">Целевой максимальный размер chunk в байтах.</param>
+    /// <returns>Последовательность chunk, необходимая для восстановления файла на клиенте.</returns>
     internal static IEnumerable<NetTextureResourceChunkMessage> CreateFallbackChunks(
         ResPath relativePath,
         byte[] data,
@@ -540,11 +540,11 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Writes files to a transfer stream using the same format as SharedNetworkResourceManager.
-    /// Format: [pathLength: uint32][dataLength: uint32][path: bytes][data: bytes][continue: byte]...
+    /// Записывает файлы в stream передачи в том же формате, что и SharedNetworkResourceManager.
+    /// Формат: [pathLength: uint32][dataLength: uint32][path: bytes][data: bytes][continue: byte]...
     /// </summary>
-    /// <param name="stream">The writable transfer stream.</param>
-    /// <param name="files">The files to encode into the transfer stream.</param>
+    /// <param name="stream">Writable stream передачи.</param>
+    /// <param name="files">Файлы для кодирования в stream передачи.</param>
     private async Task WriteFileStream(Stream stream, IReadOnlyList<TransferResourceEntry> files)
     {
         var continueByte = new byte[1];
@@ -595,11 +595,11 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Writes one transfer file payload to the HBT stream, streaming static content files through a pooled buffer.
+    /// Записывает payload одного файла передачи в HBT stream, прокидывая static content files через pooled buffer.
     /// </summary>
-    /// <param name="stream">The destination transfer stream.</param>
-    /// <param name="file">The transfer file descriptor to write.</param>
-    /// <param name="buffer">The pooled copy buffer used for static files.</param>
+    /// <param name="stream">Целевой stream передачи.</param>
+    /// <param name="file">Дескриптор файла передачи для записи.</param>
+    /// <param name="buffer">Pooled copy buffer для static files.</param>
     private async Task WriteTransferData(Stream stream, TransferResourceEntry file, byte[] buffer)
     {
         if (file.DynamicData != null)
@@ -623,11 +623,11 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Reads the exact number of bytes requested from a content stream.
+    /// Читает из content stream ровно запрошенное количество байт.
     /// </summary>
-    /// <param name="stream">The input stream.</param>
-    /// <param name="buffer">The destination buffer.</param>
-    /// <param name="count">The number of bytes that must be read.</param>
+    /// <param name="stream">Входной stream.</param>
+    /// <param name="buffer">Целевой буфер.</param>
+    /// <param name="count">Количество байт, которое нужно прочитать.</param>
     private static void ReadExactly(Stream stream, byte[] buffer, int count)
     {
         var offset = 0;
@@ -642,11 +642,11 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Registers a dynamic in-memory network texture that is not present on disk.
-    /// The resourcePath must point inside /NetTextures/ and will be validated by <see cref="ValidateResourcePath"/>.
+    /// Регистрирует динамическую in-memory сетевую текстуру, которой нет на диске.
+    /// resourcePath должен указывать внутрь /NetTextures/ и будет проверен через <see cref="ValidateResourcePath"/>.
     /// </summary>
-    /// <param name="resourcePath">Rooted resource path, e.g. "/NetTextures/Messenger/photo_123.png".</param>
-    /// <param name="data">Raw file bytes (PNG, WEBP, etc.).</param>
+    /// <param name="resourcePath">Rooted путь ресурса, например "/NetTextures/Messenger/photo_123.png".</param>
+    /// <param name="data">Сырые байты файла (PNG, WEBP и т. п.).</param>
     public void RegisterDynamicResource(string resourcePath, byte[] data)
     {
         var path = resourcePath.StartsWith("/")
@@ -671,9 +671,9 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Unregisters a dynamic in-memory network texture.
+    /// Удаляет регистрацию динамической in-memory сетевой текстуры.
     /// </summary>
-    /// <param name="resourcePath">Rooted resource path, e.g. "/NetTextures/Messenger/photo_123.png".</param>
+    /// <param name="resourcePath">Rooted путь ресурса, например "/NetTextures/Messenger/photo_123.png".</param>
     public void UnregisterDynamicResource(string resourcePath)
     {
         var path = resourcePath.StartsWith('/')
@@ -693,7 +693,7 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// One file scheduled for transfer to the client.
+    /// Один файл, запланированный к передаче клиенту.
     /// </summary>
     private sealed class TransferRequest(ICommonSession session, ResPath resourcePath)
     {
@@ -702,7 +702,7 @@ public sealed class NetTexturesManager
     }
 
     /// <summary>
-    /// Immutable manifest for a static content resource so concurrent requesters can share the same transfer plan.
+    /// Immutable manifest для static content resource, чтобы параллельные запросы делили один план передачи.
     /// </summary>
     private sealed class StaticTransferBundle(TransferResourceEntry[] files)
     {

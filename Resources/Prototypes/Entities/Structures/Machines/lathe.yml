@@ -144,6 +144,7 @@
     emagStaticPacks:
     - SecurityStaticSunrise # Sunrise-Add
     - SyndicateAmmoStatic
+    - SyndicateBorgModulesEmagSunrise # Sunrise-Add
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -223,6 +224,8 @@
     - NightVisionDevice
     # Sunrise-End
   - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SyndicateBorgModulesEmagSunrise # Sunrise-Add
     emagDynamicPacks:
     # - SecurityAmmo # Sunrise-edit
     - SecurityExplosives
@@ -234,7 +237,7 @@
     - MedicalCyberlimbDynamic # Sunrise-Add
     - MedicalCyberOrgansDynamic # Sunrise-Add
     - MedicalImplantDynamic # Sunrise-Add
-    - SyndicateAmmoSunrise # Sunrise-Add
+    - SyndicateAmmoDynamicSunrise # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -433,6 +436,7 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic
+    - SyndicateBorgModulesEmagSunrise # Sunrise-Add
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

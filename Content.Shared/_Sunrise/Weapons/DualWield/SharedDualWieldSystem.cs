@@ -137,6 +137,9 @@ public sealed class SharedDualWieldSystem : EntitySystem
         if (!TryComp<DualWieldComponent>(wielder, out var dualWield))
             return;
 
+        if (dualWield.LifeStage > ComponentLifeStage.Running)
+            return;
+
         if (dualWield.LeftGun != ent && dualWield.RightGun != ent)
             return;
 

@@ -58,3 +58,5 @@ ent-LMGUraniumKit = L6 Saw Uranium ammo kit
     .desc = { ent-BoxCardboard.desc }
 ent-CaneShotgunBox = darts box
     .desc = { ent-BoxDarts.desc }
+ent-ChameleonSilentShoesBox = chameleon silent shoes kit
+    .desc = Contains a pair of stealth chameleon shoes. Packaging disintegrates when opened, leaving no evidence behind.

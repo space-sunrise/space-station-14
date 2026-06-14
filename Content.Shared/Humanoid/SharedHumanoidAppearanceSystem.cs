@@ -512,7 +512,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         Dirty(uid, humanoid);
 
-        // Sunrise added start - allow fork systems to apply profile-derived physical stats
+        // Sunrise added start - разрешаем fork-системам применять физические параметры из профиля
         var profileLoaded = new HumanoidProfileLoadedEvent(profile);
         RaiseLocalEvent(uid, ref profileLoaded);
         // Sunrise added end
