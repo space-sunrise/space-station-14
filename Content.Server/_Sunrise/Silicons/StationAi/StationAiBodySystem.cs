@@ -75,7 +75,8 @@ public sealed class StationAiBodySystem : EntitySystem
         SubscribeLocalEvent<StationAiBodyComponent, StationAiBodyOpenUiActionEvent>(OnBodyOpenBodyUiAction);
         SubscribeLocalEvent<StationAiBodyComponent, StationAiBodyExitActionEvent>(OnBodyExitAction);
 
-        Subs.BuiEvents<StationAiBodyControllerComponent>(StationAiBodyUiKey.Key, subs =>
+        Subs.BuiEvents<StationAiBodyControllerComponent>(StationAiBodyUiKey.Key,
+            subs =>
         {
             subs.Event<BoundUIOpenedEvent>(OnBodyUiOpened);
             subs.Event<StationAiBodyEnterMessage>(OnBodyUiEnterMessage);
@@ -97,12 +98,14 @@ public sealed class StationAiBodySystem : EntitySystem
     {
         EnsureControllerUi(stationAi);
         EnsureControllerActions(stationAi);
+        UpdateBodyUiData(stationAi.AsNullable());
     }
 
     private void OnStationAiBodyControllerMapInit(Entity<StationAiBodyControllerComponent> stationAi, ref MapInitEvent args)
     {
         EnsureControllerUi(stationAi);
         EnsureControllerActions(stationAi);
+        UpdateBodyUiData(stationAi.AsNullable());
     }
 
     private void OnStationAiBodyControllerShutdown(Entity<StationAiBodyControllerComponent> stationAi, ref ComponentShutdown args)
@@ -205,7 +208,7 @@ public sealed class StationAiBodySystem : EntitySystem
 
     private void OnBodyUiOpened(EntityUid stationAi, StationAiBodyControllerComponent controller, BoundUIOpenedEvent args)
     {
-        UpdateBodyUiState(stationAi);
+        UpdateBodyUiData((stationAi, controller));
     }
 
     private void OnBodyUiEnterMessage(EntityUid stationAi, StationAiBodyControllerComponent controller, StationAiBodyEnterMessage args)
@@ -309,9 +312,6 @@ public sealed class StationAiBodySystem : EntitySystem
             currentBody = controller.CurrentBody;
         }
 
-        if (mindComp == null)
-            return false;
-
         mind = mindComp;
         return true;
     }
@@ -368,34 +368,6 @@ public sealed class StationAiBodySystem : EntitySystem
     }
 
     /// <summary>
-    /// Builds a server-authoritative body selector state for the supplied station AI brain.
-    /// </summary>
-    public StationAiBodyBuiState GetBodyUiState(EntityUid stationAi)
-    {
-        var currentBody = GetCurrentBody(stationAi);
-        NetEntity? currentBodyNet = currentBody is { } current ? GetNetEntity(current) : null;
-        var bodies = new List<StationAiBodyBuiEntry>();
-        var query = EntityQueryEnumerator<StationAiBodyComponent, MetaDataComponent>();
-
-        while (query.MoveNext(out var bodyUid, out var body, out var meta))
-        {
-            if (body.Board == null)
-                continue;
-
-            NetEntity? linkedAi = body.LinkedAi is { } ai ? GetNetEntity(ai) : null;
-            bodies.Add(new StationAiBodyBuiEntry(
-                GetNetEntity(bodyUid),
-                body.BodyNumber,
-                meta.EntityName,
-                linkedAi,
-                currentBody == bodyUid));
-        }
-
-        bodies.Sort((left, right) => left.BodyNumber.CompareTo(right.BodyNumber));
-        return new StationAiBodyBuiState(bodies, currentBodyNet);
-    }
-
-    /// <summary>
     /// Selects the borg chassis type used by the currently controlled AI body.
     /// </summary>
     public bool TrySelectBodyType(EntityUid stationAi, ProtoId<BorgTypePrototype> borgType)
@@ -403,7 +375,7 @@ public sealed class StationAiBodySystem : EntitySystem
         if (!CanSelectBodyType(stationAi, borgType, out var body, out var switchable))
             return false;
 
-        DoSelectBodyType(stationAi, (body, switchable), borgType);
+        DoSelectBodyType((body, switchable), borgType);
         return true;
     }
 
@@ -583,13 +555,13 @@ public sealed class StationAiBodySystem : EntitySystem
             controller.CurrentBody = null;
             _mind.TransferTo(aiMindId, ai, mind: mind);
             Dirty(ai, controller);
-            UpdateBodyUiState(ai);
         }
 
         if (TryComp<AccessReaderComponent>(body.Owner, out var accessReader))
             _accessReader.SetActive((body.Owner, accessReader), false);
 
         RemCompDeferred<StationAiBodyComponent>(body.Owner);
+        UpdateAllBodyUiData();
     }
 
     private void DoInitializeBody(EntityUid chassis, EntityUid board)
@@ -609,6 +581,7 @@ public sealed class StationAiBodySystem : EntitySystem
         SetFreeBodyAccess(chassis);
 
         Dirty(chassis, body);
+        UpdateAllBodyUiData();
     }
 
     private void DoEnterBody(
@@ -640,7 +613,7 @@ public sealed class StationAiBodySystem : EntitySystem
 
         Dirty(body);
         Dirty(stationAi, controller);
-        UpdateBodyUiState(stationAi);
+        UpdateAllBodyUiData();
     }
 
     private void DoExitBody(
@@ -656,7 +629,7 @@ public sealed class StationAiBodySystem : EntitySystem
         _mind.TransferTo(mindId, stationAi, mind: mind);
 
         Dirty(stationAi, controller);
-        UpdateBodyUiState(stationAi);
+        UpdateAllBodyUiData();
     }
 
     private void DoEmergencyReturnFromBody(
@@ -683,11 +656,10 @@ public sealed class StationAiBodySystem : EntitySystem
 
         Dirty(body);
         Dirty(stationAi, controller);
-        UpdateBodyUiState(stationAi);
+        UpdateAllBodyUiData();
     }
 
     private void DoSelectBodyType(
-        EntityUid stationAi,
         Entity<BorgSwitchableTypeComponent> body,
         ProtoId<BorgTypePrototype> borgType)
     {
@@ -776,14 +748,46 @@ public sealed class StationAiBodySystem : EntitySystem
             new InterfaceData(BodyUiClientType, interactionRange: -1f, requireInputValidation: false));
     }
 
-    private void UpdateBodyUiState(EntityUid stationAi)
+    private void UpdateBodyUiData(Entity<StationAiBodyControllerComponent?> stationAi)
     {
-        EnsureControllerUi(stationAi);
-
-        if (!TryComp<UserInterfaceComponent>(stationAi, out var ui))
+        if (!Resolve(stationAi.Owner, ref stationAi.Comp, false))
             return;
 
-        _ui.SetUiState((stationAi, ui), StationAiBodyUiKey.Key, GetBodyUiState(stationAi));
+        stationAi.Comp.Bodies = BuildBodyEntries(GetCurrentBody(stationAi.Owner));
+        Dirty(stationAi.Owner, stationAi.Comp);
+    }
+
+    private void UpdateAllBodyUiData()
+    {
+        var query = EntityQueryEnumerator<StationAiBodyControllerComponent>();
+
+        while (query.MoveNext(out var stationAi, out var controller))
+        {
+            UpdateBodyUiData((stationAi, controller));
+        }
+    }
+
+    private List<StationAiBodyEntry> BuildBodyEntries(EntityUid? currentBody)
+    {
+        var bodies = new List<StationAiBodyEntry>();
+        var query = EntityQueryEnumerator<StationAiBodyComponent, MetaDataComponent>();
+
+        while (query.MoveNext(out var bodyUid, out var body, out var meta))
+        {
+            if (body.Board == null)
+                continue;
+
+            NetEntity? linkedAi = body.LinkedAi is { } ai ? GetNetEntity(ai) : null;
+            bodies.Add(new StationAiBodyEntry(
+                GetNetEntity(bodyUid),
+                body.BodyNumber,
+                meta.EntityName,
+                linkedAi,
+                currentBody == bodyUid));
+        }
+
+        bodies.Sort((left, right) => left.BodyNumber.CompareTo(right.BodyNumber));
+        return bodies;
     }
 
     private bool TryOpenBodyUi(EntityUid stationAi, EntityUid actor)
@@ -796,6 +800,7 @@ public sealed class StationAiBodySystem : EntitySystem
             return false;
         }
 
+        UpdateBodyUiData((stationAi, controller));
         return _ui.TryOpenUi((stationAi, null), StationAiBodyUiKey.Key, actor);
     }
 

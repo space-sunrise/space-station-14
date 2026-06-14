@@ -20,12 +20,12 @@ public sealed partial class StationAiBodyWindow : FancyWindow
         ExitBodyButton.OnPressed += _ => ExitBodyAction?.Invoke();
     }
 
-    public void UpdateState(StationAiBodyBuiState state)
+    public void UpdateState(StationAiBodyControllerComponent controller)
     {
         BodyList.RemoveAllChildren();
-        ExitBodyButton.Disabled = state.CurrentBody == null;
+        ExitBodyButton.Disabled = controller.CurrentBody == null;
 
-        if (state.Bodies.Count == 0)
+        if (controller.Bodies.Count == 0)
         {
             BodyList.AddChild(new Label
             {
@@ -36,13 +36,13 @@ public sealed partial class StationAiBodyWindow : FancyWindow
             return;
         }
 
-        foreach (var body in state.Bodies)
+        foreach (var body in controller.Bodies)
         {
             BodyList.AddChild(CreateBodyEntry(body));
         }
     }
 
-    private Control CreateBodyEntry(StationAiBodyBuiEntry body)
+    private Control CreateBodyEntry(StationAiBodyEntry body)
     {
         var row = new BoxContainer
         {
@@ -80,7 +80,7 @@ public sealed partial class StationAiBodyWindow : FancyWindow
         return row;
     }
 
-    private static string GetStatusText(StationAiBodyBuiEntry body)
+    private static string GetStatusText(StationAiBodyEntry body)
     {
         if (body.IsCurrent)
             return Loc.GetString("station-ai-body-window-status-current");

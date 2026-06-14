@@ -8,35 +8,38 @@ public enum StationAiBodyUiKey : byte
     /// <summary>
     /// Body selector interface on the station AI brain entity.
     /// </summary>
-    Key
-}
-
-/// <summary>
-/// Server-authoritative station AI body selector state.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class StationAiBodyBuiState(List<StationAiBodyBuiEntry> bodies, NetEntity? currentBody) : BoundUserInterfaceState
-{
-    public List<StationAiBodyBuiEntry> Bodies { get; } = bodies;
-    public NetEntity? CurrentBody { get; } = currentBody;
+    Key,
 }
 
 /// <summary>
 /// One station AI body entry displayed in the body selector.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class StationAiBodyBuiEntry(
-    NetEntity body,
-    int bodyNumber,
-    string name,
-    NetEntity? linkedAi,
-    bool isCurrent)
+public sealed class StationAiBodyEntry
 {
-    public NetEntity Body { get; } = body;
-    public int BodyNumber { get; } = bodyNumber;
-    public string Name { get; } = name;
-    public NetEntity? LinkedAi { get; } = linkedAi;
-    public bool IsCurrent { get; } = isCurrent;
+    public NetEntity Body;
+    public int BodyNumber;
+    public string Name = string.Empty;
+    public NetEntity? LinkedAi;
+    public bool IsCurrent;
+
+    public StationAiBodyEntry()
+    {
+    }
+
+    public StationAiBodyEntry(
+        NetEntity body,
+        int bodyNumber,
+        string name,
+        NetEntity? linkedAi,
+        bool isCurrent)
+    {
+        Body = body;
+        BodyNumber = bodyNumber;
+        Name = name;
+        LinkedAi = linkedAi;
+        IsCurrent = isCurrent;
+    }
 }
 
 /// <summary>
