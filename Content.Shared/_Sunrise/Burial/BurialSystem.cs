@@ -39,8 +39,20 @@ public sealed class BurialSystem : EntitySystem
 
     private void OnInteractUsing(EntityUid uid, GraveComponent component, InteractUsingEvent args)
     {
-        if (args.Handled || _doAfterSystem.IsRunning(component.ShovelDiggingDoAfterId))
+        //* Temporary
+        // if (args.Handled || _doAfterSystem.IsRunning(component.ShovelDiggingDoAfterId))
+        //     return;
+
+        //* Coderabbit start
+        if (args.Handled)
             return;
+
+        if (IsAnyDiggingActive(component))
+        {
+            args.Handled = true;
+            return;
+        }
+        //* Coderabbit end
 
         if (TryComp<ShovelComponent>(args.Used, out var shovel))
         {
@@ -81,8 +93,12 @@ public sealed class BurialSystem : EntitySystem
 
     private void OnRelayMovement(EntityUid uid, GraveComponent component, ref ContainerRelayMovementEntityEvent args)
     {
-        if (_doAfterSystem.IsRunning(component.HandDiggingDoAfterId))
+        //* Coderabbit suggest start
+        // if (_doAfterSystem.IsRunning(component.HandDiggingDoAfterId))
+
+        if (IsAnyDiggingActive(component))
             return;
+        //* Coderabbit suggest end
 
         if (!_actionBlocker.CanMove(args.Entity))
             return;

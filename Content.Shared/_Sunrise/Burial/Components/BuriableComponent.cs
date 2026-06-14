@@ -1,7 +1,7 @@
 namespace Content.Shared.Burial.Components;
 
 /// <summary>
-/// * Компонент позволяющий и/или указывающий на то, что сущность можно закопать в могилу.
+/// * A component that allows and/or indicates that an entity can be buried in a grave.
 /// </summary>
 [RegisterComponent]
 public sealed partial class BuriableComponent : Component
