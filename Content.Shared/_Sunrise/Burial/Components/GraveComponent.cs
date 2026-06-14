@@ -7,25 +7,24 @@ namespace Content.Shared.Burial.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GraveComponent : Component
 {
-    [DataField("digDelay")]
-    public float DigDelay = 5.0f;
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan DigDelay = TimeSpan.FromSeconds(15);
 
-    [DataField("digSound")]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public SoundSpecifier DigSound = new SoundPathSpecifier("/Audio/Items/shovel_dig.ogg");
 
-    [DataField("digOutByHandModifier")]
-    public float DigOutByHandModifier = 0.5f;
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float DigOutByHandModifier = 0.2f;
 
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public bool DiggingComplete = false;
 
-    // Аудио
-    [ViewVariables]
+    [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? Stream = null;
 
-    [ViewVariables]
+    [ViewVariables(VVAccess.ReadOnly)]
     public DoAfterId? ShovelDiggingDoAfterId = null;
 
-    [ViewVariables]
+    [ViewVariables(VVAccess.ReadOnly)]
     public DoAfterId? HandDiggingDoAfterId = null;
 }

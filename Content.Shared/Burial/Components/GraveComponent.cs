@@ -1,4 +1,4 @@
-// ! SUNRISE EDIT START :: GRAVECOMPONENT OVERHAUL
+// ! SUNRISE EDIT START :: GRAVECOMPONENT OVERHAUL :: OBSOLETTE
 // using Content.Shared.DoAfter;
 // using Robust.Shared.Audio;
 // using Robust.Shared.GameStates;

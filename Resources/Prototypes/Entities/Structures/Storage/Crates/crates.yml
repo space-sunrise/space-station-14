@@ -861,14 +861,17 @@
     openSound:
       path: /Audio/Items/shovel_dig.ogg
 # ! SUNRISE ADD START :: GRAVEYARD OVERHAUL
-    # whitelist:
-    #   tags:
-    #     - Coffin
-    #     - BodyBag
-    #     - CanPilot
-    #     - VimPilot
-    #   components:
-    #     - Buriable
+    whitelist:
+      tags:
+        - Coffin
+        - BodyBag
+        - CanPilot
+        - VimPilot
+        - MechVim
+        - PetCarrier
+      components:
+        - Buriable
+        - Item
 # ! SUNRISE ADD END
 
 - type: entity

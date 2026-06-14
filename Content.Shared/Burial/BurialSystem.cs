@@ -1,4 +1,4 @@
-// ! SUNRISE EDIT START :: BURIALSYSTEM OVERHAUL
+// ! SUNRISE EDIT START :: BURIALSYSTEM OVERHAUL :: OBSOLETTE
 // using Content.Shared.ActionBlocker;
 // using Content.Shared.Burial.Components;
 // using Content.Shared.DoAfter;
