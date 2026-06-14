@@ -57,7 +57,7 @@
     <GuideEntityEmbed Entity="AmeShielding" Caption="" Margin="0"/>
   </Box>
   <Box>
-    [color=#999999][italic]An example of a one core setup[italic][/color]
+    [color=#999999][italic]An example of a one core setup[/italic][/color]
   </Box>
 
   ## Operation
