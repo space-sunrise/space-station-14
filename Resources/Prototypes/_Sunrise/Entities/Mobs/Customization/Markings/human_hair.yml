@@ -781,25 +781,21 @@
 
 - type: marking
   id: HairEmoNew
-  bodyPart: Hair
-  markingCategory: Hair
+  parent: BaseSunriseMarkingHumanHair
   sprites:
     - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
       state: emo_new
 
 - type: marking
   id: HairCascade
-  bodyPart: Hair
-  markingCategory: Hair
+  parent: BaseSunriseMarkingHumanHair
   sprites:
     - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
       state: cascade
 
 - type: marking
   id: HairLacePonytail
-  bodyPart: Hair
-  markingCategory: Hair
+  parent: BaseSunriseMarkingHumanHair
   sprites:
     - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
       state: lace_ponytail
-
