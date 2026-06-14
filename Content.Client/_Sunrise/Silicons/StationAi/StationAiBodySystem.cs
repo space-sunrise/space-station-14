@@ -14,9 +14,12 @@ public sealed class StationAiBodySystem : EntitySystem
         SubscribeLocalEvent<StationAiBodyControllerComponent, AfterAutoHandleStateEvent>(OnControllerState);
     }
 
+    /// <summary>
+    /// Refreshes an open body selection UI after controller state is received from the server.
+    /// </summary>
     private void OnControllerState(Entity<StationAiBodyControllerComponent> stationAi, ref AfterAutoHandleStateEvent args)
     {
-        if (_ui.TryGetOpenUi<StationAiBodyBoundUserInterface>(stationAi.Owner, StationAiBodyUiKey.Key, out var bui))
+        if (_ui.TryGetOpenUi<StationAiBodyBoundUserInterface>((EntityUid) stationAi, StationAiBodyUiKey.Key, out var bui))
             bui.Update();
     }
 }

@@ -8,6 +8,9 @@ public sealed class StationAiBodyBoundUserInterface(EntityUid owner, Enum uiKey)
     [ViewVariables]
     private StationAiBodyWindow? _window;
 
+    /// <summary>
+    /// Creates the station AI body selection window and wires its commands to BUI messages.
+    /// </summary>
     protected override void Open()
     {
         base.Open();
@@ -29,6 +32,9 @@ public sealed class StationAiBodyBoundUserInterface(EntityUid owner, Enum uiKey)
         _window.UpdateState(controller);
     }
 
+    /// <summary>
+    /// Detaches window event handlers when the body selection UI is disposed.
+    /// </summary>
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
@@ -40,11 +46,17 @@ public sealed class StationAiBodyBoundUserInterface(EntityUid owner, Enum uiKey)
         _window.ExitBodyAction -= ExitBody;
     }
 
+    /// <summary>
+    /// Sends a request to enter the selected AI body.
+    /// </summary>
     private void EnterBody(NetEntity body)
     {
         SendPredictedMessage(new StationAiBodyEnterMessage(body));
     }
 
+    /// <summary>
+    /// Sends a request to return from the controlled body to the AI core.
+    /// </summary>
     private void ExitBody()
     {
         SendPredictedMessage(new StationAiBodyExitMessage());

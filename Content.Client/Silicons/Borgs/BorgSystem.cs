@@ -87,11 +87,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
             hasPlayer = false;
 
         _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
-        var mindLayer = hasPlayer ? ent.Comp1.HasMindLayerData : ent.Comp1.NoMindLayerData; // Sunrise-Edit
-        if (mindLayer != null) // Sunrise-Edit
-            _sprite.LayerSetData((ent.Owner, ent.Comp3), BorgVisualLayers.Light, mindLayer); // Sunrise-Edit
-        else // Sunrise-Edit
-            _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)
@@ -131,24 +127,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         borg.Comp.HasMindState = hasMindState;
         borg.Comp.NoMindState = noMindState;
-        borg.Comp.HasMindLayerData = null; // Sunrise-Edit
-        borg.Comp.NoMindLayerData = null; // Sunrise-Edit
-    }
-
-    // Sunrise-Edit
-    /// <summary>
-    /// Sets the sprite layer data used for the borg "is there a mind or not" indication.
-    /// </summary>
-    public void SetMindStates(Entity<BorgChassisComponent> borg, PrototypeLayerData hasMindState, PrototypeLayerData noMindState)
-    {
-        if (hasMindState.State != null)
-            borg.Comp.HasMindState = hasMindState.State;
-
-        if (noMindState.State != null)
-            borg.Comp.NoMindState = noMindState.State;
-
-        borg.Comp.HasMindLayerData = hasMindState;
-        borg.Comp.NoMindLayerData = noMindState;
     }
 
     public override void Update(float frameTime)

@@ -164,9 +164,11 @@ public sealed class StationAiSystem : SharedStationAiSystem
     {
         base.OnAiRemove(ent, ref args);
 
-        var activeActor = GetActiveAiActor(args.Entity); // Sunrise-Edit
-        _alerts.ClearAlert(activeActor, _batteryAlert); // Sunrise-Edit
-        _alerts.ClearAlert(activeActor, _damageAlert); // Sunrise-Edit
+        // Sunrise edit start - очищаем alert на активном теле ИИ, если разум находится не в ядре.
+        var activeActor = GetActiveAiActor(args.Entity);
+        _alerts.ClearAlert(activeActor, _batteryAlert);
+        _alerts.ClearAlert(activeActor, _damageAlert);
+        // Sunrise edit end
 
         if (TryComp<DamagedSiliconAccentComponent>(args.Entity, out var accent))
         {
@@ -226,7 +228,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             return;
 
         var ev = new ChatNotificationEvent(_aiLosingPowerChatNotificationPrototype, ent);
-        RaiseLocalEvent(GetActiveAiActor(held.Value), ref ev); // Sunrise-Edit
+        RaiseLocalEvent(GetActiveAiActor(held.Value), ref ev); // Sunrise-Edit - отправляем предупреждение активному актору ИИ.
     }
 
     private void OnChargeChanged(Entity<StationAiCoreComponent> entity, ref ChargeChangedEvent args)
@@ -247,10 +249,12 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
             return;
 
-        var activeActor = GetActiveAiActor(held.Value); // Sunrise-Edit
+        // Sunrise edit start - обновляем повреждённый акцент на активном теле ИИ.
+        var activeActor = GetActiveAiActor(held.Value);
 
-        if (!TryComp<DamagedSiliconAccentComponent>(activeActor, out var accent)) // Sunrise-Edit
+        if (!TryComp<DamagedSiliconAccentComponent>(activeActor, out var accent))
             return;
+        // Sunrise edit end
 
         if (TryComp<BatteryComponent>(ent, out var battery))
             accent.OverrideChargeLevel = _battery.GetChargeLevel((ent.Owner, battery));
@@ -261,7 +265,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (TryComp<DestructibleComponent>(ent, out var destructible))
             accent.DamageAtMaxCorruption = _destructible.DestroyedAt(ent, destructible);
 
-        Dirty(activeActor, accent); // Sunrise-Edit
+        Dirty(activeActor, accent); // Sunrise-Edit - синхронизируем акцент активного актора ИИ.
     }
 
     private void UpdateBatteryAlert(Entity<StationAiCoreComponent> ent)
@@ -277,18 +281,20 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         var chargePercent = _battery.GetChargeLevel((ent.Owner, battery));
         var chargeLevel = Math.Round(chargePercent * proto.MaxSeverity);
-        var activeActor = GetActiveAiActor(held.Value); // Sunrise-Edit
+        // Sunrise edit start - показываем заряд на активном теле ИИ и убираем старый alert с ядра.
+        var activeActor = GetActiveAiActor(held.Value);
 
-        _alerts.ShowAlert(activeActor, _batteryAlert, (short)Math.Clamp(chargeLevel, 0, proto.MaxSeverity)); // Sunrise-Edit
-        if (activeActor != held.Value) // Sunrise-Edit
-            _alerts.ClearAlert(held.Value, _batteryAlert); // Sunrise-Edit
+        _alerts.ShowAlert(activeActor, _batteryAlert, (short)Math.Clamp(chargeLevel, 0, proto.MaxSeverity));
+        if (activeActor != held.Value)
+            _alerts.ClearAlert(held.Value, _batteryAlert);
+        // Sunrise edit end
 
         if (TryComp<ApcPowerReceiverBatteryComponent>(ent, out var apcBattery) &&
             apcBattery.Enabled &&
             chargePercent < 0.2)
         {
             var ev = new ChatNotificationEvent(_aiCriticalPowerChatNotificationPrototype, ent);
-            RaiseLocalEvent(activeActor, ref ev); // Sunrise-Edit
+            RaiseLocalEvent(activeActor, ref ev); // Sunrise-Edit - отправляем предупреждение активному актору ИИ.
         }
     }
 
@@ -308,11 +314,13 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         var damagePercent = damageable.TotalDamage / _destructible.DestroyedAt(ent, destructible);
         var damageLevel = Math.Round(damagePercent.Float() * proto.MaxSeverity);
-        var activeActor = GetActiveAiActor(held.Value); // Sunrise-Edit
+        // Sunrise edit start - показываем целостность ядра на активном теле ИИ и убираем старый alert с ядра.
+        var activeActor = GetActiveAiActor(held.Value);
 
-        _alerts.ShowAlert(activeActor, _damageAlert, (short)Math.Clamp(damageLevel, 0, proto.MaxSeverity)); // Sunrise-Edit
-        if (activeActor != held.Value) // Sunrise-Edit
-            _alerts.ClearAlert(held.Value, _damageAlert); // Sunrise-Edit
+        _alerts.ShowAlert(activeActor, _damageAlert, (short)Math.Clamp(damageLevel, 0, proto.MaxSeverity));
+        if (activeActor != held.Value)
+            _alerts.ClearAlert(held.Value, _damageAlert);
+        // Sunrise edit end
     }
 
     private void OnDoAfterAttempt(Entity<StationAiCoreComponent> ent, ref DoAfterAttemptEvent<IntellicardDoAfterEvent> args)
@@ -375,9 +383,11 @@ public sealed class StationAiSystem : SharedStationAiSystem
         {
             var stationAiCore = new Entity<StationAiCoreComponent?>(ent, entStationAiCore);
 
+            // Sunrise edit start - отправляем IC-чат через активного актора ИИ.
             if (!TryGetHeld(stationAiCore, out var insertedAi) ||
-                !TryComp(GetActiveAiActor(insertedAi.Value), out ActorComponent? actor)) // Sunrise-Edit
+                !TryComp(GetActiveAiActor(insertedAi.Value), out ActorComponent? actor))
                 continue;
+            // Sunrise edit end
 
             if (stationAiCore.Comp?.RemoteEntity == null || stationAiCore.Comp.Remote)
                 continue;
@@ -482,16 +492,13 @@ public sealed class StationAiSystem : SharedStationAiSystem
             if (!TryGetHeld((stationAiCore, stationAiCore.Comp), out var insertedAi))
                 continue;
 
-            // Sunrise-Start
-            if (TryComp<StationAiBodyControllerComponent>(insertedAi.Value, out var controller) &&
-                controller.CurrentBody is { } currentBody &&
-                TryComp<StationAiBodyComponent>(currentBody, out var body) &&
-                body.LinkedAi == insertedAi)
+            // Sunrise added start - учитываем активное тело ИИ как наблюдателя станции.
+            if (TryGetActiveAiBody(insertedAi.Value, out var body))
             {
-                hashSet.Add(currentBody);
+                hashSet.Add(body);
                 continue;
             }
-            // Sunrise-End
+            // Sunrise added end
 
             hashSet.Add(insertedAi.Value);
         }

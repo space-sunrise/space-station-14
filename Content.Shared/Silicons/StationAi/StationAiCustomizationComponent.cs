@@ -62,5 +62,5 @@ public enum StationAiCustomizationType : byte
 {
     CoreIconography,
     Hologram,
-    BodyAppearance, // Sunrise-Edit
+    BodyAppearance, // Sunrise-Edit - отдельная категория внешности тела ИИ.
 }

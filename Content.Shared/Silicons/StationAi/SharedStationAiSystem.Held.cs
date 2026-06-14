@@ -132,32 +132,38 @@ public abstract partial class SharedStationAiSystem
         if (ev.Actor == ev.Target)
             return;
 
-        // Sunrise-Edit
+        // Sunrise added start - разрешаем AI-only взаимодействия от активного тела ИИ.
         if (!TryGetCoreForAiActor(ev.Actor, out _, out _))
             return;
+        // Sunrise added end
 
-        // Sunrise-Edit
+        // Sunrise edit start - валидируем активного актора ИИ вместо только сущности в ядре.
         if (!TryComp(ev.Target, out StationAiWhitelistComponent? whitelistComponent) ||
             !ValidateAiActor(ev.Actor))
         {
             ev.Cancel();
             return;
         }
+        // Sunrise edit end
 
         // Don't allow the AI to interact with anything that isn't powered.
+        // Sunrise edit start - проверка питания выполняется для валидного активного актора ИИ.
         if (!PowerReceiver.IsPowered(ev.Target))
         {
             ShowDeviceNotRespondingPopup(ev.Actor);
             ev.Cancel();
             return;
         }
+        // Sunrise edit end
 
         // Don't allow the AI to interact with anything that it isn't allowed to (ex. AI wire is cut)
+        // Sunrise edit start - проверка whitelist выполняется для валидного активного актора ИИ.
         if (!whitelistComponent.Enabled)
         {
             ShowDeviceNotRespondingPopup(ev.Actor);
             ev.Cancel();
         }
+        // Sunrise edit end
     }
 
     private void OnHeldInteraction(Entity<StationAiHeldComponent> ent, ref InteractionAttemptEvent args)
@@ -178,12 +184,16 @@ public abstract partial class SharedStationAiSystem
         if (!_uiSystem.HasUi(args.Target, AiUi.Key))
             return;
 
-        if (!args.CanComplexInteract
-            || !TryGetCoreForAiActor(args.User, out _, out _) // Sunrise-Edit
-            || !args.CanInteract)
-        {
+        // Sunrise edit start - показываем AI-verb телу ИИ как активному актору.
+        if (!args.CanComplexInteract)
             return;
-        }
+
+        if (!TryGetCoreForAiActor(args.User, out _, out _))
+            return;
+
+        if (!args.CanInteract)
+            return;
+        // Sunrise edit end
 
         var user = args.User;
 

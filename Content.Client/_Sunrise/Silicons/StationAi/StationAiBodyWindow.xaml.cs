@@ -42,6 +42,9 @@ public sealed partial class StationAiBodyWindow : FancyWindow
         }
     }
 
+    /// <summary>
+    /// Builds one row in the available AI body list.
+    /// </summary>
     private Control CreateBodyEntry(StationAiBodyEntry body)
     {
         var row = new BoxContainer
@@ -80,6 +83,9 @@ public sealed partial class StationAiBodyWindow : FancyWindow
         return row;
     }
 
+    /// <summary>
+    /// Returns the localized status text for a body entry.
+    /// </summary>
     private static string GetStatusText(StationAiBodyEntry body)
     {
         if (body.IsCurrent)

@@ -22,6 +22,9 @@ public sealed partial class StationAiBodySystem
 
     #region Initialize
 
+    /// <summary>
+    /// Subscribes body feature handlers.
+    /// </summary>
     private void InitializeBodyFeatures()
     {
         SubscribeLocalEvent<StationAiBodyComponent, GetSiliconLawsEvent>(OnBodyGetLaws);
@@ -31,6 +34,9 @@ public sealed partial class StationAiBodySystem
 
     #region Events
 
+    /// <summary>
+    /// Provides the linked station AI laws while the player is acting through a body.
+    /// </summary>
     private void OnBodyGetLaws(Entity<StationAiBodyComponent> body, ref GetSiliconLawsEvent args)
     {
         if (args.Handled || body.Comp.LinkedAi is not { } stationAi)
@@ -44,6 +50,9 @@ public sealed partial class StationAiBodySystem
 
     #region Radio
 
+    /// <summary>
+    /// Copies radio channels from the AI core holder to the controlled body.
+    /// </summary>
     private void GrantStationAiRadioChannels(EntityUid stationAi, Entity<StationAiBodyComponent> body)
     {
         RevokeStationAiRadioChannels(body);
@@ -70,6 +79,9 @@ public sealed partial class StationAiBodySystem
         }
     }
 
+    /// <summary>
+    /// Restores body radio channels that were cached before control was transferred.
+    /// </summary>
     private void RevokeStationAiRadioChannels(Entity<StationAiBodyComponent> body)
     {
         if (body.Comp.CachedRadioChannels.Remove(nameof(IntrinsicRadioTransmitterComponent), out var transmitterChannels) &&
@@ -87,6 +99,9 @@ public sealed partial class StationAiBodySystem
         }
     }
 
+    /// <summary>
+    /// Finds the entity inside the AI core that owns the radio channel set copied to bodies.
+    /// </summary>
     private bool TryGetRadioChannelsHolderByAiCore(EntityUid stationAi, [NotNullWhen(true)] out EntityUid? radioChannelsHolder)
     {
         radioChannelsHolder = null;

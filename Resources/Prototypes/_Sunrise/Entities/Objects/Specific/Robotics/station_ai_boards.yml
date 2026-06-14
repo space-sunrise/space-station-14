@@ -4,8 +4,10 @@
   name: AI communication board
   description: A board that lets a station AI control a prepared borg chassis.
   components:
-  - type: StationAiCommunicationBoard
   - type: BorgBrain
+  - type: Tag
+    tags:
+    - StationAiCommunicationBoard
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Robotics/station_ai_communication_board.rsi
     layers:

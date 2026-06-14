@@ -1,8 +1,6 @@
 using Content.Shared._Sunrise.Silicons.StationAi;
 using Content.Shared.Actions;
-using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Silicons.StationAi;
@@ -20,13 +18,14 @@ public sealed partial class StationAiBodySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
-    private const string BodyUiClientType = "StationAiBodyBoundUserInterface";
-
     private static readonly SpriteSpecifier BodyEnterVerbIcon =
         new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/in.svg.192dpi.png"));
 
     #region Initialize
 
+    /// <summary>
+    /// Subscribes action, verb, and bound UI handlers for station AI body control.
+    /// </summary>
     private void InitializeBodyInterface()
     {
         SubscribeLocalEvent<StationAiBodyControllerComponent, ComponentStartup>(OnStationAiBodyControllerStartup);
@@ -49,37 +48,50 @@ public sealed partial class StationAiBodySystem
 
     #region Events
 
+    /// <summary>
+    /// Ensures body control actions and UI data when the controller component starts.
+    /// </summary>
     private void OnStationAiBodyControllerStartup(Entity<StationAiBodyControllerComponent> stationAi, ref ComponentStartup args)
     {
-        EnsureControllerUi(stationAi);
         EnsureControllerActions(stationAi);
         UpdateBodyUiData(stationAi.AsNullable());
     }
 
+    /// <summary>
+    /// Ensures body control actions and UI data when the controller is map-initialized.
+    /// </summary>
     private void OnStationAiBodyControllerMapInit(Entity<StationAiBodyControllerComponent> stationAi, ref MapInitEvent args)
     {
-        EnsureControllerUi(stationAi);
         EnsureControllerActions(stationAi);
         UpdateBodyUiData(stationAi.AsNullable());
     }
 
+    /// <summary>
+    /// Removes the body menu action when the AI controller component shuts down.
+    /// </summary>
     private void OnStationAiBodyControllerShutdown(Entity<StationAiBodyControllerComponent> stationAi, ref ComponentShutdown args)
     {
-        _actions.RemoveAction(stationAi.Owner, stationAi.Comp.BodyMenuAction);
+        _actions.RemoveAction((EntityUid) stationAi, stationAi.Comp.BodyMenuAction);
         stationAi.Comp.BodyMenuAction = null;
     }
 
+    /// <summary>
+    /// Opens the body selection UI from the station AI brain action.
+    /// </summary>
     private void OnStationAiOpenBodyUiAction(Entity<StationAiBodyControllerComponent> stationAi, ref StationAiBodyOpenUiActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!TryOpenBodyUi(stationAi.Owner, args.Performer))
+        if (!TryOpenBodyUi(stationAi, args.Performer))
             return;
 
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Opens the body selection UI from the currently controlled body action.
+    /// </summary>
     private void OnBodyOpenBodyUiAction(Entity<StationAiBodyComponent> body, ref StationAiBodyOpenUiActionEvent args)
     {
         if (args.Handled || body.Comp.LinkedAi is not { } stationAi)
@@ -91,6 +103,9 @@ public sealed partial class StationAiBodySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Adds the alternative verb that lets a station AI enter a free prepared body.
+    /// </summary>
     private void OnBodyAlternativeVerbs(Entity<StationAiBodyComponent> body, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanComplexInteract || !TryGetStationAiFromActor(args.User, out var stationAi))
@@ -107,11 +122,17 @@ public sealed partial class StationAiBodySystem
         });
     }
 
+    /// <summary>
+    /// Refreshes body entries when the body selection UI is opened.
+    /// </summary>
     private void OnBodyUiOpened(EntityUid stationAi, StationAiBodyControllerComponent controller, BoundUIOpenedEvent args)
     {
         UpdateBodyUiData((stationAi, controller));
     }
 
+    /// <summary>
+    /// Handles a UI request to transfer control into a selected body.
+    /// </summary>
     private void OnBodyUiEnterMessage(EntityUid stationAi, StationAiBodyControllerComponent controller, StationAiBodyEnterMessage args)
     {
         if (!CanUseBodyUi((stationAi, controller), args.Actor))
@@ -123,6 +144,9 @@ public sealed partial class StationAiBodySystem
         TryEnterBody(stationAi, body.Value);
     }
 
+    /// <summary>
+    /// Handles a UI request to return control from the body to the AI brain.
+    /// </summary>
     private void OnBodyUiExitMessage(EntityUid stationAi, StationAiBodyControllerComponent controller, StationAiBodyExitMessage args)
     {
         if (!CanUseBodyUi((stationAi, controller), args.Actor))
@@ -135,6 +159,9 @@ public sealed partial class StationAiBodySystem
 
     #region Actions
 
+    /// <summary>
+    /// Grants actions that should be available only while an AI controls this body.
+    /// </summary>
     private void GrantControlledBodyActions(Entity<StationAiBodyComponent> body)
     {
         RevokeControlledBodyActions(body);
@@ -142,50 +169,54 @@ public sealed partial class StationAiBodySystem
         foreach (var action in body.Comp.ControlledBodyActions)
         {
             EntityUid? actionEnt = null;
-            _actions.AddAction(body.Owner, ref actionEnt, action);
+            _actions.AddAction(body, ref actionEnt, action);
 
             if (actionEnt != null)
                 body.Comp.ControlledBodyActionEntities.Add(actionEnt.Value);
         }
     }
 
+    /// <summary>
+    /// Removes actions that were granted while the AI controlled this body.
+    /// </summary>
     private void RevokeControlledBodyActions(Entity<StationAiBodyComponent> body)
     {
         foreach (var actionEnt in body.Comp.ControlledBodyActionEntities)
         {
-            _actions.RemoveAction(body.Owner, actionEnt);
+            _actions.RemoveAction((EntityUid) body, actionEnt);
         }
 
         body.Comp.ControlledBodyActionEntities.Clear();
     }
 
+    /// <summary>
+    /// Ensures the AI brain has the action used to open the body selection UI.
+    /// </summary>
     private void EnsureControllerActions(Entity<StationAiBodyControllerComponent> stationAi)
     {
-        _actions.AddAction(stationAi.Owner, ref stationAi.Comp.BodyMenuAction, stationAi.Comp.BodyMenuActionPrototype);
-        Dirty(stationAi.Owner, stationAi.Comp);
+        _actions.AddAction(stationAi, ref stationAi.Comp.BodyMenuAction, stationAi.Comp.BodyMenuActionPrototype);
+        Dirty(stationAi, stationAi.Comp);
     }
 
     #endregion
 
     #region UI Data
 
-    private void EnsureControllerUi(EntityUid stationAi)
-    {
-        _ui.SetUi(
-            (stationAi, null),
-            StationAiBodyUiKey.Key,
-            new InterfaceData(BodyUiClientType, interactionRange: -1f, requireInputValidation: false));
-    }
-
+    /// <summary>
+    /// Rebuilds and networks body selection UI data for one station AI controller.
+    /// </summary>
     private void UpdateBodyUiData(Entity<StationAiBodyControllerComponent?> stationAi)
     {
-        if (!Resolve(stationAi.Owner, ref stationAi.Comp, false))
+        if (!Resolve(stationAi, ref stationAi.Comp, false))
             return;
 
-        stationAi.Comp.Bodies = BuildBodyEntries(GetCurrentBody(stationAi.Owner));
-        Dirty(stationAi.Owner, stationAi.Comp);
+        stationAi.Comp.Bodies = BuildBodyEntries(GetCurrentBody(stationAi));
+        Dirty(stationAi, stationAi.Comp);
     }
 
+    /// <summary>
+    /// Rebuilds body selection UI data for every station AI controller.
+    /// </summary>
     private void UpdateAllBodyUiData()
     {
         var query = EntityQueryEnumerator<StationAiBodyControllerComponent>();
@@ -196,6 +227,9 @@ public sealed partial class StationAiBodySystem
         }
     }
 
+    /// <summary>
+    /// Builds the sorted list of prepared AI bodies sent to the body selection UI.
+    /// </summary>
     private List<StationAiBodyEntry> BuildBodyEntries(EntityUid? currentBody)
     {
         var bodies = new List<StationAiBodyEntry>();
@@ -223,10 +257,11 @@ public sealed partial class StationAiBodySystem
 
     #region Helpers
 
+    /// <summary>
+    /// Opens the body selection UI for a station AI actor after validating access.
+    /// </summary>
     private bool TryOpenBodyUi(EntityUid stationAi, EntityUid actor)
     {
-        EnsureControllerUi(stationAi);
-
         if (!TryComp<StationAiBodyControllerComponent>(stationAi, out var controller) ||
             !CanUseBodyUi((stationAi, controller), actor))
         {
@@ -237,16 +272,22 @@ public sealed partial class StationAiBodySystem
         return _ui.TryOpenUi((stationAi, null), StationAiBodyUiKey.Key, actor);
     }
 
+    /// <summary>
+    /// Returns whether the actor may use the body selection UI for this station AI.
+    /// </summary>
     private bool CanUseBodyUi(Entity<StationAiBodyControllerComponent> stationAi, EntityUid actor)
     {
-        if (actor == stationAi.Owner)
+        if (actor == (EntityUid) stationAi)
             return true;
 
         return stationAi.Comp.CurrentBody == actor &&
                TryComp<StationAiBodyComponent>(actor, out var body) &&
-               body.LinkedAi == stationAi.Owner;
+               body.LinkedAi == (EntityUid) stationAi;
     }
 
+    /// <summary>
+    /// Resolves a station AI brain from either the brain itself or its currently controlled body.
+    /// </summary>
     private bool TryGetStationAiFromActor(EntityUid actor, out EntityUid stationAi)
     {
         if (HasComp<StationAiBodyControllerComponent>(actor))
@@ -255,16 +296,26 @@ public sealed partial class StationAiBodySystem
             return true;
         }
 
-        if (TryComp<StationAiBodyComponent>(actor, out var body) &&
-            body.LinkedAi is { } linkedAi &&
-            HasComp<StationAiBodyControllerComponent>(linkedAi))
+        if (!TryComp<StationAiBodyComponent>(actor, out var body))
         {
-            stationAi = linkedAi;
-            return true;
+            stationAi = default;
+            return false;
         }
 
-        stationAi = default;
-        return false;
+        if (body.LinkedAi is not { } linkedAi)
+        {
+            stationAi = default;
+            return false;
+        }
+
+        if (!HasComp<StationAiBodyControllerComponent>(linkedAi))
+        {
+            stationAi = default;
+            return false;
+        }
+
+        stationAi = linkedAi;
+        return true;
     }
 
     #endregion

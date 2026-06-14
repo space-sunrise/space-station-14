@@ -1,7 +1,6 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
-using Content.Shared._Sunrise.Silicons.StationAi;
 using Content.Shared.Body.Events;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
@@ -178,14 +177,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
         {
             _mind.TransferTo(mindId, chassis.Owner, mind: mind);
         }
-
-        // Sunrise added start - let fork-only systems react to AI communication boards without duplicating this container subscription.
-        if (HasComp<StationAiCommunicationBoardComponent>(args.Entity))
-        {
-            var ev = new StationAiBodyBoardInsertedEvent(args.Entity);
-            RaiseLocalEvent(chassis.Owner, ref ev);
-        }
-        // Sunrise added end
     }
 
     protected virtual void OnRemoved(Entity<BorgChassisComponent> chassis, ref EntRemovedFromContainerMessage args)
@@ -195,15 +186,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
         if (args.Container != chassis.Comp.BrainContainer)
             return;
-
-        // Sunrise added start - AI communication boards are relay hardware and must not receive the borg mind.
-        if (HasComp<StationAiCommunicationBoardComponent>(args.Entity))
-        {
-            var ev = new StationAiBodyBoardRemovedEvent(args.Entity);
-            RaiseLocalEvent(chassis.Owner, ref ev);
-            return;
-        }
-        // Sunrise added end
 
         if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(chassis.Owner, out var mindId, out var mind))
         {

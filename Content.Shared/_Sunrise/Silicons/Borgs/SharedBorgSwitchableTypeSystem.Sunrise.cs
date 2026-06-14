@@ -14,7 +14,7 @@ public abstract partial class SharedBorgSwitchableTypeSystem
         if (!CanSelectBorgType(ent, borgType))
             return false;
 
-        DoSelectBorgType((ent.Owner, ent.Comp!), borgType);
+        DoSelectBorgType((ent, ent.Comp!), borgType);
         return true;
     }
 
@@ -23,11 +23,14 @@ public abstract partial class SharedBorgSwitchableTypeSystem
     /// </summary>
     public bool CanSelectBorgType(Entity<BorgSwitchableTypeComponent?> ent, ProtoId<BorgTypePrototype> borgType)
     {
-        return Resolve(ent.Owner, ref ent.Comp, false) &&
+        return Resolve(ent, ref ent.Comp, false) &&
                ent.Comp.SelectedBorgType == null &&
                Prototypes.HasIndex(borgType);
     }
 
+    /// <summary>
+    /// Applies a borg type selection through the vanilla module selection flow.
+    /// </summary>
     private void DoSelectBorgType(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
         SelectBorgModule(ent, borgType);

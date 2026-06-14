@@ -19,17 +19,28 @@ public abstract partial class SharedStationAiSystem
         if (HasComp<StationAiHeldComponent>(actor))
             return TryGetCore(actor, out core);
 
-        if (TryComp<StationAiBodyComponent>(actor, out var body) &&
-            body.LinkedAi is { } linkedAi &&
-            TryGetCore(linkedAi, out core))
+        if (!TryComp<StationAiBodyComponent>(actor, out var body))
         {
-            stationAi = linkedAi;
-            return true;
+            core = (EntityUid.Invalid, null);
+            stationAi = EntityUid.Invalid;
+            return false;
         }
 
-        core = (EntityUid.Invalid, null);
-        stationAi = EntityUid.Invalid;
-        return false;
+        if (body.LinkedAi is not { } linkedAi)
+        {
+            core = (EntityUid.Invalid, null);
+            stationAi = EntityUid.Invalid;
+            return false;
+        }
+
+        if (!TryGetCore(linkedAi, out core))
+        {
+            stationAi = EntityUid.Invalid;
+            return false;
+        }
+
+        stationAi = linkedAi;
+        return true;
     }
 
     /// <summary>
@@ -49,15 +60,33 @@ public abstract partial class SharedStationAiSystem
     {
         activeActor = stationAi;
 
-        if (TryComp<StationAiBodyControllerComponent>(stationAi, out var controller)
-            && controller.CurrentBody is { } currentBody
-            && TryComp<StationAiBodyComponent>(currentBody, out var body)
-            && body.LinkedAi == stationAi)
-        {
-            activeActor = currentBody;
-        }
+        if (TryGetActiveAiBody(stationAi, out var body))
+            activeActor = body;
 
         return Exists(activeActor);
+    }
+
+    /// <summary>
+    /// Attempts to resolve the body currently controlled by the station AI brain.
+    /// </summary>
+    public bool TryGetActiveAiBody(EntityUid stationAi, out Entity<StationAiBodyComponent> body)
+    {
+        body = default;
+
+        if (!TryComp<StationAiBodyControllerComponent>(stationAi, out var controller))
+            return false;
+
+        if (controller.CurrentBody is not { } currentBody)
+            return false;
+
+        if (!TryComp<StationAiBodyComponent>(currentBody, out var bodyComp))
+            return false;
+
+        if (bodyComp.LinkedAi != stationAi)
+            return false;
+
+        body = (currentBody, bodyComp);
+        return true;
     }
 
     /// <summary>
@@ -74,14 +103,9 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void UpdateStationAiBodyAppearance(Entity<StationAiCustomizationComponent> stationAi)
     {
-        if (!TryComp<StationAiBodyControllerComponent>(stationAi.Owner, out var controller)
-            || controller.CurrentBody is not { } currentBody
-            || !TryComp<StationAiBodyComponent>(currentBody, out var body)
-            || body.LinkedAi != stationAi.Owner)
-        {
+        if (!TryGetActiveAiBody(stationAi, out var body))
             return;
-        }
 
-        _appearance.RemoveData(currentBody, StationAiBodyVisuals.BodyAppearance);
+        _appearance.RemoveData(body, StationAiBodyVisuals.BodyAppearance);
     }
 }

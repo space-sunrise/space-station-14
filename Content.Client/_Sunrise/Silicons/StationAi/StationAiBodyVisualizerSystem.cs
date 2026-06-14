@@ -5,6 +5,9 @@ namespace Content.Client._Sunrise.Silicons.StationAi;
 
 public sealed class StationAiBodyVisualizerSystem : VisualizerSystem<StationAiBodyComponent>
 {
+    /// <summary>
+    /// Applies the selected station AI body appearance layer to the borg body sprite.
+    /// </summary>
     protected override void OnAppearanceChange(EntityUid uid, StationAiBodyComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)

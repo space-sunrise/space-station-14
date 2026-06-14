@@ -41,7 +41,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PvsOverrideSystem _pvs = default!;
-    [Dependency] private readonly StationAiBodySystem _stationAiBody = default!; // Sunrise-Edit
+    [Dependency] private readonly StationAiBodySystem _stationAiBody = default!; // Sunrise-Edit - выход ИИ из тела перед holopad-проекцией.
 
     private float _updateTimer = 1.0f;
     private const float UpdateTime = 1.0f;
@@ -117,29 +117,30 @@ public sealed class HolopadSystem : SharedHolopadSystem
         if (!TryComp<TelephoneComponent>(receiver, out var receiverTelephone))
             return;
 
-        // Sunrise-Edit
-        if (_stationAiSystem.TryGetCoreForAiActor(args.Actor, out var stationAiCore, out var stationAi))
+        if (_stationAiSystem.TryGetCoreForAiActor(args.Actor, out var stationAiCore, out var stationAi)) // Sunrise-Edit - holopad может отвечать от активного тела ИИ.
         {
             var source = GetLinkedHolopads(receiver).FirstOrNull();
 
             if (source != null)
             {
                 // Close any AI request windows
-                _userInterfaceSystem.CloseUi(receiver.Owner, HolopadUiKey.AiRequestWindow, args.Actor);
+                _userInterfaceSystem.CloseUi((EntityUid) receiver, HolopadUiKey.AiRequestWindow, args.Actor); // Sunrise-Edit - ядро уже найдено через TryGetCoreForAiActor.
 
+                // Sunrise added start - возвращаем ИИ в ядро перед holopad-проекцией.
                 if (args.Actor != stationAi && !_stationAiBody.TryExitBody(stationAi))
                     return;
+                // Sunrise added end
 
                 // Try to warn the AI if the source of the call is out of its range
                 if (TryComp<TelephoneComponent>(stationAiCore, out var stationAiTelephone) &&
                     TryComp<TelephoneComponent>(source, out var sourceTelephone) &&
-                    !_telephoneSystem.IsSourceInRangeOfReceiver((stationAiCore.Owner, stationAiTelephone), (source.Value.Owner, sourceTelephone)))
+                    !_telephoneSystem.IsSourceInRangeOfReceiver((stationAiCore, stationAiTelephone), (source.Value, sourceTelephone)))
                 {
-                    _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-reach-holopad"), receiver, stationAi);
+                    _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-reach-holopad"), receiver, stationAi); // Sunrise-Edit - popup должен прийти ядру ИИ после выхода из тела.
                     return;
                 }
 
-                ActivateProjector(source.Value, stationAi);
+                ActivateProjector(source.Value, stationAi); // Sunrise-Edit - проектор активируется от ядра ИИ после выхода из тела.
             }
 
             return;
@@ -235,10 +236,12 @@ public sealed class HolopadSystem : SharedHolopadSystem
             if (!_stationAiSystem.TryGetHeld((receiver, receiverStationAiCore), out var insertedAi))
                 continue;
 
-            var activeAiActor = _stationAiSystem.GetActiveAiActor(insertedAi.Value); // Sunrise-Edit
+            // Sunrise edit start - открываем запрос на текущем акторе ИИ, если он управляет телом.
+            var activeAiActor = _stationAiSystem.GetActiveAiActor(insertedAi.Value);
 
-            if (_userInterfaceSystem.TryOpenUi(receiverUid, HolopadUiKey.AiRequestWindow, activeAiActor)) // Sunrise-Edit
+            if (_userInterfaceSystem.TryOpenUi(receiverUid, HolopadUiKey.AiRequestWindow, activeAiActor))
                 LinkHolopadToUser(entity, args.Actor);
+            // Sunrise edit end
         }
 
         // Ignore range so that holopads that ignore other devices on the same grid can request the AI

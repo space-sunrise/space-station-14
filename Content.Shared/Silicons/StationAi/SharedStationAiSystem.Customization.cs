@@ -45,9 +45,10 @@ public abstract partial class SharedStationAiSystem
         if (groupPrototype.Category == StationAiCustomizationType.Hologram)
             UpdateHolographicAvatar((held.Value, stationAiCustomization));
 
-        // Sunrise-Edit
+        // Sunrise edit start - применяем отдельную кастомизацию внешности тела ИИ.
         if (groupPrototype.Category == StationAiCustomizationType.BodyAppearance)
             UpdateStationAiBodyAppearance((held.Value, stationAiCustomization));
+        // Sunrise edit end
 
         // Update core iconography
         if (groupPrototype.Category == StationAiCustomizationType.CoreIconography && TryComp<StationAiHolderComponent>(entity, out var stationAiHolder))
