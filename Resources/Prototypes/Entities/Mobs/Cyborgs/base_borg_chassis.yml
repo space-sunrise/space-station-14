@@ -77,9 +77,6 @@
         type: BorgSelectTypeUserInterface
       enum.BorgVoiceUiKey.Key:
         type: BorgVoiceBoundUserInterface
-      # Sunrise-Edit
-      enum.BorgGenderUiKey.Key:
-        type: BorgGenderBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
@@ -87,7 +84,6 @@
     actions:
     - ActionViewLaws
     - ActionChangeBorgVoice
-    - ActionChangeBorgGender # Sunrise-Edit
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
@@ -132,7 +128,6 @@
   # Sunrise-End
   - type: BorgChassis
   - type: BorgVoice # Sunrise-TTS: Allow cyborgs to change their voice
-  - type: BorgGender # Sunrise-Edit
   - type: LockingWhitelist
     blacklist:
       components:

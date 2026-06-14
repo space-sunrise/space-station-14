@@ -6,6 +6,4 @@ namespace Content.Shared._Sunrise.Silicons.StationAi;
 /// Marks an item that turns an empty borg chassis into a free station AI body.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class StationAiCommunicationBoardComponent : Component
-{
-}
+public sealed partial class StationAiCommunicationBoardComponent : Component;

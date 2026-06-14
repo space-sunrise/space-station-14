@@ -3,7 +3,6 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Server._Sunrise.Messenger;
-using Content.Shared._Sunrise.Silicons.Borgs;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
 using Content.Shared.Roles;
@@ -27,7 +26,6 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
     [Dependency] private readonly StationRecordsSystem _record = default!;
     [Dependency] private readonly MessengerServerSystem _messenger = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SharedBorgGenderSystem _borgGender = default!; // Sunrise-Edit
 
     protected override void SelectBorgModule(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
@@ -46,7 +44,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         {
             _borgSystem.SetTransponderSprite(
                 (ent.Owner, transponder),
-                _borgGender.ResolveBodySprite(ent.Owner, prototype)); // Sunrise-Edit
+                new SpriteSpecifier.Rsi(new ResPath("Mobs/Silicon/chassis.rsi"), prototype.SpriteBodyState));
 
             _borgSystem.SetTransponderName(
                 (ent.Owner, transponder),

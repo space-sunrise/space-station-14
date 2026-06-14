@@ -125,18 +125,3 @@
     priority: 10
   - type: InstantAction
     event: !type:BorgVoiceChangeActionEvent
-
-- type: entity
-  parent: BaseAction
-  id: ActionChangeBorgGender
-  name: Change Borg Gender
-  description: Change the cyborg body gender model if the selected type supports it.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: select-type }
-    itemIconStyle: NoItem
-    useDelay: 0.5
-    priority: 9
-  - type: InstantAction
-    event: !type:BorgGenderChangeActionEvent
