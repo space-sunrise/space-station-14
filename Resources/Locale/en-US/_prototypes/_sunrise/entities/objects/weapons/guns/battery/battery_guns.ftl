@@ -45,5 +45,7 @@ ent-WeaponPulseRifle = pulse rifle
     .desc = A weapon that is almost as infamous as its users.
 ent-WeaponSunriseLaserPistol = laser pistol
     .desc = A compact laser sidearm with an integrated battery.
+ent-WeaponPilotLasgun = pilot lasgun
+    .desc = A compact security-pattern lasgun with a sanctified charge pack and a stock sharp enough for a final argument. Its machine spirit hums like it expects a short prayer before takeoff.
 ent-XenoborgTemperatureGun = xenoborg temperature gun
     .desc = An advanced gun that shoots body-temperature-changing beams. This one has a self-recharging battery for xenoborg use.

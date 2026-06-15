@@ -1211,3 +1211,74 @@
     tags:
     - Sidearm
     - LaserWeapon
+
+- type: entity
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponPilotLasgun
+  name: pilot lasgun
+  description: A compact security-pattern lasgun with a sanctified charge pack and a stock sharp enough for a final argument.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+  - type: Gun
+    minAngle: 8
+    maxAngle: 12
+    fireRate: 5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
+  - type: GunWieldBonus
+    minAngle: -4
+    maxAngle: -6
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 20
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: RedLightLaser
+      fireCost: 20
+      name: lasgun-fire-mode-low
+    - proto: RedMediumLaser
+      fireCost: 50
+      name: lasgun-fire-mode-standard
+    - proto: RedHeavyLaser
+      fireCost: 100
+      name: lasgun-fire-mode-overcharge
+  - type: Appearance
+  - type: MeleeWeapon
+    angle: 60
+    range: 1.5
+    damage:
+      types:
+        Slash: 10
+        Structural: 2
+    attackRate: 1
+    autoAttack: false
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  - type: StaticPrice
+    price: 900
+  - type: Tag
+    tags:
+    - LaserWeapon
