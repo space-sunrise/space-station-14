@@ -173,6 +173,8 @@
     state: icon
   - type: Item
     size: Large
+    shape: # Sunrise-Add
+    - 0,0,2,1 # Sunrise-Add
     storedSprite:
       state: storage
       sprite: Objects/Weapons/Melee/gorilla.rsi
