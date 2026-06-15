@@ -1219,7 +1219,7 @@
   description: A compact security-pattern lasgun with a sanctified charge pack and a stock sharp enough for a final argument.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun_world.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -1235,10 +1235,13 @@
     maxAngle: 12
     fireRate: 5
     selectedMode: SemiAuto
+    shotsPerBurst: 2
     availableModes:
     - SemiAuto
+    - Burst
+    - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
+      collection: plasma_pistol
   - type: GunWieldBonus
     minAngle: -4
     maxAngle: -6
