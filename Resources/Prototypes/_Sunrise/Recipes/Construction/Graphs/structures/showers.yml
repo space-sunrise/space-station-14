@@ -1,0 +1,18 @@
+    - node: camera
+      entity: SurveillanceCameraConstructed
+      edges:
+        - to: start
+          conditions:
+            - !type:AllWiresCut {}
+            - !type:WirePanel {}
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:GivePrototype
+              prototype: CableApcStack1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 2
