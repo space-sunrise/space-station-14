@@ -48,7 +48,6 @@
 - type: entity
   id: PuddleWater
   parent: PuddleTemporary
-  suffix: Water
   components:
   - type: SolutionContainerManager
     solutions:

@@ -1,7 +1,7 @@
-using Content.Sunrise.Shared.Shower;
+using Content._Sunrise.Shared.Shower;
 using Content.Shared.Interaction;
 
-namespace Content.Sunrise.Server.Shower;
+namespace Content._Sunrise.Server.Shower;
 
 public sealed class ShowerSystem : EntitySystem
 {
