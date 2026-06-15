@@ -61,7 +61,7 @@
   color: "#00ffd9"
   longRange: true
 
-# Sunrise added start - канал связи MedTak
+# MedTak radio channel
 - type: radioChannel
   id: MedTak
   name: chat-radio-medtak
@@ -69,4 +69,3 @@
   frequency: 1452
   color: "#880606"
   longRange: true
-# Sunrise added end

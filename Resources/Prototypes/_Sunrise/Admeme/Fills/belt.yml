@@ -9,9 +9,9 @@
       storagebase: !type:AllSelector
         children:
         - id: SyndicateJawsOfLife
-        - id: MagazineRifleHeavyHP
+        - id: MagazineLightRifleHP
           amount: 2
-        - id: MagazineRifleHeavySP
+        - id: MagazineLightRifleSP
           amount: 2
         - id: MagazinePistol40SP
         - id: Tourniquet

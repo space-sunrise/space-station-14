@@ -8,6 +8,7 @@
       storagebase: !type:AllSelector
         children:
         - id: ChemistryBottlePyrazine
+          amount: 2
         - id: ChemistryBottleLeporazine
         - id: ChemistryBottleInsuzine
         - id: ChemistryBottleSigynate
@@ -21,14 +22,13 @@
         - id: ChemistryBottleDiphenhydramine
         - id: ChemistryBottleDylovene
         - id: ChemistryBottleHyronalin
-        - id: ChemistryBottlePyrazine
         - id: ChemistryBottleOmnizine
+          amount: 2
         - id: EmergencyMedipen
+          amount: 2
         - id: ChemistryBottleDexalinPlus
         - id: ChemistryBottleSaline
         - id: ChemistryBottleEpinephrine
-        - id: ChemistryBottleOmnizine
-        - id: EmergencyMedipen
 
 - type: entity
   id: ShelfMedTakSecureFilledTopicals

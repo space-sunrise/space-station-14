@@ -4,4 +4,4 @@
   id: MedTakMindShieldIcon
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: MedTak_Mindshield
+    state: MedTakMindShield

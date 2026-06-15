@@ -149,7 +149,7 @@
     - state: crypt_blue
     - state: nano_label
 
-# Sunrise added start - ключ шифрования MedTak
+# MedTak encryption key
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyMedTak
@@ -166,4 +166,3 @@
       state: crypt_medtak
     - sprite: _Sunrise/Objects/Devices/encryption_keys.rsi
       state: medtak_label
-# Sunrise added end

@@ -725,13 +725,12 @@
 - type: Tag
   id: BoxMaints
 
-# Sunrise added start - теги для модулей и носилок MedTak
+# MedTak module and stretcher tags
 - type: Tag
   id: BorgModuleMedTak
 
 - type: Tag
   id: RollerBed
-# Sunrise added end
 
 # region INTERACTION TAG
 # Как одежда закрывает/не закрывает ту или иную область тела
