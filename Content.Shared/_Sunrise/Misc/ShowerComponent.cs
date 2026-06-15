@@ -8,6 +8,12 @@ public sealed partial class ShowerComponent : Component
 {
     [DataField, AutoNetworkedField]
     public bool IsActive = false;
+
+    [DataField]
+    public float Accumulator = 0f;
+
+    [DataField]
+    public EntityUid? CurrentPuddle;
 }
 
 [Serializable, NetSerializable]
