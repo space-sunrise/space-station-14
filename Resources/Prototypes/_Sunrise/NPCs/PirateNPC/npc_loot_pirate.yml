@@ -2376,16 +2376,16 @@
     - id: CombatKnife
       prob: 0.15
     - id: WeaponLauncherM79
-      prob: 0.3
-      orGroup: Grenadier
-    - id: WeaponLauncherM79Biocode
       prob: 0.5
       orGroup: Grenadier
+    - id: WeaponLauncherM79Biocode
+      prob: 0.25
+      orGroup: Grenadier
     - id: BriefcaseWeaponM79Filled
-      prob: 0.20
+      prob: 0.25
       orGroup: Grenadier
     - id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-      prob: 0.2
+      prob: 0.1
       orGroup: Grenadier
     # Items
     - id: GrenadeBlastTimer
@@ -2437,10 +2437,10 @@
       prob: 0.05
       orGroup: dragunovPool
     - id: WeaponSniperDragunov
-      prob: 0.3
+      prob: 0.5
       orGroup: dragunovPool
     - id:  WeaponSniperDragunovBiocode
-      prob: 0.6
+      prob: 0.5
       orGroup: dragunovPool
     # Items
     - id: MagazineDragunovSP
@@ -3405,13 +3405,13 @@
     - id: EnergyCutlass
       prob: 0.8
     - id: BrokenEnergyShield
-      prob: 0.8
+      prob: 0.5
       orGroup: EnergyShieldPool
     - id: EnergyShieldBiocode
       prob: 0.5
       orGroup: EnergyShieldPool
     - id: EnergyShield
-      prob: 0.8
+      prob: 0.75
       orGroup: EnergyShieldPool
     - id: SunriseEnergyShield
       prob: 0.2
@@ -3471,16 +3471,16 @@
     - id: PirateCashSpawner03
     # Weapons
     - id: WeaponLightMachineGunL6
-      prob: 0.05
+      prob: 0.5
       orGroup: WeaponMGPool
     - id: WeaponLightMachineGunL6Biocode
-      prob: 0.20
+      prob: 0.5
       orGroup: WeaponMGPool
     - id: MagazineRifleBoxSP
-      prob: 0.75
+      prob: 0.15
       orGroup: WeaponMGPool
     - id: MagazineRifleBoxFMJ
-      prob: 0.5
+      prob: 0.15
       orGroup: WeaponMGPool
     # Items
     - id: MagazineBoxRifleBig
@@ -3597,12 +3597,13 @@
     - id: PirateCashSpawner03
     # Weapons
     - id: WeaponSyndieLaserGun
-      prob: 0.15
+      prob: 0.3
       orGroup: LaserGunPool
     - id: WeaponSyndieLaserGunBiocode
-      prob: 0.75
+      prob: 0.3
       orGroup: LaserGunPool
     - id: WeaponLaserCannon
+      prob: 0.3
       orGroup: LaserGunPool
     # Items
     - id: PirateMedSpawner03
@@ -3654,9 +3655,10 @@
     - id: PirateCashSpawner03
     # Weapons
     - id: WeaponSubMachineGunC40r
-      prob: 0.15
+      prob: 0.4
       orGroup: SMG40Pool
     - id: WeaponSubMachineGunC40rBiocode
+      prob: 0.5
       orGroup: SMG40Pool
     # Items
     - id: PirateMedSpawner03
