@@ -458,7 +458,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: ClothingOuterHardsuitChameleo
+    - id: ClothingOuterHardsuitChameleon
 
 - type: entity
   parent: CyberEyeThermalBox
