@@ -85,7 +85,7 @@
       Cable: 1
 
 - type: entity
-  id: Shower
+  id: BaseShower
   name: shower
   description: A simple shower. It just stands there.
   placement:
@@ -134,3 +134,6 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Drain
+  - type: Construction
+    graph: Shower
+    node: shower

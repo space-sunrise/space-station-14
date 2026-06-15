@@ -1,18 +1,29 @@
-    - node: camera
-      entity: SurveillanceCameraConstructed
+- type: constructionGraph
+  id: Shower
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: shower
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 1
+    - node: shower
+      entity: BaseShower
       edges:
         - to: start
-          conditions:
-            - !type:AllWiresCut {}
-            - !type:WirePanel {}
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: SheetSteel1
-              amount: 2
-            - !type:GivePrototype
-              prototype: CableApcStack1
-              amount: 1
-            - !type:DeleteEntity {}
+              amount: 5
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
           steps:
             - tool: Welding
               doAfter: 2
