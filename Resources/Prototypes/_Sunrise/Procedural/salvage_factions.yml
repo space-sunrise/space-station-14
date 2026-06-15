@@ -614,7 +614,7 @@
       prob: 0.2
     - proto: MobRogueSiliconT1Viscerator
       cost: 1
-      prob: 0.1
+      prob: 0.03
     - proto: SpawnMobRogueSiliconT1VisceratorSquad
       cost: 4
       prob: 0.2
