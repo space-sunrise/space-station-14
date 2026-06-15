@@ -11,7 +11,6 @@ public sealed class ShowerSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
 
     private const float UpdateInterval = 5f;
     private const float ShowerFillDuration = 120f;
@@ -33,7 +32,7 @@ public sealed class ShowerSystem : EntitySystem
 
         ent.Comp.IsActive = !ent.Comp.IsActive;
         _appearance.SetData(ent.Owner, ShowerVisuals.Active, ent.Comp.IsActive);
-        ent.Comp.Accumulator = 0f; // сбрасываем таймер при переключении
+        ent.Comp.Accumulator = 0f;
 
         Dirty(ent);
     }
@@ -61,6 +60,14 @@ public sealed class ShowerSystem : EntitySystem
     private void SpillWater(Entity<ShowerComponent> ent)
     {
         var solution = new Solution(ShowerReagent, ShowerSpillAmount);
-        _puddle.TrySpillAt(ent, solution, out _);
+
+        if (_puddle.TrySpillAt(ent, solution, out var puddleUid))
+        {
+            ent.Comp.CurrentPuddle = puddleUid;
+        }
+        else if (ent.Comp.CurrentPuddle != null && Deleted(ent.Comp.CurrentPuddle))
+        {
+            ent.Comp.CurrentPuddle = null;
+        }
     }
 }

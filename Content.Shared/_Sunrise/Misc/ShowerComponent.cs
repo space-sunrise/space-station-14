@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content._Sunrise.Shared.Shower;
+namespace Content.Shared._Sunrise.Shower;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ShowerComponent : Component
@@ -9,10 +9,10 @@ public sealed partial class ShowerComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsActive = false;
 
-    [DataField]
+    [AutoNetworkedField]
     public float Accumulator = 0f;
 
-    [DataField]
+    [AutoNetworkedField]
     public EntityUid? CurrentPuddle;
 }
 
