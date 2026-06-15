@@ -1250,11 +1250,11 @@
     maxCharge: 2000
     startingCharge: 2000
   - type: BatteryAmmoProvider
-    proto: RedLightLaser
+    proto: RedLaser
     fireCost: 20
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: RedLightLaser
+    - proto: RedLaser
       fireCost: 20
       name: lasgun-fire-mode-low
     - proto: RedMediumLaser
@@ -1268,15 +1268,12 @@
     wideAnimationRotation: -135
     angle: 0
     animation: WeaponArcThrust
-    range: 1.5
     damage:
       types:
-        Slash: 10
-        Structural: 2
-    attackRate: 1
-    autoAttack: false
+        Piercing: 12
     soundHit:
-      collection: MetalThud
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MeleeRequiresWield
   - type: AltFireMelee
     attackType: Heavy
   - type: CursorOffsetRequiresWield
