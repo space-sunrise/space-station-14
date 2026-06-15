@@ -245,7 +245,7 @@
 
 - type: entity
   name: forged double-barrel shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseMinorContraband]
   id: WeaponShotgunForged
   description: Decently made double-barrel shotgun, reinforced with mixed steel and plasteel plates to keep it together. Not as accurate as a real gun.
   components:
