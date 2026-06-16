@@ -52,6 +52,12 @@
   name: Incendiary ammo bundle
   description: Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW. contains Medkit Burn
   components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/syndicate.rsi
+    layers:
+    - state: icon-ammo
+    - state: icon-ammo-state
+      color: "#ff0000"
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
@@ -72,6 +78,12 @@
   name: Uranium ammo bundle
   description: Reloading! Contains Uranium Ammo Kit for the C-20r, Uranium Kit for the Bulldog, and Uranium Kit for the L6 SAW. Medkit Radiation
   components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/syndicate.rsi
+    layers:
+    - state: icon-ammo
+    - state: icon-ammo-state
+      color: "#02ab0e"
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector

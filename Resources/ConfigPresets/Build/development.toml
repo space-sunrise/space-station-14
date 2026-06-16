@@ -58,7 +58,4 @@ enabled = true
 # Sunrise-Edit
 [npc]
 disable_without_players = false
-
-[lying]
-animation_enabled = true # для удобства дебага проблем
 # Sunrise-Edit
