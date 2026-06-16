@@ -81,6 +81,20 @@
         - id: ToyDurand
 
 - type: entity
+  id: CrateSyndicateSquadHardsuitBundle
+  suffix: Filled
+  parent: CrateSyndicateSecure
+  name: Syndicate squad hardsuit bundle
+  description: Contains medic and commander Syndicate hardsuits with biocode locks.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitSyndieMedicBiocode
+        - id: ClothingOuterHardsuitSyndieCommanderBiocode
+
+- type: entity
   id: CrateCybersunMaulerBundle
   suffix: Filled
   parent: CrateSyndicate
