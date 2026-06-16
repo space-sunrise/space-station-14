@@ -5,6 +5,18 @@
 # 3. Equipment that benefit from the team knowing it's been purchased/claimed.
 # If you can't justify these benefits, consider other options: Uplinks, Starting Loadouts & Mapping on the planet/shuttle.
 # NOTE: At the moment of writing the store doesn't take TC, but if you can find a scenario where pooling TC works with the above benefits, that could be changed.
+- type: listing
+  id: NukieDeliverySquadHardsuitBundle
+  name: nukie-delivery-squad-hardsuit-bundle-name
+  description: nukie-delivery-squad-hardsuit-bundle-desc
+  icon: { sprite: Structures/Storage/Crates/syndicate_secure.rsi, state: icon }
+  productEntity: CrateSyndicateSquadHardsuitBundle
+  categories:
+  - NukieDelivery
+  restockTime: 300 # 5min
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: NukieDeliveryAmmoIncendiaryBundle
@@ -14,7 +26,7 @@
   productEntity: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
   categories:
   - NukieDelivery
-  restockTime: 1800 # 30min
+  restockTime: 2700 # 45min
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -27,7 +39,7 @@
   productEntity: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
   categories:
   - NukieDelivery
-  restockTime: 3600 # 1h
+  restockTime: 4500 # 1.15h
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
