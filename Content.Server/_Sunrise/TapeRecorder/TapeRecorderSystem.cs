@@ -2,7 +2,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.TapeRecorder;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Paper;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
@@ -18,7 +17,6 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -32,6 +30,7 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
         SubscribeLocalEvent<TapeRecorderComponent, EntInsertedIntoContainerMessage>(OnCassetteInserted);
         SubscribeLocalEvent<TapeRecorderComponent, EntRemovedFromContainerMessage>(OnCassetteRemoved);
         SubscribeLocalEvent<TapeRecorderComponent, ListenEvent>(OnListen);
+        SubscribeLocalEvent<TapeCassetteComponent, MapInitEvent>(OnCassetteMapInit);
 
         Subs.BuiEvents<TapeRecorderComponent>(TapeRecorderUiKey.Key, subs =>
         {
@@ -84,5 +83,17 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
     private void OnPrint(Entity<TapeRecorderComponent> ent, ref TapeRecorderPrintMessage args) =>
         TryPrintTranscript(ent, args.Actor);
 
+    private void OnCassetteMapInit(Entity<TapeCassetteComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.MaxRecords = GetMaxRecords(ent);
+        Dirty(ent);
+    }
+
     #endregion
+
+    private static int GetMaxRecords(Entity<TapeCassetteComponent> cassette)
+    {
+        var maxRecords = (int) (cassette.Comp.Capacity.TotalSeconds * cassette.Comp.RecordsPerSecond);
+        return maxRecords > 0 ? maxRecords : TapeCassetteComponent.FallbackMaxRecords;
+    }
 }

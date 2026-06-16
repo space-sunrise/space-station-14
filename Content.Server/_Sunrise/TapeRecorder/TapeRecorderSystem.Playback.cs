@@ -2,6 +2,7 @@ using Content.Shared._Sunrise.TapeRecorder;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Chat;
 using Content.Shared.Speech.Components;
+using Robust.Shared.Maths;
 
 namespace Content.Server._Sunrise.TapeRecorder;
 
@@ -34,9 +35,9 @@ public sealed partial class TapeRecorderSystem
         {
             case TapeRecorderMode.Recording:
                 var oldPosition = cassette.Comp.Position;
-                var requestedPosition = Min(cassette.Comp.Capacity, cassette.Comp.Position + elapsed);
+                var requestedPosition = MathHelper.Min(cassette.Comp.Capacity, cassette.Comp.Position + elapsed);
                 var nextUsedPosition = GetNextUsedPosition(cassette, oldPosition);
-                cassette.Comp.Position = Min(requestedPosition, nextUsedPosition);
+                cassette.Comp.Position = MathHelper.Min(requestedPosition, nextUsedPosition);
                 AddRecordedRange(cassette, oldPosition, cassette.Comp.Position);
 
                 if (cassette.Comp.Position >= cassette.Comp.Capacity)
@@ -51,14 +52,14 @@ public sealed partial class TapeRecorderSystem
 
             case TapeRecorderMode.Playing:
                 oldPosition = cassette.Comp.Position;
-                cassette.Comp.Position = Min(cassette.Comp.Capacity, cassette.Comp.Position + elapsed);
+                cassette.Comp.Position = MathHelper.Min(cassette.Comp.Capacity, cassette.Comp.Position + elapsed);
                 PlayDueRecords(ent, cassette, oldPosition, cassette.Comp.Position);
                 if (cassette.Comp.Position >= cassette.Comp.Capacity)
                     Stop(ent);
                 break;
 
             case TapeRecorderMode.Rewinding:
-                cassette.Comp.Position = Max(TimeSpan.Zero, cassette.Comp.Position - elapsed * ent.Comp.RewindSpeed);
+                cassette.Comp.Position = MathHelper.Max(TimeSpan.Zero, cassette.Comp.Position - elapsed * ent.Comp.RewindSpeed);
                 if (cassette.Comp.Position <= TimeSpan.Zero)
                     Stop(ent);
                 break;
@@ -107,7 +108,7 @@ public sealed partial class TapeRecorderSystem
         if (hadTts)
             tts.VoicePrototypeId = oldVoice;
         else
-            RemComp<TTSComponent>(recorder);
+            tts.VoicePrototypeId = recorder.Comp.PlaybackVoice;
     }
 
     private string GetPlaybackSpeakerName(Entity<TapeRecorderComponent> recorder, TapeCassetteRecord record) =>

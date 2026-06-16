@@ -2,7 +2,6 @@ using Content.Shared._Sunrise.TapeRecorder;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Speech;
 using Content.Server._Sunrise.TTS;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.TapeRecorder;
@@ -12,9 +11,6 @@ public sealed partial class TapeRecorderSystem
     private void OnListen(Entity<TapeRecorderComponent> ent, ref ListenEvent args)
     {
         if (ent.Comp.Mode != TapeRecorderMode.Recording)
-            return;
-
-        if (!IsLivePlayerSpeechSource(args.Source))
             return;
 
         if (!TryGetCassette(ent, out var cassette))
@@ -28,11 +24,7 @@ public sealed partial class TapeRecorderSystem
             return;
         }
 
-        var effectiveMax = (int) (cassette.Comp.Capacity.TotalSeconds * ent.Comp.RecordsPerSecond);
-        if (effectiveMax <= 0)
-            effectiveMax = ent.Comp.MaxRecords > 0 ? ent.Comp.MaxRecords : TapeRecorderComponent.FallbackMaxRecords;
-
-        if (cassette.Comp.Records.Count >= effectiveMax)
+        if (cassette.Comp.Records.Count >= cassette.Comp.MaxRecords)
             cassette.Comp.Records.RemoveAt(0);
 
         cassette.Comp.Records.Add(new TapeCassetteRecord(
@@ -61,7 +53,4 @@ public sealed partial class TapeRecorderSystem
         RaiseLocalEvent(source, voiceEv);
         return voiceEv.VoiceId;
     }
-
-    private bool IsLivePlayerSpeechSource(EntityUid source) =>
-        HasComp<ActorComponent>(source) && _mobState.IsAlive(source);
 }

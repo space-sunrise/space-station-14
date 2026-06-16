@@ -9,11 +9,25 @@ namespace Content.Shared._Sunrise.TapeRecorder;
 [Access(typeof(SharedTapeRecorderSystem))]
 public sealed partial class TapeCassetteComponent : Component
 {
+    public const int FallbackMaxRecords = 120;
+
     /// <summary>
     /// Maximum recording length.
     /// </summary>
     [DataField, ViewVariables, AutoNetworkedField]
     public TimeSpan Capacity = TimeSpan.FromSeconds(60);
+
+    /// <summary>
+    /// Approximate maximum amount of recorded lines per second of cassette capacity.
+    /// </summary>
+    [DataField]
+    public float RecordsPerSecond = 4f;
+
+    /// <summary>
+    /// Maximum amount of recorded lines stored on this cassette.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public int MaxRecords;
 
     /// <summary>
     /// Current tape head position.

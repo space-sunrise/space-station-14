@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.TapeRecorder;
+using Robust.Shared.Maths;
 
 namespace Content.Server._Sunrise.TapeRecorder;
 
@@ -59,15 +60,9 @@ public sealed partial class TapeRecorderSystem
             if (current.End < next.Start)
                 continue;
 
-            cassette.Comp.RecordedRanges[i] = new TapeCassetteRecordedRange(current.Start, Max(current.End, next.End));
+            cassette.Comp.RecordedRanges[i] = new TapeCassetteRecordedRange(current.Start, MathHelper.Max(current.End, next.End));
             cassette.Comp.RecordedRanges.RemoveAt(i + 1);
             i--;
         }
     }
-
-    private static TimeSpan Min(TimeSpan a, TimeSpan b) =>
-        a <= b ? a : b;
-
-    private static TimeSpan Max(TimeSpan a, TimeSpan b) =>
-        a >= b ? a : b;
 }

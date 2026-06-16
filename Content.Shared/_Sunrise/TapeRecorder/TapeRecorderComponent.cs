@@ -13,8 +13,6 @@ namespace Content.Shared._Sunrise.TapeRecorder;
 [Access(typeof(SharedTapeRecorderSystem))]
 public sealed partial class TapeRecorderComponent : Component
 {
-    public const int FallbackMaxRecords = 120;
-
     /// <summary>
     /// Container slot used for cassettes.
     /// </summary>
@@ -80,19 +78,6 @@ public sealed partial class TapeRecorderComponent : Component
     /// </summary>
     [ViewVariables, AutoPausedField]
     public TimeSpan NextPrintTime;
-
-    /// <summary>
-    /// Maximum amount of recorded lines stored on one cassette.
-    /// Values less than or equal to zero disable adding new records.
-    /// </summary>
-    [DataField]
-    public int MaxRecords = FallbackMaxRecords;
-
-    /// <summary>
-    /// Approximate maximum amount of recorded lines per second of cassette capacity.
-    /// </summary>
-    [DataField]
-    public float RecordsPerSecond = 4f;
 
     /// <summary>
     /// Sound played when changing recorder mode.
