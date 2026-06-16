@@ -1276,28 +1276,6 @@
 
 # region Hardsuits
 - type: listing
-  id: UplinkHardsuitSyndieCommander
-  name: uplink-hardsuit-syndie-commander-name
-  description: uplink-hardsuit-syndie-commander-desc
-  icon: { sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
-  productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
-  cost:
-    Telecrystal: 5
-  categories:
-  - UplinkWearables
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
   id: UplinkHardsuitInfiltrationNukie
   name: uplink-hardsuit-infiltration-name
   description: uplink-hardsuit-infiltration-desc
@@ -1339,28 +1317,6 @@
       - NukeOpsUplink
       - LoneOpsUplink
       - AssaultOpsUplink
-
-- type: listing
-  id: UplinkHardsuitSyndieMedic
-  name: uplink-hardsuit-syndie-medic-name
-  description: uplink-hardsuit-syndie-medic-desc
-  icon: { sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
-  productEntity: ClothingOuterHardsuitSyndieMedicBiocode
-  cost:
-    Telecrystal: 3
-  categories:
-  - UplinkWearables
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
 
 # region Objective-specific
 - type: listing
@@ -2023,7 +1979,7 @@
   description: uplink-mech-equipment-kord-desc
   productEntity: WeaponMechCombatKord
   cost:
-    Telecrystal: 28
+    Telecrystal: 20
   categories:
   - UplinkMechs
   conditions:
@@ -2074,6 +2030,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - LoneOpsUplink
     blacklist:
       components:
       - SurplusBundle
@@ -3438,6 +3395,23 @@
       tags:
       - LoneOpsUplink
       - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkClothingChameleonSilent
+  name: uplink-clothing-chameleon-silent-name
+  description: uplink-clothing-chameleon-silent-desc
+  productEntity: ChameleonSilentShoesBox
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkWearables
 
 - type: listing
   id: UplinkClothingOuterElegantArmorRaidNuke
@@ -3525,6 +3499,10 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: SyndicateFriendshipBundle
@@ -3544,6 +3522,10 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: SyndicateBullfrogBundle
@@ -3563,6 +3545,10 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: SyndicateLongbowBundle
@@ -3582,6 +3568,10 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: SyndicateQuadlingBundle
@@ -3601,3 +3591,7 @@
     blacklist:
       tags:
       - AssaultOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
