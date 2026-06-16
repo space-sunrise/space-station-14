@@ -83,6 +83,7 @@
 - type: roleLoadout
   id: JobBlueShieldEnsign
   groups:
+  - BlueShieldHead
   - BlueShieldNeck
   - BlueShieldJumpsuit
   - BlueShieldBackpack
@@ -99,6 +100,7 @@
 - type: roleLoadout
   id: JobBlueShieldOfficer
   groups:
+  - BlueShieldHead
   - BlueShieldNeck
   - BlueShieldJumpsuit
   - BlueShieldBackpack
