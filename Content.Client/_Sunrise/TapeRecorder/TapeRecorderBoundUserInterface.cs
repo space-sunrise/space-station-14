@@ -25,7 +25,7 @@ public sealed class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) 
     {
         base.Update();
 
-        if (_menu == null || !EntMan.TryGetComponent(Owner, out TapeRecorderComponent? recorder))
+        if (_menu == null || !EntMan.TryGetComponent<TapeRecorderComponent>(Owner, out var recorder))
             return;
 
         TapeCassetteComponent? cassette = null;
