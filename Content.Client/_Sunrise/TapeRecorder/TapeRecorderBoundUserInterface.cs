@@ -1,5 +1,6 @@
 using Content.Shared._Sunrise.TapeRecorder;
 using Robust.Client.UserInterface;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client._Sunrise.TapeRecorder;
 
@@ -17,16 +18,25 @@ public sealed class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) 
         _menu = this.CreateWindow<TapeRecorderMenu>();
         _menu.OnModePressed += OnModePressed;
         _menu.OnPrintPressed += OnPrintPressed;
+        Update();
     }
 
-    protected override void UpdateState(BoundUserInterfaceState state)
+    public override void Update()
     {
-        base.UpdateState(state);
+        base.Update();
 
-        if (state is not TapeRecorderBoundUserInterfaceState recorderState)
+        if (_menu == null || !EntMan.TryGetComponent(Owner, out TapeRecorderComponent? recorder))
             return;
 
-        _menu?.UpdateState(recorderState);
+        TapeCassetteComponent? cassette = null;
+        MetaDataComponent? cassetteMeta = null;
+        if (recorder.Cassette != null)
+        {
+            EntMan.TryGetComponent(recorder.Cassette.Value, out cassette);
+            EntMan.TryGetComponent(recorder.Cassette.Value, out cassetteMeta);
+        }
+
+        _menu.UpdateState(recorder, cassette, cassetteMeta);
     }
 
     protected override void Dispose(bool disposing)
@@ -43,11 +53,11 @@ public sealed class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) 
 
     private void OnModePressed(TapeRecorderMode mode)
     {
-        SendMessage(new TapeRecorderSetModeMessage(mode));
+        SendPredictedMessage(new TapeRecorderSetModeMessage(mode));
     }
 
     private void OnPrintPressed()
     {
-        SendMessage(new TapeRecorderPrintMessage());
+        SendPredictedMessage(new TapeRecorderPrintMessage());
     }
 }

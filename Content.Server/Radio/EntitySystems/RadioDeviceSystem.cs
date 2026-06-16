@@ -6,7 +6,6 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
@@ -29,7 +28,6 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, RadioChannelPrototype)> _recentlySent = new();
@@ -154,11 +152,6 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnListen(EntityUid uid, RadioMicrophoneComponent component, ListenEvent args)
     {
-        // Sunrise added start - prevent intercom TTS relay from non-player speech sources
-        if (HasComp<IntercomComponent>(uid) && !IsLivePlayerSpeechSource(args.Source))
-            return;
-        // Sunrise added end
-
         if (HasComp<RadioSpeakerComponent>(args.Source))
             return; // no feedback loops please.
 
@@ -167,11 +160,16 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
             _radio.SendRadioMessage(args.Source, args.Message, channel, uid);
     }
 
-    private bool IsLivePlayerSpeechSource(EntityUid source) =>
-        HasComp<ActorComponent>(source) && _mobState.IsAlive(source);
-
     private void OnAttemptListen(EntityUid uid, RadioMicrophoneComponent component, ListenAttemptEvent args)
     {
+        // Sunrise added start - запрещаем интеркому ретранслировать речь неигровых источников
+        if (HasComp<IntercomComponent>(uid) && !HasComp<ActorComponent>(args.Source))
+        {
+            args.Cancel();
+            return;
+        }
+        // Sunrise added end
+
         if (component.PowerRequired && !this.IsPowered(uid, EntityManager)
             || component.UnobstructedRequired && !_interaction.InRangeUnobstructed(args.Source, uid, 0))
         {

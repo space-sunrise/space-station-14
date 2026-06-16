@@ -18,7 +18,6 @@ using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Speech;
@@ -36,7 +35,6 @@ namespace Content.Server.Communications
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -65,6 +63,7 @@ namespace Content.Server.Communications
 
             // Sunrise-Start
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleToggleRelayMessage>(OnToggleRelayMessage);
+            SubscribeLocalEvent<CommunicationsConsoleComponent, ListenAttemptEvent>(OnRelayListenAttempt);
             SubscribeLocalEvent<CommunicationsConsoleComponent, ListenEvent>(OnEntitySpokeNearbyRelay);
             // Sunrise-End
         }
@@ -300,8 +299,7 @@ namespace Content.Server.Communications
                 msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
             // Sunrise-start
             var voice = comp.AnnounceVoice;
-            if (IsLivePlayerSpeechSource(message.Actor) &&
-                TryComp<TTSComponent>(message.Actor, out var ttsComponent))
+            if (TryComp<TTSComponent>(message.Actor, out var ttsComponent))
             {
                 voice = ttsComponent.VoicePrototypeId;
             }
@@ -401,12 +399,17 @@ namespace Content.Server.Communications
             _chatSystem.DispatchStationAnnouncement(uid, startText, sender: title, playDefault: true, playTts: true, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice, announcementSound: comp.Sound);
         }
 
+        private void OnRelayListenAttempt(EntityUid uid, CommunicationsConsoleComponent comp, ListenAttemptEvent ev)
+        {
+            // Sunrise added start - запрещаем ретрансляцию речи неигровых источников
+            if (!HasComp<ActorComponent>(ev.Source))
+                ev.Cancel();
+            // Sunrise added end
+        }
+
         private void OnEntitySpokeNearbyRelay(EntityUid uid, CommunicationsConsoleComponent comp, ListenEvent ev)
         {
             if (!this.IsPowered(uid, EntityManager))
-                return;
-
-            if (!IsLivePlayerSpeechSource(ev.Source))
                 return;
 
             var voice = comp.AnnounceVoice;
@@ -415,11 +418,6 @@ namespace Content.Server.Communications
                 voice = ttsComponent.VoicePrototypeId;
             }
             _chatSystem.DispatchStationAnnouncement(uid, ev.Message, sender: Loc.GetString(comp.Title), playDefault: false, playTts: true, colorOverride: comp.Color, announceVoice: voice);
-        }
-
-        private bool IsLivePlayerSpeechSource(EntityUid source)
-        {
-            return HasComp<ActorComponent>(source) && _mobState.IsAlive(source);
         }
 
         private void StopRelay(EntityUid uid, CommunicationsConsoleComponent comp, bool announce)

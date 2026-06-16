@@ -22,32 +22,54 @@ public sealed partial class TapeRecorderMenu : FancyWindow
         PrintButton.OnPressed += _ => OnPrintPressed?.Invoke();
     }
 
-    public void UpdateState(TapeRecorderBoundUserInterfaceState state)
+    public void UpdateState(TapeRecorderComponent recorder, TapeCassetteComponent? cassette, MetaDataComponent? cassetteMeta)
     {
+        var cassetteName = cassetteMeta?.EntityName ?? Loc.GetString("tape-recorder-ui-no-cassette");
+        var position = cassette?.Position ?? TimeSpan.Zero;
+        var capacity = cassette?.Capacity ?? TimeSpan.Zero;
+        var recordCount = cassette?.Records.Count ?? 0;
+        var hasCassette = cassette != null;
+        var canRecord = cassette != null && position < capacity && !IsTapePositionUsed(cassette, position);
+        var canPlay = cassette != null && HasUsedTape(cassette);
+
         CassetteLabel.Text = Loc.GetString(
             "tape-recorder-ui-cassette",
-            ("cassette", state.CassetteName));
+            ("cassette", cassetteName));
 
-        PlaybackTimeline.UpdateState(state.Position, state.Capacity, state.RecordedRanges);
+        PlaybackTimeline.UpdateState(position, capacity, cassette?.RecordedRanges ?? []);
 
         TimeLabel.Text = Loc.GetString(
             "tape-recorder-ui-time",
-            ("position", FormatTime(state.Position)),
-            ("capacity", FormatTime(state.Capacity)),
-            ("remaining", FormatTime(state.Capacity > state.Position ? state.Capacity - state.Position : TimeSpan.Zero)),
-            ("records", state.RecordCount));
+            ("position", FormatTime(position)),
+            ("capacity", FormatTime(capacity)),
+            ("remaining", FormatTime(capacity > position ? capacity - position : TimeSpan.Zero)),
+            ("records", recordCount));
 
-        StopButton.Disabled = state.Mode == TapeRecorderMode.Stopped;
-        RecordButton.Disabled = !state.HasCassette || !state.CanRecord;
-        PlayButton.Disabled = !state.HasCassette || !state.CanPlay;
-        RewindButton.Disabled = !state.HasCassette || state.Position <= TimeSpan.Zero;
-        PrintButton.Disabled = !state.HasCassette || state.RecordCount == 0;
+        StopButton.Disabled = recorder.Mode == TapeRecorderMode.Stopped;
+        RecordButton.Disabled = !canRecord;
+        PlayButton.Disabled = !canPlay;
+        RewindButton.Disabled = !hasCassette || position <= TimeSpan.Zero;
+        PrintButton.Disabled = !hasCassette || recordCount == 0;
 
-        RecordButton.ModulateSelfOverride = state.Mode == TapeRecorderMode.Recording ? Color.DarkGreen : null;
-        PlayButton.ModulateSelfOverride = state.Mode == TapeRecorderMode.Playing ? Color.DarkGreen : null;
-        RewindButton.ModulateSelfOverride = state.Mode == TapeRecorderMode.Rewinding ? Color.DarkGreen : null;
+        RecordButton.ModulateSelfOverride = recorder.Mode == TapeRecorderMode.Recording ? Color.DarkGreen : null;
+        PlayButton.ModulateSelfOverride = recorder.Mode == TapeRecorderMode.Playing ? Color.DarkGreen : null;
+        RewindButton.ModulateSelfOverride = recorder.Mode == TapeRecorderMode.Rewinding ? Color.DarkGreen : null;
     }
 
     private static string FormatTime(TimeSpan time) =>
         time.ToString(@"mm\:ss");
+
+    private static bool IsTapePositionUsed(TapeCassetteComponent cassette, TimeSpan position)
+    {
+        foreach (var range in cassette.RecordedRanges)
+        {
+            if (position >= range.Start && position < range.End)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool HasUsedTape(TapeCassetteComponent cassette) =>
+        cassette.Records.Count > 0 || cassette.RecordedRanges.Count > 0;
 }

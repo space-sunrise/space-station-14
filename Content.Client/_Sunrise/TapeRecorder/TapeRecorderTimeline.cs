@@ -6,11 +6,18 @@ namespace Content.Client._Sunrise.TapeRecorder;
 
 public sealed class TapeRecorderTimeline : Control
 {
-    private static readonly Color BackgroundColor = new(0.08f, 0.09f, 0.10f);
-    private static readonly Color EmptyTapeColor = new(0.16f, 0.64f, 0.26f);
-    private static readonly Color UsedTapeColor = new(0.82f, 0.18f, 0.14f);
-    private static readonly Color PositionColor = new(0.62f, 0.96f, 0.50f);
-    private static readonly Color BorderColor = new(0.02f, 0.02f, 0.02f);
+    private const float TrackHorizontalInset = 1f;
+    private const float TrackVerticalInset = 3f;
+    private const float MinTrackWidth = 1f;
+    private const float MinTrackHeight = 3f;
+    private const float PositionMarkerHalfWidth = 1f;
+    private const float PositionMarkerVerticalBleed = 1f;
+
+    private static readonly Color BackgroundColor = Color.FromHex("#14171A");
+    private static readonly Color EmptyTapeColor = Color.FromHex("#29A342");
+    private static readonly Color UsedTapeColor = Color.FromHex("#D12E24");
+    private static readonly Color PositionColor = Color.FromHex("#9EF580");
+    private static readonly Color BorderColor = Color.FromHex("#050505");
 
     private readonly List<TapeCassetteRecordedRange> _recordedRanges = [];
     private TimeSpan _position;
@@ -37,30 +44,51 @@ public sealed class TapeRecorderTimeline : Control
         if (PixelWidth <= 0 || PixelHeight <= 0)
             return;
 
-        var trackBox = new UIBox2(1, 3, MathF.Max(1, PixelWidth - 1), MathF.Max(3, PixelHeight - 3));
+        var trackBox = BuildTrackBox();
         handle.DrawRect(trackBox, EmptyTapeColor);
 
         var capacitySeconds = (float) _capacity.TotalSeconds;
         if (capacitySeconds > 0f)
         {
-            foreach (var range in _recordedRanges)
-            {
-                var start = Math.Clamp((float) range.Start.TotalSeconds / capacitySeconds, 0f, 1f);
-                var end = Math.Clamp((float) range.End.TotalSeconds / capacitySeconds, 0f, 1f);
-
-                if (end <= start)
-                    continue;
-
-                var left = MathHelper.Lerp(trackBox.Left, trackBox.Right, start);
-                var right = MathHelper.Lerp(trackBox.Left, trackBox.Right, end);
-                handle.DrawRect(new UIBox2(left, trackBox.Top, right, trackBox.Bottom), UsedTapeColor);
-            }
-
-            var position = Math.Clamp((float) _position.TotalSeconds / capacitySeconds, 0f, 1f);
-            var positionX = MathHelper.Lerp(trackBox.Left, trackBox.Right, position);
-            handle.DrawRect(new UIBox2(positionX - 1, trackBox.Top - 1, positionX + 1, trackBox.Bottom + 1), PositionColor);
+            DrawRecordedRanges(handle, trackBox, capacitySeconds);
+            DrawPositionMarker(handle, trackBox, capacitySeconds);
         }
 
         handle.DrawRect(trackBox, BorderColor, false);
+    }
+
+    private UIBox2 BuildTrackBox()
+    {
+        var right = MathF.Max(MinTrackWidth, PixelWidth - TrackHorizontalInset);
+        var bottom = MathF.Max(MinTrackHeight, PixelHeight - TrackVerticalInset);
+        return new UIBox2(TrackHorizontalInset, TrackVerticalInset, right, bottom);
+    }
+
+    private void DrawRecordedRanges(DrawingHandleScreen handle, UIBox2 trackBox, float capacitySeconds)
+    {
+        foreach (var range in _recordedRanges)
+        {
+            var start = Math.Clamp((float) range.Start.TotalSeconds / capacitySeconds, 0f, 1f);
+            var end = Math.Clamp((float) range.End.TotalSeconds / capacitySeconds, 0f, 1f);
+
+            if (end <= start)
+                continue;
+
+            var left = MathHelper.Lerp(trackBox.Left, trackBox.Right, start);
+            var right = MathHelper.Lerp(trackBox.Left, trackBox.Right, end);
+            handle.DrawRect(new UIBox2(left, trackBox.Top, right, trackBox.Bottom), UsedTapeColor);
+        }
+    }
+
+    private void DrawPositionMarker(DrawingHandleScreen handle, UIBox2 trackBox, float capacitySeconds)
+    {
+        var position = Math.Clamp((float) _position.TotalSeconds / capacitySeconds, 0f, 1f);
+        var positionX = MathHelper.Lerp(trackBox.Left, trackBox.Right, position);
+        handle.DrawRect(new UIBox2(
+            positionX - PositionMarkerHalfWidth,
+            trackBox.Top - PositionMarkerVerticalBleed,
+            positionX + PositionMarkerHalfWidth,
+            trackBox.Bottom + PositionMarkerVerticalBleed),
+            PositionColor);
     }
 }
