@@ -49,7 +49,7 @@
   id: PuddleWater
   parent: PuddleTemporary
   components:
-  - type: !type:SolutionContainerManager
+  - type: SolutionContainerManager
     solutions:
       puddle:
         maxVol: 1000
