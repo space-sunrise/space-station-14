@@ -3,7 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.FixedPoint;
 using Content.Server.Fluids.EntitySystems;
-using Content.Shared.Chemistry.EntitySystems;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Shower;
 
@@ -11,10 +11,12 @@ public sealed class ShowerSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // добавить
 
     private const float UpdateInterval = 5f;
     private const float ShowerFillDuration = 120f;
     private const float ShowerFillLimit = 200f;
+    private const float AutoShutdownTime = 60f;
     private const string ShowerReagent = "Water";
     private static readonly FixedPoint2 ShowerSpillAmount = FixedPoint2.New(ShowerFillLimit / (ShowerFillDuration / UpdateInterval));
 
@@ -33,6 +35,7 @@ public sealed class ShowerSystem : EntitySystem
         ent.Comp.IsActive = !ent.Comp.IsActive;
         _appearance.SetData(ent.Owner, ShowerVisuals.Active, ent.Comp.IsActive);
         ent.Comp.Accumulator = 0f;
+        ent.Comp.ActiveStartTime = ent.Comp.IsActive ? _timing.CurTime : null;
 
         Dirty(ent);
     }
@@ -47,6 +50,12 @@ public sealed class ShowerSystem : EntitySystem
             if (!shower.IsActive)
                 continue;
 
+            if (shower.ActiveStartTime != null && _timing.CurTime - shower.ActiveStartTime.Value > TimeSpan.FromSeconds(AutoShutdownTime))
+            {
+                TurnOffShower((uid, shower));
+                continue;
+            }
+
             shower.Accumulator += frameTime;
             if (shower.Accumulator < UpdateInterval)
                 continue;
@@ -55,6 +64,22 @@ public sealed class ShowerSystem : EntitySystem
             SpillWater((uid, shower));
             Dirty(uid, shower);
         }
+    }
+
+    private void TurnOffShower(Entity<ShowerComponent> ent)
+    {
+        ent.Comp.IsActive = false;
+        ent.Comp.Accumulator = 0f;
+        ent.Comp.ActiveStartTime = null;
+        _appearance.SetData(ent.Owner, ShowerVisuals.Active, false);
+
+        if (ent.Comp.CurrentPuddle != null && !Deleted(ent.Comp.CurrentPuddle.Value))
+        {
+            Del(ent.Comp.CurrentPuddle.Value);
+            ent.Comp.CurrentPuddle = null;
+        }
+
+        Dirty(ent);
     }
 
     private void SpillWater(Entity<ShowerComponent> ent)

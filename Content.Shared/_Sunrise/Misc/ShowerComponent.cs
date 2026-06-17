@@ -14,6 +14,8 @@ public sealed partial class ShowerComponent : Component
 
     [AutoNetworkedField]
     public EntityUid? CurrentPuddle;
+    [AutoNetworkedField]
+    public TimeSpan? ActiveStartTime;
 }
 
 [Serializable, NetSerializable]
