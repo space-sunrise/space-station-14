@@ -281,7 +281,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             DrawDocks(handle, gUid, curGridToView);
         }
 
-        DrawSunriseRadarOverlays(handle, mapPos, worldToShuttle, shuttleToView); // Sunrise-Edit - radar blips / laser overlays are implemented in Sunrise partial.
+        DrawSunriseRadarOverlays(handle, mapPos, worldToShuttle, shuttleToView); // Sunrise-Edit - оверлеи radar blips / laser реализованы в Sunrise partial.
 
         // If we've set the controlling console, and it's on a different grid
         // to the shuttle itself, then draw an additional marker to help the

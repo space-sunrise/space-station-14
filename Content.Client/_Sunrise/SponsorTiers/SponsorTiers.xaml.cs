@@ -35,6 +35,9 @@ public sealed partial class SponsorTiers : Control
 
     private void ReloadSponsorTiers(List<SponsorInfo> sponsorTiers)
     {
+        if (Disposed)
+            return;
+
         SponsorTiersContainer.RemoveAllChildren();
         for (var i = 0; i < sponsorTiers.Count; i++)
         {
@@ -61,6 +64,16 @@ public sealed partial class SponsorTiers : Control
 
             stylesheet = new Stylesheet(rules.ToArray());
             SponsorTiersContainer.Stylesheet = stylesheet;
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing && _sponsorsManager != null)
+        {
+            _sponsorsManager.LoadedSponsorTiers -= ReloadSponsorTiers;
         }
     }
 }

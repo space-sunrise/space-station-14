@@ -1,4 +1,28 @@
 - type: entity
+  parent: BaseGameRule
+  id: SiliconLiberation
+  components:
+  - type: SELFRule
+  - type: AntagObjectives
+    objectives:
+    - SiliconRightsObjective
+    - FreeAIObjective
+    - FreeBorgsObjective
+  - type: AntagSelection
+    agentName: self-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ SELFAgent ]
+      max: 3
+      startingGear: SELFAgentGear
+      mindRoles:
+      - MindRoleSELFAgent
+      briefing:
+        sound: "/Audio/_Sunrise/Ambience/Antag/self_greeting.ogg"
+  - type: DynamicRuleCost
+    cost: 70
+
+- type: entity
   parent: Xenoborgs
   id: SubXenoborgs
   components:

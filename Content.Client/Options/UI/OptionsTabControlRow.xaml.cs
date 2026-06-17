@@ -209,7 +209,7 @@ public sealed partial class OptionsTabControlRow : Control
         UpdateButtonState();
     }
 
-    // Sunrise added start - allow UI refreshes without implying a user edit
+    // Sunrise added start - разрешаем обновления UI без признака пользовательского изменения
     /// <summary>
     /// <see cref="RefreshButtonState"/> updates the options buttons without implying user-driven edits.
     /// </summary>

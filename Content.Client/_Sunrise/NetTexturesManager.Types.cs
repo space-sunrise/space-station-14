@@ -377,51 +377,51 @@ public sealed partial class NetTexturesManager
 
     #region Public State Views
     /// <summary>
-    /// Represents a ready-to-use animation state produced from a network-delivered RSI resource.
+    /// Представляет готовое к использованию состояние анимации, полученное из доставленного по сети RSI-ресурса.
     /// </summary>
     public sealed class NetTextureAnimationState(string stateId, RsiDirectionType directions, float[] delays, Texture[][] frames)
     {
         /// <summary>
-        /// Gets the RSI state identifier.
+        /// Возвращает идентификатор RSI state.
         /// </summary>
         public string StateId { get; } = stateId;
 
         /// <summary>
-        /// Gets the directional layout used by the uploaded animation.
+        /// Возвращает directional layout, используемый uploaded animation.
         /// </summary>
         public RsiDirectionType Directions { get; } = directions;
 
         /// <summary>
-        /// Gets the number of folded animation frames in this state.
+        /// Возвращает количество folded animation frames в этом состоянии.
         /// </summary>
         public int FrameCount => delays.Length;
 
         /// <summary>
-        /// Gets whether the state advances through more than one frame.
+        /// Возвращает, проходит ли состояние больше одного frame.
         /// </summary>
         public bool IsAnimated => FrameCount > 1;
 
         /// <summary>
-        /// Gets the first frame of the south-facing animation, which is commonly used as a preview frame.
+        /// Возвращает первый frame анимации на юг, обычно используемый как preview frame.
         /// </summary>
         public Texture Frame0 => frames[0][0];
 
         /// <summary>
-        /// Gets the display delay for a folded frame.
+        /// Возвращает display delay для folded frame.
         /// </summary>
-        /// <param name="frame">The folded frame index.</param>
-        /// <returns>The delay in seconds for the requested frame.</returns>
+        /// <param name="frame">Индекс folded frame.</param>
+        /// <returns>Задержка в секундах для запрошенного frame.</returns>
         public float GetDelay(int frame)
         {
             return delays[frame];
         }
 
         /// <summary>
-        /// Gets the texture for a specific direction and folded frame.
+        /// Возвращает текстуру для конкретного направления и folded frame.
         /// </summary>
-        /// <param name="direction">The requested RSI direction.</param>
-        /// <param name="frame">The folded frame index.</param>
-        /// <returns>The uploaded texture for the requested direction and frame.</returns>
+        /// <param name="direction">Запрошенное RSI direction.</param>
+        /// <param name="frame">Индекс folded frame.</param>
+        /// <returns>Uploaded texture для запрошенного направления и frame.</returns>
         public Texture GetFrame(RsiDirection direction, int frame)
         {
             var dirIndex = Directions switch

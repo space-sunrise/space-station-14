@@ -194,9 +194,9 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponPistolG22
+        - id: WeaponPistolEnforcer
           amount: 4
-        - id: MagazineGlock22
+        - id: MagazinePistol
           amount: 8
 
 - type: entity
@@ -605,6 +605,117 @@
         - id: BoxShotgunFlare
           amount: 1
 
+# region Meme
+- type: entity
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband]
+  id: GunSafeLecterBeer
+  name: safe
+  suffix: 1 lecter and beer
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: lecter
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleLecter
+        - id: MagazineRifleSP
+        - id: MagazineRifleHP
+        - id: DrinkBottleBeer
+        - id: DrinkBeerCan
+          amount: 2
+        - id: CigaretteSpent
+          amount: 2
+        - id: CigPackRed
+        - id: FoodSnackSus
+        - id: FoodPacketPistachioTrash
+
+- type: entity
+  parent: [GunSafeHandgunBaseSecureSunrise, BaseSecurityContraband]
+  id: GunSafePistolGoldenMk58Trash
+  name: safe
+  suffix: 1 mk58 and trash
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: pistol
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolGoldenMk58
+        - id: WeaponPistolMk58
+          amount: 2
+        - id: DrinkColaCanEmpty
+          amount: 2
+        - id: CigaretteSpent
+          amount: 3
+        - id: FoodPacketChipsTrash
+        - id: FoodPlateSmallTrash
+
+- type: entity
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband]
+  id: GunSafeSubMachineGunDrozdTrash
+  name: safe
+  suffix: 1 drozd and trash
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: drozd
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunDrozd
+        - id: FoodTinBeansTrash
+        - id: FoodPacketBoritosTrash
+        - id: PouchAmmoFilledSMG
+        - id: MagazinePistolSubMachineGunEmpty
+          amount: 2
+        - id: CartridgePistolSpent
+          amount: 12
+        - id: TrashBananaPeel
+
+- type: entity
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband]
+  id: GunSafeShotgunKammererTrash
+  name: safe
+  suffix: ShotgunRiot and trash
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: kammerer
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunRiot
+        - id: WeaponShotgunRiotSawn
+        - id: FoodBowlBigTrash
+        - id: FoodPacketRaisinsTrash
+        - id: CigaretteSpent
+          amount: 2
+        - id: FoodTinMRETrash
+        - id: BoxShotgunFlechette
+        - id: BoxShotgunFlare
+
+
+- type: entity
+  parent: [GunSafeBaseSecureSunrise, BaseSecurityContraband]
+  id: GunSafeLaserCarbineTrash
+  name: safe
+  suffix: 1 laser carbine and trash
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: laser
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLaserCarbine
+        - id: FoodPacketPistachioTrash
+        - id: FoodPlateTrash
+        - id: DrinkColaCanEmpty
+          amount: 2
+        - id: CigaretteSpent
+
 # region Spawners
 # Small Arms Spawner
 - type: entity
@@ -634,6 +745,7 @@
       - id: GunSafePistolMk58
       - id: GunSafePistolG22
       - id: GunSafeEnergyGunPistolSecurity
+      - id: GunSafePistolGoldenMk58Trash
     - !type:GroupSelector
       weight: 25
       children:
@@ -678,6 +790,7 @@
       - id: GunSafeShotgunTrenchgun4034
       - id: GunSafeShotgunKammerer
       - id: GunSafeShotgunRiot
+      - id: GunSafeShotgunKammererTrash
     - !type:GroupSelector
       weight: 20
       children:
@@ -720,15 +833,15 @@
     - !type:GroupSelector
       weight: 40
       children:
+      - id: GunSafeLecterBeer
       - id: GunSafeRifleAKMU
       - id: GunSafeRifleLecterMk2
       - id: GunSafeRifleM16A4
-      - id: GunSafeRifleFamas
       - id: GunSafeSuperDMR
     - !type:GroupSelector
       weight: 5
       children:
-      - id: GunSafeSuperDMRElite
+      - id: GunSafeRifleFamas
     - id: SpawnerSafeLethal
       weight: 15
 
@@ -759,6 +872,7 @@
       children:
       - id: GunSafeSubMachineGunDrozd
       - id: GunSafeSubMachineGunMP5
+      - id: GunSafeSubMachineGunDrozdTrash
     - !type:GroupSelector
       weight: 45
       children:
@@ -793,13 +907,13 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 60
+      weight: 70
       children:
       - id: GunSafeSuperweaponLWAP
       - id: GunSafeSuperweaponSmartGun
       - id: GunSafeSuperweaponRocketLauncher
     - !type:GroupSelector
-      weight: 30
+      weight: 20
       children:
       - id: GunSafeSuperDMR
       - id: GunSafeRifleM52
@@ -832,6 +946,7 @@
       children:
       - id: GunSafeEnergyGun
       - id: GunSafeLaserCarbine
+      - id: GunSafeLaserCarbineTrash
     - !type:GroupSelector
       weight: 25
       children:

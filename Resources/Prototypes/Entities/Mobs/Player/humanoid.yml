@@ -99,11 +99,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertleader
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirstLeader
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTLeader
 
@@ -140,18 +135,17 @@
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-leader
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT leader
-  suffix: ERTRole, Armored EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -180,29 +174,20 @@
   - Milira
   parent: ERTLeader
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-leader-name
-      description: ghost-role-information-ert-leader-description
-      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
-      raffle:
-        settings: short
-      mindRoles: # Sunrise-edit
-      - MindRoleGhostCorporateAligned
-      job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTLeaderEVALecter
+  id: RandomHumanoidSpawnerERTLeaderArmed
   parent: RandomHumanoidSpawnerERTLeaderEVA
-  suffix: ERTRole, Lecter, EVA
+  suffix: ERTRole, Armed, EVA
   components:
     - type: RandomHumanoidSpawner
-      settings: ERTLeaderEVALecter
+      settings: ERTLeaderArmed
 
 - type: randomHumanoidSettings
-  id: ERTLeaderEVALecter
+  id: ERTLeaderArmed
   parent: ERTLeaderEVA
   speciesBlacklist: # Sunrise-edit
   - Diona
@@ -222,18 +207,9 @@
   - Resomi
   - Milira
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-leader-name
-      description: ghost-role-information-ert-leader-description
-      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
-      raffle:
-        settings: short
-      mindRoles: # Sunrise-edit
-      - MindRoleGhostCorporateAligned
-      job: ERTLeaderVeteran
     - type: Loadout
-      prototypes: [ ERTLeaderGearEVALecter ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      prototypes: [ ERTLeaderGearArmed ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Chaplain
 
@@ -245,12 +221,7 @@
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
-      state: chaplain #needs an ERT variant once a good suit it made.
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
+      state: ertchaplain
     - type: RandomHumanoidSpawner
       settings: ERTChaplain
 
@@ -287,22 +258,21 @@
       job: ERTChaplain
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-specialist
     - type: Loadout
       prototypes: [ ERTChaplainGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTChaplainEVA
   parent: RandomHumanoidSpawnerERTChaplain
   name: ERT chaplain
-  suffix: ERTRole, Enviro EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
-      state: chaplain #needs an ERT variant once a good suit it made.
+      state: ertchaplaineva
     - type: RandomHumanoidSpawner
       settings: ERTChaplainEVA
 
@@ -327,19 +297,9 @@
   - Milira
   parent: ERTChaplain
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-chaplain-name
-      description: ghost-role-information-ert-chaplain-description
-      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
-      raffle:
-        settings: short
-      mindRoles: # Sunrise-edit
-      - MindRoleGhostCorporateAligned
-      job: ERTChaplain
     - type: Loadout
       prototypes: [ ERTChaplainGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
-    - type: BibleUser
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Janitor
 
@@ -352,11 +312,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertjanitor
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTJanitor
 
@@ -392,18 +347,16 @@
       job: ERTJanitor
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-specialist
     - type: Loadout
       prototypes: [ ERTJanitorGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTJanitorEVA
   parent: RandomHumanoidSpawnerERTJanitor
-  name: ERT janitor
-  suffix: ERTRole, Enviro EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -432,18 +385,9 @@
   - Milira
   parent: ERTJanitor
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-janitor-name
-      description: ghost-role-information-ert-janitor-description
-      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
-      raffle:
-        settings: short
-      mindRoles: # Sunrise-edit
-      - MindRoleGhostCorporateAligned
-      job: ERTJanitor
     - type: Loadout
       prototypes: [ ERTJanitorGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Engineer
 
@@ -456,11 +400,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertengineer
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTEngineer
 
@@ -496,18 +435,16 @@
       job: ERTEngineer
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-specialist
     - type: Loadout
       prototypes: [ ERTEngineerGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTEngineerEVA
   parent: RandomHumanoidSpawnerERTEngineer
-  name: ERT engineer
-  suffix: ERTRole, Enviro EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -536,18 +473,29 @@
   - Milira
   parent: ERTEngineer
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-engineer-name
-      description: ghost-role-information-ert-engineer-description
-      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
-      raffle:
-        settings: short
-      mindRoles: # Sunrise-edit
-      - MindRoleGhostCorporateAligned
-      job: ERTEngineer
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTEngineerEVA
+  id: RandomHumanoidSpawnerERTEngineerArmed
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTEngineerArmed
+
+- type: randomHumanoidSettings
+  id: ERTEngineerArmed
+  parent: ERTEngineer
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-pointman
+  - type: Loadout
+    prototypes: [ ERTEngineerGearArmed ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Security
 
@@ -560,11 +508,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertsecurity
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTSecurity
 
@@ -600,18 +543,17 @@
       job: ERTSecurity
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-officer
     - type: Loadout
       prototypes: [ ERTSecurityGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVA
   parent: RandomHumanoidSpawnerERTSecurity
   name: ERT security
-  suffix: ERTRole, Armored EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -651,49 +593,91 @@
       job: ERTSecurity
     - type: Loadout
       prototypes: [ ERTSecurityGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTSecurityEVALecter
+  id: RandomHumanoidSpawnerERTSecurityArmedRifle
   parent: RandomHumanoidSpawnerERTSecurityEVA
-  suffix: ERTRole, Lecter, EVA
+  name: ERT security rifleman
+  suffix: ERTRole, Armed, EVA
   components:
-    - type: RandomHumanoidSpawner
-      settings: ERTSecurityEVALecter
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedRifle
 
 - type: randomHumanoidSettings
-  id: ERTSecurityEVALecter
-  speciesBlacklist: # Sunrise-edit
-  - Diona
-  - Vox
-  - Felinid
-  - Moth
-  - Arachnid
-  - Reptilian
-  - Vulpkanin
-  - Swine
-  - Tajaran
-  - Demon
-  - SlimePerson
-  - Dwarf
-  - HumanoidXeno
-  - Predator
-  - Resomi
-  - Milira
+  id: ERTSecurityArmedRifle
   parent: ERTSecurityEVA
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-security-name
-      description: ghost-role-information-ert-security-description
-      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
-      raffle:
-        settings: short
-      mindRoles: # Sunrise-edit
-      - MindRoleGhostCorporateAligned
-      job: ERTSecurity
-    - type: Loadout
-      prototypes: [ ERTSecurityGearEVALecter ]
-      roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-rifle
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedRifle ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedGrenade
+  name: ERT security grenadier
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedGrenade
+
+- type: randomHumanoidSettings
+  parent: ERTSecurityEVA
+  id: ERTSecurityArmedGrenade
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-grenade
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedGrenade ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedVanguard
+  name: ERT security vanguard
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedVanguard
+
+- type: randomHumanoidSettings
+  parent: ERTSecurityEVA
+  id: ERTSecurityArmedVanguard
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-vanguard
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedVanguard ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedShotgun
+  name: ERT security breacher
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedShotgun
+
+- type: randomHumanoidSettings
+  parent: ERTSecurityEVA
+  id: ERTSecurityArmedShotgun
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-pointman
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedShotgun ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Medic
 
@@ -706,11 +690,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertmedical
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTMedical
 
@@ -746,18 +725,16 @@
       job: ERTMedical
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-doctor
     - type: Loadout
       prototypes: [ ERTMedicalGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTMedicalEVA
   parent: RandomHumanoidSpawnerERTMedical
-  name: ERT medic
-  suffix: ERTRole, Armored EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -786,18 +763,29 @@
   - Milira
   parent: ERTMedical
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-medical-name
-      description: ghost-role-information-ert-medical-description
-      rules: ghost-role-information-corporate-aligned-rules # Sunrise-edit
-      raffle:
-        settings: short
-      mindRoles: # Sunrise-edit
-      - MindRoleGhostCorporateAligned
-      job: ERTMedical
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTMedicalEVA
+  id: RandomHumanoidSpawnerERTMedicalArmed
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTMedicalArmed
+
+- type: randomHumanoidSettings
+  parent: ERTMedicalEVA
+  id: ERTMedicalArmed
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-corpsman
+  - type: Loadout
+    prototypes: [ ERTMedicalGearArmed ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## CBURN
 

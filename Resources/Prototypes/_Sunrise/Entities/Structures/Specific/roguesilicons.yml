@@ -4,6 +4,11 @@
   name: rogue AI node
   description: "Contains a portion of a rogue AI database."
   components:
+  - type: RadarBlip
+    color: "#3DB83BFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
   - type: Sprite
     noRot: true
     sprite: _Sunrise/Structures/Specific/RogueSilicons/ai_node.rsi

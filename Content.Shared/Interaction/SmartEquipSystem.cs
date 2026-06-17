@@ -9,6 +9,10 @@ using Content.Shared.Stacks;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist;
+// Sunrise added start - smart-equip ammo-provider imports
+using Content.Shared.Weapons.Ranged;
+using Content.Shared.Weapons.Ranged.Components;
+// Sunrise-end
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
@@ -182,7 +186,12 @@ public sealed class SmartEquipSystem : EntitySystem
         }
 
         // case 3 (itemslot item):
-        if (TryComp<ItemSlotsComponent>(slotItem, out var slots))
+        //  Sunrise edit start - skip itemslot ejection for ammo-provider weapons when hand is empty
+        if (TryComp<ItemSlotsComponent>(slotItem, out var slots)
+            && (handItem != null
+                || (!HasComp<MagazineAmmoProviderComponent>(slotItem)
+                    && !HasComp<ChamberMagazineAmmoProviderComponent>(slotItem))))
+        // Sunrise-end
         {
             if (handItem == null)
             {

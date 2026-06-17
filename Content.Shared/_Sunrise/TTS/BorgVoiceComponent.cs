@@ -19,4 +19,10 @@ public sealed partial class BorgVoiceComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public string VoiceEffect = "robot";
+
+    [DataField]
+    public List<ProtoId<TTSVoicePrototype>>? VoiceWhitelist;
+
+    [DataField]
+    public List<ProtoId<TTSVoicePrototype>>? VoiceBlacklist;
 }

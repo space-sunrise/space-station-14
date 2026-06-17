@@ -23,10 +23,10 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<KnockbackByUserTagComponent, OnNonEmptyGunShotEvent>(OnGunShot);
+        SubscribeLocalEvent<KnockbackByUserTagComponent, GunShotEvent>(OnGunShot);
     }
 
-    private void OnGunShot(Entity<KnockbackByUserTagComponent> ent, ref OnNonEmptyGunShotEvent args)
+    private void OnGunShot(Entity<KnockbackByUserTagComponent> ent, ref GunShotEvent args)
     {
         //make sure the ammo is shootable
         foreach (var ammo in args.Ammo)

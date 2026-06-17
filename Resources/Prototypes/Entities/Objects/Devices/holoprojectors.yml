@@ -18,6 +18,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
   - type: Sprite
     sprite: Objects/Devices/Holoprojectors/custodial.rsi
     state: icon
@@ -34,6 +39,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
 
 - type: entity
   parent: Holoprojector
@@ -108,6 +118,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
 
 - type: entity
   parent: HolofanProjector
@@ -153,6 +168,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
 
 - type: entity
   parent: Holoprojector
@@ -183,3 +203,8 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End

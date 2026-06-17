@@ -158,7 +158,7 @@ namespace Content.Shared.Throwing
                     continue;
 
                 // Sunrise-Start - Clear deleted/invalid thrower references to prevent network state serialization exceptions
-                if (thrown.Thrower is { } thrower && (Deleted(thrower) || !Exists(thrower)))
+                if (thrown.Thrower is { } thrower && (Deleted(thrower) || !Exists(thrower) || Terminating(thrower)))
                 {
                     thrown.Thrower = null;
                     Dirty(uid, thrown);

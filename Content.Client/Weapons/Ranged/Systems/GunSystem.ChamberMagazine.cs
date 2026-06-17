@@ -5,7 +5,6 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Random;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -17,21 +16,33 @@ public sealed partial class GunSystem
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, AmmoCounterControlEvent>(OnChamberMagazineCounter);
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, UpdateAmmoCounterEvent>(OnChamberMagazineAmmoUpdate);
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, AppearanceChangeEvent>(OnChamberMagazineAppearance);
+
+        InitializeSunriseChamberMagazine(); // Sunrise-Edit
     }
 
-    private void OnChamberMagazineAppearance(EntityUid uid, ChamberMagazineAmmoProviderComponent component, ref AppearanceChangeEvent args)
+    partial void InitializeSunriseChamberMagazine(); // Sunrise-Edit
+
+    private void OnChamberMagazineAppearance(Entity<ChamberMagazineAmmoProviderComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null ||
-            !_sprite.LayerMapTryGet((uid, args.Sprite), GunVisualLayers.Base, out var boltLayer, false) ||
-            !Appearance.TryGetData(uid, AmmoVisuals.BoltClosed, out bool boltClosed))
+            !_sprite.LayerMapTryGet((ent, args.Sprite), GunVisualLayers.Base, out var boltLayer, false) ||
+            !Appearance.TryGetData(ent, AmmoVisuals.BoltClosed, out bool boltClosed))
         {
             return;
         }
 
-        //starlight start
-        var prefix = string.IsNullOrEmpty(component.SelectedPrefix) ? "" : $"_{component.SelectedPrefix}";
-        _sprite.LayerSetRsiState((uid, args.Sprite), boltLayer, boltClosed ? $"base{prefix}" : $"bolt-open{prefix}");
-        //starlight end
+        // Sunrise edit start - учитываем случайный префикс спрайта для вариантов оружия.
+        var prefix = string.IsNullOrEmpty(ent.Comp.SelectedPrefix) ? "" : $"_{ent.Comp.SelectedPrefix}";
+
+        if (boltClosed)
+        {
+            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, $"base{prefix}");
+        }
+        else
+        {
+            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, $"bolt-open{prefix}");
+        }
+        // Sunrise edit end
     }
 
     protected override void OnMagazineSlotChange(EntityUid uid, MagazineAmmoProviderComponent component, ContainerModifiedMessage args)
@@ -51,17 +62,17 @@ public sealed partial class GunSystem
         // to avoid 6-7 additional entity spawns.
     }
 
-    private void OnChamberMagazineCounter(EntityUid uid, ChamberMagazineAmmoProviderComponent component, AmmoCounterControlEvent args)
+    private void OnChamberMagazineCounter(Entity<ChamberMagazineAmmoProviderComponent> ent, ref AmmoCounterControlEvent args)
     {
         args.Control = new ChamberMagazineStatusControl();
     }
 
-    private void OnChamberMagazineAmmoUpdate(EntityUid uid, ChamberMagazineAmmoProviderComponent component, UpdateAmmoCounterEvent args)
+    private void OnChamberMagazineAmmoUpdate(Entity<ChamberMagazineAmmoProviderComponent> ent, ref UpdateAmmoCounterEvent args)
     {
         if (args.Control is not ChamberMagazineStatusControl control) return;
 
-        var chambered = GetChamberEntity(uid);
-        var magEntity = GetMagazineEntity(uid);
+        var chambered = GetChamberEntity(ent);
+        var magEntity = GetMagazineEntity(ent);
         var ammoCountEv = new GetAmmoCountEvent();
 
         if (magEntity != null)

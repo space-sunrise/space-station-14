@@ -48,26 +48,6 @@
   - type: TrashOnSolutionEmpty
     solution: pen
 
-- type: entity
-  name: ERT hypospray
-  parent: [Hypospray, BaseCentcommContraband]
-  description: A sterile injector for rapid administration of drugs to patients.
-  id: HyposprayERT
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/hypospray.rsi
-    state: combat_hypo
-  - type: Item
-    sprite: Objects/Specific/Medical/hypospray.rsi
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 20
-  - type: UseDelay
-    delay: 0.15
-  - type: StaticPrice
-    price: 1500
-
 # - type: entity # Sunrise-todo: change to jet injector
 #   parent: [ BaseItem, BaseSyndicateContraband ]
 #   id: HyposprayMedicalNoFilterBox
@@ -348,6 +328,45 @@
       - state: base-colorA-inhand-right
         color: "#808080"
       - state: base-colorB-inhand-right
+
+- type: entity
+  name: beer medipen
+  parent: ChemicalMedipen
+  id: BeerMedipen
+  description: A single-dose, non-refillable medipen filled with beer and vodkizine.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#d69a22"
+      - state: base-colorB-inhand-left
+        color: "#8a4d1c"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#d69a22"
+      - state: base-colorB-inhand-right
+        color: "#8a4d1c"
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Beer
+          Quantity: 11
+        - ReagentId: Vodkizine
+          Quantity: 4
 
 - type: entity
   name: coal auto-injector

@@ -65,6 +65,8 @@
       Glass: 100
   - type: StaticPrice
     price: 50
+  - type: VisionDarkener # Sunrise-Edit
+    strength: 6
   # Sunrise-Start
   - type: ComponentToggler
     components:
@@ -72,8 +74,6 @@
     - type: FlashImmunity
     - type: IdentityBlocker
     - type: EyeProtection
-    - type: VisionDarkener
-      strength: 6
     # Sunrise-End
   - type: Tag
     tags:

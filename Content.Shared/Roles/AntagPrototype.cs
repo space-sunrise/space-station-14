@@ -66,4 +66,11 @@ public sealed partial class AntagPrototype : IPrototype
 
     [DataField]
     public SpriteSpecifier PreviewIcon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/antag_preview.rsi"), "test");
+
+    // Sunrise-Edit
+    /// <summary>
+    ///     How much stress this antagonist adds to the storyteller.
+    /// </summary>
+    [DataField]
+    public float StorytellerStress = 1f;
 }

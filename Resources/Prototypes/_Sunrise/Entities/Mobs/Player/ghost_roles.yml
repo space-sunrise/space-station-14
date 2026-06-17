@@ -98,13 +98,15 @@
     pocket1: SecurityWhistle
     pocket2: WeaponDominator
   inhand:
-  - ClothingHandsPowerGlovesUplinkNTERTAmber
+  - ClothingHandsPowerGlovesNoUplink
   storage:
     back:
     - BoxErtBaseKit
     - BoxZiptie
     - CrowbarRed
     - MedkitCombatFilled
+    - Bluecrystal10
+    - Crystallite15
 
 - type: startingGear
   id: ERTSecurityGearRed
@@ -121,7 +123,7 @@
     ears: ClothingHeadsetAltERT
     belt: ClothingBeltSecurityWebbingFilled
     pocket1: PouchAmmoFilledPistol40
-    pocket2: ClothingHandsPowerGlovesUplinkNTERTRed
+    pocket2: ClothingHandsPowerGlovesNoUplink
   inhand:
   - WeaponPistolVP78
   storage:
@@ -131,6 +133,8 @@
     - CrowbarRed
     - MedkitCombatFilled
     - SmokeGrenade
+    - Bluecrystal15
+    - Crystallite20
 
 - type: startingGear
   id: ERTSecurityGearGamma
@@ -158,7 +162,9 @@
     - C4
     - C4
     - SmokeGrenade
-    - ClothingHandsPowerGlovesUplinkNTERTGamma
+    - ClothingHandsPowerGlovesNoUplink
+    - Bluecrystal25
+    - Crystallite30
 
 # Chaplain
 - type: startingGear
@@ -175,7 +181,7 @@
     ears: ClothingHeadsetAltERT
     belt: ClothingBeltSecurityFilledERT
     pocket1: LanternFlash
-    pocket2: ClothingHandsPowerGlovesUplinkNTERTAmber
+    pocket2: ClothingHandsPowerGlovesNoUplink
   inhand:
   - WeaponShotgunKammerer
   storage:
@@ -189,6 +195,8 @@
     - WeaponRevolverSpearhead
     - BoxShotgunHoly
     - DrinkHolyWaterFull
+    - Bluecrystal10
+    - Crystallite15
 
 - type: startingGear
   id: ERTChaplainGearGamma
@@ -204,7 +212,7 @@
     ears: ClothingHeadsetAltERT
     belt: ClothingBeltSecurityFilledERT
     pocket1: LanternFlash
-    pocket2: ClothingHandsPowerGlovesUplinkNTERTRed
+    pocket2: ClothingHandsPowerGlovesNoUplink
   inhand:
   - WeaponShotgunEnforcer
   storage:
@@ -218,6 +226,8 @@
     - WeaponRevolverSpearhead
     - BoxShotgunHoly
     - DrinkHolyWaterFull
+    - Bluecrystal15
+    - Crystallite20
 
 # Engineer
 - type: startingGear
@@ -237,7 +247,7 @@
     pocket1: CableMVStack
     pocket2: CableHVStack
   inhand:
-  - ClothingHandsPowerGlovesUplinkNTERTAmber
+  - ClothingHandsPowerGlovesNoUplink
   - RCD
   storage:
     back:
@@ -250,6 +260,8 @@
     - SheetGlass
     - SheetSteel
     - PowerCellHigh
+    - Bluecrystal10
+    - Crystallite15
 
 - type: startingGear
   id: ERTEngineerGearGamma
@@ -266,7 +278,7 @@
     ears: ClothingHeadsetAltERT
     belt: ClothingBeltChiefEngineerFilled
     pocket1: CableMVStack
-    pocket2: ClothingHandsPowerGlovesUplinkNTERTRed
+    pocket2: ClothingHandsPowerGlovesNoUplink
   inhand:
   - DoubleEmergencyOxygenTankFilled
   - RCDRecharging
@@ -282,6 +294,8 @@
     - PowerCellNanoTrasen
     - PowerCellNanoTrasen
     - CableHVStack
+    - Bluecrystal15
+    - Crystallite20
 
 # Medical
 
@@ -301,7 +315,7 @@
     belt: ClothingBeltMedicalFilled
     pocket1: MedipenCombatInjector
   inhand:
-  - ClothingHandsPowerGlovesUplinkNTERTAmber
+  - ClothingHandsPowerGlovesNoUplink
   - AdvancedDefibrillatorCompact
   storage:
     back:
@@ -317,6 +331,8 @@
     - ChemistryBottleOmnizine
     - ChemistryBottleEpinephrine
     - ChemistryBottleEphedrine
+    - Bluecrystal10
+    - Crystallite15
 
 - type: startingGear
   id: ERTMedicalGearGamma
@@ -333,7 +349,7 @@
     ears: ClothingHeadsetAltERT
     belt: ClothingBeltMedicalElite
     pocket1: MedipenCombatInjector
-    pocket2: ClothingHandsPowerGlovesUplinkNTERTRed
+    pocket2: ClothingHandsPowerGlovesNoUplink
   inhand:
   - MedkitCombatFilled
   - AdvancedDefibrillator
@@ -349,6 +365,8 @@
     - EmergencyRollerBedSpawnFolded
     - BoneGel
     - BoneSetterAdvanced
+    - Bluecrystal15
+    - Crystallite20
 
 # Janitor
 
@@ -370,13 +388,15 @@
     pocket2: HoloprojectorField
   inhand:
   - WeaponLauncherHydra
-  - ClothingHandsPowerGlovesUplinkNTERTAmber
+  - ClothingHandsPowerGlovesNoUplink
   storage:
     back:
     - BoxErtBaseKit
     - LightReplacer
     - BoxCleanerGrenades
     - CrowbarRed
+    - Bluecrystal10
+    - Crystallite15
 
 - type: startingGear
   id: ERTJanitorGearGamma
@@ -403,4 +423,6 @@
     - LightReplacer
     - BoxCleanerGrenades
     - CrowbarRed
-    - ClothingHandsPowerGlovesUplinkNTERTRed
+    - ClothingHandsPowerGlovesNoUplink
+    - Bluecrystal15
+    - Crystallite20

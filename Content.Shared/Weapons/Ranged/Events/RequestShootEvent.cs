@@ -11,5 +11,5 @@ public sealed class RequestShootEvent : EntityEventArgs
 {
     public NetEntity Gun;
     public NetCoordinates Coordinates;
-    public List<NetEntity> Targets = new(); // Sunrise-Edit
+    public NetEntity? Target;
 }

@@ -195,8 +195,6 @@ stack-empty-oilpack = пустой маслопакет
 stack-wizcoin = визкоин
 stack-abyssium-ore = абиссиумовая руда
 stack-abyssium-bar = абиссиумовый слиток
-stack-astro-ironsand-floor = астро-железопесочный пол
-stack-astro-ironsand-floor-borderless = бесшовный астро-железопесочный пол
 
 ent-VendingMachineRestockDonk = коробка пополнения Donk on the Go
     .desc = Коробка, полная того, что юридически считается едой. Загрузите её в автомат Donk on the Go для пополнения.
@@ -284,6 +282,8 @@ ent-VendingMachineWallMedicalCivilianSyndicate = коммерческая апт
     .desc = Настенный раздатчик медицинского оборудования от Interdyne Pharmaceutics.
 ent-VendingMachineMedicalSecurity = НаноМед СБ
     .desc = Раздатчик медицинских препаратов для службы безопасности. Только натуральные химикаты!
+ent-VendingMachineMedicalSecuritySalvaged = потрёпанный НаноМед СБ
+    .desc = Побитый раздатчик медицинских препаратов, внутри которого остались пожитки прошлой смены.
 
 ent-CybersunFlag = флаг CyberSun
     .desc = Бумага, костюм, прогресс.

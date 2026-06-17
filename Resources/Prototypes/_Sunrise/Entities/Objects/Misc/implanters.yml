@@ -126,3 +126,11 @@
   components:
   - type: Implanter
     implant: DeathRattleImplantTSF
+
+- type: entity
+  id: SELFStorageImplanter
+  name: S.E.L.F storage implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: SELFStorageImplant

@@ -6,3 +6,4 @@ ent-SyndicateVisceratorClusterGrenade = viscerator cluster grenade
     .desc = A syndicate cluster grenade that releases a swarm of viscerator drones.
 ent-RogueSiliconVisceratorClusterGrenade = viscerator cluster grenade
     .desc = A rogue silicon cluster grenade that releases a swarm of viscerator drones.
+    .suffix = RogueSilicon

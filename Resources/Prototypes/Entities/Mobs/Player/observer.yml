@@ -77,11 +77,9 @@
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
   - type: Pullable
-  - type: UserInterface
-    interfaces:
-      enum.GhostThemeUiKey.Key:
-        type: GhostThemeBoundUserInterface
-        requireInputValidation: false
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 12
+    baseWalkSpeed: 30
   # Sunrise-End
 
 # proto for player ghosts specifically
@@ -93,6 +91,35 @@
   - type: Tag
     tags: # BAD: Intentional removal of inherited tag
     - AllowGhostShownByEvent
+# Sunrise-Start
+  - type: UserInterface
+    interfaces:
+      enum.GhostThemeUiKey.Key:
+        type: GhostThemeBoundUserInterface
+        requireInputValidation: false
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionSunriseGhostShowRadar
+  - type: RadarConsole
+    followEntity: true
+
+- type: entity
+  id: ActionSunriseGhostShowRadar
+  name: Mass Scanner Interface
+  description: View a Mass Scanner Interface.
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: mass_scanner }
+    iconOn: { sprite: Interface/Actions/actions_ai.rsi, state: mass_scanner }
+    keywords: [ "AI", "console", "interface" ]
+    priority: 10
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
+# Sunrise-End
 
 - type: entity
   parent: BaseMentalAction

@@ -83,7 +83,7 @@ public sealed partial class FleshCultSystem
                     {
                         // SUNRISE-TODO: Сделать это внутри системы майншилда
                         _popup.PopupEntity("Активация самоуничтожения импланта защиты разума", uid, PopupType.LargeCaution);
-                        _body.GibBody(uid, true);
+                        _gibbingSystem.Gib(uid, true);
                         _explosionSystem.QueueExplosion(uid, "Default", 50, 5, 30, canCreateVacuum: false);
                         break;
                     }

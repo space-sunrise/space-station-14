@@ -16,6 +16,9 @@ ent-ShellShotgunHoly = святая пуля 12 калибра
 ent-ShellShotgunBreaching = пробивная пуля 12 калибра
     .desc = { ent-BaseShellShotgun.desc }
 
+ent-ShellShotgunBirdshot = мелкая дробь 12 калибра
+    .desc = Патрон с широким разлётом, набитый десятками мелких дробин. Вблизи он выглядит особенно неприятно, но на расстоянии быстро теряет силу.
+
 ent-ShellShotgunFlechette = флешетта 12 калибра
     .desc = { ent-BaseShellShotgun.desc }
 
