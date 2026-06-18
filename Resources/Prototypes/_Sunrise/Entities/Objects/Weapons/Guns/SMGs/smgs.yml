@@ -246,7 +246,9 @@
   id: WeaponSubMachineGunSkorpion
   components:
   - type: Item
-    size: Normal
+    size: Small
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/skorpion.rsi
     layers:
