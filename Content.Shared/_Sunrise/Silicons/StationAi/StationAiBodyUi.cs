@@ -15,7 +15,7 @@ public enum StationAiBodyUiKey : byte
 /// One station AI body entry displayed in the body selector.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class StationAiBodyEntry
+public sealed class StationAiBodyEntry : IRobustCloneable<StationAiBodyEntry>
 {
     public NetEntity Body;
     public int BodyNumber;
@@ -39,6 +39,11 @@ public sealed class StationAiBodyEntry
         Name = name;
         LinkedAi = linkedAi;
         IsCurrent = isCurrent;
+    }
+
+    public StationAiBodyEntry Clone()
+    {
+        return new StationAiBodyEntry(Body, BodyNumber, Name, LinkedAi, IsCurrent);
     }
 }
 

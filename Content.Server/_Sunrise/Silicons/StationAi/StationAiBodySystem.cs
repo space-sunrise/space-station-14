@@ -1,5 +1,5 @@
 using Content.Shared._Sunrise.Silicons.StationAi;
-using Robust.Shared.Containers;
+using Robust.Server.Containers;
 
 namespace Content.Server._Sunrise.Silicons.StationAi;
 
@@ -18,7 +18,7 @@ namespace Content.Server._Sunrise.Silicons.StationAi;
 /// </summary>
 public sealed partial class StationAiBodySystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
 
     public override void Initialize()
     {

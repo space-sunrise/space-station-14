@@ -1,6 +1,9 @@
+using Content.Server.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared._Sunrise.Silicons.StationAi;
-using Content.Shared.Actions;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
+using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Silicons.StationAi;
@@ -15,8 +18,8 @@ public sealed partial class StationAiBodySystem
      * and the body list sent to the AI body selection interface.
      */
 
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     private static readonly SpriteSpecifier BodyEnterVerbIcon =
         new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/in.svg.192dpi.png"));
@@ -32,6 +35,7 @@ public sealed partial class StationAiBodySystem
         SubscribeLocalEvent<StationAiBodyControllerComponent, MapInitEvent>(OnStationAiBodyControllerMapInit);
         SubscribeLocalEvent<StationAiBodyControllerComponent, ComponentShutdown>(OnStationAiBodyControllerShutdown);
         SubscribeLocalEvent<StationAiBodyControllerComponent, StationAiBodyOpenUiActionEvent>(OnStationAiOpenBodyUiAction);
+        SubscribeLocalEvent<StationAiBodyOpenUiActionEvent>(OnOpenBodyUiAction);
         SubscribeLocalEvent<StationAiBodyComponent, GetVerbsEvent<AlternativeVerb>>(OnBodyAlternativeVerbs);
         SubscribeLocalEvent<StationAiBodyComponent, StationAiBodyOpenUiActionEvent>(OnBodyOpenBodyUiAction);
 
@@ -78,7 +82,7 @@ public sealed partial class StationAiBodySystem
     /// <summary>
     /// Opens the body selection UI from the station AI brain action.
     /// </summary>
-    private void OnStationAiOpenBodyUiAction(Entity<StationAiBodyControllerComponent> stationAi, ref StationAiBodyOpenUiActionEvent args)
+    private void OnStationAiOpenBodyUiAction(EntityUid stationAi, StationAiBodyControllerComponent component, StationAiBodyOpenUiActionEvent args)
     {
         if (args.Handled)
             return;
@@ -92,12 +96,26 @@ public sealed partial class StationAiBodySystem
     /// <summary>
     /// Opens the body selection UI from the currently controlled body action.
     /// </summary>
-    private void OnBodyOpenBodyUiAction(Entity<StationAiBodyComponent> body, ref StationAiBodyOpenUiActionEvent args)
+    private void OnBodyOpenBodyUiAction(EntityUid bodyUid, StationAiBodyComponent body, StationAiBodyOpenUiActionEvent args)
     {
-        if (args.Handled || body.Comp.LinkedAi is not { } stationAi)
+        if (args.Handled || body.LinkedAi is not { } stationAi)
             return;
 
         if (!TryOpenBodyUi(stationAi, args.Performer))
+            return;
+
+        args.Handled = true;
+    }
+
+    /// <summary>
+    /// Opens the body selection UI from a relayed station AI action.
+    /// </summary>
+    private void OnOpenBodyUiAction(StationAiBodyOpenUiActionEvent args)
+    {
+        if (args.Handled || !TryGetStationAiFromBodyUiAction(args, out var stationAi, out var actor))
+            return;
+
+        if (!TryOpenBodyUi(stationAi, actor))
             return;
 
         args.Handled = true;
@@ -262,14 +280,28 @@ public sealed partial class StationAiBodySystem
     /// </summary>
     private bool TryOpenBodyUi(EntityUid stationAi, EntityUid actor)
     {
-        if (!TryComp<StationAiBodyControllerComponent>(stationAi, out var controller) ||
-            !CanUseBodyUi((stationAi, controller), actor))
-        {
+        if (!CanOpenBodyUi(stationAi, actor, out var controller))
             return false;
-        }
 
         UpdateBodyUiData((stationAi, controller));
-        return _ui.TryOpenUi((stationAi, null), StationAiBodyUiKey.Key, actor);
+        return _ui.TryOpenUi((stationAi, null), StationAiBodyUiKey.Key, GetBodyUiActor(stationAi, actor));
+    }
+
+    /// <summary>
+    /// Returns whether the actor may open the body selection UI for this station AI.
+    /// </summary>
+    private bool CanOpenBodyUi(EntityUid stationAi, EntityUid actor, out StationAiBodyControllerComponent controller)
+    {
+        controller = default!;
+
+        if (!TryComp(stationAi, out StationAiBodyControllerComponent? controllerComp))
+            return false;
+
+        if (!CanUseBodyUi((stationAi, controllerComp), actor))
+            return false;
+
+        controller = controllerComp;
+        return true;
     }
 
     /// <summary>
@@ -277,12 +309,65 @@ public sealed partial class StationAiBodySystem
     /// </summary>
     private bool CanUseBodyUi(Entity<StationAiBodyControllerComponent> stationAi, EntityUid actor)
     {
+        return IsBodyUiActor(stationAi, actor);
+    }
+
+    /// <summary>
+    /// Returns whether the actor is allowed to use the body selection UI for this station AI.
+    /// </summary>
+    private bool IsBodyUiActor(Entity<StationAiBodyControllerComponent> stationAi, EntityUid actor)
+    {
         if (actor == (EntityUid) stationAi)
+            return true;
+
+        if (IsRemoteActor(stationAi, actor))
             return true;
 
         return stationAi.Comp.CurrentBody == actor &&
                TryComp<StationAiBodyComponent>(actor, out var body) &&
                body.LinkedAi == (EntityUid) stationAi;
+    }
+
+    /// <summary>
+    /// Returns whether the actor is the remote AI eye for this station AI brain.
+    /// </summary>
+    private bool IsRemoteActor(EntityUid stationAi, EntityUid actor)
+    {
+        return _container.TryGetContainingContainer(stationAi, out var container) &&
+               container.ID == StationAiCoreComponent.Container &&
+               TryComp<StationAiCoreComponent>(container.Owner, out var core) &&
+               core.RemoteEntity == actor;
+    }
+
+    /// <summary>
+    /// Returns the entity that should be marked as the BUI actor for the player's current session.
+    /// </summary>
+    private EntityUid GetBodyUiActor(EntityUid stationAi, EntityUid actor)
+    {
+        var isActor = IsRemoteActor(stationAi, actor);
+        return isActor ? stationAi : actor;
+    }
+
+    /// <summary>
+    /// Resolves the station AI brain for body UI actions raised on the active actor or relayed action target.
+    /// </summary>
+    private bool TryGetStationAiFromBodyUiAction(StationAiBodyOpenUiActionEvent args, out EntityUid stationAi, out EntityUid actor)
+    {
+        actor = args.Performer;
+
+        if (TryGetStationAiFromActor(args.Performer, out stationAi))
+            return true;
+
+        if (TryComp<ActionComponent>(args.Action, out var action) &&
+            action.AttachedEntity is { } attached)
+        {
+            actor = attached;
+            return TryGetStationAiFromActor(attached, out stationAi);
+        }
+
+        stationAi = default;
+        actor = default;
+        return false;
     }
 
     /// <summary>
@@ -295,6 +380,9 @@ public sealed partial class StationAiBodySystem
             stationAi = actor;
             return true;
         }
+
+        if (TryGetStationAiFromRemoteActor(actor, out stationAi))
+            return true;
 
         if (!TryComp<StationAiBodyComponent>(actor, out var body))
         {
@@ -316,6 +404,30 @@ public sealed partial class StationAiBodySystem
 
         stationAi = linkedAi;
         return true;
+    }
+
+    /// <summary>
+    /// Resolves a station AI brain from its active remote eye.
+    /// </summary>
+    private bool TryGetStationAiFromRemoteActor(EntityUid actor, out EntityUid stationAi)
+    {
+        var query = EntityQueryEnumerator<StationAiCoreComponent>();
+
+        while (query.MoveNext(out var coreUid, out var core))
+        {
+            if (core.RemoteEntity != actor)
+                continue;
+
+            if (!_container.TryGetContainer(coreUid, StationAiHolderComponent.Container, out var container) ||
+                container.ContainedEntities.Count != 1)
+                break;
+
+            stationAi = container.ContainedEntities[0];
+            return HasComp<StationAiBodyControllerComponent>(stationAi);
+        }
+
+        stationAi = default;
+        return false;
     }
 
     #endregion

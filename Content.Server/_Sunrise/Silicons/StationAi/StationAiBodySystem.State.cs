@@ -1,10 +1,9 @@
-using Content.Server.Silicons.Borgs;
+using Content.Server.Mind;
 using Content.Shared._Sunrise.Silicons.StationAi;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.NameIdentifier;
-using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Tag;
@@ -25,8 +24,7 @@ public sealed partial class StationAiBodySystem
      */
 
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly BorgSwitchableTypeSystem _borgSwitchableType = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> StationAiCommunicationBoardTag = "StationAiCommunicationBoard";
@@ -38,8 +36,8 @@ public sealed partial class StationAiBodySystem
     /// </summary>
     private void InitializeBodyState()
     {
-        SubscribeLocalEvent<BorgChassisComponent, EntInsertedIntoContainerMessage>(OnBorgBrainInserted, before: [typeof(SharedBorgSystem)]);
-        SubscribeLocalEvent<BorgChassisComponent, EntRemovedFromContainerMessage>(OnBorgBrainRemoved, before: [typeof(SharedBorgSystem)]);
+        SubscribeLocalEvent<BorgChassisComponent, BorgBrainInsertedIntoChassisEvent>(OnBorgBrainInserted);
+        SubscribeLocalEvent<BorgChassisComponent, BorgBrainRemovedFromChassisEvent>(OnBorgBrainRemoved);
         SubscribeLocalEvent<StationAiBodyControllerComponent, EntGotRemovedFromContainerMessage>(OnStationAiBrainGotRemovedFromCore);
         SubscribeLocalEvent<StationAiBodyControllerComponent, MobStateChangedEvent>(OnStationAiBrainMobStateChanged);
         SubscribeLocalEvent<StationAiBodyComponent, EntityTerminatingEvent>(OnBodyTerminating);
@@ -53,23 +51,17 @@ public sealed partial class StationAiBodySystem
     /// <summary>
     /// Attempts to initialize a borg chassis as an AI body when a communication board enters its brain slot.
     /// </summary>
-    private void OnBorgBrainInserted(Entity<BorgChassisComponent> chassis, ref EntInsertedIntoContainerMessage args)
+    private void OnBorgBrainInserted(Entity<BorgChassisComponent> chassis, ref BorgBrainInsertedIntoChassisEvent args)
     {
-        if (args.Container != chassis.Comp.BrainContainer)
-            return;
-
-        TryInitializeBody(chassis.AsNullable(), args.Entity);
+        TryInitializeBody(chassis.AsNullable(), args.Brain);
     }
 
     /// <summary>
     /// Clears AI body state when its communication board leaves the borg brain slot.
     /// </summary>
-    private void OnBorgBrainRemoved(Entity<BorgChassisComponent> chassis, ref EntRemovedFromContainerMessage args)
+    private void OnBorgBrainRemoved(Entity<BorgChassisComponent> chassis, ref BorgBrainRemovedFromChassisEvent args)
     {
-        if (args.Container != chassis.Comp.BrainContainer)
-            return;
-
-        TryClearBodyFromRemovedBoard(chassis.AsNullable(), args.Entity);
+        TryClearBodyFromRemovedBoard(chassis.AsNullable(), args.Brain);
     }
 
     /// <summary>
@@ -91,18 +83,7 @@ public sealed partial class StationAiBodySystem
         if (!HasComp<StationAiCoreComponent>(args.Container.Owner))
             return;
 
-        if (stationAi.Comp.CurrentBody == null)
-            return;
-
-        RemComp<RelayInputMoverComponent>(stationAi);
-
-        if (TryComp<InputMoverComponent>(stationAi, out var mover))
-        {
-            mover.CanMove = false;
-            Dirty(stationAi, mover);
-        }
-
-        TryExitBody(stationAi);
+        TryExitBodyFromCore(stationAi);
     }
 
     /// <summary>
@@ -119,9 +100,9 @@ public sealed partial class StationAiBodySystem
     /// <summary>
     /// Handles the body exit action raised from a currently controlled body.
     /// </summary>
-    private void OnBodyExitAction(Entity<StationAiBodyComponent> body, ref StationAiBodyExitActionEvent args)
+    private void OnBodyExitAction(EntityUid bodyUid, StationAiBodyComponent body, StationAiBodyExitActionEvent args)
     {
-        if (args.Handled || body.Comp.LinkedAi is not { } stationAi)
+        if (args.Handled || body.LinkedAi is not { } stationAi)
             return;
 
         if (!TryExitBody(stationAi))
@@ -158,17 +139,12 @@ public sealed partial class StationAiBodySystem
     /// <summary>
     /// Transfers a station AI brain into a prepared free body.
     /// </summary>
-    public bool TryEnterBody(EntityUid stationAi, EntityUid body)
-    {
-        return TryEnterBody(stationAi, (body, null));
-    }
-
-    /// <summary>
-    /// Transfers a station AI brain into a prepared free body.
-    /// </summary>
     public bool TryEnterBody(EntityUid stationAi, Entity<StationAiBodyComponent?> body)
     {
         if (!CanEnterBody(stationAi, body, out var mindId, out var mind, out var currentBody))
+            return false;
+
+        if (!Resolve(body, ref body.Comp, false))
             return false;
 
         DoEnterBody(stationAi, (body, body.Comp!), mindId, mind, currentBody);
@@ -230,6 +206,18 @@ public sealed partial class StationAiBodySystem
     }
 
     /// <summary>
+    /// Returns the AI to its brain after the brain was removed from the station AI core.
+    /// </summary>
+    public bool TryExitBodyFromCore(Entity<StationAiBodyControllerComponent> stationAi)
+    {
+        if (!CanExitBody(stationAi, out var body, out var bodyComp, out var mindId, out var mind, out var controller))
+            return false;
+
+        DoExitBodyFromCore(stationAi, (body, bodyComp), mindId, mind, controller);
+        return true;
+    }
+
+    /// <summary>
     /// Returns whether the AI is currently controlling a body and can leave it.
     /// </summary>
     public bool CanExitBody(
@@ -256,35 +244,6 @@ public sealed partial class StationAiBodySystem
         bodyComp = currentBody.Comp;
         mind = mindComp;
         controller = controllerComp;
-        return true;
-    }
-
-    /// <summary>
-    /// Returns whether the AI may select a borg chassis type for its active body.
-    /// </summary>
-    public bool CanSelectBodyType(
-        EntityUid stationAi,
-        ProtoId<BorgTypePrototype> borgType,
-        out EntityUid body,
-        out BorgSwitchableTypeComponent switchable)
-    {
-        body = default;
-        switchable = default!;
-
-        if (!TryGetCurrentControlledBody(stationAi, out var currentBody, out _))
-            return false;
-
-        if (currentBody.Comp.Board == null)
-            return false;
-
-        if (!TryComp<BorgSwitchableTypeComponent>(currentBody, out var switchableComp))
-            return false;
-
-        if (!_borgSwitchableType.CanSelectBorgType((currentBody, switchableComp), borgType))
-            return false;
-
-        body = currentBody;
-        switchable = switchableComp;
         return true;
     }
 
@@ -346,10 +305,10 @@ public sealed partial class StationAiBodySystem
         if (bodyComp.LinkedAi is not { } linkedAi)
             return true;
 
-        if (!_mind.TryGetMind(chassis, out var foundMindId, out var foundMind))
+        if (!TryComp<StationAiBodyControllerComponent>(linkedAi, out var controllerComp))
             return false;
 
-        if (!TryComp<StationAiBodyControllerComponent>(linkedAi, out var controllerComp))
+        if (!_mind.TryGetMind(chassis, out var foundMindId, out var foundMind))
             return false;
 
         stationAi = linkedAi;
@@ -374,6 +333,7 @@ public sealed partial class StationAiBodySystem
             mind,
             controller,
             ejectBoard);
+
         return true;
     }
 
@@ -499,6 +459,7 @@ public sealed partial class StationAiBodySystem
         MindComponent mind,
         StationAiBodyControllerComponent controller)
     {
+        _ui.CloseUi((stationAi, null), StationAiBodyUiKey.Key);
         DoReleaseBody(body, stationAi);
         controller.CurrentBody = null;
 
@@ -506,6 +467,27 @@ public sealed partial class StationAiBodySystem
 
         Dirty(stationAi, controller);
         UpdateAllBodyUiData();
+    }
+
+    /// <summary>
+    /// Applies body exit state after the station AI brain leaves the core.
+    /// </summary>
+    private void DoExitBodyFromCore(
+        Entity<StationAiBodyControllerComponent> stationAi,
+        Entity<StationAiBodyComponent> body,
+        EntityUid mindId,
+        MindComponent mind,
+        StationAiBodyControllerComponent controller)
+    {
+        RemComp<RelayInputMoverComponent>(stationAi);
+
+        if (TryComp<InputMoverComponent>(stationAi, out var mover))
+        {
+            mover.CanMove = false;
+            Dirty(stationAi, mover);
+        }
+
+        DoExitBody(stationAi, body, mindId, mind, controller);
     }
 
     /// <summary>

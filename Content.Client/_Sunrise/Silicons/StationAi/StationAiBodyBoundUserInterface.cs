@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.Silicons.StationAi;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.Silicons.StationAi;
@@ -15,9 +16,19 @@ public sealed class StationAiBodyBoundUserInterface(EntityUid owner, Enum uiKey)
     {
         base.Open();
 
-        _window = this.CreateWindow<StationAiBodyWindow>();
+        _window = this.CreateDisposableControl<StationAiBodyWindow>();
+        _window.OnClose += OnWindowClosed;
         _window.EnterBodyAction += EnterBody;
         _window.ExitBodyAction += ExitBody;
+
+        var ui = EntMan.System<UserInterfaceSystem>();
+        ui.RegisterControl(this, _window);
+
+        if (ui.TryGetPosition(Owner, UiKey, out var position))
+            _window.Open(position);
+        else
+            _window.OpenCentered();
+
         Update();
     }
 
@@ -37,13 +48,25 @@ public sealed class StationAiBodyBoundUserInterface(EntityUid owner, Enum uiKey)
     /// </summary>
     protected override void Dispose(bool disposing)
     {
-        base.Dispose(disposing);
-
         if (!disposing || _window == null)
+        {
+            base.Dispose(disposing);
             return;
+        }
 
+        _window.OnClose -= OnWindowClosed;
         _window.EnterBodyAction -= EnterBody;
         _window.ExitBodyAction -= ExitBody;
+
+        base.Dispose(disposing);
+    }
+
+    /// <summary>
+    /// Closes the BUI only when the player closes this window directly.
+    /// </summary>
+    private void OnWindowClosed()
+    {
+        Close();
     }
 
     /// <summary>

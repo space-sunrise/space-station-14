@@ -33,11 +33,11 @@ public sealed partial class StationAiBodyComponent : Component
     /// Action prototypes granted to the borg chassis while it is controlled as a station AI body.
     /// </summary>
     [DataField]
-    public List<EntProtoId> ControlledBodyActions =
-    [
+    public List<EntProtoId> ControlledBodyActions = new()
+    {
         "ActionStationAiBodyMenu",
         "ActionStationAiBodyExit",
-    ];
+    };
 
     /// <summary>
     /// Action entities granted from <see cref="ControlledBodyActions"/> during active control.
