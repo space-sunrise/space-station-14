@@ -1,19 +1,15 @@
 using Content.Shared._Sunrise.TapeRecorder;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._Sunrise.TapeRecorder;
 
-public sealed class TapeRecorderTimeline : Control
+public sealed class TapeRecorderTimeline : ProgressBar
 {
-    private const float TrackHorizontalInset = 1f;
-    private const float TrackVerticalInset = 3f;
-    private const float MinTrackWidth = 1f;
-    private const float MinTrackHeight = 3f;
     private const float PositionMarkerHalfWidth = 1f;
     private const float PositionMarkerVerticalBleed = 1f;
 
-    private static readonly Color BackgroundColor = Color.FromHex("#14171A");
     private static readonly Color EmptyTapeColor = Color.FromHex("#29A342");
     private static readonly Color UsedTapeColor = Color.FromHex("#D12E24");
     private static readonly Color PositionColor = Color.FromHex("#9EF580");
@@ -26,6 +22,11 @@ public sealed class TapeRecorderTimeline : Control
     public TapeRecorderTimeline()
     {
         MouseFilter = MouseFilterMode.Pass;
+        MinValue = 0f;
+        MaxValue = 1f;
+        Value = 1f;
+        BackgroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#14171A") };
+        ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = EmptyTapeColor };
     }
 
     public void UpdateState(TimeSpan position, TimeSpan capacity, IReadOnlyList<TapeCassetteRecordedRange> recordedRanges)
@@ -34,34 +35,25 @@ public sealed class TapeRecorderTimeline : Control
         _capacity = capacity;
         _recordedRanges.Clear();
         _recordedRanges.AddRange(recordedRanges);
-        InvalidateArrange();
+        Value = 1f;
+        InvalidateMeasure();
     }
 
     protected override void Draw(DrawingHandleScreen handle)
     {
-        handle.DrawRect(PixelSizeBox, BackgroundColor);
+        base.Draw(handle);
 
         if (PixelWidth <= 0 || PixelHeight <= 0)
             return;
 
-        var trackBox = BuildTrackBox();
-        handle.DrawRect(trackBox, EmptyTapeColor);
-
         var capacitySeconds = (float) _capacity.TotalSeconds;
         if (capacitySeconds > 0f)
         {
-            DrawRecordedRanges(handle, trackBox, capacitySeconds);
-            DrawPositionMarker(handle, trackBox, capacitySeconds);
+            DrawRecordedRanges(handle, PixelSizeBox, capacitySeconds);
+            DrawPositionMarker(handle, PixelSizeBox, capacitySeconds);
         }
 
-        handle.DrawRect(trackBox, BorderColor, false);
-    }
-
-    private UIBox2 BuildTrackBox()
-    {
-        var right = MathF.Max(MinTrackWidth, PixelWidth - TrackHorizontalInset);
-        var bottom = MathF.Max(MinTrackHeight, PixelHeight - TrackVerticalInset);
-        return new UIBox2(TrackHorizontalInset, TrackVerticalInset, right, bottom);
+        handle.DrawRect(PixelSizeBox, BorderColor, false);
     }
 
     private void DrawRecordedRanges(DrawingHandleScreen handle, UIBox2 trackBox, float capacitySeconds)

@@ -26,14 +26,15 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 
     private void OnCassetteState(Entity<TapeCassetteComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        var query = EntityQueryEnumerator<TapeRecorderComponent>();
-        while (query.MoveNext(out var uid, out var recorder))
-        {
-            if (recorder.Cassette != ent.Owner)
-                continue;
+        var parent = Transform(ent).ParentUid;
 
-            UpdateRecorderUi((uid, recorder));
-        }
+        if (!TryComp<TapeRecorderComponent>(parent, out var recorder))
+            return;
+
+        if (recorder.Cassette != ent.Owner)
+            return;
+
+        UpdateRecorderUi((parent, recorder));
     }
 
     private void UpdateRecorderUi(Entity<TapeRecorderComponent> ent)
