@@ -174,7 +174,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     private void OnAiBuiCheck(Entity<StationAiWhitelistComponent> ent, ref BoundUserInterfaceCheckRangeEvent args)
     {
-        if (!TryGetCoreForAiActor(args.Actor, out _, out _)) // Sunrise-Edit - проверяем активного актора ИИ, включая тело.
+        if (!TryGetCoreForAiActor(args.Actor, out var core, out _)) // Sunrise-Edit - проверяем активного актора ИИ, включая тело.
             return;
 
         args.Result = BoundUserInterfaceRangeResult.Fail;
@@ -183,10 +183,13 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         var targetXform = Transform(args.Target);
 
         // No cross-grid
-        if (targetXform.GridUid != args.Actor.Comp.GridUid)
+        // Sunrise edit start - тело ИИ держит BUI, но видимость двери проверяется от ядра ИИ.
+        var coreXform = Transform(core.Owner);
+        if (targetXform.GridUid != coreXform.GridUid)
         {
             return;
         }
+        // Sunrise edit end
 
         if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
         {

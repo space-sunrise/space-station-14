@@ -442,6 +442,7 @@
 - type: entity
   id: StationAiBrain
   parent: PositronicBrain
+  save: false # Sunrise-Edit - Дефолт ломает тест, мозг ИИ создается во время раунда и не должен сохраняться на карте.
   categories: [ HideSpawnMenu, DoNotMap ]
   components:
   - type: Sprite

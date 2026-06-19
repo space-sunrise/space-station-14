@@ -394,6 +394,7 @@ public sealed partial class StationAiBodySystem
 
         TryReturnMindFromRemovedBoard(stationAi, mindId, mind, controller);
 
+        RemCompDeferred<IgnoreUIRangeComponent>(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
 
@@ -438,6 +439,7 @@ public sealed partial class StationAiBodySystem
         ReleaseCurrentBody(stationAi, currentBody, body);
 
         body.Comp.LinkedAi = stationAi;
+        EnsureComp<IgnoreUIRangeComponent>(body);
         controller.CurrentBody = body;
         EnsureControllerActions((stationAi, controller));
 
@@ -510,6 +512,7 @@ public sealed partial class StationAiBodySystem
 
         body.Comp.LinkedAi = null;
         controller.CurrentBody = null;
+        RemCompDeferred<IgnoreUIRangeComponent>(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
 
@@ -529,6 +532,7 @@ public sealed partial class StationAiBodySystem
             return;
 
         body.Comp.LinkedAi = null;
+        RemCompDeferred<IgnoreUIRangeComponent>(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
         _metaData.SetEntityName(body, GetFreeBodyName(body.Comp.BodyNumber));
