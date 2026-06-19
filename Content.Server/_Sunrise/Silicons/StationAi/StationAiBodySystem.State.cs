@@ -1,5 +1,6 @@
 using Content.Server.Mind;
 using Content.Shared._Sunrise.Silicons.StationAi;
+using Content.Shared.Access.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
@@ -24,6 +25,7 @@ public sealed partial class StationAiBodySystem
      */
 
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedAccessSystem _access = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
@@ -440,6 +442,7 @@ public sealed partial class StationAiBodySystem
         EnsureControllerActions((stationAi, controller));
 
         _mind.TransferTo(mindId, body, mind: mind);
+        RestoreFreeBodyAccess(currentBody);
         _metaData.SetEntityName(body, aiName);
         GrantStationAiRadioChannels(stationAi, body);
         GrantControlledBodyActions(body);
@@ -464,6 +467,7 @@ public sealed partial class StationAiBodySystem
         controller.CurrentBody = null;
 
         _mind.TransferTo(mindId, stationAi, mind: mind);
+        RestoreFreeBodyAccess(body.Owner);
 
         Dirty(stationAi, controller);
         UpdateAllBodyUiData();
@@ -528,6 +532,7 @@ public sealed partial class StationAiBodySystem
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
         _metaData.SetEntityName(body, GetFreeBodyName(body.Comp.BodyNumber));
+        RestoreFreeBodyAccess(body.Owner);
 
         Dirty(body);
     }
@@ -545,6 +550,20 @@ public sealed partial class StationAiBodySystem
             return null;
 
         return body;
+    }
+
+    private void RestoreFreeBodyAccess(EntityUid? body)
+    {
+        if (body is not { } bodyUid)
+            return;
+
+        if (!TryComp<StationAiBodyComponent>(bodyUid, out var bodyComp))
+            return;
+
+        if (bodyComp.Board == null)
+            return;
+
+        _access.SetAccessEnabled(bodyUid, true);
     }
 
     /// <summary>

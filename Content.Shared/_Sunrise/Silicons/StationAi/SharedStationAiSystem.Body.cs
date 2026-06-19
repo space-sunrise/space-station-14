@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.Silicons.StationAi;
+using Content.Shared.Access.Components;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Content.Shared.Silicons.StationAi;
@@ -6,6 +7,19 @@ namespace Content.Shared.Silicons.StationAi;
 
 public abstract partial class SharedStationAiSystem
 {
+    private void InitializeBody()
+    {
+        SubscribeLocalEvent<StationAiBodyComponent, GetAdditionalAccessEvent>(OnBodyGetAdditionalAccess);
+    }
+
+    private void OnBodyGetAdditionalAccess(Entity<StationAiBodyComponent> body, ref GetAdditionalAccessEvent args)
+    {
+        if (body.Comp.LinkedAi is not { } stationAi)
+            return;
+
+        args.Entities.Add(stationAi);
+    }
+
     /// <summary>
     /// Resolves a station AI actor, either the brain itself or a controlled body, back to its held brain and core.
     /// </summary>

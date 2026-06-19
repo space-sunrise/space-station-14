@@ -89,6 +89,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         InitializeHeld();
         InitializeLight();
         InitializeCustomization();
+        InitializeBody(); // Sunrise-Edit - доступы активного тела ИИ.
 
         SubscribeLocalEvent<StationAiWhitelistComponent, BoundUserInterfaceCheckRangeEvent>(OnAiBuiCheck);
 
