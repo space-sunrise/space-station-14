@@ -1163,6 +1163,9 @@
       state: Pirate
   - type: Item
     heldPrefix: orange #this is close enough to the weird puce color pirate IDs have going on
+  - type: Access
+    tags:
+    - Pirate
   - type: IdCard
     jobIcon: JobIconPirate
 
