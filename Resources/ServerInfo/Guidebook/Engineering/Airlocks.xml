@@ -36,7 +36,7 @@
     <GuideEntityEmbed Entity="PlayerStationAiEmpty" Caption=""/>
   </Box>
   <Box>
-    [color=#999999][italic]The Station AI, which has remote control over all airlocks[/italic][/color]
+    [color=#999999][italic]The Station AI, which has remote control over all airlocks[italic][/color]
   </Box>
 
   <Box>
@@ -48,7 +48,7 @@
     <GuideEntityEmbed Entity="DoorRemoteResearch" Caption=""/>
   </Box>
   <Box>
-    [color=#999999][italic]Precious door remotes. With unlimited power...[/italic][/color]
+    [color=#999999][italic]Precious door remotes. With unlimited power...[italic][/color]
   </Box>
 
 

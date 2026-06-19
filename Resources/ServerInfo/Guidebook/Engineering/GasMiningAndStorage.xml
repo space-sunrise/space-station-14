@@ -52,7 +52,7 @@
   </Box>
 
   <Box>
-    [color=#999999][italic]An example of a small gas holding tank[/italic][/color]
+    [color=#999999][italic]An example of a small gas holding tank[italic][/color]
   </Box>
 
   Various atmos processes insert and remove gasses from the gas storage tanks.
