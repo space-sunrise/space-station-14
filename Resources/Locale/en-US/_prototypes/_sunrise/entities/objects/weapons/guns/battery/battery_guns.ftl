@@ -45,5 +45,7 @@ ent-WeaponPulseRifle = pulse rifle
     .desc = A weapon that is almost as infamous as its users.
 ent-WeaponSunriseLaserPistol = laser pistol
     .desc = A compact laser sidearm with an integrated battery.
+ent-WeaponPilotLasgun = pilot lasgun
+    .desc = The Imperium's main argument in disputes with heretics and cultists. Cauterizes wounds on hit, saving a battle brother's bandages.
 ent-XenoborgTemperatureGun = xenoborg temperature gun
     .desc = An advanced gun that shoots body-temperature-changing beams. This one has a self-recharging battery for xenoborg use.
