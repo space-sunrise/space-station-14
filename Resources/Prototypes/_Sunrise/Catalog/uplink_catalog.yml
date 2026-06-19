@@ -326,6 +326,11 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineLightRifleHP
@@ -335,6 +340,11 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineLightRifleFMJ
@@ -344,6 +354,11 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineRifleHeavySP
@@ -475,6 +490,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineBauer127Penetrator
@@ -494,6 +510,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineBauer127Frag
@@ -519,11 +536,8 @@
   description: uplink-magazine-127emp-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi, state: emp }
   productEntity: MagazineBauer127Emp
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 1
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
   conditions:
@@ -532,6 +546,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineBauer127Blast
@@ -639,6 +654,22 @@
   - UplinkAmmo
 
 - type: listing
+  id: UplinkMagazineDragunovAPAssaultOps
+  name: uplink-magazine-dragunov-ap-name
+  description: uplink-magazine-dragunov-ap-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovAP
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
   id: UplinkMagazineDragunovIncendiary
   description: uplink-magazine-dragunov-incendiary-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
@@ -666,6 +697,22 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+
+- type: listing
+  id: UplinkMagazineDragunovUraniumAssaultOps
+  name: uplink-magazine-dragunov-uranium-name
+  description: uplink-magazine-dragunov-uranium-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
+  productEntity: MagazineDragunovUranium
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
 
 # For the mosin
 - type: listing
@@ -1046,6 +1093,11 @@
     Telecrystal: 8
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkSKM28
@@ -1063,6 +1115,25 @@
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkWeaponType88AMRAssaultOps
+  name: uplink-type88-amr-name
+  description: uplink-type88-amr-desc
+  productEntity: BriefcaseWeaponType88AMRFilled
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/type88/big.rsi, state: base }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 14
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
       tags:
       - AssaultOpsUplink
 
@@ -1085,6 +1156,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkClothingBackpackSyndieAJ100Filled
@@ -2368,6 +2440,11 @@
     Telecrystal: 7
   categories:
   - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkX4
@@ -2665,24 +2742,6 @@
       - SurplusBundle
 
 - type: listing
-  id: UplinkWeaponMechCombatKordRoboticist
-  name: uplink-mech-equipment-kord-name
-  description: uplink-mech-equipment-kord-desc
-  productEntity: WeaponMechCombatKord
-  cost:
-    Telecrystal: 15
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Roboticist
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
   id: UplinkCArmouredJumpsuit
   name: uplink-armoured-jumpsuit-name
   description: uplink-armoured-jumpsuit-desc
@@ -2739,6 +2798,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkWeaponShotgunMinotaurBundle
@@ -3643,15 +3703,86 @@
 
 # region Assault Ops
 - type: listing
+  id: UplinkCleanerGrenadeAcidBoxAssaultOps
+  name: uplink-heavy-cleanade-name
+  description: uplink-heavy-cleanade-desc
+  productEntity: CleanerGrenadeAcidBox
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkCaneShotgunAssaultOps
+  name: uplink-cane-shotgun-name
+  description: uplink-cane-shotgun-desc
+  icon: { sprite: Objects/Weapons/Melee/cane.rsi, state: cane }
+  productEntity: CaneShotgunBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkContortionistJumpsuitAssaultOps
+  name: uplink-contortionist-jumpsuit-name
+  description: uplink-contortionist-jumpsuit-desc
+  productEntity: ClothingUniformJumpsuitAtmosSyndie
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkCaneBladeAssaultOps
+  name: uplink-cane-blade-name
+  description: uplink-cane-blade-desc
+  icon: { sprite: Objects/Weapons/Melee/cane.rsi, state: cane }
+  productEntity: CaneSheathFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
   id: uplinkBriefcaseGunAssOps
   name: uplink-briefcase-gun-name
   description: uplink-briefcase-gun-desc
   productEntity: WeaponSubMachineGunBriefcase
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 4
   cost:
-    Telecrystal: 14
+    Telecrystal: 8
   categories:
   - UplinkWeaponry
   conditions:
