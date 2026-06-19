@@ -9,8 +9,8 @@
     priority: -4
     itemIconStyle: NoItem
     icon:
-      sprite: Interface/Actions/actions_ai.rsi
-      state: ai_core
+      sprite: _Sunrise/Interface/Actions/actions_borg.rsi
+      state: ai_connection
     useDelay: 0.5
   - type: InstantAction
     event: !type:StationAiBodyOpenUiActionEvent
