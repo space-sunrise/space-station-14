@@ -1815,6 +1815,13 @@
     Telecrystal: 5
   categories:
   - UplinkWearables
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingOuterVestWebElite
@@ -1828,6 +1835,13 @@
     Telecrystal: 5
   categories:
   - UplinkWearables
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingShoesBootsMagSyndie

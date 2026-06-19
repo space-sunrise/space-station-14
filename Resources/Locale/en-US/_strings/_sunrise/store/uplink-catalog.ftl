@@ -68,6 +68,10 @@ uplink-clothing-murder-socks-name = Murder Socks
 uplink-clothing-murder-socks-desc = For the agent who truly understands style.
 uplink-clothing-chameleon-silent-name = Silent shoes
 uplink-clothing-chameleon-silent-desc = Specialized shoes designed for silent movement. Every step disappears into the void.
+uplink-clothing-belt-syndicate-utility-name = Syndicate Utility Belt
+uplink-clothing-belt-syndicate-utility-desc = A toolbelt that passes a glance, but feels too deliberate in the hand.
+uplink-clothing-belt-syndicate-utility-chameleon-name = Chameleon Syndicate Utility Belt
+uplink-clothing-belt-syndicate-utility-chameleon-desc = A toolbelt for agents who prefer their equipment to look ordinary until it matters.
 uplink-syndie-maid-raid-name = Maid Raider
 uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female agents, yet for some reason only men ever wear it.
 
@@ -130,6 +134,8 @@ uplink-xeno-artifact-throwing-auto-injector-name = Artifact throwing Auto-Inject
 uplink-xeno-artifact-throwing-auto-injector-desc = A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
 uplink-roboticist-nuclear-operative-id-card-name = Roboticist operative ID card
 uplink-roboticist-nuclear-operative-id-card-desc = A roboticist ID card with standard job access and additional Syndicate access.
+uplink-med-hypospray-name = Hacked Medical Hypospray
+uplink-med-hypospray-desc = A sterile injector for rapid administration of medicine to patients. It used to contain an internal toxin filter. Now it does not.
 
 ## Implants
 

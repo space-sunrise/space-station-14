@@ -134,6 +134,26 @@
   - UplinkWearables
 
 - type: listing
+  id: UplinkClothingBeltSyndicateUtility
+  name: uplink-clothing-belt-syndicate-utility-name
+  description: uplink-clothing-belt-syndicate-utility-desc
+  productEntity: ClothingBeltSyndicateUtility
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkClothingBeltSyndicateUtilityChameleon
+  name: uplink-clothing-belt-syndicate-utility-chameleon-name
+  description: uplink-clothing-belt-syndicate-utility-chameleon-desc
+  productEntity: ClothingBeltSyndicateUtilityChameleon
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkWearables
+
+- type: listing
   id: UplinkMiscSyndiePowercage
   name: uplink-objects-power-syndie-powercell-name
   description: uplink-objects-power-syndie-powercell-desc
@@ -333,6 +353,11 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineRifleHeavyHP
@@ -342,6 +367,11 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineRifleHeavyFMJ
@@ -351,6 +381,11 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 # For the LMG
 - type: listing
@@ -1025,6 +1060,11 @@
     Telecrystal: 18
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkAJ100
@@ -1637,6 +1677,11 @@
     Telecrystal: 6
   categories:
     - UplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - AssaultOpsUplink
 
 - type: listing
   id: UplinkPolytrinicAcidChemistryBottle
@@ -2374,26 +2419,26 @@
     whitelist:
     - AtmosphericTechnician
 
-# - type: listing
-#   id: UplinkMedHyposprayNoFilter  # Sunrise-todo: change to jet injector
-#   name: uplink-med-hypospray-name
-#   description: uplink-med-hypospray-desc
-#   productEntity: HyposprayMedicalNoFilterBox
-#   discountCategory: rareDiscounts
-#   discountDownTo:
-#     Telecrystal: 2
-#   cost:
-#     Telecrystal: 4
-#   categories:
-#   - UplinkJob
-#   conditions:
-#   - !type:BuyerJobCondition
-#     whitelist:
-#     - MedicalDoctor
-#     - Chemist
-#     - Paramedic
-#     - SeniorPhysician
-#     - MedicalIntern
+- type: listing
+  id: UplinkMedHyposprayNoFilter
+  name: uplink-med-hypospray-name
+  description: uplink-med-hypospray-desc
+  productEntity: JetInjectorSyndicateBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - MedicalDoctor
+    - Chemist
+    - Paramedic
+    - SeniorPhysician
+    - MedicalIntern
 
 - type: listing
   id: UplinkSyringePistol
@@ -3062,7 +3107,7 @@
   id: UplinkSunriseClericalErrorDeclaratorNuke
   productEntity: SunriseClericalErrorDeclarator
   cost:
-    Telecrystal: 10
+    Telecrystal: 9
   categories:
   - UplinkDisruption
   conditions:
@@ -3098,7 +3143,7 @@
   id: UplinkSunriseBreakerFlipDeclaratorNuke
   productEntity: SunriseBreakerFlipDeclarator
   cost:
-    Telecrystal: 10
+    Telecrystal: 9
   categories:
   - UplinkDisruption
   conditions:
@@ -3134,7 +3179,7 @@
   id: UplinkSunrisePowerGridCheckDeclaratorNuke
   productEntity: SunrisePowerGridCheckDeclarator
   cost:
-    Telecrystal: 10
+    Telecrystal: 9
   categories:
   - UplinkDisruption
   conditions:
@@ -3170,7 +3215,7 @@
   id: UplinkSunriseMeteorDustDeclaratorNuke
   productEntity: SunriseMeteorDustDeclarator
   cost:
-    Telecrystal: 10
+    Telecrystal: 9
   categories:
   - UplinkDisruption
   conditions:
@@ -3595,3 +3640,69 @@
     blacklist:
       components:
       - SurplusBundle
+
+# region Assault Ops
+- type: listing
+  id: uplinkBriefcaseGunAssOps
+  name: uplink-briefcase-gun-name
+  description: uplink-briefcase-gun-desc
+  productEntity: WeaponSubMachineGunBriefcase
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkSyringePistolAssaultOps
+  productEntity: LauncherSyringePistol
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkSyringeGunAutoAssaultOps
+  productEntity: LauncherSyringeRapid
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+
+- type: listing
+  id: UplinkMedHyposprayNoFilterAssaultOps
+  name: uplink-med-hypospray-name
+  description: uplink-med-hypospray-desc
+  productEntity: JetInjectorSyndicateBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink

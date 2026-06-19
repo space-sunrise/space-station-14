@@ -31,13 +31,13 @@ public sealed partial class TelecomThermalComponent : Component
     /// Ambient temperature threshold below which the server stops relaying traffic.
     /// </summary>
     [DataField]
-    public float MinTemperature = Atmospherics.T0C;
+    public float MinTemperature = Atmospherics.T0C - 45f;
 
     /// <summary>
     /// Ambient temperature threshold above which cold shutdown clears.
     /// </summary>
     [DataField]
-    public float HysteresisMinTemperature = Atmospherics.T0C + 10f;
+    public float HysteresisMinTemperature = Atmospherics.T0C - 35f;
 
     /// <summary>
     /// Ambient pressure threshold above which the server stops relaying traffic.

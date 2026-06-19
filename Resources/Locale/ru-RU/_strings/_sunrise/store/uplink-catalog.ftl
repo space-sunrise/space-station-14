@@ -113,9 +113,15 @@ uplink-clothing-murder-socks-name = чулочки убийцы
 uplink-clothing-murder-socks-desc = для агента что по настоящему шарит за стиль
 uplink-clothing-chameleon-silent-name = Бесшумная обувь
 uplink-clothing-chameleon-silent-desc = Специальная обувь, созданная для бесшумного передвижения. Каждый шаг растворяется в пустоте.
+uplink-clothing-belt-syndicate-utility-name = Пояс для инструментов Синдиката
+uplink-clothing-belt-syndicate-utility-desc = Пояс для инструментов, который проходит беглый взгляд, но в руке ощущается слишком продуманным.
+uplink-clothing-belt-syndicate-utility-chameleon-name = Хамелеонский пояс для инструментов Синдиката
+uplink-clothing-belt-syndicate-utility-chameleon-desc = Пояс для агентов, предпочитающих, чтобы снаряжение выглядело обычным ровно до нужного момента.
 uplink-syndie-maid-raid-name = рейдерка горничной
 uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
+uplink-briefcase-gun-name = Портфель-пулемёт
+uplink-briefcase-gun-desc = Неприметный портфель со встроенным сверхкомпактным C-20r. Постарайтесь не сжимать ручку слишком крепко!
 uplink-swat-helmet-syndicate-name = Шлем Спецназа
 uplink-swat-helmet-syndicate-desc = Прочный шлем, созданный специально для тех, кто ценит целостность своей головы и конфиденциальность своих коварных замыслов. Окрашен в фирменные цвета спецназа Синдиката.
 uplink-syndicate-rapier-name = Рапира Синдиката
@@ -233,7 +239,7 @@ uplink-launcher-cream-pie-fake-name = Фальшивый пирогомёт
 uplink-launcher-cream-pie-fake-desc = Пирогомёт использующий микрореакторную батарею для генерации новых пирогов! Страхование от ЭМИ в цену не входит.
 uplink-heavy-cleanade-name = Граната глубокой очистки
 uplink-heavy-cleanade-desc = Внешне обычная чистящая граната, наполненная чрезвычайно едким чистящим химикатом, визуально идентичным обычной пене для чистки помещений. Лучше всего подходит для «уборки» переполненного мед-отдела.
-uplink-med-hypospray-name = Взломанный медицинский гипоспрей
+uplink-med-hypospray-name = Взломанный медицинский джетинъектор
 uplink-med-hypospray-desc = Стерильный инжектор для быстрого введения лекарств пациентам. До взлома содержал внутренний фильтр токсинов. Теперь не содержит.
 ## Implants
 
