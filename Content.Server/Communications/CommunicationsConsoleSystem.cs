@@ -301,6 +301,10 @@ namespace Content.Server.Communications
             {
                 voice = ttsComponent.VoicePrototypeId;
             }
+            else if (TryComp<BorgVoiceComponent>(message.Actor, out var borgVoice) && borgVoice.SelectedVoiceId != null)
+            {
+                voice = borgVoice.SelectedVoiceId.Value;
+            }
             // Sunrise-end
 
             if (comp.Global)
@@ -407,7 +411,12 @@ namespace Content.Server.Communications
             {
                 voice = ttsComponent.VoicePrototypeId;
             }
+            else if (TryComp<BorgVoiceComponent>(ev.Source, out var borgVoice) && borgVoice.SelectedVoiceId != null) // Sunrise-Edit-Start
+            {
+                voice = borgVoice.SelectedVoiceId.Value;
+            }
             _chatSystem.DispatchStationAnnouncement(uid, ev.Message, sender: Loc.GetString(comp.Title), playDefault: false, playTts: true, colorOverride: comp.Color, announceVoice: voice);
+            // Sunrise-Edit-End
         }
 
         private void StopRelay(EntityUid uid, CommunicationsConsoleComponent comp, bool announce)
