@@ -24,12 +24,10 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnAirlockBolt(EntityUid ent, DoorBoltComponent component, StationAiBoltEvent args)
     {
-        // Sunrise edit start - разрешаем действие только ядру ИИ или активному телу ИИ.
-        if (!TryGetCoreForAiActor(args.User, out _, out _))
+        if (!TryGetCoreForAiActor(args.User, out _, out var stationAi)) // Sunrise-Edit
             return;
-        // Sunrise edit end
 
-        if (component.BoltWireCut || !PowerReceiver.IsPowered(ent) || HasComp<RunicDoorComponent>(ent)) // Sunrise-Edit - runic-двери не отвечают на действия ИИ.
+        if (component.BoltWireCut || !PowerReceiver.IsPowered(ent) || HasComp<RunicDoorComponent>(ent)) // Sunrise-Edit
         {
             ShowDeviceNotRespondingPopup(args.User);
             _adminLogger.Add(LogType.Action,
@@ -37,7 +35,7 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
-        if (!_access.IsAllowed(args.User, ent)) // Sunrise-Edit - доступ проверяется по активному актору ИИ.
+        if (!_access.IsAllowed(stationAi, ent)) // Sunrise-Edit
         {
             ShowDeviceNoAccessPopup(args.User);
             _adminLogger.Add(LogType.Action,
@@ -63,10 +61,8 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnAirlockEmergencyAccess(EntityUid ent, AirlockComponent component, StationAiEmergencyAccessEvent args)
     {
-        // Sunrise edit start - разрешаем действие только ядру ИИ или активному телу ИИ.
-        if (!TryGetCoreForAiActor(args.User, out _, out _))
+        if (!TryGetCoreForAiActor(args.User, out _, out var stationAi)) // Sunrise-Edit
             return;
-        // Sunrise edit end
 
         if (!PowerReceiver.IsPowered(ent)
             || HasComp<RunicDoorComponent>(ent))
@@ -77,7 +73,7 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
-        if (!_access.IsAllowed(args.User, ent)) // Sunrise-Edit - доступ проверяется по активному актору ИИ.
+        if (!_access.IsAllowed(stationAi, ent)) // Sunrise-Edit
         {
             ShowDeviceNoAccessPopup(args.User);
             _adminLogger.Add(LogType.Action,
@@ -94,10 +90,8 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnElectrified(EntityUid ent, ElectrifiedComponent component, StationAiElectrifiedEvent args)
     {
-        // Sunrise edit start - разрешаем действие только ядру ИИ или активному телу ИИ.
-        if (!TryGetCoreForAiActor(args.User, out _, out _))
+        if (!TryGetCoreForAiActor(args.User, out _, out var stationAi)) // Sunrise-Edit
             return;
-        // Sunrise edit end
 
         if (
             component.IsWireCut
@@ -111,7 +105,7 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
-        if (!_access.IsAllowed(args.User, ent)) // Sunrise-Edit - доступ проверяется по активному актору ИИ.
+        if (!_access.IsAllowed(stationAi, ent)) // Sunrise-Edit
         {
             ShowDeviceNoAccessPopup(args.User);
             _adminLogger.Add(LogType.Action,

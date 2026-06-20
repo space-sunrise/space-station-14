@@ -132,38 +132,25 @@ public abstract partial class SharedStationAiSystem
         if (ev.Actor == ev.Target)
             return;
 
-        // Sunrise added start - разрешаем AI-only взаимодействия от активного тела ИИ.
-        if (!TryGetCoreForAiActor(ev.Actor, out _, out _))
-            return;
-        // Sunrise added end
-
-        // Sunrise edit start - валидируем активного актора ИИ вместо только сущности в ядре.
-        if (!TryComp(ev.Target, out StationAiWhitelistComponent? whitelistComponent) ||
-            !ValidateAiActor(ev.Actor))
+        if (!TryGetCoreForAiActor(ev.Actor, out _, out _) && // Sunrise edit - для поддержки тела ИИ заменили TryComp на аналог поддерживающий не только 1 компонент
+            (!TryComp(ev.Target, out StationAiWhitelistComponent? whitelistComponent) ||
+             !ValidateAi(ev.Actor))) // Sunrise edit - пришлось убрать stationAi так как мы убрали TryComp
         {
-            ev.Cancel();
-            return;
-        }
-        // Sunrise edit end
+            // Don't allow the AI to interact with anything that isn't powered.
+            if (!PowerReceiver.IsPowered(ev.Target))
+            {
+                ShowDeviceNotRespondingPopup(ev.Actor);
+                ev.Cancel();
+                return;
+            }
 
-        // Don't allow the AI to interact with anything that isn't powered.
-        // Sunrise edit start - проверка питания выполняется для валидного активного актора ИИ.
-        if (!PowerReceiver.IsPowered(ev.Target))
-        {
-            ShowDeviceNotRespondingPopup(ev.Actor);
-            ev.Cancel();
-            return;
-        }
-        // Sunrise edit end
-
-        // Don't allow the AI to interact with anything that it isn't allowed to (ex. AI wire is cut)
-        // Sunrise edit start - проверка whitelist выполняется для валидного активного актора ИИ.
-        if (!whitelistComponent.Enabled)
-        {
-            ShowDeviceNotRespondingPopup(ev.Actor);
+            // Don't allow the AI to interact with anything that it isn't allowed to (ex. AI wire is cut)
+            if (whitelistComponent is { Enabled: false })
+            {
+                ShowDeviceNotRespondingPopup(ev.Actor);
+            }
             ev.Cancel();
         }
-        // Sunrise edit end
     }
 
     private void OnHeldInteraction(Entity<StationAiHeldComponent> ent, ref InteractionAttemptEvent args)
@@ -184,16 +171,12 @@ public abstract partial class SharedStationAiSystem
         if (!_uiSystem.HasUi(args.Target, AiUi.Key))
             return;
 
-        // Sunrise edit start - показываем AI-verb телу ИИ как активному актору.
-        if (!args.CanComplexInteract)
+        if (!args.CanComplexInteract
+            || !TryGetCoreForAiActor(args.User, out _, out _) // Sunrise edit - для поддержки тела ИИ
+            || !args.CanInteract)
+        {
             return;
-
-        if (!TryGetCoreForAiActor(args.User, out _, out _))
-            return;
-
-        if (!args.CanInteract)
-            return;
-        // Sunrise edit end
+        }
 
         var user = args.User;
 
