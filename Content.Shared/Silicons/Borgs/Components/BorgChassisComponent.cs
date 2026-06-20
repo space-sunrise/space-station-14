@@ -51,7 +51,6 @@ public sealed partial class BorgChassisComponent : Component
     public SoundSpecifier DeactivateSound = new SoundPathSpecifier("/Audio/Items/flashlight_off.ogg");
 
     #region Brain
-
     /// <summary>
     /// A whitelist for which entities count as valid brains.
     /// </summary>
@@ -75,11 +74,9 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? BrainEntity => BrainContainer?.ContainedEntity;
-
     #endregion
 
     #region Modules
-
     /// <summary>
     /// A whitelist for what types of modules can be installed into this borg.
     /// </summary>
@@ -109,7 +106,6 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [ViewVariables]
     public int ModuleCount => ModuleContainer.ContainedEntities.Count;
-
     #endregion
 
     /// <summary>
@@ -119,13 +115,11 @@ public sealed partial class BorgChassisComponent : Component
     public EntityUid? SelectedModule;
 
     #region Visuals
-
     [DataField]
     public string HasMindState = string.Empty;
 
     [DataField]
     public string NoMindState = string.Empty;
-
     #endregion
 
     /// <summary>
