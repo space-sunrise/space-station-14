@@ -1,10 +1,5 @@
 station-ai-hologram-girl = Holo Girl
 
-station-ai-customization-body = AI body appearances
-
-station-ai-body-male = Male body
-station-ai-body-female = Female body
-station-ai-body-borg = Borg body
 station-ai-body-name = AI body #{$number}
 station-ai-body-enter-verb = Enter AI body
 

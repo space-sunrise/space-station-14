@@ -1,10 +1,5 @@
 station-ai-hologram-girl = Holo Girl
 
-station-ai-customization-body = Внешность тела ИИ
-
-station-ai-body-male = Мужское тело
-station-ai-body-female = Женское тело
-station-ai-body-borg = Борг-тело
 station-ai-body-name = тело ИИ #{$number}
 station-ai-body-enter-verb = Вселиться в тело ИИ
 

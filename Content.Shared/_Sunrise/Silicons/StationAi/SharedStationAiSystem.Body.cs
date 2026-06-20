@@ -102,24 +102,4 @@ public abstract partial class SharedStationAiSystem
         body = (currentBody, bodyComp);
         return true;
     }
-
-    /// <summary>
-    /// Returns whether an entity is an active station AI actor that may use AI-only interactions.
-    /// </summary>
-    private bool ValidateAiActor(EntityUid actor)
-    {
-        return TryGetCoreForAiActor(actor, out _, out _) &&
-               _blocker.CanComplexInteract(actor);
-    }
-
-    /// <summary>
-    /// Keeps legacy station AI body appearance customization from overriding borg body visuals.
-    /// </summary>
-    private void UpdateStationAiBodyAppearance(Entity<StationAiCustomizationComponent> stationAi)
-    {
-        if (!TryGetActiveAiBody(stationAi, out var body))
-            return;
-
-        _appearance.RemoveData(body, StationAiBodyVisuals.BodyAppearance);
-    }
 }

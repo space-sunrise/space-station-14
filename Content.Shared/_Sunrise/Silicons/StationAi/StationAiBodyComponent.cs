@@ -1,7 +1,6 @@
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Silicons.StationAi;
 
@@ -50,13 +49,4 @@ public sealed partial class StationAiBodyComponent : Component
     /// </summary>
     [NonSerialized, ViewVariables]
     public Dictionary<string, HashSet<ProtoId<RadioChannelPrototype>>> CachedRadioChannels = new();
-}
-
-[Serializable, NetSerializable]
-public enum StationAiBodyVisuals : byte
-{
-    /// <summary>
-    /// Selected AI body appearance layer data.
-    /// </summary>
-    BodyAppearance,
 }
