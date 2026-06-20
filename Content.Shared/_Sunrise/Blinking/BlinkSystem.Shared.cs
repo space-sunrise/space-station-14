@@ -70,7 +70,7 @@ public abstract partial class BlinkSystem : EntitySystem
         var remaining = ent.Comp.NextBlinkTime - _timing.CurTime;
         if (remaining > TimeSpan.Zero)
         {
-            ent.Comp.NextBlinkTime = _timing.CurTime + TimeSpan.FromTicks((short)(remaining.Ticks * CriticalBlinkMultiplier));
+            ent.Comp.NextBlinkTime = _timing.CurTime + TimeSpan.FromTicks((long)(remaining.Ticks * CriticalBlinkMultiplier));
             Dirty(ent);
         }
     }
