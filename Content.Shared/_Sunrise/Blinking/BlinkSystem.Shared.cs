@@ -70,7 +70,7 @@ public abstract partial class BlinkSystem : EntitySystem
         var remaining = ent.Comp.NextBlinkTime - _timing.CurTime;
         if (remaining > TimeSpan.Zero)
         {
-            ent.Comp.NextBlinkTime = _timing.CurTime + TimeSpan.FromTicks((short)(remaining.Ticks * CriticalBlinkMultiplier));
+            ent.Comp.NextBlinkTime = _timing.CurTime + TimeSpan.FromTicks((long)(remaining.Ticks * CriticalBlinkMultiplier));
             Dirty(ent);
         }
     }
@@ -93,16 +93,19 @@ public abstract partial class BlinkSystem : EntitySystem
 
     public void SetEnabled(Entity<BlinkComponent?> ent, bool enabled)
     {
-        if (!Resolve(ent, ref ent.Comp, false) || ent.Comp.Enabled == enabled)
+        if (!Resolve(ent, ref ent.Comp, false))
             return;
+
+        if (ent.Comp.Enabled == enabled)
+        {
+            if (enabled && ent.Comp.NextBlinkTime <= _timing.CurTime)
+                ResetBlink((ent.Owner, ent.Comp));
+            return;
+        }
 
         ent.Comp.Enabled = enabled;
         Dirty(ent);
-
-        if (enabled)
-            ResetBlink((ent.Owner, ent.Comp));
     }
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
