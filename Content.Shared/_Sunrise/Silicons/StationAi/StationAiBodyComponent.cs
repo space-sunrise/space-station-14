@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -43,6 +44,12 @@ public sealed partial class StationAiBodyComponent : Component
     /// </summary>
     [NonSerialized, ViewVariables]
     public List<EntityUid> ControlledBodyActionEntities = [];
+
+    /// <summary>
+    /// Body voice before the linked AI voice was copied to it.
+    /// </summary>
+    [NonSerialized, ViewVariables]
+    public ProtoId<TTSVoicePrototype>? CachedBodyVoiceId;
 
     /// <summary>
     /// Original radio channels of the body before station AI channels were inherited.

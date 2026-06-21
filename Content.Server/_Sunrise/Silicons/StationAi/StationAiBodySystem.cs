@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.Silicons.StationAi;
+using Content.Server.Silicons.Borgs;
 using Robust.Server.Containers;
 
 namespace Content.Server._Sunrise.Silicons.StationAi;
@@ -19,6 +20,7 @@ namespace Content.Server._Sunrise.Silicons.StationAi;
 public sealed partial class StationAiBodySystem : EntitySystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly SiliconVoiceSystem _siliconVoice = default!;
 
     public override void Initialize()
     {

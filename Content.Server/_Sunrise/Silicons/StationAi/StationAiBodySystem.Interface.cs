@@ -213,7 +213,7 @@ public sealed partial class StationAiBodySystem
     private void EnsureControllerActions(Entity<StationAiBodyControllerComponent> stationAi)
     {
         _actions.AddAction(stationAi, ref stationAi.Comp.BodyMenuAction, stationAi.Comp.BodyMenuActionPrototype);
-        Dirty(stationAi, stationAi.Comp);
+        Dirty(stationAi);
     }
 
     #endregion
@@ -229,7 +229,7 @@ public sealed partial class StationAiBodySystem
             return;
 
         stationAi.Comp.Bodies = BuildBodyEntries(GetCurrentBody(stationAi));
-        Dirty(stationAi, stationAi.Comp);
+        Dirty(stationAi);
     }
 
     /// <summary>
@@ -284,7 +284,7 @@ public sealed partial class StationAiBodySystem
             return false;
 
         UpdateBodyUiData((stationAi, controller));
-        return _ui.TryOpenUi((stationAi, null), StationAiBodyUiKey.Key, GetBodyUiActor(stationAi, actor));
+        return _ui.TryOpenUi(stationAi, StationAiBodyUiKey.Key, GetBodyUiActor(stationAi, actor));
     }
 
     /// <summary>

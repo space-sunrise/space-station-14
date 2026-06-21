@@ -1,5 +1,6 @@
 using Content.Server.Mind;
 using Content.Shared._Sunrise.Silicons.StationAi;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Access.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -394,9 +395,12 @@ public sealed partial class StationAiBodySystem
 
         TryReturnMindFromRemovedBoard(stationAi, mindId, mind, controller);
 
+        if (stationAi != null)
+            RestoreBodyVoice(body);
         RemCompDeferred<IgnoreUIRangeComponent>(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
+        _siliconVoice.SetVoiceChangeEnabled(body, true);
 
         RemCompDeferred<StationAiBodyComponent>(body);
         UpdateAllBodyUiData();
@@ -414,6 +418,7 @@ public sealed partial class StationAiBodySystem
 
         body.Board = board;
         body.LinkedAi = null;
+        _siliconVoice.SetVoiceChangeEnabled(chassis, false);
 
         RemComp<NameIdentifierComponent>(chassis);
 
@@ -440,6 +445,8 @@ public sealed partial class StationAiBodySystem
 
         body.Comp.LinkedAi = stationAi;
         EnsureComp<IgnoreUIRangeComponent>(body);
+        _siliconVoice.SetVoiceChangeEnabled(body, false);
+        CopyStationAiVoiceToBody(stationAi, body);
         controller.CurrentBody = body;
         EnsureControllerActions((stationAi, controller));
 
@@ -464,7 +471,7 @@ public sealed partial class StationAiBodySystem
         MindComponent mind,
         StationAiBodyControllerComponent controller)
     {
-        _ui.CloseUi((stationAi, null), StationAiBodyUiKey.Key);
+        _ui.CloseUi(stationAi, StationAiBodyUiKey.Key);
         DoReleaseBody(body, stationAi);
         controller.CurrentBody = null;
 
@@ -512,6 +519,7 @@ public sealed partial class StationAiBodySystem
 
         body.Comp.LinkedAi = null;
         controller.CurrentBody = null;
+        RestoreBodyVoice(body);
         RemCompDeferred<IgnoreUIRangeComponent>(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
@@ -532,6 +540,7 @@ public sealed partial class StationAiBodySystem
             return;
 
         body.Comp.LinkedAi = null;
+        RestoreBodyVoice(body);
         RemCompDeferred<IgnoreUIRangeComponent>(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
@@ -568,6 +577,39 @@ public sealed partial class StationAiBodySystem
             return;
 
         _access.SetAccessEnabled(bodyUid, true);
+    }
+
+    /// <summary>
+    /// Copies the selected station AI voice to the body for the duration of active control.
+    /// </summary>
+    private void CopyStationAiVoiceToBody(EntityUid stationAi, Entity<StationAiBodyComponent> body)
+    {
+        if (!TryComp<BorgVoiceComponent>(body, out var bodyVoice))
+            return;
+
+        body.Comp.CachedBodyVoiceId ??= bodyVoice.SelectedVoiceId;
+
+        if (TryComp<BorgVoiceComponent>(stationAi, out var stationAiVoice))
+            bodyVoice.SelectedVoiceId = stationAiVoice.SelectedVoiceId;
+
+        Dirty(body.Owner, bodyVoice);
+    }
+
+    /// <summary>
+    /// Restores the body voice that was present before active AI control.
+    /// </summary>
+    private void RestoreBodyVoice(Entity<StationAiBodyComponent> body)
+    {
+        if (body.Comp.CachedBodyVoiceId is not { } cachedVoice)
+            return;
+
+        if (TryComp<BorgVoiceComponent>(body, out var bodyVoice))
+        {
+            bodyVoice.SelectedVoiceId = cachedVoice;
+            Dirty(body.Owner, bodyVoice);
+        }
+
+        body.Comp.CachedBodyVoiceId = null;
     }
 
     /// <summary>
