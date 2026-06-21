@@ -24,7 +24,6 @@ using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
-using Robust.Shared.Player;
 
 namespace Content.Server.Communications
 {
@@ -63,7 +62,6 @@ namespace Content.Server.Communications
 
             // Sunrise-Start
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleToggleRelayMessage>(OnToggleRelayMessage);
-            SubscribeLocalEvent<CommunicationsConsoleComponent, ListenAttemptEvent>(OnRelayListenAttempt);
             SubscribeLocalEvent<CommunicationsConsoleComponent, ListenEvent>(OnEntitySpokeNearbyRelay);
             // Sunrise-End
         }
@@ -397,14 +395,6 @@ namespace Content.Server.Communications
             var startText = Loc.GetString("comms-console-relay-started");
             var title = Loc.GetString(comp.Title);
             _chatSystem.DispatchStationAnnouncement(uid, startText, sender: title, playDefault: true, playTts: true, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice, announcementSound: comp.Sound);
-        }
-
-        private void OnRelayListenAttempt(EntityUid uid, CommunicationsConsoleComponent comp, ListenAttemptEvent ev)
-        {
-            // Sunrise added start - запрещаем ретрансляцию речи неигровых источников
-            if (!HasComp<ActorComponent>(ev.Source))
-                ev.Cancel();
-            // Sunrise added end
         }
 
         private void OnEntitySpokeNearbyRelay(EntityUid uid, CommunicationsConsoleComponent comp, ListenEvent ev)
