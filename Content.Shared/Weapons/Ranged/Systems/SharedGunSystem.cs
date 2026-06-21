@@ -733,6 +733,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             ManualCycle((gunUid, ballistic), TransformSystem.GetMapCoordinates(gunUid), user);
         }
+        else if (TryComp<RevolverAmmoProviderComponent>(gunUid, out var revolver))
+        {
+            EmptyRevolver((gunUid, revolver), user);
+        }
     }
     // Sunrise added end
 

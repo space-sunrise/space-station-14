@@ -163,17 +163,18 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
-    armorPenetration: 0.4
+    armorPenetration: 0.3
     damage:
       types:
         Piercing: 40
-        Structural: 80
+        Structural: 40
     penetrationThreshold: 360
     penetrationDamageTypeRequirement:
     - Structural
   - type: ProjectilePierce
-    chance: 0.4
+    chance: 0.6
     deviation: 0.05
+    pierceLevel: Rock
   - type: ProjectileRicochet
     chance: 0.4
 
