@@ -1,0 +1,16 @@
+﻿- type: entity
+  # Just fades out with no movement animation
+  id: EffectGrab
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Sprite
+    sprite: _Sunrise/Effects/attacks.rsi
+    noRot: true
+    state: grab
+    drawdepth: Effects
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu

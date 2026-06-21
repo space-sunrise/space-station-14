@@ -1,6 +1,7 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.CombatMode;
+using Content.Shared.Coordinates;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Effects;
 using Content.Shared.Hands;
@@ -26,6 +27,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Grab.Systems;
@@ -36,6 +38,7 @@ namespace Content.Shared._Sunrise.Grab.Systems;
 public sealed partial class SharedGrabSystem : EntitySystem
 {
     private static readonly SoundSpecifier GrabSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
+    private static readonly EntProtoId GrabEffect = "EffectGrab";
 
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -413,6 +416,7 @@ public sealed partial class SharedGrabSystem : EntitySystem
         {
             _audio.PlayPredicted(GrabSound, grabbed.Owner, grabber.Owner);
             _color.RaiseEffect(Color.Yellow, new List<EntityUid> { grabbed.Owner }, Filter.Pvs(grabbed.Owner, entityManager: EntityManager));
+            PredictedSpawnAttachedTo(GrabEffect, grabbed.Owner.ToCoordinates());
         }
 
         return true;
