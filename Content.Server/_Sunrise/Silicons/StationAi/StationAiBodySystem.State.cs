@@ -8,6 +8,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.NameIdentifier;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared.StatusIcon.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -402,6 +403,7 @@ public sealed partial class StationAiBodySystem
         RevokeStationAiRadioChannels(body);
         _siliconVoice.SetVoiceChangeEnabled(body, true);
 
+        RemoveBodyStatusIcon(body);
         RemCompDeferred<StationAiBodyComponent>(body);
         UpdateAllBodyUiData();
     }
@@ -444,6 +446,7 @@ public sealed partial class StationAiBodySystem
         ReleaseCurrentBody(stationAi, currentBody, body);
 
         body.Comp.LinkedAi = stationAi;
+        EnsureBodyStatusIcon(body);
         EnsureComp<IgnoreUIRangeComponent>(body);
         _siliconVoice.SetVoiceChangeEnabled(body, false);
         CopyStationAiVoiceToBody(stationAi, body);
@@ -521,6 +524,7 @@ public sealed partial class StationAiBodySystem
         controller.CurrentBody = null;
         RestoreBodyVoice(body);
         RemCompDeferred<IgnoreUIRangeComponent>(body);
+        RemoveBodyStatusIcon(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
 
@@ -542,6 +546,7 @@ public sealed partial class StationAiBodySystem
         body.Comp.LinkedAi = null;
         RestoreBodyVoice(body);
         RemCompDeferred<IgnoreUIRangeComponent>(body);
+        RemoveBodyStatusIcon(body);
         RevokeControlledBodyActions(body);
         RevokeStationAiRadioChannels(body);
         _metaData.SetEntityName(body, GetFreeBodyName(body.Comp.BodyNumber));
@@ -610,6 +615,24 @@ public sealed partial class StationAiBodySystem
         }
 
         body.Comp.CachedBodyVoiceId = null;
+    }
+
+    private void EnsureBodyStatusIcon(Entity<StationAiBodyComponent> body)
+    {
+        if (HasComp<StatusIconComponent>(body))
+            return;
+
+        EnsureComp<StatusIconComponent>(body);
+        body.Comp.AddedStatusIconComponent = true;
+    }
+
+    private void RemoveBodyStatusIcon(Entity<StationAiBodyComponent> body)
+    {
+        if (!body.Comp.AddedStatusIconComponent)
+            return;
+
+        RemCompDeferred<StatusIconComponent>(body);
+        body.Comp.AddedStatusIconComponent = false;
     }
 
     /// <summary>

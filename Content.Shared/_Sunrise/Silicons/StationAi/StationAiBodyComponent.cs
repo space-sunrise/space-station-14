@@ -52,6 +52,12 @@ public sealed partial class StationAiBodyComponent : Component
     public ProtoId<TTSVoicePrototype>? CachedBodyVoiceId;
 
     /// <summary>
+    /// Whether this system added <see cref="Content.Shared.StatusIcon.Components.StatusIconComponent"/> for the AI-body HUD icon.
+    /// </summary>
+    [NonSerialized, ViewVariables]
+    public bool AddedStatusIconComponent;
+
+    /// <summary>
     /// Original radio channels of the body before station AI channels were inherited.
     /// </summary>
     [NonSerialized, ViewVariables]
