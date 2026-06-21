@@ -252,9 +252,8 @@ public sealed class PullingSystem : EntitySystem
     private void OnVirtualItemDeleted(EntityUid uid, PullerComponent component, VirtualItemDeletedEvent args)
     {
         // Sunrise added start - fork-specific virtual item handlers may consume extra pull-like items.
-        SubscribeLocalEvent<PullerComponent, VirtualItemDeletedEvent>(
-            OnVirtualItemDeleted,
-            after: [typeof(SharedGrabSystem)]);
+        if (args.Handled)
+            return;
         // Sunrise added end
 
         // If client deletes the virtual hand then stop the pull.
