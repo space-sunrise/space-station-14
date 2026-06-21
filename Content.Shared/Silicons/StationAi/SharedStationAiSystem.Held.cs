@@ -132,9 +132,9 @@ public abstract partial class SharedStationAiSystem
         if (ev.Actor == ev.Target)
             return;
 
-        if (!TryGetCoreForAiActor(ev.Actor, out _, out _) && // Sunrise edit - для поддержки тела ИИ заменили TryComp на аналог поддерживающий не только 1 компонент
+        if (TryGetCoreForAiActor(ev.Actor, out _, out var stationAi) && // Sunrise edit - ограничиваем только активного актора ИИ, включая тело.
             (!TryComp(ev.Target, out StationAiWhitelistComponent? whitelistComponent) ||
-             !ValidateAi(ev.Actor))) // Sunrise edit - пришлось убрать stationAi так как мы убрали TryComp
+             !ValidateAi(stationAi))) // Sunrise edit - проверяем мозг ИИ, связанный с активным актором.
         {
             // Don't allow the AI to interact with anything that isn't powered.
             if (!PowerReceiver.IsPowered(ev.Target))
