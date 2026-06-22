@@ -202,8 +202,8 @@ public sealed class SiliconVoiceSystem : EntitySystem
             if (Prototype(action)?.ID != BorgVoiceChangeActionId)
                 continue;
 
-            borg.Comp.VoiceChangeActionEntity = action;
             _actions.RemoveAction((borg.Owner, actions), action.AsNullable());
+            borg.Comp.VoiceChangeActionEntity = null;
             return;
         }
     }
