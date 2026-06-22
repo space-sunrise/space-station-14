@@ -4,6 +4,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Popups;
+using Content.Shared._Sunrise.Silicons.StationAi;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -289,7 +290,13 @@ public sealed class RadioSystem : EntitySystem
     private string GetIdSprite(EntityUid senderUid)
     {
         if (HasComp<BorgChassisComponent>(senderUid))
+        {
+            if (TryComp<StationAiBodyComponent>(senderUid, out var stationAiBody) &&
+                stationAiBody.LinkedAi != null)
+                return StationAiIconPath;
+
             return BorgIconPath;
+        }
 
         if (HasComp<StationAiHeldComponent>(senderUid))
             return StationAiIconPath;
