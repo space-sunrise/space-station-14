@@ -26,3 +26,5 @@ ent-MagazineChainGun200 = барабан цепного пулемёта
     .desc = { ent-MagazineChainGun.desc }
 ent-MagazineChainGun100 = барабан цепного пулемёта
     .desc = { ent-MagazineChainGun.desc }
+ent-MagazineChainGunImprovised = барабан цепного пулемёта (5,56 самодельные)
+    .desc = Тяжёлый барабан, набитый лентой самодельных патронов 5,56мм.

@@ -938,6 +938,13 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaBuccaneerSpirit # Sunrise-Edit - стартовая ампула пиратского скафандра
+        whitelist:
+          tags:
+          - FitsHardsuit
   - type: StaticPrice
     price: 0
 
@@ -975,6 +982,13 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaBuccaneerSpirit # Sunrise-Edit - стартовая ампула пиратского скафандра
+        whitelist:
+          tags:
+          - FitsHardsuit
   - type: StaticPrice
     price: 0
 

@@ -534,7 +534,6 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/clarke.rsi
-    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: bigbrother
@@ -547,7 +546,7 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.0
+    mechToPilotDamageMultiplier: 0.05
     airtight: true
     pilotWhitelist:
       components:
@@ -573,11 +572,11 @@
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseSprintSpeed: 3.6
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -599,7 +598,7 @@
     speed: 0
     distance: 0
   - type: AccessReader
-    access: [["NuclearOperative"]]
+    access: [["Pirate"]]
 
 - type: entity
   id: MechBigYarrkeBattery

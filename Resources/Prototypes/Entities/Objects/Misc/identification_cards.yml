@@ -1428,6 +1428,7 @@
     - SyndicateAgent
     - Wizard
     - Xenoborg
+    - Pirate # Sunrise-Add
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener

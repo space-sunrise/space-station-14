@@ -27,6 +27,43 @@
     - FitsHardsuit
 
 - type: entity
+  parent: Ampula
+  id: AmpulaPirate
+  components:
+  - type: Sprite
+    scale: 0.8,0.8
+    sprite: _Sunrise/HardsuitInjection/ampula.rsi
+    layers:
+      - state: pirate
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 25
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior
+        solution: beaker
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassClockwork:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
   id: ActionToggleInjection
   name: toggle the EC
   description: Toggles EC
@@ -143,3 +180,24 @@
         reagents:
         - ReagentId: Hyronalin
           Quantity: 20
+
+- type: entity
+  parent: AmpulaPirate
+  name: Ampula
+  id: AmpulaBuccaneerSpirit
+  suffix: Buccaneer spirit
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 30
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 10
+        - ReagentId: Vodkizine
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 5
+        - ReagentId: Rororium
+          Quantity: 5
+

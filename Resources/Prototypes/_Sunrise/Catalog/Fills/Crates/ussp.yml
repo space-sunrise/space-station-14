@@ -126,6 +126,19 @@
 
 - type: entity
   parent: CrateAmmunitionSmall
+  id: CrateAmmunitionSmallMaxim
+  name: old small ammunition crate
+  suffix: Filled, Maxim
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazineLightRifleMaxim
+          amount: 4
+
+- type: entity
+  parent: CrateAmmunitionSmall
   id: CrateAmmunitionSmallSKM24
   name: old small ammunition crate
   suffix: Filled, SKM-24

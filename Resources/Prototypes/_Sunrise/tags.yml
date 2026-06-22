@@ -63,6 +63,10 @@
 - type: Tag
   id: SyndieAgentUplink
 
+# region Ammunition
+- type: Tag
+  id: CartridgeMinigun
+
 # region Species / roles / targets
 - type: Tag
   id: Abductor
@@ -122,6 +126,9 @@
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModulePirate
 
 # region Tools / devices
 - type: Tag
