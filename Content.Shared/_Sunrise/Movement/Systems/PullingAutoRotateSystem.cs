@@ -21,8 +21,6 @@ public sealed class PullingAutoRotateSystem : EntitySystem
 
         _transformQuery = GetEntityQuery<TransformComponent>();
     }
-        _transformQuery = GetEntityQuery<TransformComponent>();
-    }
 
     public override void Update(float frameTime)
     {
