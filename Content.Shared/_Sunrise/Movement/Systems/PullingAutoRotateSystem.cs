@@ -15,11 +15,12 @@ public sealed class PullingAutoRotateSystem : EntitySystem
 
     public override void Initialize()
     {
-        base.Initialize();
-
         UpdatesAfter.Add(typeof(SharedMoverController));
         UpdatesAfter.Add(typeof(SharedMouseRotatorSystem));
+        base.Initialize();
 
+        _transformQuery = GetEntityQuery<TransformComponent>();
+    }
         _transformQuery = GetEntityQuery<TransformComponent>();
     }
 
