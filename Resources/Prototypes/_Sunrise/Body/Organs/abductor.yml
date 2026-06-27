@@ -75,7 +75,9 @@
       - state: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobAbductorEyes
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: no_eyes
   - type: VisualOrganMarkings
     markingData:
       layers:

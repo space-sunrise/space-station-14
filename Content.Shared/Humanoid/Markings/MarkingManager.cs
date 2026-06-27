@@ -1,14 +1,13 @@
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._Sunrise;
 using Content.Shared.Body;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Humanoid.Markings;
 
-public sealed class MarkingManager
+public sealed partial class MarkingManager
 {
     [Dependency] private readonly IComponentFactory _component = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -137,6 +136,8 @@ public sealed class MarkingManager
                 {
                     markings[i] = new Marking(marking.ID, marking.Sprites.Count);
                 }
+
+                markings[i].EnsureMarkingEffects(); // Sunrise-Edit
             }
         }
     }
@@ -346,21 +347,34 @@ public sealed class MarkingManager
     }
 
     public bool MustMatchSkin(string species, HumanoidVisualLayers layer, out float alpha, IPrototypeManager? prototypeManager = null)
+    {
+        IoCManager.Resolve(ref prototypeManager);
+        var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
+        var appearancePrototype = prototypeManager.Index(speciesProto.DollPrototype);
+
+        if (!appearancePrototype.TryGetComponent<InitialBodyComponent>(out var initialBody, _component))
         {
-            IoCManager.Resolve(ref prototypeManager);
-            var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
-            if (
-                !prototypeManager.Resolve(speciesProto.BodyTypes.First(), out BodyTypePrototype? baseBodyType) ||
-                !baseBodyType.Sprites.TryGetValue(layer, out var spriteName) ||
-                !prototypeManager.Resolve(spriteName, out HumanoidSpeciesSpriteLayer? sprite) ||
-                sprite is not { MarkingsMatchSkin: true }
-            )
+            alpha = 1f;
+            return false;
+        }
+
+        foreach (var organ in initialBody.Organs.Values)
+        {
+            if (!prototypeManager.TryIndex(organ, out var organPrototype) ||
+                !organPrototype.TryGetComponent<VisualOrganMarkingsComponent>(out var markings, _component) ||
+                !markings.MarkingData.Layers.Contains(layer) ||
+                !prototypeManager.TryIndex(markings.MarkingData.Group, out MarkingsGroupPrototype? group) ||
+                !group.Appearances.TryGetValue(layer, out var appearance) ||
+                !appearance.MatchSkin)
             {
-                alpha = 1f;
-                return false;
+                continue;
             }
 
-            alpha = sprite.LayerAlpha;
+            alpha = appearance.LayerAlpha;
             return true;
         }
+
+        alpha = 1f;
+        return false;
+    }
 }

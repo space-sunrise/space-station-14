@@ -1,9 +1,11 @@
 using System.Linq;
 using Content.Client._Sunrise.Lobby.UI;
+using Content.Client._Sunrise.Humanoid;
 using Content.Client._Sunrise.Pets;
 using Content.Client.Body;
 using Content.Client.Guidebook;
 using Content.Shared._Sunrise.Pets;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
@@ -12,6 +14,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
+using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -45,6 +48,9 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [Dependency] private readonly MarkingManager _markings = default!;
     [Dependency] private readonly PlayerCacheManager _playerCache = default!;
     [UISystemDependency] private readonly VisualBodySystem _visualBody = default!;
+    [UISystemDependency] private readonly HumanoidProfileSystem _humanoidProfile = default!; // Sunrise-Edit
+    [UISystemDependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
+    [UISystemDependency] private readonly SunriseHumanoidProfileVisualSystem _sunriseProfileVisual = default!; // Sunrise-Edit
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
@@ -169,8 +175,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         RefreshLobbyPreview();
 
-        if (_characterSetup?.Visible == true)
-            ReloadCharacterSetup();
+        ReloadCharacterSetup();
 
         RefreshPetPreview();
     }
@@ -180,8 +185,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         PreviewPanel?.SetLoaded(_preferencesManager.ServerDataLoaded);
         RefreshLobbyPreview();
 
-        if (_characterSetup?.Visible == true)
-            ReloadCharacterSetup();
+        ReloadCharacterSetup();
 
         RefreshPetPreview();
     }
@@ -582,6 +586,9 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
             dummyEnt = EntityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
             _visualBody.ApplyProfileTo(dummyEnt, humanoid);
+            _humanoidProfile.ApplyProfileTo(dummyEnt, humanoid); // Sunrise-Edit
+            _sunriseProfile.ApplyProfileTo(dummyEnt, humanoid); // Sunrise-Edit
+            _sunriseProfileVisual.Refresh(dummyEnt); // Sunrise-Edit
         }
         else
         {

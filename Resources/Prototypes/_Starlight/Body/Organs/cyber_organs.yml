@@ -33,7 +33,9 @@
     - type: ToggleableNightVision
   - type: OrganVisualization
     layer: Eyes
-    prototype: CyberEyesNightVision
+    data:
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: eyes_night
   - type: VisualOrganMarkings
     markingData:
       layers:
@@ -55,7 +57,9 @@
     - type: ToggleableThermalVision
   - type: OrganVisualization
     layer: Eyes
-    prototype: CyberEyesThermalVision
+    data:
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: eyes_thermal
   - type: VisualOrganMarkings
     markingData:
       layers:

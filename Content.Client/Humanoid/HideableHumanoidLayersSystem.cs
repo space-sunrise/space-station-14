@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
@@ -7,6 +8,7 @@ namespace Content.Client.Humanoid;
 public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersSystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!;
 
     public override void Initialize()
     {
@@ -45,13 +47,14 @@ public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersS
             if (ent.Comp.HiddenLayers.ContainsKey(item))
                 continue;
 
-            var evt = new HumanoidLayerVisibilityChangedEvent(item, true);
+            var visible = _sunriseBody.IsLayerVisible(ent.Owner, item, ent.Comp);
+            var evt = new HumanoidLayerVisibilityChangedEvent(item, visible);
             RaiseLocalEvent(ent, ref evt);
 
             if (!_sprite.LayerMapTryGet(ent.Owner, item, out var index, true))
                 continue;
 
-            _sprite.LayerSetVisible(ent.Owner, index, true);
+            _sprite.LayerSetVisible(ent.Owner, index, visible);
         }
 
         foreach (var item in ent.Comp.HiddenLayers.Keys)

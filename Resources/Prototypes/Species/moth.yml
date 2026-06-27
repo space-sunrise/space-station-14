@@ -10,4 +10,9 @@
   skinColoration: Hues
   maleFirstNames: NamesMothFirstMale
   femaleFirstNames: NamesMothFirstFemale
-  lastNames: NamesMothLast
+  # lastNames: NamesMothLast # Sunrise-edit
+  maleLastNames: NamesMothLast
+  femaleLastNames: NamesMothLast
+  buttScan: # Sunrise edit
+    sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
+    state: human

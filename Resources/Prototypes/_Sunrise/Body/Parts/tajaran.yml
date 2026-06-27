@@ -96,6 +96,11 @@
         layers:
         - Tail
         group: Tajaran
+    - type: VisualOrgan
+      layer: enum.HumanoidVisualLayers.Tail
+      data:
+        sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+        state: tail_m
 
 - type: entity
   id: LeftLegTajaran

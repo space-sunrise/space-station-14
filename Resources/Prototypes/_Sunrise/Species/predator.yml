@@ -24,20 +24,59 @@
 - type: bodyType
   id: PredatorNormal
   name: body-normal
-  sprites:
-    Head: MobPredatorHead
-    Chest: MobPredatorTorso
-    LArm: MobPredatorLArm
-    RArm: MobPredatorRArm
-    LHand: MobPredatorLHand
-    RHand: MobPredatorRHand
-    LLeg: MobPredatorLLeg
-    RLeg: MobPredatorRLeg
-    LFoot: MobPredatorLFoot
-    RFoot: MobPredatorRFoot
-    Dreadlocks: MobPredatorDreadlocks
-    Rings: MobPredatorRings
-
+  visualKey: body-normal
+  layers:
+    Head:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: head_m
+    Chest:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: torso_m
+    LArm:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: l_arm
+    RArm:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: r_arm
+    LHand:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: l_hand
+    RHand:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: r_hand
+    LLeg:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: l_leg
+    RLeg:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: r_leg
+    LFoot:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: l_foot
+    RFoot:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: r_foot
+    Dreadlocks:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: dreadlocks
+    Rings:
+      sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+      state: rings
+  sexLayers:
+    Male:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+        state: head_m
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+        state: torso_m
+    Female:
+      Head:
+        sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+        state: head_f
+      Chest:
+        sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+        state: torso_f
 - type: markingsGroup
   id: Predator
   limits:
@@ -83,106 +122,3 @@
     enum.HumanoidVisualLayers.Rings:
       limit: 1
       required: false
-
-- type: humanoidBaseSprite
-  id: MobPredatorAnyMarking
-
-- type: humanoidBaseSprite
-  id: MobPredatorMarkingMatchSkin
-  markingsMatchSkin: true
-
-- type: humanoidBaseSprite
-  id: MobPredatorHead
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobPredatorHeadMale
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: head_m
-
-- type: humanoidBaseSprite
-  id: MobPredatorHeadFemale
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: head_f
-
-- type: humanoidBaseSprite
-  id: MobPredatorTorso
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobPredatorTorsoMale
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: torso_m
-
-- type: humanoidBaseSprite
-  id: MobPredatorTorsoFemale
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: torso_f
-
-- type: humanoidBaseSprite
-  id: MobPredatorLLeg
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: l_leg
-
-- type: humanoidBaseSprite
-  id: MobPredatorLArm
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: l_arm
-
-- type: humanoidBaseSprite
-  id: MobPredatorLHand
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: l_hand
-
-- type: humanoidBaseSprite
-  id: MobPredatorLFoot
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: l_foot
-
-- type: humanoidBaseSprite
-  id: MobPredatorRLeg
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: r_leg
-
-- type: humanoidBaseSprite
-  id: MobPredatorRArm
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: r_arm
-
-- type: humanoidBaseSprite
-  id: MobPredatorRHand
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: r_hand
-
-- type: humanoidBaseSprite
-  id: MobPredatorRFoot
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: r_foot
-
-- type: humanoidBaseSprite
-  id: MobPredatorDreadlocks
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: dreadlocks
-
-- type: humanoidBaseSprite
-  id: MobPredatorRings
-  baseSprite:
-    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
-    state: rings

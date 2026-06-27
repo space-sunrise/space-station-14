@@ -30,7 +30,9 @@
     damageContainer: Biological
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobHumanoidEyes
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
 
 - type: entity
   id: SunriseOrganBaseTongue

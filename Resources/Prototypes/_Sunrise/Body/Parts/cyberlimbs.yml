@@ -4,8 +4,10 @@
   name: "left cyber hand"
   parent: [PartCyber, OrganBaseHandLeft]
   components:
-    - type: BaseLayerId
-      layer: CyberLHandFolder
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: hand_folder
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "hand_folder"
@@ -18,8 +20,10 @@
   name: "right cyber hand"
   parent: [PartCyber, OrganBaseHandRight]
   components:
-    - type: BaseLayerId
-      layer: CyberRHandFolder
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: hand_folder
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "hand_folder"
@@ -33,10 +37,16 @@
   name: "left fixic arm"
   parent: [PartCyber, OrganBaseArmLeft]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmSteel
-    - type: BaseLayerIdToggled
-      layer: CyberLArmSteelMechwright
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_steel_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_steel_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_arm"
@@ -67,10 +77,16 @@
   name: "right fixic arm"
   parent: [PartCyber, OrganBaseArmRight]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmSteel
-    - type: BaseLayerIdToggled
-      layer: CyberRArmSteelMechwright
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_steel_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_steel_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_arm"
@@ -101,10 +117,16 @@
   name: "left Netrunner arm"
   parent: [PartCyber, OrganBaseArmLeft]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmZenghu
-    - type: BaseLayerIdToggled
-      layer: CyberLArmZenghuHack
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_zenghu
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_zenghu_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zenghu"
@@ -132,10 +154,16 @@
   name: "right Netrunner arm"
   parent: [PartCyber, OrganBaseArmRight]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmZenghu
-    - type: BaseLayerIdToggled
-      layer: CyberRArmZenghuHack
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_zenghu
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_zenghu_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zenghu"
@@ -164,10 +192,16 @@
   name: "left Atmos arm"
   parent: [PartCyber, OrganBaseArmLeft]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmSteel
-    - type: BaseLayerIdToggled
-      layer: CyberLArmSteelMechwright
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_steel_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_steel_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_arm"
@@ -199,10 +233,16 @@
   name: "right Atmos arm"
   parent: [PartCyber, OrganBaseArmRight]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmSteel
-    - type: BaseLayerIdToggled
-      layer: CyberRArmSteelMechwright
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_steel_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_steel_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_arm"
@@ -234,10 +274,16 @@
   name: "left jani-arm"
   parent: [PartCyber, OrganBaseArmLeft]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmZenghu
-    - type: BaseLayerIdToggled
-      layer: CyberLArmZenghuJani
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_zenghu
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_zenghu_Jani
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zenghu"
@@ -266,10 +312,16 @@
   name: "right jani-arm"
   parent: [PartCyber, OrganBaseArmRight]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmZenghu
-    - type: BaseLayerIdToggled
-      layer: CyberRArmZenghuJani
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_zenghu
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_zenghu_Jani
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zenghu"
@@ -299,10 +351,16 @@
   name: "left robust arm"
   parent: [PartCyber, OrganBaseArmLeft]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmGreen
-    - type: BaseLayerIdToggled
-      layer: CyberLArmGreenRobust
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_hephaestus
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_hephaestus_TOOLS
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hephaestus"
@@ -332,10 +390,16 @@
   name: "right robust arm"
   parent: [PartCyber, OrganBaseArmRight]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmGreen
-    - type: BaseLayerIdToggled
-      layer: CyberRArmGreenRobust
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_hephaestus
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_hephaestus_TOOLS
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hephaestus"
@@ -366,10 +430,16 @@
   name: "left Bonesaw arm"
   parent: [PartCyber, OrganBaseArmLeft, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmBonesaw
-    - type: BaseLayerIdToggled
-      layer: CyberLArmBonesawToggled
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_bulwark_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_bulwark_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_arm"
@@ -395,10 +465,16 @@
   name: "right Bonesaw arm"
   parent: [PartCyber, OrganBaseArmRight, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmBonesaw
-    - type: BaseLayerIdToggled
-      layer: CyberRArmBonesawToggled
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_bulwark_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_bulwark_arm_TOOLS
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
@@ -425,10 +501,16 @@
   name: "left Max-Guard blade arm"
   parent: [PartCyber, OrganBaseArmLeft, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmMantisBladeSec
-    - type: BaseLayerIdToggled
-      layer: CyberLArmMantisBladeToggledSec
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_mantissec_blade_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_mantissec_blade_arm_BLADE
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantissec_blade_arm"
@@ -454,10 +536,16 @@
   name: "right Max-Guard blade arm"
   parent: [PartCyber, OrganBaseArmRight, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmMantisBladeSec
-    - type: BaseLayerIdToggled
-      layer: CyberRArmMantisBladeToggledSec
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_mantissec_blade_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_mantissec_blade_arm_BLADE
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantissec_blade_arm"
@@ -484,10 +572,16 @@
   name: "left G.O.R.I.L.L.A. arm"
   parent: [PartCyber, OrganBaseArmLeft, BaseScienceContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmGorilla
-    - type: BaseLayerIdToggled
-      layer: CyberLArmGorillaToggled
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_sci_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_sci_arm_GAUNTLET
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_sci_arm"
@@ -514,10 +608,16 @@
   name: "right G.O.R.I.L.L.A. arm"
   parent: [PartCyber, OrganBaseArmRight, BaseScienceContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmGorilla
-    - type: BaseLayerIdToggled
-      layer: CyberRArmGorillaToggled
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_sci_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_sci_arm_GAUNTLET
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_sci_arm"
@@ -581,10 +681,16 @@
   name: "left bulwark emitter arm"
   parent: [PartCyber, OrganBaseArmLeft, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmBulwark
-    - type: BaseLayerIdToggled
-      layer: CyberLArmBulwarkToggledEmitter
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_bulwark_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_bulwark_arm_EMMITTER
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_arm"
@@ -610,10 +716,16 @@
   name: "right bulwark emitter arm"
   parent: [PartCyber, OrganBaseArmRight, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmBulwark
-    - type: BaseLayerIdToggled
-      layer: CyberRArmBulwarkToggledEmitter
+    - type: BaseLayerData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_bulwark_arm
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_bulwark_arm_EMMITTER
+        color: white
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
@@ -640,10 +752,16 @@
   name: "left hephaestus thrower arm"
   parent: [PartCyber, OrganBaseArmLeft, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberLArmHephaestus
-    - type: BaseLayerIdToggled
-      layer: CyberLArmHephaestusThrowerToggled
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_hephaestus_titan
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: l_hephaestus_titan_thrower
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hephaestus_titan"
@@ -669,10 +787,16 @@
   name: "right hephaestus thrower arm"
   parent: [PartCyber, OrganBaseArmRight, BaseSecurityContraband]
   components:
-    - type: BaseLayerId
-      layer: CyberRArmHephaestus
-    - type: BaseLayerIdToggled
-      layer: CyberRArmHephaestusThrowerToggled
+    - type: BaseLayerData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_hephaestus_titan
+        color: white
+    - type: BaseLayerToggledData
+      data:
+        sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
+        state: r_hephaestus_titan_thrower
+        color: white
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hephaestus_titan"

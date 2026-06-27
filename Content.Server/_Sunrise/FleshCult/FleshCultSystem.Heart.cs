@@ -299,11 +299,11 @@ public sealed partial class FleshCultSystem
             }
 
             var bodyType = _prototypeManager.Index<BodyTypePrototype>("SkeletonNormal");
-            foreach (var (key, id) in bodyType.Sprites)
+            foreach (var (key, data) in bodyType.Layers)
             {
                 if (key != HumanoidVisualLayers.Head)
                 {
-                    _sunriseBody.SetBaseLayerId(args.Args.Target.Value, key, id);
+                    _sunriseBody.SetBaseLayerData(args.Args.Target.Value, key, data);
                 }
             }
 

@@ -63,7 +63,7 @@
                                 </BoxContainer>
                                 <!-- Body Type -->
                                 <BoxContainer HorizontalExpand="True">
-                                    <Label Text="Тип тела"/>
+                                    <Label Text="{Loc 'humanoid-profile-editor-body-type-label'}"/>
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="CBodyTypesButton" HorizontalAlignment="Right" />
                                 </BoxContainer>

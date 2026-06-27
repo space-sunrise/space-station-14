@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Body;
 
-public sealed class VisualBodySystem : SharedVisualBodySystem
+public sealed partial class VisualBodySystem : SharedVisualBodySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -32,8 +32,12 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
 
         SubscribeLocalEvent<VisualOrganMarkingsComponent, BodyRelayedEvent<HumanoidLayerVisibilityChangedEvent>>(OnMarkingsChangedVisibility);
 
-        Subs.CVar(_cfg, CCVars.AccessibilityClientCensorNudity, OnCensorshipChanged, true);
-        Subs.CVar(_cfg, CCVars.AccessibilityServerCensorNudity, OnCensorshipChanged, true);
+        // Sunrise start
+        // Subs.CVar(_cfg, CCVars.AccessibilityClientCensorNudity, OnCensorshipChanged, true);
+        // Subs.CVar(_cfg, CCVars.AccessibilityServerCensorNudity, OnCensorshipChanged, true);
+        // Sunrise end
+
+        InitializeSunriseBodyTypes(); // Sunrise-Edit
     }
 
     private void OnCensorshipChanged(bool value)
@@ -72,7 +76,10 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
         if (!_sprite.LayerMapTryGet(target, ent.Comp.Layer, out var index, true))
             return;
 
-        _sprite.LayerSetData(target, index, ent.Comp.Data);
+        var data = ent.Comp.Data;
+        UpdateSunriseBodyTypeLayerData(ent, target, ref data); // Sunrise-Edit
+        _sprite.LayerSetData(target, index, data);
+        UpdateSunriseBodyTypeLayerVisibility(ent, target, index, data.Visible ?? true); // Sunrise-Edit
     }
 
     private void RemoveVisual(Entity<VisualOrganComponent> ent, EntityUid target)
@@ -143,9 +150,11 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
             }
         }
 
-        var censorNudity = _cfg.GetCVar(CCVars.AccessibilityClientCensorNudity) || _cfg.GetCVar(CCVars.AccessibilityServerCensorNudity);
-        if (!censorNudity)
-            yield break;
+        // Sunrise start
+        // var censorNudity = _cfg.GetCVar(CCVars.AccessibilityClientCensorNudity) || _cfg.GetCVar(CCVars.AccessibilityServerCensorNudity);
+        // if (!censorNudity)
+        //     yield break;
+        // Sunrise end
 
         var group = _prototype.Index(ent.Comp.MarkingData.Group);
         foreach (var layer in ent.Comp.MarkingData.Layers)
@@ -199,11 +208,15 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
                     _sprite.LayerSetColor(target, layerId, marking.MarkingColors[i]);
                 else
                     _sprite.LayerSetColor(target, layerId, Color.White);
+
+                // Sunrise-Edit
+                _sprite.LayerSetVisible(target, layerId, IsSunriseLayerVisible(target, proto.BodyPart, true));
             }
 
             applied.Add(marking);
         }
         ent.Comp.AppliedMarkings = applied;
+        ApplySunriseMarkingEffects(ent, target); // Sunrise-Edit
     }
 
     private void RemoveMarkings(Entity<VisualOrganMarkingsComponent> ent, EntityUid target)
@@ -221,6 +234,8 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
 
                 var layerId = $"{proto.ID}-{rsi.RsiState}";
 
+                RemoveSunriseMarkingDisplacement(target, layerId); // Sunrise-Edit
+
                 if (!_sprite.LayerMapTryGet(target, layerId, out var index, false))
                     continue;
 
@@ -232,29 +247,28 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
 
     private void OnMarkingsChangedVisibility(Entity<VisualOrganMarkingsComponent> ent, ref BodyRelayedEvent<HumanoidLayerVisibilityChangedEvent> args)
     {
-        foreach (var markings in ent.Comp.Markings.Values)
+        var visible = IsSunriseLayerVisible(args.Body.Owner, args.Args.Layer, args.Args.Visible); // Sunrise-Edit
+        foreach (var marking in ent.Comp.AppliedMarkings)
         {
-            foreach (var marking in markings)
+            if (!_marking.TryGetMarking(marking, out var proto))
+                continue;
+
+            if (proto.BodyPart != args.Args.Layer)
+                continue;
+
+            foreach (var sprite in proto.Sprites)
             {
-                if (!_marking.TryGetMarking(marking, out var proto))
+                DebugTools.Assert(sprite is SpriteSpecifier.Rsi);
+                if (sprite is not SpriteSpecifier.Rsi rsi)
                     continue;
 
-                if (proto.BodyPart != args.Args.Layer)
+                var layerId = $"{proto.ID}-{rsi.RsiState}";
+
+                if (!_sprite.LayerMapTryGet(args.Body.Owner, layerId, out var index, true))
                     continue;
 
-                foreach (var sprite in proto.Sprites)
-                {
-                    DebugTools.Assert(sprite is SpriteSpecifier.Rsi);
-                    if (sprite is not SpriteSpecifier.Rsi rsi)
-                        continue;
-
-                    var layerId = $"{proto.ID}-{rsi.RsiState}";
-
-                    if (!_sprite.LayerMapTryGet(args.Body.Owner, layerId, out var index, true))
-                        continue;
-
-                    _sprite.LayerSetVisible(args.Body.Owner, index, args.Args.Visible);
-                }
+                _sprite.LayerSetVisible(args.Body.Owner, index, visible); // Sunrise-Edit
+                SetSunriseMarkingDisplacementVisible(args.Body.Owner, layerId, visible); // Sunrise-Edit
             }
         }
     }

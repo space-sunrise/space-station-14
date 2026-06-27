@@ -1,4 +1,4 @@
-using Content.Server.Humanoid;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared._Sunrise.Antags.Abductor;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -17,7 +17,7 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private readonly BlindableSystem _blindable = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IComponentFactory _compFactory = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
+    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!;
 
     public override void Initialize()
     {
@@ -107,10 +107,10 @@ public sealed partial class OrganSystem : EntitySystem
     //
 
     private void OnVisualizationExtracted(Entity<OrganVisualizationComponent> ent, ref SurgeryOrganExtracted args)
-        => _humanoidAppearanceSystem.SetLayersVisibility(args.Body, [ent.Comp.Layer], false);
+        => _sunriseBody.SetLayersVisibility(args.Body, [ent.Comp.Layer], false);
     private void OnVisualizationImplanted(Entity<OrganVisualizationComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
-        _humanoidAppearanceSystem.SetLayersVisibility(args.Body, [ent.Comp.Layer], true);
-        _humanoidAppearanceSystem.SetBaseLayerId(args.Body, ent.Comp.Layer, ent.Comp.Prototype);
+        _sunriseBody.SetLayersVisibility(args.Body, [ent.Comp.Layer], true);
+        _sunriseBody.SetBaseLayerData(args.Body, ent.Comp.Layer, ent.Comp.Data);
     }
 }

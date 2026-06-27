@@ -1,6 +1,8 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._Sunrise.Preferences;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -8,6 +10,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -31,7 +34,7 @@ namespace Content.Shared.Preferences
     public sealed partial class HumanoidCharacterProfile : ICharacterProfile
     {
         public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
-        private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-z0-9 '\-]");
+        private static readonly Regex RestrictedNameRegex = new(@"[^А-Яа-яA-Za-zёЁ0-9, ,\-,'.]"); // Sunrise
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
@@ -64,6 +67,10 @@ namespace Content.Shared.Preferences
 
         [DataField]
         private Dictionary<string, RoleLoadout> _loadouts = new();
+
+        // Sunrise-Edit
+        [DataField]
+        public SunriseCharacterProfile SunriseProfile { get; private set; } = new();
 
         [DataField]
         public string Name { get; set; } = "John Doe";
@@ -188,6 +195,7 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
+            SunriseProfile = new SunriseCharacterProfile(other.SunriseProfile); // Sunrise-Edit
         }
 
         /// <summary>
@@ -215,6 +223,7 @@ namespace Content.Shared.Preferences
                 Species = species.Value,
                 Sex = sex.Value,
                 Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species.Value, sex.Value),
+                SunriseProfile = SunriseCharacterProfile.DefaultForSpecies(species.Value, sex.Value), // Sunrise-Edit
             };
         }
 
@@ -226,7 +235,7 @@ namespace Content.Shared.Preferences
 
             var species = random.Pick(prototypeManager
                 .EnumeratePrototypes<SpeciesPrototype>()
-                .Where(x => ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                .Where(x => ignoredSpecies == null ? x.RoundStart && !x.SponsorOnly : x.RoundStart && !x.SponsorOnly && !ignoredSpecies.Contains(x.ID)) // Sunrise-Edit
                 .ToArray()
             ).ID;
 
@@ -270,6 +279,7 @@ namespace Content.Shared.Preferences
                 Gender = gender,
                 Species = species,
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
+                SunriseProfile = SunriseCharacterProfile.RandomForSpecies(speciesPrototype, sex, random, prototypeManager), // Sunrise-Edit
             };
         }
 
@@ -473,6 +483,7 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
+            if (!SunriseProfile.Equals(other.SunriseProfile)) return false; // Sunrise-Edit
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
@@ -483,12 +494,14 @@ namespace Content.Shared.Preferences
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
-        public void EnsureValid(ICommonSession session, IDependencyCollection collection)
+        public void EnsureValid(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes) // Sunrise-edit
         {
             var configManager = collection.Resolve<IConfigurationManager>();
             var prototypeManager = collection.Resolve<IPrototypeManager>();
 
-            if (!prototypeManager.TryIndex(Species, out var speciesPrototype) || speciesPrototype.RoundStart == false)
+            if (!prototypeManager.TryIndex(Species, out var speciesPrototype) ||
+                !speciesPrototype.RoundStart ||
+                speciesPrototype.SponsorOnly && !sponsorPrototypes.Contains(Species.Id)) // Sunrise-Edit
             {
                 Species = HumanoidCharacterProfile.DefaultSpecies;
                 speciesPrototype = prototypeManager.Index(Species);
@@ -550,8 +563,20 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
+            // Sunrise edit start - sponsor-aware flavor text limit
+            var maxFlavorTextLength = configManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
+            if (collection.TryResolveType<ISharedSponsorsManager>(out var sponsors))
+            {
+                if (sponsors.IsSponsor(session.UserId))
+                    maxFlavorTextLength = sponsors.GetSizeFlavor(session.UserId);
+
+                if (!sponsors.IsAllowedFlavor(session.UserId) && configManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly))
+                    FlavorText = string.Empty;
+            }
+            // Sunrise edit end
+
             string flavortext;
-            var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
+            // var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength); // Sunrise-edit
             if (FlavorText.Length > maxFlavorTextLength)
             {
                 flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
@@ -562,6 +587,7 @@ namespace Content.Shared.Preferences
             }
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
+            appearance = EnsureSunriseAppearanceValid(appearance, sponsorPrototypes, prototypeManager); // Sunrise-Edit
 
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
@@ -622,6 +648,8 @@ namespace Content.Shared.Preferences
                 _jobPriorities.Add(job, priority);
             }
 
+            EnsureSunriseProfileValid(speciesPrototype, sex, session, collection, sponsorPrototypes); // Sunrise-Edit
+
             PreferenceUnavailable = prefsUnavailableMode;
 
             _antagPreferences.Clear();
@@ -644,7 +672,7 @@ namespace Content.Shared.Preferences
                 // This happens after we verify the prototype exists
                 // These values are set equal in the database and we need to make sure they're equal here too!
                 loadouts.Role = roleName;
-                loadouts.EnsureValid(this, session, collection);
+                loadouts.EnsureValid(this, session, collection, sponsorPrototypes); // Sunrise-Edit
             }
 
             foreach (var value in toRemove)
@@ -692,10 +720,10 @@ namespace Content.Shared.Preferences
             return result;
         }
 
-        public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection)
+        public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes) // Sunrise
         {
             var profile = new HumanoidCharacterProfile(this);
-            profile.EnsureValid(session, collection);
+            profile.EnsureValid(session, collection, sponsorPrototypes); // Sunrise
             return profile;
         }
 
@@ -733,6 +761,7 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)Sex);
             hashCode.Add((int)Gender);
             hashCode.Add(Appearance);
+            hashCode.Add(SunriseProfile); // Sunrise-Edit
             hashCode.Add((int)SpawnPriority);
             hashCode.Add((int)PreferenceUnavailable);
             return hashCode.ToHashCode();
@@ -762,15 +791,16 @@ namespace Content.Shared.Preferences
             return profile;
         }
 
-        public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager)
+        // Sunrise edited func
+        public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager, string[] sponsorPrototypes)
         {
             if (!_loadouts.TryGetValue(id, out var loadout))
             {
                 loadout = new RoleLoadout(id);
-                loadout.SetDefault(this, session, protoManager, force: true);
+                loadout.SetDefault(this, session, protoManager, sponsorPrototypes, force: true); // Sunrise
             }
 
-            loadout.SetDefault(this, session, protoManager);
+            loadout.SetDefault(this, session, protoManager, sponsorPrototypes); // Sunrise
             return loadout;
         }
 
@@ -794,7 +824,8 @@ namespace Content.Shared.Preferences
             return dataNode;
         }
 
-        public static HumanoidCharacterProfile FromStream(Stream stream, ICommonSession session, ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
+        // Sunrise edited func
+        public static HumanoidCharacterProfile FromStream(Stream stream, ICommonSession session, string[] sponsorPrototypes, ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
         {
             IoCManager.Resolve(ref serialization);
             IoCManager.Resolve(ref configuration);
@@ -821,7 +852,7 @@ namespace Content.Shared.Preferences
             }
 
             var collection = IoCManager.Instance;
-            profile.EnsureValid(session, collection!);
+            profile.EnsureValid(session, collection!, sponsorPrototypes); // Sunrise
             return profile;
         }
     }

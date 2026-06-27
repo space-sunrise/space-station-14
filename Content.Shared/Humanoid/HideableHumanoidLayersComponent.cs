@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Humanoid;
 
 [NetworkedComponent, RegisterComponent, AutoGenerateComponentState(true)]
-[Access(typeof(SharedHideableHumanoidLayersSystem))]
+[Access(typeof(SharedHideableHumanoidLayersSystem), Other = AccessPermissions.ReadExecute)] // Sunrise-Edit
 public sealed partial class HideableHumanoidLayersComponent : Component
 {
     /// <summary>

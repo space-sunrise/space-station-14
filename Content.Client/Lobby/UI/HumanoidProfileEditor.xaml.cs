@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Humanoid;
+using Content.Client._Sunrise.Humanoid;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
 using Content.Client.Message;
@@ -11,6 +12,8 @@ using Content.Client.Sprite;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.Body;
 using Content.Shared.CCVar;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Guidebook;
@@ -140,6 +143,7 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
+            InitializeSunriseProfileEditor(); // Sunrise-Edit
 
             Markings.SetModel(_markingsModel);
 
@@ -361,7 +365,10 @@ namespace Content.Client.Lobby.UI
                 if (_flavorText != null)
                     return;
 
-                _flavorText = new FlavorText.FlavorText();
+                _flavorText = new FlavorText.FlavorText(
+                    _sponsorsMgr,
+                    _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly),
+                    _cfgManager.GetCVar(SunriseCCVars.FlavorTextBaseLength)); // Sunrise-Edit
                 TabContainer.AddChild(_flavorText);
                 TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
                 _flavorTextEdit = _flavorText.CFlavorTextInput;
@@ -502,7 +509,11 @@ namespace Content.Client.Lobby.UI
             SpeciesButton.Clear();
             _species.Clear();
 
-            _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
+            // Sunrise edit start - sponsor-only species filtering
+            var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes() ?? [];
+            _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>()
+                .Where(o => o.RoundStart && (!o.SponsorOnly || sponsorPrototypes.Contains(o.ID))));
+            // Sunrise edit end
             _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
             var speciesIds = _species.Select(o => o.ID).ToList();
 
@@ -664,6 +675,7 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
+            UpdateSunriseControls(); // Sunrise-Edit
 
             RefreshAntags();
             RefreshJobs();
@@ -689,6 +701,7 @@ namespace Content.Client.Lobby.UI
                 return;
 
             _entManager.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, Profile);
+            ApplySunriseProfileToPreview(); // Sunrise-Edit
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
@@ -885,7 +898,7 @@ namespace Content.Client.Lobby.UI
                             if (loadout == null)
                             {
                                 loadout = new RoleLoadout(roleLoadoutProto.ID);
-                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
+                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, _sponsorsMgr?.GetClientPrototypes().ToArray() ?? []); // Sunrise-Edit
                             }
 
                             OpenLoadout(job, loadout, roleLoadoutProto);
@@ -914,7 +927,7 @@ namespace Content.Client.Lobby.UI
             JobOverride = jobProto;
             var session = _playerManager.LocalSession;
 
-            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
+            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection, _sponsorsMgr) // Sunrise-Edit
             {
                 Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{jobProto?.LocalizedName}")),
             };
@@ -1072,6 +1085,7 @@ namespace Content.Client.Lobby.UI
 
             UpdateGenderControls();
             _markingsModel.SetOrganSexes(newSex);
+            UpdateSunriseControls(); // Sunrise-Edit
             ReloadPreview();
         }
 
@@ -1092,6 +1106,7 @@ namespace Content.Client.Lobby.UI
             // In case there's species restrictions for loadouts
             RefreshLoadouts();
             UpdateSexControls(); // update sex for new species
+            UpdateSunriseControls(); // Sunrise-Edit
             UpdateSpeciesGuidebookIcon();
             ReloadPreview();
         }
@@ -1344,7 +1359,10 @@ namespace Content.Client.Lobby.UI
 
             try
             {
-                var profile = HumanoidCharacterProfile.FromStream(file, _playerManager.LocalSession!);
+                // Sunrise start
+                var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
+                var profile = HumanoidCharacterProfile.FromStream(file, _playerManager.LocalSession!, sponsorPrototypes);
+                // Sunrise end
                 var oldProfile = Profile;
                 SetProfile(profile, CharacterSlot);
 

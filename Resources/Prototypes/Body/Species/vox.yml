@@ -151,8 +151,10 @@
       Kidneys: OrganVoxKidneys
   - type: HumanoidProfile
     species: Vox
-    #undergarmentTop: UndergarmentTopTanktopVox # Sunrise-edit
-    #undergarmentBottom: UndergarmentBottomBoxersVox # Sunrise-edit
+  # Sunrise-start
+  - type: SunriseHumanoidProfile
+    bodyType: VoxNormal
+  # Sunrise-end
 - type: entity
   parent:
   - AppearanceVox

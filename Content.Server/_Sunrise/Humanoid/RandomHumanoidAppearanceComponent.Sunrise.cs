@@ -4,7 +4,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
-namespace Content.Server.Humanoid.Systems;
+namespace Content.Server.Humanoid.Components;
 
 public sealed partial class RandomHumanoidAppearanceComponent
 {
