@@ -22,6 +22,16 @@ public sealed partial class SalvageSystem
      */
 
     private const int MissionLimit = 5; // Sunrise-Edit
+    // Sunrise added start - fixed expedition console difficulty slots
+    private static readonly string[] MissionDifficultySlots =
+    [
+        "Easy",
+        "Moderate",
+        "Challenging",
+        "Difficult",
+        "Impossible",
+    ];
+    // Sunrise added end
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -154,21 +164,28 @@ public sealed partial class SalvageSystem
         var roundDuration = _gameTicker.RunLevel == GameRunLevel.InRound
             ? _gameTicker.RoundDuration()
             : TimeSpan.Zero;
-        var difficulties = _prototypeManager
+        var availableDifficulties = _prototypeManager // Sunrise-Edit
             .EnumeratePrototypes<SalvageDifficultyPrototype>()
             .Where(d => d.Delay <= roundDuration && d.Probability > 0f)
-            .ToDictionary(d => d.ID, d => d.Probability); 
+            .ToDictionary(d => d.ID, d => d.Probability); // Sunrise-Edit
 
-        if (difficulties.Count == 0)
+        if (availableDifficulties.Count == 0) // Sunrise-Edit
             return;
         // Sunrise-End
-        for (var i = 0; i < MissionLimit; i++)
+        for (var i = 0; i < Math.Min(MissionLimit, MissionDifficultySlots.Length); i++) // Sunrise-Edit
         {
+            // Sunrise added start - fixed expedition console difficulty slots
+            var slotDifficulty = MissionDifficultySlots[i];
+            var difficulty = availableDifficulties.ContainsKey(slotDifficulty)
+                ? slotDifficulty
+                : _random.Pick(availableDifficulties);
+            // Sunrise added end
+
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = _random.Pick(difficulties), // Sunrise-Edit
+                Difficulty = difficulty, // Sunrise-Edit
             };
 
             component.Missions[component.NextIndex++] = mission;

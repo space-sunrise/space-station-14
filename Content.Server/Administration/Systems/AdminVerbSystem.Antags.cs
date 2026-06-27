@@ -1,6 +1,7 @@
 using Content.Server._Sunrise.AssaultOps;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server._Sunrise.FleshCult.GameRule;
+using Content.Server._Sunrise.GameTicking.Rules.Components;
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
 using Content.Server.GameTicking;
@@ -35,7 +36,12 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
+    private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
+    private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation";
+
+    private static readonly SpriteSpecifier SelfAgentVerbIcon =
+        new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/self_icon.rsi"), "icon");
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -211,9 +217,40 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(wizard);
 
+        var ninjaName = Loc.GetString("admin-verb-text-make-space-ninja");
+        Verb ninja = new()
+        {
+            Text = ninjaName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Weapons/Melee/energykatana.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<NinjaRoleComponent>(targetPlayer, DefaultNinjaRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", ninjaName, Loc.GetString("admin-verb-make-space-ninja")),
+        };
+        args.Verbs.Add(ninja);
+
         if (HasComp<HumanoidProfileComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
 
+        // Sunrise-Start
+
+        Verb selfAgent = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-selfagent"),
+            Category = VerbCategory.Antag,
+            Icon = SelfAgentVerbIcon,
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<SELFRuleComponent>(targetPlayer, DefaultSELFRule);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-selfagent"),
+        };
+        args.Verbs.Add(selfAgent);
+        // Sunrise-End
         AddSunriseAntagVerbs(args); // Sunrise-edit
     }
 }

@@ -3,6 +3,7 @@ using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
 using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Body;
+using Content.Server._Sunrise.Movement.Carrying;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
@@ -13,19 +14,18 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Mind.Components;
 using Content.Shared.Nutrition;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
+using Content.Shared._Sunrise.Movement.Carrying;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-// Sunrise-Start
-using Content.Shared.EntityEffects;
-using Content.Shared.Mind.Components;
-// Sunrise-End
+
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -37,6 +37,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly CarryingSystem _carrying = default!; // Sunrise-Edit
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -218,6 +219,14 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         // mostly just for vehicles
         _buckle.TryUnbuckle(uid, uid, true);
+
+        // Sunrise-Start
+        if (TryComp<ActiveCarrierComponent>(uid, out var activeCarrier))
+            _carrying.TryDropCarried((uid, activeCarrier));
+
+        if (TryComp<ActiveCanBeCarriedComponent>(uid, out var activeCanBeCarried))
+            _carrying.TryDropCarriedByTarget((uid, activeCanBeCarried));
+        // Sunrise-End
 
         var targetTransformComp = Transform(uid);
 

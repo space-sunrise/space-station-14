@@ -32,6 +32,8 @@
   id: BaseMobTajaran
   abstract: true
   components:
+  - type: MessyDrinker
+    spillChance: 0.2
   - type: Interactions
   - type: HumanoidProfile
     species: Tajaran
@@ -182,8 +184,8 @@
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
   - type: FootprintEmitter
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
 
 - type: entity
   save: false

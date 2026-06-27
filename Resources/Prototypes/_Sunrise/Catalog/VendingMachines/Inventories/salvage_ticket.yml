@@ -12,7 +12,7 @@
   id: VendorSalvageClothingOuterHardsuitMaxim
   productEntity: ClothingOuterHardsuitMaxim
   cost:
-    SalvageTicket: 1500
+    SalvageTicket: 3333
   categories:
   - SalvageEquipment
   conditions:
@@ -179,6 +179,17 @@
     SalvageTicket: 150
   categories:
   - SalvageEquipment
+
+- type: listing
+  id: VendorSalvageClothingHandsSalvageMercGlovesCombat
+  productEntity: ClothingHandsSalvageMercGlovesCombat
+  cost:
+    SalvageTicket: 1984
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
 
 - type: listing
   id: VendorSalvageJetpackMini

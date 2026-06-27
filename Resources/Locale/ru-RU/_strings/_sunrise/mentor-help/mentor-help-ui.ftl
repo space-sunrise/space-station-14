@@ -18,6 +18,7 @@ mentor-help-claim = Взять
 mentor-help-unassign = Освободить
 mentor-help-close-ticket = Закрыть
 mentor-help-close-confirm = Вы уверены?
+mentor-help-teleport = Телепорт
 mentor-help-cancel = Отмена
 mentor-help-close = Закрыть
 mentor-help-auto-open-tickets = Авто-открытие

@@ -1,0 +1,20 @@
+- type: entity
+  id: LightningRogueSiliconWeak
+  parent: BaseLightning
+  name: weak lightning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Lightning
+    canArc: false
+    lightningPrototype: LightningRogueSiliconWeak
+    maxLength: 4
+  - type: Electrified
+    requirePower: false
+    shockDamage: 5
+    shockTime: 1
+  - type: PointLight
+    radius: 2
+    energy: 0.8
+    color: "#4080FF"
+  - type: TimedDespawn
+    lifetime: 1

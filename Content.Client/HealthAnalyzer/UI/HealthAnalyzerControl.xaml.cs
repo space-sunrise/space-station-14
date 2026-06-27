@@ -42,113 +42,113 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         _cache = dependencies.Resolve<IResourceCache>();
     }
 
-    // public void Populate(HealthAnalyzerUiState state)
-    // {
-    //     var target = _entityManager.GetEntity(state.TargetEntity);
+    public void Populate(HealthAnalyzerUiState state)
+    {
+        var target = _entityManager.GetEntity(state.TargetEntity);
 
-    //     if (target == null
-    //         || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
-    //     {
-    //         NoPatientDataText.Visible = true;
-    //         return;
-    //     }
+        if (target == null
+            || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
+        {
+            NoPatientDataText.Visible = true;
+            return;
+        }
 
-    //     NoPatientDataText.Visible = false;
+        NoPatientDataText.Visible = false;
 
-    //     // Scan Mode
+        // Scan Mode
 
-    //     ScanModeLabel.Text = state.ScanMode.HasValue
-    //         ? state.ScanMode.Value
-    //             ? Loc.GetString("health-analyzer-window-scan-mode-active")
-    //             : Loc.GetString("health-analyzer-window-scan-mode-inactive")
-    //         : Loc.GetString("health-analyzer-window-entity-unknown-text");
+        ScanModeLabel.Text = state.ScanMode.HasValue
+            ? state.ScanMode.Value
+                ? Loc.GetString("health-analyzer-window-scan-mode-active")
+                : Loc.GetString("health-analyzer-window-scan-mode-inactive")
+            : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
-    //     ScanModeLabel.FontColorOverride = state.ScanMode.HasValue && state.ScanMode.Value ? Color.Green : Color.Red;
+        ScanModeLabel.FontColorOverride = state.ScanMode.HasValue && state.ScanMode.Value ? Color.Green : Color.Red;
 
-    //     // Patient Information
+        // Patient Information
 
-    //     SpriteView.SetEntity(target.Value);
-    //     SpriteView.Visible = state.ScanMode.HasValue && state.ScanMode.Value;
-    //     NoDataTex.Visible = !SpriteView.Visible;
+        SpriteView.SetEntity(target.Value);
+        SpriteView.Visible = state.ScanMode.HasValue && state.ScanMode.Value;
+        NoDataTex.Visible = !SpriteView.Visible;
 
-    //     var name = new FormattedMessage();
-    //     name.PushColor(Color.White);
-    //     name.AddText(_entityManager.HasComponent<MetaDataComponent>(target.Value)
-    //         ? Identity.Name(target.Value, _entityManager)
-    //         : Loc.GetString("health-analyzer-window-entity-unknown-text"));
-    //     NameLabel.SetMessage(name);
+        var name = new FormattedMessage();
+        name.PushColor(Color.White);
+        name.AddText(_entityManager.HasComponent<MetaDataComponent>(target.Value)
+            ? Identity.Name(target.Value, _entityManager)
+            : Loc.GetString("health-analyzer-window-entity-unknown-text"));
+        NameLabel.SetMessage(name);
 
-    //     SpeciesLabel.Text =
-    //         _entityManager.TryGetComponent<HumanoidProfileComponent>(target.Value,
-    //             out var humanoidComponent)
-    //             ? Loc.GetString(_prototypes.Index(humanoidComponent.Species).Name)
-    //             : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
+        SpeciesLabel.Text =
+            _entityManager.TryGetComponent<HumanoidAppearanceComponent>(target.Value,
+                out var humanoidAppearanceComponent)
+                ? Loc.GetString(_prototypes.Index<SpeciesPrototype>(humanoidAppearanceComponent.Species).Name)
+                : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
 
-    //     // Basic Diagnostic
+        // Basic Diagnostic
 
-    //     TemperatureLabel.Text = !float.IsNaN(state.Temperature)
-    //         ? $"{state.Temperature - Atmospherics.T0C:F1} °C ({state.Temperature:F1} K)"
-    //         : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+        TemperatureLabel.Text = !float.IsNaN(state.Temperature)
+            ? $"{state.Temperature - Atmospherics.T0C:F1} °C ({state.Temperature:F1} K)"
+            : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
-    //     BloodLabel.Text = !float.IsNaN(state.BloodLevel)
-    //         ? $"{state.BloodLevel * 100:F1} %"
-    //         : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+        BloodLabel.Text = !float.IsNaN(state.BloodLevel)
+            ? $"{state.BloodLevel * 100:F1} %"
+            : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
-    //     // Sunrise-Edit start - hunger and thirst label updates
-    //     HungerLabel.Text = state.HungerLevel.HasValue && !float.IsNaN(state.HungerLevel.Value)
-    //         ? $"{state.HungerLevel.Value:F1} %"
-    //         : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+        // Sunrise-Edit start - hunger and thirst label updates
+        HungerLabel.Text = state.HungerLevel.HasValue && !float.IsNaN(state.HungerLevel.Value)
+            ? $"{state.HungerLevel.Value:F1} %"
+            : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
-    //     ThirstLabel.Text = state.ThirstLevel.HasValue && !float.IsNaN(state.ThirstLevel.Value)
-    //         ? $"{state.ThirstLevel.Value:F1} %"
-    //         : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
-    //     // Sunrise-Edit end
+        ThirstLabel.Text = state.ThirstLevel.HasValue && !float.IsNaN(state.ThirstLevel.Value)
+            ? $"{state.ThirstLevel.Value:F1} %"
+            : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+        // Sunrise-Edit end
 
-    //     StatusLabel.Text =
-    //         _entityManager.TryGetComponent<MobStateComponent>(target.Value, out var mobStateComponent)
-    //             ? GetStatus(mobStateComponent.CurrentState)
-    //             : Loc.GetString("health-analyzer-window-entity-unknown-text");
+        StatusLabel.Text =
+            _entityManager.TryGetComponent<MobStateComponent>(target.Value, out var mobStateComponent)
+                ? GetStatus(mobStateComponent.CurrentState)
+                : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
-    //     // Total Damage
+        // Total Damage
 
-    //     DamageLabel.Text = damageable.TotalDamage.ToString();
+        DamageLabel.Text = damageable.TotalDamage.ToString();
 
-    //     // Alerts
+        // Alerts
 
-    //     var showAlerts = state.Unrevivable == true || state.Bleeding == true;
+        var showAlerts = state.Unrevivable == true || state.Bleeding == true;
 
-    //     AlertsDivider.Visible = showAlerts;
-    //     AlertsContainer.Visible = showAlerts;
+        AlertsDivider.Visible = showAlerts;
+        AlertsContainer.Visible = showAlerts;
 
-    //     if (showAlerts)
-    //         AlertsContainer.RemoveAllChildren();
+        if (showAlerts)
+            AlertsContainer.RemoveAllChildren();
 
-    //     if (state.Unrevivable == true)
-    //         AlertsContainer.AddChild(new RichTextLabel
-    //         {
-    //             Text = Loc.GetString("health-analyzer-window-entity-unrevivable-text"),
-    //             Margin = new Thickness(0, 4),
-    //             MaxWidth = 300
-    //         });
+        if (state.Unrevivable == true)
+            AlertsContainer.AddChild(new RichTextLabel
+            {
+                Text = Loc.GetString("health-analyzer-window-entity-unrevivable-text"),
+                Margin = new Thickness(0, 4),
+                MaxWidth = 300
+            });
 
-    //     if (state.Bleeding == true)
-    //         AlertsContainer.AddChild(new RichTextLabel
-    //         {
-    //             Text = Loc.GetString("health-analyzer-window-entity-bleeding-text"),
-    //             Margin = new Thickness(0, 4),
-    //             MaxWidth = 300
-    //         });
+        if (state.Bleeding == true)
+            AlertsContainer.AddChild(new RichTextLabel
+            {
+                Text = Loc.GetString("health-analyzer-window-entity-bleeding-text"),
+                Margin = new Thickness(0, 4),
+                MaxWidth = 300
+            });
 
-    //     // Damage Groups
+        // Damage Groups
 
-    //     var damageSortedGroups =
-    //         damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
-    //             .ToDictionary(x => x.Key, x => x.Value);
+        var damageSortedGroups =
+            damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
+                .ToDictionary(x => x.Key, x => x.Value);
 
-    //     IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
+        IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
 
-    //     DrawDiagnosticGroups(damageSortedGroups, damagePerType);
-    // }
+        DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+    }
 
     private static string GetStatus(MobState mobState)
     {

@@ -22,11 +22,15 @@
       color: "#990000"
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconDroneLethals
-    - MobRogueSiliconDroneNonLethals
-    - MobRogueSiliconDroneScience
+    - MobRogueSiliconT1DroneLethals
+    - MobRogueSiliconT1DroneNonLethals
+    - MobRogueSiliconT1DroneScience
     chance: 1
     offset: 0.0
+    rarePrototypes:
+    - MobRogueSiliconT1DroneNonLethalsBuff
+    - MobRogueSiliconT1DroneScienceBuff
+    rareChance: 0.1
 
 - type: entity
   name: scrap unit spawner
@@ -56,16 +60,19 @@
       state: r_leg_generic
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconScrap
-    - MobRogueSiliconScrapThreads
-    - MobRogueSiliconScrapThrusters
-    - MobRogueSiliconScrapThrustersRanged
+    - MobRogueSiliconT1Scrap
+    - MobRogueSiliconT1ScrapThreads
+    - MobRogueSiliconT1ScrapThrusters
+    - MobRogueSiliconT1ScrapThrustersRanged
+    - MobRogueSiliconT1Viscerator
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MobRogueSiliconScrapFlayer
+    - MobRogueSiliconT1ScrapFlayer
+    - SpawnMobRogueSiliconT1VisceratorSquad
     - SpawnMobRogueSiliconsT2
-    rareChance: 0.05
+    - SpawnMobRogueDerelictBorgsT1
+    rareChance: 0.1
 
 - type: entity
   name: rogue unit spawner
@@ -95,16 +102,18 @@
       state: wielded-inhand-right
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconServo
-    - MobRogueSiliconHerder
-    - MobRogueSiliconHunter
-    - MobRogueSiliconCatcher
-    - MobRogueSiliconViscerator
+    - MobRogueSiliconT2Servo
+    - MobRogueSiliconT2Herder
+    - MobRogueSiliconT2Hunter
+    - MobRogueSiliconT2Catcher
+    - MobRogueSiliconT2DerelictBorgAssault
+    - MobRogueSiliconT1DerelictBorgMining
     chance: 1
     offset: 0.0
     rarePrototypes:
     - SpawnMobRogueSiliconsT3
-    rareChance: 0.05
+    - SpawnMobRogueDerelictBorgsT2
+    rareChance: 0.1
 
 - type: entity
   name: rogue unit spawner
@@ -130,14 +139,87 @@
       state: inhand-right
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconTesla
-    - MobRogueSiliconTerminatorT3
+    - MobRogueSiliconT3Tesla
+    - MobRogueSiliconT3Terminator
+    - MobRogueSiliconT2DerelictBorgAssaultHeavy
+    - MobRogueSiliconT3DerelictBorgSyndicateSaboteur
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MobRogueSiliconGuardian
-    - MobRogueSiliconGuardianLCG
+    - MobRogueSiliconBossGuardian
+    - MobRogueSiliconBossGuardianLCG
+    - SpawnMobRogueDerelictBorgsT3
+    rareChance: 0.1
+
+- type: entity
+  name: derelict rogue borg spawner
+  id: SpawnMobRogueDerelictBorgsT1
+  parent: MarkerBase
+  suffix: AI, Hostile, Derelict, T1
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: derelict
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconT1DerelictBorg
+    - MobRogueSiliconT1DerelictBorgEngineering
+    - MobRogueSiliconT1DerelictBorgJanitor
+    - MobRogueSiliconT1DerelictBorgMedical
+    - MobRogueSiliconT1DerelictBorgMining
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobRogueSiliconT2DerelictBorgAssaultHeavy
+    - MobRogueSiliconT2DerelictBorgSyndicateMedical
     rareChance: 0.05
+
+- type: entity
+  name: derelict rogue borg spawner
+  id: SpawnMobRogueDerelictBorgsT2
+  parent: MarkerBase
+  suffix: AI, Hostile, Derelict, T2
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: synd_sec_derelict
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconT2DerelictBorgAssault
+    - MobRogueSiliconT2DerelictBorgAssaultHeavy
+    - MobRogueSiliconT2DerelictBorgSyndicateMedical
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobRogueSiliconT3DerelictBorgAssault
+    - MobRogueSiliconT3DerelictBorgSyndicateSaboteur
+    rareChance: 0.05
+
+- type: entity
+  name: derelict rogue borg spawner
+  id: SpawnMobRogueDerelictBorgsT3
+  parent: MarkerBase
+  suffix: AI, Hostile, Derelict, T3
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+      state: syndi_reaper
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconT3DerelictBorgAssault
+    - MobRogueSiliconT3DerelictBorgSyndicateSaboteur
+    - MobRogueSiliconT2DerelictBorgSyndicateMedical
+    chance: 1
+    offset: 0.0
 
 - type: entity
   name: rogue silicon boss spawner
@@ -153,9 +235,40 @@
       state: netguardian
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconBoss
-    - MobRogueSiliconGuardian
-    - MobRogueSiliconGuardianLCG
+    - MobRogueSiliconBossGuardian
+    - MobRogueSiliconBossGuardianLCG
     chance: 1
     offset: 0.0
+    rarePrototypes:
+    - MobRogueSiliconBoss
+    - MobRogueSiliconBossSkullHouse
+    rareChance: 0.1
 
+- type: entity
+  name: rogue silicon turret spawner
+  id: SpawnWeaponTurretRogueSiliconRandom
+  parent: MarkerBase
+  suffix: AI, Hostile, Turret
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: support
+    - sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+      state: cover_closed
+  - type: RandomSpawner
+    prototypes:
+    - WeaponTurretRogueSiliconStunner
+    - WeaponTurretRogueSiliconLaser
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - WeaponTurretRogueSiliconLongbow
+    - WeaponTurretRogueSiliconAutocannon
+    - WeaponTurretRogueSiliconSquall
+    - WeaponTurretRogueSiliconBullfrog
+    - WeaponTurretRogueSiliconVympel
+    - WeaponTurretRogueSiliconQuadling
+    rareChance: 0.3

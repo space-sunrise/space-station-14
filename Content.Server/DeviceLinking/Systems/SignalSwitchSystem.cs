@@ -31,7 +31,7 @@ public sealed class SignalSwitchSystem : EntitySystem
         if (args.Handled || !args.Complex)
             return;
 
-        // Sunrise added start - prevent pressing buttons in mapping mode
+        // Sunrise added start - запрещаем нажимать кнопки в mapping mode
         if (Paused(uid))
             return;
         // Sunrise added end

@@ -377,7 +377,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingOuterHardsuitSalvage
+        - id: ClothingOuterHardsuitSpaceHazard
         - id: ToolboxMechanicalFilledAllTools
         - id: ClothingMaskGasExplorer
         - id: AirTankFilled

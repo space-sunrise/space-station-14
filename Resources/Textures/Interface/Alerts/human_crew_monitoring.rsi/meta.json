@@ -29,6 +29,9 @@
       "name": "health4"
 	},
 	{
+      "name": "unknown"
+	},
+	{
       "name": "critical",
       "delays": [
         [

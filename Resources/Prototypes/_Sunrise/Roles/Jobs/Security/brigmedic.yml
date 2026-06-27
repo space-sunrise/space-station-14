@@ -18,6 +18,7 @@
   alternativeTitles:
   - job-alt-title-orderly
   access:
+  - Brigmedic
   - Medical
   - Security
   - Brig
@@ -30,7 +31,6 @@
 - type: startingGear
   id: BrigmedicGear
   equipment:
-    outerClothing: ClothingOuterCoatLabSecurityMedic
     shoes: ClothingShoesColorRed
     gloves: ClothingHandsGlovesLatex
     eyes: ClothingEyesHudMedSec

@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Humanoid.Markings
 {
     [Prototype]
-    // Sunrise edit start - allow marking prototypes to inherit shared YAML fields
+    // Sunrise edit start - разрешаем marking-прототипам наследовать общие YAML-поля
     public sealed partial class MarkingPrototype : IPrototype, IInheritingPrototype
     {
         [IdDataField]

@@ -34,6 +34,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Content.Shared.Gibbing;
 using Robust.Shared.Maths;
 using Content.Shared.Gibbing;
 

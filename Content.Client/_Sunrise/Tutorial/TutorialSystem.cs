@@ -92,7 +92,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
         if (string.IsNullOrEmpty(msg.Reason))
             return;
 
-        _ui.Popup(Loc.GetString(msg.Reason), null, false);
+        _ui.Popup(msg.Reason, null, false);
     }
 
     private void OnPlayerAttached(Entity<TutorialBubbleComponent> ent, ref LocalPlayerAttachedEvent ev)

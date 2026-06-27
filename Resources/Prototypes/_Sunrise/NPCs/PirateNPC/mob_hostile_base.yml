@@ -152,8 +152,8 @@
   abstract: true
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 5
-    baseSprintSpeed : 5
+    baseWalkSpeed : 5.5
+    baseSprintSpeed : 5.5
 
 - type: entity
   id: MobMovementSpeedModifierBoss
@@ -296,7 +296,7 @@
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
   save: false
-  suffix: AI, Hostile
+  suffix: AI, SimpleHostile
   abstract: true
   parent:
   - MobDungeonAtmos
@@ -353,7 +353,7 @@
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
   save: false
-  suffix: AI, Pirate
+  suffix: AI, SimpleHostile
   abstract: true
   parent:
   - BaseMob

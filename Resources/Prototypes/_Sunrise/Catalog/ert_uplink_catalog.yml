@@ -1324,18 +1324,6 @@
   - !type:ListingLimitedStockCondition
     stock: 6
 
-- type: listing
-  id: ERTUplinkHyposprayERT
-  productEntity: HyposprayERT
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: hypospray_ert }
-  cost:
-    Crystallite: 20
-  categories:
-  - NTMedicine
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-
 # Дополнительное:
 
 - type: listing
@@ -1634,6 +1622,101 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 14
+
+# Материалы:
+- type: listing
+  id: ERTUplinkCrateMaterialBasicResource
+  productEntity: CrateMaterialBasicResource
+  cost:
+    Crystallite: 3
+  categories:
+    - NTEngineering
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: ERTUplinkIngotSilver
+  productEntity: IngotSilver
+  cost:
+    Crystallite: 2
+  categories:
+    - NTEngineering
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkSheetPlasma
+  productEntity: SheetPlasma
+  cost:
+    Crystallite: 3
+  categories:
+    - NTEngineering
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkIngotGold
+  productEntity: IngotGold
+  cost:
+    Crystallite: 3
+  categories:
+    - NTEngineering
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkSheetUranium
+  productEntity: SheetUranium
+  cost:
+    Crystallite: 5
+  categories:
+    - NTEngineering
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
+  id: ERTUplinkSheetPlasteel
+  productEntity: SheetPlasteel
+  cost:
+    Crystallite: 5
+  categories:
+    - NTEngineering
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+      - ERTEpsilon
 
 # Экипировка:
 - type: listing

@@ -29,9 +29,9 @@ public sealed class SunriseServerEntry
 
         KeybindLocalization.ResolveKeybind = null;
 #if SUNRISE_PRIVATE
+        IoCManager.Resolve<ISharedAccountBindingsManager>().Initialize();
         IoCManager.Resolve<ISharedSponsorsManager>().Initialize();
         IoCManager.Resolve<IServerJoinQueueManager>().Initialize();
-        IoCManager.Resolve<IServerServiceAuthManager>().Initialize();
         IoCManager.Resolve<AntiNukeManager>().Initialize();
 #endif
     }
