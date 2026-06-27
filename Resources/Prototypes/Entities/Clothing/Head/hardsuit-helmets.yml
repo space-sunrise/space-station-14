@@ -588,7 +588,7 @@
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseSunriseHardsuitHelmetNVD ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitSyndie
   name: blood-red hardsuit helmet
   description: A heavily armored helmet designed for work in special operations. Property of Gorlex Marauders.
@@ -623,10 +623,17 @@
   - type: HolidayClothingSwap
     sprite:
       festive: _Sunrise/Clothing/Head/Hardsuits/syndicate_santa.rsi
+  # Sunrise-Start
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionGreen
+  # Sunrise-End
 
 #Blood-red Medic Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseSunriseHardsuitHelmetNVD ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitSyndieMedic
   name: blood-red medic hardsuit helmet
   description: An advanced red hardsuit helmet specifically designed for field medic operations.
@@ -657,10 +664,17 @@
   - type: HolidayClothingSwap
     sprite:
       festive: _Sunrise/Clothing/Head/Hardsuits/syndiemedic_santa.rsi
+  # Sunrise-Start
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionGreen
+  # Sunrise-End
 
 #Syndicate Elite Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseSunriseHardsuitHelmetNVD ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitSyndieElite
   name: syndicate elite helmet
   description: An elite version of the blood-red hardsuit's helmet, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
@@ -700,10 +714,17 @@
   - type: HolidayClothingSwap
     sprite:
       festive: _Sunrise/Clothing/Head/Hardsuits/syndieelite_santa.rsi
+  # Sunrise-Start
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionRed
+  # Sunrise-End
 
 #Syndicate Commander Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseSunriseHardsuitHelmetNVD ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitSyndieCommander
   name: syndicate commander helmet
   description: A bulked up version of the blood-red hardsuit's helmet, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
@@ -738,10 +759,17 @@
   - type: HolidayClothingSwap
     sprite:
       festive: _Sunrise/Clothing/Head/Hardsuits/syndiecommander_santa.rsi
+  # Sunrise-Start
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionGreen
+  # Sunrise-End
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseSunriseHardsuitHelmetNVD ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitCybersun
   name: cybersun juggernaut helmet
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
@@ -766,6 +794,13 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  # Sunrise-Start
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionRed
+  # Sunrise-End
 
 #Wizard Hardsuit
 - type: entity
@@ -899,6 +934,12 @@
         Piercing: 0.9
         Heat: 0.9
   - type: FlashImmunity # Sunrise-Edit
+  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionCyan
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -914,6 +955,12 @@
   - type: PointLight
     color: "#ffffff"
   - type: FlashImmunity # Sunrise-Edit
+  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionWhite
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -939,6 +986,12 @@
         Heat: 0.9
   - type: FlashImmunity # Sunrise-Edit
   - type: EyeProtection # Sunrise-Edit
+  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionCyan
 
 #ERT Medical Hardsuit
 - type: entity
@@ -954,6 +1007,12 @@
   - type: PointLight
     color: "#adffec"
   - type: FlashImmunity
+  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionMint
 
 #ERT Security Hardsuit
 - type: entity
@@ -978,6 +1037,12 @@
         Piercing: 0.9
         Heat: 0.9
   - type: FlashImmunity
+  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionCyan
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -993,6 +1058,12 @@
   - type: PointLight
     color: "#cbadff"
   - type: FlashImmunity
+  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionPurple
 
 #CBURN Hardsuit
 - type: entity

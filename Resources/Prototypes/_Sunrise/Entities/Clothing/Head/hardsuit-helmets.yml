@@ -1,4 +1,25 @@
 - type: entity
+  id: BaseSunriseHardsuitHelmetNVD
+  abstract: true
+  components:
+  - type: UseDelay
+    delay: 3
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+
+- type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCBURNLeader
   categories: [ HideSpawnMenu ]

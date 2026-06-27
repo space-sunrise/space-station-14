@@ -992,6 +992,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -1006,6 +1014,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -1020,6 +1036,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
+  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 #ERT Medic Hardsuit
 - type: entity
@@ -1034,6 +1058,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 #ERT Security Hardsuit
 - type: entity
@@ -1048,6 +1080,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTSecurity
+  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
   - type: Tag
     tags:
     - Hardsuit
@@ -1067,6 +1107,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
 
 #Deathsquad
 - type: entity

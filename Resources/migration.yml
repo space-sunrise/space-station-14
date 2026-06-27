@@ -1067,4 +1067,5 @@ SpawnMobRogueSiliconGuardian: SpawnMobRogueSiliconBossGuardian
 SpawnMobRogueSiliconGuardianLCG: SpawnMobRogueSiliconBossGuardianLCG
 SpawnMobRogueSiliconTerminator: SpawnMobRogueSiliconT3Terminator
 HyposprayERT: Hypospray
+BoxErtLeaderKit: BoxErtBaseKit
 # region Sunrise-End
