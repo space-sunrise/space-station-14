@@ -62,18 +62,7 @@
   - type: PointLight
     color: "#d61b1b"
     energy: 0.5
-    radius: 20
-    softness: 20
-
-- type: entity
-  id: EffectNightVisionRed
-  categories: [ HideSpawnMenu ]
-  name: night vision
-  components:
-  - type: PointLight
-    color: "#d61b1b"
-    energy: 0.5
-    radius: 20
+    radius: 16
     softness: 20
 
 - type: entity

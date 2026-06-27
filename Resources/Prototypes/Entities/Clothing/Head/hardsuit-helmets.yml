@@ -719,7 +719,7 @@
     parent: true
     components:
       - type: NightVision
-        effect: EffectNightVisionRed
+        effect: EffectNightVisionSyndie
   # Sunrise-End
 
 #Syndicate Commander Hardsuit
@@ -799,7 +799,7 @@
     parent: true
     components:
       - type: NightVision
-        effect: EffectNightVisionRed
+        effect: EffectNightVisionSyndie
   # Sunrise-End
 
 #Wizard Hardsuit
