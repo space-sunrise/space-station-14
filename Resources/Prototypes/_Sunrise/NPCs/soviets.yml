@@ -119,7 +119,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 125
+    damageCap: 115
   - type: Stamina
     baseCritThreshold: 125
   - type: DamageStateVisuals
