@@ -992,7 +992,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
-  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  # Sunrise-Start
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -1000,6 +1000,7 @@
         whitelist:
           tags:
           - FitsHardsuit
+  # Sunrise-End
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -1014,7 +1015,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
-  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  # Sunrise-Start
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -1022,6 +1023,7 @@
         whitelist:
           tags:
           - FitsHardsuit
+  # Sunrise-End
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -1036,7 +1038,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
-  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  # Sunrise-Start
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -1044,6 +1046,7 @@
         whitelist:
           tags:
           - FitsHardsuit
+  # Sunrise-End
 
 #ERT Medic Hardsuit
 - type: entity
@@ -1058,7 +1061,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
-  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  # Sunrise-Start
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -1066,6 +1069,7 @@
         whitelist:
           tags:
           - FitsHardsuit
+  # Sunrise-End
 
 #ERT Security Hardsuit
 - type: entity
@@ -1080,7 +1084,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTSecurity
-  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  # Sunrise-Start
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -1088,6 +1092,7 @@
         whitelist:
           tags:
           - FitsHardsuit
+  # Sunrise-End
   - type: Tag
     tags:
     - Hardsuit
@@ -1107,7 +1112,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
-  # Sunrise-Edit - боевая ампула в аварийном отсеке ОБР
+  # Sunrise-Start
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -1115,6 +1120,7 @@
         whitelist:
           tags:
           - FitsHardsuit
+  # Sunrise-End
 
 #Deathsquad
 - type: entity

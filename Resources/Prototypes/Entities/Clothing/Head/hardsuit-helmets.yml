@@ -934,7 +934,7 @@
         Piercing: 0.9
         Heat: 0.9
   - type: FlashImmunity # Sunrise-Edit
-  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  # Sunrise-Edit
   - type: ComponentToggler
     parent: true
     components:
@@ -955,7 +955,7 @@
   - type: PointLight
     color: "#ffffff"
   - type: FlashImmunity # Sunrise-Edit
-  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  # Sunrise-Edit
   - type: ComponentToggler
     parent: true
     components:
@@ -986,7 +986,7 @@
         Heat: 0.9
   - type: FlashImmunity # Sunrise-Edit
   - type: EyeProtection # Sunrise-Edit
-  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  # Sunrise-Edit
   - type: ComponentToggler
     parent: true
     components:
@@ -1007,7 +1007,7 @@
   - type: PointLight
     color: "#adffec"
   - type: FlashImmunity
-  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  # Sunrise-Edit
   - type: ComponentToggler
     parent: true
     components:
@@ -1037,7 +1037,7 @@
         Piercing: 0.9
         Heat: 0.9
   - type: FlashImmunity
-  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  # Sunrise-Edit
   - type: ComponentToggler
     parent: true
     components:
@@ -1058,7 +1058,7 @@
   - type: PointLight
     color: "#cbadff"
   - type: FlashImmunity
-  # Sunrise-Edit - встроенный ПНВ включает подсветку шлема
+  # Sunrise-Edit
   - type: ComponentToggler
     parent: true
     components:

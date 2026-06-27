@@ -374,6 +374,11 @@
     sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
   #- type: PointLight
     #color: "#880808"
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionRed
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
