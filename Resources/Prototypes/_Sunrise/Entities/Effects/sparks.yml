@@ -25,6 +25,7 @@
   - type: InteractionOutline
   - type: Physics
     bodyType: Static
+    canCollide: false
   - type: Sprite
     scale: 0.6,0.6
     noRot: true
