@@ -7,7 +7,9 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Body;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true, fieldDeltas: true)]
-[Access(typeof(SharedVisualBodySystem))]
+// Sunrise edit start - доступ для Sunrise-эффектов markings
+// [Access(typeof(SharedVisualBodySystem))]
+// Sunrise edit end
 public sealed partial class VisualOrganMarkingsComponent : Component
 {
     /// <summary>

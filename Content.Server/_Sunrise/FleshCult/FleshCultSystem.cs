@@ -82,7 +82,6 @@ public sealed partial class FleshCultSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
 
     private readonly List<string> _speciesWhitelist =
     [

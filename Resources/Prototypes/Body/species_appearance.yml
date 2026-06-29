@@ -118,8 +118,6 @@
         type: SurgeryBui
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
       enum.SummonCultistUiKey.Key:
         type: SummonCultistListWindowBUI
       enum.CultSpellProviderUiKey.Key:

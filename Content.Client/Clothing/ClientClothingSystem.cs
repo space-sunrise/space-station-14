@@ -41,9 +41,9 @@ public sealed partial class ClientClothingSystem : ClothingSystem
         {"belt", "BELT"},
         {"gloves", "HAND"},
         {"shoes", "FEET"},
-        {"pants", "PANTS"}, // Sunrise-edit
-        {"socks", "SOCKS"}, // Sunrise-edit
-        {"bra", "BRA"}, // Sunrise-edit
+        {"pants", "PANTS"}, // Sunrise-Edit - дополнительные слоты одежды
+        {"socks", "SOCKS"}, // Sunrise-Edit - дополнительные слоты одежды
+        {"bra", "BRA"}, // Sunrise-Edit - дополнительные слоты одежды
         {"id", "IDCARD"},
         {"pocket1", "POCKET1"},
         {"pocket2", "POCKET2"},
@@ -106,7 +106,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
 
         List<PrototypeLayerData>? layers = null;
 
-        GetSunriseBodyTypeVisuals(args.Equipee, item, args.Slot, ref layers);
+        GetSunriseBodyTypeVisuals(args.Equipee, item, args.Slot, ref layers); // Sunrise-Edit - учет body type visuals
 
         // first attempt to get species specific data.
         if (inventory.SpeciesId != null)
@@ -172,7 +172,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
         if (clothing.EquippedState != null)
             state = $"{clothing.EquippedState}";
 
-        state = GetSunriseBodyTypeState(target, rsi, state);
+        state = GetSunriseBodyTypeState(target, rsi, state); // Sunrise-Edit - подбор state по body type
 
         // species specific
         if (speciesId != null && rsi.TryGetState($"{state}-{speciesId}", out _))
@@ -280,8 +280,10 @@ public sealed partial class ClientClothingSystem : ClothingSystem
         // Select displacement maps
         var displacementData = inventory.Displacements.GetValueOrDefault(slot); //Default unsexed map
 
-        var bodyTypeName = GetSunriseBodyTypeName(equipee);
-        displacementData = GetSunriseBodyTypeDisplacement(equipee, equipment, slot, inventory, bodyTypeName, displacementData);
+        // Sunrise edit start - подбор displacement по body type
+        var bodyTypeVisualKey = GetSunriseBodyTypeVisualKey(equipee);
+        displacementData = GetSunriseBodyTypeDisplacement(equipee, equipment, slot, inventory, bodyTypeVisualKey, displacementData);
+        // Sunrise edit end
 
         // add the new layers
         foreach (var (key, layerData) in ev.Layers)
@@ -326,7 +328,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
             {
                 //Checking that the state is not tied to the current race. In this case we don't need to use the displacement maps.
                 if (layerData.State is not null && (inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId)
-                    || bodyTypeName is not null && layerData.State.EndsWith(bodyTypeName)))
+                    || bodyTypeVisualKey is not null && layerData.State.EndsWith(bodyTypeVisualKey))) // Sunrise-Edit - body type state не использует displacement
                     continue;
 
                 if (_displacement.TryAddDisplacement(displacementData, (equipee, sprite), index, key, out var displacementKey))

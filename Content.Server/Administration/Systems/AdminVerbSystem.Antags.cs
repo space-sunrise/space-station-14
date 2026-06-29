@@ -38,10 +38,6 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
-    private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation";
-
-    private static readonly SpriteSpecifier SelfAgentVerbIcon =
-        new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/self_icon.rsi"), "icon");
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -235,22 +231,6 @@ public sealed partial class AdminVerbSystem
         if (HasComp<HumanoidProfileComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
 
-        // Sunrise-Start
-
-        Verb selfAgent = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-selfagent"),
-            Category = VerbCategory.Antag,
-            Icon = SelfAgentVerbIcon,
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<SELFRuleComponent>(targetPlayer, DefaultSELFRule);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-selfagent"),
-        };
-        args.Verbs.Add(selfAgent);
-        // Sunrise-End
         AddSunriseAntagVerbs(args); // Sunrise-edit
     }
 }

@@ -8,6 +8,7 @@ using Robust.Shared.Prototypes;
 using Content.Server._Sunrise.AssaultOps;
 using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Server._Sunrise.BloodCult.GameRule;
+using Content.Server._Sunrise.GameTicking.Rules.Components;
 
 namespace Content.Server.Administration.Systems;
 
@@ -19,7 +20,9 @@ public sealed partial class AdminVerbSystem
 {
     private static readonly EntProtoId DefaultAssaultOpsRule = "AssaultOps";
     private static readonly EntProtoId DefaultFleshCultRule = "FleshCult";
-    private static readonly EntProtoId DefaultVampireRule = "Vampire";
+    private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation";
+    private static readonly SpriteSpecifier SelfAgentVerbIcon =
+        new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/self_icon.rsi"), "icon");
 
     private void AddSunriseAntagVerbs(GetVerbsEvent<Verb> args)
     {
@@ -33,22 +36,6 @@ public sealed partial class AdminVerbSystem
 
         var bountyName = Loc.GetString("admin-smite-traitor-bounty-name");
         var target = args.Target;
-
-        // Vampire
-        Verb vampire = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-vampire"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_vampire.rsi"),
-                "unholystrength"),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<VampireRuleComponent>(player, DefaultVampireRule);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-vampire"),
-        };
-        args.Verbs.Add(vampire);
 
 
         // Assault Operative
@@ -97,5 +84,20 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-cultist"),
         };
         args.Verbs.Add(bloodCultist);
+
+        // SELF agent
+        Verb selfAgent = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-selfagent"),
+            Category = VerbCategory.Antag,
+            Icon = SelfAgentVerbIcon,
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<SELFRuleComponent>(player, DefaultSELFRule);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-selfagent"),
+        };
+        args.Verbs.Add(selfAgent);
     }
 }

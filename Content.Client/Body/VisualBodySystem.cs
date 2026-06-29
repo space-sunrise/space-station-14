@@ -32,10 +32,10 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
 
         SubscribeLocalEvent<VisualOrganMarkingsComponent, BodyRelayedEvent<HumanoidLayerVisibilityChangedEvent>>(OnMarkingsChangedVisibility);
 
-        // Sunrise start
+        // Sunrise edit start - отключение цензуры наготы
         // Subs.CVar(_cfg, CCVars.AccessibilityClientCensorNudity, OnCensorshipChanged, true);
         // Subs.CVar(_cfg, CCVars.AccessibilityServerCensorNudity, OnCensorshipChanged, true);
-        // Sunrise end
+        // Sunrise edit end
 
         InitializeSunriseBodyTypes(); // Sunrise-Edit
     }
@@ -150,11 +150,11 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
             }
         }
 
-        // Sunrise start
+        // Sunrise edit start - отключение цензуры наготы
         // var censorNudity = _cfg.GetCVar(CCVars.AccessibilityClientCensorNudity) || _cfg.GetCVar(CCVars.AccessibilityServerCensorNudity);
         // if (!censorNudity)
         //     yield break;
-        // Sunrise end
+        // Sunrise edit end
 
         var group = _prototype.Index(ent.Comp.MarkingData.Group);
         foreach (var layer in ent.Comp.MarkingData.Layers)
@@ -209,7 +209,7 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
                 else
                     _sprite.LayerSetColor(target, layerId, Color.White);
 
-                // Sunrise-Edit
+                // Sunrise-Edit - учет скрытых Sunrise-слоев
                 _sprite.LayerSetVisible(target, layerId, IsSunriseLayerVisible(target, proto.BodyPart, true));
             }
 
@@ -247,7 +247,8 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
 
     private void OnMarkingsChangedVisibility(Entity<VisualOrganMarkingsComponent> ent, ref BodyRelayedEvent<HumanoidLayerVisibilityChangedEvent> args)
     {
-        var visible = IsSunriseLayerVisible(args.Body.Owner, args.Args.Layer, args.Args.Visible); // Sunrise-Edit
+        // Sunrise edit start - учет скрытых Sunrise-слоев и displacement markings
+        var visible = IsSunriseLayerVisible(args.Body.Owner, args.Args.Layer, args.Args.Visible);
         foreach (var marking in ent.Comp.AppliedMarkings)
         {
             if (!_marking.TryGetMarking(marking, out var proto))
@@ -267,9 +268,10 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
                 if (!_sprite.LayerMapTryGet(args.Body.Owner, layerId, out var index, true))
                     continue;
 
-                _sprite.LayerSetVisible(args.Body.Owner, index, visible); // Sunrise-Edit
-                SetSunriseMarkingDisplacementVisible(args.Body.Owner, layerId, visible); // Sunrise-Edit
+                _sprite.LayerSetVisible(args.Body.Owner, index, visible);
+                SetSunriseMarkingDisplacementVisible(args.Body.Owner, layerId, visible);
             }
         }
+        // Sunrise edit end
     }
 }

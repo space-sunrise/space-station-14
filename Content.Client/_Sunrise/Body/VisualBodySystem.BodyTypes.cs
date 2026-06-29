@@ -14,20 +14,8 @@ public sealed partial class VisualBodySystem
 {
     private void InitializeSunriseBodyTypes()
     {
-        SubscribeLocalEvent<SunriseHumanoidProfileComponent, ComponentStartup>(OnSunriseProfileStartup);
-        SubscribeLocalEvent<SunriseHumanoidProfileComponent, AfterAutoHandleStateEvent>(OnSunriseProfileState);
         SubscribeLocalEvent<SunriseHumanoidBaseLayersComponent, ComponentStartup>(OnSunriseBaseLayersStartup);
         SubscribeLocalEvent<SunriseHumanoidBaseLayersComponent, AfterAutoHandleStateEvent>(OnSunriseBaseLayersState);
-    }
-
-    private void OnSunriseProfileStartup(Entity<SunriseHumanoidProfileComponent> ent, ref ComponentStartup args)
-    {
-        RefreshBodyTypeVisuals(ent.Owner);
-    }
-
-    private void OnSunriseProfileState(Entity<SunriseHumanoidProfileComponent> ent, ref AfterAutoHandleStateEvent args)
-    {
-        RefreshBodyTypeVisuals(ent.Owner);
     }
 
     private void OnSunriseBaseLayersStartup(Entity<SunriseHumanoidBaseLayersComponent> ent, ref ComponentStartup args)

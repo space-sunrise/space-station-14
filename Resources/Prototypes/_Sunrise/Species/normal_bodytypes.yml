@@ -73,11 +73,6 @@
   visualKey: body-normal
 
 - type: bodyType
-  id: VulpkaninNormal
-  name: body-normal
-  visualKey: body-normal
-
-- type: bodyType
   id: GingerbreadNormal
   name: body-normal
   visualKey: body-normal

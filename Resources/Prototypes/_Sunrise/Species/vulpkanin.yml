@@ -51,6 +51,7 @@
       Chest:
         sprite: _Sunrise/Mobs/Species/Vulpkanin/parts.rsi
         state: torso_f
+
 - type: bodyType
   id: VulpkaninStraightSmallMuzzle
   name: body-straight-small-muzzle
@@ -104,6 +105,7 @@
       Chest:
         sprite: _Sunrise/Mobs/Species/Vulpkanin/parts.rsi
         state: torso_f
+
 - type: bodyType
   id: VulpkaninCurvedBigMuzzle
   name: body-curved-big-muzzle
@@ -157,6 +159,7 @@
       Chest:
         sprite: _Sunrise/Mobs/Species/Vulpkanin/parts.rsi
         state: torso_f
+
 - type: bodyType
   id: VulpkaninStraightBigMuzzle
   name: body-straight-big-muzzle
