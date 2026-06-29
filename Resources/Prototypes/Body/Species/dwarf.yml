@@ -66,6 +66,11 @@
     accent: dwarf
   - type: Speech
     speechSounds: Bass
+  # Sunrise edit start
+  - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-dwarf ]
+    rightBareFootState: [ footprint-right-bare-dwarf ]
+  # Sunrise edit end
 
 - type: entity
   parent: OrganBase

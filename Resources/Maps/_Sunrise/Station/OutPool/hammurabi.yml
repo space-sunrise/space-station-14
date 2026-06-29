@@ -194400,7 +194400,7 @@ entities:
     - pos: -32.545147,-34.299477
       parent: 1
       type: Transform
-- proto: TorsoHuman
+- proto: OrganHumanTorso
   entities:
   - uid: 13633
     components:

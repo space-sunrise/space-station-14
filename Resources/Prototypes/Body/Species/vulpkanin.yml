@@ -365,6 +365,10 @@
         volume: -5
         variation: 0.05
   - type: FootprintEmitter
+    # Sunrise edit start
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
+    # Sunrise edit end
 
 - type: entity
   parent: OrganBase

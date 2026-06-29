@@ -23,6 +23,8 @@
       Stomach: OrganReptilianStomach
       Liver: OrganAnimalLiver
       Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Felinid
 
 - type: entity
   save: false
@@ -497,6 +499,8 @@
   - type: Stamina
     baseCritThreshold: 100
   - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
   - type: Vocal
     sounds:
       Male: MaleFelinid

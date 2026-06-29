@@ -767,7 +767,7 @@
     - type: OrganBrain
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: brain-slime
+    state: brain
 
 - type: entity
   parent: SurgeryBase
@@ -797,7 +797,7 @@
     - type: OrganBrain
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: brain-slime
+    state: brain
 #
 # - type: entity #Sunrise-TODO: Port Пауков Ужаса
 #   parent: SurgeryBase

@@ -27,7 +27,8 @@
   - type: Sprite
     scale: 0.75,0.75
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eyes_night
+    layers:
+    - state: eyes_night
   - type: FunctionalOrgan
     comps:
     - type: ToggleableNightVision
@@ -51,7 +52,8 @@
   - type: Sprite
     scale: 0.75,0.75
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eyes_thermal
+    layers:
+    - state: eyes_thermal
   - type: FunctionalOrgan
     comps:
     - type: ToggleableThermalVision

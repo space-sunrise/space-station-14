@@ -169393,13 +169393,6 @@ entities:
     - type: Transform
       pos: -31.52846,-31.461025
       parent: 2
-- proto: HeadVulpkanin
-  entities:
-  - uid: 23603
-    components:
-    - type: Transform
-      pos: 29.105976,34.445107
-      parent: 2
 - proto: HeatExchanger
   entities:
   - uid: 23604

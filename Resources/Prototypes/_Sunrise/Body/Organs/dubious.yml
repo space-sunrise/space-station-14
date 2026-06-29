@@ -13,7 +13,7 @@
         - ReagentId: Nutriment
           Quantity: 10
   - type: Sprite
-    state: heart-on
+    layers: []
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Human]

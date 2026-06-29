@@ -170,6 +170,7 @@
     allowedStates:
     - Dead
   - type: Rootable
+  # Sunrise start
   - type: CollectiveMind
     minds:
     - Dioneas
@@ -178,6 +179,7 @@
       - "footprint-left-bare-diona"
     rightBareFootState:
       - "footprint-right-bare-diona"
+  # Sunrise end
 
 - type: entity
   parent: OrganBase

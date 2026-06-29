@@ -185,11 +185,13 @@
       types:
         Asphyxiation: -1.0
     maxSaturation: 15
+  # Sunrise start
   - type: FootprintEmitter
     leftBareFootState:
       - "footprint-left-bare-slime"
     rightBareFootState:
       - "footprint-right-bare-slime"
+  # Sunrise end
 
 - type: entity
   parent: OrganBase
