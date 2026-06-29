@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.Humanoid;
+using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
@@ -145,6 +146,9 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
     private void UpdateMarkings(Entity<WingFlightComponent> ent, bool enable)
     {
+        if (!HasComp<VisualBodyComponent>(ent))
+            return;
+
         if (!_sunriseMarking.TryGetLayerMarkings(ent, HumanoidVisualLayers.Tail, out var markings) ||
             markings.Count == 0)
         {

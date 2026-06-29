@@ -29,7 +29,7 @@ public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Доб�
         base.Initialize();
 
         // Wait until the character has all their organs before we give them their loadout
-        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(InitialBodySystem)]);
 
         InitializeSunrise(); // Sunrise-edit
     }

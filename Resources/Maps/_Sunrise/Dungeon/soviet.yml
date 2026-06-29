@@ -11787,13 +11787,6 @@ entities:
     - type: Transform
       pos: 4.7552643,44.692493
       parent: 1
-- proto: TorsoVulpkanin
-  entities:
-  - uid: 112
-    components:
-    - type: Transform
-      pos: 6.169155,47.343887
-      parent: 1
 - proto: ToyRubberDuck
   entities:
   - uid: 1439

@@ -80690,7 +80690,7 @@ entities:
       pos: -26.161995,53.28645
       parent: 2
       type: Transform
-- proto: RightArmSkeleton
+- proto: OrganSkeletonPersonArmRight
   entities:
   - uid: 13507
     components:
@@ -80712,7 +80712,7 @@ entities:
       pos: -26.027988,53.52976
       parent: 2
       type: Transform
-- proto: RightHandSkeleton
+- proto: OrganSkeletonPersonHandRight
   entities:
   - uid: 13510
     components:
@@ -80720,7 +80720,7 @@ entities:
       pos: -5.091732,-29.165787
       parent: 2
       type: Transform
-- proto: RightLegSkeleton
+- proto: OrganSkeletonPersonLegRight
   entities:
   - uid: 13511
     components:
@@ -86897,7 +86897,7 @@ entities:
     - pos: -8.070193,-14.296006
       parent: 2
       type: Transform
-- proto: TorsoSkeleton
+- proto: OrganSkeletonPersonTorso
   entities:
   - uid: 14577
     components:
