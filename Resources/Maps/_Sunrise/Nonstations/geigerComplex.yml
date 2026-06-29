@@ -25482,7 +25482,7 @@ entities:
     - type: Transform
       pos: 16.631361,-30.5601
       parent: 2
-- proto: HeadHuman
+- proto: OrganHumanHead
   entities:
   - uid: 1991
     components:

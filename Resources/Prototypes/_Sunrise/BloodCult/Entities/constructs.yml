@@ -66,61 +66,6 @@
       voice: dragon_knight_dragon_dota_2
 
 - type: entity
-  id: OrganJuggernautConstruct
-  abstract: true
-  parent: OrganBase
-  name: construct organ
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  id: OrganJuggernautConstructTorso
-  parent: OrganJuggernautConstruct
-  name: construct torso
-  components:
-    - type: Organ
-      category: Torso
-
-- type: entity
-  id: OrganJuggernautConstructArmRight
-  parent: OrganJuggernautConstruct
-  name: construct right arm
-  components:
-    - type: Organ
-      category: ArmRight
-
-- type: entity
-  id: OrganJuggernautConstructArmLeft
-  parent: OrganJuggernautConstruct
-  name: construct left arm
-  components:
-    - type: Organ
-      category: ArmLeft
-
-- type: entity
-  id: OrganJuggernautConstructHandRight
-  parent: OrganJuggernautConstruct
-  name: construct right hand
-  components:
-    - type: Organ
-      category: HandRight
-    - type: HandOrgan
-      handID: right
-      data:
-        location: Right
-
-- type: entity
-  id: OrganJuggernautConstructHandLeft
-  parent: OrganJuggernautConstruct
-  name: construct left hand
-  components:
-    - type: Organ
-      category: HandLeft
-    - type: HandOrgan
-      handID: left
-      data:
-        location: Left
-
-- type: entity
   id: JuggernautConstruct
   parent: BaseConstruct
   name: juggernaut
@@ -149,16 +94,6 @@
       actions: [JuggernautCreateWall]
     - type: Hands
       showInHands: true
-    - type: Body
-    - type: EntityTableContainerFill
-      containers:
-        body_organs: !type:AllSelector
-          children:
-          - id: OrganJuggernautConstructTorso
-          - id: OrganJuggernautConstructArmRight
-          - id: OrganJuggernautConstructArmLeft
-          - id: OrganJuggernautConstructHandRight
-          - id: OrganJuggernautConstructHandLeft
     - type: ContainerContainer
       containers:
         body_organs: !type:Container
