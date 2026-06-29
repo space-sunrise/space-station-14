@@ -282,11 +282,25 @@ namespace Content.Server.Database
                     markingsList.Add(parsed);
                 }
 
-                if (Marking.ParseFromDbString($"{profile.FacialHairName}@{profile.FacialHairColor}") is { } facialMarking)
+                // Sunrise edit start - legacy hair color compability
+                if (CreateLegacyHairMarking(
+                        profile.FacialHairName,
+                        profile.FacialHairColor,
+                        profile.FacialHairColorType,
+                        profile.FacialHairExtendedColor) is { } facialMarking)
+                {
                     markingsList.Add(facialMarking);
+                }
 
-                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } hairMarking)
+                if (CreateLegacyHairMarking(
+                        profile.HairName,
+                        profile.HairColor,
+                        profile.HairColorType,
+                        profile.HairExtendedColor) is { } hairMarking)
+                {
                     markingsList.Add(hairMarking);
+                }
+                // Sunrise edit end
 
                 var completion = new TaskCompletionSource();
                 _task.RunOnMainThread(() =>
@@ -305,6 +319,8 @@ namespace Content.Server.Database
                 });
                 await completion.Task;
             }
+
+            ApplyLegacyHairEffects(markings, profile); // Sunrise-Edit
 
             var loadouts = new Dictionary<string, RoleLoadout>();
 
@@ -355,6 +371,74 @@ namespace Content.Server.Database
                 .WithSize(profile.Width, profile.Height)
                 .WithJobAlternativeTitles(jobAltTitles); // Sunrise
         }
+
+        // Sunrise edit start
+        private static Marking? CreateLegacyHairMarking(
+            string? markingId,
+            string? colorHex,
+            int effectType,
+            string? serializedEffect)
+        {
+            if (string.IsNullOrWhiteSpace(markingId))
+                return null;
+
+            var color = ParseLegacyColor(colorHex, Color.Black);
+            var effects = MarkingEffectCompatibility.TryReadLegacyEffect(effectType, serializedEffect, color, out var effect)
+                ? new List<MarkingEffect> { effect }
+                : null;
+
+            return new Marking(markingId, new List<Color> { color }, effects);
+        }
+
+        private static void ApplyLegacyHairEffects(
+            Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> markings,
+            Profile profile)
+        {
+            TryApplyLegacyHairEffect(
+                markings,
+                HumanoidVisualLayers.Hair,
+                profile.HairColor,
+                profile.HairColorType,
+                profile.HairExtendedColor);
+
+            TryApplyLegacyHairEffect(
+                markings,
+                HumanoidVisualLayers.FacialHair,
+                profile.FacialHairColor,
+                profile.FacialHairColorType,
+                profile.FacialHairExtendedColor);
+        }
+
+        private static void TryApplyLegacyHairEffect(
+            Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> markings,
+            HumanoidVisualLayers layer,
+            string? colorHex,
+            int effectType,
+            string? serializedEffect)
+        {
+            var color = ParseLegacyColor(colorHex, Color.Black);
+            if (!MarkingEffectCompatibility.TryReadLegacyEffect(effectType, serializedEffect, color, out var effect))
+                return;
+
+            foreach (var organMarkings in markings.Values)
+            {
+                if (!organMarkings.TryGetValue(layer, out var layerMarkings))
+                    continue;
+
+                foreach (var marking in layerMarkings)
+                {
+                    marking.SetMarkingEffect(0, effect.Clone());
+                }
+            }
+        }
+
+        private static Color ParseLegacyColor(string? colorHex, Color fallback)
+        {
+            return string.IsNullOrWhiteSpace(colorHex)
+                ? fallback
+                : Color.TryFromHex(colorHex) ?? fallback;
+        }
+        // Sunrise edit end
 
         private Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
@@ -430,13 +514,13 @@ namespace Content.Server.Database
                         .Select(t => new Trait {TraitName = t})
             );
 
-            // Sunrise-Start
+            // Sunrise edit start - альтернативные названия должностей
             profile.JobAlternativeTitles.Clear();
             profile.JobAlternativeTitles.AddRange(
                 humanoid.JobAlternativeTitles
                     .Select(j => new JobAlternativeTitle {JobName = j.Key, Title = j.Value.Id})
             );
-            // Sunrise-End
+            // Sunrise edit end
 
             profile.Loadouts.Clear();
 

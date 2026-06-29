@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -95,11 +96,27 @@ public sealed partial class HumanoidCharacterAppearanceV1
     [DataField]
     public Color HairColor;
 
+    // Sunrise edit start - legacy hair effect import
+    [DataField]
+    public MarkingEffect? HairMarkingEffect;
+
+    [DataField]
+    public MarkingEffectType HairMarkingEffectType = MarkingEffectType.Color;
+    // Sunrise edit end
+
     [DataField("facialHair")]
     public string FacialHairStyleId;
 
     [DataField]
     public Color FacialHairColor;
+
+    // Sunrise edit start - legacy facial hair effect import
+    [DataField]
+    public MarkingEffect? FacialHairMarkingEffect;
+
+    [DataField]
+    public MarkingEffectType FacialHairMarkingEffectType = MarkingEffectType.Color;
+    // Sunrise edit end
 
     [DataField]
     public Color EyeColor;
@@ -115,11 +132,28 @@ public sealed partial class HumanoidCharacterAppearanceV1
         var markingManager = IoCManager.Resolve<MarkingManager>();
 
         var incomingMarkings = Markings.ShallowClone();
+        // Sunrise edit start - convert legacy hairs to new one
         if (HairStyleId != string.Empty)
-            incomingMarkings.Add(new(HairStyleId, new List<Color>() { HairColor }));
+            incomingMarkings.Add(new(
+                HairStyleId,
+                new List<Color> { HairColor },
+                new List<MarkingEffect> { CreateLegacyHairEffect(HairMarkingEffect, HairMarkingEffectType, HairColor) }));
         if (FacialHairStyleId != string.Empty)
-            incomingMarkings.Add(new(FacialHairStyleId, new List<Color>() { FacialHairColor }));
+            incomingMarkings.Add(new(
+                FacialHairStyleId,
+                new List<Color> { FacialHairColor },
+                new List<MarkingEffect> { CreateLegacyHairEffect(FacialHairMarkingEffect, FacialHairMarkingEffectType, FacialHairColor) }));
+        // Sunrise edit end
 
         return new HumanoidCharacterAppearance(EyeColor, SkinColor, markingManager.ConvertMarkings(incomingMarkings, species));
     }
+
+    // Sunrise edit start - legacy hair effect compability
+    private static MarkingEffect CreateLegacyHairEffect(MarkingEffect? effect, MarkingEffectType type, Color baseColor)
+    {
+        return effect is not null
+            ? MarkingEffectCompatibility.WithLegacyBaseColor(effect, baseColor)
+            : MarkingEffectCompatibility.CreateFromType(type, baseColor);
+    }
+    // Sunrise edit end
 }
