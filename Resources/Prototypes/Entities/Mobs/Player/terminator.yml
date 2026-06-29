@@ -154,6 +154,7 @@
   - MobDamageable
   - MobSiliconBase
   - MobTerminatorBase
+  - BaseSpeciesLayers # Sunrise-Edit
   id: MobTerminatorEndoskeleton
   # you are now valid
   name: nt-800 "exterminator" endoskeleton

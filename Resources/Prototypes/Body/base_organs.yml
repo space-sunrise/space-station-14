@@ -241,6 +241,7 @@
   - type: GibbableOrgan
   - type: Organ
     category: Brain
+  - type: OrganBrain # Sunrise-Edit
   - type: Sprite
     layers:
     - state: brain
@@ -267,6 +268,7 @@
   - type: GibbableOrgan
   - type: Organ
     category: Eyes
+  - type: OrganEyes # Sunrise-Edit
   - type: Sprite
     layers:
     - state: eyeball-l
@@ -306,6 +308,7 @@
   - type: Sprite
     layers:
     - state: appendix
+  - type: OrganAppendix # Sunrise-edit
 
 - type: entity
   parent: OrganBase
@@ -319,6 +322,7 @@
   - type: Sprite
     layers:
     - state: ears
+  - type: OrganEars # Sunrise-edit
 
 - type: entity
   parent: OrganBase
@@ -367,6 +371,7 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: OrganHeart # Sinrise-edit
 
 - type: entity
   parent: OrganBase
@@ -392,6 +397,7 @@
     - state: stomach
   - type: Item
     heldPrefix: stomach
+  - type: OrganStomach # Sunrise-edit
 
 - type: entity
   parent: OrganBase
@@ -411,6 +417,7 @@
     maxReagents: 1
     groups:
     - id: Alcohol
+  - type: OrganLiver # Sunrise-edit
 
 - type: entity
   parent: OrganBase
@@ -430,6 +437,7 @@
   - type: Metabolizer
     maxReagents: 5
     removeEmpty: true
+  - type: OrganKidneys # Sunrise-edit
 
 - type: entity
   id: OrganSpriteHumanInternal

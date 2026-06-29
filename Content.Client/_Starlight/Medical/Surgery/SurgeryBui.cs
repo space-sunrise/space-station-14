@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -24,6 +25,7 @@ public sealed class SurgeryBui : BoundUserInterface
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _game = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     private readonly StarlightEntitySystem _entitySystem;
     private readonly SurgerySystem _system;
@@ -96,7 +98,7 @@ public sealed class SurgeryBui : BoundUserInterface
         {
             var netPart = _entities.GetNetEntity(part.Owner);
             var surgeries = state.Choices[netPart];
-            var partName = _entities.GetComponent<MetaDataComponent>(part).EntityName;
+            var partName = GetPartName(part);
             var partButton = new ChoiceControl();
 
             partButton.Set(partName, null);
@@ -131,7 +133,10 @@ public sealed class SurgeryBui : BoundUserInterface
         if (_window != null) return;
         _window = new SurgeryWindow();
         _window.OnClose += Close;
-        _window.Title = "Surgery";
+        _window.Title = _loc.GetString("surgery-window-name");
+        _window.PartsButton.Text = _loc.GetString("surgery-window-partsbutton-name");
+        _window.SurgeriesButton.Text = _loc.GetString("surgery-window-surgeriesbutton-name");
+        _window.StepsButton.Text = _loc.GetString("surgery-window-stepsbutton-name");
 
         _window.PartsButton.OnPressed += _ =>
         {
@@ -230,7 +235,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
                     var msg = new FormattedMessage();
                     var surgeryName = _entities.GetComponent<MetaDataComponent>(requirement).EntityName;
-                    msg.AddMarkupOrThrow($"[bold]Requires: {surgeryName}[/bold]");
+                    msg.AddMarkupOrThrow(_loc.GetString("surgery-window-reguires", ("surgeryname", surgeryName)));
                     label.Set(msg, null);
 
                     _window.Steps.AddChild(label);
@@ -350,19 +355,19 @@ public sealed class SurgeryBui : BoundUserInterface
                     switch (reason)
                     {
                         case StepInvalidReason.NeedsOperatingTable:
-                            stepName.AddMarkupOrThrow(" [color=red](Needs operating table)[/color]");
+                            stepName.AddMarkupOrThrow(" " + _loc.GetString("surgery-window-reguires-table"));
                             break;
                         case StepInvalidReason.Armor:
-                            stepName.AddMarkupOrThrow(" [color=red](Remove their armor!)[/color]");
+                            stepName.AddMarkupOrThrow(" " + _loc.GetString("surgery-window-reguires-undress"));
                             break;
                         case StepInvalidReason.MissingTool:
-                            stepName.AddMarkupOrThrow(" [color=red](Missing tool)[/color]");
+                            stepName.AddMarkupOrThrow(" " + _loc.GetString("surgery-window-reguires-tool"));
                             break;
                         case StepInvalidReason.DisabledTool:
-                            stepName.AddMarkupOrThrow(" [color=red](Disabled Tool)[/color]");
+                            stepName.AddMarkupOrThrow(" " + _loc.GetString("surgery-window-reguires-enable"));
                             break;
                         case StepInvalidReason.TooHigh:
-                            stepName.AddMarkupOrThrow(" [color=red](Item Too High)[/color]");
+                            stepName.AddMarkupOrThrow(" " + _loc.GetString("surgery-window-too-high"));
                             break;
                     }
                 }
@@ -389,7 +394,7 @@ public sealed class SurgeryBui : BoundUserInterface
             if (_window.DisabledLabel.GetMessage() is null)
             {
                 var text = new FormattedMessage();
-                text.AddMarkupOrThrow("[color=red][font size=16]They need to be lying down![/font][/color]");
+                text.AddMarkupOrThrow(_loc.GetString("surgery-window-reguires-laydown"));
                 _window.DisabledLabel.SetMessage(text);
             }
             _window.DisabledPanel.MouseFilter = MouseFilterMode.Stop;
@@ -412,19 +417,64 @@ public sealed class SurgeryBui : BoundUserInterface
         _window.Steps.Visible = type == ViewType.Steps;
         _window.StepsButton.Disabled = type != ViewType.Steps || _previousSurgeries.Count == 0;
 
-        if (_entities.TryGetComponent(_part, out MetaDataComponent? partMeta) &&
+        var partName = GetSelectedPartName();
+
+        if (partName != null &&
             _entities.TryGetComponent(_surgery?.Ent, out MetaDataComponent? surgeryMeta))
         {
-            _window.Title = $"Surgery - {partMeta.EntityName}, {surgeryMeta.EntityName}";
+            _window.Title = _loc.GetString("surgery-window-title-part-surgery",
+                ("part", partName),
+                ("surgery", surgeryMeta.EntityName));
         }
-        else if (partMeta != null)
+        else if (partName != null)
         {
-            _window.Title = $"Surgery - {partMeta.EntityName}";
+            _window.Title = _loc.GetString("surgery-window-title-part", ("part", partName));
         }
         else
         {
-            _window.Title = "Surgery";
+            _window.Title = _loc.GetString("surgery-window-name");
         }
+    }
+
+    private string? GetSelectedPartName()
+    {
+        if (_part is not { } part ||
+            !_entities.TryGetComponent(part, out OrganComponent? organ))
+        {
+            return null;
+        }
+
+        return GetPartName((part, organ));
+    }
+
+    private string GetPartName(Entity<OrganComponent> part)
+    {
+        if (part.Comp.Category?.Id is { } category &&
+            GetPartLocId(category) is { } locId)
+        {
+            return _loc.GetString(locId);
+        }
+
+        return _entities.GetComponent<MetaDataComponent>(part).EntityName;
+    }
+
+    private static LocId? GetPartLocId(string category)
+    {
+        return category switch
+        {
+            "Torso" => "surgery-window-part-torso",
+            "Head" => "surgery-window-part-head",
+            "ArmLeft" => "surgery-window-part-left-arm",
+            "ArmRight" => "surgery-window-part-right-arm",
+            "HandLeft" => "surgery-window-part-left-hand",
+            "HandRight" => "surgery-window-part-right-hand",
+            "LegLeft" => "surgery-window-part-left-leg",
+            "LegRight" => "surgery-window-part-right-leg",
+            "FootLeft" => "surgery-window-part-left-foot",
+            "FootRight" => "surgery-window-part-right-foot",
+            "Tail" => "surgery-window-part-tail",
+            _ => null,
+        };
     }
 
     private enum ViewType
