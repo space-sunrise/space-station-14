@@ -1,8 +1,12 @@
-storyteller-preset-title = Рассказчик
-storyteller-preset-description = Судьба станции находится в руках незримого рассказчика. Он будет динамически настраивать происходящее, создавая уникальную историю в зависимости от ваших успехов и неудач.
+storyteller-preset-title = Рассказчик: Классический
+storyteller-preset-description = Судьба станции — в руках незримого режиссера. Он чутко реагирует на происходящее, создавая уникальную историю взлетов и падений вашего экипажа.
 
-ui-vote-storyteller-type-title = Выберите тип Рассказчика:
-# Sunrise-Edit
+storyteller-preset-calm-title = Рассказчик: Спокойный
+storyteller-preset-calm-description = Затишье в космосе. Рассказчик предпочитает размеренное развитие сюжета, давая экипажу больше времени на передышку и стараясь не разводить лишний хаос.
+
+storyteller-preset-insane-title = Рассказчик: Безумный
+storyteller-preset-insane-description = Абсолютный хаос. Рассказчик будет безжалостно бросать на станцию одну угрозу за другой, пуская в ход самые коварные и разрушительные события.
+
 ui-vote-storyteller-type-calm = Спокойный
 ui-vote-storyteller-type-classic = Классический
 ui-vote-storyteller-type-insane = Безумный
@@ -13,7 +17,6 @@ ui-vote-storyteller-type-calm-name = Спокойный
 ui-vote-storyteller-type-classic-name = Классический
 ui-vote-storyteller-type-insane-name = Безумный
 
-# Sunrise-Edit
 round-end-summary-window-storyteller-name-label = Активный рассказчик: [color=#7DF9FF]{$storyteller}[/color]
 round-end-summary-window-storyteller-history-tab-title = История Рассказчика
 round-end-summary-window-storyteller-history-empty = История пуста. В этом раунде не произошло ничего примечательного.
@@ -29,14 +32,14 @@ storyteller-history-crew-death-3 = Роковой случай настиг [col
 storyteller-history-crew-death-4 = Возле [color=#ADFF2F]{$location}[/color] было обнаружено безжизненное тело [color=#FFD700]{$name}[/color] ({$job}), скончавшегося от [color=#FF69B4]{$cause}[/color].
 
 # Object/Anomaly/Engine spawns
-storyteller-history-singularity-spawned = В [color=#ADFF2F]{$location}[/color] материализовалась гравитационная сингулярность, искажая пространство вокруг себя.
+storyteller-history-singularity-spawned = В [color=#ADFF2F]{$location}[/color] материализовалась гравитационная [color=#FF00FF]сингулярность[/color], искажая пространство вокруг себя.
 storyteller-history-tesla-spawned = В [color=#ADFF2F]{$location}[/color] сокрушительно заискрился новорождённый энергетический шар Теслы.
-storyteller-history-supermatter-spawned = На территории [color=#ADFF2F]{$location}[/color] был запущен и успешно стабилизирован кристалл Суперматерии.
+storyteller-history-supermatter-spawned = На территории [color=#ADFF2F]{$location}[/color] был запущен и успешно стабилизирован [color=#FF00FF]кристалл Суперматерии[/color].
 
 # Containment breaches & collapses (literary, non-all-caps)
-storyteller-history-singularity-escaped = Гравитационная сингулярность вырвалась из сдерживающих полей в [color=#ADFF2F]{$location}[/color] и начала поглощать станцию.
+storyteller-history-singularity-escaped = Гравитационная [color=#FF00FF]сингулярность[/color] вырвалась из сдерживающих полей в [color=#ADFF2F]{$location}[/color] и начала поглощать станцию.
 storyteller-history-tesla-escaped = Энергетический шар Тесла преодолел сдерживающий барьер в [color=#ADFF2F]{$location}[/color], неся электрическую смерть.
-storyteller-history-supermatter-collapse = Кристалл Суперматерии в [color=#ADFF2F]{$location}[/color] достиг предела нестабильности и сколлапсировал.
+storyteller-history-supermatter-collapse = [color=#FF00FF]Кристалл Суперматерии[/color] в [color=#ADFF2F]{$location}[/color] достиг предела нестабильности и сколлапсировал.
 
 # Other timeline events
 storyteller-history-explosion-weak = слабый
@@ -50,11 +53,23 @@ storyteller-history-cryo-departure = [color=#FFD700]{$name}[/color] ({$job}) п�
 # Alert level codes
 storyteller-history-alert-level-changed = На станции установлен [color={$color}]{$level} код[/color] безопасности.
 storyteller-history-alert-level-ended = Действие [color={$color}]{$level} кода[/color] подошло к концу. Он продлился {$duration} мин.
+storyteller-history-alert-level-changed-with-prev = Действие [color={$prevColor}]{$prev} кода[/color] подошло к концу (он продлился {$duration} мин). На станции установлен [color={$color}]{$level} код[/color] безопасности.
 
 # Genitive prepositions helper
 storyteller-history-location-space-genitive = открытого космоса
 storyteller-history-location-unknown-genitive = неизвестного отсека
 storyteller-history-location-room-genitive = отсека {$room}
+
+# Filters
+storyteller-history-filter-events = События
+storyteller-history-filter-antagonists = Антагонисты
+storyteller-history-filter-station = Станция
+storyteller-history-filter-deaths = Смерти
+storyteller-history-filter-anomalies = Аномалии
+storyteller-history-filter-explosions = Взрывы
+storyteller-history-filter-research = Исследования
+storyteller-history-filter-arrivals = Прибытия
+storyteller-history-filter-cryo = Крио
 
 storyteller-history-arrival-no-job = Пассажир
 storyteller-history-location-unknown = Неизвестно
@@ -185,7 +200,7 @@ storyteller-metadata-fleshcult-end = Пульсирующее гнездо пл�
 storyteller-metadata-powergridcheck-end = Инженерная служба доложила об успешном завершении проверки стабильности энергосети.
 
 # Final 12 storyteller descriptions
-storyteller-metadata-bluespaceartifact-start = Приборы зафиксировали мощные блюспейс-колебания: в секторе обнаружен загадочный инопланетный артефакт.
+storyteller-metadata-bluespaceartifact-start = Приборы зафиксировали мощные блюспейс-колебания: в секторе обнаружен загадочный инопланетный [color=#FF00FF]артефакт[/color].
 storyteller-metadata-giftsjanitor-start = Уборщики ликуют: на станцию прибыла партия новеньких швабр и чистящих средств премиум-класса.
 storyteller-metadata-giftsancientguns-start = Коллекционеры оружия пришли в восторг: в руки экипажа попал ящик со старинным пороховым огнестрелом.
 storyteller-metadata-unknownshuttlecryptid-start = Датчики уловили странный, будто полупризрачный силуэт шаттла "Криптид", окутанного завесой тайны.

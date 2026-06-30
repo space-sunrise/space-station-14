@@ -5,7 +5,7 @@ description: A practical guide to SS14 XAML interfaces: window structure, Genera
 
 # Claude Bridge
 
-Canonical bridge skill file:
-../../../.agent/skills/ss14-ui-xaml/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-ui-xaml/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

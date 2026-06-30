@@ -13,6 +13,7 @@
     quickEquip: false
     slots:
     - belt
+    - suitStorage
   - type: Item
     size: Ginormous
   - type: Storage

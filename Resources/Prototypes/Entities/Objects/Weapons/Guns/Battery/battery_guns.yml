@@ -102,7 +102,7 @@
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
+            #- PowerCellSmall # Sunrise-Edit
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: Appearance

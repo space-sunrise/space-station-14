@@ -75,8 +75,8 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRFMJ
-    fireCost: 8
+    proto: CartridgeHeavyRifleRSP
+    fireCost: 5
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -331,14 +331,6 @@
     fireCost: 250
   - type: Appearance
   - type: AmmoCounter
-  - type: KnockbackByUserTag
-    doestContain:
-      Resomi:
-        knockback: 20
-        staminaMultiplier: 8
-      Felinid:
-        knockback: 20
-        staminaMultiplier: 8
 
 - type: entity
   id: WeaponMechCombatMissileRack8Frag
@@ -353,14 +345,6 @@
   - type: BatteryAmmoProvider
     proto: Cartridge50mmRocket
     fireCost: 100
-  - type: KnockbackByUserTag
-    doestContain:
-      Resomi:
-        knockback: 20
-        staminaMultiplier: 8
-      Felinid:
-        knockback: 20
-        staminaMultiplier: 8
 
 - type: entity
   id: WeaponMechCombatKord
@@ -376,21 +360,22 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_kord_inhands.rsi
     size: Ginormous
   - type: Gun
-    minAngle: 24
-    maxAngle: 60
-    angleIncrease: 3
-    angleDecay: 18
-    fireRate: 5
+    minAngle: 1
+    maxAngle: 50
+    angleIncrease: 4
+    angleDecay: 30
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/ump45-1.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
       params:
-        volume: -1
+        volume: 15
+        pitch: 1.9
   - type: BatteryAmmoProvider
     proto: CartridgeRifleHeavy127mm
-    fireCost: 9
+    fireCost: 10
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice

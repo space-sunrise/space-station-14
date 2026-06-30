@@ -22,14 +22,14 @@
       color: "#990000"
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconDroneLethals
-    - MobRogueSiliconDroneNonLethals
-    - MobRogueSiliconDroneScience
+    - MobRogueSiliconT1DroneLethals
+    - MobRogueSiliconT1DroneNonLethals
+    - MobRogueSiliconT1DroneScience
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MobRogueSiliconDroneNonLethalsBuff
-    - MobRogueSiliconDroneScienceBuff
+    - MobRogueSiliconT1DroneNonLethalsBuff
+    - MobRogueSiliconT1DroneScienceBuff
     rareChance: 0.1
 
 - type: entity
@@ -60,16 +60,16 @@
       state: r_leg_generic
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconScrap
-    - MobRogueSiliconScrapThreads
-    - MobRogueSiliconScrapThrusters
-    - MobRogueSiliconScrapThrustersRanged
-    - MobRogueSiliconViscerator
+    - MobRogueSiliconT1Scrap
+    - MobRogueSiliconT1ScrapThreads
+    - MobRogueSiliconT1ScrapThrusters
+    - MobRogueSiliconT1ScrapThrustersRanged
+    - MobRogueSiliconT1Viscerator
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MobRogueSiliconScrapFlayer
-    - SpawnMobRogueSiliconVisceratorSquad
+    - MobRogueSiliconT1ScrapFlayer
+    - SpawnMobRogueSiliconT1VisceratorSquad
     - SpawnMobRogueSiliconsT2
     - SpawnMobRogueDerelictBorgsT1
     rareChance: 0.1
@@ -102,12 +102,12 @@
       state: wielded-inhand-right
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconServo
-    - MobRogueSiliconHerder
-    - MobRogueSiliconHunter
-    - MobRogueSiliconCatcher
-    - MobRogueSiliconDerelictBorgAssaultT1
-    - MobRogueSiliconDerelictBorgMining
+    - MobRogueSiliconT2Servo
+    - MobRogueSiliconT2Herder
+    - MobRogueSiliconT2Hunter
+    - MobRogueSiliconT2Catcher
+    - MobRogueSiliconT2DerelictBorgAssault
+    - MobRogueSiliconT1DerelictBorgMining
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -139,15 +139,15 @@
       state: inhand-right
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconTesla
-    - MobRogueSiliconTerminatorT3
-    - MobRogueSiliconDerelictBorgAssaultT2
-    - MobRogueSiliconDerelictBorgSyndicateSaboteur
+    - MobRogueSiliconT3Tesla
+    - MobRogueSiliconT3Terminator
+    - MobRogueSiliconT2DerelictBorgAssaultHeavy
+    - MobRogueSiliconT3DerelictBorgSyndicateSaboteur
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MobRogueSiliconGuardian
-    - MobRogueSiliconGuardianLCG
+    - MobRogueSiliconBossGuardian
+    - MobRogueSiliconBossGuardianLCG
     - SpawnMobRogueDerelictBorgsT3
     rareChance: 0.1
 
@@ -165,16 +165,16 @@
       state: derelict
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconDerelictBorg
-    - MobRogueSiliconDerelictBorgEngineering
-    - MobRogueSiliconDerelictBorgJanitor
-    - MobRogueSiliconDerelictBorgMedical
-    - MobRogueSiliconDerelictBorgMining
+    - MobRogueSiliconT1DerelictBorg
+    - MobRogueSiliconT1DerelictBorgEngineering
+    - MobRogueSiliconT1DerelictBorgJanitor
+    - MobRogueSiliconT1DerelictBorgMedical
+    - MobRogueSiliconT1DerelictBorgMining
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MobRogueSiliconDerelictBorgAssaultT2
-    - MobRogueSiliconDerelictBorgSyndicateMedical
+    - MobRogueSiliconT2DerelictBorgAssaultHeavy
+    - MobRogueSiliconT2DerelictBorgSyndicateMedical
     rareChance: 0.05
 
 - type: entity
@@ -191,14 +191,14 @@
       state: synd_sec_derelict
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconDerelictBorgAssaultT1
-    - MobRogueSiliconDerelictBorgAssaultT2
-    - MobRogueSiliconDerelictBorgSyndicateMedical
+    - MobRogueSiliconT2DerelictBorgAssault
+    - MobRogueSiliconT2DerelictBorgAssaultHeavy
+    - MobRogueSiliconT2DerelictBorgSyndicateMedical
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MobRogueSiliconDerelictBorgAssaultT3
-    - MobRogueSiliconDerelictBorgSyndicateSaboteur
+    - MobRogueSiliconT3DerelictBorgAssault
+    - MobRogueSiliconT3DerelictBorgSyndicateSaboteur
     rareChance: 0.05
 
 - type: entity
@@ -215,9 +215,9 @@
       state: syndi_reaper
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconDerelictBorgAssaultT3
-    - MobRogueSiliconDerelictBorgSyndicateSaboteur
-    - MobRogueSiliconDerelictBorgSyndicateMedical
+    - MobRogueSiliconT3DerelictBorgAssault
+    - MobRogueSiliconT3DerelictBorgSyndicateSaboteur
+    - MobRogueSiliconT2DerelictBorgSyndicateMedical
     chance: 1
     offset: 0.0
 
@@ -235,8 +235,8 @@
       state: netguardian
   - type: RandomSpawner
     prototypes:
-    - MobRogueSiliconGuardian
-    - MobRogueSiliconGuardianLCG
+    - MobRogueSiliconBossGuardian
+    - MobRogueSiliconBossGuardianLCG
     chance: 1
     offset: 0.0
     rarePrototypes:

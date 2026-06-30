@@ -41,6 +41,7 @@
   id: JobBrigmedic
   groups:
   - BrigmedicJumpsuit
+  - BrigmedicOuterClothing
   - BrigmedicBackpack
   - BrigmedicInjectors
   - SunriseSurvivalSecurity
@@ -82,6 +83,7 @@
 - type: roleLoadout
   id: JobBlueShieldEnsign
   groups:
+  - BlueShieldHead
   - BlueShieldNeck
   - BlueShieldJumpsuit
   - BlueShieldBackpack
@@ -98,6 +100,7 @@
 - type: roleLoadout
   id: JobBlueShieldOfficer
   groups:
+  - BlueShieldHead
   - BlueShieldNeck
   - BlueShieldJumpsuit
   - BlueShieldBackpack

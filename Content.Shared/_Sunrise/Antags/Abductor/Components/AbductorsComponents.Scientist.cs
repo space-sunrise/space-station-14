@@ -1,6 +1,4 @@
-using Content.Shared.Actions;
-using Content.Shared.Communications;
-using Content.Shared.Ninja.Systems;
+using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -11,8 +9,20 @@ namespace Content.Shared._Sunrise.Antags.Abductor;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem)), AutoGenerateComponentState]
 public sealed partial class AbductorGizmoComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public NetEntity? Target;
+
+    [DataField]
+    public ProtoId<TagPrototype> FastMarkTag = "Abductor";
+
+    [DataField]
+    public TimeSpan MarkDelay = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan FastMarkDelay = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public TimeSpan VictimActivationDelay = TimeSpan.FromMinutes(5);
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -21,11 +31,11 @@ public sealed partial class AbductorVictimComponent : Component
     [DataField("position"), AutoNetworkedField]
     public EntityCoordinates? Position;
 
-    [DataField("organ"), AutoNetworkedField]
-    public AbductorOrganType Organ = AbductorOrganType.None;
-
     [DataField]
     public TimeSpan? LastActivation;
+
+    [DataField, AutoNetworkedField]
+    public AbductorOrganType Organ = AbductorOrganType.None;
 
     [ViewVariables]
     public TimeSpan TransformationTime = TimeSpan.FromSeconds(180);
@@ -45,7 +55,7 @@ public sealed partial class AbductorOwoTransformatedComponent : Component
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem)), AutoGenerateComponentState]
 public sealed partial class AbductorOrganComponent : Component
 {
-    [DataField("organ"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public AbductorOrganType Organ;
 }
 

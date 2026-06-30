@@ -2,12 +2,12 @@
 name: ss14-prediction
 description: Architecture guide for client-side prediction in Space Station 14 — prediction loop, timing properties, predicted entities, state reconciliation, randomness, and common pitfalls
 metadata:
-  source_skill: "../../../.agent/skills/ss14-prediction/SKILL.md"
+  source_skill: "../../../.agents/skills/ss14-prediction/SKILL.md"
 ---
 
 # GitHub Copilot Bridge
 
 Canonical source skill file:
-../../../.agent/skills/ss14-prediction/SKILL.md.
+../../../.agents/skills/ss14-prediction/SKILL.md.
 
 Use that file as the entrypoint and load resources from the same source skill directory.

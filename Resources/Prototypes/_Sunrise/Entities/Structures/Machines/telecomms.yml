@@ -36,9 +36,9 @@
   name: advanced telecommunication server
   components:
   - type: TelecomThermal
-    maxBandwidth: 100
+    maxBandwidth: 60
     loadDecayRate: 1
-    heatPerMessage: 7500
+    heatPerMessage: 15000
   - type: Machine
     board: TelecomServerT2Circuitboard
 
@@ -48,8 +48,8 @@
   name: experimental telecommunication server
   components:
   - type: TelecomThermal
-    maxBandwidth: 150
+    maxBandwidth: 120
     loadDecayRate: 1
-    heatPerMessage: 10000
+    heatPerMessage: 25000
   - type: Machine
     board: TelecomServerT3Circuitboard

@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.GameTicking;
+using Content.Server.Station.Systems;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
 using Content.Server.Explosion.EntitySystems;
@@ -50,6 +51,7 @@ public sealed class StorytellerHistorySystem : EntitySystem
     [Dependency] private readonly SharedJobSystem _jobSystem = default!;
     [Dependency] private readonly SharedResearchSystem _researchSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private readonly List<StorytellerHistoryEntry> _history = new();
     private readonly HashSet<string> _researchedDisciplines = new();
@@ -175,24 +177,24 @@ public sealed class StorytellerHistorySystem : EntitySystem
         if (_protoManager.TryIndex<StorytellerMetadataPrototype>(args.RuleId, out var metadata))
         {
             var targetKey = !string.IsNullOrEmpty(metadata.DescriptionLocKey) && Loc.TryGetString(metadata.DescriptionLocKey, out _)
-                ? metadata.DescriptionLocKey 
+                ? metadata.DescriptionLocKey
                 : autoStartKey;
 
-            if (metadata.ThreatType == StorytellerThreatType.MinorCalm ||
-                metadata.ThreatType == StorytellerThreatType.MajorCalm ||
-                metadata.ThreatType == StorytellerThreatType.MinorAntag ||
-                metadata.ThreatType == StorytellerThreatType.MajorAntag)
+            var histType = metadata.ThreatType switch
             {
-                LogHistoryEntry(StorytellerHistoryType.Threat, targetKey, ("name", (object) ruleName));
-            }
-            else
-            {
-                LogHistoryEntry(StorytellerHistoryType.Event, targetKey, ("name", (object) ruleName));
-            }
+                StorytellerThreatType.Helpful => StorytellerHistoryType.HelpfulEvent,
+                StorytellerThreatType.Neutral => StorytellerHistoryType.NeutralEvent,
+                StorytellerThreatType.MinorCalm => StorytellerHistoryType.MinorCalmEvent,
+                StorytellerThreatType.MajorCalm => StorytellerHistoryType.MajorCalmEvent,
+                StorytellerThreatType.MinorAntag => StorytellerHistoryType.MinorAntagEvent,
+                StorytellerThreatType.MajorAntag => StorytellerHistoryType.MajorAntagEvent,
+                _ => StorytellerHistoryType.NeutralEvent
+            };
+            LogHistoryEntry(histType, targetKey, ("name", (object) ruleName));
         }
         else
         {
-            LogHistoryEntry(StorytellerHistoryType.Event, autoStartKey, ("name", (object) ruleName));
+            LogHistoryEntry(StorytellerHistoryType.NeutralEvent, autoStartKey, ("name", (object) ruleName));
         }
     }
 
@@ -202,6 +204,11 @@ public sealed class StorytellerHistorySystem : EntitySystem
             return;
 
         var target = args.Target;
+
+        var station = _stationSystem.GetOwningStation(target);
+        if (station == null || !HasComp<MainStationComponent>(station.Value))
+            return;
+
         if (!TryComp<MindContainerComponent>(target, out var mindContainer) || !_mindSystem.TryGetMind(target, out var mindId, out _))
             return;
 
@@ -233,17 +240,17 @@ public sealed class StorytellerHistorySystem : EntitySystem
         var templateNum = _random.Next(1, 5);
         var templateKey = $"storyteller-history-crew-death-{templateNum}";
 
-        LogHistoryEntry(StorytellerHistoryType.Death, templateKey, 
-            ("name", (object) characterName), 
-            ("job", (object) jobName), 
-            ("cause", (object) cause), 
+        LogHistoryEntry(StorytellerHistoryType.Death, templateKey,
+            ("name", (object) characterName),
+            ("job", (object) jobName),
+            ("cause", (object) cause),
             ("location", (object) locationFormatted));
     }
 
     private void OnSupermatterDelaminated(SunriseSupermatterDelaminatedEvent ev)
     {
         var locationName = GetLocationName(ev.Supermatter);
-        LogHistoryEntry(StorytellerHistoryType.Supermatter, "storyteller-history-supermatter-collapse", ("location", (object) locationName));
+        LogHistoryEntry(StorytellerHistoryType.AnomalyEngine, "storyteller-history-supermatter-collapse", ("location", (object) locationName));
     }
 
     private void OnSunriseExplosion(SunriseExplosionEvent ev)
@@ -291,7 +298,7 @@ public sealed class StorytellerHistorySystem : EntitySystem
 
         var severity = Loc.GetString(severityKey);
 
-        LogHistoryEntry(StorytellerHistoryType.Explosion, "storyteller-history-large-explosion", 
+        LogHistoryEntry(StorytellerHistoryType.Explosion, "storyteller-history-large-explosion",
             ("location", (object) location), ("severity", (object) severity));
     }
 
@@ -323,6 +330,10 @@ public sealed class StorytellerHistorySystem : EntitySystem
         if (!args.LateJoin)
             return;
 
+        var station = _stationSystem.GetOwningStation(args.Mob);
+        if (station == null || !HasComp<MainStationComponent>(station.Value))
+            return;
+
         var jobName = Loc.GetString("storyteller-history-arrival-no-job");
         if (!string.IsNullOrEmpty(args.JobId) && _protoManager.TryIndex<JobPrototype>(args.JobId, out var jobProto))
         {
@@ -335,6 +346,10 @@ public sealed class StorytellerHistorySystem : EntitySystem
 
     private void OnCryostorageEntered(EntityUid uid, CryostorageContainedComponent component, CryostorageEnteredEvent args)
     {
+        var station = _stationSystem.GetOwningStation(uid);
+        if (station == null || !HasComp<MainStationComponent>(station.Value))
+            return;
+
         var jobName = Loc.GetString("earlyleave-cryo-job-unknown");
         var characterName = Name(uid);
 
@@ -376,7 +391,7 @@ public sealed class StorytellerHistorySystem : EntitySystem
             {
                 _singularityEscaped = true;
                 var location = singuloUid.HasValue ? GetLocationName(singuloUid.Value) : Loc.GetString("storyteller-history-location-unknown");
-                LogHistoryEntry(StorytellerHistoryType.ContainmentBreach, "storyteller-history-singularity-escaped", ("location", (object) location));
+                LogHistoryEntry(StorytellerHistoryType.AnomalyEngine, "storyteller-history-singularity-escaped", ("location", (object) location));
             }
             else if (singuloContained)
             {
@@ -409,7 +424,7 @@ public sealed class StorytellerHistorySystem : EntitySystem
             {
                 _teslaEscaped = true;
                 var location = teslaUid.HasValue ? GetLocationName(teslaUid.Value) : Loc.GetString("storyteller-history-location-unknown");
-                LogHistoryEntry(StorytellerHistoryType.ContainmentBreach, "storyteller-history-tesla-escaped", ("location", (object) location));
+                LogHistoryEntry(StorytellerHistoryType.AnomalyEngine, "storyteller-history-tesla-escaped", ("location", (object) location));
             }
             else if (teslaContained)
             {
@@ -522,11 +537,11 @@ public sealed class StorytellerHistorySystem : EntitySystem
             !string.IsNullOrEmpty(metadata.EndedLocKey) &&
             Loc.TryGetString(metadata.EndedLocKey, out _))
         {
-            LogHistoryEntry(StorytellerHistoryType.Event, metadata.EndedLocKey, ("name", (object) ruleName), ("duration", (object) minutes));
+            LogHistoryEntry(StorytellerHistoryType.NeutralEvent, metadata.EndedLocKey, ("name", (object) ruleName), ("duration", (object) minutes));
         }
         else if (hasAutoEnd)
         {
-            LogHistoryEntry(StorytellerHistoryType.Event, autoEndKey, ("name", (object) ruleName), ("duration", (object) minutes));
+            LogHistoryEntry(StorytellerHistoryType.NeutralEvent, autoEndKey, ("name", (object) ruleName), ("duration", (object) minutes));
         }
     }
 
@@ -537,6 +552,9 @@ public sealed class StorytellerHistorySystem : EntitySystem
         if (args.PreviousLevel == args.AlertLevel)
             return;
 
+        if (!HasComp<MainStationComponent>(args.Station))
+            return;
+
         // Sunrise-Edit - Ignore any initial/starting alert level changes (first 5 seconds) to ignore initial station code
         if (now.TotalSeconds < 5)
         {
@@ -544,29 +562,33 @@ public sealed class StorytellerHistorySystem : EntitySystem
             return;
         }
 
-        // If there was a previous level and we have its start time, log its completion with exact duration
-        if (!string.IsNullOrEmpty(args.PreviousLevel) && _alertLevelStartTimes.TryGetValue(args.PreviousLevel, out var prevStart))
+        var localizedNew = Loc.TryGetString($"alert-level-{args.AlertLevel.ToLower()}", out var newName) ? newName : args.AlertLevel;
+        var colorNew = GetAlertLevelColor(args.AlertLevel);
+
+        if (!string.IsNullOrEmpty(args.PreviousLevel) && args.PreviousLevel != args.AlertLevel && _alertLevelStartTimes.TryGetValue(args.PreviousLevel, out var prevStart))
         {
             var duration = now - prevStart;
             var minutes = (int) Math.Max(1, Math.Round(duration.TotalMinutes));
-            var localizedPrev = Loc.TryGetString($"alert-level-{args.PreviousLevel.ToLower()}", out var name) ? name : args.PreviousLevel;
+            var localizedPrev = Loc.TryGetString($"alert-level-{args.PreviousLevel.ToLower()}", out var prevName) ? prevName : args.PreviousLevel;
             var colorPrev = GetAlertLevelColor(args.PreviousLevel);
-            LogHistoryEntry(StorytellerHistoryType.Event, "storyteller-history-alert-level-ended", 
-                ("level", (object) localizedPrev), 
-                ("duration", (object) minutes),
-                ("color", (object) colorPrev));
+
+            LogHistoryEntry(StorytellerHistoryType.StationEvent, "storyteller-history-alert-level-changed-with-prev",
+                ("level", (object) localizedNew),
+                ("color", (object) colorNew),
+                ("prev", (object) localizedPrev),
+                ("prevColor", (object) colorPrev),
+                ("duration", (object) minutes));
+
             _alertLevelStartTimes.Remove(args.PreviousLevel);
         }
+        else
+        {
+            LogHistoryEntry(StorytellerHistoryType.StationEvent, "storyteller-history-alert-level-changed",
+                ("level", (object) localizedNew),
+                ("color", (object) colorNew));
+        }
 
-        // Store start time of the new level
         _alertLevelStartTimes[args.AlertLevel] = now;
-
-        // Log the establishment of the new code
-        var localizedNew = Loc.TryGetString($"alert-level-{args.AlertLevel.ToLower()}", out var newName) ? newName : args.AlertLevel;
-        var colorNew = GetAlertLevelColor(args.AlertLevel);
-        LogHistoryEntry(StorytellerHistoryType.Event, "storyteller-history-alert-level-changed", 
-            ("level", (object) localizedNew),
-            ("color", (object) colorNew));
     }
 
     private string GetAlertLevelColor(string level)
@@ -596,34 +618,34 @@ public sealed class StorytellerHistorySystem : EntitySystem
     private void OnSingularityInit(EntityUid uid, SingularityComponent component, ComponentInit args)
     {
         var location = GetLocationName(uid);
-        LogHistoryEntry(StorytellerHistoryType.ContainmentBreach, "storyteller-history-singularity-spawned", ("location", (object) location));
+        LogHistoryEntry(StorytellerHistoryType.AnomalyEngine, "storyteller-history-singularity-spawned", ("location", (object) location));
     }
 
     private void OnTeslaInit(EntityUid uid, TeslaEnergyBallComponent component, ComponentInit args)
     {
         var location = GetLocationName(uid);
-        LogHistoryEntry(StorytellerHistoryType.ContainmentBreach, "storyteller-history-tesla-spawned", ("location", (object) location));
+        LogHistoryEntry(StorytellerHistoryType.AnomalyEngine, "storyteller-history-tesla-spawned", ("location", (object) location));
     }
 
     private void OnSupermatterStartup(EntityUid uid, SupermatterComponent component, ComponentStartup args)
     {
         var location = GetLocationName(uid);
-        LogHistoryEntry(StorytellerHistoryType.Supermatter, "storyteller-history-supermatter-spawned", ("location", (object) location));
+        LogHistoryEntry(StorytellerHistoryType.AnomalyEngine, "storyteller-history-supermatter-spawned", ("location", (object) location));
     }
 
     private void OnNukeArmed(SunriseNukeArmedEvent ev)
     {
-        LogHistoryEntry(StorytellerHistoryType.ContainmentBreach, "storyteller-history-nuke-armed", ("location", (object) ev.Location));
+        LogHistoryEntry(StorytellerHistoryType.StationEvent, "storyteller-history-nuke-armed", ("location", (object) ev.Location));
     }
 
     private void OnNukeDisarmSuccess(NukeDisarmSuccessEvent ev)
     {
-        LogHistoryEntry(StorytellerHistoryType.ContainmentBreach, "storyteller-history-nuke-disarmed");
+        LogHistoryEntry(StorytellerHistoryType.StationEvent, "storyteller-history-nuke-disarmed");
     }
 
     private void OnNukeExploded(NukeExplodedEvent ev)
     {
-        LogHistoryEntry(StorytellerHistoryType.ContainmentBreach, "storyteller-history-nuke-exploded");
+        LogHistoryEntry(StorytellerHistoryType.Explosion, "storyteller-history-nuke-exploded");
     }
 
     private void OnAntagSelectionComplete(EntityUid uid, AntagSelectionComponent component, ref AntagSelectionCompleteEvent args)
@@ -642,7 +664,7 @@ public sealed class StorytellerHistorySystem : EntitySystem
         var key = $"storyteller-metadata-{lowercaseId}-assigned";
         if (Loc.TryGetString(key, out _))
         {
-            LogHistoryEntry(StorytellerHistoryType.Threat, key, ("players", (object) playersList));
+            LogHistoryEntry(StorytellerHistoryType.MajorAntagEvent, key, ("players", (object) playersList));
         }
     }
 }

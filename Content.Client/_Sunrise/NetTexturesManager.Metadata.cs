@@ -15,11 +15,11 @@ public sealed partial class NetTexturesManager
     private static readonly float[] OneFrameDelay = new float[] { 1f };
 
     /// <summary>
-    /// Normalizes per-direction RSI delays so each direction has at least one frame delay row.
+    /// Нормализует задержки RSI по направлениям, чтобы у каждого направления была хотя бы одна строка задержек кадров.
     /// </summary>
-    /// <param name="delays">The raw delay table read from metadata, if present.</param>
-    /// <param name="dirCount">The expected number of RSI directions.</param>
-    /// <returns>A normalized per-direction delay table.</returns>
+    /// <param name="delays">Сырая таблица задержек, прочитанная из metadata, если она есть.</param>
+    /// <param name="dirCount">Ожидаемое количество направлений RSI.</param>
+    /// <returns>Нормализованная таблица задержек по направлениям.</returns>
     private static float[][] NormalizeDelays(float[][]? delays, int dirCount)
     {
         if (delays == null)
@@ -46,10 +46,10 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Folds multi-direction RSI delays into a shared frame timeline plus direction-specific frame indices.
+    /// Сворачивает задержки RSI с несколькими направлениями в общий таймлайн кадров и индексы кадров по направлениям.
     /// </summary>
-    /// <param name="delays">The per-direction delay table.</param>
-    /// <returns>The folded delay track and the frame index table for each direction.</returns>
+    /// <param name="delays">Таблица задержек по направлениям.</param>
+    /// <returns>Свернутая дорожка задержек и таблица индексов кадров для каждого направления.</returns>
     private static (float[] Delays, int[][] Indices) FoldDelays(float[][] delays)
     {
         if (delays.Length == 1)
@@ -163,10 +163,10 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Creates a consumer-facing animation state from a fully uploaded RSI state payload.
+    /// Создает состояние анимации для потребителей из полностью загруженной полезной нагрузки RSI-состояния.
     /// </summary>
-    /// <param name="state">The uploaded RSI state payload.</param>
-    /// <returns>The animation state exposed to consumers.</returns>
+    /// <param name="state">Полезная нагрузка загруженного RSI-состояния.</param>
+    /// <returns>Состояние анимации, доступное потребителям.</returns>
     private static NetTextureAnimationState CreateAnimationState(PreparedRsiState state)
     {
         var frames = new Texture[state.FoldedIndices.Length][];
@@ -199,10 +199,10 @@ public sealed partial class NetTexturesManager
 
     #region RSI Metadata
     /// <summary>
-    /// Parses the uploaded RSI <c>meta.json</c> file into validated metadata structures.
+    /// Разбирает загруженный RSI <c>meta.json</c> в проверенные структуры metadata.
     /// </summary>
-    /// <param name="metaStream">The metadata stream to parse.</param>
-    /// <returns>The parsed RSI metadata.</returns>
+    /// <param name="metaStream">Поток metadata для разбора.</param>
+    /// <returns>Разобранная RSI metadata.</returns>
     private static RsiMetadataData LoadRsiMetadata(Stream metaStream)
     {
         using var reader = new StreamReader(metaStream, Encoding.UTF8, true, 4096, leaveOpen: true);
@@ -249,10 +249,10 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Parses the optional RSI per-direction delay table.
+    /// Разбирает опциональную таблицу задержек RSI по направлениям.
     /// </summary>
-    /// <param name="delayRowsNode">The YAML sequence containing delay rows.</param>
-    /// <returns>The parsed delay table.</returns>
+    /// <param name="delayRowsNode">YAML sequence со строками задержек.</param>
+    /// <returns>Разобранная таблица задержек.</returns>
     private static float[][] ReadRsiDelays(YamlSequenceNode delayRowsNode)
     {
         var rows = new float[delayRowsNode.Children.Count][];
@@ -276,10 +276,10 @@ public sealed partial class NetTexturesManager
 
     #region Path Helpers
     /// <summary>
-    /// Checks whether a resource path points to an RSI directory.
+    /// Проверяет, указывает ли путь ресурса на RSI-директорию.
     /// </summary>
-    /// <param name="path">The normalized path to inspect.</param>
-    /// <returns><see langword="true"/> if the path targets an RSI resource.</returns>
+    /// <param name="path">Нормализованный путь для проверки.</param>
+    /// <returns><see langword="true"/>, если путь указывает на RSI-ресурс.</returns>
     private static bool IsRsiPath(ResPath path)
     {
         var pathString = path.ToRelativePath().ToString();
@@ -288,10 +288,10 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Converts a consumer-facing string path into a normalized rooted resource path.
+    /// Преобразует строковый путь для потребителей в нормализованный rooted путь ресурса.
     /// </summary>
-    /// <param name="resourcePath">The rooted or relative resource path string.</param>
-    /// <returns>The normalized rooted resource path.</returns>
+    /// <param name="resourcePath">Rooted или relative строка пути ресурса.</param>
+    /// <returns>Нормализованный rooted путь ресурса.</returns>
     private static ResPath ToResPath(string resourcePath)
     {
         var resPath = resourcePath.StartsWith("/", StringComparison.Ordinal)
@@ -302,13 +302,13 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Resolves the resource key used for ready-state tracking after uploaded files are published.
+    /// Определяет ключ ресурса для отслеживания состояния готовности после публикации загруженных файлов.
     /// </summary>
     /// <remarks>
-    /// RSI directory contents are tracked by the directory path rather than individual file paths.
+    /// Содержимое RSI-директории отслеживается по пути директории, а не по отдельным путям файлов.
     /// </remarks>
-    /// <param name="relativePath">The uploaded relative file or directory path.</param>
-    /// <returns>The consumer-facing resource path key.</returns>
+    /// <param name="relativePath">Относительный путь загруженного файла или директории.</param>
+    /// <returns>Ключ пути ресурса для потребителей.</returns>
     private static string GetUploadedResourcePath(ResPath relativePath)
     {
         var rootedPath = (ResPath.Root / relativePath.ToRelativePath()).Clean();

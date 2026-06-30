@@ -324,7 +324,6 @@
       key_slots:
       - EncryptionKeyERT
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/ert.rsi
@@ -344,7 +343,6 @@
       - EncryptionKeyDeathSquad
       - EncryptionKeyERT
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/deathsquad.rsi
@@ -366,7 +364,6 @@
       - EncryptionKeyDeathSquad
       - EncryptionKeyERT
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/specopsofficer.rsi
@@ -385,7 +382,6 @@
     containers:
       key_slots:
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/representative.rsi

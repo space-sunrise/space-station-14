@@ -91,13 +91,22 @@
           !type:DamageTrigger
           damage: 100
         behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
+          # - !type:DoActsBehavior # Sunrise-Edit
+          #   acts: [ "Destruction" ]
           - !type:PlaySoundBehavior
             sound:
               collection: MetalBreak
               params:
                 volume: -8
+          # Sunrise-Start
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              ScrapCameraTiny:
+                min: 0
+                max: 1
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          # Sunrise-End
   placement:
     mode: SnapgridCenter
     snap:

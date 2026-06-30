@@ -36,14 +36,15 @@ public sealed class XATDeathSystem : BaseXATSystem<XATDeathComponent>
             if (node.Attached == null)
                 continue;
 
-            var artifact = _xenoArtifactQuery.Get(node.Attached.Value);
-
-            if (!CanTrigger(artifact, (uid, node)))
+            if (!_xenoArtifactQuery.TryGetComponent(node.Attached.Value, out var artifact))
                 continue;
 
-            var artifactCoords = Transform(artifact).Coordinates;
+            if (!CanTrigger((node.Attached.Value, artifact), (uid, node)))
+                continue;
+
+            var artifactCoords = Transform(node.Attached.Value).Coordinates;
             if (_transform.InRange(targetCoords, artifactCoords, comp.Range))
-                Trigger(artifact, (uid, comp, node));
+                Trigger((node.Attached.Value, artifact), (uid, comp, node));
         }
     }
 }

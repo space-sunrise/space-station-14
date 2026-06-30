@@ -5,3 +5,5 @@ reagent-name-celliminol = celliminol
 reagent-desc-celliminol = A cryogenics chemical. A powerful chemical developed by the company. Effective on living and dead creatures.
 reagent-name-inc = inc
 reagent-desc-inc = inc
+reagent-name-universal-evaporator = universal evaporator
+reagent-desc-universal-evaporator = Evaporates liquid reagents by breaking down the inhibitors that prevent them from becoming gas.

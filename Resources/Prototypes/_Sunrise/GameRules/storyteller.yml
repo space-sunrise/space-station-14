@@ -2,7 +2,29 @@
 
 - type: entity
   parent: BaseGameRule
-  id: StorytellerRule
+  id: StorytellerCalmRule
   components:
   - type: GameRule
   - type: StorytellerRule
+    storyTellerType: Calm
+
+- type: entity
+  parent: BaseGameRule
+  id: StorytellerClassicRule
+  components:
+  - type: GameRule
+  - type: StorytellerRule
+    storyTellerType: Classic
+
+- type: entity
+  parent: BaseGameRule
+  id: StorytellerInsaneRule
+  components:
+  - type: GameRule
+  - type: StorytellerRule
+    storyTellerType: Insane
+
+# Legacy ID for backwards compatibility
+- type: entity
+  parent: StorytellerClassicRule
+  id: StorytellerRule

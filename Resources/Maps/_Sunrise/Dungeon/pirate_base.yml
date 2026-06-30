@@ -11462,7 +11462,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 39.5,60.5
       parent: 1
-- proto: ComputerPirateExchanger
+- proto: ComputerPirateExchangerExpedition
   entities:
   - uid: 1104
     components:
@@ -11470,7 +11470,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,47.5
       parent: 1
-- proto: ComputerPirateExchangerWallmount
+- proto: ComputerPirateExchangerWallmountExpedition
   entities:
   - uid: 2518
     components:
@@ -11479,7 +11479,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: ComputerPirateUplink
+- proto: ComputerPirateUplinkExpedition
   entities:
   - uid: 2606
     components:

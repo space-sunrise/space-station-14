@@ -53,7 +53,7 @@ public sealed class MappingManager : IPostInjectInit
                 return;
             }
 
-            // Sunrise added start - report configurable map save auto-commands before serialization
+            // Sunrise added start - сообщаем настраиваемые автокоманды сохранения карты перед сериализацией
             var autoCommands = _systems.GetEntitySystem<MappingAutoSaveSystem>().GetMapSaveAutoCommandsSummary(mapUid);
             if (autoCommands is not null)
                 _console.WriteLine(session, Loc.GetString("mapping-save-auto-commands", ("commands", autoCommands)));

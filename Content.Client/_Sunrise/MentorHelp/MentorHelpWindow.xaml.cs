@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Content.Client._Sunrise.MentorHelp
 {
     /// <summary>
-    /// Mentor help window wrapper
+    /// Обертка окна менторской помощи.
     /// </summary>
     [GenerateTypedNameReferences]
     public sealed partial class MentorHelpWindow : DefaultWindow

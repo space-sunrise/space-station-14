@@ -3,8 +3,6 @@ ent-MobSovietBase = comrade
 
 ent-MobSovietT1Knife = soviet brawler
     .desc = A low-ranking Soviet raider armed for close-quarters combat.
-ent-MobSovietKnifeAlt = { ent-MobSovietT1Knife }
-    .desc = { ent-MobSovietT1Knife.desc }
 
 ent-MobSovietT1Pistol = soviet pistolman
     .desc = A low-ranking Soviet raider with a surplus sidearm.
@@ -54,8 +52,6 @@ ent-MobSovietT3Medic = soviet ranger medic
 
 ent-MobSovietT2Raider = soviet raider
     .desc = A hardened marine veteran carrying a high-rate submachine gun.
-ent-MobSovietT2RifleWAssault = soviet specialist
-    .desc = An experienced assault specialist equipped for sustained firefights.
 ent-MobSovietT2Mech = Molot
     .desc = A light USSP mech variant with a powerful auto-shotgun.
 ent-MobSovietT3Mech = Doll House
@@ -70,14 +66,6 @@ ent-MobSovietBearAlt = { ent-MobSovietBear }
 ent-MobSovietSpaceBear = soviet space bear
     .desc = A brutal spacefaring Soviet beast that reeks of strong booze.
 
-ent-MobSovietKnife = { ent-MobSovietT1Knife }
-    .desc = { ent-MobSovietT1Knife.desc }
-ent-MobSovietPistol = { ent-MobSovietT1Pistol }
-    .desc = { ent-MobSovietT1Pistol.desc }
-ent-MobSovietMosin = { ent-MobSovietT1Mosin }
-    .desc = { ent-MobSovietT1Mosin.desc }
-ent-MobSovietMosinAlt = { ent-MobSovietT1MosinAlt }
-    .desc = { ent-MobSovietT1MosinAlt.desc }
 ent-GunSideArmFan = Lucky 45
     .desc = A captain's sidearm with rapid incendiary fire.
 ent-ActionSideArmFan = Lucky 45
@@ -123,14 +111,6 @@ ent-MobSovietMarineRanged = Soviet marine (ranged base)
     .desc = A ranged Soviet marine template.
 ent-MobSovietBearBase = Soviet war bear (base)
     .desc = A base Soviet assault bear template.
-ent-GunSovietSerzhantGrenade = Sergeant grenade launcher action gun
-    .desc = Hidden utility gun used for the sergeant grenade action.
-ent-ActionSovietSerzhantGrenade = Throw grenade
-    .desc = Throws an explosive grenade.
-ent-GunSovietT3SmokeGrenade = T3 smoke grenade action gun
-    .desc = Hidden utility gun used for the T3 smoke grenade action.
-ent-ActionSovietT3SmokeGrenade = Throw smoke grenade
-    .desc = Throws a smoke grenade.
 ent-ActionGravityJumpQuick = Quick gravity jump
     .desc = Performs a fast gravity-assisted jump.
 

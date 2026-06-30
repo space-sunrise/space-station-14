@@ -1,0 +1,15 @@
+ent-ComputerPirateUplink = black market console
+    .desc = An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
+ent-ComputerPirateExchanger = black market exchanger
+    .desc = An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
+ent-ComputerPirateExchangerWallmount = black market exchanger
+    .desc = A wall-mounted version of the rusted exchanger, barely alive but still connected to the black market.
+ent-ComputerPirateUplinkExpedition = black market console
+    .suffix = Expedition
+    .desc = { ent-ComputerPirateUplink.desc }
+ent-ComputerPirateExchangerExpedition = black market exchanger
+    .suffix = Expedition
+    .desc = { ent-ComputerPirateExchanger.desc }
+ent-ComputerPirateExchangerWallmountExpedition = black market exchanger
+    .suffix = Expedition
+    .desc = { ent-ComputerPirateExchangerWallmount.desc }

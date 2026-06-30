@@ -6,10 +6,13 @@
   playTimeTracker: MothershipCore # Sunrise
   objective: roles-antag-mothership-core-objective
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobBorg
-    time: 18000  # 5 hrs
+  # Sunrise-start
+  - !type:DepartmentTimeRequirement
+    department: Silicon
+    time: 18000 # 5 hrs
+  # Sunrise-end
   guides: [ Xenoborgs ]
+  storytellerStress: 5.0 # Sunrise-Edit
 
 - type: antag
   id: Xenoborg
@@ -19,7 +22,10 @@
   playTimeTracker: Xenoborg # Sunrise
   objective: roles-antag-xenoborg-objective
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobBorg
-    time: 18000  # 5 hrs
+  # Sunrise-start
+  - !type:DepartmentTimeRequirement
+    department: Silicon
+    time: 18000 # 5 hrs
+  # Sunrise-end
   guides: [ Xenoborgs ]
+  storytellerStress: 0.5 # Sunrise-Edit

@@ -41,7 +41,7 @@
   - BasicRoundstartVariation
 
 - type: gamePreset
-  id: Storyteller
+  id: StorytellerClassic
   alias:
   - storyteller
   - story
@@ -51,6 +51,37 @@
   hide: false
   description: storyteller-preset-description
   rules:
-  - StorytellerRule
+  - StorytellerClassicRule
   - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
+
+- type: gamePreset
+  id: StorytellerCalm
+  alias:
+  - storyteller-calm
+  - story-calm
+  - director-calm
+  name: storyteller-preset-calm-title
+  showInVote: true
+  hide: false
+  description: storyteller-preset-calm-description
+  rules:
+  - StorytellerCalmRule
+  - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
+
+- type: gamePreset
+  id: StorytellerInsane
+  alias:
+  - storyteller-insane
+  - story-insane
+  - director-insane
+  name: storyteller-preset-insane-title
+  showInVote: true
+  hide: false
+  description: storyteller-preset-insane-description
+  rules:
+  - StorytellerInsaneRule
+  - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
 

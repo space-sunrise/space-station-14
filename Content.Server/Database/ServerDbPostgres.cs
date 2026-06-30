@@ -77,10 +77,12 @@ namespace Content.Server.Database
             ImmutableArray<byte>? hwId,
             ImmutableArray<ImmutableArray<byte>>? modernHWIds)
         {
-            if (address == null && userId == null && hwId == null)
+            // Sunrise edit start - поиск по modern HWID может быть единственным ключом бана.
+            if (!HasBanLookupKey(address, userId, hwId, modernHWIds))
             {
-                throw new ArgumentException("Address, userId, and hwId cannot all be null");
+                throw new ArgumentException("Address, userId, hwId, and modernHWIds cannot all be empty");
             }
+            // Sunrise edit end
 
             await using var db = await GetDbImpl();
 
@@ -100,10 +102,12 @@ namespace Content.Server.Database
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
             bool includeUnbanned)
         {
-            if (address == null && userId == null && hwId == null)
+            // Sunrise edit start - поиск по modern HWID может быть единственным ключом бана.
+            if (!HasBanLookupKey(address, userId, hwId, modernHWIds))
             {
-                throw new ArgumentException("Address, userId, and hwId cannot all be null");
+                throw new ArgumentException("Address, userId, hwId, and modernHWIds cannot all be empty");
             }
+            // Sunrise edit end
 
             await using var db = await GetDbImpl();
 
@@ -169,7 +173,7 @@ namespace Content.Server.Database
             ServerBanExemptFlags? exemptFlags,
             bool newPlayer)
         {
-            DebugTools.Assert(!(address == null && userId == null && hwId == null));
+            DebugTools.Assert(HasBanLookupKey(address, userId, hwId, modernHWIds)); // Sunrise-Edit
 
             var query = MakeBanLookupQualityShared<ServerBan, ServerUnban>(
                 userId,
@@ -190,7 +194,7 @@ namespace Content.Server.Database
 
             DebugTools.Assert(
                 query != null,
-                "At least one filter item (IP/UserID/HWID) must have been given to make query not null.");
+                "At least one ban lookup key (IP/UserID/Legacy HWID/Modern HWID) must have been given to make query not null."); // Sunrise-Edit
 
             if (!includeUnbanned)
             {
