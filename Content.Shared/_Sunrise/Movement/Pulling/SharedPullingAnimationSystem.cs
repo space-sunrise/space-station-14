@@ -5,6 +5,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Movement.Pulling;
@@ -13,19 +14,18 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
+    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private const string PullEffect = "SunriseEffectGrab";
-    private static readonly TimeSpan PullEffectInterval = TimeSpan.FromSeconds(0.24);
 
     private readonly SoundSpecifier _pullSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg")
     {
         Params = AudioParams.Default.WithVariation(0.05f),
     };
 
-    private readonly Dictionary<EntityUid, TimeSpan> _nextPullEffect = new();
-    private readonly Dictionary<EntityUid, List<EntityUid>> _activePullEffects = new();
+    private readonly Dictionary<EntityUid, EntityUid> _activePullEffects = new();
 
     public override void Initialize()
     {
@@ -42,7 +42,6 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
 
         PlayPullLunge(args.PullerUid, args.PulledUid, true);
         SpawnPullVisual(args.PulledUid);
-        _nextPullEffect[ent] = _timing.CurTime + PullEffectInterval;
     }
 
     private void OnPullStopped(Entity<PullableComponent> ent, ref PullStoppedMessage args)
@@ -50,7 +49,6 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
         if (args.PulledUid != ent.Owner)
             return;
 
-        _nextPullEffect.Remove(ent);
         DeletePullVisuals(ent);
         PlayPullLunge(args.PullerUid, args.PulledUid, false);
     }
@@ -72,51 +70,37 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
 
     private void SpawnPullVisual(EntityUid pulled)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!_net.IsServer)
             return;
 
         if (!Exists(pulled))
             return;
 
-        var effect = PredictedSpawnAttachedTo(PullEffect, pulled.ToCoordinates());
+        if (_activePullEffects.TryGetValue(pulled, out var activeEffect) && !Deleted(activeEffect))
+            return;
 
-        if (!_activePullEffects.TryGetValue(pulled, out var effects))
-        {
-            effects = new List<EntityUid>();
-            _activePullEffects[pulled] = effects;
-        }
-
-        for (var i = effects.Count - 1; i >= 0; i--)
-        {
-            if (Deleted(effects[i]))
-                effects.RemoveAt(i);
-        }
-
-        effects.Add(effect);
+        var effect = SpawnAttachedTo(PullEffect, pulled.ToCoordinates());
+        _activePullEffects[pulled] = effect;
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
+        if (!_net.IsServer)
+            return;
+
         var query = EntityQueryEnumerator<PullableComponent>();
         while (query.MoveNext(out var uid, out var pullable))
         {
-            if (pullable.Puller is not { } puller)
+            if (pullable.Puller is not { })
             {
-                _nextPullEffect.Remove(uid);
                 DeletePullVisuals(uid);
                 continue;
             }
 
-            if (!_nextPullEffect.TryGetValue(uid, out var nextEffect))
-                nextEffect = TimeSpan.Zero;
-
-            if (_timing.CurTime < nextEffect)
-                continue;
-
-            SpawnPullVisual(uid);
-            _nextPullEffect[uid] = _timing.CurTime + PullEffectInterval;
+            if (!_activePullEffects.TryGetValue(uid, out var effect) || Deleted(effect))
+                SpawnPullVisual(uid);
         }
     }
 
@@ -130,13 +114,13 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
 
     private void DeletePullVisuals(EntityUid pulled)
     {
-        if (!_activePullEffects.Remove(pulled, out var effects))
+        if (!_net.IsServer)
             return;
 
-        foreach (var effect in effects)
-        {
-            if (!Deleted(effect))
-                QueueDel(effect);
-        }
+        if (!_activePullEffects.Remove(pulled, out var effect))
+            return;
+
+        if (!Deleted(effect))
+            QueueDel(effect);
     }
 }
