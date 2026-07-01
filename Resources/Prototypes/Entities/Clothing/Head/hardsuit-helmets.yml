@@ -880,7 +880,7 @@
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander, SunriseHardsuitHelmetNightVisionCyan ]
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander, SunriseHardsuitHelmetNightVisionCyan ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitERTLeader
   name: ERT leader hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -902,7 +902,7 @@
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionWhite ]
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionWhite ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitERTChaplain
   name: ERT chaplain hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -917,7 +917,7 @@
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionCyan ]
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionCyan ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitERTEngineer
   name: ERT engineer hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -942,7 +942,7 @@
 
 #ERT Medical Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieElite, SunriseHardsuitHelmetNightVisionMint ]
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieElite, SunriseHardsuitHelmetNightVisionMint ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitERTMedical
   name: ERT medic hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -957,7 +957,7 @@
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionCyan ]
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionCyan ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitERTSecurity
   name: ERT security hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -981,7 +981,7 @@
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionPurple ]
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie, SunriseHardsuitHelmetNightVisionPurple ] # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitERTJanitor
   name: ERT janitor hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
