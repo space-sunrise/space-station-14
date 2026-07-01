@@ -1,4 +1,16 @@
 - type: entity
+  id: HardsuitSlotAmpulaCombat
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
+
+- type: entity
   parent: ClothingOuterHardsuitCBURN
   id: ClothingOuterHardsuitCBURNLeader
   name: CBURN commander exosuit

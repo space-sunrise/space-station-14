@@ -164,9 +164,9 @@
         maxVol: 5
         reagents:
         - ReagentId: Pyrazine
-          Quantity: 3
+          Quantity: 2.25
         - ReagentId: Dermaline
-          Quantity: 2
+          Quantity: 2.75
   - type: TimedDespawn
     lifetime: 25
   - type: SpawnOnDespawn

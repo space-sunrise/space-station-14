@@ -20,6 +20,66 @@
       path: /Audio/Machines/button.ogg
 
 - type: entity
+  id: SunriseHardsuitHelmetNightVisionCyan
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionCyan
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionGreen
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionGreen
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionWhite
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionWhite
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionMint
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionMint
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionPurple
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionPurple
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionSyndie
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionSyndie
+
+- type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCBURNLeader
   categories: [ HideSpawnMenu ]
