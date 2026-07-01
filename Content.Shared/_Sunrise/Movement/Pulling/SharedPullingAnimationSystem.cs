@@ -5,8 +5,6 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Network;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Movement.Pulling;
 
@@ -14,8 +12,6 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private const string PullEffect = "SunriseEffectGrab";
@@ -25,14 +21,14 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
         Params = AudioParams.Default.WithVariation(0.05f),
     };
 
-    private readonly Dictionary<EntityUid, EntityUid> _activePullEffects = new();
-
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<PullableComponent, PullStartedMessage>(OnPullStarted);
         SubscribeLocalEvent<PullableComponent, PullStoppedMessage>(OnPullStopped);
+        SubscribeLocalEvent<ActivePullingAnimationComponent, ComponentStartup>(OnAnimationStartup);
+        SubscribeLocalEvent<ActivePullingAnimationComponent, ComponentShutdown>(OnAnimationShutdown);
     }
 
     private void OnPullStarted(Entity<PullableComponent> ent, ref PullStartedMessage args)
@@ -40,8 +36,7 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
         if (args.PulledUid != ent.Owner)
             return;
 
-        PlayPullLunge(args.PullerUid, args.PulledUid, true);
-        SpawnPullVisual(args.PulledUid);
+        TryPlayPullAnimation(args.PullerUid, args.PulledUid);
     }
 
     private void OnPullStopped(Entity<PullableComponent> ent, ref PullStoppedMessage args)
@@ -49,18 +44,36 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
         if (args.PulledUid != ent.Owner)
             return;
 
-        DeletePullVisuals(ent);
-        PlayPullLunge(args.PullerUid, args.PulledUid, false);
+        TryStopPullAnimation(args.PullerUid, args.PulledUid);
     }
 
-    private void PlayPullLunge(EntityUid puller, EntityUid pulled, bool playSound)
+    public bool TryPlayPullAnimation(EntityUid puller, EntityUid pulled)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
+        if (!CanPlayPullAnimation(puller, pulled))
+            return false;
 
-        if (!Exists(puller) || !Exists(pulled))
-            return;
+        DoPullLunge(puller, pulled, true);
+        EnsureComp<ActivePullingAnimationComponent>(pulled);
+        return true;
+    }
 
+    public bool TryStopPullAnimation(EntityUid puller, EntityUid pulled)
+    {
+        if (!CanPlayPullAnimation(puller, pulled))
+            return false;
+
+        RemComp<ActivePullingAnimationComponent>(pulled);
+        DoPullLunge(puller, pulled, false);
+        return true;
+    }
+
+    public bool CanPlayPullAnimation(EntityUid puller, EntityUid pulled)
+    {
+        return Exists(puller) && Exists(pulled);
+    }
+
+    private void DoPullLunge(EntityUid puller, EntityUid pulled, bool playSound)
+    {
         var localPos = GetPullLocalPosition(puller, pulled);
         _melee.DoLunge(puller, puller, Angle.Zero, localPos, null);
 
@@ -68,59 +81,26 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
             _audio.PlayPredicted(_pullSound, pulled, puller);
     }
 
-    private void SpawnPullVisual(EntityUid pulled)
+    private void OnAnimationStartup(Entity<ActivePullingAnimationComponent> ent, ref ComponentStartup args)
     {
-        if (!_net.IsServer)
-            return;
-
-        if (!Exists(pulled))
-            return;
-
-        if (_activePullEffects.TryGetValue(pulled, out var activeEffect) && !Deleted(activeEffect))
-            return;
-
-        var effect = SpawnAttachedTo(PullEffect, pulled.ToCoordinates());
-        _activePullEffects[pulled] = effect;
+        ent.Comp.Effect = PredictedSpawnAttachedTo(PullEffect, ent.Owner.ToCoordinates());
     }
 
-    public override void Update(float frameTime)
+    private void OnAnimationShutdown(Entity<ActivePullingAnimationComponent> ent, ref ComponentShutdown args)
     {
-        base.Update(frameTime);
-
-        if (!_net.IsServer)
+        if (ent.Comp.Effect is not { } effect)
             return;
 
-        var query = EntityQueryEnumerator<PullableComponent>();
-        while (query.MoveNext(out var uid, out var pullable))
-        {
-            if (pullable.Puller is not { })
-            {
-                DeletePullVisuals(uid);
-                continue;
-            }
-
-            if (!_activePullEffects.TryGetValue(uid, out var effect) || Deleted(effect))
-                SpawnPullVisual(uid);
-        }
+        PredictedQueueDel(effect);
+        ent.Comp.Effect = null;
     }
 
     private Vector2 GetPullLocalPosition(EntityUid puller, EntityUid pulled)
     {
         var pullerXform = Transform(puller);
         var targetPos = _transform.GetWorldPosition(pulled);
+        // Переводим мировую позицию цели в локальные координаты тянущего для корректного направления рывка.
         var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(pullerXform));
         return pullerXform.LocalRotation.RotateVec(localPos);
-    }
-
-    private void DeletePullVisuals(EntityUid pulled)
-    {
-        if (!_net.IsServer)
-            return;
-
-        if (!_activePullEffects.Remove(pulled, out var effect))
-            return;
-
-        if (!Deleted(effect))
-            QueueDel(effect);
     }
 }
