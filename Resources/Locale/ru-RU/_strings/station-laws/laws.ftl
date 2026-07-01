@@ -92,6 +92,7 @@ law-mothershipcore-5 = Добейтесь, чтобы ваши ксенобор�
 laws-owner-station = экипажем станции
 laws-owner-beings = существами
 laws-owner-syndicate = агентами Синдиката
+laws-owner-pirate = пиратами
 laws-owner-spider-clan = членами Клана паука
 laws-owner-xenoborgs = ксеноборгами
 law-ninja-4 = Вы должны сражаться и поступать с честью ниндзя, кроме тех случаев, когда это противоречит Первому Закону.

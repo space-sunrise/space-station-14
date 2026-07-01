@@ -188,6 +188,5 @@
     sprite: _Sunrise/Objects/Tools/holo_pirate_map.rsi
   - type: Sprite
     sprite: _Sunrise/Objects/Tools/holo_pirate_map.rsi
-    state: icon
     layers:
     - state: icon

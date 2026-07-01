@@ -200,7 +200,7 @@
   - PirateLaw1
   - PirateLaw2
   - PirateLaw3
-  obeysTo: laws-owner-syndicate
+  obeysTo: laws-owner-pirate
 
 - type: siliconLaw
   id: PirateLaw1

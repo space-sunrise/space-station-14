@@ -342,6 +342,8 @@
       weight: 0.15
     - id: CrateAmmunitionSmallDP28
       weight: 0.15
+    - id: CrateAmmunitionSmallMaxim
+      weight: 0.15
     - id: CrateAmmunitionSmallSKM24
       weight: 0.3
     - id: CrateShelfMosin

@@ -122,6 +122,7 @@ laws-owner-crew = members of the crew
 laws-owner-station = station personnel
 laws-owner-beings = beings
 laws-owner-syndicate = Syndicate agents
+laws-owner-pirate = pirates
 laws-owner-spider-clan = Spider Clan members
 laws-owner-xenoborgs = Xenoborgs
 
