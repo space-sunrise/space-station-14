@@ -1,4 +1,16 @@
 - type: entity
+  abstract: true
+  id: BaseSunrisePirateHardsuitAmpula
+  components:
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaBuccaneerSpirit
+        whitelist:
+          tags:
+          - FitsHardsuit
+
+- type: entity
   parent: ClothingOuterHardsuitCBURN
   id: ClothingOuterHardsuitCBURNLeader
   name: CBURN commander exosuit
