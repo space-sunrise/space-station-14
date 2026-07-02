@@ -28,6 +28,8 @@ namespace Content.Server._Sunrise.AssaultOps.Icarus;
 public sealed class IcarusTerminalSystem : EntitySystem
 {
     private const string IcarusBeamPrototypeId = "IcarusBeam";
+    private const string FallbackStationName = "NT SS14";
+
     private static readonly SoundSpecifier IcarusAlertSound = new SoundPathSpecifier("/Audio/_Sunrise/AssaultOperatives/icarus_alarm.ogg");
     private static readonly SoundSpecifier IcarusFireSound = new SoundPathSpecifier("/Audio/_Sunrise/AssaultOperatives/sunbeam_fire.ogg");
 
