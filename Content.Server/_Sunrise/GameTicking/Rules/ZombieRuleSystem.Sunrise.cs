@@ -5,7 +5,7 @@ namespace Content.Server.GameTicking.Rules;
 
 public sealed partial class ZombieRuleSystem
 {
-    private const int ZombieIcarusBeamDelay = 25;
+    private static readonly TimeSpan ZombieIcarusBeamDelay = TimeSpan.FromSeconds(25);
 
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IcarusTerminalSystem _icarus = default!;

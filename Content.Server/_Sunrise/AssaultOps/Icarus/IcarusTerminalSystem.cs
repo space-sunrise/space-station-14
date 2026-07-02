@@ -254,39 +254,44 @@ public sealed class IcarusTerminalSystem : EntitySystem
     {
         if (announce)
         {
-            AnnounceIcarusFire(0, true);
+            AnnounceIcarusFire(TimeSpan.Zero, true);
             _audio.PlayGlobal(IcarusFireSound, Filter.Broadcast(), false);
         }
 
         return FireBeam(GetStationArea());
     }
 
-    public void FireBeamOnStationDelayed(int seconds)
+    public void FireBeamOnStationDelayed(TimeSpan delay)
     {
-        AnnounceIcarusFire(seconds, true);
+        AnnounceIcarusFire(delay, true);
 
-        Timer.Spawn(TimeSpan.FromSeconds(seconds), () =>
+        Timer.Spawn(delay, () =>
         {
             _audio.PlayGlobal(IcarusFireSound, Filter.Broadcast(), false);
             FireBeam(GetStationArea());
         });
     }
 
-    private void AnnounceIcarusFire(int seconds, bool zombieOutbreak = false)
+    private void AnnounceIcarusFire(TimeSpan delay, bool zombieOutbreak = false)
     {
-        var stationName = "/NTSS14/";
-
-        var targetStation = _stationSystem.GetStations().FirstOrNull();
-        if (targetStation != null)
-            stationName = Name(targetStation.Value);
+        var stationName = GetStationName();
 
         _chatSystem.DispatchGlobalAnnouncement(
-            Loc.GetString(zombieOutbreak ? "icarus-zombie-outbreak-announcement" : "icarus-fire-announcement", ("seconds", seconds),
+            Loc.GetString(zombieOutbreak ? "icarus-zombie-outbreak-announcement" : "icarus-fire-announcement", ("seconds", (int) delay.TotalSeconds),
                 ("station", stationName)),
             Loc.GetString("icarus-announce-sender"),
             false,
             colorOverride: Color.Red);
         _audio.PlayGlobal(IcarusAlertSound, Filter.Broadcast(), false);
+    }
+
+    private string GetStationName()
+    {
+        var targetStation = _stationSystem.GetStations().FirstOrNull();
+        if (targetStation != null)
+            return Name(targetStation.Value);
+
+        return FallbackStationName;
     }
 
     private void TryGetBeamSpawnLocation(Box2 area, out MapCoordinates coords,

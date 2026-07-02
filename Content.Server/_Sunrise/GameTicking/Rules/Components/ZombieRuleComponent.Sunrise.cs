@@ -8,7 +8,7 @@ public sealed partial class ZombieRuleComponent
     /// After this amount of the crew become zombies, the CBURN shuttle game rule will be started.
     /// </summary>
     [DataField]
-    public float ZombieCburnCallPercentage = 0.6f;
+    public float ZombieCburnCallPercentage = 0.65f;
 
     /// <summary>
     /// The CBURN shuttle game rule that is started when <see cref="ZombieCburnCallPercentage"/> is reached.
