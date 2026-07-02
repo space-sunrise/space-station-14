@@ -31,49 +31,49 @@
     # Ores
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockIron
+      entity: SunriseVGRoidIronRockIronCrabChance # Sunrise-edit
       count: 30 # Sunrise-edit
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockCoal
+      entity: SunriseVGRoidIronRockCoalCrabChance # Sunrise-edit
       count: 30 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockQuartz
+      entity: SunriseVGRoidIronRockQuartzCrabChance # Sunrise-edit
       count: 30 # Sunrise-edit
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockSalt
+      entity: SunriseVGRoidIronRockSaltCrabChance # Sunrise-edit
       count: 10 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockGold
+      entity: SunriseVGRoidIronRockGoldCrabChance # Sunrise-edit
       count: 25 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockSilver
+      entity: SunriseVGRoidIronRockSilverCrabChance # Sunrise-edit
       count: 25 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockPlasma
+      entity: SunriseVGRoidIronRockPlasmaCrabChance # Sunrise-edit
       count: 15
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockUranium
+      entity: SunriseVGRoidIronRockUraniumCrabChance # Sunrise-edit
       count: 20 # Sunrise-edit
       minGroupSize: 4
       maxGroupSize: 8
@@ -85,7 +85,7 @@
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockDiamond
+      entity: SunriseVGRoidIronRockDiamondCrabChance # Sunrise-edit
       count: 10
       minGroupSize: 1
       maxGroupSize: 2
@@ -128,7 +128,7 @@
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockBananium
+      entity: SunriseVGRoidIronRockBananiumCrabChance
       count: 5
       minGroupSize: 2
       maxGroupSize: 3
