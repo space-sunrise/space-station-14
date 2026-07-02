@@ -34,6 +34,14 @@
         friction: 0.5
 # endregion Base Projectiles
 
+- type: entity
+  id: BulletMechWeakRocket
+  parent: BulletWeakRocket
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    maxTileBreak: 0
+
 # region Sunrise ION
 - type: entity
   id: BulletAcid2
