@@ -10,7 +10,11 @@
         children:
         - id: WeaponRifleBauer127Biocode
         - id: AntimaterialAmmoKit
-          amount: 2
+          amount: 3
+        - id: SmokeGrenade
+        - id: ChameleonProjector
+        - id: MagazineBauer127HP
+          amount: 5
         - id: ClothingEyesGlassesSniperThermalSyndie
 
 - type: entity

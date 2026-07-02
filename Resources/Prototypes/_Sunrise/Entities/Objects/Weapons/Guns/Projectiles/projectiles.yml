@@ -1077,6 +1077,20 @@
     requireInSpace: true
 
 - type: entity
+  id: BulletAntiMaterielHP
+  name: bullet (15mm hollow point)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 75
+        Slash: 20
+  - type: StaminaDamageOnCollide
+    damage: 40
+
+- type: entity
   id: BulletGrenadeFragArtillery
   parent: BulletGrenadeFrag
   categories: [ HideSpawnMenu ]

@@ -81,6 +81,9 @@ uplink-pirate-ammo-762r-mixed-name = Bulk basic ammunition boxes (7.62R)
 uplink-pirate-ammo-308-ap-name = Bulk magazines (.308 AP)
 uplink-pirate-ammo-308-mixed-name = Bulk basic magazines (.308)
 
+uplink-magazine-127hp-desc = A Bauer SR-127 magazine with 7 hollow point rounds. Trades almost all breaching power for massive personnel damage.
+uplink-sniper-ammo-hp-desc = A box of 14 hollow point cartridges for the Hristov sniper rifle or SR-127. Trades almost all breaching power for massive personnel damage.
+
 ## Misc
 
 uplink-music-boombox-name = Syndicate Music Kit
