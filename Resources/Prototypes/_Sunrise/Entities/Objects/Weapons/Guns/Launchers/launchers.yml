@@ -298,6 +298,10 @@
   - type: Tag
     tags:
     - Recyclable
+  - type: Wieldable
+    unwieldOnUse: false
+    wieldSound:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto
