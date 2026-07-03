@@ -753,6 +753,38 @@
     stock: 1
 
 - type: listing
+  id: UplinkPirateDisposableRocketLauncherTraining
+  productEntity: SunriseWeaponDisposableRocketLauncherTraining
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateDisposableRocketLauncherEmp
+  productEntity: SunriseWeaponDisposableRocketLauncherEmp
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateDisposableRocketLauncher
+  productEntity: SunriseWeaponDisposableRocketLauncher
+  cost:
+    Doubloon: 6
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateDisposableRocketLauncherIncendiary
+  productEntity: SunriseWeaponDisposableRocketLauncherIncendiary
+  cost:
+    Doubloon: 9
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
   id: UplinkPirateC40RBundle
   name: uplink-c40r-bundle-name
   description: uplink-c40r-bundle-desc
