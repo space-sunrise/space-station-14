@@ -684,7 +684,6 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/gygax.rsi
-    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: gygax
@@ -710,7 +709,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 25
+        Blunt: 30
         Structural: 180
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
@@ -808,7 +807,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      465: Critical
+      500: Critical
 
 - type: entity
   id: MechDurandBattery
@@ -883,7 +882,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      575: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
@@ -925,7 +924,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
-    scale: 1.08, 1.08
+    scale: 1.1, 1.1
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: seraph
@@ -1001,7 +1000,7 @@
       - WeaponMechCombatMissileRack6
       - WeaponMechCombatDuster
 
-# Syndicate Combat Mech
+# region Syndicate Mech
 
 # Dark Gygax
 - type: entity
@@ -1015,7 +1014,6 @@
     drawdepth: Mobs
     noRot: true
     sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
-    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: darkgygax
@@ -1042,12 +1040,12 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 35
+        Blunt: 30
         Structural: 200
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.25
+    baseSprintSpeed: 4
   # Sunrise-Start
   - type: Loadout
     prototypes: [ MechArmorMediumSyndiLoadout ]
@@ -1092,7 +1090,7 @@
   - type: Mech
     startingEquipment:
       - WeaponMechCombatMissileRack8
-      - WeaponMechCombatShotgun
+      - WeaponMechCombatShotgunAuto
 
 # Mauler
 - type: entity
@@ -1108,7 +1106,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi # Sunrise-edit
-    scale: 1.08, 1.08
+    scale: 1.1, 1.1
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: mauler

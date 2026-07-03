@@ -160,5 +160,4 @@ ent-VendingMachineWallMedical = НаноМед
     .desc = Это настенный раздатчик медицинского оборудования. Только натуральные химикаты!
 ent-VendingMachineChemicalsNanotrasen = ХимкоМат
     .suffix = ОБР
-    .desc = { desc-VendingMachineChemicals.desc }
-
+    .desc = { ent-VendingMachineChemicals.desc }

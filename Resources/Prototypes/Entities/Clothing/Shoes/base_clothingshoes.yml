@@ -84,6 +84,9 @@
           - Knife
           - Sidearm
   # Sunrise - Start
+        blacklist:
+          tags:
+          - BigSmallArms
   - type: Tag
     tags:
     - NoXeno
