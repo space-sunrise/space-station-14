@@ -330,7 +330,7 @@
 #Pirate YARRRR!!
 #Pirate Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPirate
   name: ancient hardsuit
   suffix: Pirate
@@ -362,18 +362,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: StaticPrice
     price: 0
 
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPirateCapSun
   name: pirate captain's hardsuit
   suffix: Pirate
@@ -405,18 +398,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCapSun
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: StaticPrice
     price: 0
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPrivateer
   name: freelance hardsuit
   suffix: Pirate
@@ -459,18 +445,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: StaticPrice
     price: 0
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPrivateerArmored
   name: armored freelance hardsuit
   suffix: Pirate
@@ -513,13 +492,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: StaticPrice
     price: 0
 
@@ -1098,7 +1070,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi
 
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateBlackbeard
   name: blackbeard hardsuit
   suffix: Pirate
@@ -1132,13 +1104,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateBlackbeard
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: Tag
     tags:
     - MonkeyWearable
@@ -1146,7 +1111,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateDavyJones
   name: davy jones hardsuit
   suffix: Pirate
@@ -1178,20 +1143,13 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateDavyJones
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: Tag
     tags:
     - Hardsuit
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateBuccaneer
   name: buccaneer hardsuit
   suffix: Pirate
@@ -1225,13 +1183,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateBuccaneer
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: Tag
     tags:
     - MonkeyWearable
@@ -1239,7 +1190,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateSwashbuckler
   name: swashbuckler hardsuit
   suffix: Pirate
@@ -1271,13 +1222,6 @@
     sprintModifier: 1.0
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateSwashbuckler
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        startingItem: AmpulaBuccaneerSpirit
-        whitelist:
-          tags:
-          - FitsHardsuit
   - type: Tag
     tags:
     - MonkeyWearable

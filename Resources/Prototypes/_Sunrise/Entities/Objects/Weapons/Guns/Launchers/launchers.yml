@@ -292,6 +292,12 @@
     shape:
     - 0,0,2,1
     sprite: _Sunrise/Objects/Weapons/Guns/Launchers/disposal_rocket_launcher.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+  - type: Tag
+    tags:
+    - Recyclable
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto
