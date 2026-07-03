@@ -131,7 +131,7 @@
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.8
   - type: Fixtures
     fixtures:
       fix1:

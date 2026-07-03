@@ -79,6 +79,7 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    rotation: -90
     layers:
     - state: rocket60mm
   - type: SmokeOnTrigger
@@ -103,6 +104,7 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    rotation: -90
     layers:
     - state: rocket60mm
   - type: SmokeOnTrigger
