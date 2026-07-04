@@ -2613,6 +2613,15 @@
   restockTime: 3600
 
 - type: listing
+  id: UplinkPirateMurmilloHardsuitCrate
+  productEntity: CratePirateMurmilloHardsuit
+  cost:
+    Doubloon: 60
+  categories:
+  - UplinkPirateArmor
+  restockTime: 3600
+
+- type: listing
   id: UplinkPirateSwashbucklerHardsuitCrate
   productEntity: CratePirateSwashbucklerHardsuit
   cost:

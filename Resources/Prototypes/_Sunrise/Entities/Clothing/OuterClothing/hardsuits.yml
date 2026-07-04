@@ -1127,7 +1127,9 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: StaminaResistance
-    damageCoefficient: 0.99
+    damageCoefficient: 0.7
+  - type: Pierceable
+    level: Rock
   - type: Armor
     modifiers:
       coefficients:
@@ -1147,6 +1149,57 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterHardsuitPirateDavyJones
+  id: ClothingOuterHardsuitMurmillo
+  name: murmillo hardsuit
+  suffix: Pirate
+  description: A brutal heavy hardsuit you will be clad in a heavily armored ancient spacesuit. Slow but incredibly resilient.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/murmillo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/murmillo.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.55
+    sprintModifier: 0.55
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.1
+  - type: EmitSoundOnWearerMove
+    sound:
+      path: /Audio/_Sunrise/Cyborg/robot_legs1.ogg
+      params:
+        volume: -8
+        variation: 0.025
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.25
+        Piercing: 0.15
+        Heat: 0.15
+        Radiation: 0.2
+        Caustic: 0.2
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMurmillo
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaMurmillo
+        locked: true
+        disableEject: true
+        insertOnInteract: false
+        swap: false
+        ejectOnDeconstruct: false
+        ejectOnBreak: false
+        whitelist:
+          tags:
+          - FitsMurmilloHardsuit
 
 - type: entity
   parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]

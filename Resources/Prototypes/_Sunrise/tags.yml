@@ -26,6 +26,13 @@
 - type: Tag
   id: ForceNoTileWalls
 
+# region Hardsuit injection
+- type: Tag
+  id: FitsHardsuit
+
+- type: Tag
+  id: FitsMurmilloHardsuit
+
 # region Uplinks
 - type: Tag
   id: BlueShield

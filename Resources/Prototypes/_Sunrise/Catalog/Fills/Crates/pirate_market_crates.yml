@@ -475,6 +475,16 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  id: CratePirateMurmilloHardsuit
+  name: murmillo hardsuit crate
+  description: Contains a Murmillo hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitMurmillo
+
+- type: entity
+  parent: CratePiratePrivateSecure
   id: CratePirateSwashbucklerHardsuit
   name: swashbuckler hardsuit crate
   description: Contains a swashbuckler hardsuit.
