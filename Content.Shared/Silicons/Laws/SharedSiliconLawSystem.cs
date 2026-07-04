@@ -57,9 +57,9 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
         // Sunrise-Start - FreeMAG has its own distinctive sound, so don't stack the default emagged borg cue on top.
         var cue = component.EmaggedSound;
         if (args.EmagUid is { } emagUid &&
-            HasComp<LawsetEmagComponent>(emagUid))
+            TryComp<LawsetEmagComponent>(emagUid, out var lawsetEmag))
         {
-            cue = null;
+            cue = lawsetEmag.EmaggedSound;
         }
 
         NotifyLawsChanged(uid, cue);
