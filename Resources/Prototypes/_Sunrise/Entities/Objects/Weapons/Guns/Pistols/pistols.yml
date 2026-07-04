@@ -97,75 +97,22 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
 
-
 - type: entity
-  name: Glock-22
-  parent: BaseWeaponPistolSunrise
-  id: WeaponPistolG22
-  suffix: Sunrise, Security
+  name: Glock-22 Prison
+  description: Manufactured by special order for prison complex security. Semi-automatic firearm chambered in .35 Auto.
+  parent: BaseWeaponPistol
+  id: WeaponPistolG22Prison
+  suffix: Sunrise
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus.rsi
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
-  - type: Tag
-    tags:
-    - WeaponPistolG22
-    - Sidearm
-  - type: Construction
-    graph: Glock22AutoCraft
-    node: start
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus.rsi
   - type: Gun
     fireRate: 4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot:
-      collection: glock22
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineGlock22
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazinePistol
-          - MagazinePistolHighCapacity
-          - MagazineGlock22
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgePistolSP
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgePistol
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
-  - type: StealTarget
-    stealGroup: OfficerHandgun
-
-- type: entity
-  name: Glock-22 Prison
-  description: Manufactured by special order for prison complex security. Semi-automatic firearm chambered in .35 Auto.
-  parent: WeaponPistolG22
-  id: WeaponPistolG22Prison
-  suffix: Sunrise
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22_metus/big.rsi
-  - type: Gun
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
     soundEmpty:
@@ -196,60 +143,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-
-- type: entity
-  name: Glock-22 Auto
-  parent: WeaponPistolG22
-  id: WeaponPistolG22Auto
-  description: Designed by Nanotrasen’s Small Arms Division, the Glock-22 Auto is a premium full-automatic sidearm built for superior performance and reliability. Featuring a simple yet robust recoil-operated mechanism, it serves as a high-end replacement for the standard Glock 22. Favored by station security and emergency response teams, it delivers greater firepower and durability in high-risk scenarios. Uses .35 pistol magazines.
-  suffix: Sunrise, Security
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
-  - type: Gun
-    minAngle: 6.2 #Max Effect Range 6
-    maxAngle: 18.6
-    angleIncrease: 1.25
-    angleDecay: 0.5
-    fireRate: 5
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      collection: glock22
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: null
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazinePistol
-          - MagazinePistolHighCapacity
-          - MagazineGlock22
-      gun_chamber:
-        name: Chamber
-        startingItem: null
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgePistol
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
 
 - type: entity
   name: HI Browning-88 M4

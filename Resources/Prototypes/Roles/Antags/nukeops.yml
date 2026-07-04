@@ -13,6 +13,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: nuke_operative
+  storytellerStress: 3.0 # Sunrise-Edit
 
 - type: antag
   id: NukeopsMedic
@@ -32,6 +33,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: nuke_medic
+  storytellerStress: 3.0 # Sunrise-Edit
 
 - type: antag
   id: NukeopsCommander
@@ -52,6 +54,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: nuke_commander
+  storytellerStress: 5.0 # Sunrise-Edit
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
@@ -82,6 +85,7 @@
     back: ClothingBackpackDuffelSyndicate
     shoes: ClothingShoesBootsCombatFilled
     id: SyndiOperativePDA
+    pocket1: BaseUplinkRadio0TC # Sunrise-Edit
   storage:
     back:
     - WeaponPistolViper
@@ -92,7 +96,7 @@
   id: NukeopsOutfit
   name: roles-antag-nuclear-operative-name
   startingGear: SyndicateOperativeGearFullNoUplink
-  icon: "JobIconSyndicate"
+  icon: "JobIconSyndicateOperative"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndie
     neck: ClothingNeckScarfStripedSyndieRed
@@ -105,7 +109,7 @@
     id: SyndiCommanderPDA
     neck: SyndicateWhistle
     #outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
-    pocket1: BaseUplinkRadio0TC
+    pocket1: BaseUplinkRadio0TC # Sunrise-Edit
   inhand:
   - NukeOpsDeclarationOfWar
   - RemoteNukeOpShuttleController # Sunrise-Edit
@@ -114,7 +118,7 @@
   id: NukeopsCommanderOutfit
   name: roles-antag-nuclear-operative-commander-name
   startingGear: SyndicateCommanderGearFull
-  icon: "JobIconSyndicate"
+  icon: "JobIconSyndicateCommander"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndieCommander
     neck: ClothingNeckScarfStripedSyndieGreen
@@ -145,7 +149,7 @@
   id: NukeopsMedicOutfit
   name: roles-antag-nuclear-operative-agent-name
   startingGear: SyndicateOperativeMedicFull
-  icon: "JobIconSyndicate"
+  icon: "JobIconSyndicateCorpsman"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndieMedic
     neck: ClothingNeckScarfStripedLightBlue

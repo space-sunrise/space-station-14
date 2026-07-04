@@ -40,3 +40,5 @@ ent-RadioImplanterDeathSquad = { ent-BaseImplanter }
 ent-DeathRattleImplanterDeathSquad = { ent-BaseImplanter }
     .suffix = предсмертный сигнал, ЭС
     .desc = { ent-BaseImplantOnlyImplanter.desc }
+ent-SELFStorageImplanter = имплантер-хранилище S.E.L.F
+    .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }

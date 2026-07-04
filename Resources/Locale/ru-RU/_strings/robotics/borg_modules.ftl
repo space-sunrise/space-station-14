@@ -15,3 +15,4 @@ borg-slot-modules-empty = Модули
 borg-slot-powercell-empty = Батарейки
 borg-slot-inflatable-door-empty = Надувные двери
 borg-slot-inflatable-wall-empty = Надувные стены
+borg-slot-organs-empty = Органы и импланты

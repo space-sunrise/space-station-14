@@ -1,0 +1,168 @@
+- type: entity
+  parent: VendingMachineSnack
+  id: VendingMachineDonk
+  name: Donk on the Go
+  description: "Hot and ready when you're on the run! Donk Pockets: it's food, legally."
+  components:
+  - type: VendingMachine
+    pack: DonkPocketsMachineInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 2
+  # Starlight board VendingMachineDonkCircuitboard is not ported.
+  # Starlight ad datasets DonkPocketMachineAds and DonkPocketMachineGoodbyes are not ported.
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/donk.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#ad7c4b"
+
+- type: entity
+  parent: VendingMachineLawDrobe
+  id: VendingMachineLegalDrobe
+
+- type: entity
+  parent: VendingMachineMedical
+  id: VendingMachineMedicalSyndicate
+  name: Interdyne Enterprise
+  components:
+  - type: VendingMachine
+    pack: InterdyneEnterpriseInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+  # Starlight Interdyne ad dataset is not ported.
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/interdyne_medical.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#9dc5c9"
+  - type: AccessReader
+    access: [["Medical"], ["SyndicateAgent"]]
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilian
+  id: VendingMachineWallMedicalCivilianSyndicate
+  name: Interdyne life-aid commercial
+  description: It's a wall-mounted medical equipment dispenser by Interdyne Pharmaceutics.
+  components:
+  - type: VendingMachine
+    pack: InterdyneCommercialWallInventory
+    offState: off-civilian
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/interdyne_wallmed.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.3
+    energy: 3.0
+    color: "#43ccb5"
+
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalSecurity
+  name: NanoMed Security
+  description: It's a medical drug dispenser. Natural chemicals only!
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/medical_sec.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Brigmedic"]]
+
+- type: entity
+  parent: VendingMachineMedicalSecurity
+  id: VendingMachineMedicalSecuritySalvaged
+  name: salvaged NanoMed Security
+  description: It's a battered medical drug dispenser with the previous shift's leftovers inside.
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityInventorySalvaged
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 1.8
+  - type: Anchorable
+    flags: Anchorable
+  - type: RadarBlip
+    color: "#ff3333"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false
+
+- type: entity
+  parent: VendingMachineWallMedical
+  id: VendingMachineWallMedicalSecurity
+  name: wall-mounted NanoMed Security
+  description: It's a wall-mounted medical drug dispenser for security personnel. Natural chemicals only!
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityWallInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/sec_wallmed.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Security"], ["Brigmedic"]]

@@ -13,8 +13,8 @@
   - Xenoborgs
   - MinorAntagonists
   - Changelings # Sunrise-Edit
-  - Disease # Sunrise-Edit
   - FleshCult # Sunrise-Edit
+  - SELFAgent # Sunrise-Edit
 
 - type: guideEntry
   id: Traitors

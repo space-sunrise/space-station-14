@@ -34,14 +34,14 @@ public record struct HitscanTraceEvent
     /// <summary>
     /// Target that was being aimed at (Not necessarily hit).
     /// </summary>
-    public HashSet<EntityUid>? Target;
+    public EntityUid? Target;
 
-    // Starlight start
+    // Sunrise edit start - Starlight hitscan integration
     /// <summary>
     /// The effect list being used
     /// </summary>
     public List<HitscanTrace>? OutputTrace;
-    // Starlight end
+    // Sunrise edit end
 }
 
 /// <summary>
@@ -69,7 +69,7 @@ public record struct HitscanRaycastFiredData
     /// </summary>
     public EntityUid? Shooter;
 
-    // Starlight start
+    // Sunrise edit start - Starlight hitscan integration
     /// <summary>
     /// The location of the impact, if null the raycast didn't hit anyone.
     /// </summary>
@@ -79,7 +79,7 @@ public record struct HitscanRaycastFiredData
     /// A list of all hitscans in the trace, used for final rendering.
     /// </summary>
     public List<HitscanTrace> OutputTrace;
-    // Starlight end
+    // Sunrise edit end
 }
 
 /// <summary>
@@ -126,11 +126,4 @@ public record struct HitscanDamageDealtEvent
     /// The amount of damage that the target was dealt.
     /// </summary>
     public DamageSpecifier DamageDealt;
-
-    // Starlight begin
-    /// <summary>
-    /// Data for the hitscan that was fired.
-    /// </summary>
-    public HitscanRaycastFiredData Data;
-    // Starlight end
 }

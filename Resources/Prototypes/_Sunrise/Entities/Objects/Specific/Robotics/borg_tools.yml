@@ -119,7 +119,7 @@
     generated:
       reagents:
       - ReagentId: Epinephrine
-        Quantity: 0.4
+        Quantity: 0.5
   - type: Injector
     solutionName: hypospray
     activeModeProtoId: HyposprayDynamicMode
@@ -193,7 +193,7 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 30
+        maxVol: 20
   - type: SolutionRegeneration
     solution: hypospray
     generated:

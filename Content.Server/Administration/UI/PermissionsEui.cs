@@ -36,6 +36,14 @@ namespace Content.Server.Administration.UI
         {
             base.Opened();
 
+            // Sunrise edit start - при включенном Stellar admin права управляются в Echoes.
+            if (IsBlockedByStellarAdmin())
+            {
+                Close();
+                return;
+            }
+            // Sunrise edit end
+
             StateDirty();
             LoadFromDb();
             _adminManager.OnPermsChanged += AdminManagerOnPermsChanged;
@@ -92,6 +100,14 @@ namespace Content.Server.Administration.UI
         {
             base.HandleMessage(msg);
 
+            // Sunrise edit start - не принимаем локальные изменения прав в Stellar mode.
+            if (IsBlockedByStellarAdmin())
+            {
+                Close();
+                return;
+            }
+            // Sunrise edit end
+
             switch (msg)
             {
                 case AddAdmin ca:
@@ -135,6 +151,11 @@ namespace Content.Server.Administration.UI
             {
                 LoadFromDb();
             }
+        }
+
+        private bool IsBlockedByStellarAdmin()
+        {
+            return SunriseAdminPermissionsGuard.IsBlocked(_adminManager, Player);
         }
 
         private async Task HandleRemoveAdminRank(RemoveAdminRank rr)

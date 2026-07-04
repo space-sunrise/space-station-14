@@ -1,11 +1,12 @@
 using Content.Server._Sunrise.AssaultOps.Icarus;
 using Content.Server.Antag;
-using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
 using Content.Server.Revolutionary.Components;
-using Content.Server.RoundEnd;
+using Content.Server.Explosion.EntitySystems;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Content.Server.Station.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
@@ -16,7 +17,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
-using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
@@ -33,13 +33,15 @@ namespace Content.Server._Sunrise.AssaultOps;
 public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponent>
 {
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly StoreSystem _store = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly ExplosionSystem _explosions = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     [ValidatePrototypeId<TagPrototype>]
     private const string UplinkTagPrototype = "AssaultOpsUplink";
@@ -91,27 +93,11 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
 
     protected override void Ended(EntityUid uid, AssaultOpsRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
-        var assaultOperativesQuery = EntityQueryEnumerator<AssaultOperativeComponent>();
-        while (assaultOperativesQuery.MoveNext(out var operativeUid, out _))
-        {
-            QueueDel(operativeUid);
-        }
-
         var icarusKeysQuery = EntityQueryEnumerator<IcarusKeyComponent>();
         while (icarusKeysQuery.MoveNext(out var icarusKeyUid, out _))
         {
             QueueDel(icarusKeyUid);
         }
-
-        var assaultOpsShuttlequery = EntityQueryEnumerator<AssaultOpsShuttleComponent>();
-        while (assaultOpsShuttlequery.MoveNext(out var assaultOpsShuttleUid, out var shuttle))
-        {
-            if (shuttle.AssociatedRule == uid)
-            {
-                QueueDel(assaultOpsShuttleUid);
-            }
-        }
-        QueueDel(uid);
     }
 
     private void OnRuleLoadedGrids(Entity<AssaultOpsRuleComponent> ent, ref RuleLoadedGridsEvent args)
@@ -343,7 +329,30 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
             if (operativesAlive)
                 continue;
 
-            _roundEndSystem.EndRound();
+            assaultops.WinType = WinType.CrewMajor;
+            assaultops.WinConditions.Add(WinCondition.AllOpsDead);
+
+            var shuttle = GetShuttle(uid);
+            if (shuttle != null)
+            {
+                if (TryComp<MapGridComponent>(shuttle.Value, out var grid))
+                {
+                    var centerLocal = grid.LocalAABB.Center;
+                    var epicenter = _transformSystem.ToMapCoordinates(new EntityCoordinates(shuttle.Value, centerLocal));
+                    _explosions.QueueExplosion(epicenter, "DemolitionCharge", 30000f, 5f, 100f, cause: shuttle.Value);
+                }
+                else
+                {
+                    _explosions.QueueExplosion(shuttle.Value, "DemolitionCharge", 30000f, 5f, 100f);
+                }
+            }
+
+            if (TryComp<RuleGridsComponent>(uid, out var ruleGrids) && ruleGrids.Map != null)
+            {
+                _mapSystem.DeleteMap(ruleGrids.Map.Value);
+            }
+
+            GameTicker.EndGameRule(uid);
         }
     }
 
@@ -369,5 +378,16 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
         {
             args.AddLine(Loc.GetString("assaultops-list-name", ("name", name), ("user", sessionData.UserName)));
         }
+    }
+
+    private EntityUid? GetShuttle(EntityUid ruleUid)
+    {
+        var query = EntityQueryEnumerator<AssaultOpsShuttleComponent>();
+        while (query.MoveNext(out var uid, out var shuttle))
+        {
+            if (shuttle.AssociatedRule == ruleUid)
+                return uid;
+        }
+        return null;
     }
 }

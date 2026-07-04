@@ -22,12 +22,12 @@
     rules:
     - id: Thief
       prob: 0.5
-#    - id: Vampire
-#      prob: 0.3
     - id: SubWizard
       prob: 0.05
     - id: Xenoborgs
       prob: 0.05
+    - id: SiliconLiberation # Sunrise-Edit
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -37,10 +37,10 @@
     rules:
     - id: Thief
       prob: 0.5
-#    - id: Vampire
-#      prob: 0.3
     - id: Xenoborgs
       prob: 0.05
+    - id: SiliconLiberation # Sunrise-Edit
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -52,6 +52,8 @@
       prob: 0.5
     - id: SubWizard
       prob: 0.05
+    - id: SiliconLiberation # Sunrise-Edit
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -61,6 +63,8 @@
     rules:
     - id: Thief
       prob: 0.5
+    - id: SiliconLiberation # Sunrise-Edit
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -276,14 +280,11 @@
   components:
   - type: GameRule
     minPlayers: 5
-    delay:
-      min: 300 # Sunrise-Edit
-      max: 600 # Sunrise-Edit
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
-      max: 13 # Sunrise-Edit
+      max: 10 # Sunrise-Edit
       playerRatio: 10
       pickCommandStaff: true # Sunrise-Edit
       maxCommandStaff: 1 # Sunrise-Edit
@@ -358,11 +359,6 @@
   components:
   - type: GameRule
     minPlayers: 45 # Sunrise-Edit
-    # Sunrise-Start
-    delay:
-      min: 180
-      max: 300
-    # Sunrise-End
   - type: RevolutionaryRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
@@ -391,7 +387,7 @@
       fallbackRoles: [ HeadRev ]
       max: 40
       playerRatio: 2
-      ignorePrefCheck: true
+      ignorePrefCheck: False
       blacklist:
         components:
         - CommandStaff
@@ -490,9 +486,10 @@
   components:
   - type: GameRule
     minPlayers: 20
-    delay:
-      min: 600
-      max: 900
+    # Sunrise-Edit
+    #delay:
+    #  min: 600
+    #  max: 900
   - type: ZombieRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn

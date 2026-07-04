@@ -170,7 +170,7 @@
   cost: 7500
   recipeUnlocks:
   - ClothingShoesBootsMagCombat
-  - ModularReceiverAuto
+  #- ModularReceiverAuto
   - LecterUpgrade
   - DrozdUpgrade
   - ClothingHeadHelmetPubg
@@ -247,4 +247,33 @@
   technologyPrerequisites:
   - AdvancedShuttleWeapon
   radioChannels: # Sunrise-Add
+  - Security
+
+# Tier 4
+- type: technology
+  id: DecloneTechnology
+  name: research-technology-declone-technology
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/decloner.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 4
+  cost: 30000
+  recipeUnlocks:
+  - WeaponDecloner
+  radioChannels:
+  - Security
+
+- type: technology
+  id: ScanGateTechnology
+  name: research-technology-scan-gate
+  icon:
+    sprite: _Sunrise/Structures/Machines/scan_gate.rsi
+    state: base
+  discipline: Arsenal
+  tier: 4
+  cost: 5000
+  recipeUnlocks:
+  - ScanGateMachineCircuitboard
+  radioChannels:
   - Security

@@ -5,6 +5,7 @@
   objective: roles-antag-paradox-clone-objective
   setPreference: false
   playTimeTracker: AntagParadoxClone # Sunrise-Edit
+  storytellerStress: 0.5 # Sunrise-Edit
 
 # they need to be able to espace when spawning inside a locked room
 # TODO: remove this once we got a better spawning loacation selection

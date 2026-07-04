@@ -40,7 +40,7 @@ public sealed partial class AtmosAlertsComputerComponent : Component
     public TimeSpan NextBeep = TimeSpan.Zero;
 
     [DataField, AutoNetworkedField]
-    public bool DoAtmosAlert = false;
+    public bool DoAtmosAlert = true;
     // Sunrise-end
 }
 

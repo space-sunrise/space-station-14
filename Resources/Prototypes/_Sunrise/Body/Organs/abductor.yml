@@ -27,13 +27,6 @@
       - Meat
 
 - type: entity
-  id: BaseAbductorOrgan
-  parent: BaseAbductorOrganUnGibbable
-  abstract: true
-  components:
-  - type: Gibbable
-
-- type: entity
   id: OrganAbductorBrain
   parent: [BaseAbductorOrganUnGibbable, BaseOrganBrain]
   name: brain
@@ -73,7 +66,7 @@
 
 - type: entity
   id: OrganAbductorEyes
-  parent: [BaseAbductorOrgan, BaseOrganEyes]
+  parent: [BaseAbductorOrganUnGibbable, BaseOrganEyes]
   name: eye
   description: "I see you!"
   components:
@@ -86,7 +79,7 @@
 
 - type: entity
   id: OrganAbductorEars
-  parent: [BaseAbductorOrgan, BaseOrganEars]
+  parent: [BaseAbductorOrganUnGibbable, BaseOrganEars]
   name: ears
   description: "There are three parts to the ear. Inner, middle and outer. Only one of these parts should normally be visible."
   components:
@@ -95,7 +88,7 @@
 
 - type: entity
   id: OrganAbductorLungs
-  parent: [BaseAbductorOrgan, BaseOrganLungs]
+  parent: [BaseAbductorOrganUnGibbable, BaseOrganLungs]
   name: lungs
   description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
   components:
@@ -113,7 +106,7 @@
 
 - type: entity
   id: OrganAbductorHeart
-  parent: [BaseAbductorOrgan, BaseOrganHeart]
+  parent: [BaseAbductorOrganUnGibbable, BaseOrganHeart]
   name: heart
   description: "I feel bad for the heartless bastard who lost this."
   components:
@@ -132,7 +125,7 @@
 
 - type: entity
   id: OrganAbductorStomach
-  parent: [BaseAbductorOrgan, BaseOrganStomach]
+  parent: [BaseAbductorOrganUnGibbable, BaseOrganStomach]
   name: stomach
   description: "Gross. This is hard to stomach."
   components:
@@ -161,7 +154,7 @@
 
 - type: entity
   id: OrganAbductorLiver
-  parent: [BaseAbductorOrgan, BaseOrganLiver]
+  parent: [BaseAbductorOrganUnGibbable, BaseOrganLiver]
   name: liver
   description: "Pairing suggestion: chianti and fava beans."
   components:
@@ -176,7 +169,7 @@
 
 - type: entity
   id: OrganAbductorKidneys
-  parent: [BaseAbductorOrgan, BaseOrganKidneys]
+  parent: [BaseAbductorOrganUnGibbable, BaseOrganKidneys]
   name: kidneys
   description: "Filters toxins from the bloodstream."
   components:

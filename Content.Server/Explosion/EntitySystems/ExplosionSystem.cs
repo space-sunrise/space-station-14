@@ -20,6 +20,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Projectiles;
 using Content.Shared.Throwing;
+using Content.Shared._Sunrise.Storyteller; // Sunrise-Edit
 using Robust.Server.GameStates;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -354,8 +355,12 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
-        // Sunrise edit - queued.Proto.ID -> queued.Proto
+        // Sunrise edit - меняем queued.Proto.ID на queued.Proto
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
+
+        // Sunrise-Edit
+        var sunriseExplosionEv = new SunriseExplosionEvent(pos, queued.TotalIntensity, iterationIntensity.Count);
+        RaiseLocalEvent(sunriseExplosionEv);
 
         // camera shake
         CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);
