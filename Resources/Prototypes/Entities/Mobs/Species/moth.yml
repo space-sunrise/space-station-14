@@ -7,6 +7,7 @@
   components:
   # SUNRISE EDIT
   - type: Interactions
+  - type: WingFlight
   # SUNRISE EDIT
   - type: HumanoidAppearance
     species: Moth
