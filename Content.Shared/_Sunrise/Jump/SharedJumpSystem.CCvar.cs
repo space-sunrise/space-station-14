@@ -2,11 +2,14 @@
 
 public abstract partial class SharedJumpSystem
 {
-    private bool _enabled;
+    private static bool _enabled;
+    private static float _deadChance;
 
-    private bool _bunnyHopEnabled;
-    private TimeSpan _bunnyHopSpeedBoostWindow;
-    private float _bunnyHopMinSpeedThreshold;
+    private static bool _bunnyHopEnabled;
+    private static TimeSpan _bunnyHopSpeedBoostWindow;
+    private static float _bunnyHopSpeedUpPerJump;
+    private static float _bunnyHopSpeedLimit;
+    private static float _bunnyHopMinSpeedThreshold;
 
     private void OnClientOptionJumpSound(ClientOptionDisableJumpSoundEvent ev, EntitySessionEventArgs args)
     {
@@ -16,23 +19,33 @@ public abstract partial class SharedJumpSystem
             _ignoredRecipients.Remove(args.SenderSession);
     }
 
-    private void OnJumpEnableChanged(bool enable)
+    private static void OnJumpEnableChanged(bool enable)
     {
         _enabled = enable;
     }
 
-    private void OnBunnyHopEnableChanged(bool enable)
+    private static void OnBunnyHopEnableChanged(bool enable)
     {
         _bunnyHopEnabled = enable;
     }
 
-    private void OnBunnyHopMinSpeedThresholdChanged(float value)
+    private static void OnBunnyHopMinSpeedThresholdChanged(float value)
     {
         _bunnyHopMinSpeedThreshold = value;
     }
 
-    private void OnBunnyHopSpeedBoostWindowChanged(float value)
+    private static void OnBunnyHopSpeedBoostWindowChanged(float value)
     {
         _bunnyHopSpeedBoostWindow = TimeSpan.FromSeconds(value);
+    }
+
+    private static void OnBunnyHopSpeedUpPerJumpChanged(float value)
+    {
+        _bunnyHopSpeedUpPerJump = value;
+    }
+
+    private static void OnBunnyHopSpeedLimitChanged(float value)
+    {
+        _bunnyHopSpeedLimit = value;
     }
 }

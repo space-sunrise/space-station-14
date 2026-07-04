@@ -1,21 +1,97 @@
 <Control xmlns="https://spacestation14.io"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls">
-    <BoxContainer Orientation="Vertical">
-        <customControls:HSeparator/>
-        <BoxContainer Orientation="Horizontal" SeparationOverride="2" HorizontalExpand="True" HorizontalAlignment="Center">
-            <customControls:VSeparator/>
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Center" Margin="5 5 5 5">
-                <Label Text="{Loc 'user-profile-sponsor-title'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
-                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Center">
-                    <Label Text="{Loc 'user-profile-level'}" StyleClasses="LabelKeyText"/>
-                    <Label Name="SponsorTierName" Margin="5 0 0 0"/>
-                </BoxContainer>
-                <Button Name="InfoSponsorButton" Margin="0 2 0 0" Text="{Loc 'user-profile-sponsor-info-button'}" HorizontalAlignment="Center" />
-                <Button Name="BuySponsorButton" Margin="0 2 0 0" Text="{Loc 'user-profile-sponsor-buy-button'}" HorizontalAlignment="Center" />
-            </BoxContainer>
-            <customControls:VSeparator/>
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BoxContainer Margin="8,8,8,8"
+                  Orientation="Vertical"
+                  SeparationOverride="8">
+        <BoxContainer Orientation="Vertical"
+                      SeparationOverride="4">
+            <Label HorizontalExpand="True"
+                   StyleClasses="LabelHeading"
+                   Text="{Loc 'user-profile-account-title'}" />
+            <RichTextLabel HorizontalExpand="True"
+                           StyleClasses="LabelSubText"
+                           Text="{Loc 'user-profile-account-description'}" />
         </BoxContainer>
-        <customControls:HSeparator/>
+        <BoxContainer Name="AccountButtonsContainer"
+                      HorizontalExpand="True"
+                      Orientation="Horizontal"
+                      SeparationOverride="4">
+            <Button Name="ManageAccountButton"
+                    HorizontalExpand="True"
+                    Text="{Loc 'user-profile-account-manage-button'}" />
+            <Button Name="AccountInfoButton"
+                    HorizontalExpand="True"
+                    StyleClasses="ButtonColorGreen"
+                    Text="{Loc 'user-profile-account-info-button'}" />
+        </BoxContainer>
+        <BoxContainer Name="DetailsContainer"
+                      HorizontalExpand="True"
+                      Orientation="Horizontal"
+                      SeparationOverride="12">
+            <BoxContainer Name="BindingsSection"
+                          HorizontalExpand="True"
+                          Orientation="Vertical"
+                          SeparationOverride="3"
+                          SizeFlagsStretchRatio="2"
+                          VerticalAlignment="Top">
+                <Label StyleClasses="LabelHeading"
+                       Text="{Loc 'user-profile-bindings-title'}" />
+                <BoxContainer HorizontalExpand="True"
+                              Orientation="Horizontal">
+                    <Label StyleClasses="LabelKeyText"
+                           Text="{Loc 'user-profile-binding-discord'}" />
+                    <Label Name="DiscordBindingValue"
+                           Align="Right"
+                           HorizontalExpand="True"
+                           Margin="8,0,0,0" />
+                </BoxContainer>
+                <BoxContainer HorizontalExpand="True"
+                              Orientation="Horizontal">
+                    <Label StyleClasses="LabelKeyText"
+                           Text="{Loc 'user-profile-binding-telegram'}" />
+                    <Label Name="TelegramBindingValue"
+                           Align="Right"
+                           HorizontalExpand="True"
+                           Margin="8,0,0,0" />
+                </BoxContainer>
+                <BoxContainer HorizontalExpand="True"
+                              Orientation="Horizontal">
+                    <Label StyleClasses="LabelKeyText"
+                           Text="{Loc 'user-profile-binding-github'}" />
+                    <Label Name="GithubBindingValue"
+                           Align="Right"
+                           HorizontalExpand="True"
+                           Margin="8,0,0,0" />
+                </BoxContainer>
+            </BoxContainer>
+            <BoxContainer Name="SponsorSection"
+                          HorizontalExpand="True"
+                          Orientation="Vertical"
+                          SeparationOverride="3"
+                          SizeFlagsStretchRatio="1"
+                          VerticalAlignment="Top">
+                <Label StyleClasses="LabelHeading"
+                       Text="{Loc 'user-profile-sponsor-title'}" />
+                <BoxContainer HorizontalExpand="True"
+                              Orientation="Horizontal">
+                    <Label StyleClasses="LabelKeyText"
+                           Text="{Loc 'user-profile-level'}" />
+                    <Label Name="SponsorTierName"
+                           Align="Right"
+                           HorizontalExpand="True"
+                           Margin="8,0,0,0" />
+                </BoxContainer>
+                <BoxContainer HorizontalExpand="True"
+                              Orientation="Horizontal"
+                              SeparationOverride="4">
+                    <Button Name="InfoSponsorButton"
+                            HorizontalExpand="True"
+                            Text="{Loc 'user-profile-sponsor-info-button'}" />
+                    <Button Name="BuySponsorButton"
+                            HorizontalExpand="True"
+                            Text="{Loc 'user-profile-sponsor-buy-button'}" />
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
     </BoxContainer>
 </Control>

@@ -177,13 +177,12 @@
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
-  - type: BatterySelfRecharger
-    autoRechargeRate: 8
-    autoRechargePauseTime: 8
+  - type: EmpImmune
   - type: Tag
     tags:
     - HighRiskItem
     - Sidearm
+    - BigSmallArms
   - type: StaticPrice
     price: 750
   - type: StealTarget

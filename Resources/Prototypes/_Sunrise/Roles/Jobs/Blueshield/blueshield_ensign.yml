@@ -46,7 +46,6 @@
   equipment:
     shoes: ClothingShoesBootsBlueShieldFilled
     eyes: ClothingEyesGlassesBlueShield
-    head: ClothingHeadHatBeretBlueShield
     outerClothing: ClothingOuterArmorBlueShield
     id: BlueShieldEnsignPDA
     ears: ClothingHeadsetBlueShieldEnsign
@@ -64,7 +63,6 @@
   equipment:
     shoes: ClothingShoesBootsBlueShieldFilled
     eyes: ClothingEyesGlassesBlueShield
-    head: ClothingHeadHatBeretBlueShield
     outerClothing: ClothingOuterArmorBlueShield
     belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat

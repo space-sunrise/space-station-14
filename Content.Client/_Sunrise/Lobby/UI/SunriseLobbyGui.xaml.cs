@@ -15,6 +15,7 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.Lobby.UI;
@@ -47,6 +48,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
     public Texture? IconExpanded;
     public Texture? IconCollapsed;
 
+    private float _bottomCenterProfileExpandedWidth = float.NaN;
     private readonly StyleBoxTexture _back;
 
     public SunriseLobbyGui()
@@ -78,6 +80,8 @@ public sealed partial class SunriseLobbyGui : UIScreen
 
         LeftBottomPanel.PanelOverride = _back;
 
+        BottomCenterProfilePanel.PanelOverride = _back;
+
         LeftTopPanel.PanelOverride = _back;
 
         LobbySongPanel.PanelOverride = _back;
@@ -92,6 +96,8 @@ public sealed partial class SunriseLobbyGui : UIScreen
         LoadIcons();
         SetupButtonsIcons();
         SetupButtonsBinding();
+
+        BottomCenterProfilePanel.OnResized += UpdateBottomCenterProfileWidthState;
     }
 
     private void OnServerNameChanged(string serverName)
@@ -124,9 +130,65 @@ public sealed partial class SunriseLobbyGui : UIScreen
         ChatHider.Modulate = Palettes.Gold.Base;
         UserProfileHider.Modulate = Palettes.Gold.Base;
 
-        // Скрываем чейнджлог по умолчанию
+        // Скрываем чейнджлог по умолчанию.
         ChangelogContent.Visible = false;
         ChangelogHider.Texture = IconCollapsed;
+
+        UpdateBottomCenterProfileWidthState();
+    }
+
+    private void SetUserProfileExpanded(bool expanded)
+    {
+        UserProfileContent.Visible = expanded;
+        UserProfileHider.Texture = expanded ? IconExpanded : IconCollapsed;
+        UpdateBottomCenterProfileWidthState();
+
+        if (expanded)
+            UserProfileBody.RequestAccountBindingsRefresh();
+    }
+
+    protected override void Resized()
+    {
+        base.Resized();
+        UpdateBottomCenterProfileWidthState();
+    }
+
+    private void UpdateBottomCenterProfileWidthState()
+    {
+        if (DefaultState.Size.X <= 0f || DefaultState.Size.Y <= 0f)
+            return;
+
+        BottomCenterProfilePanel.Measure(DefaultState.Size);
+
+        var availableWidth = DefaultState.Size.X;
+        var maxWidth = BottomCenterProfilePanel.MaxWidth > 0f
+            ? BottomCenterProfilePanel.MaxWidth
+            : availableWidth;
+        var clampedWidth = MathF.Min(availableWidth, maxWidth);
+
+        if (UserProfileContent.Visible)
+        {
+            var measuredWidth = MathF.Max(BottomCenterProfilePanel.Size.X, BottomCenterProfilePanel.DesiredSize.X);
+            _bottomCenterProfileExpandedWidth = measuredWidth > 0f
+                ? Math.Clamp(measuredWidth, 0f, clampedWidth)
+                : clampedWidth;
+        }
+        else if (float.IsNaN(_bottomCenterProfileExpandedWidth))
+        {
+            var measuredWidth = MathF.Max(BottomCenterProfilePanel.Size.X, BottomCenterProfilePanel.DesiredSize.X);
+            _bottomCenterProfileExpandedWidth = measuredWidth > 0f
+                ? Math.Clamp(measuredWidth, 0f, clampedWidth)
+                : clampedWidth;
+        }
+        else
+        {
+            _bottomCenterProfileExpandedWidth = MathF.Min(_bottomCenterProfileExpandedWidth, clampedWidth);
+        }
+
+        if (Math.Abs(BottomCenterProfilePanel.MinWidth - _bottomCenterProfileExpandedWidth) >= 0.5f)
+            BottomCenterProfilePanel.MinWidth = _bottomCenterProfileExpandedWidth;
+
+        DefaultStateMainRow.Margin = new Thickness(0f, 0f, 0f, 0f);
     }
 
     #region Subscribers
@@ -134,11 +196,6 @@ public sealed partial class SunriseLobbyGui : UIScreen
     private void OnServersHubEnableChanged(bool enable)
     {
         SetServersHubEnable(enable);
-    }
-
-    private void OnSponsorEnableChanged(bool enable)
-    {
-        SetUserProfileEnable(enable);
     }
 
     private void OnContributorsEnableChanged(bool enable)
@@ -154,11 +211,6 @@ public sealed partial class SunriseLobbyGui : UIScreen
     private void SetContributorsEnable(bool enable)
     {
         ContributorsBox.Visible = enable;
-    }
-
-    private void SetUserProfileEnable(bool enable)
-    {
-        UserProfileBox.Visible = enable;
     }
 
     private void OnDiscordLinkChanged(string url)
