@@ -1,0 +1,10 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               SetSize="520 320"
+               Title="{Loc 'user-profile-account-info-button'}"
+               Resizable="False">
+    <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+        <BoxContainer Orientation="Vertical" Margin="8 8 8 8" HorizontalExpand="True">
+            <RichTextLabel Name="BodyLabel" Text="{Loc 'user-profile-account-info-body'}" HorizontalExpand="True" />
+        </BoxContainer>
+    </ScrollContainer>
+</DefaultWindow>

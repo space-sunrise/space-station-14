@@ -186,6 +186,16 @@
   - NanoTrasenRepresentativeModsuit
 
 - type: loadoutGroup
+  id: BlueShieldHead
+  name: loadout-group-blueshield-head
+  maxLimit: 1
+  loadouts:
+  - BlueShieldBeret
+  - BlueShieldSwatHelmet
+  - BlueShieldTSFMarineHelmet
+  - BlueShieldTSFMARSOCHelmet
+
+- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:

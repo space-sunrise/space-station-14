@@ -162,11 +162,10 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 3
-    projectileSpeed: 25 # Sunrise-Edit
   - type: GunSpreadModifier
     spread: 0.6
-  - type: BallisticAmmoProvider
-    capacity: 2
+  # - type: BallisticAmmoProvider # Sunrise-Edit
+  #   capacity: 2
   - type: Construction
     graph: ShotgunSawn
     node: start
@@ -176,7 +175,7 @@
     whitelist:
       tags:
       - ShellShotgun
-      - SpeedLoaderShotgun
+      #- SpeedLoaderShotgun
     proto: ShellShotgun
     capacity: 2
     chambers: [ True, True ]
@@ -196,8 +195,15 @@
   description: An immortal classic. Uses .50 shotgun shells.
   suffix: Non-Lethal
   components:
-  - type: BallisticAmmoProvider
+  # Sunrise-Start
+  # - type: BallisticAmmoProvider
+  #   proto: ShellShotgunBeanbag
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
     proto: ShellShotgunBeanbag
+  # Sunrise-End
 
 - type: entity
   name: Enforcer
@@ -278,8 +284,8 @@
     dualWieldRecoilPenalty: 0.25
   - type: GunSpreadModifier
     spread: 1.8 # Sunrise-Edit
-  - type: BallisticAmmoProvider
-    capacity: 2
+  # - type: BallisticAmmoProvider   # Sunrise-Start
+  #   capacity: 2
   - type: Construction
     graph: ShotgunSawn
     node: shotgunsawn
@@ -289,7 +295,6 @@
     whitelist:
       tags:
       - ShellShotgun
-      - SpeedLoaderShotgun
     proto: ShellShotgun
     capacity: 2
     chambers: [ True, True ]
@@ -320,12 +325,24 @@
   description: Groovy! Uses .50 shotgun shells.
   suffix: Empty
   components:
-  - type: BallisticAmmoProvider
-    proto: null
+  # - type: BallisticAmmoProvider  # Sunrise-Edit
+  #   proto: null
   - type: Construction
     graph: ShotgunSawn
     node: shotgunsawn
     deconstructionTarget: null
+  # Sunrise-Start
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    proto: null
+    capacity: 2
+    chambers: [ null, null ]
+    ammoSlots: [ null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  # Sunrise-End
 
 - type: entity
   name: handmade pistol

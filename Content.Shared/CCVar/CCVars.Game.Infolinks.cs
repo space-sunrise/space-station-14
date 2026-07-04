@@ -57,4 +57,12 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<string> InfoLinksTelegram =
         CVarDef.Create("infolinks.telegram", "", CVar.SERVER | CVar.REPLICATED);
+
+    // Sunrise added start - дефолтная ссылка на Makura Games ID для профиля лобби
+    /// <summary>
+    ///     Ссылка на Makura Games ID для показа в профиле лобби.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksAccountManagement =
+        CVarDef.Create("infolinks.account_management", "https://id.makura.games", CVar.SERVER | CVar.REPLICATED);
+    // Sunrise added end
 }

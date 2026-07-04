@@ -245,7 +245,7 @@
 
 - type: entity
   name: forged double-barrel shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseMinorContraband]
   id: WeaponShotgunForged
   description: Decently made double-barrel shotgun, reinforced with mixed steel and plasteel plates to keep it together. Not as accurate as a real gun.
   components:
@@ -263,9 +263,33 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
   - type: GunRequiresWield
-  - type: BallisticAmmoProvider
+  # Sunrise-Start
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    proto: Null
     capacity: 2
-    proto: null
+    chambers: [ null, null ]
+    ammoSlots: [ null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 3
+        staminaMultiplier: 20
+      Felinid:
+        knockback: 1.5 #half of what resomi take
+        staminaMultiplier: 20
+      AnomalyHost:
+        knockback: 0.4
+        staminaMultiplier: 15
+  # Sunrise-End
 
 - type: entity
   name: makeshift shotgun

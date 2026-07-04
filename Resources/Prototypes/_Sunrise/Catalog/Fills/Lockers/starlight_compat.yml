@@ -55,7 +55,9 @@
         children:
         - id: FlashlightSeclite
           amount: 2
-        - id: WeaponEnergyShotgun
+        - id: WeaponShotgunSPAS12Rubber # Sunrise start
+        - id: BoxBeanbag # Sunrise end
+          amount: 2
         - id: WeaponDisabler
           amount: 2
         - id: ClothingBeltSecurityFilled
@@ -66,8 +68,8 @@
           amount: 2
         - id: ClothingEyesHudSecurity
           amount: 2
-        - id: ClothingHandsGlovesCombat
-          amount: 2
+        # - id: ClothingHandsGlovesCombat # Sunrise-Edit
+        #   amount: 2
         # Starlight used ClothingHeadsetSecurityWarden, which is not ported.
         - id: ClothingHeadsetSecurity
           amount: 2
@@ -91,6 +93,13 @@
           amount: 4
         - id: Binoculars
           amount: 2
+          # Sunrise start
+        - id: ClothingHandsKnuckleDustersStun
+          amount: 2
+        - id: HandheldCriminalRecordsMonitor
+          amount: 2
+          # Sunrise end
+
         # Starlight also included NeuralLinkDisruptor, which is not ported.
 
 - type: entityTable
@@ -235,3 +244,7 @@
           amount: 2
         - id: BookSpaceLaw
           amount: 2
+        # Sunrise start
+        - id: ClothingHandsGlovesColorBlack
+          amount: 2
+        # Sunrise end
