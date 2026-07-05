@@ -35,6 +35,26 @@
 
 - type: entity
   parent: Crystallite
+  id: Crystallite15
+  suffix: 15 C
+  name: crystallite
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 15
+
+- type: entity
+  parent: Crystallite
+  id: Crystallite20
+  suffix: 20 C
+  name: crystallite
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 20
+
+- type: entity
+  parent: Crystallite
   id: Crystallite25
   suffix: 25 C
   name: crystallite
@@ -42,6 +62,16 @@
   components:
   - type: Stack
     count: 25
+
+- type: entity
+  parent: Crystallite
+  id: Crystallite30
+  suffix: 30 C
+  name: crystallite
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 30
 
 - type: entity
   parent: Crystallite
