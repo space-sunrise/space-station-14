@@ -60,16 +60,14 @@ uplink-syndie-thermal-name = Optical Thermal Visor
 uplink-syndie-thermal-desc = A compact thermal scanner with an IFF-equipped visor. Perfect for identifying and eliminating NanoTrasen personnel.
 uplink-thermal-desc = A compact thermal scanner. Ideal for discovering NanoTrasen personnel's secrets from behind walls.
 uplink-clothing-backpack-syndie-name = Syndicate Backpack
-uplink-hardsuit-syndie-commander-name = Syndicate Commander Hardsuit
-uplink-hardsuit-syndie-commander-desc = A hardsuit designed for Gorlax squad commanders.
-uplink-hardsuit-syndie-medic-name = Syndicate Medic Hardsuit
-uplink-hardsuit-syndie-medic-desc = A hardsuit designed for Gorlax combat medics.
 uplink-50blessing-name = 50 Blessings Gift Set
 uplink-50blessing-desc = For agents who want to conceal their identity in style, with love from Egor Semenov.
 uplink-slipknotset-name = slipknot masks gift set
 uplink-slipknotset-desc = Five masks. Five souls. Numbers 7, 8, 6, 1 and 5 inside a black box — filthy Iowa fury.
 uplink-clothing-murder-socks-name = Murder Socks
 uplink-clothing-murder-socks-desc = For the agent who truly understands style.
+uplink-clothing-chameleon-silent-name = Silent shoes
+uplink-clothing-chameleon-silent-desc = Specialized shoes designed for silent movement. Every step disappears into the void.
 uplink-syndie-maid-raid-name = Maid Raider
 uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female agents, yet for some reason only men ever wear it.
 
@@ -155,10 +153,45 @@ uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.
 
 uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
-uplink-mech-teleporter-heavy-desc = Contains Cybersun heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
+uplink-mech-teleporter-heavy-desc = Contains a Cybersun Mauler heavy combat mech, a syndicate repair toolbox, a toy Mauler, and sometimes a Meowler paint kit. The mech arrives with its current integrated equipment.
+uplink-mech-teleporter-death-name = Death Ripley teleporter
+uplink-mech-teleporter-death-desc = Contains a Death Ripley MK-II and a syndicate repair toolbox. It ships without extra modules, so remember to buy a Syndicate access card if you need cockpit access.
 
 uplink-mech-teleporter-assault-name = Assault Mech teleporter
-uplink-mech-teleporter-assault-desc = Contains Cybersun lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
+uplink-mech-teleporter-assault-desc = Contains a Cybersun Dark Gygax light combat mech, a syndicate repair toolbox, and a toy Gygax. The mech arrives with its current integrated equipment.
+
+## Mechs equipment
+
+uplink-mech-equipment-tesla-cannon-name = P-X Tesla Cannon
+uplink-mech-equipment-tesla-cannon-desc = Mounted Tesla cannon that fires slow energy balls based on experimental Tesla engine technology.
+uplink-mech-equipment-shotgun-name = LBX AC 10 "Scattershot"
+uplink-mech-equipment-shotgun-desc = Mounted lethal shotgun for combat mechs. Simple, direct, and still extremely unpleasant up close.
+uplink-mech-equipment-shotgun-auto-name = LBX AC 20 "Minotaur"
+uplink-mech-equipment-shotgun-auto-desc = Mounted automatic shotgun that sends three bursts of buckshot downrange per attack cycle.
+uplink-mech-equipment-shotgun-incendiary-name = FNX-99 "Hades" Carbine
+uplink-mech-equipment-shotgun-incendiary-desc = Mounted carbine loaded with incendiary shotgun shells.
+uplink-mech-equipment-ultra-rifle-name = Ultra AC-2
+uplink-mech-equipment-ultra-rifle-desc = Burst-fire mounted rifle using heavy rifle cartridges. Good for sustained pressure at medium range.
+uplink-mech-equipment-ion-name = Mk.IV Ion Heavy Cannon
+uplink-mech-equipment-ion-desc = Mounted ion cannon with a high energy cost. Extremely effective against synthetics, robots, and other mechs.
+uplink-mech-equipment-chain-sword-name = exosuit chainsword
+uplink-mech-equipment-chain-sword-desc = A brutal melee attachment for cutting through targets that get too close to the mech.
+uplink-mech-equipment-kord-name = mounted "Kord"
+uplink-mech-equipment-kord-desc = Heavy 12.7 x 108 mm machine gun with high recoil and strong sustained fire.
+uplink-mech-equipment-amlg90-name = AMLG90
+uplink-mech-equipment-amlg90-desc = Burst-fire laser machine gun for combat mechs.
+uplink-mech-equipment-vindictor-name = mounted MG-100 Vindicator minigun
+uplink-mech-equipment-vindictor-desc = High-rate minigun fed by standard rifle cartridges. Built for suppressive fire.
+uplink-mech-equipment-chaingun-name = mounted chaingun
+uplink-mech-equipment-chaingun-desc = Very fast rotary gun fed by minigun cartridges. Its spread grows quickly, but so does the volume of fire.
+uplink-mech-equipment-maxim-name = mounted Kardashev-Maxim
+uplink-mech-equipment-maxim-desc = Old heavy machine gun refitted for mech use. Fires heavy rifle cartridges at a steady full-auto rate.
+uplink-mech-equipment-heavy-rifle-name = mounted heavy rifle gun
+uplink-mech-equipment-heavy-rifle-desc = Semi-automatic anti-materiel rifle for mechs. Slow, loud, and made for punching through hard targets.
+uplink-mech-equipment-uvm31-name = UVM-31 "Drake"
+uplink-mech-equipment-uvm31-desc = Cybersun plasma minigun adapted as a mech-mounted weapon. High rate of fire with a tight firing cone.
+uplink-mech-missile-rack8frag-name = BRM-50 missile rack
+uplink-mech-missile-rack8frag-desc = SRM-8 rack refitted for 50mm rockets. The warheads do not break tiles, but scatter short-lived shrapnel on detonation.
 
 uplink-cleaner-kit-name = Mob Cleaner Kit
 uplink-cleaner-kit-desc = Clean up any evidence, make sure it can't be traced back to you.

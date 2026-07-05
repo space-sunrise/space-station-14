@@ -44,6 +44,16 @@
 
 - type: entity
   parent: Bluecrystal
+  id: Bluecrystal15
+  suffix: 15 BC
+  name: Bluespace crystal
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 15
+
+- type: entity
+  parent: Bluecrystal
   id: Bluecrystal25
   suffix: 25 BC
   name: Bluespace crystal
