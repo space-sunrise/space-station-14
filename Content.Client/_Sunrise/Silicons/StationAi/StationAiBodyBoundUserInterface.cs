@@ -1,5 +1,4 @@
 using Content.Shared._Sunrise.Silicons.StationAi;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.Silicons.StationAi;
@@ -20,14 +19,7 @@ public sealed class StationAiBodyBoundUserInterface(EntityUid owner, Enum uiKey)
         _window.OnClose += OnWindowClosed;
         _window.EnterBodyAction += EnterBody;
         _window.ExitBodyAction += ExitBody;
-
-        var ui = EntMan.System<UserInterfaceSystem>();
-        ui.RegisterControl(this, _window);
-
-        if (ui.TryGetPosition(Owner, UiKey, out var position))
-            _window.Open(position);
-        else
-            _window.OpenCentered();
+        _window.OpenCentered();
 
         Update();
     }
