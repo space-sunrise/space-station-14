@@ -668,8 +668,10 @@
     heldPrefix: taser4
   - type: Clothing
     quickEquip: false
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi # Sunrise-Edit
     slots:
     - Belt
+    - suitStorage # Sunrise-Edit
   - type: Gun
     fireRate: 0.5
     soundGunshot:
