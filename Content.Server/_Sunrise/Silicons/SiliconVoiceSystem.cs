@@ -149,6 +149,9 @@ public sealed class SiliconVoiceSystem : EntitySystem
         if (!TryComp<BorgVoiceComponent>(uid, out var component))
             return;
 
+        if (TerminatingOrDeleted(uid))
+            return;
+
         component.VoiceChangeEnabled = enabled;
 
         if (enabled)
