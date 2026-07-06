@@ -9,7 +9,7 @@
   - type: Interactions
   - type: WingFlight
     SpeedModifier: 1.1f
-    AutoDisableThreshold: 0.2f // 6 seconds of flight which results in near stamina crit
+    AutoDisableThreshold: 0.2f # 6 seconds of flight which results in near stamina crit
     SustainStaminaPerSecond: 0.1f
   # SUNRISE EDIT
   - type: HumanoidAppearance
