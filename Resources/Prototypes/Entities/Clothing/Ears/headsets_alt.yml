@@ -47,6 +47,12 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
+  # Sunrise-Start
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        startingItem: PowerCageOmega
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]

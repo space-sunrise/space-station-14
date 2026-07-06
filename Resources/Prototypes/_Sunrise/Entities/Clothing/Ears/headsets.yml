@@ -330,6 +330,12 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Ears/Headsets/ert.rsi
   - type: EncryptionKeyHolder
+  # Sunrise-Start
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        startingItem: PowerCageOmega
+  # Sunrise-End
 
 - type: entity
   parent: ClothingHeadsetAlt
