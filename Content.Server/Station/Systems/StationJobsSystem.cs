@@ -28,6 +28,9 @@ public sealed partial class StationJobsSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
 
+    partial void InitializeStationJobsPortal();
+    partial void FilterJobsAvailablePortal(Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -37,6 +40,7 @@ public sealed partial class StationJobsSystem : EntitySystem
         SubscribeLocalEvent<StationJobsComponent, ComponentShutdown>(OnStationDeletion);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
         Subs.CVar(_configurationManager, CCVars.GameDisallowLateJoins, _ => UpdateJobsAvailable(), true);
+        InitializeStationJobsPortal(); // Sunrise-Edit
     }
 
     private void OnInit(Entity<StationJobsComponent> ent, ref ComponentInit args)
@@ -500,6 +504,13 @@ public sealed partial class StationJobsSystem : EntitySystem
         {
             var netStation = GetNetEntity(station);
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
+            // Sunrise added start - портал для fork-фильтров списка latejoin ролей
+            var skipStation = false;
+            FilterJobsAvailablePortal(list, ref skipStation);
+            if (skipStation)
+                continue;
+            // Sunrise added end
+
             jobs.Add(netStation, list);
             stationNames.Add(netStation, Name(station));
         }

@@ -4,12 +4,10 @@ using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
-using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -24,7 +22,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Station.Systems;
 
@@ -33,7 +30,7 @@ namespace Content.Server.Station.Systems;
 /// Also provides helpers for spawning in the player's mob.
 /// </summary>
 [PublicAPI]
-public sealed class StationSpawningSystem : SharedStationSpawningSystem
+public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 {
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly ActorSystem _actors = default!;
@@ -45,15 +42,21 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private bool _randomizeCharacters;
+
+    partial void InitializeStationSpawningPortal();
+    partial void GetEffectiveRoleLoadoutPortal(string jobLoadout, ref ProtoId<RoleLoadoutPrototype> effectiveJobLoadout);
+    partial void GetDefaultLoadoutPrototypeIdsPortal(EntityUid? entity, ref string[] prototypeIds);
+    partial void TryApplyFlavorTextPortal(EntityUid entity, HumanoidCharacterProfile profile);
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
-        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+        // Sunrise added start - портал для fork-инициализации спавна персонажа
+        InitializeStationSpawningPortal();
+        // Sunrise added end
         Subs.CVar(_configurationManager, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
     }
 
@@ -108,31 +111,24 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         // Need to get the loadout up-front to handle names if we use an entity spawn override.
         var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
 
-        // Sunrise-start
-        var effectiveJobLoadout = LoadoutSystem.GetEffectiveRolePrototype(jobLoadout, _prototypeManager);
+        // Sunrise added start - портал для fork-подмены role loadout
+        ProtoId<RoleLoadoutPrototype> effectiveJobLoadout = jobLoadout;
+        GetEffectiveRoleLoadoutPortal(jobLoadout, ref effectiveJobLoadout);
+        // Sunrise added end
         if (_prototypeManager.TryIndex<RoleLoadoutPrototype>(effectiveJobLoadout, out var roleProto))
-        // Sunrise-end
         {
             profile?.Loadouts.TryGetValue(jobLoadout, out loadout);
 
             // Set to default if not present
             if (loadout == null)
             {
-                // Sunrise-Start
-                var session = _actors.GetSession(entity);
-
-                string [] sponsorsPrototypes = [];
-                if (_sponsorsManager != null && session != null)
-                {
-                    if (_sponsorsManager.TryGetPrototypes(session.UserId, out var prototypes))
-                    {
-                        sponsorsPrototypes = prototypes.ToArray();
-                    }
-                }
-                // Sunrise-End
+                string[] extraPrototypeIds = [];
+                // Sunrise added start - портал для fork-прототипов default loadout
+                GetDefaultLoadoutPrototypeIdsPortal(entity, ref extraPrototypeIds);
+                // Sunrise added end
 
                 loadout = new RoleLoadout(jobLoadout);
-                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager, sponsorsPrototypes);
+                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager, extraPrototypeIds);
             }
         }
 
@@ -166,28 +162,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
-            // Sunrise-Start
-            if (!string.IsNullOrEmpty(profile.FlavorText) && _configurationManager.GetCVar(CCVars.FlavorText))
-            {
-                var session = _actors.GetSession(entity);
-                var flavortext = profile.FlavorText;
-
-                if (_sponsorsManager != null && session != null)
-                {
-                    var maxDescLength = _sponsorsManager.GetSizeFlavor(session.UserId);
-                    if (flavortext.Length > maxDescLength)
-                    {
-                        flavortext = FormattedMessage.RemoveMarkupOrThrow(flavortext)[..maxDescLength];
-                    }
-                }
-
-                if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly) ||
-                    _sponsorsManager != null && session != null && _sponsorsManager.IsAllowedFlavor(session.UserId))
-                {
-                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
-                }
-            }
-            // Sunrise-End
+            // Sunrise added start - портал для fork flavor text
+            TryApplyFlavorTextPortal(entity.Value, profile);
+            // Sunrise added end
         }
 
         if (loadout != null)

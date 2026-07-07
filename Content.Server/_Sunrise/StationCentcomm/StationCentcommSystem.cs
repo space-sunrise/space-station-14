@@ -52,6 +52,9 @@ public sealed partial class StationCentCommSystem : EntitySystem
 
     private void AddCentcomm(StationCentCommComponent component)
     {
+        if (!IsCentCommEnabled())
+            return;
+
         var query = AllEntityQuery<StationCentCommComponent>();
 
         while (query.MoveNext(out var otherComp))
