@@ -1004,6 +1004,30 @@
   # Sunrise-Start
   - type: Physics
     bodyType: KinematicController
+  - type: MobMover
+  - type: InputMover
+  - type: InteractionRelay
+    relayEntity: null
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      100: Dead
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Critical:
+        Base: critical
+      Dead:
+        Base: dead
   # Sunrise-End
 
 - type: entity
