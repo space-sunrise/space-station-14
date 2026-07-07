@@ -1006,8 +1006,6 @@
     bodyType: KinematicController
   - type: MobMover
   - type: InputMover
-  - type: InteractionRelay
-    relayEntity: null
   - type: MobState
     allowedStates:
     - Alive
