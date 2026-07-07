@@ -334,12 +334,8 @@
   - type: ItemSlots
     slots:
       cell_slot:
-        startingItem: PowerCellSelfCharging
+        startingItem: PowerCellXenoborgAdvance
         locked: true
-  - type: EmpResistance
-    strengthMultiplier: 0
-    durationMultiplier: 0
-
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -363,11 +359,8 @@
   - type: ItemSlots
     slots:
       cell_slot:
-        startingItem: PowerCellSelfCharging
+        startingItem: PowerCellXenoborgAdvance
         locked: true
-  - type: EmpResistance
-    strengthMultiplier: 0
-    durationMultiplier: 0
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -392,11 +385,8 @@
   - type: ItemSlots
     slots:
       cell_slot:
-        startingItem: PowerCellSelfCharging
+        startingItem: PowerCellXenoborgAdvance
         locked: true
-  - type: EmpResistance
-    strengthMultiplier: 0
-    durationMultiplier: 0
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]

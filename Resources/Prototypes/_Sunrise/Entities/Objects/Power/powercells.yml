@@ -115,10 +115,11 @@
     startingCharge: 1080
   - type: BatterySelfRecharger
     autoRechargeRate: 10
+  - type: EmpImmune
 
 - type: entity
   id: PowerCageOmega # Sunrise-Add
-  parent: PowerCellNanoTrasen
+  parent: BasePowerCage
   name: omega power cage
   description: A high-tier power cage for heavy systems. Designed for extreme output and sustained draw.
   components:
@@ -134,24 +135,3 @@
     maxCharge: 12400
     startingCharge: 12400
   - type: EmpImmune
-
-- type: entity
-  id: PowerCellSelfCharging
-  parent: PowerCellNanoTrasen
-  name: charging power cell
-  description: A self-recharging power cell that constantly replenishes its own charge. Built-in EMP shielding protects it from electrical surges.
-  components:
-  - type: Sprite
-    layers:
-    - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: nanotrasen
-    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
-      state: o2
-      shader: unshaded
-  - type: Battery
-    maxCharge: 500
-    startingCharge: 500
-  - type: EmpImmune
-  - type: BatterySelfRecharger
-    autoRechargeRate: 10
-    autoRechargePauseTime: 0
