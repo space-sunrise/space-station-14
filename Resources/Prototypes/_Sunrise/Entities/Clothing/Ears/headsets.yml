@@ -41,7 +41,7 @@
   parent: Clothing
   id: ClothingHeadsetSelfChargingBaseSunrise
   name: headset
-  description: A headset with an integrated self-charging power cell and EMP shielding.
+  description: An updated modular intercom that fits on the head. Uses encryption keys. Can be self-charged.
   components:
   - type: ItemSlots
     slots:
