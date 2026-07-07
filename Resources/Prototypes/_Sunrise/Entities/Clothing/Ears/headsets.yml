@@ -38,6 +38,19 @@
 
 - type: entity
   abstract: true
+  parent: Clothing
+  id: ClothingHeadsetSelfChargingBaseSunrise
+  name: headset
+  description: A headset with an integrated self-charging power cell and EMP shielding.
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        startingItem: PowerCellSmallNuclear
+        locked: true
+
+- type: entity
+  abstract: true
   parent: ClothingHeadsetNokey
   id: ClothingHeadsetAltNokey
   name: headset
@@ -241,7 +254,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/commaid_headset.rsi
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetSelfChargingBaseSunrise,ClothingHeadsetAlt]
   id: ClothingHeadsetAltCentComSunrise
   name: CentComm over-ear headset
   suffix: No CentComm Key.
@@ -256,7 +269,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi
 
 - type: entity
-  parent: ClothingHeadsetNokey
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetNokey]
   id: ClothingHeadsetFreelanceNoKey
   name: freelancer headset
   suffix: No Key
@@ -268,7 +281,7 @@
       sprite: Clothing/Ears/Headsets/freelance.rsi
 
 - type: entity
-  parent: [ClothingHeadsetAltNokey, BaseSyndicateContraband]
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetAltNokey, BaseSyndicateContraband]
   id: ClothingHeadsetAltSyndicateNoKey
   name: blood-red over-ear headset
   suffix: No Key
@@ -314,7 +327,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/command.rsi
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetAlt]
   id: ClothingHeadsetAltERT
   name: ert over-ear headset
   description: The ERT headset
@@ -331,14 +344,9 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/ert.rsi
   - type: EncryptionKeyHolder
     keySlots: 5
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        startingItem: PowerCellXenoborgAdvance
-        locked: true
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetAlt]
   id: ClothingHeadsetAltDeathSquad
   name: death squad over-ear headset
   description: A headset for an unknown squad.
@@ -356,14 +364,9 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/deathsquad.rsi
   - type: EncryptionKeyHolder
     keySlots: 5
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        startingItem: PowerCellXenoborgAdvance
-        locked: true
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetAlt]
   id: ClothingHeadsetAltSpecOpsOfficer
   name: special operations officer over-ear headset
   description: Headset of a special operations officer.
@@ -382,11 +385,6 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/specopsofficer.rsi
   - type: EncryptionKeyHolder
     keySlots: 6
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        startingItem: PowerCellXenoborgAdvance
-        locked: true
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]

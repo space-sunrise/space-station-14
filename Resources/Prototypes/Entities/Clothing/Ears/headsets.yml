@@ -94,7 +94,7 @@
       - EncryptionKeyCommon
 
 - type: entity
-  parent: [ ClothingHeadset, BaseCentcommContraband ]
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadset, BaseCentcommContraband ] # Sunrise-Edit : add ClothingHeadsetSelfChargingBaseSunrise
   id: ClothingHeadsetCentCom
   name: CentComm headset
   description: A headset used by the upper echelons of Nanotrasen.
@@ -108,13 +108,6 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
-  # Sunrise-Start
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        startingItem: PowerCellXenoborgAdvance
-        locked: true
-  # Sunrise-End
 
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
@@ -300,7 +293,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/service.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadset
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadset] # Sunrise-Edit : add ClothingHeadsetSelfChargingBaseSunrise
   id: ClothingHeadsetFreelance
   name: freelancer headset
   description: This is used by a roaming group of freelancers.

@@ -115,7 +115,6 @@
     startingCharge: 1080
   - type: BatterySelfRecharger
     autoRechargeRate: 10
-  - type: EmpImmune
 
 - type: entity
   id: PowerCageOmega # Sunrise-Add

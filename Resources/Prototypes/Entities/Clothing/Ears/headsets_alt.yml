@@ -34,7 +34,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/cargo.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetAlt] # Sunrise-Edit : add ClothingHeadsetSelfChargingBaseSunrise
   id: ClothingHeadsetAltCentCom
   name: CentComm over-ear headset
   components:
@@ -47,13 +47,6 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Clothing/Ears/Headsets/centcom.rsi # Sunrise-Edit
-  # Sunrise-Start
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        startingItem: PowerCellXenoborgAdvance
-        locked: true
-  # Sunrise-End
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
@@ -136,7 +129,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/science.rsi # Sunrise-Edit
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetAlt, BaseSyndicateContraband] # Sunrise-Edit : add ClothingHeadsetSelfChargingBaseSunrise
   id: ClothingHeadsetAltSyndicate
   name: blood-red over-ear headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
@@ -154,7 +147,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/syndicate.rsi # Sunrise-Edit
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetSelfChargingBaseSunrise, ClothingHeadsetAlt] # Sunrise-Edit : add ClothingHeadsetSelfChargingBaseSunrise
   id: ClothingHeadsetAltFreelancer
   name: freelancer's over-ear headset
   components:
