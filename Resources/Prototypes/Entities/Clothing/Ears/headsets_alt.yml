@@ -51,7 +51,11 @@
   - type: ItemSlots
     slots:
       cell_slot:
-        startingItem: PowerCageOmega
+        startingItem: PowerCellSelfCharging
+        locked: true
+  - type: EmpResistance
+    strengthMultiplier: 0
+    durationMultiplier: 0
   # Sunrise-End
 
 - type: entity
