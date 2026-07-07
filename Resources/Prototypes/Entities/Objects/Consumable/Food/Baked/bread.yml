@@ -1001,6 +1001,10 @@
     damage:
       groups:
         Brute: 1
+  # Sunrise-Start
+  - type: Physics
+    bodyType: KinematicController
+  # Sunrise-End
 
 - type: entity
   parent: FoodBreadBase
