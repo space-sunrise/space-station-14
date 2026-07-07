@@ -1025,7 +1025,7 @@
       Alive:
         Base: base
       Critical:
-        Base: critical
+        Base: dead
       Dead:
         Base: dead
   # Sunrise-End
