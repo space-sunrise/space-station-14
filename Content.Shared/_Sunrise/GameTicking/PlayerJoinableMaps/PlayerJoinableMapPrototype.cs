@@ -17,6 +17,9 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
     public string? PlayerAccessEnabledCVar;
 
     [DataField]
+    public string? PlayerAccessMinPlayersCVar;
+
+    [DataField]
     public bool SpawnWhenPlayerAccessDisabled;
 
     [DataField]

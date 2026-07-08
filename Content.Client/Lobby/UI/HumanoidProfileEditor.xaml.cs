@@ -35,6 +35,7 @@ using Robust.Client.Utility;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Enums;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
@@ -103,7 +104,8 @@ namespace Content.Client.Lobby.UI
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
         private readonly Dictionary<string, BoxContainer> _jobCategories;
-        private readonly Dictionary<string, Action<bool>> _playerJoinableMapCVarHandlers = new();
+        private readonly Dictionary<string, Action<bool>> _playerJoinableMapBoolCVarHandlers = new();
+        private readonly Dictionary<string, Action<int>> _playerJoinableMapIntCVarHandlers = new();
 
         private Direction _previewRotation = Direction.North;
 
@@ -149,6 +151,7 @@ namespace Content.Client.Lobby.UI
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
             SubscribePlayerJoinableMapCVars();
+            _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
             ImportButton.OnPressed += args =>
             {
@@ -1396,12 +1399,19 @@ namespace Content.Client.Lobby.UI
             if (!disposing)
                 return;
 
-            foreach (var (cvar, handler) in _playerJoinableMapCVarHandlers)
+            foreach (var (cvar, handler) in _playerJoinableMapBoolCVarHandlers)
             {
                 _cfgManager.UnsubValueChanged(cvar, handler);
             }
 
-            _playerJoinableMapCVarHandlers.Clear();
+            foreach (var (cvar, handler) in _playerJoinableMapIntCVarHandlers)
+            {
+                _cfgManager.UnsubValueChanged(cvar, handler);
+            }
+
+            _playerJoinableMapBoolCVarHandlers.Clear();
+            _playerJoinableMapIntCVarHandlers.Clear();
+            _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
         }
@@ -1410,19 +1420,22 @@ namespace Content.Client.Lobby.UI
         {
             foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
             {
-                if (map.PlayerAccessEnabledCVar == null ||
-                    _playerJoinableMapCVarHandlers.ContainsKey(map.PlayerAccessEnabledCVar))
-                {
-                    continue;
-                }
-
-                Action<bool> handler = OnPlayerJoinableMapAccessChanged;
-                _cfgManager.OnValueChanged(map.PlayerAccessEnabledCVar, handler);
-                _playerJoinableMapCVarHandlers.Add(map.PlayerAccessEnabledCVar, handler);
+                SubscribePlayerJoinableMapBoolCVar(map.PlayerAccessEnabledCVar);
+                SubscribePlayerJoinableMapIntCVar(map.PlayerAccessMinPlayersCVar);
             }
         }
 
         private void OnPlayerJoinableMapAccessChanged(bool _)
+        {
+            RefreshJobs();
+        }
+
+        private void OnPlayerJoinableMapAccessChanged(int _)
+        {
+            RefreshJobs();
+        }
+
+        private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
         {
             RefreshJobs();
         }
@@ -1518,6 +1531,9 @@ namespace Content.Client.Lobby.UI
                 if (IsPlayerJoinableMapEnabled(map))
                     continue;
 
+                if (IsPlayerJoinableMapAutoGated(map))
+                    continue;
+
                 foreach (var jobId in map.Jobs)
                 {
                     if (!jobPriorities.Remove(jobId))
@@ -1536,9 +1552,70 @@ namespace Content.Client.Lobby.UI
 
         private bool IsPlayerJoinableMapEnabled(PlayerJoinableMapPrototype map)
         {
-            return map.PlayerAccessEnabledCVar == null ||
-                   !_cfgManager.IsCVarRegistered(map.PlayerAccessEnabledCVar) ||
-                   _cfgManager.GetCVar<bool>(map.PlayerAccessEnabledCVar);
+            if (map.PlayerAccessEnabledCVar != null &&
+                _cfgManager.IsCVarRegistered(map.PlayerAccessEnabledCVar) &&
+                _cfgManager.GetCVar<bool>(map.PlayerAccessEnabledCVar))
+            {
+                return true;
+            }
+
+            if (map.PlayerAccessMinPlayersCVar == null ||
+                !_cfgManager.IsCVarRegistered(map.PlayerAccessMinPlayersCVar))
+            {
+                return map.PlayerAccessEnabledCVar == null;
+            }
+
+            var minPlayers = _cfgManager.GetCVar<int>(map.PlayerAccessMinPlayersCVar);
+            if (minPlayers < 0)
+                return false;
+
+            return _playerManager.PlayerCount >= minPlayers;
+        }
+
+        private bool IsPlayerJoinableMapAutoGated(PlayerJoinableMapPrototype map)
+        {
+            if (map.PlayerAccessMinPlayersCVar == null ||
+                !_cfgManager.IsCVarRegistered(map.PlayerAccessMinPlayersCVar))
+            {
+                return false;
+            }
+
+            if (map.PlayerAccessEnabledCVar != null &&
+                _cfgManager.IsCVarRegistered(map.PlayerAccessEnabledCVar) &&
+                _cfgManager.GetCVar<bool>(map.PlayerAccessEnabledCVar))
+            {
+                return false;
+            }
+
+            return !IsPlayerJoinableMapEnabled(map);
+        }
+
+        private void SubscribePlayerJoinableMapBoolCVar(string? cvar)
+        {
+            if (cvar == null ||
+                !_cfgManager.IsCVarRegistered(cvar) ||
+                _playerJoinableMapBoolCVarHandlers.ContainsKey(cvar))
+            {
+                return;
+            }
+
+            Action<bool> handler = OnPlayerJoinableMapAccessChanged;
+            _cfgManager.OnValueChanged(cvar, handler);
+            _playerJoinableMapBoolCVarHandlers.Add(cvar, handler);
+        }
+
+        private void SubscribePlayerJoinableMapIntCVar(string? cvar)
+        {
+            if (cvar == null ||
+                !_cfgManager.IsCVarRegistered(cvar) ||
+                _playerJoinableMapIntCVarHandlers.ContainsKey(cvar))
+            {
+                return;
+            }
+
+            Action<int> handler = OnPlayerJoinableMapAccessChanged;
+            _cfgManager.OnValueChanged(cvar, handler);
+            _playerJoinableMapIntCVarHandlers.Add(cvar, handler);
         }
 
         protected override void EnteredTree()

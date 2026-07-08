@@ -10,6 +10,12 @@ public sealed partial class PlayerJoinableMapComponent : Component
     public string? PlayerAccessEnabledCVar;
 
     /// <summary>
+    /// CVar with the minimum player count required to auto-enable ordinary player access.
+    /// </summary>
+    [DataField]
+    public string? PlayerAccessMinPlayersCVar;
+
+    /// <summary>
     /// Whether the map should still spawn when ordinary player access is disabled.
     /// </summary>
     [DataField]

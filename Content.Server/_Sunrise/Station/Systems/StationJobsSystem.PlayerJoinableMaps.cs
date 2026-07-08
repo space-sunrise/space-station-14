@@ -14,11 +14,14 @@ public sealed partial class StationJobsSystem
     {
         foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
         {
-            if (map.PlayerAccessEnabledCVar == null)
-                continue;
-
-            Subs.CVar<bool>(_configurationManager, map.PlayerAccessEnabledCVar, _ => UpdateJobsAvailable(), true);
+            SubscribePlayerJoinableMapAccessCVar<bool>(map.PlayerAccessEnabledCVar);
+            SubscribePlayerJoinableMapAccessCVar<int>(map.PlayerAccessMinPlayersCVar);
         }
+    }
+
+    public void RefreshPlayerJoinableMapJobsAvailable()
+    {
+        UpdateJobsAvailable();
     }
 
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation)
@@ -32,5 +35,14 @@ public sealed partial class StationJobsSystem
         Dictionary<ProtoId<JobPrototype>, int?> jobs)
     {
         _playerJoinableMaps.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.RoundStart);
+    }
+
+    private void SubscribePlayerJoinableMapAccessCVar<T>(string? cvar)
+        where T : notnull
+    {
+        if (cvar == null || !_configurationManager.IsCVarRegistered(cvar))
+            return;
+
+        Subs.CVar<T>(_configurationManager, cvar, _ => UpdateJobsAvailable(), true);
     }
 }

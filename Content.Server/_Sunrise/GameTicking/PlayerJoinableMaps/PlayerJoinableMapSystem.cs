@@ -4,6 +4,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
@@ -11,6 +12,7 @@ namespace Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 public sealed class PlayerJoinableMapSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -47,6 +49,9 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
 
         if (!TryComp<PlayerJoinableMapComponent>(station, out var playerJoinableMap))
             return true;
+
+        if (!IsPlayerJoinableMapJob(job))
+            return false;
 
         return HasMatchingSpawnPoint(station, job, joinKind, playerJoinableMap);
     }
@@ -111,6 +116,17 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return false;
     }
 
+    private bool IsPlayerJoinableMapJob(ProtoId<JobPrototype> job)
+    {
+        foreach (var map in _prototype.EnumeratePrototypes<PlayerJoinableMapPrototype>())
+        {
+            if (map.Jobs.Contains(job))
+                return true;
+        }
+
+        return false;
+    }
+
     private bool HasMatchingSpawnPoint(
         EntityUid station,
         ProtoId<JobPrototype> job,
@@ -147,9 +163,24 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
 
     private bool IsPlayerAccessEnabled(PlayerJoinableMapComponent component)
     {
-        return component.PlayerAccessEnabledCVar == null ||
-               !_cfg.IsCVarRegistered(component.PlayerAccessEnabledCVar) ||
-               _cfg.GetCVar<bool>(component.PlayerAccessEnabledCVar);
+        if (component.PlayerAccessEnabledCVar != null &&
+            _cfg.IsCVarRegistered(component.PlayerAccessEnabledCVar) &&
+            _cfg.GetCVar<bool>(component.PlayerAccessEnabledCVar))
+        {
+            return true;
+        }
+
+        if (component.PlayerAccessMinPlayersCVar == null ||
+            !_cfg.IsCVarRegistered(component.PlayerAccessMinPlayersCVar))
+        {
+            return component.PlayerAccessEnabledCVar == null;
+        }
+
+        var minPlayers = _cfg.GetCVar<int>(component.PlayerAccessMinPlayersCVar);
+        if (minPlayers < 0)
+            return false;
+
+        return _player.PlayerCount >= minPlayers;
     }
 
     private static SpawnPointType GetSpawnPointType(PlayerJoinableMapSpawnPointType spawnPointType)

@@ -11,11 +11,11 @@ namespace Content.Server._Sunrise.PlanetPrison;
 [RegisterComponent]
 public sealed partial class PlanetPrisonStationComponent : Component
 {
+    /// <summary>
+    /// Game maps that can be used for the planet prison.
+    /// </summary>
     [DataField(required: true)]
-    public HashSet<ProtoId<GameMapPrototype>> StationsModern = [];
-
-    [DataField(required: true)]
-    public HashSet<ProtoId<GameMapPrototype>> StationsOld = [];
+    public HashSet<ProtoId<GameMapPrototype>> Stations = [];
 
     public MapId MapId = MapId.Nullspace;
 

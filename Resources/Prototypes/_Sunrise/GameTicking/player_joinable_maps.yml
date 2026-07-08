@@ -2,7 +2,24 @@
   id: SunriseCentComm
   displayName: player-joinable-map-centcomm
   playerAccessEnabledCVar: centcomm.enabled
-  spawnWhenPlayerAccessDisabled: true
+  spawnWhenPlayerAccessDisabled: false
   order: 10
   jobs:
   - CentCommOperator
+
+- type: playerJoinableMap
+  id: SunrisePlanetPrison
+  displayName: player-joinable-map-planet-prison
+  playerAccessEnabledCVar: planet_prison.enable
+  playerAccessMinPlayersCVar: planet_prison.min_players
+  spawnWhenPlayerAccessDisabled: false
+  order: 20
+  jobs:
+  - HeadOfPrison
+  - PrisonInspector
+  - PrisonWorker
+  - PrisonEngineer
+  - PrisonScientist
+  - PrisonDoctor
+  - PrisonChef
+  - PrisonTrainee

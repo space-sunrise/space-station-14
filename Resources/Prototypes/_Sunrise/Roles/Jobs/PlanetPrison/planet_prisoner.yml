@@ -8,6 +8,7 @@
     time: 36000 # 10 hrs
   startingGear: PlanetPrisonerGear
   weight: 9
+  setPreference: false
   alwaysUseSpawner: true
   canBeAntag: false
   icon: "JobIconPrisoner"
