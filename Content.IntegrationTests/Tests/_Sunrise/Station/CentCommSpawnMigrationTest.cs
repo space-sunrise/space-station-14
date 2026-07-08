@@ -34,8 +34,8 @@ public sealed class CentCommSpawnMigrationTest
 
     private static readonly string[] RequiredGameTickerPortals =
     [
-        "BeforeSpawnPlayerJob(",
         "FilterFallbackSpawnableStationsPortal(",
+        "ResolveDirectSpawnStationPortal(",
         "SelectSpawnPointTypePortal(",
         "BeforePlayerSpawnProfilePortal(",
         "AfterPlayerMobSpawnedPortal(",
@@ -53,7 +53,6 @@ public sealed class CentCommSpawnMigrationTest
     private static readonly string[] SunrisePortalFiles =
     [
         "Content.Server/_Sunrise/GameTicking/GameTicker.CentCommJoin.cs",
-        "Content.Server/_Sunrise/GameTicking/GameTicker.JobSlotReservation.cs",
         "Content.Server/_Sunrise/GameTicking/GameTicker.SpawnStationSelection.cs",
         "Content.Server/_Sunrise/GameTicking/GameTicker.SpawnPointType.cs",
         "Content.Server/_Sunrise/GameTicking/GameTicker.NewLife.cs",

@@ -7,11 +7,11 @@ sealed partial class JoinGameCommand
 {
     partial void BeforeJoinGameCommand(
         ICommonSession player,
-        EntityUid station,
+        ref EntityUid station,
         string jobId,
         GameTicker ticker,
         ref bool handled)
     {
-        handled = ticker.TryHandleJoinGameUnavailable(player, station, jobId);
+        handled = ticker.TryHandleJoinGameStationResolution(player, jobId, ref station);
     }
 }

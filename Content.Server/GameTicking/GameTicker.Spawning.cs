@@ -36,8 +36,8 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
 
-        partial void BeforeSpawnPlayerJob(ICommonSession player, EntityUid station, JobPrototype job, bool lateJoin, ref bool jobSlotPreassigned, ref bool handled);
         partial void FilterFallbackSpawnableStationsPortal(List<EntityUid> stations);
+        partial void ResolveDirectSpawnStationPortal(ICommonSession player, string? jobId, ref EntityUid station, ref bool handled);
         partial void SelectSpawnPointTypePortal(JobPrototype job, bool lateJoin, ref SpawnPointType spawnPointType);
         partial void BeforePlayerSpawnProfilePortal(ICommonSession player);
         partial void AfterPlayerMobSpawnedPortal(ICommonSession player, EntityUid station, EntityUid mob);
@@ -196,6 +196,13 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            // Sunrise added start - портал для fork-маршрутизации direct-spawn ролей на целевую станцию
+            var directSpawnStationHandled = false;
+            ResolveDirectSpawnStationPortal(player, jobId, ref station, ref directSpawnStationHandled);
+            if (directSpawnStationHandled)
+                return;
+            // Sunrise added end
+
             // Sunrise added start - портал для fork-учета перед выбором профиля спавна
             BeforePlayerSpawnProfilePortal(player);
             // Sunrise added end
@@ -272,13 +279,6 @@ namespace Content.Server.GameTicking
             }
 
             var selectedJob = _prototypeManager.Index<JobPrototype>(jobId);
-            var jobSlotPreassigned = false;
-            // Sunrise added start - портал для fork-валидации выбранной latejoin роли
-            var handled = false;
-            BeforeSpawnPlayerJob(player, station, selectedJob, lateJoin, ref jobSlotPreassigned, ref handled);
-            if (handled)
-                return;
-            // Sunrise added end
 
             var spawnPointType = !lateJoin
                 ? SpawnPointType.Job
@@ -290,25 +290,7 @@ namespace Content.Server.GameTicking
             EntityUid mob;
             JobPrototype jobPrototype;
             string jobName;
-            try
-            {
-                DoSpawn(player, character, station, jobId, silent, out mob, out jobPrototype, out jobName, spawnPointType);
-            }
-            catch
-            {
-                if (jobSlotPreassigned)
-                {
-                    _stationJobs.TryAdjustJobSlot(station, selectedJob, 1);
-                    if (_stationJobs.TryGetPlayerJobs(station, player.UserId, out var playerJobs))
-                    {
-                        playerJobs.Remove(selectedJob.ID);
-                        if (playerJobs.Count == 0)
-                            _stationJobs.TryRemovePlayerJobs(station, player.UserId);
-                    }
-                }
-
-                throw;
-            }
+            DoSpawn(player, character, station, jobId, silent, out mob, out jobPrototype, out jobName, spawnPointType);
 
             // Sunrise added start - портал для fork-обработки заспавненного моба
             AfterPlayerMobSpawnedPortal(player, station, mob);
@@ -321,8 +303,7 @@ namespace Content.Server.GameTicking
                 // Sunrise added end
             }
 
-            if (!jobSlotPreassigned)
-                _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
+            _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
 
             if (lateJoin)
             {

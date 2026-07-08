@@ -22,7 +22,7 @@ namespace Content.Server.GameTicking.Commands
 
         private readonly ISawmill _sawmill;
 
-        partial void BeforeJoinGameCommand(ICommonSession player, EntityUid station, string jobId, GameTicker ticker, ref bool handled);
+        partial void BeforeJoinGameCommand(ICommonSession player, ref EntityUid station, string jobId, GameTicker ticker, ref bool handled);
 
         public string Command => "joingame";
         public string Description => "";
@@ -77,7 +77,7 @@ namespace Content.Server.GameTicking.Commands
                 var station = _entManager.GetEntity(new NetEntity(sid));
                 // Sunrise added start - портал отказов для fork-ограничений latejoin
                 var handled = false;
-                BeforeJoinGameCommand(player, station, id, ticker, ref handled);
+                BeforeJoinGameCommand(player, ref station, id, ticker, ref handled);
                 if (handled)
                     return;
                 // Sunrise added end

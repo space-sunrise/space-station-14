@@ -8,56 +8,6 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    internal bool TryHandleJoinGameUnavailable(ICommonSession player, EntityUid station, string jobId)
-    {
-        if (TryBlockDisabledCentCommJoin(player, jobId))
-            return true;
-
-        if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var job))
-            return false;
-
-        if (!job.AlwaysUseSpawner)
-            return false;
-
-        if (CanJoinGameAsJob(station, jobId))
-            return false;
-
-        NotifyJoinGameJobUnavailable(player, station, job);
-        return true;
-    }
-
-    partial void BeforeSpawnPlayerJob(
-        ICommonSession player,
-        EntityUid station,
-        JobPrototype job,
-        bool lateJoin,
-        ref bool jobSlotPreassigned,
-        ref bool handled)
-    {
-        if (TryBlockDisabledCentCommJoin(player, job.ID))
-        {
-            handled = true;
-            return;
-        }
-
-        if (!lateJoin || !job.AlwaysUseSpawner)
-            return;
-
-        if (_stationJobs.TryAssignJob(station, job, player.UserId))
-        {
-            jobSlotPreassigned = true;
-            return;
-        }
-
-        NotifyJoinGameJobUnavailable(player, station, job);
-        handled = true;
-    }
-
-    private bool CanJoinGameAsJob(EntityUid station, string jobId)
-    {
-        return TryGetJoinGameJobSlot(station, jobId, out var slots) && slots != 0;
-    }
-
     private bool TryGetJoinGameJobSlot(EntityUid station, string jobId, out int? slots)
     {
         slots = null;

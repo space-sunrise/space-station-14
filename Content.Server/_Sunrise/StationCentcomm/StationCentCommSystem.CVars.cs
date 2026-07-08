@@ -22,11 +22,6 @@ public sealed partial class StationCentCommSystem
         return CentCommJobHelper.IsCentCommJob(_prototypeManager, jobId);
     }
 
-    public bool ShouldBlockCentCommJoin(string jobId)
-    {
-        return !IsCentCommEnabled() && IsCentCommJob(jobId);
-    }
-
     public bool FilterDisabledCentCommJobs(Dictionary<ProtoId<JobPrototype>, int?> jobs)
     {
         if (IsCentCommEnabled())
