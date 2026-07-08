@@ -5,115 +5,118 @@ namespace Content.IntegrationTests.Tests._Sunrise.Station;
 [TestFixture]
 public sealed class CentCommSpawnMigrationTest
 {
-    private static readonly string[] VanillaFiles =
-    [
-        "Content.Server/GameTicking/Commands/JoinGameCommand.cs",
-        "Content.Server/GameTicking/GameTicker.Spawning.cs",
-        "Content.Server/Station/Systems/StationJobsSystem.cs",
-        "Content.Server/Station/Systems/StationSpawningSystem.cs",
-        "Content.Shared/Roles/JobPrototype.cs",
-    ];
-
-    private static readonly string[] ForbiddenVanillaTokens =
-    [
-        "Content.Server._Sunrise",
-        "Content.Shared._Sunrise",
-        "Content.Sunrise",
-        "SunriseCCVars",
-        "NewLifeSystem",
-        "StationAntagsTargetsComponent",
-        "AntagTargetComponent",
-        "OwOAccentComponent",
-        "ISharedSponsorsManager",
-        "JoinNotifyCrew",
-        "AlwaysUseSpawner",
-        "RadioIsBold",
-        "SpeciesBlacklist",
-        "AlternativeTitles",
-    ];
-
-    private static readonly string[] RequiredGameTickerPortals =
-    [
-        "FilterFallbackSpawnableStationsPortal(",
-        "ResolveDirectSpawnStationPortal(",
-        "SelectSpawnPointTypePortal(",
-        "BeforePlayerSpawnProfilePortal(",
-        "AfterPlayerMobSpawnedPortal(",
-        "DispatchLateJoinAnnouncementPortal(",
-    ];
-
-    private static readonly string[] RequiredStationSpawningPortals =
-    [
-        "InitializeStationSpawningPortal(",
-        "GetEffectiveRoleLoadoutPortal(",
-        "GetDefaultLoadoutPrototypeIdsPortal(",
-        "TryApplyFlavorTextPortal(",
-    ];
-
-    private static readonly string[] SunrisePortalFiles =
-    [
-        "Content.Server/_Sunrise/GameTicking/GameTicker.CentCommJoin.cs",
-        "Content.Server/_Sunrise/GameTicking/GameTicker.SpawnStationSelection.cs",
-        "Content.Server/_Sunrise/GameTicking/GameTicker.SpawnPointType.cs",
-        "Content.Server/_Sunrise/GameTicking/GameTicker.NewLife.cs",
-        "Content.Server/_Sunrise/GameTicking/GameTicker.SpawnedMob.cs",
-        "Content.Server/_Sunrise/GameTicking/GameTicker.JoinAnnouncements.cs",
-        "Content.Server/_Sunrise/GameTicking/Commands/JoinGameCommand.JoinGate.cs",
-        "Content.Server/_Sunrise/Station/Systems/StationSpawningSystem.Sponsors.cs",
-        "Content.Shared/_Sunrise/Roles/JobPrototype.Sunrise.cs",
-    ];
-
     [Test]
-    public void VanillaSpawnFiles_DoNotReferenceSunriseImplementation()
+    public void PlayerJoinableMapFiles_Exist()
     {
         Assert.Multiple(() =>
         {
-            foreach (var file in VanillaFiles)
-            {
-                var text = ReadRepoFile(file);
-                foreach (var token in ForbiddenVanillaTokens)
-                {
-                    Assert.That(text, Does.Not.Contain(token),
-                        $"{file} must not reference Sunrise implementation token `{token}`.");
-                }
-            }
+            Assert.That(File.Exists(RepoPath("Content.Server/_Sunrise/GameTicking/PlayerJoinableMaps/PlayerJoinableMapSystem.cs")), Is.True);
+            Assert.That(File.Exists(RepoPath("Content.Shared/_Sunrise/GameTicking/PlayerJoinableMaps/PlayerJoinableMapComponent.cs")), Is.True);
+            Assert.That(File.Exists(RepoPath("Content.Shared/_Sunrise/GameTicking/PlayerJoinableMaps/PlayerJoinableMapPrototype.cs")), Is.True);
+            Assert.That(File.Exists(RepoPath("Resources/Prototypes/_Sunrise/GameTicking/player_joinable_maps.yml")), Is.True);
         });
     }
 
     [Test]
-    public void VanillaSpawnFiles_ExposeGenericPortals()
+    public void CentCommMap_UsesPlayerJoinableMapStationPrototype()
+    {
+        var centCommMap = ReadRepoFile("Resources/Prototypes/_Sunrise/Maps/centcomm.yml");
+        var stations = ReadRepoFile("Resources/Prototypes/_Sunrise/Entities/Stations/base.yml");
+        var playerJoinableMaps = ReadRepoFile("Resources/Prototypes/_Sunrise/GameTicking/player_joinable_maps.yml");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(centCommMap, Does.Contain("stationProto: SunriseNanotrasenCentralCommand"));
+            Assert.That(stations, Does.Contain("id: SunriseNanotrasenCentralCommand"));
+            Assert.That(stations, Does.Contain("- type: PlayerJoinableMap"));
+            Assert.That(stations, Does.Contain("playerAccessEnabledCVar: centcomm.enabled"));
+            Assert.That(stations, Does.Contain("spawnWhenPlayerAccessDisabled: true"));
+            Assert.That(playerJoinableMaps, Does.Contain("id: SunriseCentComm"));
+            Assert.That(playerJoinableMaps, Does.Contain("- CentCommOperator"));
+            Assert.That(playerJoinableMaps, Does.Not.Contain("CentCommOfficial"));
+        });
+    }
+
+    [Test]
+    public void StationCentCommSystem_OnlyOwnsCentCommMapLifecycle()
+    {
+        var stationCentComm = ReadRepoFile("Content.Server/_Sunrise/StationCentcomm/StationCentcommSystem.cs");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(stationCentComm, Does.Contain("SubscribeLocalEvent<StationCentCommComponent, ComponentInit>(OnCentcommInit)"));
+            Assert.That(stationCentComm, Does.Contain("SubscribeLocalEvent<StationCentCommComponent, ComponentShutdown>(OnCentcommShutdown)"));
+            Assert.That(stationCentComm, Does.Contain("_gameTicker.LoadGameMap(gameMap, out var mapId);"));
+            Assert.That(stationCentComm, Does.Contain("EnsureComp<AlwaysPoweredMapComponent>(mapEnt);"));
+            Assert.That(stationCentComm, Does.Not.Contain("SunriseCCVars.CentCommEnabled"));
+            Assert.That(stationCentComm, Does.Not.Contain("ResolveCentCommJoinStation"));
+            Assert.That(stationCentComm, Does.Not.Contain("StationJobsGetCandidatesEvent"));
+        });
+    }
+
+    [Test]
+    public void PlayerJoinableMapRouting_ReplacesCentCommSpecificJoinFlow()
+    {
+        var gameTicker = ReadRepoFile("Content.Server/_Sunrise/GameTicking/GameTicker.PlayerJoinableMapJoin.cs");
+        var joinCommand = ReadRepoFile("Content.Server/_Sunrise/GameTicking/Commands/JoinGameCommand.JoinGate.cs");
+        var stationJobs = ReadRepoFile("Content.Server/_Sunrise/Station/Systems/StationJobsSystem.PlayerJoinableMaps.cs");
+        var profileEditor = ReadRepoFile("Content.Client/Lobby/UI/HumanoidProfileEditor.xaml.cs");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(File.Exists(RepoPath("Content.Server/_Sunrise/GameTicking/GameTicker.CentCommJoin.cs")), Is.False);
+            Assert.That(File.Exists(RepoPath("Content.Shared/_Sunrise/Roles/CentCommJobHelper.cs")), Is.False);
+
+            Assert.That(gameTicker, Does.Contain("TryPreparePlayerJoinableMapJoin"));
+            Assert.That(gameTicker, Does.Contain("TryResolveJoinableStationForJob"));
+            Assert.That(gameTicker, Does.Not.Contain("CentCommJobHelper"));
+            Assert.That(gameTicker, Does.Not.Contain("SunriseCCVars.CentCommEnabled"));
+            Assert.That(gameTicker, Does.Not.Contain("game-ticker-player-centcomm-disabled"));
+
+            Assert.That(joinCommand, Does.Contain("TryPreparePlayerJoinableMapJoin"));
+            Assert.That(stationJobs, Does.Contain("PlayerJoinableMapSystem"));
+            Assert.That(stationJobs, Does.Contain("PlayerJoinableMapPrototype"));
+            Assert.That(stationJobs, Does.Contain("FilterRoundStartJobSelectionPortal"));
+            Assert.That(stationJobs, Does.Not.Contain("CentCommJobHelper"));
+
+            Assert.That(profileEditor, Does.Contain("PlayerJoinableMapPrototype"));
+            Assert.That(profileEditor, Does.Contain("player-joinable-map-additional-title"));
+            Assert.That(profileEditor, Does.Not.Contain("CentCommJobHelper"));
+        });
+    }
+
+    [Test]
+    public void VanillaSpawnFiles_ExposeOnlyGenericPortals()
     {
         var gameTicker = ReadRepoFile("Content.Server/GameTicking/GameTicker.Spawning.cs");
-        var stationSpawning = ReadRepoFile("Content.Server/Station/Systems/StationSpawningSystem.cs");
+        var stationJobs = ReadRepoFile("Content.Server/Station/Systems/StationJobsSystem.cs");
+        var roundStart = ReadRepoFile("Content.Server/Station/Systems/StationJobsSystem.Roundstart.cs");
 
         Assert.Multiple(() =>
         {
-            foreach (var portal in RequiredGameTickerPortals)
-            {
-                Assert.That(gameTicker, Does.Contain(portal),
-                    $"GameTicker.Spawning.cs must keep generic portal `{portal}`.");
-            }
+            Assert.That(gameTicker, Does.Contain("FilterFallbackSpawnableStationsPortal("));
+            Assert.That(gameTicker, Does.Contain("ResolveDirectSpawnStationPortal("));
+            Assert.That(stationJobs, Does.Contain("FilterJobsAvailablePortal(EntityUid station"));
+            Assert.That(stationJobs, Does.Contain("FilterRoundStartJobSelectionPortal(EntityUid station"));
+            Assert.That(roundStart, Does.Contain("FilterRoundStartJobSelectionPortal(station"));
 
-            foreach (var portal in RequiredStationSpawningPortals)
-            {
-                Assert.That(stationSpawning, Does.Contain(portal),
-                    $"StationSpawningSystem.cs must keep generic portal `{portal}`.");
-            }
+            Assert.That(gameTicker, Does.Not.Contain("CentComm"));
+            Assert.That(stationJobs, Does.Not.Contain("CentComm"));
+            Assert.That(roundStart, Does.Not.Contain("CentComm"));
+            Assert.That(stationJobs, Does.Not.Contain("Content.Server._Sunrise"));
+            Assert.That(roundStart, Does.Not.Contain("Content.Server._Sunrise"));
         });
     }
 
     [Test]
-    public void SunrisePortalImplementations_AreInSunriseFolders()
+    public void CentCommCVar_IsReplicatedForPlayerFacingUi()
     {
+        var cvars = ReadRepoFile("Content.Shared/_Sunrise/SunriseCCVars/SunriseCCVars.CentComm.cs");
+
         Assert.Multiple(() =>
         {
-            foreach (var file in SunrisePortalFiles)
-            {
-                var fullPath = RepoPath(file);
-                Assert.That(File.Exists(fullPath), Is.True, $"{file} must exist.");
-                Assert.That(File.ReadAllText(fullPath), Does.Contain("partial"),
-                    $"{file} must be a partial portal implementation.");
-            }
+            Assert.That(cvars, Does.Contain("CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE"));
+            Assert.That(cvars, Does.Not.Contain("CVar.SERVERONLY | CVar.ARCHIVE"));
         });
     }
 

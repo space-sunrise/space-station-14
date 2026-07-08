@@ -29,7 +29,8 @@ public sealed partial class StationJobsSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
 
     partial void InitializeStationJobsPortal();
-    partial void FilterJobsAvailablePortal(Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
+    partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
+    partial void FilterRoundStartJobSelectionPortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs);
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -506,7 +507,7 @@ public sealed partial class StationJobsSystem : EntitySystem
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
             // Sunrise added start - портал для fork-фильтров списка latejoin ролей
             var skipStation = false;
-            FilterJobsAvailablePortal(list, ref skipStation);
+            FilterJobsAvailablePortal(station, list, ref skipStation);
             if (skipStation)
                 continue;
             // Sunrise added end

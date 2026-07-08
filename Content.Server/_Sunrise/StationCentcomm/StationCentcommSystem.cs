@@ -1,4 +1,3 @@
-using Content.Server._Sunrise.StationCentComm;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Systems;
@@ -52,9 +51,6 @@ public sealed partial class StationCentCommSystem : EntitySystem
 
     private void AddCentcomm(StationCentCommComponent component)
     {
-        if (!IsCentCommEnabled())
-            return;
-
         var query = AllEntityQuery<StationCentCommComponent>();
 
         while (query.MoveNext(out var otherComp))

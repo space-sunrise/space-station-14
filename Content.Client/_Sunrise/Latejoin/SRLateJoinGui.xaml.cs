@@ -59,6 +59,11 @@ public sealed partial class SRLateJoinGui : FancyWindow
 
     public void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> obj)
     {
+        JobList.RemoveAllChildren();
+        JobList.AddChild(CrewManifestButton);
+        _buttons.Clear();
+        _jobCategories.Clear();
+
         if (StationSelection.Selected is null)
         {
             CrewManifestButton.Visible = false;
@@ -68,20 +73,10 @@ public sealed partial class SRLateJoinGui : FancyWindow
         CrewManifestButton.Visible = true;
 
         var station = StationSelection.Selected.Value;
-        var jobs = obj[station];
-
-        if (station != _lastSelection)
+        if (!obj.TryGetValue(station, out var jobs))
         {
-            foreach (var (_, button) in _buttons)
-            {
-                JobList.RemoveChild(button);
-            }
-            _buttons.Clear();
-            foreach (var (_, box) in _jobCategories)
-            {
-                JobList.RemoveChild(box);
-            }
-            _jobCategories.Clear();
+            CrewManifestButton.Visible = false;
+            return;
         }
 
         _lastSelection = station;
@@ -173,7 +168,7 @@ public sealed partial class SRLateJoinGui : FancyWindow
                     newButton.ToolTip = denyReason.ToString();
                 }
 
-                JobList.AddChild(newButton);
+                category.AddChild(newButton);
 
                 _buttons.Add(jobId, newButton);
             }

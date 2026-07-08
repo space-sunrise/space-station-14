@@ -7,7 +7,7 @@
   minPlayers: 10
   stations:
     centcomm:
-      stationProto: NanotrasenCentralCommand
+      stationProto: SunriseNanotrasenCentralCommand
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Центральное командование {1}'

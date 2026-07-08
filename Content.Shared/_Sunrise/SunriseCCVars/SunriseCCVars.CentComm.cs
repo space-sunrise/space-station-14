@@ -5,5 +5,5 @@ namespace Content.Shared._Sunrise.SunriseCCVars;
 public sealed partial class SunriseCCVars
 {
     public static readonly CVarDef<bool> CentCommEnabled =
-        CVarDef.Create("centcomm.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+        CVarDef.Create("centcomm.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

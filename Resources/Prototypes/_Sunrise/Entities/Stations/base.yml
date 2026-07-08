@@ -129,3 +129,13 @@
   abstract: true
   components:
   - type: MainStation
+
+- type: entity
+  id: SunriseNanotrasenCentralCommand
+  parent: NanotrasenCentralCommand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PlayerJoinableMap
+    playerAccessEnabledCVar: centcomm.enabled
+    spawnWhenPlayerAccessDisabled: true
+    excludeFromFallbackSpawn: true

@@ -85,6 +85,10 @@ public sealed partial class StationJobsSystem
             {
                 stationJobs.Add(station, GetJobs(station).ToDictionary(x => x.Key, x => x.Value));
             }
+
+            // Sunrise added start - фильтрация jobs конкретной station для player-joinable карт
+            FilterRoundStartJobSelectionPortal(station, stationJobs[station]);
+            // Sunrise added end
         }
 
 

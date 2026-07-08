@@ -12,6 +12,6 @@ sealed partial class JoinGameCommand
         GameTicker ticker,
         ref bool handled)
     {
-        handled = ticker.TryHandleJoinGameStationResolution(player, jobId, ref station);
+        handled = !ticker.TryPreparePlayerJoinableMapJoin(player, jobId, ref station);
     }
 }
