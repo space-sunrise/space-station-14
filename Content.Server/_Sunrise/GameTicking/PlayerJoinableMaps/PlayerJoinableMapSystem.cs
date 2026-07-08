@@ -2,6 +2,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
+using Content.Shared.Maps;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -17,12 +18,19 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly StationSystem _station = default!;
 
+    public void PrepareLobbyJobs()
+    {
+        var ev = new PlayerJoinableMapLobbyJobsPreparingEvent();
+        RaiseLocalEvent(ev);
+    }
+
     public bool CanUseStationForPlayerAccess(Entity<PlayerJoinableMapComponent?> station)
     {
         if (!Resolve(station, ref station.Comp, false))
             return true;
 
-        return IsPlayerAccessEnabled(station.Comp);
+        return _prototype.TryIndex(station.Comp.Map, out var map) &&
+            IsPlayerAccessEnabled(map);
     }
 
     public bool CanFallbackSpawn(Entity<PlayerJoinableMapComponent?> station)
@@ -30,7 +38,66 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         if (!Resolve(station, ref station.Comp, false))
             return true;
 
-        return !station.Comp.ExcludeFromFallbackSpawn && IsPlayerAccessEnabled(station.Comp);
+        return _prototype.TryIndex(station.Comp.Map, out var map) &&
+            !map.ExcludeFromFallbackSpawn &&
+            IsPlayerAccessEnabled(map);
+    }
+
+    public bool CanSpawnGameMap(GameMapPrototype gameMap)
+    {
+        foreach (var stationConfig in gameMap.Stations.Values)
+        {
+            if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out var hasPlayerJoinableMap))
+            {
+                if (hasPlayerJoinableMap)
+                    return false;
+
+                continue;
+            }
+
+            if (!IsPlayerAccessEnabled(map) && !map.SpawnWhenPlayerAccessDisabled)
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool IsGameMapPlayerCountEnabled(GameMapPrototype gameMap)
+    {
+        foreach (var stationConfig in gameMap.Stations.Values)
+        {
+            if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out _))
+                continue;
+
+            if (PlayerJoinableMapAccess.IsPlayerCountEnabled(map, _cfg, _player.PlayerCount))
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool TryGetGameMapAccessMinPlayers(GameMapPrototype gameMap, out int minPlayers)
+    {
+        minPlayers = int.MaxValue;
+        var foundMinPlayers = false;
+
+        foreach (var stationConfig in gameMap.Stations.Values)
+        {
+            if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out _))
+                continue;
+
+            if (PlayerJoinableMapAccess.IsExplicitlyEnabled(map, _cfg) ||
+                !PlayerJoinableMapAccess.TryGetMinPlayers(map, _cfg, out var mapMinPlayers) ||
+                mapMinPlayers < 0)
+            {
+                continue;
+            }
+
+            foundMinPlayers = true;
+            minPlayers = Math.Min(minPlayers, mapMinPlayers);
+        }
+
+        return foundMinPlayers;
     }
 
     public bool CanJoinAs(
@@ -50,10 +117,13 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         if (!TryComp<PlayerJoinableMapComponent>(station, out var playerJoinableMap))
             return true;
 
-        if (!IsPlayerJoinableMapJob(job))
+        if (!_prototype.TryIndex(playerJoinableMap.Map, out var map))
             return false;
 
-        return HasMatchingSpawnPoint(station, job, joinKind, playerJoinableMap);
+        if (!map.Jobs.Contains(job))
+            return false;
+
+        return HasMatchingSpawnPoint(station, job, joinKind, map);
     }
 
     public bool TryResolveJoinableStationForJob(
@@ -116,22 +186,11 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return false;
     }
 
-    private bool IsPlayerJoinableMapJob(ProtoId<JobPrototype> job)
-    {
-        foreach (var map in _prototype.EnumeratePrototypes<PlayerJoinableMapPrototype>())
-        {
-            if (map.Jobs.Contains(job))
-                return true;
-        }
-
-        return false;
-    }
-
     private bool HasMatchingSpawnPoint(
         EntityUid station,
         ProtoId<JobPrototype> job,
         PlayerJoinKind joinKind,
-        PlayerJoinableMapComponent playerJoinableMap)
+        PlayerJoinableMapPrototype playerJoinableMap)
     {
         var spawnPointType = joinKind switch
         {
@@ -161,26 +220,31 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return false;
     }
 
-    private bool IsPlayerAccessEnabled(PlayerJoinableMapComponent component)
+    private bool IsPlayerAccessEnabled(PlayerJoinableMapPrototype map)
     {
-        if (component.PlayerAccessEnabledCVar != null &&
-            _cfg.IsCVarRegistered(component.PlayerAccessEnabledCVar) &&
-            _cfg.GetCVar<bool>(component.PlayerAccessEnabledCVar))
+        return PlayerJoinableMapAccess.IsEnabled(map, _cfg, _player.PlayerCount);
+    }
+
+    private bool TryResolvePlayerJoinableMap(
+        EntProtoId stationPrototype,
+        out PlayerJoinableMapPrototype map,
+        out bool hasPlayerJoinableMap)
+    {
+        map = default!;
+        hasPlayerJoinableMap = false;
+
+        if (!_prototype.TryIndex<EntityPrototype>(stationPrototype, out var station) ||
+            !station.TryGetComponent<PlayerJoinableMapComponent>(out var component, Factory))
         {
-            return true;
+            return false;
         }
 
-        if (component.PlayerAccessMinPlayersCVar == null ||
-            !_cfg.IsCVarRegistered(component.PlayerAccessMinPlayersCVar))
-        {
-            return component.PlayerAccessEnabledCVar == null;
-        }
-
-        var minPlayers = _cfg.GetCVar<int>(component.PlayerAccessMinPlayersCVar);
-        if (minPlayers < 0)
+        hasPlayerJoinableMap = true;
+        if (!_prototype.TryIndex(component.Map, out PlayerJoinableMapPrototype? resolvedMap))
             return false;
 
-        return _player.PlayerCount >= minPlayers;
+        map = resolvedMap;
+        return true;
     }
 
     private static SpawnPointType GetSpawnPointType(PlayerJoinableMapSpawnPointType spawnPointType)

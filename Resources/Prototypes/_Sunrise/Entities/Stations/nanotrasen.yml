@@ -16,10 +16,7 @@
   components:
   - type: Transform
   - type: PlayerJoinableMap
-    playerAccessEnabledCVar: planet_prison.enable
-    playerAccessMinPlayersCVar: planet_prison.min_players
-    spawnWhenPlayerAccessDisabled: false
-    excludeFromFallbackSpawn: true
+    map: SunrisePlanetPrison
 
 - type: entity
   categories: [ HideSpawnMenu ]

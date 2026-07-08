@@ -2,7 +2,7 @@
   id: SunriseCentComm
   displayName: player-joinable-map-centcomm
   playerAccessEnabledCVar: centcomm.enabled
-  spawnWhenPlayerAccessDisabled: false
+  spawnWhenPlayerAccessDisabled: true
   order: 10
   jobs:
   - CentCommOperator

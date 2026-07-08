@@ -134,6 +134,4 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: PlayerJoinableMap
-    playerAccessEnabledCVar: centcomm.enabled
-    spawnWhenPlayerAccessDisabled: true
-    excludeFromFallbackSpawn: true
+    map: SunriseCentComm

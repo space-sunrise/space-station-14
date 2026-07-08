@@ -1,22 +1,20 @@
 ﻿using System.Numerics;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Server.Maps;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Shuttles;
-using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Light.Components;
 using Content.Shared.Maps;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -25,8 +23,6 @@ namespace Content.Server._Sunrise.PlanetPrison;
 // TODO: Рефактор с целью устранения варнингов и перехода системы на более современное API
 public sealed class PlanetPrisonStationSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MapSystem _map = default!;
@@ -37,6 +33,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
+    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMaps = default!;
 
     public override void Initialize()
     {
@@ -44,7 +41,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         SubscribeLocalEvent<PlanetPrisonStationComponent, ComponentInit>(OnPlanetPrisonStationInit);
         SubscribeLocalEvent<PlanetPrisonStationComponent, ComponentShutdown>(OnPrisonShutdown);
-        SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
+        SubscribeLocalEvent<PlayerJoinableMapLobbyJobsPreparingEvent>(OnPlayerJoinableMapLobbyJobsPreparing);
 
         Log.Level = LogLevel.Info;
     }
@@ -65,7 +62,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         TryActivatePlanetPrison((uid, component), false);
     }
 
-    private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent args)
+    private void OnPlayerJoinableMapLobbyJobsPreparing(PlayerJoinableMapLobbyJobsPreparingEvent args)
+    {
+        TryActivatePlanetPrisonForLobbyJobs();
+    }
+
+    private void TryActivatePlanetPrisonForLobbyJobs()
     {
         if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby)
             return;
@@ -82,30 +84,14 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         if (ent.Comp.MapId != MapId.Nullspace || ent.Comp.PrisonGrid != EntityUid.Invalid)
             return true;
 
-        var playerAccessEnabled = _cfg.GetCVar(SunriseCCVars.PlanetPrisonEnabled);
-        var minPlayers = _cfg.GetCVar(SunriseCCVars.MinPlayersPlanetPrison);
-        if (!playerAccessEnabled)
-        {
-            if (minPlayers < 0)
-                return false;
-
-            if (_player.PlayerCount < minPlayers)
-            {
-                if (!announceActivation)
-                {
-                    _chat.DispatchServerAnnouncement(
-                        Loc.GetString("planet-prison-not-enough-players", ("minimumPlayers", minPlayers)),
-                        Color.OrangeRed);
-                }
-
-                return false;
-            }
-        }
-
-        if (!AddPlanetPrison(ent.Comp))
+        if (!TryPickPlanetPrisonMap(ent.Comp, announceActivation, out var gameMap))
             return false;
 
-        if (announceActivation && !playerAccessEnabled)
+        var playerCountEnabled = _playerJoinableMaps.IsGameMapPlayerCountEnabled(gameMap);
+        if (!AddPlanetPrison(ent.Comp, gameMap))
+            return false;
+
+        if (announceActivation && playerCountEnabled)
         {
             _chat.DispatchServerAnnouncement(
                 Loc.GetString("player-joinable-map-module-activated",
@@ -117,7 +103,55 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         return true;
     }
 
-    private bool AddPlanetPrison(PlanetPrisonStationComponent component)
+    private bool TryPickPlanetPrisonMap(
+        PlanetPrisonStationComponent component,
+        bool announceActivation,
+        out GameMapPrototype gameMap)
+    {
+        gameMap = default!;
+
+        var maps = new List<GameMapPrototype>();
+        var minPlayers = int.MaxValue;
+        var blockedByMinPlayers = false;
+
+        foreach (var station in component.Stations)
+        {
+            if (!_protoManager.TryIndex(station, out var candidate))
+            {
+                Log.Warning("No Prison map found, skipping setup.");
+                continue;
+            }
+
+            if (_playerJoinableMaps.CanSpawnGameMap(candidate))
+            {
+                maps.Add(candidate);
+                continue;
+            }
+
+            if (!_playerJoinableMaps.TryGetGameMapAccessMinPlayers(candidate, out var requiredPlayers))
+                continue;
+
+            blockedByMinPlayers = true;
+            minPlayers = Math.Min(minPlayers, requiredPlayers);
+        }
+
+        if (maps.Count == 0)
+        {
+            if (blockedByMinPlayers && !announceActivation)
+            {
+                _chat.DispatchServerAnnouncement(
+                    Loc.GetString("planet-prison-not-enough-players", ("minimumPlayers", minPlayers)),
+                    Color.OrangeRed);
+            }
+
+            return false;
+        }
+
+        gameMap = _random.Pick(maps);
+        return true;
+    }
+
+    private bool AddPlanetPrison(PlanetPrisonStationComponent component, GameMapPrototype gameMap)
     {
         var query = AllEntityQuery<PlanetPrisonStationComponent>();
 
@@ -131,15 +165,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             return true;
         }
 
-        var station = _random.Pick(component.Stations);
-
         if (!_protoManager.TryIndex(_random.Pick(component.Biomes), out var biome))
-        {
-            Log.Warning("No Prison map found, skipping setup.");
-            return false;
-        }
-
-        if (!_protoManager.TryIndex(station, out var gameMap))
         {
             Log.Warning("No Prison map found, skipping setup.");
             return false;

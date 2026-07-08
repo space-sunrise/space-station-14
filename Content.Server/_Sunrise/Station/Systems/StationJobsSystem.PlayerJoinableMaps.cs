@@ -1,4 +1,5 @@
 using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
+using Content.Server.GameTicking;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
@@ -22,6 +23,11 @@ public sealed partial class StationJobsSystem
     public void RefreshPlayerJoinableMapJobsAvailable()
     {
         UpdateJobsAvailable();
+    }
+
+    partial void BeforeLobbyJobsSentPortal(PlayerJoinedLobbyEvent ev)
+    {
+        _playerJoinableMaps.PrepareLobbyJobs();
     }
 
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation)

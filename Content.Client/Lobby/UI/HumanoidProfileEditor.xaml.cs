@@ -1552,42 +1552,12 @@ namespace Content.Client.Lobby.UI
 
         private bool IsPlayerJoinableMapEnabled(PlayerJoinableMapPrototype map)
         {
-            if (map.PlayerAccessEnabledCVar != null &&
-                _cfgManager.IsCVarRegistered(map.PlayerAccessEnabledCVar) &&
-                _cfgManager.GetCVar<bool>(map.PlayerAccessEnabledCVar))
-            {
-                return true;
-            }
-
-            if (map.PlayerAccessMinPlayersCVar == null ||
-                !_cfgManager.IsCVarRegistered(map.PlayerAccessMinPlayersCVar))
-            {
-                return map.PlayerAccessEnabledCVar == null;
-            }
-
-            var minPlayers = _cfgManager.GetCVar<int>(map.PlayerAccessMinPlayersCVar);
-            if (minPlayers < 0)
-                return false;
-
-            return _playerManager.PlayerCount >= minPlayers;
+            return PlayerJoinableMapAccess.IsEnabled(map, _cfgManager, _playerManager.PlayerCount);
         }
 
         private bool IsPlayerJoinableMapAutoGated(PlayerJoinableMapPrototype map)
         {
-            if (map.PlayerAccessMinPlayersCVar == null ||
-                !_cfgManager.IsCVarRegistered(map.PlayerAccessMinPlayersCVar))
-            {
-                return false;
-            }
-
-            if (map.PlayerAccessEnabledCVar != null &&
-                _cfgManager.IsCVarRegistered(map.PlayerAccessEnabledCVar) &&
-                _cfgManager.GetCVar<bool>(map.PlayerAccessEnabledCVar))
-            {
-                return false;
-            }
-
-            return !IsPlayerJoinableMapEnabled(map);
+            return PlayerJoinableMapAccess.IsAutoGated(map, _cfgManager, _playerManager.PlayerCount);
         }
 
         private void SubscribePlayerJoinableMapBoolCVar(string? cvar)

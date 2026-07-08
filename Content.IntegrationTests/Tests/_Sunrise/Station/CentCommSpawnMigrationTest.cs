@@ -29,9 +29,12 @@ public sealed class CentCommSpawnMigrationTest
             Assert.That(centCommMap, Does.Contain("stationProto: SunriseNanotrasenCentralCommand"));
             Assert.That(stations, Does.Contain("id: SunriseNanotrasenCentralCommand"));
             Assert.That(stations, Does.Contain("- type: PlayerJoinableMap"));
-            Assert.That(stations, Does.Contain("playerAccessEnabledCVar: centcomm.enabled"));
-            Assert.That(stations, Does.Contain("spawnWhenPlayerAccessDisabled: true"));
+            Assert.That(stations, Does.Contain("map: SunriseCentComm"));
+            Assert.That(stations, Does.Not.Contain("playerAccessEnabledCVar: centcomm.enabled"));
+            Assert.That(stations, Does.Not.Contain("spawnWhenPlayerAccessDisabled: true"));
             Assert.That(playerJoinableMaps, Does.Contain("id: SunriseCentComm"));
+            Assert.That(playerJoinableMaps, Does.Contain("playerAccessEnabledCVar: centcomm.enabled"));
+            Assert.That(playerJoinableMaps, Does.Contain("spawnWhenPlayerAccessDisabled: true"));
             Assert.That(playerJoinableMaps, Does.Contain("- CentCommOperator"));
             Assert.That(playerJoinableMaps, Does.Not.Contain("CentCommOfficial"));
         });
@@ -111,7 +114,7 @@ public sealed class CentCommSpawnMigrationTest
     [Test]
     public void CentCommCVar_IsReplicatedForPlayerFacingUi()
     {
-        var cvars = ReadRepoFile("Content.Shared/_Sunrise/SunriseCCVars/SunriseCCVars.CentComm.cs");
+        var cvars = ReadRepoFile("Content.Shared/_Sunrise/SunriseCCVars/SunriseCCVars.PlayerJoinableMaps.cs");
 
         Assert.Multiple(() =>
         {

@@ -1,4 +1,5 @@
 using Content.Server.GameTicking;
+using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Sunrise.AlwaysPoweredMap;
@@ -13,6 +14,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMaps = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly MapSystem _map = default!;
@@ -66,6 +68,9 @@ public sealed partial class StationCentCommSystem : EntitySystem
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>(component.Station, out var gameMap))
             {
+                if (!_playerJoinableMaps.CanSpawnGameMap(gameMap))
+                    return;
+
                 _gameTicker.LoadGameMap(gameMap, out var mapId);
 
                 var mapEnt = _map.GetMapOrInvalid(mapId);

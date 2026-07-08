@@ -31,6 +31,7 @@ public sealed partial class StationJobsSystem : EntitySystem
     partial void InitializeStationJobsPortal();
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
     partial void FilterRoundStartJobSelectionPortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs);
+    partial void BeforeLobbyJobsSentPortal(PlayerJoinedLobbyEvent ev); // Sunrise-Edit
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -58,12 +59,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     public override void Update(float _)
     {
-        if (_availableJobsDirty)
-        {
-            _cachedAvailableJobs = GenerateJobsAvailableEvent();
-            RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
-            _availableJobsDirty = false;
-        }
+        FlushJobsAvailable();
     }
 
     private void OnStationDeletion(EntityUid uid, StationJobsComponent component, ComponentShutdown args)
@@ -528,7 +524,22 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
     {
+        // Sunrise added start - подготовка fork-карт перед отправкой lobby jobs
+        BeforeLobbyJobsSentPortal(ev);
+        FlushJobsAvailable();
+        // Sunrise added end
+
         RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
+    }
+
+    private void FlushJobsAvailable()
+    {
+        if (!_availableJobsDirty)
+            return;
+
+        _cachedAvailableJobs = GenerateJobsAvailableEvent();
+        RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
+        _availableJobsDirty = false;
     }
 
     private void OnStationRenamed(EntityUid uid, StationJobsComponent component, StationRenamedEvent args)

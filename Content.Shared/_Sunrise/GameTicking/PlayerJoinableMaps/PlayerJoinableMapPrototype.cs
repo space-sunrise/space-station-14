@@ -23,8 +23,23 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
     public bool SpawnWhenPlayerAccessDisabled;
 
     [DataField]
+    public bool ExcludeFromFallbackSpawn = true;
+
+    [DataField]
+    public PlayerJoinableMapSpawnPointType LateJoinSpawnPointType = PlayerJoinableMapSpawnPointType.Job;
+
+    [DataField]
+    public PlayerJoinableMapSpawnPointType RoundStartSpawnPointType = PlayerJoinableMapSpawnPointType.Job;
+
+    [DataField]
     public int Order;
 
     [DataField]
     public HashSet<ProtoId<JobPrototype>> Jobs = [];
+}
+
+public enum PlayerJoinableMapSpawnPointType
+{
+    Unset,
+    Job,
 }
