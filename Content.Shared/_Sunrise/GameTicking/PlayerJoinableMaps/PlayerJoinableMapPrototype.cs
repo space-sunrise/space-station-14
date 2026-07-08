@@ -14,10 +14,7 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
     public LocId DisplayName;
 
     [DataField]
-    public string? PlayerAccessEnabledCVar;
-
-    [DataField]
-    public string? PlayerAccessMinPlayersCVar;
+    public PlayerJoinableMapAccessType Access = PlayerJoinableMapAccessType.Always;
 
     [DataField]
     public bool SpawnWhenPlayerAccessDisabled;
@@ -42,4 +39,11 @@ public enum PlayerJoinableMapSpawnPointType
 {
     Unset,
     Job,
+}
+
+public enum PlayerJoinableMapAccessType
+{
+    Always,
+    CentComm,
+    PlanetPrison,
 }

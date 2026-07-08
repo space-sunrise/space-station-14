@@ -104,8 +104,8 @@ namespace Content.Client.Lobby.UI
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
         private readonly Dictionary<string, BoxContainer> _jobCategories;
-        private readonly Dictionary<string, Action<bool>> _playerJoinableMapBoolCVarHandlers = new();
-        private readonly Dictionary<string, Action<int>> _playerJoinableMapIntCVarHandlers = new();
+        private readonly Dictionary<CVarDef<bool>, Action<bool>> _playerJoinableMapBoolCVarHandlers = new();
+        private readonly Dictionary<CVarDef<int>, Action<int>> _playerJoinableMapIntCVarHandlers = new();
 
         private Direction _previewRotation = Direction.North;
 
@@ -1420,8 +1420,8 @@ namespace Content.Client.Lobby.UI
         {
             foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
             {
-                SubscribePlayerJoinableMapBoolCVar(map.PlayerAccessEnabledCVar);
-                SubscribePlayerJoinableMapIntCVar(map.PlayerAccessMinPlayersCVar);
+                SubscribePlayerJoinableMapBoolCVar(PlayerJoinableMapAccess.GetEnabledCVar(map));
+                SubscribePlayerJoinableMapIntCVar(PlayerJoinableMapAccess.GetMinPlayersCVar(map));
             }
         }
 
@@ -1560,10 +1560,9 @@ namespace Content.Client.Lobby.UI
             return PlayerJoinableMapAccess.IsAutoGated(map, _cfgManager, _playerManager.PlayerCount);
         }
 
-        private void SubscribePlayerJoinableMapBoolCVar(string? cvar)
+        private void SubscribePlayerJoinableMapBoolCVar(CVarDef<bool>? cvar)
         {
             if (cvar == null ||
-                !_cfgManager.IsCVarRegistered(cvar) ||
                 _playerJoinableMapBoolCVarHandlers.ContainsKey(cvar))
             {
                 return;
@@ -1574,10 +1573,9 @@ namespace Content.Client.Lobby.UI
             _playerJoinableMapBoolCVarHandlers.Add(cvar, handler);
         }
 
-        private void SubscribePlayerJoinableMapIntCVar(string? cvar)
+        private void SubscribePlayerJoinableMapIntCVar(CVarDef<int>? cvar)
         {
             if (cvar == null ||
-                !_cfgManager.IsCVarRegistered(cvar) ||
                 _playerJoinableMapIntCVarHandlers.ContainsKey(cvar))
             {
                 return;

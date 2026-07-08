@@ -1,7 +1,7 @@
 - type: playerJoinableMap
   id: SunriseCentComm
   displayName: player-joinable-map-centcomm
-  playerAccessEnabledCVar: centcomm.enabled
+  access: CentComm
   spawnWhenPlayerAccessDisabled: true
   order: 10
   jobs:
@@ -10,8 +10,7 @@
 - type: playerJoinableMap
   id: SunrisePlanetPrison
   displayName: player-joinable-map-planet-prison
-  playerAccessEnabledCVar: planet_prison.enable
-  playerAccessMinPlayersCVar: planet_prison.min_players
+  access: PlanetPrison
   spawnWhenPlayerAccessDisabled: false
   order: 20
   jobs:

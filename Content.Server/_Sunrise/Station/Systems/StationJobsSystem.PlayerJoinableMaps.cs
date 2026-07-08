@@ -2,6 +2,7 @@ using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Server.GameTicking;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.Roles;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 #pragma warning disable IDE0130 // Namespace не соответствует папке из-за partial-портала.
@@ -15,8 +16,8 @@ public sealed partial class StationJobsSystem
     {
         foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
         {
-            SubscribePlayerJoinableMapAccessCVar<bool>(map.PlayerAccessEnabledCVar);
-            SubscribePlayerJoinableMapAccessCVar<int>(map.PlayerAccessMinPlayersCVar);
+            SubscribePlayerJoinableMapAccessCVar(PlayerJoinableMapAccess.GetEnabledCVar(map));
+            SubscribePlayerJoinableMapAccessCVar(PlayerJoinableMapAccess.GetMinPlayersCVar(map));
         }
     }
 
@@ -43,10 +44,10 @@ public sealed partial class StationJobsSystem
         _playerJoinableMaps.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.RoundStart);
     }
 
-    private void SubscribePlayerJoinableMapAccessCVar<T>(string? cvar)
+    private void SubscribePlayerJoinableMapAccessCVar<T>(CVarDef<T>? cvar)
         where T : notnull
     {
-        if (cvar == null || !_configurationManager.IsCVarRegistered(cvar))
+        if (cvar == null)
             return;
 
         Subs.CVar<T>(_configurationManager, cvar, _ => UpdateJobsAvailable(), true);

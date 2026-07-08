@@ -1,4 +1,5 @@
 using Robust.Shared.Configuration;
+using SunriseCVars = Content.Shared._Sunrise.SunriseCCVars.SunriseCCVars;
 
 namespace Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 
@@ -13,7 +14,7 @@ public static class PlayerJoinableMapAccess
             return true;
 
         if (!TryGetMinPlayers(map, cfg, out var minPlayers))
-            return map.PlayerAccessEnabledCVar == null;
+            return GetEnabledCVar(map) == null;
 
         if (minPlayers < 0)
             return false;
@@ -23,9 +24,8 @@ public static class PlayerJoinableMapAccess
 
     public static bool IsExplicitlyEnabled(PlayerJoinableMapPrototype map, IConfigurationManager cfg)
     {
-        return map.PlayerAccessEnabledCVar != null &&
-            cfg.IsCVarRegistered(map.PlayerAccessEnabledCVar) &&
-            cfg.GetCVar<bool>(map.PlayerAccessEnabledCVar);
+        var cvar = GetEnabledCVar(map);
+        return cvar != null && cfg.GetCVar(cvar);
     }
 
     public static bool IsPlayerCountEnabled(
@@ -48,14 +48,31 @@ public static class PlayerJoinableMapAccess
         out int minPlayers)
     {
         minPlayers = default;
-        if (map.PlayerAccessMinPlayersCVar == null ||
-            !cfg.IsCVarRegistered(map.PlayerAccessMinPlayersCVar))
-        {
+        var cvar = GetMinPlayersCVar(map);
+        if (cvar == null)
             return false;
-        }
 
-        minPlayers = cfg.GetCVar<int>(map.PlayerAccessMinPlayersCVar);
+        minPlayers = cfg.GetCVar(cvar);
         return true;
+    }
+
+    public static CVarDef<bool>? GetEnabledCVar(PlayerJoinableMapPrototype map)
+    {
+        return map.Access switch
+        {
+            PlayerJoinableMapAccessType.CentComm => SunriseCVars.CentCommEnabled,
+            PlayerJoinableMapAccessType.PlanetPrison => SunriseCVars.PlanetPrisonEnabled,
+            _ => null,
+        };
+    }
+
+    public static CVarDef<int>? GetMinPlayersCVar(PlayerJoinableMapPrototype map)
+    {
+        return map.Access switch
+        {
+            PlayerJoinableMapAccessType.PlanetPrison => SunriseCVars.MinPlayersPlanetPrison,
+            _ => null,
+        };
     }
 
     public static bool IsAutoGated(

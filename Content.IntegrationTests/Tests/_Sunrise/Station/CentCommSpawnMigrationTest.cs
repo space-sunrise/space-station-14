@@ -1,10 +1,16 @@
 using System.IO;
+using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._Sunrise.Station;
 
 [TestFixture]
 public sealed class CentCommSpawnMigrationTest
 {
+    private static readonly ProtoId<PlayerJoinableMapPrototype> SunriseCentCommMap = "SunriseCentComm";
+    private static readonly ProtoId<PlayerJoinableMapPrototype> SunrisePlanetPrisonMap = "SunrisePlanetPrison";
+
     [Test]
     public void PlayerJoinableMapFiles_Exist()
     {
@@ -33,11 +39,40 @@ public sealed class CentCommSpawnMigrationTest
             Assert.That(stations, Does.Not.Contain("playerAccessEnabledCVar: centcomm.enabled"));
             Assert.That(stations, Does.Not.Contain("spawnWhenPlayerAccessDisabled: true"));
             Assert.That(playerJoinableMaps, Does.Contain("id: SunriseCentComm"));
-            Assert.That(playerJoinableMaps, Does.Contain("playerAccessEnabledCVar: centcomm.enabled"));
+            Assert.That(playerJoinableMaps, Does.Contain("access: CentComm"));
+            Assert.That(playerJoinableMaps, Does.Not.Contain("playerAccessEnabledCVar"));
+            Assert.That(playerJoinableMaps, Does.Not.Contain("playerAccessMinPlayersCVar"));
             Assert.That(playerJoinableMaps, Does.Contain("spawnWhenPlayerAccessDisabled: true"));
             Assert.That(playerJoinableMaps, Does.Contain("- CentCommOperator"));
             Assert.That(playerJoinableMaps, Does.Not.Contain("CentCommOfficial"));
         });
+    }
+
+    [Test]
+    public async Task PlayerJoinableMapPrototypes_LoadAccessAndTypedCVars()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+
+        try
+        {
+            var centComm = pair.Server.ProtoMan.Index(SunriseCentCommMap);
+            var planetPrison = pair.Server.ProtoMan.Index(SunrisePlanetPrisonMap);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(centComm.Access, Is.EqualTo(PlayerJoinableMapAccessType.CentComm));
+                Assert.That(PlayerJoinableMapAccess.GetEnabledCVar(centComm), Is.SameAs(SunriseCCVars.CentCommEnabled));
+                Assert.That(PlayerJoinableMapAccess.GetMinPlayersCVar(centComm), Is.Null);
+
+                Assert.That(planetPrison.Access, Is.EqualTo(PlayerJoinableMapAccessType.PlanetPrison));
+                Assert.That(PlayerJoinableMapAccess.GetEnabledCVar(planetPrison), Is.SameAs(SunriseCCVars.PlanetPrisonEnabled));
+                Assert.That(PlayerJoinableMapAccess.GetMinPlayersCVar(planetPrison), Is.SameAs(SunriseCCVars.MinPlayersPlanetPrison));
+            });
+        }
+        finally
+        {
+            await pair.CleanReturnAsync();
+        }
     }
 
     [Test]
