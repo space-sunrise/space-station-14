@@ -18,12 +18,19 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly StationSystem _station = default!;
 
+    /// <summary>
+    /// Raises the event that lets map systems activate joinable stations before lobby jobs are built.
+    /// </summary>
     public void PrepareLobbyJobs()
     {
         var ev = new PlayerJoinableMapLobbyJobsPreparingEvent();
         RaiseLocalEvent(ev);
     }
 
+    /// <summary>
+    /// Returns whether players may currently use this station according to the map access rules, without
+    /// applying SpawnWhenPlayerAccessDisabled.
+    /// </summary>
     public bool CanUseStationForPlayerAccess(Entity<PlayerJoinableMapComponent?> station)
     {
         if (!Resolve(station, ref station.Comp, false))
@@ -33,6 +40,9 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
             IsPlayerAccessEnabled(map);
     }
 
+    /// <summary>
+    /// Returns whether this station can be selected by fallback spawn logic.
+    /// </summary>
     public bool CanFallbackSpawn(Entity<PlayerJoinableMapComponent?> station)
     {
         if (!Resolve(station, ref station.Comp, false))
@@ -43,6 +53,10 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
             IsPlayerAccessEnabled(map);
     }
 
+    /// <summary>
+    /// Returns whether all player-joinable stations in the game map may be spawned right now, honoring
+    /// SpawnWhenPlayerAccessDisabled.
+    /// </summary>
     public bool CanSpawnGameMap(GameMapPrototype gameMap)
     {
         foreach (var stationConfig in gameMap.Stations.Values)
@@ -62,6 +76,10 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Returns whether any joinable station in the game map became available because the player count
+    /// gate was met.
+    /// </summary>
     public bool IsGameMapPlayerCountEnabled(GameMapPrototype gameMap)
     {
         foreach (var stationConfig in gameMap.Stations.Values)
@@ -76,6 +94,9 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Gets the lowest configured player-count requirement among the map's joinable stations.
+    /// </summary>
     public bool TryGetGameMapAccessMinPlayers(GameMapPrototype gameMap, out int minPlayers)
     {
         minPlayers = int.MaxValue;
@@ -100,6 +121,9 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return foundMinPlayers;
     }
 
+    /// <summary>
+    /// Returns whether the given job can be joined on the station for the requested join flow.
+    /// </summary>
     public bool CanJoinAs(
         Entity<StationJobsComponent?> station,
         ProtoId<JobPrototype> job,
@@ -126,6 +150,10 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return HasMatchingSpawnPoint(station, job, joinKind, map);
     }
 
+    /// <summary>
+    /// Finds a station where the job can be joined, while also reporting a station where the job exists
+    /// but is blocked.
+    /// </summary>
     public bool TryResolveJoinableStationForJob(
         ProtoId<JobPrototype> job,
         PlayerJoinKind joinKind,
@@ -153,6 +181,9 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Removes jobs from the collection that cannot be joined on the station for the requested join flow.
+    /// </summary>
     public void FilterAvailableJobs(
         Entity<StationJobsComponent?> station,
         Dictionary<ProtoId<JobPrototype>, int?> jobs,
@@ -172,6 +203,9 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Returns whether the job collection contains any job reserved for a player-joinable map.
+    /// </summary>
     public bool HasAnyPlayerJoinableJob(IReadOnlyDictionary<ProtoId<JobPrototype>, int?> jobs)
     {
         foreach (var map in _prototype.EnumeratePrototypes<PlayerJoinableMapPrototype>())

@@ -47,8 +47,9 @@ public sealed partial class StationSpawningSystem
         if (_sponsorsManager != null && session != null)
         {
             var maxDescLength = _sponsorsManager.GetSizeFlavor(session.UserId);
+            flavorText = FormattedMessage.RemoveMarkupOrThrow(flavorText);
             if (flavorText.Length > maxDescLength)
-                flavorText = FormattedMessage.RemoveMarkupOrThrow(flavorText)[..maxDescLength];
+                flavorText = flavorText[..maxDescLength];
         }
 
         if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly) ||

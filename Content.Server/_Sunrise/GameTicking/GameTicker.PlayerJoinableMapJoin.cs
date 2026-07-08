@@ -7,7 +7,7 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMaps = default!;
+    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMap = default!;
 
     internal bool TryPreparePlayerJoinableMapJoin(ICommonSession player, string? jobId, ref EntityUid station)
     {
@@ -19,14 +19,14 @@ public sealed partial class GameTicker
 
         if (station != EntityUid.Invalid)
         {
-            if (_playerJoinableMaps.CanJoinAs((station, null), job.ID, PlayerJoinKind.LateJoin))
+            if (_playerJoinableMap.CanJoinAs((station, null), job.ID, PlayerJoinKind.LateJoin))
                 return true;
 
             NotifyJoinGameJobUnavailable(player, station, job);
             return false;
         }
 
-        if (_playerJoinableMaps.TryResolveJoinableStationForJob(job.ID, PlayerJoinKind.LateJoin, out var resolvedStation, out var unavailableStation))
+        if (_playerJoinableMap.TryResolveJoinableStationForJob(job.ID, PlayerJoinKind.LateJoin, out var resolvedStation, out var unavailableStation))
         {
             station = resolvedStation;
             return true;

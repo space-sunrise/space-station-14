@@ -33,7 +33,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMaps = default!;
+    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMap = default!;
 
     public override void Initialize()
     {
@@ -87,7 +87,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         if (!TryPickPlanetPrisonMap(ent.Comp, announceActivation, out var gameMap))
             return false;
 
-        var playerCountEnabled = _playerJoinableMaps.IsGameMapPlayerCountEnabled(gameMap);
+        var playerCountEnabled = _playerJoinableMap.IsGameMapPlayerCountEnabled(gameMap);
         if (!AddPlanetPrison(ent.Comp, gameMap))
             return false;
 
@@ -122,13 +122,13 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 continue;
             }
 
-            if (_playerJoinableMaps.CanSpawnGameMap(candidate))
+            if (_playerJoinableMap.CanSpawnGameMap(candidate))
             {
                 maps.Add(candidate);
                 continue;
             }
 
-            if (!_playerJoinableMaps.TryGetGameMapAccessMinPlayers(candidate, out var requiredPlayers))
+            if (!_playerJoinableMap.TryGetGameMapAccessMinPlayers(candidate, out var requiredPlayers))
                 continue;
 
             blockedByMinPlayers = true;

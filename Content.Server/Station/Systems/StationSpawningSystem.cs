@@ -30,7 +30,9 @@ namespace Content.Server.Station.Systems;
 /// Also provides helpers for spawning in the player's mob.
 /// </summary>
 [PublicAPI]
+// Sunrise added start - partial class для fork-порталов спавна персонажа
 public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
+// Sunrise added end
 {
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly ActorSystem _actors = default!;
@@ -45,10 +47,12 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 
     private bool _randomizeCharacters;
 
+    // Sunrise added start - порталы для fork-логики спавна персонажа
     partial void InitializeStationSpawningPortal();
     partial void GetEffectiveRoleLoadoutPortal(string jobLoadout, ref ProtoId<RoleLoadoutPrototype> effectiveJobLoadout);
     partial void GetDefaultLoadoutPrototypeIdsPortal(EntityUid? entity, ref string[] prototypeIds);
     partial void TryApplyFlavorTextPortal(EntityUid entity, HumanoidCharacterProfile profile);
+    // Sunrise added end
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -111,11 +115,12 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         // Need to get the loadout up-front to handle names if we use an entity spawn override.
         var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
 
-        // Sunrise added start - портал для fork-подмены role loadout
+        // Sunrise edit start - портал для fork-подмены role loadout
         ProtoId<RoleLoadoutPrototype> effectiveJobLoadout = jobLoadout;
         GetEffectiveRoleLoadoutPortal(jobLoadout, ref effectiveJobLoadout);
-        // Sunrise added end
+        // if (_prototypeManager.TryIndex<RoleLoadoutPrototype>(jobLoadout, out var roleProto))
         if (_prototypeManager.TryIndex<RoleLoadoutPrototype>(effectiveJobLoadout, out var roleProto))
+        // Sunrise edit end
         {
             profile?.Loadouts.TryGetValue(jobLoadout, out loadout);
 

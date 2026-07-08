@@ -59,7 +59,15 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     public override void Update(float _)
     {
+        // Sunrise edit start - отложенная отправка списка latejoin ролей
+        // if (_availableJobsDirty)
+        // {
+        //     _cachedAvailableJobs = GenerateJobsAvailableEvent();
+        //     RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
+        //     _availableJobsDirty = false;
+        // }
         FlushJobsAvailable();
+        // Sunrise edit end
     }
 
     private void OnStationDeletion(EntityUid uid, StationJobsComponent component, ComponentShutdown args)
@@ -532,6 +540,7 @@ public sealed partial class StationJobsSystem : EntitySystem
         RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
     }
 
+    // Sunrise added start - отложенная регенерация и рассылка списка latejoin ролей
     private void FlushJobsAvailable()
     {
         if (!_availableJobsDirty)
@@ -541,6 +550,7 @@ public sealed partial class StationJobsSystem : EntitySystem
         RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
         _availableJobsDirty = false;
     }
+    // Sunrise added end
 
     private void OnStationRenamed(EntityUid uid, StationJobsComponent component, StationRenamedEvent args)
     {

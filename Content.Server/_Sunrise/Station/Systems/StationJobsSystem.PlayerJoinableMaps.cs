@@ -10,7 +10,7 @@ namespace Content.Server.Station.Systems;
 
 public sealed partial class StationJobsSystem
 {
-    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMaps = default!;
+    [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMap = default!;
 
     partial void InitializeStationJobsPortal()
     {
@@ -28,20 +28,20 @@ public sealed partial class StationJobsSystem
 
     partial void BeforeLobbyJobsSentPortal(PlayerJoinedLobbyEvent ev)
     {
-        _playerJoinableMaps.PrepareLobbyJobs();
+        _playerJoinableMap.PrepareLobbyJobs();
     }
 
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation)
     {
-        _playerJoinableMaps.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.LateJoin);
-        skipStation = jobs.Count == 0 && _playerJoinableMaps.HasAnyPlayerJoinableJob(GetJobs(station));
+        _playerJoinableMap.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.LateJoin);
+        skipStation = jobs.Count == 0 && _playerJoinableMap.HasAnyPlayerJoinableJob(GetJobs(station));
     }
 
     partial void FilterRoundStartJobSelectionPortal(
         EntityUid station,
         Dictionary<ProtoId<JobPrototype>, int?> jobs)
     {
-        _playerJoinableMaps.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.RoundStart);
+        _playerJoinableMap.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.RoundStart);
     }
 
     private void SubscribePlayerJoinableMapAccessCVar<T>(CVarDef<T>? cvar)

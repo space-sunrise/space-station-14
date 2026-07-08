@@ -7,6 +7,6 @@ public sealed partial class GameTicker
 {
     partial void FilterFallbackSpawnableStationsPortal(List<EntityUid> stations)
     {
-        stations.RemoveAll(station => !_playerJoinableMaps.CanFallbackSpawn((station, null)));
+        stations.RemoveAll(station => !_playerJoinableMap.CanFallbackSpawn((station, null)));
     }
 }
