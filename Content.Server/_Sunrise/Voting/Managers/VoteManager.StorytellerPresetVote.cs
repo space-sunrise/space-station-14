@@ -20,6 +20,7 @@ public sealed partial class VoteManager
     private Dictionary<string, string> GetSunriseStorytellerPresetsForVote()
     {
         var playerCount = _playerManager.PlayerCount;
+        var excludedPresets = _entityManager.System<GameTicker>().ExcludedPresets.ToHashSet();
 
         var result = new Dictionary<string, string>();
         var storytellerPool = new Dictionary<string, int[]>();
@@ -28,6 +29,9 @@ public sealed partial class VoteManager
 
         foreach (var (presetId, limits) in storytellerPool)
         {
+            if (excludedPresets.Contains(presetId))
+                continue;
+
             if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
                 continue;
 
@@ -61,7 +65,7 @@ public sealed partial class VoteManager
 
             foreach (var (presetId, limits) in presetPoolProto.Presets)
             {
-                if (StorytellerPresetHelper.ShouldBypassExclusion(presetId))
+                if (StorytellerPresetHelper.IsStorytellerPreset(presetId))
                     continue;
 
                 if (excludedPresets != null && excludedPresets.Contains(presetId))

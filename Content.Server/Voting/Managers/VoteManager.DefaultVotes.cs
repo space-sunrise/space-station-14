@@ -681,7 +681,7 @@ namespace Content.Server.Voting.Managers
                 foreach (var (presetId, limits) in poolPresets)
                 {
                     // Sunrise-Start
-                    if (!_Sunrise.Storyteller.StorytellerPresetHelper.ShouldBypassExclusion(presetId) && excluded.Contains(presetId))
+                    if (excluded.Contains(presetId))
                         continue;
                     // Sunrise-End
 

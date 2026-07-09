@@ -85,7 +85,7 @@ public static class StorytellerPresetHelper
         }
     }
 
-    public static bool ShouldBypassExclusion(string presetId)
+    public static bool IsStorytellerPreset(string presetId)
     {
         return presetId == StorytellerClassicId || presetId == StorytellerCalmId || presetId == StorytellerInsaneId;
     }
