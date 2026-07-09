@@ -52,17 +52,25 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
 
     public bool TryStopPullAnimation(EntityUid puller, EntityUid pulled)
     {
-        if (!CanPlayPullAnimation(puller, pulled))
+        if (!CanStopPullAnimation(pulled))
             return false;
 
         RemComp<ActivePullingAnimationComponent>(pulled);
-        DoPullLunge(puller, pulled, null);
+
+        if (Exists(puller))
+            DoPullLunge(puller, pulled, null);
+
         return true;
     }
 
     public bool CanPlayPullAnimation(EntityUid puller, EntityUid pulled)
     {
         return Exists(puller) && Exists(pulled);
+    }
+
+    public bool CanStopPullAnimation(EntityUid pulled)
+    {
+        return Exists(pulled);
     }
 
     private void DoPullLunge(EntityUid puller, EntityUid pulled, SoundSpecifier? sound)
