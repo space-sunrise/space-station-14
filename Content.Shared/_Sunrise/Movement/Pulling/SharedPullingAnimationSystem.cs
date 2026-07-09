@@ -14,13 +14,6 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private const string PullEffect = "SunriseEffectGrab";
-
-    private readonly SoundSpecifier _pullSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg")
-    {
-        Params = AudioParams.Default.WithVariation(0.05f),
-    };
-
     public override void Initialize()
     {
         base.Initialize();
@@ -52,8 +45,8 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
         if (!CanPlayPullAnimation(puller, pulled))
             return false;
 
-        DoPullLunge(puller, pulled, true);
-        EnsureComp<ActivePullingAnimationComponent>(pulled);
+        var active = EnsureComp<ActivePullingAnimationComponent>(pulled);
+        DoPullLunge(puller, pulled, active.PullSound);
         return true;
     }
 
@@ -63,7 +56,7 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
             return false;
 
         RemComp<ActivePullingAnimationComponent>(pulled);
-        DoPullLunge(puller, pulled, false);
+        DoPullLunge(puller, pulled, null);
         return true;
     }
 
@@ -72,18 +65,19 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
         return Exists(puller) && Exists(pulled);
     }
 
-    private void DoPullLunge(EntityUid puller, EntityUid pulled, bool playSound)
+    private void DoPullLunge(EntityUid puller, EntityUid pulled, SoundSpecifier? sound)
     {
         var localPos = GetPullLocalPosition(puller, pulled);
         _melee.DoLunge(puller, puller, Angle.Zero, localPos, null);
 
-        if (playSound)
-            _audio.PlayPredicted(_pullSound, pulled, puller);
+        if (sound != null)
+            _audio.PlayPredicted(sound, pulled, puller);
     }
 
     private void OnAnimationStartup(Entity<ActivePullingAnimationComponent> ent, ref ComponentStartup args)
     {
-        ent.Comp.Effect = PredictedSpawnAttachedTo(PullEffect, ent.Owner.ToCoordinates());
+        ent.Comp.Effect = PredictedSpawnAttachedTo(ent.Comp.EffectPrototype, ent.Owner.ToCoordinates());
+        Dirty(ent);
     }
 
     private void OnAnimationShutdown(Entity<ActivePullingAnimationComponent> ent, ref ComponentShutdown args)
@@ -93,6 +87,7 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
 
         PredictedQueueDel(effect);
         ent.Comp.Effect = null;
+        Dirty(ent);
     }
 
     private Vector2 GetPullLocalPosition(EntityUid puller, EntityUid pulled)
