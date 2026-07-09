@@ -3,6 +3,7 @@ using Content.Server.GameTicking;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #pragma warning disable IDE0130 // Namespace не соответствует папке из-за partial-портала.
@@ -51,5 +52,15 @@ public sealed partial class StationJobsSystem
             return;
 
         Subs.CVar<T>(_configurationManager, cvar, _ => UpdateJobsAvailable(), true);
+    }
+
+    partial void FlushJobsAvailablePortal()
+    {
+        if (!_availableJobsDirty)
+            return;
+
+        _cachedAvailableJobs = GenerateJobsAvailableEvent();
+        RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
+        _availableJobsDirty = false;
     }
 }

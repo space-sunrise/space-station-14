@@ -32,6 +32,10 @@ public sealed partial class StationJobsSystem : EntitySystem
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
     partial void FilterRoundStartJobSelectionPortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs);
     partial void BeforeLobbyJobsSentPortal(PlayerJoinedLobbyEvent ev); // Sunrise-Edit
+    partial void FlushJobsAvailablePortal();
+    partial void InitializeRoundStartPortal();
+    partial void PickRoundStartRoleSessionPortal(HashSet<NetUserId> players, ProtoId<JobPrototype> job, ref NetUserId? player, ref bool handled);
+    partial void FilterJobCandidatePortal(JobPrototype job, HumanoidCharacterProfile profile, ref bool canUseJob);
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -66,7 +70,7 @@ public sealed partial class StationJobsSystem : EntitySystem
         //     RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
         //     _availableJobsDirty = false;
         // }
-        FlushJobsAvailable();
+        FlushJobsAvailablePortal();
         // Sunrise edit end
     }
 
@@ -534,23 +538,11 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         // Sunrise added start - подготовка fork-карт перед отправкой lobby jobs
         BeforeLobbyJobsSentPortal(ev);
-        FlushJobsAvailable();
+        FlushJobsAvailablePortal();
         // Sunrise added end
 
         RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
     }
-
-    // Sunrise added start - отложенная регенерация и рассылка списка latejoin ролей
-    private void FlushJobsAvailable()
-    {
-        if (!_availableJobsDirty)
-            return;
-
-        _cachedAvailableJobs = GenerateJobsAvailableEvent();
-        RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
-        _availableJobsDirty = false;
-    }
-    // Sunrise added end
 
     private void OnStationRenamed(EntityUid uid, StationJobsComponent component, StationRenamedEvent args)
     {
