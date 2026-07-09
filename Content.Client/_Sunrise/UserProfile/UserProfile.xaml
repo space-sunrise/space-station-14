@@ -87,6 +87,9 @@
                     <Button Name="InfoSponsorButton"
                             HorizontalExpand="True"
                             Text="{Loc 'user-profile-sponsor-info-button'}" />
+                    <Button Name="PersonalizeSponsorButton"
+                            HorizontalExpand="True"
+                            Text="{Loc 'user-profile-sponsor-personalize-button'}" />
                     <Button Name="BuySponsorButton"
                             HorizontalExpand="True"
                             Text="{Loc 'user-profile-sponsor-buy-button'}" />

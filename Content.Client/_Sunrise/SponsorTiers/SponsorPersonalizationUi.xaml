@@ -1,0 +1,16 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="{Loc sponsor-personalization-title}"
+               MinSize="400 220">
+    <BoxContainer Orientation="Vertical" SeparationOverride="12" Margin="12,12,12,12" VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="10" HorizontalExpand="True">
+            <Label Text="{Loc 'sponsor-personalization-ooc-title'}" Width="150" />
+            <OptionButton Name="OocTitleOptionButton" HorizontalExpand="True" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="10" HorizontalExpand="True">
+            <Label Text="{Loc 'sponsor-personalization-ooc-color'}" Width="150" />
+            <OptionButton Name="OocColorOptionButton" HorizontalExpand="True" />
+        </BoxContainer>
+        <CheckBox Name="LobbyTtsCheckBox" Text="{Loc 'sponsor-lobby-tts-enable'}" />
+    </BoxContainer>
+</DefaultWindow>

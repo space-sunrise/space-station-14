@@ -17,6 +17,12 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Chat;
+// Sunrise added start - дополнительные пространства имен для озвучки лобби и админ-чата
+using Content.Server.Preferences.Managers;
+using Content.Server._Sunrise.PlayerCache;
+using Content.Shared.Preferences;
+using Content.Server.Administration.Managers;
+// Sunrise added end
 
 namespace Content.Server._Sunrise.TTS;
 
@@ -30,6 +36,12 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _rng = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeakerSystem = default!;
+    // Sunrise added start - зависимости для озвучки лобби и админ-чата
+    [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
+    [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
+    // Sunrise added end
 
     private readonly List<string> _sampleText =
         new()
@@ -391,6 +403,81 @@ public sealed partial class TTSSystem : EntitySystem
 
         return null;
     }
+
+    // Sunrise added start - методы озвучки сообщений лобби и админ-чата
+    public async Task PlayLobbyTTS(ICommonSession player, string message)
+    {
+        if (!_isEnabled)
+            return;
+
+        var pref = _preferencesManager.GetPreferences(player.UserId);
+        if (pref.SelectedCharacter is not HumanoidCharacterProfile humanoidProfile)
+            return;
+
+        var voiceId = humanoidProfile.Voice;
+        if (!GetVoicePrototype(voiceId, out var protoVoice))
+            return;
+
+        var soundData = await GenerateTTS(message, protoVoice);
+        if (soundData is null)
+            return;
+
+        var recipients = new List<ICommonSession>();
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (_ignoredRecipients.Contains(session))
+                continue;
+
+            if (!_playerCacheManager.GetLobbyOthersTtsEnabled(session.UserId))
+                continue;
+
+            recipients.Add(session);
+        }
+
+        if (recipients.Count == 0)
+            return;
+
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, false), Filter.Empty().AddPlayers(recipients));
+    }
+
+    public async Task PlayAdminChatTTS(ICommonSession player, string message)
+    {
+        if (!_isEnabled)
+            return;
+
+        var pref = _preferencesManager.GetPreferences(player.UserId);
+        if (pref.SelectedCharacter is not HumanoidCharacterProfile humanoidProfile)
+            return;
+
+        var voiceId = humanoidProfile.Voice;
+        if (!GetVoicePrototype(voiceId, out var protoVoice))
+            return;
+
+        var soundData = await GenerateTTS(message, protoVoice);
+        if (soundData is null)
+            return;
+
+        var recipients = new List<ICommonSession>();
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (_ignoredRecipients.Contains(session))
+                continue;
+
+            if (!_adminManager.IsAdmin(session))
+                continue;
+
+            if (!_playerCacheManager.GetAdminChatTtsEnabled(session.UserId))
+                continue;
+
+            recipients.Add(session);
+        }
+
+        if (recipients.Count == 0)
+            return;
+
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, false), Filter.Empty().AddPlayers(recipients));
+    }
+    // Sunrise added end
 }
 
 public sealed class TransformSpeakerVoiceEvent : EntityEventArgs

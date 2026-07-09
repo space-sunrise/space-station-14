@@ -112,6 +112,38 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> SponsorMinPlaytimeHours =
         CVarDef.Create("sponsor.min_playtime_hours", 0, CVar.SERVERONLY | CVar.ARCHIVE);
 
+    // Sunrise added start - настройки озвучки лобби и админ-чата
+    /// <summary>
+    /// Включена ли озвучка сообщений лобби у спонсора.
+    /// </summary>
+    public static readonly CVarDef<bool> SponsorLobbyTtsEnabled =
+        CVarDef.Create("sponsor.lobby_tts_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Включена ли озвучка сообщений других игроков в лобби.
+    /// </summary>
+    public static readonly CVarDef<bool> TTSLobbyOthersEnabled =
+        CVarDef.Create("tts.lobby_others_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Включена ли озвучка сообщений в админ-чате.
+    /// </summary>
+    public static readonly CVarDef<bool> TTSAdminChatEnabled =
+        CVarDef.Create("tts.admin_chat_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Выбранный OOC тайтл спонсора.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorOocTitle =
+        CVarDef.Create("sponsor.ooc_title", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Выбранный цвет ника спонсора в OOC.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorOocColor =
+        CVarDef.Create("sponsor.ooc_color", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+    // Sunrise added end
+
     /*
      *  Приветствия
      */

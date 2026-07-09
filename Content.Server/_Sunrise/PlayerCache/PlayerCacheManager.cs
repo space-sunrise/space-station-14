@@ -78,4 +78,55 @@ public sealed class PlayerCacheManager
 
         return InteractionsCVars.EmoteVisibility.DefaultValue;
     }
+
+    // Sunrise added start - методы для получения настроек озвучки из кэша
+    public bool GetLobbyTtsEnabled(NetUserId userId)
+    {
+        if (_cache.TryGetValue(userId, out var data) && data.LobbyTtsEnabled.HasValue)
+        {
+            return data.LobbyTtsEnabled.Value;
+        }
+        return true;
+    }
+
+    public bool GetLobbyOthersTtsEnabled(NetUserId userId)
+    {
+        if (_cache.TryGetValue(userId, out var data) && data.LobbyOthersTtsEnabled.HasValue)
+        {
+            return data.LobbyOthersTtsEnabled.Value;
+        }
+        return true;
+    }
+
+    public bool GetAdminChatTtsEnabled(NetUserId userId)
+    {
+        if (_cache.TryGetValue(userId, out var data) && data.AdminChatTtsEnabled.HasValue)
+        {
+            return data.AdminChatTtsEnabled.Value;
+        }
+        return true;
+    }
+
+    public bool TryGetOocTitle(NetUserId userId, [NotNullWhen(true)] out string? title)
+    {
+        if (_cache.TryGetValue(userId, out var data) && !string.IsNullOrEmpty(data.OocTitle))
+        {
+            title = data.OocTitle;
+            return true;
+        }
+        title = null;
+        return false;
+    }
+
+    public bool TryGetOocColor(NetUserId userId, [NotNullWhen(true)] out string? color)
+    {
+        if (_cache.TryGetValue(userId, out var data) && !string.IsNullOrEmpty(data.OocColor))
+        {
+            color = data.OocColor;
+            return true;
+        }
+        color = null;
+        return false;
+    }
+    // Sunrise added end
 }

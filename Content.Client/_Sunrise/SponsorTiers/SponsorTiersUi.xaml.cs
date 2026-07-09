@@ -24,4 +24,13 @@ public sealed partial class SponsorTiersUi : DefaultWindow
     {
 
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (disposing)
+        {
+            _serversHubManager.ServersDataListChanged -= RefreshServersHubHeader;
+        }
+    }
 }

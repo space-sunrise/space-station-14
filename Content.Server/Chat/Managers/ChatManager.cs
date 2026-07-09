@@ -19,6 +19,12 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+// Sunrise added start - дополнительные пространства имен для озвучки лобби и админ-чата
+using Content.Server.GameTicking;
+using Content.Server._Sunrise.PlayerCache;
+using Content.Server._Sunrise.TTS;
+using Content.Shared._Sunrise.SunriseCCVars;
+// Sunrise added end
 
 namespace Content.Server.Chat.Managers;
 
@@ -46,6 +52,9 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
+    // Sunrise added start - зависимость для озвучки лобби и админ-чата
+    [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
+    // Sunrise added end
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Edit - логика OOC-оформления для спонсоров
 
     /// <summary>
@@ -287,6 +296,12 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         Color? colorOverride = null;
+        var allowedOocEmoji = _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(player.UserId);
+        if (!allowedOocEmoji)
+        {
+            message = global::System.Text.RegularExpressions.Regex.Replace(message, @"(?<![a-zA-Z0-9_]):([^\s:]+):(?![a-zA-Z0-9_])", ":\u200b$1\u200b:");
+        }
+
         var escapedMessage = FormattedMessage.EscapeText(message);
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", player.Name), ("message", escapedMessage));
 
@@ -299,16 +314,23 @@ internal sealed partial class ChatManager : IChatManager
         // Sunrise added start - логика OOC-оформления для спонсоров
         string? sponsorTitle = null;
         Color? sponsorColor = null;
+        string? sponsorEmoji = null;
 
         if (_sponsorsManager != null)
         {
             _sponsorsManager.TryGetOocTitle(player.UserId, out sponsorTitle);
             _sponsorsManager.TryGetOocColor(player.UserId, out sponsorColor);
+            _sponsorsManager.TryGetOocEmoji(player.UserId, out sponsorEmoji);
         }
 
         var sponsorDisplayName = string.IsNullOrWhiteSpace(sponsorTitle)
             ? player.Name
             : FormatTitledDisplayName(sponsorTitle, player.Name);
+
+        if (!string.IsNullOrWhiteSpace(sponsorEmoji))
+        {
+            sponsorDisplayName = $"{sponsorEmoji} {sponsorDisplayName}";
+        }
 
         if (sponsorColor != null)
         {
@@ -348,6 +370,18 @@ internal sealed partial class ChatManager : IChatManager
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
         _discordLink.SendMessage(message, player.Name, ChatChannel.OOC);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"OOC from {player:Player}: {message}");
+
+        // Sunrise added start - озвучка OOC-сообщений в лобби
+        var gameTicker = _entityManager.System<GameTicker>();
+        if (gameTicker.RunLevel == GameRunLevel.PreRoundLobby && _sponsorsManager != null)
+        {
+            if (_sponsorsManager.IsAllowedLobbyTts(player.UserId) && _playerCacheManager.GetLobbyTtsEnabled(player.UserId))
+            {
+                var ttsSystem = _entityManager.System<TTSSystem>();
+                ttsSystem.PlayLobbyTTS(player, message);
+            }
+        }
+        // Sunrise added end
     }
 
     private void SendAdminChat(ICommonSession player, string message)
@@ -379,6 +413,11 @@ internal sealed partial class ChatManager : IChatManager
 
         _discordLink.SendMessage(message, player.Name, ChatChannel.AdminChat);
         _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
+
+        // Sunrise added start - озвучка сообщений в админ-чате
+        var adminTtsSystem = _entityManager.System<TTSSystem>();
+        adminTtsSystem.PlayAdminChatTTS(player, message);
+        // Sunrise added end
     }
 
     #endregion

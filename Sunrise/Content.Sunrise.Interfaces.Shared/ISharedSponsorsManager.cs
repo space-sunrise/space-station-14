@@ -19,6 +19,11 @@ public interface ISharedSponsorsManager
     public bool ClientAllowedRespawn();
     public bool ClientAllowedFlavor();
     public int ClientGetSizeFlavor();
+    // Sunrise added start - методы для проверки доступа к озвучке лобби на клиенте
+    public bool ClientAllowedLobbyTts();
+    public List<string> GetAllowedOocTitles();
+    public List<string> GetAllowedOocColors();
+    // Sunrise added end
 
     public bool ClientIsSponsor();
     public List<SponsorInfo> GetSponsorTiers();
@@ -32,6 +37,11 @@ public interface ISharedSponsorsManager
     public bool TryGetBypassRoles(NetUserId userId, [NotNullWhen(true)] out List<string>? bypassRoles);
     public int GetSizeFlavor(NetUserId userId);
     public bool IsAllowedFlavor(NetUserId userId);
+    // Sunrise added start - метод для проверки доступа к озвучке лобби на сервере
+    public bool IsAllowedLobbyTts(NetUserId userId);
+    public bool IsAllowedOocEmoji(NetUserId userId);
+    public bool TryGetOocEmoji(NetUserId userId, [NotNullWhen(true)] out string? emoji);
+    // Sunrise added end
     public int GetExtraCharSlots(NetUserId userId);
     public bool HavePriorityJoin(NetUserId userId);
     public bool IsSponsor(NetUserId userId);
@@ -86,6 +96,23 @@ public sealed class SponsorInfo
 
     [JsonPropertyName("allowedVoices")]
     public string[] AllowedVoices { get; set; } = [];
+
+    // Sunrise added start - булево свойство озвучки лобби
+    [JsonPropertyName("allowedLobbyTts")]
+    public bool AllowedLobbyTts { get; set; } = false;
+
+    [JsonPropertyName("allowedOocTitles")]
+    public string[] AllowedOocTitles { get; set; } = [];
+
+    [JsonPropertyName("allowedOocColors")]
+    public string[] AllowedOocColors { get; set; } = [];
+
+    [JsonPropertyName("allowedOocEmoji")]
+    public bool AllowedOocEmoji { get; set; } = false;
+
+    [JsonPropertyName("oocEmoji")]
+    public string? OocEmoji { get; set; }
+    // Sunrise added end
 
     [JsonPropertyName("allowedLoadouts")]
     public string[] AllowedLoadouts { get; set; } = [];

@@ -22,6 +22,7 @@ public sealed partial class UserProfile : Control
 
     private readonly UserProfileAccountInfoUIController _accountInfoUIController;
     private readonly SponsorTiersUIController _sponsorTiersUIController;
+    private readonly SponsorPersonalizationUIController _personalizationUIController;
     private readonly ISharedAccountBindingsManager? _accountBindingsManager;
     private readonly ISharedSponsorsManager? _sponsorsManager;
 
@@ -40,11 +41,13 @@ public sealed partial class UserProfile : Control
 
         _accountInfoUIController = UserInterfaceManager.GetUIController<UserProfileAccountInfoUIController>();
         _sponsorTiersUIController = UserInterfaceManager.GetUIController<SponsorTiersUIController>();
+        _personalizationUIController = UserInterfaceManager.GetUIController<SponsorPersonalizationUIController>();
 
         ManageAccountButton.OnPressed += ManageAccountPressed;
         AccountInfoButton.OnPressed += AccountInfoPressed;
         BuySponsorButton.OnPressed += BuySponsorPressed;
         InfoSponsorButton.OnPressed += InfoSponsorPressed;
+        PersonalizeSponsorButton.OnPressed += PersonalizeSponsorPressed;
 
         if (_accountBindingsManager != null)
             _accountBindingsManager.BindingsChanged += OnBindingsChanged;
@@ -188,6 +191,8 @@ public sealed partial class UserProfile : Control
         var sponsorActionsAvailable = _sponsorEnabled && _sponsorsManager != null;
         InfoSponsorButton.Disabled = !sponsorActionsAvailable;
         BuySponsorButton.Disabled = !sponsorActionsAvailable || string.IsNullOrWhiteSpace(_donateUrl);
+        var isSponsor = _sponsorsManager?.ClientIsSponsor() ?? false;
+        PersonalizeSponsorButton.Disabled = !sponsorActionsAvailable || !isSponsor;
     }
 
     private void RefreshResponsiveLayout()
@@ -223,5 +228,10 @@ public sealed partial class UserProfile : Control
     private void InfoSponsorPressed(BaseButton.ButtonEventArgs args)
     {
         _sponsorTiersUIController.ToggleWindow();
+    }
+
+    private void PersonalizeSponsorPressed(BaseButton.ButtonEventArgs args)
+    {
+        _personalizationUIController.ToggleWindow();
     }
 }
