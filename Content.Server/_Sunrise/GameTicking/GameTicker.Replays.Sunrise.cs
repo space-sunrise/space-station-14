@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Transfer;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
@@ -12,13 +13,13 @@ public sealed partial class GameTicker
 {
     private void UploadReplayToS3(IWritableDirProvider directory, ResPath path)
     {
-        if (!_cfg.GetCVar(CCVars.ReplayS3UploadEnabled))
+        if (!_cfg.GetCVar(SunriseCCVars.ReplayS3UploadEnabled))
             return;
 
-        var endpoint = _cfg.GetCVar(CCVars.ReplayS3Endpoint);
-        var bucket = _cfg.GetCVar(CCVars.ReplayS3Bucket);
-        var accessKey = _cfg.GetCVar(CCVars.ReplayS3AccessKey);
-        var secretKey = _cfg.GetCVar(CCVars.ReplayS3SecretKey);
+        var endpoint = _cfg.GetCVar(SunriseCCVars.ReplayS3Endpoint);
+        var bucket = _cfg.GetCVar(SunriseCCVars.ReplayS3Bucket);
+        var accessKey = _cfg.GetCVar(SunriseCCVars.ReplayS3AccessKey);
+        var secretKey = _cfg.GetCVar(SunriseCCVars.ReplayS3SecretKey);
 
         if (string.IsNullOrEmpty(bucket) || string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey))
         {
