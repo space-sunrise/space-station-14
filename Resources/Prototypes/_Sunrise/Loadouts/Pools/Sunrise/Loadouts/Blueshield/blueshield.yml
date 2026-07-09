@@ -1,5 +1,23 @@
 
 - type: loadoutEffectGroup
+  id: BlueShieldLoadout20Hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 20h
+
+- type: loadoutEffectGroup
+  id: BlueShieldLoadout100Hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 100h
+
+- type: loadoutEffectGroup
   id: MisterBlueShit
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -25,6 +43,35 @@
       !type:RoleTimeRequirement
       role: JobBlueShield
       time: 50h
+
+- type: loadout
+  id: BlueShieldBeret
+  equipment:
+    head: ClothingHeadHatBeretBlueShield
+
+- type: loadout
+  id: BlueShieldSwatHelmet
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BlueShieldLoadout20Hours
+  equipment:
+    head: ClothingHeadHelmetSwat
+
+- type: loadout
+  id: BlueShieldTSFMarineHelmet
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BlueShieldLoadout20Hours
+  equipment:
+    head: ClothingHeadHelmetTSF
+
+- type: loadout
+  id: BlueShieldTSFMARSOCHelmet
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BlueShieldLoadout100Hours
+  equipment:
+    head: ClothingHeadHelmetHardsuitTSF
 
 - type: loadout
   id: BlueShieldBackpack
