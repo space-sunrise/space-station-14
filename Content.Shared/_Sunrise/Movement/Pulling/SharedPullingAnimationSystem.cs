@@ -94,8 +94,6 @@ public sealed class SharedPullingAnimationSystem : EntitySystem
             return;
 
         PredictedQueueDel(effect);
-        ent.Comp.Effect = null;
-        Dirty(ent);
     }
 
     private Vector2 GetPullLocalPosition(EntityUid puller, EntityUid pulled)
