@@ -7,9 +7,9 @@ namespace Content.Server._Sunrise.Storyteller;
 
 public static class StorytellerPresetHelper
 {
-    public static readonly string StorytellerClassicId = "StorytellerClassic";
-    public static readonly string StorytellerCalmId = "StorytellerCalm";
-    public static readonly string StorytellerInsaneId = "StorytellerInsane";
+    public const string StorytellerClassicId = "StorytellerClassic";
+    public const string StorytellerCalmId = "StorytellerCalm";
+    public const string StorytellerInsaneId = "StorytellerInsane";
 
     private static readonly ProtoId<GamePresetPoolPrototype> PoolPrototypeId = "StorytellerPresetPool";
 

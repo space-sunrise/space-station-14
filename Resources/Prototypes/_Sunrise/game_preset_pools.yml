@@ -47,6 +47,6 @@
 - type: gamePresetPool
   id: StorytellerPresetPool
   presets:
-    StorytellerClassic: [30, 300]
+    StorytellerClassic: [60, 300]
     StorytellerCalm: [0, 300]
-    StorytellerInsane: [60, 300]
+    StorytellerInsane: [80, 300]

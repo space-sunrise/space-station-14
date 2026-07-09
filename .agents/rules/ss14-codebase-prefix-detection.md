@@ -61,6 +61,14 @@ Select the comment syntax to match the file language:
 ## 5. How does this affect the structure of edits?
 
 1. Place new forked files in the corresponding project folder of the current fork.
-2. Mark minimal hooks in vanilla files with the edit marker of the current fork.
-3. Don't put the Sunrise code in `_Scp` and don't use `Fire edit` in `_Sunrise`.
-4. If a project is already mixing historical marker variants within one fork, for new edits follow the closest local style of that fork, but do not switch to markers from another fork.
+2. В vanilla-файлах допустимы только минимальные hook-правки с edit marker текущего форка.
+3. Если тот же результат можно получить без изменения vanilla-файла или вставкой hook внутрь существующего vanilla-блока, запрещено удалять, переписывать или структурно заменять этот блок целиком.
+4. Поведенчески эквивалентная замена vanilla-кода helper-вызовом считается недопустимой, если она увеличивает diff churn или ухудшает будущий upstream merge.
+5. Don't put the Sunrise code in `_Scp` and don't use `Fire edit` in `_Sunrise`.
+6. If a project is already mixing historical marker variants within one fork, for new edits follow the closest local style of that fork, but do not switch to markers from another fork.
+
+## 6. Review gate for vanilla edits
+
+1. Для каждого изменённого файла вне fork-папки reviewer обязан отдельно проверить, можно ли было решить задачу целиком в `_Sunrise`.
+2. Если изменение vanilla-файла всё же необходимо, reviewer обязан проверить, что hook минимален, а исходная структура vanilla-кода сохранена настолько, насколько это возможно.
+3. Нарушение этих условий нужно репортить как issue даже тогда, когда runtime-поведение и продуктовый результат выглядят корректными.

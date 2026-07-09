@@ -229,6 +229,9 @@ namespace Content.Server.Voting.Managers
 
         private void CreatePresetVote(ICommonSession? initiator)
         {
+            if (TryCreateSunriseTwoStagePresetVote(initiator)) // Sunrise-Edit
+                return;
+
             var presets = GetGamePresetsSunrise(); // Sunrise-Edit
 
             // Sunrise-Start
