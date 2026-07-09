@@ -39,7 +39,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PlanetPrisonStationComponent, ComponentInit>(OnPlanetPrisonStationInit);
         SubscribeLocalEvent<PlanetPrisonStationComponent, ComponentShutdown>(OnPrisonShutdown);
         SubscribeLocalEvent<PlayerJoinableMapLobbyJobsPreparingEvent>(OnPlayerJoinableMapLobbyJobsPreparing);
 
@@ -55,11 +54,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             _mapManager.DeleteMap(component.MapId);
 
         component.MapId = MapId.Nullspace;
-    }
-
-    private void OnPlanetPrisonStationInit(EntityUid uid, PlanetPrisonStationComponent component, ComponentInit args)
-    {
-        TryActivatePlanetPrison((uid, component), false);
     }
 
     private void OnPlayerJoinableMapLobbyJobsPreparing(PlayerJoinableMapLobbyJobsPreparingEvent args)

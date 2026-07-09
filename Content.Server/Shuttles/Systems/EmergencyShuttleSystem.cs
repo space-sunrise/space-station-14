@@ -21,6 +21,7 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.AlwaysPoweredMap;
+using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared._Sunrise.UnbuildableGrid;
 using Content.Shared.Access.Systems;
 using Content.Shared.Atmos;
@@ -445,6 +446,11 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
     private void OnStationStartup(Entity<StationEmergencyShuttleComponent> ent, ref StationPostInitEvent args)
     {
+        // Sunrise edit start - доп-карты не должны получать эвакуационные шаттлы
+        if (HasComp<PlayerJoinableMapComponent>(ent))
+            return;
+        // Sunrise edit end
+
         AddEmergencyShuttle((ent, ent));
     }
 
@@ -474,6 +480,11 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         while (query.MoveNext(out var uid, out var comp))
         {
+            // Sunrise edit start - доп-карты не участвуют в эвакуационном шаттле
+            if (HasComp<PlayerJoinableMapComponent>(uid))
+                continue;
+            // Sunrise edit end
+
             if (DockSingleEmergencyShuttle(uid, comp) is { } dockResult)
                 dockResults.Add(dockResult);
         }
@@ -519,6 +530,11 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         while (query.MoveNext(out var uid, out var comp))
         {
+            // Sunrise edit start - доп-карты не должны получать эвакуационные шаттлы
+            if (HasComp<PlayerJoinableMapComponent>(uid))
+                continue;
+            // Sunrise edit end
+
             AddEmergencyShuttle((uid, comp));
         }
     }
@@ -533,6 +549,11 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         if (!_emergencyShuttleEnabled)
             return;
+
+        // Sunrise edit start - доп-карты не должны получать эвакуационные шаттлы
+        if (HasComp<PlayerJoinableMapComponent>(ent))
+            return;
+        // Sunrise edit end
 
         if (ent.Comp1.EmergencyShuttle != null)
         {

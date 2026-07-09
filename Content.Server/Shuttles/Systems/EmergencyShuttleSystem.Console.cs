@@ -5,6 +5,7 @@ using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Access;
+using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
@@ -167,6 +168,11 @@ public sealed partial class EmergencyShuttleSystem
 
             while (dataQuery.MoveNext(out var stationUid, out var comp))
             {
+                // Sunrise edit start - доп-карты не участвуют в эвакуационном шаттле
+                if (HasComp<PlayerJoinableMapComponent>(stationUid))
+                    continue;
+                // Sunrise edit end
+
                 if (!TryComp<ShuttleComponent>(comp.EmergencyShuttle, out var shuttle) ||
                     !TryComp<StationTransitHubComponent>(stationUid, out var transitHub)) // Sunrise-Edit
                 {
