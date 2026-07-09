@@ -103,28 +103,34 @@ public sealed partial class GameTicker
         if (data.State is not ReplayRecordState state)
             return;
 
+        // Sunrise edit start - Загрузка реплея из временной или основной папки
+        ResPath uploadPath;
         if (state.MoveToPath == null)
-            return;
-
-        _sawmillReplays.Info($"Moving replay into final position: {state.MoveToPath}");
-        _taskManager.BlockWaitOnTask(_replays.WaitWriteTasks());
-        DebugTools.Assert(!_replays.IsWriting());
-
-        try
         {
-            if (!data.Directory.Exists(state.MoveToPath.Value.Directory))
-                data.Directory.CreateDir(state.MoveToPath.Value.Directory);
+            uploadPath = data.Path;
         }
-        catch (UnauthorizedAccessException e)
+        else
         {
-            _sawmillReplays.Error($"Error creating replay directory {state.MoveToPath.Value.Directory}: {e}");
+            _sawmillReplays.Info($"Moving replay into final position: {state.MoveToPath}");
+            _taskManager.BlockWaitOnTask(_replays.WaitWriteTasks());
+            DebugTools.Assert(!_replays.IsWriting());
+
+            try
+            {
+                if (!data.Directory.Exists(state.MoveToPath.Value.Directory))
+                    data.Directory.CreateDir(state.MoveToPath.Value.Directory);
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                _sawmillReplays.Error($"Error creating replay directory {state.MoveToPath.Value.Directory}: {e}");
+            }
+
+            data.Directory.Rename(data.Path, state.MoveToPath.Value);
+            uploadPath = state.MoveToPath.Value;
         }
 
-        data.Directory.Rename(data.Path, state.MoveToPath.Value);
-
-        // Sunrise-Start
-        UploadReplayToS3(data.Directory, state.MoveToPath.Value);
-        // Sunrise-End
+        UploadReplayToS3(data.Directory, uploadPath);
+        // Sunrise edit end
     }
 
     private void ReplaysOnRecordingStopped(MappingDataNode metadata)

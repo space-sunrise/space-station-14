@@ -117,6 +117,10 @@ namespace Content.Server.GameTicking
             base.Shutdown();
 
             ShutdownGameRules();
+
+            // Sunrise edit start - Завершение работы очереди загрузки реплеев
+            ShutdownReplaysSunrise();
+            // Sunrise edit end
         }
 
         private void SendServerMessage(string message)
