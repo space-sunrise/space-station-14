@@ -23,6 +23,10 @@ public sealed partial class GameTicker
     {
         _replays.RecordingFinished += ReplaysOnRecordingFinished;
         _replays.RecordingStopped += ReplaysOnRecordingStopped;
+
+        // Sunrise-Start
+        CleanupTempReplays();
+        // Sunrise-End
     }
 
     /// <summary>
@@ -117,6 +121,10 @@ public sealed partial class GameTicker
         }
 
         data.Directory.Rename(data.Path, state.MoveToPath.Value);
+
+        // Sunrise-Start
+        UploadReplayToS3(data.Directory, state.MoveToPath.Value);
+        // Sunrise-End
     }
 
     private void ReplaysOnRecordingStopped(MappingDataNode metadata)
@@ -138,13 +146,16 @@ public sealed partial class GameTicker
 
         var time = DateTime.UtcNow;
 
+        // Sunrise-Start
         var interpolated = cfgValue
             .Replace("{year}", time.Year.ToString("D4"))
             .Replace("{month}", time.Month.ToString("D2"))
             .Replace("{day}", time.Day.ToString("D2"))
             .Replace("{hour}", time.Hour.ToString("D2"))
             .Replace("{minute}", time.Minute.ToString("D2"))
-            .Replace("{round}", RoundId.ToString());
+            .Replace("{round}", RoundId.ToString())
+            .Replace("{server_id}", _cfg.GetCVar(CCVars.ServerId));
+        // Sunrise-End
 
         return new ResPath(interpolated);
     }
