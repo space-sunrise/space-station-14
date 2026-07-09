@@ -38,6 +38,7 @@ namespace Content.Server.GameTicking
 
         partial void FilterFallbackSpawnableStationsPortal(List<EntityUid> stations);
         partial void ResolveDirectSpawnStationPortal(ICommonSession player, string? jobId, ref EntityUid station, ref bool handled);
+        partial void FilterCanBeAntagPortal(EntityUid station, ref bool canBeAntag);
         partial void SelectSpawnPointTypePortal(JobPrototype job, bool lateJoin, ref SpawnPointType spawnPointType);
         partial void BeforePlayerSpawnProfilePortal(ICommonSession player);
         partial void AfterPlayerMobSpawnedPortal(ICommonSession player, EntityUid station, EntityUid mob);
@@ -201,6 +202,10 @@ namespace Content.Server.GameTicking
             ResolveDirectSpawnStationPortal(player, jobId, ref station, ref directSpawnStationHandled);
             if (directSpawnStationHandled)
                 return;
+            // Sunrise added end
+
+            // Sunrise added start - запрет antag selection для отдельных fork-станций
+            FilterCanBeAntagPortal(station, ref canBeAntag);
             // Sunrise added end
 
             // Sunrise added start - портал для fork-учета перед выбором профиля спавна

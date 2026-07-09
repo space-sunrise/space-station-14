@@ -12,6 +12,7 @@
   displayName: player-joinable-map-planet-prison
   access: PlanetPrison
   spawnWhenPlayerAccessDisabled: false
+  canBeAntag: false
   order: 20
   jobs:
   - HeadOfPrison

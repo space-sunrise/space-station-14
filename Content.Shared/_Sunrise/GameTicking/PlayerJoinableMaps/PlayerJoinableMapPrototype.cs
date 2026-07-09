@@ -23,6 +23,9 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
     public bool ExcludeFromFallbackSpawn = true;
 
     [DataField]
+    public bool CanBeAntag = true;
+
+    [DataField]
     public PlayerJoinableMapSpawnPointType LateJoinSpawnPointType = PlayerJoinableMapSpawnPointType.Job;
 
     [DataField]

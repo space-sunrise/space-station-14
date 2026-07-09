@@ -54,6 +54,18 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns whether players spawned on this station may be selected as antagonists.
+    /// </summary>
+    public bool CanBeAntag(Entity<PlayerJoinableMapComponent?> station)
+    {
+        if (!Resolve(station, ref station.Comp, false))
+            return true;
+
+        return _prototype.TryIndex(station.Comp.Map, out var map) &&
+            map.CanBeAntag;
+    }
+
+    /// <summary>
     /// Returns whether all player-joinable stations in the game map may be spawned right now, honoring
     /// SpawnWhenPlayerAccessDisabled.
     /// </summary>

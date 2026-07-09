@@ -44,4 +44,13 @@ public sealed partial class GameTicker
     {
         handled = !TryPreparePlayerJoinableMapJoin(player, jobId, ref station);
     }
+
+    partial void FilterCanBeAntagPortal(EntityUid station, ref bool canBeAntag)
+    {
+        if (!canBeAntag)
+            return;
+
+        if (!_playerJoinableMap.CanBeAntag((station, null)))
+            canBeAntag = false;
+    }
 }

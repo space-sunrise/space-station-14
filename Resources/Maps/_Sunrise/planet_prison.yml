@@ -45302,7 +45302,6 @@ entities:
     - type: Transform
       pos: 32.04467,62.506115
       parent: 2
-    - type: Blocking
 - proto: ClockworkWindow
   entities:
   - uid: 4585
