@@ -1,0 +1,289 @@
+- type: entity
+  id: SunrisePoweredLightTubeSparkVisuals
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    - map: ["sunrisePoweredLightSparks"]
+      state: spark-sparks1
+      shader: unshaded
+      visible: false
+    state: base
+  - type: SunrisePoweredLightSparks
+    sparkSprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
+    states:
+    - spark-light1
+    - spark-light2
+    - spark-light3
+    - spark-light4
+    - spark-sparks1
+    - spark-sparks2
+
+- type: entity
+  id: SunrisePoweredSmallLightSparkVisuals
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    - map: ["sunrisePoweredLightSparks"]
+      state: spark-sparks1
+      shader: unshaded
+      visible: false
+    state: base
+  - type: SunrisePoweredLightSparks
+    sparkSprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
+    states:
+    - spark-light1
+    - spark-sparks1
+    - spark-sparks2
+
+- type: entity
+  id: SunrisePoweredStrobeLightSparkVisuals
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    - map: ["sunrisePoweredLightSparks"]
+      state: spark-sparks1
+      shader: unshaded
+      visible: false
+    state: base
+  - type: SunrisePoweredLightSparks
+    sparkSprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
+    states:
+    - spark-light1
+    - spark-sparks1
+
+- type: entity
+  id: SunrisePoweredlightEmpty
+  parent:
+  - PoweredlightEmpty
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredWallLight
+  parent:
+  - AlwaysPoweredWallLight
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlight
+  parent:
+  - Poweredlight
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightLED
+  parent:
+  - PoweredlightLED
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightExterior
+  parent:
+  - PoweredlightExterior
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightSodium
+  parent:
+  - PoweredlightSodium
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredLightLED
+  parent:
+  - AlwaysPoweredLightLED
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredLightExterior
+  parent:
+  - AlwaysPoweredLightExterior
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredLightSodium
+  parent:
+  - AlwaysPoweredLightSodium
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightCyan
+  parent:
+  - PoweredlightCyan
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightBlue
+  parent:
+  - PoweredlightBlue
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightYellow
+  parent:
+  - PoweredlightYellow
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightPink
+  parent:
+  - PoweredlightPink
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightOrange
+  parent:
+  - PoweredlightOrange
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightBlack
+  parent:
+  - PoweredlightBlack
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightRed
+  parent:
+  - PoweredlightRed
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunrisePoweredlightGreen
+  parent:
+  - PoweredlightGreen
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightCyan
+  parent:
+  - AlwaysPoweredlightCyan
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightBlue
+  parent:
+  - AlwaysPoweredlightBlue
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightYellow
+  parent:
+  - AlwaysPoweredlightYellow
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightPink
+  parent:
+  - AlwaysPoweredlightPink
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightOrange
+  parent:
+  - AlwaysPoweredlightOrange
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightBlack
+  parent:
+  - AlwaysPoweredlightBlack
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightRed
+  parent:
+  - AlwaysPoweredlightRed
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredlightGreen
+  parent:
+  - AlwaysPoweredlightGreen
+  - SunrisePoweredLightTubeSparkVisuals
+
+- type: entity
+  id: SunriseSmallLight
+  parent:
+  - SmallLight
+  - SunrisePoweredSmallLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredSmallLightEmpty
+  parent:
+  - PoweredSmallLightEmpty
+  - SunrisePoweredSmallLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredDimSmallLight
+  parent:
+  - PoweredDimSmallLight
+  - SunrisePoweredSmallLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredWarmSmallLight
+  parent:
+  - PoweredWarmSmallLight
+  - SunrisePoweredSmallLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredSmallLight
+  parent:
+  - PoweredSmallLight
+  - SunrisePoweredSmallLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredStrobeLightEmpty
+  parent:
+  - PoweredStrobeLightEmpty
+  - SunrisePoweredStrobeLightSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredStrobeLight
+  parent:
+  - AlwaysPoweredStrobeLight
+  - SunrisePoweredStrobeLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredStrobeLightPolice
+  parent:
+  - PoweredStrobeLightPolice
+  - SunrisePoweredStrobeLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredStrobeLightSiren
+  parent:
+  - PoweredStrobeLightSiren
+  - SunrisePoweredStrobeLightSparkVisuals
+
+- type: entity
+  id: SunrisePoweredStrobeLightEpsilon
+  parent:
+  - PoweredStrobeLightEpsilon
+  - SunrisePoweredStrobeLightSparkVisuals
+
+- type: entity
+  id: SunriseAlwaysPoweredStrobeDimLight
+  parent:
+  - AlwaysPoweredStrobeDimLight
+  - SunrisePoweredStrobeLightSparkVisuals

@@ -1,5 +1,5 @@
 - type: entity
-  parent: PoweredlightEmpty
+  parent: SunrisePoweredlightEmpty
   name: abductor lamp
   description: Modern and economical
   id: AbductorLamp

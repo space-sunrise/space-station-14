@@ -3,7 +3,7 @@
   id: PoweredlightUV
   description: "A light fixture. Draws power and produces light when equipped with a light tube."
   suffix: UV
-  parent: Poweredlight
+  parent: SunrisePoweredlight
   components:
   - type: PoweredLight
     hasLampOnSpawn: UvLightTube
@@ -21,7 +21,7 @@
 - type: entity
   id: AlwaysPoweredLightUV
   suffix: Always Powered, UV
-  parent: AlwaysPoweredWallLight
+  parent: SunriseAlwaysPoweredWallLight
   components:
   - type: PointLight
     radius: 10
