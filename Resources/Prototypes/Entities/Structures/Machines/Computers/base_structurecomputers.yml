@@ -16,6 +16,12 @@
     containers:
       - board
   - type: Computer
+  # Sunrise-Edit
+  - type: MachineSparks
+    impactEffects:
+    - EffectSunriseMachineSparks1
+    lowHealthEffects:
+    - EffectSunriseMachineSparks1
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver

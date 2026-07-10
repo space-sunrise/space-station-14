@@ -25,6 +25,14 @@
         maxDistance: 4
         pitch: 0.7
   - type: MaterialStorage
+  # Sunrise-Edit
+  - type: MachineSparks
+    impactEffects:
+    - EffectSunriseMachineSparks2
+    - EffectSunriseMachineSparks3
+    lowHealthEffects:
+    - EffectSunriseMachineSparks2
+    - EffectSunriseMachineSparks3
   - type: Destructible
     thresholds:
     - trigger:

@@ -10,6 +10,10 @@
     - map: ["enum.PoweredLightLayers.Glow"]
       state: glow
       shader: unshaded
+    - map: ["sunrisePoweredLightFlicker"]
+      state: spark-light1
+      shader: unshaded
+      visible: false
     - map: ["sunrisePoweredLightSparks"]
       state: spark-sparks1
       shader: unshaded
@@ -22,6 +26,7 @@
     - spark-light2
     - spark-light3
     - spark-light4
+    sparkStates:
     - spark-sparks1
     - spark-sparks2
 
@@ -37,6 +42,10 @@
     - map: ["enum.PoweredLightLayers.Glow"]
       state: glow
       shader: unshaded
+    - map: ["sunrisePoweredLightFlicker"]
+      state: spark-light1
+      shader: unshaded
+      visible: false
     - map: ["sunrisePoweredLightSparks"]
       state: spark-sparks1
       shader: unshaded
@@ -46,6 +55,7 @@
     sparkSprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
     states:
     - spark-light1
+    sparkStates:
     - spark-sparks1
     - spark-sparks2
 
@@ -61,6 +71,10 @@
     - map: ["enum.PoweredLightLayers.Glow"]
       state: glow
       shader: unshaded
+    - map: ["sunrisePoweredLightFlicker"]
+      state: spark-light1
+      shader: unshaded
+      visible: false
     - map: ["sunrisePoweredLightSparks"]
       state: spark-sparks1
       shader: unshaded
@@ -70,6 +84,7 @@
     sparkSprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
     states:
     - spark-light1
+    sparkStates:
     - spark-sparks1
 
 - type: entity
