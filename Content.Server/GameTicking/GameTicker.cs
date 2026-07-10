@@ -118,9 +118,9 @@ namespace Content.Server.GameTicking
 
             ShutdownGameRules();
 
-            // Sunrise edit start - Завершение работы очереди загрузки реплеев
+            // Sunrise added start - Завершение работы очереди загрузки реплеев
             ShutdownReplaysSunrise();
-            // Sunrise edit end
+            // Sunrise added end
         }
 
         private void SendServerMessage(string message)
