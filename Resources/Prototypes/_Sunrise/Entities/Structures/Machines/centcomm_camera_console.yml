@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseComputer
+  id: CentCommCameraMonitor
+  name: central command camera monitor
+  description: A camera monitor with access to all station cameras across all sectors.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: cameras
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: CentCommCameraMonitorCircuitboard
+  - type: GlobalSurveillanceCameraMonitor
+  - type: ActivatableUI
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: ActivatableUIRequiresVision
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: GlobalSurveillanceCameraMonitorBoundUserInterface
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: Transform
+    anchored: true

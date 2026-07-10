@@ -1,0 +1,10 @@
+- type: entity
+  id: CentCommCameraMonitorCircuitboard
+  parent: BaseComputerCircuitboard
+  name: central command camera monitor board
+  description: A computer circuit board for a camera monitor used at Central Command.
+  components:
+  - type: Sprite
+    state: cpu_command
+  - type: ComputerBoard
+    prototype: CentCommCameraMonitor
