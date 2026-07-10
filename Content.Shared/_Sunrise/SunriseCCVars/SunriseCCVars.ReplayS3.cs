@@ -32,5 +32,5 @@ public sealed partial class SunriseCCVars
     ///     Secret access key for authentication in Wasabi S3.
     /// </summary>
     public static readonly CVarDef<string> ReplayS3SecretKey =
-        CVarDef.Create("replay.s3_secret_key", "", CVar.SERVERONLY);
+        CVarDef.Create("replay.s3_secret_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 }
