@@ -1,8 +1,8 @@
 - type: entity
-  id: BaseTail
-  name: "tail"
-  parent: BasePart
+  id: OrganBaseTail
+  parent: OrganBase
+  name: tail
   abstract: true
   components:
-  - type: BodyPart
-    partType: Tail
+  - type: Organ
+    category: Tail

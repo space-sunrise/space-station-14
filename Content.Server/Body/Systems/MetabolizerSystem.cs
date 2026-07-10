@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Events;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Prototypes;
@@ -48,7 +48,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
 
         SubscribeLocalEvent<MetabolizerComponent, ComponentInit>(OnMetabolizerInit);
         SubscribeLocalEvent<MetabolizerComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<MetabolizerComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
+        SubscribeLocalEvent<MetabolizerComponent, BodyRelayedEvent<ApplyMetabolicMultiplierEvent>>(OnApplyMetabolicMultiplier);
     }
 
     private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
@@ -68,34 +68,9 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         }
     }
 
-    public bool TryAddMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent, ref BodyRelayedEvent<ApplyMetabolicMultiplierEvent> args)
     {
-        if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
-            return false;
-
-        if (component.MetabolizerTypes == null)
-            component.MetabolizerTypes = new();
-
-        return component.MetabolizerTypes.Add(metabolizerType);
-    }
-
-    public bool TryRemoveMetabolizerType(MetabolizerComponent component, string metabolizerType)
-    {
-        if (component.MetabolizerTypes == null)
-            return true;
-
-        return component.MetabolizerTypes.Remove(metabolizerType);
-    }
-
-    public void ClearMetabolizerTypes(MetabolizerComponent component)
-    {
-        if (component.MetabolizerTypes != null)
-            component.MetabolizerTypes.Clear();
-    }
-
-    private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent, ref ApplyMetabolicMultiplierEvent args)
-    {
-        ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
+        ent.Comp.UpdateIntervalMultiplier = args.Args.Multiplier;
     }
 
     public override void Update(float frameTime)

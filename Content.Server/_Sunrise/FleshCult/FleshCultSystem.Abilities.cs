@@ -1,10 +1,11 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.Body.Components;
 using Content.Server.Construction.Components;
 using Content.Server.Traits.Assorted;
 using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.FleshCult;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
@@ -132,7 +133,7 @@ public sealed partial class FleshCultSystem
             switch (targetState.CurrentState)
             {
                 case MobState.Dead:
-                    if (EntityManager.TryGetComponent(target, out HumanoidAppearanceComponent? humanoidAppearance))
+                    if (EntityManager.TryGetComponent(target, out HumanoidProfileComponent? humanoidAppearance))
                     {
                         if (!_speciesWhitelist.Contains(humanoidAppearance.Species))
                         {
@@ -228,7 +229,7 @@ public sealed partial class FleshCultSystem
             _bloodstreamSystem.SpillAllSolutions((args.Args.Target.Value, bloodstream));
         }
 
-        if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var HuAppComponent))
+        if (TryComp<HumanoidProfileComponent>(args.Args.Target, out var HuAppComponent))
         {
             if (TryComp(args.Args.Target.Value, out ContainerManagerComponent? container))
             {
@@ -236,7 +237,7 @@ public sealed partial class FleshCultSystem
                 {
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
-                        if (HasComp<BodyPartComponent>(ent))
+                        if (HasComp<OrganComponent>(ent))
                         {
                             continue;
                         }
@@ -247,36 +248,29 @@ public sealed partial class FleshCultSystem
             }
 
             // SUNRISE-TODO: Убрать конечности хирургией а тело заменить на скелета
-            if (TryComp<BodyComponent>(args.Args.Target, out var bodyComponent))
+            if (TryComp<BodyComponent>(args.Args.Target, out var body))
             {
-                var parts = _body.GetBodyChildren(args.Args.Target, bodyComponent).ToArray();
+                if (body.Organs == null)
+                    return;
 
-                foreach (var part in parts)
+                foreach (var organ in body.Organs.ContainedEntities)
                 {
-                    if (part.Component.PartType == BodyPartType.Head)
+                    if (!TryComp<OrganComponent>(organ, out var organComp))
                         continue;
 
-                    if (part.Component.PartType == BodyPartType.Torso)
-                    {
-                        foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
-                        {
-                            //_body.RemoveOrgan(organ.Id);
-                            QueueDel(organ.Id);
-                        }
-                    }
-                    else
-                    {
-                        QueueDel(part.Id);
-                    }
+                    if (organComp.Category == "Head")
+                        continue;
+
+                    QueueDel(organ);
                 }
             }
 
             var bodyType = _prototypeManager.Index<BodyTypePrototype>("SkeletonNormal");
-            foreach (var (key, id) in bodyType.Sprites)
+            foreach (var (key, data) in bodyType.Layers)
             {
                 if (key != HumanoidVisualLayers.Head)
                 {
-                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: HuAppComponent);
+                    _sunriseBody.SetBaseLayerData(args.Args.Target.Value, key, data);
                 }
             }
 

@@ -13456,7 +13456,7 @@ entities:
     - type: Transform
       pos: 30.175797,35.10337
       parent: 1
-- proto: LeftArmHuman
+- proto: OrganHumanArmLeft
   entities:
   - uid: 1143
     components:
@@ -17538,7 +17538,7 @@ entities:
         2407:
         - - Pressed
           - Trigger
-- proto: RightArmHuman
+- proto: OrganHumanArmRight
   entities:
   - uid: 1140
     components:

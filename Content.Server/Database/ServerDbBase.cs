@@ -10,7 +10,9 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared._Sunrise.MentorHelp;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Body;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
@@ -20,9 +22,11 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
 using Microsoft.EntityFrameworkCore;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
 using Content.Shared._Sunrise.Tutorial.Prototypes;
 
@@ -32,10 +36,14 @@ namespace Content.Server.Database
     {
         private readonly ISawmill _opsLog;
         public event Action<DatabaseNotification>? OnNotificationReceived;
+        private readonly ITaskManager _task;
+        private readonly ISerializationManager _serialization;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
-        public ServerDbBase(ISawmill opsLog)
+        public ServerDbBase(ISawmill opsLog, ITaskManager taskManager, ISerializationManager serialization)
         {
+            _task = taskManager;
+            _serialization = serialization;
             _opsLog = opsLog;
         }
 
@@ -66,7 +74,7 @@ namespace Content.Server.Database
             var profiles = new Dictionary<int, ICharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
             {
-                profiles[profile.Slot] = ConvertProfiles(profile);
+                profiles[profile.Slot] = await ConvertProfiles(profile);
             }
 
             var constructionFavorites = new List<ProtoId<ConstructionPrototype>>(prefs.ConstructionFavorites.Count);
@@ -207,8 +215,21 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
-        private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
+        private static TValue? TryDeserialize<TValue>(JsonDocument document) where TValue : class
         {
+            try
+            {
+                return document.Deserialize<TValue>();
+            }
+            catch (JsonException exception)
+            {
+                return null;
+            }
+        }
+
+        private async Task<HumanoidCharacterProfile> ConvertProfiles(Profile profile)
+        {
+
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
@@ -230,27 +251,76 @@ namespace Content.Server.Database
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
+
             // Sunrise-TTS-Start
             var voice = profile.Voice;
             if (voice == String.Empty)
-                voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+                voice = SunriseHumanoidProfileDefaults.DefaultSexVoice[sex];
             // Sunrise-TTS-End
 
-            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
-            var markingsRaw = profile.Markings?.Deserialize<List<string>>();
+            var markings =
+                new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>();
 
-            List<Marking> markings = new();
-            if (markingsRaw != null)
+            if (profile.OrganMarkings?.RootElement is { } element)
             {
+                var data = element.ToDataNode();
+                markings = _serialization
+                    .Read<Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>>(
+                        data,
+                        notNullableOverride: true);
+            }
+            else if (profile.Markings is { } profileMarkings && TryDeserialize<List<string>>(profileMarkings) is { } markingsRaw)
+            {
+                List<Marking> markingsList = new();
+
                 foreach (var marking in markingsRaw)
                 {
                     var parsed = Marking.ParseFromDbString(marking);
 
                     if (parsed is null) continue;
 
-                    markings.Add(parsed);
+                    markingsList.Add(parsed);
                 }
+
+                // Sunrise edit start - legacy hair color compability
+                if (CreateLegacyHairMarking(
+                        profile.FacialHairName,
+                        profile.FacialHairColor,
+                        profile.FacialHairColorType,
+                        profile.FacialHairExtendedColor) is { } facialMarking)
+                {
+                    markingsList.Add(facialMarking);
+                }
+
+                if (CreateLegacyHairMarking(
+                        profile.HairName,
+                        profile.HairColor,
+                        profile.HairColorType,
+                        profile.HairExtendedColor) is { } hairMarking)
+                {
+                    markingsList.Add(hairMarking);
+                }
+                // Sunrise edit end
+
+                var completion = new TaskCompletionSource();
+                _task.RunOnMainThread(() =>
+                {
+                    var markingManager = IoCManager.Resolve<MarkingManager>();
+
+                    try
+                    {
+                        markings = markingManager.ConvertMarkings(markingsList, profile.Species);
+                        completion.SetResult();
+                    }
+                    catch (Exception ex)
+                    {
+                        completion.TrySetException(ex);
+                    }
+                });
+                await completion.Task;
             }
+
+            ApplyLegacyHairEffects(markings, profile); // Sunrise-Edit
 
             var loadouts = new Dictionary<string, RoleLoadout>();
 
@@ -280,28 +350,14 @@ namespace Content.Server.Database
                 profile.CharacterName,
                 profile.FlavorText,
                 profile.Species,
-                voice, // Sunrise-TTS
-                profile.BodyType,
                 profile.Age,
                 sex,
                 gender,
                 new HumanoidCharacterAppearance
                 (
-                    profile.HairName,
-                    Color.FromHex(string.IsNullOrEmpty(profile.HairColor) ? "#000000FF" : profile.HairColor),
-                    profile.FacialHairName,
-                    Color.FromHex(string.IsNullOrEmpty(profile.FacialHairColor) ? "#000000FF" : profile.FacialHairColor),
                     Color.FromHex(string.IsNullOrEmpty(profile.EyeColor) ? "#000000FF" : profile.EyeColor),
                     Color.FromHex(string.IsNullOrEmpty(profile.SkinColor) ? "#C0967FFF" : profile.SkinColor),
-                    markings,
-                    //sunrise gradient start
-                    (MarkingEffectType)profile.HairColorType,
-                    MarkingEffect.Parse(profile.HairExtendedColor),
-                    (MarkingEffectType)profile.FacialHairColorType,
-                    MarkingEffect.Parse(profile.FacialHairExtendedColor),
-                    //sunrise gradient end
-                    profile.Width,
-                    profile.Height
+                    markings
                 ),
                 spawnPriority,
                 jobs,
@@ -309,13 +365,86 @@ namespace Content.Server.Database
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts
-            ).WithJobAlternativeTitles(jobAltTitles); // Sunrise
+            )
+                .WithVoice(voice) // Sunrise-TTS
+                .WithBodyType(profile.BodyType)
+                .WithSize(profile.Width, profile.Height)
+                .WithJobAlternativeTitles(jobAltTitles); // Sunrise
         }
 
-        private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
+        // Sunrise edit start
+        private static Marking? CreateLegacyHairMarking(
+            string? markingId,
+            string? colorHex,
+            int effectType,
+            string? serializedEffect)
+        {
+            if (string.IsNullOrWhiteSpace(markingId))
+                return null;
+
+            var color = ParseLegacyColor(colorHex, Color.Black);
+            var effects = MarkingEffectCompatibility.TryReadLegacyEffect(effectType, serializedEffect, color, out var effect)
+                ? new List<MarkingEffect> { effect }
+                : null;
+
+            return new Marking(markingId, new List<Color> { color }, effects);
+        }
+
+        private static void ApplyLegacyHairEffects(
+            Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> markings,
+            Profile profile)
+        {
+            TryApplyLegacyHairEffect(
+                markings,
+                HumanoidVisualLayers.Hair,
+                profile.HairColor,
+                profile.HairColorType,
+                profile.HairExtendedColor);
+
+            TryApplyLegacyHairEffect(
+                markings,
+                HumanoidVisualLayers.FacialHair,
+                profile.FacialHairColor,
+                profile.FacialHairColorType,
+                profile.FacialHairExtendedColor);
+        }
+
+        private static void TryApplyLegacyHairEffect(
+            Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> markings,
+            HumanoidVisualLayers layer,
+            string? colorHex,
+            int effectType,
+            string? serializedEffect)
+        {
+            var color = ParseLegacyColor(colorHex, Color.Black);
+            if (!MarkingEffectCompatibility.TryReadLegacyEffect(effectType, serializedEffect, color, out var effect))
+                return;
+
+            foreach (var organMarkings in markings.Values)
+            {
+                if (!organMarkings.TryGetValue(layer, out var layerMarkings))
+                    continue;
+
+                foreach (var marking in layerMarkings)
+                {
+                    marking.SetMarkingEffect(0, effect.Clone());
+                }
+            }
+        }
+
+        private static Color ParseLegacyColor(string? colorHex, Color fallback)
+        {
+            return string.IsNullOrWhiteSpace(colorHex)
+                ? fallback
+                : Color.TryFromHex(colorHex) ?? fallback;
+        }
+        // Sunrise edit end
+
+        private Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
             profile ??= new Profile();
             var appearance = (HumanoidCharacterAppearance) humanoid.CharacterAppearance;
+            var dataNode = _serialization.WriteValue(appearance.Markings, alwaysWrite: true, notNullableOverride: true);
 
             // Debug logging for incoming appearance values
             List<string> markingStrings = new();
@@ -331,24 +460,38 @@ namespace Content.Server.Database
             profile.Voice = humanoid.Voice; // Sunrise-TTS
             profile.BodyType = humanoid.BodyType;
             profile.Age = humanoid.Age;
-            profile.Width = appearance.Width; //Sunrise
-            profile.Height = appearance.Height; //Sunrise
+            profile.Width = humanoid.Width; //Sunrise
+            profile.Height = humanoid.Height; //Sunrise
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
-            profile.HairName = appearance.HairStyleId;
-            profile.HairColor = appearance.HairColor.ToHex();
-            profile.FacialHairName = appearance.FacialHairStyleId;
-            profile.FacialHairColor = appearance.FacialHairColor.ToHex();
-            // sunrise gradient start
-            profile.HairColorType = (int)appearance.HairMarkingEffectType;
-            profile.HairExtendedColor = appearance.HairMarkingEffect?.ToString() ?? "";
-            profile.FacialHairColorType = (int)appearance.FacialHairMarkingEffectType;
-            profile.FacialHairExtendedColor = appearance.FacialHairMarkingEffect?.ToString() ?? "";
-            // sunrise gradient end
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
-            profile.Markings = markings;
+            profile.OrganMarkings = JsonSerializer.SerializeToDocument(dataNode.ToJsonNode());
+
+            // support for downgrades - at some point this should be removed
+            var legacyMarkings = appearance.Markings
+                .SelectMany(organ => organ.Value.Values)
+                .SelectMany(i => i)
+                .Select(marking => marking.ToString())
+                .ToList();
+            var flattenedMarkings = appearance.Markings.SelectMany(it => it.Value)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            var hairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.Hair)?.Value.FirstOrDefault();
+            var facialHairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.FacialHair)?.Value.FirstOrDefault();
+            profile.Markings =
+                JsonSerializer.SerializeToDocument(legacyMarkings.Select(marking => marking.ToString()).ToList());
+            profile.HairName = hairMarking?.MarkingId ?? HairStyles.DefaultHairStyle;
+            profile.FacialHairName = facialHairMarking?.MarkingId ?? HairStyles.DefaultFacialHairStyle;
+            profile.HairColor = (hairMarking?.MarkingColors[0] ?? Color.Black).ToHex();
+            profile.FacialHairColor = (facialHairMarking?.MarkingColors[0] ?? Color.Black).ToHex();
+            // sunrise gradient start
+            profile.HairColorType = (int)(hairMarking?.MarkingEffects.FirstOrDefault()?.Type ?? MarkingEffectType.Color);
+            profile.HairExtendedColor = hairMarking?.MarkingEffects.FirstOrDefault()?.ToString() ?? "";
+            profile.FacialHairColorType = (int)(facialHairMarking?.MarkingEffects.FirstOrDefault()?.Type ?? MarkingEffectType.Color);
+            profile.FacialHairExtendedColor = facialHairMarking?.MarkingEffects.FirstOrDefault()?.ToString() ?? "";
+            // sunrise gradient end
+
             profile.Slot = slot;
             profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
 
@@ -371,13 +514,13 @@ namespace Content.Server.Database
                         .Select(t => new Trait {TraitName = t})
             );
 
-            // Sunrise-Start
+            // Sunrise edit start - альтернативные названия должностей
             profile.JobAlternativeTitles.Clear();
             profile.JobAlternativeTitles.AddRange(
                 humanoid.JobAlternativeTitles
                     .Select(j => new JobAlternativeTitle {JobName = j.Key, Title = j.Value.Id})
             );
-            // Sunrise-End
+            // Sunrise edit end
 
             profile.Loadouts.Clear();
 

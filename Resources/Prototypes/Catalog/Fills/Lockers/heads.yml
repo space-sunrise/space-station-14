@@ -52,8 +52,8 @@
     - id: SpaceCash1000
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
-    - id: FlippoLighterSunriseCap  # Sunrise-Flippo
-    - id: HeadSkeleton # A skull to accompany your skeleton crew
+    - id: OrganSkeletonPersonHead # A skull to accompany your skeleton crew
+    - id: FlippoLighterSunriseCap  # Sunrise-edit
       conditions:
       - !type:PlayerCountCondition
         max: 15
@@ -229,18 +229,18 @@
     - id: DoorRemoteMedical
     - id: HandheldCrewMonitor
     - id: Hypospray
+    - id: BoxCMOCircuitboards
+    - id: MedkitFilled
+    - id: RubberStampCMO
+    - id: MedTekCartridge
     #Sunrise-start
     - id: ClothingEyesUniversalMedicalHud
     - id: AdvancedDefibrillator
     - id: VariantCubeBoxSunrise
     - id: LeftArmCyberRipper
       prob: 0.35
+    - id: FlippoLighterSunriseCmo
     #Sunrise-end
-    - id: BoxCMOCircuitboards
-    - id: MedkitFilled
-    - id: RubberStampCMO
-    - id: MedTekCartridge
-    - id: FlippoLighterSunriseCmo  # Sunrise-Flippos
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -351,9 +351,11 @@
     - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
-    - id: FlippoLighterSunriseHos  # Sunrise-Flippo
-    - id: SunriseCriminalRecordsComputerCircuitboard  # Sunrise-Edit
-    - id: ComputerPrisonerManagementCircuitboard  # Sunrise-Edit
+    # Sunrise start
+    - id: FlippoLighterSunriseHos
+    - id: SunriseCriminalRecordsComputerCircuitboard
+    - id: ComputerPrisonerManagementCircuitboard
+    # Sunrise end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

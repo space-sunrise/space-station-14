@@ -34,8 +34,8 @@ public sealed partial class RazorWindow : DefaultWindow
 
     public void UpdateState(RazorUiState state)
     {
-        HairPicker.UpdateData(state.Hair, state.Species, state.HairSlotTotal);
-        FacialHairPicker.UpdateData(state.FacialHair, state.Species, state.FacialHairSlotTotal);
+        HairPicker.UpdateData(state.Hair, state.Species, state.Sex, state.HairSlotTotal);
+        FacialHairPicker.UpdateData(state.FacialHair, state.Species, state.Sex, state.FacialHairSlotTotal);
 
         if (!HairPicker.Visible && !FacialHairPicker.Visible)
         {

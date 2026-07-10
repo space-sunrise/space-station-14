@@ -14,7 +14,7 @@ namespace Content.Shared.Humanoid.Markings
         private List<Color> _markingColors = new();
 
         // sunrise gradient edit start
-        [DataField("markingEffects")]
+        [DataField("markingEffects", customTypeSerializer: typeof(MarkingEffectListSerializer))]
         public List<MarkingEffect> MarkingEffects = new();
         // sunrise gradient edit end
 
@@ -30,6 +30,7 @@ namespace Content.Shared.Humanoid.Markings
             MarkingId = markingId;
             _markingColors = markingColors;
             MarkingEffects = markingEffects ?? new(); // sunrise gradient edit
+            EnsureMarkingEffects(); // Sunrise-Edit
         }
 
         public Marking(string markingId,
@@ -59,8 +60,8 @@ namespace Content.Shared.Humanoid.Markings
         {
             MarkingId = other.MarkingId;
             _markingColors = new(other.MarkingColors);
-            MarkingEffects = other.MarkingEffects.Select(e => e.Clone()).ToList();
-            Visible = other.Visible;
+            MarkingEffects = other.MarkingEffects?.Select(e => e.Clone()).ToList() ?? new(); // Sunrise-Edit
+            EnsureMarkingEffects(); // Sunrise-Edit
             Forced = other.Forced;
         }
 
@@ -75,12 +76,6 @@ namespace Content.Shared.Humanoid.Markings
         /// </summary>
         [ViewVariables]
         public IReadOnlyList<Color> MarkingColors => _markingColors;
-
-        /// <summary>
-        ///     If this marking is currently visible.
-        /// </summary>
-        [DataField("visible")]
-        public bool Visible = true;
 
         /// <summary>
         ///     If this marking should be forcefully applied, regardless of points.
@@ -101,12 +96,16 @@ namespace Content.Shared.Humanoid.Markings
 
         public void SetMarkingEffect(int colorIndex, MarkingEffect effect)
         {
+            EnsureMarkingEffects(); // Sunrise-Edit
+
             if(MarkingEffects.Count > colorIndex && colorIndex >= 0)
                 MarkingEffects[colorIndex] = effect;
         }
 
         public void SetMarkingEffect(MarkingEffect effect)
         {
+            EnsureMarkingEffects(); // Sunrise-Edit
+
             for (int i = 0; i < MarkingEffects.Count; i++)
             {
                 MarkingEffects[i] = effect;
@@ -139,7 +138,7 @@ namespace Content.Shared.Humanoid.Markings
             }
             return MarkingId.Equals(other.MarkingId)
                 && _markingColors.SequenceEqual(other._markingColors)
-                && Visible.Equals(other.Visible)
+                && MarkingEffectsEqual(other) // Sunrise-Edit
                 && Forced.Equals(other.Forced);
         }
 

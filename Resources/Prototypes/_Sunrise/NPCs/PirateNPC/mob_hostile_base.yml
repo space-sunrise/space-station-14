@@ -305,7 +305,7 @@
   - MobBloodstream
   - MobFlammable
   - MobEnhancedMovement
-  - BaseMobSpecies
+  - MobHuman
   - MobHumanoidHostileAIComplex
   id: MobHumanoidHostileBase
   components:

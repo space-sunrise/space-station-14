@@ -108800,7 +108800,7 @@ entities:
     - type: Transform
       pos: 45.350067,-73.39173
       parent: 2
-- proto: TorsoSkeleton
+- proto: OrganSkeletonPersonTorso
   entities:
   - uid: 7331
     components:

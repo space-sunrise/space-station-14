@@ -323,7 +323,6 @@
           components:
           - Flash
           - Battery
-          - BodyPart
           - TileFrictionModifier
           - CablePlacer
           - BorgModule
@@ -656,7 +655,6 @@
           - Organ
           - OrganDamage
           - FunctionalOrgan
-          - BodyPart
   - type: BorgModuleIcon
     icon:
       sprite: Interface/Actions/actions_borg.rsi

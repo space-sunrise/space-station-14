@@ -1,6 +1,6 @@
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
-using Content.Shared.Humanoid;
 
 namespace Content.Server.VoiceMask;
 
@@ -42,7 +42,7 @@ public sealed partial class VoiceMaskComponent : Component
     // Sunrise-TTS-Start
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public string VoiceId = SharedHumanoidAppearanceSystem.DefaultVoice;
+    public string VoiceId = SunriseHumanoidProfileDefaults.DefaultVoice;
     // Sunrise-TTS-End
 
     /// <summary>

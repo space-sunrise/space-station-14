@@ -67,3 +67,25 @@
 #      state: vulp
 #    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
 #      state: vulp-fade
+
+#- type: marking
+#  id: VulpTailVulp
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [ Vulpkanin ]
+#  sprites:
+#    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+#      state: vulp
+#    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+#      state: vulp-tip
+
+#- type: marking
+#  id: VulpTailVulpFade
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [ Vulpkanin ]
+#  sprites:
+#    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+#      state: vulp
+#    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+#      state: vulp-fade

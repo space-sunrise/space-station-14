@@ -47,7 +47,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly BloodCultRuleSystem _bloodCultRuleSystem = default!;
         [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-        [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
+        [Dependency] private readonly GibbingSystem _gibbing = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly CuffableSystem _cuffable = default!;

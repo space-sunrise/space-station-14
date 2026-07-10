@@ -1399,7 +1399,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     /// </summary>
     private bool IsStationCrewMob(EntityUid mob, bool excludeAntags)
     {
-        if (!HasComp<HumanoidAppearanceComponent>(mob) && !HasComp<BorgChassisComponent>(mob))
+        if (!HasComp<HumanoidProfileComponent>(mob) && !HasComp<BorgChassisComponent>(mob))
             return false;
 
         if (TryComp(mob, out TransformComponent? xform) && xform.GridUid != null)

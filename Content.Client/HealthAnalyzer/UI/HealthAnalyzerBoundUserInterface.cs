@@ -31,7 +31,7 @@ namespace Content.Client.HealthAnalyzer.UI
             if (message is not HealthAnalyzerScannedUserMessage cast)
                 return;
 
-            _window.Populate(cast);
+            // _window.Populate(cast);
         }
     }
 }

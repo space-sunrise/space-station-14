@@ -208,7 +208,7 @@
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
     organ:
-    - type: OrganLungs
+    - type: Lung
 
 # heart
 
@@ -587,7 +587,7 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: OrganLungs
+    - type: Lung
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: lung-l

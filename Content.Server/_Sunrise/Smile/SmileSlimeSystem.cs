@@ -17,6 +17,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Zombies;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Body;
 
 namespace Content.Server._Sunrise.Smile;
 

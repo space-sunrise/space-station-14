@@ -414,9 +414,9 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
         foreach (var entity in nearbyEntities)
         {
-            // Проверяем, что это гуманоид, как MobTomatoKiller через whitelist с HumanoidAppearanceComponent.
-            // Это подойдет и для игроков, и для AI с гуманоидным видом.
-            if (HasComp<HumanoidAppearanceComponent>(entity))
+            // Check if it's a humanoid (same as MobTomatoKiller uses whitelist with HumanoidAppearanceComponent)
+            // This will match both players and AI with humanoid appearance
+            if (HasComp<HumanoidProfileComponent>(entity))
             {
                 memory.RememberedFriends.Add(entity);
 

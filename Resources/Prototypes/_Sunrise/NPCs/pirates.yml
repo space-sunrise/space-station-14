@@ -63,28 +63,28 @@
       id: OrganHumanBrain
       prob: 0.01
     - !type:EntSelector
-      id: LeftArmHuman
+      id: OrganHumanArmLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightArmHuman
+      id: OrganHumanArmRight
       prob: 0.01
     - !type:EntSelector
-      id: LeftHandHuman
+      id: OrganHumanHandLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightHandHuman
+      id: OrganHumanHandRight
       prob: 0.01
     - !type:EntSelector
-      id: LeftLegHuman
+      id: OrganHumanLegLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightLegHuman
+      id: OrganHumanLegRight
       prob: 0.01
     - !type:EntSelector
-      id: LeftFootHuman
+      id: OrganHumanFootLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightFootHuman
+      id: OrganHumanFootRight
       prob: 0.01
     - !type:EntSelector
       id: ScrapMedkit

@@ -1,6 +1,6 @@
 - type: entity
   id: OrganSlimeHeart
-  parent: [BaseHumanOrgan, BaseOrganHeart]
+  parent: [SunriseOrganHuman, SunriseOrganBaseHeart]
   name: slime circulator
   description: "A little circulator what makes the fluid move through the slime body."
   components:

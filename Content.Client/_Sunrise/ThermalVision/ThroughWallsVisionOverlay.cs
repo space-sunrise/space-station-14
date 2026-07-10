@@ -1,5 +1,5 @@
 using Content.Shared._Sunrise.ThermalVision;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;

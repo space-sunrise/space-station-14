@@ -33,7 +33,7 @@ public sealed class InfectOnMeleeSystem : EntitySystem
         {
             foreach (var entity in args.HitEntities)
             {
-                if (HasComp<HumanoidAppearanceComponent>(entity)
+                if (HasComp<HumanoidProfileComponent>(entity)
                     && !_mob.IsDead(entity)
                     && _random.Prob(GenerateHitChance(entity, component))
                     && !HasComp<ClumsyComponent>(entity)

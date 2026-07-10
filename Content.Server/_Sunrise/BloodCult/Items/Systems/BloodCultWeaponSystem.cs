@@ -3,6 +3,7 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -88,28 +89,17 @@ public sealed class BloodCultWeaponSystem : EntitySystem
             convert = true;
         }
 
-        if (_body.TryGetBodyOrganEntityComps<StomachComponent>((args.Target.Value, body), out var stomachs))
+        if (_body.TryGetOrganWithComponent<StomachComponent>((args.Target.Value, body), out var stomach))
         {
             var highestAvailable = FixedPoint2.Zero;
-            Solution? stomachSol = null;
-            Entity<StomachComponent>? stomachToUse = null;
-            foreach (var ent in stomachs)
-            {
-                var owner = ent.Owner;
-                if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref ent.Comp1.Solution, out stomachSol))
-                    continue;
 
-                if (stomachSol.AvailableVolume <= highestAvailable)
-                    continue;
-
-                stomachToUse = ent;
-                highestAvailable = stomachSol.AvailableVolume;
-            }
-
-            if (stomachToUse == null || stomachSol == null)
+            if (!_solutionContainer.ResolveSolution(stomach.Owner, StomachSystem.DefaultSolutionName, ref stomach.Comp.Solution, out var stomachSol))
                 return;
 
-            if (_stomachSystem.TryChangeReagent(stomachToUse.Value.Owner,
+            if (stomachSol.AvailableVolume <= highestAvailable)
+                return;
+
+            if (_stomachSystem.TryChangeReagent(stomach.Owner,
                     component.ConvertedId,
                     component.ConvertedToId))
                 convert = true;

@@ -338,7 +338,7 @@
   - type: AddComponentsInRadius
     whitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
     components:
     - type: AnomalyAccent
     - type: TimedRemoveComponents

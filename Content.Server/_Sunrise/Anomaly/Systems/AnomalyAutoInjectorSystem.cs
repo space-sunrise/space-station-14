@@ -50,7 +50,7 @@ public sealed partial class AnomalyAutoInjectorSystem : EntitySystem
     {
         popup = null;
 
-        if (!HasComp<HumanoidAppearanceComponent>(target))
+        if (!HasComp<HumanoidProfileComponent>(target))
         {
             popup = comp.PopupNotApplicable;
             return false;

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Content.Server.Administration.Systems;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
+using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Damage;
@@ -42,7 +41,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly IReflectionManager _reflectionManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -68,7 +66,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             EntProtoId surgery,
             EntProtoId stepId,
             out Entity<SurgeryComponent> surgeryEnt,
-            out Entity<BodyPartComponent> partEnt,
+            out EntityUid partEnt,
             out EntityUid step
         )
     {
@@ -78,12 +76,16 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         if (!HasComp<SurgeryTargetComponent>(body)
              || !IsLyingDown(body)
-             || !_entitySystem.TryEntity(targetPart, out partEnt)
+             || !Exists(targetPart)
              || !_entitySystem.TryGetSingleton(surgery, out var surgeryEntId)
              || !_entitySystem.TryEntity(surgeryEntId, out surgeryEnt)
              || !_entitySystem.TryGetSingleton(stepId, out step)
-             || !surgeryEnt.Comp.Steps.Contains(stepId))
+             || !surgeryEnt.Comp.Steps.Contains(stepId)
+             || !TryComp<OrganComponent>(targetPart, out var organ)
+             || !IsSurgeryTarget(organ))
             return false;
+
+        partEnt = targetPart;
 
         var progress = EnsureComp<SurgeryProgressComponent>(targetPart);
 

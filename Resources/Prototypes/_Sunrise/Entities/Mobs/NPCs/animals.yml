@@ -76,7 +76,15 @@
       amount: 2
   - type: AlwaysRevolutionaryConvertible
   - type: Body
-    prototype: InferiorVulpkanin
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OrganAnimalLungs
+        - id: OrganAnimalStomach
+        - id: OrganAnimalLiver
+        - id: OrganInferiorVulpkaninHeart
+        - id: OrganAnimalKidneys
 
 - type: entity
   name: inferior vulpkanin

@@ -52,7 +52,7 @@ public sealed class MarkingEffectSelectorSliders : Control
         IoCManager.InjectDependencies(this);
         _sawmill = _log.GetSawmill(nameof(MarkingEffectSelectorSliders));
 
-        defaultEffect ??= ColorMarkingEffect.White;
+        defaultEffect = (defaultEffect ?? ColorMarkingEffect.White).Clone();
 
         _typeSelector = new OptionButton();
         _typeSelector.HorizontalExpand = true;
@@ -95,6 +95,14 @@ public sealed class MarkingEffectSelectorSliders : Control
         _typeSelector.TrySelect(_types.IndexOf(_currentType));
         Effect = defaultEffect;
         Populate(_currentType, defaultEffect);
+    }
+
+    public void SetEffect(MarkingEffect effect)
+    {
+        var newEffect = effect.Clone();
+        _currentType = newEffect.Type;
+        _typeSelector.TrySelect(_types.IndexOf(_currentType));
+        Populate(_currentType, newEffect);
     }
 
     public void CreateSelector(string key = "base", MarkingEffectType type = MarkingEffectType.Color)

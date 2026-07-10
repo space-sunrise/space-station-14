@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server._Sunrise.Boss.Components;
@@ -36,6 +36,7 @@ using Robust.Shared.Utility;
 using System.Numerics;
 using Content.Shared.Gibbing;
 using Robust.Shared.Maths;
+using Content.Shared.Gibbing;
 
 namespace Content.Server._Sunrise.Boss.Systems;
 
@@ -304,7 +305,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
 
         var xform = Transform(console);
         // Серия выборов целей для телепорта
-        foreach (var ent in _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(xform.Coordinates, 2f))
+        foreach (var ent in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, 2f))
         {
             MarkedTargets.Add(ent);
         }

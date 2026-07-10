@@ -289,7 +289,7 @@ public sealed class PacificatorSystems : EntitySystem
 
         var coords = Transform(ent.Owner).Coordinates;
 
-        var entities = _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(coords, ent.Comp.Range);
+        var entities = _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, ent.Comp.Range);
 
         foreach (var entityUid in entities)
         {
@@ -300,7 +300,7 @@ public sealed class PacificatorSystems : EntitySystem
             ent.Comp.PacifiedEntities.Add(entityUid);
         }
 
-        var entitiesToRemove = new HashSet<Entity<HumanoidAppearanceComponent>>();
+        var entitiesToRemove = new HashSet<Entity<HumanoidProfileComponent>>();
 
         foreach (var pacifiedEntity in ent.Comp.PacifiedEntities)
         {

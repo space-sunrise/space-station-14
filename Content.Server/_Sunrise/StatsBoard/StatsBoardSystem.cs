@@ -207,7 +207,7 @@ public sealed class StatsBoardSystem : EntitySystem
                     origin = args.Origin.Value;
                 }
 
-                if (_firstMurder.victim == null && HasComp<HumanoidAppearanceComponent>(uid))
+                if (_firstMurder.victim == null && HasComp<HumanoidProfileComponent>(uid))
                 {
                     _firstMurder.victim = uid;
                     _firstMurder.killer = origin;
@@ -230,7 +230,7 @@ public sealed class StatsBoardSystem : EntitySystem
                         originEntry.KilledMouseCount += 1;
                     }
 
-                    if (HasComp<HumanoidAppearanceComponent>(uid))
+                    if (HasComp<HumanoidProfileComponent>(uid))
                         originEntry.HumanoidKillCount += 1;
                 }
 
@@ -288,7 +288,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (!_statisticEntries.TryGetValue(uid, out var value))
             return;
 
-        if (HasComp<HumanoidAppearanceComponent>(uid))
+        if (HasComp<HumanoidProfileComponent>(uid))
             value.SlippedCount += 1;
     }
 
@@ -312,7 +312,7 @@ public sealed class StatsBoardSystem : EntitySystem
                 return;
 
             if (TryComp<TransformComponent>(ent, out var transformComponent) &&
-                transformComponent.GridUid == null && HasComp<HumanoidAppearanceComponent>(ent))
+                transformComponent.GridUid == null && HasComp<HumanoidProfileComponent>(ent))
                 value.SpaceTime += TimeSpan.FromSeconds(frameTime);
 
             if (TryComp<CuffableComponent>(ent, out var cuffableComponent) &&
@@ -400,7 +400,7 @@ public sealed class StatsBoardSystem : EntitySystem
 
         foreach (var (uid, data) in _statisticEntries)
         {
-            if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearanceComponent))
+            if (TryComp<HumanoidProfileComponent>(uid, out var humanoidAppearanceComponent))
             {
                 var speciesProto = _prototypeManager.Index<SpeciesPrototype>(humanoidAppearanceComponent.Species);
 

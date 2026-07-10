@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Humanoid;
+using Content.Client._Sunrise.Humanoid;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
 using Content.Client.Message;
@@ -9,10 +10,10 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Stylesheets;
 using Content.Client.Sprite;
 using Content.Client.UserInterface.Systems.Guidebook;
-using Content.Shared._Sunrise;
-using Content.Shared._Sunrise.MarkingEffects;
-using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Body;
 using Content.Shared.CCVar;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Guidebook;
@@ -37,7 +38,6 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby.UI
 {
@@ -97,8 +97,6 @@ namespace Content.Client.Lobby.UI
 
         private List<SpeciesPrototype> _species = new();
 
-        private List<BodyTypePrototype> _bodyTypes = new();
-
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
         private readonly Dictionary<string, BoxContainer> _jobCategories;
@@ -115,7 +113,7 @@ namespace Content.Client.Lobby.UI
 
         private ISawmill _sawmill;
 
-        private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
+        private MarkingsViewModel _markingsModel = new();
 
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
@@ -130,7 +128,6 @@ namespace Content.Client.Lobby.UI
             MarkingManager markings)
         {
             RobustXamlLoader.Load(this);
-            IoCManager.Instance!.TryResolveType(out _sponsorsMgr);  // Sunrise-Sponsors
             _sawmill = logManager.GetSawmill("profile.editor");
             _cfgManager = configurationManager;
             _entManager = entManager;
@@ -146,6 +143,9 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
+            InitializeSunriseProfileEditor(); // Sunrise-Edit
+
+            Markings.SetModel(_markingsModel);
 
             ImportButton.OnPressed += args =>
             {
@@ -230,86 +230,14 @@ namespace Content.Client.Lobby.UI
 
             #endregion Gender
 
-            // Sunrise-TTS-Start
-            #region Voice
-
-            if (configurationManager.GetCVar(SunriseCCVars.TTSEnabled))
-            {
-                TTSContainer.Visible = true;
-                InitializeVoice();
-            }
-
-            #endregion
-            // Sunrise-TTS-End
-
-            #region BodyType
-
-
-            CBodyTypesButton.OnItemSelected += args =>
-            {
-                CBodyTypesButton.SelectId(args.Id);
-                SetBodyType(_bodyTypes[args.Id].ID);
-            };
-
-            #endregion
-
             RefreshSpecies();
 
             SpeciesButton.OnItemSelected += args =>
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
-                UpdateHairPickers();
                 OnSkinColorOnValueChanged();
             };
-
-            //Sunrise start
-            #region Size
-            UpdateSizeControls();
-
-            WidthSlider.OnValueChanged += args =>
-            {
-                UpdateSizeText();
-            };
-
-            HeightSlider.OnValueChanged += args =>
-            {
-                UpdateSizeText();
-            };
-
-            WidthSlider.OnReleased += args =>
-            {
-                SetWidth(args.Value);
-            };
-
-            HeightSlider.OnReleased += args =>
-            {
-                SetHeight(args.Value);
-            };
-
-            WidthResetButton.OnPressed += _ =>
-            {
-                if (Profile is null)
-                {
-                    return;
-                }
-
-                ResetWidth();
-                ReloadPreview();
-            };
-
-            HeightResetButton.OnPressed += _ =>
-            {
-                if (Profile is null)
-                {
-                    return;
-                }
-
-                ResetHeight();
-                ReloadPreview();
-            };
-            #endregion Size
-            //Sinrise end
 
             #region Skin
 
@@ -326,156 +254,6 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion
-
-            #region Hair
-
-            // Sunrise gradient edit start
-            HairStylePicker.OnExtendedColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                if (newColor.marking.MarkingEffects.Count == 0)
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairExtendedColor(newColor.marking.MarkingEffects[0]));
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnExtendedColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                if (newColor.marking.MarkingEffects.Count == 0)
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairExtendedColor(newColor.marking.MarkingEffects[0]));
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-            // Sunrise gradient edit end
-
-            HairStylePicker.OnMarkingSelect += newStyle =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(newStyle.id));
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                // Sunrise edit start - градиенты
-                if (newColor.marking.MarkingColors.Count == 0)
-                    return;
-                // Sunrise edit end
-
-                var newExtended = newColor.marking.MarkingEffects[0].Clone();
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnMarkingSelect += newStyle =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(newStyle.id));
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-
-                // Sunrise edit start - градиенты
-                if (newColor.marking.MarkingColors.Count == 0)
-                    return;
-                // Sunrise edit end
-
-                var newExtended = newColor.marking.MarkingEffects[0].Clone();
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0], newExtended)); // sunrise gradient edit
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnSlotRemove += _ =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(HairStyles.DefaultHairStyle)
-                );
-                UpdateHairPickers();
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnSlotRemove += _ =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(HairStyles.DefaultFacialHairStyle)
-                );
-                UpdateHairPickers();
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnSlotAdd += delegate()
-            {
-                if (Profile is null)
-                    return;
-
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, Profile.Species).Keys
-                    .FirstOrDefault();
-
-                if (string.IsNullOrEmpty(hair))
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(hair)
-                );
-
-                UpdateHairPickers();
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnSlotAdd += delegate()
-            {
-                if (Profile is null)
-                    return;
-
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, Profile.Species).Keys
-                    .FirstOrDefault();
-
-                if (string.IsNullOrEmpty(hair))
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(hair)
-                );
-
-                UpdateHairPickers();
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            #endregion Hair
 
             #region SpawnPriority
 
@@ -500,7 +278,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithEyeColor(newColor));
-                Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
+                _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor);
                 ReloadProfilePreview();
             };
 
@@ -515,10 +293,10 @@ namespace Content.Client.Lobby.UI
             PreferenceUnavailableButton.AddItem(
                 Loc.GetString("humanoid-profile-editor-preference-unavailable-stay-in-lobby-button"),
                 (int) PreferenceUnavailableMode.StayInLobby);
-             PreferenceUnavailableButton.AddItem(
-                 Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
-                               ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
-                 (int) PreferenceUnavailableMode.SpawnAsOverflow);
+            PreferenceUnavailableButton.AddItem(
+                Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
+                              ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
+                (int) PreferenceUnavailableMode.SpawnAsOverflow);
 
             PreferenceUnavailableButton.OnItemSelected += args =>
             {
@@ -532,20 +310,6 @@ namespace Content.Client.Lobby.UI
             RefreshAntags();
             RefreshJobs();
 
-            // Sunrise-Start
-            if (JobList.Parent is ScrollContainer jobScrollContainer)
-            {
-                jobScrollContainer.OnScrolled += () =>
-                {
-                    foreach (var child in UserInterfaceManager.ModalRoot.Children.ToArray())
-                    {
-                        if (child is Popup popup)
-                            popup.Close();
-                    }
-                };
-            }
-            // Sunrise-End
-
             #endregion Jobs
 
             TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
@@ -556,10 +320,8 @@ namespace Content.Client.Lobby.UI
 
             TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
 
-            Markings.OnMarkingAdded += OnMarkingChange;
-            Markings.OnMarkingRemoved += OnMarkingChange;
-            Markings.OnMarkingColorChange += OnMarkingChange;
-            Markings.OnMarkingRankChange += OnMarkingChange;
+            _markingsModel.MarkingsChanged += (_, _) => OnMarkingChange();
+            _markingsModel.MarkingsReset += OnMarkingChange;
 
             #endregion Markings
 
@@ -603,11 +365,10 @@ namespace Content.Client.Lobby.UI
                 if (_flavorText != null)
                     return;
 
-                // Sunrise-Start
-                var sponsorOnly = _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly);
-                var baseMaxDescLength = _cfgManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
-                _flavorText = new FlavorText.FlavorText(_sponsorsMgr, sponsorOnly, baseMaxDescLength);
-                // Sunrise-End
+                _flavorText = new FlavorText.FlavorText(
+                    _sponsorsMgr,
+                    _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly),
+                    _cfgManager.GetCVar(SunriseCCVars.FlavorTextBaseLength)); // Sunrise-Edit
                 TabContainer.AddChild(_flavorText);
                 TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
                 _flavorTextEdit = _flavorText.CFlavorTextInput;
@@ -748,7 +509,11 @@ namespace Content.Client.Lobby.UI
             SpeciesButton.Clear();
             _species.Clear();
 
-            _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
+            // Sunrise edit start - sponsor-only species filtering
+            var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes() ?? [];
+            _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>()
+                .Where(o => o.RoundStart && (!o.SponsorOnly || sponsorPrototypes.Contains(o.ID))));
+            // Sunrise edit end
             _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
             var speciesIds = _species.Select(o => o.ID).ToList();
 
@@ -761,17 +526,6 @@ namespace Content.Client.Lobby.UI
                 {
                     SpeciesButton.SelectId(i);
                 }
-
-                // Sunrise-Sponsors-Start
-                if (_sponsorsMgr is null)
-                    continue;
-                if (_species[i].SponsorOnly && _sponsorsMgr != null &&
-                    !_sponsorsMgr.GetClientPrototypes().Contains(_species[i].ID))
-                {
-                    SpeciesButton.SetItemDisabled(SpeciesButton.GetIdx(i), true);
-                    SpeciesButton.SetItemText(SpeciesButton.GetIdx(i), Loc.GetString("sponsor-marking", ("name", name))); // Sunrise-edit
-                }
-                // Sunrise-Sponsors-End
             }
 
             // If our species isn't available then reset it to default.
@@ -779,7 +533,7 @@ namespace Content.Client.Lobby.UI
             {
                 if (!speciesIds.Contains(Profile.Species))
                 {
-                    SetSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies);
+                    SetSpecies(HumanoidCharacterProfile.DefaultSpecies);
                 }
             }
         }
@@ -811,7 +565,7 @@ namespace Content.Client.Lobby.UI
 
                 var title = Loc.GetString(antag.Name);
                 var description = Loc.GetString(antag.Objective);
-                selector.Setup(items, title, 300, description, guides: antag.Guides); // Sunrise-edit
+                selector.Setup(items, title, 250, description, guides: antag.Guides);
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
                 if (!_requirements.IsAllowed(
@@ -915,18 +669,13 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorTextEdit();
             UpdateSexControls();
             UpdateGenderControls();
-            UpdateSizeControls(); //Sunrise edit
             UpdateSkinColor();
             UpdateSpawnPriorityControls();
             UpdateAgeEdit();
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
-            UpdateTtsVoicesControls(); // Sunrise-TTS
-            UpdateBodyTypes();
-            UpdateHairPickers();
-            UpdateCMarkingsHair();
-            UpdateCMarkingsFacialHair();
+            UpdateSunriseControls(); // Sunrise-Edit
 
             RefreshAntags();
             RefreshJobs();
@@ -951,7 +700,8 @@ namespace Content.Client.Lobby.UI
             if (Profile == null || !_entManager.EntityExists(PreviewDummy))
                 return;
 
-            _entManager.System<HumanoidAppearanceSystem>().LoadProfile(PreviewDummy, Profile);
+            _entManager.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, Profile);
+            ApplySunriseProfileToPreview(); // Sunrise-Edit
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
@@ -964,7 +714,7 @@ namespace Content.Client.Lobby.UI
             // I.e., do what jobs/antags do.
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-            var species = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
+            var species = Profile?.Species ?? HumanoidCharacterProfile.DefaultSpecies;
             var page = DefaultSpeciesGuidebook;
             if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
                 page = new ProtoId<GuideEntryPrototype>(species.Id); // Gross. See above todo comment.
@@ -992,31 +742,11 @@ namespace Content.Client.Lobby.UI
             var departments = new List<DepartmentPrototype>();
             foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
             {
-                // Sunrise-Start
-                var visible = false;
-
-                foreach (var departmentRole in department.Roles)
-                {
-                    if (!_prototypeManager.TryIndex(departmentRole, out var role))
-                        continue;
-
-                    if (role.SetPreference)
-                        visible = true;
-                }
-
-                if (!visible)
-                    continue;
-                // Sunrise-End
-
                 if (department.EditorHidden)
                     continue;
 
                 departments.Add(department);
             }
-
-            // Sunrise-Start
-            var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
-            // Sunrise-End
 
             departments.Sort(DepartmentUIComparer.Instance);
 
@@ -1149,13 +879,8 @@ namespace Content.Client.Lobby.UI
                     var collection = IoCManager.Instance!;
                     var protoManager = collection.Resolve<IPrototypeManager>();
 
-                    // Sunrise-start
-                    var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
-                    var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, protoManager);
-                    // Sunrise-end
-
                     // If no loadout found then disabled button
-                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId, out var roleLoadoutProto))  // Sunrise-edit
+                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID), out var roleLoadoutProto))
                     {
                         loadoutWindowBtn.Disabled = true;
                     }
@@ -1167,13 +892,13 @@ namespace Content.Client.Lobby.UI
                             RoleLoadout? loadout = null;
 
                             // Clone so we don't modify the underlying loadout.
-                            Profile?.Loadouts.TryGetValue(jobLoadoutId, out loadout); // Sunrise-edit
+                            Profile?.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(job.ID), out loadout);
                             loadout = loadout?.Clone();
 
                             if (loadout == null)
                             {
-                                loadout = new RoleLoadout(jobLoadoutId);  // Sunrise-edit
-                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, sponsorPrototypes);
+                                loadout = new RoleLoadout(roleLoadoutProto.ID);
+                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, _sponsorsMgr?.GetClientPrototypes().ToArray() ?? []); // Sunrise-Edit
                             }
 
                             OpenLoadout(job, loadout, roleLoadoutProto);
@@ -1182,53 +907,6 @@ namespace Content.Client.Lobby.UI
 
                     _jobPriorities.Add((job.ID, selector));
                     jobContainer.AddChild(selector);
-
-                    // Sunrise-Start: Альтернативные названия должностей
-                    if (job.AlternativeTitles.Count > 0)
-                    {
-                        var altTitleBtn = new OptionButton()
-                        {
-                            Margin = new Thickness(5f, 0f),
-                        };
-
-                        // Стандартное название
-                        altTitleBtn.AddItem(job.LocalizedName, 0);
-
-                        for (var i = 0; i < job.AlternativeTitles.Count; i++)
-                        {
-                            altTitleBtn.AddItem(Loc.GetString(job.AlternativeTitles[i]), i + 1);
-                        }
-
-                        // Выбор самого названия
-                        if (Profile != null &&
-                            Profile.JobAlternativeTitles.TryGetValue(job.ID, out var savedAltTitle))
-                        {
-                            var idx = job.AlternativeTitles.IndexOf(savedAltTitle);
-                            if (idx >= 0)
-                                altTitleBtn.SelectId(idx + 1);
-                        }
-
-                        altTitleBtn.OnItemSelected += args =>
-                        {
-                            altTitleBtn.SelectId(args.Id);
-                            if (args.Id == 0)
-                            {
-                                Profile = Profile?.WithJobAlternativeTitle(job.ID, null);
-                            }
-                            else
-                            {
-                                var altTitle = job.AlternativeTitles[args.Id - 1];
-                                Profile = Profile?.WithJobAlternativeTitle(job.ID, altTitle);
-                            }
-
-                            SetDirty();
-                        };
-
-                        // Замена названия должности на выпадающий список
-                        selector.ReplaceTitleWith(altTitleBtn);
-                    }
-                    // Sunrise-End
-
                     jobContainer.AddChild(loadoutWindowBtn);
                     category.AddChild(jobContainer);
                 }
@@ -1249,7 +927,7 @@ namespace Content.Client.Lobby.UI
             JobOverride = jobProto;
             var session = _playerManager.LocalSession;
 
-            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection, _sponsorsMgr)
+            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection, _sponsorsMgr) // Sunrise-Edit
             {
                 Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{jobProto?.LocalizedName}")),
             };
@@ -1305,13 +983,14 @@ namespace Content.Client.Lobby.UI
             SetDirty();
         }
 
-        private void OnMarkingChange(MarkingSet markings)
+        private void OnMarkingChange()
         {
             if (Profile is null)
                 return;
 
-            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithMarkings(markings.GetForwardEnumerator().ToList()));
+            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithMarkings(_markingsModel.Markings));
             ReloadProfilePreview();
+            SetDirty();
         }
 
         private void OnSkinColorOnValueChanged()
@@ -1333,7 +1012,7 @@ namespace Content.Client.Lobby.UI
 
                     var color = strategy.FromUnary(Skin.Value);
 
-                    Markings.CurrentSkinColor = color;
+                    _markingsModel.SetOrganSkinColor(color);
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
 
                     break;
@@ -1348,7 +1027,7 @@ namespace Content.Client.Lobby.UI
 
                     var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
 
-                    Markings.CurrentSkinColor = color;
+                    _markingsModel.SetOrganSkinColor(color);
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
 
                     break;
@@ -1405,10 +1084,8 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
-            UpdateTtsVoicesControls(); // Sunrise-TTS
-            UpdateBodyTypes();
-            RefreshLoadouts(); // Sunrise-Sex restrictions
-            Markings.SetSex(newSex);
+            _markingsModel.SetOrganSexes(newSex);
+            UpdateSunriseControls(); // Sunrise-Edit
             ReloadPreview();
         }
 
@@ -1418,88 +1095,19 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
-        private void UpdateSizeText()
-        {
-            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
-            {
-                return;
-            }
-
-            var heightRaw = HeightSlider.Value;
-            var weightRaw = WidthSlider.Value;
-
-            var height = ConvertSliderToHeight(
-                sliderValue: heightRaw,
-                minSlider: speciesPrototype.MinHeight,
-                maxSlider: speciesPrototype.MaxHeight,
-                minHeightCm: speciesPrototype.MinHeightCm,
-                maxHeightCm: speciesPrototype.MaxHeightCm
-            );
-
-            var weight = speciesPrototype.StandardWeight + speciesPrototype.StandardDensity * (weightRaw * heightRaw - 1);
-            HeightDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-height-label", ("height", Math.Round(height)));
-            WidthDescribeLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("weight", Math.Round(weight)));
-        }
-
-        private float ConvertSliderToHeight(float sliderValue, float minSlider, float maxSlider, float minHeightCm, float maxHeightCm)
-        {
-            var denom = maxSlider - minSlider;
-            if (MathF.Abs(denom) < 0.0001f)
-                return minHeightCm;
-
-            var normalized = (sliderValue - minSlider) / denom;
-            normalized = MathF.Min(1f, MathF.Max(0f, normalized));
-            return minHeightCm + normalized * (maxHeightCm - minHeightCm);
-        }
-
-        private void SetWidth(float newWidth)
-        {
-            if (Profile is null)
-            {
-                return;
-            }
-
-            Profile.Appearance = Profile.Appearance.WithWidth(newWidth);
-
-            UpdateSizeText();
-            ReloadPreview();
-        }
-
-        private void SetHeight(float newHeight)
-        {
-            if (Profile is null)
-            {
-                return;
-            }
-
-            Profile.Appearance = Profile.Appearance.WithHeight(newHeight);
-
-            UpdateSizeText();
-            ReloadPreview();
-        }
-        //Sunrise end
-
-        // Sunrise-TTS-Start
-        private void SetVoice(string newVoice)
-        {
-            Profile = Profile?.WithVoice(newVoice);
-            IsDirty = true;
-        }
-        // Sunrise-TTS-End
-
         private void SetSpecies(string newSpecies)
         {
             Profile = Profile?.WithSpecies(newSpecies);
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
-            Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
+            _markingsModel.OrganData = _markingManager.GetMarkingData(newSpecies);
+            _markingsModel.ValidateMarkings();
             // In case there's job restrictions for the species
             RefreshJobs();
             // In case there's species restrictions for loadouts
             RefreshLoadouts();
             UpdateSexControls(); // update sex for new species
-            UpdateBodyTypes();
+            UpdateSunriseControls(); // Sunrise-Edit
             UpdateSpeciesGuidebookIcon();
-            ResetSize();
             ReloadPreview();
         }
 
@@ -1597,74 +1205,6 @@ namespace Content.Client.Lobby.UI
                 SexButton.SelectId((int) sexes[0]);
         }
 
-        //Sunrise start
-
-        private void ResetWidth()
-        {
-            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
-            {
-                return;
-            }
-
-            var defaultWidth = speciesPrototype.DefaultWidth;
-
-            WidthSlider.MinValue = speciesPrototype.MinWidth;
-            WidthSlider.MaxValue = speciesPrototype.MaxWidth;
-            WidthSlider.Value = defaultWidth;
-
-            Profile.Appearance = Profile.Appearance.WithWidth(defaultWidth);
-
-            UpdateSizeText();
-        }
-
-        private void ResetHeight()
-        {
-            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
-            {
-                return;
-            }
-
-            var defaultHeight = speciesPrototype.DefaultHeight;
-
-            HeightSlider.MinValue = speciesPrototype.MinHeight;
-            HeightSlider.MaxValue = speciesPrototype.MaxHeight;
-            HeightSlider.Value = defaultHeight;
-
-            Profile.Appearance = Profile.Appearance.WithHeight(defaultHeight);
-
-            UpdateSizeText();
-        }
-
-        private void ResetSize()
-        {
-            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
-            {
-                return;
-            }
-
-            ResetWidth();
-            ResetHeight();
-        }
-
-        private void UpdateSizeControls()
-        {
-            if (Profile is null || !_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
-            {
-                return;
-            }
-
-            WidthSlider.MinValue = speciesPrototype.MinWidth;
-            WidthSlider.MaxValue = speciesPrototype.MaxWidth;
-            WidthSlider.Value = Profile.Appearance.Width;
-
-            HeightSlider.MinValue = speciesPrototype.MinHeight;
-            HeightSlider.MaxValue = speciesPrototype.MaxHeight;
-            HeightSlider.Value = Profile.Appearance.Height;
-
-            UpdateSizeText();
-        }
-        //Sunrise end
-
         private void UpdateSkinColor()
         {
             if (Profile == null)
@@ -1728,9 +1268,9 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            Markings.SetData(Profile.Appearance.Markings, Profile.Species,
-                Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor
-            );
+            _markingsModel.OrganData = _markingManager.GetMarkingData(Profile.Species);
+            _markingsModel.OrganProfileData = _markingManager.GetProfileData(Profile.Species, Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor);
+            _markingsModel.Markings = Profile.Appearance.Markings;
         }
 
         private void UpdateGenderControls()
@@ -1753,138 +1293,6 @@ namespace Content.Client.Lobby.UI
             SpawnPriorityButton.SelectId((int) Profile.SpawnPriority);
         }
 
-        private void UpdateHairPickers()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            var hairMarking = CreateHairMarkings(
-                Profile.Appearance.HairStyleId,
-                HairStyles.DefaultHairStyle,
-                Profile.Appearance.HairColor,
-                Profile.Appearance.HairMarkingEffect);
-
-            var facialHairMarking = CreateHairMarkings(
-                Profile.Appearance.FacialHairStyleId,
-                HairStyles.DefaultFacialHairStyle,
-                Profile.Appearance.FacialHairColor,
-                Profile.Appearance.FacialHairMarkingEffect);
-
-
-            HairStylePicker.UpdateData(
-                hairMarking,
-                Profile.Species,
-                1);
-            FacialHairPicker.UpdateData(
-                facialHairMarking,
-                Profile.Species,
-                1);
-        }
-
-        private static List<Marking> CreateHairMarkings(
-            string styleId,
-            string defaultStyleId,
-            Color color,
-            MarkingEffect? effect)
-        {
-            if (styleId == defaultStyleId)
-                return new List<Marking>();
-
-            var effects = effect is { } ext
-                ? new List<MarkingEffect> { ext.Clone() }
-                : null;
-
-            return new List<Marking>()
-            {
-                new(
-                    styleId,
-                    new[] { color },
-                    effects
-                )
-            };
-        }
-
-        private void UpdateCMarkingsHair()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            // hair color
-            Color? hairColor = null;
-            if ( Profile.Appearance.HairStyleId != HairStyles.DefaultHairStyle &&
-                _markingManager.Markings.TryGetValue(Profile.Appearance.HairStyleId, out var hairProto)
-            )
-            {
-                if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, hairProto, _prototypeManager))
-                {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
-                    {
-                        hairColor = Profile.Appearance.SkinColor;
-                    }
-                    else
-                    {
-                        hairColor = Profile.Appearance.HairColor;
-                    }
-                }
-            }
-            if (hairColor != null)
-            {
-                Markings.HairMarking = new (
-                    Profile.Appearance.HairStyleId,
-                    new List<Color>() { hairColor.Value },
-                    Profile.Appearance.HairMarkingEffect is { } hairExt
-                        ? new List<MarkingEffect> { hairExt.Clone() }
-                        : null);
-            }
-            else
-            {
-                Markings.HairMarking = null;
-            }
-        }
-
-        private void UpdateCMarkingsFacialHair()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            // facial hair color
-            Color? facialHairColor = null;
-            if ( Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
-                _markingManager.Markings.TryGetValue(Profile.Appearance.FacialHairStyleId, out var facialHairProto))
-            {
-                if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
-                {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
-                    {
-                        facialHairColor = Profile.Appearance.SkinColor;
-                    }
-                    else
-                    {
-                        facialHairColor = Profile.Appearance.FacialHairColor;
-                    }
-                }
-            }
-            if (facialHairColor != null)
-            {
-                Markings.FacialHairMarking = new(
-                    Profile.Appearance.FacialHairStyleId,
-                    new List<Color>() { facialHairColor.Value },
-                    Profile.Appearance.FacialHairMarkingEffect is { } facialExt
-                        ? new List<MarkingEffect> { facialExt.Clone() }
-                        : null);
-            }
-            else
-            {
-                Markings.FacialHairMarking = null;
-            }
-        }
-
         private void UpdateEyePickers()
         {
             if (Profile == null)
@@ -1892,7 +1300,7 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
+            _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor);
             EyeColorPicker.SetData(Profile.Appearance.EyeColor);
         }
 
@@ -1909,17 +1317,7 @@ namespace Content.Client.Lobby.UI
 
         private void RandomizeEverything()
         {
-            // Sunrise-Sponsors-Start
-            var ignoredSpecies = new HashSet<string>();
-            foreach (var speciesPrototype in _prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
-            {
-                if (speciesPrototype.SponsorOnly &&
-                    _sponsorsMgr != null &&
-                    !_sponsorsMgr.GetClientPrototypes().Contains(speciesPrototype.ID))
-                    ignoredSpecies.Add(speciesPrototype.ID);
-            }
-            Profile = HumanoidCharacterProfile.Random(ignoredSpecies);
-            // Sunrise-Sponsors-End
+            Profile = HumanoidCharacterProfile.Random();
             SetProfile(Profile, CharacterSlot);
             SetDirty();
         }
@@ -1961,7 +1359,10 @@ namespace Content.Client.Lobby.UI
 
             try
             {
-                var profile = _entManager.System<HumanoidAppearanceSystem>().FromStream(file, _playerManager.LocalSession!);
+                // Sunrise start
+                var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
+                var profile = HumanoidCharacterProfile.FromStream(file, _playerManager.LocalSession!, sponsorPrototypes);
+                // Sunrise end
                 var oldProfile = Profile;
                 SetProfile(profile, CharacterSlot);
 
@@ -1993,7 +1394,7 @@ namespace Content.Client.Lobby.UI
 
             try
             {
-                var dataNode = _entManager.System<HumanoidAppearanceSystem>().ToDataNode(Profile);
+                var dataNode = Profile.ToDataNode();
                 await using var writer = new StreamWriter(file.Value.fileStream);
                 dataNode.Write(writer);
             }
@@ -2020,38 +1421,6 @@ namespace Content.Client.Lobby.UI
             _exporting = false;
             ImportButton.Disabled = false;
             ExportButton.Disabled = false;
-        }
-
-        private void SetBodyType(string newBodyType)
-        {
-            Profile = Profile?.WithBodyType(newBodyType);
-            ReloadPreview();
-            IsDirty = true;
-        }
-
-        private void UpdateBodyTypes()
-        {
-            if (Profile is null)
-                return;
-
-            CBodyTypesButton.Clear();
-            var species = _prototypeManager.Index(Profile.Species);
-            var sex = Profile.Sex;
-            _bodyTypes = species.BodyTypes.Select(protoId => _prototypeManager.Index<BodyTypePrototype>(protoId))
-                .Where(proto => !proto.SexRestrictions.Contains(sex.ToString()))
-                .ToList();
-
-            for (var i = 0; i < _bodyTypes.Count; i++)
-            {
-                CBodyTypesButton.AddItem(Loc.GetString(_bodyTypes[i].Name), i);
-            }
-
-            if (!_bodyTypes.Select(proto => proto.ID).Contains(Profile.BodyType))
-            {
-                SetBodyType(_bodyTypes.First().ID);
-            }
-
-            CBodyTypesButton.Select(_bodyTypes.FindIndex(x => x.ID == Profile.BodyType));
         }
     }
 }

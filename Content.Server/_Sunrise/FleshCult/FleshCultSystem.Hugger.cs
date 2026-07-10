@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Nutrition.Components;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.CombatMode.Pacification;
@@ -44,7 +44,7 @@ public sealed partial class FleshCultSystem
             return;
         if (HasComp<FleshCultistComponent>(args.Target))
             return;
-        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
+        if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
         if (TryComp(args.Target, out MobStateComponent? mobState))
         {
@@ -125,7 +125,7 @@ public sealed partial class FleshCultSystem
 
         foreach (var entity in args.HitEntities)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(entity))
+            if (!HasComp<HumanoidProfileComponent>(entity))
                 return;
 
             if (TryComp(entity, out MobStateComponent? mobState))

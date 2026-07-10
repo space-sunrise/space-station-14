@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.FleshCult.FleshGrowth;
 using Content.Server._Sunrise.FleshCult.GameRule;
@@ -6,8 +6,8 @@ using Content.Server.Body.Components;
 using Content.Server.Traits.Assorted;
 using Content.Shared._Sunrise;
 using Content.Shared._Sunrise.FleshCult;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -264,7 +264,7 @@ public sealed partial class FleshCultSystem
                 foreach (var ent in cont.ContainedEntities.ToArray())
                 {
                     {
-                        if (HasComp<BodyPartComponent>(ent))
+                        if (HasComp<OrganComponent>(ent))
                         {
                             continue;
                         }
@@ -276,41 +276,34 @@ public sealed partial class FleshCultSystem
         }
 
         // SUNRISE-TODO: Убрать конечности хирургией а тело заменить на скелета
-        if (TryComp<HumanoidAppearanceComponent>(args.Args.Target.Value, out var HuAppComponent))
+        if (TryComp<HumanoidProfileComponent>(args.Args.Target.Value, out var HuAppComponent))
         {
             if (TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstreamComponent))
                 _bloodstreamSystem.TryModifyBloodLevel((args.Args.Target.Value, bloodstreamComponent), -300);
 
-            if (TryComp<BodyComponent>(args.Args.Target.Value, out var bodyComponent))
+            if (TryComp<BodyComponent>(args.Args.Target, out var body))
             {
-                var parts = _body.GetBodyChildren(args.Args.Target.Value, bodyComponent).ToArray();
+                if (body.Organs == null)
+                    return;
 
-                foreach (var part in parts)
+                foreach (var organ in body.Organs.ContainedEntities)
                 {
-                    if (part.Component.PartType == BodyPartType.Head)
+                    if (!TryComp<OrganComponent>(organ, out var organComp))
                         continue;
 
-                    if (part.Component.PartType == BodyPartType.Torso)
-                    {
-                        foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
-                        {
-                            //_body.RemoveOrgan(organ.Id);
-                            QueueDel(organ.Id);
-                        }
-                    }
-                    else
-                    {
-                        QueueDel(part.Id);
-                    }
+                    if (organComp.Category == "Head")
+                        continue;
+
+                    QueueDel(organ);
                 }
             }
 
             var bodyType = _prototypeManager.Index<BodyTypePrototype>("SkeletonNormal");
-            foreach (var (key, id) in bodyType.Sprites)
+            foreach (var (key, data) in bodyType.Layers)
             {
                 if (key != HumanoidVisualLayers.Head)
                 {
-                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: HuAppComponent);
+                    _sunriseBody.SetBaseLayerData(args.Args.Target.Value, key, data);
                 }
             }
 
@@ -345,7 +338,7 @@ public sealed partial class FleshCultSystem
         if (!Transform(uid).Anchored)
             return false;
 
-        if (!TryComp<HumanoidAppearanceComponent>(dragged, out var humanoidAppearance))
+        if (!TryComp<HumanoidProfileComponent>(dragged, out var humanoidAppearance))
             return false;
 
         if (!_speciesWhitelist.Contains(humanoidAppearance.Species))

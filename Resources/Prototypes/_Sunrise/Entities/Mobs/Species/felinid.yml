@@ -1,7 +1,35 @@
 - type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceFelinid
+  name: felinid appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganFelinidTorso
+      Head: OrganFelinidHead
+      ArmLeft: OrganFelinidArmLeft
+      ArmRight: OrganFelinidArmRight
+      HandRight: OrganFelinidHandRight
+      HandLeft: OrganFelinidHandLeft
+      LegLeft: OrganFelinidLegLeft
+      LegRight: OrganFelinidLegRight
+      FootLeft: OrganFelinidFootLeft
+      FootRight: OrganFelinidFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganFelinidEyes
+      Tongue: OrganHumanTongue
+      Heart: OrganFelinidHeart
+      Lungs: OrganHumanLungs
+      Stomach: OrganReptilianStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Felinid
+
+- type: entity
   save: false
   name: Urist McFelinid
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
+  parent: [AppearanceFelinid, BaseSpeciesMobOrganic, BaseSpeciesPickupable]
   id: MobFelinidBase
   abstract: true
   components:
@@ -27,8 +55,11 @@
     spawned:
     - id: FoodMeatFelinid
       amount: 2
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: Felinid
+  - type: SunriseHumanoidProfile
+  - type: SunriseHumanoidBaseLayers
+  - type: HideableHumanoidLayers
     hideLayersOnEquip:
     - Hair
     - Snout
@@ -420,8 +451,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Body
-    prototype: Felinid
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Felinid
@@ -470,6 +499,8 @@
   - type: Stamina
     baseCritThreshold: 100
   - type: FootprintEmitter
+    leftBareFootState: [ footprint-left-bare-cat ]
+    rightBareFootState: [ footprint-right-bare-cat ]
   - type: Vocal
     sounds:
       Male: MaleFelinid
@@ -534,7 +565,7 @@
 - type: entity
   save: false
   name: Urist McHands
-  parent: MobHumanDummy
+  parent: AppearanceFelinid
   id: MobFelinidDummy
   categories: [ HideSpawnMenu ]
   description: A dummy felinid meant to be used in character setup.

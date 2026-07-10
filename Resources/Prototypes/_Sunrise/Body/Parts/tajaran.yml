@@ -1,6 +1,6 @@
 - type: entity
   id: PartTajaran
-  parent: [BaseItem, BasePart]
+  parent: OrganBase
   name: "tajaran body part"
   abstract: true
   components:
@@ -11,11 +11,14 @@
         Quantity: 3
       - ReagentId: Blood
         Quantity: 10
+  - type: VisualOrganMarkings
+    markingData:
+      group: Tajaran
 
 - type: entity
   id: TorsoTajaran
   name: "tajaran torso"
-  parent: [PartTajaran, BaseTorso]
+  parent: [PartTajaran, OrganBaseTorso]
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -31,7 +34,7 @@
 - type: entity
   id: HeadTajaran
   name: "tajaran head"
-  parent: [PartTajaran, BaseHead]
+  parent: [PartTajaran, OrganBaseHead]
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -47,7 +50,7 @@
 - type: entity
   id: LeftArmTajaran
   name: "left tajaran arm"
-  parent: [PartTajaran, BaseLeftArm]
+  parent: [PartTajaran, OrganBaseArmLeft]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -56,7 +59,7 @@
 - type: entity
   id: RightArmTajaran
   name: "right tajaran arm"
-  parent: [PartTajaran, BaseRightArm]
+  parent: [PartTajaran, OrganBaseArmRight]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -65,7 +68,7 @@
 - type: entity
   id: LeftHandTajaran
   name: "left tajaran hand"
-  parent: [PartTajaran, BaseLeftHand]
+  parent: [PartTajaran, OrganBaseHandLeft]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -74,7 +77,7 @@
 - type: entity
   id: RightHandTajaran
   name: "right tajaran hand"
-  parent: [PartTajaran, BaseRightHand]
+  parent: [PartTajaran, OrganBaseHandRight]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -83,16 +86,26 @@
 - type: entity
   id: TailTajaran
   name: "tajaran tail"
-  parent: [PartTajaran, BaseTail]
+  parent: [PartTajaran, OrganBaseTail]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
       state: "tail_m"
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - Tail
+        group: Tajaran
+    - type: VisualOrgan
+      layer: enum.HumanoidVisualLayers.Tail
+      data:
+        sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
+        state: tail_m
 
 - type: entity
   id: LeftLegTajaran
   name: "left tajaran leg"
-  parent: [PartTajaran, BaseLeftLeg]
+  parent: [PartTajaran, OrganBaseLegLeft]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -104,7 +117,7 @@
 - type: entity
   id: RightLegTajaran
   name: "right tajaran leg"
-  parent: [PartTajaran, BaseRightLeg]
+  parent: [PartTajaran, OrganBaseLegRight]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -116,7 +129,7 @@
 - type: entity
   id: LeftFootTajaran
   name: "left tajaran foot"
-  parent: [PartTajaran, BaseLeftFoot]
+  parent: [PartTajaran, OrganBaseFootLeft]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -125,7 +138,7 @@
 - type: entity
   id: RightFootTajaran
   name: "right tajaran foot"
-  parent: [PartTajaran, BaseRightFoot]
+  parent: [PartTajaran, OrganBaseFootRight]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -134,7 +147,7 @@
 - type: entity
   id: LeftLegTajaranCurved
   name: "left tajaran leg"
-  parent: [PartTajaran, BaseLeftLeg]
+  parent: [PartTajaran, OrganBaseLegLeft]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -146,7 +159,7 @@
 - type: entity
   id: RightLegTajaranCurved
   name: "right tajaran leg"
-  parent: [PartTajaran, BaseRightLeg]
+  parent: [PartTajaran, OrganBaseLegRight]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -158,7 +171,7 @@
 - type: entity
   id: LeftFootTajaranCurved
   name: "left tajaran foot"
-  parent: [PartTajaran, BaseLeftFoot]
+  parent: [PartTajaran, OrganBaseFootLeft]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
@@ -167,7 +180,7 @@
 - type: entity
   id: RightFootTajaranCurved
   name: "right tajaran foot"
-  parent: [PartTajaran, BaseRightFoot]
+  parent: [PartTajaran, OrganBaseFootRight]
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi

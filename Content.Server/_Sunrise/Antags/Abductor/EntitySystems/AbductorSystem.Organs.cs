@@ -12,8 +12,8 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Server.Speech.Components;
-using Content.Server.Humanoid;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Coordinates;
 using Content.Server.Mind;
 using Content.Server.Roles;
@@ -33,7 +33,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private readonly SunriseHumanoidMarkingSystem _sunriseMarking = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
@@ -130,8 +130,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         {
             RemComp<AbductorOwoTransformatedComponent>(args.Body);
             RemComp<OwOAccentComponent>(args.Body);
-            _humanoid.RemoveMarking(args.Body, "CatEars");
-            _humanoid.RemoveMarking(args.Body, "CatTail");
+            _sunriseMarking.RemoveMarking(args.Body, "CatEars");
+            _sunriseMarking.RemoveMarking(args.Body, "CatTail");
         }
     }
     public override void Update(float frameTime)
@@ -220,8 +220,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                     _audioSystem.PlayPvs(victim.Mew, uid);
                     SpawnAttachedTo("RMCExplosionEffectGrenadeShockWave", uid.ToCoordinates());
                     EnsureComp<OwOAccentComponent>(uid);
-                    _humanoid.AddMarking(uid, "CatTail");
-                    _humanoid.AddMarking(uid, "CatEars"); // На ласте еще добавлять костюм горничной и лапки, why not
+                    _sunriseMarking.AddMarking(uid, "CatTail");
+                    _sunriseMarking.AddMarking(uid, "CatEars"); // На ласте еще добавлять костюм горничной и лапки, why not
                 }
 
                 break;

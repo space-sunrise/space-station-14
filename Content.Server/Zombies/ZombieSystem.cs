@@ -128,7 +128,7 @@ namespace Content.Server.Zombies
             EntityUid? nearestUid = default!;
             TransformComponent? nearestXform = default!;
             float? minDistance = null;
-            var query = AllEntityQuery<HumanoidAppearanceComponent>();
+            var query = AllEntityQuery<HumanoidProfileComponent>();
             while (query.MoveNext(out var targetUid, out var humanoidAppearanceComponent))
             {
                 // Зомби не должны чувствовать тех, у кого иммунитет к ним.
@@ -422,16 +422,9 @@ namespace Content.Server.Zombies
             if (!Resolve(source, ref zombiecomp))
                 return false;
 
-            foreach (var (layer, info) in zombiecomp.BeforeZombifiedCustomBaseLayers)
-            {
-                _humanoidAppearance.SetBaseLayerColor(target, layer, info.Color);
-                _humanoidAppearance.SetBaseLayerId(target, layer, info.Id);
-            }
-            if (TryComp<HumanoidAppearanceComponent>(target, out var appcomp))
-            {
-                appcomp.EyeColor = zombiecomp.BeforeZombifiedEyeColor;
-            }
-            _humanoidAppearance.SetSkinColor(target, zombiecomp.BeforeZombifiedSkinColor, false);
+            _visualBody.ApplyProfiles(target, zombiecomp.BeforeZombifiedProfiles);
+            _visualBody.ApplyMarkings(target, zombiecomp.BeforeZombifiedMarkings);
+
             _bloodstream.ChangeBloodReagents(target, zombiecomp.BeforeZombifiedBloodReagents);
 
             return true;

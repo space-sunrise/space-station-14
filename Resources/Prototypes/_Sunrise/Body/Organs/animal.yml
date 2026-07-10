@@ -39,7 +39,7 @@
 
 - type: entity
   id: SentientWildSlimeCore
-  parent: SentientSlimeCore
+  parent: OrganSlimePersonCore
   name: slime core
   categories: [ HideSpawnMenu ]
   components:

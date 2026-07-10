@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
-using Content.Shared.Body.Part;
+using Content.Shared.Body;
 using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Starlight.Medical.Surgery.Events;
@@ -21,7 +20,6 @@ namespace Content.Server.Starlight.Medical.Surgery;
 // https://github.com/RMC-14/RMC-14
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -47,15 +45,14 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             return;
 
         var surgeries = new Dictionary<NetEntity, List<(EntProtoId, string suffix, bool isCompleted)>>();
-        if (HasComp<BodyPartComponent>(body))
+        if (TryComp<BodyComponent>(body, out var bodyComp) && bodyComp.Organs != null)
         {
-            AddSurgeries(body, body, surgeries);
-        }
-        else
-        {
-            foreach (var part in _body.GetBodyChildren(body))
+            foreach (var part in bodyComp.Organs.ContainedEntities)
             {
-                AddSurgeries(part.Id, body, surgeries);
+                if (!TryComp<OrganComponent>(part, out var organ) || !IsSurgeryTarget(organ))
+                    continue;
+
+                AddSurgeries(part, body, surgeries);
             }
         }
 
