@@ -10,6 +10,7 @@ namespace Content.Client._Sunrise.Light.Visualizers;
 public sealed class SunrisePoweredLightSparksSystem : EntitySystem
 {
     public const string DefaultLayer = "sunrisePoweredLightSparks";
+    private const string OnLayer = "sunrisePoweredLightOn";
 
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -26,10 +27,28 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         if (args.Sprite == null)
             return;
 
-        var sprite = (ent.Owner, args.Sprite);
-        if (!_appearance.TryGetData<PoweredLightState>(ent, PoweredLightVisuals.BulbState, out var state, args.Component) ||
-            state != PoweredLightState.Broken ||
+        UpdateVisuals(ent, args.Sprite, args.Component);
+    }
+
+    private void UpdateVisuals(
+        Entity<SunrisePoweredLightSparksComponent> ent,
+        SpriteComponent spriteComp,
+        AppearanceComponent? appearance)
+    {
+        var sprite = (ent.Owner, spriteComp);
+        if (!_appearance.TryGetData<PoweredLightState>(ent, PoweredLightVisuals.BulbState, out var state, appearance) ||
+            !_appearance.TryGetData<bool>(ent, SunrisePoweredLightVisuals.HasPower, out var hasPower, appearance) ||
             !TryComp<PointLightComponent>(ent, out _))
+        {
+            SetLayerVisible(sprite, OnLayer, false);
+            SetLayerVisible(sprite, ent.Comp.Layer, false);
+            SetLayerVisible(sprite, ent.Comp.SparksLayer, false);
+            return;
+        }
+
+        SetLayerVisible(sprite, OnLayer, state == PoweredLightState.On && hasPower);
+
+        if (state != PoweredLightState.Broken || !hasPower)
         {
             SetLayerVisible(sprite, ent.Comp.Layer, false);
             SetLayerVisible(sprite, ent.Comp.SparksLayer, false);

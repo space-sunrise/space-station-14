@@ -1,20 +1,22 @@
 - type: entity
-  id: SunrisePoweredLightTubeSparkVisuals
+  id: SunrisePoweredLightTubeSparkVisualsBase
   abstract: true
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
       state: base
     - map: ["enum.PoweredLightLayers.Glow"]
       state: glow
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
       shader: unshaded
     - map: ["sunrisePoweredLightFlicker"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
       state: spark-light1
       shader: unshaded
       visible: false
     - map: ["sunrisePoweredLightSparks"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
       state: spark-sparks1
       shader: unshaded
       visible: false
@@ -31,22 +33,60 @@
     - spark-sparks2
 
 - type: entity
-  id: SunrisePoweredSmallLightSparkVisuals
+  id: SunrisePoweredLightTubeSparkVisuals
+  abstract: true
+  parent: SunrisePoweredLightTubeSparkVisualsBase
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["sunrisePoweredLightOn"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
+      state: base
+      visible: false
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
+      shader: unshaded
+    - map: ["sunrisePoweredLightFlicker"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
+      state: spark-light1
+      shader: unshaded
+      visible: false
+    - map: ["sunrisePoweredLightSparks"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
+      state: spark-sparks1
+      shader: unshaded
+      visible: false
+    state: base
+- type: entity
+  id: SunriseAlwaysPoweredLightTubeSparkVisuals
+  abstract: true
+  parent: SunrisePoweredLightTubeSparkVisualsBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
+
+- type: entity
+  id: SunrisePoweredSmallLightSparkVisualsBase
   abstract: true
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
       state: base
     - map: ["enum.PoweredLightLayers.Glow"]
       state: glow
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
       shader: unshaded
     - map: ["sunrisePoweredLightFlicker"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
       state: spark-light1
       shader: unshaded
       visible: false
     - map: ["sunrisePoweredLightSparks"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
       state: spark-sparks1
       shader: unshaded
       visible: false
@@ -60,22 +100,60 @@
     - spark-sparks2
 
 - type: entity
-  id: SunrisePoweredStrobeLightSparkVisuals
+  id: SunrisePoweredSmallLightSparkVisuals
+  abstract: true
+  parent: SunrisePoweredSmallLightSparkVisualsBase
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["sunrisePoweredLightOn"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
+      state: base
+      visible: false
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
+      shader: unshaded
+    - map: ["sunrisePoweredLightFlicker"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
+      state: spark-light1
+      shader: unshaded
+      visible: false
+    - map: ["sunrisePoweredLightSparks"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
+      state: spark-sparks1
+      shader: unshaded
+      visible: false
+    state: base
+- type: entity
+  id: SunriseAlwaysPoweredSmallLightSparkVisuals
+  abstract: true
+  parent: SunrisePoweredSmallLightSparkVisualsBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
+
+- type: entity
+  id: SunrisePoweredStrobeLightSparkVisualsBase
   abstract: true
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
       state: base
     - map: ["enum.PoweredLightLayers.Glow"]
       state: glow
+      sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
       shader: unshaded
     - map: ["sunrisePoweredLightFlicker"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
       state: spark-light1
       shader: unshaded
       visible: false
     - map: ["sunrisePoweredLightSparks"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
       state: spark-sparks1
       shader: unshaded
       visible: false
@@ -88,6 +166,42 @@
     - spark-sparks1
 
 - type: entity
+  id: SunrisePoweredStrobeLightSparkVisuals
+  abstract: true
+  parent: SunrisePoweredStrobeLightSparkVisualsBase
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["sunrisePoweredLightOn"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
+      state: base
+      visible: false
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
+      shader: unshaded
+    - map: ["sunrisePoweredLightFlicker"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
+      state: spark-light1
+      shader: unshaded
+      visible: false
+    - map: ["sunrisePoweredLightSparks"]
+      sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
+      state: spark-sparks1
+      shader: unshaded
+      visible: false
+    state: base
+- type: entity
+  id: SunriseAlwaysPoweredStrobeLightSparkVisuals
+  abstract: true
+  parent: SunrisePoweredStrobeLightSparkVisualsBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
+
+- type: entity
   id: SunrisePoweredlightEmpty
   parent:
   - PoweredlightEmpty
@@ -97,7 +211,7 @@
   id: SunriseAlwaysPoweredWallLight
   parent:
   - AlwaysPoweredWallLight
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunrisePoweredlight
@@ -127,19 +241,19 @@
   id: SunriseAlwaysPoweredLightLED
   parent:
   - AlwaysPoweredLightLED
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredLightExterior
   parent:
   - AlwaysPoweredLightExterior
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredLightSodium
   parent:
   - AlwaysPoweredLightSodium
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunrisePoweredlightCyan
@@ -193,55 +307,55 @@
   id: SunriseAlwaysPoweredlightCyan
   parent:
   - AlwaysPoweredlightCyan
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredlightBlue
   parent:
   - AlwaysPoweredlightBlue
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredlightYellow
   parent:
   - AlwaysPoweredlightYellow
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredlightPink
   parent:
   - AlwaysPoweredlightPink
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredlightOrange
   parent:
   - AlwaysPoweredlightOrange
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredlightBlack
   parent:
   - AlwaysPoweredlightBlack
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredlightRed
   parent:
   - AlwaysPoweredlightRed
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseAlwaysPoweredlightGreen
   parent:
   - AlwaysPoweredlightGreen
-  - SunrisePoweredLightTubeSparkVisuals
+  - SunriseAlwaysPoweredLightTubeSparkVisuals
 
 - type: entity
   id: SunriseSmallLight
   parent:
   - SmallLight
-  - SunrisePoweredSmallLightSparkVisuals
+  - SunriseAlwaysPoweredSmallLightSparkVisuals
 
 - type: entity
   id: SunrisePoweredSmallLightEmpty
@@ -277,7 +391,7 @@
   id: SunriseAlwaysPoweredStrobeLight
   parent:
   - AlwaysPoweredStrobeLight
-  - SunrisePoweredStrobeLightSparkVisuals
+  - SunriseAlwaysPoweredStrobeLightSparkVisuals
 
 - type: entity
   id: SunrisePoweredStrobeLightPolice
@@ -301,4 +415,4 @@
   id: SunriseAlwaysPoweredStrobeDimLight
   parent:
   - AlwaysPoweredStrobeDimLight
-  - SunrisePoweredStrobeLightSparkVisuals
+  - SunriseAlwaysPoweredStrobeLightSparkVisuals
