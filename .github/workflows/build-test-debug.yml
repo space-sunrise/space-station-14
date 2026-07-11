@@ -42,7 +42,8 @@ jobs:
     - name: Discover Integration Tests
       shell: bash
       run: |
-        dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj 2>&1 | \
+        # Sunrise-Edit - полные имена разделяют одноимённые методы разных тестовых классов
+        dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.DisplayName=FullName 2>&1 | \
           python3 Tools/test_shard_filter.py generate 8 .integration-filters
 
     - name: Archive build output
