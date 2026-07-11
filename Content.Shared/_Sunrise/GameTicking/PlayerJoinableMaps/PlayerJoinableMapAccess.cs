@@ -10,22 +10,19 @@ public static class PlayerJoinableMapAccess
         IConfigurationManager cfg,
         int playerCount)
     {
-        if (IsExplicitlyEnabled(map, cfg))
-            return true;
+        if (!IsEnabledByCVar(map, cfg))
+            return false;
 
         if (!TryGetMinPlayers(map, cfg, out var minPlayers))
-            return GetEnabledCVar(map) == null;
-
-        if (minPlayers < 0)
-            return false;
+            return true;
 
         return playerCount >= minPlayers;
     }
 
-    public static bool IsExplicitlyEnabled(PlayerJoinableMapPrototype map, IConfigurationManager cfg)
+    public static bool IsEnabledByCVar(PlayerJoinableMapPrototype map, IConfigurationManager cfg)
     {
         var cvar = GetEnabledCVar(map);
-        return cvar != null && cfg.GetCVar(cvar);
+        return cvar == null || cfg.GetCVar(cvar);
     }
 
     public static bool IsPlayerCountEnabled(
@@ -33,7 +30,7 @@ public static class PlayerJoinableMapAccess
         IConfigurationManager cfg,
         int playerCount)
     {
-        if (IsExplicitlyEnabled(map, cfg))
+        if (!IsEnabledByCVar(map, cfg))
             return false;
 
         if (!TryGetMinPlayers(map, cfg, out var minPlayers) || minPlayers < 0)
@@ -80,12 +77,12 @@ public static class PlayerJoinableMapAccess
         IConfigurationManager cfg,
         int playerCount)
     {
-        if (!TryGetMinPlayers(map, cfg, out _))
+        if (!IsEnabledByCVar(map, cfg))
             return false;
 
-        if (IsExplicitlyEnabled(map, cfg))
+        if (!TryGetMinPlayers(map, cfg, out var minPlayers) || minPlayers < 0)
             return false;
 
-        return !IsEnabled(map, cfg, playerCount);
+        return playerCount < minPlayers;
     }
 }

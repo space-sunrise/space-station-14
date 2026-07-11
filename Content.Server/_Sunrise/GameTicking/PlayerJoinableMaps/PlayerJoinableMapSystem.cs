@@ -119,7 +119,7 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
             if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out _))
                 continue;
 
-            if (PlayerJoinableMapAccess.IsExplicitlyEnabled(map, _cfg) ||
+            if (!PlayerJoinableMapAccess.IsEnabledByCVar(map, _cfg) ||
                 !PlayerJoinableMapAccess.TryGetMinPlayers(map, _cfg, out var mapMinPlayers) ||
                 mapMinPlayers < 0)
             {
