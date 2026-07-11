@@ -222,10 +222,23 @@ jobs:
       - build
       - content-tests
       - integration-tests
+    # Sunrise-Edit - итоговый статус должен выполниться и явно отразить падение зависимости
+    if: ${{ always() && github.actor != 'Sunrise-Bot' }}
     runs-on: ubuntu-latest
     steps:
-      - name: CI succeeded
-        run: exit 0
+      # Sunrise edit start - не принимаем skipped/cancelled за успешный обязательный статус
+      - name: Verify required jobs
+        env:
+          BUILD_RESULT: ${{ needs.build.result }}
+          CONTENT_TESTS_RESULT: ${{ needs.content-tests.result }}
+          INTEGRATION_TESTS_RESULT: ${{ needs.integration-tests.result }}
+        run: |
+          echo "build=$BUILD_RESULT content-tests=$CONTENT_TESTS_RESULT integration-tests=$INTEGRATION_TESTS_RESULT"
+          if [[ "$BUILD_RESULT" != "success" || "$CONTENT_TESTS_RESULT" != "success" || "$INTEGRATION_TESTS_RESULT" != "success" ]]; then
+            echo "::error title=Required CI failed::At least one required job did not succeed."
+            exit 1
+          fi
+      # Sunrise edit end
 
   cleanup:
     name: Cleanup Artifacts
