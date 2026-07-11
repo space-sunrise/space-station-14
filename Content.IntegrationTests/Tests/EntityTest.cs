@@ -21,6 +21,7 @@ namespace Content.IntegrationTests.Tests
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
         [Test]
+        [NonParallelizable] // Sunrise-Edit - не запускаем стресс-тест сущностей одновременно с другими тестами
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -84,6 +85,7 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
+        [NonParallelizable] // Sunrise-Edit - не запускаем стресс-тест сущностей одновременно с другими тестами
         public async Task SpawnAndDeleteAllEntitiesInTheSameSpot()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -143,6 +145,7 @@ namespace Content.IntegrationTests.Tests
         ///     all components on every entity.
         /// </summary>
         [Test]
+        [NonParallelizable] // Sunrise-Edit - не запускаем стресс-тест сущностей одновременно с другими тестами
         [Ignore("For some reason this test causes github actions to crash")] // Sunrise
         public async Task SpawnAndDirtyAllEntities()
         {
@@ -229,6 +232,7 @@ namespace Content.IntegrationTests.Tests
         /// crude test to try catch issues like this, and possibly should just be disabled.
         /// </remarks>
         [Test]
+        [NonParallelizable] // Sunrise-Edit - не запускаем стресс-тест сущностей одновременно с другими тестами
         public async Task SpawnAndDeleteEntityCountTest()
         {
             var settings = new PoolSettings { Connected = true, Dirty = true };
