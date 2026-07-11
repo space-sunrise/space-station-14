@@ -67,22 +67,34 @@ jobs:
         find . -path './.git' -prune -o -type d -name obj -prune -exec rm -rf -- {} +
         find . -path './.git' -prune -o -type d -name bin ! -path './bin' -prune -exec rm -rf -- {} +
         find bin -mindepth 1 -maxdepth 1 -type d \
-          ! -name Content.Client \
-          ! -name Content.Server \
           ! -name Content.Tests \
           ! -name Content.IntegrationTests \
           -exec rm -rf -- {} +
+        # Пустые каталоги нужны ResourceManager как точки монтирования сборок.
+        mkdir -p bin/Content.Client bin/Content.Server
     # Sunrise added end
 
     - name: Archive build output
-      # Sunrise-Edit - быстрее передаём сборку тестовым шардам через многопоточный zstd
-      run: tar -I 'zstd -T0 -3' -cf /tmp/build.tar.zst --exclude='.git' .
+      # Sunrise-Edit - не передаём каждому интеграционному шарду сборку Content.Tests
+      run: |
+        tar -I 'zstd -T0 -3' -cf /tmp/integration-build.tar.zst \
+          Resources RobustToolbox/Resources .integration-filters \
+          bin/Content.Client bin/Content.Server bin/Content.IntegrationTests
+        tar -I 'zstd -T0 -3' -cf /tmp/content-tests-build.tar.zst bin/Content.Tests
 
-    - name: Upload build artifact
+    - name: Upload integration build artifact
       uses: actions/upload-artifact@v4
       with:
-        name: build-output
-        path: /tmp/build.tar.zst
+        name: integration-build-output
+        path: /tmp/integration-build.tar.zst
+        retention-days: 1
+        compression-level: 0
+
+    - name: Upload content tests build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: content-tests-build-output
+        path: /tmp/content-tests-build.tar.zst
         retention-days: 1
         compression-level: 0
 
@@ -100,11 +112,11 @@ jobs:
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
-        name: build-output
+        name: content-tests-build-output
 
     - name: Extract build
       # Sunrise-Edit - распаковываем zstd-архив сборки
-      run: tar --zstd -xf build.tar.zst && rm build.tar.zst
+      run: tar --zstd -xf content-tests-build.tar.zst && rm content-tests-build.tar.zst
 
     - name: Run Content.Tests
       timeout-minutes: 15
@@ -136,11 +148,11 @@ jobs:
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
-        name: build-output
+        name: integration-build-output
 
     - name: Extract build
       # Sunrise-Edit - распаковываем zstd-архив сборки
-      run: tar --zstd -xf build.tar.zst && rm build.tar.zst
+      run: tar --zstd -xf integration-build.tar.zst && rm integration-build.tar.zst
 
     - name: Run Content.IntegrationTests
       id: integration-tests
@@ -241,7 +253,12 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Delete build artifact
+      - name: Delete integration build artifact
         uses: geekyeggo/delete-artifact@v5
         with:
-          name: build-output
+          name: integration-build-output
+
+      - name: Delete content tests build artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: content-tests-build-output
