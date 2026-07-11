@@ -37,6 +37,10 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
                 map.Log.Level = LogLevel.Warning;
         };
 
+        // Sunrise added start - применяем ограничение и к журналам, созданным после чтения CVar
+        ConfigureLogLevels();
+        // Sunrise added end
+
         var settings = (PoolSettings)Settings;
         if (!settings.DummyTicker)
         {
