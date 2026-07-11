@@ -144,13 +144,9 @@ jobs:
         max_attempts: 2
         retry_on: any
         command: |
-          FILTER=$(python3 Tools/test_shard_filter.py read .integration-filters/shard_${{ matrix.shard }}.filter)
-          if [ -z "$FILTER" ]; then
-            echo "No tests assigned to shard ${{ matrix.shard }}"
-            exit 0
-          fi
+          SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
           timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini -- NUnit.MapWarningTo=Failed NUnit.Where="$FILTER"
+            dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
 
     # Sunrise-Edit
     - name: Mark integration shard flake

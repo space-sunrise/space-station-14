@@ -3,12 +3,12 @@
 """
 Partitions test classes across shards for parallel CI execution.
 
-Mode 1 - Generate all shard filters to files:
+Mode 1 - Generate all shard runsettings files:
     dotnet test --list-tests ... | python3 test_shard_filter.py generate <total-shards> <output-dir>
-    Writes <output-dir>/shard_0.filter .. shard_N.filter
+    Writes <output-dir>/shard_0.runsettings .. shard_N.runsettings
 
-Mode 2 - Read a pre-generated filter file:
-    python3 test_shard_filter.py read <filter-file>
+Mode 2 - Read a filter from a pre-generated runsettings file:
+    python3 test_shard_filter.py read <runsettings-file>
     Prints the filter to stdout (empty output if file is empty/missing)
 
 Exit codes:
@@ -18,6 +18,8 @@ Exit codes:
 
 import os
 import sys
+import xml.etree.ElementTree as ET
+from xml.sax.saxutils import escape
 
 
 # Weight multipliers for tests that are lighter than their test count suggests.
@@ -273,11 +275,15 @@ WEIGHT_OVERRIDES = {
 
 def parse_tests(lines):
     """Parse test names from `dotnet test --list-tests` output."""
+    list_headers = {
+        "The following Tests are available:",
+        "Доступны следующие тесты:",
+    }
     tests = []
     in_list = False
     for line in lines:
         stripped = line.strip()
-        if "The following Tests are available:" in stripped:
+        if stripped in list_headers:
             in_list = True
             continue
         if not in_list:
@@ -329,6 +335,22 @@ def build_filter(groups):
     return "||".join(expressions)
 
 
+def build_runsettings(filter_expr):
+    """Build a VSTest runsettings file containing NUnit adapter settings."""
+    if not filter_expr:
+        filter_expr = "method=='__no_tests_assigned__'"
+
+    return f"""<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <NUnit>
+    <DisplayName>FullName</DisplayName>
+    <MapWarningTo>Failed</MapWarningTo>
+    <Where>{escape(filter_expr)}</Where>
+  </NUnit>
+</RunSettings>
+"""
+
+
 def cmd_generate():
     if len(sys.argv) != 4:
         print(f"Usage: {sys.argv[0]} generate <total-shards> <output-dir>", file=sys.stderr)
@@ -370,9 +392,9 @@ def cmd_generate():
     for shard in range(total):
         my_groups = sorted(shards[shard])
         filter_expr = build_filter(my_groups)
-        path = os.path.join(output_dir, f"shard_{shard}.filter")
-        with open(path, "w") as f:
-            f.write(filter_expr)
+        path = os.path.join(output_dir, f"shard_{shard}.runsettings")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(build_runsettings(filter_expr))
         print(f"  Shard {shard}: {len(my_groups)} groups, weight {shard_loads[shard]:.1f} ({sum(group_counts[g] for g in my_groups)} tests)", file=sys.stderr)
         for group in my_groups:
             weight = group_weight(group)
@@ -382,17 +404,17 @@ def cmd_generate():
 
 def cmd_read():
     if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} read <filter-file>", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} read <runsettings-file>", file=sys.stderr)
         sys.exit(1)
 
     path = sys.argv[2]
     if not os.path.exists(path):
         return
-    with open(path) as f:
-        content = f.read().strip()
-    if content:
+    root = ET.parse(path).getroot()
+    where = root.findtext("./NUnit/Where", default="").strip()
+    if where:
         print("Running filtered test groups from the generated shard.", file=sys.stderr)
-        print(content)
+        print(where)
 
 
 def main():

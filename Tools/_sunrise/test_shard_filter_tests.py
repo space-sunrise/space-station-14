@@ -12,6 +12,16 @@ SPEC.loader.exec_module(SHARD_FILTER)
 
 
 class TestShardFilterTests(unittest.TestCase):
+    def test_parses_localized_test_list_header(self):
+        tests = SHARD_FILTER.parse_tests(
+            [
+                "Доступны следующие тесты:",
+                "    Content.Tests.Fixture.Test",
+            ]
+        )
+
+        self.assertEqual(tests, ["Content.Tests.Fixture.Test"])
+
     def test_groups_identically_named_methods_by_fixture(self):
         groups = SHARD_FILTER.extract_groups(
             [
@@ -50,6 +60,16 @@ class TestShardFilterTests(unittest.TestCase):
         self.assertEqual(
             SHARD_FILTER.build_filter(groups),
             "method=='ParameterizedTest'||method=='Test'",
+        )
+
+    def test_builds_runsettings_with_escaped_filter(self):
+        settings = SHARD_FILTER.build_runsettings("class=='Fixture'&&method=='Test'")
+
+        self.assertIn("<DisplayName>FullName</DisplayName>", settings)
+        self.assertIn("<MapWarningTo>Failed</MapWarningTo>", settings)
+        self.assertIn(
+            "<Where>class=='Fixture'&amp;&amp;method=='Test'</Where>",
+            settings,
         )
 
 
