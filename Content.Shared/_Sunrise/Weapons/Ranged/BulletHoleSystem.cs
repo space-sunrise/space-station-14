@@ -1,3 +1,4 @@
+using Content.Shared.Damage;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Network;
@@ -27,7 +28,7 @@ public sealed class BulletHoleSystem : EntitySystem
 
     private void OnProjectileDamageDealt(Entity<BulletHoleGeneratorComponent> ent, ref ProjectileDamageDealtEvent args)
     {
-        if (args.DamageDealt.Empty)
+        if (!CanCreateBulletHole(ent.Comp, args.DamageDealt))
             return;
 
         TryApplyBulletHole(args.Target);
@@ -35,7 +36,7 @@ public sealed class BulletHoleSystem : EntitySystem
 
     private void OnHitscanDamageDealt(Entity<BulletHoleGeneratorComponent> ent, ref HitscanDamageDealtEvent args)
     {
-        if (args.DamageDealt.Empty)
+        if (!CanCreateBulletHole(ent.Comp, args.DamageDealt))
             return;
 
         TryApplyBulletHole(args.Target);
@@ -57,5 +58,10 @@ public sealed class BulletHoleSystem : EntitySystem
         var count = Math.Min(bulletHole.Count, MaxCount);
         var state = $"bhole_{bulletHole.State}_{count}";
         _appearance.SetData(target, BulletHoleVisuals.State, state, appearance);
+    }
+
+    private static bool CanCreateBulletHole(BulletHoleGeneratorComponent generator, DamageSpecifier damage)
+    {
+        return damage.DamageDict.TryGetValue(generator.RequiredDamageType, out var value) && value > 0;
     }
 }

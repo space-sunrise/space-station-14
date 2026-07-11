@@ -55,7 +55,7 @@
   - type: Reflective
   - type: FlyBySound
   - type: Clickable
-  # Sunrise added - оставляет след только после подтверждённого урона по стене
+  # Sunrise added - допускает след только от подтверждённого piercing-урона
   - type: BulletHoleGenerator
   - type: Sprite
     noRot: false
