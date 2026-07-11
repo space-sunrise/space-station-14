@@ -59,12 +59,16 @@ jobs:
       shell: bash
       run: |
         test "$PWD" = "$GITHUB_WORKSPACE"
+        test -f bin/Content.Client/Content.Client.dll
+        test -f bin/Content.Server/Content.Server.dll
         test -f bin/Content.Tests/Content.Tests.dll
         test -f bin/Content.IntegrationTests/Content.IntegrationTests.dll
 
         find . -path './.git' -prune -o -type d -name obj -prune -exec rm -rf -- {} +
         find . -path './.git' -prune -o -type d -name bin ! -path './bin' -prune -exec rm -rf -- {} +
         find bin -mindepth 1 -maxdepth 1 -type d \
+          ! -name Content.Client \
+          ! -name Content.Server \
           ! -name Content.Tests \
           ! -name Content.IntegrationTests \
           -exec rm -rf -- {} +
