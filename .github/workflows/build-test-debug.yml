@@ -84,12 +84,10 @@ jobs:
       # Sunrise-Edit - распаковываем zstd-архив сборки
       run: tar --zstd -xf build.tar.zst && rm build.tar.zst
 
-    - name: Restore packages
-      run: dotnet restore Content.Tests/Content.Tests.csproj
-
     - name: Run Content.Tests
       timeout-minutes: 15
-      run: dotnet test --no-build --no-restore --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
+      # Sunrise-Edit - запускаем готовую сборку без повторного restore на каждом раннере
+      run: dotnet test bin/Content.Tests/Content.Tests.dll --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
 
     - name: Test results
       continue-on-error: true
@@ -122,9 +120,6 @@ jobs:
       # Sunrise-Edit - распаковываем zstd-архив сборки
       run: tar --zstd -xf build.tar.zst && rm build.tar.zst
 
-    - name: Restore packages
-      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
-
     - name: Run Content.IntegrationTests
       id: integration-tests
       timeout-minutes: 17
@@ -132,8 +127,9 @@ jobs:
         DOTNET_gcServer: "1"
       run: |
         SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
+        # Sunrise-Edit - запускаем готовую сборку без повторного restore на каждом раннере
         timeout --signal=TERM --kill-after=2m 15m \
-          dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
+          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
 
     - name: Test results
       continue-on-error: true
