@@ -51,7 +51,6 @@ def main():
         cwd=project_root,
         env=environment,
         stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
         text=True,
         check=True,
     )

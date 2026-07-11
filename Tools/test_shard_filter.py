@@ -378,7 +378,7 @@ def cmd_generate():
 
     os.makedirs(output_dir, exist_ok=True)
 
-    def group_weight(group):
+    def group_weight(group) -> float:
         multiplier = WEIGHT_OVERRIDES.get(group[1], 1.0)
         return group_counts[group] * multiplier
 
