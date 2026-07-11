@@ -53,13 +53,14 @@ jobs:
           python3 Tools/test_shard_filter.py generate 8 .integration-filters
 
     - name: Archive build output
-      run: tar czf /tmp/build.tar.gz --exclude='.git' .
+      # Sunrise-Edit - быстрее передаём сборку тестовым шардам через многопоточный zstd
+      run: tar -I 'zstd -T0 -3' -cf /tmp/build.tar.zst --exclude='.git' .
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
         name: build-output
-        path: /tmp/build.tar.gz
+        path: /tmp/build.tar.zst
         retention-days: 1
         compression-level: 0
 
@@ -80,7 +81,8 @@ jobs:
         name: build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
+      # Sunrise-Edit - распаковываем zstd-архив сборки
+      run: tar --zstd -xf build.tar.zst && rm build.tar.zst
 
     - name: Restore packages
       run: dotnet restore Content.Tests/Content.Tests.csproj
@@ -129,7 +131,8 @@ jobs:
         name: build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
+      # Sunrise-Edit - распаковываем zstd-архив сборки
+      run: tar --zstd -xf build.tar.zst && rm build.tar.zst
 
     - name: Restore packages
       run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
