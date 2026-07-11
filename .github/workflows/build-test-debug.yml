@@ -52,6 +52,22 @@ jobs:
         dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.DisplayName=FullName 2>&1 | \
           python3 Tools/test_shard_filter.py generate 8 .integration-filters
 
+    # Sunrise added start - передаём тестовым раннерам только нужные результаты сборки
+    - name: Prune build artifact
+      shell: bash
+      run: |
+        test "$PWD" = "$GITHUB_WORKSPACE"
+        test -f bin/Content.Tests/Content.Tests.dll
+        test -f bin/Content.IntegrationTests/Content.IntegrationTests.dll
+
+        find . -path './.git' -prune -o -type d -name obj -prune -exec rm -rf -- {} +
+        find . -path './.git' -prune -o -type d -name bin ! -path './bin' -prune -exec rm -rf -- {} +
+        find bin -mindepth 1 -maxdepth 1 -type d \
+          ! -name Content.Tests \
+          ! -name Content.IntegrationTests \
+          -exec rm -rf -- {} +
+    # Sunrise added end
+
     - name: Archive build output
       # Sunrise-Edit - быстрее передаём сборку тестовым шардам через многопоточный zstd
       run: tar -I 'zstd -T0 -3' -cf /tmp/build.tar.zst --exclude='.git' .
