@@ -88,20 +88,8 @@ jobs:
       run: dotnet restore Content.Tests/Content.Tests.csproj
 
     - name: Run Content.Tests
-      id: content-tests-retry
-      uses: nick-fields/retry@v3
-      with:
-        timeout_minutes: 15
-        max_attempts: 2
-        command: dotnet test --no-build --no-restore --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
-
-    # Sunrise-Edit
-    - name: Mark Content.Tests flake
-      if: success() && steps.content-tests-retry.outputs.total_attempts != '1'
-      run: |
-        echo "::warning title=Flaky Content.Tests::Content.Tests passed on retry after ${{ steps.content-tests-retry.outputs.total_attempts }} attempts."
-        echo "## :warning: Flaky Content.Tests" >> "$GITHUB_STEP_SUMMARY"
-        echo "Passed on retry after ${{ steps.content-tests-retry.outputs.total_attempts }} attempts." >> "$GITHUB_STEP_SUMMARY"
+      timeout-minutes: 15
+      run: dotnet test --no-build --no-restore --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
 
     - name: Test results
       continue-on-error: true
@@ -138,26 +126,14 @@ jobs:
       run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
 
     - name: Run Content.IntegrationTests
-      id: integration-tests-retry
-      uses: nick-fields/retry@v3
+      id: integration-tests
+      timeout-minutes: 17
       env:
         DOTNET_gcServer: "1"
-      with:
-        timeout_minutes: 17
-        max_attempts: 2
-        retry_on: any
-        command: |
-          SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
-          timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
-
-    # Sunrise-Edit
-    - name: Mark integration shard flake
-      if: success() && steps.integration-tests-retry.outputs.total_attempts != '1'
       run: |
-        echo "::warning title=Flaky integration shard::Shard ${{ matrix.shard }} passed on retry after ${{ steps.integration-tests-retry.outputs.total_attempts }} attempts."
-        echo "## :warning: Flaky integration shard ${{ matrix.shard }}" >> "$GITHUB_STEP_SUMMARY"
-        echo "Passed on retry after ${{ steps.integration-tests-retry.outputs.total_attempts }} attempts." >> "$GITHUB_STEP_SUMMARY"
+        SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
+        timeout --signal=TERM --kill-after=2m 15m \
+          dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
 
     - name: Test results
       continue-on-error: true
@@ -179,11 +155,11 @@ jobs:
         if-no-files-found: ignore
     # Sunrise added end
 
-    # Sunrise edit start - не загружаем многогигабайтный дамп после успешного повтора
+    # Sunrise edit start - загружаем многогигабайтный дамп только после падения тестов
     - name: Upload crash dumps
       id: upload-dumps
       uses: actions/upload-artifact@v4
-      if: always() && steps.integration-tests-retry.outcome == 'failure'
+      if: always() && steps.integration-tests.outcome == 'failure'
       with:
         name: blame-dump-shard-${{ matrix.shard }}
         path: /tmp/test-results/**/*.dmp
