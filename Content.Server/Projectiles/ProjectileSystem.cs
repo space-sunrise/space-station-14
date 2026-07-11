@@ -113,6 +113,14 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         damage = damageChange;
 
+        // Sunrise added start - сообщаем эффектам только о подтверждённом уроне снаряда
+        if (!damageChange.Empty)
+        {
+            var damageDealtEvent = new ProjectileDamageDealtEvent(target, damageChange);
+            RaiseLocalEvent(uid, ref damageDealtEvent);
+        }
+        // Sunrise added end
+
         if (!damageChange.Empty && Exists(component.Shooter))
         {
             // Guard against race conditions where collided entities are already losing transform

@@ -55,6 +55,8 @@
   - type: Reflective
   - type: FlyBySound
   - type: Clickable
+  # Sunrise added - оставляет след только после подтверждённого урона по стене
+  - type: BulletHoleGenerator
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi

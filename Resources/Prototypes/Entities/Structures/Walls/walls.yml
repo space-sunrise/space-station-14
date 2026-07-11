@@ -35,6 +35,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  # Sunrise added start - синхронизация и отображение следов от пуль
+  - type: Appearance
+  - type: BulletHole
+  # Sunrise added end
   - type: Physics
     bodyType: Static
   - type: Fixtures
