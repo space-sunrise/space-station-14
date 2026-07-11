@@ -70,14 +70,16 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
             return;
         }
 
-        var hasPower = HasComp<SunriseAlwaysPoweredLightSparksComponent>(ent);
+        if (!Resolve(ent, ref poweredLight, false))
+            return;
+
+        var hasPower = poweredLight.On && HasComp<SunriseAlwaysPoweredLightSparksComponent>(ent);
         if (!hasPower)
         {
-            if (!Resolve(ent, ref powerReceiver, false) ||
-                !Resolve(ent, ref poweredLight, false))
+            if (!Resolve(ent, ref powerReceiver, false))
                 return;
 
-            hasPower = powerReceiver.Powered && poweredLight.On;
+            hasPower = poweredLight.On && powerReceiver.Powered;
         }
 
         _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, hasPower, appearance);
