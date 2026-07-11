@@ -143,7 +143,7 @@ jobs:
             exit 0
           fi
           timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min -- NUnit.MapWarningTo=Failed NUnit.Where="$FILTER"
+            dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini -- NUnit.MapWarningTo=Failed NUnit.Where="$FILTER"
 
     # Sunrise-Edit
     - name: Mark integration shard flake
@@ -161,17 +161,29 @@ jobs:
         mkdir -p /tmp/test-results
         trx --path /tmp/test-results -o -v verbose || true
 
-    - name: Upload crash dumps
-      id: upload-dumps
+    # Sunrise added start - последовательность зависания нужна даже после успешного повтора
+    - name: Upload hang sequences
+      id: upload-sequences
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: blame-dump-shard-${{ matrix.shard }}
-        path: |
-          /tmp/test-results/**/*.dmp
-          /tmp/test-results/**/*Sequence*.xml
+        name: blame-sequence-shard-${{ matrix.shard }}
+        path: /tmp/test-results/**/*Sequence*.xml
         retention-days: 3
         if-no-files-found: ignore
+    # Sunrise added end
+
+    # Sunrise edit start - не загружаем многогигабайтный дамп после успешного повтора
+    - name: Upload crash dumps
+      id: upload-dumps
+      uses: actions/upload-artifact@v4
+      if: always() && steps.integration-tests-retry.outcome == 'failure'
+      with:
+        name: blame-dump-shard-${{ matrix.shard }}
+        path: /tmp/test-results/**/*.dmp
+        retention-days: 3
+        if-no-files-found: ignore
+    # Sunrise edit end
 
     - name: Report hung tests
       continue-on-error: true
@@ -189,6 +201,9 @@ jobs:
         done
         if [ "$found" = true ]; then
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "${{ steps.upload-sequences.outputs.artifact-url }}" ]; then
+            echo ":page_facing_up: [Download hang sequence](${{ steps.upload-sequences.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          fi
           if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
             echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
           fi
