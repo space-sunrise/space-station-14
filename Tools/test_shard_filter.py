@@ -167,7 +167,7 @@ WEIGHT_OVERRIDES = {
     "SpawnAndDeleteAllEntitiesOnDifferentMaps": 100.0,
     "SpawnAndDeleteAllEntitiesInTheSameSpot": 60.0,
     "SpawnAndDeleteEntityCountTest": 115.0,
-    "SpawnAndDirtyAllEntities": 2.0,
+    "SpawnAndDirtyAllEntities": 100.0,
     "SpawnItemInSlotTest": 0.25,
     "Spawn_CacheUpdatesOnAtmosTick": 0.125,
     "Spawn_ReconstructedUpdatesImmediately": 0.5,
