@@ -32,7 +32,7 @@ public sealed partial class SunrisePoweredLightSparksComponent : Component
     /// <summary>
     /// Состояния искр, проигрываемые одновременно с мерцанием.
     /// </summary>
-    [DataField("sparkStates")]
+    [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
     public List<string> SparkStates = [];
 

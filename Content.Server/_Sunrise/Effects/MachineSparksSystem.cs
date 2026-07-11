@@ -93,5 +93,8 @@ public sealed class MachineSparksSystem : EntitySystem
 [RegisterComponent]
 public sealed partial class ActiveMachineSparksComponent : Component
 {
+    /// <summary>
+    /// The time when the next low-health spark effect may be spawned.
+    /// </summary>
     public TimeSpan NextSparkTime;
 }

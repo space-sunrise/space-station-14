@@ -37,6 +37,7 @@
   abstract: true
   parent: SunrisePoweredLightTubeSparkVisualsBase
   components:
+  - type: SunriseAlwaysPoweredLightSparks
   - type: Sprite
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
@@ -104,6 +105,7 @@
   abstract: true
   parent: SunrisePoweredSmallLightSparkVisualsBase
   components:
+  - type: SunriseAlwaysPoweredLightSparks
   - type: Sprite
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
@@ -170,6 +172,7 @@
   abstract: true
   parent: SunrisePoweredStrobeLightSparkVisualsBase
   components:
+  - type: SunriseAlwaysPoweredLightSparks
   - type: Sprite
     layers:
     - map: ["enum.PoweredLightLayers.Base"]

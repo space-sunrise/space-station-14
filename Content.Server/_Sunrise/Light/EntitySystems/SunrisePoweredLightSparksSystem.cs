@@ -63,13 +63,20 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         Entity<SunrisePoweredLightSparksComponent> ent,
         ApcPowerReceiverComponent? powerReceiver = null)
     {
-        if (!TryComp<AppearanceComponent>(ent, out var appearance) ||
-            !Resolve(ent, ref powerReceiver, false))
+        if (!TryComp<AppearanceComponent>(ent, out var appearance))
         {
             return;
         }
 
-        var hasPower = powerReceiver.Powered && powerReceiver.NetworkLoad.LinkedNetwork != default;
+        var hasPower = HasComp<SunriseAlwaysPoweredLightSparksComponent>(ent);
+        if (!hasPower)
+        {
+            if (!Resolve(ent, ref powerReceiver, false))
+                return;
+
+            hasPower = powerReceiver.Powered && powerReceiver.NetworkLoad.LinkedNetwork != default;
+        }
+
         _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, hasPower, appearance);
     }
 }

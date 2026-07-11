@@ -793,11 +793,11 @@ RandomAnimalSpawner: MobMothroach
 ClothingOuterWizardFake: ClothingOuterWizard
 SpawnPointPrisoner: SpawnPointPlanetPrisoner
 PoweredLightPostSmallRed: PoweredlightRed
-PoweredSmallLightMaintenanceRed: PoweredDimSmallLight
+PoweredSmallLightMaintenanceRed: SunrisePoweredDimSmallLight
 FoodCondimentBottleSmallVinegar: FoodCondimentBottleVinegar
-PoweredLightColoredRed: PoweredlightRed
-PoweredLightColoredBlack: PoweredlightBlack
-PoweredLightColoredFrostyBlue: PoweredlightBlue
+PoweredLightColoredRed: SunrisePoweredlightRed
+PoweredLightColoredBlack: SunrisePoweredlightBlack
+PoweredLightColoredFrostyBlue: SunrisePoweredlightBlue
 RandomBook: null
 SpawnPointShipwreckHecate: null
 SpawnPointShipwreckTraveller: null
