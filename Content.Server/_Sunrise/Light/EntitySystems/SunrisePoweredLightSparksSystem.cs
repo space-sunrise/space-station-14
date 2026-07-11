@@ -1,6 +1,7 @@
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Sunrise.Light.Visualizers;
+using Content.Shared.Light.Components;
 using Content.Shared.Power;
 using Robust.Shared.Timing;
 
@@ -61,7 +62,8 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
 
     private void UpdateAppearance(
         Entity<SunrisePoweredLightSparksComponent> ent,
-        ApcPowerReceiverComponent? powerReceiver = null)
+        ApcPowerReceiverComponent? powerReceiver = null,
+        PoweredLightComponent? poweredLight = null)
     {
         if (!TryComp<AppearanceComponent>(ent, out var appearance))
         {
@@ -71,10 +73,11 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         var hasPower = HasComp<SunriseAlwaysPoweredLightSparksComponent>(ent);
         if (!hasPower)
         {
-            if (!Resolve(ent, ref powerReceiver, false))
+            if (!Resolve(ent, ref powerReceiver, false) ||
+                !Resolve(ent, ref poweredLight, false))
                 return;
 
-            hasPower = powerReceiver.Powered && powerReceiver.NetworkLoad.LinkedNetwork != default;
+            hasPower = powerReceiver.Powered && poweredLight.On;
         }
 
         _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, hasPower, appearance);

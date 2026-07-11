@@ -49,8 +49,11 @@ public sealed class MachineSparksSystem : EntitySystem
 
         if (IsLowHealth(ent, args))
         {
-            var active = EnsureComp<ActiveMachineSparksComponent>(ent);
-            active.NextSparkTime = GetNextSparkTime(ent.Comp);
+            if (!HasComp<ActiveMachineSparksComponent>(ent))
+            {
+                var active = EnsureComp<ActiveMachineSparksComponent>(ent);
+                active.NextSparkTime = GetNextSparkTime(ent.Comp);
+            }
         }
         else
         {
