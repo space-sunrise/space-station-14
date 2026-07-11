@@ -40,6 +40,7 @@ public sealed class PoolManagerTestEventHandler
         finally
         {
             // Sunrise added start - не оставляем глобальный перехват после набора тестов
+            _Sunrise.Patches.EventTimingSummaryPatch.Unpatch();
             _Sunrise.Patches.RsiLoadingPatch.Unpatch();
             // Sunrise added end
         }

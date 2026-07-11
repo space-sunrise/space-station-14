@@ -47,6 +47,10 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
             var gameTicker = Server.System<GameTicker>();
             await Server.WaitPost(() => gameTicker.RestartRound());
         }
+
+        // Sunrise added start - включаем диагностику времени только по запросу
+        await InitializeTimingDiagnostics();
+        // Sunrise added end
     }
 
     public override async Task RevertModifiedCvars()
