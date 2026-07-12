@@ -27,6 +27,9 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 using Content.Shared.Database; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
+using Content.Shared._Sunrise.SponsorSystem;
+using Content.Server._Sunrise.PlayerCache;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 
 namespace Content.Server.Administration.Systems
@@ -47,6 +50,8 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+        [Dependency] private readonly INetConfigurationManager _netConfig = default!;
+        [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
         [Dependency] private readonly IBanManager _banManager = default!; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
         [Dependency] private readonly DiscordWebhook _discord = default!;
 
@@ -423,10 +428,28 @@ namespace Content.Server.Administration.Systems
             }
             else if (_sponsorsManager != null)
             {
-                _sponsorsManager.TryGetOocColor(senderUserId, out var oocColor);
                 _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
                 var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
-                if (oocColor != null)
+
+                string? selectedColor = null;
+                if (_playerManager.TryGetSessionById(senderUserId, out var session))
+                {
+                    selectedColor = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocColor);
+                }
+                else if (_playerCacheManager.TryGetOocColor(senderUserId, out var cachedColor))
+                {
+                    selectedColor = cachedColor;
+                }
+
+                if (OocGradientHelper.IsGradientId(selectedColor) &&
+                    _sponsorsManager.TryGetAllowedOocGradients(senderUserId, out var allowedGradients) &&
+                    selectedColor != null && allowedGradients.Contains(selectedColor))
+                {
+                    var gradTitle = string.IsNullOrEmpty(oocTitle) ? "" : $"[bold]\\[{OocGradientHelper.ApplyGradientById(oocTitle, selectedColor)}\\][/bold] "; // Sunrise-Edit
+                    var gradName = OocGradientHelper.ApplyGradientById(username, selectedColor);
+                    bwoinkText = $"{gradTitle}{gradName}";
+                }
+                else if (_sponsorsManager.TryGetOocColor(senderUserId, out var oocColor))
                 {
                     bwoinkText = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {username}[/color]";
                 }
@@ -438,6 +461,25 @@ namespace Content.Server.Administration.Systems
             else
             {
                 bwoinkText = $"{username}";
+            }
+
+            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(senderUserId))
+            {
+                string? emoji = null;
+                if (_playerManager.TryGetSessionById(senderUserId, out var session))
+                {
+                    emoji = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocEmoji);
+                }
+                else
+                {
+                    _sponsorsManager.TryGetOocEmoji(senderUserId, out emoji);
+                }
+
+                if (!string.IsNullOrWhiteSpace(emoji))
+                {
+                    var emojiId = emoji.Trim(':');
+                    bwoinkText = $"[emoji id=\"{emojiId}\" size=28] {bwoinkText}";
+                }
             }
 
             var escapedText = FormattedMessage.EscapeText(message);
@@ -807,10 +849,28 @@ namespace Content.Server.Administration.Systems
             }
             else if (_sponsorsManager != null)
             {
-                _sponsorsManager.TryGetOocColor(message.UserId, out var oocColor);
                 _sponsorsManager.TryGetOocTitle(message.UserId, out var oocTitle);
                 var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
-                if (oocColor != null)
+
+                string? selectedColor = null;
+                if (_playerManager.TryGetSessionById(message.UserId, out var playerSession))
+                {
+                    selectedColor = _netConfig.GetClientCVar(playerSession.Channel, SunriseCCVars.SponsorOocColor);
+                }
+                else if (_playerCacheManager.TryGetOocColor(message.UserId, out var cachedColor))
+                {
+                    selectedColor = cachedColor;
+                }
+
+                if (OocGradientHelper.IsGradientId(selectedColor) &&
+                    _sponsorsManager.TryGetAllowedOocGradients(message.UserId, out var allowedGradients) &&
+                    selectedColor != null && allowedGradients.Contains(selectedColor))
+                {
+                    var gradTitle = string.IsNullOrEmpty(oocTitle) ? "" : $"[bold]\\[{OocGradientHelper.ApplyGradientById(oocTitle, selectedColor)}\\][/bold] ";
+                    var gradName = OocGradientHelper.ApplyGradientById(senderSession.Name, selectedColor);
+                    bwoinkText = $"{gradTitle}{gradName}";
+                }
+                else if (_sponsorsManager.TryGetOocColor(message.UserId, out var oocColor))
                 {
                     bwoinkText = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {senderSession.Name}[/color]";
                 }
@@ -822,6 +882,25 @@ namespace Content.Server.Administration.Systems
             else
             {
                 bwoinkText = $"{senderSession.Name}";
+            }
+
+            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(message.UserId))
+            {
+                string? emoji = null;
+                if (_playerManager.TryGetSessionById(message.UserId, out var playerSession))
+                {
+                    emoji = _netConfig.GetClientCVar(playerSession.Channel, SunriseCCVars.SponsorOocEmoji);
+                }
+                else
+                {
+                    _sponsorsManager.TryGetOocEmoji(message.UserId, out emoji);
+                }
+
+                if (!string.IsNullOrWhiteSpace(emoji))
+                {
+                    var emojiId = emoji.Trim(':');
+                    bwoinkText = $"[emoji id=\"{emojiId}\" size=28] {bwoinkText}";
+                }
             }
 
             bwoinkText = $"{(message.AdminOnly ? Loc.GetString("bwoink-message-admin-only") : !message.PlaySound ? Loc.GetString("bwoink-message-silent") : "")} {bwoinkText}: {escapedText}";

@@ -1,6 +1,8 @@
-﻿using Content.Shared.Chat;
+using Content.Client.Resources;
+using Content.Shared.Chat;
 using Content.Shared.Input;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.ResourceManagement;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
@@ -61,13 +63,24 @@ public class ChatInputBox : PanelContainer
             EmojiButton = new Button
             {
                 Name = "EmojiButton",
-                Text = "☻",
                 SetWidth = 30,
                 ToolTip = Loc.GetString("messenger-emoji-button-tooltip")
             };
-            // Insert before FilterButton
+
+            var resourceCache = IoCManager.Resolve<IResourceCache>();
+            var textureRect = new TextureRect
+            {
+                Texture = resourceCache.GetTexture("/Textures/_Sunrise/Interface/Smile.png"),
+                SetWidth = 24,
+                SetHeight = 24,
+                HorizontalAlignment = HAlignment.Center,
+                VerticalAlignment = VAlignment.Center,
+                Stretch = TextureRect.StretchMode.KeepAspectCentered,
+            };
+            EmojiButton.AddChild(textureRect);
+
             Container.AddChild(EmojiButton);
-            FilterButton.SetPositionInParent(Container.ChildCount - 1);
+            EmojiButton.SetPositionInParent(1);
         }
 
         if (EmojiButton != null)

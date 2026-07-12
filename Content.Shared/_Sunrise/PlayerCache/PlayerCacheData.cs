@@ -8,11 +8,9 @@ public sealed class PlayerCacheData
     public string? GhostTheme { get; set; }
     public string? Pet { get; set; }
     public bool? EmoteVisibility { get; set; }
-    // Sunrise added start - настройки озвучки лобби и админ-чата для синхронизации
     public bool? LobbyTtsEnabled { get; set; }
     public bool? LobbyOthersTtsEnabled { get; set; }
     public bool? AdminChatTtsEnabled { get; set; }
     public string? OocTitle { get; set; }
     public string? OocColor { get; set; }
-    // Sunrise added end
 }

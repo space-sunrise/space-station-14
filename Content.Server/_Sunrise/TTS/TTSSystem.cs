@@ -17,12 +17,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Chat;
-// Sunrise added start - дополнительные пространства имен для озвучки лобби и админ-чата
 using Content.Server.Preferences.Managers;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Shared.Preferences;
 using Content.Server.Administration.Managers;
-// Sunrise added end
 
 namespace Content.Server._Sunrise.TTS;
 
@@ -36,12 +34,10 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _rng = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeakerSystem = default!;
-    // Sunrise added start - зависимости для озвучки лобби и админ-чата
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    // Sunrise added end
 
     private readonly List<string> _sampleText =
         new()
@@ -404,7 +400,6 @@ public sealed partial class TTSSystem : EntitySystem
         return null;
     }
 
-    // Sunrise added start - методы озвучки сообщений лобби и админ-чата
     public async Task PlayLobbyTTS(ICommonSession player, string message)
     {
         if (!_isEnabled)
@@ -477,7 +472,6 @@ public sealed partial class TTSSystem : EntitySystem
 
         RaiseNetworkEvent(new PlayTTSEvent(soundData, null, false), Filter.Empty().AddPlayers(recipients));
     }
-    // Sunrise added end
 }
 
 public sealed class TransformSpeakerVoiceEvent : EntityEventArgs

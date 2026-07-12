@@ -10,6 +10,7 @@ using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Players.RateLimiting;
 using Content.Sunrise.Interfaces.Shared;
+using Content.Server._Sunrise.PlayerCache;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -35,7 +36,9 @@ namespace Content.Server._Sunrise.MentorHelp
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
-        private ISharedSponsorsManager? _sponsorsManager; // Менеджер спонсоров Sunrise.
+        private ISharedSponsorsManager? _sponsorsManager;
+        [Dependency] private readonly INetConfigurationManager _netConfig = default!;
+        [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
 
         private sealed class MentorStatisticsCache
         {

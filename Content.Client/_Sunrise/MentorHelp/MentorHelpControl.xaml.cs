@@ -3,6 +3,7 @@ using Content.Client.Administration.Managers;
 using Content.Client.Administration.UI.Bwoink;
 using Content.Client._Sunrise.Messenger;
 using Content.Client._Sunrise.UserInterface.CustomControls;
+using Content.Client.Resources;
 using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
@@ -18,6 +19,8 @@ using Robust.Shared.Configuration;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Utility;
 using Content.Client.Stylesheets;
+using Robust.Client.ResourceManagement;
+using Robust.Client.UserInterface.RichText;
 using Content.Shared._Sunrise.Messenger;
 
 namespace Content.Client._Sunrise.MentorHelp
@@ -69,6 +72,12 @@ namespace Content.Client._Sunrise.MentorHelp
         public event Action<string>? InputTextChanged;
         private static readonly Type[] TagsAllowed =
         [
+            typeof(BoldItalicTag),
+            typeof(BoldTag),
+            typeof(BulletTag),
+            typeof(ColorTag),
+            typeof(HeadingTag),
+            typeof(ItalicTag),
             typeof(EmojiTag)
         ];
 
@@ -98,6 +107,18 @@ namespace Content.Client._Sunrise.MentorHelp
             CloseTicketButton.OnPressed += _ => CloseTicket();
             TeleportButton.OnPressed += _ => TeleportToTicket();
             _adminManager.AdminStatusUpdated += UpdateTicketActionButtons;
+
+            var resourceCache = IoCManager.Resolve<IResourceCache>();
+            var textureRect = new TextureRect
+            {
+                Texture = resourceCache.GetTexture("/Textures/_Sunrise/Interface/Smile.png"),
+                SetWidth = 24,
+                SetHeight = 24,
+                HorizontalAlignment = HAlignment.Center,
+                VerticalAlignment = VAlignment.Center,
+                Stretch = TextureRect.StretchMode.KeepAspectCentered,
+            };
+            EmojiButton.AddChild(textureRect);
 
             // Обрабатываем Enter в поле ответа.
             ReplyInput.OnTextEntered += _ => SendReply();
@@ -603,10 +624,8 @@ namespace Content.Client._Sunrise.MentorHelp
                 Margin = new Thickness(0, 4)
             };
 
-            var nameLine = new RichTextLabel
-            {
-                Text = $"[bold]{message.SentAt:HH:mm}[/bold] {message.FormattedSender}:"
-            };
+            var nameLine = new RichTextLabel();
+            nameLine.SetMessage(FormattedMessage.FromMarkupPermissive($"[bold]{message.SentAt:HH:mm}[/bold] {message.FormattedSender}:"), TagsAllowed);
 
             var textLine = new RichTextLabel
             {

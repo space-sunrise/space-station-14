@@ -1,4 +1,4 @@
-﻿<BoxContainer
+<BoxContainer
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Orientation="Vertical"
@@ -6,7 +6,10 @@
     <RichTextLabel Name="AHelpDescLabel" Text="{Loc 'help-choice-ahelp-desc-label'}" Visible="False" Access="Public"/> <!-- Sunrise-Edit -->
     <OutputPanel Name="TextOutput" VerticalExpand="true" Access="Public" /> <!-- Sunrise-Edit -->
     <RichTextLabel Name="TypingIndicator" Access="Public" />
-    <HistoryLineEdit Name="SenderLineEdit" />
+    <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalExpand="True"> <!-- Sunrise-Edit -->
+        <Button Name="EmojiButton" Access="Public" SetWidth="30" ToolTip="{Loc 'messenger-emoji-button-tooltip'}" />
+        <HistoryLineEdit Name="SenderLineEdit" HorizontalExpand="True" />
+    </BoxContainer>
     <RichTextLabel Name="RelayedToDiscordLabel" Access="Public" Visible="False" />
     <!-- Sunrise-Start -->
     <BoxContainer Orientation="Horizontal" Margin="0 4 0 0">

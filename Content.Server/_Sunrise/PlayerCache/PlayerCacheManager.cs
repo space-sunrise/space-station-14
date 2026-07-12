@@ -79,7 +79,6 @@ public sealed class PlayerCacheManager
         return InteractionsCVars.EmoteVisibility.DefaultValue;
     }
 
-    // Sunrise added start - методы для получения настроек озвучки из кэша
     public bool GetLobbyTtsEnabled(NetUserId userId)
     {
         if (_cache.TryGetValue(userId, out var data) && data.LobbyTtsEnabled.HasValue)
@@ -128,5 +127,4 @@ public sealed class PlayerCacheManager
         color = null;
         return false;
     }
-    // Sunrise added end
 }

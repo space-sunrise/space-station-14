@@ -43,7 +43,6 @@ public sealed class PlayerCacheManager
                 cache.EmoteVisibility = b;
                 SetCache(cache);
             });
-        // Sunrise added start - подписка на изменение настроек озвучки для синхронизации
         _cfg.OnValueChanged(SunriseCCVars.SponsorLobbyTtsEnabled,
             b =>
             {
@@ -79,7 +78,6 @@ public sealed class PlayerCacheManager
                 cache.OocColor = s;
                 SetCache(cache);
             });
-        // Sunrise added end
     }
 
     private void OnCacheRequest(MsgPlayerCacheRequest msg)
@@ -89,16 +87,12 @@ public sealed class PlayerCacheManager
             GhostTheme = _cfg.GetCVar(SunriseCCVars.SponsorGhostTheme),
             Pet = _cfg.GetCVar(SunriseCCVars.SponsorPet),
             EmoteVisibility = _cfg.GetCVar(InteractionsCVars.EmoteVisibility),
-            // Sunrise added start - заполнение настроек озвучки для синхронизации
             LobbyTtsEnabled = _cfg.GetCVar(SunriseCCVars.SponsorLobbyTtsEnabled),
             LobbyOthersTtsEnabled = _cfg.GetCVar(SunriseCCVars.TTSLobbyOthersEnabled),
             AdminChatTtsEnabled = _cfg.GetCVar(SunriseCCVars.TTSAdminChatEnabled),
             OocTitle = _cfg.GetCVar(SunriseCCVars.SponsorOocTitle),
             OocColor = _cfg.GetCVar(SunriseCCVars.SponsorOocColor),
-            // Sunrise added end
         };
-        var sync = new MsgPlayerCacheSync { Cache = data };
-        _netManager.ClientSendMessage(sync);
         SetCache(data);
     }
 
@@ -106,6 +100,8 @@ public sealed class PlayerCacheManager
     public void SetCache(PlayerCacheData data)
     {
         _cache = data;
+        var sync = new MsgPlayerCacheSync { Cache = data };
+        _netManager.ClientSendMessage(sync);
         CacheChanged?.Invoke();
     }
 

@@ -124,10 +124,10 @@ public sealed class EmojiPickerWindow : DefaultWindow
         {
             var recentContainer = new GridContainer
             {
-                Columns = 5,
+                Columns = 6,
                 HorizontalExpand = true,
             };
-            var recentToShow = _recentEmojis.TakeLast(5).Reverse().ToList();
+            var recentToShow = _recentEmojis.TakeLast(6).Reverse().ToList();
             foreach (var emojiCode in recentToShow)
             {
                 if (_emoji.Emojis.TryGetValue(emojiCode, out var emoji))
@@ -175,7 +175,7 @@ public sealed class EmojiPickerWindow : DefaultWindow
         {
             var favoriteContainer = new GridContainer
             {
-                Columns = 5,
+                Columns = 6,
                 HorizontalExpand = true,
             };
             foreach (var emoji in _favoriteEmojis)
@@ -220,7 +220,7 @@ public sealed class EmojiPickerWindow : DefaultWindow
 
         var allEmojisContainer = new GridContainer
         {
-            Columns = 5,
+            Columns = 6,
             HorizontalExpand = true,
         };
 
@@ -238,8 +238,8 @@ public sealed class EmojiPickerWindow : DefaultWindow
     {
         var emojiButton = new Button
         {
-            MinSize = new Vector2(75, 75),
-            MaxSize = new Vector2(75, 75),
+            MinSize = new Vector2(60, 60),
+            MaxSize = new Vector2(60, 60),
             ToolTip = emoji.Code,
         };
 
@@ -252,8 +252,8 @@ public sealed class EmojiPickerWindow : DefaultWindow
         {
             var animatedRect = new AnimatedTextureRect
             {
-                SetWidth = 65,
-                SetHeight = 65,
+                SetWidth = 50,
+                SetHeight = 50,
                 HorizontalAlignment = HAlignment.Center,
                 VerticalAlignment = VAlignment.Center,
             };
@@ -269,8 +269,8 @@ public sealed class EmojiPickerWindow : DefaultWindow
             var textureRect = new TextureRect
             {
                 Texture = texture,
-                SetWidth = 45,
-                SetHeight = 45,
+                SetWidth = 50,
+                SetHeight = 50,
                 HorizontalAlignment = HAlignment.Center,
                 VerticalAlignment = VAlignment.Center,
                 Stretch = TextureRect.StretchMode.KeepAspectCentered,
@@ -305,7 +305,7 @@ public sealed class EmojiPickerWindow : DefaultWindow
         _recentEmojis.Remove(emojiCode);
         _recentEmojis.Add(emojiCode);
 
-        if (_recentEmojis.Count > 5)
+        if (_recentEmojis.Count > 6)
             _recentEmojis.RemoveAt(0);
 
         SaveRecentEmojis();
@@ -347,7 +347,7 @@ public sealed class EmojiPickerWindow : DefaultWindow
                 continue;
 
             _recentEmojis.Add(code);
-            if (_recentEmojis.Count >= 5)
+            if (_recentEmojis.Count >= 6)
                 break;
         }
     }

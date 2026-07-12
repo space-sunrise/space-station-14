@@ -13,18 +13,17 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Edit - логика OOC-оформления для спонсоров
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-// Sunrise added start - дополнительные пространства имен для озвучки лобби и админ-чата
 using Content.Server.GameTicking;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.TTS;
 using Content.Shared._Sunrise.SunriseCCVars;
-// Sunrise added end
+using Content.Shared._Sunrise.SponsorSystem;
 
 namespace Content.Server.Chat.Managers;
 
@@ -323,13 +322,37 @@ internal sealed partial class ChatManager : IChatManager
             _sponsorsManager.TryGetOocEmoji(player.UserId, out sponsorEmoji);
         }
 
-        var sponsorDisplayName = string.IsNullOrWhiteSpace(sponsorTitle)
-            ? player.Name
-            : FormatTitledDisplayName(sponsorTitle, player.Name);
+        var namePart = player.Name;
+        var titlePart = sponsorTitle;
 
-        if (!string.IsNullOrWhiteSpace(sponsorEmoji))
+        var selectedColorCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocColor);
+        if (OocGradientHelper.IsGradientId(selectedColorCVar))
         {
-            sponsorDisplayName = $"{sponsorEmoji} {sponsorDisplayName}";
+            var isAllowed = false;
+            if (_sponsorsManager != null && _sponsorsManager.TryGetAllowedOocGradients(player.UserId, out var allowedGradients))
+            {
+                isAllowed = allowedGradients.Contains(selectedColorCVar);
+            }
+
+            if (isAllowed)
+            {
+                namePart = OocGradientHelper.ApplyGradientById(namePart, selectedColorCVar);
+                if (!string.IsNullOrWhiteSpace(titlePart))
+                    titlePart = OocGradientHelper.ApplyGradientById(titlePart, selectedColorCVar);
+                sponsorColor = null;
+            }
+        }
+
+        var sponsorDisplayName = string.IsNullOrWhiteSpace(titlePart)
+            ? namePart
+            : $"\\[{titlePart}\\] {namePart}";
+
+        var hasEmojiRights = _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(player.UserId);
+        var selectedEmojiCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocEmoji);
+        if (hasEmojiRights && !string.IsNullOrWhiteSpace(selectedEmojiCVar))
+        {
+            var emojiId = selectedEmojiCVar.Trim(':');
+            sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=28] {sponsorDisplayName}";
         }
 
         if (sponsorColor != null)
@@ -366,6 +389,7 @@ internal sealed partial class ChatManager : IChatManager
         }
         // Sunrise added end
 
+
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
         _discordLink.SendMessage(message, player.Name, ChatChannel.OOC);
@@ -378,7 +402,8 @@ internal sealed partial class ChatManager : IChatManager
             if (_sponsorsManager.IsAllowedLobbyTts(player.UserId) && _playerCacheManager.GetLobbyTtsEnabled(player.UserId))
             {
                 var ttsSystem = _entityManager.System<TTSSystem>();
-                ttsSystem.PlayLobbyTTS(player, message);
+                var cleanMessage = System.Text.RegularExpressions.Regex.Replace(message, @":[a-zA-Z0-9_\-]+:", "");
+                ttsSystem.PlayLobbyTTS(player, cleanMessage);
             }
         }
         // Sunrise added end

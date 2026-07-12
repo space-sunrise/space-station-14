@@ -112,7 +112,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> SponsorMinPlaytimeHours =
         CVarDef.Create("sponsor.min_playtime_hours", 0, CVar.SERVERONLY | CVar.ARCHIVE);
 
-    // Sunrise added start - настройки озвучки лобби и админ-чата
     /// <summary>
     /// Включена ли озвучка сообщений лобби у спонсора.
     /// </summary>
@@ -135,14 +134,19 @@ public sealed partial class SunriseCCVars : CVars
     /// Выбранный OOC тайтл спонсора.
     /// </summary>
     public static readonly CVarDef<string> SponsorOocTitle =
-        CVarDef.Create("sponsor.ooc_title", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("sponsor.ooc_title", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 
     /// <summary>
     /// Выбранный цвет ника спонсора в OOC.
     /// </summary>
     public static readonly CVarDef<string> SponsorOocColor =
-        CVarDef.Create("sponsor.ooc_color", "", CVar.CLIENTONLY | CVar.ARCHIVE);
-    // Sunrise added end
+        CVarDef.Create("sponsor.ooc_color", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Выбранный OOC эмодзи спонсора.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorOocEmoji =
+        CVarDef.Create("sponsor.ooc_emoji", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 
     /*
      *  Приветствия
