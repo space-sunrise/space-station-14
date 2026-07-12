@@ -33,4 +33,4 @@ ent-SunriseAlwaysPoweredStrobeLight = { ent-AlwaysPoweredStrobeLight }
 ent-SunrisePoweredStrobeLightPolice = { ent-PoweredStrobeLightPolice }
 ent-SunrisePoweredStrobeLightSiren = { ent-PoweredStrobeLightSiren }
 ent-SunrisePoweredStrobeLightEpsilon = { ent-PoweredStrobeLightEpsilon }
-ent-SunriseAlwaysPoweredStrobeDimLight = { ent-PoweredStrobeLightEmpty }
+ent-SunriseAlwaysPoweredStrobeDimLight = { ent-AlwaysPoweredStrobeDimLight }
