@@ -101,7 +101,10 @@ public sealed partial class VoteManager
             _entityManager.System<GameTicker>().ClearExcludedPresets();
 
         if (regularPresets.Count == 0 && storytellerPresets.Count == 0)
+        {
+            Logger.Warning("No suitable game modes for the current player count.");
             return true;
+        }
 
         if (regularPresets.Count == 0)
         {
