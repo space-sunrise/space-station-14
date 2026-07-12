@@ -14,7 +14,7 @@ namespace Content.IntegrationTests._Sunrise.Patches;
 /// Подменяет декодирование изображений RSI заготовками правильного размера.
 /// Интеграционные тесты проверяют метаданные и поведение сущностей, а не отрисовку кадров.
 /// </summary>
-internal static class RsiLoadingPatch
+public static class RsiLoadingPatch
 {
     private const string LoadRealTexturesEnvironmentVariable = "SUNRISE_TEST_LOAD_TEXTURES";
     private const string TexturePathPrefix = "/Textures/";
@@ -31,7 +31,7 @@ internal static class RsiLoadingPatch
         object configuration,
         Func<string, Stream> openStream);
 
-    internal static void Apply()
+    public static void Apply()
     {
         if (_hook != null || Environment.GetEnvironmentVariable(LoadRealTexturesEnvironmentVariable) == "1")
             return;
@@ -62,7 +62,7 @@ internal static class RsiLoadingPatch
         _hook = new Hook(original, LoadImagesReplacement);
     }
 
-    internal static void Unpatch()
+    public static void Unpatch()
     {
         _hook?.Dispose();
         _hook = null;

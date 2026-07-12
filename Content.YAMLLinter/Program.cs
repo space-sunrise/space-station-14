@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Content.IntegrationTests;
+using Content.IntegrationTests._Sunrise.Patches;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization.Markdown.Validation;
@@ -17,39 +18,48 @@ namespace Content.YAMLLinter
     {
         private static async Task<int> Main(string[] _)
         {
+            // Sunrise added start - линтеру нужны метаданные RSI, но не декодированные изображения
+            RsiLoadingPatch.Apply();
             PoolManager.Startup();
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            var (errors, fieldErrors) = await RunValidation();
-
-            var count = errors.Count + fieldErrors.Count;
-
-            if (count == 0)
+            try
             {
-                Console.WriteLine($"No errors found in {(int) stopwatch.Elapsed.TotalMilliseconds} ms.");
-                PoolManager.Shutdown();
-                return 0;
-            }
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
 
-            foreach (var (file, errorHashset) in errors)
-            {
-                foreach (var errorNode in errorHashset)
+                var (errors, fieldErrors) = await RunValidation();
+
+                var count = errors.Count + fieldErrors.Count;
+
+                if (count == 0)
                 {
-                    // TODO YAML LINTER Fix inheritance
-                    // If a parent/abstract prototype has na error, this will misreport the file name (but with the correct line/column).
-                    Console.WriteLine($"::error in {file}({errorNode.Node.Start.Line},{errorNode.Node.Start.Column})  {errorNode.ErrorReason}");
+                    Console.WriteLine($"No errors found in {(int) stopwatch.Elapsed.TotalMilliseconds} ms.");
+                    return 0;
                 }
-            }
 
-            foreach (var error in fieldErrors)
+                foreach (var (file, errorHashset) in errors)
+                {
+                    foreach (var errorNode in errorHashset)
+                    {
+                        // TODO YAML LINTER Fix inheritance
+                        // If a parent/abstract prototype has na error, this will misreport the file name (but with the correct line/column).
+                        Console.WriteLine($"::error in {file}({errorNode.Node.Start.Line},{errorNode.Node.Start.Column})  {errorNode.ErrorReason}");
+                    }
+                }
+
+                foreach (var error in fieldErrors)
+                {
+                    Console.WriteLine(error);
+                }
+
+                Console.WriteLine($"{count} errors found in {(int) stopwatch.Elapsed.TotalMilliseconds} ms.");
+                return -1;
+            }
+            finally
             {
-                Console.WriteLine(error);
+                PoolManager.Shutdown();
+                RsiLoadingPatch.Unpatch();
             }
-
-            Console.WriteLine($"{count} errors found in {(int) stopwatch.Elapsed.TotalMilliseconds} ms.");
-            PoolManager.Shutdown();
-            return -1;
+            // Sunrise added end
         }
 
         private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
