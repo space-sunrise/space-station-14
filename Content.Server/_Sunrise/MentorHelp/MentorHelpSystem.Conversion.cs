@@ -199,7 +199,7 @@ public sealed partial class MentorHelpSystem
             if (!string.IsNullOrWhiteSpace(emoji))
             {
                 var emojiId = emoji.Trim(':');
-                result = $"[emoji id=\"{emojiId}\" size=28] {result}";
+                result = $"[emoji id=\"{emojiId}\" size=50] {result}";
             }
         }
 

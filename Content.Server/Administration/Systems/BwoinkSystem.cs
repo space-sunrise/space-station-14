@@ -478,7 +478,7 @@ namespace Content.Server.Administration.Systems
                 if (!string.IsNullOrWhiteSpace(emoji))
                 {
                     var emojiId = emoji.Trim(':');
-                    bwoinkText = $"[emoji id=\"{emojiId}\" size=28] {bwoinkText}";
+                    bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
                 }
             }
 
@@ -899,7 +899,7 @@ namespace Content.Server.Administration.Systems
                 if (!string.IsNullOrWhiteSpace(emoji))
                 {
                     var emojiId = emoji.Trim(':');
-                    bwoinkText = $"[emoji id=\"{emojiId}\" size=28] {bwoinkText}";
+                    bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
                 }
             }
 

@@ -20,7 +20,7 @@ public sealed partial class SponsorPersonalizationUi : DefaultWindow
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private static readonly Type[] AllowedTags =
     [
@@ -42,6 +42,7 @@ public sealed partial class SponsorPersonalizationUi : DefaultWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out _sponsorsManager);
 
         ChooseEmojiButton.OnPressed += _ => OpenEmojiPicker();
         ResetEmojiButton.OnPressed += _ => ResetEmoji();
@@ -77,7 +78,7 @@ public sealed partial class SponsorPersonalizationUi : DefaultWindow
             else
             {
                 var emojiId = currentEmoji.Trim(':');
-                SelectedEmojiLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[emoji id=\"{emojiId}\" size=28]"), AllowedTags);
+                SelectedEmojiLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[emoji id=\"{emojiId}\" size=50]"), AllowedTags);
             }
         }
 
@@ -302,7 +303,7 @@ public sealed partial class SponsorPersonalizationUi : DefaultWindow
         if (hasEmojiRights && !string.IsNullOrWhiteSpace(currentEmoji))
         {
             var emojiId = currentEmoji.Trim(':');
-            displayName = $"[emoji id=\"{emojiId}\" size=28] {displayName}";
+            displayName = $"[emoji id=\"{emojiId}\" size=50] {displayName}";
         }
 
         var previewMarkup = string.Empty;
@@ -365,10 +366,10 @@ public sealed partial class SponsorPersonalizationUi : DefaultWindow
             _cfg.SetCVar(SunriseCCVars.SponsorOocEmoji, emojiCode);
             UpdateChatPreview();
             var localPlayer = _playerManager.LocalSession;
-            if (localPlayer != null && _sponsorsManager.IsAllowedOocEmoji(localPlayer.UserId))
+            if (localPlayer != null && _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(localPlayer.UserId))
             {
                 var emojiId = emojiCode.Trim(':');
-                SelectedEmojiLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[emoji id=\"{emojiId}\" size=28]"), AllowedTags);
+                SelectedEmojiLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[emoji id=\"{emojiId}\" size=50]"), AllowedTags);
             }
             _emojiPicker.Close();
         };

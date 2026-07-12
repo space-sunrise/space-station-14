@@ -352,7 +352,7 @@ internal sealed partial class ChatManager : IChatManager
         if (hasEmojiRights && !string.IsNullOrWhiteSpace(selectedEmojiCVar))
         {
             var emojiId = selectedEmojiCVar.Trim(':');
-            sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=28] {sponsorDisplayName}";
+            sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=50] {sponsorDisplayName}";
         }
 
         if (sponsorColor != null)

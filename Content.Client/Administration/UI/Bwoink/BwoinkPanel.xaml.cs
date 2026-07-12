@@ -1,5 +1,7 @@
 using Content.Client.Resources;
 using Content.Client._Sunrise.UserInterface.CustomControls;
+using Content.Shared._Sunrise.Messenger; // Sunrise-Edit
+using Robust.Client.GameObjects; // Sunrise-Edit
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.RichText;
 using Content.Shared.Administration;
@@ -18,6 +20,7 @@ namespace Content.Client.Administration.UI.Bwoink
     public sealed partial class BwoinkPanel : BoxContainer
     {
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
+        [Dependency] private readonly IEntityManager _entManager = default!;
 
         private readonly Action<string> _messageSender;
 
@@ -143,11 +146,18 @@ namespace Content.Client.Administration.UI.Bwoink
                 dateHeader.AddMarkupOrThrow($"[center=\"{message.SentAt:dd.MM.yyyy}\"]");
                 TextOutput.AddMessage(dateHeader);
             }
+
+            var text = message.Text;
+            if (SharedEmojiSystem.IsContainsAnyEmoji(text))
+            {
+                var emoji = _entManager.System<EmojiSystem>();
+                text = emoji.ParseEmojis(text);
+            }
             // Sunrise-End
 
             var formatted = new FormattedMessage(1);
             var formattedTime = $"[bold]{message.SentAt:HH:mm}[/bold]";
-            formatted.AddMarkupOrThrow($"{formattedTime} {message.Text}");
+            formatted.AddMarkupOrThrow($"{formattedTime} {text}");
             TextOutput.AddMessage(formatted, TagsAllowed); // Sunrise-Edit
             if (!message.DbLoad) // Sunrise-Edit
                 LastMessage = message.SentAt;
