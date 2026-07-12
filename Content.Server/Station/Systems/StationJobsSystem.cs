@@ -31,8 +31,6 @@ public sealed partial class StationJobsSystem : EntitySystem
     partial void InitializeStationJobsPortal();
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
     partial void FilterRoundStartJobSelectionPortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs);
-    partial void BeforeLobbyJobsSentPortal(PlayerJoinedLobbyEvent ev); // Sunrise-Edit
-    partial void FlushJobsAvailablePortal();
     partial void InitializeRoundStartPortal();
     partial void PickRoundStartRoleSessionPortal(HashSet<NetUserId> players, ProtoId<JobPrototype> job, ref NetUserId? player, ref bool handled);
     partial void FilterJobCandidatePortal(JobPrototype job, HumanoidCharacterProfile profile, ref bool canUseJob);
@@ -63,15 +61,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     public override void Update(float _)
     {
-        // Sunrise edit start - отложенная отправка списка latejoin ролей
-        // if (_availableJobsDirty)
-        // {
-        //     _cachedAvailableJobs = GenerateJobsAvailableEvent();
-        //     RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
-        //     _availableJobsDirty = false;
-        // }
-        FlushJobsAvailablePortal();
-        // Sunrise edit end
+        FlushJobsAvailable(); // Sunrise-Edit
     }
 
     private void OnStationDeletion(EntityUid uid, StationJobsComponent component, ComponentShutdown args)
@@ -527,19 +517,31 @@ public sealed partial class StationJobsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Updates the cached available jobs. Moderately expensive.
+    /// Marks the available-jobs cache for rebuilding.
     /// </summary>
-    private void UpdateJobsAvailable()
+    public void UpdateJobsAvailable() // Sunrise-Edit
     {
         _availableJobsDirty = true;
     }
 
+    // Sunrise added start - единая точка пересборки и отправки кэша latejoin ролей
+    /// <summary>
+    /// Rebuilds and broadcasts the available-jobs cache when it is dirty.
+    /// </summary>
+    public void FlushJobsAvailable()
+    {
+        if (!_availableJobsDirty)
+            return;
+
+        _cachedAvailableJobs = GenerateJobsAvailableEvent();
+        RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
+        _availableJobsDirty = false;
+    }
+    // Sunrise added end
+
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
     {
-        // Sunrise added start - подготовка fork-карт перед отправкой lobby jobs
-        BeforeLobbyJobsSentPortal(ev);
-        FlushJobsAvailablePortal();
-        // Sunrise added end
+        FlushJobsAvailable(); // Sunrise-Edit
 
         RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
     }

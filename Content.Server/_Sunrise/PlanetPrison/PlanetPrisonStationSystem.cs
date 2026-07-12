@@ -93,7 +93,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
                 Color.LightBlue);
         }
 
-        _stationJobs.RefreshPlayerJoinableMapJobsAvailable();
+        _stationJobs.UpdateJobsAvailable();
         return true;
     }
 

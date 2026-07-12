@@ -1,7 +1,11 @@
 using Content.Server.Spawners.Components;
+using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.GameTicking;
+using Content.Server.Shuttles.Components;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
+using Content.Shared.GameTicking;
 using Content.Shared.Maps;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
@@ -16,7 +20,36 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly SpawnPointSystem _spawnPoint = default!;
+
+    private readonly PlayerJoinableMapIndex _mapIndex = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _mapIndex.Rebuild(_prototype);
+        SubscribeLocalEvent<PlayerJoinableMapComponent, ComponentInit>(OnPlayerJoinableMapInit);
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby, before: [typeof(StationJobsSystem)]);
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        _mapIndex.Rebuild(_prototype);
+    }
+
+    private void OnPlayerJoinableMapInit(Entity<PlayerJoinableMapComponent> ent, ref ComponentInit args)
+    {
+        if (!_prototype.TryIndex(ent.Comp.Map, out var map) || map.EmergencyShuttleEnabled)
+            return;
+
+        RemComp<StationEmergencyShuttleComponent>(ent);
+    }
+
+    private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent args)
+    {
+        PrepareLobbyJobs();
+    }
 
     /// <summary>
     /// Raises the event that lets map systems activate joinable stations before lobby jobs are built.
@@ -99,7 +132,8 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
             if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out _))
                 continue;
 
-            if (PlayerJoinableMapAccess.IsPlayerCountEnabled(map, _cfg, _player.PlayerCount))
+            if (PlayerJoinableMapAccess.GetAccess(map, _cfg, _player.PlayerCount) is
+                { Enabled: true, HasPlayerThreshold: true, PlayerThresholdReached: true })
                 return true;
         }
 
@@ -119,15 +153,12 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
             if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out _))
                 continue;
 
-            if (!PlayerJoinableMapAccess.IsEnabledByCVar(map, _cfg) ||
-                !PlayerJoinableMapAccess.TryGetMinPlayers(map, _cfg, out var mapMinPlayers) ||
-                mapMinPlayers < 0)
-            {
+            var access = PlayerJoinableMapAccess.GetAccess(map, _cfg, _player.PlayerCount);
+            if (!access.Enabled || !access.HasPlayerThreshold)
                 continue;
-            }
 
             foundMinPlayers = true;
-            minPlayers = Math.Min(minPlayers, mapMinPlayers);
+            minPlayers = Math.Min(minPlayers, access.MinPlayers);
         }
 
         return foundMinPlayers;
@@ -165,8 +196,8 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         if (!map.Jobs.Contains(job))
             return false;
 
-        var spawnPointMatchCache = GetSpawnPointMatchCache(station, GetSpawnPointType(joinKind, map));
-        return HasMatchingSpawnPoint(job, spawnPointMatchCache);
+        var spawnPointAvailability = _spawnPoint.GetSpawnPointAvailability(station, GetSpawnPointType(joinKind, map));
+        return spawnPointAvailability.Matches(job);
     }
 
     /// <summary>
@@ -181,12 +212,16 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     {
         station = EntityUid.Invalid;
         unavailableStation = EntityUid.Invalid;
+        var slotUnavailableStation = EntityUid.Invalid;
 
         var query = EntityQueryEnumerator<StationJobsComponent>();
         while (query.MoveNext(out var stationUid, out var stationJobs))
         {
-            if (!_stationJobs.TryGetJobSlot(stationUid, job, out _, stationJobs))
+            if (!_stationJobs.TryGetJobSlot(stationUid, job, out var slots, stationJobs))
                 continue;
+
+            if (slots == 0 && slotUnavailableStation == EntityUid.Invalid)
+                slotUnavailableStation = stationUid;
 
             if (CanJoinAs((stationUid, stationJobs), job, joinKind))
             {
@@ -194,8 +229,12 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
                 return true;
             }
 
-            unavailableStation = stationUid;
+            if (unavailableStation == EntityUid.Invalid)
+                unavailableStation = stationUid;
         }
+
+        if (slotUnavailableStation != EntityUid.Invalid)
+            unavailableStation = slotUnavailableStation;
 
         return false;
     }
@@ -215,7 +254,7 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         }
 
         PlayerJoinableMapPrototype? map = null;
-        var spawnPointMatchCache = new SpawnPointMatchCache(SpawnPointType.Unset, true, false, null);
+        var spawnPointAvailability = SpawnPointAvailability.Unrestricted;
         Entity<PlayerJoinableMapComponent?> playerJoinableMap = (station.Owner, null);
         var hasPlayerJoinableMap = Resolve(playerJoinableMap, ref playerJoinableMap.Comp, false);
         var playerJoinableMapComponent = playerJoinableMap.Comp;
@@ -229,13 +268,13 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
                 return;
             }
 
-            spawnPointMatchCache = GetSpawnPointMatchCache(station, GetSpawnPointType(joinKind, map));
+            spawnPointAvailability = _spawnPoint.GetSpawnPointAvailability(station, GetSpawnPointType(joinKind, map));
         }
 
         var jobKeys = new List<ProtoId<JobPrototype>>(jobs.Keys);
         foreach (var job in jobKeys)
         {
-            if (!CanJoinAs(station, job, map, spawnPointMatchCache))
+            if (!CanJoinAs(station, job, map, spawnPointAvailability))
                 jobs.Remove(job);
         }
     }
@@ -245,13 +284,10 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     /// </summary>
     public bool HasAnyPlayerJoinableJob(IReadOnlyDictionary<ProtoId<JobPrototype>, int?> jobs)
     {
-        foreach (var map in _prototype.EnumeratePrototypes<PlayerJoinableMapPrototype>())
+        foreach (var job in _mapIndex.Jobs)
         {
-            foreach (var job in map.Jobs)
-            {
-                if (jobs.ContainsKey(job))
-                    return true;
-            }
+            if (jobs.ContainsKey(job))
+                return true;
         }
 
         return false;
@@ -261,7 +297,7 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         Entity<StationJobsComponent?> station,
         ProtoId<JobPrototype> job,
         PlayerJoinableMapPrototype? playerJoinableMap,
-        SpawnPointMatchCache spawnPointMatchCache)
+        SpawnPointAvailability spawnPointAvailability)
     {
         if (!_stationJobs.TryGetJobSlot(station, job, out var slots, station.Comp) || slots == 0)
             return false;
@@ -272,48 +308,7 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         if (!playerJoinableMap.Jobs.Contains(job))
             return false;
 
-        return HasMatchingSpawnPoint(job, spawnPointMatchCache);
-    }
-
-    private SpawnPointMatchCache GetSpawnPointMatchCache(EntityUid station, SpawnPointType spawnPointType)
-    {
-        if (spawnPointType == SpawnPointType.Unset)
-            return new SpawnPointMatchCache(spawnPointType, true, false, null);
-
-        HashSet<ProtoId<JobPrototype>>? jobs = null;
-        var query = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        while (query.MoveNext(out var spawnUid, out var spawnPoint, out var xform))
-        {
-            if (_station.GetOwningStation(spawnUid, xform) != station)
-                continue;
-
-            if (spawnPoint.SpawnType != spawnPointType)
-                continue;
-
-            if (spawnPointType != SpawnPointType.Job)
-                return new SpawnPointMatchCache(spawnPointType, true, false, null);
-
-            if (spawnPoint.Job is not { } spawnPointJob)
-                return new SpawnPointMatchCache(spawnPointType, true, true, null);
-
-            jobs ??= [];
-            jobs.Add(spawnPointJob);
-        }
-
-        return new SpawnPointMatchCache(spawnPointType, jobs != null, false, jobs);
-    }
-
-    private static bool HasMatchingSpawnPoint(ProtoId<JobPrototype> job, SpawnPointMatchCache spawnPointMatchCache)
-    {
-        if (spawnPointMatchCache.SpawnPointType == SpawnPointType.Unset)
-            return true;
-
-        if (!spawnPointMatchCache.HasMatchingSpawnPoint)
-            return false;
-
-        return spawnPointMatchCache.SpawnPointType != SpawnPointType.Job ||
-            spawnPointMatchCache.HasUnrestrictedJobSpawnPoint ||
-            spawnPointMatchCache.Jobs?.Contains(job) == true;
+        return spawnPointAvailability.Matches(job);
     }
 
     private bool IsPlayerAccessEnabled(PlayerJoinableMapPrototype map)
@@ -362,9 +357,4 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         };
     }
 
-    private readonly record struct SpawnPointMatchCache(
-        SpawnPointType SpawnPointType,
-        bool HasMatchingSpawnPoint,
-        bool HasUnrestrictedJobSpawnPoint,
-        HashSet<ProtoId<JobPrototype>>? Jobs);
 }

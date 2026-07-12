@@ -1,5 +1,4 @@
 using Content.Server.GameTicking.Events;
-using Content.Server.Station.Components;
 using Content.Shared.Roles;
 using Robust.Shared.Player;
 
@@ -15,10 +14,7 @@ public sealed partial class GameTicker
         if (station == EntityUid.Invalid)
             return false;
 
-        if (!TryComp<StationJobsComponent>(station, out var stationJobs))
-            return false;
-
-        return _stationJobs.TryGetJobSlot(station, jobId, out slots, stationJobs);
+        return _stationJobs.TryGetJobSlot(station, jobId, out slots);
     }
 
     private void NotifyJoinGameJobUnavailable(ICommonSession player, EntityUid station, JobPrototype jobPrototype)

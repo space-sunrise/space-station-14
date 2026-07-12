@@ -22,16 +22,6 @@ public sealed partial class StationJobsSystem
         }
     }
 
-    public void RefreshPlayerJoinableMapJobsAvailable()
-    {
-        UpdateJobsAvailable();
-    }
-
-    partial void BeforeLobbyJobsSentPortal(PlayerJoinedLobbyEvent ev)
-    {
-        _playerJoinableMap.PrepareLobbyJobs();
-    }
-
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation)
     {
         _playerJoinableMap.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.LateJoin);
@@ -54,13 +44,4 @@ public sealed partial class StationJobsSystem
         Subs.CVar<T>(_configurationManager, cvar, _ => UpdateJobsAvailable(), true);
     }
 
-    partial void FlushJobsAvailablePortal()
-    {
-        if (!_availableJobsDirty)
-            return;
-
-        _cachedAvailableJobs = GenerateJobsAvailableEvent();
-        RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
-        _availableJobsDirty = false;
-    }
 }

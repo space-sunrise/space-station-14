@@ -25,6 +25,12 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
     [DataField]
     public bool CanBeAntag = true;
 
+    /// <summary>
+    /// Whether a station using this map configuration may compose an emergency shuttle component.
+    /// </summary>
+    [DataField]
+    public bool EmergencyShuttleEnabled;
+
     [DataField]
     public PlayerJoinableMapSpawnPointType LateJoinSpawnPointType = PlayerJoinableMapSpawnPointType.Job;
 

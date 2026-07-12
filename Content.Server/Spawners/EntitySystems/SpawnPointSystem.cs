@@ -2,7 +2,9 @@
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Roles;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
@@ -41,20 +43,10 @@ public sealed class SpawnPointSystem : EntitySystem
                 ? args.DesiredSpawnPointType
                 : spawnPoint.SpawnType;
 
-            var isMatchingJob = string.IsNullOrEmpty(args.Job)
-                                || string.IsNullOrEmpty(spawnPoint.Job)
-                                || spawnPoint.Job == args.Job;
+            if (!IsMatchingSpawnPoint(spawnPoint, args.Job, spawnPointType))
+                continue;
 
-            switch (spawnPointType)
-            {
-                case SpawnPointType.Job when isMatchingJob && spawnPoint.SpawnType == SpawnPointType.Job:
-                case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
-                case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
-                    possiblePositions.Add(xform.Coordinates);
-                    break;
-                default:
-                    continue;
-            }
+            possiblePositions.Add(xform.Coordinates);
             // Sunrise added end
         }
 
@@ -84,4 +76,93 @@ public sealed class SpawnPointSystem : EntitySystem
             args.HumanoidCharacterProfile,
             args.Station);
     }
+
+    // Sunrise added start - общий API проверки spawnpoint без побочных эффектов
+    /// <summary>
+    /// Gets the spawn-point availability for a station and desired spawn-point type.
+    /// </summary>
+    public SpawnPointAvailability GetSpawnPointAvailability(EntityUid station, SpawnPointType spawnPointType)
+    {
+        if (spawnPointType == SpawnPointType.Unset)
+            return SpawnPointAvailability.Unrestricted;
+
+        HashSet<ProtoId<JobPrototype>>? jobs = null;
+        var hasMatchingSpawnPoint = false;
+        var hasUnrestrictedJobSpawnPoint = false;
+        var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+        while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+        {
+            if (_stationSystem.GetOwningStation(uid, xform) != station ||
+                spawnPoint.SpawnType != spawnPointType)
+            {
+                continue;
+            }
+
+            hasMatchingSpawnPoint = true;
+            if (spawnPointType != SpawnPointType.Job)
+                continue;
+
+            if (spawnPoint.Job is not { } job)
+            {
+                hasUnrestrictedJobSpawnPoint = true;
+                continue;
+            }
+
+            jobs ??= [];
+            jobs.Add(job);
+        }
+
+        return new SpawnPointAvailability(
+            spawnPointType,
+            hasMatchingSpawnPoint,
+            hasUnrestrictedJobSpawnPoint,
+            jobs);
+    }
+
+    private static bool IsMatchingSpawnPoint(
+        SpawnPointComponent spawnPoint,
+        ProtoId<JobPrototype>? job,
+        SpawnPointType spawnPointType)
+    {
+        var isMatchingJob = job == null || spawnPoint.Job == null || spawnPoint.Job == job;
+        return spawnPointType switch
+        {
+            SpawnPointType.Job => isMatchingJob && spawnPoint.SpawnType == SpawnPointType.Job,
+            SpawnPointType.LateJoin => spawnPoint.SpawnType == SpawnPointType.LateJoin,
+            SpawnPointType.Observer => spawnPoint.SpawnType == SpawnPointType.Observer,
+            _ => false,
+        };
+    }
+    // Sunrise added end
 }
+
+// Sunrise added start - результат общей проверки spawnpoint
+/// <summary>
+/// Describes spawn-point availability for a station and desired spawn-point type.
+/// </summary>
+public readonly record struct SpawnPointAvailability(
+    SpawnPointType SpawnPointType,
+    bool HasMatchingSpawnPoint,
+    bool HasUnrestrictedJobSpawnPoint,
+    IReadOnlySet<ProtoId<JobPrototype>>? Jobs)
+{
+    /// <summary>
+    /// Availability result used when no specific spawn-point type is required.
+    /// </summary>
+    public static readonly SpawnPointAvailability Unrestricted =
+        new(SpawnPointType.Unset, true, true, null);
+
+    /// <summary>
+    /// Returns whether the availability result supports the given job.
+    /// </summary>
+    public bool Matches(ProtoId<JobPrototype> job)
+    {
+        if (!HasMatchingSpawnPoint)
+            return false;
+
+        return SpawnPointType != SpawnPointType.Job ||
+            HasUnrestrictedJobSpawnPoint ||
+            Jobs?.Contains(job) == true;
+    }
+}
+// Sunrise added end

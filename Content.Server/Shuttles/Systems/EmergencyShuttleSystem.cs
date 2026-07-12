@@ -95,8 +95,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private readonly SharedAirlockSystem _airlockSystem = default!;
     [Dependency] private readonly BiomeSystem _biomes = default!;
 
-    partial void ShouldSkipEmergencyShuttleStationPortal(EntityUid station, ref bool skip);
-
     private const float ShuttleSpawnBuffer = 1f;
 
     // Sunrise-start
@@ -447,13 +445,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
     private void OnStationStartup(Entity<StationEmergencyShuttleComponent> ent, ref StationPostInitEvent args)
     {
-        // Sunrise added start - портал для fork-фильтрации станций эвакуационного шаттла
-        var skipStation = false;
-        ShouldSkipEmergencyShuttleStationPortal(ent, ref skipStation);
-        if (skipStation)
-            return;
-        // Sunrise added end
-
         AddEmergencyShuttle((ent, ent));
     }
 
@@ -483,13 +474,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            // Sunrise added start - портал для fork-фильтрации станций эвакуационного шаттла
-            var skipStation = false;
-            ShouldSkipEmergencyShuttleStationPortal(uid, ref skipStation);
-            if (skipStation)
-                continue;
-            // Sunrise added end
-
             if (DockSingleEmergencyShuttle(uid, comp) is { } dockResult)
                 dockResults.Add(dockResult);
         }
@@ -535,13 +519,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            // Sunrise added start - портал для fork-фильтрации станций эвакуационного шаттла
-            var skipStation = false;
-            ShouldSkipEmergencyShuttleStationPortal(uid, ref skipStation);
-            if (skipStation)
-                continue;
-            // Sunrise added end
-
             AddEmergencyShuttle((uid, comp));
         }
     }
@@ -556,13 +533,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         if (!_emergencyShuttleEnabled)
             return;
-
-        // Sunrise added start - портал для fork-фильтрации станций эвакуационного шаттла
-        var skipStation = false;
-        ShouldSkipEmergencyShuttleStationPortal(ent, ref skipStation);
-        if (skipStation)
-            return;
-        // Sunrise added end
 
         if (ent.Comp1.EmergencyShuttle != null)
         {

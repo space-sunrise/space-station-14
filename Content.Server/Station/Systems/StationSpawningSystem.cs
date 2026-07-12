@@ -49,7 +49,6 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 
     // Sunrise added start - порталы для fork-логики спавна персонажа
     partial void InitializeStationSpawningPortal();
-    partial void GetEffectiveRoleLoadoutPortal(string jobLoadout, ref ProtoId<RoleLoadoutPrototype> effectiveJobLoadout);
     partial void GetDefaultLoadoutPrototypeIdsPortal(EntityUid? entity, ref string[] prototypeIds);
     partial void TryApplyFlavorTextPortal(EntityUid entity, HumanoidCharacterProfile profile);
     // Sunrise added end
@@ -115,10 +114,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         // Need to get the loadout up-front to handle names if we use an entity spawn override.
         var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
 
-        // Sunrise edit start - портал для fork-подмены role loadout
-        ProtoId<RoleLoadoutPrototype> effectiveJobLoadout = jobLoadout;
-        GetEffectiveRoleLoadoutPortal(jobLoadout, ref effectiveJobLoadout);
-        // if (_prototypeManager.TryIndex<RoleLoadoutPrototype>(jobLoadout, out var roleProto))
+        // Sunrise edit start - используем штатный API effective role loadout
+        var effectiveJobLoadout = LoadoutSystem.GetEffectiveRolePrototype(jobLoadout, _prototypeManager);
         if (_prototypeManager.TryIndex<RoleLoadoutPrototype>(effectiveJobLoadout, out var roleProto))
         // Sunrise edit end
         {

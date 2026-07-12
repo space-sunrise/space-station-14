@@ -167,13 +167,6 @@ public sealed partial class EmergencyShuttleSystem
 
             while (dataQuery.MoveNext(out var stationUid, out var comp))
             {
-                // Sunrise added start - портал для fork-фильтрации станций эвакуационного шаттла
-                var skipStation = false;
-                ShouldSkipEmergencyShuttleStationPortal(stationUid, ref skipStation);
-                if (skipStation)
-                    continue;
-                // Sunrise added end
-
                 if (!TryComp<ShuttleComponent>(comp.EmergencyShuttle, out var shuttle) ||
                     !TryComp<StationTransitHubComponent>(stationUid, out var transitHub)) // Sunrise-Edit
                 {

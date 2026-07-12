@@ -40,9 +40,6 @@ namespace Content.Server.GameTicking
         partial void ResolveDirectSpawnStationPortal(ICommonSession player, string? jobId, ref EntityUid station, ref bool handled);
         partial void FilterCanBeAntagPortal(EntityUid station, ref bool canBeAntag);
         partial void SelectSpawnPointTypePortal(JobPrototype job, bool lateJoin, ref SpawnPointType spawnPointType);
-        partial void BeforePlayerSpawnProfilePortal(ICommonSession player);
-        partial void AfterPlayerMobSpawnedPortal(ICommonSession player, EntityUid station, EntityUid mob);
-        partial void DispatchLateJoinAnnouncementPortal(EntityUid station, EntityUid mob, JobPrototype jobPrototype, HumanoidCharacterProfile character, string jobName);
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -208,10 +205,6 @@ namespace Content.Server.GameTicking
             FilterCanBeAntagPortal(station, ref canBeAntag);
             // Sunrise added end
 
-            // Sunrise added start - портал для fork-учета перед выбором профиля спавна
-            BeforePlayerSpawnProfilePortal(player);
-            // Sunrise added end
-
             string speciesId;
             if (_randomizeCharacters)
             {
@@ -296,17 +289,6 @@ namespace Content.Server.GameTicking
             JobPrototype jobPrototype;
             string jobName;
             DoSpawn(player, character, station, jobId, silent, out mob, out jobPrototype, out jobName, spawnPointType);
-
-            // Sunrise added start - портал для fork-обработки заспавненного моба
-            AfterPlayerMobSpawnedPortal(player, station, mob);
-            // Sunrise added end
-
-            if (lateJoin && !silent)
-            {
-                // Sunrise added start - портал для fork-оповещений о latejoin
-                DispatchLateJoinAnnouncementPortal(station, mob, jobPrototype, character, jobName);
-                // Sunrise added end
-            }
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
 

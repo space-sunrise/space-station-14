@@ -106,6 +106,11 @@ namespace Content.Client.Lobby.UI
         private readonly Dictionary<string, BoxContainer> _jobCategories;
         private readonly Dictionary<CVarDef<bool>, Action<bool>> _playerJoinableMapBoolCVarHandlers = new();
         private readonly Dictionary<CVarDef<int>, Action<int>> _playerJoinableMapIntCVarHandlers = new();
+        private readonly PlayerJoinableMapIndex _playerJoinableMapIndex = new();
+        private readonly List<PlayerJoinableMapPrototype> _availablePlayerJoinableMaps = new();
+        private readonly HashSet<ProtoId<JobPrototype>> _availablePlayerJoinableMapJobs = new();
+
+        private int _lastPlayerCount;
 
         private Direction _previewRotation = Direction.North;
 
@@ -150,8 +155,11 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
+            _playerJoinableMapIndex.Rebuild(_prototypeManager);
+            _lastPlayerCount = _playerManager.PlayerCount;
             SubscribePlayerJoinableMapCVars();
             _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+            _prototypeManager.PrototypesReloaded += OnPrototypesReloaded;
 
             ImportButton.OnPressed += args =>
             {
@@ -989,11 +997,10 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public void RefreshJobs()
         {
-            ClearHiddenJobPriorities();
-
             JobList.RemoveAllChildren();
             _jobCategories.Clear();
             _jobPriorities.Clear();
+            RefreshPlayerJoinableMapAccess();
             var firstCategory = true;
 
             // Sunrise-Start
@@ -1239,34 +1246,59 @@ namespace Content.Client.Lobby.UI
             }
 
             var departments = GetDisplayedDepartments();
-            var playerJoinableMapJobs = GetPlayerJoinableMapJobs();
+            var displayedPlayerJoinableMapJobs = new HashSet<ProtoId<JobPrototype>>();
 
-            foreach (var map in GetDisplayedPlayerJoinableMaps())
+            foreach (var map in _availablePlayerJoinableMaps)
             {
-                AddSectionTitle(Loc.GetString("player-joinable-map-additional-title",
-                    ("map", Loc.GetString(map.DisplayName))));
+                var sections = new List<(DepartmentPrototype Department, JobPrototype[] Jobs)>();
 
                 foreach (var department in departments)
                 {
-                    var jobs = department.Roles
-                        .Where(map.Jobs.Contains)
-                        .Select(jobId => _prototypeManager.Index(jobId))
-                        .Where(CanShowJobPreference)
-                        .ToArray();
+                    var jobs = new List<JobPrototype>();
+                    foreach (var jobId in department.Roles)
+                    {
+                        if (!map.Jobs.Contains(jobId) ||
+                            displayedPlayerJoinableMapJobs.Contains(jobId) ||
+                            !_prototypeManager.TryIndex(jobId, out var job) ||
+                            !CanShowJobPreference(job))
+                        {
+                            continue;
+                        }
 
-                    AddDepartmentJobs(department, jobs, $"{map.ID}-{department.ID}");
+                        displayedPlayerJoinableMapJobs.Add(jobId);
+                        jobs.Add(job);
+                    }
+
+                    if (jobs.Count > 0)
+                        sections.Add((department, jobs.ToArray()));
                 }
+
+                if (sections.Count == 0)
+                    continue;
+
+                AddSectionTitle(Loc.GetString("player-joinable-map-additional-title",
+                    ("map", Loc.GetString(map.DisplayName))));
+
+                foreach (var (department, jobs) in sections)
+                    AddDepartmentJobs(department, jobs, $"{map.ID}-{department.ID}");
             }
 
             foreach (var department in departments)
             {
-                var jobs = department.Roles
-                    .Where(jobId => !playerJoinableMapJobs.Contains(jobId))
-                    .Select(jobId => _prototypeManager.Index(jobId))
-                    .Where(CanShowJobPreference)
-                    .ToArray();
+                var jobs = new List<JobPrototype>();
+                foreach (var jobId in department.Roles)
+                {
+                    if (_playerJoinableMapIndex.Jobs.Contains(jobId) ||
+                        !_prototypeManager.TryIndex(jobId, out var job) ||
+                        !CanShowJobPreference(job))
+                    {
+                        continue;
+                    }
 
-                AddDepartmentJobs(department, jobs, department.ID);
+                    jobs.Add(job);
+                }
+
+                AddDepartmentJobs(department, jobs.ToArray(), department.ID);
             }
 
             UpdateJobPriorities();
@@ -1399,26 +1431,16 @@ namespace Content.Client.Lobby.UI
             if (!disposing)
                 return;
 
-            foreach (var (cvar, handler) in _playerJoinableMapBoolCVarHandlers)
-            {
-                _cfgManager.UnsubValueChanged(cvar, handler);
-            }
-
-            foreach (var (cvar, handler) in _playerJoinableMapIntCVarHandlers)
-            {
-                _cfgManager.UnsubValueChanged(cvar, handler);
-            }
-
-            _playerJoinableMapBoolCVarHandlers.Clear();
-            _playerJoinableMapIntCVarHandlers.Clear();
+            UnsubscribePlayerJoinableMapCVars();
             _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
+            _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
         }
 
         private void SubscribePlayerJoinableMapCVars()
         {
-            foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
+            foreach (var map in _playerJoinableMapIndex.Maps)
             {
                 SubscribePlayerJoinableMapBoolCVar(PlayerJoinableMapAccess.GetEnabledCVar(map));
                 SubscribePlayerJoinableMapIntCVar(PlayerJoinableMapAccess.GetMinPlayersCVar(map));
@@ -1437,6 +1459,18 @@ namespace Content.Client.Lobby.UI
 
         private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
         {
+            if (_lastPlayerCount == _playerManager.PlayerCount)
+                return;
+
+            _lastPlayerCount = _playerManager.PlayerCount;
+            RefreshJobs();
+        }
+
+        private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+        {
+            UnsubscribePlayerJoinableMapCVars();
+            _playerJoinableMapIndex.Rebuild(_prototypeManager);
+            SubscribePlayerJoinableMapCVars();
             RefreshJobs();
         }
 
@@ -1466,40 +1500,28 @@ namespace Content.Client.Lobby.UI
             return departments;
         }
 
-        private List<PlayerJoinableMapPrototype> GetDisplayedPlayerJoinableMaps()
+        private void RefreshPlayerJoinableMapAccess()
         {
-            var maps = new List<PlayerJoinableMapPrototype>();
-            foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
+            _lastPlayerCount = _playerManager.PlayerCount;
+            _availablePlayerJoinableMaps.Clear();
+            _availablePlayerJoinableMapJobs.Clear();
+
+            foreach (var map in _playerJoinableMapIndex.Maps)
             {
                 if (!IsPlayerJoinableMapEnabled(map))
                     continue;
 
-                if (!map.Jobs.Any(jobId =>
-                        _prototypeManager.TryIndex(jobId, out JobPrototype? job) &&
-                        CanShowJobPreference(job)))
+                var hasVisibleJob = false;
+                foreach (var jobId in map.Jobs)
                 {
-                    continue;
+                    _availablePlayerJoinableMapJobs.Add(jobId);
+                    if (_prototypeManager.TryIndex(jobId, out JobPrototype? job) && job.SetPreference)
+                        hasVisibleJob = true;
                 }
 
-                maps.Add(map);
+                if (hasVisibleJob)
+                    _availablePlayerJoinableMaps.Add(map);
             }
-
-            maps.Sort((a, b) => a.Order.CompareTo(b.Order));
-            return maps;
-        }
-
-        private HashSet<ProtoId<JobPrototype>> GetPlayerJoinableMapJobs()
-        {
-            var jobs = new HashSet<ProtoId<JobPrototype>>();
-            foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
-            {
-                foreach (var job in map.Jobs)
-                {
-                    jobs.Add(job);
-                }
-            }
-
-            return jobs;
         }
 
         private bool CanShowJobPreference(JobPrototype job)
@@ -1507,47 +1529,8 @@ namespace Content.Client.Lobby.UI
             if (!job.SetPreference)
                 return false;
 
-            foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
-            {
-                if (!map.Jobs.Contains(job.ID))
-                    continue;
-
-                if (!IsPlayerJoinableMapEnabled(map))
-                    return false;
-            }
-
-            return true;
-        }
-
-        private void ClearHiddenJobPriorities()
-        {
-            if (Profile == null)
-                return;
-
-            var jobPriorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>(Profile.JobPriorities);
-            var changed = false;
-            foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
-            {
-                if (IsPlayerJoinableMapEnabled(map))
-                    continue;
-
-                if (IsPlayerJoinableMapAutoGated(map))
-                    continue;
-
-                foreach (var jobId in map.Jobs)
-                {
-                    if (!jobPriorities.Remove(jobId))
-                        continue;
-
-                    changed = true;
-                }
-            }
-
-            if (!changed)
-                return;
-
-            Profile = Profile.WithJobPriorities(jobPriorities);
-            SetDirty();
+            return !_playerJoinableMapIndex.Jobs.Contains(job.ID) ||
+                _availablePlayerJoinableMapJobs.Contains(job.ID);
         }
 
         private bool IsPlayerJoinableMapEnabled(PlayerJoinableMapPrototype map)
@@ -1555,9 +1538,16 @@ namespace Content.Client.Lobby.UI
             return PlayerJoinableMapAccess.IsEnabled(map, _cfgManager, _playerManager.PlayerCount);
         }
 
-        private bool IsPlayerJoinableMapAutoGated(PlayerJoinableMapPrototype map)
+        private void UnsubscribePlayerJoinableMapCVars()
         {
-            return PlayerJoinableMapAccess.IsAutoGated(map, _cfgManager, _playerManager.PlayerCount);
+            foreach (var (cvar, handler) in _playerJoinableMapBoolCVarHandlers)
+                _cfgManager.UnsubValueChanged(cvar, handler);
+
+            foreach (var (cvar, handler) in _playerJoinableMapIntCVarHandlers)
+                _cfgManager.UnsubValueChanged(cvar, handler);
+
+            _playerJoinableMapBoolCVarHandlers.Clear();
+            _playerJoinableMapIntCVarHandlers.Clear();
         }
 
         private void SubscribePlayerJoinableMapBoolCVar(CVarDef<bool>? cvar)
