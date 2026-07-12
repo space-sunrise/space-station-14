@@ -9,8 +9,8 @@
   - type: Interactions
   - type: WingFlight
     speedModifier: 1.1
-    autoDisableThreshold: 0.2 # 6 seconds of flight which results in near stamina crit
-    sustainStaminaPerSecond: 10 # uses 20 staming to activate, so 80 stamina left
+    autoDisableThreshold: 0.2 # 6 секунд полета до почти стамина крита
+    sustainStaminaPerSecond: 10 # по дефолту использует 20 стамину и остается 60 стамины на полет
   # SUNRISE EDIT
   - type: HumanoidAppearance
     species: Moth
