@@ -16,14 +16,10 @@ namespace Content.Shared._Sunrise.Weapons.Ranged;
 public sealed partial class BulletHoleComponent : Component
 {
     /// <summary>
-    /// Количество подтверждённых попаданий.
+    /// Данные отдельных следов, созданных на этой цели.
     /// </summary>
-    public int Count;
-
-    /// <summary>
-    /// Выбранный вариант расположения следов от пуль.
-    /// </summary>
-    public int State;
+    [NonSerialized]
+    public List<BulletHoleVisualData> Holes = [];
 }
 
 /// <summary>
@@ -54,11 +50,5 @@ public readonly record struct BulletHoleVisualData(string State, Vector2 Offset,
 [Serializable, NetSerializable]
 public enum BulletHoleVisuals : byte
 {
-    Data,
-}
-
-[Serializable, NetSerializable]
-public enum BulletHoleVisualLayers : byte
-{
-    BulletHole,
+    Holes,
 }
