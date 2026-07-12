@@ -53,9 +53,10 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
 
         _nextUpdate = _timing.CurTime + UpdateInterval;
 
-        var query = EntityQueryEnumerator<SunrisePoweredLightSparksComponent, ApcPowerReceiverComponent>();
-        while (query.MoveNext(out var uid, out var sparks, out var powerReceiver))
+        var query = EntityQueryEnumerator<SunrisePoweredLightSparksComponent>();
+        while (query.MoveNext(out var uid, out var sparks))
         {
+            TryComp<ApcPowerReceiverComponent>(uid, out var powerReceiver);
             UpdateAppearance((uid, sparks), powerReceiver);
         }
     }
@@ -77,7 +78,10 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         if (!hasPower)
         {
             if (!Resolve(ent, ref powerReceiver, false))
+            {
+                _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, false, appearance);
                 return;
+            }
 
             hasPower = poweredLight.On && powerReceiver.Powered;
         }
