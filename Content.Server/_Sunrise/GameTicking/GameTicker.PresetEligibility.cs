@@ -1,5 +1,6 @@
 using Content.Server.GameTicking.Presets;
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking.Components;
 
 namespace Content.Server.GameTicking;
@@ -22,13 +23,22 @@ public sealed partial class GameTicker
 
     public bool IsPresetEligible(GamePresetPrototype? preset, int playerCount, string ruleComponentName)
     {
+        return IsPresetEligible(preset, playerCount, ruleComponentName, false);
+    }
+
+    private bool IsPresetEligible(
+        GamePresetPrototype? preset,
+        int playerCount,
+        string ruleComponentName,
+        bool ignorePlayerLimits)
+    {
         if (preset == null)
             return false;
 
-        if (playerCount < preset.MinPlayers)
+        if (!ignorePlayerLimits && playerCount < preset.MinPlayers)
             return false;
 
-        if (playerCount > preset.MaxPlayers)
+        if (!ignorePlayerLimits && playerCount > preset.MaxPlayers)
             return false;
 
         foreach (var ruleId in preset.Rules)
@@ -40,7 +50,7 @@ public sealed partial class GameTicker
                 return false;
             }
 
-            if (ruleComponent.MinPlayers > playerCount && ruleComponent.CancelPresetOnTooFewPlayers)
+            if (!ignorePlayerLimits && ruleComponent.MinPlayers > playerCount && ruleComponent.CancelPresetOnTooFewPlayers)
                 return false;
         }
 
@@ -64,6 +74,10 @@ public sealed partial class GameTicker
     /// A dictionary whose key is an eligible <see cref="GamePresetPrototype.ID"/> and whose value is that preset's
     /// <see cref="GamePresetPrototype.ModeTitle"/> localization ID, not localized text.
     /// </returns>
+    /// <remarks>
+    /// When <see cref="SunriseCCVars.IgnorePresetPlayerLimits"/> is enabled, player limits from the pool, preset, and game rules
+    /// are ignored for vote options. Prototype validity and <see cref="GamePresetPrototype.ShowInVote"/> are still checked.
+    /// </remarks>
     /// <example>
     /// <code>
     /// var options = ticker.GetEligibleVotePresets(
@@ -82,13 +96,15 @@ public sealed partial class GameTicker
         IReadOnlySet<string>? excludedPresets = null)
     {
         var result = new Dictionary<string, string>();
+        var ignorePlayerLimits = _cfg.GetCVar(SunriseCCVars.IgnorePresetPlayerLimits);
+        var ruleComponentName = Factory.GetComponentName<GameRuleComponent>();
 
         foreach (var (presetId, limits) in pool)
         {
             if (excludedPresets?.Contains(presetId) == true)
                 continue;
 
-            if (!IsPlayerCountWithinLimits(limits, playerCount))
+            if (!ignorePlayerLimits && !IsPlayerCountWithinLimits(limits, playerCount))
                 continue;
 
             if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
@@ -97,7 +113,7 @@ public sealed partial class GameTicker
             if (!preset.ShowInVote)
                 continue;
 
-            if (!IsPresetEligible(preset, playerCount))
+            if (!IsPresetEligible(preset, playerCount, ruleComponentName, ignorePlayerLimits))
                 continue;
 
             result[preset.ID] = preset.ModeTitle;

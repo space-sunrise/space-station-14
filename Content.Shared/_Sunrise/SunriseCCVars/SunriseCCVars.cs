@@ -266,6 +266,12 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<bool> ShowMapVotes = CVarDef.Create("vote.show_map_votes", true);
 
+    /// <summary>
+    ///     Makes preset votes ignore player count limits. Intended for local development.
+    /// </summary>
+    public static readonly CVarDef<bool> IgnorePresetPlayerLimits =
+        CVarDef.Create("vote.ignore_preset_player_limits", false, CVar.SERVERONLY);
+
     public static readonly CVarDef<bool> RunMapVoteAfterRestart =
         CVarDef.Create("vote.run_map_vote_after_restart", false);
 

@@ -138,7 +138,8 @@ public sealed partial class StorytellerSystem
             if (presetId == StorytellerCalmId)
                 continue;
 
-            if (!GameTicker.IsPlayerCountWithinLimits(limits, _playerManager.PlayerCount))
+            if (!_cfg.GetCVar(SunriseCCVars.IgnorePresetPlayerLimits) &&
+                !GameTicker.IsPlayerCountWithinLimits(limits, _playerManager.PlayerCount))
                 continue;
 
             presets.Remove(StorytellerCalmId);
