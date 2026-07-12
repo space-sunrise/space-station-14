@@ -167,7 +167,7 @@ namespace Content.Server.Voting.Managers
         {
             // Handle active votes.
             var remQueue = new RemQueue<int>();
-            foreach (var v in _votes.Values)
+            foreach (var v in _votes.Values.ToArray()) // Sunrise-Edit: для системы многоэтапных голосований, без этого вызывал ошибку при старте голосования в тот же момент, когда закончено старое
             {
                 // Logger.Debug($"{_timing.ServerTime}");
                 if (_timing.RealTime >= v.EndTime)
