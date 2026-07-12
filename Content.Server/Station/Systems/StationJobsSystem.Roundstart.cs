@@ -11,6 +11,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Station.Systems;
 
@@ -20,6 +21,7 @@ public sealed partial class StationJobsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private Dictionary<int, HashSet<string>> _jobsByWeight = default!;
     private List<int> _orderedWeights = default!;
@@ -39,9 +41,8 @@ public sealed partial class StationJobsSystem
         }
 
         _orderedWeights = _jobsByWeight.Keys.OrderByDescending(i => i).ToList();
-        // Sunrise added start - портал для fork-инициализации roundstart jobs
-        InitializeRoundStartPortal();
-        // Sunrise added end
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     /// <summary>
@@ -84,10 +85,6 @@ public sealed partial class StationJobsSystem
             {
                 stationJobs.Add(station, GetJobs(station).ToDictionary(x => x.Key, x => x.Value));
             }
-
-            // Sunrise added start - фильтрация jobs конкретной station для player-joinable карт
-            FilterRoundStartJobSelectionPortal(station, stationJobs[station]);
-            // Sunrise added end
         }
 
 
@@ -254,16 +251,14 @@ public sealed partial class StationJobsSystem
                             if (!jobPlayerOptions.ContainsKey(job))
                                 continue;
 
-                            // Sunrise added start - портал для fork-выбора кандидата на роль
-                            NetUserId? player = null;
-                            var handled = false;
-                            PickRoundStartRoleSessionPortal(jobPlayerOptions[job], job, ref player, ref handled);
-                            if (!handled)
-                                player = _random.Pick(jobPlayerOptions[job]);
+                            // Sunrise-Sponsors-Start
+                            // Picking players it finds that have the job set.\
+                            var player = _sponsorsManager != null ? _sponsorsManager.PickRoleSession(jobPlayerOptions[job], job) : _random.Pick(jobPlayerOptions[job]);
 
                             if (player == null)
                                 continue;
-                            // Sunrise added end
+
+                            // Sunrise-Sponsors-End
                             AssignPlayer(player.Value, job, station);
                             stationShares[station]--;
 
@@ -389,12 +384,10 @@ public sealed partial class StationJobsSystem
                 if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
                     continue;
 
-                // Sunrise added start - портал для fork-фильтров job-кандидата
-                var canUseJob = true;
-                FilterJobCandidatePortal(job, profile, ref canUseJob);
-                if (!canUseJob)
+                // Sunrise-Start
+                if (job.SpeciesBlacklist.Contains(profile.Species))
                     continue;
-                // Sunrise added end
+                // Sunrise-End
 
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);
                 availableJobs.Add(jobId);

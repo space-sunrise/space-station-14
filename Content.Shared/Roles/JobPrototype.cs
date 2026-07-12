@@ -1,9 +1,11 @@
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles
@@ -52,6 +54,12 @@ namespace Content.Shared.Roles
         public HashSet<JobRequirement>? Requirements;
 
         /// <summary>
+        ///     When true - the station will have anouncement about arrival of this player.
+        /// </summary>
+        [DataField]
+        public bool JoinNotifyCrew { get; private set; } = false;
+
+        /// <summary>
         ///     When true - the player will recieve a message about importancy of their job.
         /// </summary>
         [DataField]
@@ -78,6 +86,11 @@ namespace Content.Shared.Roles
 
         [DataField]
         public bool CanBeAntag { get; private set; } = true;
+
+        // Sunrise-Start
+        [DataField("radioBold")]
+        public bool RadioIsBold { get; private set; }
+        // Sunrise-End
 
         /// <summary>
         ///     The "weight" or importance of this job. If this number is large, the job system will assign this job
@@ -148,6 +161,30 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        // Sunrise-Start
+        /// <summary>
+        /// Вот так работает расизм по мнению буржуев
+        /// </summary>
+        [DataField("speciesBlacklist", customTypeSerializer: typeof(PrototypeIdListSerializer<SpeciesPrototype>))]
+        public List<string> SpeciesBlacklist = new();
+
+        /// <summary>
+        /// Для космической тюрьмы
+        /// </summary>
+        [DataField("alwaysUseSpawner")]
+        public bool AlwaysUseSpawner { get; private set; }
+
+        [DataField]
+        public SpriteSpecifier PreviewIcon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/job_preview.rsi"), "test");
+
+        /// <summary>
+        /// Список альтернативных названий должности (LocId ключи).
+        /// Игрок может выбрать одно из них при присоединении.
+        /// </summary>
+        [DataField]
+        public List<LocId> AlternativeTitles { get; private set; } = new();
+        // Sunrise-End
     }
 
     /// <summary>

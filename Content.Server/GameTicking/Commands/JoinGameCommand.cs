@@ -6,13 +6,12 @@ using Content.Shared.GameTicking;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Commands
 {
     [AnyCommand]
-    sealed partial class JoinGameCommand : IConsoleCommand
+    sealed class JoinGameCommand : IConsoleCommand
     {
         [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -21,8 +20,6 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly ILogManager _logManager = default!;
 
         private readonly ISawmill _sawmill;
-
-        partial void BeforeJoinGameCommand(ICommonSession player, ref EntityUid station, string jobId, GameTicker ticker, ref bool handled);
 
         public string Command => "joingame";
         public string Description => "";
@@ -75,13 +72,6 @@ namespace Content.Server.GameTicking.Commands
                 }
 
                 var station = _entManager.GetEntity(new NetEntity(sid));
-                // Sunrise added start - портал отказов для fork-ограничений latejoin
-                var handled = false;
-                BeforeJoinGameCommand(player, ref station, id, ticker, ref handled);
-                if (handled)
-                    return;
-                // Sunrise added end
-
                 var jobPrototype = _prototypeManager.Index<JobPrototype>(id);
                 if(stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) == false || slots == 0)
                 {

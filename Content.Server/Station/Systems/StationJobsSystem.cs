@@ -30,10 +30,6 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     partial void InitializeStationJobsPortal();
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
-    partial void FilterRoundStartJobSelectionPortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs);
-    partial void InitializeRoundStartPortal();
-    partial void PickRoundStartRoleSessionPortal(HashSet<NetUserId> players, ProtoId<JobPrototype> job, ref NetUserId? player, ref bool handled);
-    partial void FilterJobCandidatePortal(JobPrototype job, HumanoidCharacterProfile profile, ref bool canUseJob);
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -6,6 +6,8 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
+    partial void SelectSpawnPointTypePortal(JobPrototype job, bool lateJoin, ref SpawnPointType spawnPointType);
+
     partial void SelectSpawnPointTypePortal(JobPrototype job, bool lateJoin, ref SpawnPointType spawnPointType)
     {
         if (lateJoin && job.AlwaysUseSpawner)

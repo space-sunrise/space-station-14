@@ -7,6 +7,9 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
+    partial void ResolveDirectSpawnStationPortal(ICommonSession player, string? jobId, ref EntityUid station, ref bool handled);
+    partial void FilterCanBeAntagPortal(EntityUid station, ref bool canBeAntag);
+
     [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMap = default!;
 
     internal bool TryPreparePlayerJoinableMapJoin(ICommonSession player, string? jobId, ref EntityUid station)

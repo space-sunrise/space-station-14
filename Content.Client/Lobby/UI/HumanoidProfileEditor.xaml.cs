@@ -10,7 +10,6 @@ using Content.Client.Stylesheets;
 using Content.Client.Sprite;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._Sunrise;
-using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
@@ -35,7 +34,6 @@ using Robust.Client.Utility;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Enums;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
@@ -104,13 +102,6 @@ namespace Content.Client.Lobby.UI
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
         private readonly Dictionary<string, BoxContainer> _jobCategories;
-        private readonly Dictionary<CVarDef<bool>, Action<bool>> _playerJoinableMapBoolCVarHandlers = new();
-        private readonly Dictionary<CVarDef<int>, Action<int>> _playerJoinableMapIntCVarHandlers = new();
-        private readonly PlayerJoinableMapIndex _playerJoinableMapIndex = new();
-        private readonly List<PlayerJoinableMapPrototype> _availablePlayerJoinableMaps = new();
-        private readonly HashSet<ProtoId<JobPrototype>> _availablePlayerJoinableMapJobs = new();
-
-        private int _lastPlayerCount;
 
         private Direction _previewRotation = Direction.North;
 
@@ -155,11 +146,9 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
-            _playerJoinableMapIndex.Rebuild(_prototypeManager);
-            _lastPlayerCount = _playerManager.PlayerCount;
-            SubscribePlayerJoinableMapCVars();
-            _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
-            _prototypeManager.PrototypesReloaded += OnPrototypesReloaded;
+            // Sunrise added start - инициализация Player Joinable Maps в редакторе персонажа
+            InitializePlayerJoinableMapsPortal();
+            // Sunrise added end
 
             ImportButton.OnPressed += args =>
             {
@@ -1000,12 +989,39 @@ namespace Content.Client.Lobby.UI
             JobList.RemoveAllChildren();
             _jobCategories.Clear();
             _jobPriorities.Clear();
-            RefreshPlayerJoinableMapAccess();
             var firstCategory = true;
+
+            // Get all displayed departments
+            var departments = new List<DepartmentPrototype>();
+            foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
+            {
+                // Sunrise-Start
+                var visible = false;
+
+                foreach (var departmentRole in department.Roles)
+                {
+                    if (!_prototypeManager.TryIndex(departmentRole, out var role))
+                        continue;
+
+                    if (role.SetPreference)
+                        visible = true;
+                }
+
+                if (!visible)
+                    continue;
+                // Sunrise-End
+
+                if (department.EditorHidden)
+                    continue;
+
+                departments.Add(department);
+            }
 
             // Sunrise-Start
             var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
             // Sunrise-End
+
+            departments.Sort(DepartmentUIComparer.Instance);
 
             var items = new[]
             {
@@ -1015,59 +1031,31 @@ namespace Content.Client.Lobby.UI
                 ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
             };
 
-            void AddSectionTitle(string title)
+            foreach (var department in departments)
             {
-                if (!firstCategory)
-                {
-                    JobList.AddChild(new Control
-                    {
-                        MinSize = new Vector2(0, 23),
-                    });
-                }
-
-                firstCategory = false;
-                JobList.AddChild(new PanelContainer
-                {
-                    PanelOverride = new StyleBoxFlat {BackgroundColor = Color.FromHex("#3f6658")},
-                    Children =
-                    {
-                        new Label
-                        {
-                            Text = title,
-                            Margin = new Thickness(5f, 0, 0, 0)
-                        }
-                    }
-                });
-            }
-
-            void AddDepartmentJobs(DepartmentPrototype department, JobPrototype[] jobs, string categoryId)
-            {
-                if (jobs.Length == 0)
-                    return;
-
                 var departmentName = Loc.GetString(department.Name);
 
-                if (!_jobCategories.TryGetValue(categoryId, out var category))
+                if (!_jobCategories.TryGetValue(department.ID, out var category))
                 {
+                    category = new BoxContainer
+                    {
+                        Orientation = LayoutOrientation.Vertical,
+                        Name = department.ID,
+                        ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
+                            ("departmentName", departmentName))
+                    };
+
                     if (firstCategory)
                     {
                         firstCategory = false;
                     }
                     else
                     {
-                        JobList.AddChild(new Control
+                        category.AddChild(new Control
                         {
                             MinSize = new Vector2(0, 23),
                         });
                     }
-
-                    category = new BoxContainer
-                    {
-                        Orientation = LayoutOrientation.Vertical,
-                        Name = categoryId,
-                        ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
-                            ("departmentName", departmentName))
-                    };
 
                     category.AddChild(new PanelContainer
                     {
@@ -1083,9 +1071,17 @@ namespace Content.Client.Lobby.UI
                         }
                     });
 
-                    _jobCategories[categoryId] = category;
+                    _jobCategories[department.ID] = category;
                     JobList.AddChild(category);
                 }
+
+                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
+                    .Where(job => job.SetPreference)
+                    .ToArray();
+
+                // Sunrise added start - исключение jobs Player Joinable Maps из обычных секций
+                FilterPlayerJoinableMapJobsPortal(department, ref jobs);
+                // Sunrise added end
 
                 Array.Sort(jobs, JobUIComparer.Instance);
 
@@ -1245,61 +1241,9 @@ namespace Content.Client.Lobby.UI
                 }
             }
 
-            var departments = GetDisplayedDepartments();
-            var displayedPlayerJoinableMapJobs = new HashSet<ProtoId<JobPrototype>>();
-
-            foreach (var map in _availablePlayerJoinableMaps)
-            {
-                var sections = new List<(DepartmentPrototype Department, JobPrototype[] Jobs)>();
-
-                foreach (var department in departments)
-                {
-                    var jobs = new List<JobPrototype>();
-                    foreach (var jobId in department.Roles)
-                    {
-                        if (!map.Jobs.Contains(jobId) ||
-                            displayedPlayerJoinableMapJobs.Contains(jobId) ||
-                            !_prototypeManager.TryIndex(jobId, out var job) ||
-                            !CanShowJobPreference(job))
-                        {
-                            continue;
-                        }
-
-                        displayedPlayerJoinableMapJobs.Add(jobId);
-                        jobs.Add(job);
-                    }
-
-                    if (jobs.Count > 0)
-                        sections.Add((department, jobs.ToArray()));
-                }
-
-                if (sections.Count == 0)
-                    continue;
-
-                AddSectionTitle(Loc.GetString("player-joinable-map-additional-title",
-                    ("map", Loc.GetString(map.DisplayName))));
-
-                foreach (var (department, jobs) in sections)
-                    AddDepartmentJobs(department, jobs, $"{map.ID}-{department.ID}");
-            }
-
-            foreach (var department in departments)
-            {
-                var jobs = new List<JobPrototype>();
-                foreach (var jobId in department.Roles)
-                {
-                    if (_playerJoinableMapIndex.Jobs.Contains(jobId) ||
-                        !_prototypeManager.TryIndex(jobId, out var job) ||
-                        !CanShowJobPreference(job))
-                    {
-                        continue;
-                    }
-
-                    jobs.Add(job);
-                }
-
-                AddDepartmentJobs(department, jobs.ToArray(), department.ID);
-            }
+            // Sunrise added start - дополнительные секции Player Joinable Maps
+            AddPlayerJoinableMapSectionsPortal(items, sponsorPrototypes, ref firstCategory);
+            // Sunrise added end
 
             UpdateJobPriorities();
         }
@@ -1431,149 +1375,12 @@ namespace Content.Client.Lobby.UI
             if (!disposing)
                 return;
 
-            UnsubscribePlayerJoinableMapCVars();
-            _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
-            _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
+            // Sunrise added start - завершение Player Joinable Maps в редакторе персонажа
+            ShutdownPlayerJoinableMapsPortal();
+            // Sunrise added end
+
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
-        }
-
-        private void SubscribePlayerJoinableMapCVars()
-        {
-            foreach (var map in _playerJoinableMapIndex.Maps)
-            {
-                SubscribePlayerJoinableMapBoolCVar(PlayerJoinableMapAccess.GetEnabledCVar(map));
-                SubscribePlayerJoinableMapIntCVar(PlayerJoinableMapAccess.GetMinPlayersCVar(map));
-            }
-        }
-
-        private void OnPlayerJoinableMapAccessChanged(bool _)
-        {
-            RefreshJobs();
-        }
-
-        private void OnPlayerJoinableMapAccessChanged(int _)
-        {
-            RefreshJobs();
-        }
-
-        private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
-        {
-            if (_lastPlayerCount == _playerManager.PlayerCount)
-                return;
-
-            _lastPlayerCount = _playerManager.PlayerCount;
-            RefreshJobs();
-        }
-
-        private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
-        {
-            UnsubscribePlayerJoinableMapCVars();
-            _playerJoinableMapIndex.Rebuild(_prototypeManager);
-            SubscribePlayerJoinableMapCVars();
-            RefreshJobs();
-        }
-
-        private List<DepartmentPrototype> GetDisplayedDepartments()
-        {
-            var departments = new List<DepartmentPrototype>();
-            foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
-            {
-                if (department.EditorHidden)
-                    continue;
-
-                var visible = false;
-                foreach (var departmentRole in department.Roles)
-                {
-                    if (!_prototypeManager.TryIndex(departmentRole, out var role))
-                        continue;
-
-                    if (CanShowJobPreference(role))
-                        visible = true;
-                }
-
-                if (visible)
-                    departments.Add(department);
-            }
-
-            departments.Sort(DepartmentUIComparer.Instance);
-            return departments;
-        }
-
-        private void RefreshPlayerJoinableMapAccess()
-        {
-            _lastPlayerCount = _playerManager.PlayerCount;
-            _availablePlayerJoinableMaps.Clear();
-            _availablePlayerJoinableMapJobs.Clear();
-
-            foreach (var map in _playerJoinableMapIndex.Maps)
-            {
-                if (!IsPlayerJoinableMapEnabled(map))
-                    continue;
-
-                var hasVisibleJob = false;
-                foreach (var jobId in map.Jobs)
-                {
-                    _availablePlayerJoinableMapJobs.Add(jobId);
-                    if (_prototypeManager.TryIndex(jobId, out JobPrototype? job) && job.SetPreference)
-                        hasVisibleJob = true;
-                }
-
-                if (hasVisibleJob)
-                    _availablePlayerJoinableMaps.Add(map);
-            }
-        }
-
-        private bool CanShowJobPreference(JobPrototype job)
-        {
-            if (!job.SetPreference)
-                return false;
-
-            return !_playerJoinableMapIndex.Jobs.Contains(job.ID) ||
-                _availablePlayerJoinableMapJobs.Contains(job.ID);
-        }
-
-        private bool IsPlayerJoinableMapEnabled(PlayerJoinableMapPrototype map)
-        {
-            return PlayerJoinableMapAccess.IsEnabled(map, _cfgManager, _playerManager.PlayerCount);
-        }
-
-        private void UnsubscribePlayerJoinableMapCVars()
-        {
-            foreach (var (cvar, handler) in _playerJoinableMapBoolCVarHandlers)
-                _cfgManager.UnsubValueChanged(cvar, handler);
-
-            foreach (var (cvar, handler) in _playerJoinableMapIntCVarHandlers)
-                _cfgManager.UnsubValueChanged(cvar, handler);
-
-            _playerJoinableMapBoolCVarHandlers.Clear();
-            _playerJoinableMapIntCVarHandlers.Clear();
-        }
-
-        private void SubscribePlayerJoinableMapBoolCVar(CVarDef<bool>? cvar)
-        {
-            if (cvar == null ||
-                _playerJoinableMapBoolCVarHandlers.ContainsKey(cvar))
-            {
-                return;
-            }
-
-            Action<bool> handler = OnPlayerJoinableMapAccessChanged;
-            _cfgManager.OnValueChanged(cvar, handler);
-            _playerJoinableMapBoolCVarHandlers.Add(cvar, handler);
-        }
-
-        private void SubscribePlayerJoinableMapIntCVar(CVarDef<int>? cvar)
-        {
-            if (cvar == null ||
-                _playerJoinableMapIntCVarHandlers.ContainsKey(cvar))
-            {
-                return;
-            }
-
-            Action<int> handler = OnPlayerJoinableMapAccessChanged;
-            _cfgManager.OnValueChanged(cvar, handler);
-            _playerJoinableMapIntCVarHandlers.Add(cvar, handler);
         }
 
         protected override void EnteredTree()

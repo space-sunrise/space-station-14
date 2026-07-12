@@ -28,13 +28,6 @@ public sealed partial class StationJobsSystem
         skipStation = jobs.Count == 0 && _playerJoinableMap.HasAnyPlayerJoinableJob(GetJobs(station));
     }
 
-    partial void FilterRoundStartJobSelectionPortal(
-        EntityUid station,
-        Dictionary<ProtoId<JobPrototype>, int?> jobs)
-    {
-        _playerJoinableMap.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.RoundStart);
-    }
-
     private void SubscribePlayerJoinableMapAccessCVar<T>(CVarDef<T>? cvar)
         where T : notnull
     {

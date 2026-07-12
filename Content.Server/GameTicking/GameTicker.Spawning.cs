@@ -1,11 +1,17 @@
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.Helpers;
+using Content.Server._Sunrise.Station;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
+using Content.Server.Ghost;
+using Content.Server.Shuttles.Components;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Spawners.Components;
+using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -26,6 +32,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Sunrise.NewLife; // Sunrise-NewLife
+using Content.Server._Sunrise.TraitorTarget;
+using Content.Server.Shuttles.Systems; // Sunrise-Edit
 
 namespace Content.Server.GameTicking
 {
@@ -35,11 +44,12 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
+        [Dependency] private readonly ArrivalsSystem _arrivals = default!;
 
-        partial void FilterFallbackSpawnableStationsPortal(List<EntityUid> stations);
-        partial void ResolveDirectSpawnStationPortal(ICommonSession player, string? jobId, ref EntityUid station, ref bool handled);
-        partial void FilterCanBeAntagPortal(EntityUid station, ref bool canBeAntag);
-        partial void SelectSpawnPointTypePortal(JobPrototype job, bool lateJoin, ref SpawnPointType spawnPointType);
+        // Sunrise added start
+        [Dependency] private readonly NewLifeSystem _newLife = default!;
+        [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
+        // Sunrise added end
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -176,8 +186,8 @@ namespace Content.Server.GameTicking
 
             if (station == EntityUid.Invalid)
             {
-                // Sunrise added start - портал для fork-фильтров fallback-выбора станции
-                var stations = GetSpawnableStations();
+                // Sunrise added start - фильтрация fallback stations для Player Joinable Maps
+                var stations = _helpers.GetSpawnableStations();
                 FilterFallbackSpawnableStationsPortal(stations);
                 // Sunrise added end
 
@@ -194,14 +204,19 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            // Sunrise added start - портал для fork-маршрутизации direct-spawn ролей на целевую станцию
+            // Sunrise-NewLife-Start
+            _newLife.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
+            _newLife.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLife.NewLifeTimeout));
+            // Sunrise-NewLife-End
+
+            // Sunrise added start - маршрутизация direct-spawn роли на целевую station
             var directSpawnStationHandled = false;
             ResolveDirectSpawnStationPortal(player, jobId, ref station, ref directSpawnStationHandled);
             if (directSpawnStationHandled)
                 return;
             // Sunrise added end
 
-            // Sunrise added start - запрет antag selection для отдельных fork-станций
+            // Sunrise added start - запрет antag для специальной station
             FilterCanBeAntagPortal(station, ref canBeAntag);
             // Sunrise added end
 
@@ -276,19 +291,53 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            // Sunrise-Start
             var selectedJob = _prototypeManager.Index<JobPrototype>(jobId);
-
-            var spawnPointType = !lateJoin
+            var spawnPointType = !lateJoin || selectedJob.AlwaysUseSpawner
                 ? SpawnPointType.Job
                 : SpawnPointType.LateJoin;
-            // Sunrise added start - портал для fork-выбора типа spawnpoint
+            // Sunrise added start - выбор типа spawnpoint для Player Joinable Maps
             SelectSpawnPointTypePortal(selectedJob, lateJoin, ref spawnPointType);
             // Sunrise added end
 
-            EntityUid mob;
-            JobPrototype jobPrototype;
-            string jobName;
-            DoSpawn(player, character, station, jobId, silent, out mob, out jobPrototype, out jobName, spawnPointType);
+            DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName, spawnPointType);
+
+            if (HasComp<StationAntagsTargetsComponent>(station))
+                EnsureComp<AntagTargetComponent>(mob);
+            // Sunrise-End
+
+            if (lateJoin && !silent)
+            {
+                if (jobPrototype.JoinNotifyCrew)
+                {
+                    _chatSystem.DispatchStationAnnouncement(station,
+                        Loc.GetString("latejoin-arrival-announcement-special",
+                            ("character", MetaData(mob).EntityName),
+                            ("gender", character.Gender), // Russian-LastnameGender
+                            ("entity", mob),
+                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                        Loc.GetString("latejoin-arrival-sender"),
+                        playDefault: false,
+                        colorOverride: Color.Gold);
+                }
+                // else
+                // {
+                //     _chatSystem.DispatchStationAnnouncement(station,
+                //         Loc.GetString("latejoin-arrival-announcement",
+                //             ("character", MetaData(mob).EntityName),
+                //             ("gender", character.Gender), // Russian-LastnameGender
+                //             ("entity", mob),
+                //             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                //         Loc.GetString("latejoin-arrival-sender"),
+                //         playDefault: false,
+                //         playTts: false);
+                // }
+            }
+
+            if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))
+            {
+                AddComp<OwOAccentComponent>(mob);
+            }
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
 
