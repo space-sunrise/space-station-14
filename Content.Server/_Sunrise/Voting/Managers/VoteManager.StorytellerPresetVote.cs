@@ -17,7 +17,18 @@ public sealed partial class VoteManager
 
     private const string StorytellerVoteOptionId = "__storyteller__";
 
-    private Dictionary<string, string> GetSunriseRegularPresetsForVote()
+    /// <summary>
+    /// Gets eligible non-Storyteller presets for the first stage of the Sunrise preset vote.
+    /// </summary>
+    /// <param name="excludedPresets">
+    /// Preset IDs to omit. Each set item is a <see cref="GamePresetPrototype.ID"/> temporarily excluded by rotation;
+    /// <see langword="null"/> leaves all configured regular presets eligible for consideration.
+    /// </param>
+    /// <returns>
+    /// A dictionary whose key is a regular <see cref="GamePresetPrototype.ID"/> and whose value is its
+    /// <see cref="GamePresetPrototype.ModeTitle"/> localization ID, not localized text.
+    /// </returns>
+    private Dictionary<string, string> GetSunriseRegularPresetsForVote(IReadOnlySet<string>? excludedPresets = null)
     {
         var ticker = _entityManager.System<GameTicker>();
         var presetPoolId = _cfg.GetCVar(SunriseCCVars.GamePresetPool);
@@ -25,64 +36,51 @@ public sealed partial class VoteManager
         if (!_prototypeManager.TryIndex<GamePresetPoolPrototype>(presetPoolId, out var presetPoolProto))
             return new Dictionary<string, string>();
 
-        Dictionary<string, string> BuildRegularPresetList(HashSet<string>? excludedPresets = null)
+        var eligiblePresets = ticker.GetEligibleVotePresets(
+            presetPoolProto.Presets,
+            _playerManager.PlayerCount,
+            excludedPresets);
+
+        var result = new Dictionary<string, string>();
+
+        foreach (var (presetId, title) in eligiblePresets)
         {
-            var playerCount = _playerManager.PlayerCount;
-            var result = new Dictionary<string, string>();
-
-            foreach (var (presetId, limits) in presetPoolProto.Presets)
-            {
-                if (StorytellerSystem.IsStorytellerPreset(presetId))
-                    continue;
-
-                if (excludedPresets != null && excludedPresets.Contains(presetId))
-                    continue;
-
-                if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
-                    continue;
-
-                if (!preset.ShowInVote)
-                    continue;
-
-                var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
-                var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
-
-                if (playerCount < minPlayers || playerCount > maxPlayers)
-                    continue;
-
-                result[preset.ID] = preset.ModeTitle;
-            }
-
-            return result;
+            if (!StorytellerSystem.IsStorytellerPreset(presetId))
+                result[presetId] = title;
         }
 
-        var excluded = ticker.ExcludedPresets.ToHashSet();
-        var regularPresets = BuildRegularPresetList(excluded);
-
-        if (regularPresets.Count == 0 && excluded.Count > 0)
-        {
-            ticker.ClearExcludedPresets();
-            regularPresets = BuildRegularPresetList();
-        }
-
-        return regularPresets;
+        return result;
     }
 
-    private Dictionary<string, string> GetSunriseTopLevelPresetsForVote()
+    private (Dictionary<string, string> TopLevel, Dictionary<string, string> Storyteller, bool ResetExclusions)
+        GetSunrisePresetVoteChoices()
     {
-        var regularPresets = GetSunriseRegularPresetsForVote();
-        var storytellerPresets = _entityManager.System<StorytellerSystem>().GetAvailableVotePresets();
+        var ticker = _entityManager.System<GameTicker>();
+        var storyteller = _entityManager.System<StorytellerSystem>();
+
+        var excludedPresets = ticker.ExcludedPresets.ToHashSet();
+        var regularPresets = GetSunriseRegularPresetsForVote(excludedPresets);
+        var storytellerPresets = storyteller.GetAvailableVotePresets(excludedPresets);
+
+        var resetExclusions = false;
+        if (regularPresets.Count == 0 && storytellerPresets.Count == 0 && excludedPresets.Count > 0)
+        {
+            regularPresets = GetSunriseRegularPresetsForVote();
+            storytellerPresets = storyteller.GetAvailableVotePresets(new HashSet<string>());
+            resetExclusions = true;
+        }
+
         var result = new Dictionary<string, string>(regularPresets);
 
         if (storytellerPresets.Count > 0)
             result[StorytellerVoteOptionId] = "ui-vote-storyteller-entry";
 
-        return result;
+        return (result, storytellerPresets, resetExclusions);
     }
 
     private bool CanCallSunrisePresetVote()
     {
-        var presets = GetSunriseTopLevelPresetsForVote();
+        var (presets, storytellerPresets, _) = GetSunrisePresetVoteChoices();
 
         if (presets.Count == 0)
             return false;
@@ -96,20 +94,15 @@ public sealed partial class VoteManager
         if (singleTopLevelPreset != StorytellerVoteOptionId)
             return singleTopLevelPreset != ticker.Preset?.ID;
 
-        var storytellerPresets = _entityManager.System<StorytellerSystem>().GetAvailableVotePresets();
-
-        if (storytellerPresets.Count == 0)
-            return false;
-
-        if (storytellerPresets.Count == 1 && storytellerPresets.Keys.First() == ticker.Preset?.ID)
-            return false;
-
-        return true;
+        return storytellerPresets.Count != 1 || storytellerPresets.Keys.First() != ticker.Preset?.ID;
     }
 
     private bool TryCreateSunriseTwoStagePresetVote(ICommonSession? initiator)
     {
-        var presets = GetSunriseTopLevelPresetsForVote();
+        var (presets, _, resetExclusions) = GetSunrisePresetVoteChoices();
+
+        if (resetExclusions)
+            _entityManager.System<GameTicker>().ClearExcludedPresets();
 
         if (presets.Count == 0)
             return true;
@@ -237,5 +230,4 @@ public sealed partial class VoteManager
         WirePresetVoteInitiator(options, initiator);
         return options;
     }
-
 }
