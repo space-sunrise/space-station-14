@@ -12,7 +12,7 @@ namespace Content.Shared.Silicons.Borgs;
 /// Implements borg type switching.
 /// </summary>
 /// <seealso cref="BorgSwitchableTypeComponent"/>
-public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
+public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem // Sunrise-Edit - partial для расширения из _Sunrise.
 {
     // TODO: Allow borgs to be reset to default configuration.
 

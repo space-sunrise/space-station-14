@@ -1,5 +1,8 @@
 using System.Linq;
+using Content.Server.Actions;
 using Content.Server._Sunrise.TTS;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Popups;
 using Content.Sunrise.Interfaces.Shared;
@@ -15,17 +18,21 @@ namespace Content.Server.Silicons.Borgs;
 /// </summary>
 public sealed class SiliconVoiceSystem : EntitySystem
 {
+    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+
+    private const string BorgVoiceChangeActionId = "ActionChangeBorgVoice";
+    private static readonly EntProtoId BorgVoiceChangeAction = BorgVoiceChangeActionId;
 
     private ISharedSponsorsManager? _sponsorsManager;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BorgVoiceComponent, MapInitEvent>(OnBorgVoiceStartup);
+        SubscribeLocalEvent<BorgVoiceComponent, MapInitEvent>(OnBorgVoiceStartup, after: [typeof(ActionGrantSystem)]);
 
         SubscribeLocalEvent<BorgVoiceComponent, SiliconVoiceChangeActionEvent>(OnBorgVoiceChangeAction);
 
@@ -44,6 +51,9 @@ public sealed class SiliconVoiceSystem : EntitySystem
 
     private void OnBorgVoiceChangeAction(EntityUid uid, BorgVoiceComponent component, SiliconVoiceChangeActionEvent args)
     {
+        if (!component.VoiceChangeEnabled)
+            return;
+
         // Open the voice selection UI
         if (!_uiSystem.HasUi(uid, BorgVoiceUiKey.Key))
             return;
@@ -59,6 +69,9 @@ public sealed class SiliconVoiceSystem : EntitySystem
 
     private void OnBorgVoiceChangeMessage(EntityUid uid, BorgVoiceComponent component, BorgVoiceChangeMessage args)
     {
+        if (!component.VoiceChangeEnabled)
+            return;
+
         // Get the player session for the actor
         if (!_playerManager.TryGetSessionByEntity(args.Actor, out var session))
             return;
@@ -96,17 +109,28 @@ public sealed class SiliconVoiceSystem : EntitySystem
 
     private void OnBorgVoiceStartup(EntityUid uid, BorgVoiceComponent component, ref MapInitEvent args)
     {
-        if (component.SelectedVoiceId != null)
-            return;
+        var dirty = false;
 
-        var availableVoices = _prototypeManager
-            .EnumeratePrototypes<TTSVoicePrototype>().Where(v => v.RoundStart && !v.SponsorOnly && CanUseVoice(uid, component, v.ID, null!)).ToList();
-
-        if (availableVoices.Any())
+        if (component.SelectedVoiceId == null)
         {
-            component.SelectedVoiceId = availableVoices.First().ID;
-            Dirty(uid, component);
+            var availableVoices = _prototypeManager
+                .EnumeratePrototypes<TTSVoicePrototype>().Where(v => v.RoundStart && !v.SponsorOnly && CanUseVoice(uid, component, v.ID, null!)).ToList();
+
+            if (availableVoices.Any())
+            {
+                component.SelectedVoiceId = availableVoices.First().ID;
+                dirty = true;
+            }
         }
+
+        if (!component.VoiceChangeEnabled)
+        {
+            RevokeVoiceChangeAction((uid, component));
+            dirty = true;
+        }
+
+        if (dirty)
+            Dirty(uid, component);
     }
 
     private void OnTransformSpeakerVoice(EntityUid uid, BorgVoiceComponent component, TransformSpeakerVoiceEvent args)
@@ -116,7 +140,26 @@ public sealed class SiliconVoiceSystem : EntitySystem
         {
             args.VoiceId = component.SelectedVoiceId.Value;
         }
+
         args.Effect = component.VoiceEffect;
+    }
+
+    public void SetVoiceChangeEnabled(EntityUid uid, bool enabled)
+    {
+        if (!TryComp<BorgVoiceComponent>(uid, out var component))
+            return;
+
+        if (TerminatingOrDeleted(uid))
+            return;
+
+        component.VoiceChangeEnabled = enabled;
+
+        if (enabled)
+            GrantVoiceChangeAction((uid, component));
+        else
+            RevokeVoiceChangeAction((uid, component));
+
+        Dirty(uid, component);
     }
 
     private BorgVoiceChangeState CreateVoiceChangeState(EntityUid uid, BorgVoiceComponent component, ICommonSession player)
@@ -150,5 +193,26 @@ public sealed class SiliconVoiceSystem : EntitySystem
             return !component.VoiceBlacklist.Contains(voiceId);
 
         return true;
+    }
+
+    private void RevokeVoiceChangeAction(Entity<BorgVoiceComponent> borg)
+    {
+        if (!TryComp<ActionsComponent>(borg, out var actions))
+            return;
+
+        foreach (var action in _actions.GetActions(borg, actions).ToArray())
+        {
+            if (Prototype(action)?.ID != BorgVoiceChangeActionId)
+                continue;
+
+            _actions.RemoveAction((borg.Owner, actions), action.AsNullable());
+            borg.Comp.VoiceChangeActionEntity = null;
+            return;
+        }
+    }
+
+    private void GrantVoiceChangeAction(Entity<BorgVoiceComponent> borg)
+    {
+        _actions.AddAction(borg, ref borg.Comp.VoiceChangeActionEntity, BorgVoiceChangeAction);
     }
 }

@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Silicons.StationAi; // Sunrise-Edit - иконка тела ИИ в HUD профессий
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Overlays;
@@ -16,6 +17,7 @@ public sealed class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIconsComponen
     [Dependency] private readonly StandingStateSystem _standing = default!;
 
     private static readonly ProtoId<JobIconPrototype> JobIconForNoId = "JobIconNoId";
+    private static readonly ProtoId<JobIconPrototype> StationAiBodyJobIcon = "JobIconStationAi"; // Sunrise-Edit - иконка тела ИИ
 
     public override void Initialize()
     {
@@ -55,6 +57,15 @@ public sealed class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIconsComponen
                 }
             }
         }
+        // Sunrise added start - иконка для тела ИИ, по другому никак
+        else if (TryComp<StationAiBodyComponent>(uid, out var stationAiBody))
+        {
+            if (stationAiBody.LinkedAi == null)
+                return;
+
+            iconId = StationAiBodyJobIcon;
+        }
+        // Sunrise added end
 
         if (_prototype.Resolve(iconId, out var iconPrototype))
             ev.StatusIcons.Add(iconPrototype);
