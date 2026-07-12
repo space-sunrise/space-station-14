@@ -39,20 +39,19 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    # Sunrise edit start - собираем только тестовый граф и обнаруживаем тесты по полным именам
     - name: Install dependencies
-      # Sunrise-Edit - восстанавливаем только зависимости тестового графа
       run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
 
     - name: Build Project
-      # Sunrise-Edit - Content.IntegrationTests транзитивно собирает Content.Tests и игровой код
       run: dotnet build Content.IntegrationTests/Content.IntegrationTests.csproj --configuration DebugOpt --no-restore /m
 
     - name: Discover Integration Tests
       shell: bash
       run: |
-        # Sunrise-Edit - полные имена разделяют одноимённые методы разных тестовых классов
         dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.DisplayName=FullName 2>&1 | \
           python3 Tools/test_shard_filter.py generate 8 .integration-filters
+    # Sunrise edit end
 
     # Sunrise added start - передаём тестовым раннерам только нужные результаты сборки
     - name: Prune build artifact
@@ -74,8 +73,8 @@ jobs:
         mkdir -p bin/Content.Client bin/Content.Server
     # Sunrise added end
 
+    # Sunrise edit start - разделяем минимальные артефакты интеграционных и модульных тестов
     - name: Archive build output
-      # Sunrise-Edit - не передаём каждому интеграционному шарду сборку Content.Tests
       run: |
         tar -I 'zstd -T0 -3' -cf /tmp/integration-build.tar.zst \
           Resources RobustToolbox/Resources .integration-filters \
@@ -97,6 +96,7 @@ jobs:
         path: /tmp/content-tests-build.tar.zst
         retention-days: 1
         compression-level: 0
+    # Sunrise edit end
 
   content-tests:
     needs: build
@@ -109,19 +109,19 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    # Sunrise edit start - запускаем Content.Tests из отдельного готового артефакта без restore
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
         name: content-tests-build-output
 
     - name: Extract build
-      # Sunrise-Edit - распаковываем zstd-архив сборки
       run: tar --zstd -xf content-tests-build.tar.zst && rm content-tests-build.tar.zst
 
     - name: Run Content.Tests
       timeout-minutes: 15
-      # Sunrise-Edit - запускаем готовую сборку без повторного restore на каждом раннере
       run: dotnet test bin/Content.Tests/Content.Tests.dll --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
+    # Sunrise edit end
 
     - name: Test results
       continue-on-error: true
@@ -145,13 +145,13 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    # Sunrise edit start - запускаем интеграционный шард из готового артефакта и runsettings
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
         name: integration-build-output
 
     - name: Extract build
-      # Sunrise-Edit - распаковываем zstd-архив сборки
       run: tar --zstd -xf integration-build.tar.zst && rm integration-build.tar.zst
 
     - name: Run Content.IntegrationTests
@@ -161,9 +161,9 @@ jobs:
         DOTNET_gcServer: "1"
       run: |
         SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
-        # Sunrise-Edit - запускаем готовую сборку без повторного restore на каждом раннере
         timeout --signal=TERM --kill-after=2m 15m \
           dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
+    # Sunrise edit end
 
     - name: Test results
       continue-on-error: true
@@ -213,9 +213,11 @@ jobs:
         done
         if [ "$found" = true ]; then
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+          # Sunrise added start - добавляем прямую ссылку на сохранённую последовательность зависания
           if [ -n "${{ steps.upload-sequences.outputs.artifact-url }}" ]; then
             echo ":page_facing_up: [Download hang sequence](${{ steps.upload-sequences.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
           fi
+          # Sunrise added end
           if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
             echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
           fi
@@ -227,11 +229,10 @@ jobs:
       - build
       - content-tests
       - integration-tests
-    # Sunrise-Edit - итоговый статус должен выполниться и явно отразить падение зависимости
+    # Sunrise edit start - итоговый статус явно отражает падение, отмену или пропуск обязательной зависимости
     if: ${{ always() && github.actor != 'Sunrise-Bot' }}
     runs-on: ubuntu-latest
     steps:
-      # Sunrise edit start - не принимаем skipped/cancelled за успешный обязательный статус
       - name: Verify required jobs
         env:
           BUILD_RESULT: ${{ needs.build.result }}
@@ -243,7 +244,7 @@ jobs:
             echo "::error title=Required CI failed::At least one required job did not succeed."
             exit 1
           fi
-      # Sunrise edit end
+    # Sunrise edit end
 
   cleanup:
     name: Cleanup Artifacts
@@ -253,6 +254,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      # Sunrise edit start - удаляем оба раздельных тестовых артефакта
       - name: Delete integration build artifact
         uses: geekyeggo/delete-artifact@v5
         with:
@@ -262,3 +264,4 @@ jobs:
         uses: geekyeggo/delete-artifact@v5
         with:
           name: content-tests-build-output
+      # Sunrise edit end

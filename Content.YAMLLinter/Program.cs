@@ -18,7 +18,7 @@ namespace Content.YAMLLinter
     {
         private static async Task<int> Main(string[] _)
         {
-            // Sunrise added start - линтеру нужны метаданные RSI, но не декодированные изображения
+            // Sunrise edit start - линтеру нужны метаданные RSI, но не декодированные изображения
             RsiLoadingPatch.Apply();
             PoolManager.Startup();
             try
@@ -59,9 +59,10 @@ namespace Content.YAMLLinter
                 PoolManager.Shutdown();
                 RsiLoadingPatch.Unpatch();
             }
-            // Sunrise added end
+            // Sunrise edit end
         }
 
+        // Sunrise edit start - используем одну пару и проверяем обе стороны одновременно
         private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)> ValidateInstance(
             RobustIntegrationTest.IntegrationInstance instance)
         {
@@ -100,7 +101,6 @@ namespace Content.YAMLLinter
         public static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
             RunValidation()
         {
-            // Sunrise edit start - используем одну пару и проверяем обе стороны одновременно
             await using var pair = await PoolManager.GetServerClient();
             var clientAssemblies = GetAssemblies(pair.Client);
             var serverAssemblies = GetAssemblies(pair.Server);
@@ -116,7 +116,6 @@ namespace Content.YAMLLinter
             var serverErrors = await serverValidation;
             var clientErrors = await clientValidation;
             await pair.CleanReturnAsync();
-            // Sunrise edit end
 
             foreach (var (key, val) in serverErrors.YamlErrors)
             {
@@ -178,5 +177,6 @@ namespace Content.YAMLLinter
             var refl = instance.ResolveDependency<IReflectionManager>();
             return refl.Assemblies.ToArray();
         }
+        // Sunrise edit end
     }
 }

@@ -33,6 +33,7 @@ concurrency:
 # Sunrise added end
 
 jobs:
+  # Sunrise edit start - распределяем независимые цели упаковки по матрице и сохраняем единый обязательный статус
   package:
     name: Package ${{ matrix.name }}
     if: github.actor != 'Sunrise-Bot'
@@ -84,7 +85,6 @@ jobs:
         run: dotnet build Content.Packaging --configuration Release --no-restore /m
 
       - name: Package ${{ matrix.name }}
-        # Sunrise-Edit - запускаем уже собранный инструмент для одной цели матрицы
         run: dotnet run --project Content.Packaging --configuration Release --no-build -- ${{ matrix.arguments }}
 
   build:
@@ -93,7 +93,6 @@ jobs:
     if: ${{ always() && github.actor != 'Sunrise-Bot' }}
     runs-on: ubuntu-latest
     steps:
-      # Sunrise added start - сохраняем единый обязательный статус для матрицы
       - name: Verify packaging jobs
         env:
           PACKAGE_RESULT: ${{ needs.package.result }}
@@ -103,4 +102,4 @@ jobs:
             echo "::error title=Packaging failed::At least one packaging job did not succeed."
             exit 1
           fi
-      # Sunrise added end
+  # Sunrise edit end

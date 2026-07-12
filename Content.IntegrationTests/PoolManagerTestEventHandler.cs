@@ -33,16 +33,16 @@ public sealed class PoolManagerTestEventHandler
     [OneTimeTearDown]
     public void TearDown()
     {
+        // Sunrise edit start - гарантированно снимаем глобальные перехваты после набора тестов
         try
         {
             PoolManager.Shutdown();
         }
         finally
         {
-            // Sunrise added start - не оставляем глобальный перехват после набора тестов
             _Sunrise.Patches.EventTimingSummaryPatch.Unpatch();
             _Sunrise.Patches.RsiLoadingPatch.Unpatch();
-            // Sunrise added end
         }
+        // Sunrise edit end
     }
 }
