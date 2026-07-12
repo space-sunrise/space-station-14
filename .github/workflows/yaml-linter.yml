@@ -34,8 +34,11 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - name: Install dependencies
-        run: dotnet restore
+        # Sunrise-Edit - восстанавливаем только зависимости YAML Linter
+        run: dotnet restore Content.YAMLLinter/Content.YAMLLinter.csproj
       - name: Build
-        run: dotnet build --configuration Release --no-restore /p:WarningsAsErrors= /m
+        # Sunrise-Edit - не собираем всё решение ради одного инструмента
+        run: dotnet build Content.YAMLLinter/Content.YAMLLinter.csproj --configuration Release --no-restore /p:WarningsAsErrors= /m
       - name: Run Linter
-        run: dotnet run --project Content.YAMLLinter/Content.YAMLLinter.csproj --no-build
+        # Sunrise-Edit - запускаем готовую Release-сборку без оценки проекта MSBuild
+        run: dotnet bin/Content.YAMLLinter/Content.YAMLLinter.dll
