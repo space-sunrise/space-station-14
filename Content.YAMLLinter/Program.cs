@@ -62,27 +62,7 @@ namespace Content.YAMLLinter
             // Sunrise added end
         }
 
-        private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
-            ValidateClient()
-        {
-            await using var pair = await PoolManager.GetServerClient();
-            var client = pair.Client;
-            var result = await ValidateInstance(client);
-            await pair.CleanReturnAsync();
-            return result;
-        }
-
-        private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
-            ValidateServer()
-        {
-            await using var pair = await PoolManager.GetServerClient();
-            var server = pair.Server;
-            var result = await ValidateInstance(server);
-            await pair.CleanReturnAsync();
-            return result;
-        }
-
-        private static async Task<(Dictionary<string, HashSet<ErrorNode>>, List<string>)> ValidateInstance(
+        private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)> ValidateInstance(
             RobustIntegrationTest.IntegrationInstance instance)
         {
             var protoMan = instance.ResolveDependency<IPrototypeManager>();
@@ -120,14 +100,23 @@ namespace Content.YAMLLinter
         public static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>
             RunValidation()
         {
-            var (clientAssemblies, serverAssemblies) = await GetClientServerAssemblies();
+            // Sunrise edit start - используем одну пару и проверяем обе стороны одновременно
+            await using var pair = await PoolManager.GetServerClient();
+            var clientAssemblies = GetAssemblies(pair.Client);
+            var serverAssemblies = GetAssemblies(pair.Server);
             var serverTypes = serverAssemblies.SelectMany(n => n.GetTypes()).Select(t => t.Name).ToHashSet();
             var clientTypes = clientAssemblies.SelectMany(n => n.GetTypes()).Select(t => t.Name).ToHashSet();
 
             var yamlErrors = new Dictionary<string, HashSet<ErrorNode>>();
 
-            var serverErrors = await ValidateServer();
-            var clientErrors = await ValidateClient();
+            var serverValidation = ValidateInstance(pair.Server);
+            var clientValidation = ValidateInstance(pair.Client);
+            await Task.WhenAll(serverValidation, clientValidation);
+
+            var serverErrors = await serverValidation;
+            var clientErrors = await clientValidation;
+            await pair.CleanReturnAsync();
+            // Sunrise edit end
 
             foreach (var (key, val) in serverErrors.YamlErrors)
             {
@@ -184,22 +173,10 @@ namespace Content.YAMLLinter
             return (yamlErrors, fieldErrors);
         }
 
-        private static async Task<(Assembly[] clientAssemblies, Assembly[] serverAssemblies)>
-            GetClientServerAssemblies()
+        private static Assembly[] GetAssemblies(RobustIntegrationTest.IntegrationInstance instance)
         {
-            await using var pair = await PoolManager.GetServerClient();
-
-            var result = (GetAssemblies(pair.Client), GetAssemblies(pair.Server));
-
-            await pair.CleanReturnAsync();
-
-            return result;
-
-            Assembly[] GetAssemblies(RobustIntegrationTest.IntegrationInstance instance)
-            {
-                var refl = instance.ResolveDependency<IReflectionManager>();
-                return refl.Assemblies.ToArray();
-            }
+            var refl = instance.ResolveDependency<IReflectionManager>();
+            return refl.Assemblies.ToArray();
         }
     }
 }
