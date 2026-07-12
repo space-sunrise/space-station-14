@@ -47,6 +47,25 @@ public sealed partial class BulletHoleGeneratorComponent : Component
 [Serializable, NetSerializable]
 public readonly record struct BulletHoleVisualData(string State, Vector2 Offset, Angle Rotation);
 
+/// <summary>
+/// Сетевые данные всех следов от пуль на одной цели.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class BulletHoleVisualsData : ICloneable
+{
+    public readonly List<BulletHoleVisualData> Holes;
+
+    public BulletHoleVisualsData(List<BulletHoleVisualData> holes)
+    {
+        Holes = new List<BulletHoleVisualData>(holes);
+    }
+
+    public object Clone()
+    {
+        return new BulletHoleVisualsData(Holes);
+    }
+}
+
 [Serializable, NetSerializable]
 public enum BulletHoleVisuals : byte
 {

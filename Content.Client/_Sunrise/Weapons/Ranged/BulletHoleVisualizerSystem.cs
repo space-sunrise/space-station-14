@@ -17,10 +17,11 @@ public sealed class BulletHoleVisualizerSystem : VisualizerSystem<BulletHoleComp
         if (args.Sprite is not { } sprite)
             return;
 
-        if (!AppearanceSystem.TryGetData<BulletHoleVisualData[]>(uid, BulletHoleVisuals.Holes, out var holes, args.Component))
+        if (!AppearanceSystem.TryGetData<BulletHoleVisualsData>(uid, BulletHoleVisuals.Holes, out var data, args.Component))
             return;
 
-        for (var i = 0; i < holes.Length; i++)
+        var holes = data.Holes;
+        for (var i = 0; i < holes.Count; i++)
         {
             var layer = _sprite.LayerMapReserve((uid, sprite), BulletHoleLayerPrefix + i);
             var hole = holes[i];
@@ -31,7 +32,7 @@ public sealed class BulletHoleVisualizerSystem : VisualizerSystem<BulletHoleComp
             _sprite.LayerSetRotation((uid, sprite), layer, hole.Rotation);
         }
 
-        for (var i = holes.Length; i < MaxBulletHoles; i++)
+        for (var i = holes.Count; i < MaxBulletHoles; i++)
         {
             if (_sprite.LayerMapTryGet((uid, sprite), BulletHoleLayerPrefix + i, out var layer, false))
                 _sprite.LayerSetVisible((uid, sprite), layer, false);

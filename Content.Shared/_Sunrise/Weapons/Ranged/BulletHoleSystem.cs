@@ -70,7 +70,7 @@ public sealed class BulletHoleSystem : EntitySystem
         var hitCoordinates = _transform.ToCoordinates((target, transform), new MapCoordinates(hitPosition, transform.MapID));
         var rotation = direction.ToWorldAngle() - _transform.GetWorldRotation(transform);
         bulletHole.Holes.Add(new BulletHoleVisualData(BulletHoleState, hitCoordinates.Position, rotation));
-        _appearance.SetData(target, BulletHoleVisuals.Holes, bulletHole.Holes.ToArray(), appearance);
+        _appearance.SetData(target, BulletHoleVisuals.Holes, new BulletHoleVisualsData(bulletHole.Holes), appearance);
     }
 
     private static bool CanCreateBulletHole(BulletHoleGeneratorComponent generator, DamageSpecifier damage)
