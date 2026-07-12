@@ -4,8 +4,8 @@ meta:
   engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 05/26/2026 18:32:23
-  entityCount: 475
+  time: 07/12/2026 01:37:00
+  entityCount: 461
 maps: []
 grids:
 - 44868
@@ -497,7 +497,8 @@ entities:
           -1,0:
             0: 36863
           0,-1:
-            0: 65535
+            0: 64511
+            2: 1024
           -1,-1:
             0: 65535
           1,0:
@@ -549,6 +550,11 @@ entities:
           moles:
             Oxygen: 21.6852
             Nitrogen: 81.57766
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Oxygen: 21.813705
+            Nitrogen: 82.06108
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -556,6 +562,8 @@ entities:
     - type: SecurityShuttle
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
 - proto: AirAlarm
   entities:
   - uid: 44869
@@ -1377,44 +1385,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-5.5
       parent: 44868
-- proto: CrateFoodMRE
+- proto: CrateGenericSteel
   entities:
-  - uid: 321
+  - uid: 67
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 44868
-- proto: CrateGenericSteel
-  entities:
-  - uid: 51012
+  - uid: 75
     components:
     - type: Transform
       pos: 2.5,-1.5
       parent: 44868
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14697
-        moles:
-          Oxygen: 1.8856695
-          Nitrogen: 7.0937095
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 44983
-          - 75
-          - 44986
-          - 67
-          - 44982
-          - 76
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: EmergencyLight
   entities:
   - uid: 142
@@ -2275,38 +2257,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-7.5
       parent: 44868
-- proto: InflatableDoorStack
-  entities:
-  - uid: 75
-    components:
-    - type: Transform
-      parent: 51012
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 44982
-    components:
-    - type: Transform
-      parent: 51012
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: InflatableWallStack
-  entities:
-  - uid: 76
-    components:
-    - type: Transform
-      parent: 51012
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 44983
-    components:
-    - type: Transform
-      parent: 51012
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: LockableButtonSecurity
   entities:
   - uid: 265
@@ -2332,27 +2282,13 @@ entities:
           - DoorBolt
     - type: Fixtures
       fixtures: {}
-- proto: LockerSecurityFilled
+- proto: LockerSecurity
   entities:
-  - uid: 303
+  - uid: 15
     components:
     - type: Transform
-      anchored: True
       pos: 2.5,0.5
       parent: 44868
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-    - type: Physics
-      bodyType: Static
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14697
-        moles:
-          Oxygen: 1.8856695
-          Nitrogen: 7.0937095
 - proto: Mattress
   entities:
   - uid: 260
@@ -2481,20 +2417,6 @@ entities:
       pos: -3.5085936,-1.5318359
       parent: 44868
     - type: CMExplosionEffect
-  - uid: 162
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.2481766,-1.5109885
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 163
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.2687488,-1.5214143
-      parent: 44868
-    - type: CMExplosionEffect
   - uid: 164
     components:
     - type: Transform
@@ -2529,42 +2451,6 @@ entities:
       enabled: False
 - proto: PowerCellMedium
   entities:
-  - uid: 15
-    components:
-    - type: Transform
-      pos: 4.7900367,-5.223636
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 91
-    components:
-    - type: Transform
-      pos: 4.4931617,-5.239261
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 92
-    components:
-    - type: Transform
-      pos: -1.4912138,-5.286136
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 94
-    components:
-    - type: Transform
-      pos: -1.2099638,-5.254886
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 150
-    components:
-    - type: Transform
-      pos: 4.2744117,-5.208011
-      parent: 44868
-    - type: CMExplosionEffect
-  - uid: 185
-    components:
-    - type: Transform
-      pos: -1.7568388,-5.254886
-      parent: 44868
-    - type: CMExplosionEffect
   - uid: 331
     components:
     - type: Transform
@@ -2773,22 +2659,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-5.5
       parent: 44868
-- proto: SheetSteel
-  entities:
-  - uid: 67
-    components:
-    - type: Transform
-      parent: 51012
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 44986
-    components:
-    - type: Transform
-      parent: 51012
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ShuttersWindowOpen
   entities:
   - uid: 16
