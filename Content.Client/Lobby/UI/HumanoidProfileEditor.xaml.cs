@@ -1017,6 +1017,10 @@ namespace Content.Client.Lobby.UI
                 departments.Add(department);
             }
 
+            // Sunrise added start - скрытие пустых отделов Player Joinable Maps
+            FilterPlayerJoinableMapDepartmentsPortal(departments);
+            // Sunrise added end
+
             // Sunrise-Start
             var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
             // Sunrise-End

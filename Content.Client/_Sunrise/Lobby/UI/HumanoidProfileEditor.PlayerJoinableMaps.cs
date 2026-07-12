@@ -34,6 +34,7 @@ public sealed partial class HumanoidProfileEditor
 
     partial void InitializePlayerJoinableMapsPortal();
     partial void ShutdownPlayerJoinableMapsPortal();
+    partial void FilterPlayerJoinableMapDepartmentsPortal(List<DepartmentPrototype> departments);
     partial void FilterPlayerJoinableMapJobsPortal(DepartmentPrototype department, ref JobPrototype[] jobs);
     partial void AddPlayerJoinableMapSectionsPortal(
         (string LocKey, int Priority)[] priorityItems,
@@ -54,6 +55,26 @@ public sealed partial class HumanoidProfileEditor
         UnsubscribePlayerJoinableMapCVars();
         _playerManager.PlayerStatusChanged -= OnPlayerJoinableMapPlayerStatusChanged;
         _prototypeManager.PrototypesReloaded -= OnPlayerJoinableMapPrototypesReloaded;
+    }
+
+    partial void FilterPlayerJoinableMapDepartmentsPortal(List<DepartmentPrototype> departments)
+    {
+        departments.RemoveAll(department =>
+        {
+            var hasPlayerJoinableMapJob = false;
+            foreach (var jobId in department.Roles)
+            {
+                if (!_prototypeManager.TryIndex(jobId, out var job) || !job.SetPreference)
+                    continue;
+
+                if (!_playerJoinableMapIndex.Jobs.Contains(job.ID))
+                    return false;
+
+                hasPlayerJoinableMapJob = true;
+            }
+
+            return hasPlayerJoinableMapJob;
+        });
     }
 
     partial void FilterPlayerJoinableMapJobsPortal(DepartmentPrototype department, ref JobPrototype[] jobs)
