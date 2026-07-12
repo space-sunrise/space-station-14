@@ -1,4 +1,7 @@
+using System.Numerics;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Whitelist;
+using Robust.Shared.Maths;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -6,40 +9,52 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.Weapons.Ranged;
 
 /// <summary>
-/// Stores the server-side state of bullet holes on a surface.
+/// Хранит серверное состояние следов от пуль на поверхности.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(BulletHoleSystem))]
 public sealed partial class BulletHoleComponent : Component
 {
     /// <summary>
-    /// Number of confirmed hits.
+    /// Количество подтверждённых попаданий.
     /// </summary>
     public int Count;
 
     /// <summary>
-    /// Selected bullet-hole layout.
+    /// Выбранный вариант расположения следов от пуль.
     /// </summary>
     public int State;
 }
 
 /// <summary>
-/// Marks a projectile that can leave bullet holes after damaging a wall.
+/// Позволяет снаряду оставлять следы от пуль на подходящих целях.
 /// </summary>
 [RegisterComponent]
 public sealed partial class BulletHoleGeneratorComponent : Component
 {
     /// <summary>
-    /// Damage type that must be dealt for a bullet hole to be created.
+    /// Тип урона, который должен быть нанесён для создания следа от пули.
     /// </summary>
     [DataField]
     public ProtoId<DamageTypePrototype> RequiredDamageType = "Piercing";
+
+    /// <summary>
+    /// Цели, на которых этот снаряд может оставлять следы от пуль.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? TargetWhitelist;
 }
+
+/// <summary>
+/// Данные для отображения следа от пули в локальном пространстве цели.
+/// </summary>
+[Serializable, NetSerializable]
+public readonly record struct BulletHoleVisualData(string State, Vector2 Offset, Angle Rotation);
 
 [Serializable, NetSerializable]
 public enum BulletHoleVisuals : byte
 {
-    State,
+    Data,
 }
 
 [Serializable, NetSerializable]

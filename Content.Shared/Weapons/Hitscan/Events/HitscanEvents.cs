@@ -126,4 +126,16 @@ public record struct HitscanDamageDealtEvent
     /// The amount of damage that the target was dealt.
     /// </summary>
     public DamageSpecifier DamageDealt;
+
+    // Sunrise added start - передаёт место и направление подтверждённого попадания для визуальных эффектов
+    /// <summary>
+    /// Мировая точка попадания, если она известна.
+    /// </summary>
+    public Vector2? HitPosition;
+
+    /// <summary>
+    /// Направление полёта хитскана в мировых координатах.
+    /// </summary>
+    public Vector2 Direction;
+    // Sunrise added end
 }

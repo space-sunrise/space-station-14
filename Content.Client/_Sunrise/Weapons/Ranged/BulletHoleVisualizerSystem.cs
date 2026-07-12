@@ -15,17 +15,19 @@ public sealed class BulletHoleVisualizerSystem : VisualizerSystem<BulletHoleComp
         if (args.Sprite is not { } sprite)
             return;
 
-        if (!AppearanceSystem.TryGetData<string>(uid, BulletHoleVisuals.State, out var state, args.Component))
+        if (!AppearanceSystem.TryGetData<BulletHoleVisualData>(uid, BulletHoleVisuals.Data, out var data, args.Component))
             return;
 
         var layer = _sprite.LayerMapReserve((uid, sprite), BulletHoleVisualLayers.BulletHole);
-        var visible = !string.IsNullOrWhiteSpace(state);
+        var visible = !string.IsNullOrWhiteSpace(data.State);
         _sprite.LayerSetVisible((uid, sprite), layer, visible);
 
         if (!visible)
             return;
 
         _sprite.LayerSetRsi((uid, sprite), layer, RsiPath);
-        _sprite.LayerSetRsiState((uid, sprite), layer, state);
+        _sprite.LayerSetRsiState((uid, sprite), layer, data.State);
+        _sprite.LayerSetOffset((uid, sprite), layer, data.Offset);
+        _sprite.LayerSetRotation((uid, sprite), layer, data.Rotation);
     }
 }

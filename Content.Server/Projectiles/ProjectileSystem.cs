@@ -116,7 +116,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         // Sunrise added start - сообщаем эффектам только о подтверждённом уроне снаряда
         if (!damageChange.Empty)
         {
-            var damageDealtEvent = new ProjectileDamageDealtEvent(target, damageChange);
+            var contactPoint = args.PointCount > 0 ? args.WorldPoints[0] : _transformSystem.GetWorldPosition(uid);
+            var direction = (Transform(uid).WorldRotation - component.Angle).ToWorldVec();
+            var damageDealtEvent = new ProjectileDamageDealtEvent(target, damageChange, contactPoint, direction);
             RaiseLocalEvent(uid, ref damageDealtEvent);
         }
         // Sunrise added end
