@@ -6,6 +6,7 @@ using Content.Server.Maps;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared._Sunrise.Shuttles;
 using Content.Shared.GameTicking;
 using Content.Shared.Light.Components;
@@ -21,6 +22,14 @@ using Robust.Shared.Random;
 namespace Content.Server._Sunrise.PlanetPrison;
 
 // TODO: Рефактор с целью устранения варнингов и перехода системы на более современное API
+/// <summary>
+/// Creates a configured planet prison as a separate initialized map and manages its lifetime.
+/// </summary>
+/// <remarks>
+/// The map is loaded lazily before lobby jobs are prepared. The loaded game map must contain exactly one
+/// grid and a station entity configured with <see cref='PlayerJoinableMapComponent'/> so its jobs can be
+/// exposed by <see cref='PlayerJoinableMapSystem'/>.
+/// </remarks>
 public sealed class PlanetPrisonStationSystem : EntitySystem
 {
     [Dependency] private readonly IChatManager _chat = default!;
@@ -61,6 +70,9 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         TryActivatePlanetPrisonForLobbyJobs();
     }
 
+    /// <summary>
+    /// Attempts to create every configured prison that may contribute jobs to the pre-round lobby.
+    /// </summary>
     private void TryActivatePlanetPrisonForLobbyJobs()
     {
         if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby)
@@ -73,6 +85,12 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Selects and loads the prison map if this owner has not already adopted an active prison.
+    /// </summary>
+    /// <param name='ent'>Main-station component that owns the external prison map.</param>
+    /// <param name='announceActivation'>Whether player-count activation and selection may be announced.</param>
+    /// <returns><see langword='true'/> when a prison already exists or was loaded successfully.</returns>
     private bool TryActivatePlanetPrison(Entity<PlanetPrisonStationComponent> ent, bool announceActivation)
     {
         if (ent.Comp.MapId != MapId.Nullspace || ent.Comp.PrisonGrid != EntityUid.Invalid)
@@ -97,6 +115,13 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Chooses an eligible prison game map after evaluating every candidate's player-access rules.
+    /// </summary>
+    /// <param name='component'>Owner configuration containing the candidate maps.</param>
+    /// <param name='announceActivation'>Whether a failed manual activation may announce its player requirement.</param>
+    /// <param name='gameMap'>Random eligible game map when the method succeeds.</param>
+    /// <returns><see langword='true'/> when at least one candidate can currently be spawned.</returns>
     private bool TryPickPlanetPrisonMap(
         PlanetPrisonStationComponent component,
         bool announceActivation,
@@ -145,6 +170,16 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Loads one prison game map, turns its map entity into a planet, and configures FTL access.
+    /// </summary>
+    /// <remarks>
+    /// Multiple owner components share the first prison map. A newly loaded prison is rejected when the
+    /// game map contains zero or multiple grids because downstream prison logic requires one canonical grid.
+    /// </remarks>
+    /// <param name='component'>Owner state that receives the runtime map and grid identifiers.</param>
+    /// <param name='gameMap'>Eligible game map selected for loading.</param>
+    /// <returns><see langword='true'/> when an existing prison was adopted or a new prison was fully configured.</returns>
     private bool AddPlanetPrison(PlanetPrisonStationComponent component, GameMapPrototype gameMap)
     {
         var query = AllEntityQuery<PlanetPrisonStationComponent>();

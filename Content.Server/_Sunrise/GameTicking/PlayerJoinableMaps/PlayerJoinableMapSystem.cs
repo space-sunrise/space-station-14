@@ -14,6 +14,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 
+/// <summary>
+/// Coordinates access, job ownership, and spawn-point selection for stations on separately loaded maps.
+/// </summary>
+/// <remarks>
+/// Map lifetime remains the responsibility of feature-specific owner systems such as Central Command or
+/// planet prison loaders. This system evaluates <see cref='PlayerJoinableMapPrototype'/> and connects the
+/// resulting station entities to round-start, late-join, fallback-spawn, and antagonist selection flows.
+/// </remarks>
 public sealed class PlayerJoinableMapSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
