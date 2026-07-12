@@ -1,13 +1,11 @@
-using System;
 using System.Linq;
 using Content.Server._Sunrise.Presets;
-using Content.Server._Sunrise.Storyteller;
+using Content.Server._Sunrise.Storyteller.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
-using Content.Shared.Voting;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
@@ -15,40 +13,9 @@ namespace Content.Server.Voting.Managers;
 
 public sealed partial class VoteManager
 {
+    [Dependency] private readonly ILocalizationManager _loc = default!;
+
     private const string StorytellerVoteOptionId = "__storyteller__";
-
-    private Dictionary<string, string> GetSunriseStorytellerPresetsForVote()
-    {
-        var playerCount = _playerManager.PlayerCount;
-        var excludedPresets = _entityManager.System<GameTicker>().ExcludedPresets.ToHashSet();
-
-        var result = new Dictionary<string, string>();
-        var storytellerPool = new Dictionary<string, int[]>();
-
-        StorytellerPresetHelper.AdjustPresetPool(storytellerPool, _cfg, playerCount);
-
-        foreach (var (presetId, limits) in storytellerPool)
-        {
-            if (excludedPresets.Contains(presetId))
-                continue;
-
-            if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
-                continue;
-
-            if (!preset.ShowInVote)
-                continue;
-
-            var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
-            var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
-
-            if (playerCount < minPlayers || playerCount > maxPlayers)
-                continue;
-
-            result[preset.ID] = preset.ModeTitle;
-        }
-
-        return result;
-    }
 
     private Dictionary<string, string> GetSunriseRegularPresetsForVote()
     {
@@ -65,7 +32,7 @@ public sealed partial class VoteManager
 
             foreach (var (presetId, limits) in presetPoolProto.Presets)
             {
-                if (StorytellerPresetHelper.IsStorytellerPreset(presetId))
+                if (StorytellerSystem.IsStorytellerPreset(presetId))
                     continue;
 
                 if (excludedPresets != null && excludedPresets.Contains(presetId))
@@ -104,7 +71,7 @@ public sealed partial class VoteManager
     private Dictionary<string, string> GetSunriseTopLevelPresetsForVote()
     {
         var regularPresets = GetSunriseRegularPresetsForVote();
-        var storytellerPresets = GetSunriseStorytellerPresetsForVote();
+        var storytellerPresets = _entityManager.System<StorytellerSystem>().GetAvailableVotePresets();
         var result = new Dictionary<string, string>(regularPresets);
 
         if (storytellerPresets.Count > 0)
@@ -129,7 +96,7 @@ public sealed partial class VoteManager
         if (singleTopLevelPreset != StorytellerVoteOptionId)
             return singleTopLevelPreset != ticker.Preset?.ID;
 
-        var storytellerPresets = GetSunriseStorytellerPresetsForVote();
+        var storytellerPresets = _entityManager.System<StorytellerSystem>().GetAvailableVotePresets();
 
         if (storytellerPresets.Count == 0)
             return false;
@@ -158,16 +125,16 @@ public sealed partial class VoteManager
             }
 
             _chatManager.DispatchServerAnnouncement(
-                Loc.GetString("ui-vote-gamemode-auto-set", ("preset", Loc.GetString(singlePreset.Value))));
+                _loc.GetString("ui-vote-gamemode-auto-set", ("preset", _loc.GetString(singlePreset.Value))));
             _entityManager.System<GameTicker>().SetGamePreset(singlePreset.Key);
             return true;
         }
 
-        var options = CreateSunrisePresetVoteOptions(Loc.GetString("ui-vote-gamemode-title"), initiator);
+        var options = CreateSunrisePresetVoteOptions(_loc.GetString("ui-vote-gamemode-title"), initiator);
 
         foreach (var (presetId, title) in presets)
         {
-            options.Options.Add((Loc.GetString(title), presetId));
+            options.Options.Add((_loc.GetString(title), presetId));
         }
 
         var vote = CreateVote(options);
@@ -178,12 +145,12 @@ public sealed partial class VoteManager
             if (args.Winner == null)
             {
                 picked = (string) _random.Pick(args.Winners);
-                _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-gamemode-tie"));
+                _chatManager.DispatchServerAnnouncement(_loc.GetString("ui-vote-gamemode-tie"));
             }
             else
             {
                 picked = (string) args.Winner;
-                _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-gamemode-win"));
+                _chatManager.DispatchServerAnnouncement(_loc.GetString("ui-vote-gamemode-win"));
             }
 
             var loggedPreset = picked == StorytellerVoteOptionId ? "Storyteller" : picked;
@@ -203,7 +170,7 @@ public sealed partial class VoteManager
 
     private void CreateSunriseStorytellerTypeVote(ICommonSession? initiator)
     {
-        var storytellerPresets = GetSunriseStorytellerPresetsForVote();
+        var storytellerPresets = _entityManager.System<StorytellerSystem>().GetAvailableVotePresets();
 
         if (storytellerPresets.Count == 0)
             return;
@@ -211,20 +178,20 @@ public sealed partial class VoteManager
         if (storytellerPresets.Count == 1)
         {
             var singleSubtypeId = storytellerPresets.Keys.First();
-            var singleSubtypeName = Loc.GetString(GetSunriseStorytellerTypeName(singleSubtypeId));
+            var singleSubtypeName = _loc.GetString(StorytellerSystem.GetNameLocId(singleSubtypeId));
 
             _chatManager.DispatchServerAnnouncement(
-                Loc.GetString("ui-vote-storyteller-auto-set", ("type", singleSubtypeName)));
+                _loc.GetString("ui-vote-storyteller-auto-set", ("type", singleSubtypeName)));
             _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Storyteller type vote skipped, auto-selected: {singleSubtypeId}");
             _entityManager.System<GameTicker>().SetGamePreset(singleSubtypeId);
             return;
         }
 
-        var options = CreateSunrisePresetVoteOptions(Loc.GetString("ui-vote-storyteller-title"), initiator);
+        var options = CreateSunrisePresetVoteOptions(_loc.GetString("ui-vote-storyteller-title"), initiator);
 
         foreach (var presetId in storytellerPresets.Keys)
         {
-            options.Options.Add((Loc.GetString(GetSunriseStorytellerTypeOption(presetId)), presetId));
+            options.Options.Add((_loc.GetString(StorytellerSystem.GetVoteOptionLocId(presetId)), presetId));
         }
 
         var vote = CreateVote(options);
@@ -236,15 +203,15 @@ public sealed partial class VoteManager
             {
                 picked = (string) _random.Pick(args.Winners);
                 _chatManager.DispatchServerAnnouncement(
-                    Loc.GetString("ui-vote-storyteller-type-tie",
-                        ("type", Loc.GetString(GetSunriseStorytellerTypeName(picked)))));
+                    _loc.GetString("ui-vote-storyteller-type-tie",
+                        ("type", _loc.GetString(StorytellerSystem.GetNameLocId(picked)))));
             }
             else
             {
                 picked = (string) args.Winner;
                 _chatManager.DispatchServerAnnouncement(
-                    Loc.GetString("ui-vote-storyteller-type-win",
-                        ("type", Loc.GetString(GetSunriseStorytellerTypeName(picked)))));
+                    _loc.GetString("ui-vote-storyteller-type-win",
+                        ("type", _loc.GetString(StorytellerSystem.GetNameLocId(picked)))));
             }
 
             _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Storyteller type vote finished: {picked}");
@@ -271,25 +238,4 @@ public sealed partial class VoteManager
         return options;
     }
 
-    private string GetSunriseStorytellerTypeOption(string presetId)
-    {
-        return presetId switch
-        {
-            StorytellerPresetHelper.StorytellerCalmId => "ui-vote-storyteller-type-calm",
-            StorytellerPresetHelper.StorytellerClassicId => "ui-vote-storyteller-type-classic",
-            StorytellerPresetHelper.StorytellerInsaneId => "ui-vote-storyteller-type-insane",
-            _ => GetSunriseStorytellerTypeName(presetId),
-        };
-    }
-
-    private string GetSunriseStorytellerTypeName(string presetId)
-    {
-        return presetId switch
-        {
-            StorytellerPresetHelper.StorytellerCalmId => "ui-vote-storyteller-type-calm-name",
-            StorytellerPresetHelper.StorytellerClassicId => "ui-vote-storyteller-type-classic-name",
-            StorytellerPresetHelper.StorytellerInsaneId => "ui-vote-storyteller-type-insane-name",
-            _ => presetId,
-        };
-    }
 }

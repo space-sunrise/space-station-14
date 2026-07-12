@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using Content.Server._Sunrise.Presets;
+using Content.Server._Sunrise.Storyteller.Systems;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
@@ -675,7 +676,7 @@ namespace Content.Server.Voting.Managers
             {
                 // Sunrise-Start
                 var poolPresets = new Dictionary<string, int[]>(presetPoolProto.Presets);
-                _Sunrise.Storyteller.StorytellerPresetHelper.AdjustPresetPool(poolPresets, _cfg, _playerManager.PlayerCount);
+                _entityManager.System<StorytellerSystem>().AdjustPresetPool(poolPresets);
                 // Sunrise-End
 
                 foreach (var (presetId, limits) in poolPresets)
