@@ -129,12 +129,12 @@ public record struct HitscanDamageDealtEvent
 
     // Sunrise added start - передаёт место и направление подтверждённого попадания для визуальных эффектов
     /// <summary>
-    /// Мировая точка попадания, если она известна.
+    /// The world-space hit position, if known.
     /// </summary>
     public Vector2? HitPosition;
 
     /// <summary>
-    /// Направление полёта хитскана в мировых координатах.
+    /// The hitscan's travel direction in world coordinates.
     /// </summary>
     public Vector2 Direction;
     // Sunrise added end

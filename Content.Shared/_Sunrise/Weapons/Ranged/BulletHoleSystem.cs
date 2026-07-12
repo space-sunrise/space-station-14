@@ -18,6 +18,7 @@ public sealed class BulletHoleSystem : EntitySystem
 
     private const int MaxCount = 24;
     private const string BulletHoleState = "bullethole";
+    private const float WallEdgePadding = 0.1f;
 
     public override void Initialize()
     {
@@ -68,13 +69,32 @@ public sealed class BulletHoleSystem : EntitySystem
             return;
 
         var hitCoordinates = _transform.ToCoordinates((target, transform), new MapCoordinates(hitPosition, transform.MapID));
-        var rotation = direction.ToWorldAngle() - _transform.GetWorldRotation(transform);
-        bulletHole.Holes.Add(new BulletHoleVisualData(BulletHoleState, hitCoordinates.Position, rotation));
+        var localShotDirection = (direction.ToWorldAngle() - _transform.GetWorldRotation(transform)).ToWorldVec();
+        var offset = GetShooterFacingOffset(hitCoordinates.Position, localShotDirection);
+        var rotation = localShotDirection.ToWorldAngle();
+        bulletHole.Holes.Add(new BulletHoleVisualData(BulletHoleState, offset, rotation));
         _appearance.SetData(target, BulletHoleVisuals.Holes, new BulletHoleVisualsData(bulletHole.Holes), appearance);
     }
 
     private static bool CanCreateBulletHole(BulletHoleGeneratorComponent generator, DamageSpecifier damage)
     {
         return damage.DamageDict.TryGetValue(generator.RequiredDamageType, out var value) && value > 0;
+    }
+
+    private static Vector2 GetShooterFacingOffset(Vector2 hitPosition, Vector2 localShotDirection)
+    {
+        var wallLimit = 0.5f - WallEdgePadding;
+        var shooterDirection = -localShotDirection;
+
+        if (MathF.Abs(shooterDirection.X) >= MathF.Abs(shooterDirection.Y))
+        {
+            return new Vector2(
+                MathF.CopySign(wallLimit, shooterDirection.X),
+                Math.Clamp(hitPosition.Y, -wallLimit, wallLimit));
+        }
+
+        return new Vector2(
+            Math.Clamp(hitPosition.X, -wallLimit, wallLimit),
+            MathF.CopySign(wallLimit, shooterDirection.Y));
     }
 }
