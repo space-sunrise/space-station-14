@@ -8,6 +8,11 @@ storyteller-preset-insane-title = Рассказчик: Безумный
 storyteller-preset-insane-description = Абсолютный хаос. Рассказчик будет безжалостно бросать на станцию одну угрозу за другой, пуская в ход самые коварные и разрушительные события.
 
 ui-vote-storyteller-entry = Рассказчик
+ui-vote-preset-category-title = Выбор типа игрового режима
+ui-vote-preset-category-regular = Обычные режимы
+ui-vote-preset-category-auto-set = Доступна только одна категория: { $category }. В остальных категориях нет режимов, доступных для запуска. Голосование пропущено.
+ui-vote-preset-category-tie = Ничья! Случайно выбрана категория: { $category }
+ui-vote-preset-category-win = Голосование завершено! Выбрана категория: { $category }
 ui-vote-storyteller-title = Выбор типа Рассказчика
 ui-vote-storyteller-auto-set = Доступен только один тип Рассказчика: { $type }. Голосование пропущено.
 
