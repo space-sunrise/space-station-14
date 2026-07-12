@@ -25,6 +25,10 @@ public interface ISharedSponsorsManager
     public List<string> GetAllowedOocGradients();
 
     public bool ClientIsSponsor();
+    public int ClientGetTier();
+    public string? ClientGetTierTitle();
+    public Color? ClientGetTierColor();
+    public string? ClientGetTierColorHex();
     public List<SponsorInfo> GetSponsorTiers();
 
     // Server

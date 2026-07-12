@@ -1,8 +1,8 @@
 user-profile-no-sponsor = Отсутствует
 user-profile-account-title = Аккаунт Makura Games ID
 user-profile-account-description = Логин и внешние привязки теперь настраиваются на странице аккаунта.
-user-profile-account-manage-button = Управление аккаунтом
-user-profile-account-info-button = О привязках и аккаунте
+user-profile-account-manage-button = Аккаунт
+user-profile-account-info-button = О привязках
 user-profile-account-info-body =
     Мы используем [bold][color=white]Makura Games ID[/color][/bold] как единую систему авторизации.
 
@@ -23,6 +23,9 @@ user-profile-level = Уровень:
 user-profile-sponsor-info-button = Информация
 user-profile-sponsor-personalize-button = Настройки
 user-profile-sponsor-buy-button = Приобрести
+user-profile-sponsor-active = Активно
+lobby-gui-makura-id = Makura ID
+user-profile-bindings-title-compact = Привязки сервисов:
 sponsor-lobby-tts-enable = Озвучивать мои сообщения в лобби другим игрокам
 sponsor-personalization-title = Настройки спонсора
 sponsor-personalization-ooc-title = Выбор OOC тайтла:

@@ -1,4 +1,4 @@
-﻿<ui:SunriseLobbyGui
+<ui:SunriseLobbyGui
     xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:changelog="clr-namespace:Content.Client.Changelog"
@@ -58,9 +58,9 @@
                 SeparationOverride="5"
                 VerticalExpand="True">
                     <BoxContainer
-                        HorizontalAlignment="Left"
+                        HorizontalAlignment="Stretch"
                         HorizontalExpand="True"
-                        MinWidth="750"
+                        MinWidth="650"
                         Orientation="Vertical"
                         SeparationOverride="8"
                         VerticalExpand="True">
@@ -143,12 +143,16 @@
                         <BoxContainer
                             HorizontalAlignment="Left"
                             HorizontalExpand="True"
+                            MinWidth="520"
+                            SetWidth="520"
                             Orientation="Vertical"
                             SeparationOverride="2"
                             VerticalExpand="True">
                             <PanelContainer
                                 HorizontalAlignment="Stretch"
                                 HorizontalExpand="True"
+                                MinWidth="520"
+                                SetWidth="520"
                                 Name="LeftBottomPanel"
                                 SizeFlagsStretchRatio="3"
                                 StyleClasses="AngleRect"
@@ -247,7 +251,6 @@
                                     </BoxContainer>
                                     <BoxContainer
                                         HorizontalAlignment="Stretch"
-                                        MaxWidth="725"
                                         Name="ChangelogBox"
                                         Orientation="Vertical"
                                         SizeFlagsStretchRatio="5"
@@ -364,7 +367,9 @@
                         </PanelContainer>
                         <PanelContainer
                             Access="Public"
-                            HorizontalExpand="True"
+                            HorizontalExpand="False"
+                            MinWidth="610"
+                            MaxWidth="610"
                             Name="RightPanel"
                             StyleClasses="AngleRect"
                             VerticalAlignment="Stretch"
@@ -440,11 +445,11 @@
                                         </BoxContainer>
                                     </controls:StripeBack>
                                     <BoxContainer Name="ServerInfoContent" Orientation="Vertical">
-                                        <info:ServerInfo
+                                        <ui:SunriseServerInfo
                                             Access="Public"
-                                            HorizontalAlignment="Left"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalExpand="True"
                                             Margin="3,3,3,3"
-                                            MaxWidth="400"
                                             MinSize="0 30"
                                             Name="ServerInfo"
                                             VerticalExpand="false" />
@@ -452,7 +457,7 @@
                                             Access="Public"
                                             FontColorOverride="{x:Static maths:Color.LightGray}"
                                             HorizontalAlignment="Left"
-                                            Margin="3,3,3,3"
+                                            Margin="0,3,0,3"
                                             Name="StationTime" />
                                     </BoxContainer>
                                 </BoxContainer>
@@ -490,6 +495,93 @@
                                             Access="Public"
                                             HorizontalExpand="True"
                                             Name="CharacterPreview" />
+                                    </BoxContainer>
+                                </BoxContainer>
+                                <BoxContainer
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalExpand="True"
+                                    Orientation="Vertical"
+                                    SizeFlagsStretchRatio="2"
+                                    VerticalAlignment="Top">
+                                    <controls:StripeBack MouseFilter="Stop" Name="MakuraIDHeader">
+                                        <BoxContainer Orientation="Horizontal">
+                                            <Label
+                                                Align="Center"
+                                                HorizontalExpand="True"
+                                                StyleClasses="LabelHeading"
+                                                Text="{Loc 'lobby-gui-profile'}"
+                                                VAlign="Center" />
+                                            <TextureRect
+                                                Access="Public"
+                                                HorizontalAlignment="Right"
+                                                Margin="5,1"
+                                                MouseFilter="Pass"
+                                                Name="MakuraIDHider"
+                                                SetSize="25 25"
+                                                Stretch="KeepAspectCentered"
+                                                VerticalAlignment="Center" />
+                                        </BoxContainer>
+                                    </controls:StripeBack>
+                                    <BoxContainer
+                                        Name="MakuraIDContent"
+                                        Orientation="Vertical"
+                                        Margin="8,8,8,8"
+                                        SeparationOverride="8"
+                                        VerticalExpand="False">
+
+                                        <!-- Columns container -->
+                                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="6">
+
+                                            <!-- Left column: Makura ID (Bindings & Accounts) -->
+                                            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="1" MinWidth="10" SeparationOverride="6">
+                                                <Label
+                                                    Align="Center"
+                                                    HorizontalExpand="True"
+                                                    StyleClasses="LabelHeading"
+                                                    Text="{Loc 'lobby-gui-makura-id'}"
+                                                    Margin="0,0,0,4" />
+                                                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="4">
+                                                    <Button Name="ManageAccountButton"
+                                                             HorizontalExpand="True"
+                                                             Text="{Loc 'user-profile-account-manage-button'}" />
+                                                    <Button Name="AccountInfoButton"
+                                                             HorizontalExpand="True"
+                                                             StyleClasses="ButtonColorGreen"
+                                                             Text="{Loc 'user-profile-account-info-button'}" />
+                                                </BoxContainer>
+                                                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8" VerticalAlignment="Center" Margin="0,4,0,0">
+                                                     <TextureRect Name="DiscordBindingLogo" SetSize="24 24" Stretch="KeepAspectCentered" VerticalAlignment="Center" />
+                                                     <Label Name="DiscordBindingStatus" HorizontalExpand="True" Align="Right" VerticalAlignment="Center" />
+                                                 </BoxContainer>
+                                                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8" VerticalAlignment="Center">
+                                                     <TextureRect Name="TelegramBindingLogo" SetSize="24 24" Stretch="KeepAspectCentered" VerticalAlignment="Center" />
+                                                     <Label Name="TelegramBindingStatus" HorizontalExpand="True" Align="Right" VerticalAlignment="Center" />
+                                                 </BoxContainer>
+                                                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8" VerticalAlignment="Center">
+                                                     <TextureRect Name="GithubBindingLogo" SetSize="24 24" Stretch="KeepAspectCentered" VerticalAlignment="Center" />
+                                                     <Label Name="GithubBindingStatus" HorizontalExpand="True" Align="Right" VerticalAlignment="Center" />
+                                                 </BoxContainer></BoxContainer>
+
+                                            <cc:VSeparator VerticalExpand="True" VerticalAlignment="Stretch" Modulate="White" Margin="4,0,4,0" />
+
+                                            <!-- Right column: Sponsorship -->
+                                            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="1" MinWidth="10" SeparationOverride="6">
+                                                <Label
+                                                    Align="Center"
+                                                    HorizontalExpand="True"
+                                                    StyleClasses="LabelHeading"
+                                                    Text="{Loc 'user-profile-sponsor-title'}"
+                                                    Margin="0,0,0,4" />
+                                                 <BoxContainer HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,2">
+                                                     <Label StyleClasses="LabelKeyText" Text="{Loc 'user-profile-level'}" />
+                                                      <RichTextLabel Name="SponsorTierName" Margin="6,0,0,0" />
+                                                 </BoxContainer>
+                                                <Button Name="InfoSponsorButton" HorizontalExpand="True" Text="{Loc 'user-profile-sponsor-info-button'}" />
+                                                <Button Name="PersonalizeSponsorButton" HorizontalExpand="True" Text="{Loc 'user-profile-sponsor-personalize-button'}" />
+                                                <Button Name="BuySponsorButton" HorizontalExpand="True" Text="{Loc 'user-profile-sponsor-buy-button'}" />
+                                            </BoxContainer>
+
+                                        </BoxContainer>
                                     </BoxContainer>
                                 </BoxContainer>
                                 <BoxContainer
@@ -535,55 +627,6 @@
                         </PanelContainer>
                     </BoxContainer>
             </BoxContainer>
-            <PanelContainer
-                    HorizontalAlignment="Center"
-                    HorizontalExpand="True"
-                    MaxWidth="720"
-                    Name="BottomCenterProfilePanel"
-                    StyleClasses="AngleRect"
-                    VerticalAlignment="Bottom">
-                    <BoxContainer
-                        Access="Public"
-                        Name="UserProfileBox"
-                        Orientation="Vertical">
-                        <controls:StripeBack
-                            MouseFilter="Stop"
-                            Name="UserProfileHeader">
-                            <BoxContainer
-                                HorizontalExpand="True"
-                                MouseFilter="Ignore"
-                                Orientation="Horizontal">
-                                <Label
-                                    Access="Public"
-                                    Align="Center"
-                                    HorizontalExpand="True"
-                                    Name="UserProfileHeaderLabel"
-                                    StyleClasses="LabelHeading"
-                                    Text="{Loc 'lobby-gui-profile'}"
-                                    VAlign="Center" />
-                                <TextureRect
-                                    Access="Public"
-                                    HorizontalAlignment="Right"
-                                    Margin="5,1"
-                                    MouseFilter="Ignore"
-                                    Name="UserProfileHider"
-                                    SetSize="25 25"
-                                    Stretch="KeepAspectCentered"
-                                    VerticalAlignment="Center" />
-                            </BoxContainer>
-                        </controls:StripeBack>
-                        <BoxContainer
-                            HorizontalAlignment="Stretch"
-                            HorizontalExpand="True"
-                            Name="UserProfileContent"
-                            Orientation="Vertical">
-                            <userProfile:UserProfile
-                                Access="Public"
-                                HorizontalExpand="True"
-                                Name="UserProfileBody" />
-                        </BoxContainer>
-                    </BoxContainer>
-                </PanelContainer>
         </Control>
         <!--  Character setup state  -->
         <!--  This is injected on startup. Funky!  -->

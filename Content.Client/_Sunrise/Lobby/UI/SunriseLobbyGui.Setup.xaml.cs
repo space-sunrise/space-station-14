@@ -1,6 +1,6 @@
-﻿using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
-using Robust.Shared.Input;
+using Content.Sunrise.Interfaces.Shared;
 
 namespace Content.Client._Sunrise.Lobby.UI;
 
@@ -12,67 +12,13 @@ public sealed partial class SunriseLobbyGui
 
     private void SetupButtonsBinding()
     {
-        ChatHider.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            ChatContent.Visible = !ChatContent.Visible;
-            ChatHider.Texture = ChatContent.Visible ? IconExpanded : IconCollapsed;
-        };
-
-        ServerInfoHider.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            ServerInfoContent.Visible = !ServerInfoContent.Visible;
-            ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
-        };
-
-        CharacterInfoHider.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            CharacterInfoContent.Visible = !CharacterInfoContent.Visible;
-            CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
-        };
-
-        UserProfileHeader.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            SetUserProfileExpanded(!UserProfileContent.Visible);
-        };
-
-        ServersHubHider.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            ServersHubContent.Visible = !ServersHubContent.Visible;
-            ServersHubHider.Texture = ServersHubContent.Visible ? IconExpanded : IconCollapsed;
-        };
-
-        ContributorsHider.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            ContributorsContent.Visible = !ContributorsContent.Visible;
-            ContributorsHider.Texture = ContributorsContent.Visible ? IconExpanded : IconCollapsed;
-        };
-
-        ChangelogHider.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            ChangelogContent.Visible = !ChangelogContent.Visible;
-            ChangelogHider.Texture = ChangelogContent.Visible ? IconExpanded : IconCollapsed;
-        };
+        SetupHeaderHoverAndClick(ServersHubHeader, ServersHubHider, () => SetServersHubExpanded(!ServersHubContent.Visible));
+        SetupHeaderHoverAndClick(ContributorsHeader, ContributorsHider, () => SetContributorsExpanded(!ContributorsContent.Visible));
+        SetupHeaderHoverAndClick(ChangelogHeader, ChangelogHider, () => SetChangelogExpanded(!ChangelogContent.Visible));
+        SetupHeaderHoverAndClick(ServerInfoHeader, ServerInfoHider, () => SetServerInfoExpanded(!ServerInfoContent.Visible));
+        SetupHeaderHoverAndClick(CharacterInfoHeader, CharacterInfoHider, () => SetCharacterInfoExpanded(!CharacterInfoContent.Visible));
+        SetupHeaderHoverAndClick(ChatHeader, ChatHider, () => SetChatExpanded(!ChatContent.Visible));
+        SetupHeaderHoverAndClick(MakuraIDHeader, MakuraIDHider, () => SetMakuraIDExpanded(!MakuraIDContent.Visible));
 
         DiscordButton.OnPressed += _ =>
         {
@@ -126,6 +72,16 @@ public sealed partial class SunriseLobbyGui
         base.EnteredTree();
 
         SubscribeCfgHandlers();
+
+        if (_accountBindingsManager != null)
+            _accountBindingsManager.BindingsChanged += OnBindingsChanged;
+
+        if (_sponsorsManager != null)
+            _sponsorsManager.LoadedSponsorInfo += RefreshSponsorInfo;
+
+        RefreshSponsorInfo();
+        RefreshBindings(_accountBindingsManager?.GetSnapshot() ?? AccountBindingsSnapshot.Unavailable());
+        _accountBindingsManager?.RequestBindingsRefresh();
     }
 
     protected override void ExitedTree()
@@ -133,6 +89,12 @@ public sealed partial class SunriseLobbyGui
         base.ExitedTree();
 
         UnsubscribeCfgHandlers();
+
+        if (_accountBindingsManager != null)
+            _accountBindingsManager.BindingsChanged -= OnBindingsChanged;
+
+        if (_sponsorsManager != null)
+            _sponsorsManager.LoadedSponsorInfo -= RefreshSponsorInfo;
     }
 
     protected override void Dispose(bool disposing)
@@ -159,6 +121,10 @@ public sealed partial class SunriseLobbyGui
         _cfg.OnValueChanged(CCVars.InfoLinksWiki, OnWikiLinkChanged, true);
         _cfg.OnValueChanged(CCVars.InfoLinksTelegram, OnTelegramLinkChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.InfoLinksReplays, OnReplaysLinkChanged, true);
+
+        _cfg.OnValueChanged(CCVars.InfoLinksAccountManagement, OnAccountManagementUrlChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnInfoLinksDonateChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SponsorEnabled, OnSponsorEnabledChanged, true);
     }
 
     private void UnsubscribeCfgHandlers()
@@ -177,6 +143,28 @@ public sealed partial class SunriseLobbyGui
         _cfg.UnsubValueChanged(CCVars.InfoLinksWiki, OnWikiLinkChanged);
         _cfg.UnsubValueChanged(CCVars.InfoLinksTelegram, OnTelegramLinkChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.InfoLinksReplays, OnReplaysLinkChanged);
+
+        _cfg.UnsubValueChanged(CCVars.InfoLinksAccountManagement, OnAccountManagementUrlChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.InfoLinksDonate, OnInfoLinksDonateChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.SponsorEnabled, OnSponsorEnabledChanged);
+    }
+
+    private void OnAccountManagementUrlChanged(string url)
+    {
+        _accountManagementUrl = url;
+        ManageAccountButton.Disabled = string.IsNullOrWhiteSpace(url);
+    }
+
+    private void OnInfoLinksDonateChanged(string url)
+    {
+        _donateUrl = url;
+        RefreshSponsorControlsState();
+    }
+
+    private void OnSponsorEnabledChanged(bool enabled)
+    {
+        _sponsorEnabled = enabled;
+        RefreshSponsorInfo();
     }
 
     #endregion

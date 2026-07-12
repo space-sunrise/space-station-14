@@ -1,9 +1,12 @@
 <Control xmlns="https://spacestation14.io"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:style="clr-namespace:Content.Client.Stylesheets">
     <BoxContainer Margin="8,8,8,8"
                   Orientation="Vertical"
                   SeparationOverride="8">
-        <BoxContainer Orientation="Vertical"
+        <BoxContainer Name="AccountHeader"
+                      Orientation="Vertical"
                       SeparationOverride="4">
             <Label HorizontalExpand="True"
                    StyleClasses="LabelHeading"
@@ -24,6 +27,7 @@
                     StyleClasses="ButtonColorGreen"
                     Text="{Loc 'user-profile-account-info-button'}" />
         </BoxContainer>
+        <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="1" />
         <BoxContainer Name="DetailsContainer"
                       HorizontalExpand="True"
                       Orientation="Horizontal"
@@ -31,37 +35,46 @@
             <BoxContainer Name="BindingsSection"
                           HorizontalExpand="True"
                           Orientation="Vertical"
-                          SeparationOverride="3"
-                          SizeFlagsStretchRatio="2"
+                          SeparationOverride="4"
+                          SizeFlagsStretchRatio="1"
                           VerticalAlignment="Top">
                 <Label StyleClasses="LabelHeading"
                        Text="{Loc 'user-profile-bindings-title'}" />
                 <BoxContainer HorizontalExpand="True"
-                              Orientation="Horizontal">
-                    <Label StyleClasses="LabelKeyText"
-                           Text="{Loc 'user-profile-binding-discord'}" />
+                               Orientation="Horizontal"
+                               SeparationOverride="6">
+                    <TextureRect Name="DiscordBindingLogo"
+                                 SetSize="20 20"
+                                 Stretch="KeepAspectCentered"
+                                 VerticalAlignment="Center" />
                     <Label Name="DiscordBindingValue"
-                           Align="Right"
-                           HorizontalExpand="True"
-                           Margin="8,0,0,0" />
+                            Align="Right"
+                            HorizontalExpand="True"
+                            VerticalAlignment="Center" />
                 </BoxContainer>
                 <BoxContainer HorizontalExpand="True"
-                              Orientation="Horizontal">
-                    <Label StyleClasses="LabelKeyText"
-                           Text="{Loc 'user-profile-binding-telegram'}" />
+                               Orientation="Horizontal"
+                               SeparationOverride="6">
+                    <TextureRect Name="TelegramBindingLogo"
+                                 SetSize="20 20"
+                                 Stretch="KeepAspectCentered"
+                                 VerticalAlignment="Center" />
                     <Label Name="TelegramBindingValue"
-                           Align="Right"
-                           HorizontalExpand="True"
-                           Margin="8,0,0,0" />
+                            Align="Right"
+                            HorizontalExpand="True"
+                            VerticalAlignment="Center" />
                 </BoxContainer>
                 <BoxContainer HorizontalExpand="True"
-                              Orientation="Horizontal">
-                    <Label StyleClasses="LabelKeyText"
-                           Text="{Loc 'user-profile-binding-github'}" />
+                               Orientation="Horizontal"
+                               SeparationOverride="6">
+                    <TextureRect Name="GithubBindingLogo"
+                                 SetSize="20 20"
+                                 Stretch="KeepAspectCentered"
+                                 VerticalAlignment="Center" />
                     <Label Name="GithubBindingValue"
-                           Align="Right"
-                           HorizontalExpand="True"
-                           Margin="8,0,0,0" />
+                            Align="Right"
+                            HorizontalExpand="True"
+                            VerticalAlignment="Center" />
                 </BoxContainer>
             </BoxContainer>
             <BoxContainer Name="SponsorSection"
@@ -81,9 +94,10 @@
                            HorizontalExpand="True"
                            Margin="8,0,0,0" />
                 </BoxContainer>
-                <BoxContainer HorizontalExpand="True"
-                              Orientation="Horizontal"
-                              SeparationOverride="4">
+                <BoxContainer Name="SponsorButtonsContainer"
+                              HorizontalExpand="True"
+                               Orientation="Vertical"
+                               SeparationOverride="4">
                     <Button Name="InfoSponsorButton"
                             HorizontalExpand="True"
                             Text="{Loc 'user-profile-sponsor-info-button'}" />

@@ -179,10 +179,10 @@ namespace Content.Client.Lobby
 
             RefreshContributorsHeader(_contributorsManager.ContributorsDataList);
 
-            // Sunrise-Start
             // Explicitly restore lobby background after reconnection
             // This ensures the background is loaded even if CVar events were called before Lobby initialization
             ApplyConfiguredLobbyBackground();
+            EnsureLobbyChangelogPopulated();
             // Sunrise-End
         }
 

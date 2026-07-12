@@ -1,4 +1,5 @@
 using Content.Client._Sunrise.SponsorTiers;
+using Content.Client.Resources;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Sunrise.Interfaces.Shared;
@@ -8,17 +9,19 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
+using Robust.Client.ResourceManagement;
 
 namespace Content.Client._Sunrise.UserProfile;
 
 [GenerateTypedNameReferences]
 public sealed partial class UserProfile : Control
 {
-    private const float CompactBreakpoint = 620f;
+    private const float CompactBreakpoint = 400f;
 
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly IUriOpener _uri = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IResourceCache _resource = default!;
 
     private readonly UserProfileAccountInfoUIController _accountInfoUIController;
     private readonly SponsorTiersUIController _sponsorTiersUIController;
@@ -60,6 +63,13 @@ public sealed partial class UserProfile : Control
         RefreshBindings(_accountBindingsManager?.GetSnapshot() ?? AccountBindingsSnapshot.Unavailable());
         RefreshResponsiveLayout();
         RequestAccountBindingsRefresh();
+
+        AccountHeader.Visible = false;
+
+        DiscordBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/discord.svg.192dpi.png");
+        TelegramBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/telegram.svg.192dpi.png");
+        GithubBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/github.svg.192dpi.png");
+        GithubBindingLogo.Modulate = Color.White;
     }
 
     protected override void Resized()
@@ -178,8 +188,8 @@ public sealed partial class UserProfile : Control
 
         if (_sponsorsManager.ClientIsSponsor())
         {
-            _sponsorsManager.TryGetOocTitle(_playerManager.LocalSession.UserId, out var sponsorTitle);
-            SponsorTierName.Text = sponsorTitle;
+            var tierTitle = _sponsorsManager.ClientGetTierTitle();
+            SponsorTierName.Text = !string.IsNullOrWhiteSpace(tierTitle) ? tierTitle : Loc.GetString("user-profile-sponsor-active");
             return;
         }
 

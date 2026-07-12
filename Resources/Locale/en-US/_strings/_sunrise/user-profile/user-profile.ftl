@@ -1,8 +1,8 @@
 user-profile-no-sponsor = Отсутствует
 user-profile-account-title = Makura Games ID Account
 user-profile-account-description = Your login and external bindings are now managed on the account page.
-user-profile-account-manage-button = Manage Account
-user-profile-account-info-button = About Bindings and Account
+user-profile-account-manage-button = Account
+user-profile-account-info-button = About Bindings
 user-profile-account-info-body =
     We use Makura Games ID as our own authentication system.
 
@@ -20,7 +20,10 @@ user-profile-sponsor-title = Спонсорство
 user-profile-level = Уровень:
 user-profile-sponsor-info-button = Информация
 user-profile-sponsor-personalize-button = Settings
-user-profile-sponsor-buy-button = Приобрести
+user-profile-sponsor-buy-button = Buy
+user-profile-sponsor-active = Active
+lobby-gui-makura-id = Makura ID
+user-profile-bindings-title-compact = Service bindings:
 sponsor-lobby-tts-enable = Озвучивать мои сообщения в лобби другим игрокам
 sponsor-personalization-title = Sponsor Settings
 sponsor-personalization-ooc-title = Choose OOC title:

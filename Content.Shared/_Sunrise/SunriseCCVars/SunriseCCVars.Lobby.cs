@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.Lobby;
+using Content.Shared._Sunrise.Lobby;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared._Sunrise.SunriseCCVars;
@@ -57,4 +57,28 @@ public sealed partial class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedServersHub =
+        CVarDef.Create("lobby.collapsed_servers_hub", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedContributors =
+        CVarDef.Create("lobby.collapsed_contributors", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedChangelog =
+        CVarDef.Create("lobby.collapsed_changelog", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedServerInfo =
+        CVarDef.Create("lobby.collapsed_server_info", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedCharacterInfo =
+        CVarDef.Create("lobby.collapsed_character_info", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedChat =
+        CVarDef.Create("lobby.collapsed_chat", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedMakuraId =
+        CVarDef.Create("lobby.collapsed_makura_id", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyCollapsedSponsor =
+        CVarDef.Create("lobby.collapsed_sponsor", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
