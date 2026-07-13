@@ -1,6 +1,6 @@
 namespace Content.Shared._Sunrise.DoAfter.Events;
 
 /// <summary>
-/// Сигнализирует об изменении фактического состояния стелса сущности.
+/// Signals that an entity's active stealth state changed.
 /// </summary>
 public readonly record struct StealthEnabledChangedEvent(bool Enabled);

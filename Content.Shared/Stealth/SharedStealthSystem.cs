@@ -66,9 +66,9 @@ public abstract class SharedStealthSystem : EntitySystem
         // Sunrise added end
     }
 
-    private void OnMobStateChanged(EntityUid uid, StealthComponent component, MobStateChangedEvent args)
+    private void OnMobStateChanged(Entity<StealthComponent> ent, ref MobStateChangedEvent args)
     {
-        SetEnabled(uid, args.NewMobState != MobState.Dead || component.EnabledOnDeath, component);
+        SetEnabled(ent.Owner, args.NewMobState != MobState.Dead || ent.Comp.EnabledOnDeath, ent.Comp);
     }
 
     private void OnPaused(EntityUid uid, StealthComponent component, ref EntityPausedEvent args)

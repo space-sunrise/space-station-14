@@ -113,7 +113,7 @@ public sealed class DoAfterOverlay : Overlay
             {
                 // Hide some DoAfters from other players for stealthy actions (ie: thieving gloves)
                 var alpha = 1f;
-                if (ShouldHideDoAfter(doAfter.Args.Hidden, isInContainer, hideDoAfter))
+                if (isInContainer || ShouldHideDoAfter(doAfter.Args.Hidden, hideDoAfter))
                 {
                     if (uid != localEnt)
                         continue;
@@ -171,9 +171,9 @@ public sealed class DoAfterOverlay : Overlay
     }
 
     // Sunrise added start - Выносим условия скрытия индикатора в именованный helper-метод
-    internal static bool ShouldHideDoAfter(bool hidden, bool isInContainer, bool hideDoAfter)
+    internal static bool ShouldHideDoAfter(bool hidden, bool hideDoAfter)
     {
-        return hidden || isInContainer || hideDoAfter;
+        return hidden || hideDoAfter;
     }
     // Sunrise added end
 }

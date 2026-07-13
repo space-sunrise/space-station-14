@@ -15,19 +15,19 @@ public sealed class SunriseDoAfterVisibilitySystem : EntitySystem
         SubscribeLocalEvent<StealthComponent, StealthEnabledChangedEvent>(OnStealthEnabledChanged);
     }
 
-    private void OnStealthStartup(EntityUid uid, StealthComponent component, ComponentStartup args)
+    private void OnStealthStartup(Entity<StealthComponent> ent, ref ComponentStartup args)
     {
-        SetDoAfterHidden(uid, component.Enabled);
+        SetDoAfterHidden(ent.Owner, ent.Comp.Enabled);
     }
 
-    private void OnStealthShutdown(EntityUid uid, StealthComponent component, ComponentShutdown args)
+    private void OnStealthShutdown(Entity<StealthComponent> ent, ref ComponentShutdown args)
     {
-        RemComp<SunriseHideDoAfterComponent>(uid);
+        RemComp<SunriseHideDoAfterComponent>(ent.Owner);
     }
 
-    private void OnStealthEnabledChanged(EntityUid uid, StealthComponent component, StealthEnabledChangedEvent args)
+    private void OnStealthEnabledChanged(Entity<StealthComponent> ent, ref StealthEnabledChangedEvent args)
     {
-        SetDoAfterHidden(uid, args.Enabled);
+        SetDoAfterHidden(ent.Owner, args.Enabled);
     }
 
     private void SetDoAfterHidden(EntityUid uid, bool hidden)
