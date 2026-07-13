@@ -3,7 +3,6 @@ using Content.Server._Sunrise.Chat.Sanitization;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
-using Content.Server.Popups;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -11,7 +10,6 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.PDA;
 using Content.Shared.Radio;
-using Content.Shared.Power;
 using Content.Shared.Radio.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
@@ -23,13 +21,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Server.Temperature.Systems;
-using Content.Server._Sunrise.Radio;
-using Content.Shared._Sunrise.Radio;
-using Content.Shared.Audio;
-using Content.Shared.Temperature.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -45,7 +37,6 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly TelecomThermalSystem _thermalSystem = default!;
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -142,34 +133,9 @@ public sealed class RadioSystem : EntitySystem
         else
             speech = _chat.GetSpeechVerb(messageSource, message);
 
-        var radioMessage = message;
-
-        // Sunrise-Start
-        var sourceMapId = Transform(radioSource).MapID;
-        var hasActiveServer = HasActiveServer(sourceMapId, channel.ID, out var serverUid);
-        var sourceServerExempt = _exemptQuery.HasComp(radioSource);
-
-        if (!channel.LongRange && !sourceServerExempt && serverUid != null && TryComp<TelecomThermalComponent>(serverUid, out var server))
-        {
-            _thermalSystem.AddLoad(serverUid.Value, server);
-
-            var loadFactor = Math.Clamp(server.CurrentLoad / server.MaxBandwidth, 0, 1);
-            var tempFactor = 0f;
-            if (TryComp<TemperatureComponent>(serverUid, out var temp))
-            {
-                tempFactor = Math.Clamp((temp.CurrentTemperature - server.StaticBaseTemperature) / (server.MaxTemperature - server.StaticBaseTemperature), 0, 1);
-            }
-
-            radioMessage = _thermalSystem.AddStatic(server, radioMessage, Math.Max(loadFactor, tempFactor));
-        }
-
-        if (!channel.LongRange && !hasActiveServer && !sourceServerExempt)
-            return;
-        // Sunrise-End
-
         var content = escapeMarkup
-            ? FormattedMessage.EscapeText(radioMessage)
-            : radioMessage;
+            ? FormattedMessage.EscapeText(message)
+            : message;
 
         // Sunrise-Start
         if (GetIdCardIsBold(messageSource))
@@ -190,19 +156,21 @@ public sealed class RadioSystem : EntitySystem
         // most radios are relayed to chat, so lets parse the chat message beforehand
         var chat = new ChatMessage(
             ChatChannel.Radio,
-            radioMessage,
+            message,
             wrappedMessage,
             NetEntity.Invalid,
             null);
         var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(radioMessage, messageSource, channel, radioSource, chatMsg, []);
+        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, []);
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
         RaiseLocalEvent(radioSource, ref sendAttemptEv);
         var canSend = !sendAttemptEv.Cancelled;
 
-        // Sunrise-End
+        var sourceMapId = Transform(radioSource).MapID;
+        var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
+        var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
@@ -233,7 +201,7 @@ public sealed class RadioSystem : EntitySystem
             RaiseLocalEvent(receiver, ref ev);
         }
 
-        RaiseLocalEvent(new RadioSpokeEvent(messageSource, FormattedMessage.RemoveMarkupPermissive(radioMessage), ev.Receivers.ToArray(), channel.ID)); // Sunrise-Edit
+        RaiseLocalEvent(new RadioSpokeEvent(messageSource, FormattedMessage.RemoveMarkupPermissive(message), ev.Receivers.ToArray(), channel.ID)); // Sunrise-Edit
 
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
@@ -321,33 +289,17 @@ public sealed class RadioSystem : EntitySystem
     // Sunrise-End
     // Sunrise-End
 
-    /// <inheritdoc cref="TelecomThermalComponent"/>
+    /// <inheritdoc cref="TelecomServerComponent"/>
     private bool HasActiveServer(MapId mapId, string channelId)
     {
-        return HasActiveServer(mapId, channelId, out _);
-    }
+        var servers = EntityQueryEnumerator<TelecomServerComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();
 
-    // Sunrise-Start
-    private bool HasActiveServer(MapId mapId, string channelId, out EntityUid? serverUid)
-    {
-        var servers = EntityQueryEnumerator<TelecomThermalComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();
-        EntityUid? overheatedServer = null;
-
-        while (servers.MoveNext(out var uid, out var server, out var keys, out var power, out var transform))
+        while (servers.MoveNext(out _, out _, out var keys, out var power, out var transform))
         {
             if (transform.MapID == mapId && power.Powered && keys.Channels.Contains(channelId))
-            {
-                if (!server.Overheated)
-                {
-                    serverUid = uid;
-                    return true;
-                }
-                overheatedServer ??= uid;
-            }
+                return true;
         }
 
-        serverUid = overheatedServer;
         return false;
     }
-    // Sunrise-End
 }
