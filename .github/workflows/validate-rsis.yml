@@ -9,6 +9,12 @@ on:
     paths:
       - '**.rsi/**'
 
+# Sunrise added start - отменяем устаревший запуск этой проверки для того же PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+# Sunrise added end
+
 jobs:
   validate_rsis:
     name: Validate RSIs
