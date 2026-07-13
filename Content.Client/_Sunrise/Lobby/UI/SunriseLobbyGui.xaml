@@ -8,6 +8,7 @@
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:maths="clr-namespace:Robust.Shared.Maths;assembly=Robust.Shared.Maths"
     xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub"
+    xmlns:playtimeTop="clr-namespace:Content.Client._Sunrise.PlaytimeTop"
     xmlns:style="clr-namespace:Content.Client.Stylesheets"
     xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile"
     xmlns:vote="clr-namespace:Content.Client.Voting.UI"
@@ -129,6 +130,49 @@
                                         HorizontalAlignment="Center"
                                         Name="PlaytimeComment"
                                         Visible="False" />
+                                    <BoxContainer
+                                        Access="Public"
+                                        Name="PlaytimeTopBox"
+                                        Orientation="Vertical"
+                                        SizeFlagsStretchRatio="2"
+                                        VerticalAlignment="Bottom"
+                                        VerticalExpand="True"
+                                        Margin="0 4 0 0">
+                                        <controls:StripeBack>
+                                            <BoxContainer Name="PlaytimeTopHeader" Orientation="Horizontal">
+                                                <Label
+                                                    Access="Public"
+                                                    Align="Center"
+                                                    HorizontalExpand="True"
+                                                    Name="PlaytimeTopHeaderLabel"
+                                                    StyleClasses="LabelHeading"
+                                                    Text="{Loc 'lobby-playtime-top-header'}"
+                                                    VAlign="Center" />
+                                                <TextureRect
+                                                    Access="Public"
+                                                    HorizontalAlignment="Right"
+                                                    Margin="5,1"
+                                                    MouseFilter="Pass"
+                                                    Name="PlaytimeTopHider"
+                                                    SetSize="25 25"
+                                                    Stretch="KeepAspectCentered"
+                                                    VerticalAlignment="Center" />
+                                            </BoxContainer>
+                                        </controls:StripeBack>
+                                        <BoxContainer
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalExpand="True"
+                                            Name="PlaytimeTopContent"
+                                            Orientation="Vertical"
+                                            VerticalAlignment="Top"
+                                            VerticalExpand="True">
+                                            <playtimeTop:PlaytimeTopWidget
+                                                Access="Public"
+                                                HorizontalExpand="True"
+                                                Name="PlaytimeTopBody"
+                                                VerticalExpand="True" />
+                                        </BoxContainer>
+                                    </BoxContainer>
                                 </BoxContainer>
                             </PanelContainer>
                             <BoxContainer
@@ -279,8 +323,8 @@
                                             </controls:StripeBack>
                                             <BoxContainer
                                                 HorizontalAlignment="Stretch"
-                                                MaxHeight="250"
-                                                MinHeight="250"
+                                                MaxHeight="175"
+                                                MinHeight="175"
                                                 Name="ChangelogContent"
                                                 Orientation="Vertical"
                                                 VerticalAlignment="Top"

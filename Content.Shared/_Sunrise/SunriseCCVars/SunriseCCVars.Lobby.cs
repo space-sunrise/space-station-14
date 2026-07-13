@@ -105,4 +105,10 @@ public sealed partial class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<bool> LobbyCollapsedSponsor =
         CVarDef.Create("lobby.collapsed_sponsor", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether the playtime top section in the lobby is collapsed.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyCollapsedPlaytimeTop =
+        CVarDef.Create("lobby.collapsed_playtime_top", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

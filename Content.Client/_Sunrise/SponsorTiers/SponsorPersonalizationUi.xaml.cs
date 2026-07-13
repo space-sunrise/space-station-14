@@ -22,7 +22,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IClientAdminManager _adminManager = default!;
-    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+    private ISharedSponsorsManager? _sponsorsManager;
 
     private readonly Dictionary<Button, string> _colorButtons = new();
 
@@ -340,7 +340,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             displayName = $"[emoji id=\"{emojiId}\" size=50] {displayName}";
         }
 
-        var previewMarkup = string.Empty;
+        string previewMarkup;
         var testMessage = Loc.GetString("sponsor-personalization-preview-text");
 
         if (!OocGradientHelper.IsGradientId(currentColor))
@@ -378,13 +378,8 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             previewMarkup = $"[color=#00e5ff]OOC: [/color][bold]{displayName}:[/bold] [color=#00e5ff]{testMessage}[/color]";
         }
 
-
-
-
         ChatPreviewLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(previewMarkup), AllowedTags);
     }
-
-
 
     private void OpenEmojiPicker()
     {
@@ -422,17 +417,17 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
     {
         foreach (var child in ColorsGrid.Children)
         {
-            if (child is Button btn && _colorButtons.TryGetValue(btn, out var colorHex))
+            if (child is not Button btn || !_colorButtons.TryGetValue(btn, out var colorHex))
+                continue;
+
+            foreach (var innerChild in btn.Children)
             {
-                foreach (var innerChild in btn.Children)
-                {
-                    if (innerChild is PanelContainer panel && panel.PanelOverride is StyleBoxFlat styleBox)
-                    {
-                        var isSelected = colorHex == selectedColor || (colorHex == "@none" && string.IsNullOrEmpty(selectedColor));
-                        styleBox.BorderThickness = new Thickness(isSelected ? 3 : 1);
-                        styleBox.BorderColor = isSelected ? Color.White : Color.FromHex("#1e1e24");
-                    }
-                }
+                if (innerChild is not PanelContainer panel || panel.PanelOverride is not StyleBoxFlat styleBox)
+                    continue;
+
+                var isSelected = colorHex == selectedColor || (colorHex == "@none" && string.IsNullOrEmpty(selectedColor));
+                styleBox.BorderThickness = new Thickness(isSelected ? 3 : 1);
+                styleBox.BorderColor = isSelected ? Color.White : Color.FromHex("#1e1e24");
             }
         }
     }

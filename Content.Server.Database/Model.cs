@@ -52,6 +52,7 @@ namespace Content.Server.Database
         public DbSet<MentorHelpMessage> MentorHelpMessages { get; set; } = default!;
         public DbSet<UiLike> UiLikes { get; set; } = default!;
         public DbSet<TutorialCompletion> TutorialCompletions { get; set; } = default!;
+        public DbSet<PlayTimeSession> PlayTimeSession { get; set; } = default!; // Sunrise-Edit
         // Sunrise-End
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -1519,6 +1520,22 @@ namespace Content.Server.Database
         public DateTimeOffset CompletedAt { get; set; }
         public int CompletionCount { get; set; } = 1;
         public double? AccountAgeDays { get; set; }
+    }
+
+    [Table("play_time_session")]
+    public sealed class PlayTimeSession
+    {
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required, ForeignKey("player")]
+        public Guid PlayerId { get; set; }
+
+        [Required]
+        public DateTime StartTime { get; set; }
+
+        [Required]
+        public DateTime EndTime { get; set; }
     }
     // Sunrise-end
 }

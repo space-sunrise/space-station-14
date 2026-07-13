@@ -52,6 +52,7 @@ namespace Content.Client.Lobby.UI
             IoCManager.InjectDependencies(this);
             SetAnchorPreset(MainContainer, LayoutPreset.Wide);
             SetAnchorPreset(LobbyArt, LayoutPreset.Wide); // Sunrise-Edit
+            SetAnchorPreset(LobbyAnimation, LayoutPreset.Wide); // Sunrise-Edit - Растягиваем анимацию на весь экран
 
             LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
 

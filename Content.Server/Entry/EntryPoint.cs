@@ -3,6 +3,7 @@ using Content.Server._Sunrise.Contributors;
 using Content.Server._Sunrise.Entry;
 using Content.Server._Sunrise.MapperSync;
 using Content.Server._Sunrise.PlayerCache;
+using Content.Server._Sunrise.PlaytimeTop; // Sunrise-Edit
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Acz;
@@ -91,6 +92,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly ServerUpdateManager _updateManager = default!;
         [Dependency] private readonly ServersHubManager _serversHubManager = default!; // Sunrise-Edit
         [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
+        [Dependency] private readonly PlaytimeTopManager _playtimeTopManager = default!; // Sunrise-Edit
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
         [Dependency] private readonly TTSManager _ttsManager = default!; // Sunrise-Edit
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
@@ -210,6 +212,7 @@ namespace Content.Server.Entry
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
             _contributorsManager.Initialize(); // Sunrise-Edit
+            _playtimeTopManager.Initialize(); // Sunrise-Edit
             _mapperSyncManager.Initialize(); // Sunrise-Edit
             _serversHubManager.Initialize(); // Sunrise-Edit
             _playerCacheManager.Initialize(); // Sunrise-Edit
@@ -240,6 +243,7 @@ namespace Content.Server.Entry
                     // Sunrise-Start
                     _serversHubManager.Update();
                     _contributorsManager.Update();
+                    _playtimeTopManager.Update(); // Sunrise-Edit
                     _mapperSyncManager.Update();
                     _sponsorsManager?.Update();
                     _ipBlockingSystem?.Update();

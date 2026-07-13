@@ -268,6 +268,13 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         foreach (var (player, data) in _playTimeData)
         {
+            // Sunrise edit start - Update PlayTimeSession on auto-save
+            if (data.CurrentDbSessionId.HasValue)
+            {
+                await _db.UpdatePlayTimeSessionAsync(data.CurrentDbSessionId.Value, DateTime.UtcNow);
+            }
+            // Sunrise edit end
+
             foreach (var tracker in data.DbTrackersDirty)
             {
                 log.Add(new PlayTimeUpdate(player.UserId, tracker, data.TrackerTimes[tracker]));
@@ -292,6 +299,13 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         var log = new List<PlayTimeUpdate>();
 
         var data = _playTimeData[session];
+
+        // Sunrise edit start - Update PlayTimeSession on auto-save
+        if (data.CurrentDbSessionId.HasValue)
+        {
+            await _db.UpdatePlayTimeSessionAsync(data.CurrentDbSessionId.Value, DateTime.UtcNow);
+        }
+        // Sunrise edit end
 
         foreach (var tracker in data.DbTrackersDirty)
         {
@@ -321,6 +335,11 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
             data.TrackerTimes.Add(timer.Tracker, timer.TimeSpent);
         }
 
+        // Sunrise edit start - Start PlayTimeSession in DB
+        var sessionId = await _db.AddPlayTimeSessionAsync(session.UserId.UserId, data.ConnectTime, DateTime.UtcNow);
+        data.CurrentDbSessionId = sessionId;
+        // Sunrise edit end
+
         data.Initialized = true;
 
         QueueRefreshTrackers(session);
@@ -329,6 +348,13 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     public void ClientDisconnected(ICommonSession session)
     {
+        // Sunrise edit start - Save PlayTimeSession on player disconnect
+        if (_playTimeData.TryGetValue(session, out var data) && data.CurrentDbSessionId.HasValue)
+        {
+            TrackPending(_db.UpdatePlayTimeSessionAsync(data.CurrentDbSessionId.Value, DateTime.UtcNow));
+        }
+        // Sunrise edit end
+
         SaveSession(session);
 
         _playTimeData.Remove(session);
@@ -461,6 +487,16 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         /// Set of trackers which are different from their DB values and need to be saved to DB.
         /// </summary>
         public readonly HashSet<string> DbTrackersDirty = new();
+
+        /// <summary>
+        /// Идентификатор текущей игровой сессии в базе данных.
+        /// </summary>
+        public int? CurrentDbSessionId;
+
+        /// <summary>
+        /// Время подключения игрока к серверу.
+        /// </summary>
+        public readonly DateTime ConnectTime = DateTime.UtcNow;
     }
 
     void IPostInjectInit.PostInject()

@@ -14,6 +14,7 @@ public sealed partial class SunriseLobbyGui
     {
         SetupHeaderHoverAndClick(ServersHubHeader, ServersHubHider, () => SetServersHubExpanded(!ServersHubContent.Visible));
         SetupHeaderHoverAndClick(ContributorsHeader, ContributorsHider, () => SetContributorsExpanded(!ContributorsContent.Visible));
+        SetupHeaderHoverAndClick(PlaytimeTopHeader, PlaytimeTopHider, () => SetPlaytimeTopExpanded(!PlaytimeTopContent.Visible));
         SetupHeaderHoverAndClick(ChangelogHeader, ChangelogHider, () => SetChangelogExpanded(!ChangelogContent.Visible));
         SetupHeaderHoverAndClick(ServerInfoHeader, ServerInfoHider, () => SetServerInfoExpanded(!ServerInfoContent.Visible));
         SetupHeaderHoverAndClick(CharacterInfoHeader, CharacterInfoHider, () => SetCharacterInfoExpanded(!CharacterInfoContent.Visible));

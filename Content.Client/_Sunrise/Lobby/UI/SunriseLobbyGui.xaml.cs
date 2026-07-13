@@ -75,6 +75,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
         IoCManager.InjectDependencies(this);
         SetAnchorPreset(MainContainer, LayoutPreset.Wide);
         SetAnchorPreset(LobbyArt, LayoutPreset.Wide);
+        SetAnchorPreset(LobbyAnimation, LayoutPreset.Wide);
 
         LobbySong.SetMarkup(_loc.GetString("lobby-state-song-no-song-text"));
 
@@ -160,6 +161,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
 
         ServersHubHider.Texture = ServersHubContent.Visible ? IconExpanded : IconCollapsed;
         ContributorsHider.Texture = ContributorsContent.Visible ? IconExpanded : IconCollapsed;
+        PlaytimeTopHider.Texture = PlaytimeTopContent.Visible ? IconExpanded : IconCollapsed;
         ChangelogHider.Texture = ChangelogContent.Visible ? IconExpanded : IconCollapsed;
         ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
         CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
@@ -168,6 +170,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
 
         ServersHubHider.Modulate = Palettes.Gold.Base;
         ContributorsHider.Modulate = Palettes.Gold.Base;
+        PlaytimeTopHider.Modulate = Palettes.Gold.Base;
         ChangelogHider.Modulate = Palettes.Gold.Base;
         ServerInfoHider.Modulate = Palettes.Gold.Base;
         CharacterInfoHider.Modulate = Palettes.Gold.Base;
@@ -179,6 +182,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
     {
         SetServersHubExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedServersHub), false);
         SetContributorsExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedContributors), false);
+        SetPlaytimeTopExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedPlaytimeTop), false);
         SetChangelogExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedChangelog), false);
         SetServerInfoExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedServerInfo), false);
         SetCharacterInfoExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedCharacterInfo), false);
@@ -239,6 +243,17 @@ public sealed partial class SunriseLobbyGui : UIScreen
         if (persist)
         {
             _cfg.SetCVar(SunriseCCVars.LobbyCollapsedContributors, !expanded);
+            _cfg.SaveToFile();
+        }
+    }
+
+    private void SetPlaytimeTopExpanded(bool expanded, bool persist = true)
+    {
+        PlaytimeTopContent.Visible = expanded;
+        PlaytimeTopHider.Texture = expanded ? IconExpanded : IconCollapsed;
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedPlaytimeTop, !expanded);
             _cfg.SaveToFile();
         }
     }
