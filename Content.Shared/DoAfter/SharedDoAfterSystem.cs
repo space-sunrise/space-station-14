@@ -5,7 +5,9 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Stealth.Components;
 using Content.Shared.Tag;
+using Content.Shared.Xenoborgs.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -209,6 +211,11 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             id = null;
             return false;
         }
+
+        // Sunrise added start - активный стелс ксеноборга не должен выдавать себя интерактом
+        if (HasComp<XenoborgComponent>(args.User) && HasComp<StealthComponent>(args.User))
+            args.Hidden = true;
+        // Sunrise added end
 
         // Duplicate blocking & cancellation.
         if (!ProcessDuplicates(args, comp))
