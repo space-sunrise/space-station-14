@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.SponsorSystem;
 using Content.Sunrise.Interfaces.Shared;
@@ -13,6 +14,9 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
+using Content.Client.Administration.Managers;
+using Robust.Shared.Prototypes;
+using Content.Shared.Administration;
 
 namespace Content.Client._Sunrise.SponsorTiers;
 
@@ -21,6 +25,8 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IClientAdminManager _adminManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private readonly Dictionary<Button, string> _colorButtons = new();
@@ -69,7 +75,12 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             LobbyTtsCheckBox.Pressed = _cfg.GetCVar(SunriseCCVars.SponsorLobbyTtsEnabled);
         }
 
-        var hasEmojiRights = localPlayer != null && _sponsorsManager.IsAllowedOocEmoji(localPlayer.UserId);
+        var isAdminActive = _adminManager.IsActive();
+        var adminData = _adminManager.GetAdminData();
+        var isSponsor = _sponsorsManager.ClientIsSponsor();
+        var isAllowedAdminBypass = isAdminActive && isSponsor;
+
+        var hasEmojiRights = (localPlayer != null && _sponsorsManager.IsAllowedOocEmoji(localPlayer.UserId)) || isAllowedAdminBypass;
         EmojiSectionPanel.Visible = hasEmojiRights;
         if (hasEmojiRights)
         {
@@ -137,9 +148,10 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
         var allColorChoices = new List<string> { "@none" };
 
         var allowedGradients = _sponsorsManager.GetAllowedOocGradients();
+        var allowedColors = _sponsorsManager.GetAllowedOocColors();
+
         allColorChoices.AddRange(allowedGradients);
 
-        var allowedColors = _sponsorsManager.GetAllowedOocColors();
         foreach (var col in allowedColors)
         {
             if (col != "@none" && !allColorChoices.Contains(col))
@@ -266,15 +278,15 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
         var playerName = localPlayer?.Name ?? "Player";
 
         var currentTitle = _cfg.GetCVar(SunriseCCVars.SponsorOocTitle);
-        
-        // Sunrise-Edit start - проверяем, разрешен ли выбранный титул спонсору, перед показом в превью
+
         var allowedTitles = _sponsorsManager?.GetAllowedOocTitles() ?? new List<string>();
         var isAllowedTitle = currentTitle == "@none" || string.IsNullOrEmpty(currentTitle) || allowedTitles.Contains(currentTitle);
         if (!isAllowedTitle)
         {
+            _cfg.SetCVar(SunriseCCVars.SponsorOocTitle, string.Empty);
+            _cfg.SaveToFile();
             currentTitle = string.Empty;
         }
-        // Sunrise-Edit end
 
         var title = string.Empty;
         if (currentTitle == "@none")
@@ -297,16 +309,16 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
 
         var currentColor = _cfg.GetCVar(SunriseCCVars.SponsorOocColor);
 
-        // Sunrise-Edit start - проверяем, разрешен ли выбранный цвет/градиент спонсору, перед показом в превью
         var allowedColors = _sponsorsManager?.GetAllowedOocColors() ?? new List<string>();
         var allowedGradients = _sponsorsManager?.GetAllowedOocGradients() ?? new List<string>();
         var isAllowedColor = currentColor == "@none" || string.IsNullOrEmpty(currentColor) ||
                              allowedColors.Contains(currentColor) || allowedGradients.Contains(currentColor);
         if (!isAllowedColor)
         {
+            _cfg.SetCVar(SunriseCCVars.SponsorOocColor, string.Empty);
+            _cfg.SaveToFile();
             currentColor = string.Empty;
         }
-        // Sunrise-Edit end
 
         if (OocGradientHelper.IsGradientId(currentColor))
         {

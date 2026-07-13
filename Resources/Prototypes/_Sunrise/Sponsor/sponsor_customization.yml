@@ -66,14 +66,6 @@
   id: Epsilon
   title: "ЭПСИЛОН"
 
-- type: sponsorOocTitle
-  id: SpaceHero
-  title: "Space Hero"
-
-- type: sponsorOocTitle
-  id: Synthesizer
-  title: "Synthesizer"
-
 - type: sponsorOocColor
   id: OocColorOrange
   color: "#ffa500"

@@ -29,9 +29,6 @@ public sealed class PlayerCacheManager
 
     private void OnDisconnect(object? sender, NetDisconnectedArgs e)
     {
-        // Sunrise-Edit start - сохраняем кэш OOC для возможности оффлайн-фоллбэков
-        // _cache.Remove(e.Channel.UserId);
-        // Sunrise-Edit end
     }
 
     private void OnCacheSync(MsgPlayerCacheSync msg)

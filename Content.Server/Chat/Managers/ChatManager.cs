@@ -313,9 +313,14 @@ internal sealed partial class ChatManager : IChatManager
             colorOverride = prefs.AdminOOCColor;
         }
 
-        // Sunrise added start - логика OOC-оформления для спонсоров
+        // Sunrise added start - логика OOC-оформления для спонсоров и администраторов
         string? sponsorTitle = null;
         Color? sponsorColor = null;
+
+        var isActiveAdmin = _adminManager.IsAdmin(player, includeDeAdmin: false);
+        var adminData = _adminManager.GetAdminData(player, includeDeAdmin: false);
+        var isSponsor = _sponsorsManager != null && _sponsorsManager.IsSponsor(player.UserId);
+        var isAllowedAdminBypass = isActiveAdmin && isSponsor;
 
         if (_sponsorsManager != null)
         {
@@ -323,14 +328,83 @@ internal sealed partial class ChatManager : IChatManager
             _sponsorsManager.TryGetOocColor(player.UserId, out sponsorColor);
         }
 
+        var hasEmojiRights = (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(player.UserId)) || isAllowedAdminBypass;
+
+        var selectedTitleCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocTitle);
+        if (!string.IsNullOrEmpty(selectedTitleCVar) && selectedTitleCVar != "@none")
+        {
+            var isAllowedTitle = false;
+            if (_sponsorsManager != null && _sponsorsManager.TryGetPrototypes(player.UserId, out var prototypes))
+            {
+                isAllowedTitle = prototypes.Contains(selectedTitleCVar);
+            }
+            if (isAllowedAdminBypass && adminData != null && (selectedTitleCVar == adminData.Title || OocGradientHelper.TryResolveTitle(selectedTitleCVar, out _)))
+            {
+                isAllowedTitle = true;
+            }
+
+            if (isAllowedTitle)
+            {
+                if (OocGradientHelper.TryResolveTitle(selectedTitleCVar, out var resolvedTitle))
+                    sponsorTitle = resolvedTitle;
+                else
+                    sponsorTitle = selectedTitleCVar;
+            }
+        }
+
+        var selectedColorCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocColor);
+        var isGradient = OocGradientHelper.IsGradientId(selectedColorCVar);
+
+        if (isAllowedAdminBypass && adminData != null)
+        {
+            if (string.IsNullOrEmpty(sponsorTitle) || sponsorTitle == "@none")
+            {
+                sponsorTitle = adminData.Title;
+            }
+
+            if ((sponsorColor == null || selectedColorCVar == "@none") && !isGradient)
+            {
+                var adminColorHex = adminData.HasFlag(AdminFlags.Adminhelp) ? "#ff0000" : "#800080";
+                sponsorColor = Color.TryFromHex(adminColorHex);
+            }
+        }
+
         string sponsorDisplayName;
-        if (ServerOocGradientHelper.TryFormatGradientName(player.UserId, player.Name, _sponsorsManager, _playerManager, _netConfigManager, _playerCacheManager, out var gradFormatted))
+        if (isGradient && ServerOocGradientHelper.TryFormatGradientName(player.UserId, player.Name, _sponsorsManager, _playerManager, _netConfigManager, _playerCacheManager, out var gradFormatted))
         {
             sponsorDisplayName = gradFormatted;
             sponsorColor = null;
         }
         else
         {
+            if (!string.IsNullOrEmpty(selectedColorCVar) && selectedColorCVar != "@none" && !isGradient)
+            {
+                var isAllowedColor = false;
+                var parsedColor = Color.TryFromHex(selectedColorCVar);
+
+                if (parsedColor != null)
+                {
+                    if (_sponsorsManager != null && _sponsorsManager.TryGetPrototypes(player.UserId, out var prototypes))
+                    {
+                        isAllowedColor = prototypes.Contains(selectedColorCVar);
+                    }
+
+                    if (isAllowedAdminBypass && adminData != null)
+                    {
+                        var adminColorHex = adminData.HasFlag(AdminFlags.Adminhelp) ? "#ff0000" : "#800080";
+                        if (selectedColorCVar.Equals(adminColorHex, StringComparison.OrdinalIgnoreCase))
+                        {
+                            isAllowedColor = true;
+                        }
+                    }
+
+                    if (isAllowedColor)
+                    {
+                        sponsorColor = parsedColor;
+                    }
+                }
+            }
+
             var namePart = player.Name;
             var titlePart = sponsorTitle;
             sponsorDisplayName = string.IsNullOrWhiteSpace(titlePart)
@@ -338,15 +412,13 @@ internal sealed partial class ChatManager : IChatManager
                 : $"\\[{titlePart}\\] {namePart}";
         }
 
-        var hasEmojiRights = _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(player.UserId);
         var selectedEmojiCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocEmoji);
         if (hasEmojiRights && !string.IsNullOrWhiteSpace(selectedEmojiCVar))
         {
-            // Sunrise-Edit start - применяем выбранный эмодзи напрямую на основе общих прав спонсора
             var emojiId = selectedEmojiCVar.Trim(':');
             sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=50] {sponsorDisplayName}";
-            // Sunrise-Edit end
         }
+        // Sunrise added end
 
         if (sponsorColor != null)
         {
@@ -374,7 +446,7 @@ internal sealed partial class ChatManager : IChatManager
 
         // Sunrise added start - отдельный префикс администратора поверх sponsor/patron pipeline
         var adminTitle = _adminManager.GetAdminData(player)?.Title;
-        if (!string.IsNullOrWhiteSpace(adminTitle))
+        if (!string.IsNullOrWhiteSpace(adminTitle) && sponsorDisplayName == player.Name && sponsorColor == null)
         {
             wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message",
                 ("playerName", FormatTitledDisplayName(adminTitle, player.Name)),
