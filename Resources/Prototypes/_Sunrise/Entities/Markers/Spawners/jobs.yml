@@ -389,3 +389,177 @@
     layers:
     - state: green
     - state: security_pilot
+
+## CBURN
+
+- type: entity
+  id: SpawnPointCBURNAgent
+  parent: SpawnPointJobBase
+  name: CBURN agent
+  components:
+  - type: SpawnPoint
+    job_id: CBURN
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cburn
+
+- type: entity
+  id: SpawnPointCBURNAgentEVA
+  parent: SpawnPointJobBase
+  name: CBURN agent (EVA)
+  components:
+  - type: SpawnPoint
+    job_id: CBURNAgentEVA
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cburn
+
+- type: entity
+  id: SpawnPointCBURNLeader
+  parent: SpawnPointJobBase
+  name: CBURN leader
+  components:
+  - type: SpawnPoint
+    job_id: CBURNLeader
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cburn
+
+## DEATHSQUAD
+
+- type: entity
+  id: SpawnPointDeathSquad
+  parent: SpawnPointJobBase
+  name: deathsquad
+  components:
+  - type: SpawnPoint
+    job_id: DeathSquad
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: jobicon
+
+## BLUESHIELD OPERATIVE
+
+- type: entity
+  id: SpawnPointBlueShieldOperative
+  parent: SpawnPointJobBase
+  name: blue shield operative
+  components:
+  - type: SpawnPoint
+    job_id: BlueShieldOperative
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: blueshieldoperative
+
+## NTR
+
+- type: entity
+  id: SpawnPointNtrLeader
+  parent: SpawnPointJobBase
+  name: NTR leader
+  components:
+  - type: SpawnPoint
+    job_id: NtrLeader
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: ntrleader
+
+- type: entity
+  id: SpawnPointNtrGuard
+  parent: SpawnPointJobBase
+  name: NTR guard
+  components:
+  - type: SpawnPoint
+    job_id: NtrGuard
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: ntrguard
+
+## TSF
+
+- type: entity
+  id: SpawnPointTSFMarine
+  parent: SpawnPointJobBase
+  name: TSF marine
+  components:
+  - type: SpawnPoint
+    job_id: TSFMarine
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: TSF
+
+## USSP
+
+- type: entity
+  id: SpawnPointUSSPCrew
+  parent: SpawnPointJobBase
+  name: USSP crew
+  components:
+  - type: SpawnPoint
+    job_id: USSPCrew
+  - type: Sprite
+    layers:
+      - state: green
+      - state: passenger
+
+- type: entity
+  id: SpawnPointUSSPOfficer
+  parent: SpawnPointJobBase
+  name: USSP officer
+  components:
+  - type: SpawnPoint
+    job_id: USSPOfficer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: security_officer
+
+- type: entity
+  id: SpawnPointUSSPOfficerAlt
+  parent: SpawnPointJobBase
+  name: USSP officer (alt)
+  components:
+  - type: SpawnPoint
+    job_id: USSPOfficerAlt
+  - type: Sprite
+    layers:
+      - state: green
+      - state: security_officer
+
+- type: entity
+  id: SpawnPointUSSPSoldier
+  parent: SpawnPointJobBase
+  name: USSP soldier
+  components:
+  - type: SpawnPoint
+    job_id: USSPSoldier
+  - type: Sprite
+    layers:
+      - state: green
+      - state: security_officer
+
+- type: entity
+  id: SpawnPointUSSPCaptain
+  parent: SpawnPointJobBase
+  name: USSP captain
+  components:
+  - type: SpawnPoint
+    job_id: USSPCaptain
+  - type: Sprite
+    layers:
+      - state: green
+      - state: captain
+

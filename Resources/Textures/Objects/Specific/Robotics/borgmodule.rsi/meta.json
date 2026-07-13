@@ -230,24 +230,6 @@
         {
             "name": "base-stripes-inhand-right",
             "directions": 4
-        },
-        {
-            "name": "icon-combat"
-        },
-        {
-            "name": "icon-stuh"
-        },
-        {
-            "name": "icon-peace"
-        },
-        {
-            "name": "icon-syndicate-treatment"
-        },
-        {
-            "name": "icon-NT"
-        },
-        {
-            "name": "NT"
         }
     ]
 

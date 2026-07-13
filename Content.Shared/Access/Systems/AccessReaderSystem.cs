@@ -137,7 +137,7 @@ public sealed class AccessReaderSystem : EntitySystem
         component.Group = state.Group != null ? new (state.Group) : null; // Sunrise added - автодоступы по коду
         component.AccessLogLimit = state.AccessLogLimit;
 
-        // Sunrise added start - notify client-side UI/overlays after replicated access settings change
+        // Sunrise added start - уведомляем client-side UI/overlays после изменения replicated access settings
         RaiseLocalEvent(uid, new AccessReaderConfigurationChangedEvent());
         // Sunrise added end
     }

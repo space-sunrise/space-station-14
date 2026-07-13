@@ -4,6 +4,11 @@
   categories: [ HideSpawnMenu ]
   name: bullet (.308 incendiary)
   components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
   - type: Projectile
     damage:
       types:

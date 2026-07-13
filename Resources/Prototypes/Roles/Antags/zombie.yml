@@ -13,6 +13,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: initial_infected
+  storytellerStress: 1
 
 - type: antag
   id: Zombie
@@ -22,3 +23,4 @@
   playTimeTracker: AntagZombie # Sunrise-Edit
   objective: roles-antag-zombie-objective
   guides: [ Zombies ]
+  storytellerStress: 0.2 # Sunrise-Edit

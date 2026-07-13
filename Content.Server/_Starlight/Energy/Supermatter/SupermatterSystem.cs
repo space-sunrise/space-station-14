@@ -5,6 +5,7 @@ using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Server._Sunrise.Messenger;
+using Content.Shared._Sunrise.Storyteller; // Sunrise-Edit
 using Content.Shared.Abilities.Goliath;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
@@ -112,6 +113,9 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void Cascad(Entity<SupermatterComponent> supermatter)
     {
         if (supermatter.Comp.Durability > 0.01) return;
+
+        // Sunrise-Edit
+        RaiseLocalEvent(new SunriseSupermatterDelaminatedEvent(supermatter.Owner));
 
         _cascade.StartCascade(Transform(supermatter.Owner).Coordinates);
         QueueDel(supermatter.Owner);

@@ -1,0 +1,33 @@
+- type: randomHumanoidSettings
+  id: EventHumanoidCentcommSunrise
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - DeathRattleImplantCentcomm
+    - RadioImplantCentcomm
+    - FreedomImplant
+
+- type: randomHumanoidSettings
+  id: EventHumanoidERTSunrise
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - DeathRattleImplantERT
+
+- type: randomHumanoidSettings
+  id: EventHumanoidDeathSquadSunrise
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - DeathRattleImplantDeathSquad
+    - FreedomImplant
+    - DeathAcidifierImplant

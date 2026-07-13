@@ -31,6 +31,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmall
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -180,6 +185,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
   - type: GenericVisualizer
     visuals:
       enum.FlashVisuals.Burnt:

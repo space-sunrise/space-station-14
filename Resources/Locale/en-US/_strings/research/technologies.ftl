@@ -39,6 +39,8 @@ research-technology-kinetic-modifications = Kinetic Modifications
 research-technology-basic-shuttle-armament = Shuttle Basic Armament
 research-technology-advanced-shuttle-weapon = Advanced Shuttle Weapons
 research-technology-hitech-shuttle-weapon = Hi-Tech Shuttle Weapons
+research-technology-declone-technology = Declone Technology
+research-technology-scan-gate = ScanGates Technology
 research-technology-thermal-weaponry = Thermal Weaponry
 research-technology-dual-wielding-technology = Dual Wielding Technology
 
@@ -65,6 +67,8 @@ research-technology-critter-mechs = Critter Mechs
 research-technology-food-service = Food Service
 research-technology-advanced-entertainment = Advanced Entertainment
 research-technology-audio-visual-communication = A/V Communication
+research-technology-audio-visual-communication-t2 = Advanced A/V Communication
+research-technology-audio-visual-communication-t3 = Experimental A/V Communication
 research-technology-faux-astro-tiles = Faux Astro-Tiles
 research-technology-biochemical-stasis = Biochemical Stasis
 research-technology-mechanized-treatment = Mechanized Treatment

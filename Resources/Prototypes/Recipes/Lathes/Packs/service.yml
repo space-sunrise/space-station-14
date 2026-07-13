@@ -63,6 +63,12 @@
   id: Instruments
   recipes:
   - SynthesizerInstrument
+  # sunrise-start
+  - TapeRecorder
+  - TapeCassetteOneMinute
+  - TapeCassetteTwoMinutes
+  - TapeCassetteThreeMinutes
+  # sunrise-end
   - PushHorn
 
 - type: latheRecipePack
@@ -76,3 +82,8 @@
   - ReagentGrinderIndustrialMachineCircuitboard
   - JukeboxCircuitBoard
   - DawInstrumentMachineCircuitboard
+  # Sunrise-start
+  - TelecomServerT2Circuitboard
+  - TelecomServerT3Circuitboard
+  - ResearchAndDevelopmentServerMachineCircuitboard
+  # Sunrise-end

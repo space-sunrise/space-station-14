@@ -23,3 +23,5 @@ ent-RadioImplantDeathSquad = death squad radio implant
     .desc = This implant provides access to the Death Squad channel without a headset.
 ent-DeathRattleImplantDeathSquad = death rattle implant death squad
     .desc = This implant will notify the Death Squad radio channel if the user is in critical condition or dies.
+ent-SELFStorageImplant = S.E.L.F storage implant
+    .desc = This implant grants hidden storage within a person's body using bluespace technology.

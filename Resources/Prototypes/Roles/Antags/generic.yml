@@ -4,6 +4,7 @@
   antagonist: true
   objective: never-shown
   playTimeTracker: AntagAntagonist # Sunrise-Edit
+  storytellerStress: 1 # Sunrise-Edit
 
 - type: antag
   id: GenericTeamAntagonist
@@ -11,6 +12,7 @@
   antagonist: true
   objective: never-shown
   playTimeTracker: AntagTeamAntagonist # Sunrise-Edit
+  storytellerStress: 1 # Sunrise-Edit
 
 - type: antag
   id: GenericFreeAgent
@@ -18,6 +20,7 @@
   antagonist: true
   objective: never-shown
   playTimeTracker: AntagFreeAgent # Sunrise-Edit
+  storytellerStress: 0.5 # Sunrise-Edit
 
 - type: antag
   id: GenericSiliconAntagonist
@@ -25,3 +28,4 @@
   antagonist: true
   objective: never-shown
   playTimeTracker: AntagSiliconAntagonist # Sunrise-Edit
+  storytellerStress: 0.5 # Sunrise-Edit

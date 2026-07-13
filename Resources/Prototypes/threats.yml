@@ -2,7 +2,7 @@
 - type: weightedRandom
   id: NinjaThreats
   weights:
-    Dragon: 0.6 # Sunrise Edit
+    Dragon: 0.1 # Sunrise Edit
     Revenant: 1
     # Sunrise-start
     Pirate: 0.75
@@ -15,8 +15,8 @@
     Clown: 0.5
     NinjaBackup: 0.75
     Rod: 0.75
-    Wizard: 0.2
-    Nukeops: 0.2
+    Wizard: 0.1
+    Nukeops: 0.1
     # Sunrise-end
 
 - type: ninjaHackingThreat

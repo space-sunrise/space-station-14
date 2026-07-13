@@ -2,14 +2,14 @@
   parent: JobIcon
   id: JobIconIAA
   icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: IAA
 
 - type: jobIcon
   parent: JobIcon
   id: JobIconMagistrat
   icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: Magistrat
 
 - type: jobIcon
@@ -177,7 +177,7 @@
   parent: JobIcon
   id: JobIconAdjutant
   icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: Adjutant
 
 - type: jobIcon

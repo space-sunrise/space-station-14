@@ -44,7 +44,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.3
+          radius: 0.25 # Sunrise-Edit
         density: 230
         mask:
         - SmallMobMask
@@ -110,9 +110,9 @@
   - type: NoSlip
   - type: Rummager
   - type: RatKing
-    hungerPerArmyUse: 8  # Sunrise-edit
+    hungerPerArmyUse: 5  # Sunrise-edit
     hungerPerDomainUse: 20  # Sunrise-edit
-    hungerPerGuardUse: 80  # High cost for guards
+    hungerPerGuardUse: 60  # Sunrise-edit
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
@@ -246,7 +246,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.2
+          radius: 0.13 # Sunrise-Edit
         density: 30 #Bulky by mouse standards...
         mask:
         - SmallMobMask
@@ -632,19 +632,3 @@
     event:
       !type:RatKingOrderActionEvent
       type: Loose
-
-# Sunrise-Start
-- type: entity
-  parent: BaseAction
-  id: ActionRatKingRaiseGuard
-  name: Raise Guard
-  description: Spend a large amount of hunger to summon an elite rat guard to serve you.
-  components:
-  - type: Action
-    useDelay: 180
-    icon:
-      sprite: Interface/Actions/actions_rat_king.rsi
-      state: ratKingGuard
-  - type: InstantAction
-    event: !type:RatKingRaiseGuardActionEvent
-# Sunrise-End

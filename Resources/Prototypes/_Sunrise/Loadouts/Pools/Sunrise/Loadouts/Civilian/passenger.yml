@@ -1,0 +1,23 @@
+- type: loadout
+  id: SunriseRubberStampPassenger
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 140h
+  storage:
+    back:
+      - RubberStampGreytide
+
+- type: loadout
+  id: SunriseToyFigurinePassenger
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 95h
+  storage:
+    back:
+      - ToyFigurineGreytider

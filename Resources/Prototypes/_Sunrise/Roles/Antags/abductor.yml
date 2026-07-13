@@ -4,6 +4,7 @@
   antagonist: true
   objective: roles-antag-abductor-objective
   playTimeTracker: AbductorTimeTracker
+  storytellerStress: 0.7
 
 - type: antag
   id: AbductorVictim
@@ -15,3 +16,4 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: test
+  storytellerStress: 0.3

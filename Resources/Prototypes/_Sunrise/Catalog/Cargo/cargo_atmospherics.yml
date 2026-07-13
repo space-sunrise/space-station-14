@@ -9,3 +9,23 @@
   cost: 12600
   category: cargoproduct-category-name-atmospherics
   group: market
+
+- type: cargoProduct
+  id: AtmosphericsHelium
+  icon:
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: helium
+  product: HeliumCanister
+  cost: 15000
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+- type: cargoProduct
+  id: AtmosphericsHydrogen
+  icon:
+    sprite: _Sunrise/Structures/Storage/canister.rsi
+    state: h2
+  product: HydrogenCanister
+  cost: 12000
+  category: cargoproduct-category-name-atmospherics
+  group: market

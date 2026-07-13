@@ -373,26 +373,9 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocket
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocket
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 11
         - id: DonkcoLighter
-          prob: 0.10
+          prob: 0.10  # Sunrise-Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -406,27 +389,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketSpicy
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketSpicy
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -441,27 +404,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketTeriyaki
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketTeriyaki
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -476,27 +419,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketPizza
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketPizza
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -511,27 +434,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketStonk
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketStonk
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -546,27 +449,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketCarp
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketCarp
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -581,27 +464,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketBerry
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketBerry
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -615,27 +478,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketHonk
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketHonk
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -651,27 +494,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketDink
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketDink
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -686,27 +509,7 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodDonkpocketMoth
-          amount: 6
-        # Sunrise Start
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        - id: FoodDonkpocketMoth
-          amount: 1
-          prob: 0.10
-        # Sunrise End
+          amount: 12 # Sunrise-Edit
 
 
 - type: entity
@@ -831,8 +634,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - !type:NestedSelector # First since it can spawn a 3x3
-          tableId: HappyHonkToySafeEntityTable
         - id: FoodBurgerCheese
         - !type:GroupSelector
           children:
@@ -840,6 +641,8 @@
           - id: DrinkLemonLimeCan
           - id: DrinkLemonLimeCranberryCan
           - id: DrinkIcedTeaCan
+        - !type:NestedSelector
+          tableId: HappyHonkToySafeEntityTable
 
 - type: entity
   id: FoodMealHappyHonkBigBite
@@ -852,33 +655,11 @@
       storagebase: !type:AllSelector
         children:
         - id: FoodBurgerBig
-        - id: FoodMealFriesCheesy
         - id: DrinkColaBottleFull
+        - !type:NestedSelector
+          tableId: HappyHonkToySafeEntityTable
+        - id: FoodMealFriesCheesy
         - id: FoodPieAppleSlice
-        - !type:GroupSelector # One item is too big, so the HappyHonkToySafeEntityTable can't  be used like the others.
-          children:
-          - id: ToyMouse
-          - id: ToyAi
-          - id: ToyNuke
-          - id: ToyFigurinePassenger
-          - id: ToyFigurineGriffin
-          - id: ToyIan
-          - id: ToyFigurineOwlman
-          - id: ToyFigurineSkeleton
-          - id: FoamBlade
-          - id: ClothingHeadHatBunny
-          - id: PersonalAI
-          #- id: CrayonBox
-          - id: ToySword
-          - id: RevolverCapGun
-          - id: ToyRubberDuck
-          - id: BikeHorn
-            weight: 0.5
-          - id: GoldenBikeHorn
-            weight: 0.1
-          - !type:NestedSelector
-            tableId: AllFigurineMechsTable
-            weight: 6
 
 - type: entity
   parent: BoxCardboard
@@ -905,7 +686,7 @@
       storagebase:
         id: MaterialCloth10
 
-- type: entityTable
+- type: entityTable # size: 2x2
   id: HappyHonkToySafeEntityTable
   table: !type:GroupSelector
     children:
@@ -932,7 +713,7 @@
       tableId: AllFigurineMechsTable
       weight: 6
 
-- type: entityTable
+- type: entityTable # size: 1x2
   id: HappyHonkToyUnsafeEntityTable
   table: !type:GroupSelector
     children: # Total Weight 6

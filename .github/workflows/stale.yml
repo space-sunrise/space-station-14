@@ -30,9 +30,9 @@ jobs:
     - name: Stale old inactive issues
       uses: actions/stale@v8
       with:
-        days-before-stale: 90
+        days-before-stale: 180
         days-before-close: 14
         stale-issue-label: 'Inactive'
         exempt-issue-labels: 'Pinned, Confirmed, Blocked, WIP' # Какие метки бот игнорирует
-        stale-issue-message: 'В этом issue не было активности последние 90 дней. Оно помечается как Inactive. Оставьте комментарий, если это все еще актуально.'
+        stale-issue-message: 'В этом issue не было активности последние 180 дней. Оно помечается как Inactive. Оставьте комментарий, если это все еще актуально.'
         close-issue-message: 'Закрыто из-за длительной неактивности.'

@@ -27,6 +27,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.StatsBoard;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Server._Sunrise.Storyteller.Systems; // Sunrise-Edit
+using Content.Shared._Sunrise.Storyteller; // Sunrise-Edit
 
 namespace Content.Server.GameTicking
 {
@@ -377,7 +379,7 @@ namespace Content.Server.GameTicking
                 return;
 
             _startingRound = true;
-            // Sunrise added start - roundstart rule conditions depend on round duration from the real start point.
+            // Sunrise added start - условия roundstart rules зависят от длительности раунда от реальной точки старта.
             RoundStartTimeSpan = _gameTiming.CurTime;
             // Sunrise added end
 
@@ -447,7 +449,7 @@ namespace Content.Server.GameTicking
             }
 
             // Sunrise-Start
-            if (_cfg.GetCVar(SunriseCCVars.ExcludePresets) && CurrentPreset != null)
+            if (_cfg.GetCVar(SunriseCCVars.ExcludePresets) && CurrentPreset != null && !_Sunrise.Storyteller.StorytellerPresetHelper.ShouldBypassExclusion(CurrentPreset.ID))
                 AddExcludedPreset(CurrentPreset.ID);
             // Sunrise-End
 
@@ -459,7 +461,7 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
-            // Sunrise edit start - moved above StartGamePresetRules to avoid incorrect RoundDurationCondition during roundstart.
+            // Sunrise edit start - перенесено выше StartGamePresetRules, чтобы RoundDurationCondition не ошибался на roundstart.
             // RoundStartTimeSpan = _gameTiming.CurTime;
             // Sunrise edit end
             SendStatusToAll();
@@ -624,6 +626,9 @@ namespace Content.Server.GameTicking
             var roundStats = _statsBoardSystem.GetRoundStats();
             var statisticEntries = _statsBoardSystem.GetStatisticEntries();
             var sharedEntries = statisticEntries.Select(entry => _statsBoardSystem.ConvertToSharedStatisticEntry(entry)).ToArray();
+            var storytellerHistorySys = EntityManager.System<StorytellerHistorySystem>();
+            var storytellerName = storytellerHistorySys.GetActiveStorytellerName();
+            var storytellerHistory = storytellerHistorySys.GetHistory();
             // Sunrise-End
 
             var roundEndMessageEvent = new RoundEndMessageEvent(
@@ -635,10 +640,12 @@ namespace Content.Server.GameTicking
                 listOfPlayerInfoFinal,
                 roundStats, // Sunrise-Edit
                 sharedEntries, // Sunrise-Edit
+                storytellerName, // Sunrise-Edit
+                storytellerHistory, // Sunrise-Edit
                 sound
             );
             RaiseNetworkEvent(roundEndMessageEvent);
-            // Sunrise added start - scoreboard music is separate from round-restart sounds.
+            // Sunrise added start - музыка scoreboard отделена от round-restart sounds.
             RaiseRoundEndMusicEvent(roundDuration);
             // Sunrise added end
             RaiseLocalEvent(roundEndMessageEvent);
@@ -714,7 +721,7 @@ namespace Content.Server.GameTicking
             ResettingCleanup();
             IncrementRoundNumber();
 
-            // Sunrise added start - let systems send fresh lobby-only state after cleanup finishes.
+            // Sunrise added start - даем системам отправить свежий lobby-only state после завершения cleanup.
             RaiseRoundLobbyReadyEvent();
             // Sunrise added end
 
@@ -763,39 +770,85 @@ namespace Content.Server.GameTicking
         /// </summary>
         private void ResettingCleanup()
         {
+            _sawmill.Info("ResettingCleanup: Starting round cleanup sequence.");
+
+            // Sunrise-Edit - Clear game rules and previous history before flushing map/entities to avoid cleanup exceptions blocking it
+            _sawmill.Info("ResettingCleanup: Clearing game rules.");
+            ClearGameRules();
+            _sawmill.Info("ResettingCleanup: Clearing current preset.");
+            CurrentPreset = null;
+            _sawmill.Info("ResettingCleanup: Clearing all previous game rules list.");
+            _allPreviousGameRules.Clear();
+
             // Move everybody currently in the server to lobby.
+            _sawmill.Info("ResettingCleanup: Moving connected players to lobby.");
             foreach (var player in _playerManager.Sessions)
             {
                 PlayerJoinLobby(player);
             }
 
+            // Sunrise-Edit - Wrap cleanup operations in try-catch to prevent exceptions from blocking round restarts
             // Round restart cleanup event, so entity systems can reset.
             var ev = new RoundRestartCleanupEvent();
-            RaiseLocalEvent(ev);
+            _sawmill.Info("ResettingCleanup: Raising RoundRestartCleanupEvent (local).");
+            try
+            {
+                RaiseLocalEvent(ev);
+                _sawmill.Info("ResettingCleanup: Local RoundRestartCleanupEvent raised successfully.");
+            }
+            catch (Exception e)
+            {
+                _sawmill.Warning($"Error while raising RoundRestartCleanupEvent (local): {e}");
+            }
 
             // So clients' entity systems can clean up too...
-            RaiseNetworkEvent(ev);
+            _sawmill.Info("ResettingCleanup: Raising RoundRestartCleanupEvent (network).");
+            try
+            {
+                RaiseNetworkEvent(ev);
+                _sawmill.Info("ResettingCleanup: Network RoundRestartCleanupEvent raised successfully.");
+            }
+            catch (Exception e)
+            {
+                _sawmill.Warning($"Error while raising RoundRestartCleanupEvent (network): {e}");
+            }
 
-            EntityManager.FlushEntities();
+            _sawmill.Info("ResettingCleanup: Flushing entities.");
+            try
+            {
+                EntityManager.FlushEntities();
+                _sawmill.Info("ResettingCleanup: Entities flushed successfully.");
+            }
+            catch (Exception e)
+            {
+                _sawmill.Warning($"Error while flushing entities during round cleanup: {e}");
+            }
 
-            _mapManager.Restart();
+            _sawmill.Info("ResettingCleanup: Restarting map manager.");
+            try
+            {
+                _mapManager.Restart();
+                _sawmill.Info("ResettingCleanup: Map manager restarted successfully.");
+            }
+            catch (Exception e)
+            {
+                _sawmill.Warning($"Error while restarting map manager: {e}");
+            }
 
+            _sawmill.Info("ResettingCleanup: Restarting ban manager.");
             _banManager.Restart();
 
+            _sawmill.Info("ResettingCleanup: Clearing selected map.");
             _gameMapManager.ClearSelectedMap();
 
-            // Clear up any game rules.
-            ClearGameRules();
-            CurrentPreset = null;
-
-            _allPreviousGameRules.Clear();
-
+            _sawmill.Info("ResettingCleanup: Resetting player statuses.");
             DisallowLateJoin = false;
             _playerGameStatuses.Clear();
             foreach (var session in _playerManager.Sessions)
             {
                 _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
             }
+            _sawmill.Info("ResettingCleanup: Round cleanup sequence completed.");
         }
 
         public bool DelayStart(TimeSpan time)
