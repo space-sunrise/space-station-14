@@ -71,7 +71,6 @@
       mirage: true # Sunrise-Edit
       hadOutline: true
       examineThreshold: 0.9 # Sunrise-Edit
-    - type: SunriseHideDoAfter # Sunrise added - скрываем индикатор действия у скрытого объекта
     - type: StealthOnMove
       passiveVisibilityRate: -1 # very useful for going around the station concealed, if you start jitterstrafing you get seen
       movementVisibilityRate: 0.20

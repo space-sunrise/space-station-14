@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Shared.DoAfter;
-using Content.Shared._Sunrise.DoAfter.Components;
 using Content.Client.UserInterface.Systems;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -70,7 +69,6 @@ public sealed class DoAfterOverlay : Overlay
         var localEnt = _player.LocalSession?.AttachedEntity;
 
         var metaQuery = _entManager.GetEntityQuery<MetaDataComponent>();
-        var hideDoAfterQuery = _entManager.GetEntityQuery<SunriseHideDoAfterComponent>();
         var enumerator = _entManager.AllEntityQueryEnumerator<ActiveDoAfterComponent, DoAfterComponent, SpriteComponent, TransformComponent>();
         while (enumerator.MoveNext(out var uid, out _, out var comp, out var sprite, out var xform))
         {
@@ -105,15 +103,11 @@ public sealed class DoAfterOverlay : Overlay
 
             var offset = 0f;
 
-            // Sunrise edit start - скрываем индикатор исполнителя с Sunrise-маркером
-            var hideDoAfter = hideDoAfterQuery.HasComponent(uid);
-            // Sunrise edit end
-
             foreach (var doAfter in comp.DoAfters.Values)
             {
                 // Hide some DoAfters from other players for stealthy actions (ie: thieving gloves)
                 var alpha = 1f;
-                if (isInContainer || ShouldHideDoAfter(doAfter.Args.Hidden, hideDoAfter))
+                if (isInContainer || doAfter.Args.Hidden)
                 {
                     if (uid != localEnt)
                         continue;
@@ -170,10 +164,4 @@ public sealed class DoAfterOverlay : Overlay
         return _progressColor.GetProgressColor(progress).WithAlpha(alpha);
     }
 
-    // Sunrise added start - Выносим условия скрытия индикатора в именованный helper-метод
-    internal static bool ShouldHideDoAfter(bool hidden, bool hideDoAfter)
-    {
-        return hidden || hideDoAfter;
-    }
-    // Sunrise added end
 }
