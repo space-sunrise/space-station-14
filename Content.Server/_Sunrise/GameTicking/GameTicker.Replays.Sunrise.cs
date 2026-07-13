@@ -13,6 +13,8 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
+    private const int MaxUploadRetries = 5;
+
     private readonly Channel<(IWritableDirProvider Directory, ResPath Path)> _replayUploadChannel =
         Channel.CreateUnbounded<(IWritableDirProvider, ResPath)>();
     private Task? _replayUploadWorkerTask;
@@ -40,7 +42,36 @@ public sealed partial class GameTicker
                     if (cancellationToken.IsCancellationRequested)
                         break;
 
-                    await UploadReplayWithRetry(item.Directory, item.Path, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var uploadSuccess = await UploadReplayWithRetry(item.Directory, item.Path, cancellationToken)
+                            .ConfigureAwait(false);
+                        if (uploadSuccess)
+                        {
+                            try
+                            {
+                                item.Directory.Delete(item.Path);
+                                _sawmillReplays.Info($"Локальный файл реплея {item.Path.Filename} успешно удален.");
+                            }
+                            catch (Exception deleteEx)
+                            {
+                                _sawmillReplays.Error(
+                                    $"Ошибка при удалении локального файла реплея {item.Path}: {deleteEx}");
+                            }
+                        }
+                        else
+                        {
+                            _sawmillReplays.Error(
+                                $"Не удалось загрузить реплей {item.Path} в S3 после {MaxUploadRetries} попыток. Реплей пропущен.");
+                        }
+                    }
+                    catch (Exception itemEx)
+                    {
+                        if (itemEx is OperationCanceledException)
+                            throw;
+                        _sawmillReplays.Error(
+                            $"Необработанная ошибка воркера при обработке реплея {item.Path}: {itemEx}");
+                    }
                 }
             }
         }
@@ -54,7 +85,7 @@ public sealed partial class GameTicker
         }
     }
 
-    private async Task UploadReplayWithRetry(IWritableDirProvider directory, ResPath path, CancellationToken cancellationToken)
+    private async Task<bool> UploadReplayWithRetry(IWritableDirProvider directory, ResPath path, CancellationToken cancellationToken)
     {
         var endpoint = _cfg.GetCVar(SunriseCCVars.ReplayS3Endpoint);
         var bucket = _cfg.GetCVar(SunriseCCVars.ReplayS3Bucket);
@@ -92,18 +123,20 @@ public sealed partial class GameTicker
 
                 await fileTransferUtility.UploadAsync(uploadRequest, cancellationToken).ConfigureAwait(false);
                 _sawmillReplays.Info($"Реплей {fileName} успешно загружен в S3.");
-
-                directory.Delete(path);
-                _sawmillReplays.Info($"Локальный файл реплея {fileName} успешно удален.");
-                return;
+                return true;
             }
             catch (Exception e)
             {
-                if (cancellationToken.IsCancellationRequested)
-                    return;
+                if (e is OperationCanceledException)
+                    return false;
 
                 retryCount++;
                 _sawmillReplays.Error($"Ошибка при загрузке реплея {path} в S3 (попытка #{retryCount}): {e}");
+
+                if (retryCount >= MaxUploadRetries)
+                {
+                    return false;
+                }
 
                 try
                 {
@@ -111,12 +144,14 @@ public sealed partial class GameTicker
                 }
                 catch (TaskCanceledException)
                 {
-                    return;
+                    return false;
                 }
 
                 delay = TimeSpan.FromTicks(Math.Min(delay.Ticks * 2, TimeSpan.FromMinutes(5).Ticks));
             }
         }
+
+        return false;
     }
 
     private void UploadReplayToS3(IWritableDirProvider directory, ResPath path)
@@ -140,15 +175,24 @@ public sealed partial class GameTicker
 
     private void ShutdownReplaysSunrise()
     {
-        _replayUploadCancelToken.Cancel();
         _replayUploadChannel.Writer.Complete();
-        try
+
+        if (_replayUploadWorkerTask != null)
         {
-            _replayUploadWorkerTask?.GetAwaiter().GetResult();
-        }
-        catch (Exception e)
-        {
-            _sawmillReplays.Error($"Ошибка при остановке воркера загрузки реплеев: {e}");
+            try
+            {
+                _sawmillReplays.Info("Остановка воркера загрузки реплеев. Ожидание завершения текущих задач...");
+                if (!_replayUploadWorkerTask.Wait(TimeSpan.FromSeconds(30)))
+                {
+                    _sawmillReplays.Warning("Воркер загрузки реплеев не завершился в течение таймаута. Принудительная отмена...");
+                    _replayUploadCancelToken.Cancel();
+                    _replayUploadWorkerTask.Wait(TimeSpan.FromSeconds(5));
+                }
+            }
+            catch (Exception e)
+            {
+                _sawmillReplays.Error($"Ошибка при остановке воркера загрузки реплеев: {e}");
+            }
         }
     }
 
