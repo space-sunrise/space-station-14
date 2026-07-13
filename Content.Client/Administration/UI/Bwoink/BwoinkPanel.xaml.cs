@@ -21,6 +21,7 @@ namespace Content.Client.Administration.UI.Bwoink
     {
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
         [Dependency] private readonly IEntityManager _entManager = default!;
+        [Dependency] private readonly IResourceCache _resourceCache = default!;
 
         private readonly Action<string> _messageSender;
 
@@ -45,7 +46,6 @@ namespace Content.Client.Administration.UI.Bwoink
         public bool LoadDb { get; set; }
         private DateTime _cooldownEnd = DateTime.MinValue;
         private CancellationTokenSource? _cooldownCancellationTokenSource;
-        private EmojiPickerWindow? _emojiPicker;
         // Sunrise-End
 
         public BwoinkPanel(Action<string> messageSender)
@@ -79,38 +79,8 @@ namespace Content.Client.Administration.UI.Bwoink
 
             UpdateTypingIndicator();
 
-            // Sunrise-Edit start - load texture for EmojiButton and hook up events
-            var resourceCache = IoCManager.Resolve<IResourceCache>();
-            var textureRect = new TextureRect
-            {
-                Texture = resourceCache.GetTexture("/Textures/_Sunrise/Interface/Smile.png"),
-                SetWidth = 24,
-                SetHeight = 24,
-                HorizontalAlignment = HAlignment.Center,
-                VerticalAlignment = VAlignment.Center,
-                Stretch = TextureRect.StretchMode.KeepAspectCentered,
-            };
-            EmojiButton.AddChild(textureRect);
-
-            EmojiButton.OnPressed += _ =>
-            {
-                if (_emojiPicker != null && _emojiPicker.IsOpen)
-                {
-                    _emojiPicker.Close();
-                    return;
-                }
-
-                _emojiPicker = new EmojiPickerWindow();
-                _emojiPicker.OnEmojiSelected += emojiCode =>
-                {
-                    SenderLineEdit.Text += emojiCode;
-                    SenderLineEdit.CursorPosition = SenderLineEdit.Text.Length;
-                    SenderLineEdit.GrabKeyboardFocus();
-                };
-
-                _emojiPicker.OnClose += () => _emojiPicker = null;
-                _emojiPicker.OpenCentered();
-            };
+            // Sunrise-Edit start - инициализируем EmojiButton через хелпер
+            EmojiButtonHelper.SetupEmojiButton(EmojiButton, SenderLineEdit, _resourceCache);
             // Sunrise-Edit end
         }
 

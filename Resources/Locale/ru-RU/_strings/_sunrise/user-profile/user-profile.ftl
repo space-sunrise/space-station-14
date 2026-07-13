@@ -62,3 +62,10 @@ sponsor-personalization-color-gradientcyberpunk = Киберпанк
 sponsor-personalization-color-gradientcottoncandy = Сладкая вата
 sponsor-personalization-none-color = Без цвета
 sponsor-ooc-emoji-enable = Отображать мой спонсорский эмодзи в OOC
+# Sunrise-Edit start - Добавляем локализацию для персонализации эмодзи спонсора
+sponsor-personalization-selected-emoji = Выбранный смайлик:
+sponsor-personalization-choose-emoji = Выбрать
+sponsor-personalization-reset-emoji = Сбросить
+sponsor-personalization-none-emoji = [Нет]
+sponsor-personalization-preview-text = привет!
+# Sunrise-Edit end

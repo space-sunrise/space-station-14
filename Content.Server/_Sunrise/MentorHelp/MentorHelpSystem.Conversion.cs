@@ -7,6 +7,7 @@ using Content.Shared.Administration;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 using Content.Shared._Sunrise.SponsorSystem;
+using Content.Server._Sunrise.SponsorSystem;
 
 namespace Content.Server._Sunrise.MentorHelp;
 
@@ -142,7 +143,7 @@ public sealed partial class MentorHelpSystem
         {
             result = $"[color=purple]{adminPrefix}{escapedUsername}[/color]";
         }
-        else if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor))
+        else if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Adminhelp))
         {
             result = $"[color=red]{adminPrefix}{escapedUsername}[/color]";
         }
@@ -155,23 +156,9 @@ public sealed partial class MentorHelpSystem
             _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
             var sponsorTitle = oocTitle is null ? string.Empty : $"\\[{FormattedMessage.EscapeText(oocTitle)}\\]";
 
-            string? selectedColor = null;
-            if (_playerManager.TryGetSessionById(senderUserId, out var session))
+            if (ServerOocGradientHelper.TryFormatGradientName(senderUserId, username, _sponsorsManager, _playerManager, _netConfig, _playerCacheManager, out var gradFormatted))
             {
-                selectedColor = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocColor);
-            }
-            else if (_playerCacheManager.TryGetOocColor(senderUserId, out var cachedColor))
-            {
-                selectedColor = cachedColor;
-            }
-
-            if (OocGradientHelper.IsGradientId(selectedColor) &&
-                _sponsorsManager.TryGetAllowedOocGradients(senderUserId, out var allowedGradients) &&
-                selectedColor != null && allowedGradients.Contains(selectedColor))
-            {
-                var gradTitle = string.IsNullOrEmpty(oocTitle) ? "" : $"[bold]\\[{OocGradientHelper.ApplyGradientById(oocTitle, selectedColor)}\\][/bold] "; // Sunrise-Edit
-                var gradName = OocGradientHelper.ApplyGradientById(username, selectedColor); // Sunrise-Edit
-                result = $"{gradTitle}{gradName}";
+                result = gradFormatted;
             }
             else if (_sponsorsManager.TryGetOocColor(senderUserId, out var oocColor))
             {
@@ -184,16 +171,12 @@ public sealed partial class MentorHelpSystem
             }
         }
 
-        if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(senderUserId)) // Sunrise-Edit
+        if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(senderUserId))
         {
             string? emoji = null;
             if (_playerManager.TryGetSessionById(senderUserId, out var session))
             {
                 emoji = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocEmoji);
-            }
-            else
-            {
-                _sponsorsManager.TryGetOocEmoji(senderUserId, out emoji);
             }
 
             if (!string.IsNullOrWhiteSpace(emoji))

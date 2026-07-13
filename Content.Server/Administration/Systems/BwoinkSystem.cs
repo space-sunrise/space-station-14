@@ -28,6 +28,7 @@ using Robust.Shared.Utility;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 using Content.Shared.Database; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
 using Content.Shared._Sunrise.SponsorSystem;
+using Content.Server._Sunrise.SponsorSystem;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Shared._Sunrise.SunriseCCVars;
 
@@ -431,23 +432,9 @@ namespace Content.Server.Administration.Systems
                 _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
                 var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
 
-                string? selectedColor = null;
-                if (_playerManager.TryGetSessionById(senderUserId, out var session))
+                if (ServerOocGradientHelper.TryFormatGradientName(senderUserId, username, _sponsorsManager, _playerManager, _netConfig, _playerCacheManager, out var gradFormatted))
                 {
-                    selectedColor = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocColor);
-                }
-                else if (_playerCacheManager.TryGetOocColor(senderUserId, out var cachedColor))
-                {
-                    selectedColor = cachedColor;
-                }
-
-                if (OocGradientHelper.IsGradientId(selectedColor) &&
-                    _sponsorsManager.TryGetAllowedOocGradients(senderUserId, out var allowedGradients) &&
-                    selectedColor != null && allowedGradients.Contains(selectedColor))
-                {
-                    var gradTitle = string.IsNullOrEmpty(oocTitle) ? "" : $"[bold]\\[{OocGradientHelper.ApplyGradientById(oocTitle, selectedColor)}\\][/bold] "; // Sunrise-Edit
-                    var gradName = OocGradientHelper.ApplyGradientById(username, selectedColor);
-                    bwoinkText = $"{gradTitle}{gradName}";
+                    bwoinkText = gradFormatted;
                 }
                 else if (_sponsorsManager.TryGetOocColor(senderUserId, out var oocColor))
                 {
@@ -469,10 +456,6 @@ namespace Content.Server.Administration.Systems
                 if (_playerManager.TryGetSessionById(senderUserId, out var session))
                 {
                     emoji = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocEmoji);
-                }
-                else
-                {
-                    _sponsorsManager.TryGetOocEmoji(senderUserId, out emoji);
                 }
 
                 if (!string.IsNullOrWhiteSpace(emoji))
@@ -852,23 +835,9 @@ namespace Content.Server.Administration.Systems
                 _sponsorsManager.TryGetOocTitle(message.UserId, out var oocTitle);
                 var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
 
-                string? selectedColor = null;
-                if (_playerManager.TryGetSessionById(message.UserId, out var playerSession))
+                if (ServerOocGradientHelper.TryFormatGradientName(message.UserId, senderSession.Name, _sponsorsManager, _playerManager, _netConfig, _playerCacheManager, out var gradFormatted))
                 {
-                    selectedColor = _netConfig.GetClientCVar(playerSession.Channel, SunriseCCVars.SponsorOocColor);
-                }
-                else if (_playerCacheManager.TryGetOocColor(message.UserId, out var cachedColor))
-                {
-                    selectedColor = cachedColor;
-                }
-
-                if (OocGradientHelper.IsGradientId(selectedColor) &&
-                    _sponsorsManager.TryGetAllowedOocGradients(message.UserId, out var allowedGradients) &&
-                    selectedColor != null && allowedGradients.Contains(selectedColor))
-                {
-                    var gradTitle = string.IsNullOrEmpty(oocTitle) ? "" : $"[bold]\\[{OocGradientHelper.ApplyGradientById(oocTitle, selectedColor)}\\][/bold] ";
-                    var gradName = OocGradientHelper.ApplyGradientById(senderSession.Name, selectedColor);
-                    bwoinkText = $"{gradTitle}{gradName}";
+                    bwoinkText = gradFormatted;
                 }
                 else if (_sponsorsManager.TryGetOocColor(message.UserId, out var oocColor))
                 {
@@ -890,10 +859,6 @@ namespace Content.Server.Administration.Systems
                 if (_playerManager.TryGetSessionById(message.UserId, out var playerSession))
                 {
                     emoji = _netConfig.GetClientCVar(playerSession.Channel, SunriseCCVars.SponsorOocEmoji);
-                }
-                else
-                {
-                    _sponsorsManager.TryGetOocEmoji(message.UserId, out emoji);
                 }
 
                 if (!string.IsNullOrWhiteSpace(emoji))

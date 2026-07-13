@@ -19,9 +19,24 @@ public interface ISharedSponsorsManager
     public bool ClientAllowedRespawn();
     public bool ClientAllowedFlavor();
     public int ClientGetSizeFlavor();
+    /// <summary>
+    /// Разрешен ли лобби-TTS для текущего клиента.
+    /// </summary>
     public bool ClientAllowedLobbyTts();
+
+    /// <summary>
+    /// Возвращает список OOC-титулов, разрешенных текущему клиенту.
+    /// </summary>
     public List<string> GetAllowedOocTitles();
+
+    /// <summary>
+    /// Возвращает список OOC-цветов, разрешенных текущему клиенту.
+    /// </summary>
     public List<string> GetAllowedOocColors();
+
+    /// <summary>
+    /// Возвращает список OOC-градиентов, разрешенных текущему клиенту.
+    /// </summary>
     public List<string> GetAllowedOocGradients();
 
     public bool ClientIsSponsor();
@@ -99,15 +114,27 @@ public sealed class SponsorInfo
     [JsonPropertyName("allowedVoices")]
     public string[] AllowedVoices { get; set; } = [];
 
+    /// <summary>
+    /// Разрешен ли лобби-TTS для данного тира спонсора.
+    /// </summary>
     [JsonPropertyName("allowedLobbyTts")]
     public bool AllowedLobbyTts { get; set; } = false;
 
+    /// <summary>
+    /// Список разрешенных OOC-титулов для данного тира спонсора.
+    /// </summary>
     [JsonPropertyName("allowedOocTitles")]
     public string[] AllowedOocTitles { get; set; } = [];
 
+    /// <summary>
+    /// Список разрешенных OOC-цветов для данного тира спонсора.
+    /// </summary>
     [JsonPropertyName("allowedOocColors")]
     public string[] AllowedOocColors { get; set; } = [];
 
+    /// <summary>
+    /// Список разрешенных OOC-градиентов для данного тира спонсора.
+    /// </summary>
     [JsonPropertyName("allowedOocGradients")]
     public string[] AllowedOocGradients { get; set; } = [];
 

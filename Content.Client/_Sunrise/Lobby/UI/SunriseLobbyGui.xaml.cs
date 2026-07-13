@@ -177,13 +177,13 @@ public sealed partial class SunriseLobbyGui : UIScreen
 
     private void RestoreCollapsedStates()
     {
-        SetServersHubExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedServersHub));
-        SetContributorsExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedContributors));
-        SetChangelogExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedChangelog));
-        SetServerInfoExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedServerInfo));
-        SetCharacterInfoExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedCharacterInfo));
-        SetChatExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedChat));
-        SetMakuraIDExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedMakuraId));
+        SetServersHubExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedServersHub), false);
+        SetContributorsExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedContributors), false);
+        SetChangelogExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedChangelog), false);
+        SetServerInfoExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedServerInfo), false);
+        SetCharacterInfoExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedCharacterInfo), false);
+        SetChatExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedChat), false);
+        SetMakuraIDExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedMakuraId), false);
     }
 
     private void PlayClickSound()
@@ -221,62 +221,83 @@ public sealed partial class SunriseLobbyGui : UIScreen
         };
     }
 
-    private void SetServersHubExpanded(bool expanded)
+    private void SetServersHubExpanded(bool expanded, bool persist = true)
     {
         ServersHubContent.Visible = expanded;
         ServersHubHider.Texture = expanded ? IconExpanded : IconCollapsed;
-        _cfg.SetCVar(SunriseCCVars.LobbyCollapsedServersHub, !expanded);
-        _cfg.SaveToFile();
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedServersHub, !expanded);
+            _cfg.SaveToFile();
+        }
     }
 
-    private void SetContributorsExpanded(bool expanded)
+    private void SetContributorsExpanded(bool expanded, bool persist = true)
     {
         ContributorsContent.Visible = expanded;
         ContributorsHider.Texture = expanded ? IconExpanded : IconCollapsed;
-        _cfg.SetCVar(SunriseCCVars.LobbyCollapsedContributors, !expanded);
-        _cfg.SaveToFile();
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedContributors, !expanded);
+            _cfg.SaveToFile();
+        }
     }
 
-    private void SetChangelogExpanded(bool expanded)
+    private void SetChangelogExpanded(bool expanded, bool persist = true)
     {
         ChangelogContent.Visible = expanded;
         ChangelogHider.Texture = expanded ? IconExpanded : IconCollapsed;
-        _cfg.SetCVar(SunriseCCVars.LobbyCollapsedChangelog, !expanded);
-        _cfg.SaveToFile();
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedChangelog, !expanded);
+            _cfg.SaveToFile();
+        }
     }
 
-    private void SetServerInfoExpanded(bool expanded)
+    private void SetServerInfoExpanded(bool expanded, bool persist = true)
     {
         ServerInfoContent.Visible = expanded;
         ServerInfoHider.Texture = expanded ? IconExpanded : IconCollapsed;
-        _cfg.SetCVar(SunriseCCVars.LobbyCollapsedServerInfo, !expanded);
-        _cfg.SaveToFile();
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedServerInfo, !expanded);
+            _cfg.SaveToFile();
+        }
     }
 
-    private void SetCharacterInfoExpanded(bool expanded)
+    private void SetCharacterInfoExpanded(bool expanded, bool persist = true)
     {
         CharacterInfoContent.Visible = expanded;
         CharacterInfoHider.Texture = expanded ? IconExpanded : IconCollapsed;
-        _cfg.SetCVar(SunriseCCVars.LobbyCollapsedCharacterInfo, !expanded);
-        _cfg.SaveToFile();
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedCharacterInfo, !expanded);
+            _cfg.SaveToFile();
+        }
     }
 
-    private void SetChatExpanded(bool expanded)
+    private void SetChatExpanded(bool expanded, bool persist = true)
     {
         ChatContent.Visible = expanded;
         ChatHider.Texture = expanded ? IconExpanded : IconCollapsed;
-        _cfg.SetCVar(SunriseCCVars.LobbyCollapsedChat, !expanded);
-        _cfg.SaveToFile();
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedChat, !expanded);
+            _cfg.SaveToFile();
+        }
     }
 
-    private void SetMakuraIDExpanded(bool expanded)
+    private void SetMakuraIDExpanded(bool expanded, bool persist = true)
     {
         MakuraIDContent.Visible = expanded;
         MakuraIDHider.Texture = expanded ? IconExpanded : IconCollapsed;
-        _cfg.SetCVar(SunriseCCVars.LobbyCollapsedMakuraId, !expanded);
-        _cfg.SaveToFile();
+        if (persist)
+        {
+            _cfg.SetCVar(SunriseCCVars.LobbyCollapsedMakuraId, !expanded);
+            _cfg.SaveToFile();
+        }
 
-        if (expanded)
+        if (expanded && persist)
             _accountBindingsManager?.RequestBindingsRefresh();
     }
 

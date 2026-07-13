@@ -39,9 +39,15 @@ public sealed class EmojiTag : IMarkupTagHandler
             _spriteSystem ??= _entitySystemManager.GetEntitySystem<SpriteSystem>();
             var state = _spriteSystem.RsiStateLike(spriteSpec);
 
-            var size = 50; // Native size is 50x50 for pixel-perfect display
+            var size = 50;
             if (node.Attributes.TryGetValue("size", out var sizeParameter))
-                size = (int) (sizeParameter.LongValue ?? size);
+            {
+                var val = sizeParameter.LongValue;
+                if (val.HasValue && val.Value > 0 && val.Value <= int.MaxValue)
+                {
+                    size = (int) val.Value;
+                }
+            }
 
             if (state.IsAnimated)
             {

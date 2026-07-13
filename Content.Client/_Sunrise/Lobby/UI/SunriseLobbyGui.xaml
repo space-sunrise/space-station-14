@@ -60,7 +60,7 @@
                     <BoxContainer
                         HorizontalAlignment="Stretch"
                         HorizontalExpand="True"
-                        MinWidth="650"
+                        SizeFlagsStretchRatio="1.2"
                         Orientation="Vertical"
                         SeparationOverride="8"
                         VerticalExpand="True">
@@ -151,8 +151,6 @@
                             <PanelContainer
                                 HorizontalAlignment="Stretch"
                                 HorizontalExpand="True"
-                                MinWidth="520"
-                                SetWidth="520"
                                 Name="LeftBottomPanel"
                                 SizeFlagsStretchRatio="3"
                                 StyleClasses="AngleRect"

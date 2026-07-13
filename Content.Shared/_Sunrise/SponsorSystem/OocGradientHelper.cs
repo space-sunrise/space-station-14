@@ -61,6 +61,9 @@ public static class OocGradientHelper
         return list;
     }
 
+    /// <summary>
+    /// Пытается разрешить отображаемый OOC титул по его идентификатору прототипа SponsorOocTitlePrototype.
+    /// </summary>
     public static bool TryResolveTitle(string titleOrProtoId, [NotNullWhen(true)] out string? title)
     {
         title = null;
@@ -73,6 +76,9 @@ public static class OocGradientHelper
         return false;
     }
 
+    /// <summary>
+    /// Пытается разрешить OOC цвет по его идентификатору прототипа SponsorOocColorPrototype.
+    /// </summary>
     public static bool TryResolveColor(string colorOrProtoId, [NotNullWhen(true)] out Color? color)
     {
         color = null;
@@ -89,6 +95,9 @@ public static class OocGradientHelper
         return false;
     }
 
+    /// <summary>
+    /// Применяет градиент из массива цветов к переданному тексту, формируя разметку.
+    /// </summary>
     public static string ApplyGradient(string text, Color[] colors)
     {
         if (text.Length == 0)
@@ -113,6 +122,7 @@ public static class OocGradientHelper
             var startColor = colors[idx];
             var endColor = colors[idx + 1];
 
+            // Интерполируем RGB-компоненты между двумя соседними цветами градиента на основе шага t
             var r = startColor.R + (endColor.R - startColor.R) * t;
             var g = startColor.G + (endColor.G - startColor.G) * t;
             var b = startColor.B + (endColor.B - startColor.B) * t;
@@ -130,6 +140,9 @@ public static class OocGradientHelper
         return sb.ToString();
     }
 
+    /// <summary>
+    /// Применяет градиент к тексту по идентификатору прототипа градиента SponsorOocColorPrototype.
+    /// </summary>
     public static string ApplyGradientById(string text, string gradientId)
     {
         if (TryGetGradientColors(gradientId, out var colors))

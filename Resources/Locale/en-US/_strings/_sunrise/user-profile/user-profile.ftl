@@ -60,3 +60,10 @@ sponsor-personalization-color-gradientcyberpunk = Cyberpunk
 sponsor-personalization-color-gradientcottoncandy = Cotton Candy
 sponsor-personalization-none-color = No Color
 sponsor-ooc-emoji-enable = Display my sponsor emoji in OOC
+# Sunrise-Edit start - Add localization for sponsor emoji personalization
+sponsor-personalization-selected-emoji = Selected emoji:
+sponsor-personalization-choose-emoji = Choose
+sponsor-personalization-reset-emoji = Reset
+sponsor-personalization-none-emoji = [None]
+sponsor-personalization-preview-text = hello!
+# Sunrise-Edit end

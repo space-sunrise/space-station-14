@@ -113,37 +113,37 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("sponsor.min_playtime_hours", 0, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Включена ли озвучка сообщений лобби у спонсора.
+    /// Whether lobby TTS is enabled for sponsors.
     /// </summary>
     public static readonly CVarDef<bool> SponsorLobbyTtsEnabled =
         CVarDef.Create("sponsor.lobby_tts_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Включена ли озвучка сообщений других игроков в лобби.
+    /// Whether TTS is enabled for other players' messages in the lobby.
     /// </summary>
     public static readonly CVarDef<bool> TTSLobbyOthersEnabled =
         CVarDef.Create("tts.lobby_others_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Включена ли озвучка сообщений в админ-чате.
+    /// Whether TTS is enabled for messages in admin chat.
     /// </summary>
     public static readonly CVarDef<bool> TTSAdminChatEnabled =
         CVarDef.Create("tts.admin_chat_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Выбранный OOC тайтл спонсора.
+    /// Selected OOC title of the sponsor.
     /// </summary>
     public static readonly CVarDef<string> SponsorOocTitle =
         CVarDef.Create("sponsor.ooc_title", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 
     /// <summary>
-    /// Выбранный цвет ника спонсора в OOC.
+    /// Selected OOC nickname color of the sponsor.
     /// </summary>
     public static readonly CVarDef<string> SponsorOocColor =
         CVarDef.Create("sponsor.ooc_color", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 
     /// <summary>
-    /// Выбранный OOC эмодзи спонсора.
+    /// Selected OOC emoji of the sponsor.
     /// </summary>
     public static readonly CVarDef<string> SponsorOocEmoji =
         CVarDef.Create("sponsor.ooc_emoji", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
@@ -209,7 +209,7 @@ public sealed partial class SunriseCCVars : CVars
      */
 
     /// <summary>
-    /// Ссылка на Boosty для показа в лаунчере.
+    /// Ссылка на страницу поддержки Stellar Stories для показа в лаунчере.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "https://stellarstories.ru/projects", CVar.SERVER | CVar.REPLICATED);

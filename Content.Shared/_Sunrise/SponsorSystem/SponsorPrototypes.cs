@@ -18,9 +18,9 @@ public sealed partial class SponsorOocColorPrototype : IPrototype
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    [DataField("color")]
+    [DataField]
     public Color? Color { get; private set; }
 
-    [DataField("colors")]
+    [DataField]
     public List<Color> Colors { get; private set; } = new();
 }

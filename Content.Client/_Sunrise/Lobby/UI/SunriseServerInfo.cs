@@ -9,6 +9,8 @@ namespace Content.Client._Sunrise.Lobby.UI
 {
     public sealed class SunriseServerInfo : Control
     {
+        [Dependency] private readonly ILocalizationManager _loc = default!;
+
         private readonly BoxContainer _leftColumn;
         private readonly RichTextLabel _leftLabel;
         private readonly RichTextLabel _rightLabel;
@@ -17,6 +19,7 @@ namespace Content.Client._Sunrise.Lobby.UI
 
         public SunriseServerInfo()
         {
+            IoCManager.InjectDependencies(this);
             _leftColumn = new BoxContainer
             {
                 Orientation = BoxContainer.LayoutOrientation.Vertical,
@@ -85,16 +88,15 @@ namespace Content.Client._Sunrise.Lobby.UI
 
         public void SetInfoBlob(string markup)
         {
-            var loc = IoCManager.Resolve<ILocalizationManager>();
-            var roundKey = loc.GetString("ui-server-info-round");
-            var playersKey = loc.GetString("ui-server-info-players");
-            var mapKey = loc.GetString("ui-server-info-map");
-            var modeKey = loc.GetString("ui-server-info-mode");
+            var roundKey = _loc.GetString("ui-server-info-round");
+            var playersKey = _loc.GetString("ui-server-info-players");
+            var mapKey = _loc.GetString("ui-server-info-map");
+            var modeKey = _loc.GetString("ui-server-info-mode");
 
-            var roundShort = loc.GetString("ui-server-info-round-short");
-            var playersShort = loc.GetString("ui-server-info-players-short");
-            var mapShort = loc.GetString("ui-server-info-map-short");
-            var modeShort = loc.GetString("ui-server-info-mode-short");
+            var roundShort = _loc.GetString("ui-server-info-round-short");
+            var playersShort = _loc.GetString("ui-server-info-players-short");
+            var mapShort = _loc.GetString("ui-server-info-map-short");
+            var modeShort = _loc.GetString("ui-server-info-mode-short");
 
             var lines = markup.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             var leftText = new StringBuilder();

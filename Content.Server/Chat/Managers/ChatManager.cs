@@ -17,6 +17,7 @@ using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Server.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Server.GameTicking;
@@ -24,6 +25,7 @@ using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.TTS;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.SponsorSystem;
+using Content.Server._Sunrise.SponsorSystem;
 
 namespace Content.Server.Chat.Managers;
 
@@ -53,6 +55,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
     // Sunrise added start - зависимость для озвучки лобби и админ-чата
     [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     // Sunrise added end
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Edit - логика OOC-оформления для спонсоров
 
@@ -313,46 +316,36 @@ internal sealed partial class ChatManager : IChatManager
         // Sunrise added start - логика OOC-оформления для спонсоров
         string? sponsorTitle = null;
         Color? sponsorColor = null;
-        string? sponsorEmoji = null;
 
         if (_sponsorsManager != null)
         {
             _sponsorsManager.TryGetOocTitle(player.UserId, out sponsorTitle);
             _sponsorsManager.TryGetOocColor(player.UserId, out sponsorColor);
-            _sponsorsManager.TryGetOocEmoji(player.UserId, out sponsorEmoji);
         }
 
-        var namePart = player.Name;
-        var titlePart = sponsorTitle;
-
-        var selectedColorCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocColor);
-        if (OocGradientHelper.IsGradientId(selectedColorCVar))
+        string sponsorDisplayName;
+        if (ServerOocGradientHelper.TryFormatGradientName(player.UserId, player.Name, _sponsorsManager, _playerManager, _netConfigManager, _playerCacheManager, out var gradFormatted))
         {
-            var isAllowed = false;
-            if (_sponsorsManager != null && _sponsorsManager.TryGetAllowedOocGradients(player.UserId, out var allowedGradients))
-            {
-                isAllowed = allowedGradients.Contains(selectedColorCVar);
-            }
-
-            if (isAllowed)
-            {
-                namePart = OocGradientHelper.ApplyGradientById(namePart, selectedColorCVar);
-                if (!string.IsNullOrWhiteSpace(titlePart))
-                    titlePart = OocGradientHelper.ApplyGradientById(titlePart, selectedColorCVar);
-                sponsorColor = null;
-            }
+            sponsorDisplayName = gradFormatted;
+            sponsorColor = null;
         }
-
-        var sponsorDisplayName = string.IsNullOrWhiteSpace(titlePart)
-            ? namePart
-            : $"\\[{titlePart}\\] {namePart}";
+        else
+        {
+            var namePart = player.Name;
+            var titlePart = sponsorTitle;
+            sponsorDisplayName = string.IsNullOrWhiteSpace(titlePart)
+                ? namePart
+                : $"\\[{titlePart}\\] {namePart}";
+        }
 
         var hasEmojiRights = _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(player.UserId);
         var selectedEmojiCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocEmoji);
         if (hasEmojiRights && !string.IsNullOrWhiteSpace(selectedEmojiCVar))
         {
+            // Sunrise-Edit start - применяем выбранный эмодзи напрямую на основе общих прав спонсора
             var emojiId = selectedEmojiCVar.Trim(':');
             sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=50] {sponsorDisplayName}";
+            // Sunrise-Edit end
         }
 
         if (sponsorColor != null)

@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.UserInterface.CustomControls;
 using Content.Client.Resources;
 using Content.Shared.Chat;
 using Content.Shared.Input;
@@ -68,16 +69,7 @@ public class ChatInputBox : PanelContainer
             };
 
             var resourceCache = IoCManager.Resolve<IResourceCache>();
-            var textureRect = new TextureRect
-            {
-                Texture = resourceCache.GetTexture("/Textures/_Sunrise/Interface/Smile.png"),
-                SetWidth = 24,
-                SetHeight = 24,
-                HorizontalAlignment = HAlignment.Center,
-                VerticalAlignment = VAlignment.Center,
-                Stretch = TextureRect.StretchMode.KeepAspectCentered,
-            };
-            EmojiButton.AddChild(textureRect);
+            EmojiButtonHelper.SetupEmojiButton(EmojiButton, Input, resourceCache);
 
             Container.AddChild(EmojiButton);
             EmojiButton.SetPositionInParent(1);

@@ -64,7 +64,6 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         private MentorHelpNewTicketDialog? _newTicketDialog;
-        private EmojiPickerWindow? _emojiPicker;
         private EmojiSystem? _emoji;
         private int? _pendingOpenTicketId;
         private List<string> PeopleTyping { get; set; } = new();
@@ -108,40 +107,9 @@ namespace Content.Client._Sunrise.MentorHelp
             TeleportButton.OnPressed += _ => TeleportToTicket();
             _adminManager.AdminStatusUpdated += UpdateTicketActionButtons;
 
-            var resourceCache = IoCManager.Resolve<IResourceCache>();
-            var textureRect = new TextureRect
-            {
-                Texture = resourceCache.GetTexture("/Textures/_Sunrise/Interface/Smile.png"),
-                SetWidth = 24,
-                SetHeight = 24,
-                HorizontalAlignment = HAlignment.Center,
-                VerticalAlignment = VAlignment.Center,
-                Stretch = TextureRect.StretchMode.KeepAspectCentered,
-            };
-            EmojiButton.AddChild(textureRect);
-
-            // Обрабатываем Enter в поле ответа.
-            ReplyInput.OnTextEntered += _ => SendReply();
-            ReplyInput.OnTextChanged += Input_OnTextChanged;
-            EmojiButton.OnPressed += _ =>
-            {
-                if (_emojiPicker != null && _emojiPicker.IsOpen)
-                {
-                    _emojiPicker.Close();
-                    return;
-                }
-
-                _emojiPicker = new EmojiPickerWindow();
-                _emojiPicker.OnEmojiSelected += emojiCode =>
-                {
-                    ReplyInput.Text += emojiCode;
-                    ReplyInput.CursorPosition = ReplyInput.Text.Length;
-                    ReplyInput.GrabKeyboardFocus();
-                };
-
-                _emojiPicker.OnClose += () => _emojiPicker = null;
-                _emojiPicker.OpenCentered();
-            };
+            // Sunrise-Edit start - инициализируем EmojiButton через хелпер
+            EmojiButtonHelper.SetupEmojiButton(EmojiButton, ReplyInput, IoCManager.Resolve<IResourceCache>());
+            // Sunrise-Edit end
 
             UpdateTypingIndicator();
 
@@ -845,7 +813,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 return;
 
             _isDisposed = true;
-            _emojiPicker?.Close();
+            EmojiButtonHelper.ClosePicker();
 
             PlaySound.OnToggled -= OnPlaySoundToggled;
             AutoOpenTickets.OnToggled -= OnAutoOpenTicketsToggled;

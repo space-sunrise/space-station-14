@@ -8,7 +8,7 @@
     <controls:SunriseOutputPanel Name="TextOutput" VerticalExpand="true" Access="Public" /> <!-- Sunrise-Edit -->
     <RichTextLabel Name="TypingIndicator" Access="Public" />
     <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalExpand="True"> <!-- Sunrise-Edit -->
-        <Button Name="EmojiButton" Access="Public" SetWidth="30" ToolTip="{Loc 'messenger-emoji-button-tooltip'}" />
+        <TextureButton Name="EmojiButton" Access="Public" SetWidth="30" ToolTip="{Loc 'messenger-emoji-button-tooltip'}" />
         <HistoryLineEdit Name="SenderLineEdit" HorizontalExpand="True" />
     </BoxContainer>
     <RichTextLabel Name="RelayedToDiscordLabel" Access="Public" Visible="False" />
