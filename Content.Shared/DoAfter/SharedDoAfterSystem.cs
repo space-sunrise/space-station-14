@@ -213,7 +213,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         }
 
         // Sunrise added start - активный стелс ксеноборга не должен выдавать себя интерактом
-        if (HasComp<XenoborgComponent>(args.User) && HasComp<StealthComponent>(args.User))
+        if (HasComp<XenoborgComponent>(args.User) &&
+            TryComp(args.User, out StealthComponent? stealth) && stealth.Enabled)
             args.Hidden = true;
         // Sunrise added end
 

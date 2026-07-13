@@ -1,3 +1,4 @@
+using Content.Server.Stealth;
 using Content.Shared._Sunrise.DoAfter.Components;
 using Content.Shared.Stealth.Components;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ namespace Content.IntegrationTests.Tests.DoAfter;
 public sealed class SunriseDoAfterVisibilityTest
 {
     [Test]
-    public async Task StealthComponentAddsAndRemovesDoAfterMarker()
+    public async Task StealthStateControlsDoAfterMarker()
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
@@ -21,6 +22,20 @@ public sealed class SunriseDoAfterVisibilityTest
             entity = server.EntMan.SpawnEntity(null, MapCoordinates.Nullspace);
             server.EntMan.EnsureComponent<StealthComponent>(entity);
         });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(server.EntMan.HasComponent<SunriseHideDoAfterComponent>(entity), Is.True);
+        });
+
+        await server.WaitPost(() => server.System<StealthSystem>().SetEnabled(entity, false));
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(server.EntMan.HasComponent<SunriseHideDoAfterComponent>(entity), Is.False);
+        });
+
+        await server.WaitPost(() => server.System<StealthSystem>().SetEnabled(entity, true));
 
         await server.WaitAssertion(() =>
         {

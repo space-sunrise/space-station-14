@@ -1,6 +1,7 @@
 using Content.Shared.Examine;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared._Sunrise.DoAfter.Events;
 using Content.Shared.Stealth.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
@@ -59,20 +60,15 @@ public abstract class SharedStealthSystem : EntitySystem
 
         component.Enabled = value;
         Dirty(uid, component);
+
+        // Sunrise added start - Уведомляем системы о смене фактического состояния стелса
+        RaiseLocalEvent(uid, new StealthEnabledChangedEvent(value));
+        // Sunrise added end
     }
 
     private void OnMobStateChanged(EntityUid uid, StealthComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState == MobState.Dead)
-        {
-            component.Enabled = component.EnabledOnDeath;
-        }
-        else
-        {
-            component.Enabled = true;
-        }
-
-        Dirty(uid, component);
+        SetEnabled(uid, args.NewMobState != MobState.Dead || component.EnabledOnDeath, component);
     }
 
     private void OnPaused(EntityUid uid, StealthComponent component, ref EntityPausedEvent args)
