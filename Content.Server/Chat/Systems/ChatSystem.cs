@@ -504,7 +504,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
         else
         {
-            var nameEv = new TransformSpeakerNameEvent(source, Name(source));
+            // Sunrise edit start - учитываем скрытую личность при речи
+            var nameEv = new TransformSpeakerNameEvent(source, Identity.Name(source, EntityManager));
+            // Sunrise edit end
             RaiseLocalEvent(source, nameEv);
             name = nameEv.VoiceName;
             // Check for a speech verb override
@@ -579,7 +581,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
         else
         {
-            var nameEv = new TransformSpeakerNameEvent(source, Name(source));
+            // Sunrise edit start - учитываем скрытую личность при шепоте
+            var nameEv = new TransformSpeakerNameEvent(source, Identity.Name(source, EntityManager));
+            // Sunrise edit end
             RaiseLocalEvent(source, nameEv);
             name = nameEv.VoiceName;
         }

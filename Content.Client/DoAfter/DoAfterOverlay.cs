@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.DoAfter;
+using Content.Shared._Sunrise.DoAfter.Components;
 using Content.Client.UserInterface.Systems;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -8,7 +9,6 @@ using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.Containers;
 
 namespace Content.Client.DoAfter;
 
@@ -22,7 +22,6 @@ public sealed class DoAfterOverlay : Overlay
     private readonly SharedTransformSystem _transform;
     private readonly MetaDataSystem _meta;
     private readonly ProgressColorSystem _progressColor;
-    private readonly SharedContainerSystem _container;
     private readonly SpriteSystem _sprite;
 
     private readonly Texture _barTexture;
@@ -46,7 +45,6 @@ public sealed class DoAfterOverlay : Overlay
         _player = player;
         _transform = _entManager.EntitySysManager.GetEntitySystem<SharedTransformSystem>();
         _meta = _entManager.EntitySysManager.GetEntitySystem<MetaDataSystem>();
-        _container = _entManager.EntitySysManager.GetEntitySystem<SharedContainerSystem>();
         _progressColor = _entManager.System<ProgressColorSystem>();
         _sprite = _entManager.System<SpriteSystem>();
         var sprite = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/progress_bar.rsi"), "icon");
@@ -72,6 +70,7 @@ public sealed class DoAfterOverlay : Overlay
         var localEnt = _player.LocalSession?.AttachedEntity;
 
         var metaQuery = _entManager.GetEntityQuery<MetaDataComponent>();
+        var hideDoAfterQuery = _entManager.GetEntityQuery<SunriseHideDoAfterComponent>();
         var enumerator = _entManager.AllEntityQueryEnumerator<ActiveDoAfterComponent, DoAfterComponent, SpriteComponent, TransformComponent>();
         while (enumerator.MoveNext(out var uid, out _, out var comp, out var sprite, out var xform))
         {
@@ -105,13 +104,15 @@ public sealed class DoAfterOverlay : Overlay
 
             var offset = 0f;
 
-            var isInContainer = _container.IsEntityOrParentInContainer(uid, meta, xform);
+            // Sunrise edit start - скрываем индикатор исполнителя с Sunrise-маркером
+            var hideDoAfter = hideDoAfterQuery.HasComponent(uid);
+            // Sunrise edit end
 
             foreach (var doAfter in comp.DoAfters.Values)
             {
                 // Hide some DoAfters from other players for stealthy actions (ie: thieving gloves)
                 var alpha = 1f;
-                if (doAfter.Args.Hidden || isInContainer)
+                if (ShouldHideDoAfter(doAfter.Args.Hidden, hideDoAfter))
                 {
                     if (uid != localEnt)
                         continue;
@@ -166,5 +167,10 @@ public sealed class DoAfterOverlay : Overlay
     public Color GetProgressColor(float progress, float alpha = 1f)
     {
         return _progressColor.GetProgressColor(progress).WithAlpha(alpha);
+    }
+
+    internal static bool ShouldHideDoAfter(bool hidden, bool hideDoAfter)
+    {
+        return hidden || hideDoAfter;
     }
 }
