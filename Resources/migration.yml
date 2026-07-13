@@ -1075,3 +1075,9 @@ JugDyloveneSunrise: JugDylovene
 JugSalineSunrise: JugSaline
 JugDexalinSunrise: null
 # region Sunrise-End
+
+# 2026-07-13
+WallSolid: SunriseWallSolid
+WallReinforced: SunriseWallReinforced
+WallMeat: SunriseWallMeat
+WallWeb: SunriseWallWeb
