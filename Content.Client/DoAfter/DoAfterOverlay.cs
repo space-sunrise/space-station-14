@@ -96,6 +96,7 @@ public sealed class DoAfterOverlay : Overlay
             var time = meta.EntityPaused
                 ? curTime - _meta.GetPauseTime(uid, meta)
                 : curTime;
+            var isInContainer = (meta.Flags & MetaDataFlags.InContainer) != 0;
 
             var worldMatrix = Matrix3Helpers.CreateTranslation(worldPosition);
             var scaledWorld = Matrix3x2.Multiply(scaleMatrix, worldMatrix);
@@ -112,7 +113,7 @@ public sealed class DoAfterOverlay : Overlay
             {
                 // Hide some DoAfters from other players for stealthy actions (ie: thieving gloves)
                 var alpha = 1f;
-                if (ShouldHideDoAfter(doAfter.Args.Hidden, IsInContainer(uid), hideDoAfter))
+                if (ShouldHideDoAfter(doAfter.Args.Hidden, isInContainer, hideDoAfter))
                 {
                     if (uid != localEnt)
                         continue;
