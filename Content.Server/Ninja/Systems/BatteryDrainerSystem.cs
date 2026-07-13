@@ -54,7 +54,9 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
             MovementThreshold = 0.5f,
             BreakOnMove = true,
             CancelDuplicate = false,
-            AttemptFrequency = AttemptFrequency.StartAndEnd
+            AttemptFrequency = AttemptFrequency.StartAndEnd,
+            // Sunrise-Edit - скрываем интеракт ниндзи от окружающих
+            Hidden = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);

@@ -32,7 +32,9 @@ public abstract class SharedCriminalRecordsHackerSystem : EntitySystem
         {
             BreakOnDamage = true,
             BreakOnMove = true,
-            MovementThreshold = 0.5f
+            MovementThreshold = 0.5f,
+            // Sunrise-Edit - скрываем интеракт ниндзи от окружающих
+            Hidden = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);

@@ -47,7 +47,9 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
             BreakOnDamage = true,
             BreakOnMove = true,
             MovementThreshold = 0.5f,
-            CancelDuplicate = false
+            CancelDuplicate = false,
+            // Sunrise-Edit - скрываем интеракт ниндзи от окружающих
+            Hidden = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);

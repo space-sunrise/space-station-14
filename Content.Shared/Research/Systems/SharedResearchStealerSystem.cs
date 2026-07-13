@@ -48,6 +48,8 @@ public abstract class SharedResearchStealerSystem : EntitySystem
             BreakOnDamage = true,
             BreakOnMove = true,
             MovementThreshold = 0.5f,
+            // Sunrise-Edit - скрываем интеракт ниндзи от окружающих
+            Hidden = true,
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
