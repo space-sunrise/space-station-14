@@ -15,8 +15,8 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.ss14.org/" # Sunrise-Edit
-FORK_ID = "sunrise_station" # Sunrise-Edit
+ROBUST_CDN_URL = "https://cdn.finland.ss14.org//" # Sunrise-Edit
+FORK_ID = "sunrise_station" # Sunrise-Edit - это fallback, настоящее значение передается как аргумент
 
 def main():
     parser = argparse.ArgumentParser()
