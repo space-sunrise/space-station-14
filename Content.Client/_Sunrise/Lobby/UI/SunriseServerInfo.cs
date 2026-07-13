@@ -5,8 +5,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Sunrise.Lobby.UI
-{
+namespace Content.Client._Sunrise.Lobby.UI;
     public sealed class SunriseServerInfo : Control
     {
         [Dependency] private readonly ILocalizationManager _loc = default!;
