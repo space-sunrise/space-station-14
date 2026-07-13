@@ -24,8 +24,10 @@
     heldPrefix: disable4
   - type: Clothing
     quickEquip: false
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi # Sunrise-Edit
     slots:
     - Belt
+    - suitStorage # Sunrise-Edit
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
