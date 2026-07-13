@@ -450,3 +450,12 @@
     - id: ChemistryBottleLead
       orGroup: RapierToxin
 
+- type: entity
+  parent: CyberEyeThermalBox
+  id: ChameleonSilentShoesBox
+  name: chameleon silent shoes kit
+  description: Contains a pair of stealth chameleon shoes. Packaging disintegrates when opened, leaving no evidence behind.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingShoesChameleonSilent

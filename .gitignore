@@ -312,3 +312,7 @@ Resources/MapImages
 
 # C-sharp cache files
 *.lscache
+
+# Sunrise added start - не отслеживаем локально сгенерированные настройки шардов тестов
+.integration-filters/
+# Sunrise added end
