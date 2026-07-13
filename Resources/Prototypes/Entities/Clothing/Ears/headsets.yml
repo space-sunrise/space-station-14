@@ -288,6 +288,10 @@
   description: This is used by a roaming group of freelancers.
   components:
     # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
+    - type: ContainerContainer
+      containers:
+        key_slots: !type:Container
+        cell_slot: !type:ContainerSlot
     - type: ItemSlots
       slots:
         cell_slot:
@@ -327,6 +331,10 @@
   description: Who could refuse to wear this stylish black and green headset?
   components:
   # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+      cell_slot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       cell_slot:

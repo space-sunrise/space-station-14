@@ -128,6 +128,10 @@
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
   # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+      cell_slot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       cell_slot:
@@ -154,6 +158,10 @@
   name: freelancer's over-ear headset
   components:
     # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
+    - type: ContainerContainer
+      containers:
+        key_slots: !type:Container
+        cell_slot: !type:ContainerSlot
     - type: ItemSlots
       slots:
         cell_slot:
