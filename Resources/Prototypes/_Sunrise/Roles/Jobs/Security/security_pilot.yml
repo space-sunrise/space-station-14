@@ -27,7 +27,7 @@
   id: SecurityPilotGear
   equipment:
     mask: ClothingMaskGasPilot
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorGray
     head: ClothingHeadHelmetPilot
     outerClothing: ClothingOuterCoatPilot
@@ -45,4 +45,4 @@
   equipment:
     gloves: ClothingHandsGlovesColorGray
     mask: ClothingMaskGasPilot
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity
