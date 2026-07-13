@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "discord: yuzuki.mori special for SUNRISE",
+    "size": {
+        "x": 64,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "base"
+        },
+        {
+            "name": "icon"
+        }
+    ]
+}

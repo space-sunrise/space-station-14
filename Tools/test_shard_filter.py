@@ -3,12 +3,12 @@
 """
 Partitions test classes across shards for parallel CI execution.
 
-Mode 1 - Generate all shard filters to files:
+Mode 1 - Generate all shard runsettings files:
     dotnet test --list-tests ... | python3 test_shard_filter.py generate <total-shards> <output-dir>
-    Writes <output-dir>/shard_0.filter .. shard_N.filter
+    Writes <output-dir>/shard_0.runsettings .. shard_N.runsettings
 
-Mode 2 - Read a pre-generated filter file:
-    python3 test_shard_filter.py read <filter-file>
+Mode 2 - Read a filter from a pre-generated runsettings file:
+    python3 test_shard_filter.py read <runsettings-file>
     Prints the filter to stdout (empty output if file is empty/missing)
 
 Exit codes:
@@ -18,6 +18,8 @@ Exit codes:
 
 import os
 import sys
+import xml.etree.ElementTree as ET
+from xml.sax.saxutils import escape
 
 
 # Weight multipliers for tests that are lighter than their test count suggests.
@@ -45,7 +47,7 @@ WEIGHT_OVERRIDES = {
     "AllComponentsOneToOneDeleteTest": 0.5,
     "AllItemsHaveSpritesTest": 0.25,
     "AllMapsTested": 0.5,
-    "AllSalvageMapsLoadableTest": 0.25,
+    "AllSalvageMapsLoadableTest": 5.0,
     "AndTest": 0.5,
     "ApcChargingTest": 0.5,
     "ApcNetTest": 1.0,
@@ -105,7 +107,7 @@ WEIGHT_OVERRIDES = {
     "HeadsetKeys": 0.25,
     "HeatScaleCVar_Replicates_Agree": 0.25,
     "HumanMoveOverTest": 0.125,
-    "HungerThirstIncreaseDecreaseTest": 0.25,
+    "HungerThirstIncreaseDecreaseTest": 3.0,
     "IgnoredComponentsExistInTheCorrectPlaces": 0.5,
     "InsertAndDispenseItemTest": 0.125,
     "InsertDumpableInsertableItemTest": 0.5,
@@ -128,9 +130,10 @@ WEIGHT_OVERRIDES = {
     "MultiTile_Spawn_CacheUpdatesOnAtmosTick": 0.125,
     "NoCargoBountyArbitrageTest": 0.25,
     "NoCargoOrderArbitrage": 0.25,
-    "NoMaterialArbitrage": 0.25,
+    "NoMaterialArbitrage": 15.0,
     "NoLimitInstrumentStillUsesHardNetworkGuard": 2.0,
-    "NoSavedPostMapInitTest": 0.25,
+    "NonGameMapsLoadableTest": 80.0,
+    "NoSavedPostMapInitTest": 30.0,
     "NoSliceableBountyArbitrageTest": 0.5,
     "NullOutTileAtmosphereGasMixture": 0.5,
     "PardonTest": 0.25,
@@ -156,14 +159,15 @@ WEIGHT_OVERRIDES = {
     "RestartTest": 0.5,
     "RestockTest": 0.5,
     "SelectionTest": 0.5,
-    "ServerPrototypeSaveLoadSaveTest": 0.5,
+    "ServerPrototypeSaveLoadSaveTest": 30.0,
     "SetWorkingState_AlreadyInState_NoChange": 0.5,
     "SetWorkingState_IdleToWorking_UpdatesLoad": 0.25,
+    "ShuttlesLoadableTest": 70.0,
     "SpaceNoPuddleTest": 0.25,
-    "SpawnAndDeleteAllEntitiesOnDifferentMaps": 4.0,
-    "SpawnAndDeleteAllEntitiesInTheSameSpot": 2.0,
-    "SpawnAndDeleteEntityCountTest": 2.0,
-    "SpawnAndDirtyAllEntities": 2.0,
+    "SpawnAndDeleteAllEntitiesOnDifferentMaps": 100.0,
+    "SpawnAndDeleteAllEntitiesInTheSameSpot": 60.0,
+    "SpawnAndDeleteEntityCountTest": 115.0,
+    "SpawnAndDirtyAllEntities": 100.0,
     "SpawnItemInSlotTest": 0.25,
     "Spawn_CacheUpdatesOnAtmosTick": 0.125,
     "Spawn_ReconstructedUpdatesImmediately": 0.5,
@@ -176,8 +180,11 @@ WEIGHT_OVERRIDES = {
     "TestAb": 0.5,
     "TestAddRemoveHasRoles": 2.0,
     "TestAlarmThreshold": 0.5,
+    "TestAllClientPrototypesAreSerializable": 35.0,
     "TestAllConcurrent": 0.25,
     "TestAllRestocksAreAvailableToBuy": 0.5,
+    "TestAllServerPrototypesAreSerializable": 35.0,
+    "TestApcLoad": 10.0,
     "TestBatteriesProportional": 0.5,
     "TestBatteryRamp": 0.25,
     "TestBladeServerBoardHasValidBladeServer": 0.25,
@@ -255,6 +262,7 @@ WEIGHT_OVERRIDES = {
     "ValidateJobPrototypes": 0.125,
     "ValidateMobThresholds": 0.125,
     "ValidatePrototypeContents": 0.5,
+    "ValidateRolePrototypes": 65.0,
     "WeightlessStatusTest": 0.25,
     "WindowOnGrille": 0.25,
     "WirelessNetworkDeviceSendAndReceive": 0.25,
@@ -267,11 +275,15 @@ WEIGHT_OVERRIDES = {
 
 def parse_tests(lines):
     """Parse test names from `dotnet test --list-tests` output."""
+    list_headers = {
+        "The following Tests are available:",
+        "Доступны следующие тесты:",
+    }
     tests = []
     in_list = False
     for line in lines:
         stripped = line.strip()
-        if "The following Tests are available:" in stripped:
+        if stripped in list_headers:
             in_list = True
             continue
         if not in_list:
@@ -284,35 +296,59 @@ def parse_tests(lines):
     return tests
 
 
-def extract_classes(tests):
-    """Extract unique test method groups with test counts from display names.
-
-    --list-tests outputs display names:
-      - Windows:  MethodName  or  MethodName(params)
-      - Linux:    FixtureName.MethodName  or  FixtureName.MethodName(params)
-
-    We always extract the METHOD name as the group key so behaviour is
-    consistent across platforms and the Name~ filter works everywhere.
-    """
+def extract_groups(tests):
+    """Extract unique fixture+method groups with their test case counts."""
     counts = {}
     for test in tests:
         name = test.split("(")[0].strip()
         dot = name.rfind(".")
+        fixture = name[:dot] if dot > 0 else ""
         method = name[dot + 1:] if dot > 0 else name
-        counts[method] = counts.get(method, 0) + 1
+        group = (fixture, method)
+        counts[group] = counts.get(group, 0) + 1
     return counts
 
 
-def build_filter(methods):
-    """Build a NUnit.Where expression from method names.
+def quote_tsl(value):
+    """Quote a value for NUnit Test Selection Language."""
+    return value.replace("\\", "\\\\").replace("'", "\\'")
 
-    Uses NUnit Test Selection Language with exact method name matching.
-    This avoids substring issues (e.g. 'Test' matching 'TestConnect')
-    that plague VSTest Name~ filters.
+
+def build_filter(groups):
+    """Build an exact NUnit.Where expression from fixture+method groups.
+
+    A method-only fallback keeps the script usable with older discovery output,
+    while full NUnit display names let CI split identically named methods from
+    different fixtures.
     """
-    if not methods:
+    if not groups:
         return ""
-    return "||".join(f"method=='{m}'" for m in sorted(methods))
+
+    expressions = []
+    for fixture, method in sorted(groups):
+        method_expr = f"method=='{quote_tsl(method)}'"
+        if fixture:
+            expressions.append(f"(class=='{quote_tsl(fixture)}'&&{method_expr})")
+        else:
+            expressions.append(method_expr)
+
+    return "||".join(expressions)
+
+
+def build_runsettings(filter_expr):
+    """Build a VSTest runsettings file containing NUnit adapter settings."""
+    if not filter_expr:
+        filter_expr = "method=='__no_tests_assigned__'"
+
+    return f"""<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <NUnit>
+    <DisplayName>FullName</DisplayName>
+    <MapWarningTo>Failed</MapWarningTo>
+    <Where>{escape(filter_expr)}</Where>
+  </NUnit>
+</RunSettings>
+"""
 
 
 def cmd_generate():
@@ -337,50 +373,48 @@ def cmd_generate():
         print("Error: no tests discovered from input", file=sys.stderr)
         sys.exit(1)
 
-    class_counts = extract_classes(tests)
-    print(f"Discovered {len(tests)} tests in {len(class_counts)} classes, distributing across {total} shards", file=sys.stderr)
+    group_counts = extract_groups(tests)
+    print(f"Discovered {len(tests)} tests in {len(group_counts)} groups, distributing across {total} shards", file=sys.stderr)
 
     os.makedirs(output_dir, exist_ok=True)
 
-    def class_weight(cls):
-        multiplier = WEIGHT_OVERRIDES.get(cls, 1.0)
-        return class_counts[cls] * multiplier
+    def group_weight(group) -> float:
+        multiplier = WEIGHT_OVERRIDES.get(group[1], 1.0)
+        return group_counts[group] * multiplier
 
     shards = [[] for _ in range(total)]
     shard_loads = [0.0] * total
-    for cls in sorted(class_counts, key=class_weight, reverse=True):
+    for group in sorted(group_counts, key=group_weight, reverse=True):
         lightest = min(range(total), key=lambda s: shard_loads[s])
-        shards[lightest].append(cls)
-        shard_loads[lightest] += class_weight(cls)
+        shards[lightest].append(group)
+        shard_loads[lightest] += group_weight(group)
 
     for shard in range(total):
-        my_classes = sorted(shards[shard])
-        filter_expr = build_filter(my_classes)
-        path = os.path.join(output_dir, f"shard_{shard}.filter")
-        with open(path, "w") as f:
-            f.write(filter_expr)
-        print(f"  Shard {shard}: {len(my_classes)} classes, weight {shard_loads[shard]:.1f} ({sum(class_counts[c] for c in my_classes)} tests)", file=sys.stderr)
-        for cls in my_classes:
-            w = class_weight(cls)
-            print(f"    - {cls} ({class_counts[cls]} tests, weight {w:.1f})", file=sys.stderr)
+        my_groups = sorted(shards[shard])
+        filter_expr = build_filter(my_groups)
+        path = os.path.join(output_dir, f"shard_{shard}.runsettings")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(build_runsettings(filter_expr))
+        print(f"  Shard {shard}: {len(my_groups)} groups, weight {shard_loads[shard]:.1f} ({sum(group_counts[g] for g in my_groups)} tests)", file=sys.stderr)
+        for group in my_groups:
+            weight = group_weight(group)
+            name = ".".join(part for part in group if part)
+            print(f"    - {name} ({group_counts[group]} tests, weight {weight:.1f})", file=sys.stderr)
 
 
 def cmd_read():
     if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} read <filter-file>", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} read <runsettings-file>", file=sys.stderr)
         sys.exit(1)
 
     path = sys.argv[2]
     if not os.path.exists(path):
         return
-    with open(path) as f:
-        content = f.read().strip()
-    if content:
-        methods = [part.replace("method==", "").strip("' ") for part in content.split("||")]
-        print(f"Running {len(methods)} test groups:", file=sys.stderr)
-        for method in methods:
-            print(f"  - {method}", file=sys.stderr)
-        print(content)
+    root = ET.parse(path).getroot()
+    where = root.findtext("./NUnit/Where", default="").strip()
+    if where:
+        print("Running filtered test groups from the generated shard.", file=sys.stderr)
+        print(where)
 
 
 def main():

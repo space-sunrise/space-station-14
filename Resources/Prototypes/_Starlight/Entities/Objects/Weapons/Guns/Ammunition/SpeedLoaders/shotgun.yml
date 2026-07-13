@@ -51,9 +51,6 @@
         map: [ "enum.GunVisualLayers.Base" ]
       - state: base-1
         map: [ "enum.GunVisualLayers.Mag" ]
-      - state: base-tip-1
-        map: [ "enum.GunVisualLayers.Tip" ]
-        color: "#F4001F"
 
 - type: entity
   id: SpeedLoaderShellShotgun
