@@ -187,8 +187,6 @@ public sealed partial class SunriseLobbyGui : UIScreen
 
         if (Math.Abs(BottomCenterProfilePanel.MinWidth - _bottomCenterProfileExpandedWidth) >= 0.5f)
             BottomCenterProfilePanel.MinWidth = _bottomCenterProfileExpandedWidth;
-
-        DefaultStateMainRow.Margin = new Thickness(0f, 0f, 0f, 0f);
     }
 
     #region Subscribers
