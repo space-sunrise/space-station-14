@@ -1,7 +1,7 @@
 #shuttle walls
 - type: entity
   abstract: true
-  parent: BaseStructureWall
+  parent: [BaseStructureWall, SunriseWallDamageVisualsBase]
   id: WallDiagonalBaseSunrise
   suffix: Diagonal
   components:

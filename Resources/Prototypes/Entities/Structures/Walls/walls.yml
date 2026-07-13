@@ -60,14 +60,14 @@
 
 - type: entity
   abstract: true
-  parent: BaseStructureWall
+  parent: [BaseStructureWall, SunriseWallDamageVisualsBase] # Sunrise-Edit
   id: BaseWall
   components:
   - type: Occluder # Breaks on diagonal walls
 
 - type: entity
   abstract: true
-  parent: BaseStructureWall
+  parent: [BaseStructureWall, SunriseWallDamageVisualsBase] # Sunrise-Edit
   id: WallDiagonalBase
   suffix: Diagonal
   components:
