@@ -35,6 +35,15 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  # Sunrise added start - показываем присланные пятиступенчатые трещины на поврежденных стенах через общий визуализатор урона.
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 15, 20, 25]
+    damageDivisor: 10
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Sunrise/Structures/Walls/wall_cracks.rsi
+  # Sunrise added end
   - type: Physics
     bodyType: Static
   - type: Fixtures
