@@ -3,7 +3,6 @@ using Content.Client.Administration.Managers;
 using Content.Client.Administration.UI.Bwoink;
 using Content.Client._Sunrise.Messenger;
 using Content.Client._Sunrise.UserInterface.CustomControls;
-using Content.Client.Resources;
 using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
@@ -39,10 +38,12 @@ namespace Content.Client._Sunrise.MentorHelp
         [Dependency] private readonly IClientAdminManager _adminManager = default!;
         [Dependency] private readonly IClientConsoleHost _console = default!;
         [Dependency] private readonly IPlayerManager _player = default!;
+        [Dependency] private readonly IResourceCache _resourceCache = default!;
 
         private const double CloseConfirmTimeoutSeconds = 2;
         private const double TypingIndicatorTimeoutSeconds = 10;
         private bool _isDisposed;
+        private Action? _emojiPickerCleanup;
 
         private MentorHelpSystem? _mentorHelpSystem;
         private NetUserId _ownerUserId;
@@ -107,9 +108,7 @@ namespace Content.Client._Sunrise.MentorHelp
             TeleportButton.OnPressed += _ => TeleportToTicket();
             _adminManager.AdminStatusUpdated += UpdateTicketActionButtons;
 
-            // Sunrise-Edit start - инициализируем EmojiButton через хелпер
-            EmojiButtonHelper.SetupEmojiButton(EmojiButton, ReplyInput, IoCManager.Resolve<IResourceCache>());
-            // Sunrise-Edit end
+            _emojiPickerCleanup = EmojiButtonHelper.SetupEmojiButton(EmojiButton, ReplyInput, _resourceCache);
 
             UpdateTypingIndicator();
 
@@ -813,7 +812,7 @@ namespace Content.Client._Sunrise.MentorHelp
                 return;
 
             _isDisposed = true;
-            EmojiButtonHelper.ClosePicker();
+            _emojiPickerCleanup?.Invoke();
 
             PlaySound.OnToggled -= OnPlaySoundToggled;
             AutoOpenTickets.OnToggled -= OnAutoOpenTicketsToggled;

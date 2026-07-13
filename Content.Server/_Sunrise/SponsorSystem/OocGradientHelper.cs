@@ -26,7 +26,7 @@ public static class ServerOocGradientHelper
         NetUserId userId,
         string username,
         ISharedSponsorsManager? sponsorsManager,
-        IPlayerManager? playerManager,
+        ISharedPlayerManager? playerManager,
         INetConfigurationManager? netConfig,
         PlayerCacheManager? playerCacheManager,
         [NotNullWhen(true)] out string? formattedName)

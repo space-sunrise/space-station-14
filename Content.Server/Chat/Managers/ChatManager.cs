@@ -26,6 +26,8 @@ using Content.Server._Sunrise.TTS;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.SponsorSystem;
 using Content.Server._Sunrise.SponsorSystem;
+using Content.Shared._Sunrise.Messenger;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chat.Managers;
 
@@ -55,9 +57,9 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
     // Sunrise added start - зависимость для озвучки лобби и админ-чата
     [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     // Sunrise added end
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Edit - логика OOC-оформления для спонсоров
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Sunrise-Edit - prototype manager for emoji validation
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -370,7 +372,7 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         string sponsorDisplayName;
-        if (isGradient && ServerOocGradientHelper.TryFormatGradientName(player.UserId, player.Name, _sponsorsManager, _playerManager, _netConfigManager, _playerCacheManager, out var gradFormatted))
+        if (isGradient && ServerOocGradientHelper.TryFormatGradientName(player.UserId, player.Name, _sponsorsManager, _player, _netConfigManager, _playerCacheManager, out var gradFormatted))
         {
             sponsorDisplayName = gradFormatted;
             sponsorColor = null;
@@ -416,7 +418,10 @@ internal sealed partial class ChatManager : IChatManager
         if (hasEmojiRights && !string.IsNullOrWhiteSpace(selectedEmojiCVar))
         {
             var emojiId = selectedEmojiCVar.Trim(':');
-            sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=50] {sponsorDisplayName}";
+            if (_prototypeManager.HasIndex<EmojiPrototype>(emojiId))
+            {
+                sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=50] {sponsorDisplayName}";
+            }
         }
         // Sunrise added end
 

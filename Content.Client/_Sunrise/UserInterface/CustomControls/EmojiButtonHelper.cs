@@ -15,21 +15,12 @@ namespace Content.Client._Sunrise.UserInterface.CustomControls;
 /// </summary>
 public static class EmojiButtonHelper
 {
-    private static EmojiPickerWindow? _emojiPicker;
-
-    /// <summary>
-    /// Закрывает активное окно выбора эмодзи.
-    /// </summary>
-    public static void ClosePicker()
-    {
-        _emojiPicker?.Close();
-    }
-
     /// <summary>
     /// Инициализирует кнопку эмодзи (поддерживает как Button, так и TextureButton),
     /// устанавливает иконку и настраивает открытие EmojiPickerWindow при клике.
+    /// Возвращает Action для закрытия и очистки создаваемого пикера.
     /// </summary>
-    public static void SetupEmojiButton(
+    public static Action SetupEmojiButton(
         BaseButton emojiButton,
         LineEdit lineEdit,
         IResourceCache resourceCache)
@@ -55,24 +46,32 @@ public static class EmojiButtonHelper
             emojiButton.AddChild(textureRect);
         }
 
+        EmojiPickerWindow? picker = null;
+
         emojiButton.OnPressed += _ =>
         {
-            if (_emojiPicker != null && _emojiPicker.IsOpen)
+            if (picker != null && picker.IsOpen)
             {
-                _emojiPicker.Close();
+                picker.Close();
                 return;
             }
 
-            _emojiPicker = new EmojiPickerWindow();
-            _emojiPicker.OnEmojiSelected += emojiCode =>
+            picker = new EmojiPickerWindow();
+            picker.OnEmojiSelected += emojiCode =>
             {
                 lineEdit.Text += emojiCode;
                 lineEdit.CursorPosition = lineEdit.Text.Length;
                 lineEdit.GrabKeyboardFocus();
             };
 
-            _emojiPicker.OnClose += () => _emojiPicker = null;
-            _emojiPicker.OpenCentered();
+            picker.OnClose += () => picker = null;
+            picker.OpenCentered();
+        };
+
+        return () =>
+        {
+            picker?.Close();
+            picker = null;
         };
     }
 }

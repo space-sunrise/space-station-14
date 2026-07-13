@@ -29,6 +29,7 @@ public sealed class PlayerCacheManager
 
     private void OnDisconnect(object? sender, NetDisconnectedArgs e)
     {
+        _cache.Remove(e.Channel.UserId);
     }
 
     private void OnCacheSync(MsgPlayerCacheSync msg)

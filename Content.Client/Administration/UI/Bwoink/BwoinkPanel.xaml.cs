@@ -46,6 +46,7 @@ namespace Content.Client.Administration.UI.Bwoink
         public bool LoadDb { get; set; }
         private DateTime _cooldownEnd = DateTime.MinValue;
         private CancellationTokenSource? _cooldownCancellationTokenSource;
+        private Action? _emojiPickerCleanup; // Sunrise-Add
         // Sunrise-End
 
         public BwoinkPanel(Action<string> messageSender)
@@ -80,7 +81,7 @@ namespace Content.Client.Administration.UI.Bwoink
             UpdateTypingIndicator();
 
             // Sunrise-Edit start - инициализируем EmojiButton через хелпер
-            EmojiButtonHelper.SetupEmojiButton(EmojiButton, SenderLineEdit, _resourceCache);
+            _emojiPickerCleanup = EmojiButtonHelper.SetupEmojiButton(EmojiButton, SenderLineEdit, _resourceCache);
             // Sunrise-Edit end
         }
 
@@ -207,6 +208,7 @@ namespace Content.Client.Administration.UI.Bwoink
             InputTextChanged = null;
             _cooldownCancellationTokenSource?.Cancel();
             _cooldownCancellationTokenSource = null;
+            _emojiPickerCleanup?.Invoke(); // Sunrise-Add
         }
     }
 }
