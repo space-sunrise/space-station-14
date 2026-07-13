@@ -15,6 +15,9 @@
   id: NoPaint
 
 - type: Tag
+  id: BigSmallArms
+
+- type: Tag
   id: NoSpinOnThrow
 
 - type: Tag

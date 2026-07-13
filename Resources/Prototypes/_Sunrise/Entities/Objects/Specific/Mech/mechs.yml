@@ -623,7 +623,6 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/gygax.rsi
-    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ntgygax
@@ -650,12 +649,12 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 35
+        Blunt: 30
         Structural: 180
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseSprintSpeed: 3.5
   - type: Reflect
     reflectProb: 0.10
     spread: 180
@@ -676,7 +675,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      275: Critical
+      350: Critical
 
 - type: entity
   id: MechNTGygaxBattery
@@ -696,7 +695,7 @@
   - type: Mech
     startingEquipment:
       - WeaponMechChainSword
-      - WeaponMechCombatShotgun
+      - WeaponMechCombatShotgunAuto
       - WeaponMechCombatPulseRifle
       - WeaponMechCombatMissileRack8
 
