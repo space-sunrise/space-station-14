@@ -189,17 +189,19 @@ public sealed partial class UserProfile : Control
             if (string.IsNullOrWhiteSpace(tierTitle))
                 tierTitle = Loc.GetString("user-profile-sponsor-active");
 
+            var escapedTierTitle = FormattedMessage.EscapeText(tierTitle);
+
             var colorHex = _sponsorsManager.ClientGetTierColorHex();
             if (!string.IsNullOrWhiteSpace(colorHex))
             {
                 if (OocGradientHelper.IsGradientId(colorHex))
                 {
-                    var gradientMarkup = OocGradientHelper.ApplyGradientById(tierTitle, colorHex);
+                    var gradientMarkup = OocGradientHelper.ApplyGradientById(escapedTierTitle, colorHex);
                     SponsorTierName.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]{gradientMarkup}[/bold]"));
                 }
                 else
                 {
-                    SponsorTierName.SetMessage(FormattedMessage.FromMarkupOrThrow($"[color={colorHex}]{tierTitle}[/color]"));
+                    SponsorTierName.SetMessage(FormattedMessage.FromMarkupOrThrow($"[color={colorHex}]{escapedTierTitle}[/color]"));
                 }
             }
             else

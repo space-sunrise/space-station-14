@@ -673,8 +673,9 @@ namespace Content.Server.Database
                 join p in db.DbContext.Player on pt.PlayerId equals p.UserId
                 select new { p.LastSeenUserName, pt.TimeSpent };
 
+            // ORDER BY TimeSpan isn't reliably supported across providers (SQLite fails).
+            // Fetch results then order in-memory to ensure portability.
             var results = await query.ToListAsync(cancel);
-
             return results
                 .OrderByDescending(x => x.TimeSpent)
                 .Take(count)
@@ -694,8 +695,9 @@ namespace Content.Server.Database
                 where pt.Tracker == "Overall"
                 select new { p.LastSeenUserName, pt.TimeSpent };
 
+            // ORDER BY TimeSpan isn't reliably supported across providers (SQLite fails).
+            // Fetch results then order in-memory to ensure portability.
             var results = await query.ToListAsync(cancel);
-
             return results
                 .OrderByDescending(x => x.TimeSpent)
                 .Take(count)

@@ -31,10 +31,12 @@ public sealed class EmojiPickerWindow : DefaultWindow
 
     private readonly EmojiSystem _emoji;
     private readonly SpriteSystem _sprite;
+    private ISharedSponsorsManager? _sponsorsManager;
 
     public EmojiPickerWindow()
     {
         IoCManager.InjectDependencies(this);
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager);
 
         _emoji = _entity.System<EmojiSystem>();
         _sprite = _entity.System<SpriteSystem>();
@@ -237,14 +239,11 @@ public sealed class EmojiPickerWindow : DefaultWindow
 
     private Button CreateEmojiButton(EmojiPrototype emoji)
     {
-        ISharedSponsorsManager? sponsorsManager = null;
-        IoCManager.Instance!.TryResolveType(out sponsorsManager);
-
         var isSponsorOnly = emoji.SponsorOnly;
         var hasAccess = !isSponsorOnly;
-        if (isSponsorOnly && sponsorsManager != null)
+        if (isSponsorOnly && _sponsorsManager != null)
         {
-            hasAccess = sponsorsManager.GetClientPrototypes().Contains(emoji.ID);
+            hasAccess = _sponsorsManager.GetClientPrototypes().Contains(emoji.ID);
         }
 
         var emojiButton = new Button

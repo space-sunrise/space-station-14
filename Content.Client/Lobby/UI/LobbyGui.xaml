@@ -109,7 +109,7 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 Margin="0 2 2 0"
-                                ModulateSelfOverride="#DEDEDE"
+                                StyleClasses="LobbyIconButton"
                                 Scale="0.5 0.5"/>
             </PanelContainer>
         </SplitContainer>
@@ -123,7 +123,7 @@
                         TexturePath="filled_left_arrow.svg.192dpi"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        ModulateSelfOverride="#DEDEDE"
+                        StyleClasses="LobbyIconButton"
                         Scale="0.5 0.5"/>
         </PanelContainer>
     </BoxContainer>

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    [Migration("20260713190710_PlayTimeSessions")]
-    partial class PlayTimeSessions
+    [Migration("20260714144121_PlayTimeSession")]
+    partial class PlayTimeSession
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -899,6 +899,12 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.HasKey("Id")
                         .HasName("PK_play_time_session");
+
+                    b.HasIndex("EndTime")
+                        .HasDatabaseName("IX_play_time_session_end_time");
+
+                    b.HasIndex("PlayerId")
+                        .HasDatabaseName("IX_play_time_session_player_id");
 
                     b.ToTable("play_time_session", (string)null);
                 });
@@ -1967,6 +1973,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Ticket");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.PlayTimeSession", b =>
+                {
+                    b.HasOne("Content.Server.Database.Player", "Player")
+                        .WithMany("PlayTimeSessions")
+                        .HasForeignKey("PlayerId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_play_time_session_player_player_id");
+
+                    b.Navigation("Player");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
                     b.OwnsOne("Content.Server.Database.TypedHwid", "LastSeenHWId", b1 =>
@@ -2316,6 +2335,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("AdminWatchlistsReceived");
 
                     b.Navigation("JobWhitelists");
+
+                    b.Navigation("PlayTimeSessions");
                 });
 
             modelBuilder.Entity("Content.Server.Database.Preference", b =>

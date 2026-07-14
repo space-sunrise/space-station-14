@@ -203,6 +203,15 @@ namespace Content.Server.Database
             modelBuilder.Entity<Player>()
                 .HasIndex(p => p.LastSeenUserName);
 
+            // Sunrise-Start
+            modelBuilder.Entity<PlayTimeSession>()
+                .HasOne(s => s.Player)
+                .WithMany(p => p.PlayTimeSessions)
+                .HasForeignKey(s => s.PlayerId)
+                .HasPrincipalKey(p => p.UserId)
+                .IsRequired();
+            // Sunrise-End
+
             modelBuilder.Entity<ConnectionLog>()
                 .HasIndex(p => p.UserId);
 
@@ -637,6 +646,8 @@ namespace Content.Server.Database
         public List<ServerRoleBan> AdminServerRoleBansCreated { get; set; } = null!;
         public List<ServerRoleBan> AdminServerRoleBansLastEdited { get; set; } = null!;
         public List<RoleWhitelist> JobWhitelists { get; set; } = null!;
+
+        public List<PlayTimeSession> PlayTimeSessions { get; set; } = default!; // Sunrise-Add
     }
 
     [Table("whitelist")]
@@ -1523,13 +1534,17 @@ namespace Content.Server.Database
     }
 
     [Table("play_time_session")]
+    [Index(nameof(EndTime))]
+    [Index(nameof(PlayerId))]
     public sealed class PlayTimeSession
     {
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required, ForeignKey("player")]
+        [Required, ForeignKey(nameof(Player))]
         public Guid PlayerId { get; set; }
+
+        public Player Player { get; set; } = default!;
 
         [Required]
         public DateTime StartTime { get; set; }

@@ -11,30 +11,14 @@ namespace Content.Client._Sunrise.Contributors;
 [GenerateTypedNameReferences]
 public sealed partial class ContributorEntryControl : PanelContainer
 {
-    private static readonly Color NormalColor = Color.FromHex("#202023");
-    private static readonly Color HoverColor = Color.FromHex("#2F2F33");
-
     public ContributorEntryControl()
     {
         RobustXamlLoader.Load(this);
         TooltipDelay = 0.5f;
 
-        BackgroundColorPanel.PanelOverride = new StyleBoxFlat
-        {
-            BackgroundColor = NormalColor
-        };
-
-        BackgroundColorPanel.OnMouseEntered += args =>
-        {
-            var panel = (StyleBoxFlat)BackgroundColorPanel.PanelOverride!;
-            panel.BackgroundColor = HoverColor;
-        };
-
-        BackgroundColorPanel.OnMouseExited += args =>
-        {
-            var panel = (StyleBoxFlat)BackgroundColorPanel.PanelOverride!;
-            panel.BackgroundColor = NormalColor;
-        };
+        // Use stylesheet-defined PanelDark and pseudo-class hover for styling.
+        BackgroundColorPanel.OnMouseEntered += _ => AddStylePseudoClass(ContainerButton.StylePseudoClassHover);
+        BackgroundColorPanel.OnMouseExited += _ => RemoveStylePseudoClass(ContainerButton.StylePseudoClassHover);
     }
 
     public void UpdateData(ContributorEntry entry)

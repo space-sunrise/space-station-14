@@ -11,29 +11,14 @@ namespace Content.Client._Sunrise.PlaytimeTop;
 [GenerateTypedNameReferences]
 public sealed partial class PlaytimeEntryControl : PanelContainer
 {
-    private static readonly Color NormalColor = Color.FromHex("#202023");
-    private static readonly Color HoverColor = Color.FromHex("#2F2F33");
-
     public PlaytimeEntryControl()
     {
         RobustXamlLoader.Load(this);
 
-        BackgroundColorPanel.PanelOverride = new StyleBoxFlat
-        {
-            BackgroundColor = NormalColor
-        };
-
-        BackgroundColorPanel.OnMouseEntered += args =>
-        {
-            var panel = (StyleBoxFlat)BackgroundColorPanel.PanelOverride!;
-            panel.BackgroundColor = HoverColor;
-        };
-
-        BackgroundColorPanel.OnMouseExited += args =>
-        {
-            var panel = (StyleBoxFlat)BackgroundColorPanel.PanelOverride!;
-            panel.BackgroundColor = NormalColor;
-        };
+        // Use stylesheet-defined PanelDark for normal appearance.
+        // Switch to hover pseudo-class so styling is handled by sheetlets.
+        BackgroundColorPanel.OnMouseEntered += _ => AddStylePseudoClass(ContainerButton.StylePseudoClassHover);
+        BackgroundColorPanel.OnMouseExited += _ => RemoveStylePseudoClass(ContainerButton.StylePseudoClassHover);
     }
 
     public void UpdateData(PlaytimeTopEntry entry)
