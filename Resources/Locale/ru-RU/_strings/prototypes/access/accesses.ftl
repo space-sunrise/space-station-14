@@ -32,7 +32,6 @@ id-card-access-level-maintenance = Техобслуживание
 id-card-access-level-external = Внешний
 id-card-access-level-nuclear-operative = Ядерный оперативник
 id-card-access-level-syndicate-agent = Агент Синдиката
-id-card-access-level-pirate = Пиратский
 id-card-access-level-central-command = Центральное командование
 id-card-access-level-wizard = Волшебник
 id-card-access-level-station-ai = Искусственный Интеллект

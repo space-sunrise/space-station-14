@@ -180,6 +180,3 @@ ent-UraniumWindoorNukeopLocked = { ent-WindoorUranium }
 ent-UraniumWindoorSecureNukeopLocked = { ent-WindoorSecureUranium }
     .suffix = Nukeop, Locked, Uranium
     .desc = { ent-WindoorSecureUranium.desc }
-ent-WindoorSecurePirateLocked = { ent-WindoorSecure }
-    .suffix = Pirate, Locked
-    .desc = { ent-WindoorSecure.desc }
