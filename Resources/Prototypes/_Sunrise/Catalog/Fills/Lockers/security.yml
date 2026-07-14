@@ -51,6 +51,26 @@
           prob: 0.25
 
 - type: entity
+  parent: GunSafeSuperweaponSecureGamma
+  id: GunSafeSuperweaponDisposableRocketLauncher
+  name: Disposable RPG safe
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: rpg
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SunriseWeaponDisposableRocketLauncherSmoke
+          amount: 6
+        - id: SunriseWeaponDisposableRocketLauncher
+          amount: 3
+        - id: SunriseWeaponDisposableRocketLauncherEmp
+          amount: 3
+        - id: SunriseWeaponDisposableRocketLauncherSmoke
+          amount: 3
+
+- type: entity
   parent: GunSafeSuperweaponBaseSecure
   id: GunSafeSuperIonRifle
   name: Ion-Temperature safe
@@ -912,6 +932,7 @@
       - id: GunSafeSuperweaponLWAP
       - id: GunSafeSuperweaponSmartGun
       - id: GunSafeSuperweaponRocketLauncher
+      - id: GunSafeSuperweaponDisposableRocketLauncher
     - !type:GroupSelector
       weight: 20
       children:

@@ -37,6 +37,9 @@
           Quantity: 10
         - ReagentId: Water
           Quantity: 8
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesDishBase
@@ -58,6 +61,9 @@
           Quantity: 16
         - ReagentId: Vitamin
           Quantity: 10
+  - type: Tag
+    tags:
+      - Fruit
 
 - type: entity
   parent: FoodSpeciesBowlDishBase
@@ -86,6 +92,9 @@
           Quantity: 1
         - ReagentId: Kelotane
           Quantity: 1
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesBowlDishBase
@@ -110,6 +119,9 @@
           Quantity: 10
         - ReagentId: Water
           Quantity: 10
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesBowlDishBase
@@ -134,6 +146,9 @@
           Quantity: 12
         - ReagentId: Water
           Quantity: 6
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesDishBase
@@ -155,6 +170,9 @@
           Quantity: 16
         - ReagentId: Protein
           Quantity: 10
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesDishBase
@@ -178,6 +196,9 @@
           Quantity: 10
         - ReagentId: Holywater
           Quantity: 2
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesDishBase
@@ -221,6 +242,9 @@
           Quantity: 16
         - ReagentId: Protein
           Quantity: 8
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesBowlDishBase
@@ -245,6 +269,9 @@
           Quantity: 12
         - ReagentId: Water
           Quantity: 6
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesDishBase
@@ -266,6 +293,9 @@
           Quantity: 16
         - ReagentId: Protein
           Quantity: 10
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesBowlDishBase
@@ -290,6 +320,9 @@
           Quantity: 12
         - ReagentId: Water
           Quantity: 6
+  - type: Tag
+    tags:
+      - Meat
 
 - type: entity
   parent: FoodSpeciesDishBase
@@ -311,3 +344,6 @@
           Quantity: 16
         - ReagentId: Protein
           Quantity: 10
+  - type: Tag
+    tags:
+      - Meat
