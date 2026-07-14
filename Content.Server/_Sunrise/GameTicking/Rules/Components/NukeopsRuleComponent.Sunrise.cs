@@ -23,6 +23,6 @@ public sealed partial class NukeopsRuleComponent
     [DataField]
     public bool CanChangeAlertLevel;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    [DataField, AutoPausedField]
     public TimeSpan AlertLevelChangeTime;
 }
