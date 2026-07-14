@@ -14,6 +14,7 @@ namespace Content.Server.GameTicking;
 public sealed partial class GameTicker
 {
     private const int MaxUploadRetries = 5;
+    private static readonly ResPath FailedReplaysDir = new("user://failed_replays");
 
     private readonly Channel<(IWritableDirProvider Directory, ResPath Path)> _replayUploadChannel =
         Channel.CreateUnbounded<(IWritableDirProvider, ResPath)>();
@@ -25,6 +26,7 @@ public sealed partial class GameTicker
         if (_replayUploadWorkerTask != null)
             return;
 
+        RequeueFailedReplays();
         _replayUploadWorkerTask = Task.Run(ProcessReplayUploadQueue);
     }
 
@@ -52,6 +54,13 @@ public sealed partial class GameTicker
                             {
                                 item.Directory.Delete(item.Path);
                                 _sawmillReplays.Info($"Локальный файл реплея {item.Path.Filename} успешно удален.");
+
+                                var failedPath = new ResPath($"{FailedReplaysDir}/{item.Path.Filename}");
+                                if (_resourceManager.UserData.Exists(failedPath))
+                                {
+                                    _resourceManager.UserData.Delete(failedPath);
+                                    _sawmillReplays.Debug($"Неудачный реплей {item.Path.Filename} удален из хранилища.");
+                                }
                             }
                             catch (Exception deleteEx)
                             {
@@ -61,8 +70,9 @@ public sealed partial class GameTicker
                         }
                         else
                         {
+                            SaveFailedReplay(item.Directory, item.Path);
                             _sawmillReplays.Error(
-                                $"Не удалось загрузить реплей {item.Path} в S3 после {MaxUploadRetries} попыток. Реплей пропущен.");
+                                $"Не удалось загрузить реплей {item.Path} в S3 после {MaxUploadRetries} попыток. Сохранено в долговечное хранилище для повторной попытки.");
                         }
                     }
                     catch (Exception itemEx)
@@ -219,6 +229,49 @@ public sealed partial class GameTicker
         catch (Exception e)
         {
             _sawmillReplays.Error($"Ошибка при очистке временной папки реплеев: {e}");
+        }
+    }
+
+    private void SaveFailedReplay(IWritableDirProvider directory, ResPath path)
+    {
+        try
+        {
+            if (!_resourceManager.UserData.Exists(FailedReplaysDir))
+                _resourceManager.UserData.CreateDir(FailedReplaysDir);
+
+            var destPath = new ResPath($"{FailedReplaysDir}/{path.Filename}");
+            if (_resourceManager.UserData.Exists(destPath))
+                _resourceManager.UserData.Delete(destPath);
+
+            using var srcStream = directory.OpenRead(path);
+            using var dstStream = _resourceManager.UserData.OpenWrite(destPath);
+            srcStream.CopyTo(dstStream);
+
+            _sawmillReplays.Info($"Неудачный реплей {path.Filename} сохранен в {destPath} для повторной попытки.");
+        }
+        catch (Exception e)
+        {
+            _sawmillReplays.Error($"Ошибка при сохранении неудачного реплея {path}: {e}");
+        }
+    }
+
+    private void RequeueFailedReplays()
+    {
+        try
+        {
+            if (!_resourceManager.UserData.Exists(FailedReplaysDir))
+                return;
+
+            var (files, _) = _resourceManager.UserData.Find($"{FailedReplaysDir}/*", false);
+            foreach (var file in files)
+            {
+                _sawmillReplays.Info($"Переочередивание неудачного реплея для загрузки: {file}");
+                _replayUploadChannel.Writer.TryWrite((_resourceManager.UserData, file));
+            }
+        }
+        catch (Exception e)
+        {
+            _sawmillReplays.Error($"Ошибка при переочередивании неудачных реплеев: {e}");
         }
     }
 }
