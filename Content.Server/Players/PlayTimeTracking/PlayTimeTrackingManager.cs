@@ -337,9 +337,12 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         }
 
         // Sunrise edit start - Start PlayTimeSession in DB
-        var sessionId = await _db.AddPlayTimeSessionAsync(session.UserId.UserId, data.ConnectTime, DateTime.UtcNow);
-        data.CurrentDbSessionId = sessionId;
-        OnPlayTimeSessionStarted(session);
+        if (session.Channel.AuthType.HasStaticUserId())
+        {
+            var sessionId = await _db.AddPlayTimeSessionAsync(session.UserId.UserId, data.ConnectTime, DateTime.UtcNow);
+            data.CurrentDbSessionId = sessionId;
+            OnPlayTimeSessionStarted(session);
+        }
         // Sunrise edit end
 
         data.Initialized = true;
