@@ -1,6 +1,7 @@
 using Content.Client._Sunrise.Messenger;
 using Content.Shared._Sunrise.Messenger;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -236,11 +237,22 @@ public sealed class EmojiPickerWindow : DefaultWindow
 
     private Button CreateEmojiButton(EmojiPrototype emoji)
     {
+        ISharedSponsorsManager? sponsorsManager = null;
+        IoCManager.Instance!.TryResolveType(out sponsorsManager);
+
+        var isSponsorOnly = emoji.SponsorOnly;
+        var hasAccess = !isSponsorOnly;
+        if (isSponsorOnly && sponsorsManager != null)
+        {
+            hasAccess = sponsorsManager.GetClientPrototypes().Contains(emoji.ID);
+        }
+
         var emojiButton = new Button
         {
             MinSize = new Vector2(60, 60),
             MaxSize = new Vector2(60, 60),
             ToolTip = emoji.Code,
+            Disabled = !hasAccess,
         };
 
         var spriteSpec = new SpriteSpecifier.Rsi(new ResPath(emoji.SpritePath), emoji.SpriteState);
@@ -278,24 +290,40 @@ public sealed class EmojiPickerWindow : DefaultWindow
             emojiButton.AddChild(textureRect);
         }
 
+        if (!hasAccess)
+        {
+            var lockIcon = new TextureRect
+            {
+                Texture = _sprite.GetTexture(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Nano/lock.svg.192dpi.png"))),
+                Stretch = TextureRect.StretchMode.KeepAspectCentered,
+                SetSize = new Vector2(20, 20),
+                HorizontalAlignment = HAlignment.Center,
+                VerticalAlignment = VAlignment.Center,
+            };
+            emojiButton.AddChild(lockIcon);
+        }
+
         var emojiCode = emoji.Code;
 
-        emojiButton.OnPressed += _ =>
+        if (hasAccess)
         {
-            OnEmojiSelected?.Invoke(emojiCode);
-            AddToRecentEmojis(emojiCode);
-            UpdateEmojiPickerContent();
-        };
-
-        emojiButton.OnKeyBindDown += args =>
-        {
-            if (args.Function == EngineKeyFunctions.UIRightClick)
+            emojiButton.OnPressed += _ =>
             {
-                args.Handle();
-                ToggleFavoriteEmoji(emojiCode);
+                OnEmojiSelected?.Invoke(emojiCode);
+                AddToRecentEmojis(emojiCode);
                 UpdateEmojiPickerContent();
-            }
-        };
+            };
+
+            emojiButton.OnKeyBindDown += args =>
+            {
+                if (args.Function == EngineKeyFunctions.UIRightClick)
+                {
+                    args.Handle();
+                    ToggleFavoriteEmoji(emojiCode);
+                    UpdateEmojiPickerContent();
+                }
+            };
+        }
 
         return emojiButton;
     }

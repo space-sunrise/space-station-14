@@ -388,6 +388,12 @@
                                         MinHeight="48"
                                         Name="WikiButton"
                                         StyleClasses="ButtonBig" />
+                                    <Button
+                                        Access="Public"
+                                        MinWidth="48"
+                                        MinHeight="48"
+                                        Name="TelegramButton"
+                                        StyleClasses="ButtonBig" />
                                 </BoxContainer>
                                 <BoxContainer
                                     Orientation="Horizontal"
@@ -396,7 +402,7 @@
                                         Access="Public"
                                         MinWidth="48"
                                         MinHeight="48"
-                                        Name="TelegramButton"
+                                        Name="GithubButton"
                                         StyleClasses="ButtonBig" />
                                     <Button
                                         Access="Public"
@@ -529,11 +535,11 @@
                                         </BoxContainer>
                                     </controls:StripeBack>
                                     <BoxContainer
-                                        MinHeight="180"
+                                        MinHeight="100"
                                         Name="CharacterInfoContent"
                                         Orientation="Vertical"
                                         VerticalExpand="True">
-                                        <lobbyUi:LobbyCharacterPreviewPanel
+                                        <ui:SunriseLobbyCharacterPreviewPanel
                                             Access="Public"
                                             HorizontalExpand="True"
                                             Name="CharacterPreview" />
@@ -564,67 +570,14 @@
                                                 VerticalAlignment="Center" />
                                         </BoxContainer>
                                     </controls:StripeBack>
-                                    <BoxContainer
-                                        Name="MakuraIDContent"
-                                        Orientation="Vertical"
-                                        Margin="8,8,8,8"
-                                        SeparationOverride="8"
-                                        VerticalExpand="False">
-
-                                        <!-- Columns container -->
-                                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="6">
-
-                                            <!-- Left column: Makura ID (Bindings & Accounts) -->
-                                            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="1" MinWidth="10" SeparationOverride="6">
-                                                <Label
-                                                    Align="Center"
-                                                    HorizontalExpand="True"
-                                                    StyleClasses="LabelHeading"
-                                                    Text="{Loc 'lobby-gui-makura-id'}"
-                                                    Margin="0,0,0,4" />
-                                                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="4">
-                                                    <Button Name="ManageAccountButton"
-                                                             HorizontalExpand="True"
-                                                             Text="{Loc 'user-profile-account-manage-button'}" />
-                                                    <Button Name="AccountInfoButton"
-                                                             HorizontalExpand="True"
-                                                             StyleClasses="ButtonColorGreen"
-                                                             Text="{Loc 'user-profile-account-info-button'}" />
-                                                </BoxContainer>
-                                                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8" VerticalAlignment="Center" Margin="0,4,0,0">
-                                                     <TextureRect Name="DiscordBindingLogo" SetSize="24 24" Stretch="KeepAspectCentered" VerticalAlignment="Center" />
-                                                     <Label Name="DiscordBindingStatus" HorizontalExpand="True" Align="Right" VerticalAlignment="Center" />
-                                                 </BoxContainer>
-                                                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8" VerticalAlignment="Center">
-                                                     <TextureRect Name="TelegramBindingLogo" SetSize="24 24" Stretch="KeepAspectCentered" VerticalAlignment="Center" />
-                                                     <Label Name="TelegramBindingStatus" HorizontalExpand="True" Align="Right" VerticalAlignment="Center" />
-                                                 </BoxContainer>
-                                                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8" VerticalAlignment="Center">
-                                                     <TextureRect Name="GithubBindingLogo" SetSize="24 24" Stretch="KeepAspectCentered" VerticalAlignment="Center" />
-                                                     <Label Name="GithubBindingStatus" HorizontalExpand="True" Align="Right" VerticalAlignment="Center" />
-                                                 </BoxContainer></BoxContainer>
-
-                                            <cc:VSeparator VerticalExpand="True" VerticalAlignment="Stretch" Modulate="White" Margin="4,0,4,0" />
-
-                                            <!-- Right column: Sponsorship -->
-                                            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="1" MinWidth="10" SeparationOverride="6">
-                                                <Label
-                                                    Align="Center"
-                                                    HorizontalExpand="True"
-                                                    StyleClasses="LabelHeading"
-                                                    Text="{Loc 'user-profile-sponsor-title'}"
-                                                    Margin="0,0,0,4" />
-                                                 <BoxContainer HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,2">
-                                                     <Label StyleClasses="LabelKeyText" Text="{Loc 'user-profile-level'}" />
-                                                      <RichTextLabel Name="SponsorTierName" Margin="6,0,0,0" />
-                                                 </BoxContainer>
-                                                <Button Name="InfoSponsorButton" HorizontalExpand="True" Text="{Loc 'user-profile-sponsor-info-button'}" />
-                                                <Button Name="PersonalizeSponsorButton" HorizontalExpand="True" Text="{Loc 'user-profile-sponsor-personalize-button'}" />
-                                                <Button Name="BuySponsorButton" HorizontalExpand="True" Text="{Loc 'user-profile-sponsor-buy-button'}" />
-                                            </BoxContainer>
-
-                                        </BoxContainer>
-                                    </BoxContainer>
+                                     <BoxContainer
+                                         Name="MakuraIDContent"
+                                         Orientation="Vertical"
+                                         Margin="6,4,6,4"
+                                         SeparationOverride="4"
+                                         VerticalExpand="False">
+                                         <userProfile:UserProfile Name="UserProfile" HorizontalExpand="True" VerticalExpand="True" />
+                                     </BoxContainer>
                                 </BoxContainer>
                                 <BoxContainer
                                     HorizontalExpand="True"

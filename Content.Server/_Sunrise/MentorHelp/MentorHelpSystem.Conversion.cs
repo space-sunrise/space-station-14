@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration;
@@ -171,7 +172,7 @@ public sealed partial class MentorHelpSystem
             }
         }
 
-        if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(senderUserId))
+        if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(senderUserId))
         {
             string? emoji = null;
             if (_playerManager.TryGetSessionById(senderUserId, out var session))
@@ -182,7 +183,11 @@ public sealed partial class MentorHelpSystem
             if (!string.IsNullOrWhiteSpace(emoji))
             {
                 var emojiId = emoji.Trim(':');
-                result = $"[emoji id=\"{emojiId}\" size=50] {result}";
+                var emojiSystem = EntityManager.System<EmojiSystem>();
+                if (emojiSystem.IsEmojiAllowedForPlayer(emojiId, senderUserId, _sponsorsManager))
+                {
+                    result = $"[emoji id=\"{emojiId}\" size=50] {result}";
+                }
             }
         }
 

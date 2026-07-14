@@ -30,6 +30,7 @@ using Content.Shared.Database; // Sunrise-Ahelp-Antispam, based on Starlight Bui
 using Content.Shared._Sunrise.SponsorSystem;
 using Content.Server._Sunrise.SponsorSystem;
 using Content.Server._Sunrise.PlayerCache;
+using Content.Shared._Sunrise.Messenger;
 using Content.Shared._Sunrise.SunriseCCVars;
 
 
@@ -450,7 +451,7 @@ namespace Content.Server.Administration.Systems
                 bwoinkText = $"{username}";
             }
 
-            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(senderUserId))
+            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(senderUserId))
             {
                 string? emoji = null;
                 if (_playerManager.TryGetSessionById(senderUserId, out var session))
@@ -461,7 +462,11 @@ namespace Content.Server.Administration.Systems
                 if (!string.IsNullOrWhiteSpace(emoji))
                 {
                     var emojiId = emoji.Trim(':');
-                    bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
+                    var emojiSystem = EntityManager.System<SharedEmojiSystem>();
+                    if (emojiSystem.IsEmojiAllowedForPlayer(emojiId, senderUserId, _sponsorsManager))
+                    {
+                        bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
+                    }
                 }
             }
 
@@ -853,7 +858,7 @@ namespace Content.Server.Administration.Systems
                 bwoinkText = $"{senderSession.Name}";
             }
 
-            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(message.UserId))
+            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(message.UserId))
             {
                 string? emoji = null;
                 if (_playerManager.TryGetSessionById(message.UserId, out var playerSession))
@@ -864,7 +869,11 @@ namespace Content.Server.Administration.Systems
                 if (!string.IsNullOrWhiteSpace(emoji))
                 {
                     var emojiId = emoji.Trim(':');
-                    bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
+                    var emojiSystem = EntityManager.System<SharedEmojiSystem>();
+                    if (emojiSystem.IsEmojiAllowedForPlayer(emojiId, message.UserId, _sponsorsManager))
+                    {
+                        bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
+                    }
                 }
             }
 

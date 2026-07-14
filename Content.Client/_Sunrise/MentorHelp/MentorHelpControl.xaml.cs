@@ -106,6 +106,9 @@ namespace Content.Client._Sunrise.MentorHelp
             TeleportButton.OnPressed += _ => TeleportToTicket();
             _adminManager.AdminStatusUpdated += UpdateTicketActionButtons;
 
+            // Обрабатываем ввод и отправку ответа отдельно от логики выбора эмодзи.
+            ReplyInput.OnTextEntered += _ => SendReply();
+            ReplyInput.OnTextChanged += Input_OnTextChanged;
             _emojiPickerCleanup = EmojiButtonHelper.SetupEmojiButton(EmojiButton, ReplyInput, _resourceCache);
 
             UpdateTypingIndicator();

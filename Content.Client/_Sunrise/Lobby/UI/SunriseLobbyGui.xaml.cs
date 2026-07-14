@@ -37,19 +37,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IUriOpener _uri = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-
-    private ISharedAccountBindingsManager? _accountBindingsManager;
-    private ISharedSponsorsManager? _sponsorsManager;
-
-    private UserProfileAccountInfoUIController _accountInfoUIController = default!;
-    private SponsorTiersUIController _sponsorTiersUIController = default!;
-    private SponsorPersonalizationUIController _personalizationUIController = default!;
-
-    private string _accountManagementUrl = string.Empty;
-    private string _donateUrl = string.Empty;
-    private bool _sponsorEnabled;
 
     public string LobbyParallax = "FastSpace";
     public bool ShowParallax;
@@ -114,36 +102,11 @@ public sealed partial class SunriseLobbyGui : UIScreen
         SetupButtonsIcons();
         SetupButtonsBinding();
 
-        IoCManager.Instance!.TryResolveType(out _sponsorsManager);
-        IoCManager.Instance!.TryResolveType(out _accountBindingsManager);
-
-        _accountInfoUIController = UserInterfaceManager.GetUIController<UserProfileAccountInfoUIController>();
-        _sponsorTiersUIController = UserInterfaceManager.GetUIController<SponsorTiersUIController>();
-        _personalizationUIController = UserInterfaceManager.GetUIController<SponsorPersonalizationUIController>();
-
-        ManageAccountButton.OnPressed += _ =>
-        {
-            if (!string.IsNullOrWhiteSpace(_accountManagementUrl))
-                _uri.OpenUri(_accountManagementUrl);
-        };
-        AccountInfoButton.OnPressed += _ => _accountInfoUIController.OpenWindow();
-        BuySponsorButton.OnPressed += _ =>
-        {
-            if (!string.IsNullOrWhiteSpace(_donateUrl))
-                _uri.OpenUri(_donateUrl);
-        };
-        InfoSponsorButton.OnPressed += _ => _sponsorTiersUIController.ToggleWindow();
-        PersonalizeSponsorButton.OnPressed += _ => _personalizationUIController.ToggleWindow();
-
-        DiscordBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/discord.svg.192dpi.png");
-        TelegramBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/telegram.svg.192dpi.png");
-        GithubBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/github.svg.192dpi.png");
-        GithubBindingLogo.Modulate = Color.White;
-
         StationTime.Parent?.RemoveChild(StationTime);
         ServerInfo.AddStationTime(StationTime);
         RestoreCollapsedStates();
     }
+
 
     private void OnServerNameChanged(string serverName)
     {
@@ -188,6 +151,23 @@ public sealed partial class SunriseLobbyGui : UIScreen
         SetCharacterInfoExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedCharacterInfo), false);
         SetChatExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedChat), false);
         SetMakuraIDExpanded(!_cfg.GetCVar(SunriseCCVars.LobbyCollapsedMakuraId), false);
+        UpdateRightPanelHeight();
+    }
+
+    private void UpdateRightPanelHeight()
+    {
+        var chatVisible = ChatContent.Visible;
+
+        if (chatVisible)
+        {
+            RightPanel.VerticalAlignment = VAlignment.Stretch;
+            RightPanel.VerticalExpand = true;
+        }
+        else
+        {
+            RightPanel.VerticalAlignment = VAlignment.Top;
+            RightPanel.VerticalExpand = false;
+        }
     }
 
     private void PlayClickSound()
@@ -278,6 +258,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
             _cfg.SetCVar(SunriseCCVars.LobbyCollapsedServerInfo, !expanded);
             _cfg.SaveToFile();
         }
+        UpdateRightPanelHeight();
     }
 
     private void SetCharacterInfoExpanded(bool expanded, bool persist = true)
@@ -289,6 +270,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
             _cfg.SetCVar(SunriseCCVars.LobbyCollapsedCharacterInfo, !expanded);
             _cfg.SaveToFile();
         }
+        UpdateRightPanelHeight();
     }
 
     private void SetChatExpanded(bool expanded, bool persist = true)
@@ -300,6 +282,7 @@ public sealed partial class SunriseLobbyGui : UIScreen
             _cfg.SetCVar(SunriseCCVars.LobbyCollapsedChat, !expanded);
             _cfg.SaveToFile();
         }
+        UpdateRightPanelHeight();
     }
 
     private void SetMakuraIDExpanded(bool expanded, bool persist = true)
@@ -313,90 +296,10 @@ public sealed partial class SunriseLobbyGui : UIScreen
         }
 
         if (expanded && persist)
-            _accountBindingsManager?.RequestBindingsRefresh();
+            UserProfile.RequestAccountBindingsRefresh();
+        UpdateRightPanelHeight();
     }
 
-    private void OnBindingsChanged(AccountBindingsSnapshot snapshot)
-    {
-        RefreshBindings(snapshot);
-    }
-
-    private void RefreshBindings(AccountBindingsSnapshot snapshot)
-    {
-        UpdateBindingStatus(snapshot.Discord, DiscordBindingLogo, DiscordBindingStatus, "Discord");
-        UpdateBindingStatus(snapshot.Telegram, TelegramBindingLogo, TelegramBindingStatus, "Telegram");
-        UpdateBindingStatus(snapshot.Github, GithubBindingLogo, GithubBindingStatus, "GitHub");
-    }
-
-    private void UpdateBindingStatus(AccountBindingEntry binding, TextureRect logo, Label statusLabel, string serviceName)
-    {
-        if (binding.State == AccountBindingState.Linked)
-        {
-            logo.Visible = true;
-            statusLabel.Text = !string.IsNullOrWhiteSpace(binding.DisplayValue) ? binding.DisplayValue : _loc.GetString("user-profile-binding-linked");
-            statusLabel.FontColorOverride = Color.White;
-        }
-        else if (binding.State == AccountBindingState.Unlinked)
-        {
-            logo.Visible = true;
-            statusLabel.Text = _loc.GetString("user-profile-binding-unlinked");
-            statusLabel.FontColorOverride = Color.Gray;
-        }
-        else
-        {
-            logo.Visible = true;
-            statusLabel.Text = _loc.GetString("user-profile-binding-unavailable");
-            statusLabel.FontColorOverride = Color.Red;
-        }
-    }
-
-    private void RefreshSponsorInfo()
-    {
-        RefreshSponsorControlsState();
-
-        if (!_sponsorEnabled || _sponsorsManager == null || _playerManager.LocalSession == null)
-        {
-            SponsorTierName.SetMessage(_loc.GetString("user-profile-no-sponsor"));
-            return;
-        }
-
-        if (_sponsorsManager.ClientIsSponsor())
-        {
-            var tierTitle = _sponsorsManager.ClientGetTierTitle();
-            if (string.IsNullOrWhiteSpace(tierTitle))
-                tierTitle = _loc.GetString("user-profile-sponsor-active");
-
-            var colorHex = _sponsorsManager.ClientGetTierColorHex();
-            if (!string.IsNullOrWhiteSpace(colorHex))
-            {
-                if (OocGradientHelper.IsGradientId(colorHex))
-                {
-                    var gradientMarkup = OocGradientHelper.ApplyGradientById(tierTitle, colorHex);
-                    SponsorTierName.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]{gradientMarkup}[/bold]"));
-                }
-                else
-                {
-                    SponsorTierName.SetMessage(FormattedMessage.FromMarkupOrThrow($"[color={colorHex}]{tierTitle}[/color]"));
-                }
-            }
-            else
-            {
-                SponsorTierName.SetMessage(tierTitle);
-            }
-            return;
-        }
-
-        SponsorTierName.SetMessage(_loc.GetString("user-profile-no-sponsor"));
-    }
-
-    private void RefreshSponsorControlsState()
-    {
-        var sponsorActionsAvailable = _sponsorEnabled && _sponsorsManager != null;
-        InfoSponsorButton.Disabled = !sponsorActionsAvailable;
-        BuySponsorButton.Disabled = !sponsorActionsAvailable || string.IsNullOrWhiteSpace(_donateUrl);
-        var isSponsor = _sponsorsManager?.ClientIsSponsor() ?? false;
-        PersonalizeSponsorButton.Disabled = !sponsorActionsAvailable || !isSponsor;
-    }
 
     #region Subscribers
 
@@ -434,6 +337,12 @@ public sealed partial class SunriseLobbyGui : UIScreen
     {
         TelegramButton.Visible = !string.IsNullOrEmpty(url);
     }
+
+    private void OnGithubLinkChanged(string url)
+    {
+        GithubButton.Visible = !string.IsNullOrEmpty(url);
+    }
+
 
     private void OnReplaysLinkChanged(string url)
     {

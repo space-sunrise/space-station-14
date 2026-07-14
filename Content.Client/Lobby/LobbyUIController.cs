@@ -60,7 +60,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.
     /// </summary>
-    private LobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview();
+    private SunriseLobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview(); // Sunrise-Edit
 
     private LobbyPetPreviewPanel? PetPreviewPanel => GetLobbyPetPreview();
 
@@ -98,7 +98,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         _configurationManager.OnValueChanged(CCVars.GameRoleWhitelist, _ => RefreshProfileEditor());
     }
 
-    private LobbyCharacterPreviewPanel? GetLobbyPreview()
+    private SunriseLobbyCharacterPreviewPanel? GetLobbyPreview()
     {
         if (_stateManager.CurrentState is LobbyState lobby)
         {
@@ -230,7 +230,27 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         var dummy = LoadProfileEntity(humanoid, null, true);
         PreviewPanel.SetSprite(dummy);
-        PreviewPanel.SetSummaryText(humanoid.Summary);
+        // Sunrise edit start - Добавляем подробности о персонаже (раса, пол, желаемая профессия)
+        var speciesProto = _prototypeManager.Index<SpeciesPrototype>(humanoid.Species);
+        var speciesName = Loc.GetString(speciesProto.Name);
+        var sexStr = humanoid.Sex.ToString().ToLowerInvariant();
+        var genderStr = humanoid.Gender.ToString().ToLowerInvariant();
+
+        var speciesSexLine = Loc.GetString("humanoid-character-profile-summary-species-sex",
+            ("gender", genderStr),
+            ("species", speciesName),
+            ("sex", sexStr));
+
+        var preferredJob = GetPreferredJob(humanoid);
+        var jobName = preferredJob.LocalizedName;
+        var dreamJobLine = Loc.GetString("humanoid-character-profile-summary-dream-job",
+            ("job", jobName));
+
+        var fullSummary = $"{humanoid.Summary}\n{speciesSexLine}\n{dreamJobLine}";
+        PreviewPanel.SetSummaryText(fullSummary);
+        // Sunrise edit end
+
+
     }
 
     private void RefreshPetPreview()
@@ -247,7 +267,21 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         if (!string.IsNullOrEmpty(currentPetSelection) &&
             _prototypeManager.TryIndex<PetSelectionPrototype>(currentPetSelection, out var petSelectionPrototype))
         {
-            petDummy = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, MapCoordinates.Nullspace);
+            var isAvailable = !petSelectionPrototype.SponsorOnly;
+            if (!isAvailable)
+            {
+                var localSession = _playerManager.LocalSession;
+                if (localSession != null && _sponsorsManager != null &&
+                    _sponsorsManager.TryGetPets(localSession.UserId, out var availablePets))
+                {
+                    isAvailable = availablePets.Contains(petSelectionPrototype.ID);
+                }
+            }
+
+            if (isAvailable)
+            {
+                petDummy = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, MapCoordinates.Nullspace);
+            }
         }
 
         PreviewPanel.SetPetSprite(petDummy);

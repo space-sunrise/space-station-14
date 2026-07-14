@@ -10,6 +10,9 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Utility;
+using Content.Shared._Sunrise.SponsorSystem;
+
 
 namespace Content.Client._Sunrise.UserProfile;
 
@@ -64,11 +67,9 @@ public sealed partial class UserProfile : Control
         RefreshResponsiveLayout();
         RequestAccountBindingsRefresh();
 
-        AccountHeader.Visible = false;
-
-        DiscordBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/discord.svg.192dpi.png");
-        TelegramBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/telegram.svg.192dpi.png");
-        GithubBindingLogo.Texture = _resource.GetTexture("/Textures/Interface/github.svg.192dpi.png");
+        DiscordBindingLogo.Texture = _resource.GetTexture("/Textures/_Sunrise/Interface/discord.svg.192dpi.png");
+        TelegramBindingLogo.Texture = _resource.GetTexture("/Textures/_Sunrise/Interface/telegram.svg.192dpi.png");
+        GithubBindingLogo.Texture = _resource.GetTexture("/Textures/_Sunrise/Interface/github.svg.192dpi.png");
         GithubBindingLogo.Modulate = Color.White;
     }
 
@@ -148,32 +149,28 @@ public sealed partial class UserProfile : Control
 
     private void RefreshBindings(AccountBindingsSnapshot snapshot)
     {
-        SetBindingValue(DiscordBindingValue, snapshot.Discord);
-        SetBindingValue(TelegramBindingValue, snapshot.Telegram);
-        SetBindingValue(GithubBindingValue, snapshot.Github);
+        UpdateBindingStatus(DiscordBindingValue, snapshot.Discord);
+        UpdateBindingStatus(TelegramBindingValue, snapshot.Telegram);
+        UpdateBindingStatus(GithubBindingValue, snapshot.Github);
     }
 
-    private void SetBindingValue(Label label, AccountBindingEntry entry)
+    private void UpdateBindingStatus(Label statusLabel, AccountBindingEntry binding)
     {
-        if (entry.State == AccountBindingState.Unavailable)
+        if (binding.State == AccountBindingState.Linked)
         {
-            label.Text = Loc.GetString("user-profile-binding-unavailable");
-            return;
+            statusLabel.Text = !string.IsNullOrWhiteSpace(binding.DisplayValue) ? binding.DisplayValue : Loc.GetString("user-profile-binding-linked");
+            statusLabel.FontColorOverride = Color.White;
         }
-
-        if (entry.State == AccountBindingState.Unlinked)
+        else if (binding.State == AccountBindingState.Unlinked)
         {
-            label.Text = Loc.GetString("user-profile-binding-unlinked");
-            return;
+            statusLabel.Text = Loc.GetString("user-profile-binding-unlinked");
+            statusLabel.FontColorOverride = Color.Gray;
         }
-
-        if (!string.IsNullOrWhiteSpace(entry.DisplayValue))
+        else
         {
-            label.Text = entry.DisplayValue;
-            return;
+            statusLabel.Text = Loc.GetString("user-profile-binding-unavailable");
+            statusLabel.FontColorOverride = Color.Red;
         }
-
-        label.Text = Loc.GetString("user-profile-binding-linked");
     }
 
     private void RefreshSponsorInfo()
@@ -182,19 +179,39 @@ public sealed partial class UserProfile : Control
 
         if (!_sponsorEnabled || _sponsorsManager == null || _playerManager.LocalSession == null)
         {
-            SponsorTierName.Text = Loc.GetString("user-profile-no-sponsor");
+            SponsorTierName.SetMessage(Loc.GetString("user-profile-no-sponsor"));
             return;
         }
 
         if (_sponsorsManager.ClientIsSponsor())
         {
             var tierTitle = _sponsorsManager.ClientGetTierTitle();
-            SponsorTierName.Text = !string.IsNullOrWhiteSpace(tierTitle) ? tierTitle : Loc.GetString("user-profile-sponsor-active");
+            if (string.IsNullOrWhiteSpace(tierTitle))
+                tierTitle = Loc.GetString("user-profile-sponsor-active");
+
+            var colorHex = _sponsorsManager.ClientGetTierColorHex();
+            if (!string.IsNullOrWhiteSpace(colorHex))
+            {
+                if (OocGradientHelper.IsGradientId(colorHex))
+                {
+                    var gradientMarkup = OocGradientHelper.ApplyGradientById(tierTitle, colorHex);
+                    SponsorTierName.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]{gradientMarkup}[/bold]"));
+                }
+                else
+                {
+                    SponsorTierName.SetMessage(FormattedMessage.FromMarkupOrThrow($"[color={colorHex}]{tierTitle}[/color]"));
+                }
+            }
+            else
+            {
+                SponsorTierName.SetMessage(tierTitle);
+            }
             return;
         }
 
-        SponsorTierName.Text = Loc.GetString("user-profile-no-sponsor");
+        SponsorTierName.SetMessage(Loc.GetString("user-profile-no-sponsor"));
     }
+
 
     private void RefreshSponsorControlsState()
     {

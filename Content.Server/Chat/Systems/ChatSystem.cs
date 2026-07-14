@@ -1,6 +1,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Content.Shared._Sunrise.Messenger;
+using Content.Sunrise.Interfaces.Shared;
 using Content.Server._Sunrise.Chat;
 using Content.Server._Sunrise.Chat.Sanitization;
 using Content.Server._Sunrise.AnnouncementSpeaker;
@@ -69,6 +71,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeaker = default!;
 
+    private ISharedSponsorsManager? _sponsorsManager;
+
     public const string DefaultAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
 
     private bool _loocEnabled = true;
@@ -79,6 +83,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public override void Initialize()
     {
         base.Initialize();
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager);
 
         Subs.CVar(_configurationManager, CCVars.LoocEnabled, OnLoocEnabledChanged, true);
         Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
@@ -297,6 +302,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!TryProcessSunriseChatMessage(source, ref message, oocChatType: type))
             return;
         // Sunrise added end
+
+        var emojiSystem = EntityManager.System<SharedEmojiSystem>();
+        message = emojiSystem.FilterBlockedEmojis(message, player!.UserId, _sponsorsManager);
 
         message = SanitizeInGameOOCMessage(message);
 

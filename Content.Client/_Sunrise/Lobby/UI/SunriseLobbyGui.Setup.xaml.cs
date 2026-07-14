@@ -1,6 +1,5 @@
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
-using Content.Sunrise.Interfaces.Shared;
 
 namespace Content.Client._Sunrise.Lobby.UI;
 
@@ -42,6 +41,13 @@ public sealed partial class SunriseLobbyGui
                 _uri.OpenUri(url);
         };
 
+        GithubButton.OnPressed += _ =>
+        {
+            var url = _cfg.GetCVar(CCVars.InfoLinksGithub);
+            if (!string.IsNullOrEmpty(url))
+                _uri.OpenUri(url);
+        };
+
         ReplaysButton.OnPressed += _ =>
         {
             var url = _cfg.GetCVar(SunriseCCVars.InfoLinksReplays);
@@ -58,10 +64,11 @@ public sealed partial class SunriseLobbyGui
         SetupButtonIcon(OptionsButton, "/Textures/Interface/VerbIcons/settings.svg.192dpi.png", _loc.GetString("ui-lobby-options-button"));
         SetupButtonIcon(LeaveButton, "/Textures/Interface/VerbIcons/close.svg.192dpi.png", _loc.GetString("ui-lobby-leave-button"));
 
-        SetupButtonIcon(DiscordButton, "/Textures/Interface/discord.svg.192dpi.png", _loc.GetString("server-info-discord-button"));
-        SetupButtonIcon(WikiButton, "/Textures/Interface/wiki.svg.192dpi.png", _loc.GetString("server-info-wiki-button"));
-        SetupButtonIcon(TelegramButton, "/Textures/Interface/telegram.svg.192dpi.png", _loc.GetString("server-info-telegram-button"));
-        SetupButtonIcon(ReplaysButton, "/Textures/Interface/replay.svg.192dpi.png", _loc.GetString("ui-lobby-replays-button"));
+        SetupButtonIcon(DiscordButton, "/Textures/_Sunrise/Interface/discord.svg.192dpi.png", _loc.GetString("server-info-discord-button"));
+        SetupButtonIcon(WikiButton, "/Textures/_Sunrise/Interface/wiki.svg.192dpi.png", _loc.GetString("server-info-wiki-button"));
+        SetupButtonIcon(TelegramButton, "/Textures/_Sunrise/Interface/telegram.svg.192dpi.png", _loc.GetString("server-info-telegram-button"));
+        SetupButtonIcon(GithubButton, "/Textures/_Sunrise/Interface/github.svg.192dpi.png", _loc.GetString("info-link-github"));
+        SetupButtonIcon(ReplaysButton, "/Textures/_Sunrise/Interface/replay.svg.192dpi.png", _loc.GetString("ui-lobby-replays-button"));
     }
 
     #endregion
@@ -73,16 +80,6 @@ public sealed partial class SunriseLobbyGui
         base.EnteredTree();
 
         SubscribeCfgHandlers();
-
-        if (_accountBindingsManager != null)
-            _accountBindingsManager.BindingsChanged += OnBindingsChanged;
-
-        if (_sponsorsManager != null)
-            _sponsorsManager.LoadedSponsorInfo += RefreshSponsorInfo;
-
-        RefreshSponsorInfo();
-        RefreshBindings(_accountBindingsManager?.GetSnapshot() ?? AccountBindingsSnapshot.Unavailable());
-        _accountBindingsManager?.RequestBindingsRefresh();
     }
 
     protected override void ExitedTree()
@@ -90,12 +87,6 @@ public sealed partial class SunriseLobbyGui
         base.ExitedTree();
 
         UnsubscribeCfgHandlers();
-
-        if (_accountBindingsManager != null)
-            _accountBindingsManager.BindingsChanged -= OnBindingsChanged;
-
-        if (_sponsorsManager != null)
-            _sponsorsManager.LoadedSponsorInfo -= RefreshSponsorInfo;
     }
 
     protected override void Dispose(bool disposing)
@@ -121,11 +112,8 @@ public sealed partial class SunriseLobbyGui
         _cfg.OnValueChanged(CCVars.InfoLinksDiscord, OnDiscordLinkChanged, true);
         _cfg.OnValueChanged(CCVars.InfoLinksWiki, OnWikiLinkChanged, true);
         _cfg.OnValueChanged(CCVars.InfoLinksTelegram, OnTelegramLinkChanged, true);
+        _cfg.OnValueChanged(CCVars.InfoLinksGithub, OnGithubLinkChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.InfoLinksReplays, OnReplaysLinkChanged, true);
-
-        _cfg.OnValueChanged(CCVars.InfoLinksAccountManagement, OnAccountManagementUrlChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnInfoLinksDonateChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.SponsorEnabled, OnSponsorEnabledChanged, true);
     }
 
     private void UnsubscribeCfgHandlers()
@@ -143,30 +131,11 @@ public sealed partial class SunriseLobbyGui
         _cfg.UnsubValueChanged(CCVars.InfoLinksDiscord, OnDiscordLinkChanged);
         _cfg.UnsubValueChanged(CCVars.InfoLinksWiki, OnWikiLinkChanged);
         _cfg.UnsubValueChanged(CCVars.InfoLinksTelegram, OnTelegramLinkChanged);
+        _cfg.UnsubValueChanged(CCVars.InfoLinksGithub, OnGithubLinkChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.InfoLinksReplays, OnReplaysLinkChanged);
-
-        _cfg.UnsubValueChanged(CCVars.InfoLinksAccountManagement, OnAccountManagementUrlChanged);
-        _cfg.UnsubValueChanged(SunriseCCVars.InfoLinksDonate, OnInfoLinksDonateChanged);
-        _cfg.UnsubValueChanged(SunriseCCVars.SponsorEnabled, OnSponsorEnabledChanged);
-    }
-
-    private void OnAccountManagementUrlChanged(string url)
-    {
-        _accountManagementUrl = url;
-        ManageAccountButton.Disabled = string.IsNullOrWhiteSpace(url);
-    }
-
-    private void OnInfoLinksDonateChanged(string url)
-    {
-        _donateUrl = url;
-        RefreshSponsorControlsState();
-    }
-
-    private void OnSponsorEnabledChanged(bool enabled)
-    {
-        _sponsorEnabled = enabled;
-        RefreshSponsorInfo();
     }
 
     #endregion
 }
+
+

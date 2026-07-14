@@ -56,8 +56,7 @@ public interface ISharedSponsorsManager
     public int GetSizeFlavor(NetUserId userId);
     public bool IsAllowedFlavor(NetUserId userId);
     public bool IsAllowedLobbyTts(NetUserId userId);
-    public bool IsAllowedOocEmoji(NetUserId userId);
-    public bool TryGetOocEmoji(NetUserId userId, [NotNullWhen(true)] out string? emoji);
+    public bool IsAllowedOocTitleEmoji(NetUserId userId);
     public bool TryGetAllowedOocGradients(NetUserId userId, [NotNullWhen(true)] out List<string>? gradients);
     public int GetExtraCharSlots(NetUserId userId);
     public bool HavePriorityJoin(NetUserId userId);
@@ -132,17 +131,8 @@ public sealed class SponsorInfo
     [JsonPropertyName("allowedOocColors")]
     public string[] AllowedOocColors { get; set; } = [];
 
-    /// <summary>
-    /// Список разрешенных OOC-градиентов для данного тира спонсора.
-    /// </summary>
-    [JsonPropertyName("allowedOocGradients")]
-    public string[] AllowedOocGradients { get; set; } = [];
-
-    [JsonPropertyName("allowedOocEmoji")]
-    public bool AllowedOocEmoji { get; set; } = false;
-
-    [JsonPropertyName("oocEmoji")]
-    public string? OocEmoji { get; set; }
+    [JsonPropertyName("allowedOocTitleEmoji")]
+    public bool AllowedOocTitleEmoji { get; set; } = false;
 
     [JsonPropertyName("allowedLoadouts")]
     public string[] AllowedLoadouts { get; set; } = [];

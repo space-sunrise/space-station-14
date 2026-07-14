@@ -300,11 +300,9 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         Color? colorOverride = null;
-        var allowedOocEmoji = _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(player.UserId);
-        if (!allowedOocEmoji)
-        {
-            message = global::System.Text.RegularExpressions.Regex.Replace(message, @"(?<![a-zA-Z0-9_]):([^\s:]+):(?![a-zA-Z0-9_])", ":\u200b$1\u200b:");
-        }
+
+        var emojiSystem = _entityManager.System<SharedEmojiSystem>();
+        message = emojiSystem.FilterBlockedEmojis(message, player.UserId, _sponsorsManager);
 
         var escapedMessage = FormattedMessage.EscapeText(message);
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", player.Name), ("message", escapedMessage));
@@ -330,7 +328,7 @@ internal sealed partial class ChatManager : IChatManager
             _sponsorsManager.TryGetOocColor(player.UserId, out sponsorColor);
         }
 
-        var hasEmojiRights = (_sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(player.UserId)) || isAllowedAdminBypass;
+        var hasEmojiRights = (_sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(player.UserId)) || isAllowedAdminBypass;
 
         var selectedTitleCVar = _netConfigManager.GetClientCVar(player.Channel, SunriseCCVars.SponsorOocTitle);
         if (!string.IsNullOrEmpty(selectedTitleCVar) && selectedTitleCVar != "@none")
@@ -418,7 +416,7 @@ internal sealed partial class ChatManager : IChatManager
         if (hasEmojiRights && !string.IsNullOrWhiteSpace(selectedEmojiCVar))
         {
             var emojiId = selectedEmojiCVar.Trim(':');
-            if (_prototypeManager.HasIndex<EmojiPrototype>(emojiId))
+            if (emojiSystem.IsEmojiAllowedForPlayer(emojiId, player.UserId, _sponsorsManager))
             {
                 sponsorDisplayName = $"[emoji id=\"{emojiId}\" size=50] {sponsorDisplayName}";
             }
@@ -472,8 +470,7 @@ internal sealed partial class ChatManager : IChatManager
             if (_sponsorsManager.IsAllowedLobbyTts(player.UserId) && _playerCacheManager.GetLobbyTtsEnabled(player.UserId))
             {
                 var ttsSystem = _entityManager.System<TTSSystem>();
-                var cleanMessage = System.Text.RegularExpressions.Regex.Replace(message, @":[a-zA-Z0-9_\-]+:", "");
-                ttsSystem.PlayLobbyTTS(player, cleanMessage);
+                ttsSystem.PlayLobbyTTS(player, message);
             }
         }
         // Sunrise added end
@@ -486,6 +483,9 @@ internal sealed partial class ChatManager : IChatManager
             _adminLogger.Add(LogType.Chat, LogImpact.Extreme, $"{player:Player} attempted to send admin message but was not admin");
             return;
         }
+
+        var emojiSystem = _entityManager.System<SharedEmojiSystem>();
+        message = emojiSystem.FilterBlockedEmojis(message, player.UserId, _sponsorsManager);
 
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
         var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",

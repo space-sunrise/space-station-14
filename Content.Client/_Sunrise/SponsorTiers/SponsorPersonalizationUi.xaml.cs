@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.Messenger;
 using Content.Shared._Sunrise.SponsorSystem;
 using Content.Sunrise.Interfaces.Shared;
 using Content.Client._Sunrise.UserInterface.CustomControls;
@@ -13,6 +14,7 @@ using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
 using Content.Client.Administration.Managers;
+using Content.Shared.Administration;
 
 namespace Content.Client._Sunrise.SponsorTiers;
 
@@ -22,6 +24,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IClientAdminManager _adminManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     private ISharedSponsorsManager? _sponsorsManager;
 
     private readonly Dictionary<Button, string> _colorButtons = new();
@@ -75,7 +78,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
         var isSponsor = _sponsorsManager.ClientIsSponsor();
         var isAllowedAdminBypass = isAdminActive && isSponsor;
 
-        var hasEmojiRights = (localPlayer != null && _sponsorsManager.IsAllowedOocEmoji(localPlayer.UserId)) || isAllowedAdminBypass;
+        var hasEmojiRights = (localPlayer != null && _sponsorsManager.IsAllowedOocTitleEmoji(localPlayer.UserId)) || isAllowedAdminBypass;
         EmojiSectionPanel.Visible = hasEmojiRights;
         if (hasEmojiRights)
         {
@@ -315,6 +318,40 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             currentColor = string.Empty;
         }
 
+        var isAdminActive = _adminManager.IsActive();
+        var adminData = _adminManager.GetAdminData();
+        var isSponsor = _sponsorsManager?.ClientIsSponsor() ?? false;
+        var isAllowedAdminBypass = isAdminActive && isSponsor;
+        var hasEmojiRights = (localPlayer != null && _sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(localPlayer.UserId)) || isAllowedAdminBypass;
+
+        if (isAllowedAdminBypass && adminData != null && string.IsNullOrWhiteSpace(titlePart))
+            titlePart = adminData.Title;
+
+        var currentEmoji = _cfg.GetCVar(SunriseCCVars.SponsorOocEmoji);
+        var isAllowedEmoji = string.IsNullOrEmpty(currentEmoji);
+        if (!isAllowedEmoji)
+        {
+            if (!hasEmojiRights)
+            {
+                isAllowedEmoji = false;
+            }
+            else
+            {
+                var emojiId = currentEmoji.Trim(':');
+                var emojiSystem = _entityManager.System<SharedEmojiSystem>();
+                if (localPlayer != null)
+                {
+                    isAllowedEmoji = emojiSystem.IsEmojiAllowedForPlayer(emojiId, localPlayer.UserId, _sponsorsManager);
+                }
+            }
+        }
+        if (!isAllowedEmoji)
+        {
+            _cfg.SetCVar(SunriseCCVars.SponsorOocEmoji, string.Empty);
+            _cfg.SaveToFile();
+            currentEmoji = string.Empty;
+        }
+
         if (OocGradientHelper.IsGradientId(currentColor))
         {
             namePart = OocGradientHelper.ApplyGradientById(namePart, currentColor);
@@ -332,8 +369,6 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             ? namePart
             : $"\\[{titlePart}\\] {namePart}";
 
-        var hasEmojiRights = localPlayer != null && _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(localPlayer.UserId);
-        var currentEmoji = _cfg.GetCVar(SunriseCCVars.SponsorOocEmoji);
         if (hasEmojiRights && !string.IsNullOrWhiteSpace(currentEmoji))
         {
             var emojiId = currentEmoji.Trim(':');
@@ -359,6 +394,12 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
                 {
                     colorHex = $"#{defaultColor.Value.ToHexNoAlpha().TrimStart('#')}";
                 }
+            }
+
+            if (isAllowedAdminBypass && adminData != null &&
+                (string.IsNullOrWhiteSpace(colorHex) || currentColor == "@none"))
+            {
+                colorHex = adminData.HasFlag(AdminFlags.Adminhelp) ? "#ff0000" : "#800080";
             }
 
             if (!string.IsNullOrWhiteSpace(colorHex))
@@ -395,7 +436,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             _cfg.SetCVar(SunriseCCVars.SponsorOocEmoji, emojiCode);
             UpdateChatPreview();
             var localPlayer = _player.LocalSession;
-            if (localPlayer != null && _sponsorsManager != null && _sponsorsManager.IsAllowedOocEmoji(localPlayer.UserId))
+            if (localPlayer != null && _sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(localPlayer.UserId))
             {
                 var emojiId = emojiCode.Trim(':');
                 SelectedEmojiLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[emoji id=\"{emojiId}\" size=50]"), AllowedTags);
