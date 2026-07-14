@@ -1163,6 +1163,11 @@
       state: Pirate
   - type: Item
     heldPrefix: orange #this is close enough to the weird puce color pirate IDs have going on
+  # Sunrise-Start
+  - type: Access
+    tags:
+    - Pirate
+  # Sunrise-End
   - type: IdCard
     jobIcon: JobIconPirate
 
@@ -1425,6 +1430,7 @@
     - SyndicateAgent
     - Wizard
     - Xenoborg
+    - Pirate # Sunrise-Add
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener

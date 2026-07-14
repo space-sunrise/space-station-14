@@ -3357,7 +3357,7 @@ entities:
     - type: Transform
       pos: -2.5,-10.5
       parent: 1
-- proto: LockableButtonNukeOps
+- proto: LockableButtonPirate
   entities:
   - uid: 86
     components:
@@ -5003,7 +5003,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-4.5
       parent: 1
-- proto: WindoorSecureNukeopLocked
+- proto: WindoorSecurePirateLocked
   entities:
   - uid: 570
     components:

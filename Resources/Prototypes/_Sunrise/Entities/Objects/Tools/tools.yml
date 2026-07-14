@@ -177,3 +177,16 @@
     tags:
       - Crowbar
       - Wrench
+
+- type: entity
+  parent: [ HandHeldMassScannerBorg, BaseHighlyIllegalContraband ]
+  id: HandHeldMassScannerPirate
+  name: holographic pirate map
+  description: A hand-held mass scanner.
+  components:
+  - type: Item
+    sprite: _Sunrise/Objects/Tools/holo_pirate_map.rsi
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/holo_pirate_map.rsi
+    layers:
+    - state: icon

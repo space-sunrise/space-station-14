@@ -48,3 +48,14 @@ ent-BulletImprovisedGrenadePipeBomb = pipe bomb grenade
     .desc = { ent-BaseBulletTrigger.desc }
 ent-BulletImprovisedGrenadeGlass = glass grenade
     .desc = { ent-BaseBulletTrigger.desc }
+ent-SunriseBulletDisposableTrainingRocket = training rocket
+    .desc = A light practice rocket with a blunt, low harm-looking casing.
+
+ent-SunriseBulletDisposableEmpRocket = EMP rocket
+    .desc = A small rocket with an electromagnetic charge packed into its nose.
+
+ent-SunriseBulletDisposableSmokeRocket = smoke rocket
+    .desc = A compact rocket that vents a dense smoke payload on impact.
+
+ent-SunriseBulletDisposableIncendiaryRocket = thermobaric rocket
+    .desc = A compact rocket with a volatile chemical payload.
