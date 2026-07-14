@@ -24,12 +24,9 @@ lobby-state-song-no-song-text = В лобби не играет песня.
 lobby-state-song-unknown-title = [color=dimgray]Неизвестное название[/color]
 lobby-state-song-unknown-artist = [color=dimgray]Неизвестный исполнитель[/color]
 
-ui-server-info-round = Текущий раунд
-ui-server-info-players = Текущее количество игроков
-ui-server-info-map = Текущая карта
-ui-server-info-mode = Текущий режим игры
-
-ui-server-info-round-short = Раунд
-ui-server-info-players-short = Онлайн
-ui-server-info-map-short = Карта
-ui-server-info-mode-short = Режим
+lobby-state-playtime-comment-normal =
+    Сегодня вы наиграли {$playtime} Не забывайте делать перерывы!
+lobby-state-playtime-comment-concerning = Сегодня вы наиграли {$playtime} Сделайте перерыв.
+lobby-state-playtime-comment-grasstouchless = {$playtime} Может, уже хватит сидеть за компьютером.
+lobby-state-playtime-comment-selfdestructive = {$playtime} Серьёзно? Вам стоит потрогать траву.
+lobby-state-playtime-comment-lazy = Сегодня вы наиграли жалкие {$playtime} Вам запрещено трогать траву.

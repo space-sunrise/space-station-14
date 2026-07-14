@@ -22,37 +22,32 @@ public sealed partial class SunriseLobbyGui
 
         DiscordButton.OnPressed += _ =>
         {
-            var url = _cfg.GetCVar(CCVars.InfoLinksDiscord);
-            if (!string.IsNullOrEmpty(url))
-                _uri.OpenUri(url);
+            if (!string.IsNullOrEmpty(_cfg.GetCVar(CCVars.InfoLinksDiscord)))
+                _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksDiscord)!);
         };
 
         WikiButton.OnPressed += _ =>
         {
-            var url = _cfg.GetCVar(CCVars.InfoLinksWiki);
-            if (!string.IsNullOrEmpty(url))
-                _uri.OpenUri(url);
+            if (!string.IsNullOrEmpty(_cfg.GetCVar(CCVars.InfoLinksWiki)))
+                _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksWiki)!);
         };
 
         TelegramButton.OnPressed += _ =>
         {
-            var url = _cfg.GetCVar(CCVars.InfoLinksTelegram);
-            if (!string.IsNullOrEmpty(url))
-                _uri.OpenUri(url);
+            if (!string.IsNullOrEmpty(_cfg.GetCVar(CCVars.InfoLinksTelegram)))
+                _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksTelegram)!);
         };
 
         GithubButton.OnPressed += _ =>
         {
-            var url = _cfg.GetCVar(CCVars.InfoLinksGithub);
-            if (!string.IsNullOrEmpty(url))
-                _uri.OpenUri(url);
+            if (!string.IsNullOrEmpty(_cfg.GetCVar(CCVars.InfoLinksGithub)))
+                _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksGithub)!);
         };
 
         ReplaysButton.OnPressed += _ =>
         {
-            var url = _cfg.GetCVar(SunriseCCVars.InfoLinksReplays);
-            if (!string.IsNullOrEmpty(url))
-                _uri.OpenUri(url);
+            if (!string.IsNullOrEmpty(_cfg.GetCVar(SunriseCCVars.InfoLinksReplays)))
+                _uri.OpenUri(_cfg.GetCVar(SunriseCCVars.InfoLinksReplays)!);
         };
     }
 

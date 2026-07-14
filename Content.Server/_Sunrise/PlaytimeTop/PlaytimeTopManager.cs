@@ -1,11 +1,10 @@
-// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
-
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared._Sunrise.PlaytimeTop;
 using Robust.Server.Player;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -24,14 +23,14 @@ public sealed class PlaytimeTopManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly ITaskManager _taskManager = default!;
 
     private ISawmill _sawmill = default!;
 
-    private const int TopCount = 10;
+    private const int TopCount = 20;
     private readonly TimeSpan _updateRate = TimeSpan.FromMinutes(1);
     private TimeSpan _nextUpdate = TimeSpan.Zero;
 
-    // Кэш последнего рассчитанного топа
     private List<PlaytimeTopEntry> _cachedOnlineNow = [];
     private List<PlaytimeTopEntry> _cachedActiveWeek = [];
     private List<PlaytimeTopEntry> _cachedActiveMonth = [];
@@ -65,8 +64,16 @@ public sealed class PlaytimeTopManager
     {
         try
         {
-            await RefreshCaches();
-            SendToAll();
+            var (onlineNow, activeWeek, activeMonth, allTime) = await RefreshCaches();
+
+            _taskManager.RunOnMainThread(() =>
+            {
+                _cachedOnlineNow = onlineNow;
+                _cachedActiveWeek = activeWeek;
+                _cachedActiveMonth = activeMonth;
+                _cachedAllTime = allTime;
+                SendToAll();
+            });
         }
         catch (Exception e)
         {
@@ -74,32 +81,35 @@ public sealed class PlaytimeTopManager
         }
     }
 
-    private async Task RefreshCaches()
+    private async Task<(List<PlaytimeTopEntry> onlineNow, List<PlaytimeTopEntry> activeWeek,
+        List<PlaytimeTopEntry> activeMonth, List<PlaytimeTopEntry> allTime)> RefreshCaches()
     {
         var cancel = CancellationToken.None;
 
         var daySince = DateTime.UtcNow - TimeSpan.FromDays(1);
         var dayData = await _db.GetTopPlayersActiveSinceWithSession(daySince, TopCount, cancel);
-        _cachedOnlineNow = dayData
+        var onlineNow = dayData
             .Select(x => new PlaytimeTopEntry(x.Username, x.Time))
             .ToList();
 
         var weekSince = DateTime.UtcNow - TimeSpan.FromDays(7);
         var weekData = await _db.GetTopPlayersActiveSinceWithSession(weekSince, TopCount, cancel);
-        _cachedActiveWeek = weekData
+        var activeWeek = weekData
             .Select(x => new PlaytimeTopEntry(x.Username, x.Time))
             .ToList();
 
         var monthSince = DateTime.UtcNow - TimeSpan.FromDays(30);
         var monthData = await _db.GetTopPlayersActiveSinceWithSession(monthSince, TopCount, cancel);
-        _cachedActiveMonth = monthData
+        var activeMonth = monthData
             .Select(x => new PlaytimeTopEntry(x.Username, x.Time))
             .ToList();
 
         var allTimeData = await _db.GetTopPlayersOverall(TopCount, cancel);
-        _cachedAllTime = allTimeData
+        var allTime = allTimeData
             .Select(x => new PlaytimeTopEntry(x.Username, x.Time))
             .ToList();
+
+        return (onlineNow, activeWeek, activeMonth, allTime);
     }
 
     private void SendToAll()

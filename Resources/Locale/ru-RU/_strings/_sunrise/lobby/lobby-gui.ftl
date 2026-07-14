@@ -6,13 +6,12 @@ humanoid-profile-editor-flavor-text-sponsor-only = Описание доступ
 lobby-gui-profile = Профиль
 lobby-gui-now-playing = Сейчас играет: 0/0
 
-# Sunrise-Start - Топ игроков по онлайну
-lobby-playtime-top-header = Топ игроков по онлайну
+# Sunrise-Start - Топ игроков по онлайне
+lobby-playtime-top-header = Топ игроков по онлайне
 lobby-playtime-top-tab-day = День
 lobby-playtime-top-tab-week = Неделя
 lobby-playtime-top-tab-month = Месяц
 lobby-playtime-top-tab-alltime = Всё время
 lobby-playtime-top-column-login = Логин
 lobby-playtime-top-column-hours = Время
-lobby-state-playtime-comment-lazy = Сегодня вы наиграли жалкие {$hours} ч. Вам запрещено трогать траву.
 # Sunrise-End

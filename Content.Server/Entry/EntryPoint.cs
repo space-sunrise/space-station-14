@@ -243,7 +243,7 @@ namespace Content.Server.Entry
                     // Sunrise-Start
                     _serversHubManager.Update();
                     _contributorsManager.Update();
-                    _playtimeTopManager.Update(); // Sunrise-Edit
+                    _playtimeTopManager.Update();
                     _mapperSyncManager.Update();
                     _sponsorsManager?.Update();
                     _ipBlockingSystem?.Update();

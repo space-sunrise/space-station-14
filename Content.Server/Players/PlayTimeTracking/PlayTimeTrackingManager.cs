@@ -54,7 +54,7 @@ public delegate void CalcPlayTimeTrackersCallback(ICommonSession player, HashSet
 /// Operations like refreshing and sending play time info to clients are deferred until the next frame (note: not tick).
 /// </para>
 /// </remarks>
-public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjectInit
+public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjectInit
 {
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IServerNetManager _net = default!;
@@ -104,6 +104,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         // NOTE: This is run **out** of simulation. This is intentional.
 
         UpdateDirtyPlayers();
+        UpdatePlayTimeSessions();
 
         if (_timing.RealTime < _lastSave + _saveInterval)
             return;
@@ -338,6 +339,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         // Sunrise edit start - Start PlayTimeSession in DB
         var sessionId = await _db.AddPlayTimeSessionAsync(session.UserId.UserId, data.ConnectTime, DateTime.UtcNow);
         data.CurrentDbSessionId = sessionId;
+        OnPlayTimeSessionStarted(session);
         // Sunrise edit end
 
         data.Initialized = true;
@@ -349,10 +351,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
     public void ClientDisconnected(ICommonSession session)
     {
         // Sunrise edit start - Save PlayTimeSession on player disconnect
-        if (_playTimeData.TryGetValue(session, out var data) && data.CurrentDbSessionId.HasValue)
-        {
-            TrackPending(_db.UpdatePlayTimeSessionAsync(data.CurrentDbSessionId.Value, DateTime.UtcNow));
-        }
+        OnPlayTimeSessionDisconnected(session);
         // Sunrise edit end
 
         SaveSession(session);
@@ -505,3 +504,4 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         _userDb.AddOnPlayerDisconnect(ClientDisconnected);
     }
 }
+

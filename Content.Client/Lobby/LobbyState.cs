@@ -366,7 +366,9 @@ namespace Content.Client.Lobby
             var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
             Lobby!.PlaytimeComment.Visible = true;
 
-            var hoursToday = Math.Round(minutesToday / 60f, 1);
+            var totalMinutes = (int)Math.Ceiling(TimeSpan.FromMinutes(minutesToday).TotalMinutes);
+            var hoursToday = totalMinutes / 60;
+            var minutesTodayFormatted = totalMinutes % 60;
 
             var chosenString = minutesToday switch
             {
@@ -377,9 +379,10 @@ namespace Content.Client.Lobby
                 _ => "lobby-state-playtime-comment-selfdestructive"
             };
 
-            Lobby.PlaytimeComment.SetMarkup(Loc.GetString(chosenString, ("hours", hoursToday)));
+            Lobby.PlaytimeComment.SetMarkup(Loc.GetString(chosenString, ("playtime", Loc.GetString("ui-playtime-time-format-short", ("hours", hoursToday), ("minutes", minutesTodayFormatted)))));
             // Sunrise edit end
         }
+
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
         {
