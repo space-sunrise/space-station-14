@@ -246,10 +246,6 @@
   suffix: No Key
   description: This is used by a roaming group of freelancers.
   components:
-    - type: ContainerContainer
-      containers:
-        key_slots: !type:Container
-        cell_slot: !type:ContainerSlot
     - type: ItemSlots
       slots:
         cell_slot:
@@ -269,10 +265,6 @@
   suffix: No Key
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
-  - type: ContainerContainer
-    containers:
-      key_slots: !type:Container
-      cell_slot: !type:ContainerSlot
   - type: ItemSlots
     slots:
       cell_slot:
