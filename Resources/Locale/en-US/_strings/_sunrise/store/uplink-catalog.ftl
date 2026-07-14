@@ -44,6 +44,45 @@ uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Deagle Magazine
 uplink-pistol-magnum-magazine-desc = A 7-round single-stack pistol magazine loaded with SP rounds. Compatible with the Deagle.
+uplink-improvised-magnum-name = Bulk ammunition boxes (.45 magnum improvised)
+uplink-pirate-ammo-cannonball-mini-name = Bulk mini cannonball magazines
+uplink-pirate-ammo-chaingun-name = Bulk chaingun ammo drums
+uplink-pirate-ammo-smg-ap-name = Bulk SMG magazines (.35 auto AP)
+uplink-pirate-ammo-smg-incendiary-name = Bulk SMG magazines (.35 auto incendiary)
+uplink-pirate-ammo-smg-mixed-name = Bulk basic SMG magazines (.35 auto)
+uplink-pirate-ammo-smg-rubber-name = Bulk SMG magazines (.35 auto rubber)
+uplink-pirate-ammo-magnum-ap-name = Bulk speedloaders (.45 magnum AP)
+uplink-pirate-ammo-hristov-name = Bulk ammunition boxes (15mm)
+uplink-pirate-ammo-hristov-ap-name = Bulk ammunition boxes (15mm AP)
+uplink-pirate-ammo-hristov-frag-name = Bulk ammunition boxes (15mm frag)
+uplink-pirate-ammo-hristov-blast-name = Bulk ammunition boxes (15mm blast)
+uplink-pirate-ammo-improvised-rifle-name = Bulk ammunition boxes (7.62 improvised)
+uplink-pirate-ammo-improvised-shotgun-name = Bulk ammunition boxes (12 gauge improvised)
+uplink-pirate-ammo-improvised-pistol-name = Bulk ammunition boxes (.35 auto improvised)
+uplink-pirate-ammo-40-ap-name = Bulk magazines (.40 AP)
+uplink-pirate-ammo-40-mixed-name = Bulk basic magazines (.40)
+uplink-pirate-ammo-machine-pistol-ap-name = Bulk machine pistol magazines (.35 auto AP)
+uplink-pirate-ammo-machine-pistol-mixed-name = Bulk basic machine pistol magazines (.35 auto)
+uplink-pirate-ammo-machine-pistol-rubber-name = Bulk machine pistol magazines (.35 auto rubber)
+uplink-pirate-ammo-l6-incendiary-name = Bulk L6 SAW boxes (5.56 incendiary)
+uplink-pirate-ammo-556-mixed-name = Bulk basic ammunition boxes (5.56)
+uplink-pirate-ammo-556-ap-name = Bulk ammunition boxes (5.56 AP)
+uplink-pirate-ammo-556-incendiary-name = Bulk ammunition boxes (5.56 incendiary)
+uplink-pirate-ammo-556-mag-mixed-name = Bulk basic magazines (5.56)
+uplink-pirate-ammo-prd-mixed-name = Bulk basic belt boxes (7.62)
+uplink-pirate-ammo-prd-ap-name = Bulk belt boxes (7.62 AP)
+uplink-pirate-ammo-prd-incendiary-name = Bulk belt boxes (7.62 incendiary)
+uplink-pirate-ammo-prd-practice-name = Bulk belt boxes (7.62 practice)
+uplink-pirate-ammo-prd-uranium-name = Bulk belt boxes (7.62 uranium)
+uplink-pirate-ammo-dragunov-sp-name = Bulk Dragunov magazines (7.62R SP)
+uplink-pirate-ammo-762r-ap-name = Bulk ammunition boxes (7.62R AP)
+uplink-pirate-ammo-762r-incendiary-name = Bulk ammunition boxes (7.62R incendiary)
+uplink-pirate-ammo-762r-mixed-name = Bulk basic ammunition boxes (7.62R)
+uplink-pirate-ammo-308-ap-name = Bulk magazines (.308 AP)
+uplink-pirate-ammo-308-mixed-name = Bulk basic magazines (.308)
+
+uplink-magazine-127hp-desc = A Bauer SR-127 magazine with 7 hollow point rounds. Trades almost all breaching power for massive personnel damage.
+uplink-sniper-ammo-hp-desc = A box of 14 hollow point cartridges for the Hristov sniper rifle or SR-127. Trades almost all breaching power for massive personnel damage.
 
 ## Misc
 
@@ -111,6 +150,10 @@ uplink-reinforcement-radio-syndicate-cyborg-medical-name = Syndicate Medical Bor
 uplink-reinforcement-radio-syndicate-cyborg-medical-desc = Sends a Syndicate borg to support you.
 uplink-reinforcement-radio-syndicate-cyborg-reaper-name = Syndicate "Reaper" Borg Reinforcement Teleporter
 uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Sends a Syndicate borg to support you.
+uplink-pirate-borg-assault-name = Pirate Boarding Cyborg
+uplink-pirate-borg-assault-desc = Calls in a pirate boarding cyborg with boarding gear and a self-loading musket to support you.
+uplink-pirate-borg-random-name = Reprogrammed Derelict Cyborg
+uplink-pirate-borg-random-desc = Calls in a random derelict cyborg with pirate laws damaged by ion storms. Its laws may not favor you.
 
 ## Equipment
 

@@ -2,6 +2,8 @@
 store-category-debug = дебаг категория
 store-category-debug2 = дебаг категория 2
 store-category-weapons = Вооружение
+store-category-melee-weapons = Оружие ближнего боя
+store-category-ranged-weapons = Оружие дальнего боя
 store-category-ammo = Боеприпасы
 store-category-explosives = Взрывчатка
 store-category-chemicals = Химикаты
@@ -12,6 +14,7 @@ store-category-wearables = Экипировка
 store-category-implants = Импланты
 store-category-job = Работа
 store-category-pointless = Безделушки
+store-category-armor-protection = Бронезащита
 store-discounted-items = Скидки
 store-category-lootbox = Лутбоксы
 # Revenant
