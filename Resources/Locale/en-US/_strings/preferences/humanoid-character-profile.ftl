@@ -22,4 +22,4 @@ humanoid-character-profile-summary-species-sex =
        *[other] Unknown sex
     }).
 humanoid-character-profile-summary-dream-job = Preferred job: {$job}.
-# Sunrise edit end
+# Sunrise edit end
