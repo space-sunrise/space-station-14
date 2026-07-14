@@ -45,7 +45,6 @@
     id: PrisonPilotPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltPrisonGuardianFilled
-    pocket1: WeaponPistolG22
 
 - type: chameleonOutfit
   id: PrisonPilotChameleonOutfit

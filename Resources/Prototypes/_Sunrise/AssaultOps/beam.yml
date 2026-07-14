@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: IcarusBeam
   name: icarus
   categories: [ HideSpawnMenu ]
@@ -6,13 +6,16 @@
   components:
   - type: Clickable
   - type: MovementIgnoreGravity
+    weightless: true
   - type: GravityAffected
+  - type: TileFrictionModifier
+    modifier: 0
   - type: Sprite
     sprite: _Sunrise/AssaultOperatives/sunray.rsi
     drawdepth: Effects
     noRot: false
     netsync: false
-    scale: 6, 6
+    scale: 8, 8
     layers:
       - state: sunray_splash
       - state: sunray
@@ -30,9 +33,9 @@
     linearDamping: 0
     angularDamping: 0
   - type: PointLight
-    radius: 12
+    radius: 50
     color: yellow
-    energy: 10.0
+    energy: 25.0
   - type: Fixtures
     fixtures:
       fix1:

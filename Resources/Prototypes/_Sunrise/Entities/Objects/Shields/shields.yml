@@ -7,6 +7,7 @@
   description: Exotic energy shield, when folded, can even fit in your pocket. That experimenal shield can recharge itself.
   components:
     - type: EnergySword
+    - type: EmpImmune
     - type: ItemToggle
       soundActivate:
         path: /Audio/Weapons/ebladeon.ogg
@@ -22,7 +23,7 @@
       activeSound:
         path: /Audio/Weapons/ebladehum.ogg
     - type: ItemToggleSize
-      activatedSize: Huge
+      activatedSize: Ginormous
     - type: ComponentToggler
       components:
       - type: DisarmMalus

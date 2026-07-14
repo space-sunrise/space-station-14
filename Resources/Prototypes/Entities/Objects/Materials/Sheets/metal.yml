@@ -37,7 +37,7 @@
     - ExpandingRepairingStation
 
 - type: entity
-  parent: SheetMetalBase
+  parent: [SheetMetalBase, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: SheetSteel
   name: steel
   suffix: Full
@@ -75,6 +75,10 @@
         - ReagentId: Lead
           Quantity: 1
         # Sunrise-end
+  # Sunrise-start
+  - type: QuickConstructable
+    category: Steel
+  # Sunrise-end
 
 - type: entity
   parent: SheetSteel

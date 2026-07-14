@@ -18,6 +18,6 @@
     time: 5h
   playTimeTracker: AntagWizard # Sunrise-Edit
   guides: [ Wizard ]
-  storytellerStress: 8.0 # Sunrise-Edit
+  storytellerStress: 5.0 # Sunrise-Edit
 
 # See wizard_startinggear for wiz start gear options

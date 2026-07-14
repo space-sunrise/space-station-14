@@ -296,6 +296,77 @@
     access: [["Captain"], ["HeadOfPersonnel"]]
 
 - type: entity
+  parent: [BaseComputerSunriseUniqueFrame, StorePresetNTUplink]
+  id: BaseComputerNTERTUplink
+  name: ERT uplink console
+  description: A stationary bluespace uplink console for emergency response teams.
+  suffix: Empty
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
+      state: station_account
+    - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
+      state: station_account_key
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Bluecrystal: 0
+      Crystallite: 0
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4fa8ff"
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseComputerNTERTUplink
+  id: ComputerNTERTUplinkAmber
+  suffix: Empty, Amber
+  components:
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseComputerNTERTUplink
+  id: ComputerNTERTUplinkRed
+  suffix: Empty, Red
+  components:
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTRed
+
+- type: entity
+  parent: BaseComputerNTERTUplink
+  id: ComputerNTERTUplinkGamma
+  suffix: Empty, Gamma
+  components:
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTGamma
+
+- type: entity
   parent: BaseComputerSunrise
   id: ComputerFineRecords
   name: fine records computer

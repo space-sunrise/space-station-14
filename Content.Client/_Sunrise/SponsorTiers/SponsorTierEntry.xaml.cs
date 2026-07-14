@@ -176,7 +176,7 @@ public sealed partial class SponsorTierEntry : Control
                 HorizontalAlignment = HAlignment.Center,
                 Text = Loc.GetString(voicePrototype.Name),
                 StyleClasses = { "LabelKeyText" },
-                SetSize = new Vector2(315,30),
+                SetSize = new Vector2(315, 30),
             };
 
             button.OnPressed += _ =>

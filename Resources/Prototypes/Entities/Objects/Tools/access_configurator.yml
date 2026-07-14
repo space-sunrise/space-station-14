@@ -142,6 +142,7 @@
     - Magistrat # Sunrise
     - Barber  # Sunrise
     - Mining # Sunrise
+    - Pirate # Sunrise
     privilegedIdSlot:
       name: id-card-console-privileged-id
       startingItem: UniversalIDCard

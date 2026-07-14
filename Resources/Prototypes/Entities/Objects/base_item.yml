@@ -152,6 +152,10 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellSmall
+          # Sunrise-Edit
+          whitelist:
+            tags:
+            - PowerCell
 
 - type: entity
   id: PowerCellSlotMediumItem
@@ -167,6 +171,10 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellMedium
+          # Sunrise-Edit
+          whitelist:
+            tags:
+            - PowerCell
 
 - type: entity
   id: PowerCellSlotHighItem
@@ -182,6 +190,10 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
+          # Sunrise-Edit
+          whitelist:
+            tags:
+            - PowerCell
 
 # For entities with a hidden container slot that can be opened with a tool
 - type: entity

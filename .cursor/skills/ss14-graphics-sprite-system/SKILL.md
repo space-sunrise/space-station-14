@@ -5,7 +5,7 @@ description: An in-depth practical guide to SpriteSystem in Space Station 14: li
 
 # Cursor Bridge
 
-Canonical bridge skill file:
-../../../.claude/skills/ss14-graphics-sprite-system/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-graphics-sprite-system/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

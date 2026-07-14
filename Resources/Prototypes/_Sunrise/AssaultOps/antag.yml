@@ -14,6 +14,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: test
+  storytellerStress: 1
 
 - type: antag
   id: AssaultCommander
@@ -31,3 +32,4 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: test
+  storytellerStress: 1

@@ -12,9 +12,9 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -294,7 +294,6 @@ public sealed partial class ExecutionSystem
                 continue;
             }
 
-            // Сделано по патерну SharedSuicideSystem
             result.DamageDict[type] = Math.Ceiling((double)(value * total / weightsTotal));
         }
 

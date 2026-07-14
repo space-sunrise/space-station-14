@@ -16,7 +16,11 @@ public sealed partial class GunSystem
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, AmmoCounterControlEvent>(OnChamberMagazineCounter);
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, UpdateAmmoCounterEvent>(OnChamberMagazineAmmoUpdate);
         SubscribeLocalEvent<ChamberMagazineAmmoProviderComponent, AppearanceChangeEvent>(OnChamberMagazineAppearance);
+
+        InitializeSunriseChamberMagazine(); // Sunrise-Edit
     }
+
+    partial void InitializeSunriseChamberMagazine(); // Sunrise-Edit
 
     private void OnChamberMagazineAppearance(Entity<ChamberMagazineAmmoProviderComponent> ent, ref AppearanceChangeEvent args)
     {
@@ -27,15 +31,18 @@ public sealed partial class GunSystem
             return;
         }
 
-        // Maybe re-using base layer for this will bite me someday but screw you future sloth.
+        // Sunrise edit start - учитываем случайный префикс спрайта для вариантов оружия.
+        var prefix = string.IsNullOrEmpty(ent.Comp.SelectedPrefix) ? "" : $"_{ent.Comp.SelectedPrefix}";
+
         if (boltClosed)
         {
-            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, "base");
+            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, $"base{prefix}");
         }
         else
         {
-            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, "bolt-open");
+            _sprite.LayerSetRsiState((ent, args.Sprite), boltLayer, $"bolt-open{prefix}");
         }
+        // Sunrise edit end
     }
 
     protected override void OnMagazineSlotChange(EntityUid uid, MagazineAmmoProviderComponent component, ContainerModifiedMessage args)

@@ -49,3 +49,14 @@ ent-BulletImprovisedGrenadePipeBomb = граната-трубчатая бомб
     .desc = { ent-BaseBulletTrigger.desc }
 ent-BulletImprovisedGrenadeGlass = стеклянная граната
     .desc = { ent-BaseBulletTrigger.desc }
+ent-SunriseBulletDisposableTrainingRocket = учебная ракета
+    .desc = Лёгкая практическая ракета с тупым, почти безобидным корпусом.
+
+ent-SunriseBulletDisposableEmpRocket = ЭМИ-ракета
+    .desc = Небольшая ракета с электромагнитным зарядом в носовой части.
+
+ent-SunriseBulletDisposableSmokeRocket = дымовая ракета
+    .desc = Компактная ракета, выпускающая плотный дымовой заряд при ударе.
+
+ent-SunriseBulletDisposableIncendiaryRocket = термобарическая ракета
+    .desc = Компактная ракета с нестабильным химическим зарядом.

@@ -5,7 +5,7 @@ description: Explains the AudioSystem architecture in Space Station 14 at the sh
 
 # Claude Bridge
 
-Canonical bridge skill file:
-../../../.agent/skills/ss14-audio-system-core/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-audio-system-core/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

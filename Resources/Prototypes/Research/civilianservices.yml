@@ -65,6 +65,12 @@
   recipeUnlocks:
     - ComputerTelevisionCircuitboard
     - SynthesizerInstrument
+    # sunrise-start
+    - TapeRecorder
+    - TapeCassetteOneMinute
+    - TapeCassetteTwoMinutes
+    - TapeCassetteThreeMinutes
+    # sunrise-end
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard

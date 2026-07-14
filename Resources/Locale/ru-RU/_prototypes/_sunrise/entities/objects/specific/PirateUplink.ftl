@@ -24,4 +24,13 @@ ent-ComputerPirateExchanger = обменник чёрного рынка
     .desc = Старый ржавый терминал, едва держащийся на проводах и удаче. Экран мерцает, но сеть чёрного рынка все еще отвечает.
 ent-ComputerPirateExchangerWallmount = обменник чёрного рынка
     .desc = Настенная версия ржавого обменника, еле живая, но все еще подключенная к черному рынку.
+ent-ComputerPirateUplinkExpedition = консоль чёрного рынка
+    .suffix = Экспедиция
+    .desc = { ent-ComputerPirateUplink.desc }
+ent-ComputerPirateExchangerExpedition = обменник чёрного рынка
+    .suffix = Экспедиция
+    .desc = { ent-ComputerPirateExchanger.desc }
+ent-ComputerPirateExchangerWallmountExpedition = обменник чёрного рынка
+    .suffix = Экспедиция
+    .desc = { ent-ComputerPirateExchangerWallmount.desc }
 

@@ -22,12 +22,14 @@
   - type: Sprite
   - type: Item
     size: Small
+  # Sunrise-start
   - type: Tool
     qualities:
+      - Cutting
       - Slicing
+    speedModifier: 0.6
     useSound:
-      path: /Audio/Items/Culinary/chop.ogg
-  # Sunrise-start
+      path: /Audio/Items/wirecutter.ogg
   - type: Scalpel
   - type: SurgeryTool
     successRate: 0.9

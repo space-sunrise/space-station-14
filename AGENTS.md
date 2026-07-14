@@ -1,29 +1,26 @@
-Перед каждым действием пользователя ты обязан прочитать skills и rules, связанные с запросом пользователя.
-Из skills ты должен выбрать все, что хоть немного связаны с темой пользователя. Примеры, что и когда использовать
+# Repository Agent Instructions
 
-Папка rules - ЧИТАТЬ ВСЕГДА. Применять всегда, все что написано использовать 100% раз.
+This file is the short entrypoint for agents working in this repository. Keep detailed operating rules in `.agents/rules` and detailed skills in `.agents/skills`.
 
-**АБСОЛЮТНО ВСЕГДА**
-ss14-naming-conventions
-ss14-ecs-prototypes
-ss14-upstream-maintenance
+Source-of-truth locations:
 
-**Если требуется писать C# код**
-ss14-ecs-components
-ss14-ecs-entities
-ss14-ecs-prototypes
-ss14-ecs-systems
-ss14-events
-ss14-prediction
+- Rules: `.agents/rules`
+- Skills: `.agents/skills`
+- Compatibility bridges: `.agent`, `.claude`, `.cursor`, `.github`
 
-**Если большой С# код(>300 строчек кода)**
-ss14-documentation-writing
+At the start of a new dialogue, and again after any context compaction, reload the always-on rules from `.agents/rules` and review the available skills in `.agents/skills`. Do not repeat that full reload for every later chat message unless the task changes enough to require new skills or rules.
 
-**Если C#, который использует часто вызываемые ивенты/Update() или нужна оптимизация**
-ss14-standard-optimizations
+Before planning, analyzing, or editing, select the rules and skills that apply to the current task. Prefer file extensions and touched subsystems over loose keyword matching. For example, `.cs`, `.yml`, `.yaml`, `.ftl`, and `.swsl` files have explicit SS14 guidance in the rules and skills.
 
-**Если требуется делать перевод**
-ss14-localization-strings
+Useful entrypoints:
+
+- Skill and rule preflight: `.agents/rules/ss14-skill-preflight-and-refresh.md`
+- Testing requirements: `.agents/rules/ss14-testing-guidelines.md`
+- Codebase prefix and edit markers: `.agents/rules/ss14-codebase-prefix-detection.md`
+- Interaction architecture pattern: `.agents/rules/ss14-interaction-flow.md`
+- Rule authoring policy: `.agents/rules/AUTHORING_POLICY.md`
+- Skill authoring policy: `.agents/skills/AUTHORING_POLICY.md`
+
 
 **Остальное - если связано с темой**
 Пример запроса: Нужно добавить систему для проигрывания звука при спавне сущности X
@@ -60,6 +57,13 @@ ss14-audio-system-core - слишком продвинуто, не нужно в
 Если делаешь большую исследовательскую работу/большой код по плану - заведи временный файл для записывания всех важных мыслей или деталей.
 Записывай их туда, чтобы не терять во время чисток/компрессия контекста.
 Удаляй после
+
+## Язык комментариев и словарь
+
+- Поясняющую часть inline-комментариев, комментариев у `using` и reason-фраз у `Sunrise-Edit`, `Sunrise edit start/end`, `Sunrise added start/end` писать по-русски.
+- Английские идентификаторы, имена типов, API, loc-key, canonical markers и названия C#-символов не переводить.
+- В prose-описаниях рядом с кодом для `Sponsor*` использовать термин **«спонсор»**.
+- `donor` и `donator` считать нежелательной терминологией для новых комментариев, reason-фраз и поясняющих описаний.
 
 ## RIDER MCP
 

@@ -17,6 +17,7 @@
     - Cautery
     - Saw
     - Hemostat
+    - BorgModuleSurgical
 
 - type: technology
   id: CyberLimbsTech

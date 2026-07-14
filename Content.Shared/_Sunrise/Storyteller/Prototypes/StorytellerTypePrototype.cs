@@ -44,13 +44,16 @@ public sealed partial class StorytellerTypePrototype : IPrototype
 
     // Cooldowns (in minutes)
     [DataField]
-    public float GlobalEventCooldownMinutes = 2f;
+    public float GlobalEventCooldownMinutes = 1f;
 
     [DataField]
     public float HelpfulEventCooldownMinutes = 5f;
 
     [DataField]
-    public float NeutralEventCooldownMinutes = 5f;
+    public float NeutralEventCooldownMinutes = 3f;
+
+    [DataField]
+    public float MajorEventCooldownMinutes = 3f;
 
     // Station strength normalization: value at which a component reaches its cap (see StorytellerSystem).
     [DataField]

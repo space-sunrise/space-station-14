@@ -6,6 +6,7 @@
   objective: roles-antag-changeling-description
   playTimeTracker: AntagChangeling # Sunrise-Edit
   guides: [ Changelings ]
+  storytellerStress: 3 # Sunrise-Edit
   # Sunrise-Edit
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi

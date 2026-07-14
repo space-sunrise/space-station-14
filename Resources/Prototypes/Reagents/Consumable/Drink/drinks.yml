@@ -548,6 +548,18 @@
       effects:
       - !type:SatiateThirst
         factor: 3 # Slightly worse for quenching thirst than just straight water
+      # Sunrise-Start
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 178.15
+        amount: -15000
+  reactiveEffects:
+    Extinguish:
+      methods: [ Touch ]
+      effects:
+      - !type:Extinguish
+      # Sunrise-End
   plantMetabolism:
   - !type:PlantAdjustWater
     amount: 1 # The internet tells me I should avoid watering plants with ice, but mostly because of temperature, so this value being the same as water should probably be fine?
