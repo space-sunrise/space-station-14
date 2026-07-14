@@ -2,7 +2,7 @@
 - type: entity
   abstract: true
   parent: [BaseStructureWall, SunriseWallDamageVisualsBase]
-  id: WallDiagonalBaseSunrise
+  id: SunriseWallDiagonalBase
   suffix: Diagonal
   components:
   - type: Tag
@@ -138,7 +138,7 @@
 
 # Sunrise-Add start - reinforced shuttle/plastitanium variants from PR #3821
 - type: entity
-  parent: WallPlastitanium
+  parent: [WallPlastitanium, SunriseWallDamageVisuals2000]
   id: WallReinforcedPlastitanium
   name: reinforced plastitanium wall
   suffix: Reinforced
@@ -159,7 +159,7 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: WallPlastitaniumDiagonal
+  parent: [WallPlastitaniumDiagonal, SunriseWallDamageVisuals2000]
   id: WallReinforcedPlastitaniumDiagonal
   name: reinforced plastitanium wall
   suffix: Reinforced, Diagonal
@@ -183,7 +183,7 @@
           collection: MetalSlam
 
 - type: entity
-  parent: WallShuttleDiagonal
+  parent: [WallShuttleDiagonal, SunriseWallDamageVisuals450]
   id: WallReinforcedShuttleDiagonal
   name: reinforced shuttle wall
   suffix: Reinforced, Diagonal
@@ -213,7 +213,7 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: WallShuttle
+  parent: [WallShuttle, SunriseWallDamageVisuals600]
   id: WallReinforcedShuttle
   name: reinforced shuttle wall
   suffix: Reinforced

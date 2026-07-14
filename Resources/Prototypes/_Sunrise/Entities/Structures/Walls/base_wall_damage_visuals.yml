@@ -5,8 +5,113 @@
   components:
   - type: Appearance
   - type: DamageVisuals
-    thresholds: [1, 2, 3, 4, 5]
-    damageDivisor: 10
+    thresholds: [5, 10, 15, 20, 25]
+    damageDivisor: 6
     trackAllDamage: true
     damageOverlay:
       sprite: _Sunrise/Structures/Walls/wall_cracks.rsi
+
+# Варианты задают пять стадий трещин до первого порога смены или разрушения стены.
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals10
+  components:
+  - type: DamageVisuals
+    damageDivisor: 0.4
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals30
+  components:
+  - type: DamageVisuals
+    damageDivisor: 1.2
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals100
+  components:
+  - type: DamageVisuals
+    damageDivisor: 4
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals200
+  components:
+  - type: DamageVisuals
+    damageDivisor: 8
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals300
+  components:
+  - type: DamageVisuals
+    damageDivisor: 12
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals350
+  components:
+  - type: DamageVisuals
+    damageDivisor: 14
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals400
+  components:
+  - type: DamageVisuals
+    damageDivisor: 16
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals450
+  components:
+  - type: DamageVisuals
+    damageDivisor: 18
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals500
+  components:
+  - type: DamageVisuals
+    damageDivisor: 20
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals600
+  components:
+  - type: DamageVisuals
+    damageDivisor: 24
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals700
+  components:
+  - type: DamageVisuals
+    damageDivisor: 28
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals1000
+  components:
+  - type: DamageVisuals
+    damageDivisor: 40
+
+- type: entity
+  abstract: true
+  parent: SunriseWallDamageVisualsBase
+  id: SunriseWallDamageVisuals2000
+  components:
+  - type: DamageVisuals
+    damageDivisor: 80

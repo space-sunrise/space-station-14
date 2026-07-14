@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals10]
   id: WallFlesh
   name: flesh wall
   components:

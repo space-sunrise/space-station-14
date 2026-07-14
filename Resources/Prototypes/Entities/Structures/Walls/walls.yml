@@ -100,7 +100,7 @@
         - WallLayer
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallBrick
   name: brick wall
   components:
@@ -137,7 +137,7 @@
     base: brick
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallClock
   name: clock wall
   components:
@@ -166,7 +166,7 @@
     base: clock
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallClown
   name: bananium wall
   components:
@@ -210,7 +210,7 @@
         density: 8000 # really good ramming wall, bananium is rare so it's probably fine
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals100] # Sunrise-Edit
   id: WallMeat
   name: meat wall
   description: Sticky.
@@ -244,7 +244,7 @@
     base: meat
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallCult
   name: cult wall
   components:
@@ -275,7 +275,7 @@
   # Sunrise-End
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallDebug
   name: debug wall
   suffix: DEBUG
@@ -307,7 +307,7 @@
     base: debug
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallDiamond
   name: diamond wall
   components:
@@ -392,7 +392,7 @@
     base: gold
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallIce
   name: ice wall
   components:
@@ -538,7 +538,7 @@
     resistance: 5
 
 - type: entity
-  parent: WallPlastitaniumIndestructible
+  parent: [WallPlastitaniumIndestructible, SunriseWallDamageVisuals1000] # Sunrise-Edit
   id: WallPlastitanium
   name: plastitanium wall
   suffix: ""
@@ -558,7 +558,7 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: WallDiagonalBaseSunrise # Sunrise-Edit
+  parent: SunriseWallDiagonalBase # Sunrise-Edit
   id: WallPlastitaniumDiagonalIndestructible
   name: plastitanium wall
   suffix: diagonal, indestructible
@@ -577,7 +577,7 @@
     resistance: 5
 
 - type: entity
-  parent: WallPlastitaniumDiagonalIndestructible
+  parent: [WallPlastitaniumDiagonalIndestructible, SunriseWallDamageVisuals1000] # Sunrise-Edit
   id: WallPlastitaniumDiagonal
   name: plastitanium wall
   suffix: diagonal
@@ -607,7 +607,7 @@
           collection: MetalSlam
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals400] # Sunrise-Edit
   id: WallReinforced
   name: reinforced wall
   components:
@@ -681,7 +681,7 @@
         density: 2000
 
 - type: entity
-  parent: WallReinforced
+  parent: [WallReinforced, SunriseWallDamageVisuals350] # Sunrise-Edit
   id: WallReinforcedRust
   suffix: rusted
   components:
@@ -720,7 +720,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: WallDiagonalBaseSunrise # Sunrise-Edit
+  parent: [SunriseWallDiagonalBase, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallReinforcedDiagonal
   name: reinforced wall
   components:
@@ -761,7 +761,7 @@
 
 # Riveting
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals1000] # Sunrise-Edit
   id: WallRiveted
   name: riveted wall
   components:
@@ -792,7 +792,7 @@
     price: 150
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallSandstone
   name: sandstone wall
   components:
@@ -865,7 +865,7 @@
 
 #shuttle walls
 - type: entity
-  parent: WallDiagonalBase
+  parent: [WallDiagonalBase, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallShuttleDiagonal
   name: shuttle wall
   components:
@@ -937,7 +937,7 @@
     price: 200
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals400] # Sunrise-Edit
   id: WallShuttle
   name: shuttle wall
   components:
@@ -1011,7 +1011,7 @@
         density: 2000
 
 - type: entity
-  parent: [BaseWall, BaseDeltaPressurePlasma]
+  parent: [BaseWall, BaseDeltaPressurePlasma, SunriseWallDamageVisuals200] # Sunrise-Edit
   id: WallSolid
   name: solid wall
   components:
@@ -1054,7 +1054,7 @@
     base: solid
 
 - type: entity
-  parent: WallDiagonalBaseSunrise # Sunrise-Edit
+  parent: [SunriseWallDiagonalBase, SunriseWallDamageVisuals200] # Sunrise-Edit
   id: WallSolidDiagonal
   name: solid wall
   components:
@@ -1091,7 +1091,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: WallSolid
+  parent: [WallSolid, SunriseWallDamageVisualsBase] # Sunrise-Edit
   id: WallSolidRust
   suffix: rusted
   components:
@@ -1130,7 +1130,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals200] # Sunrise-Edit
   id: WallSolidChitin
   name: solid chitin
   components:
@@ -1177,7 +1177,7 @@
     fx: EffectRCDDeconstruct8
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals400] # Sunrise-Edit
   id: WallReinforcedChitin
   name: reinforced chitin
   components:
@@ -1248,7 +1248,7 @@
     base: xenoborg
 
 - type: entity
-  parent: WallDiagonalBase # Sunrise-Edit
+  parent: [WallDiagonalBase, SunriseWallDamageVisuals1000] # Sunrise-Edit
   id: WallXenoborgDiagonal
   name: xenoborg wall
   suffix: diagonal
@@ -1374,7 +1374,7 @@
     base: wood
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals30] # Sunrise-Edit
   id: WallWeb
   name: web wall
   description: Keeps the spiders in and the assistants out.
@@ -1429,7 +1429,7 @@
 # Lavalend Walls
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals1000] # Sunrise-Edit
   id: WallNecropolis
   name: stone wall
   components:
@@ -1450,7 +1450,7 @@
     base: necropolis
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals700] # Sunrise-Edit
   id: WallMining
   name: mining wall
   components:
@@ -1475,7 +1475,7 @@
   - type: Appearance
 
 - type: entity
-  parent: WallDiagonalBaseSunrise # Sunrise-Edit
+  parent: [SunriseWallDiagonalBase, SunriseWallDamageVisuals300] # Sunrise-Edit
   id: WallMiningDiagonal
   name: mining wall
   components:
@@ -1519,7 +1519,7 @@
 # Vault Walls
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals500] # Sunrise-Edit
   id: WallVaultAlien
   name: alien vault wall
   description: A mysterious ornate looking wall. There may be ancient dangers inside.
@@ -1618,7 +1618,7 @@
     state: forcewall
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, SunriseWallDamageVisuals100] # Sunrise-Edit
   id: WallCobblebrick
   name: cobblestone brick wall
   description: Stone by stone, perfectly fitted together to form a wall.
