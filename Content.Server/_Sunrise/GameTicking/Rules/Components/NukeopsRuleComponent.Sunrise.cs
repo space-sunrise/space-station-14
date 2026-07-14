@@ -17,12 +17,6 @@ public sealed partial class NukeopsRuleComponent
     [DataField]
     public TimeSpan AlertLevelDelay = TimeSpan.FromSeconds(10);
 
-    /// <summary>
-    /// If true, the game will automatically set the alert level after the specified time.
-    /// </summary>
-    [DataField]
-    public bool CanChangeAlertLevel;
-
     [DataField, AutoPausedField]
     public TimeSpan AlertLevelChangeTime;
 }

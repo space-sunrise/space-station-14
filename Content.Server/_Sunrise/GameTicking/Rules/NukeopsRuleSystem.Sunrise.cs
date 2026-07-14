@@ -1,4 +1,5 @@
 using Content.Server.AlertLevel;
+using Content.Server._Sunrise.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Robust.Shared.Timing;
 
@@ -13,12 +14,9 @@ public sealed partial class NukeopsRuleSystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<NukeopsRuleComponent>();
-        while (query.MoveNext(out _, out var nukeops))
+        var query = EntityQueryEnumerator<PendingNukeopsAlertLevelChangeComponent, NukeopsRuleComponent>();
+        while (query.MoveNext(out var uid, out _, out var nukeops))
         {
-            if (!nukeops.CanChangeAlertLevel)
-                continue;
-
             if (_gameTiming.CurTime < nukeops.AlertLevelChangeTime)
                 continue;
 
@@ -26,14 +24,14 @@ public sealed partial class NukeopsRuleSystem
                 continue;
 
             _alertLevelSystem.SetLevel(nukeops.TargetStation.Value, nukeops.SetAlertlevel, true, true, true, true);
-            nukeops.CanChangeAlertLevel = false;
             nukeops.AlertLevelChangeTime = default;
+            RemCompDeferred<PendingNukeopsAlertLevelChangeComponent>(uid);
         }
     }
 
-    private void ApplySunriseWarDeclarationAdjustments(NukeopsRuleComponent nukeops)
+    private void ApplySunriseWarDeclarationAdjustments(Entity<NukeopsRuleComponent> ent)
     {
-        nukeops.AlertLevelChangeTime = _gameTiming.CurTime + nukeops.AlertLevelDelay;
-        nukeops.CanChangeAlertLevel = true;
+        ent.Comp.AlertLevelChangeTime = _gameTiming.CurTime + ent.Comp.AlertLevelDelay;
+        EnsureComp<PendingNukeopsAlertLevelChangeComponent>(ent);
     }
 }

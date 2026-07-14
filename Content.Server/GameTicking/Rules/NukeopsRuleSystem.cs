@@ -466,7 +466,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
                 nukeops.WarDeclaredTime = Timing.CurTime;
                 var timeRemain = nukeops.WarNukieArriveDelay + Timing.CurTime;
                 ev.DeclaratorEntity.Comp.ShuttleDisabledTime = timeRemain;
-                ApplySunriseWarDeclarationAdjustments(nukeops); // Sunrise-Edit
+                ApplySunriseWarDeclarationAdjustments((uid, nukeops)); // Sunrise-Edit
 
                 DistributeExtraTc((uid, nukeops));
             }
