@@ -50,27 +50,27 @@
       weight: 1
       # создают различные газы
     - id: XenoArtifactEffectCreationGasElectrovae
-      weight: 1.0
+      weight: 0.6
     - id: XenoArtifactEffectCreationGasBZ
-      weight: 0.5
+      weight: 0.3
     - id: XenoArtifactEffectCreationGasHealium
-      weight: 0.5
+      weight: 0.3
     - id: XenoArtifactEffectCreationGasNitrium
-      weight: 0.5
+      weight: 0.3
     - id: XenoArtifactEffectCreationGasChargedElectrovae
-      weight: 0.8
+      weight: 0.5
     - id: XenoArtifactEffectCreationGasHalon
-      weight: 0.2
+      weight: 0.1
     - id: XenoArtifactEffectCreationGasPluoxium
-      weight: 0.2
+      weight: 0.1
     - id: XenoArtifactEffectCreationGasZauker
-      weight: 0.1
+      weight: 0.05
     - id: XenoArtifactEffectCreationGasHydrogen
-      weight: 1.0
+      weight: 0.6
     - id: XenoArtifactEffectCreationGasProtoNitrate
-      weight: 0.1
+      weight: 0.05
     - id: XenoArtifactEffectCreationGasHelium
-      weight: 1.0
+      weight: 0.6
       
 
 - type: entityTable
