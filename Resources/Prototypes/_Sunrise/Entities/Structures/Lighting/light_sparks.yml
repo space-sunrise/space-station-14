@@ -25,6 +25,8 @@
     sparkSprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
     flickerSound:
       collection: SunriseFluorescentFlicker
+      params:
+        maxDistance: 6
     states:
     - spark-light1
     - spark-light2
@@ -98,6 +100,8 @@
     sparkSprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
     flickerSound:
       collection: SunriseFluorescentFlicker
+      params:
+        maxDistance: 6
     states:
     - spark-light1
     sparkStates:
@@ -168,6 +172,8 @@
     sparkSprite: _Sunrise/Structures/Wallmounts/lighting/strobe_light.rsi
     flickerSound:
       collection: SunriseFluorescentFlicker
+      params:
+        maxDistance: 6
     states:
     - spark-light1
     sparkStates:

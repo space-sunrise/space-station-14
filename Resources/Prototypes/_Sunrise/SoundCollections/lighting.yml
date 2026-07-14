@@ -5,6 +5,3 @@
   - /Audio/_Sunrise/Effects/Lighting/fluorescent_flicker_2.ogg
   - /Audio/_Sunrise/Effects/Lighting/fluorescent_flicker_3.ogg
   - /Audio/_Sunrise/Effects/Lighting/fluorescent_flicker_4.ogg
-  params:
-    volume: -8
-    maxDistance: 6
