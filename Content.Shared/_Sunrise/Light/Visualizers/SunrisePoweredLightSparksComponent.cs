@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Light.Visualizers;
@@ -78,6 +79,12 @@ public sealed partial class SunrisePoweredLightSparksComponent : Component
     /// </summary>
     [DataField]
     public float FlickerLightEnergyMultiplier = 0.15f;
+
+    /// <summary>
+    /// Гул, воспроизводимый во время мерцания повреждённого светильника.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? FlickerSound;
 
     /// <summary>
     /// Последняя обработанная клиентом последовательность вспышки.

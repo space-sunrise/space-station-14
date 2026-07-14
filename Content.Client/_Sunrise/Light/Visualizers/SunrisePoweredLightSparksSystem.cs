@@ -4,6 +4,7 @@ using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Animations;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using static Robust.Client.GameObjects.SpriteComponent;
@@ -13,6 +14,7 @@ namespace Content.Client._Sunrise.Light.Visualizers;
 public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePoweredLightSparksComponent>
 {
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     private const string FlickerAnimationKey = "sunrise-powered-light-flicker";
     private const string OnLayer = "sunrisePoweredLightOn";
@@ -88,6 +90,9 @@ public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePo
 
     private void PlayFlicker(EntityUid uid, SunrisePoweredLightSparksComponent component, PointLightComponent light)
     {
+        if (component.FlickerSound != null)
+            _audio.PlayPvs(component.FlickerSound, uid);
+
         var player = EnsureComp<AnimationPlayerComponent>(uid);
         if (_animation.HasRunningAnimation(uid, player, FlickerAnimationKey))
             _animation.Stop(uid, player, FlickerAnimationKey);
