@@ -15,6 +15,9 @@
     damagePopupType: SmallFloating
     isStructure: true
   # Sunrise end
+  # Sunrise added start - эффект свечения для светильников
+  - type: BloomOverlayVisuals
+  # Sunrise added end
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -38,8 +41,8 @@
     state: base
   - type: PointLight
     color: "#FFE4CE" # 5000K color temp
-    energy: 0.8
-    radius: 10
+    energy: 0.65 # Sunrise-Edit — для эффекта свечения
+    radius: 6 # Sunrise-Edit — для эффекта свечения
     softness: 1
     offset: "0, -0.5"
   - type: Damageable
@@ -174,9 +177,9 @@
   - type: PoweredLight
     hasLampOnSpawn: LedLightTube
   - type: PointLight
-    radius: 15
-    energy: 1
-    softness: 0.9
+    radius: 10 # Sunrise-Edit — для эффекта свечения
+    energy: 0.7 # Sunrise-Edit — для эффекта свечения
+    softness: 1 # Sunrise-Edit — для эффекта свечения
     color: "#EEEEFF"
   - type: DamageOnInteract
     damage:
@@ -191,8 +194,8 @@
   components:
   - type: PointLight
     radius: 10
-    energy: 2.5
-    softness: 0.9
+    energy: 0.7 # Sunrise-Edit — для эффекта свечения
+    softness: 1 # Sunrise-Edit — для эффекта свечения
     color: "#EEEEFF"
 
 #Exterior lights
@@ -216,9 +219,9 @@
   suffix: Always Powered, Exterior
   components:
   - type: PointLight
-    radius: 12
-    energy: 4.5
-    softness: 0.5
+    radius: 10 # Sunrise-Edit — для эффекта свечения
+    energy: 0.7 # Sunrise-Edit — для эффекта свечения
+    softness: 1 # Sunrise-Edit — для эффекта свечения
     color: "#B4FCF0"
 
 #Sodium lights
@@ -232,8 +235,8 @@
     hasLampOnSpawn: SodiumLightTube
   - type: PointLight
     radius: 10
-    energy: 2.5
-    softness: 0.9
+    energy: 0.7 # Sunrise-Edit — для эффекта свечения
+    softness: 1 # Sunrise-Edit — для эффекта свечения
     color: "#FFAF38"
   - type: DamageOnInteract
     damage:
@@ -248,8 +251,8 @@
   components:
   - type: PointLight
     radius: 10
-    energy: 4
-    softness: 0.5
+    energy: 0.7 # Sunrise-Edit — для эффекта свечения
+    softness: 1 # Sunrise-Edit — для эффекта свечения
     color: "#FFAF38"
 
 #Small lights
@@ -269,9 +272,9 @@
       sprite: Structures/Wallmounts/Lighting/light_small.rsi
       state: base
     - type: PointLight
-      energy: 1.0
-      radius: 6
-      softness: 1.1
+      energy: 0.7 # Sunrise-Edit — для эффекта свечения
+      radius: 4 # Sunrise-Edit — для эффекта свечения
+      softness: 1 # Sunrise-Edit — для эффекта свечения
       enabled: true
     - type: Physics
       bodyType: Static
@@ -382,7 +385,7 @@
   - type: PointLight
     enabled: true
     radius: 8
-    energy: 1
+    energy: 0.7 # Sunrise-Edit — для эффекта свечения
     softness: 1
     color: "#EEEEFF"
   - type: PoweredLight
