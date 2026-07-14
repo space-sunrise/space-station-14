@@ -23,15 +23,12 @@ public sealed class LightingOverlaySystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private readonly List<LightingOverlayEntry> _entries = [];
-    private readonly Dictionary<EntityUid, bool> _visibilityCache = [];
     private static readonly ProtoId<ShaderPrototype> LightingOverlayShader = "SunriseLightingOverlay";
-    private const float VisibilityCacheRefreshInterval = 0.2f;
     private LightingOverlay<PointLightingOverlayMarker> _pointOverlay = default!;
     private ConfigurationMultiSubscriptionBuilder _configurationSubscriptions = default!;
 
     private bool _enabled;
     private bool _visibilityFiltering;
-    private float _visibilityCacheRefreshRemaining;
 
     public override void Initialize()
     {
@@ -61,22 +58,15 @@ public sealed class LightingOverlaySystem : EntitySystem
             return;
 
         _entries.Clear();
-        var refreshVisibilityCache = _visibilityFiltering
-            && (_visibilityCacheRefreshRemaining -= frameTime) <= 0f;
-
-        if (refreshVisibilityCache)
-        {
-            _visibilityCache.Clear();
-            _visibilityCacheRefreshRemaining = VisibilityCacheRefreshInterval;
-        }
-
         var query = EntityQueryEnumerator<BloomOverlayVisualsComponent, PointLightComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var pointLight, out var transform))
         {
             if (!pointLight.Enabled)
                 continue;
 
-            if (_visibilityFiltering && !IsLightVisible(uid, refreshVisibilityCache))
+            if (_visibilityFiltering
+                && (_player.LocalEntity is not { } player
+                    || !_interaction.InRangeUnobstructed(player, uid, range: 30f)))
             {
                 continue;
             }
@@ -106,17 +96,6 @@ public sealed class LightingOverlaySystem : EntitySystem
     {
         var strength = Math.Clamp(value, 0.1f, 1f);
         _pointOverlay.Strength = strength;
-    }
-
-    private bool IsLightVisible(EntityUid light, bool refreshCache)
-    {
-        if (!refreshCache && _visibilityCache.TryGetValue(light, out var visible))
-            return visible;
-
-        visible = _player.LocalEntity is { } player
-            && _interaction.InRangeUnobstructed(player, light, range: 30f);
-        _visibilityCache[light] = visible;
-        return visible;
     }
 
     private void UpdateOverlayRegistration<TMarker>(LightingOverlay<TMarker> overlay, bool enabled)
