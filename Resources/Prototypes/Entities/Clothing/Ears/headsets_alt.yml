@@ -127,15 +127,6 @@
   name: blood-red over-ear headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
-  # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-name
-        startingItem: PowerCellSmallNuclear
-        disableEject: true
-        locked: true
-  # Sunrise edit end
   - type: Headset
   - type: EncryptionKeyHolder
     keySlots: 5
@@ -153,15 +144,6 @@
   id: ClothingHeadsetAltFreelancer
   name: freelancer's over-ear headset
   components:
-    # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
-    - type: ItemSlots
-      slots:
-        cell_slot:
-          name: power-cell-slot-name
-          startingItem: PowerCellSmallNuclear
-          disableEject: true
-          locked: true
-    # Sunrise edit end
     - type: Headset
     - type: EncryptionKeyHolder
       keySlots: 5

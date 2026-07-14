@@ -287,15 +287,6 @@
   name: freelancer headset
   description: This is used by a roaming group of freelancers.
   components:
-    # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
-    - type: ItemSlots
-      slots:
-        cell_slot:
-          name: power-cell-slot-name
-          startingItem: PowerCellSmallNuclear
-          disableEject: true
-          locked: true
-    # Sunrise edit end
     - type: ContainerFill
       containers:
         key_slots:
@@ -326,15 +317,6 @@
   name: green headset
   description: Who could refuse to wear this stylish black and green headset?
   components:
-  # Sunrise edit start - несъёмная ядерная батарейка для антагонистических гарнитур
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-name
-        startingItem: PowerCellSmallNuclear
-        disableEject: true
-        locked: true
-  # Sunrise edit end
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/ninja.rsi # Sunrise-Edit
   - type: Clothing
