@@ -18,7 +18,7 @@
       sound:
         path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg
     - type: TimedDespawn
-      lifetime: 90
+      lifetime: 120
     - type: EvaporationSparkle
     - type: Transform
       noRot: true
