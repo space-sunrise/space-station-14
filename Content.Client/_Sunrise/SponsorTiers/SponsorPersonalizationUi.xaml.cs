@@ -22,12 +22,23 @@ namespace Content.Client._Sunrise.SponsorTiers;
 public sealed partial class SponsorPersonalizationUi : FancyWindow
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IClientAdminManager _adminManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    private ISharedSponsorsManager? _sponsorsManager;
+    private readonly ISharedSponsorsManager? _sponsorsManager;
 
     private readonly Dictionary<Button, string> _colorButtons = new();
+
+    private const string NoneToken = "@none";
+    private const string PreviewAccentColor = "#00e5ff";
+    private const string AdminHelpColor = "#ff0000";
+    private const string AdminColor = "#800080";
+    private static readonly Color DefaultBorderColor = Color.FromHex("#2e2e38");
+    private static readonly Color DisabledBorderColor = Color.FromHex("#25252b");
+    private static readonly Color PanelBackgroundColor = Color.FromHex("#111115");
+    private static readonly Color PanelHoverBackgroundColor = Color.FromHex("#16161c");
+    private static readonly Color DefaultHoverBorderColor = Color.FromHex("#1e1e24");
 
     private static readonly Type[] AllowedTags =
     [
@@ -49,7 +60,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out _sponsorsManager);
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager);
 
         ChooseEmojiButton.OnPressed += _ => OpenEmojiPicker();
         ResetEmojiButton.OnPressed += _ => ResetEmoji();
@@ -109,10 +120,10 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             Text = Loc.GetString("sponsor-personalization-none-title"),
             ToggleMode = true,
             Group = _titleGroup,
-            Pressed = currentTitle == "@none" || (string.IsNullOrEmpty(currentTitle) && !_sponsorsManager.ClientIsSponsor()),
+            Pressed = currentTitle == NoneToken || (string.IsNullOrEmpty(currentTitle) && !_sponsorsManager.ClientIsSponsor()),
             HorizontalExpand = true
         };
-        noneTitleBtn.OnPressed += _ => OnTitlePressed("@none");
+        noneTitleBtn.OnPressed += _ => OnTitlePressed(NoneToken);
         TitlesGrid.AddChild(noneTitleBtn);
 
         foreach (var title in _allowedTitles)
@@ -143,7 +154,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             }
         }
 
-        var allColorChoices = new List<string> { "@none" };
+        var allColorChoices = new List<string> { NoneToken };
 
         var allowedGradients = _sponsorsManager.GetAllowedOocGradients();
         var allowedColors = _sponsorsManager.GetAllowedOocColors();
@@ -152,7 +163,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
 
         foreach (var col in allowedColors)
         {
-            if (col != "@none" && !allColorChoices.Contains(col))
+            if (col != NoneToken && !allColorChoices.Contains(col))
                 allColorChoices.Add(col);
         }
 
@@ -161,10 +172,10 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
 
         foreach (var colorHex in allColorChoices)
         {
-            var isSelected = colorHex == activeColor || (colorHex == "@none" && string.IsNullOrEmpty(currentColor));
+            var isSelected = colorHex == activeColor || (colorHex == NoneToken && string.IsNullOrEmpty(currentColor));
 
             Color? parsedColor = null;
-            if (colorHex != "@none")
+            if (colorHex != NoneToken)
             {
                 if (!OocGradientHelper.TryResolveColor(colorHex, out var resolvedColor))
                     continue;
@@ -189,25 +200,25 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
                 MouseFilter = MouseFilterMode.Ignore
             };
 
-            var locKey = colorHex == "@none" ? "sponsor-personalization-none-color" : $"sponsor-personalization-color-{colorHex.ToLower()}";
-            var displayName = Loc.TryGetString(locKey, out var localizedName) ? localizedName : colorHex;
+            var locKey = colorHex == NoneToken ? "sponsor-personalization-none-color" : $"sponsor-personalization-color-{colorHex.ToLower()}";
+            var displayName = _loc.TryGetString(locKey, out var localizedName) ? localizedName : colorHex;
 
-            if (colorHex == "@none")
+            if (colorHex == NoneToken)
             {
-                label.SetMessage(FormattedMessage.FromMarkup($"[bold]{displayName}[/bold]"));
+                label.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]{displayName}[/bold]"));
             }
             else if (OocGradientHelper.IsGradientId(colorHex))
             {
-                label.SetMessage(FormattedMessage.FromMarkup($"[bold]{OocGradientHelper.ApplyGradientById(displayName, colorHex)}[/bold]"));
+                label.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]{OocGradientHelper.ApplyGradientById(displayName, colorHex)}[/bold]"));
             }
             else
             {
                 var hexStr = parsedColor!.Value.ToHexNoAlpha().TrimStart('#');
-                label.SetMessage(FormattedMessage.FromMarkup($"[bold][color=#{hexStr}]{displayName}[/color][/bold]"));
+                label.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold][color=#{hexStr}]{displayName}[/color][/bold]"));
             }
 
-            var borderBaseColor = Color.FromHex("#2e2e38");
-            if (colorHex != "@none")
+            var borderBaseColor = DefaultBorderColor;
+            if (colorHex != NoneToken)
             {
                 if (OocGradientHelper.IsGradientId(colorHex))
                 {
@@ -220,14 +231,14 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
                 }
             }
 
-            var borderColor = isSelected ? borderBaseColor : (colorHex == "@none" ? Color.FromHex("#25252b") : borderBaseColor.WithAlpha(0.35f));
+            var borderColor = isSelected ? borderBaseColor : (colorHex == NoneToken ? DisabledBorderColor : borderBaseColor.WithAlpha(0.35f));
             var borderThickness = isSelected ? 2 : 1;
 
             var colorPanel = new PanelContainer
             {
                 PanelOverride = new StyleBoxFlat
                 {
-                    BackgroundColor = Color.FromHex("#111115"),
+                    BackgroundColor = PanelBackgroundColor,
                     BorderThickness = new Thickness(borderThickness),
                     BorderColor = borderColor
                 },
@@ -243,22 +254,22 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             var finalBaseColor = borderBaseColor;
             colorBtn.OnMouseEntered += _ =>
             {
-                var isCurrentlySelected = _cfg.GetCVar(SunriseCCVars.SponsorOocColor) == c || (c == "@none" && string.IsNullOrEmpty(_cfg.GetCVar(SunriseCCVars.SponsorOocColor)));
+                var isCurrentlySelected = _cfg.GetCVar(SunriseCCVars.SponsorOocColor) == c || (c == NoneToken && string.IsNullOrEmpty(_cfg.GetCVar(SunriseCCVars.SponsorOocColor)));
                 colorPanel.PanelOverride = new StyleBoxFlat
                 {
-                    BackgroundColor = Color.FromHex("#16161c"),
+                    BackgroundColor = PanelHoverBackgroundColor,
                     BorderThickness = new Thickness(isCurrentlySelected ? 2 : 1.5f),
-                    BorderColor = isCurrentlySelected ? finalBaseColor : (c == "@none" ? Color.White : finalBaseColor)
+                    BorderColor = isCurrentlySelected ? finalBaseColor : (c == NoneToken ? Color.White : finalBaseColor)
                 };
             };
             colorBtn.OnMouseExited += _ =>
             {
-                var isCurrentlySelected = _cfg.GetCVar(SunriseCCVars.SponsorOocColor) == c || (c == "@none" && string.IsNullOrEmpty(_cfg.GetCVar(SunriseCCVars.SponsorOocColor)));
+                var isCurrentlySelected = _cfg.GetCVar(SunriseCCVars.SponsorOocColor) == c || (c == NoneToken && string.IsNullOrEmpty(_cfg.GetCVar(SunriseCCVars.SponsorOocColor)));
                 colorPanel.PanelOverride = new StyleBoxFlat
                 {
-                    BackgroundColor = Color.FromHex("#111115"),
+                    BackgroundColor = PanelBackgroundColor,
                     BorderThickness = new Thickness(isCurrentlySelected ? 2 : 1),
-                    BorderColor = isCurrentlySelected ? finalBaseColor : (c == "@none" ? Color.FromHex("#25252b") : finalBaseColor.WithAlpha(0.35f))
+                    BorderColor = isCurrentlySelected ? finalBaseColor : (c == NoneToken ? DisabledBorderColor : finalBaseColor.WithAlpha(0.35f))
                 };
             };
 
@@ -278,7 +289,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
         var currentTitle = _cfg.GetCVar(SunriseCCVars.SponsorOocTitle);
 
         var allowedTitles = _sponsorsManager?.GetAllowedOocTitles() ?? new List<string>();
-        var isAllowedTitle = currentTitle == "@none" || string.IsNullOrEmpty(currentTitle) || allowedTitles.Contains(currentTitle);
+        var isAllowedTitle = currentTitle == NoneToken || string.IsNullOrEmpty(currentTitle) || allowedTitles.Contains(currentTitle);
         if (!isAllowedTitle)
         {
             _cfg.SetCVar(SunriseCCVars.SponsorOocTitle, string.Empty);
@@ -287,7 +298,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
         }
 
         var title = string.Empty;
-        if (currentTitle == "@none")
+        if (currentTitle == NoneToken)
         {
             title = string.Empty;
         }
@@ -309,7 +320,7 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
 
         var allowedColors = _sponsorsManager?.GetAllowedOocColors() ?? new List<string>();
         var allowedGradients = _sponsorsManager?.GetAllowedOocGradients() ?? new List<string>();
-        var isAllowedColor = currentColor == "@none" || string.IsNullOrEmpty(currentColor) ||
+        var isAllowedColor = currentColor == NoneToken || string.IsNullOrEmpty(currentColor) ||
                              allowedColors.Contains(currentColor) || allowedGradients.Contains(currentColor);
         if (!isAllowedColor)
         {
@@ -375,48 +386,32 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
             displayName = $"[emoji id=\"{emojiId}\" size=50] {displayName}";
         }
 
-        string previewMarkup;
         var testMessage = Loc.GetString("sponsor-personalization-preview-text");
 
+        string previewMarkup;
         if (!OocGradientHelper.IsGradientId(currentColor))
         {
             var colorHex = string.Empty;
-            if (currentColor != "@none" && !string.IsNullOrEmpty(currentColor))
+            if (currentColor != NoneToken && !string.IsNullOrEmpty(currentColor))
             {
                 if (OocGradientHelper.TryResolveColor(currentColor, out var resolvedColor))
-                {
                     colorHex = $"#{resolvedColor.Value.ToHexNoAlpha().TrimStart('#')}";
-                }
             }
-            else if (string.IsNullOrEmpty(currentColor))
+            else if (string.IsNullOrEmpty(currentColor) && localPlayer != null && _sponsorsManager != null && _sponsorsManager.TryGetOocColor(localPlayer.UserId, out var defaultColor))
             {
-                if (localPlayer != null && _sponsorsManager != null && _sponsorsManager.TryGetOocColor(localPlayer.UserId, out var defaultColor))
-                {
-                    colorHex = $"#{defaultColor.Value.ToHexNoAlpha().TrimStart('#')}";
-                }
+                colorHex = $"#{defaultColor.Value.ToHexNoAlpha().TrimStart('#')}";
             }
 
-            if (isAllowedAdminBypass && adminData != null &&
-                (string.IsNullOrWhiteSpace(colorHex) || currentColor == "@none"))
-            {
-                colorHex = adminData.HasFlag(AdminFlags.Adminhelp) ? "#ff0000" : "#800080";
-            }
+            if (isAllowedAdminBypass && adminData != null && (string.IsNullOrWhiteSpace(colorHex) || currentColor == NoneToken))
+                colorHex = adminData.HasFlag(AdminFlags.Adminhelp) ? AdminHelpColor : AdminColor;
 
-            if (!string.IsNullOrWhiteSpace(colorHex))
-            {
-                if (!colorHex.StartsWith("#"))
-                    colorHex = $"#{colorHex}";
-
-                previewMarkup = $"[color=#00e5ff]OOC: [/color][bold][color={colorHex}]{displayName}[/color]:[/bold] [color=#00e5ff]{testMessage}[/color]";
-            }
-            else
-            {
-                previewMarkup = $"[color=#00e5ff]OOC: [bold]{displayName}:[/bold] {testMessage}[/color]";
-            }
+            previewMarkup = !string.IsNullOrWhiteSpace(colorHex)
+                ? Loc.GetString("sponsor-personalization-preview-colored", ("displayName", displayName), ("message", testMessage), ("nameColor", colorHex), ("accentColor", PreviewAccentColor))
+                : Loc.GetString("sponsor-personalization-preview-no-color", ("displayName", displayName), ("message", testMessage), ("accentColor", PreviewAccentColor));
         }
         else
         {
-            previewMarkup = $"[color=#00e5ff]OOC: [/color][bold]{displayName}:[/bold] [color=#00e5ff]{testMessage}[/color]";
+            previewMarkup = Loc.GetString("sponsor-personalization-preview-gradient", ("displayName", displayName), ("message", testMessage), ("accentColor", PreviewAccentColor));
         }
 
         ChatPreviewLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(previewMarkup), AllowedTags);
@@ -466,9 +461,9 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
                 if (innerChild is not PanelContainer panel || panel.PanelOverride is not StyleBoxFlat styleBox)
                     continue;
 
-                var isSelected = colorHex == selectedColor || (colorHex == "@none" && string.IsNullOrEmpty(selectedColor));
+                var isSelected = colorHex == selectedColor || (colorHex == NoneToken && string.IsNullOrEmpty(selectedColor));
                 styleBox.BorderThickness = new Thickness(isSelected ? 3 : 1);
-                styleBox.BorderColor = isSelected ? Color.White : Color.FromHex("#1e1e24");
+                styleBox.BorderColor = isSelected ? Color.White : DefaultHoverBorderColor;
             }
         }
     }
