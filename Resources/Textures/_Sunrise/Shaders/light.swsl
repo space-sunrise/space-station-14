@@ -2,7 +2,7 @@ uniform sampler2D SCREEN_TEXTURE;
 uniform lowp float base_haze;
 uniform lowp float haze_divisor;
 
-const lowp float[3] weights = float[](0.2, 0.0625, 0.0375);
+const lowp float weights[3] = float[](0.2, 0.0625, 0.0375);
 
 lowp float adjust_alpha(lowp vec4 background) {
     lowp float average_color = dot(background.rgb, vec3(0.3333));
@@ -16,10 +16,10 @@ lowp vec4 add_haze(lowp vec4 color, lowp float intensity) {
 }
 
 lowp vec4 blur_sample(lowp vec2 offset, lowp vec2 uv, lowp vec2 fragment, lowp int step) {
-    lowp vec4 sample = zTexture(uv + offset * TEXTURE_PIXEL_SIZE) * weights[step];
-    sample = add_haze(sample, base_haze);
-    sample.a *= adjust_alpha(zTextureSpec(SCREEN_TEXTURE, (fragment + offset) * SCREEN_PIXEL_SIZE));
-    return sample;
+    lowp vec4 blurred = zTexture(uv + offset * TEXTURE_PIXEL_SIZE) * weights[step];
+    blurred = add_haze(blurred, base_haze);
+    blurred.a *= adjust_alpha(zTextureSpec(SCREEN_TEXTURE, (fragment + offset) * SCREEN_PIXEL_SIZE));
+    return blurred;
 }
 
 lowp vec2 blur_offset(lowp int index, lowp float step) {
