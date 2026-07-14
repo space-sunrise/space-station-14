@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-
 namespace Content.Server.GameTicking.Rules.Components;
 
 public sealed partial class NukeopsRuleComponent
@@ -16,12 +14,4 @@ public sealed partial class NukeopsRuleComponent
     /// </summary>
     [DataField]
     public TimeSpan AlertLevelDelay = TimeSpan.FromSeconds(10);
-    /// <summary>
-    /// If true, the game will automatically set the alert level after the specified time.
-    /// </summary>
-    [DataField]
-    public bool CanChangeAlertLevel = false;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
-    public TimeSpan AlertLevelChangeTime;
 }
