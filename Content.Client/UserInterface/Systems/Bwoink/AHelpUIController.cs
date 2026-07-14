@@ -61,7 +61,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
 
         // Sunrise-Start
-        SubscribeNetworkEvent<SharedBwoinkSystem.BwoinkTextHistoryMessage>(OnBwoinkTextHistoryMessage);
+        SubscribeNetworkEvent<BwoinkTextHistoryMessage>(OnBwoinkTextHistoryMessage);
         // Sunrise-End
 
         _adminManager.AdminStatusUpdated += OnAdminStatusUpdated;
@@ -181,7 +181,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     }
 
     // Sunrise-Start
-    private void OnBwoinkTextHistoryMessage(SharedBwoinkSystem.BwoinkTextHistoryMessage args, EntitySessionEventArgs session)
+    private void OnBwoinkTextHistoryMessage(BwoinkTextHistoryMessage args, EntitySessionEventArgs session)
     {
         EnsureUIHelper();
         UIHelper?.Clean(args.UserId);

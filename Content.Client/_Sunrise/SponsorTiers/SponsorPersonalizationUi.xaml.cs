@@ -430,12 +430,20 @@ public sealed partial class SponsorPersonalizationUi : FancyWindow
         {
             _cfg.SetCVar(SunriseCCVars.SponsorOocEmoji, emojiCode);
             UpdateChatPreview();
+
             var localPlayer = _player.LocalSession;
-            if (localPlayer != null && _sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(localPlayer.UserId))
+            var isAdminActive = _adminManager.IsActive();
+            var isSponsor = _sponsorsManager?.ClientIsSponsor() ?? false;
+            var isAllowedAdminBypass = isAdminActive && isSponsor;
+
+            var hasEmojiRights = (localPlayer != null && _sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(localPlayer.UserId)) || isAllowedAdminBypass;
+
+            if (hasEmojiRights)
             {
                 var emojiId = emojiCode.Trim(':');
                 SelectedEmojiLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[emoji id=\"{emojiId}\" size=50]"), AllowedTags);
             }
+
             _emojiPicker.Close();
         };
         _emojiPicker.OnClose += () => _emojiPicker = null;

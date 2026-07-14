@@ -25,14 +25,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
-using Content.Shared.Database; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
-using Content.Shared._Sunrise.SponsorSystem;
-using Content.Server._Sunrise.SponsorSystem;
-using Content.Server._Sunrise.PlayerCache;
-using Content.Shared._Sunrise.Messenger;
-using Content.Shared._Sunrise.SunriseCCVars;
-
 
 namespace Content.Server.Administration.Systems
 {
@@ -41,21 +33,16 @@ namespace Content.Server.Administration.Systems
     {
         private const string RateLimitKey = "AdminHelp";
 
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly IConfigurationManager _config = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
-        [Dependency] private readonly SharedMindSystem _minds = default!;
-        [Dependency] private readonly IAfkManager _afkManager = default!;
-        [Dependency] private readonly IServerDbManager _dbManager = default!;
-        [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
-        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
-        [Dependency] private readonly INetConfigurationManager _netConfig = default!;
-        [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
-        [Dependency] private readonly IBanManager _banManager = default!; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
-        [Dependency] private readonly DiscordWebhook _discord = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IAdminManager _adminManager = default!;
+        [Dependency] private IConfigurationManager _config = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPlayerLocator _playerLocator = default!;
+        [Dependency] private GameTicker _gameTicker = default!;
+        [Dependency] private SharedMindSystem _minds = default!;
+        [Dependency] private IAfkManager _afkManager = default!;
+        [Dependency] private IServerDbManager _dbManager = default!;
+        [Dependency] private PlayerRateLimitManager _rateLimit = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -67,7 +54,7 @@ namespace Content.Server.Administration.Systems
         private WebhookData? _onCallData;
 
         private ISawmill _sawmill = default!;
-        private HttpClient _httpClient = default!;
+        private readonly HttpClient _httpClient = new();
 
         private string _footerIconUrl = string.Empty;
         private string _avatarUrl = string.Empty;
@@ -89,15 +76,6 @@ namespace Content.Server.Administration.Systems
         // Should be shorter than DescriptionMax
         private const ushort MessageLengthCap = 3000;
 
-        // Sunrise-Ahelp-Antispam-Start
-        // Based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
-        private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
-
-        private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
-        private const int MaxRecentMessages = 10;
-        private const int SpamCheckMessageCount = 3;
-        // Sunrise-Ahelp-Antispam-End
-
         // Text to be used to cut off messages that are too long. Should be shorter than MessageLengthCap
         private const string TooLongText = "... **(too long)**";
 
@@ -108,8 +86,8 @@ namespace Content.Server.Administration.Systems
         {
             base.Initialize();
 
-            // Sunrise added start
-            _httpClient = _discord.GetClient();
+            // Sunrise added start - инициализация расширений BwoinkSystem
+            InitializeSunrise();
             // Sunrise added end
 
             Subs.CVar(_config, CCVars.DiscordOnCallWebhook, OnCallChanged, true);
@@ -119,6 +97,7 @@ namespace Content.Server.Administration.Systems
             Subs.CVar(_config, CCVars.DiscordAHelpAvatar, OnAvatarChanged, true);
             Subs.CVar(_config, CVars.GameHostName, OnServerNameChanged, true);
             Subs.CVar(_config, CCVars.AdminAhelpOverrideClientName, OnOverrideChanged, true);
+            Subs.CVar(_config, CCVars.AhelpQuickInfoStartWordSize, v => _startWordMinSize = v, true);
             _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("AHELP");
 
             var defaultParams = new AHelpMessageParams(
@@ -134,7 +113,6 @@ namespace Content.Server.Administration.Systems
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
             SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
-            SubscribeNetworkEvent<BwoinkRequestDbMessages>(OnRequestDbMessages);
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _activeConversations.Clear());
 
         	_rateLimit.Register(
@@ -143,8 +121,6 @@ namespace Content.Server.Administration.Systems
                     CCVars.AhelpRateLimitCount,
                     PlayerRateLimitedAction)
                 );
-
-                IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         }
 
         private async void OnCallChanged(string url)
@@ -358,123 +334,6 @@ namespace Content.Server.Administration.Systems
                 RaiseNetworkEvent(update, admin);
             }
         }
-
-        // Sunrise-Start
-        private async void OnRequestDbMessages(BwoinkRequestDbMessages msg, EntitySessionEventArgs args)
-        {
-            var isAdmin = _adminManager.IsAdmin(args.SenderSession);
-
-            var messages = (await _dbManager.GetAHelpMessagesByReceiverAsync(msg.UserId))
-                .OrderBy(message => message.SentAt);
-
-            var history = new List<BwoinkTextMessage>();
-            foreach (var aHelpMessage in messages)
-            {
-                if (aHelpMessage.AdminOnly && !isAdmin)
-                    continue;
-
-                var formatMessage = await FormatDbAhelpMessage(
-                    aHelpMessage.Message,
-                    (NetUserId)aHelpMessage.SenderUserId,
-                    aHelpMessage.PlaySound,
-                    aHelpMessage.AdminOnly);
-
-                var bwoinkTextMessage = new BwoinkTextMessage(
-                    (NetUserId)aHelpMessage.ReceiverUserId,
-                    (NetUserId)aHelpMessage.SenderUserId,
-                    formatMessage,
-                    aHelpMessage.SentAt.DateTime.ToLocalTime(),
-                    playSound: aHelpMessage.PlaySound,
-                    adminOnly: aHelpMessage.AdminOnly,
-                    dbLoad: true);
-
-                history.Add(bwoinkTextMessage);
-            }
-
-            var historyEvent = new BwoinkTextHistoryMessage(msg.UserId, history);
-            RaiseNetworkEvent(historyEvent, args.SenderSession.Channel);
-        }
-
-        private async Task<string> FormatDbAhelpMessage(string message, NetUserId senderUserId,
-            bool playSound = true, bool adminOnly = false)
-        {
-            /*
-             * SUNRISE-TODO: Ахуенная идея, обращаться к БД при каждом форматировании сообщения.
-             * Очевидно нужно использовать кеширование, но мне впадлу.
-             */
-            var senderAdmin = await _adminManager.LoadAdminData(senderUserId);
-            var senderData = await _dbManager.GetPlayerRecordByUserId(senderUserId);
-            var username = "";
-            if (senderData != null)
-            {
-                username = senderData.LastSeenUserName;
-            }
-
-            string bwoinkText;
-            var adminPrefix = "";
-
-            if (_config.GetCVar(CCVars.AhelpAdminPrefix) && senderAdmin is not null && senderAdmin.Value.dat.Title is not null)
-            {
-                adminPrefix = $"[bold]\\[{senderAdmin.Value.dat.Title}\\][/bold] ";
-            }
-
-            if (senderAdmin is not null &&
-                senderAdmin.Value.dat.Flags ==
-                AdminFlags.Mentor) // Mentor. Not full admin. That's why it's colored differently.
-            {
-                bwoinkText = $"[color=purple]{adminPrefix}{username}[/color]";
-            }
-            else if (senderAdmin is not null && senderAdmin.Value.dat.Flags.HasFlag(AdminFlags.Adminhelp))
-            {
-                bwoinkText = $"[color=red]{adminPrefix}{username}[/color]";
-            }
-            else if (_sponsorsManager != null)
-            {
-                _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
-                var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
-
-                if (ServerOocGradientHelper.TryFormatGradientName(senderUserId, username, _sponsorsManager, _playerManager, _netConfig, _playerCacheManager, out var gradFormatted))
-                {
-                    bwoinkText = gradFormatted;
-                }
-                else if (_sponsorsManager.TryGetOocColor(senderUserId, out var oocColor))
-                {
-                    bwoinkText = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {username}[/color]";
-                }
-                else
-                {
-                    bwoinkText = $"{sponsorTitle} {username}";
-                }
-            }
-            else
-            {
-                bwoinkText = $"{username}";
-            }
-
-            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(senderUserId))
-            {
-                string? emoji = null;
-                if (_playerManager.TryGetSessionById(senderUserId, out var session))
-                {
-                    emoji = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocEmoji);
-                }
-
-                if (!string.IsNullOrWhiteSpace(emoji))
-                {
-                    var emojiId = emoji.Trim(':');
-                    var emojiSystem = EntityManager.System<SharedEmojiSystem>();
-                    if (emojiSystem.IsEmojiAllowedForPlayer(emojiId, senderUserId, _sponsorsManager))
-                    {
-                        bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
-                    }
-                }
-            }
-
-            var escapedText = FormattedMessage.EscapeText(message);
-
-            return $"{(adminOnly ? Loc.GetString("bwoink-message-admin-only") : !playSound ? Loc.GetString("bwoink-message-silent") : "")} {bwoinkText}: {escapedText}";
-        }
-        // Sunrise-End
 
         private void OnServerNameChanged(string obj)
         {
@@ -775,7 +634,75 @@ namespace Content.Server.Administration.Systems
             }
         }
 
-        protected override void OnBwoinkTextMessage(BwoinkTextMessage message, EntitySessionEventArgs eventArgs)
+        private string FormatName(AdminData? senderAdmin, ICommonSession senderSession, string prefix, string name)
+        {
+            // Sunrise edit start - форматирование имени спонсора
+            return FormatPlayerNameWithSponsors(senderAdmin, senderSession, prefix, name);
+            // Sunrise edit end
+
+            if (senderAdmin is not null &&
+                senderAdmin.Flags ==
+                AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+            {
+                return $"[color=purple]{prefix}{name}[/color]";
+            }
+            else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
+            {
+                return $"[color=red]{prefix}{name}[/color]";
+            }
+            else
+            {
+                return $"{senderSession.Name}"; // Not an admin, name is not overridden.
+            }
+        }
+
+        private async Task<BwoinkTextMessage> FormatFullMessageForRecipient(
+            bool forAdmin,
+            AdminData? senderAdmin,
+            ICommonSession senderSession,
+            BwoinkTextMessage input)
+        {
+            var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            string messageText;
+
+            if (forAdmin)
+            {
+                messageText = await GenerateNameLinks(input.Text);
+            }
+            else
+            {
+                messageText = FormattedMessage.EscapeText(input.Text);
+            }
+
+            var adminPrefix = "";
+            if (_config.GetCVar(CCVars.AhelpAdminPrefix) && senderAdmin?.Title != null)
+                adminPrefix = $"[bold]\\[{FormattedMessage.EscapeText(senderAdmin.Title)}\\][/bold] ";
+
+            var bwoinkText = FormatName(
+                senderAdmin,
+                senderSession,
+                adminPrefix,
+                forAdmin || _overrideClientName == string.Empty ? senderSession.Name : _overrideClientName);
+
+            var statusPrefix = "";
+            if (input.AdminOnly)
+                statusPrefix = Loc.GetString("bwoink-message-admin-only");
+            else if (!input.PlaySound)
+                statusPrefix = Loc.GetString("bwoink-message-silent");
+
+            bwoinkText = $"{statusPrefix} {bwoinkText}: {messageText}";
+
+            // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
+            var playSound = (!senderAHelpAdmin || input.PlaySound) && !input.AdminOnly;
+            return new BwoinkTextMessage(
+                input.UserId,
+                senderSession.UserId,
+                bwoinkText,
+                playSound: playSound,
+                adminOnly: input.AdminOnly);
+        }
+
+        protected override async void OnBwoinkTextMessage(BwoinkTextMessage message, EntitySessionEventArgs eventArgs)
         {
             base.OnBwoinkTextMessage(message, eventArgs);
             _activeConversations[message.UserId] = DateTime.Now;
@@ -793,117 +720,29 @@ namespace Content.Server.Administration.Systems
                 return;
             }
 
-            // Sunrise-Ahelp-Antispam-Start
-            // Based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
-            var currentTime = _timing.RealTime;
-
-            if (IsOnCooldown(message.UserId, currentTime, out var remainingCooldown))
+            // Sunrise added start - проверка cooldown и антиспама до rate limit
+            if (TryBlockIncomingBwoinkMessage(message, senderSession, out var remainingCooldown))
             {
-                // Send cooldown feedback to the client
                 RaiseNetworkEvent(new BwoinkCooldownMessage(remainingCooldown), senderSession.Channel);
                 return;
             }
-
-            if (IsSpam(message.UserId, message.Text))
-                _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 180, NoteSeverity.High, Loc.GetString("ahelp-antispam-ban-reason"));
-
-            AddToRecentMessages(message.UserId, message.Text, currentTime);
-            // Sunrise-Ahelp-Antispam-End
+            // Sunrise added end
 
             if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
-            var escapedText = FormattedMessage.EscapeText(message.Text);
-
-            // Sunrise-Sponsors-Start
-            string bwoinkText;
-            string adminPrefix = "";
-
-            //Getting an administrator position
-            if (_config.GetCVar(CCVars.AhelpAdminPrefix) && senderAdmin is not null && senderAdmin.Title is not null)
-            {
-                adminPrefix = $"[bold]\\[{senderAdmin.Title}\\][/bold] ";
-            }
-
-            if (senderAdmin is not null &&
-                senderAdmin.Flags ==
-                AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
-            {
-                bwoinkText = $"[color=purple]{adminPrefix}{senderSession.Name}[/color]";
-            }
-            else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
-            {
-                bwoinkText = $"[color=red]{adminPrefix}{senderSession.Name}[/color]";
-            }
-            else if (_sponsorsManager != null)
-            {
-                _sponsorsManager.TryGetOocTitle(message.UserId, out var oocTitle);
-                var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
-
-                if (ServerOocGradientHelper.TryFormatGradientName(message.UserId, senderSession.Name, _sponsorsManager, _playerManager, _netConfig, _playerCacheManager, out var gradFormatted))
-                {
-                    bwoinkText = gradFormatted;
-                }
-                else if (_sponsorsManager.TryGetOocColor(message.UserId, out var oocColor))
-                {
-                    bwoinkText = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {senderSession.Name}[/color]";
-                }
-                else
-                {
-                    bwoinkText = $"{sponsorTitle} {senderSession.Name}";
-                }
-            }
-            else
-            {
-                bwoinkText = $"{senderSession.Name}";
-            }
-
-            if (_sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(message.UserId))
-            {
-                string? emoji = null;
-                if (_playerManager.TryGetSessionById(message.UserId, out var playerSession))
-                {
-                    emoji = _netConfig.GetClientCVar(playerSession.Channel, SunriseCCVars.SponsorOocEmoji);
-                }
-
-                if (!string.IsNullOrWhiteSpace(emoji))
-                {
-                    var emojiId = emoji.Trim(':');
-                    var emojiSystem = EntityManager.System<SharedEmojiSystem>();
-                    if (emojiSystem.IsEmojiAllowedForPlayer(emojiId, message.UserId, _sponsorsManager))
-                    {
-                        bwoinkText = $"[emoji id=\"{emojiId}\" size=50] {bwoinkText}";
-                    }
-                }
-            }
-
-            bwoinkText = $"{(message.AdminOnly ? Loc.GetString("bwoink-message-admin-only") : !message.PlaySound ? Loc.GetString("bwoink-message-silent") : "")} {bwoinkText}: {escapedText}";
+            _afkManager.PlayerDidAction(senderSession);
 
             // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
             var playSound = (!senderAHelpAdmin || message.PlaySound) && !message.AdminOnly;
-            var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText, playSound: playSound, adminOnly: message.AdminOnly);
-            // Sunrise-Sponsors-End
-
-            LogBwoink(msg);
-
-            // Sunrise-Start
-            var sentAt = DateTimeOffset.UtcNow;
-            _dbManager.AddAHelpMessage(senderSession.UserId, message.UserId, message.Text, sentAt, message.PlaySound, message.AdminOnly);
-            // Sunrise-End
 
             var admins = GetTargetAdmins();
+            var adminMsg = await FormatFullMessageForRecipient(forAdmin: true, senderAdmin, senderSession, message);
 
             // Notify all admins
             foreach (var channel in admins)
             {
-                RaiseNetworkEvent(msg, channel);
-            }
-
-            string adminPrefixWebhook = "";
-
-            if (_config.GetCVar(CCVars.AhelpAdminPrefixWebhook) && senderAdmin is not null && senderAdmin.Title is not null)
-            {
-                adminPrefixWebhook = $"[bold]\\[{senderAdmin.Title}\\][/bold] ";
+                RaiseNetworkEvent(adminMsg, channel);
             }
 
             // Notify player
@@ -911,44 +750,16 @@ namespace Content.Server.Administration.Systems
             {
                 if (!admins.Contains(session.Channel))
                 {
-                    // If _overrideClientName is set, we generate a new message with the override name. The admins name will still be the original name for the webhooks.
-                    if (_overrideClientName != string.Empty)
-                    {
-                        string overrideMsgText;
-                        // Doing the same thing as above, but with the override name. Theres probably a better way to do this.
-                        if (senderAdmin is not null &&
-                            senderAdmin.Flags ==
-                            AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
-                        {
-                            overrideMsgText = $"[color=purple]{adminPrefixWebhook}{_overrideClientName}[/color]";
-                        }
-                        else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
-                        {
-                            overrideMsgText = $"[color=red]{adminPrefixWebhook}{_overrideClientName}[/color]";
-                        }
-                        else
-                        {
-                            overrideMsgText = $"{senderSession.Name}"; // Not an admin, name is not overridden.
-                        }
-
-                        overrideMsgText = $"{(message.PlaySound ? "" : "(S) ")}{overrideMsgText}: {escapedText}";
-
-                        RaiseNetworkEvent(new BwoinkTextMessage(message.UserId,
-                                senderSession.UserId,
-                                overrideMsgText,
-                                playSound: playSound),
-                            session.Channel);
-                    }
-                    else
-                        RaiseNetworkEvent(msg, session.Channel);
+                    var playerMsg = await FormatFullMessageForRecipient(forAdmin: false, senderAdmin, senderSession, message);
+                    RaiseNetworkEvent(playerMsg, session.Channel);
                 }
             }
 
             var sendsWebhook = _webhookUrl != string.Empty;
             if (sendsWebhook)
             {
-                if (!_messageQueues.ContainsKey(msg.UserId))
-                    _messageQueues[msg.UserId] = new Queue<DiscordRelayedData>();
+                if (!_messageQueues.ContainsKey(message.UserId))
+                    _messageQueues[message.UserId] = new Queue<DiscordRelayedData>();
 
                 var str = message.Text;
                 var unameLength = senderSession.Name.Length;
@@ -969,8 +780,12 @@ namespace Content.Server.Administration.Systems
                     adminOnly: message.AdminOnly,
                     noReceivers: nonAfkAdmins.Count == 0
                 );
-                _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(messageParams));
+                _messageQueues[message.UserId].Enqueue(GenerateAHelpMessage(messageParams));
             }
+
+            // Sunrise added start - сохранение ahelp в историю
+            OnBwoinkMessagePersisted(message, senderSession);
+            // Sunrise added end
 
             if (admins.Count != 0 || sendsWebhook)
                 return;
@@ -981,6 +796,10 @@ namespace Content.Server.Administration.Systems
             RaiseNetworkEvent(starMuteMsg, senderSession.Channel);
         }
 
+        partial void InitializeSunrise();
+        private partial bool TryBlockIncomingBwoinkMessage(BwoinkTextMessage message, ICommonSession sender, out TimeSpan remainingCooldown);
+        partial void OnBwoinkMessagePersisted(BwoinkTextMessage message, ICommonSession sender);
+
         private IList<INetChannel> GetNonAfkAdmins()
         {
             return _adminManager.ActiveAdmins
@@ -990,7 +809,6 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        // Returns all online admins with AHelp access
         public IList<INetChannel> GetTargetAdmins()
         {
             return _adminManager.ActiveAdmins
@@ -1068,61 +886,6 @@ namespace Content.Server.Administration.Systems
             /// </summary>
             public bool OnCall;
         }
-
-        // Sunrise-Ahelp-Antispam-Start
-        // Based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
-        private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
-        {
-            _recentMessages.Enqueue((channelId, text, timestamp));
-
-            if (_recentMessages.Count > MaxRecentMessages)
-            {
-                _recentMessages.Dequeue();
-            }
-        }
-
-        private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime, out TimeSpan remainingCooldown)
-        {
-            remainingCooldown = TimeSpan.Zero;
-
-            var lastMessage = _recentMessages
-                .Where(msg => msg.Channel == channelId)
-                .OrderByDescending(msg => msg.Timestamp)
-                .FirstOrDefault();
-
-            if (lastMessage == default)
-                return false;
-
-            var timeSinceLastMessage = currentTime - lastMessage.Timestamp;
-            if (timeSinceLastMessage < _messageCooldown)
-            {
-                remainingCooldown = _messageCooldown - timeSinceLastMessage;
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
-        {
-            return IsOnCooldown(channelId, currentTime, out _);
-        }
-
-        private bool IsSpam(NetUserId channelId, string text)
-        {
-            var recentMessages = _recentMessages
-                .Where(msg => msg.Channel == channelId)
-                .OrderByDescending(msg => msg.Timestamp)
-                .Take(10);
-
-            return recentMessages.All(msg => msg.Text == text) && recentMessages.Count() >= 5;
-        }
-
-        public IEnumerable<(NetUserId Channel, string Text, TimeSpan Timestamp)> GetRecentMessages()
-        {
-            return _recentMessages;
-        }
-        // Sunrise-Ahelp-Antispam-End
     }
 
     public sealed class AHelpMessageParams
