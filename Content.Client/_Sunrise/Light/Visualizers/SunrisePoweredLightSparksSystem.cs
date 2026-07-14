@@ -1,48 +1,59 @@
 using Content.Shared._Sunrise.Light.Visualizers;
 using Content.Shared.Light;
+using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Shared.Animations;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
 using static Robust.Client.GameObjects.SpriteComponent;
 
 namespace Content.Client._Sunrise.Light.Visualizers;
 
-public sealed class SunrisePoweredLightSparksSystem : EntitySystem
+public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePoweredLightSparksComponent>
 {
-    public const string DefaultLayer = "sunrisePoweredLightSparks";
-    private const string OnLayer = "sunrisePoweredLightOn";
+    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
 
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    private const string FlickerAnimationKey = "sunrise-powered-light-flicker";
+    private const string OnLayer = "sunrisePoweredLightOn";
+    public const string DefaultLayer = "sunrisePoweredLightSparks";
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<SunrisePoweredLightSparksComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<SunrisePoweredLightSparksComponent, AnimationCompletedEvent>(OnAnimationCompleted);
     }
 
-    private void OnAppearanceChange(Entity<SunrisePoweredLightSparksComponent> ent, ref AppearanceChangeEvent args)
+    protected override void OnAppearanceChange(EntityUid uid, SunrisePoweredLightSparksComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        UpdateVisuals(ent, args.Sprite, args.Component);
+        UpdateVisuals(uid, component, args.Sprite, args.Component);
+    }
+
+    private void OnAnimationCompleted(Entity<SunrisePoweredLightSparksComponent> ent, ref AnimationCompletedEvent args)
+    {
+        if (args.Key != FlickerAnimationKey)
+            return;
+
+        HideFlickerLayers(ent, ent.Comp);
     }
 
     private void UpdateVisuals(
-        Entity<SunrisePoweredLightSparksComponent> ent,
+        EntityUid uid,
+        SunrisePoweredLightSparksComponent component,
         SpriteComponent spriteComp,
         AppearanceComponent? appearance)
     {
-        var sprite = (ent.Owner, spriteComp);
-        if (!_appearance.TryGetData<PoweredLightState>(ent, PoweredLightVisuals.BulbState, out var state, appearance) ||
-            !_appearance.TryGetData<bool>(ent, SunrisePoweredLightVisuals.HasPower, out var hasPower, appearance) ||
-            !TryComp<PointLightComponent>(ent, out _))
+        var sprite = (uid, spriteComp);
+        if (!AppearanceSystem.TryGetData<PoweredLightState>(uid, PoweredLightVisuals.BulbState, out var state, appearance) ||
+            !AppearanceSystem.TryGetData<bool>(uid, SunrisePoweredLightVisuals.HasPower, out var hasPower, appearance) ||
+            !TryComp<PointLightComponent>(uid, out var light))
         {
+            StopFlicker(uid, component);
             SetLayerVisible(sprite, OnLayer, false);
-            SetLayerVisible(sprite, ent.Comp.Layer, false);
-            SetLayerVisible(sprite, ent.Comp.SparksLayer, false);
+            HideFlickerLayers(sprite, component);
             return;
         }
 
@@ -50,89 +61,146 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
 
         if (state != PoweredLightState.Broken || !hasPower)
         {
-            SetLayerVisible(sprite, ent.Comp.Layer, false);
-            SetLayerVisible(sprite, ent.Comp.SparksLayer, false);
+            StopFlicker(uid, component);
+            HideFlickerLayers(sprite, component);
             return;
         }
 
-        SelectStates(ent);
-        if (ent.Comp.SelectedState == null || ent.Comp.SelectedSparkState == null)
+        if (!AppearanceSystem.TryGetData<int>(uid, SunrisePoweredLightVisuals.FlickerSequence, out var sequence, appearance) ||
+            sequence == component.FlickerSequence ||
+            !AppearanceSystem.TryGetData<string>(uid, SunrisePoweredLightVisuals.FlickerState, out var flickerState, appearance) ||
+            !AppearanceSystem.TryGetData<string>(uid, SunrisePoweredLightVisuals.SparkState, out var sparkState, appearance))
             return;
 
-        UpdateLayer(sprite, ent.Comp.Layer, ent.Comp.SelectedState, ent.Comp.SparkSprite);
-        UpdateLayer(sprite, ent.Comp.SparksLayer, ent.Comp.SelectedSparkState, ent.Comp.SparkSprite);
+        component.FlickerSequence = sequence;
+        UpdateLayer(sprite, component.Layer, flickerState, component.SparkSprite);
+        UpdateLayer(sprite, component.SparksLayer, sparkState, component.SparkSprite);
+        PlayFlicker(uid, component, light);
     }
 
-    private void SelectStates(Entity<SunrisePoweredLightSparksComponent> ent)
+    private void PlayFlicker(EntityUid uid, SunrisePoweredLightSparksComponent component, PointLightComponent light)
     {
-        if (ent.Comp.SelectedState != null && ent.Comp.SelectedSparkState != null)
+        var player = EnsureComp<AnimationPlayerComponent>(uid);
+        if (_animation.HasRunningAnimation(uid, player, FlickerAnimationKey))
+            _animation.Stop(uid, player, FlickerAnimationKey);
+
+        _animation.Play((uid, player), BuildFlickerAnimation(component, light), FlickerAnimationKey);
+    }
+
+    private Animation BuildFlickerAnimation(SunrisePoweredLightSparksComponent component, PointLightComponent light)
+    {
+        var duration = (float) component.FlickerDuration.TotalSeconds;
+        var dimEnergy = light.Energy * component.FlickerLightEnergyMultiplier;
+
+        return new Animation
+        {
+            Length = component.FlickerDuration,
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(PointLightComponent),
+                    InterpolationMode = AnimationInterpolationMode.Nearest,
+                    Property = nameof(PointLightComponent.AnimatedEnable),
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(true, 0f),
+                        new AnimationTrackProperty.KeyFrame(false, duration),
+                    }
+                },
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(PointLightComponent),
+                    InterpolationMode = AnimationInterpolationMode.Nearest,
+                    Property = nameof(PointLightComponent.Energy),
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(dimEnergy, 0f),
+                        new AnimationTrackProperty.KeyFrame(light.Energy, duration),
+                    }
+                }
+            }
+        };
+    }
+
+    private void StopFlicker(EntityUid uid, SunrisePoweredLightSparksComponent component)
+    {
+        if (TryComp<AnimationPlayerComponent>(uid, out var player))
+            _animation.Stop(uid, player, FlickerAnimationKey);
+
+        HideFlickerLayers(uid, component);
+    }
+
+    private void HideFlickerLayers(EntityUid uid, SunrisePoweredLightSparksComponent component)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        if (ent.Comp.States.Count == 0 || ent.Comp.SparkStates.Count == 0)
-            return;
+        HideFlickerLayers((uid, sprite), component);
+    }
 
-        var seed = unchecked((uint) GetNetEntity(ent).Id);
-        ent.Comp.SelectedState = ent.Comp.States[(int) (seed % ent.Comp.States.Count)];
-        ent.Comp.SelectedSparkState = ent.Comp.SparkStates[(int) ((seed * 2654435761u) % ent.Comp.SparkStates.Count)];
+    private void HideFlickerLayers(Entity<SpriteComponent> sprite, SunrisePoweredLightSparksComponent component)
+    {
+        SetLayerVisible(sprite, component.Layer, false);
+        SetLayerVisible(sprite, component.SparksLayer, false);
     }
 
     private void UpdateLayer(Entity<SpriteComponent> sprite, string layerKey, string state, ResPath? fallbackRsi)
     {
-        var layer = EnsureSparkLayer(sprite, layerKey);
-        if (layer == null)
+        if (!TryGetSparkLayer(sprite, layerKey, out var layer))
             return;
 
         if (!TrySetState(layer, state, fallbackRsi))
         {
-            _sprite.LayerSetVisible(layer, false);
-            _sprite.LayerSetAutoAnimated(layer, false);
+            SpriteSystem.LayerSetVisible(layer, false);
+            SpriteSystem.LayerSetAutoAnimated(layer, false);
             return;
         }
 
-        _sprite.LayerSetVisible(layer, true);
-        _sprite.LayerSetAutoAnimated(layer, true);
+        SpriteSystem.LayerSetVisible(layer, true);
+        SpriteSystem.LayerSetAutoAnimated(layer, true);
     }
 
     private bool TrySetState(Layer layer, string state, ResPath? fallbackRsi)
     {
         if (layer.ActualRsi?.TryGetState(state, out _) == true)
         {
-            _sprite.LayerSetRsiState(layer, state);
+            SpriteSystem.LayerSetRsiState(layer, state);
             return true;
         }
 
         if (fallbackRsi == null)
             return false;
 
-        _sprite.LayerSetRsi(layer, fallbackRsi.Value);
+        SpriteSystem.LayerSetRsi(layer, fallbackRsi.Value);
         if (layer.ActualRsi?.TryGetState(state, out _) != true)
             return false;
 
-        _sprite.LayerSetRsiState(layer, state);
+        SpriteSystem.LayerSetRsiState(layer, state);
         return true;
     }
 
-    private Layer? EnsureSparkLayer(Entity<SpriteComponent> sprite, string layerKey)
+    private bool TryGetSparkLayer(Entity<SpriteComponent> sprite, string layerKey, [NotNullWhen(true)] out Layer? layer)
     {
-        var layerIndex = _sprite.LayerMapReserve(sprite.AsNullable(), layerKey);
-        if (!_sprite.TryGetLayer(sprite.AsNullable(), layerIndex, out var layer, false))
-            return null;
+        var layerIndex = SpriteSystem.LayerMapReserve(sprite.AsNullable(), layerKey);
+        if (!SpriteSystem.TryGetLayer(sprite.AsNullable(), layerIndex, out layer, false))
+            return false;
 
-        _sprite.LayerSetData(layer, new PrototypeLayerData
+        SpriteSystem.LayerSetData(layer, new PrototypeLayerData
         {
             Shader = SpriteSystem.UnshadedId.Id,
             Visible = false,
         });
 
-        return layer;
+        return true;
     }
 
     private void SetLayerVisible(Entity<SpriteComponent> sprite, string layerKey, bool visible)
     {
-        if (!_sprite.LayerMapTryGet(sprite.AsNullable(), layerKey, out var layerIndex, false))
+        if (!SpriteSystem.LayerMapTryGet(sprite.AsNullable(), layerKey, out var layerIndex, false))
             return;
 
-        _sprite.LayerSetVisible(sprite.AsNullable(), layerIndex, visible);
-        _sprite.LayerSetAutoAnimated(sprite.AsNullable(), layerIndex, visible);
+        SpriteSystem.LayerSetVisible(sprite.AsNullable(), layerIndex, visible);
+        SpriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), layerIndex, visible);
     }
 }

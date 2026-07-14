@@ -282,6 +282,9 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             SetLight(uid, false, light: light);
             powerReceiver.Load = 0;
             _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Empty, appearance);
+            // Sunrise added start - обновление визуала искр после изменения состояния лампы
+            RaiseLocalEvent(uid, new SunrisePoweredLightSparksUpdatedEvent());
+            // Sunrise added end
             return;
         }
 
@@ -317,6 +320,9 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         }
 
         // Sunrise edit start - искры повреждённого светильника требуют питания
+        // Sunrise added start - обновление визуала искр после изменения состояния лампы
+        RaiseLocalEvent(uid, new SunrisePoweredLightSparksUpdatedEvent());
+        // Sunrise added end
         powerReceiver.Load = light.On &&
                              (lightBulb.State == LightBulbState.Normal ||
                               (lightBulb.State == LightBulbState.Broken && HasComp<SunrisePoweredLightSparksComponent>(uid)))

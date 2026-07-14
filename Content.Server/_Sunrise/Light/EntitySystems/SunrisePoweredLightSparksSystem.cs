@@ -1,8 +1,10 @@
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Sunrise.Light.Visualizers;
+using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Power;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Light.EntitySystems;
@@ -10,11 +12,8 @@ namespace Content.Server._Sunrise.Light.EntitySystems;
 public sealed class SunrisePoweredLightSparksSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-
-    private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(0.25);
-
-    private TimeSpan _nextUpdate;
 
     public override void Initialize()
     {
@@ -24,6 +23,7 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         SubscribeLocalEvent<SunrisePoweredLightSparksComponent, ExtensionCableSystem.ProviderConnectedEvent>(OnProviderConnected);
         SubscribeLocalEvent<SunrisePoweredLightSparksComponent, ExtensionCableSystem.ProviderDisconnectedEvent>(OnProviderDisconnected);
         SubscribeLocalEvent<SunrisePoweredLightSparksComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<SunrisePoweredLightSparksComponent, SunrisePoweredLightSparksUpdatedEvent>(OnPoweredLightUpdated);
     }
 
     private void OnStartup(Entity<SunrisePoweredLightSparksComponent> ent, ref ComponentStartup args)
@@ -46,40 +46,39 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         UpdateAppearance(ent);
     }
 
+    private void OnPoweredLightUpdated(Entity<SunrisePoweredLightSparksComponent> ent, ref SunrisePoweredLightSparksUpdatedEvent args)
+    {
+        UpdateAppearance(ent);
+    }
+
     public override void Update(float frameTime)
     {
-        if (_nextUpdate > _timing.CurTime)
-            return;
-
-        _nextUpdate = _timing.CurTime + UpdateInterval;
-
-        var query = EntityQueryEnumerator<SunrisePoweredLightSparksComponent>();
-        while (query.MoveNext(out var uid, out var sparks))
+        var query = EntityQueryEnumerator<ActiveSunrisePoweredLightSparksComponent, SunrisePoweredLightSparksComponent>();
+        while (query.MoveNext(out var uid, out var active, out var sparks))
         {
-            TryComp<ApcPowerReceiverComponent>(uid, out var powerReceiver);
-            UpdateAppearance((uid, sparks), powerReceiver);
+            if (_timing.CurTime < active.NextFlickerTime)
+                continue;
+
+            StartFlicker((uid, sparks));
+            active.NextFlickerTime = GetNextFlickerTime(sparks);
         }
     }
 
-    private void UpdateAppearance(
-        Entity<SunrisePoweredLightSparksComponent> ent,
-        ApcPowerReceiverComponent? powerReceiver = null,
-        PoweredLightComponent? poweredLight = null)
+    private void UpdateAppearance(Entity<SunrisePoweredLightSparksComponent> ent)
     {
         if (!TryComp<AppearanceComponent>(ent, out var appearance))
-        {
             return;
-        }
 
-        if (!Resolve(ent, ref poweredLight, false))
+        if (!TryComp<PoweredLightComponent>(ent, out var poweredLight))
             return;
 
         var hasPower = poweredLight.On && HasComp<SunriseAlwaysPoweredLightSparksComponent>(ent);
         if (!hasPower)
         {
-            if (!Resolve(ent, ref powerReceiver, false))
+            if (!TryComp<ApcPowerReceiverComponent>(ent, out var powerReceiver))
             {
                 _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, false, appearance);
+                RemComp<ActiveSunrisePoweredLightSparksComponent>(ent);
                 return;
             }
 
@@ -87,5 +86,44 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         }
 
         _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, hasPower, appearance);
+
+        if (!_appearance.TryGetData<PoweredLightState>(ent, PoweredLightVisuals.BulbState, out var bulbState, appearance) ||
+            bulbState != PoweredLightState.Broken ||
+            !hasPower)
+        {
+            RemComp<ActiveSunrisePoweredLightSparksComponent>(ent);
+            return;
+        }
+
+        var active = EnsureComp<ActiveSunrisePoweredLightSparksComponent>(ent);
+        if (active.NextFlickerTime == TimeSpan.Zero)
+            active.NextFlickerTime = _timing.CurTime;
     }
+
+    private void StartFlicker(Entity<SunrisePoweredLightSparksComponent> ent)
+    {
+        if (!TryComp<AppearanceComponent>(ent, out var appearance))
+            return;
+
+        _appearance.SetData(ent, SunrisePoweredLightVisuals.FlickerState, _random.Pick(ent.Comp.States), appearance);
+        _appearance.SetData(ent, SunrisePoweredLightVisuals.SparkState, _random.Pick(ent.Comp.SparkStates), appearance);
+        _appearance.SetData(ent, SunrisePoweredLightVisuals.FlickerSequence, ++ent.Comp.FlickerSequence, appearance);
+    }
+
+    private TimeSpan GetNextFlickerTime(SunrisePoweredLightSparksComponent component)
+    {
+        var min = component.MinFlickerDelay.TotalSeconds;
+        var max = Math.Max(min, component.MaxFlickerDelay.TotalSeconds);
+        var delay = min + (max - min) * _random.NextDouble();
+        return _timing.CurTime + TimeSpan.FromSeconds(delay);
+    }
+}
+
+[RegisterComponent]
+public sealed partial class ActiveSunrisePoweredLightSparksComponent : Component
+{
+    /// <summary>
+    /// Время следующей вспышки поврежденного светильника.
+    /// </summary>
+    public TimeSpan NextFlickerTime;
 }

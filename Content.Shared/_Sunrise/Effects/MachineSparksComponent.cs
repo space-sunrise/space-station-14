@@ -1,45 +1,47 @@
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Effects;
 
 /// <summary>
-/// Configures spark effects for damageable machines.
+/// Настраивает эффекты искр для повреждаемых машин.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MachineSparksComponent : Component
 {
     /// <summary>
-    /// Effects shown when the machine is hit.
+    /// Эффекты, отображаемые при получении машиной урона.
     /// </summary>
-    [DataField]
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField(required: true), AutoNetworkedField]
     public List<EntProtoId> ImpactEffects = [];
 
     /// <summary>
-    /// Effects periodically shown while the machine has low health.
+    /// Вероятность появления искры при получении урона.
     /// </summary>
-    [DataField]
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField, AutoNetworkedField]
+    public float ImpactEffectProbability = 0.5f;
+
+    /// <summary>
+    /// Эффекты, периодически отображаемые при низкой прочности машины.
+    /// </summary>
+    [DataField(required: true), AutoNetworkedField]
     public List<EntProtoId> LowHealthEffects = [];
 
     /// <summary>
-    /// Fraction of the destruction threshold at which the machine is considered heavily damaged.
+    /// Доля порога разрушения, после которой машина считается сильно поврежденной.
     /// </summary>
-    [DataField]
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField, AutoNetworkedField]
     public float LowHealthDamageFraction = 0.75f;
 
     /// <summary>
-    /// Minimum delay between periodic spark effects.
+    /// Минимальная задержка между периодическими эффектами искр.
     /// </summary>
-    [DataField]
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField, AutoNetworkedField]
     public TimeSpan MinLowHealthSparkDelay = TimeSpan.FromSeconds(3);
 
     /// <summary>
-    /// Maximum delay between periodic spark effects.
+    /// Максимальная задержка между периодическими эффектами искр.
     /// </summary>
-    [DataField]
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField, AutoNetworkedField]
     public TimeSpan MaxLowHealthSparkDelay = TimeSpan.FromSeconds(8);
 }

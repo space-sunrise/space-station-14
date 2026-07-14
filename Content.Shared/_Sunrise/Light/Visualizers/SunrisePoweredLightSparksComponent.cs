@@ -9,7 +9,7 @@ namespace Content.Shared._Sunrise.Light.Visualizers;
 public sealed partial class SunrisePoweredLightSparksComponent : Component
 {
     /// <summary>
-    /// Карта слоя спрайта, на котором отображаются искры.
+    /// Карта слоя спрайта, на котором отображается мерцание.
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
@@ -37,21 +37,39 @@ public sealed partial class SunrisePoweredLightSparksComponent : Component
     public List<string> SparkStates = [];
 
     /// <summary>
-    /// Путь к RSI с искрами для fallback-слоя.
+    /// Путь к RSI с искрами для резервного слоя.
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
     public ResPath? SparkSprite;
 
     /// <summary>
-    /// Детерминированно выбранное состояние мерцания.
+    /// Минимальная пауза между вспышками поврежденного светильника.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public string? SelectedState;
+    [DataField]
+    public TimeSpan MinFlickerDelay = TimeSpan.FromSeconds(2);
 
     /// <summary>
-    /// Детерминированно выбранное состояние искр.
+    /// Максимальная пауза между вспышками поврежденного светильника.
+    /// </summary>
+    [DataField]
+    public TimeSpan MaxFlickerDelay = TimeSpan.FromSeconds(4);
+
+    /// <summary>
+    /// Длительность одной вспышки.
+    /// </summary>
+    [DataField]
+    public TimeSpan FlickerDuration = TimeSpan.FromSeconds(0.3);
+
+    /// <summary>
+    /// Доля обычной энергии лампы во время вспышки.
+    /// </summary>
+    [DataField]
+    public float FlickerLightEnergyMultiplier = 0.15f;
+
+    /// <summary>
+    /// Последняя обработанная клиентом последовательность вспышки.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public string? SelectedSparkState;
+    public int FlickerSequence;
 }
