@@ -119,6 +119,9 @@ ent-GunSafeSuperweaponLWAP = LWAP safe
 ent-GunSafeSuperweaponRocketLauncher = RPG safe
     .desc = { ent-GunSafeSuperweaponSecureGamma.desc }
 
+ent-GunSafeSuperweaponDisposableRocketLauncher = disposable launcher safe
+    .desc = { ent-GunSafeSuperweaponSecureGamma.desc }
+
 ent-GunSafeSuperIonRifle = Ion-Temperature safe
     .desc = { ent-GunSafeSuperweaponBaseSecure.desc }
 

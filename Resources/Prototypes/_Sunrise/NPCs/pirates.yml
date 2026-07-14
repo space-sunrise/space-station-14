@@ -131,7 +131,7 @@
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.8
   - type: Fixtures
     fixtures:
       fix1:
@@ -2635,21 +2635,20 @@
     damageCap: 250
   - type: SlowOnDamage
     speedModifierThresholds:
-      25: 1.1
-      75: 1.15
+      50: 1.1
       100: 1.2
       125: 1.3
       150: 1.4
       175: 1.5
       200: 1.6
       215: 1.8
-      225: 2
+      225: 1.9
   - type: Stamina
     baseCritThreshold: 500
   - type: HellSpawnInvincibility
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.75
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepCyborgLegs
@@ -2670,9 +2669,9 @@
   - type: LeechOnMarker
     leech:
       groups:
-        Brute: -45
+        Brute: -30
       types:
-        Piercing: -10
+        Piercing: -15
         Heat: -5
         Bloodloss: -5
         Mangleness: -5
@@ -2682,7 +2681,7 @@
     damage:
       types:
         Blunt: 8
-        Slash: 12
+        Slash: 8
         Structural: 40
     bluntStaminaDamageFactor: 1
     soundHit:
@@ -2699,7 +2698,7 @@
     netsync: false
     radius: 1.75
     energy: 1.5
-    mask: /Textures/Effects/LightMasks/soft_cone.png
+    mask: /Textures/Effects/LightMasks/triple.png
     color: "#8cff00"
   - type: AmbientSound
     range: 4

@@ -10,7 +10,11 @@
         children:
         - id: WeaponRifleBauer127Biocode
         - id: AntimaterialAmmoKit
-          amount: 2
+          amount: 3
+        - id: SmokeGrenade
+        - id: ChameleonProjector
+        - id: MagazineBauer127HP
+          amount: 5
         - id: ClothingEyesGlassesSniperThermalSyndie
 
 - type: entity
@@ -606,33 +610,6 @@
         - id: MagazineLightRifleHP
         - id: CigPackSyndicate
         - id: CheapLighter
-
-- type: entity
-  id: ClothingBackpackMessengerPirateBundleSKM24Scrap
-  parent: ClothingBackpackMessengerPirate
-  name: SKM-24 bundle
-  description: Contains the cheapest assault rifle.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponRifleSKM24Scrap
-        - id: MagazineLightRifleImprovised
-        - id: MagazineLightRifleImprovised
-        - id: MagazineLightRifleImprovised
-        - !type:GroupSelector
-          children:
-          - id: MagazineBoxImprovisedRifle
-            weight: 0.5
-          - id: MagazineLightRifleFMJ
-            weight: 0.25
-          - id: MagazineLightRifleAP
-            weight: 0.01
-          - id: MagazineLightRifleHP
-            weight: 0.4
-          - id: MagazineLightRifleSP
-            weight: 0.4
 
 - type: entity
   id: ClothingBackpackMessengerMercenaryBundleARG
