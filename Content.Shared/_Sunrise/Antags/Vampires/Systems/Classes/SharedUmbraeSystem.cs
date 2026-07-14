@@ -41,17 +41,19 @@ public sealed class SharedUmbraeSystem : EntitySystem
         var query = EntityQueryEnumerator<UmbraeComponent, TransformComponent, StealthComponent>();
         while (query.MoveNext(out var uid, out var umbrae, out var xform, out var stealth))
         {
-            if (!umbrae.CloakOfDarknessActive)
+            Entity<UmbraeComponent> ent = (uid, umbrae);
+
+            if (!ent.Comp.CloakOfDarknessActive)
                 continue;
 
-            if (now < umbrae.NextCloakOfDarknessVisibilityUpdate)
+            if (now < ent.Comp.NextCloakOfDarknessVisibilityUpdate)
                 continue;
 
-            umbrae.NextCloakOfDarknessVisibilityUpdate = now + umbrae.CloakOfDarknessVisibilityUpdateInterval;
-            Dirty(uid, umbrae);
+            ent.Comp.NextCloakOfDarknessVisibilityUpdate = now + ent.Comp.CloakOfDarknessVisibilityUpdateInterval;
+            Dirty(ent);
 
-            var visibility = GetCloakOfDarknessVisibility(uid, xform, umbrae);
-            _stealth.SetVisibility(uid, visibility, stealth);
+            var visibility = GetCloakOfDarknessVisibility(ent, xform);
+            _stealth.SetVisibility(ent, visibility, stealth);
         }
 
         var shadowBoxingQuery = EntityQueryEnumerator<ActiveVampireShadowBoxingComponent, UmbraeComponent>();
@@ -60,13 +62,12 @@ public sealed class SharedUmbraeSystem : EntitySystem
             if (now < active.EndTime && umbrae.ShadowBoxingActive)
                 continue;
 
-            StopShadowBoxing(uid, umbrae, "action-vampire-shadow-boxing-ends");
+            StopShadowBoxing((uid, umbrae), "action-vampire-shadow-boxing-ends");
         }
     }
 
     private void OnCloakOfDarkness(VampireCloakOfDarknessActionEvent args)
     {
-        var uid = args.Performer;
         var actionEntity = args.Action.Owner;
 
         if (args.Handled)
@@ -75,92 +76,94 @@ public sealed class SharedUmbraeSystem : EntitySystem
         if (!Exists(actionEntity))
             return;
 
-        if (!_vampireActions.TryUse(uid, actionEntity))
+        if (!_vampireActions.TryUse(args.Performer, actionEntity))
             return;
 
-        var umbrae = EnsureComp<UmbraeComponent>(uid);
-        if (umbrae.CloakOfDarknessActive)
+        Entity<UmbraeComponent> ent = (args.Performer, EnsureComp<UmbraeComponent>(args.Performer));
+        if (ent.Comp.CloakOfDarknessActive)
         {
-            DeactivateCloakOfDarkness(uid, umbrae);
-            _popup.PopupPredicted(Loc.GetString("action-vampire-cloak-of-darkness-stop"), uid, uid);
+            DeactivateCloakOfDarkness(ent);
+            _popup.PopupPredicted(Loc.GetString("action-vampire-cloak-of-darkness-stop"), ent, ent);
         }
         else
         {
-            ActivateCloakOfDarkness(uid, umbrae);
-            _popup.PopupPredicted(Loc.GetString("action-vampire-cloak-of-darkness-start"), uid, uid);
+            ActivateCloakOfDarkness(ent);
+            _popup.PopupPredicted(Loc.GetString("action-vampire-cloak-of-darkness-start"), ent, ent);
         }
 
         if (_actions.GetAction(actionEntity) is { } action)
-            _actions.SetToggled(action.AsNullable(), umbrae.CloakOfDarknessActive);
+            _actions.SetToggled(action.AsNullable(), ent.Comp.CloakOfDarknessActive);
 
         args.Handled = true;
     }
 
-    public void ActivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
+    public void ActivateCloakOfDarkness(Entity<UmbraeComponent> ent)
     {
-        comp.CloakOfDarknessActive = true;
-        comp.NextCloakOfDarknessVisibilityUpdate = _timing.CurTime;
+        ent.Comp.CloakOfDarknessActive = true;
+        ent.Comp.NextCloakOfDarknessVisibilityUpdate = _timing.CurTime;
 
-        comp.CloakHadStealthComponent = TryComp<StealthComponent>(uid, out var existingStealth);
-        comp.CloakPreviousStealthEnabled = existingStealth?.Enabled ?? false;
-        comp.CloakPreviousStealthVisibility = comp.CloakHadStealthComponent ? _stealth.GetVisibility(uid, existingStealth) : 1f;
-        Dirty(uid, comp);
+        ent.Comp.CloakHadStealthComponent = TryComp<StealthComponent>(ent, out var existingStealth);
+        ent.Comp.CloakPreviousStealthEnabled = existingStealth?.Enabled ?? false;
+        ent.Comp.CloakPreviousStealthVisibility = ent.Comp.CloakHadStealthComponent
+            ? _stealth.GetVisibility(ent, existingStealth)
+            : 1f;
+        Dirty(ent);
 
-        var stealth = existingStealth ?? EnsureComp<StealthComponent>(uid);
-        _stealth.SetEnabled(uid, true, stealth);
-        _stealth.SetVisibility(uid, comp.CloakOfDarknessMinVisibility, stealth);
+        var stealth = existingStealth ?? EnsureComp<StealthComponent>(ent);
+        _stealth.SetEnabled(ent, true, stealth);
+        _stealth.SetVisibility(ent, ent.Comp.CloakOfDarknessMinVisibility, stealth);
     }
 
-    public void DeactivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
+    public void DeactivateCloakOfDarkness(Entity<UmbraeComponent> ent)
     {
-        comp.CloakOfDarknessActive = false;
-        Dirty(uid, comp);
+        ent.Comp.CloakOfDarknessActive = false;
+        Dirty(ent);
 
-        RestoreCloakStealth(uid, comp);
+        RestoreCloakStealth(ent);
     }
 
-    private void RestoreCloakStealth(EntityUid uid, UmbraeComponent comp)
+    private void RestoreCloakStealth(Entity<UmbraeComponent> ent)
     {
-        if (!TryComp<StealthComponent>(uid, out var stealth))
+        if (!TryComp<StealthComponent>(ent, out var stealth))
             return;
 
-        if (!comp.CloakHadStealthComponent)
+        if (!ent.Comp.CloakHadStealthComponent)
         {
-            RemComp<StealthComponent>(uid);
+            RemComp<StealthComponent>(ent);
             return;
         }
 
-        _stealth.SetEnabled(uid, comp.CloakPreviousStealthEnabled, stealth);
-        _stealth.SetVisibility(uid, comp.CloakPreviousStealthVisibility, stealth);
+        _stealth.SetEnabled(ent, ent.Comp.CloakPreviousStealthEnabled, stealth);
+        _stealth.SetVisibility(ent, ent.Comp.CloakPreviousStealthVisibility, stealth);
     }
 
-    private float GetCloakOfDarknessVisibility(EntityUid uid, TransformComponent xform, UmbraeComponent comp)
+    private float GetCloakOfDarknessVisibility(Entity<UmbraeComponent> ent, TransformComponent xform)
     {
-        var range = comp.CloakOfDarknessRevealRange;
+        var range = ent.Comp.CloakOfDarknessRevealRange;
         if (range <= 0f)
-            return comp.CloakOfDarknessMinVisibility;
+            return ent.Comp.CloakOfDarknessMinVisibility;
 
         var center = _transform.GetWorldPosition(xform);
         var closest = range;
 
-        foreach (var ent in _lookup.GetEntitiesInRange(xform.Coordinates, range))
+        foreach (var target in _lookup.GetEntitiesInRange(xform.Coordinates, range))
         {
-            if (ent == uid)
+            if (target == ent.Owner)
                 continue;
 
-            if (!HasComp<HumanoidAppearanceComponent>(ent) || HasComp<VampireComponent>(ent))
+            if (!HasComp<HumanoidAppearanceComponent>(target) || HasComp<VampireComponent>(target))
                 continue;
 
-            if (TryComp<MobStateComponent>(ent, out var mob)
+            if (TryComp<MobStateComponent>(target, out var mob)
                 && mob.CurrentState == MobState.Dead)
                 continue;
 
-            var dist = (_transform.GetWorldPosition(Transform(ent)) - center).Length();
+            var dist = (_transform.GetWorldPosition(Transform(target)) - center).Length();
             closest = MathF.Min(closest, dist);
         }
 
         var t = 1f - Math.Clamp(closest / range, 0f, 1f);
-        return MathHelper.Lerp(comp.CloakOfDarknessMinVisibility, comp.CloakOfDarknessMaxVisibility, t);
+        return MathHelper.Lerp(ent.Comp.CloakOfDarknessMinVisibility, ent.Comp.CloakOfDarknessMaxVisibility, t);
     }
 
     private void OnShadowBoxing(VampireShadowBoxingActionEvent args)
@@ -176,7 +179,7 @@ public sealed class SharedUmbraeSystem : EntitySystem
 
         if (TryComp<UmbraeComponent>(uid, out var umbrae) && umbrae.ShadowBoxingActive)
         {
-            StopShadowBoxing(uid, umbrae, "action-vampire-shadow-boxing-ends");
+            StopShadowBoxing((uid, umbrae), "action-vampire-shadow-boxing-ends");
             args.Handled = true;
             return;
         }
@@ -197,14 +200,14 @@ public sealed class SharedUmbraeSystem : EntitySystem
             return;
 
         umbrae = EnsureComp<UmbraeComponent>(uid);
+        Entity<UmbraeComponent> ent = (uid, umbrae);
         var now = _timing.CurTime;
-        umbrae.ShadowBoxingActive = true;
-        umbrae.ShadowBoxingEndTime = now + args.Duration;
-        umbrae.ShadowBoxingTarget = target;
-        umbrae.ShadowBoxingLoopRunning = true;
-        Dirty(uid, umbrae);
+        ent.Comp.ShadowBoxingActive = true;
+        ent.Comp.ShadowBoxingEndTime = now + args.Duration;
+        ent.Comp.ShadowBoxingTarget = target;
+        Dirty(ent);
 
-        var active = EnsureComp<ActiveVampireShadowBoxingComponent>(uid);
+        var active = EnsureComp<ActiveVampireShadowBoxingComponent>(ent);
         active.Target = target;
         active.Range = args.Range;
         active.BrutePerTick = args.BrutePerTick;
@@ -214,19 +217,18 @@ public sealed class SharedUmbraeSystem : EntitySystem
         active.NextTick = now + args.Interval;
         active.EndTime = now + args.Duration;
 
-        _popup.PopupPredicted(Loc.GetString("action-vampire-shadow-boxing-start"), uid, uid);
+        _popup.PopupPredicted(Loc.GetString("action-vampire-shadow-boxing-start"), ent, ent);
         args.Handled = true;
     }
 
-    public void StopShadowBoxing(EntityUid uid, UmbraeComponent umbrae, string popup)
+    public void StopShadowBoxing(Entity<UmbraeComponent> ent, string popup)
     {
-        umbrae.ShadowBoxingActive = false;
-        umbrae.ShadowBoxingTarget = null;
-        umbrae.ShadowBoxingEndTime = null;
-        umbrae.ShadowBoxingLoopRunning = false;
-        RemComp<ActiveVampireShadowBoxingComponent>(uid);
-        Dirty(uid, umbrae);
-        _popup.PopupPredicted(Loc.GetString(popup), uid, uid);
+        ent.Comp.ShadowBoxingActive = false;
+        ent.Comp.ShadowBoxingTarget = null;
+        ent.Comp.ShadowBoxingEndTime = null;
+        RemComp<ActiveVampireShadowBoxingComponent>(ent);
+        Dirty(ent);
+        _popup.PopupPredicted(Loc.GetString(popup), ent, ent);
     }
 
     private bool IsValidShadowBoxingTarget(EntityUid target)

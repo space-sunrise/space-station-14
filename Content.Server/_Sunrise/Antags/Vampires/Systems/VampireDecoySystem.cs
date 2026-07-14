@@ -30,14 +30,14 @@ public sealed class VampireDecoySystem : EntitySystem
 
     private void TriggerDecoyFlash(Entity<VampireDecoyComponent> ent)
     {
-        var (uid, comp) = ent;
-        var coords = _transform.GetMapCoordinates(uid);
-        var entityCoords = Transform(uid).Coordinates;
+        var coords = _transform.GetMapCoordinates(ent);
+        var entityCoords = Transform(ent).Coordinates;
 
-        _flash.FlashArea(uid, null, comp.FlashRange, comp.FlashDuration, slowTo: comp.SlowTo, displayPopup: comp.DisplayPopup, probability: comp.Probability);
-        _audio.PlayPvs(comp.FlashSound, entityCoords, AudioParams.Default.WithVolume(1f).WithMaxDistance(comp.FlashRange));
+        _flash.FlashArea(ent, null, ent.Comp.FlashRange, ent.Comp.FlashDuration, slowTo: ent.Comp.SlowTo,
+            displayPopup: ent.Comp.DisplayPopup, probability: ent.Comp.Probability);
+        _audio.PlayPvs(ent.Comp.FlashSound, entityCoords, AudioParams.Default.WithVolume(1f).WithMaxDistance(ent.Comp.FlashRange));
 
-        EntityManager.Spawn(comp.FlashEffectId, coords);
-        QueueDel(uid);
+        EntityManager.Spawn(ent.Comp.FlashEffectId, coords);
+        QueueDel(ent);
     }
 }

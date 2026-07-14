@@ -27,12 +27,6 @@ public sealed class SharedHemomancerSystem : EntitySystem
         if (!Exists(action) || !_vampireActions.TryUse(uid, action))
             return false;
 
-        if (TryComp<HemomancerComponent>(uid, out var hemomancer))
-        {
-            hemomancer.HemomancerClawsActive = true;
-            Dirty(uid, hemomancer);
-        }
-
         var activated = new VampireHemomancerClawsActivatedEvent(uid);
         RaiseLocalEvent(uid, ref activated, true);
         return true;

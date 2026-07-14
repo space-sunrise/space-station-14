@@ -33,11 +33,13 @@ public sealed class SharedDantalionSystem : EntitySystem
         var invisQuery = EntityQueryEnumerator<ActiveVampireInvisibilityComponent>();
         while (invisQuery.MoveNext(out var uid, out var invis))
         {
+            Entity<ActiveVampireInvisibilityComponent> ent = (uid, invis);
+
             if (now < invis.EndTime)
                 continue;
 
-            RemComp<ActiveVampireInvisibilityComponent>(uid);
-            RestoreStealth(uid, invis);
+            RemComp<ActiveVampireInvisibilityComponent>(ent);
+            RestoreStealth(ent);
         }
     }
 
@@ -54,17 +56,17 @@ public sealed class SharedDantalionSystem : EntitySystem
         if (!TryComp<DantalionComponent>(uid, out var dantalion))
             return;
 
-        if (!_vampireActions.TryUse(uid, actionEntity))
+        Entity<DantalionComponent> ent = (uid, dantalion);
+        if (!_vampireActions.TryUse(ent, actionEntity))
             return;
 
-        Entity<DantalionComponent> ent = (uid, dantalion);
-        var hadStealth = TryComp<StealthComponent>(uid, out var stealth);
+        var hadStealth = TryComp<StealthComponent>(ent, out var stealth);
         var previousEnabled = stealth?.Enabled ?? false;
-        var previousVisibility = hadStealth ? _stealth.GetVisibility(uid, stealth) : 1f;
+        var previousVisibility = hadStealth ? _stealth.GetVisibility(ent, stealth) : 1f;
 
-        stealth ??= EnsureComp<StealthComponent>(uid);
-        _stealth.SetEnabled(uid, true, stealth);
-        _stealth.SetVisibility(uid, args.DecoyVisibility, stealth);
+        stealth ??= EnsureComp<StealthComponent>(ent);
+        _stealth.SetEnabled(ent, true, stealth);
+        _stealth.SetVisibility(ent, args.DecoyVisibility, stealth);
 
         var invisDuration = args.InvisibilityDuration < TimeSpan.Zero ? TimeSpan.Zero : args.InvisibilityDuration;
         if (invisDuration > TimeSpan.Zero)
@@ -76,11 +78,11 @@ public sealed class SharedDantalionSystem : EntitySystem
                 hadStealth,
                 previousEnabled,
                 previousVisibility);
-            RaiseLocalEvent(uid, ref decoyEv, true);
+            RaiseLocalEvent(ent, ref decoyEv, true);
         }
         else
         {
-            RestoreStealth(uid, hadStealth, previousEnabled, previousVisibility);
+            RestoreStealth(ent, hadStealth, previousEnabled, previousVisibility);
 
             var decoyEv = new VampireDecoyActivatedEvent(
                 ent,
@@ -89,7 +91,7 @@ public sealed class SharedDantalionSystem : EntitySystem
                 hadStealth,
                 previousEnabled,
                 previousVisibility);
-            RaiseLocalEvent(uid, ref decoyEv, true);
+            RaiseLocalEvent(ent, ref decoyEv, true);
         }
 
         args.Handled = true;
@@ -113,23 +115,23 @@ public sealed class SharedDantalionSystem : EntitySystem
         {
             ent.Comp.BloodBondActive = false;
             Dirty(ent);
-            _popup.PopupPredicted(Loc.GetString("vampire-blood-bond-stop"), uid, uid);
+            _popup.PopupPredicted(Loc.GetString("vampire-blood-bond-stop"), ent, ent);
         }
         else
         {
-            if (!_vampireActions.TryUse(uid, actionEntity))
+            if (!_vampireActions.TryUse(ent, actionEntity))
                 return;
 
             var attempt = new VampireBloodBondStartAttemptEvent(ent);
-            RaiseLocalEvent(uid, ref attempt, true);
+            RaiseLocalEvent(ent, ref attempt, true);
             if (attempt.Cancelled)
                 return;
 
             ent.Comp.BloodBondActive = true;
             Dirty(ent);
-            _popup.PopupPredicted(Loc.GetString("vampire-blood-bond-start"), uid, uid);
+            _popup.PopupPredicted(Loc.GetString("vampire-blood-bond-start"), ent, ent);
             var started = new VampireBloodBondStartedEvent(ent, args);
-            RaiseLocalEvent(uid, ref started, true);
+            RaiseLocalEvent(ent, ref started, true);
         }
 
         if (_actions.GetAction(actionEntity) is { } action)
@@ -140,12 +142,12 @@ public sealed class SharedDantalionSystem : EntitySystem
         if (!ent.Comp.BloodBondActive)
         {
             var stopped = new VampireBloodBondStoppedEvent(ent);
-            RaiseLocalEvent(uid, ref stopped, true);
+            RaiseLocalEvent(ent, ref stopped, true);
         }
     }
 
-    private void RestoreStealth(EntityUid uid, ActiveVampireInvisibilityComponent invis)
-        => RestoreStealth(uid, invis.HadStealthComponent, invis.PreviousStealthEnabled, invis.PreviousStealthVisibility);
+    private void RestoreStealth(Entity<ActiveVampireInvisibilityComponent> ent)
+        => RestoreStealth(ent, ent.Comp.HadStealthComponent, ent.Comp.PreviousStealthEnabled, ent.Comp.PreviousStealthVisibility);
 
     private void RestoreStealth(EntityUid uid, bool hadStealthComponent, bool previousStealthEnabled, float previousStealthVisibility)
     {

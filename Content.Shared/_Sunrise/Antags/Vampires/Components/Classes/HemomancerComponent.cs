@@ -4,15 +4,11 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
-public sealed partial class HemomancerComponent : VampireClassComponent
+public sealed partial class HemomancerComponent : Component
 {
     [AutoNetworkedField]
-    public bool InSanguinePool = false;
+    public bool InSanguinePool;
 
     [AutoNetworkedField]
-    public bool BloodBringersRiteActive = false;
-
-    [AutoNetworkedField]
-    public bool HemomancerClawsActive = false;
-    public int BloodBringersRiteLoopId = 0;
+    public bool BloodBringersRiteActive;
 }

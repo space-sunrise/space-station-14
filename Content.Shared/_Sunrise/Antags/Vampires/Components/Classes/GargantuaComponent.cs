@@ -6,18 +6,18 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class GargantuaComponent : VampireClassComponent
+public sealed partial class GargantuaComponent : Component
 {
     /// <summary>
     ///     Whether Overwhelming Force toggle is active
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public bool OverwhelmingForceActive;
 
     /// <summary>
     ///     Whether vampire is currently charging
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public bool IsCharging;
 
     /// <summary>
@@ -37,10 +37,8 @@ public sealed partial class GargantuaComponent : VampireClassComponent
 
     [DataField]
     public TimeSpan BloodSwellShootPopupCooldown = TimeSpan.FromSeconds(1f);
-    [DataField]
     public TimeSpan? BloodSwellShootNextPopupTime;
 
-    [DataField]
     public EntityUid? BloodSwellShootLastGun;
 
     [DataField]

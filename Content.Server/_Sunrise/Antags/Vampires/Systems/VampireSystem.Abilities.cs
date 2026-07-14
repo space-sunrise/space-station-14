@@ -176,16 +176,15 @@ public sealed partial class VampireSystem : EntitySystem
             !IsTileBlockedByEntities(coords);
     }
 
-    internal bool HasChosenClass(EntityUid uid)
-        => TryComp<VampireComponent>(uid, out var vamp) && !string.IsNullOrWhiteSpace(vamp.ChosenClassId);
+    internal bool HasChosenClass(Entity<VampireComponent> ent)
+        => !string.IsNullOrWhiteSpace(ent.Comp.ChosenClassId);
 
-    internal bool ValidateVampireClass(EntityUid uid, VampireComponent comp, ProtoId<VampireClassPrototype>? requiredClass)
+    internal bool ValidateVampireClass(Entity<VampireComponent> ent, ProtoId<VampireClassPrototype>? requiredClass)
     {
-        _ = uid;
         if (requiredClass is null)
             return true;
 
-        return string.Equals(comp.ChosenClassId, requiredClass.Value.Id, StringComparison.Ordinal);
+        return string.Equals(ent.Comp.ChosenClassId, requiredClass.Value.Id, StringComparison.Ordinal);
     }
 
     /// <summary>
@@ -197,10 +196,11 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp(uid, out comp))
             return false;
 
-        if (!ValidateVampireClass(uid, comp, requiredClass))
+        Entity<VampireComponent> ent = (uid, comp);
+        if (!ValidateVampireClass(ent, requiredClass))
             return false;
 
-        if (actionEntity.HasValue && !CheckAndConsumeBloodCost((uid, comp), actionEntity.Value))
+        if (actionEntity.HasValue && !CheckAndConsumeBloodCost(ent, actionEntity.Value))
             return false;
 
         return true;
@@ -349,7 +349,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (ent.Comp.TotalBlood < vac.BloodToUnlock)
             return false;
 
-        if (!ValidateVampireClass(ent.Owner, ent.Comp, vac.RequiredClass))
+        if (!ValidateVampireClass(ent, vac.RequiredClass))
             return false;
 
         if (vac.RequiresFullPower && !ent.Comp.FullPower)
@@ -547,18 +547,7 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        // Нужно будет добавить когда будет механическая раса
-        // if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
-        //     || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
-        //     || (mobState.CurrentState == Shared.Mobs.MobState.Dead && ent.Comp.DeadEfficiency == 0f)  //Dead things aren't a good source of blood if configured to not allow drinking from the dead at all
-        //     ))
-        // {
-        //     _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), ent.Owner, ent.Owner, Shared.Popups.PopupType.MediumCaution);
-        //     ent.Comp.IsDrinking = false;
-        //     return;
-        // }
-
-        var sipInefficiency = 0f;
+        float sipInefficiency;
         var sipAmount = ent.Comp.SipAmount;
 
         if (HasComp<HumanoidAppearanceComponent>(targetUid))
@@ -631,7 +620,7 @@ public sealed partial class VampireSystem : EntitySystem
             //Biting Damage
             //A little bit of additional damage to disincentivize blood donations
             var biteDamage = new DamageSpecifier();
-            biteDamage += new DamageSpecifier(_prototype.Index<DamageTypePrototype>(PierceTypeId), ent.Comp.SipPierceDamage * actualSipAmount); //5 pierce per 10u
+            biteDamage += new DamageSpecifier(_prototype.Index(PierceTypeId), ent.Comp.SipPierceDamage * actualSipAmount); //5 pierce per 10u
             _damageable.TryChangeDamage(targetUid, biteDamage, ignoreResistances: true);
             _blood.TryModifyBleedAmount(targetUid, 1);
 
@@ -647,10 +636,10 @@ public sealed partial class VampireSystem : EntitySystem
 
             // Base healing
             var baseHealSpec = new DamageSpecifier();
-            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageGroupPrototype>(BruteGroupId), -ent.Comp.VampHealBrute);
-            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageGroupPrototype>(BurnGroupId), -ent.Comp.VampHealBurn);
-            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageTypePrototype>(PoisonTypeId), -ent.Comp.VampHealPois);
-            baseHealSpec += new DamageSpecifier(_prototype.Index<DamageTypePrototype>(OxyLossTypeId), -ent.Comp.VampHealAsphyxiation);
+            baseHealSpec += new DamageSpecifier(_prototype.Index(BruteGroupId), -ent.Comp.VampHealBrute);
+            baseHealSpec += new DamageSpecifier(_prototype.Index(BurnGroupId), -ent.Comp.VampHealBurn);
+            baseHealSpec += new DamageSpecifier(_prototype.Index(PoisonTypeId), -ent.Comp.VampHealPois);
+            baseHealSpec += new DamageSpecifier(_prototype.Index(OxyLossTypeId), -ent.Comp.VampHealAsphyxiation);
             _damageable.TryChangeDamage(ent.Owner, baseHealSpec, true);
 
             _audio.PlayPvs(BiteSound, targetUid, AudioParams.Default.WithVolume(-7f));
@@ -1100,27 +1089,29 @@ public sealed partial class VampireSystem : EntitySystem
         var invisibleQuery = EntityQueryEnumerator<ActiveVampireInvisibilityComponent>();
         while (invisibleQuery.MoveNext(out var uid, out var invis))
         {
+            Entity<ActiveVampireInvisibilityComponent> ent = (uid, invis);
+
             if (now < invis.EndTime)
                 continue;
 
-            RemComp<ActiveVampireInvisibilityComponent>(uid);
-            RestoreVampireInvisibilityStealth(uid, invis);
+            RemComp<ActiveVampireInvisibilityComponent>(ent);
+            RestoreVampireInvisibilityStealth(ent);
         }
     }
 
-    private void RestoreVampireInvisibilityStealth(EntityUid uid, ActiveVampireInvisibilityComponent invis)
+    private void RestoreVampireInvisibilityStealth(Entity<ActiveVampireInvisibilityComponent> ent)
     {
-        if (!TryComp<StealthComponent>(uid, out var stealth))
+        if (!TryComp<StealthComponent>(ent, out var stealth))
             return;
 
-        if (!invis.HadStealthComponent)
+        if (!ent.Comp.HadStealthComponent)
         {
-            RemComp<StealthComponent>(uid);
+            RemComp<StealthComponent>(ent);
             return;
         }
 
-        _stealth.SetEnabled(uid, invis.PreviousStealthEnabled, stealth);
-        _stealth.SetVisibility(uid, invis.PreviousStealthVisibility, stealth);
+        _stealth.SetEnabled(ent, ent.Comp.PreviousStealthEnabled, stealth);
+        _stealth.SetVisibility(ent, ent.Comp.PreviousStealthVisibility, stealth);
     }
 
     private void ApplyConfiguredHeal(
@@ -1157,13 +1148,13 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (HasChosenClass(ent.Owner))
+        if (HasChosenClass(ent))
         {
             args.Handled = true;
             return;
         }
 
-        OpenClassUi(ent.Owner, ent.Comp);
+        OpenClassUi(ent);
         args.Handled = true;
         Dirty(ent);
     }

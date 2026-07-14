@@ -386,12 +386,12 @@ public sealed partial class VampireSystem : EntitySystem
     {
         ent.Comp.LastRefreshedBloodLevel = ent.Comp.TotalBlood;
         foreach (var (_, actionEntity) in ent.Comp.ActionEntities)
-            TryRefreshVampireAction(ent.Owner, actionEntity);
+            TryRefreshVampireAction(ent, actionEntity);
     }
 
     private void HandleClassSelection(Entity<VampireComponent> ent)
     {
-        if (HasChosenClass(ent.Owner))
+        if (HasChosenClass(ent))
             return;
 
         var classSelectAction = ent.Comp.ClassSelectActionId;
@@ -408,7 +408,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         if (ent.Comp.ActionEntities.TryGetValue(classSelectAction, out var classSelectActionEntity))
-            TryRefreshVampireAction(ent.Owner, classSelectActionEntity);
+            TryRefreshVampireAction(ent, classSelectActionEntity);
     }
 
     private void OnProgressionChanged(Entity<VampireComponent> ent, ref VampireProgressionChangedEvent args) =>
@@ -494,7 +494,6 @@ public sealed partial class VampireSystem : EntitySystem
             umbrae.ShadowBoxingActive = false;
             umbrae.ShadowBoxingTarget = null;
             umbrae.ShadowBoxingEndTime = null;
-            umbrae.ShadowBoxingLoopRunning = false;
 
             if (umbrae.EternalDarknessAuraEntity is { } aura && Exists(aura))
                 QueueDel(aura);
@@ -528,15 +527,12 @@ public sealed partial class VampireSystem : EntitySystem
     partial void UpdateVampireAlert(EntityUid uid);
     partial void UpdateVampireFedAlert(Entity<VampireComponent> ent);
 
-    private void TryRefreshVampireAction(EntityUid owner, EntityUid? actionEntity)
+    private void TryRefreshVampireAction(Entity<VampireComponent> ent, EntityUid? actionEntity)
     {
         if (actionEntity is null)
             return;
 
         if (_actions.GetAction(actionEntity) is not { } action)
-            return;
-
-        if (!TryComp<VampireComponent>(owner, out var vamp))
             return;
 
         if (!TryComp<VampireActionComponent>(actionEntity.Value, out var vac))
@@ -545,9 +541,9 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        var enabled = vamp.TotalBlood >= vac.BloodToUnlock
-             && (vac.RequiredClass is null || ValidateVampireClass(owner, vamp, vac.RequiredClass))
-             && (!vac.RequiresFullPower || vamp.FullPower);
+        var enabled = ent.Comp.TotalBlood >= vac.BloodToUnlock
+             && (vac.RequiredClass is null || ValidateVampireClass(ent, vac.RequiredClass))
+             && (!vac.RequiresFullPower || ent.Comp.FullPower);
 
         _actions.SetEnabled(action.AsNullable(), enabled);
     }
@@ -632,7 +628,7 @@ public sealed partial class VampireSystem : EntitySystem
                 ent.Comp.ActionEntities[rejuvenateII] = action.Value;
         }
 
-        TryRefreshVampireAction(ent.Owner, ent.Comp.ActionEntities[rejuvenateII]);
+        TryRefreshVampireAction(ent, ent.Comp.ActionEntities[rejuvenateII]);
         if (ent.Comp.ActionEntities.TryGetValue(rejuvenateI, out var firstAction))
         {
             _actions.RemoveAction(ent.Owner, firstAction);
@@ -762,50 +758,51 @@ public sealed partial class VampireSystem : EntitySystem
         _damageable.TryChangeDamage(uid, spec, true);
     }
 
-    private void OpenClassUi(EntityUid uid, VampireComponent comp)
+    private void OpenClassUi(Entity<VampireComponent> ent)
     {
-        if (!string.IsNullOrWhiteSpace(comp.ChosenClassId))
+        if (!string.IsNullOrWhiteSpace(ent.Comp.ChosenClassId))
             return;
-        _ui.CloseUi(uid, VampireClassUiKey.Key);
-        _ui.OpenUi(uid, VampireClassUiKey.Key, uid);
+        _ui.CloseUi(ent.Owner, VampireClassUiKey.Key);
+        _ui.OpenUi(ent.Owner, VampireClassUiKey.Key, ent.Owner);
     }
 
     private void OnVampireClassChosen(EntityUid uid, VampireComponent comp, VampireClassChosenBuiMsg msg)
     {
-        if (!string.IsNullOrWhiteSpace(comp.ChosenClassId))
+        Entity<VampireComponent> ent = (uid, comp);
+        if (!string.IsNullOrWhiteSpace(ent.Comp.ChosenClassId))
         {
-            _ui.CloseUi(uid, VampireClassUiKey.Key);
+            _ui.CloseUi(ent.Owner, VampireClassUiKey.Key);
             return;
         }
 
         if (string.IsNullOrWhiteSpace(msg.Choice) || !_prototype.TryIndex<VampireClassPrototype>(msg.Choice, out var classProto))
         {
-            _ui.CloseUi(uid, VampireClassUiKey.Key);
+            _ui.CloseUi(ent.Owner, VampireClassUiKey.Key);
             return;
         }
 
         var reg = _componentFactory.GetRegistration(classProto.ClassComponent, ignoreCase: true);
         var classComp = _componentFactory.GetComponent(reg.Type);
-        EntityManager.AddComponent(uid, classComp);
+        EntityManager.AddComponent(ent, classComp);
 
         if (classProto.ID == "Umbrae")
-            EnsureComp<NightVisionComponent>(uid);
+            EnsureComp<NightVisionComponent>(ent);
 
-        comp.ChosenClassId = classProto.ID;
+        ent.Comp.ChosenClassId = classProto.ID;
         VampireClasses.WithLabels(classProto.ID).Inc();
 
-        var classSelectAction = comp.ClassSelectActionId;
-        if (comp.ActionEntities.TryGetValue(classSelectAction, out var actionEntity))
+        var classSelectAction = ent.Comp.ClassSelectActionId;
+        if (ent.Comp.ActionEntities.TryGetValue(classSelectAction, out var actionEntity))
         {
-            _actions.RemoveAction(uid, actionEntity);
-            comp.ActionEntities.Remove(classSelectAction);
+            _actions.RemoveAction(ent.Owner, actionEntity);
+            ent.Comp.ActionEntities.Remove(classSelectAction);
         }
 
-        _ui.CloseUi(uid, VampireClassUiKey.Key);
+        _ui.CloseUi(ent.Owner, VampireClassUiKey.Key);
 
-        SyncVampireActions((uid, comp));
+        SyncVampireActions(ent);
 
-        Dirty(uid, comp);
+        Dirty(ent);
     }
 
     private void OnVampireClassClosed(EntityUid uid, VampireComponent comp, VampireClassClosedBuiMsg _)

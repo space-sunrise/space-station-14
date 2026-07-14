@@ -36,7 +36,6 @@ public sealed class ShadowSnareSystem : EntitySystem
 
     private void OnShadowSnareTriggered(Entity<ShadowSnareComponent> ent, ref StepTriggeredOffEvent args)
     {
-        var (uid, component) = ent;
         var target = args.Tripper;
 
         // Only trigger on humanoids
@@ -48,43 +47,43 @@ public sealed class ShadowSnareSystem : EntitySystem
             return;
 
         // Apply brute damage
-        _damageable.TryChangeDamage(target, component.Damage, true, origin: uid);
+        _damageable.TryChangeDamage(target, ent.Comp.Damage, true, origin: ent);
 
         // Apply temporary blindness using flash system
-        var blindDuration = TimeSpan.FromSeconds(component.BlindDuration);
+        var blindDuration = TimeSpan.FromSeconds(ent.Comp.BlindDuration);
         _flash.Flash(target, null, null, blindDuration, slowTo: 1f, displayPopup: false);
 
         // Extinguish nearby lights
-        ExtinguishNearbyLights(uid, component.LightExtinguishRadius);
+        ExtinguishNearbyLights(ent);
 
         // Spawn ensnare entity and apply to target
-        var ensnareEnt = EntityManager.SpawnAttachedTo(component.EnsnarePrototype, Transform(target).Coordinates);
+        var ensnareEnt = EntityManager.SpawnAttachedTo(ent.Comp.EnsnarePrototype, Transform(target).Coordinates);
         if (TryComp<EnsnaringComponent>(ensnareEnt, out var ensnaring))
         {
-            ensnaring.WalkSpeed = component.WalkSpeed;
-            ensnaring.SprintSpeed = component.SprintSpeed;
-            ensnaring.FreeTime = component.FreeTime;
-            ensnaring.BreakoutTime = component.BreakoutTime;
+            ensnaring.WalkSpeed = ent.Comp.WalkSpeed;
+            ensnaring.SprintSpeed = ent.Comp.SprintSpeed;
+            ensnaring.FreeTime = ent.Comp.FreeTime;
+            ensnaring.BreakoutTime = ent.Comp.BreakoutTime;
             _ensnare.TryEnsnare(target, ensnareEnt, ensnaring);
         }
 
         // Play trigger sound
-        _audio.PlayPvs(component.TriggerSound, uid, AudioParams.Default.WithVolume(1f));
+        _audio.PlayPvs(ent.Comp.TriggerSound, ent, AudioParams.Default.WithVolume(1f));
 
-        QueueDel(uid);
+        QueueDel(ent);
     }
 
     private void OnShadowSnareFlashed(Entity<ShadowSnareComponent> ent, ref AfterFlashedEvent args)
         => QueueDel(ent);
 
-    private void ExtinguishNearbyLights(EntityUid uid, float radius)
+    private void ExtinguishNearbyLights(Entity<ShadowSnareComponent> ent)
     {
-        var center = Transform(uid).Coordinates;
+        var center = Transform(ent).Coordinates;
 
-        foreach (var ent in _lookup.GetEntitiesInRange(center, radius))
+        foreach (var lightEnt in _lookup.GetEntitiesInRange(center, ent.Comp.LightExtinguishRadius))
         {
-            if (TryComp<PoweredLightComponent>(ent, out var light))
-                _poweredLight.SetState(ent, false, light);
+            if (TryComp<PoweredLightComponent>(lightEnt, out var light))
+                _poweredLight.SetState(lightEnt, false, light);
         }
     }
 }

@@ -5,12 +5,10 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 [AutoGenerateComponentState]
-public sealed partial class UmbraeComponent : VampireClassComponent
+public sealed partial class UmbraeComponent : Component
 {
     [AutoNetworkedField]
-    public bool CloakOfDarknessActive = false;
-
-    public int CloakOfDarknessLoopId = 0;
+    public bool CloakOfDarknessActive;
 
     [DataField]
     public int BreakLightBloodThreshold = 300;
@@ -41,19 +39,17 @@ public sealed partial class UmbraeComponent : VampireClassComponent
     public float CloakPreviousStealthVisibility = 1f;
 
     [AutoNetworkedField]
-    public bool EternalDarknessActive = false;
-    public EntityUid? EternalDarknessAuraEntity = null;
+    public bool EternalDarknessActive;
+    public EntityUid? EternalDarknessAuraEntity;
     [AutoNetworkedField]
-    public bool ShadowBoxingActive = false;
+    public bool ShadowBoxingActive;
 
     [AutoNetworkedField]
-    public EntityUid? ShadowBoxingTarget = null;
-    public TimeSpan? ShadowBoxingEndTime = null;
-    public bool ShadowBoxingLoopRunning = false;
-    public int EternalDarknessLoopId = 0;
+    public EntityUid? ShadowBoxingTarget;
+    public TimeSpan? ShadowBoxingEndTime;
 
     [AutoNetworkedField]
-    public EntityUid? SpawnedShadowAnchorBeacon = null;
+    public EntityUid? SpawnedShadowAnchorBeacon;
 
     [AutoPausedField]
     public TimeSpan? ShadowAnchorAutoReturnTime;

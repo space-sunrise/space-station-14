@@ -108,16 +108,14 @@ public sealed class GargantuaSystem : EntitySystem
 
     private void OnBloodDrank(Entity<GargantuaComponent> ent, ref VampireBloodDrankEvent args)
     {
-        var (uid, gargantua) = ent;
-
-        if (!TryComp<VampireComponent>(uid, out var vampire))
+        if (!TryComp<VampireComponent>(ent, out var vampire))
             return;
 
-        if (vampire.TotalBlood < gargantua.PassiveHealBloodThreshold)
+        if (vampire.TotalBlood < ent.Comp.PassiveHealBloodThreshold)
             return;
 
         var spec = new DamageSpecifier();
-        foreach (var (groupId, amount) in gargantua.PassiveHealGroups)
+        foreach (var (groupId, amount) in ent.Comp.PassiveHealGroups)
         {
             if (amount <= FixedPoint2.Zero || !_prototype.TryIndex<DamageGroupPrototype>(groupId, out var group))
                 continue;
@@ -128,7 +126,7 @@ public sealed class GargantuaSystem : EntitySystem
         if (spec.Empty)
             return;
 
-        _damageable.TryChangeDamage(uid, spec, true);
+        _damageable.TryChangeDamage(ent.Owner, spec, true);
     }
 
     private bool TryGetVampireActionEvent<T>(VampireComponent vampire, string actionId, out T ev)
@@ -278,19 +276,17 @@ public sealed class GargantuaSystem : EntitySystem
 
     private void OnDoorPried(Entity<GargantuaComponent> ent, ref UserPriedDoorEvent args)
     {
-        var (uid, component) = ent;
-
-
-        if (!component.OverwhelmingForceActive)
+        if (!ent.Comp.OverwhelmingForceActive)
             return;
 
-        if (!TryComp<VampireComponent>(uid, out var vampire))
+        if (!TryComp<VampireComponent>(ent, out var vampire))
             return;
 
-        if (!_vampire.TrySpendBlood((uid, vampire), component.OverwhelmingForceDoorPryBloodCost, showPopup: false))
+        Entity<VampireComponent> vampireEnt = (ent.Owner, vampire);
+        if (!_vampire.TrySpendBlood(vampireEnt, ent.Comp.OverwhelmingForceDoorPryBloodCost, showPopup: false))
             return;
 
-        _audio.PlayPvs(component.OverwhelmingForcePrySound, uid, AudioParams.Default.WithVolume(2f));
+        _audio.PlayPvs(ent.Comp.OverwhelmingForcePrySound, ent, AudioParams.Default.WithVolume(2f));
     }
 
     #endregion
@@ -341,18 +337,18 @@ public sealed class GargantuaSystem : EntitySystem
             ? TimeSpan.FromSeconds(1f / args.ProjectileSpeed)
             : args.TileInterval;
 
-        var active = EnsureComp<ActiveVampireDemonicGraspComponent>(uid);
-        active.StartCoordinates = xform.Coordinates;
-        active.GridUid = gridUid;
-        active.Direction = direction;
-        active.CurrentTile = 0;
-        active.MaxTiles = maxTiles;
-        active.TileInterval = tileInterval;
-        active.ImmobilizeDuration = args.ImmobilizeDuration;
-        active.PullTarget = shouldPull;
-        active.EffectPrototype = args.EffectPrototype;
-        active.ImmobilizedEffectPrototype = args.ImmobilizedEffectPrototype;
-        active.NextTileTime = _timing.CurTime + tileInterval;
+        Entity<ActiveVampireDemonicGraspComponent> active = (uid, EnsureComp<ActiveVampireDemonicGraspComponent>(uid));
+        active.Comp.StartCoordinates = xform.Coordinates;
+        active.Comp.GridUid = gridUid;
+        active.Comp.Direction = direction;
+        active.Comp.CurrentTile = 0;
+        active.Comp.MaxTiles = maxTiles;
+        active.Comp.TileInterval = tileInterval;
+        active.Comp.ImmobilizeDuration = args.ImmobilizeDuration;
+        active.Comp.PullTarget = shouldPull;
+        active.Comp.EffectPrototype = args.EffectPrototype;
+        active.Comp.ImmobilizedEffectPrototype = args.ImmobilizedEffectPrototype;
+        active.Comp.NextTileTime = _timing.CurTime + tileInterval;
     }
 
     private void ProcessActiveDemonicGrasps(TimeSpan now)
@@ -360,90 +356,91 @@ public sealed class GargantuaSystem : EntitySystem
         var query = EntityQueryEnumerator<ActiveVampireDemonicGraspComponent>();
         while (query.MoveNext(out var uid, out var active))
         {
-            if (active.TileInterval <= TimeSpan.Zero)
+            Entity<ActiveVampireDemonicGraspComponent> ent = (uid, active);
+            if (ent.Comp.TileInterval <= TimeSpan.Zero)
             {
-                RemComp<ActiveVampireDemonicGraspComponent>(uid);
+                RemComp<ActiveVampireDemonicGraspComponent>(ent);
                 continue;
             }
 
-            while (now >= active.NextTileTime)
+            while (now >= ent.Comp.NextTileTime)
             {
-                active.CurrentTile++;
-                if (active.CurrentTile > active.MaxTiles || !Exists(active.GridUid))
+                ent.Comp.CurrentTile++;
+                if (ent.Comp.CurrentTile > ent.Comp.MaxTiles || !Exists(ent.Comp.GridUid))
                 {
-                    RemComp<ActiveVampireDemonicGraspComponent>(uid);
+                    RemComp<ActiveVampireDemonicGraspComponent>(ent);
                     break;
                 }
 
-                var tileCoords = active.StartCoordinates.Offset(active.Direction * active.CurrentTile);
-                if (ProcessDemonicGraspTile(uid, active, tileCoords))
+                var tileCoords = ent.Comp.StartCoordinates.Offset(ent.Comp.Direction * ent.Comp.CurrentTile);
+                if (ProcessDemonicGraspTile(ent, tileCoords))
                 {
-                    RemComp<ActiveVampireDemonicGraspComponent>(uid);
+                    RemComp<ActiveVampireDemonicGraspComponent>(ent);
                     break;
                 }
 
-                active.NextTileTime += active.TileInterval;
+                ent.Comp.NextTileTime += ent.Comp.TileInterval;
             }
         }
     }
 
-    private bool ProcessDemonicGraspTile(EntityUid uid, ActiveVampireDemonicGraspComponent active, EntityCoordinates tileCoords)
+    private bool ProcessDemonicGraspTile(Entity<ActiveVampireDemonicGraspComponent> ent, EntityCoordinates tileCoords)
     {
-        if (!_vampire.IsValidTile(tileCoords, active.GridUid))
+        if (!_vampire.IsValidTile(tileCoords, ent.Comp.GridUid))
             return true;
 
         var entitiesOnTile = _lookup.GetEntitiesInRange(tileCoords, 0.4f);
-        foreach (var ent in entitiesOnTile)
+        foreach (var target in entitiesOnTile)
         {
-            if (ent == uid)
+            if (target == ent.Owner)
                 continue;
 
-            if (TryComp<PhysicsComponent>(ent, out var physics)
+            if (TryComp<PhysicsComponent>(target, out var physics)
                 && physics.BodyType == BodyType.Static
                 && physics.Hard
                 && (physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
             {
-                EntityManager.SpawnAttachedTo(active.EffectPrototype, tileCoords);
+                EntityManager.SpawnAttachedTo(ent.Comp.EffectPrototype, tileCoords);
                 return true;
             }
         }
 
         foreach (var target in entitiesOnTile)
         {
-            if (target == uid || !HasComp<MobStateComponent>(target))
+            if (target == ent.Owner || !HasComp<MobStateComponent>(target))
                 continue;
 
-            if (active.PullTarget)
+            if (ent.Comp.PullTarget)
             {
-                _stun.TryAddParalyzeDuration(target, active.ImmobilizeDuration);
+                _stun.TryAddParalyzeDuration(target, ent.Comp.ImmobilizeDuration);
             }
             else
             {
-                _stun.TryAddStunDuration(target, active.ImmobilizeDuration);
+                _stun.TryAddStunDuration(target, ent.Comp.ImmobilizeDuration);
 
                 if (!HasComp<KnockedDownComponent>(target))
                 {
                     var attachCoords = new EntityCoordinates(target, Vector2.Zero);
-                    EntityManager.SpawnAttachedTo(active.ImmobilizedEffectPrototype, attachCoords);
+                    EntityManager.SpawnAttachedTo(ent.Comp.ImmobilizedEffectPrototype, attachCoords);
                 }
             }
 
-            if (active.PullTarget && Exists(uid))
+            if (ent.Comp.PullTarget)
             {
-                var vampirePos = _transform.GetWorldPosition(Transform(uid));
+                var vampirePos = _transform.GetWorldPosition(Transform(ent));
                 var targetCurrentPos = _transform.GetWorldPosition(Transform(target));
                 var pullDirection = (vampirePos - targetCurrentPos).Normalized();
                 var distance = (vampirePos - targetCurrentPos).Length();
                 if (distance > 1f)
-                    _throwing.TryThrow(target, pullDirection * (distance - 1f), 8f, uid);
-                _popup.PopupEntity(Loc.GetString("vampire-demonic-grasp-pull"), uid, uid);
+                    _throwing.TryThrow(target, pullDirection * (distance - 1f), 8f, ent);
+                _popup.PopupEntity(Loc.GetString("vampire-demonic-grasp-pull"), ent, ent);
             }
 
             _popup.PopupEntity(Loc.GetString("vampire-demonic-grasp-hit"), target, target, PopupType.LargeCaution);
             return true;
         }
 
-        EntityManager.SpawnAttachedTo(active.EffectPrototype, tileCoords);
+        EntityManager.SpawnAttachedTo(ent.Comp.EffectPrototype, tileCoords);
         return false;
     }
 
@@ -456,22 +453,22 @@ public sealed class GargantuaSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var uid = args.Performer;
         var actionEntity = args.Action.Owner;
 
-        if (!TryComp<GargantuaComponent>(uid, out var gargantua))
+        if (!TryComp<GargantuaComponent>(args.Performer, out var gargantua))
             return;
 
-        if (gargantua.IsCharging)
+        Entity<GargantuaComponent> ent = (args.Performer, gargantua);
+        if (ent.Comp.IsCharging)
             return;
 
-        if (TryComp<EnsnareableComponent>(uid, out var ensnareable) && ensnareable.IsEnsnared)
+        if (TryComp<EnsnareableComponent>(ent, out var ensnareable) && ensnareable.IsEnsnared)
         {
-            _popup.PopupEntity(Loc.GetString("vampire-legs-ensnared"), uid, uid, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("vampire-legs-ensnared"), ent, ent, PopupType.Medium);
             return;
         }
 
-        var xform = Transform(uid);
+        var xform = Transform(ent);
         var startPos = _transform.GetWorldPosition(xform);
         var targetPos = _transform.ToMapCoordinates(args.Target).Position;
         var delta = targetPos - startPos;
@@ -480,26 +477,26 @@ public sealed class GargantuaSystem : EntitySystem
         if (direction == Vector2.Zero)
             return;
 
-        if (!TryComp<PhysicsComponent>(uid, out var physics))
+        if (!TryComp<PhysicsComponent>(ent, out var physics))
             return;
 
-        if (!Exists(actionEntity) || !_vampireActions.TryUse(uid, actionEntity))
+        if (!Exists(actionEntity) || !_vampireActions.TryUse(ent, actionEntity))
             return;
 
-        gargantua.IsCharging = true;
-        gargantua.ChargeDirectionVector = direction;
-        gargantua.ChargeSpeed = args.ChargeSpeed;
-        gargantua.ChargeCreatureDamage = args.CreatureDamage;
-        gargantua.ChargeCreatureThrowDistance = args.CreatureThrowDistance;
-        gargantua.ChargeStructuralDamage = args.StructuralDamage;
-        gargantua.ChargeSound = args.Sound;
+        ent.Comp.IsCharging = true;
+        ent.Comp.ChargeDirectionVector = direction;
+        ent.Comp.ChargeSpeed = args.ChargeSpeed;
+        ent.Comp.ChargeCreatureDamage = args.CreatureDamage;
+        ent.Comp.ChargeCreatureThrowDistance = args.CreatureThrowDistance;
+        ent.Comp.ChargeStructuralDamage = args.StructuralDamage;
+        ent.Comp.ChargeSound = args.Sound;
 
         // Kick off movement immediately so the charge feels responsive
-        _physics.SetLinearVelocity(uid, direction * gargantua.ChargeSpeed, body: physics);
+        _physics.SetLinearVelocity(ent, direction * ent.Comp.ChargeSpeed, body: physics);
 
-        _popup.PopupEntity(Loc.GetString("vampire-charge-start"), uid, uid);
+        _popup.PopupEntity(Loc.GetString("vampire-charge-start"), ent, ent);
 
-        Dirty(uid, gargantua);
+        Dirty(ent);
         args.Handled = true;
     }
 
@@ -528,18 +525,16 @@ public sealed class GargantuaSystem : EntitySystem
         }
 
         // Keep pushing forward at a constant speed
-        _physics.SetLinearVelocity(ent.Owner, ent.Comp.ChargeDirectionVector * ent.Comp.ChargeSpeed, body: physics);
+        _physics.SetLinearVelocity(ent, ent.Comp.ChargeDirectionVector * ent.Comp.ChargeSpeed, body: physics);
     }
 
     private void OnChargeCollide(Entity<GargantuaComponent> ent, ref StartCollideEvent args)
     {
-        var (uid, gargantua) = ent;
-
-        if (!gargantua.IsCharging)
+        if (!ent.Comp.IsCharging)
             return;
 
         var other = args.OtherEntity;
-        if (other == uid)
+        if (other == ent.Owner)
             return;
 
         // Never interact with contained entities
@@ -549,12 +544,12 @@ public sealed class GargantuaSystem : EntitySystem
         // Mobs
         if (HasComp<MobStateComponent>(other))
         {
-            HandleChargeImpact(uid, other, gargantua);
+            HandleChargeImpact(ent, other);
             EndCharge(ent);
             return;
         }
 
-        if (!TryComp<PhysicsComponent>(uid, out var ourPhysics))
+        if (!TryComp<PhysicsComponent>(ent, out var ourPhysics))
         {
             EndCharge(ent);
             return;
@@ -569,33 +564,33 @@ public sealed class GargantuaSystem : EntitySystem
             // Static obstacle
             var obstacleCoords = Transform(other).Coordinates;
 
-            _audio.PlayPvs(gargantua.ChargeSound, obstacleCoords, AudioParams.Default.WithVolume(3f));
+            _audio.PlayPvs(ent.Comp.ChargeSound, obstacleCoords, AudioParams.Default.WithVolume(3f));
 
-            if (gargantua.ChargeStructuralDamage > 0f && TryComp<DamageableComponent>(other, out _))
+            if (ent.Comp.ChargeStructuralDamage > 0f && TryComp<DamageableComponent>(other, out _))
             {
                 var damageSpec = new DamageSpecifier();
-                damageSpec.DamageDict["Blunt"] = FixedPoint2.New(gargantua.ChargeStructuralDamage);
-                _damageable.TryChangeDamage(other, damageSpec, true, origin: uid);
+                damageSpec.DamageDict["Blunt"] = FixedPoint2.New(ent.Comp.ChargeStructuralDamage);
+                _damageable.TryChangeDamage(other, damageSpec, true, origin: ent);
             }
 
             EndCharge(ent);
         }
     }
 
-    private void HandleChargeImpact(EntityUid uid, EntityUid target, GargantuaComponent gargantua)
+    private void HandleChargeImpact(Entity<GargantuaComponent> ent, EntityUid target)
     {
-        _audio.PlayPvs(gargantua.ChargeSound, target, AudioParams.Default.WithVolume(3f));
+        _audio.PlayPvs(ent.Comp.ChargeSound, target, AudioParams.Default.WithVolume(3f));
 
         var damageSpec = new DamageSpecifier();
-        damageSpec.DamageDict["Blunt"] = gargantua.ChargeCreatureDamage;
-        _damageable.TryChangeDamage(target, damageSpec, true, origin: uid);
+        damageSpec.DamageDict["Blunt"] = ent.Comp.ChargeCreatureDamage;
+        _damageable.TryChangeDamage(target, damageSpec, true, origin: ent);
 
         // Throw the target
-        _throwing.TryThrow(target, gargantua.ChargeDirectionVector * gargantua.ChargeCreatureThrowDistance, 6f, uid);
+        _throwing.TryThrow(target, ent.Comp.ChargeDirectionVector * ent.Comp.ChargeCreatureThrowDistance, 6f, ent);
 
         _stun.TryKnockdown(target, TimeSpan.FromSeconds(2), true);
 
-        _popup.PopupEntity(Loc.GetString("vampire-charge-impact", ("target", target)), uid, uid);
+        _popup.PopupEntity(Loc.GetString("vampire-charge-impact", ("target", target)), ent, ent);
     }
 
     private void EndCharge(Entity<GargantuaComponent> ent)
@@ -609,7 +604,7 @@ public sealed class GargantuaSystem : EntitySystem
         ent.Comp.ChargeSound = null;
 
         if (TryComp<PhysicsComponent>(ent, out var physics))
-            _physics.SetLinearVelocity(ent.Owner, Vector2.Zero, body: physics);
+            _physics.SetLinearVelocity(ent, Vector2.Zero, body: physics);
 
         Dirty(ent);
     }

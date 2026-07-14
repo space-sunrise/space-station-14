@@ -177,7 +177,7 @@ public sealed class SharedGargantuaSystem : EntitySystem
         if (!Exists(actionEntity))
             return;
 
-        if (!_vampireActions.TryUse(ent.Owner, actionEntity))
+        if (!_vampireActions.TryUse(ent, actionEntity))
             return;
 
         ent.Comp.OverwhelmingForceActive = !ent.Comp.OverwhelmingForceActive;
@@ -189,13 +189,13 @@ public sealed class SharedGargantuaSystem : EntitySystem
             prying.Force = true;
             prying.SpeedModifier = ent.Comp.OverwhelmingForcePrySpeedModifier;
 
-            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-start"), ent.Owner, ent.Owner);
+            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-start"), ent, ent);
         }
         else
         {
             RemComp<PryingComponent>(ent);
 
-            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-stop"), ent.Owner, ent.Owner);
+            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-stop"), ent, ent);
         }
 
         if (_actions.GetAction(actionEntity) is { } action)
@@ -211,7 +211,7 @@ public sealed class SharedGargantuaSystem : EntitySystem
             return;
 
         args.Cancelled = true;
-        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), ent.Owner, args.PullerUid, PopupType.MediumCaution);
+        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), ent, args.PullerUid, PopupType.MediumCaution);
     }
 
     private void OnOverwhelmingForceDisarmAttempt(Entity<GargantuaComponent> ent, ref DisarmAttemptEvent args)
@@ -220,7 +220,7 @@ public sealed class SharedGargantuaSystem : EntitySystem
             return;
 
         args.Cancelled = true;
-        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), ent.Owner, args.DisarmerUid, PopupType.MediumCaution);
+        _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-too-heavy"), ent, args.DisarmerUid, PopupType.MediumCaution);
     }
 
     private void OnOverwhelmingForceMobPushAttempt(Entity<GargantuaComponent> ent, ref AttemptMobTargetCollideEvent args)

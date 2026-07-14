@@ -5,7 +5,7 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
 
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
-public sealed partial class DantalionComponent : VampireClassComponent
+public sealed partial class DantalionComponent : Component
 {
     /// <summary>
     ///     Base thrall limit before blood / power bonuses
@@ -23,19 +23,14 @@ public sealed partial class DantalionComponent : VampireClassComponent
     ///     Total thrall slots consumed. Does not decrease when thralls are lost.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public int ThrallSlotsUsed = 0;
+    public int ThrallSlotsUsed;
 
     /// <summary>
     ///     Whether Blood Bond is currently active
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     [AutoNetworkedField]
-    public bool BloodBondActive = false;
-
-    /// <summary>
-    ///     Loop id for Blood Bond to prevent duplicate loops
-    /// </summary>
-    public int BloodBondLoopId = 0;
+    public bool BloodBondActive;
 
     /// <summary>
     ///     Thralls currently linked via Blood Bond
@@ -44,23 +39,14 @@ public sealed partial class DantalionComponent : VampireClassComponent
     [AutoNetworkedField]
     public List<EntityUid> BloodBondLinkedThralls = new();
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public EntProtoId BloodBondBeamPrototype = string.Empty;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool BloodBondProcessingDamage = false;
+    public bool BloodBondProcessingDamage;
 
     [DataField]
     public EntProtoId RallyOverlayEffect = "VampireRallyOverlayEffect";
-
-    [DataField]
-    public int ThrallHealBurn = 3;
-
-    [DataField]
-    public int ThrallHealBrute = 3;
-
-    [DataField]
-    public int ThrallHealAsphyxiation = 5;
 
     [DataField]
     public int ThrallLevel2Blood = 400;
@@ -84,4 +70,3 @@ public sealed partial class DantalionComponent : VampireClassComponent
         { "Asphyxiation", 5 },
     };
 }
-
