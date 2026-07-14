@@ -47,19 +47,31 @@ public sealed partial class SunrisePoweredLightSparksComponent : Component
     /// Минимальная пауза между вспышками поврежденного светильника.
     /// </summary>
     [DataField]
-    public TimeSpan MinFlickerDelay = TimeSpan.FromSeconds(2);
+    public TimeSpan MinFlickerDelay = TimeSpan.FromSeconds(4);
 
     /// <summary>
     /// Максимальная пауза между вспышками поврежденного светильника.
     /// </summary>
     [DataField]
-    public TimeSpan MaxFlickerDelay = TimeSpan.FromSeconds(4);
+    public TimeSpan MaxFlickerDelay = TimeSpan.FromSeconds(8);
 
     /// <summary>
     /// Длительность одной вспышки.
     /// </summary>
     [DataField]
-    public TimeSpan FlickerDuration = TimeSpan.FromSeconds(0.3);
+    public TimeSpan FlickerDuration = TimeSpan.FromSeconds(0.6);
+
+    /// <summary>
+    /// Вероятность того, что разбитая лампа будет мерцать, а не останется полностью выключенной.
+    /// </summary>
+    [DataField]
+    public float FlickerChance = 0.65f;
+
+    /// <summary>
+    /// Вероятность появления искр во время отдельной вспышки.
+    /// </summary>
+    [DataField]
+    public float SparksChance = 0.5f;
 
     /// <summary>
     /// Доля обычной энергии лампы во время вспышки.
@@ -72,4 +84,10 @@ public sealed partial class SunrisePoweredLightSparksComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public int FlickerSequence;
+
+    /// <summary>
+    /// Выбранное сервером поведение текущей разбитой лампы.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool? ShouldFlicker;
 }

@@ -323,9 +323,11 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         // Sunrise added start - обновление визуала искр после изменения состояния лампы
         RaiseLocalEvent(uid, new SunrisePoweredLightSparksUpdatedEvent());
         // Sunrise added end
+        var hasFlickeringBulb = TryComp<SunrisePoweredLightSparksComponent>(uid, out var sparks) &&
+                                sparks.ShouldFlicker == true;
         powerReceiver.Load = light.On &&
                              (lightBulb.State == LightBulbState.Normal ||
-                              (lightBulb.State == LightBulbState.Broken && HasComp<SunrisePoweredLightSparksComponent>(uid)))
+                              (lightBulb.State == LightBulbState.Broken && hasFlickeringBulb))
             ? lightBulb.PowerUse
             : 0;
         // Sunrise edit end

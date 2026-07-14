@@ -11,5 +11,6 @@ public enum SunrisePoweredLightVisuals : byte
     HasPower,
     FlickerState,
     SparkState,
+    ShowSparks,
     FlickerSequence,
 }

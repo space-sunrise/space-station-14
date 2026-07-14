@@ -69,12 +69,20 @@ public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePo
         if (!AppearanceSystem.TryGetData<int>(uid, SunrisePoweredLightVisuals.FlickerSequence, out var sequence, appearance) ||
             sequence == component.FlickerSequence ||
             !AppearanceSystem.TryGetData<string>(uid, SunrisePoweredLightVisuals.FlickerState, out var flickerState, appearance) ||
-            !AppearanceSystem.TryGetData<string>(uid, SunrisePoweredLightVisuals.SparkState, out var sparkState, appearance))
+            !AppearanceSystem.TryGetData<bool>(uid, SunrisePoweredLightVisuals.ShowSparks, out var showSparks, appearance))
+            return;
+
+        string? sparkState = null;
+        if (showSparks &&
+            !AppearanceSystem.TryGetData<string>(uid, SunrisePoweredLightVisuals.SparkState, out sparkState, appearance))
             return;
 
         component.FlickerSequence = sequence;
         UpdateLayer(sprite, component.Layer, flickerState, component.SparkSprite);
-        UpdateLayer(sprite, component.SparksLayer, sparkState, component.SparkSprite);
+        if (showSparks)
+            UpdateLayer(sprite, component.SparksLayer, sparkState!, component.SparkSprite);
+        else
+            SetLayerVisible(sprite, component.SparksLayer, false);
         PlayFlicker(uid, component, light);
     }
 

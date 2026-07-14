@@ -88,8 +88,21 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, hasPower, appearance);
 
         if (!_appearance.TryGetData<PoweredLightState>(ent, PoweredLightVisuals.BulbState, out var bulbState, appearance) ||
-            bulbState != PoweredLightState.Broken ||
-            !hasPower)
+            bulbState != PoweredLightState.Broken)
+        {
+            ent.Comp.ShouldFlicker = null;
+            RemComp<ActiveSunrisePoweredLightSparksComponent>(ent);
+            return;
+        }
+
+        if (!hasPower)
+        {
+            RemComp<ActiveSunrisePoweredLightSparksComponent>(ent);
+            return;
+        }
+
+        ent.Comp.ShouldFlicker ??= _random.Prob(ent.Comp.FlickerChance);
+        if (ent.Comp.ShouldFlicker != true)
         {
             RemComp<ActiveSunrisePoweredLightSparksComponent>(ent);
             return;
@@ -105,8 +118,11 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(ent, out var appearance))
             return;
 
+        var showSparks = ent.Comp.SparkStates.Count > 0 && _random.Prob(ent.Comp.SparksChance);
         _appearance.SetData(ent, SunrisePoweredLightVisuals.FlickerState, _random.Pick(ent.Comp.States), appearance);
-        _appearance.SetData(ent, SunrisePoweredLightVisuals.SparkState, _random.Pick(ent.Comp.SparkStates), appearance);
+        _appearance.SetData(ent, SunrisePoweredLightVisuals.ShowSparks, showSparks, appearance);
+        if (showSparks)
+            _appearance.SetData(ent, SunrisePoweredLightVisuals.SparkState, _random.Pick(ent.Comp.SparkStates), appearance);
         _appearance.SetData(ent, SunrisePoweredLightVisuals.FlickerSequence, ++ent.Comp.FlickerSequence, appearance);
     }
 
