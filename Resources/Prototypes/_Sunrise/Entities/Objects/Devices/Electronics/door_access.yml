@@ -56,6 +56,14 @@
 
 - type: entity
   parent: DoorElectronics
+  id: DoorElectronicsPirate
+  suffix: Pirate, Locked
+  components:
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
+  parent: DoorElectronics
   id: DoorElectronicsBrigmed
   suffix: Brigmed, Locked
   components:

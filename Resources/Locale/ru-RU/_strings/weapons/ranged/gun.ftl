@@ -8,7 +8,7 @@ gun-set-fire-mode = Выбран режим { $mode }
 gun-alert-level-condition = Слишком низкий станционный код для этого режима стрельбы!
 gun-magazine-whitelist-fail = Это не помещается в оружие!
 gun-magazine-fired-empty = Патронов не осталось!
-gun-Insulated-gloves = У вас слишком толстые пальцы чтобы нажать курок!
+gun-Insulated-gloves = У вас слишком толстые пальцы чтобы нажать спуск!
 # SelectiveFire
 gun-SemiAuto = полуавто
 gun-Burst = очередь
