@@ -16,22 +16,3 @@
     walkModifier: 0.5
     sprintModifier: 0.5
   - type: HeldSpeedModifier
-  # Sunrise-Start
-  - type: KnockbackByUserTag
-    doestContain:
-      Resomi:
-        knockback: 4
-        staminaMultiplier: 16
-      Felinid:
-        knockback: 3
-        staminaMultiplier: 16
-      AnomalyHost:
-        knockback: 0.5 #half of what Xeno take
-        staminaMultiplier: 8
-      HumanoidXeno:
-        knockback: 0.5
-        staminaMultiplier: 8
-      Predator:
-        knockback: 0.5
-        staminaMultiplier: 8
-  # Sunrise-End

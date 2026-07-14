@@ -22,3 +22,6 @@ ent-ReinforcementPirateScooner = human teleportation
 ent-ReinforcementPirateScoonerEVA = { ent-ReinforcementPirateScooner }
     .desc = Call in a freelancer of questionable quality, instantly! Basic rookie-pirate equipment provided.
     .suffix = Pirate, EVA
+ent-ReinforcementRadioPirateAssaultCyborg = pirate boarding cyborg reinforcement radio
+    .desc = Call in a pirate boarding cyborg to assist you.
+    .suffix = Pirate, Cyborg

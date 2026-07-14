@@ -279,15 +279,14 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            // Sunrise edit start - почему-то тут проебан тип спавна,
-            // что приводит к тому, что ивент о спавне игрока не знает, куда его спавнить.
-            // Учитывая, что у нас система из Delta-V с этими спавнпоинтами - я думаю, что тут наша ошибка, а не виздена.
-            var spawnPointType = lateJoin ? SpawnPointType.LateJoin : SpawnPointType.Job;
+            // Sunrise-Start
+            var selectedJob = _prototypeManager.Index<JobPrototype>(jobId);
+            var spawnPointType = !lateJoin || selectedJob.AlwaysUseSpawner
+                ? SpawnPointType.Job
+                : SpawnPointType.LateJoin;
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName, spawnPointType);
-            // Sunrise edit end
 
-            // Sunrise-Start
             if (HasComp<StationAntagsTargetsComponent>(station))
                 EnsureComp<AntagTargetComponent>(mob);
             // Sunrise-End

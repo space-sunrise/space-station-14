@@ -41,10 +41,19 @@ preload_grids = false
 see_own_notes = true
 new_player_threshold = 120
 
+[contributors]
+enable = true
+
+[servers_hub]
+enable = true
+
 [ic]
 random_characters = true
 random_species_weights = ""
 ssd_sleep_time = 3600
+
+[sponsor]
+enabled = true
 
 # Sunrise-Edit
 [npc]

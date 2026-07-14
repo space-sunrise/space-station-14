@@ -1458,6 +1458,8 @@
       amount: 3
       prob: 0.5
     # Items
+    - id: ClothingOuterHardsuitMurmillo
+      prob: 0.15
     - id: PirateMedSpawner03
     # Bonus Loot T2
     - id: PirateAmpulaSpawnerT2
@@ -3964,6 +3966,8 @@
       prob: 0.5
     - id: ClothingUniformJumpsuitGladiator
       prob: 0.5
+    - id: ClothingOuterHardsuitMurmillo
+      prob: 0.15
     - id: WeaponCrusherBroadAxe
       prob: 0.7
     # Bonus Loot T3

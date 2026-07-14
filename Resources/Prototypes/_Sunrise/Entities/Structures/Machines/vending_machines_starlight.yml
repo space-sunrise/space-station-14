@@ -118,7 +118,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Medical"], ["Security"]]
+    access: [["Medical"], ["Brigmedic"]]
 
 - type: entity
   parent: VendingMachineMedicalSecurity
@@ -141,3 +141,28 @@
     scale: 0.45
     shape: Square
     requireInSpace: false
+
+- type: entity
+  parent: VendingMachineWallMedical
+  id: VendingMachineWallMedicalSecurity
+  name: wall-mounted NanoMed Security
+  description: It's a wall-mounted medical drug dispenser for security personnel. Natural chemicals only!
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityWallInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/sec_wallmed.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Security"], ["Brigmedic"]]

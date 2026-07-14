@@ -15,6 +15,9 @@
   id: NoPaint
 
 - type: Tag
+  id: BigSmallArms
+
+- type: Tag
   id: NoSpinOnThrow
 
 - type: Tag
@@ -22,6 +25,13 @@
 
 - type: Tag
   id: ForceNoTileWalls
+
+# region Hardsuit injection
+- type: Tag
+  id: FitsHardsuit
+
+- type: Tag
+  id: FitsMurmilloHardsuit
 
 # region Uplinks
 - type: Tag
@@ -62,6 +72,10 @@
 
 - type: Tag
   id: SyndieAgentUplink
+
+# region Ammunition
+- type: Tag
+  id: CartridgeMinigun
 
 # region Species / roles / targets
 - type: Tag
@@ -122,6 +136,9 @@
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModulePirate
 
 # region Tools / devices
 - type: Tag

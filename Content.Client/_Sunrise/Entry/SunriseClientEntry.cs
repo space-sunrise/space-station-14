@@ -40,6 +40,7 @@ public sealed class SunriseClientEntry
     public static void PostInit()
     {
 #if SUNRISE_PRIVATE
+        IoCManager.Resolve<ISharedAccountBindingsManager>().Initialize();
         IoCManager.Resolve<ISharedSponsorsManager>().Initialize();
         IoCManager.Resolve<IClientJoinQueueManager>().Initialize();
 #endif

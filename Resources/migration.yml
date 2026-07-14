@@ -1067,4 +1067,13 @@ SpawnMobRogueSiliconGuardian: SpawnMobRogueSiliconBossGuardian
 SpawnMobRogueSiliconGuardianLCG: SpawnMobRogueSiliconBossGuardianLCG
 SpawnMobRogueSiliconTerminator: SpawnMobRogueSiliconT3Terminator
 HyposprayERT: Hypospray
+# 2026-06-24
+JugBicaridineSunrise: JugBicaridine
+JugDermalineSunrise: JugDermaline
+JugDexalinPlusSunrise: JugDexalinPlus
+JugDyloveneSunrise: JugDylovene
+JugSalineSunrise: JugSaline
+JugDexalinSunrise: null
+# 2026-06-29
+ClothingBackpackMessengerPirateBundleSKM24Scrap: CratePirateAkScrap
 # region Sunrise-End

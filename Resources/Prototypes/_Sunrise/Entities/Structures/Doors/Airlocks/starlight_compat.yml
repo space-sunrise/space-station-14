@@ -6,6 +6,23 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsBrigmed ]
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Standard/security.rsi
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  id: AirlockBrigmedGlassLocked
+  parent: AirlockMedicalGlassLocked
+  suffix: Brigmed, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrigmed ]
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/security.rsi
+  - type: Wires
+    layoutId: AirlockSecurity
 
 - type: entity
   id: AirlockInternalAffairsGlassLocked
