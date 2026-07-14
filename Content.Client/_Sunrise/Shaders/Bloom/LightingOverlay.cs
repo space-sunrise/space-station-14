@@ -5,14 +5,13 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client._Sunrise.Shaders.Bloom;
 
 /// <summary>
 /// Draws a bloom mask for compatible point lights.
 /// </summary>
-public sealed class LightingOverlay<TMarker> : Overlay
+public sealed class PointLightingOverlay : Overlay
 {
     private readonly ShaderInstance _shader;
     private readonly Texture _maskTexture;
@@ -23,11 +22,11 @@ public sealed class LightingOverlay<TMarker> : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceEntities;
     public override bool RequestScreenTexture => true;
 
-    public IReadOnlyList<LightingOverlayEntry> Entries = [];
+    public List<LightingOverlayEntry> Entries = [];
     public bool Enabled;
     public float Strength = 1f;
 
-    public LightingOverlay(
+    public PointLightingOverlay(
         IPrototypeManager prototypeManager,
         SpriteSystem spriteSystem,
         SpriteSpecifier mask,
@@ -76,8 +75,6 @@ public sealed class LightingOverlay<TMarker> : Overlay
         handle.SetTransform(Matrix3x2.Identity);
     }
 }
-
-public sealed class PointLightingOverlayMarker;
 
 public readonly record struct LightingOverlayEntry(
     MapId MapId,

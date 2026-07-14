@@ -46,9 +46,6 @@
                 <CheckBox Name="LightBloomEnabledCheckBox"
                           Text="{Loc 'ui-options-light-bloom-enable'}"
                           ToolTip="{Loc 'ui-options-light-bloom-enable-tooltip'}" />
-                <CheckBox Name="LightBloomVisibilityFilteringCheckBox"
-                          Text="{Loc 'ui-options-light-bloom-visibility-filtering'}"
-                          ToolTip="{Loc 'ui-options-light-bloom-visibility-filtering-tooltip'}" />
                 <ui:OptionSlider Name="LightBloomStrengthSlider"
                                  Title="{Loc 'ui-options-light-bloom-strength'}"
                                  ToolTip="{Loc 'ui-options-light-bloom-strength-tooltip'}" />

@@ -41,8 +41,8 @@
     state: base
   - type: PointLight
     color: "#FFE4CE" # 5000K color temp
-    energy: 0.65 # Sunrise-Edit — для эффекта свечения
-    radius: 6 # Sunrise-Edit — для эффекта свечения
+    energy: 0.8
+    radius: 10
     softness: 1
     offset: "0, -0.5"
   - type: Damageable
@@ -177,9 +177,9 @@
   - type: PoweredLight
     hasLampOnSpawn: LedLightTube
   - type: PointLight
-    radius: 10 # Sunrise-Edit — для эффекта свечения
-    energy: 0.7 # Sunrise-Edit — для эффекта свечения
-    softness: 1 # Sunrise-Edit — для эффекта свечения
+    radius: 15
+    energy: 1
+    softness: 0.9
     color: "#EEEEFF"
   - type: DamageOnInteract
     damage:
@@ -194,8 +194,8 @@
   components:
   - type: PointLight
     radius: 10
-    energy: 0.7 # Sunrise-Edit — для эффекта свечения
-    softness: 1 # Sunrise-Edit — для эффекта свечения
+    energy: 2.5
+    softness: 0.9
     color: "#EEEEFF"
 
 #Exterior lights
@@ -219,9 +219,9 @@
   suffix: Always Powered, Exterior
   components:
   - type: PointLight
-    radius: 10 # Sunrise-Edit — для эффекта свечения
-    energy: 0.7 # Sunrise-Edit — для эффекта свечения
-    softness: 1 # Sunrise-Edit — для эффекта свечения
+    radius: 12
+    energy: 4.5
+    softness: 0.5
     color: "#B4FCF0"
 
 #Sodium lights
@@ -235,8 +235,8 @@
     hasLampOnSpawn: SodiumLightTube
   - type: PointLight
     radius: 10
-    energy: 0.7 # Sunrise-Edit — для эффекта свечения
-    softness: 1 # Sunrise-Edit — для эффекта свечения
+    energy: 2.5
+    softness: 0.9
     color: "#FFAF38"
   - type: DamageOnInteract
     damage:
@@ -251,8 +251,8 @@
   components:
   - type: PointLight
     radius: 10
-    energy: 0.7 # Sunrise-Edit — для эффекта свечения
-    softness: 1 # Sunrise-Edit — для эффекта свечения
+    energy: 4
+    softness: 0.5
     color: "#FFAF38"
 
 #Small lights
@@ -272,9 +272,9 @@
       sprite: Structures/Wallmounts/Lighting/light_small.rsi
       state: base
     - type: PointLight
-      energy: 0.7 # Sunrise-Edit — для эффекта свечения
-      radius: 4 # Sunrise-Edit — для эффекта свечения
-      softness: 1 # Sunrise-Edit — для эффекта свечения
+      energy: 1.0
+      radius: 6
+      softness: 1.1
       enabled: true
     - type: Physics
       bodyType: Static
@@ -385,7 +385,7 @@
   - type: PointLight
     enabled: true
     radius: 8
-    energy: 0.7 # Sunrise-Edit — для эффекта свечения
+    energy: 1
     softness: 1
     color: "#EEEEFF"
   - type: PoweredLight
