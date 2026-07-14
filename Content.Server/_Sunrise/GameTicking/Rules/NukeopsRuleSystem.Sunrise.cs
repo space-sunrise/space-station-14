@@ -1,6 +1,5 @@
 using Content.Server.AlertLevel;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Shared.NukeOps;
 using Robust.Shared.Timing;
 
 namespace Content.Server.GameTicking.Rules;
@@ -33,11 +32,5 @@ public sealed partial class NukeopsRuleSystem
     {
         nukeops.AlertLevelChangeTime = _gameTiming.CurTime + nukeops.AlertLevelDelay;
         nukeops.CanChangeAlertLevel = true;
-    }
-
-    private bool TryGetSunriseWarCondition(NukeopsRuleComponent nukieRule, WarConditionStatus? oldStatus, out WarConditionStatus status)
-    {
-        status = default;
-        return false;
     }
 }

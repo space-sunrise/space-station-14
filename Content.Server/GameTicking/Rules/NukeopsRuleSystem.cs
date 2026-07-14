@@ -46,7 +46,7 @@ using System.Text;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent> // Sunrise-Edit
+public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
@@ -480,9 +480,6 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     /// </summary>
     public WarConditionStatus GetWarCondition(NukeopsRuleComponent nukieRule, WarConditionStatus? oldStatus)
     {
-        if (TryGetSunriseWarCondition(nukieRule, oldStatus, out var sunriseStatus)) // Sunrise-Edit
-            return sunriseStatus; // Sunrise-Edit
-
         if (!nukieRule.CanEnableWarOps)
             return WarConditionStatus.NoWarUnknown;
 
