@@ -4,6 +4,7 @@ using Content.Shared._Sunrise.Light.Visualizers;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Power;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -11,6 +12,7 @@ namespace Content.Server._Sunrise.Light.EntitySystems;
 
 public sealed class SunrisePoweredLightSparksSystem : EntitySystem
 {
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -117,6 +119,9 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
     {
         if (!TryComp<AppearanceComponent>(ent, out var appearance))
             return;
+
+        if (ent.Comp.FlickerSound != null)
+            _audio.PlayPvs(ent.Comp.FlickerSound, ent);
 
         var showSparks = ent.Comp.SparkStates.Count > 0 && _random.Prob(ent.Comp.SparksChance);
         _appearance.SetData(ent, SunrisePoweredLightVisuals.FlickerState, _random.Pick(ent.Comp.States), appearance);
