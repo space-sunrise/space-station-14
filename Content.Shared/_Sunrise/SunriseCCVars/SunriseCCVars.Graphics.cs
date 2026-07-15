@@ -7,6 +7,7 @@ public sealed partial class SunriseCCVars
     /// <summary>
     /// Enables the bloom effect rendered around compatible light fixtures.
     /// </summary>
+    // Sunrise-Edit - bloom выключен по умолчанию
     public static readonly CVarDef<bool> LightBloomEnabled =
         CVarDef.Create("sunrise.light_bloom_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
