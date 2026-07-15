@@ -4,8 +4,17 @@
   id: WindoorSecureMedTakLocked
   suffix: MedTak, Locked
   components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedTak ]
+  - type: Wires
+    layoutId: AirlockMedTak
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecurePirateLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]

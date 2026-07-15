@@ -13,7 +13,7 @@
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledRifle
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponRifleMedTak
+    suitstorage: WeaponRifleM52
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
@@ -62,7 +62,7 @@
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledRifle
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponRifleMedTak
+    suitstorage: WeaponRifleM52
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
@@ -79,6 +79,6 @@
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledHeavy
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponLightMachineGunMedTak
+    suitstorage: WeaponLightMachineGunL6
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled

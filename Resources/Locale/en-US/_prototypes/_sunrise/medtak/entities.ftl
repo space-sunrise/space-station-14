@@ -27,7 +27,7 @@ ent-BorgChassisMedTak = MedTak silicon
 ent-BorgModuleMedTakMedical = MedTak medical module
     .desc = A MedTak cyborg module for medical support.
 ent-BorgModuleMedTakRifle = MedTak rifle module
-    .desc = A MedTak cyborg module equipped with a cut down CODE-9 and a breaching hammer.
+    .desc = A MedTak cyborg module equipped with an L6C and a fire axe.
 
 ent-DeathRattleImplantMedTak = MedTak beacon
     .desc = This implant will inform the nearest MedTak unit should the user fall into critical condition or die.
@@ -90,21 +90,6 @@ ent-SurgicalKitMedTak = surgical kit
 ent-BoxFolderMedTak = MedTak invoice folder
     .desc = { ent-BoxFolderBase.desc }
     .suffix = MedTak invoices
-
-ent-WeaponLightMachineGunMedTak = CODE-6 "Arbitration"
-    .desc = An ultralight assault LMG developed for MedTak security. Accepts .30 box magazines.
-ent-WeaponRifleMedTak = CODE-9 "Compliance"
-    .desc = A bullpuped heavy rifle designed for MedTak operators. Accepts heavy .20 rifle magazines.
-ent-WeaponRifleMedTakROW = CODE-9 ROW
-    .desc = A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator.
-ent-WeaponPistolMedTak = CODE-4 "Triage"
-    .desc = A heavy sidearm issued to MedTak operators. Accepts .40 pistol magazines.
-ent-HammerMedTakOneHanded = CODE-12 "Breacher"
-    .desc = A charged concussive breaching hammer meant to put a sizeable hole in anything separating you from your client.
-    .suffix = One-Handed
-ent-HammerMedTak = CODE-12 "Breacher"
-    .desc = { ent-HammerMedTakOneHanded.desc }
-    .suffix = Wieldable
 
 ent-AirlockMedTakLocked = MedTak airlock
     .desc = { ent-AirlockMedical.desc }

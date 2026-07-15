@@ -9,14 +9,14 @@
       storagebase: !type:AllSelector
         children:
         - id: SyndicateJawsOfLife
-        - id: MagazineLightRifleHP
+        - id: MagazineBoxLightRifleHP
           amount: 2
-        - id: MagazineLightRifleSP
+        - id: MagazineBoxLightRifleSP
           amount: 2
         - id: MagazinePistol40SP
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled
-        - id: WeaponPistolMedTak
+        - id: WeaponPistolVP78
 
 - type: entity
   id: ClothingBeltMedTakFilledRifle
@@ -35,7 +35,7 @@
         - id: MagazinePistol40SP
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled
-        - id: WeaponPistolMedTak
+        - id: WeaponPistolVP78
 
 - type: entity
   id: ClothingBeltMedTakFilledMedic
@@ -54,7 +54,7 @@
         - id: RegenerativeMesh
         - id: MagazinePistol40SP
           amount: 2
-        - id: WeaponPistolMedTak
+        - id: WeaponPistolVP78
 
 - type: entity
   id: ClothingBeltMedTakFilledPilot
@@ -73,4 +73,4 @@
           amount: 2
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled
-        - id: WeaponPistolMedTak
+        - id: WeaponPistolVP78

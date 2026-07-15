@@ -5035,7 +5035,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 46.5,-0.5
       parent: 1
-- proto: AirlockSyndicateGlassLocked
+- proto: SunriseAirlockSyndicateGlassPirateAccessLocked
   entities:
   - uid: 12
     components:
@@ -5108,7 +5108,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 31.5,39.5
       parent: 1
-- proto: AirlockSyndicateLocked
+- proto: SunriseAirlockPirate
   entities:
   - uid: 19
     components:
@@ -5454,7 +5454,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 42
     components:
     - type: Transform
@@ -5463,7 +5463,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 43
     components:
     - type: Transform
@@ -5472,7 +5472,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 44
     components:
     - type: Transform
@@ -5481,7 +5481,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 45
     components:
     - type: Transform
@@ -5490,7 +5490,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
+      - - Pirate
   - uid: 46
     components:
     - type: Transform
@@ -5499,7 +5499,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
+      - - Pirate
   - uid: 47
     components:
     - type: Transform
@@ -5508,7 +5508,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
+      - - Pirate
   - uid: 48
     components:
     - type: Transform
@@ -13539,8 +13539,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
-      - - SyndicateAgent
+      - - Pirate
     - type: DeviceLinkSource
       linkedPorts:
         45:

@@ -27,7 +27,7 @@ ent-BorgChassisMedTak = кремний МедТак
 ent-BorgModuleMedTakMedical = медицинский модуль МедТак
     .desc = Модуль киборга МедТак для медицинской поддержки.
 ent-BorgModuleMedTakRifle = стрелковый модуль МедТак
-    .desc = Модуль киборга МедТак с укороченным CODE-9 и пробивным молотом.
+    .desc = Модуль киборга МедТак с L6C и пожарным топором.
 
 ent-DeathRattleImplantMedTak = маяк МедТак
     .desc = Имплант оповестит ближайшее подразделение МедТак, если носитель окажется в критическом состоянии или погибнет.
@@ -90,21 +90,6 @@ ent-SurgicalKitMedTak = хирургический набор
 ent-BoxFolderMedTak = папка счетов МедТак
     .desc = { ent-BoxFolderBase.desc }
     .suffix = Счета МедТак
-
-ent-WeaponLightMachineGunMedTak = CODE-6 "Arbitration"
-    .desc = Сверхлёгкий штурмовой пулемёт, разработанный для охраны МедТак. Принимает коробки с патронами .30.
-ent-WeaponRifleMedTak = CODE-9 "Compliance"
-    .desc = Тяжёлая винтовка в компоновке булл-пап для операторов МедТак. Принимает тяжёлые магазины .20.
-ent-WeaponRifleMedTakROW = CODE-9 ROW
-    .desc = Укороченный CODE-9 для киборгов, питающийся от медленно перезаряжающегося внутреннего фабрикатора боеприпасов.
-ent-WeaponPistolMedTak = CODE-4 "Triage"
-    .desc = Тяжёлое личное оружие операторов МедТак. Принимает пистолетные магазины .40.
-ent-HammerMedTakOneHanded = CODE-12 "Breacher"
-    .desc = Заряженный пробивной молот, предназначенный делать внушительные проходы во всём, что отделяет вас от клиента.
-    .suffix = Одноручный
-ent-HammerMedTak = CODE-12 "Breacher"
-    .desc = { ent-HammerMedTakOneHanded.desc }
-    .suffix = Двуручный
 
 ent-AirlockMedTakLocked = шлюз МедТак
     .desc = { ent-AirlockMedical.desc }

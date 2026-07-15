@@ -78,7 +78,7 @@
   id: BorgModuleMedTakRifle
   parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
   name: MedTak rifle cyborg module
-  description: A MedTak cyborg module equipped with a cut down CODE-9 and a breaching hammer.
+  description: A MedTak cyborg module equipped with an L6C and a fire axe.
   components:
   - type: Sprite
     layers:
@@ -86,7 +86,7 @@
     - state: icon-medtak-sec
   - type: ItemBorgModule
     hands:
-    - item: WeaponRifleMedTakROW
-    - item: HammerMedTakOneHanded
+    - item: WeaponLightMachineGunL6C
+    - item: FireAxe
   - type: BorgModuleIcon
     icon: { sprite: _Sunrise/Interface/Actions/actions_borg.rsi, state: medtak-combat-module }
