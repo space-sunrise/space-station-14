@@ -1022,7 +1022,7 @@
     bullet:
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: buckshot
+        state: grapeshot
 
 - type: entity
   id: PelletShotgunSlugTrace

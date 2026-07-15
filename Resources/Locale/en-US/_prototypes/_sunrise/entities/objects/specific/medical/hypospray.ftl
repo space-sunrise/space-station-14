@@ -13,3 +13,6 @@ ent-BeerMedipen = beer medipen
 
 ent-HyposprayMedicalNoFilterBox = hacked medical hypospray
     .desc = A box containing a sterile injector for rapid administration of drugs to patients. The internal toxin filter was removed during hacking. The packaging disintegrates upon opening, leaving no residue.
+
+ent-JetInjectorSyndicate = { ent-JetInjector }
+    .desc = { ent-JetInjector.desc }
