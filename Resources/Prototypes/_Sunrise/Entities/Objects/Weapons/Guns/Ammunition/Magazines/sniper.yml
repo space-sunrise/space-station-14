@@ -365,6 +365,33 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazineDragunovAP
+  name: "magazine Dragunov (7,62mmR AP)"
+  suffix: Sunrise
+  parent: BaseMagazineDragunov
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#540000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#540000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#540000"
+
+- type: entity
   id: MagazineDragunovEmpty
   name: "magazine (7,62mmR any)"
   suffix: Sunrise, empty

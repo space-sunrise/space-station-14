@@ -72,6 +72,21 @@
         - id: MagazineDragunovFMJ
 
 - type: entity
+  id: BriefcaseWeaponType88AMRFilled
+  parent: BriefcaseWeapon
+  name: secure Type 88 case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleType88AMR
+        - id: MagazineBauer127Penetrator
+        - id: MagazineBauer127
+        - id: MagazineBoxAntiMateriel
+          amount: 2
+
+- type: entity
   id: BriefcaseWeaponM79Filled
   parent: BriefcaseWeapon
   name: secure m79 case
