@@ -2,7 +2,7 @@
   id: AlwaysPoweredFloorLight
   name: floor light
   suffix: Always powered
-  parent: SunriseSmallLight
+  parent: SmallLight
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Lighting/floor_lighting.rsi
@@ -19,7 +19,7 @@
   description: A light fixture. Draws power and produces light when equipped with a light tube.
   id: FloorLightEmpty
   suffix: Empty
-  parent: SunrisePoweredSmallLightEmpty
+  parent: PoweredSmallLightEmpty
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Lighting/floor_lighting.rsi
@@ -27,7 +27,7 @@
 
 - type: entity
   id: PoweredFloorlight
-  parent: SunrisePoweredSmallLight
+  parent: PoweredSmallLight
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Lighting/floor_lighting.rsi
