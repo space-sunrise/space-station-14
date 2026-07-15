@@ -157,11 +157,12 @@
     energy: 1.6
     color: "#c99342"
   - type: AccessReader
-    access: [[ "NuclearOperative" ]]
+    access: [[ "Pirate" ]]
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+  - type: ActivatableUIRequiresAccess
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
   - type: Store

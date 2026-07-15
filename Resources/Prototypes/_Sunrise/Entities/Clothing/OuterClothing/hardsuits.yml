@@ -1,4 +1,16 @@
 - type: entity
+  abstract: true
+  id: BaseSunrisePirateHardsuitAmpula
+  components:
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaBuccaneerSpirit
+        whitelist:
+          tags:
+          - FitsHardsuit
+
+- type: entity
   parent: ClothingOuterHardsuitCBURN
   id: ClothingOuterHardsuitCBURNLeader
   name: CBURN commander exosuit
@@ -318,7 +330,7 @@
 #Pirate YARRRR!!
 #Pirate Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPirate
   name: ancient hardsuit
   suffix: Pirate
@@ -354,7 +366,7 @@
     price: 0
 
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPirateCapSun
   name: pirate captain's hardsuit
   suffix: Pirate
@@ -390,7 +402,7 @@
     price: 0
 
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPrivateer
   name: freelance hardsuit
   suffix: Pirate
@@ -412,13 +424,24 @@
       coefficients:
         Blunt: 0.55
         Slash: 0.6
-        Piercing: 0.65
+        Piercing: 0.6
         Heat: 0.5
-        Radiation: 0.4
-        Caustic: 0.4
+        Radiation: 0.5
+        Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    - 0,3,1,2
+    - 3,0,4,2
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      beakerSlot: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
@@ -426,7 +449,7 @@
     price: 0
 
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPrivateerArmored
   name: armored freelance hardsuit
   suffix: Pirate
@@ -447,14 +470,25 @@
     modifiers:
       coefficients:
         Blunt: 0.55
-        Slash: 0.6
+        Slash: 0.5
         Piercing: 0.4
-        Heat: 0.5
-        Radiation: 0.4
-        Caustic: 0.4
+        Heat: 0.55
+        Radiation: 0.5
+        Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    - 0,3,1,2
+    - 3,0,4,2
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      beakerSlot: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
@@ -1034,3 +1068,217 @@
           shader: unshaded
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi
+
+- type: entity
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  id: ClothingOuterHardsuitPirateBlackbeard
+  name: blackbeard hardsuit
+  suffix: Pirate
+  description: One of the most feared hardsuits in the galaxy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/blackbeard.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/blackbeard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.1
+        Radiation: 0.01
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateBlackbeard
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  id: ClothingOuterHardsuitPirateDavyJones
+  name: davy jones hardsuit
+  suffix: Pirate
+  description: A suit fabled to have been worn by Davy Jones himself.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/davyjones.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/davyjones.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.3
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateDavyJones
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterHardsuitPirateDavyJones
+  id: ClothingOuterHardsuitMurmillo
+  name: murmillo hardsuit
+  suffix: Pirate
+  description: A brutal heavy hardsuit you will be clad in a heavily armored ancient spacesuit. Slow but incredibly resilient.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/murmillo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/murmillo.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.55
+    sprintModifier: 0.55
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.1
+  - type: EmitSoundOnWearerMove
+    sound:
+      path: /Audio/_Sunrise/Cyborg/robot_legs1.ogg
+      params:
+        volume: -8
+        variation: 0.025
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.25
+        Piercing: 0.15
+        Heat: 0.15
+        Radiation: 0.2
+        Caustic: 0.2
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMurmillo
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaMurmillo
+        locked: true
+        disableEject: true
+        insertOnInteract: false
+        swap: false
+        ejectOnDeconstruct: false
+        ejectOnBreak: false
+        whitelist:
+          tags:
+          - FitsMurmilloHardsuit
+
+- type: entity
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  id: ClothingOuterHardsuitPirateBuccaneer
+  name: buccaneer hardsuit
+  suffix: Pirate
+  description: The flagship hardsuit for seasoned deep-space pirates.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/buccaneer.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/buccaneer.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.6
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateBuccaneer
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  id: ClothingOuterHardsuitPirateSwashbuckler
+  name: swashbuckler hardsuit
+  suffix: Pirate
+  description: A lightweight hardsuit made for hit-and-run operations in space.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/swashbuckler.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/swashbuckler.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Radiation: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateSwashbuckler
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+

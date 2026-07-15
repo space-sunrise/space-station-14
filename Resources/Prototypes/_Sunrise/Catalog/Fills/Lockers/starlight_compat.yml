@@ -55,9 +55,8 @@
         children:
         - id: FlashlightSeclite
           amount: 2
-        - id: WeaponShotgunSPAS12Rubber # Sunrise start
-        - id: BoxBeanbag # Sunrise end
-          amount: 2
+        - id: WeaponShotgunRiotSawn
+        - id: BoxBeanbag
         - id: WeaponDisabler
           amount: 2
         - id: ClothingBeltSecurityFilled
@@ -68,9 +67,8 @@
           amount: 2
         - id: ClothingEyesHudSecurity
           amount: 2
-        # - id: ClothingHandsGlovesCombat # Sunrise-Edit
-        #   amount: 2
-        # Starlight used ClothingHeadsetSecurityWarden, which is not ported.
+        - id: ClothingHandsKnuckleDustersStun
+          amount: 2
         - id: ClothingHeadsetSecurity
           amount: 2
         - id: ClothingShoesBootsJack
@@ -93,14 +91,56 @@
           amount: 4
         - id: Binoculars
           amount: 2
-          # Sunrise start
+
+- type: entity
+  id: LockerWardenLargeEShotgunFilled
+  suffix: Filled, E-Shotgun
+  parent: LockerWardenLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlashlightSeclite
+          amount: 2
+        - id: WeaponShotgunRiotSawn
+        - id: WeaponEnergyShotgun
+        - id: WeaponDisabler
+          amount: 2
+        - id: ClothingBeltSecurityFilled
+          amount: 2
+        - id: Flash
+          amount: 2
+        - id: ClothingEyesGlassesSecurity
+          amount: 2
+        - id: ClothingEyesHudSecurity
+          amount: 2
         - id: ClothingHandsKnuckleDustersStun
+          amount: 2
+        - id: ClothingHeadsetSecurity
+          amount: 2
+        - id: ClothingShoesBootsJack
+          amount: 2
+        - id: ClothingOuterCoatWarden
+          amount: 2
+        - id: ClothingOuterWinterWarden
+          amount: 2
+        - id: RubberStampWarden
+          amount: 2
+        - id: DoorRemoteArmory
+          amount: 2
+        - id: HoloprojectorSecurity
+          amount: 2
+        - id: BookSpaceLaw
+          amount: 2
+        - id: ClothingBackpackElectropack
+          amount: 4
+        - id: RemoteSignaller
+          amount: 4
+        - id: Binoculars
           amount: 2
         - id: HandheldCriminalRecordsMonitor
           amount: 2
-          # Sunrise end
-
-        # Starlight also included NeuralLinkDisruptor, which is not ported.
 
 - type: entityTable
   id: FillMiningSpecialistHardsuitSpaceHazard
