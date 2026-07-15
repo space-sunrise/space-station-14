@@ -66,10 +66,16 @@ public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePo
             return;
         }
 
-        if (!AppearanceSystem.TryGetData<int>(uid, SunrisePoweredLightVisuals.FlickerSequence, out var sequence, appearance) ||
-            sequence == component.FlickerSequence ||
-            !AppearanceSystem.TryGetData<string>(uid, SunrisePoweredLightVisuals.FlickerState, out var flickerState, appearance) ||
-            !AppearanceSystem.TryGetData<bool>(uid, SunrisePoweredLightVisuals.ShowSparks, out var showSparks, appearance))
+        if (!AppearanceSystem.TryGetData<int>(uid, SunrisePoweredLightVisuals.FlickerSequence, out var sequence, appearance))
+            return;
+
+        if (sequence == component.FlickerSequence)
+            return;
+
+        if (!AppearanceSystem.TryGetData<string>(uid, SunrisePoweredLightVisuals.FlickerState, out var flickerState, appearance))
+            return;
+
+        if (!AppearanceSystem.TryGetData<bool>(uid, SunrisePoweredLightVisuals.ShowSparks, out var showSparks, appearance))
             return;
 
         string? sparkState = null;
