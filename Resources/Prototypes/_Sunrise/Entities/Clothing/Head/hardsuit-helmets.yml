@@ -351,8 +351,6 @@
     sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
   - type: Clothing
     sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
-  #- type: PointLight
-    #color: "#880808"
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
@@ -361,12 +359,26 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9  
+        Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
   - type: FlashImmunity
   - type: EyeProtection
+  - type: ActivatableUI
+    requireActiveHand: false
+    inHandsOnly: false
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WiredNetworkConnection
+  - type: SurveillanceCameraMonitor
 
 #Goliath Hardsuit
 - type: entity
@@ -754,3 +766,123 @@
   - type: Tag
     tags:
     - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitPirateBlackbeard
+  name: blackbeard hardsuit helmet
+  description: A heavily armored pirate helmet.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/blackbeard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/blackbeard.rsi
+  - type: PointLight
+    color: red
+    radius: 5
+    energy: 3
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitPirateDavyJones
+  name: davy jones hardsuit helmet
+  description: A heavily armored pirate helmet.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/davyjones.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/davyjones.rsi
+  - type: PointLight
+    color: green
+    radius: 5
+    energy: 3
+    mask: /Textures/Effects/LightMasks/triple.png
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitPirateDavyJones
+  id: ClothingHeadHelmetHardsuitMurmillo
+  name: murmillo hardsuit helmet
+  suffix: Pirate
+  description: A heavy helmet with a glowing green night-vision visor.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/murmillo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/murmillo.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: equipped-HELMET-unshaded
+        shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionGreen
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: PointLight
+    color: green
+    radius: 2.5
+    energy: 1.75
+    mask: /Textures/Effects/LightMasks/triple.png
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitPirateBuccaneer
+  name: buccaneer hardsuit helmet
+  description: A heavily armored pirate helmet.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/buccaneer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/buccaneer.rsi
+  - type: PointLight
+    color: cyan
+    radius: 7
+    energy: 3
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitPirateSwashbuckler
+  name: swashbuckler hardsuit helmet
+  description: A heavily armored pirate helmet.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/swashbuckler.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/swashbuckler.rsi
+  - type: PointLight
+    color: cyan
+    radius: 7
+    energy: 3
+    mask: /Textures/Effects/LightMasks/triple.png
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+
+

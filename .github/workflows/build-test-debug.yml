@@ -8,6 +8,12 @@ on:
     types: [ opened, reopened, synchronize ]
     branches: [ master ]
 
+# Sunrise added start - отменяем устаревший запуск этой проверки для того же PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+# Sunrise added end
+
 jobs:
   build:
     if: github.actor != 'Sunrise-Bot'
@@ -33,28 +39,64 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    # Sunrise edit start - собираем только тестовый граф и обнаруживаем тесты по полным именам
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
 
     - name: Build Project
-      run: dotnet build --configuration DebugOpt --no-restore /m
+      run: dotnet build Content.IntegrationTests/Content.IntegrationTests.csproj --configuration DebugOpt --no-restore /m
 
     - name: Discover Integration Tests
       shell: bash
       run: |
-        dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj 2>&1 | \
+        dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.DisplayName=FullName 2>&1 | \
           python3 Tools/test_shard_filter.py generate 8 .integration-filters
+    # Sunrise edit end
 
+    # Sunrise added start - передаём тестовым раннерам только нужные результаты сборки
+    - name: Prune build artifact
+      shell: bash
+      run: |
+        test "$PWD" = "$GITHUB_WORKSPACE"
+        test -f bin/Content.Client/Content.Client.dll
+        test -f bin/Content.Server/Content.Server.dll
+        test -f bin/Content.Tests/Content.Tests.dll
+        test -f bin/Content.IntegrationTests/Content.IntegrationTests.dll
+
+        find . -path './.git' -prune -o -type d -name obj -prune -exec rm -rf -- {} +
+        find . -path './.git' -prune -o -type d -name bin ! -path './bin' -prune -exec rm -rf -- {} +
+        find bin -mindepth 1 -maxdepth 1 -type d \
+          ! -name Content.Tests \
+          ! -name Content.IntegrationTests \
+          -exec rm -rf -- {} +
+        # Пустые каталоги нужны ResourceManager как точки монтирования сборок.
+        mkdir -p bin/Content.Client bin/Content.Server
+    # Sunrise added end
+
+    # Sunrise edit start - разделяем минимальные артефакты интеграционных и модульных тестов
     - name: Archive build output
-      run: tar czf /tmp/build.tar.gz --exclude='.git' .
+      run: |
+        tar -I 'zstd -T0 -3' -cf /tmp/integration-build.tar.zst \
+          Resources RobustToolbox/Resources .integration-filters \
+          bin/Content.Client bin/Content.Server bin/Content.IntegrationTests
+        tar -I 'zstd -T0 -3' -cf /tmp/content-tests-build.tar.zst bin/Content.Tests
 
-    - name: Upload build artifact
+    - name: Upload integration build artifact
       uses: actions/upload-artifact@v4
       with:
-        name: build-output
-        path: /tmp/build.tar.gz
+        name: integration-build-output
+        path: /tmp/integration-build.tar.zst
         retention-days: 1
         compression-level: 0
+
+    - name: Upload content tests build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: content-tests-build-output
+        path: /tmp/content-tests-build.tar.zst
+        retention-days: 1
+        compression-level: 0
+    # Sunrise edit end
 
   content-tests:
     needs: build
@@ -67,32 +109,19 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    # Sunrise edit start - запускаем Content.Tests из отдельного готового артефакта без restore
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
-        name: build-output
+        name: content-tests-build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
-
-    - name: Restore packages
-      run: dotnet restore Content.Tests/Content.Tests.csproj
+      run: tar --zstd -xf content-tests-build.tar.zst && rm content-tests-build.tar.zst
 
     - name: Run Content.Tests
-      id: content-tests-retry
-      uses: nick-fields/retry@v3
-      with:
-        timeout_minutes: 15
-        max_attempts: 2
-        command: dotnet test --no-build --no-restore --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
-
-    # Sunrise-Edit
-    - name: Mark Content.Tests flake
-      if: success() && steps.content-tests-retry.outputs.total_attempts != '1'
-      run: |
-        echo "::warning title=Flaky Content.Tests::Content.Tests passed on retry after ${{ steps.content-tests-retry.outputs.total_attempts }} attempts."
-        echo "## :warning: Flaky Content.Tests" >> "$GITHUB_STEP_SUMMARY"
-        echo "Passed on retry after ${{ steps.content-tests-retry.outputs.total_attempts }} attempts." >> "$GITHUB_STEP_SUMMARY"
+      timeout-minutes: 15
+      run: dotnet test bin/Content.Tests/Content.Tests.dll --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
+    # Sunrise edit end
 
     - name: Test results
       continue-on-error: true
@@ -116,42 +145,25 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    # Sunrise edit start - запускаем интеграционный шард из готового артефакта и runsettings
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
-        name: build-output
+        name: integration-build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
-
-    - name: Restore packages
-      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
+      run: tar --zstd -xf integration-build.tar.zst && rm integration-build.tar.zst
 
     - name: Run Content.IntegrationTests
-      id: integration-tests-retry
-      uses: nick-fields/retry@v3
+      id: integration-tests
+      timeout-minutes: 17
       env:
         DOTNET_gcServer: "1"
-      with:
-        timeout_minutes: 17
-        max_attempts: 2
-        retry_on: any
-        command: |
-          FILTER=$(python3 Tools/test_shard_filter.py read .integration-filters/shard_${{ matrix.shard }}.filter)
-          if [ -z "$FILTER" ]; then
-            echo "No tests assigned to shard ${{ matrix.shard }}"
-            exit 0
-          fi
-          timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min -- NUnit.MapWarningTo=Failed NUnit.Where="$FILTER"
-
-    # Sunrise-Edit
-    - name: Mark integration shard flake
-      if: success() && steps.integration-tests-retry.outputs.total_attempts != '1'
       run: |
-        echo "::warning title=Flaky integration shard::Shard ${{ matrix.shard }} passed on retry after ${{ steps.integration-tests-retry.outputs.total_attempts }} attempts."
-        echo "## :warning: Flaky integration shard ${{ matrix.shard }}" >> "$GITHUB_STEP_SUMMARY"
-        echo "Passed on retry after ${{ steps.integration-tests-retry.outputs.total_attempts }} attempts." >> "$GITHUB_STEP_SUMMARY"
+        SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
+        timeout --signal=TERM --kill-after=2m 15m \
+          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
+    # Sunrise edit end
 
     - name: Test results
       continue-on-error: true
@@ -161,17 +173,29 @@ jobs:
         mkdir -p /tmp/test-results
         trx --path /tmp/test-results -o -v verbose || true
 
-    - name: Upload crash dumps
-      id: upload-dumps
+    # Sunrise added start - последовательность зависания нужна даже после успешного повтора
+    - name: Upload hang sequences
+      id: upload-sequences
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: blame-dump-shard-${{ matrix.shard }}
-        path: |
-          /tmp/test-results/**/*.dmp
-          /tmp/test-results/**/*Sequence*.xml
+        name: blame-sequence-shard-${{ matrix.shard }}
+        path: /tmp/test-results/**/*Sequence*.xml
         retention-days: 3
         if-no-files-found: ignore
+    # Sunrise added end
+
+    # Sunrise edit start - загружаем многогигабайтный дамп только после падения тестов
+    - name: Upload crash dumps
+      id: upload-dumps
+      uses: actions/upload-artifact@v4
+      if: always() && steps.integration-tests.outcome == 'failure'
+      with:
+        name: blame-dump-shard-${{ matrix.shard }}
+        path: /tmp/test-results/**/*.dmp
+        retention-days: 3
+        if-no-files-found: ignore
+    # Sunrise edit end
 
     - name: Report hung tests
       continue-on-error: true
@@ -189,6 +213,11 @@ jobs:
         done
         if [ "$found" = true ]; then
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+          # Sunrise added start - добавляем прямую ссылку на сохранённую последовательность зависания
+          if [ -n "${{ steps.upload-sequences.outputs.artifact-url }}" ]; then
+            echo ":page_facing_up: [Download hang sequence](${{ steps.upload-sequences.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          # Sunrise added end
           if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
             echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
           fi
@@ -200,10 +229,22 @@ jobs:
       - build
       - content-tests
       - integration-tests
+    # Sunrise edit start - итоговый статус явно отражает падение, отмену или пропуск обязательной зависимости
+    if: ${{ always() && github.actor != 'Sunrise-Bot' }}
     runs-on: ubuntu-latest
     steps:
-      - name: CI succeeded
-        run: exit 0
+      - name: Verify required jobs
+        env:
+          BUILD_RESULT: ${{ needs.build.result }}
+          CONTENT_TESTS_RESULT: ${{ needs.content-tests.result }}
+          INTEGRATION_TESTS_RESULT: ${{ needs.integration-tests.result }}
+        run: |
+          echo "build=$BUILD_RESULT content-tests=$CONTENT_TESTS_RESULT integration-tests=$INTEGRATION_TESTS_RESULT"
+          if [[ "$BUILD_RESULT" != "success" || "$CONTENT_TESTS_RESULT" != "success" || "$INTEGRATION_TESTS_RESULT" != "success" ]]; then
+            echo "::error title=Required CI failed::At least one required job did not succeed."
+            exit 1
+          fi
+    # Sunrise edit end
 
   cleanup:
     name: Cleanup Artifacts
@@ -213,7 +254,14 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Delete build artifact
+      # Sunrise edit start - удаляем оба раздельных тестовых артефакта
+      - name: Delete integration build artifact
         uses: geekyeggo/delete-artifact@v5
         with:
-          name: build-output
+          name: integration-build-output
+
+      - name: Delete content tests build artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: content-tests-build-output
+      # Sunrise edit end

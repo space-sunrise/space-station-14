@@ -28,3 +28,5 @@ ent-MagazineChainGun200 = chaingun ammo drum
     .desc = { ent-MagazineChainGun.desc }
 ent-MagazineChainGun100 = chaingun ammo drum
     .desc = { ent-MagazineChainGun.desc }
+ent-MagazineChainGunImprovised = chaingun ammo drum (5.56mm improvised)
+    .desc = Heavy ammo drum packed with linked improvised 5.56mm rounds.
