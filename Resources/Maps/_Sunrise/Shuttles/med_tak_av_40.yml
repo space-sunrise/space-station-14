@@ -564,7 +564,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-6.5
       parent: 1
-- proto: ComputerGunneryConsole
+- proto: ComputerGunnery
   entities:
   - uid: 107
     components:
@@ -585,7 +585,7 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-- proto: GasPassiveVentAlt3
+- proto: GasPassiveVent
   entities:
   - uid: 94
     components:
@@ -593,7 +593,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-8.5
       parent: 1
-- proto: GasPipeBendAlt3
+- proto: GasPipeBendAlt1
   entities:
   - uid: 130
     components:
@@ -601,7 +601,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
-- proto: GasPipeBendAlt4
+- proto: GasPipeBendAlt2
   entities:
   - uid: 67
     components:
@@ -614,7 +614,7 @@ entities:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
-- proto: GasPipeStraightAlt3
+- proto: GasPipeStraightAlt1
   entities:
   - uid: 23
     components:
@@ -659,7 +659,7 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-- proto: GasPipeStraightAlt4
+- proto: GasPipeStraightAlt2
   entities:
   - uid: 125
     components:
@@ -691,7 +691,7 @@ entities:
     - type: Transform
       pos: 0.5,-5.5
       parent: 1
-- proto: GasPipeTJunctionAlt3
+- proto: GasPipeTJunctionAlt1
   entities:
   - uid: 68
     components:
@@ -705,7 +705,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-6.5
       parent: 1
-- proto: GasPipeTJunctionAlt4
+- proto: GasPipeTJunctionAlt2
   entities:
   - uid: 117
     components:
@@ -719,7 +719,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-6.5
       parent: 1
-- proto: GasPortAlt4
+- proto: GasPort
   entities:
   - uid: 25
     components:
@@ -727,7 +727,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-8.5
       parent: 1
-- proto: GasVentPumpAlt4
+- proto: GasVentPump
   entities:
   - uid: 63
     components:
@@ -747,7 +747,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
-- proto: GasVentScrubberAlt3
+- proto: GasVentScrubber
   entities:
   - uid: 69
     components:
@@ -849,7 +849,7 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
-- proto: GunneryServer
+- proto: TelecomServer
   entities:
   - uid: 110
     components:
@@ -939,7 +939,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-2.5
       parent: 1
-- proto: RMCPlatformStairLeftDark
+- proto: PlatformStairLeftDark
   entities:
   - uid: 113
     components:
@@ -947,7 +947,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-2.5
       parent: 1
-- proto: RMCPlatformStairRightDark
+- proto: PlatformStairRightDark
   entities:
   - uid: 114
     components:
@@ -1166,7 +1166,7 @@ entities:
     - type: Transform
       pos: 1.5,-5.5
       parent: 1
-- proto: WallmountMassScanner
+- proto: ComputerRadar
   entities:
   - uid: 59
     components:

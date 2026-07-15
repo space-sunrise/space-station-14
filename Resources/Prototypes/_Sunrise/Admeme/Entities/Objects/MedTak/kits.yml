@@ -88,12 +88,14 @@
     sprite: _Sunrise/Admeme/Objects/MedTak/cases.rsi
     state: injectorpack
   - type: Storage
-    maxItemSize: Tiny
+    maxItemSize: Small
     grid:
     - 0,0,1,2
     whitelist:
        tags:
           - Syringe
+       components:
+          - Injector
   - type: Item
     size: Small
     sprite: _Sunrise/Admeme/Objects/MedTak/cases.rsi
