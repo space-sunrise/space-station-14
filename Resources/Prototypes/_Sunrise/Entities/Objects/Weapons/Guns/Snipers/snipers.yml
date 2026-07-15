@@ -339,9 +339,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/type88/tiny.rsi
   - type: Item
-    size: Huge
+    size: Large
     shape:
-    - 0,0,4,1
+    - 0,0,3,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/type88/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
