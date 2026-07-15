@@ -318,13 +318,10 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Burned, appearance);
                 break;
         }
-
+        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? lightBulb.PowerUse : 0;
         // Sunrise added start - обновление визуала искр после изменения состояния лампы
         RaiseLocalEvent(uid, new SunrisePoweredLightSparksUpdatedEvent());
         // Sunrise added end
-        powerReceiver.Load = light.On && lightBulb.State == LightBulbState.Normal
-            ? lightBulb.PowerUse
-            : 0;
     }
 
     /// <summary>
