@@ -26,7 +26,7 @@
 
 - type: entity
   id: CratePirateSurplusBundle
-  parent: [ CratePirate, StorePresetPirateUplink, BaseSyndicateContraband ]
+  parent: [ CratePirate, StorePresetPirateSurplusUplink, BaseSyndicateContraband ]
   name: pirate chest
   description: Contains 125 doubloon worth of completely random pirate items.
   suffix: Pirate
@@ -39,7 +39,7 @@
 
 - type: entity
   id: CratePirateSuperSurplusBundle
-  parent: [ CratePirate, StorePresetPirateUplink, BaseSyndicateContraband ]
+  parent: [ CratePirate, StorePresetPirateSurplusUplink, BaseSyndicateContraband ]
   name: pirate super chest
   description: Contains 250 doubloon worth of completely random pirate items.
   suffix: Pirate

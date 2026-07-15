@@ -51,6 +51,28 @@
       Doubloon: 0
 
 - type: entity
+  id: StorePresetPirateSurplusUplink
+  abstract: true
+  parent: StorePresetPirateUplink
+  components:
+  - type: Store
+    categories:
+    - UplinkPirateMeleeWeaponry
+    - UplinkPirateRangedWeaponry
+    - UplinkPirateAmmo
+    - UplinkPirateExplosives
+    - UplinkPirateChemicals
+    - UplinkPirateDeception
+    - UplinkPirateDisruption
+    - UplinkPirateImplants
+    - UplinkPirateCybernetics
+    - UplinkPirateWearables
+    - UplinkPirateArmor
+    - UplinkPiratePointless
+    - UplinkPirateMechs
+    - UplinkPirateBundle
+
+- type: entity
   id: StorePresetPirateExchanger
   abstract: true
   components:
