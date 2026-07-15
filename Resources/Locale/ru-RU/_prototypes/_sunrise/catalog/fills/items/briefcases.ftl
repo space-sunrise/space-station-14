@@ -21,3 +21,5 @@ ent-BriefcaseWeaponDeagleFilled = кейс для Desert Eagle
     .desc = { ent-BriefcaseWeaponSmall.desc }
 ent-BriefcaseWeaponUziFilled = кейс для Узи
     .desc = { ent-BriefcaseWeaponSmall.desc }
+ent-BriefcaseWeaponType88AMRFilled = кейс для Тип 88
+    .desc = { ent-BriefcaseWeapon.desc }
