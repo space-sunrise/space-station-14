@@ -156,7 +156,7 @@
   suffix: Modsuit
   components:
     - type: Clothing
-      unequipDelay: 20
+      unequipDelay: 10
     - type: ToggleableClothing
       clothingPrototype: ClothingOuterHardsuitERTJanitor
       requiredSlot: back
@@ -175,7 +175,7 @@
   suffix: Modsuit
   components:
     - type: Clothing
-      unequipDelay: 20
+      unequipDelay: 10
     - type: ToggleableClothing
       clothingPrototype: ClothingOuterHardsuitERTSecurity
       requiredSlot: back
@@ -194,7 +194,7 @@
   suffix: Modsuit
   components:
     - type: Clothing
-      unequipDelay: 20
+      unequipDelay: 10
     - type: ToggleableClothing
       clothingPrototype: ClothingOuterHardsuitERTMedical
       requiredSlot: back
@@ -213,7 +213,7 @@
   suffix: Modsuit
   components:
     - type: Clothing
-      unequipDelay: 20
+      unequipDelay: 10
     - type: ToggleableClothing
       clothingPrototype: ClothingOuterHardsuitERTLeader
       requiredSlot: back
@@ -232,7 +232,7 @@
   suffix: Modsuit
   components:
     - type: Clothing
-      unequipDelay: 20
+      unequipDelay: 10
     - type: ToggleableClothing
       clothingPrototype: ClothingOuterHardsuitERTEngineer
       requiredSlot: back
@@ -251,7 +251,7 @@
   suffix: Modsuit
   components:
     - type: Clothing
-      unequipDelay: 20
+      unequipDelay: 10
     - type: ToggleableClothing
       clothingPrototype: ClothingOuterHardsuitERTChaplain
       requiredSlot: back
