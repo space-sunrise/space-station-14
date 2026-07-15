@@ -319,18 +319,12 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 break;
         }
 
-        // Sunrise edit start - искры повреждённого светильника требуют питания
         // Sunrise added start - обновление визуала искр после изменения состояния лампы
         RaiseLocalEvent(uid, new SunrisePoweredLightSparksUpdatedEvent());
         // Sunrise added end
-        var hasFlickeringBulb = TryComp<SunrisePoweredLightSparksComponent>(uid, out var sparks) &&
-                                sparks.ShouldFlicker == true;
-        powerReceiver.Load = light.On &&
-                             (lightBulb.State == LightBulbState.Normal ||
-                              (lightBulb.State == LightBulbState.Broken && hasFlickeringBulb))
+        powerReceiver.Load = light.On && lightBulb.State == LightBulbState.Normal
             ? lightBulb.PowerUse
             : 0;
-        // Sunrise edit end
     }
 
     /// <summary>

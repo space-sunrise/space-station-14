@@ -102,8 +102,9 @@
   suffix: Empty
   parent: AlwaysPoweredWallLight
   components:
+  # Sunrise edit start - добавление спрайтов и эффекта искр
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi # Sunrise-Edit - визуализация искр на оффовских лампах
+    sprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
       state: empty
@@ -121,7 +122,7 @@
       state: spark-sparks1
       shader: unshaded
       visible: false
-  - type: SunrisePoweredLightSparks # Sunrise-Edit - искры на оффовских лампах
+  - type: SunrisePoweredLightSparks
     sparkSprite: _Sunrise/Structures/Wallmounts/lighting/light_tube.rsi
     flickerSound:
       collection: SunriseFluorescentFlicker
@@ -135,6 +136,7 @@
     sparkStates:
     - spark-sparks1
     - spark-sparks2
+  # Sunrise edit end
   - type: PointLight
     enabled: false
   - type: PoweredLight
@@ -356,8 +358,9 @@
   suffix: Empty
   parent: SmallLight
   components:
+  # Sunrise edit start - добавление спрайтов и эффекта искр
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi # Sunrise-Edit - визуализация искр на оффовских лампах
+    sprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
       state: empty
@@ -375,7 +378,7 @@
       state: spark-sparks1
       shader: unshaded
       visible: false
-  - type: SunrisePoweredLightSparks # Sunrise-Edit - искры на оффовских лампах
+  - type: SunrisePoweredLightSparks
     sparkSprite: _Sunrise/Structures/Wallmounts/lighting/light_small.rsi
     flickerSound:
       collection: SunriseFluorescentFlicker
@@ -386,6 +389,7 @@
     sparkStates:
     - spark-sparks1
     - spark-sparks2
+  # Sunrise edit end
   - type: AmbientSound
     enabled: false
   - type: PointLight
