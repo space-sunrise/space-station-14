@@ -336,7 +336,8 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
             data.TrackerTimes.Add(timer.Tracker, timer.TimeSpent);
         }
 
-        // Sunrise edit start - Start PlayTimeSession in DB
+        // Sunrise edit start - Чтобы локальные тесты не ломались сохраняем время только игрокам с авторизацией,
+        // к сложелению работает в таков виде только на проде
         if (session.Channel.AuthType == LoginType.LoggedIn)
         {
             var sessionId = await _db.AddPlayTimeSessionAsync(session.UserId.UserId, data.ConnectTime, DateTime.UtcNow);

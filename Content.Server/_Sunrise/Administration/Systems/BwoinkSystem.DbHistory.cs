@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Administration;
+using Content.Shared.CCVar;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -10,7 +11,8 @@ public partial class BwoinkSystem
 {
     private async void OnRequestDbMessages(BwoinkRequestDbMessages message, EntitySessionEventArgs args)
     {
-        if (!_adminManager.IsAdmin(args.SenderSession))
+        var isAdmin = _adminManager.IsAdmin(args.SenderSession);
+        if (!isAdmin && args.SenderSession.UserId != message.UserId)
             return;
 
         var history = new List<BwoinkTextMessage>();
@@ -18,16 +20,74 @@ public partial class BwoinkSystem
 
         foreach (var entry in messages)
         {
-            var sender = await _dbManager.GetPlayerRecordByUserId((NetUserId) entry.SenderUserId);
-            var name = sender?.LastSeenUserName ?? entry.SenderUserId.ToString();
-            var text = FormattedMessage.EscapeText(entry.Message);
-            var prefix = entry.AdminOnly ? Loc.GetString("bwoink-message-admin-only") :
+            var senderId = (NetUserId) entry.SenderUserId;
+
+            if (!isAdmin && entry.AdminOnly && senderId != args.SenderSession.UserId)
+                continue;
+
+            var senderRecord = await _dbManager.GetPlayerRecordByUserId(senderId);
+            var name = senderRecord?.LastSeenUserName ?? senderId.ToString();
+
+            AdminData? senderAdminData = null;
+            ICommonSession? senderSession = null;
+
+            if (_playerManager.TryGetSessionById(senderId, out var session))
+            {
+                senderSession = session;
+                senderAdminData = _adminManager.GetAdminData(session);
+            }
+            else
+            {
+                var loadedAdminData = await _adminManager.LoadAdminData(senderId);
+                if (loadedAdminData is not null)
+                    senderAdminData = loadedAdminData.Value.dat;
+            }
+
+            var adminPrefix = "";
+            if (_config.GetCVar(CCVars.AhelpAdminPrefix) && senderAdminData?.Title != null)
+                adminPrefix = $"[bold]\\[{FormattedMessage.EscapeText(senderAdminData.Title)}\\][/bold] ";
+
+            string formattedName;
+            if (senderSession != null)
+            {
+                var nameToFormat = isAdmin || _overrideClientName == string.Empty ? name : _overrideClientName;
+                formattedName = FormatName(senderAdminData, senderSession, adminPrefix, nameToFormat);
+            }
+            else
+            {
+                if (senderAdminData is not null && senderAdminData.Flags == AdminFlags.Adminhelp)
+                {
+                    formattedName = $"[color=purple]{adminPrefix}{name}[/color]";
+                }
+                else if (senderAdminData is not null && senderAdminData.HasFlag(AdminFlags.Adminhelp))
+                {
+                    formattedName = $"[color=red]{adminPrefix}{name}[/color]";
+                }
+                else
+                {
+                    formattedName = $"{adminPrefix}{name}";
+                }
+            }
+
+            string text;
+            if (isAdmin)
+            {
+                text = await GenerateNameLinks(entry.Message);
+            }
+            else
+            {
+                text = FormattedMessage.EscapeText(entry.Message);
+            }
+
+            var statusPrefix = entry.AdminOnly ? Loc.GetString("bwoink-message-admin-only") :
                 !entry.PlaySound ? Loc.GetString("bwoink-message-silent") : string.Empty;
+
+            var finalMessageText = $"{statusPrefix} {formattedName}: {text}".TrimStart();
 
             history.Add(new BwoinkTextMessage(
                 (NetUserId) entry.ReceiverUserId,
-                (NetUserId) entry.SenderUserId,
-                $"{prefix} {name}: {text}",
+                senderId,
+                finalMessageText,
                 entry.SentAt.DateTime.ToLocalTime(),
                 entry.PlaySound,
                 entry.AdminOnly,

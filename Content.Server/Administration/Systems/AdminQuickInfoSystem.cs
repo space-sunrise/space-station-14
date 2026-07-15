@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
+using Content.Server.Mind;
 using Content.Shared.Administration;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
