@@ -103,7 +103,7 @@ public sealed class PointLightingOverlay : Overlay
             maskTexture,
             maskOffset,
             pointLight.Color * bloomVisuals.Color));
-        return true;
+        return false;
     }
 
     private readonly record struct QueryState(
