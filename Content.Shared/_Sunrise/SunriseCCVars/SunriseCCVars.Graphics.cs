@@ -11,8 +11,8 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("sunrise.light_bloom_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Controls the bloom effect intensity.
+    /// Controls the bloom effect intensity. A value of zero disables the effect.
     /// </summary>
     public static readonly CVarDef<float> LightBloomStrength =
-        CVarDef.Create("sunrise.light_bloom_strength", 0.7f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("sunrise.light_bloom_strength", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

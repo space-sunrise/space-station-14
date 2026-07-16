@@ -20,54 +20,54 @@ public sealed class LightingOverlaySystem : EntitySystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    private static readonly ProtoId<ShaderPrototype> LightingOverlayShader = "SunriseLightingOverlay";
+    private static readonly ProtoId<ShaderPrototype> BloomShader = "SunriseLightingOverlay";
 
     private EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
-    private PointLightingOverlay? _pointOverlay;
-    private float _strength = 0.7f;
+    private PointLightingOverlay? _bloomOverlay;
+    private float _bloomStrength = 1f;
 
     public override void Initialize()
     {
         base.Initialize();
 
         _bloomVisualsQuery = GetEntityQuery<BloomOverlayVisualsComponent>();
-        Subs.CVar(_configuration, SunriseCCVars.LightBloomEnabled, OnEnabledChanged, true);
-        Subs.CVar(_configuration, SunriseCCVars.LightBloomStrength, OnStrengthChanged, true);
+        Subs.CVar(_configuration, SunriseCCVars.LightBloomEnabled, OnBloomEnabledChanged, true);
+        Subs.CVar(_configuration, SunriseCCVars.LightBloomStrength, OnBloomStrengthChanged, true);
     }
 
     public override void Shutdown()
     {
-        if (_pointOverlay is { } overlay)
+        if (_bloomOverlay is { } overlay)
         {
             if (_overlay.HasOverlay<PointLightingOverlay>())
                 _overlay.RemoveOverlay(overlay);
 
             overlay.Dispose();
-            _pointOverlay = null;
+            _bloomOverlay = null;
         }
 
         base.Shutdown();
     }
 
-    private void OnEnabledChanged(bool value)
+    private void OnBloomEnabledChanged(bool isEnabled)
     {
-        if (!value)
+        if (!isEnabled)
         {
-            if (_pointOverlay is not { } overlay)
+            if (_bloomOverlay is not { } overlay)
                 return;
 
             if (_overlay.HasOverlay<PointLightingOverlay>())
                 _overlay.RemoveOverlay(overlay);
 
             overlay.Dispose();
-            _pointOverlay = null;
+            _bloomOverlay = null;
             return;
         }
 
         if (_overlay.HasOverlay<PointLightingOverlay>())
             return;
 
-        _pointOverlay ??= new PointLightingOverlay(
+        _bloomOverlay ??= new PointLightingOverlay(
             _lightTree,
             _prototype,
             _sprite,
@@ -76,16 +76,16 @@ public sealed class LightingOverlaySystem : EntitySystem
             (int) DrawDepth.Effects,
             0.8f,
             0.05f,
-            _strength,
-            LightingOverlayShader);
+            _bloomStrength,
+            BloomShader);
 
-        _overlay.AddOverlay(_pointOverlay);
+        _overlay.AddOverlay(_bloomOverlay);
     }
 
-    private void OnStrengthChanged(float value)
+    private void OnBloomStrengthChanged(float strength)
     {
-        _strength = Math.Clamp(value, 0.1f, 1f);
-        if (_pointOverlay is { } overlay)
-            overlay.Strength = _strength;
+        _bloomStrength = Math.Clamp(strength, 0f, 2f);
+        if (_bloomOverlay is { } overlay)
+            overlay.BloomStrength = _bloomStrength;
     }
 }

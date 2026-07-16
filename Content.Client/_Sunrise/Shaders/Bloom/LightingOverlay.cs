@@ -15,8 +15,11 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 /// </summary>
 public sealed class PointLightingOverlay : Overlay
 {
+    private const int MaxVisibleLights = 64;
+
     private readonly EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
     private readonly LightTreeSystem _lightTree;
+    private readonly Dictionary<BloomMaskKey, BloomMaskData> _maskCache = [];
     private readonly ShaderInstance _shader;
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
@@ -26,8 +29,8 @@ public sealed class PointLightingOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceEntities;
     public override bool RequestScreenTexture => true;
 
-    private readonly List<LightingOverlayEntry> _entries = [];
-    public float Strength;
+    private readonly List<BloomLightEntry> _visibleLights = [];
+    public float BloomStrength;
 
     public PointLightingOverlay(
         LightTreeSystem lightTree,
@@ -48,17 +51,26 @@ public sealed class PointLightingOverlay : Overlay
         _bloomVisualsQuery = bloomVisualsQuery;
         _baseHaze = baseHaze;
         _hazeDivisor = hazeDivisor;
-        Strength = strength;
+        BloomStrength = strength;
         ZIndex = zIndex;
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        _entries.Clear();
-        var bounds = args.WorldAABB.Enlarged(1f);
-        var state = new QueryState(_entries, _bloomVisualsQuery, _sprite, _transform);
-        _lightTree.QueryAabb(ref state, CollectLight, args.MapId, bounds);
-        return _entries.Count > 0;
+        if (BloomStrength <= 0f)
+            return false;
+
+        _visibleLights.Clear();
+        var visibleArea = args.WorldAABB.Enlarged(1f);
+        var queryState = new BloomLightQueryState(
+            _visibleLights,
+            _maskCache,
+            _bloomVisualsQuery,
+            _sprite,
+            _transform,
+            visibleArea.Center);
+        _lightTree.QueryAabb(ref queryState, CollectBloomLight, args.MapId, visibleArea);
+        return _visibleLights.Count > 0;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -70,13 +82,13 @@ public sealed class PointLightingOverlay : Overlay
 
         _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
         _shader.SetParameter("base_haze", _baseHaze);
-        _shader.SetParameter("haze_divisor", _hazeDivisor / Strength);
+        _shader.SetParameter("haze_divisor", _hazeDivisor / BloomStrength);
         handle.UseShader(_shader);
 
-        foreach (var entry in _entries)
+        foreach (var light in _visibleLights)
         {
-            handle.SetTransform(entry.WorldMatrix);
-            handle.DrawTexture(entry.MaskTexture, entry.MaskOffset, entry.Color);
+            handle.SetTransform(light.WorldMatrix);
+            handle.DrawTexture(light.MaskTexture, light.MaskOffset, light.Color);
         }
 
         handle.UseShader(null);
@@ -89,32 +101,77 @@ public sealed class PointLightingOverlay : Overlay
         base.DisposeBehavior();
     }
 
-    private static bool CollectLight(ref QueryState state, in ComponentTreeEntry<PointLightComponent> value)
+    private static bool CollectBloomLight(ref BloomLightQueryState queryState, in ComponentTreeEntry<PointLightComponent> lightEntry)
     {
-        if (!state.BloomVisualsQuery.TryComp(value.Uid, out var bloomVisuals))
+        if (!queryState.BloomVisualsQuery.TryComp(lightEntry.Uid, out var bloomVisuals))
             return true;
 
-        var (pointLight, transform) = value;
-        var maskTexture = state.Sprite.Frame0(bloomVisuals.Mask);
-        var maskOffset = bloomVisuals.Offset - new Vector2(maskTexture.Width, maskTexture.Height) / (2f * EyeManager.PixelsPerMeter);
-        var (_, _, worldMatrix) = state.Transform.GetWorldPositionRotationMatrix(transform);
-        state.Entries.Add(new LightingOverlayEntry(
+        var (pointLight, transform) = lightEntry;
+        var (worldPosition, _, worldMatrix) = queryState.Transform.GetWorldPositionRotationMatrix(transform);
+        var distanceSquared = Vector2.DistanceSquared(worldPosition, queryState.ViewCenter);
+        var replacementIndex = -1;
+
+        if (queryState.VisibleLights.Count >= MaxVisibleLights)
+        {
+            var farthestIndex = 0;
+            var farthestDistanceSquared = queryState.VisibleLights[0].DistanceSquared;
+            for (var i = 1; i < queryState.VisibleLights.Count; i++)
+            {
+                var visibleLight = queryState.VisibleLights[i];
+                if (visibleLight.DistanceSquared <= farthestDistanceSquared)
+                    continue;
+
+                farthestIndex = i;
+                farthestDistanceSquared = visibleLight.DistanceSquared;
+            }
+
+            if (distanceSquared >= farthestDistanceSquared)
+                return true;
+
+            replacementIndex = farthestIndex;
+        }
+
+        var maskKey = new BloomMaskKey(bloomVisuals.MaskSprite, bloomVisuals.MaskOffset);
+        if (!queryState.MaskCache.TryGetValue(maskKey, out var mask))
+        {
+            var texture = queryState.Sprite.Frame0(bloomVisuals.MaskSprite);
+            mask = new BloomMaskData(
+                texture,
+                bloomVisuals.MaskOffset - new Vector2(texture.Width, texture.Height) / (2f * EyeManager.PixelsPerMeter));
+            queryState.MaskCache.Add(maskKey, mask);
+        }
+
+        var light = new BloomLightEntry(
             worldMatrix,
-            maskTexture,
-            maskOffset,
-            pointLight.Color * bloomVisuals.Color));
-        return false;
+            mask.Texture,
+            mask.Offset,
+            pointLight.Color * bloomVisuals.BloomColor,
+            distanceSquared);
+
+        if (replacementIndex >= 0)
+            queryState.VisibleLights[replacementIndex] = light;
+        else
+            queryState.VisibleLights.Add(light);
+
+        return true;
     }
 
-    private readonly record struct QueryState(
-        List<LightingOverlayEntry> Entries,
+    private readonly record struct BloomLightQueryState(
+        List<BloomLightEntry> VisibleLights,
+        Dictionary<BloomMaskKey, BloomMaskData> MaskCache,
         EntityQuery<BloomOverlayVisualsComponent> BloomVisualsQuery,
         SpriteSystem Sprite,
-        TransformSystem Transform);
-}
+        TransformSystem Transform,
+        Vector2 ViewCenter);
 
-public readonly record struct LightingOverlayEntry(
-    Matrix3x2 WorldMatrix,
-    Texture MaskTexture,
-    Vector2 MaskOffset,
-    Color Color);
+    private readonly record struct BloomMaskKey(SpriteSpecifier Sprite, Vector2 Offset);
+
+    private readonly record struct BloomMaskData(Texture Texture, Vector2 Offset);
+
+    private readonly record struct BloomLightEntry(
+        Matrix3x2 WorldMatrix,
+        Texture MaskTexture,
+        Vector2 MaskOffset,
+        Color Color,
+        float DistanceSquared);
+}

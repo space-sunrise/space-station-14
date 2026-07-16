@@ -11,13 +11,13 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 public sealed partial class BloomOverlayVisualsComponent : Component
 {
     [DataField]
-    public SpriteSpecifier Mask = new SpriteSpecifier.Rsi(
+    public SpriteSpecifier MaskSprite = new SpriteSpecifier.Rsi(
         new ResPath("_Sunrise/Effects/LightMasks/64.rsi"),
         "light_point");
 
     [DataField]
-    public Vector2 Offset = new(0f, 0.45f);
+    public Vector2 MaskOffset = new(0f, 0.45f);
 
     [DataField]
-    public Color Color = Color.White;
+    public Color BloomColor = Color.White;
 }
