@@ -57,7 +57,7 @@ public static class PlayerJoinableMapAccess
     }
 
     /// <summary>
-    /// Returns whether the map's base bool CVar permits access.
+    /// Returns whether the map's typed availability CVar permits access.
     /// </summary>
     public static bool IsEnabledByCVar(PlayerJoinableMapPrototype map, IConfigurationManager cfg)
     {
@@ -95,27 +95,30 @@ public static class PlayerJoinableMapAccess
     }
 
     /// <summary>
-    /// Gets the bool CVar associated with the map access type.
+    /// Gets the typed availability CVar associated with the map access type.
     /// </summary>
     public static CVarDef<bool>? GetEnabledCVar(PlayerJoinableMapPrototype map)
     {
         return map.Access switch
         {
-            PlayerJoinableMapAccessType.CentComm => SunriseCVars.CentCommEnabled,
-            PlayerJoinableMapAccessType.PlanetPrison => SunriseCVars.PlanetPrisonEnabled,
-            _ => null,
+            PlayerJoinableMapAccessType.Always => null,
+            PlayerJoinableMapAccessType.CentComm => SunriseCVars.PlayerJoinableMapCentCommEnabled,
+            PlayerJoinableMapAccessType.PlanetPrison => SunriseCVars.PlayerJoinableMapPlanetPrisonEnabled,
+            _ => throw new ArgumentOutOfRangeException(nameof(map.Access), map.Access, null),
         };
     }
 
     /// <summary>
-    /// Gets the minimum-player CVar associated with the map access type.
+    /// Gets the typed minimum-player CVar associated with the map access type.
     /// </summary>
     public static CVarDef<int>? GetMinPlayersCVar(PlayerJoinableMapPrototype map)
     {
         return map.Access switch
         {
-            PlayerJoinableMapAccessType.PlanetPrison => SunriseCVars.MinPlayersPlanetPrison,
-            _ => null,
+            PlayerJoinableMapAccessType.Always => null,
+            PlayerJoinableMapAccessType.CentComm => SunriseCVars.PlayerJoinableMapCentCommMinPlayers,
+            PlayerJoinableMapAccessType.PlanetPrison => SunriseCVars.PlayerJoinableMapPlanetPrisonMinPlayers,
+            _ => throw new ArgumentOutOfRangeException(nameof(map.Access), map.Access, null),
         };
     }
 

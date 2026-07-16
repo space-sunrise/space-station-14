@@ -32,7 +32,6 @@
     - BaseStationSpam
     - BaseStationTransitHub
     - BaseStationDontSelling
-    - BaseStationPlanetPrison
     - BaseStationGoal
     - BaseStationAntagsTargets
     - BaseStationCryoTeleport

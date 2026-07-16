@@ -18,11 +18,11 @@ namespace Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 /// Coordinates access, job ownership, and spawn-point selection for stations on separately loaded maps.
 /// </summary>
 /// <remarks>
-/// Map lifetime remains the responsibility of feature-specific owner systems such as Central Command or
-/// planet prison loaders. This system evaluates <see cref='PlayerJoinableMapPrototype'/> and connects the
-/// resulting station entities to round-start, late-join, fallback-spawn, and antagonist selection flows.
+/// Technical maps such as Central Command may keep a feature-specific owner. Maps with managed loading
+/// are created by this system. Both variants use the same round-start, late-join, fallback-spawn, and
+/// antagonist-selection flows.
 /// </remarks>
-public sealed class PlayerJoinableMapSystem : EntitySystem
+public sealed partial class PlayerJoinableMapSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
@@ -36,6 +36,7 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     {
         base.Initialize();
         _mapIndex.Rebuild(_prototype);
+        InitializeManagedLoading();
         SubscribeLocalEvent<PlayerJoinableMapComponent, ComponentInit>(OnPlayerJoinableMapInit);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby, before: [typeof(StationJobsSystem)]);
@@ -44,6 +45,7 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
         _mapIndex.Rebuild(_prototype);
+        RefreshManagedLoading();
     }
 
     private void OnPlayerJoinableMapInit(Entity<PlayerJoinableMapComponent> ent, ref ComponentInit args)
@@ -56,16 +58,7 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
 
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent args)
     {
-        PrepareLobbyJobs();
-    }
-
-    /// <summary>
-    /// Raises the event that lets map systems activate joinable stations before lobby jobs are built.
-    /// </summary>
-    public void PrepareLobbyJobs()
-    {
-        var ev = new PlayerJoinableMapLobbyJobsPreparingEvent();
-        RaiseLocalEvent(ev);
+        LoadAvailableManagedMaps();
     }
 
     /// <summary>
@@ -127,49 +120,6 @@ public sealed class PlayerJoinableMapSystem : EntitySystem
         }
 
         return true;
-    }
-
-    /// <summary>
-    /// Returns whether any joinable station in the game map became available because the player count
-    /// gate was met.
-    /// </summary>
-    public bool IsGameMapPlayerCountEnabled(GameMapPrototype gameMap)
-    {
-        foreach (var stationConfig in gameMap.Stations.Values)
-        {
-            if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out _))
-                continue;
-
-            if (PlayerJoinableMapAccess.GetAccess(map, _cfg, _player.PlayerCount) is
-                { Enabled: true, HasPlayerThreshold: true, PlayerThresholdReached: true })
-                return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Gets the lowest configured player-count requirement among the map's joinable stations.
-    /// </summary>
-    public bool TryGetGameMapAccessMinPlayers(GameMapPrototype gameMap, out int minPlayers)
-    {
-        minPlayers = int.MaxValue;
-        var foundMinPlayers = false;
-
-        foreach (var stationConfig in gameMap.Stations.Values)
-        {
-            if (!TryResolvePlayerJoinableMap(stationConfig.StationPrototype, out var map, out _))
-                continue;
-
-            var access = PlayerJoinableMapAccess.GetAccess(map, _cfg, _player.PlayerCount);
-            if (!access.Enabled || !access.HasPlayerThreshold)
-                continue;
-
-            foundMinPlayers = true;
-            minPlayers = Math.Min(minPlayers, access.MinPlayers);
-        }
-
-        return foundMinPlayers;
     }
 
     /// <summary>

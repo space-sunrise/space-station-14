@@ -1,16 +1,18 @@
 using Content.Shared.Roles;
+using Content.Shared.Maps;
+using Content.Shared.Parallax.Biomes;
+using Content.Shared.Whitelist;
 using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 
 /// <summary>
-/// Describes player access and spawning rules for a station located on a separately loaded game map.
+/// Describes player access, spawning rules, and optional managed loading for a station on a separate map.
 /// </summary>
 /// <remarks>
-/// This prototype does not load a map by itself. A server-side owner system must load a
-/// <see cref='Content.Shared.Maps.GameMapPrototype'/> and that game map must create a station prototype
-/// containing <see cref='PlayerJoinableMapComponent'/> which references this configuration.
+/// When <see cref="Load"/> is absent, an external system owns the map lifecycle. This is used by
+/// technical maps such as Central Command. When it is present, the generic server system loads the map.
 /// </remarks>
 [Prototype]
 public sealed partial class PlayerJoinableMapPrototype : IPrototype
@@ -28,7 +30,7 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
     public LocId DisplayName;
 
     /// <summary>
-    /// Selects the configuration source used to decide whether players may join this map.
+    /// Selects the typed CVar group used to configure player access to this map.
     /// </summary>
     [DataField]
     public PlayerJoinableMapAccessType Access = PlayerJoinableMapAccessType.Always;
@@ -41,6 +43,12 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
     /// </remarks>
     [DataField]
     public bool SpawnWhenPlayerAccessDisabled;
+
+    /// <summary>
+    /// Optional server-side configuration for maps owned by the generic DLC loader.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public PlayerJoinableMapLoadConfiguration? Load;
 
     /// <summary>
     /// Whether generic fallback spawning must ignore stations configured with this map.
@@ -86,6 +94,109 @@ public sealed partial class PlayerJoinableMapPrototype : IPrototype
 }
 
 /// <summary>
+/// Configures a game map whose lifecycle is owned by the generic player-joinable map loader.
+/// </summary>
+[DataDefinition]
+public sealed partial class PlayerJoinableMapLoadConfiguration
+{
+    /// <summary>
+    /// The single game map loaded for this player-joinable map.
+    /// </summary>
+    /// <remarks>
+    /// Game-map prototypes are intentionally ignored by clients, so the serialized value cannot use the engine's
+    /// automatic <see cref="ProtoId{T}"/> validator. Consumers still receive a typed ID, and the server loader
+    /// validates it against <see cref="GameMapPrototype"/> before loading.
+    /// </remarks>
+    [DataField("gameMap", required: true)]
+    private string _gameMap = default!;
+
+    public ProtoId<GameMapPrototype> GameMap => _gameMap;
+
+    /// <summary>
+    /// Selects the environment-specific loading and validation path.
+    /// </summary>
+    [DataField(required: true)]
+    public PlayerJoinableMapEnvironmentType Environment;
+
+    /// <summary>
+    /// Components applied to the loaded map entity before map initialization.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry MapComponents = new();
+
+    /// <summary>
+    /// Components applied to every loaded grid before map initialization.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry GridComponents = new();
+
+    /// <summary>
+    /// Biomes available to a planet environment. Space environments must leave this empty.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<BiomeTemplatePrototype>> Biomes = [];
+
+    /// <summary>
+    /// Optional FTL destination configuration for the loaded map.
+    /// </summary>
+    [DataField]
+    public PlayerJoinableMapFtlConfiguration? Ftl;
+
+    /// <summary>
+    /// Whether the loader should announce the selected map, biome, and module activation.
+    /// </summary>
+    [DataField]
+    public bool AnnounceOnLoad;
+}
+
+/// <summary>
+/// Configures FTL discovery and shuttle access for a managed map.
+/// </summary>
+[DataDefinition]
+public sealed partial class PlayerJoinableMapFtlConfiguration
+{
+    /// <summary>
+    /// Whether the destination is enabled after loading.
+    /// </summary>
+    [DataField]
+    public bool Enabled = true;
+
+    /// <summary>
+    /// Whether a coordinate disk is required to select the destination.
+    /// </summary>
+    [DataField]
+    public bool RequireCoordinateDisk;
+
+    /// <summary>
+    /// Whether FTL arrival is limited to beacons on the destination map.
+    /// </summary>
+    [DataField]
+    public bool BeaconsOnly;
+
+    /// <summary>
+    /// Restricts which shuttles may select the destination.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? ShuttleWhitelist;
+}
+
+/// <summary>
+/// Selects the environment-specific loading path for a managed player-joinable map.
+/// </summary>
+public enum PlayerJoinableMapEnvironmentType
+{
+    /// <summary>
+    /// Loads an ordinary space map without biome generation.
+    /// </summary>
+    Space,
+
+    /// <summary>
+    /// Requires one grid and generates a biome-backed planet around it.
+    /// </summary>
+    Planet,
+}
+
+/// <summary>
 /// Selects how a join flow validates spawn points on an external station.
 /// </summary>
 public enum PlayerJoinableMapSpawnPointType
@@ -102,7 +213,7 @@ public enum PlayerJoinableMapSpawnPointType
 }
 
 /// <summary>
-/// Selects the CVar-backed access policy used by a player-joinable map.
+/// Selects the typed CVar group used by a player-joinable map.
 /// </summary>
 public enum PlayerJoinableMapAccessType
 {

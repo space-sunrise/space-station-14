@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Server._Sunrise.NewLife;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
@@ -7,6 +8,7 @@ using Content.Server.Objectives;
 using Content.Server.Roles;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.Roles;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
@@ -24,6 +26,9 @@ namespace Content.Server._Sunrise.PlanetPrison
         [Dependency] private readonly NewLifeSystem _newLifeSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ISharedPlayerManager _player = default!;
+        [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMap = default!;
+
+        private static readonly ProtoId<PlayerJoinableMapPrototype> PlanetPrisonMap = "SunrisePlanetPrison";
 
         [ValidatePrototypeId<EntityPrototype>]
         private const string MindRole = "MindRolePlanetPrisoner";
@@ -82,10 +87,11 @@ namespace Content.Server._Sunrise.PlanetPrison
             if (planetPrisonRule == null)
                 return;
 
-            var planetPrisonStation = EntityQuery<PlanetPrisonStationComponent>().FirstOrDefault();
-            if (planetPrisonStation == null || planetPrisonStation.PrisonGrid == EntityUid.Invalid)
+            if (!_playerJoinableMap.TryGetLoadedMap(PlanetPrisonMap, out var planetPrison) ||
+                planetPrison.Grids.Count != 1)
                 return;
-            var xformPrison = Transform(planetPrisonStation.PrisonGrid);
+
+            var xformPrison = Transform(planetPrison.Grids[0]);
             var prisonPosition = _transformSystem.GetMapCoordinates(xformPrison);
 
             base.Update(frameTime);
@@ -98,7 +104,7 @@ namespace Content.Server._Sunrise.PlanetPrison
                     continue;
                 }
 
-                if (prisonerPosition.MapId != planetPrisonStation.MapId)
+                if (prisonerPosition.MapId != planetPrison.MapId)
                 {
                     // А вот нехуй играть не по правилам
                     QueueDel(prisoner);
