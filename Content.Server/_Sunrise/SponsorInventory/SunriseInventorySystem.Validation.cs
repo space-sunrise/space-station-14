@@ -137,7 +137,9 @@ public sealed partial class SunriseInventorySystem
             return null;
 
         var dummy = Spawn(species.DollPrototype, MapCoordinates.Nullspace);
-        _humanoid.LoadProfile(dummy, profile);
+        _visualBody.ApplyProfileTo(dummy, profile);
+        _humanoidProfile.ApplyProfileTo(dummy, profile);
+        _sunriseProfile.ApplyProfileTo(dummy, profile);
         return dummy;
     }
 
