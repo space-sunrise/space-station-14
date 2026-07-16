@@ -4,7 +4,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.ComponentTrees;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -56,8 +55,9 @@ public sealed class PointLightingOverlay : Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         _entries.Clear();
-        var state = new QueryState(_entries, _bloomVisualsQuery, _sprite, _transform, args.MapId);
-        _lightTree.QueryAabb(ref state, CollectLight, args.MapId, args.WorldAABB);
+        var bounds = args.WorldAABB.Enlarged(1f);
+        var state = new QueryState(_entries, _bloomVisualsQuery, _sprite, _transform);
+        _lightTree.QueryAabb(ref state, CollectLight, args.MapId, bounds);
         return _entries.Count > 0;
     }
 
@@ -67,7 +67,6 @@ public sealed class PointLightingOverlay : Overlay
             return;
 
         var handle = args.WorldHandle;
-        var bounds = args.WorldAABB.Enlarged(5f);
 
         _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
         _shader.SetParameter("base_haze", _baseHaze);
@@ -76,9 +75,6 @@ public sealed class PointLightingOverlay : Overlay
 
         foreach (var entry in _entries)
         {
-            if (entry.MapId != args.MapId || !bounds.Contains(entry.WorldPosition))
-                continue;
-
             handle.SetTransform(entry.WorldMatrix);
             handle.DrawTexture(entry.MaskTexture, entry.MaskOffset, entry.Color);
         }
@@ -95,18 +91,15 @@ public sealed class PointLightingOverlay : Overlay
 
     private static bool CollectLight(ref QueryState state, in ComponentTreeEntry<PointLightComponent> value)
     {
-        if (!state.BloomVisualsQuery.HasComp(value.Uid))
+        if (!state.BloomVisualsQuery.TryComp(value.Uid, out var bloomVisuals))
             return true;
 
         var (pointLight, transform) = value;
-        var bloomVisuals = state.BloomVisualsQuery.GetComponent(value.Uid);
         var maskTexture = state.Sprite.Frame0(bloomVisuals.Mask);
         var maskOffset = bloomVisuals.Offset - new Vector2(maskTexture.Width, maskTexture.Height) / (2f * EyeManager.PixelsPerMeter);
-        var (worldPosition, _, worldMatrix) = state.Transform.GetWorldPositionRotationMatrix(transform);
+        var (_, _, worldMatrix) = state.Transform.GetWorldPositionRotationMatrix(transform);
         state.Entries.Add(new LightingOverlayEntry(
-            state.MapId,
             worldMatrix,
-            worldPosition,
             maskTexture,
             maskOffset,
             pointLight.Color * bloomVisuals.Color));
@@ -117,14 +110,11 @@ public sealed class PointLightingOverlay : Overlay
         List<LightingOverlayEntry> Entries,
         EntityQuery<BloomOverlayVisualsComponent> BloomVisualsQuery,
         SpriteSystem Sprite,
-        TransformSystem Transform,
-        MapId MapId);
+        TransformSystem Transform);
 }
 
 public readonly record struct LightingOverlayEntry(
-    MapId MapId,
     Matrix3x2 WorldMatrix,
-    Vector2 WorldPosition,
     Texture MaskTexture,
     Vector2 MaskOffset,
     Color Color);

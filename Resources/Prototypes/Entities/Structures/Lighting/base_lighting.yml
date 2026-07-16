@@ -14,9 +14,8 @@
   - type: DamageOverlay
     damagePopupType: SmallFloating
     isStructure: true
-  # Sunrise end
-  # Sunrise-Edit - эффект свечения для светильников
   - type: BloomOverlayVisuals
+  # Sunrise end
   - type: MeleeSound
     soundGroups:
       Brute:
