@@ -16,7 +16,7 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
 
     public Button CharacterSetupButton => CharacterSetup;
 
-    public event Action? OnChangePetRequested;
+    public event Action? OnInventoryRequested;
 
     private EntityUid? _previewDummy;
     private EntityUid? _petPreviewDummy;
@@ -27,12 +27,12 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        ChangePetButton.OnPressed += OnChangePetButtonPressed;
+        InventoryButton.OnPressed += OnInventoryButtonPressed;
     }
 
-    private void OnChangePetButtonPressed(BaseButton.ButtonEventArgs args)
+    private void OnInventoryButtonPressed(BaseButton.ButtonEventArgs args)
     {
-        OnChangePetRequested?.Invoke();
+        OnInventoryRequested?.Invoke();
     }
 
     public void SetLoaded(bool value)
@@ -167,7 +167,7 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         if (!disposing)
             return;
 
-        ChangePetButton.OnPressed -= OnChangePetButtonPressed;
+        InventoryButton.OnPressed -= OnInventoryButtonPressed;
         _entManager.DeleteEntity(_previewDummy);
         _entManager.DeleteEntity(_petPreviewDummy);
         _previewDummy = null;

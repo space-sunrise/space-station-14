@@ -52,6 +52,7 @@ namespace Content.Server.Database
         public DbSet<MentorHelpMessage> MentorHelpMessages { get; set; } = default!;
         public DbSet<UiLike> UiLikes { get; set; } = default!;
         public DbSet<TutorialCompletion> TutorialCompletions { get; set; } = default!;
+        public DbSet<SponsorInventoryProfile> SponsorInventoryProfiles { get; set; } = default!;
         // Sunrise-End
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -342,6 +343,13 @@ namespace Content.Server.Database
                 .WithMany(p => p.JobWhitelists)
                 .HasForeignKey(w => w.PlayerUserId)
                 .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<SponsorInventoryProfile>()
+                .HasOne(profile => profile.Player)
+                .WithMany()
+                .HasForeignKey(profile => profile.PlayerUserId)
+                .HasPrincipalKey(player => player.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Changes for modern HWID integration
@@ -1520,6 +1528,23 @@ namespace Content.Server.Database
         public DateTimeOffset CompletedAt { get; set; }
         public int CompletionCount { get; set; } = 1;
         public double? AccountAgeDays { get; set; }
+    }
+
+    [Table("sponsor_inventory_profile"), Index(nameof(PlayerUserId)), PrimaryKey(nameof(PlayerUserId), nameof(Slot))]
+    public sealed class SponsorInventoryProfile
+    {
+        public required Guid PlayerUserId { get; set; }
+
+        public Player Player { get; set; } = default!;
+
+        public int Slot { get; set; }
+
+        public required string ProfileJson { get; set; } = string.Empty;
+
+        [MaxLength(64)]
+        public required string Revision { get; set; } = string.Empty;
+
+        public DateTimeOffset UpdatedAt { get; set; }
     }
     // Sunrise-end
 }

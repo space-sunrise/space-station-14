@@ -1,0 +1,52 @@
+<ContainerButton xmlns="https://spacestation14.io"
+                 xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                 SetWidth="96"
+                 SetHeight="120"
+                 MinSize="96 120"
+                 RectClipContent="True">
+    <!-- Fixed card size keeps InventoryWindow palette grids stable during hover, selection, and drag/drop. -->
+    <ContainerButton.StyleClasses>
+        <system:String>button</system:String>
+        <system:String>ButtonSquare</system:String>
+        <system:String>SponsorInventoryPaletteItem</system:String>
+    </ContainerButton.StyleClasses>
+
+    <BoxContainer
+        HorizontalExpand="True"
+        Orientation="Vertical"
+        VerticalExpand="True">
+        <!-- The prototype is supplied from code-behind through SetPrototype; XAML only defines the stable preview area. -->
+        <Control
+            HorizontalExpand="True"
+            SetHeight="72">
+            <EntityPrototypeView
+                Name="ItemPreview"
+                HorizontalAlignment="Center"
+                OverrideDirection="South"
+                Scale="3 3"
+                SetSize="72 72"
+                VerticalAlignment="Center" />
+        </Control>
+
+        <!-- The label is clipped to prevent long localized names from resizing InventoryWindow palette cards. -->
+        <Control
+            HorizontalAlignment="Center"
+            MaxHeight="36"
+            MaxWidth="76"
+            RectClipContent="True"
+            SetHeight="36"
+            SetWidth="76">
+            <Label
+                Name="ItemName"
+                Align="Center"
+                ClipText="True"
+                HorizontalAlignment="Center"
+                MaxHeight="36"
+                MaxWidth="76"
+                SetHeight="36"
+                SetWidth="76"
+                StyleClasses="LabelSubText"
+                VAlign="Top" />
+        </Control>
+    </BoxContainer>
+</ContainerButton>

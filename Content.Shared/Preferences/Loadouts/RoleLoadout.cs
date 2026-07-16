@@ -1,10 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing; // Sunrise-edit
-using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Random;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Collections;
 using Robust.Shared.Network;
 using Robust.Shared.Configuration;
@@ -12,7 +8,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
-using Robust.Shared.Localization;
+using System.Linq;
 
 namespace Content.Shared.Preferences.Loadouts;
 
@@ -62,7 +58,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Ensures all prototypes exist and effects can be applied.
     /// </summary>
-    public void EnsureValid(HumanoidCharacterProfile profile, ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes) // Sunrise-Sponsors
+    public void EnsureValid(HumanoidCharacterProfile profile, ICommonSession session, IDependencyCollection collection)
     {
         var groupRemove = new ValueList<string>();
         var protoManager = collection.Resolve<IPrototypeManager>();
@@ -153,7 +149,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                 }
 
                 // Validate the loadout can be applied (e.g. points).
-                if (!IsValid(profile, session, loadout.Prototype, collection, sponsorPrototypes, out _)) // Sunrise-Sponsors
+                if (!IsValid(profile, session, loadout.Prototype, collection, out _))
                 {
                     loadouts.RemoveAt(i);
                     continue;
@@ -184,7 +180,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                         continue;
 
                     // Not valid so don't default to it anyway.
-                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _))
+                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, out _))
                         continue;
 
                     loadouts.Add(defaultLoadout);
@@ -212,7 +208,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Resets the selected loadouts to default if no data is present.
     /// </summary>
-    public void SetDefault(HumanoidCharacterProfile? profile, ICommonSession? session, IPrototypeManager protoManager, string[] sponsorPrototypes, bool force = false)
+    public void SetDefault(HumanoidCharacterProfile? profile, ICommonSession? session, IPrototypeManager protoManager, bool force = false)
     {
         if (profile == null)
             return;
@@ -257,7 +253,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                     };
 
                     // Not valid so don't default to it anyway.
-                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _))
+                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, out _))
                         continue;
 
                     loadouts.Add(defaultLoadout);
@@ -270,7 +266,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Returns whether a loadout is valid or not.
     /// </summary>
-    public bool IsValid(HumanoidCharacterProfile profile, ICommonSession? session, ProtoId<LoadoutPrototype> loadout, IDependencyCollection collection, string[] sponsorPrototypes, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool IsValid(HumanoidCharacterProfile profile, ICommonSession? session, ProtoId<LoadoutPrototype> loadout, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 
@@ -288,14 +284,6 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             reason = FormattedMessage.FromUnformatted("loadouts-prototype-missing");
             return false;
         }
-
-        // Sunrise-Sponsots-Start
-        if (loadoutProto.SponsorOnly && !sponsorPrototypes.Contains(loadout.Id))
-        {
-            reason = FormattedMessage.FromUnformatted(Loc.GetString("loadout-sponsor-only"));
-            return false;
-        }
-        // Sunrise-Sponsots-End
 
         var valid = true;
 

@@ -53,7 +53,6 @@
 #Синего Щита
 - type: loadout
   id: BlueShieldModsuit
-  sponsorOnly: true
   equipment:
     back: ClothingBlueShieldModsuit
 
@@ -107,7 +106,6 @@
 #Горничной Командования
 - type: loadout
   id: ComMaidModsuit
-  sponsorOnly: true
   equipment:
     back: ClothingModsuitComMaid
 
@@ -128,7 +126,6 @@
 #Пассажира
 - type: loadout
   id: CommonModsuit
-  sponsorOnly: true
   equipment:
     back: ClothingCommonModsuit
 

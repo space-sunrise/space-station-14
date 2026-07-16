@@ -22,8 +22,6 @@ public sealed partial class LobbyPetPreviewPanel : Control
     private EntityUid? _previewDummy;
     private string? _currentPetSelection;
 
-    public event Action? OnChangePetRequested;
-
     public LobbyPetPreviewPanel()
     {
         RobustXamlLoader.Load(this);
