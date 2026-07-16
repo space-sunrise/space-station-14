@@ -3,7 +3,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceLinking;
-using Content.Shared._Sunrise.Light.Visualizers; // Sunrise-Edit - искры повреждённых светильников
+using Content.Shared._Sunrise.Light.Visualizers;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
@@ -319,12 +319,10 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 break;
         }
 
+        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? lightBulb.PowerUse : 0;
         // Sunrise added start - обновление визуала искр после изменения состояния лампы
         RaiseLocalEvent(uid, new SunrisePoweredLightSparksUpdatedEvent());
         // Sunrise added end
-        powerReceiver.Load = light.On && lightBulb.State == LightBulbState.Normal
-            ? lightBulb.PowerUse
-            : 0;
     }
 
     /// <summary>
