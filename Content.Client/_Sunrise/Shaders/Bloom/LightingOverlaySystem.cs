@@ -25,8 +25,6 @@ public sealed class LightingOverlaySystem : EntitySystem
     private PointLightingOverlay _pointOverlay = default!;
     private ConfigurationMultiSubscriptionBuilder _configurationSubscriptions = default!;
 
-    private bool _enabled;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -61,8 +59,8 @@ public sealed class LightingOverlaySystem : EntitySystem
 
     private void OnEnabledChanged(bool value)
     {
-        _enabled = value;
-        UpdateOverlayRegistration(value);
+        _pointOverlay.Enabled = value;
+        UpdateOverlayRegistration();
     }
 
     private void OnStrengthChanged(float value)
@@ -71,12 +69,9 @@ public sealed class LightingOverlaySystem : EntitySystem
         _pointOverlay.Strength = strength;
     }
 
-    private void UpdateOverlayRegistration(bool enabled)
+    private void UpdateOverlayRegistration()
     {
-        _pointOverlay.Enabled = enabled;
-        if (enabled && !_overlayManager.HasOverlay(_pointOverlay.GetType()))
+        if (!_overlayManager.HasOverlay(_pointOverlay.GetType()))
             _overlayManager.AddOverlay(_pointOverlay);
-        else if (!enabled && _overlayManager.HasOverlay(_pointOverlay.GetType()))
-            _overlayManager.RemoveOverlay(_pointOverlay);
     }
 }
