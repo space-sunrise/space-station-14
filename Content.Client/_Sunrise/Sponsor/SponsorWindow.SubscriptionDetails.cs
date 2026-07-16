@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Numerics;
+using Content.Client._Sunrise.Humanoid;
 using Content.Client._Sunrise.Sheetlets;
 using Content.Client._Sunrise.Sheetlets.SciFiStyle;
 using Content.Client._Sunrise.TTS;
+using Content.Client.Body;
 using Content.Client.Humanoid;
 using Content.Client.Lobby;
 using Content.Shared._Sunrise.GhostTheme;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Ghost.Roles;
 using Content.Shared.Humanoid;
@@ -386,9 +389,7 @@ public sealed partial class SponsorWindow
         if (!_prototype.TryIndex<MarkingPrototype>(prototypeId, out var marking))
             return false;
 
-        var species = marking.SpeciesRestrictions is { Count: > 0 }
-            ? marking.SpeciesRestrictions[0]
-            : (string)SharedHumanoidAppearanceSystem.DefaultSpecies;
+        var species = (string)HumanoidCharacterProfile.DefaultSpecies;
         return _prototype.HasIndex<SpeciesPrototype>(species);
     }
 
@@ -677,22 +678,19 @@ public sealed partial class SponsorWindow
 
     private SpriteView? CreateSponsorTierMarkingPreview(MarkingPrototype marking)
     {
-        var species = marking.SpeciesRestrictions is { Count: > 0 }
-            ? marking.SpeciesRestrictions[0]
-            : (string)SharedHumanoidAppearanceSystem.DefaultSpecies;
+        var species = (string)HumanoidCharacterProfile.DefaultSpecies;
 
         if (!_prototype.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             return null;
 
         var dummy = _entity.SpawnEntity(speciesPrototype.DollPrototype, MapCoordinates.Nullspace);
         _sponsorTierPreviewEntities.Add(dummy);
-        var humanoid = _entity.EnsureComponent<HumanoidAppearanceComponent>(dummy);
-        var sprite = _entity.EnsureComponent<SpriteComponent>(dummy);
-        _entity.System<HumanoidAppearanceSystem>().ApplyMarking(
-            marking,
-            null,
-            true,
-            (dummy, humanoid, sprite));
+        var profile = HumanoidCharacterProfile.DefaultWithSpecies(species);
+        _entity.System<VisualBodySystem>().ApplyProfileTo(dummy, profile);
+        _entity.System<HumanoidProfileSystem>().ApplyProfileTo(dummy, profile);
+        _entity.System<SunriseHumanoidProfileSystem>().ApplyProfileTo(dummy, profile);
+        _entity.System<SunriseHumanoidProfileVisualSystem>().Refresh(dummy);
+        _entity.System<SunriseHumanoidMarkingSystem>().AddMarking(dummy, marking.ID, forced: true);
 
         return CreateSponsorTierSpriteView(dummy);
     }
