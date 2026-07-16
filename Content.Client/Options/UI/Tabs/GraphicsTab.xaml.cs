@@ -135,7 +135,6 @@ public sealed partial class GraphicsTab : Control
 
         public override void SaveValue()
         {
-            // Sunrise edit start - bloom управляется отдельной настройкой
             switch (_dropDown.Button.SelectedId)
             {
                 case QualityVeryLow:
@@ -159,7 +158,6 @@ public sealed partial class GraphicsTab : Control
                     _cfg.SetCVar(CVars.LightBlur, true);
                     break;
             }
-            // Sunrise edit end
         }
 
         public override void ResetToDefault()

@@ -29,8 +29,7 @@ public sealed class PointLightingOverlay : Overlay
     public override bool RequestScreenTexture => true;
 
     private readonly List<LightingOverlayEntry> _entries = [];
-    public bool Enabled;
-    public float Strength = 1f;
+    public float Strength;
 
     public PointLightingOverlay(
         LightTreeSystem lightTree,
@@ -43,6 +42,7 @@ public sealed class PointLightingOverlay : Overlay
         int zIndex,
         float baseHaze,
         float hazeDivisor,
+        float strength,
         ProtoId<ShaderPrototype> shaderPrototype)
     {
         _lightTree = lightTree;
@@ -53,14 +53,12 @@ public sealed class PointLightingOverlay : Overlay
         _bloomVisualsQuery = bloomVisualsQuery;
         _baseHaze = baseHaze;
         _hazeDivisor = hazeDivisor;
+        Strength = strength;
         ZIndex = zIndex;
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (!Enabled)
-            return false;
-
         _entries.Clear();
         var state = new QueryState(_entries, _bloomVisualsQuery, _transform, args.MapId);
         _lightTree.QueryAabb(ref state, CollectLight, args.MapId, args.WorldAABB);
@@ -91,6 +89,12 @@ public sealed class PointLightingOverlay : Overlay
 
         handle.UseShader(null);
         handle.SetTransform(Matrix3x2.Identity);
+    }
+
+    protected override void DisposeBehavior()
+    {
+        _shader.Dispose();
+        base.DisposeBehavior();
     }
 
     private static bool CollectLight(ref QueryState state, in ComponentTreeEntry<PointLightComponent> value)

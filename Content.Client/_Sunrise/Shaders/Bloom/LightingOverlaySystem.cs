@@ -15,34 +15,22 @@ public sealed class LightingOverlaySystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly LightTreeSystem _lightTree = default!;
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IOverlayManager _overlay = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private static readonly ProtoId<ShaderPrototype> LightingOverlayShader = "SunriseLightingOverlay";
     private EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
-    private PointLightingOverlay _pointOverlay = default!;
+    private PointLightingOverlay? _pointOverlay;
     private ConfigurationMultiSubscriptionBuilder _configurationSubscriptions = default!;
+    private float _strength = 0.7f;
 
     public override void Initialize()
     {
         base.Initialize();
 
         _bloomVisualsQuery = GetEntityQuery<BloomOverlayVisualsComponent>();
-        _pointOverlay = new PointLightingOverlay(
-            _lightTree,
-            _prototypeManager,
-            _sprite,
-            _transform,
-            _bloomVisualsQuery,
-            BloomOverlayVisualsComponent.PointMask,
-            BloomOverlayVisualsComponent.PointOffset,
-            (int) DrawDepth.Effects,
-            0.8f,
-            0.05f,
-            LightingOverlayShader);
-
         _configurationSubscriptions = _configuration.SubscribeMultiple()
             .OnValueChanged(SunriseCCVars.LightBloomEnabled, OnEnabledChanged, true)
             .OnValueChanged(SunriseCCVars.LightBloomStrength, OnStrengthChanged, true);
@@ -51,27 +39,55 @@ public sealed class LightingOverlaySystem : EntitySystem
     public override void Shutdown()
     {
         _configurationSubscriptions.Dispose();
-        if (_overlayManager.HasOverlay(_pointOverlay.GetType()))
-            _overlayManager.RemoveOverlay(_pointOverlay);
-        _pointOverlay.Dispose();
+        if (_pointOverlay is { } overlay)
+        {
+            if (_overlay.HasOverlay<PointLightingOverlay>())
+                _overlay.RemoveOverlay(overlay);
+
+            overlay.Dispose();
+            _pointOverlay = null;
+        }
+
         base.Shutdown();
     }
 
     private void OnEnabledChanged(bool value)
     {
-        _pointOverlay.Enabled = value;
-        UpdateOverlayRegistration();
+        if (!value)
+        {
+            if (_pointOverlay is not { } overlay)
+                return;
+
+            if (_overlay.HasOverlay<PointLightingOverlay>())
+                _overlay.RemoveOverlay(overlay);
+
+            overlay.Dispose();
+            _pointOverlay = null;
+            return;
+        }
+
+        _pointOverlay ??= new PointLightingOverlay(
+            _lightTree,
+            _prototype,
+            _sprite,
+            _transform,
+            _bloomVisualsQuery,
+            BloomOverlayVisualsComponent.PointMask,
+            BloomOverlayVisualsComponent.PointOffset,
+            (int) DrawDepth.Effects,
+            0.8f,
+            0.05f,
+            _strength,
+            LightingOverlayShader);
+
+        if (!_overlay.HasOverlay<PointLightingOverlay>())
+            _overlay.AddOverlay(_pointOverlay);
     }
 
     private void OnStrengthChanged(float value)
     {
-        var strength = Math.Clamp(value, 0.1f, 1f);
-        _pointOverlay.Strength = strength;
-    }
-
-    private void UpdateOverlayRegistration()
-    {
-        if (!_overlayManager.HasOverlay(_pointOverlay.GetType()))
-            _overlayManager.AddOverlay(_pointOverlay);
+        _strength = Math.Clamp(value, 0.1f, 1f);
+        if (_pointOverlay is { } overlay)
+            overlay.Strength = _strength;
     }
 }

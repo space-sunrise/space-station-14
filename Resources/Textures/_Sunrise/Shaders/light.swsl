@@ -16,10 +16,10 @@ lowp vec4 add_haze(lowp vec4 color, lowp float intensity) {
 }
 
 lowp vec4 blur_sample(lowp vec2 offset, lowp vec2 uv, lowp vec2 fragment, lowp int step) {
-    lowp vec4 sample = zTexture(uv + offset * TEXTURE_PIXEL_SIZE) * weights[step];
-    sample = add_haze(sample, base_haze);
-    sample.a *= adjust_alpha(zTextureSpec(SCREEN_TEXTURE, (fragment + offset) * SCREEN_PIXEL_SIZE));
-    return sample;
+    lowp vec4 sampleColor = zTexture(uv + offset * TEXTURE_PIXEL_SIZE) * weights[step];
+    sampleColor = add_haze(sampleColor, base_haze);
+    sampleColor.a *= adjust_alpha(zTextureSpec(SCREEN_TEXTURE, (fragment + offset) * SCREEN_PIXEL_SIZE));
+    return sampleColor;
 }
 
 lowp vec2 blur_offset(lowp int index, lowp float step) {
