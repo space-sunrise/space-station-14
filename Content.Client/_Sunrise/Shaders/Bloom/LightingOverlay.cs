@@ -19,8 +19,7 @@ public sealed class PointLightingOverlay : Overlay
     private readonly EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
     private readonly LightTreeSystem _lightTree;
     private readonly ShaderInstance _shader;
-    private readonly Texture _maskTexture;
-    private readonly Vector2 _maskOffset;
+    private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
     private readonly float _baseHaze;
     private readonly float _hazeDivisor;
@@ -37,8 +36,6 @@ public sealed class PointLightingOverlay : Overlay
         SpriteSystem spriteSystem,
         TransformSystem transform,
         EntityQuery<BloomOverlayVisualsComponent> bloomVisualsQuery,
-        SpriteSpecifier mask,
-        Vector2 maskOffset,
         int zIndex,
         float baseHaze,
         float hazeDivisor,
@@ -47,8 +44,7 @@ public sealed class PointLightingOverlay : Overlay
     {
         _lightTree = lightTree;
         _shader = prototypeManager.Index(shaderPrototype).InstanceUnique();
-        _maskTexture = spriteSystem.Frame0(mask);
-        _maskOffset = maskOffset - new Vector2(_maskTexture.Width, _maskTexture.Height) / (2f * EyeManager.PixelsPerMeter);
+        _sprite = spriteSystem;
         _transform = transform;
         _bloomVisualsQuery = bloomVisualsQuery;
         _baseHaze = baseHaze;
@@ -60,7 +56,7 @@ public sealed class PointLightingOverlay : Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         _entries.Clear();
-        var state = new QueryState(_entries, _bloomVisualsQuery, _transform, args.MapId);
+        var state = new QueryState(_entries, _bloomVisualsQuery, _sprite, _transform, args.MapId);
         _lightTree.QueryAabb(ref state, CollectLight, args.MapId, args.WorldAABB);
         return _entries.Count > 0;
     }
@@ -84,7 +80,7 @@ public sealed class PointLightingOverlay : Overlay
                 continue;
 
             handle.SetTransform(entry.WorldMatrix);
-            handle.DrawTexture(_maskTexture, _maskOffset, entry.Color);
+            handle.DrawTexture(entry.MaskTexture, entry.MaskOffset, entry.Color);
         }
 
         handle.UseShader(null);
@@ -103,14 +99,24 @@ public sealed class PointLightingOverlay : Overlay
             return true;
 
         var (pointLight, transform) = value;
+        var bloomVisuals = state.BloomVisualsQuery.GetComponent(value.Uid);
+        var maskTexture = state.Sprite.Frame0(bloomVisuals.Mask);
+        var maskOffset = bloomVisuals.Offset - new Vector2(maskTexture.Width, maskTexture.Height) / (2f * EyeManager.PixelsPerMeter);
         var (worldPosition, _, worldMatrix) = state.Transform.GetWorldPositionRotationMatrix(transform);
-        state.Entries.Add(new LightingOverlayEntry(state.MapId, worldMatrix, worldPosition, pointLight.Color));
+        state.Entries.Add(new LightingOverlayEntry(
+            state.MapId,
+            worldMatrix,
+            worldPosition,
+            maskTexture,
+            maskOffset,
+            pointLight.Color * bloomVisuals.Color));
         return true;
     }
 
     private readonly record struct QueryState(
         List<LightingOverlayEntry> Entries,
         EntityQuery<BloomOverlayVisualsComponent> BloomVisualsQuery,
+        SpriteSystem Sprite,
         TransformSystem Transform,
         MapId MapId);
 }
@@ -119,4 +125,6 @@ public readonly record struct LightingOverlayEntry(
     MapId MapId,
     Matrix3x2 WorldMatrix,
     Vector2 WorldPosition,
+    Texture MaskTexture,
+    Vector2 MaskOffset,
     Color Color);

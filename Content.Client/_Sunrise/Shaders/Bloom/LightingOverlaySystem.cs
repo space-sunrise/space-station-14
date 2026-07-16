@@ -1,13 +1,10 @@
 using Content.Shared._Sunrise.SunriseCCVars;
-using System.Numerics;
 using Robust.Client.ComponentTrees;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
-using static Robust.Shared.Utility.SpriteSpecifier;
 
 namespace Content.Client._Sunrise.Shaders.Bloom;
 
@@ -24,14 +21,9 @@ public sealed class LightingOverlaySystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private static readonly ProtoId<ShaderPrototype> LightingOverlayShader = "SunriseLightingOverlay";
-    private static readonly SpriteSpecifier _pointMask = new Rsi(
-        new ResPath("_Sunrise/Effects/LightMasks/64.rsi"),
-        "light_point");
-    private static readonly Vector2 _pointOffset = new(0f, 0.45f);
 
     private EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
     private PointLightingOverlay? _pointOverlay;
-    private ConfigurationMultiSubscriptionBuilder _configurationSubscriptions = default!;
     private float _strength = 0.7f;
 
     public override void Initialize()
@@ -39,14 +31,12 @@ public sealed class LightingOverlaySystem : EntitySystem
         base.Initialize();
 
         _bloomVisualsQuery = GetEntityQuery<BloomOverlayVisualsComponent>();
-        _configurationSubscriptions = _configuration.SubscribeMultiple()
-            .OnValueChanged(SunriseCCVars.LightBloomEnabled, OnEnabledChanged, true)
-            .OnValueChanged(SunriseCCVars.LightBloomStrength, OnStrengthChanged, true);
+        Subs.CVar(_configuration, SunriseCCVars.LightBloomEnabled, OnEnabledChanged, true);
+        Subs.CVar(_configuration, SunriseCCVars.LightBloomStrength, OnStrengthChanged, true);
     }
 
     public override void Shutdown()
     {
-        _configurationSubscriptions.Dispose();
         if (_pointOverlay is { } overlay)
         {
             if (_overlay.HasOverlay<PointLightingOverlay>())
@@ -74,22 +64,22 @@ public sealed class LightingOverlaySystem : EntitySystem
             return;
         }
 
+        if (_overlay.HasOverlay<PointLightingOverlay>())
+            return;
+
         _pointOverlay ??= new PointLightingOverlay(
             _lightTree,
             _prototype,
             _sprite,
             _transform,
             _bloomVisualsQuery,
-            _pointMask,
-            _pointOffset,
             (int) DrawDepth.Effects,
             0.8f,
             0.05f,
             _strength,
             LightingOverlayShader);
 
-        if (!_overlay.HasOverlay<PointLightingOverlay>())
-            _overlay.AddOverlay(_pointOverlay);
+        _overlay.AddOverlay(_pointOverlay);
     }
 
     private void OnStrengthChanged(float value)
