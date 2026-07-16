@@ -74,14 +74,8 @@ public sealed class SunrisePoweredLightSparksSystem : EntitySystem
         if (!TryComp<PoweredLightComponent>(ent, out var poweredLight))
             return;
 
-        if (!TryComp<ApcPowerReceiverComponent>(ent, out var powerReceiver))
-        {
-            _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, false, appearance);
-            RemComp<ActiveSunrisePoweredLightSparksComponent>(ent);
-            return;
-        }
-
-        var hasPower = poweredLight.On && powerReceiver.Powered;
+        var hasPower = poweredLight.On &&
+            (!TryComp<ApcPowerReceiverComponent>(ent, out var powerReceiver) || powerReceiver.Powered);
 
         _appearance.SetData(ent, SunrisePoweredLightVisuals.HasPower, hasPower, appearance);
 

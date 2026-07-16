@@ -52,12 +52,12 @@ public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePo
             !TryComp<PointLightComponent>(uid, out var light))
         {
             StopFlicker(uid, component);
-            SetLayerVisible(sprite, OnLayer, false);
+            UpdateLayer(sprite, OnLayer, null, null);
             HideFlickerLayers(sprite, component);
             return;
         }
 
-        SetLayerVisible(sprite, OnLayer, state == PoweredLightState.On && hasPower);
+        UpdateLayer(sprite, OnLayer, state == PoweredLightState.On && hasPower ? "base" : null, null);
 
         if (state != PoweredLightState.Broken || !hasPower)
         {
@@ -88,7 +88,7 @@ public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePo
         if (showSparks)
             UpdateLayer(sprite, component.SparksLayer, sparkState!, component.SparkSprite);
         else
-            SetLayerVisible(sprite, component.SparksLayer, false);
+            UpdateLayer(sprite, component.SparksLayer, null, component.SparkSprite);
         PlayFlicker(uid, component, light);
     }
 
@@ -155,12 +155,22 @@ public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePo
 
     private void HideFlickerLayers(Entity<SpriteComponent> sprite, SunrisePoweredLightSparksComponent component)
     {
-        SetLayerVisible(sprite, component.Layer, false);
-        SetLayerVisible(sprite, component.SparksLayer, false);
+        UpdateLayer(sprite, component.Layer, null, component.SparkSprite);
+        UpdateLayer(sprite, component.SparksLayer, null, component.SparkSprite);
     }
 
-    private void UpdateLayer(Entity<SpriteComponent> sprite, string layerKey, string state, ResPath? fallbackRsi)
+    private void UpdateLayer(Entity<SpriteComponent> sprite, string layerKey, string? state, ResPath? fallbackRsi)
     {
+        if (state == null)
+        {
+            if (!SpriteSystem.LayerMapTryGet(sprite.AsNullable(), layerKey, out var layerIndex, false))
+                return;
+
+            SpriteSystem.LayerSetVisible(sprite.AsNullable(), layerIndex, false);
+            SpriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), layerIndex, false);
+            return;
+        }
+
         if (!TryGetSparkLayer(sprite, layerKey, out var layer))
             return;
 
@@ -209,12 +219,4 @@ public sealed class SunrisePoweredLightSparksSystem : VisualizerSystem<SunrisePo
         return true;
     }
 
-    private void SetLayerVisible(Entity<SpriteComponent> sprite, string layerKey, bool visible)
-    {
-        if (!SpriteSystem.LayerMapTryGet(sprite.AsNullable(), layerKey, out var layerIndex, false))
-            return;
-
-        SpriteSystem.LayerSetVisible(sprite.AsNullable(), layerIndex, visible);
-        SpriteSystem.LayerSetAutoAnimated(sprite.AsNullable(), layerIndex, visible);
-    }
 }
