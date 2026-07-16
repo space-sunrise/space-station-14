@@ -1,10 +1,13 @@
 using Content.Shared._Sunrise.SunriseCCVars;
+using System.Numerics;
 using Robust.Client.ComponentTrees;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
+using static Robust.Shared.Utility.SpriteSpecifier;
 
 namespace Content.Client._Sunrise.Shaders.Bloom;
 
@@ -21,6 +24,11 @@ public sealed class LightingOverlaySystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private static readonly ProtoId<ShaderPrototype> LightingOverlayShader = "SunriseLightingOverlay";
+    private static readonly SpriteSpecifier _pointMask = new Rsi(
+        new ResPath("_Sunrise/Effects/LightMasks/64.rsi"),
+        "light_point");
+    private static readonly Vector2 _pointOffset = new(0f, 0.45f);
+
     private EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
     private PointLightingOverlay? _pointOverlay;
     private ConfigurationMultiSubscriptionBuilder _configurationSubscriptions = default!;
@@ -72,8 +80,8 @@ public sealed class LightingOverlaySystem : EntitySystem
             _sprite,
             _transform,
             _bloomVisualsQuery,
-            BloomOverlayVisualsComponent.PointMask,
-            BloomOverlayVisualsComponent.PointOffset,
+            _pointMask,
+            _pointOffset,
             (int) DrawDepth.Effects,
             0.8f,
             0.05f,
