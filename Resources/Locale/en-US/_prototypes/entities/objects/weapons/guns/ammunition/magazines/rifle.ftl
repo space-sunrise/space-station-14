@@ -27,3 +27,5 @@ ent-MagazineRifleBoxIncendiary = L6 SAW magazine box (.20 rifle incendiary)
     .desc = { ent-MagazineRifleBox.desc }
 ent-MagazineRifleBoxUranium = L6 SAW magazine box (.20 rifle uranium)
     .desc = { ent-MagazineRifleBox.desc }
+ent-MagazineRifleBoxImprovised = L6 SAW magazine box (5.56mm improvised)
+    .desc = Box containing a 150-round belt of linked 5.56mm improvised rounds, used by light machine guns such as the L6.

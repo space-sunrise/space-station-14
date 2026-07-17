@@ -256,7 +256,7 @@
     - 0,0,4,0
   - type: Gun
     spread: 15
-    fireRate: 3
+    fireRate: 2.5
     projectileSpeed: 25
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi

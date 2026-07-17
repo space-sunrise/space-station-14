@@ -29,16 +29,16 @@
     TriggerMagnet: 1
     # Sunrise-start
     TriggerElectrovae: 0.1
-    TriggerChargedElectrovae: 0.05
-    TriggerHalon: 0.1
-    TriggerPluoxium: 0.1
-    TriggerBZ: 0.5
-    TriggerHealium: 0.5
-    TriggerNitrium: 0.5
-    TriggerZauker: 0.05
-    TriggerHydrogen: 0.05
-    TriggerProtoNitrate: 0.05
-    TriggerHelium: 1
+    TriggerChargedElectrovae: 0.04
+    TriggerHalon: 0.08
+    TriggerPluoxium: 0.08
+    TriggerBZ: 0.25
+    TriggerHealium: 0.15
+    TriggerNitrium: 0.15
+    TriggerZauker: 0.04
+    TriggerHydrogen: 0.5
+    TriggerProtoNitrate: 0.04
+    TriggerHelium: 0.08
     # Sunrise-end
 
 - type: xenoArchTrigger
