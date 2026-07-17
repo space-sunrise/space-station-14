@@ -44,6 +44,10 @@ uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Deagle Magazine
 uplink-pistol-magnum-magazine-desc = A 7-round single-stack pistol magazine loaded with SP rounds. Compatible with the Deagle.
+uplink-magazine-dragunov-ap-name = Dragunov Magazine (AP)
+uplink-magazine-dragunov-ap-desc = A 10-round magazine for the Dragunov, loaded with 7.62x54R armor-piercing rounds.
+uplink-magazine-dragunov-uranium-name = Dragunov Magazine (Uranium)
+uplink-magazine-dragunov-uranium-desc = A 10-round magazine for the Dragunov, loaded with 7.62x54R uranium rounds.
 uplink-improvised-magnum-name = Bulk ammunition boxes (.45 magnum improvised)
 uplink-pirate-ammo-cannonball-mini-name = Bulk mini cannonball magazines
 uplink-pirate-ammo-chaingun-name = Bulk chaingun ammo drums
@@ -107,6 +111,10 @@ uplink-clothing-murder-socks-name = Murder Socks
 uplink-clothing-murder-socks-desc = For the agent who truly understands style.
 uplink-clothing-chameleon-silent-name = Silent shoes
 uplink-clothing-chameleon-silent-desc = Specialized shoes designed for silent movement. Every step disappears into the void.
+uplink-clothing-belt-syndicate-utility-name = Syndicate Utility Belt
+uplink-clothing-belt-syndicate-utility-desc = A toolbelt that passes a glance, but feels too deliberate in the hand.
+uplink-clothing-belt-syndicate-utility-chameleon-name = Chameleon Syndicate Utility Belt
+uplink-clothing-belt-syndicate-utility-chameleon-desc = A toolbelt for agents who prefer their equipment to look ordinary until it matters.
 uplink-syndie-maid-raid-name = Maid Raider
 uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female agents, yet for some reason only men ever wear it.
 
@@ -114,6 +122,8 @@ uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female 
 
 uplink-clothing-backpack-syndie-aj100-name = AJ-100 SMG Kit
 uplink-clothing-backpack-syndie-aj100-desc = Includes an AJ-100 submachine gun and two magazines.
+uplink-type88-amr-name = Type 88 AMR Case
+uplink-type88-amr-desc = A secure case containing a Type 88 anti-materiel rifle and two 15mm magazines.
 uplink-weapon-syndie-laser-pistol-name = SAM-300
 uplink-clothing-backpack-syndie-dl6902-name = DL6902 Kit
 uplink-clothing-backpack-syndie-dl6902-desc = Includes a DL6902 machine gun and one magazine.
@@ -173,6 +183,8 @@ uplink-xeno-artifact-throwing-auto-injector-name = Artifact throwing Auto-Inject
 uplink-xeno-artifact-throwing-auto-injector-desc = A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
 uplink-roboticist-nuclear-operative-id-card-name = Roboticist operative ID card
 uplink-roboticist-nuclear-operative-id-card-desc = A roboticist ID card with standard job access and additional Syndicate access.
+uplink-med-hypospray-name = Hacked Medical Hypospray
+uplink-med-hypospray-desc = A sterile injector for rapid administration of medicine to patients. It used to contain an internal toxin filter. Now it does not.
 
 ## Implants
 
@@ -315,6 +327,10 @@ uplink-quadling-bundle-desc = A bundle crate for assembling the BAL-15-4 "Quadli
 
 uplink-contortionist-jumpsuit-name = Contortionist's Jumpsuit
 uplink-contortionist-jumpsuit-desc = It looks like an atmos jumpsuit, but it really is. This jumpsuit allows the agent to slip through the vents.
+uplink-heavy-cleanade-name = Deep Cleaning Grenade
+uplink-heavy-cleanade-desc = A cleaning grenade filled with an extremely caustic chemical that looks just like ordinary cleaning foam.
+uplink-cane-shotgun-name = Cane Shotgun
+uplink-cane-shotgun-desc = A cane with a hidden single-shot shotgun. Comes in a box with spare intoxicating shells.
 uplink-marriage-axe-name = Marriage axe
 uplink-marriage-axe-desc = A charming subtle instrument of chaosâ€”perfect for when diplomacy fails. Screams like a banshee, cuts like a demon, and turns people into regrettable memories. Handle with enthusiasm.
 uplink-mini-energy-crossbow-name = mini energy crossbow

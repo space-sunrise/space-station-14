@@ -351,8 +351,6 @@
     sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
   - type: Clothing
     sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
-  #- type: PointLight
-    #color: "#880808"
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
@@ -367,6 +365,20 @@
         Heat: 0.9
   - type: FlashImmunity
   - type: EyeProtection
+  - type: ActivatableUI
+    requireActiveHand: false
+    inHandsOnly: false
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WiredNetworkConnection
+  - type: SurveillanceCameraMonitor
 
 #Goliath Hardsuit
 - type: entity
