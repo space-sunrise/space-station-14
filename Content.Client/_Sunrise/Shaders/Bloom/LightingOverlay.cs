@@ -68,6 +68,7 @@ public sealed class PointLightingOverlay : Overlay
             _bloomVisualsQuery,
             _sprite,
             _transform,
+            visibleArea,
             visibleArea.Center);
         _lightTree.QueryAabb(ref queryState, CollectBloomLight, args.MapId, visibleArea);
         return _visibleLights.Count > 0;
@@ -81,6 +82,7 @@ public sealed class PointLightingOverlay : Overlay
         var handle = args.WorldHandle;
 
         _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+        _shader.SetParameter("LIGHT_TEXTURE", args.Viewport.LightRenderTarget.Texture);
         _shader.SetParameter("base_haze", _baseHaze);
         _shader.SetParameter("haze_divisor", _hazeDivisor / BloomStrength);
         handle.UseShader(_shader);
@@ -108,6 +110,9 @@ public sealed class PointLightingOverlay : Overlay
 
         var (pointLight, transform) = lightEntry;
         var (worldPosition, _, worldMatrix) = queryState.Transform.GetWorldPositionRotationMatrix(transform);
+        if (!queryState.VisibleArea.Contains(worldPosition))
+            return true;
+
         var distanceSquared = Vector2.DistanceSquared(worldPosition, queryState.ViewCenter);
         var replacementIndex = -1;
 
@@ -162,6 +167,7 @@ public sealed class PointLightingOverlay : Overlay
         EntityQuery<BloomOverlayVisualsComponent> BloomVisualsQuery,
         SpriteSystem Sprite,
         TransformSystem Transform,
+        Box2 VisibleArea,
         Vector2 ViewCenter);
 
     private readonly record struct BloomMaskKey(SpriteSpecifier Sprite, Vector2 Offset);
