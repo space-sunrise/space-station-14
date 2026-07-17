@@ -84,7 +84,7 @@ public sealed class LightingOverlaySystem : EntitySystem
 
     private void OnBloomStrengthChanged(float strength)
     {
-        _bloomStrength = Math.Clamp(strength, 0f, 1f);
+        _bloomStrength = Math.Clamp(strength, 0f, 2f);
         if (_bloomOverlay is { } overlay)
             overlay.BloomStrength = _bloomStrength;
     }

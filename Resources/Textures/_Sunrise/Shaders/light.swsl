@@ -1,5 +1,4 @@
 uniform sampler2D SCREEN_TEXTURE;
-uniform sampler2D LIGHT_TEXTURE;
 uniform lowp float base_haze;
 uniform lowp float haze_divisor;
 
@@ -49,10 +48,6 @@ void fragment() {
             result += blur_sample(blur_offset(sample_index, step), UV.xy, FRAGCOORD.xy, ring + 1);
         }
     }
-
-    lowp vec3 light_sample = texture2D(LIGHT_TEXTURE, FRAGCOORD.xy * SCREEN_PIXEL_SIZE).rgb;
-    lowp float light_intensity = max(max(light_sample.r, light_sample.g), light_sample.b);
-    result.a *= smoothstep(0.02, 0.2, light_intensity);
 
     COLOR = add_haze(result, 0.2);
 }
