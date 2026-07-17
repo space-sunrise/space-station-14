@@ -16,3 +16,5 @@ ent-CartridgeRifleUranium = патрон (5,56мм урановый)
     .desc = { ent-BaseCartridgeRifle.desc }
 ent-CartridgeRifle = патрон (5,56мм)
     .desc = { ent-BaseCartridgeRifle.desc }
+ent-CartridgeRifleImprovised = самодельный патрон (5,56мм)
+    .desc = Самодельный винтовочный патрон 5,56мм с грубым стальным сердечником и избытком фосфора за ним.

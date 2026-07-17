@@ -36,6 +36,7 @@ role-subtype-wizard = Wizard
 role-subtype-xenoborg = Xenoborg
 role-subtype-xenoborg-core = Xenoborg Core
 role-subtype-changeling = Changeling
+role-subtype-prisoner = Prisoner
 role-type-corporate-aligned-name = Corporate Aligned
 role-type-corporate-aligned-color = #134975
 role-type-corporate-aligned-alternate-color = #1b67a5
