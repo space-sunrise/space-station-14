@@ -91,6 +91,28 @@
 - type: entity
   parent: Ampula
   name: Ampula
+  id: AmpulaCombat
+  suffix: Combat
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 20
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 3.75
+        - ReagentId: Omnizine
+          Quantity: 3.75
+        - ReagentId: Saline
+          Quantity: 3.75
+        - ReagentId: Rororium
+          Quantity: 5
+        - ReagentId: Dermaline
+          Quantity: 3.75
+
+- type: entity
+  parent: Ampula
+  name: Ampula
   id: AmpulaTric
   suffix: Tricordrazine
   components:

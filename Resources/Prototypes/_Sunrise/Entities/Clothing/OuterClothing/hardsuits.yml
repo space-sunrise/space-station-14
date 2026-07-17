@@ -1,6 +1,18 @@
 - type: entity
+  id: HardsuitSlotAmpulaCombat
   abstract: true
-  id: BaseSunrisePirateHardsuitAmpula
+  components:
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        startingItem: AmpulaCombat
+        whitelist:
+          tags:
+          - FitsHardsuit
+
+- type: entity
+  abstract: true
+  id: HardsuitSlotAmpulaPirate
   components:
   - type: ItemSlots
     slots:
@@ -330,7 +342,7 @@
 #Pirate YARRRR!!
 #Pirate Hardsuit
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPirate
   name: ancient hardsuit
   suffix: Pirate
@@ -366,7 +378,7 @@
     price: 0
 
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPirateCapSun
   name: pirate captain's hardsuit
   suffix: Pirate
@@ -402,7 +414,7 @@
     price: 0
 
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPrivateer
   name: freelance hardsuit
   suffix: Pirate
@@ -449,7 +461,7 @@
     price: 0
 
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitPrivateerArmored
   name: armored freelance hardsuit
   suffix: Pirate
@@ -1070,7 +1082,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi
 
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateBlackbeard
   name: blackbeard hardsuit
   suffix: Pirate
@@ -1111,7 +1123,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateDavyJones
   name: davy jones hardsuit
   suffix: Pirate
@@ -1202,7 +1214,7 @@
           - FitsMurmilloHardsuit
 
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateBuccaneer
   name: buccaneer hardsuit
   suffix: Pirate
@@ -1243,7 +1255,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ BaseSunrisePirateHardsuitAmpula, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitPirateSwashbuckler
   name: swashbuckler hardsuit
   suffix: Pirate
