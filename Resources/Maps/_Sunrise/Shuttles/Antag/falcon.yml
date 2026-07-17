@@ -660,7 +660,7 @@ entities:
       - 534
     - type: Fixtures
       fixtures: {}
-- proto: AirlockExternalGlassShuttleSyndicateLocked
+- proto: AirlockExternalGlassShuttlePirateLocked
   entities:
   - uid: 3
     components:
@@ -686,7 +686,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 9.5,-16.5
       parent: 1
-- proto: AirlockHatchSyndicateLocked
+- proto: AirlockHatchPirateLocked
   entities:
   - uid: 9
     components:
@@ -4539,7 +4539,7 @@ entities:
     - type: Transform
       pos: 3.5297904,-7.3595576
       parent: 1
-- proto: VendingMachineWallMedicalCivilian
+- proto: VendingMachineWallMedicalCivilianSyndicate
   entities:
   - uid: 102
     components:

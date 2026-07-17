@@ -1067,6 +1067,7 @@ SpawnMobRogueSiliconGuardian: SpawnMobRogueSiliconBossGuardian
 SpawnMobRogueSiliconGuardianLCG: SpawnMobRogueSiliconBossGuardianLCG
 SpawnMobRogueSiliconTerminator: SpawnMobRogueSiliconT3Terminator
 HyposprayERT: Hypospray
+BoxErtLeaderKit: BoxErtBaseKit
 # 2026-06-24
 JugBicaridineSunrise: JugBicaridine
 JugDermalineSunrise: JugDermaline
