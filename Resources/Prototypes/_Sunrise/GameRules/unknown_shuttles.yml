@@ -11,7 +11,7 @@
     gridPath: "/Maps/_Sunrise/Shuttles/DSO/ERT/ERT-Small-Amber.yml"
 
 - type: entity
-  id: ERTShuttleSmallRed
+  id: ERTShuttleInstaSquad
   parent: BaseUnknownShuttleRule
   components:
   - type: StationEvent

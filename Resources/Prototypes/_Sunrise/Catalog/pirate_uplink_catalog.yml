@@ -2253,6 +2253,11 @@
     Doubloon: 5
   categories:
   - UplinkPirateAllies
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateBorgSyndicateDerelict

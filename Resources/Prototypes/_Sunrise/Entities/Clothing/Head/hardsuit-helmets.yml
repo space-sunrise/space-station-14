@@ -1,4 +1,85 @@
 - type: entity
+  id: BaseSunriseHardsuitHelmetNVD
+  abstract: true
+  components:
+  - type: UseDelay
+    delay: 3
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionCyan
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionCyan
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionGreen
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionGreen
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionWhite
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionWhite
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionMint
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionMint
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionPurple
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionPurple
+
+- type: entity
+  id: SunriseHardsuitHelmetNightVisionSyndie
+  abstract: true
+  components:
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: NightVision
+      effect: EffectNightVisionSyndie
+
+- type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCBURNLeader
   categories: [ HideSpawnMenu ]
@@ -342,7 +423,7 @@
         Caustic: 0.9
 
 - type: entity
-  parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
+  parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitInfiltration
   categories: [ HideSpawnMenu ]
   name: syndicate infiltration hardsuit helmet
@@ -351,6 +432,37 @@
     sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
   - type: Clothing
     sprite: _Starlight/Objects/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  - type: UseDelay
+    delay: 3
+  - type: ToggleClothing
+    action: NVDToggleAction
+    mustEquip: true
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+      - type: NightVision
+        effect: EffectNightVisionSyndie
+  - type: PowerCellDraw
+    drawRate: 2
+    useCharge: 20
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 6
+    autoRechargePauseTime: 1
+  - type: ItemToggle
+    predictable: false
+    onUse: false
+    canActivateInhand: false
+    soundActivate:
+      path: /Audio/_Sunrise/Items/Goggles/activate.ogg
+    soundDeactivate:
+      path: /Audio/_Sunrise/Items/Goggles/deactivate.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+  - type: ToggleCellDraw
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
