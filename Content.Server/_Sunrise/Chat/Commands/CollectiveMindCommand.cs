@@ -4,11 +4,13 @@ using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 
-namespace Content.Server.Chat.Commands
+namespace Content.Server._Sunrise.Chat.Commands
 {
     [AnyCommand]
     internal sealed class CollectiveMindCommand : IConsoleCommand
     {
+        [Dependency] private readonly ChatSystem _chatSystem = default!;
+
         public string Command => "cmsay";
         public string Description => "Send chat messages to the collective mind.";
         public string Help => "cmsay <text>";
@@ -24,7 +26,7 @@ namespace Content.Server.Chat.Commands
             if (player.Status != SessionStatus.InGame)
                 return;
 
-            if (player.AttachedEntity is not {} playerEntity)
+            if (player.AttachedEntity is not { } playerEntity)
             {
                 shell.WriteError("You don't have an entity!");
                 return;
@@ -37,7 +39,7 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            EntitySystem.Get<ChatSystem>().TrySendInGameICMessage(playerEntity, message, InGameICChatType.CollectiveMind, ChatTransmitRange.Normal);
+            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.CollectiveMind, ChatTransmitRange.Normal);
         }
     }
 }
