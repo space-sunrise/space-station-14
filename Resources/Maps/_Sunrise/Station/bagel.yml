@@ -21756,7 +21756,6 @@ entities:
       - 12941
       - 12929
       - 12930
-      - 534
     - type: Fixtures
       fixtures: {}
   - uid: 86
@@ -25444,17 +25443,6 @@ entities:
       pos: -32.5,53.5
       parent: 2
     - type: DeviceNetwork
-      deviceLists:
-      - 85
-  - uid: 534
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -33.5,61.5
-      parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 85
   - uid: 535

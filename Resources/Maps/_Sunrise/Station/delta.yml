@@ -32740,7 +32740,6 @@ entities:
       devices:
       - 25569
       - 25332
-      - 825
     - type: Fixtures
       fixtures: {}
   - uid: 126
@@ -38307,16 +38306,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 19844
-  - uid: 825
-    components:
-    - type: Transform
-      pos: 29.5,78.5
-      parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 125
   - uid: 826
     components:
     - type: Transform
@@ -119787,9 +119776,6 @@ entities:
       pos: 46.47394,-30.306025
       parent: 2
     - type: UserInterface
-      actors:
-        enum.StorageUiKey.Key:
-        - invalid
     - type: GroupExamine
       group:
       - hoverMessage: ""
