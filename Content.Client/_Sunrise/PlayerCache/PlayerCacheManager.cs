@@ -53,8 +53,6 @@ public sealed class PlayerCacheManager
             Pet = _cfg.GetCVar(SunriseCCVars.SponsorPet),
             EmoteVisibility = _cfg.GetCVar(InteractionsCVars.EmoteVisibility),
         };
-        var sync = new MsgPlayerCacheSync { Cache = data };
-        _netManager.ClientSendMessage(sync);
         SetCache(data);
     }
 
@@ -62,6 +60,8 @@ public sealed class PlayerCacheManager
     public void SetCache(PlayerCacheData data)
     {
         _cache = data;
+        var sync = new MsgPlayerCacheSync { Cache = data };
+        _netManager.ClientSendMessage(sync);
         CacheChanged?.Invoke();
     }
 
