@@ -582,5 +582,22 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
         CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
 
+    /// <summary>
+    /// Whether lobby TTS is enabled for sponsors.
+    /// </summary>
+    public static readonly CVarDef<bool> SponsorLobbyTtsEnabled =
+        CVarDef.Create("sponsor.lobby_tts_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether TTS is enabled for other players' messages in the lobby.
+    /// </summary>
+    public static readonly CVarDef<bool> TTSLobbyOthersEnabled =
+        CVarDef.Create("tts.lobby_others_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether TTS is enabled for messages in admin chat.
+    /// </summary>
+    public static readonly CVarDef<bool> TTSAdminChatEnabled =
+        CVarDef.Create("tts.admin_chat_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
 }
