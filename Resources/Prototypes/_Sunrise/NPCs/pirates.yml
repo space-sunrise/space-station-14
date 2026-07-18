@@ -230,7 +230,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 125
+    damageCap: 115
   - type: Stamina
     baseCritThreshold: 150
   - type: DamageStateVisuals
@@ -2521,8 +2521,6 @@
     - Dead
   - type: SpawnOnTrigger
     proto: MobPirateT2RevolverCutlass
-  - type: GibOnTrigger
-    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -3474,7 +3472,7 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 2
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRFMJ
+    proto: CartridgeHeavyRifleRSP
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 9
@@ -4287,8 +4285,6 @@
     - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobPirateT3Revolver
-  - type: GibOnTrigger
-    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:
