@@ -146,3 +146,18 @@
         - id: JetpackMiniFilled
           prob: 0.6
         - id: ClothingShoesBootsMagPirate
+
+#Chameleon hardsuit
+- type: entity
+  id: SuitStorageSyndieChameleon
+  parent: SuitStorageBase
+  suffix: Syndicate Chameleon
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: JetpackBlackFilled
+        - id: BoxHardsuitChameleon

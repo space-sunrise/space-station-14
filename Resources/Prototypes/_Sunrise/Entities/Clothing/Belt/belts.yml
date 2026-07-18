@@ -301,6 +301,39 @@
       # - 12,0,13,1 #Без второго 2на2
 
 - type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltSyndicateUtility
+  name: utility belt
+  description: A reinforced utility belt with hidden tactical webbing under a common toolbelt shell.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/utility.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/utility.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingBeltSyndicateUtility, BaseChameleon]
+  id: ClothingBeltSyndicateUtilityChameleon
+  name: chameleon syndicate utility belt
+  description: A reinforced utility belt with hidden tactical webbing and embedded chameleon projectors.
+  suffix: Chameleon
+  components:
+  - type: Tag
+    tags: []
+  - type: ChameleonClothing
+    slot: [belt]
+    default: ClothingBeltSyndicateUtility
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: ClothingAbductorBelt
   name: abductor belt
