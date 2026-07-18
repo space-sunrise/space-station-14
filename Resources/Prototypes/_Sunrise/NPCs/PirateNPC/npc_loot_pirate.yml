@@ -1182,9 +1182,6 @@
       prob: 0.15
     - id: PKAUpgradeFireRate
       prob: 0.15
-    - id: ClothingNeckCloakPirateCap
-      prob: 0.75
-      orGroup: SalvHardPool
     - id: ClothingHeadHelmetPirate
       prob: 0.15
       orGroup: SalvHardPool
@@ -1195,13 +1192,22 @@
       prob: 0.15
       orGroup: SalvHardPool
     - id: ClothingOuterEVASuitPirate
-      prob: 0.05
+      prob: 0.2
+      orGroup: SalvHardPool
+    - id: ClothingOuterArmorBasic
+      prob: 0.2
       orGroup: SalvHardPool
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.01
       orGroup: SalvHardPool
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.25
+      orGroup: SalvHardPool
     - id: ClothingOuterEVASuitPirateArmored
       prob: 0.01
+      orGroup: SalvHardPool
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
       orGroup: SalvHardPool
     # Items
     - id: LootSpawnerMaterialsSurplus
@@ -1245,6 +1251,8 @@
       prob: 0.4
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.05
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
     # Bonus Loot T1
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -1458,6 +1466,8 @@
       amount: 3
       prob: 0.5
     # Items
+    - id: ClothingOuterHardsuitMurmillo
+      prob: 0.15
     - id: PirateMedSpawner03
     # Bonus Loot T2
     - id: PirateAmpulaSpawnerT2
@@ -1608,6 +1618,8 @@
       prob: 0.25
     - id: ClothingOuterHardsuitPrivateerArmored
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerArmoredDamaged
+      prob: 0.4
     # Bonus Loot T2
     - id: PirateAmpulaSpawnerT2
     - id: Doubloon1
@@ -1888,9 +1900,6 @@
     - id: MagazinePistolSubMachineGunImprovisedFilled
       prob: 0.4
     # Armor
-    - id: ClothingNeckCloakPirateCap
-      prob: 0.25
-      orGroup: SalvHardPool2
     - id: ClothingHeadHelmetPirate
       prob: 0.5
       orGroup: SalvHardPool2
@@ -1903,11 +1912,20 @@
     - id: ClothingOuterEVASuitPirate
       prob: 0.2
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.05
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmored
       prob: 0.05
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
       orGroup: SalvHardPool2
     # Items
     - id: PirateMedSpawner03
@@ -2360,16 +2378,16 @@
     - id: CombatKnife
       prob: 0.15
     - id: WeaponLauncherM79
-      prob: 0.3
-      orGroup: Grenadier
-    - id: WeaponLauncherM79Biocode
       prob: 0.5
       orGroup: Grenadier
+    - id: WeaponLauncherM79Biocode
+      prob: 0.25
+      orGroup: Grenadier
     - id: BriefcaseWeaponM79Filled
-      prob: 0.20
+      prob: 0.25
       orGroup: Grenadier
     - id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-      prob: 0.2
+      prob: 0.1
       orGroup: Grenadier
     # Items
     - id: GrenadeBlastTimer
@@ -2421,10 +2439,10 @@
       prob: 0.05
       orGroup: dragunovPool
     - id: WeaponSniperDragunov
-      prob: 0.3
+      prob: 0.5
       orGroup: dragunovPool
     - id:  WeaponSniperDragunovBiocode
-      prob: 0.6
+      prob: 0.5
       orGroup: dragunovPool
     # Items
     - id: MagazineDragunovSP
@@ -2676,11 +2694,20 @@
     - id: ClothingOuterEVASuitPirate
       prob: 0.2
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.05
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmored
       prob: 0.05
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
       orGroup: SalvHardPool2
     # Bonus Loot
     - id: PirateGrenadeSpawnerT1Veteran
@@ -2727,11 +2754,20 @@
     - id: ClothingOuterEVASuitPirate
       prob: 0.2
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.05
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmored
       prob: 0.05
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
       orGroup: SalvHardPool2
     # ORE
     - id: SteelOre
@@ -2808,6 +2844,8 @@
     # Armor
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: PirateGrenadeSpawnerT3
@@ -2923,11 +2961,20 @@
     - id: ClothingOuterEVASuitPirate
       prob: 0.2
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.05
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmored
       prob: 0.05
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
       orGroup: SalvHardPool2
     # Bonus Loot T1
     - id: Doubloon1
@@ -3006,6 +3053,9 @@
     - id: ClothingOuterHardsuitScaf
       prob: 0.05
       orGroup: ScafPool
+    - id: ClothingOuterHardsuitScafDamaged
+      prob: 0.4
+      orGroup: ScafPool
     - id: ClothingBeltMercWebbing
       prob: 0.25
       orGroup: ScafPool
@@ -3075,11 +3125,20 @@
     - id: ClothingOuterEVASuitPirate
       prob: 0.2
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.05
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmored
       prob: 0.05
+      orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
       orGroup: SalvHardPool2
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
@@ -3137,11 +3196,20 @@
     - id: ClothingOuterEVASuitPirateArmored
       prob: 0.25
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterEVASuitPirateArmoredAlt
       prob: 0.25
       orGroup: SalvHardPool2
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
+      orGroup: SalvHardPool2
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+      orGroup: SalvHardPool2
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
       orGroup: SalvHardPool2
     # Bonus Loot T1
     - id: Doubloon1
@@ -3192,6 +3260,8 @@
       prob: 0.25
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: PirateGrenadeSpawnerT3
@@ -3244,6 +3314,8 @@
       prob: 0.25
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3287,6 +3359,8 @@
       prob: 0.25
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
     - id: BolaSyndicateDespawn
       prob: 0.9
     - id: BolaSyndicateDespawn
@@ -3333,13 +3407,13 @@
     - id: EnergyCutlass
       prob: 0.8
     - id: BrokenEnergyShield
-      prob: 0.8
+      prob: 0.5
       orGroup: EnergyShieldPool
     - id: EnergyShieldBiocode
       prob: 0.5
       orGroup: EnergyShieldPool
     - id: EnergyShield
-      prob: 0.8
+      prob: 0.75
       orGroup: EnergyShieldPool
     - id: SunriseEnergyShield
       prob: 0.2
@@ -3360,6 +3434,8 @@
       prob: 0.25
     - id: ClothingOuterHardsuitPrivateerArmored
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerArmoredDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3397,16 +3473,16 @@
     - id: PirateCashSpawner03
     # Weapons
     - id: WeaponLightMachineGunL6
-      prob: 0.05
+      prob: 0.5
       orGroup: WeaponMGPool
     - id: WeaponLightMachineGunL6Biocode
-      prob: 0.20
+      prob: 0.5
       orGroup: WeaponMGPool
     - id: MagazineRifleBoxSP
-      prob: 0.75
+      prob: 0.15
       orGroup: WeaponMGPool
     - id: MagazineRifleBoxFMJ
-      prob: 0.5
+      prob: 0.15
       orGroup: WeaponMGPool
     # Items
     - id: MagazineBoxRifleBig
@@ -3432,6 +3508,8 @@
       prob: 0.05
     - id: ClothingOuterHardsuitScaf
       prob: 0.05
+    - id: ClothingOuterHardsuitScafDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3489,6 +3567,8 @@
       prob: 0.4
     - id: ClothingOuterHardsuitPrivateerArmored
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerArmoredDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3519,17 +3599,20 @@
     - id: PirateCashSpawner03
     # Weapons
     - id: WeaponSyndieLaserGun
-      prob: 0.15
+      prob: 0.3
       orGroup: LaserGunPool
     - id: WeaponSyndieLaserGunBiocode
-      prob: 0.75
+      prob: 0.3
       orGroup: LaserGunPool
     - id: WeaponLaserCannon
+      prob: 0.3
       orGroup: LaserGunPool
     # Items
     - id: PirateMedSpawner03
     - id: ClothingOuterHardsuitPrivateerArmored
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerArmoredDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3574,14 +3657,17 @@
     - id: PirateCashSpawner03
     # Weapons
     - id: WeaponSubMachineGunC40r
-      prob: 0.15
+      prob: 0.4
       orGroup: SMG40Pool
     - id: WeaponSubMachineGunC40rBiocode
+      prob: 0.5
       orGroup: SMG40Pool
     # Items
     - id: PirateMedSpawner03
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3649,6 +3735,8 @@
       prob: 0.25
     - id: ClothingOuterHardsuitPrivateerArmored
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerArmoredDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3709,6 +3797,8 @@
     - id: PirateMedSpawner03
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.05
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
     # Bonus Loot T3
     - id: PirateAmpulaSpawnerT3
     - id: Doubloon5
@@ -3820,8 +3910,6 @@
       prob: 0.5
     - id: Tourniquet
       prob: 0.25
-    - id: ClothingOuterHardsuitPrivateer
-      prob: 0.05
     # Bonus Loot T4
     - id: PirateGrenadeSpawnerSmoke
       prob: 0.05
@@ -3871,8 +3959,14 @@
     - id: ClothingOuterHardsuitPrivateerArmored
       prob: 0.05
       orGroup: EvaHelmPool
+    - id: ClothingOuterHardsuitPrivateerArmoredDamaged
+      prob: 0.4
+      orGroup: EvaHelmPool
     - id: ClothingOuterHardsuitPrivateer
       prob: 0.2
+      orGroup: EvaHelmPool
+    - id: ClothingOuterHardsuitPrivateerDamaged
+      prob: 0.4
       orGroup: EvaHelmPool
     - id: ClothingHeadHelmetPirateAlt
       orGroup: EvaHelmPool
@@ -3880,7 +3974,13 @@
       orGroup: EvaHelmPool
     - id: ClothingOuterEVASuitPirateArmoredAlt
       orGroup: EvaPiratePool
+    - id: ClothingOuterEVASuitPirateArmoredAltDamaged
+      prob: 0.4
+      orGroup: EvaPiratePool
     - id: ClothingOuterEVASuitPirateArmored
+      orGroup: EvaPiratePool
+    - id: ClothingOuterEVASuitPirateArmoredDamaged
+      prob: 0.4
       orGroup: EvaPiratePool
     # Cyber
     - id: CyberEyeNightVisionBox
@@ -3964,6 +4064,8 @@
       prob: 0.5
     - id: ClothingUniformJumpsuitGladiator
       prob: 0.5
+    - id: ClothingOuterHardsuitMurmillo
+      prob: 0.15
     - id: WeaponCrusherBroadAxe
       prob: 0.7
     # Bonus Loot T3

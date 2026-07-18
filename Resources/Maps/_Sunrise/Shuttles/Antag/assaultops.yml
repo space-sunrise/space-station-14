@@ -5098,7 +5098,7 @@ entities:
       pos: 7.5,-14.5
       parent: 1
     - type: CMExplosionEffect
-- proto: SuitStorageSyndie
+- proto: SuitStorageSyndieChameleon
   entities:
   - uid: 26
     components:

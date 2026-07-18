@@ -2,6 +2,8 @@
 store-category-debug = debug category
 store-category-debug2 = debug category 2
 store-category-weapons = Weaponry
+store-category-melee-weapons = Melee weaponry
+store-category-ranged-weapons = Ranged weaponry
 store-category-ammo = Ammo
 store-category-explosives = Explosives
 store-category-chemicals = Chemicals
@@ -11,6 +13,7 @@ store-category-implants = Implants
 store-category-allies = Allies
 store-category-job = Job
 store-category-wearables = Wearables
+store-category-armor-protection = Armor protection
 store-category-pointless = Pointless
 store-discounted-items = Discounts
 

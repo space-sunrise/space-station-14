@@ -16,3 +16,5 @@ ent-CartridgeRifleUranium = cartridge (.20 rifle uranium)
     .desc = { ent-BaseCartridgeRifle.desc }
 ent-CartridgeRifle = cartridge (.20 rifle)
     .desc = { ent-BaseCartridgeRifle.desc }
+ent-CartridgeRifleImprovised = improvised cartridge (5.56mm)
+    .desc = A handmade 5.56mm rifle round with a rough steel core and too much phosphorus packed behind it.
