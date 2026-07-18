@@ -39,12 +39,22 @@ public sealed class EmojiTag : IMarkupTagHandler
             _spriteSystem ??= _entitySystemManager.GetEntitySystem<SpriteSystem>();
             var state = _spriteSystem.RsiStateLike(spriteSpec);
 
+            var size = 50;
+            if (node.Attributes.TryGetValue("size", out var sizeParameter))
+            {
+                var val = sizeParameter.LongValue;
+                if (val.HasValue && val.Value > 0 && val.Value <= int.MaxValue)
+                {
+                    size = (int) val.Value;
+                }
+            }
+
             if (state.IsAnimated)
             {
                 var animatedRect = new AnimatedTextureRect
                 {
-                    MinWidth = 50,
-                    MinHeight = 50,
+                    MinWidth = size,
+                    MinHeight = size,
                     HorizontalAlignment = Control.HAlignment.Stretch,
                     VerticalAlignment = Control.VAlignment.Stretch,
                     HorizontalExpand = true,
@@ -62,8 +72,8 @@ public sealed class EmojiTag : IMarkupTagHandler
                 var textureRect = new TextureRect
                 {
                     Texture = texture,
-                    MinWidth = 50,
-                    MinHeight = 50,
+                    MinWidth = size,
+                    MinHeight = size,
                     HorizontalAlignment = Control.HAlignment.Stretch,
                     VerticalAlignment = Control.VAlignment.Stretch,
                     Stretch = TextureRect.StretchMode.KeepAspectCentered,
