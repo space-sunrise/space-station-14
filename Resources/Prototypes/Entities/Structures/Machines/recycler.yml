@@ -91,17 +91,26 @@
   - type: Rotatable
   - type: Repairable
     doAfterDelay: 5 # Sunrise-Edit
+    
   - type: Destructible
     thresholds:
-    - trigger:
+    - trigger: # Excess damage, don't do anything
         !type:DamageTrigger
         damage: 300
       behaviors:
-      - !type:DoActsBehavior
-        acts: ["Breakage"]
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalBreak
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:EjectVendorItems
+
   - type: InteractionPopup
     successChance: 1.0
     interactSuccessString: petting-success-recycler
