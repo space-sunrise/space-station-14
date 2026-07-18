@@ -42,6 +42,100 @@
   - type: Explosive
     maxTileBreak: 0
 
+- type: entity
+  id: SunriseBulletDisposableTrainingRocket
+  name: training rocket
+  parent: BulletWeakRocket
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 1.5, 1.5
+    layers:
+    - state: smallfrag
+
+- type: entity
+  id: SunriseBulletDisposableEmpRocket
+  name: EMP rocket
+  parent: BulletWeakRocket
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 1.5, 1.5
+    layers:
+    - state: smallfrag
+  - type: EmpOnTrigger
+    range: 6.5
+    energyConsumption: 50000
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  id: SunriseBulletDisposableSmokeRocket
+  name: smoke rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    rotation: -90
+    layers:
+    - state: rocket60mm
+  - type: SmokeOnTrigger
+    duration: 30
+    spreadAmount: 50
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
+  - type: DeleteOnTrigger
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: gray
+    energy: 0.5
+
+- type: entity
+  id: SunriseBulletDisposableIncendiaryRocket
+  name: thermobaric rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    rotation: -90
+    layers:
+    - state: rocket60mm
+  - type: SmokeOnTrigger
+    duration: 30
+    spreadAmount: 60
+    solution:
+      reagents:
+      - ReagentId: PolytrinicAcid
+        Quantity: 30
+      - ReagentId: Napalm
+        Quantity: 60
+      - ReagentId: Phlogiston
+        Quantity: 10
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 0.01
+    intensitySlope: 1
+    maxIntensity: 0.01
+    tileBreakScale: 0.01
+  - type: DeleteOnTrigger
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
 # region Sunrise ION
 - type: entity
   id: BulletAcid2
@@ -113,7 +207,7 @@
   - type: RadarBlip
     color: "#55B8FF"
     scale: 1.1
-    shape: Circle # Sunrise-Edit
+    shape: Circle
     requireInSpace: true
 
 - type: entity
@@ -144,7 +238,7 @@
   - type: RadarBlip
     color: "#339CFF"
     scale: 1.35
-    shape: Circle # Sunrise-Edit
+    shape: Circle
     requireInSpace: true
   - type: ContainerContainer
     containers:
@@ -201,11 +295,11 @@
   - type: RadarBlip
     color: "#2F8BFF"
     scale: 1.25
-    shape: Circle # Sunrise-Edit
+    shape: Circle
     requireInSpace: true
 
 - type: entity
-  id: TeslaGunBulletOrion # Sunrise-Add
+  id: TeslaGunBulletOrion
   parent: TeslaGunBullet
   categories: [ HideSpawnMenu ]
   components:
@@ -412,7 +506,7 @@
   - type: SmokeOnTrigger
     keysIn:
     - timer
-    duration: 45 # Sunrise-Edit
+    duration: 45
     spreadAmount: 50
   - type: Ammo
     muzzleFlash: null
@@ -585,7 +679,7 @@
     keysIn:
     - timer
     sound:
-      path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
+      path: "/Audio/_Sunrise/flashbang.ogg"
       params:
         volume: 20
   - type: SpawnOnTrigger
@@ -1075,6 +1169,20 @@
     scale: 0.3
     shape: Triangle
     requireInSpace: true
+
+- type: entity
+  id: BulletAntiMaterielHP
+  name: bullet (15mm hollow point)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 75
+        Slash: 20
+  - type: StaminaDamageOnCollide
+    damage: 40
 
 - type: entity
   id: BulletGrenadeFragArtillery

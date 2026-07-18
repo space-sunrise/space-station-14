@@ -50,3 +50,5 @@ AntagInitialInfected = Нулевой заражённый
 JobNinja = Космический ниндзя
 AntagDragon = Космический дракон
 AntagSubvertedSilicon = Враждебный силикон
+
+roles-antag-pirate-assault-cyborg-name = Пиратский абордажный киборг

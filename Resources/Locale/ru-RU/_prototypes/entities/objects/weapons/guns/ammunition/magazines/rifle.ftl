@@ -46,3 +46,5 @@ ent-MagazineRifleM52Practice = магазин M-52 (5,56 учебные)
     .desc = { ent-BaseMagazineRifle.desc }
 ent-MagazineRifleM52Uranium = магазин M-52 (5,56 урановые)
     .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleBoxImprovised = короб магазина L6 SAW (5,56 самодельные)
+    .desc = Короб на 150 связанных самодельных патронов 5,56мм, используемый лёгкими пулемётами вроде L6.

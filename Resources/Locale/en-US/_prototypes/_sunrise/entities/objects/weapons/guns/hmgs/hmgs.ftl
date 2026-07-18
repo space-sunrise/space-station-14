@@ -8,3 +8,5 @@ ent-WeaponDL6902PowerPack = DL6902 machine gun
     .desc = { ent-BaseItem.desc }
 ent-PowerpackDL6902 = DL6902 Powerpack
     .desc = { ent-BasePowerpackMG100.desc }
+ent-PowerpackMinigunMG100Improvised = powerpack (5.56mm improvised)
+    .desc = A heavy ammunition powerpack loaded with improvised 5.56mm rounds.
