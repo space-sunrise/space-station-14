@@ -582,5 +582,22 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
         CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
 
+    /// <summary>
+    /// Selected OOC title of the sponsor.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorOocTitle =
+        CVarDef.Create("sponsor.ooc_title", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Selected OOC nickname color of the sponsor.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorOocColor =
+        CVarDef.Create("sponsor.ooc_color", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Selected OOC emoji of the sponsor.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorOocEmoji =
+        CVarDef.Create("sponsor.ooc_emoji", "", CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 
 }
