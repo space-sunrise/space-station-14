@@ -11,7 +11,7 @@
   - type: Storage
     maxItemSize: Small # Sunrise-edit
     grid:
-    - 0,0,6,5 # Sunrise-edit
+    - 0,0,6,3 # Sunrise-edit
     quickInsert: true
     areaInsert: true
     storageOpenSound:
