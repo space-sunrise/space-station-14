@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Sunrise.Lobby;
 using Content.Client.Humanoid;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
@@ -49,7 +50,7 @@ public sealed partial class CharacterPickerButton : ContainerButton
         }
         else
         {
-            _previewDummy = UserInterfaceManager.GetUIController<LobbyUIController>()
+            _previewDummy = UserInterfaceManager.GetUIController<SunriseLobbyUIController>() // Sunrise-Edit
                 .LoadProfileEntity(humanoid, null, true);
 
             var highPriorityJob = humanoid.JobPriorities.SingleOrDefault(p => p.Value == JobPriority.High).Key;

@@ -1,4 +1,5 @@
 using System.IO;
+using Content.Client._Sunrise.Lobby;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Humanoid;
@@ -53,7 +54,7 @@ namespace Content.Client.Lobby.UI
         private readonly IResourceManager _resManager;
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
-        private readonly LobbyUIController _controller;
+        private readonly SunriseLobbyUIController _controller; // Sunrise-Edit
 
         private readonly SpriteSystem _sprite;
 
@@ -141,7 +142,7 @@ namespace Content.Client.Lobby.UI
             _preferencesManager = preferencesManager;
             _resManager = resManager;
             _requirements = requirements;
-            _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
+            _controller = UserInterfaceManager.GetUIController<SunriseLobbyUIController>(); // Sunrise-Edit
             _sprite = _entManager.System<SpriteSystem>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);

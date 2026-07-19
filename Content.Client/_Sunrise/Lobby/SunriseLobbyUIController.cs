@@ -1,10 +1,15 @@
 using System.Linq;
+using Content.Client._Sunrise.Lobby.UI;
+using Content.Client._Sunrise.Pets;
 using Content.Client.Guidebook;
+using Content.Shared._Sunrise.Pets;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Station;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Client.Lobby;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -24,10 +29,12 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared;
+using Content.Client._Sunrise.PlayerCache;
 
-namespace Content.Client.Lobby;
+namespace Content.Client._Sunrise.Lobby;
 
-public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
+public sealed class SunriseLobbyUIController : UIController, IOnStateEntered<SunriseLobbyState>, IOnStateExited<SunriseLobbyState>
 {
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -38,19 +45,23 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
+    [Dependency] private readonly PlayerCacheManager _playerCache = default!;
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
+    [UISystemDependency] private readonly PetSelectionSystem _petSelectionSystem = default!;
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
+    private PetSelectionMenu? _petSelectionMenu;
+    private ISharedSponsorsManager? _sponsorsManager;
 
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.
     /// </summary>
-    private LobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview();
+    private SunriseLobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview();
 
     /// <summary>
     /// This is the modified profile currently being edited.
@@ -62,11 +73,18 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     public override void Initialize()
     {
         base.Initialize();
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager);
         _prototypeManager.PrototypesReloaded += OnProtoReload;
         _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
         _requirements.Updated += OnRequirementsUpdated;
 
+        _configurationManager.OnValueChanged(SunriseCCVars.SponsorPet, _ => RefreshPetPreview());
+
         _configurationManager.OnValueChanged(CCVars.FlavorText, args =>
+        {
+            _profileEditor?.RefreshFlavorText();
+        });
+        _configurationManager.OnValueChanged(SunriseCCVars.FlavorTextSponsorOnly, args =>
         {
             _profileEditor?.RefreshFlavorText();
         });
@@ -77,9 +95,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _configurationManager.OnValueChanged(CCVars.GameRoleWhitelist, _ => RefreshProfileEditor());
     }
 
-    private LobbyCharacterPreviewPanel? GetLobbyPreview()
+    private SunriseLobbyCharacterPreviewPanel? GetLobbyPreview()
     {
-        if (_stateManager.CurrentState is LobbyState lobby)
+        if (_stateManager.CurrentState is SunriseLobbyState lobby)
         {
             return lobby.Lobby?.CharacterPreview;
         }
@@ -134,19 +152,29 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     {
         PreviewPanel?.SetLoaded(true);
 
-        if (_stateManager.CurrentState is not LobbyState)
+        if (_stateManager.CurrentState is not SunriseLobbyState)
             return;
 
-        ReloadCharacterSetup();
+        RefreshLobbyPreview();
+
+        if (_characterSetup?.Visible == true)
+            ReloadCharacterSetup();
+
+        RefreshPetPreview();
     }
 
-    public void OnStateEntered(LobbyState state)
+    public void OnStateEntered(SunriseLobbyState state)
     {
         PreviewPanel?.SetLoaded(_preferencesManager.ServerDataLoaded);
-        ReloadCharacterSetup();
+        RefreshLobbyPreview();
+
+        if (_characterSetup?.Visible == true)
+            ReloadCharacterSetup();
+
+        RefreshPetPreview();
     }
 
-    public void OnStateExited(LobbyState state)
+    public void OnStateExited(SunriseLobbyState state)
     {
         PreviewPanel?.SetLoaded(false);
         _profileEditor?.Dispose();
@@ -189,7 +217,82 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         var dummy = LoadProfileEntity(humanoid, null, true);
         PreviewPanel.SetSprite(dummy);
-        PreviewPanel.SetSummaryText(humanoid.Summary);
+        var speciesProto = _prototypeManager.Index<SpeciesPrototype>(humanoid.Species);
+        var speciesName = Loc.GetString(speciesProto.Name);
+        var sexStr = humanoid.Sex.ToString().ToLowerInvariant();
+        var genderStr = humanoid.Gender.ToString().ToLowerInvariant();
+
+        var speciesSexLine = Loc.GetString("humanoid-character-profile-summary-species-sex",
+            ("gender", genderStr),
+            ("species", speciesName),
+            ("sex", sexStr));
+
+        var preferredJob = GetPreferredJob(humanoid);
+        var jobName = preferredJob.LocalizedName;
+        var dreamJobLine = Loc.GetString("humanoid-character-profile-summary-dream-job",
+            ("job", jobName));
+
+        var fullSummary = $"{humanoid.Summary}\n{speciesSexLine}\n{dreamJobLine}";
+        PreviewPanel.SetSummaryText(fullSummary);
+
+    }
+
+    private void RefreshPetPreview()
+    {
+        if (PreviewPanel == null)
+            return;
+
+        var currentPetSelection = GetCurrentPetSelection();
+
+        PreviewPanel.OnChangePetRequested -= OpenPetPanel;
+        PreviewPanel.OnChangePetRequested += OpenPetPanel;
+
+        EntityUid? petDummy = null;
+        if (!string.IsNullOrEmpty(currentPetSelection) &&
+            _prototypeManager.TryIndex<PetSelectionPrototype>(currentPetSelection, out var petSelectionPrototype))
+        {
+            var isAvailable = !petSelectionPrototype.SponsorOnly;
+            if (!isAvailable)
+            {
+                var localSession = _playerManager.LocalSession;
+                if (localSession != null && _sponsorsManager != null &&
+                    _sponsorsManager.TryGetPets(localSession.UserId, out var availablePets))
+                {
+                    isAvailable = availablePets.Contains(petSelectionPrototype.ID);
+                }
+            }
+
+            if (isAvailable)
+            {
+                petDummy = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, MapCoordinates.Nullspace);
+            }
+        }
+
+        PreviewPanel.SetPetSprite(petDummy);
+    }
+
+    private void OpenPetPanel()
+    {
+        if (_petSelectionMenu is { IsOpen: true })
+            return;
+
+        _petSelectionMenu = new PetSelectionMenu();
+
+        _petSelectionMenu.UpdateState();
+        _petSelectionMenu.OnIdSelected += OnPetSelectionChanged;
+
+        _petSelectionMenu.OpenCentered();
+    }
+
+    private void OnPetSelectionChanged(string selectedPet)
+    {
+        RefreshPetPreview();
+        _petSelectionSystem.PetSelectionSelected(selectedPet);
+    }
+
+    private string? GetCurrentPetSelection()
+    {
+        return _playerCache.TryGetCachedPet(out var pet) ? pet : null;
     }
 
     private void RefreshProfileEditor()
@@ -223,9 +326,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _profileEditor.SetProfile(null, null);
         _profileEditor.Visible = false;
 
-        if (_stateManager.CurrentState is LobbyState lobbyGui)
+        if (_stateManager.CurrentState is SunriseLobbyState lobbyGui)
         {
-            lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+            lobbyGui.SwitchState(SunriseLobbyGui.LobbyGuiState.Default);
         }
     }
 
@@ -318,7 +421,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             }
         };
 
-        if (_stateManager.CurrentState is LobbyState lobby)
+        if (_stateManager.CurrentState is SunriseLobbyState lobby)
         {
             lobby.Lobby?.CharacterSetupState.AddChild(_characterSetup);
         }
@@ -336,10 +439,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         var job = jobProto ?? GetPreferredJob(profile);
         GiveDummyJobClothes(dummy, profile, job);
 
-        if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
+        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+
+        var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
+        var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
+        if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
         {
-            var loadout = profile.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager);
-            GiveDummyLoadout(dummy, loadout);
+            var loadout = profile.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager, sponsorPrototypes);
+            GiveDummyLoadout(dummy, loadout, true);
         }
     }
 
@@ -353,19 +460,29 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
     }
 
-    public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout)
+    public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout, bool outerwear)
     {
         if (roleLoadout == null)
             return;
+
+        var undervearSlots = new List<string> { "bra", "pants", "socks" };
 
         foreach (var group in roleLoadout.SelectedLoadouts.Values)
         {
             foreach (var loadout in group)
             {
+                var wear = true;
                 if (!_prototypeManager.Resolve(loadout.Prototype, out var loadoutProto))
                     continue;
 
-                _spawn.EquipStartingGear(uid, loadoutProto);
+                foreach (var keyValuePair in loadoutProto.Equipment)
+                {
+                    if (!undervearSlots.Contains(keyValuePair.Key) && !outerwear)
+                        wear = false;
+                }
+
+                if (wear)
+                    _spawn.EquipStartingGear(uid, loadoutProto);
             }
         }
     }
@@ -454,6 +571,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     {
         EntityUid dummyEnt;
 
+        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+
         EntProtoId? previewEntity = null;
         if (humanoid != null && jobClothes)
         {
@@ -480,16 +599,16 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         _humanoid.LoadProfile(dummyEnt, humanoid);
 
-        if (humanoid != null && jobClothes)
+        if (humanoid != null && job != null && jobClothes)
         {
-            DebugTools.Assert(job != null);
-
             GiveDummyJobClothes(dummyEnt, humanoid, job);
 
-            if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
+            var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
+            var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
+            if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
             {
-                var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager);
-                GiveDummyLoadout(dummyEnt, loadout);
+                var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager, sponsorPrototypes);
+                GiveDummyLoadout(dummyEnt, loadout, jobClothes);
             }
         }
 

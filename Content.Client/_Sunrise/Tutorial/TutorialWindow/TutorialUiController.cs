@@ -1,4 +1,5 @@
 using Content.Client.Lobby;
+using Content.Client._Sunrise.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.Tutorial.Prototypes;
 using Robust.Client.UserInterface;
@@ -9,8 +10,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Sunrise.Tutorial.TutorialWindow;
 
 public sealed class TutorialUIController : UIController,
-    IOnStateEntered<LobbyState>,
-    IOnStateExited<LobbyState>,
+    IOnStateEntered<SunriseLobbyState>,
+    IOnStateExited<SunriseLobbyState>,
     IOnSystemChanged<TutorialSystem>
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -75,7 +76,7 @@ public sealed class TutorialUIController : UIController,
 
         ToggleTutorial();
     }
-    public void OnStateEntered(LobbyState state)
+    public void OnStateEntered(SunriseLobbyState state)
     {
         _cfg.OnValueChanged(SunriseCCVars.TutorialWindowAutoOpen, OnAutoOpenChanged, true);
 
@@ -94,7 +95,7 @@ public sealed class TutorialUIController : UIController,
         TryOpenTutorial();
     }
 
-    public void OnStateExited(LobbyState state)
+    public void OnStateExited(SunriseLobbyState state)
     {
         _cfg.UnsubValueChanged(SunriseCCVars.TutorialWindowAutoOpen, OnAutoOpenChanged);
 
