@@ -18,11 +18,11 @@
       collection: trashBagRustle
     storageInsertSound:
       collection: trashBagRustle
-    # Sunrise-start
+  # Sunrise-start
     #whitelist:
     #  tags:
     #    - Trash
-    # Sunrise-end
+  # Sunrise-end
   - type: UseDelay
     delay: 0.5
   - type: Tag
