@@ -9,18 +9,20 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Small # Sunrise-Edit
     grid:
-    - 0,0,6,5
+    - 0,0,6,5 # Sunrise-Edit
     quickInsert: true
     areaInsert: true
     storageOpenSound:
       collection: trashBagRustle
     storageInsertSound:
       collection: trashBagRustle
+    # Sunrise-Edit start
     #whitelist:
     #  tags:
     #    - Trash
+    # Sunrise-Edit stop
   - type: UseDelay
     delay: 0.5
   - type: Tag
