@@ -66,4 +66,6 @@
     containers:
       item:
       - ThrowingKnife
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.35
 
