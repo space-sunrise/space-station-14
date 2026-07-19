@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
@@ -14,14 +14,33 @@ public sealed partial class TTSSystem
         args.Message = args.Message.Replace("+", "");
     }
 
+    [GeneratedRegex(@"(?<![a-zA-Z0-9_]):[^\s:]+:(?![a-zA-Z0-9_])")]
+    private static partial Regex EmojiRegex();
+
+    [GeneratedRegex(@"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]")]
+    private static partial Regex CharsToSanitizeRegex();
+
+    [GeneratedRegex(@"[a-zA-Z]", RegexOptions.Multiline | RegexOptions.IgnoreCase)]
+    private static partial Regex Lat2CyrRegex();
+
+    [GeneratedRegex(@"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ]+?(?![a-zA-Zа-яёА-ЯЁ])", RegexOptions.Multiline | RegexOptions.IgnoreCase)]
+    private static partial Regex MatchedWordRegex();
+
+    [GeneratedRegex(@"(?<=[1-90])(\.|,)(?=[1-90])")]
+    private static partial Regex DecimalSeparatorRegex();
+
+    [GeneratedRegex(@"\d+")]
+    private static partial Regex DigitsRegex();
+
     private string Sanitize(string text)
     {
+        text = EmojiRegex().Replace(text, "");
         text = text.Trim();
-        text = Regex.Replace(text, @"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]", "");
-        text = Regex.Replace(text, @"[a-zA-Z]", ReplaceLat2Cyr, RegexOptions.Multiline | RegexOptions.IgnoreCase);
-        text = Regex.Replace(text, @"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ]+?(?![a-zA-Zа-яёА-ЯЁ])", ReplaceMatchedWord, RegexOptions.Multiline | RegexOptions.IgnoreCase);
-        text = Regex.Replace(text, @"(?<=[1-90])(\.|,)(?=[1-90])", " целых ");
-        text = Regex.Replace(text, @"\d+", ReplaceWord2Num);
+        text = CharsToSanitizeRegex().Replace(text, "");
+        text = Lat2CyrRegex().Replace(text, ReplaceLat2Cyr);
+        text = MatchedWordRegex().Replace(text, ReplaceMatchedWord);
+        text = DecimalSeparatorRegex().Replace(text, " целых ");
+        text = DigitsRegex().Replace(text, ReplaceWord2Num);
         text = text.Trim();
         return text;
     }
