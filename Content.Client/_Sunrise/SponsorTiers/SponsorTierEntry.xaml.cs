@@ -1,6 +1,5 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using System.Numerics;
-using Content.Client._Sunrise.Lobby;
 using Content.Client._Sunrise.TTS;
 using Content.Client.Humanoid;
 using Content.Client.Lobby;
@@ -44,7 +43,7 @@ public sealed partial class SponsorTierEntry : Control
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
 
-    private readonly SunriseLobbyUIController _lobbyUIController;
+    private readonly LobbyUIController _lobbyUIController;
     private readonly ISharedSponsorsManager? _sponsorsManager;
 
     private float _accumulatedTime;
@@ -58,7 +57,7 @@ public sealed partial class SponsorTierEntry : Control
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
         IoCManager.Instance!.TryResolveType(out _sponsorsManager);
-        _lobbyUIController = UserInterfaceManager.GetUIController<SunriseLobbyUIController>();
+        _lobbyUIController = UserInterfaceManager.GetUIController<LobbyUIController>();
 
         Index = index;
         _sponsorInfoTier = sponsorTier;
