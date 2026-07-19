@@ -1,11 +1,13 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using System.Numerics;
+using Content.Client._Sunrise.Lobby;
 using Content.Client._Sunrise.TTS;
 using Content.Client.Humanoid;
 using Content.Client.Lobby;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.GhostTheme;
+using Content.Shared._Sunrise.SponsorSystem;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
@@ -42,7 +44,7 @@ public sealed partial class SponsorTierEntry : Control
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
 
-    private readonly LobbyUIController _lobbyUIController;
+    private readonly SunriseLobbyUIController _lobbyUIController;
     private readonly ISharedSponsorsManager? _sponsorsManager;
 
     private float _accumulatedTime;
@@ -56,7 +58,7 @@ public sealed partial class SponsorTierEntry : Control
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
         IoCManager.Instance!.TryResolveType(out _sponsorsManager);
-        _lobbyUIController = UserInterfaceManager.GetUIController<LobbyUIController>();
+        _lobbyUIController = UserInterfaceManager.GetUIController<SunriseLobbyUIController>();
 
         Index = index;
         _sponsorInfoTier = sponsorTier;
@@ -103,7 +105,10 @@ public sealed partial class SponsorTierEntry : Control
         if (!string.IsNullOrEmpty(oocColor))
         {
             OocColorLabel.Text = "цвет";
-            OocColorLabel.FontColorOverride = Color.FromHex(oocColor);
+            if (OocGradientHelper.TryResolveColor(oocColor, out var parsedColor))
+            {
+                OocColorLabel.FontColorOverride = parsedColor.Value;
+            }
         }
         ExtraSlotsLabel.Text = $"{extraSlots}";
         PriorityJoinLabel.Text = priorityJoin ? Loc.GetString("sponsor-tiers-gui-yes") : Loc.GetString("sponsor-tiers-gui-no");
