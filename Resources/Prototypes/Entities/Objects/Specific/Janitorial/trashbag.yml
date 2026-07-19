@@ -37,7 +37,7 @@
     slots: [belt]
     sprite: Objects/Specific/Janitorial/trashbag.rsi
   - type: Item
-    size: Ginormous # Sunrise-edit
+    size: Huge # Sunrise-edit
 
 - type: entity
   name: trash bag
