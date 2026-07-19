@@ -1,11 +1,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Server._Sunrise.Messenger;
 using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
+using Content.Shared._Sunrise.SponsorSystem;
+using Content.Server._Sunrise.SponsorSystem;
 
 namespace Content.Server._Sunrise.MentorHelp;
 
@@ -129,30 +132,86 @@ public sealed partial class MentorHelpSystem
 
     private string FormatMessageSender(string username, NetUserId senderUserId, AdminData? senderAdminData)
     {
-        var adminPrefix = string.Empty;
         var escapedUsername = FormattedMessage.EscapeText(username);
 
-        if (_config.GetCVar(SunriseCCVars.MentorHelpAdminPrefixEnabled) && senderAdminData?.Title is { } title)
-            adminPrefix = $"[bold]\\[{FormattedMessage.EscapeText(title)}\\][/bold] ";
+        string? sponsorTitle = null;
+        string? sponsorColorHex = null;
+        bool isGradient = false;
 
-        if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor) && senderAdminData.Flags == AdminFlags.Mentor)
-            return $"[color=purple]{adminPrefix}{escapedUsername}[/color]";
+        var isActiveAdmin = senderAdminData != null;
+        var isSponsor = _sponsorsManager != null && _sponsorsManager.IsSponsor(senderUserId);
+        var isAllowedAdminBypass = isActiveAdmin && isSponsor;
 
-        if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor))
-            return $"[color=red]{adminPrefix}{escapedUsername}[/color]";
+        if (_sponsorsManager != null)
+        {
+            _sponsorsManager.TryGetOocTitle(senderUserId, out sponsorTitle);
+            if (_sponsorsManager.TryGetOocColor(senderUserId, out var color))
+                sponsorColorHex = "#" + color.Value.ToHexNoAlpha();
+        }
 
-        if (_sponsorsManager == null)
-            return escapedUsername;
+        if (_playerManager.TryGetSessionById(senderUserId, out var session))
+        {
+            var selectedTitleCVar = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocTitle);
+            if (!string.IsNullOrEmpty(selectedTitleCVar))
+                sponsorTitle = selectedTitleCVar == "@none" ? null : selectedTitleCVar;
 
-        _sponsorsManager.TryGetOocColor(senderUserId, out var oocColor);
-        _sponsorsManager.TryGetOocTitle(senderUserId, out var oocTitle);
+            var selectedColorCVar = _netConfig.GetClientCVar(session.Channel, SunriseCCVars.SponsorOocColor);
+            if (!string.IsNullOrEmpty(selectedColorCVar))
+                sponsorColorHex = selectedColorCVar == "@none" ? null : selectedColorCVar;
+        }
 
-        var sponsorTitle = oocTitle is null ? string.Empty : $"\\[{FormattedMessage.EscapeText(oocTitle)}\\]";
-        var sponsorPrefix = sponsorTitle == string.Empty ? string.Empty : $"{sponsorTitle} ";
+        if (sponsorTitle != null && OocGradientHelper.TryResolveTitle(sponsorTitle, out var resolvedTitle))
+            sponsorTitle = resolvedTitle;
 
-        return oocColor != null
-            ? $"[color={oocColor.Value.ToHex()}]{sponsorPrefix}{escapedUsername}[/color]"
-            : $"{sponsorPrefix}{escapedUsername}";
+        isGradient = OocGradientHelper.IsGradientId(sponsorColorHex);
+
+        if (isActiveAdmin)
+        {
+            if (string.IsNullOrWhiteSpace(sponsorTitle) && senderAdminData?.Title is { } adminTitle)
+                sponsorTitle = adminTitle;
+
+            if (string.IsNullOrWhiteSpace(sponsorColorHex) && !isGradient)
+            {
+                if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Mentor) && senderAdminData.Flags == AdminFlags.Mentor)
+                    sponsorColorHex = "purple";
+                else if (senderAdminData != null && senderAdminData.HasFlag(AdminFlags.Adminhelp))
+                    sponsorColorHex = "red";
+                else
+                    sponsorColorHex = "purple";
+            }
+        }
+
+        string result;
+        if (isGradient && _sponsorsManager != null && ServerOocGradientHelper.TryFormatGradientName(senderUserId, username, _sponsorsManager, _playerManager, _netConfig, _playerCacheManager, out var gradFormatted))
+        {
+            result = gradFormatted;
+        }
+        else
+        {
+            var titlePart = string.IsNullOrWhiteSpace(sponsorTitle) ? string.Empty : $"\\[{FormattedMessage.EscapeText(sponsorTitle)}\\] ";
+
+            if (!string.IsNullOrWhiteSpace(sponsorColorHex))
+                result = $"[color={sponsorColorHex}]{titlePart}{escapedUsername}[/color]";
+            else
+                result = $"{titlePart}{escapedUsername}";
+        }
+
+        var hasEmojiRights = (_sponsorsManager != null && _sponsorsManager.IsAllowedOocTitleEmoji(senderUserId)) || isAllowedAdminBypass;
+        if (hasEmojiRights && _playerManager.TryGetSessionById(senderUserId, out var emojiSession))
+        {
+            var emoji = _netConfig.GetClientCVar(emojiSession.Channel, SunriseCCVars.SponsorOocEmoji);
+            if (!string.IsNullOrWhiteSpace(emoji))
+            {
+                var emojiId = emoji.Trim(':');
+                var emojiSystem = EntityManager.System<EmojiSystem>();
+                if (emojiSystem.IsEmojiAllowedForPlayer(emojiId, senderUserId, _sponsorsManager))
+                {
+                    result = $"[emoji id=\"{emojiId}\" size=50] {result}";
+                }
+            }
+        }
+
+        return result;
     }
 
     private async Task<string?> GetOptionalPlayerNameAsync(Guid? userId)
