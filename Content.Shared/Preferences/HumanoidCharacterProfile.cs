@@ -888,6 +888,19 @@ namespace Content.Shared.Preferences
             return profile;
         }
 
+        public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager)
+        {
+            if (!_loadouts.TryGetValue(id, out var loadout))
+            {
+                loadout = new RoleLoadout(id);
+                loadout.SetDefault(this, session, protoManager, force: true);
+            }
+
+            loadout.SetDefault(this, session, protoManager);
+            return loadout;
+        }
+
+        // Sunrise-Start
         public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager, string [] sponsorPrototypes)
         {
             if (!_loadouts.TryGetValue(id, out var loadout))
@@ -899,6 +912,7 @@ namespace Content.Shared.Preferences
             loadout.SetDefault(this, session, protoManager, sponsorPrototypes);
             return loadout;
         }
+        // Sunrise-End
 
         public HumanoidCharacterProfile Clone()
         {

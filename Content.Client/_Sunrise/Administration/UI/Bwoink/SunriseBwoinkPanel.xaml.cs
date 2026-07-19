@@ -41,11 +41,13 @@ namespace Content.Client._Sunrise.Administration.UI.Bwoink
         public int Unread { get; private set; } = 0;
         public event Action<string>? InputTextChanged;
 
+        // Sunrise-Start
         public DateTime LastMessage { get; set; } = DateTime.MinValue;
         public bool LoadDb { get; set; }
         private DateTime _cooldownEnd = DateTime.MinValue;
         private CancellationTokenSource? _cooldownCancellationTokenSource;
         private Action? _emojiPickerCleanup;
+        // Sunrise-End
 
         public SunriseBwoinkPanel(Action<string> messageSender)
         {
@@ -63,7 +65,9 @@ namespace Content.Client._Sunrise.Administration.UI.Bwoink
             SenderLineEdit.OnTextEntered += Input_OnTextEntered;
             SenderLineEdit.OnTextChanged += Input_OnTextChanged;
 
+            // Sunrise-Start
             AdminWhoButton.OnPressed += AdminWho_OnPressed;
+            // Sunrise-End
 
             UpdateTypingIndicator();
 
@@ -84,17 +88,20 @@ namespace Content.Client._Sunrise.Administration.UI.Bwoink
             InputTextChanged?.Invoke(args.Text);
         }
 
+        // Sunrise-Start
         private void AdminWho_OnPressed(BaseButton.ButtonEventArgs args)
         {
             var ctrl = _ui.GetUIController<Client.Administration.UI.Bwoink.AdminWhoUIController>();
             ctrl.Toggle();
         }
+        // Sunrise-End
 
         public void ReceiveLine(SharedBwoinkSystem.BwoinkTextMessage message)
         {
             if (!Visible && !message.DbLoad)
                 Unread++;
 
+            // Sunrise-Start
             if (LastMessage != DateTime.MinValue && LastMessage.Date != message.SentAt.Date)
             {
                 var dateHeader = new FormattedMessage(1);
@@ -108,6 +115,7 @@ namespace Content.Client._Sunrise.Administration.UI.Bwoink
                 var emoji = _entManager.System<EmojiSystem>();
                 text = emoji.ParseEmojis(text);
             }
+            // Sunrise-End
 
             var formatted = new FormattedMessage(1);
             var formattedTime = $"[bold]{message.SentAt:HH:mm}[/bold]";
@@ -127,6 +135,7 @@ namespace Content.Client._Sunrise.Administration.UI.Bwoink
             TypingIndicator.Text = string.Empty;
         }
 
+        // Sunrise-Start
         public void OnCooldownReceived(BwoinkCooldownMessage message)
         {
             _cooldownEnd = DateTime.UtcNow + message.RemainingCooldown;
@@ -154,6 +163,7 @@ namespace Content.Client._Sunrise.Administration.UI.Bwoink
             SenderLineEdit.Editable = true;
             SenderLineEdit.PlaceHolder = Loc.GetString("bwoink-panel-placeholder");
         }
+        // Sunrise-End
 
         protected override void Dispose(bool disposing)
         {
