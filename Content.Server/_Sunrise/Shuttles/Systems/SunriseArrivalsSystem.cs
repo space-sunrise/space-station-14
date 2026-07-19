@@ -3,6 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Shared.Tag;
 using Content.Shared.Timing;
 using Content.Server.GameTicking;
+using Content.Server.Shuttles;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -48,10 +49,6 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
-
-    private bool _enabled;
-    private bool _arrivalsEnabled;
-    private string _shuttlePath = string.Empty;
 
     /// <summary>
     /// Время ожидания шаттла у дока станции перед принудительным отправлением.
@@ -114,9 +111,30 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     /// </summary>
     private static readonly TimeSpan StationWarnInterval = TimeSpan.FromMinutes(1);
 
+    /// <summary>
+    /// Тег приоритетных docks прибытия.
+    /// </summary>
+    private const string ArrivalDockTag = "DockArrivals";
+
+    /// <summary>
+    /// Минимальный безопасный зазор между будущими корпусами шаттлов.
+    /// </summary>
+    private const float ArrivalReservationMargin = 0.01f;
+
+    private bool _enabled;
+    private bool _arrivalsEnabled;
+    private string _shuttlePath = string.Empty;
+    private EntityQuery<FTLComponent> _ftlQuery;
+    private EntityQuery<FtlReservationComponent> _ftlReservationQuery;
+    private EntityQuery<PriorityDockComponent> _priorityDockQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _ftlQuery = GetEntityQuery<FTLComponent>();
+        _ftlReservationQuery = GetEntityQuery<FtlReservationComponent>();
+        _priorityDockQuery = GetEntityQuery<PriorityDockComponent>();
 
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, after: new []{ typeof(ContainerSpawnPointSystem) }, before: new []{ typeof(SpawnPointSystem) });
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
@@ -203,56 +221,47 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         }
     }
 
-    private void OnFTLCompleted(EntityUid uid, SunriseArrivalsShuttleComponent component, ref FTLCompletedEvent args)
+    private void OnFTLCompleted(Entity<SunriseArrivalsShuttleComponent> ent, ref FTLCompletedEvent args)
     {
-        if (component.State != SunriseArrivalsShuttleState.Travelling)
+        if (ent.Comp.State != SunriseArrivalsShuttleState.Travelling)
             return;
 
-        if (IsDocked(uid))
+        if (IsDocked(ent))
         {
-            component.State = SunriseArrivalsShuttleState.Docked;
-            component.DockTime = _timing.CurTime;
-            component.Warned = false;
+            ent.Comp.State = SunriseArrivalsShuttleState.Docked;
+            ent.Comp.DockTime = _timing.CurTime;
+            ent.Comp.Warned = false;
 
-            if (component.Attendant != null)
+            if (ent.Comp.Attendant != null)
             {
                 var mapId = _transform.GetMapId(args.MapUid);
                 var station = _station.GetStationInMap(mapId);
                 var stationName = station != null ? Name(station.Value) : "Unknown";
                 var msg = Loc.GetString("sunrise-arrivals-attendant-arrival", ("station", stationName));
-                _chat.TrySendInGameICMessage(component.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
+                _chat.TrySendInGameICMessage(ent.Comp.Attendant.Value, msg, InGameICChatType.Speak, hideChat: false);
             }
 
-            Log.Debug($"Arrivals shuttle {ToPrettyString(uid)} docked at station");
+            Log.Debug($"Arrivals shuttle {ToPrettyString(ent)} docked at station");
         }
         else
         {
             // Стыковка не удалась — возвращаем в очередь для повтора на следующем dispatch cycle
-            Log.Warning($"Arrivals shuttle {ToPrettyString(uid)} completed FTL but not docked, re-enqueueing");
-            component.State = SunriseArrivalsShuttleState.Queued;
-            EnqueueShuttle(uid);
-
-            // Возвращаем в бесконечный FTL
-            var shuttleComp = Comp<ShuttleComponent>(uid);
-            _shuttle.FTLToCoordinates(uid, shuttleComp,
-                Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
+            Log.Warning($"Arrivals shuttle {ToPrettyString(ent)} completed FTL but not docked, re-enqueueing");
+            ClearArrivalReservation(ent, ent.Comp);
+            ent.Comp.State = SunriseArrivalsShuttleState.Queued;
+            EnqueueShuttle(ent);
         }
     }
 
-    private void OnShuttleShutdown(EntityUid uid, SunriseArrivalsShuttleComponent component, ComponentShutdown args)
+    private void OnShuttleShutdown(Entity<SunriseArrivalsShuttleComponent> ent, ref ComponentShutdown args)
     {
-        // Очищаем резервирования доков.
-        foreach (var dock in component.ReservedDocks)
-        {
-            RemCompDeferred<FtlReservationComponent>(dock);
-        }
-        component.ReservedDocks.Clear();
+        ClearArrivalReservation(ent, ent.Comp);
 
         // Удаляем из очереди, если там есть
         var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
         while (poolQuery.MoveNext(out _, out var pool))
         {
-            pool.Queue.Remove(uid);
+            pool.Queue.Remove(ent);
         }
     }
 
@@ -269,7 +278,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         var curTime = _timing.CurTime;
 
-        TryDispatchFromQueue(curTime);
+        RestoreHoldingFtlForQueuedShuttles();
+        TryDispatchFromQueue();
 
         var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent>();
         while (query.MoveNext(out var uid, out var arrivals))
@@ -335,7 +345,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     /// Пытается отправить шаттлы из очереди к свободным docks.
     /// Отправляет один шаттл на каждый свободный док за тик.
     /// </summary>
-    private void TryDispatchFromQueue(TimeSpan curTime)
+    private void TryDispatchFromQueue()
     {
         var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
         while (poolQuery.MoveNext(out _, out var pool))
@@ -362,7 +372,11 @@ public sealed class SunriseArrivalsSystem : EntitySystem
                     continue;
                 }
 
-                if (!TryDispatchShuttle(shuttleUid, arrivals))
+                // Cooldown предыдущего FTL не должен останавливать остальные шаттлы в очереди.
+                if (!_ftlQuery.TryComp(shuttleUid, out var ftl) || ftl.State != FTLState.Travelling)
+                    continue;
+
+                if (!TryDispatchShuttle(shuttleUid, arrivals, ftl))
                     break; // Свободных docks нет — прекращаем попытки
 
                 pool.Queue.RemoveAt(i);
@@ -372,40 +386,232 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
 
     /// <summary>
+    /// Восстанавливает holding-FTL queued-шаттлов после удаления предыдущего FTL-компонента.
+    /// </summary>
+    private void RestoreHoldingFtlForQueuedShuttles()
+    {
+        var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent, ShuttleComponent>();
+        while (query.MoveNext(out var uid, out var arrivals, out var shuttle))
+        {
+            TryRestoreHoldingFtl(uid, arrivals, shuttle);
+        }
+    }
+
+    /// <summary>
+    /// Восстанавливает holding-FTL одного шаттла, если старый FTL-компонент уже удалён.
+    /// </summary>
+    internal bool TryRestoreHoldingFtl(
+        EntityUid uid,
+        SunriseArrivalsShuttleComponent arrivals,
+        ShuttleComponent shuttle)
+    {
+        if (_ftlQuery.HasComp(uid))
+            return false;
+
+        if (arrivals.State == SunriseArrivalsShuttleState.Travelling)
+        {
+            Log.Warning("Arrivals shuttle {Shuttle} (proto: {Prototype}) lost FTL while travelling; returning to queue",
+                ToPrettyString(uid),
+                Prototype(uid)?.ID ?? "unknown");
+            ClearArrivalReservation(uid, arrivals);
+            arrivals.State = SunriseArrivalsShuttleState.Queued;
+            EnqueueShuttle(uid);
+        }
+
+        if (arrivals.State != SunriseArrivalsShuttleState.Queued)
+            return false;
+
+        _shuttle.FTLToCoordinates(uid,
+            shuttle,
+            Transform(uid).Coordinates,
+            Angle.Zero,
+            hyperspaceTime: 3600f);
+
+        return _ftlQuery.HasComp(uid);
+    }
+
+    /// <summary>
     /// Пытается отправить шаттл из очереди к доку станции.
     /// Возвращает true, если шаттл отправлен, или false, если доступного дока нет.
     /// </summary>
-    private bool TryDispatchShuttle(EntityUid uid, SunriseArrivalsShuttleComponent arrivals)
+    private bool TryDispatchShuttle(EntityUid uid, SunriseArrivalsShuttleComponent arrivals, FTLComponent ftl)
     {
         var station = arrivals.Station;
         var targetGrid = _station.GetLargestGrid(station) ?? station;
+        var gridDocks = _docking.GetDocks(targetGrid);
+        var shuttleDocks = _docking.GetDocks(uid);
 
-        var config = _docking.GetDockingConfig(uid, targetGrid, "DockArrivals", false);
+        // Получаем все варианты: приоритетный тег применяется только после отсева конфликтующих областей.
+        var configs = _docking.GetDockingConfigs(uid,
+            targetGrid,
+            shuttleDocks,
+            gridDocks,
+            priorityTag: null,
+            ignored: false);
+
+        return TryDispatchShuttleToSafeConfig(uid, arrivals, ftl, targetGrid, configs);
+    }
+
+    /// <summary>
+    /// Выбирает безопасную конфигурацию, резервирует её и перенаправляет holding-FTL к станции.
+    /// </summary>
+    internal bool TryDispatchShuttleToSafeConfig(
+        EntityUid uid,
+        SunriseArrivalsShuttleComponent arrivals,
+        FTLComponent ftl,
+        EntityUid targetGrid,
+        List<DockingConfig> configs)
+    {
+        var config = SelectSafeDockingConfig(uid, targetGrid, configs, ArrivalDockTag);
         if (config == null)
             return false;
 
-        if (!TryComp<FTLComponent>(uid, out var ftl) || ftl.State != FTLState.Travelling)
-            return false;
+        ReserveArrivalConfiguration(uid, arrivals, targetGrid, config);
 
         // Перенаправляем существующий бесконечный FTL к доку.
         ftl.TargetCoordinates = config.Coordinates;
         ftl.TargetAngle = config.Angle;
-        ftl.PriorityTag = new ProtoId<TagPrototype>("DockArrivals");
+        ftl.PriorityTag = new ProtoId<TagPrototype>(ArrivalDockTag);
         ftl.TravelTime = DispatchFtlTime;
         ftl.StateTime = StartEndTime.FromCurTime(_timing, DispatchFtlTime);
-
-        // Резервируем docks
-        foreach (var docks in config.Docks)
-        {
-            var reservation = EnsureComp<FtlReservationComponent>(docks.DockBUid);
-            reservation.ReservedBy = uid;
-            arrivals.ReservedDocks.Add(docks.DockBUid);
-        }
 
         arrivals.State = SunriseArrivalsShuttleState.Travelling;
 
         Log.Debug($"Dispatched arrivals shuttle {ToPrettyString(uid)} to dock");
         return true;
+    }
+
+    /// <summary>
+    /// Выбирает лучшую конфигурацию, чья область не конфликтует с активными резервациями.
+    /// </summary>
+    internal DockingConfig? SelectSafeDockingConfig(
+        EntityUid shuttleUid,
+        EntityUid targetGrid,
+        List<DockingConfig> configs,
+        string? priorityTag)
+    {
+        DockingConfig? selected = null;
+        var selectedPriority = false;
+        var selectedDockCount = 0;
+        var selectedAngleDistance = double.PositiveInfinity;
+        var targetGridAngle = _transform.GetWorldRotation(targetGrid).Reduced();
+
+        foreach (var config in configs)
+        {
+            if (!IsArrivalAreaAvailable(shuttleUid, targetGrid, config.Area))
+                continue;
+
+            var isPriority = IsPriorityDockingConfig(config, priorityTag);
+            var dockCount = config.Docks.Count;
+            var angleDistance = Math.Abs(Angle.ShortestDistance(config.Angle.Reduced(), targetGridAngle).Theta);
+
+            if (selected != null)
+            {
+                if (isPriority != selectedPriority)
+                {
+                    if (!isPriority)
+                        continue;
+                }
+                else if (dockCount != selectedDockCount)
+                {
+                    if (dockCount < selectedDockCount)
+                        continue;
+                }
+                else if (angleDistance >= selectedAngleDistance)
+                {
+                    continue;
+                }
+            }
+
+            selected = config;
+            selectedPriority = isPriority;
+            selectedDockCount = dockCount;
+            selectedAngleDistance = angleDistance;
+        }
+
+        if (selected != null)
+            selected.TargetGrid = targetGrid;
+
+        return selected;
+    }
+
+    /// <summary>
+    /// Проверяет область конфигурации относительно уже отправленных и пристыкованных arrival-шаттлов.
+    /// </summary>
+    internal bool IsArrivalAreaAvailable(EntityUid shuttleUid, EntityUid targetGrid, Box2 area)
+    {
+        var bufferedArea = area.Enlarged(ArrivalReservationMargin);
+        var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent>();
+        while (query.MoveNext(out var otherUid, out var otherArrivals))
+        {
+            if (otherUid == shuttleUid ||
+                otherArrivals.ReservedTargetGrid != targetGrid ||
+                otherArrivals.ReservedDockingArea is not { } otherArea)
+            {
+                continue;
+            }
+
+            if (bufferedArea.Intersects(otherArea))
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Сохраняет область конфигурации до резервирования её портов.
+    /// </summary>
+    internal void ReserveArrivalConfiguration(
+        EntityUid uid,
+        SunriseArrivalsShuttleComponent arrivals,
+        EntityUid targetGrid,
+        DockingConfig config)
+    {
+        DebugTools.Assert(arrivals.ReservedTargetGrid == null);
+        DebugTools.Assert(arrivals.ReservedDockingArea == null);
+        DebugTools.Assert(arrivals.ReservedDocks.Count == 0);
+
+        arrivals.ReservedTargetGrid = targetGrid;
+        arrivals.ReservedDockingArea = config.Area;
+
+        foreach (var docks in config.Docks)
+        {
+            var reservation = EnsureComp<FtlReservationComponent>(docks.DockBUid);
+            reservation.ReservedBy = uid;
+
+            if (!arrivals.ReservedDocks.Contains(docks.DockBUid))
+                arrivals.ReservedDocks.Add(docks.DockBUid);
+        }
+    }
+
+    /// <summary>
+    /// Снимает принадлежащие шаттлу резервации портов и его будущей области стыковки.
+    /// </summary>
+    internal void ClearArrivalReservation(EntityUid uid, SunriseArrivalsShuttleComponent arrivals)
+    {
+        foreach (var dock in arrivals.ReservedDocks)
+        {
+            if (_ftlReservationQuery.TryComp(dock, out var reservation) && reservation.ReservedBy == uid)
+                RemCompDeferred<FtlReservationComponent>(dock);
+        }
+
+        arrivals.ReservedDocks.Clear();
+        arrivals.ReservedTargetGrid = null;
+        arrivals.ReservedDockingArea = null;
+    }
+
+    private bool IsPriorityDockingConfig(DockingConfig config, string? priorityTag)
+    {
+        foreach (var docks in config.Docks)
+        {
+            if (_priorityDockQuery.TryComp(docks.DockBUid, out var priority) &&
+                priority.Tag?.Equals(priorityTag) == true)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -538,22 +744,16 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
     /// <summary>
     /// Запускает отправление шаттла от дока станции.
-    /// Сразу освобождает резервирования доков, чтобы шаттлы из очереди могли отправиться.
+    /// Сразу освобождает резервирования доков и области, чтобы очередь могла двигаться дальше.
     /// </summary>
-    private void StartDeparture(EntityUid uid, SunriseArrivalsShuttleComponent component)
+    internal void StartDeparture(EntityUid uid, SunriseArrivalsShuttleComponent component)
     {
         if (component.State == SunriseArrivalsShuttleState.Leaving)
             return;
 
         component.State = SunriseArrivalsShuttleState.Leaving;
         component.LeaveStartTime = null;
-
-        // Сразу очищаем резервирования доков, чтобы шаттлы из очереди могли отправиться на следующем тике.
-        foreach (var dock in component.ReservedDocks)
-        {
-            RemCompDeferred<FtlReservationComponent>(dock);
-        }
-        component.ReservedDocks.Clear();
+        ClearArrivalReservation(uid, component);
 
         // Удаляем существующий FTL-компонент, например cooldown прибытия, который
         // заблокировал бы TrySetupFTL. Без этого FTLToCoordinates тихо падает,
@@ -635,6 +835,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     {
         if (TryComp<SunriseArrivalsShuttleComponent>(uid, out var arrivals))
         {
+            ClearArrivalReservation(uid, arrivals);
+
             // Безопасность: телепортируем игрока, если он все еще на шаттле
             if (arrivals.Player != null && IsPlayerOnShuttle(uid))
             {

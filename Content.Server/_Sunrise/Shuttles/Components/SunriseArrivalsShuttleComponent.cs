@@ -85,6 +85,18 @@ public sealed partial class SunriseArrivalsShuttleComponent : Component
     /// Docks, зарезервированные этим шаттлом на целевой станции.
     /// </summary>
     public List<EntityUid> ReservedDocks = new();
+
+    /// <summary>
+    /// Целевой grid, на которой этим шаттлом зарезервирована область стыковки.
+    /// </summary>
+    [NonSerialized]
+    public EntityUid? ReservedTargetGrid;
+
+    /// <summary>
+    /// Область, которую шаттл займёт после стыковки, в локальных координатах целевой grid.
+    /// </summary>
+    [NonSerialized]
+    public Box2? ReservedDockingArea;
 }
 
 public enum SunriseArrivalsShuttleState : byte
