@@ -17,13 +17,13 @@ public sealed partial class MindContainerComponent : Component
     // Sunrise edit end
 
     /// <summary>
-    ///     The mind controlling this mob. Can be null.
+    /// The mind controlling this mob. Can be null.
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? Mind;
 
     /// <summary>
-    ///     True if we have a mind, false otherwise.
+    /// True if we have a mind, false otherwise.
     /// </summary>
     [MemberNotNullWhen(true, nameof(Mind))]
     public bool HasMind => Mind != null;
@@ -36,15 +36,34 @@ public sealed partial class MindContainerComponent : Component
     public bool ShowExamineInfo { get; set; }
 
     /// <summary>
-    ///     Whether the mind will be put on a ghost after this component is shutdown.
+    /// Whether the mind will be put on a ghost after this component is shutdown.
     /// </summary>
     [DataField]
     public bool GhostOnShutdown = true;
+
+    /// <summary>
+    /// Last mind that had control of this mob. If null, it was never controlled by a player.
+    /// </summary>
+    /// <remarks>
+    /// Because minds only get networked to their owners, this field will be <see cref="EntityUid.Invalid"/> on client unless the last mind was the one belonging to the local client.
+    /// </remarks>
+    [DataField, AutoNetworkedField]
+    public EntityUid? LastMind;
 }
 
+/// <summary>
+/// Base event for all other mind related events.
+/// </summary>
 public abstract class MindEvent : EntityEventArgs
 {
+    /// <summary>
+    /// <see cref="MindComponent"/> entity currently being handled by the event.
+    /// </summary>
     public readonly Entity<MindComponent> Mind;
+
+    /// <summary>
+    /// <see cref="MindContainerComponent"/> entity currently being handled by the event.
+    /// </summary>
     public readonly Entity<MindContainerComponent> Container;
 
     public MindEvent(Entity<MindComponent> mind, Entity<MindContainerComponent> container)
@@ -57,6 +76,9 @@ public abstract class MindEvent : EntityEventArgs
 /// <summary>
 /// Event raised directed at a mind-container when a mind gets removed.
 /// </summary>
+/// <remarks>
+/// Called after the owned entity is already set to null. TransferEntity is the entity this mind will be added to afterward, if any.
+/// </remarks>
 public sealed class MindRemovedMessage : MindEvent
 {
     public MindRemovedMessage(Entity<MindComponent> mind, Entity<MindContainerComponent> container)
