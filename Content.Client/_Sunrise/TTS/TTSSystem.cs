@@ -180,8 +180,8 @@ public sealed class TTSSystem : EntitySystem
 
         var audioParams = AudioParams.Default.WithVolume(volume);
 
-        var entity = GetEntity(ev.SourceUid);
-        var playing = PlayTTSBytes(ev.Data, entity, audioParams);
+        var entity = ev.SourceUid != null ? GetEntity(ev.SourceUid.Value) : (EntityUid?) null;
+        var playing = PlayTTSBytes(ev.Data, entity, audioParams, ev.SourceUid == null);
         TrackTtsPlaybackGroup(ev.PlaybackGroup, playing);
     }
 
