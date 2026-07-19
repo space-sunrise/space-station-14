@@ -1,4 +1,5 @@
 using Content.Client._Sunrise.StationRecords;
+using Content.Client._Sunrise.Lobby;
 using Content.Client.Lobby;
 using Content.Client.Roles;
 using Content.Shared.StationRecords;
@@ -32,7 +33,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
     private readonly IPrototypeManager _prototype;
     private readonly ILocalizationManager _loc;
     private readonly JobSystem _job;
-    private readonly LobbyUIController _controller;
+    private readonly SunriseLobbyUIController _controller; // Sunrise-Edit
     // Sunrise added end
 
     public GeneralStationRecordConsoleWindow()
@@ -46,7 +47,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         _loc = IoCManager.Resolve<ILocalizationManager>();
         var interfaceManager = IoCManager.Resolve<IUserInterfaceManager>();
         _job = _entity.System<JobSystem>();
-        _controller = interfaceManager.GetUIController<LobbyUIController>();
+        _controller = interfaceManager.GetUIController<SunriseLobbyUIController>(); // Sunrise-Edit
         // Sunrise added end
 
         _currentFilterType = StationRecordFilterType.Name;

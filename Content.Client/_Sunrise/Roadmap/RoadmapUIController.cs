@@ -1,4 +1,5 @@
 using System.Text;
+using Content.Client._Sunrise.Lobby;
 using Content.Client.Lobby;
 using Content.Shared._Sunrise.Roadmap;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -10,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Roadmap;
 
-public sealed class RoadmapUIController : UIController, IOnStateEntered<LobbyState>
+public sealed class RoadmapUIController : UIController, IOnStateEntered<SunriseLobbyState>
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -18,7 +19,7 @@ public sealed class RoadmapUIController : UIController, IOnStateEntered<LobbySta
 
     private Roadmap? _window;
 
-    public void OnStateEntered(LobbyState state)
+    public void OnStateEntered(SunriseLobbyState state)
     {
         _roadmap.RequestLikes();
 
