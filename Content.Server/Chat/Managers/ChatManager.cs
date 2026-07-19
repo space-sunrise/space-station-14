@@ -13,12 +13,21 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Edit - логика OOC-оформления для спонсоров
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Server.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server.GameTicking;
+using Content.Server._Sunrise.PlayerCache;
+using Content.Server._Sunrise.TTS;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.SponsorSystem;
+using Content.Server._Sunrise.SponsorSystem;
+using Content.Shared._Sunrise.Messenger;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chat.Managers;
 
@@ -46,7 +55,11 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
+    // Sunrise added start - зависимость для озвучки лобби и админ-чата
+    [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!;
+    // Sunrise added end
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Edit - логика OOC-оформления для спонсоров
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Sunrise-Edit - prototype manager for emoji validation
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -287,6 +300,10 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         Color? colorOverride = null;
+
+        var emojiSystem = _entityManager.System<SharedEmojiSystem>();
+        message = emojiSystem.FilterBlockedEmojis(message, player.UserId, _sponsorsManager);
+
         var escapedMessage = FormattedMessage.EscapeText(message);
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", player.Name), ("message", escapedMessage));
 
@@ -296,58 +313,26 @@ internal sealed partial class ChatManager : IChatManager
             colorOverride = prefs.AdminOOCColor;
         }
 
-        // Sunrise added start - логика OOC-оформления для спонсоров
-        string? sponsorTitle = null;
-        Color? sponsorColor = null;
+        // Sunrise-Edit - логика OOC-оформления спонсора/админа перенесена в ChatManager.Sunrise.cs
+        wrappedMessage = FormatOocMessage(player, escapedMessage, wrappedMessage, emojiSystem);
 
-        if (_sponsorsManager != null)
-        {
-            _sponsorsManager.TryGetOocTitle(player.UserId, out sponsorTitle);
-            _sponsorsManager.TryGetOocColor(player.UserId, out sponsorColor);
-        }
-
-        var sponsorDisplayName = string.IsNullOrWhiteSpace(sponsorTitle)
-            ? player.Name
-            : FormatTitledDisplayName(sponsorTitle, player.Name);
-
-        if (sponsorColor != null)
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-sponsor-wrap-message",
-                ("sponsorColor", sponsorColor.Value.ToHex()),
-                ("playerName", sponsorDisplayName),
-                ("message", escapedMessage));
-        }
-        else if (sponsorDisplayName != player.Name)
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message",
-                ("playerName", sponsorDisplayName),
-                ("message", escapedMessage));
-        }
-        else if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
-                 player.Channel.UserData.PatronTier is { } patron &&
-                 PatronOocColors.TryGetValue(patron, out var patronColor))
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message",
-                ("patronColor", patronColor),
-                ("playerName", player.Name),
-                ("message", escapedMessage));
-        }
-        // Sunrise added end
-
-        // Sunrise added start - отдельный префикс администратора поверх sponsor/patron pipeline
-        var adminTitle = _adminManager.GetAdminData(player)?.Title;
-        if (!string.IsNullOrWhiteSpace(adminTitle))
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message",
-                ("playerName", FormatTitledDisplayName(adminTitle, player.Name)),
-                ("message", escapedMessage));
-        }
-        // Sunrise added end
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
         _discordLink.SendMessage(message, player.Name, ChatChannel.OOC);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"OOC from {player:Player}: {message}");
+
+        // Sunrise added start - озвучка OOC-сообщений в лобби
+        var gameTicker = _entityManager.System<GameTicker>();
+        if (gameTicker.RunLevel == GameRunLevel.PreRoundLobby && _sponsorsManager != null)
+        {
+            if (_sponsorsManager.IsAllowedLobbyTts(player.UserId) && _playerCacheManager.GetLobbyTtsEnabled(player.UserId))
+            {
+                var ttsSystem = _entityManager.System<TTSSystem>();
+                ttsSystem.PlayLobbyTTS(player, message);
+            }
+        }
+        // Sunrise added end
     }
 
     private void SendAdminChat(ICommonSession player, string message)
@@ -357,6 +342,9 @@ internal sealed partial class ChatManager : IChatManager
             _adminLogger.Add(LogType.Chat, LogImpact.Extreme, $"{player:Player} attempted to send admin message but was not admin");
             return;
         }
+
+        var emojiSystem = _entityManager.System<SharedEmojiSystem>();
+        message = emojiSystem.FilterBlockedEmojis(message, player.UserId, _sponsorsManager);
 
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
         var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
@@ -379,6 +367,11 @@ internal sealed partial class ChatManager : IChatManager
 
         _discordLink.SendMessage(message, player.Name, ChatChannel.AdminChat);
         _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
+
+        // Sunrise added start - озвучка сообщений в админ-чате
+        var adminTtsSystem = _entityManager.System<TTSSystem>();
+        adminTtsSystem.PlayAdminChatTTS(player, message);
+        // Sunrise added end
     }
 
     #endregion
