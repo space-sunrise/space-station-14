@@ -54,7 +54,7 @@ public delegate void CalcPlayTimeTrackersCallback(ICommonSession player, HashSet
 /// Operations like refreshing and sending play time info to clients are deferred until the next frame (note: not tick).
 /// </para>
 /// </remarks>
-public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjectInit
+public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjectInit
 {
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IServerNetManager _net = default!;
@@ -104,6 +104,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         // NOTE: This is run **out** of simulation. This is intentional.
 
         UpdateDirtyPlayers();
+        UpdatePlayTimeSessions();
 
         if (_timing.RealTime < _lastSave + _saveInterval)
             return;
@@ -268,6 +269,13 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         foreach (var (player, data) in _playTimeData)
         {
+            // Sunrise edit start - Update PlayTimeSession on auto-save
+            if (data.CurrentDbSessionId.HasValue)
+            {
+                await _db.UpdatePlayTimeSessionAsync(data.CurrentDbSessionId.Value, DateTime.UtcNow);
+            }
+            // Sunrise edit end
+
             foreach (var tracker in data.DbTrackersDirty)
             {
                 log.Add(new PlayTimeUpdate(player.UserId, tracker, data.TrackerTimes[tracker]));
@@ -292,6 +300,13 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         var log = new List<PlayTimeUpdate>();
 
         var data = _playTimeData[session];
+
+        // Sunrise edit start - Update PlayTimeSession on auto-save
+        if (data.CurrentDbSessionId.HasValue)
+        {
+            await _db.UpdatePlayTimeSessionAsync(data.CurrentDbSessionId.Value, DateTime.UtcNow);
+        }
+        // Sunrise edit end
 
         foreach (var tracker in data.DbTrackersDirty)
         {
@@ -321,6 +336,16 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
             data.TrackerTimes.Add(timer.Tracker, timer.TimeSpent);
         }
 
+        // Sunrise edit start - Чтобы локальные тесты не ломались сохраняем время только игрокам с авторизацией,
+        // к сложелению работает в таков виде только на проде
+        if (session.Channel.AuthType == LoginType.LoggedIn)
+        {
+            var sessionId = await _db.AddPlayTimeSessionAsync(session.UserId.UserId, data.ConnectTime, DateTime.UtcNow);
+            data.CurrentDbSessionId = sessionId;
+            OnPlayTimeSessionStarted(session);
+        }
+        // Sunrise edit end
+
         data.Initialized = true;
 
         QueueRefreshTrackers(session);
@@ -329,6 +354,10 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     public void ClientDisconnected(ICommonSession session)
     {
+        // Sunrise edit start - Save PlayTimeSession on player disconnect
+        OnPlayTimeSessionDisconnected(session);
+        // Sunrise edit end
+
         SaveSession(session);
 
         _playTimeData.Remove(session);
@@ -461,6 +490,21 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         /// Set of trackers which are different from their DB values and need to be saved to DB.
         /// </summary>
         public readonly HashSet<string> DbTrackersDirty = new();
+
+        /// <summary>
+        /// Current playtime session database ID.
+        /// </summary>
+        public int? CurrentDbSessionId;
+
+        /// <summary>
+        /// Connect time of the player to the server.
+        /// </summary>
+        public readonly DateTime ConnectTime = DateTime.UtcNow;
+
+        /// <summary>
+        /// Next heartbeat timestamp for the playtime session.
+        /// </summary>
+        public TimeSpan NextHeartbeat;
     }
 
     void IPostInjectInit.PostInject()
@@ -469,3 +513,4 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         _userDb.AddOnPlayerDisconnect(ClientDisconnected);
     }
 }
+
