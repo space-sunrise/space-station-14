@@ -223,6 +223,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink # Sunrise-Add
+      - AssaultOpsUplink # Sunrise-Add
 
 - type: listing
   id: UplinkC20RBundle
@@ -425,6 +426,11 @@
     Telecrystal: 6
   categories:
     - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkSingularityGrenade
@@ -1815,6 +1821,13 @@
     Telecrystal: 5
   categories:
   - UplinkWearables
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingOuterVestWebElite
@@ -1828,6 +1841,13 @@
     Telecrystal: 5
   categories:
   - UplinkWearables
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingShoesBootsMagSyndie
@@ -1922,7 +1942,6 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink # Sunrise-Edit
-      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernaut

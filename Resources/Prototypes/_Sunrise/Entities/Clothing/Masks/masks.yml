@@ -323,3 +323,18 @@
   #- type: ModifyWearerName
     #locId: equipped-name-prefix
     #priority: 0
+
+- type: entity
+  parent: ClothingMaskGasSyndicate
+  id: ClothingMaskGasPirate
+  name: pirate gas mask
+  description: A close-fitting mask fine-tuned for scallywags.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/pirateweldingmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/pirateweldingmask.rsi
+  - type: Contraband
+    severity: Major
+
+

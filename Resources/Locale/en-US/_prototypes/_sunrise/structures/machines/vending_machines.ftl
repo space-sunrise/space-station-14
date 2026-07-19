@@ -12,3 +12,5 @@ ent-VendingMachineWeaponDev = liberation station
     .desc = An overwhelming amount of ancient patriotism washes over you just by looking at the machine.
 ent-VendingMachineDressCloset = dress closet
     .desc = To be perfect.
+ent-InstrumentsMate = InstrumentsMate
+    .desc = Add some music in your life.
