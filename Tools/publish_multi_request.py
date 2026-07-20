@@ -7,7 +7,7 @@ import subprocess
 from typing import Iterable
 
 PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
-VERSION = os.environ["GITHUB_SHA"]
+GITHUB_SHA = os.environ["GITHUB_SHA"]  #AlexL1ne временный edit
 
 RELEASE_DIR = "release"
 
@@ -25,12 +25,14 @@ def main():
     args = parser.parse_args()
     fork_id = args.fork_id
 
+    VERSION = f"{GITHUB_SHA}-{fork_id}"  #AlexL1ne временный edit
+
     session = requests.Session()
     session.headers = {
         "Authorization": f"Bearer {PUBLISH_TOKEN}",
     }
 
-    print(f"Starting publish on Robust.Cdn for version {VERSION}")
+    print(f"Starting publish on Robust.Cdn for fork {fork_id}, version {VERSION}")  #AlexL1ne временный edit
 
     data = {
         "version": VERSION,
@@ -39,7 +41,11 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/start", json=data, headers=headers)
+    resp = session.post(
+        f"{ROBUST_CDN_URL}fork/{fork_id}/publish/start",
+        json=data,
+        headers=headers
+    )
     resp.raise_for_status()
     print("Publish successfully started, adding files...")
 
@@ -51,7 +57,11 @@ def main():
                 "Robust-Cdn-Publish-File": os.path.basename(file),
                 "Robust-Cdn-Publish-Version": VERSION
             }
-            resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/file", data=f, headers=headers)
+            resp = session.post(
+                f"{ROBUST_CDN_URL}fork/{fork_id}/publish/file",
+                data=f,
+                headers=headers
+            )
 
         resp.raise_for_status()
 
@@ -63,10 +73,14 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/finish", json=data, headers=headers)
+    resp = session.post(
+        f"{ROBUST_CDN_URL}fork/{fork_id}/publish/finish",
+        json=data,
+        headers=headers
+    )
     resp.raise_for_status()
 
-    print("SUCCESS!")
+    print(f"SUCCESS! Published fork={fork_id}, version={VERSION}")  #AlexL1ne временный edit
 
 
 def get_files_to_publish() -> Iterable[str]:
@@ -75,7 +89,13 @@ def get_files_to_publish() -> Iterable[str]:
 
 
 def get_engine_version() -> str:
-    proc = subprocess.run(["git", "describe","--tags", "--abbrev=0"], stdout=subprocess.PIPE, cwd="RobustToolbox", check=True, encoding="UTF-8")
+    proc = subprocess.run(
+        ["git", "describe", "--tags", "--abbrev=0"],
+        stdout=subprocess.PIPE,
+        cwd="RobustToolbox",
+        check=True,
+        encoding="UTF-8"
+    )
     tag = proc.stdout.strip()
     assert tag.startswith("v")
     return tag[1:] # Cut off v prefix.
