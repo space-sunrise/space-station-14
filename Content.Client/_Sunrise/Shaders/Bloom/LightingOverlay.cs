@@ -1,5 +1,4 @@
 using System.Numerics;
-using Robust.Client.ComponentTrees;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.ComponentTrees;
@@ -15,11 +14,11 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 /// </summary>
 public sealed class PointLightingOverlay : Overlay
 {
-    private const int MaxVisibleLights = 64;
+    private static readonly ProtoId<ShaderPrototype> BloomShader = "SunriseLightingOverlay";
 
-    private readonly EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
-    private readonly LightTreeSystem _lightTree;
+    private readonly BloomOverlayTreeSystem _bloomTree;
     private readonly Dictionary<BloomMaskKey, BloomMaskData> _maskCache = [];
+    private readonly EntityQuery<PointLightComponent> _pointLightQuery;
     private readonly ShaderInstance _shader;
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
@@ -33,22 +32,21 @@ public sealed class PointLightingOverlay : Overlay
     public float BloomStrength;
 
     public PointLightingOverlay(
-        LightTreeSystem lightTree,
+        BloomOverlayTreeSystem bloomTree,
         IPrototypeManager prototypeManager,
         SpriteSystem spriteSystem,
         TransformSystem transform,
-        EntityQuery<BloomOverlayVisualsComponent> bloomVisualsQuery,
+        EntityQuery<PointLightComponent> pointLightQuery,
         int zIndex,
         float baseHaze,
         float hazeDivisor,
-        float strength,
-        ProtoId<ShaderPrototype> shaderPrototype)
+        float strength)
     {
-        _lightTree = lightTree;
-        _shader = prototypeManager.Index(shaderPrototype).InstanceUnique();
+        _bloomTree = bloomTree;
+        _shader = prototypeManager.Index(BloomShader).InstanceUnique();
         _sprite = spriteSystem;
         _transform = transform;
-        _bloomVisualsQuery = bloomVisualsQuery;
+        _pointLightQuery = pointLightQuery;
         _baseHaze = baseHaze;
         _hazeDivisor = hazeDivisor;
         BloomStrength = strength;
@@ -65,11 +63,10 @@ public sealed class PointLightingOverlay : Overlay
         var queryState = new BloomLightQueryState(
             _visibleLights,
             _maskCache,
-            _bloomVisualsQuery,
+            _pointLightQuery,
             _sprite,
-            _transform,
-            visibleArea.Center);
-        _lightTree.QueryAabb(ref queryState, CollectBloomLight, args.MapId, visibleArea);
+            _transform);
+        _bloomTree.QueryAabb(ref queryState, CollectBloomLight, args.MapId, visibleArea);
         return _visibleLights.Count > 0;
     }
 
@@ -101,35 +98,16 @@ public sealed class PointLightingOverlay : Overlay
         base.DisposeBehavior();
     }
 
-    private static bool CollectBloomLight(ref BloomLightQueryState queryState, in ComponentTreeEntry<PointLightComponent> lightEntry)
+    private static bool CollectBloomLight(
+        ref BloomLightQueryState queryState,
+        in ComponentTreeEntry<BloomOverlayVisualsComponent> bloomEntry)
     {
-        if (!queryState.BloomVisualsQuery.TryComp(lightEntry.Uid, out var bloomVisuals))
+        if (!queryState.PointLightQuery.TryComp(bloomEntry.Uid, out var pointLight))
             return true;
 
-        var (pointLight, transform) = lightEntry;
-        var (worldPosition, _, worldMatrix) = queryState.Transform.GetWorldPositionRotationMatrix(transform);
-        var distanceSquared = Vector2.DistanceSquared(worldPosition, queryState.ViewCenter);
-        var replacementIndex = -1;
-
-        if (queryState.VisibleLights.Count >= MaxVisibleLights)
-        {
-            var farthestIndex = 0;
-            var farthestDistanceSquared = queryState.VisibleLights[0].DistanceSquared;
-            for (var i = 1; i < queryState.VisibleLights.Count; i++)
-            {
-                var visibleLight = queryState.VisibleLights[i];
-                if (visibleLight.DistanceSquared <= farthestDistanceSquared)
-                    continue;
-
-                farthestIndex = i;
-                farthestDistanceSquared = visibleLight.DistanceSquared;
-            }
-
-            if (distanceSquared >= farthestDistanceSquared)
-                return true;
-
-            replacementIndex = farthestIndex;
-        }
+        var bloomVisuals = bloomEntry.Component;
+        var transform = bloomEntry.Transform;
+        var (_, _, worldMatrix) = queryState.Transform.GetWorldPositionRotationMatrix(transform);
 
         var maskKey = new BloomMaskKey(bloomVisuals.MaskSprite, bloomVisuals.MaskOffset);
         if (!queryState.MaskCache.TryGetValue(maskKey, out var mask))
@@ -141,17 +119,11 @@ public sealed class PointLightingOverlay : Overlay
             queryState.MaskCache.Add(maskKey, mask);
         }
 
-        var light = new BloomLightEntry(
+        queryState.VisibleLights.Add(new BloomLightEntry(
             worldMatrix,
             mask.Texture,
             mask.Offset,
-            pointLight.Color * bloomVisuals.BloomColor,
-            distanceSquared);
-
-        if (replacementIndex >= 0)
-            queryState.VisibleLights[replacementIndex] = light;
-        else
-            queryState.VisibleLights.Add(light);
+            pointLight.Color * bloomVisuals.BloomColor));
 
         return true;
     }
@@ -159,10 +131,9 @@ public sealed class PointLightingOverlay : Overlay
     private readonly record struct BloomLightQueryState(
         List<BloomLightEntry> VisibleLights,
         Dictionary<BloomMaskKey, BloomMaskData> MaskCache,
-        EntityQuery<BloomOverlayVisualsComponent> BloomVisualsQuery,
+        EntityQuery<PointLightComponent> PointLightQuery,
         SpriteSystem Sprite,
-        TransformSystem Transform,
-        Vector2 ViewCenter);
+        TransformSystem Transform);
 
     private readonly record struct BloomMaskKey(SpriteSpecifier Sprite, Vector2 Offset);
 
@@ -172,6 +143,5 @@ public sealed class PointLightingOverlay : Overlay
         Matrix3x2 WorldMatrix,
         Texture MaskTexture,
         Vector2 MaskOffset,
-        Color Color,
-        float DistanceSquared);
+        Color Color);
 }

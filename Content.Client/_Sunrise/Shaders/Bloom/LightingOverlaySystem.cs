@@ -1,5 +1,4 @@
 using Content.Shared._Sunrise.SunriseCCVars;
-using Robust.Client.ComponentTrees;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
@@ -14,23 +13,21 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 public sealed class LightingOverlaySystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly LightTreeSystem _lightTree = default!;
+    [Dependency] private readonly BloomOverlayTreeSystem _bloomTree = default!;
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    private static readonly ProtoId<ShaderPrototype> BloomShader = "SunriseLightingOverlay";
-
-    private EntityQuery<BloomOverlayVisualsComponent> _bloomVisualsQuery;
+    private EntityQuery<PointLightComponent> _pointLightQuery;
     private PointLightingOverlay? _bloomOverlay;
-    private float _bloomStrength = 1f;
+    private float _bloomStrength = 0.7f;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _bloomVisualsQuery = GetEntityQuery<BloomOverlayVisualsComponent>();
+        _pointLightQuery = GetEntityQuery<PointLightComponent>();
         Subs.CVar(_configuration, SunriseCCVars.LightBloomEnabled, OnBloomEnabledChanged, true);
         Subs.CVar(_configuration, SunriseCCVars.LightBloomStrength, OnBloomStrengthChanged, true);
     }
@@ -68,23 +65,22 @@ public sealed class LightingOverlaySystem : EntitySystem
             return;
 
         _bloomOverlay ??= new PointLightingOverlay(
-            _lightTree,
+            _bloomTree,
             _prototype,
             _sprite,
             _transform,
-            _bloomVisualsQuery,
+            _pointLightQuery,
             (int) DrawDepth.Effects,
             0.8f,
             0.05f,
-            _bloomStrength,
-            BloomShader);
+            _bloomStrength);
 
         _overlay.AddOverlay(_bloomOverlay);
     }
 
     private void OnBloomStrengthChanged(float strength)
     {
-        _bloomStrength = Math.Clamp(strength, 0f, 2f);
+        _bloomStrength = Math.Clamp(strength, 0f, 1f);
         if (_bloomOverlay is { } overlay)
             overlay.BloomStrength = _bloomStrength;
     }

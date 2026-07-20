@@ -1,4 +1,6 @@
 using System.Numerics;
+using Robust.Shared.ComponentTrees;
+using Robust.Shared.Physics;
 using Robust.Shared.Serialization.Manager.Attributes;
 using Robust.Shared.Utility;
 
@@ -8,7 +10,7 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 /// Marks a point light that should receive the client-side bloom effect.
 /// </summary>
 [RegisterComponent]
-public sealed partial class BloomOverlayVisualsComponent : Component
+public sealed partial class BloomOverlayVisualsComponent : Component, IComponentTreeEntry<BloomOverlayVisualsComponent>
 {
     [DataField]
     public SpriteSpecifier MaskSprite = new SpriteSpecifier.Rsi(
@@ -20,4 +22,12 @@ public sealed partial class BloomOverlayVisualsComponent : Component
 
     [DataField]
     public Color BloomColor = Color.White;
+
+    public EntityUid? TreeUid { get; set; }
+
+    public DynamicTree<ComponentTreeEntry<BloomOverlayVisualsComponent>>? Tree { get; set; }
+
+    public bool AddToTree => true;
+
+    public bool TreeUpdateQueued { get; set; }
 }
