@@ -3602,7 +3602,7 @@ entities:
     - type: Transform
       pos: -10.5,-13.5
       parent: 1
-- proto: HolopadLongRange
+- proto: HolopadSalvageShuttle
   entities:
   - uid: 146
     components:
@@ -3707,7 +3707,7 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: LockableButtonNukeOps
+- proto: LockableButtonSalvage
   entities:
   - uid: 319
     components:
@@ -3850,7 +3850,7 @@ entities:
     - type: Transform
       pos: -3.729981,-10.186308
       parent: 1
-- proto: PirateFlag
+- proto: DonkFlag
   entities:
   - uid: 827
     components:
@@ -5120,7 +5120,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ToolboxSyndicateFilled
+- proto: ToolboxMechanicalFilledAllTools
   entities:
   - uid: 671
     components:

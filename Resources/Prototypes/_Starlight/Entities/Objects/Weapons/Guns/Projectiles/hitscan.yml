@@ -1258,10 +1258,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
-    armorPenetration: -0.5
+    armorPenetration: -0.4
     damage:
       types:
-        Piercing: 1
+        Piercing: 3
   - type: ProjectilePierce
     chance: 0.001
   - type: HitscanBasicVisuals
