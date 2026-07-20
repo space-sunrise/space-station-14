@@ -54,7 +54,7 @@
       - MobPirateT1BorgAssault
       - MobPirateT1BorgMining
       - MobPirateT1BorgDerelict
-    rareChance: 0.2
+    rareChance: 0.15
 
 - type: entity
   name: pirate T2 spawner
