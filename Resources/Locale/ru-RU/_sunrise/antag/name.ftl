@@ -1,0 +1,19 @@
+antag-name-format-nukeops-commander = Командир {$name}
+antag-name-format-nukeops-medic = Агент {$name}
+antag-name-format-nukeops-operative = Оператор {$name}
+antag-name-format-nukeops-loneops = Одинокий оперативник {$name}
+antag-name-format-dragon = {$name}
+antag-name-format-ninja = {$name}
+
+antag-name-eui-window-title = Имя антагониста
+antag-name-eui-title-nukeops-commander = Командир ядерных оперативников
+antag-name-eui-title-nukeops-medic = Медик ядерных оперативников
+antag-name-eui-title-nukeops-operative = Ядерный оперативник
+antag-name-eui-title-nukeops-loneops = Одинокий ядерный оперативник
+antag-name-eui-title-dragon = Дракон
+antag-name-eui-title-ninja = Космический ниндзя
+antag-name-eui-prompt = Выберите имя, под которым вас будут знать.
+antag-name-eui-current = Текущее имя: {$name}
+antag-name-eui-placeholder = Введите имя или оставьте случайное
+antag-name-eui-confirm = Использовать имя
+antag-name-eui-random = Оставить случайное

@@ -1,0 +1,19 @@
+antag-name-format-nukeops-commander = Commander {$name}
+antag-name-format-nukeops-medic = Corpsman {$name}
+antag-name-format-nukeops-operative = Operator {$name}
+antag-name-format-nukeops-loneops = Lone operative {$name}
+antag-name-format-dragon = {$name}
+antag-name-format-ninja = {$name}
+
+antag-name-eui-window-title = Antagonist name
+antag-name-eui-title-nukeops-commander = Nuclear operative commander
+antag-name-eui-title-nukeops-medic = Nuclear operative medic
+antag-name-eui-title-nukeops-operative = Nuclear operative
+antag-name-eui-title-nukeops-loneops = Lone nuclear operative
+antag-name-eui-title-dragon = Dragon
+antag-name-eui-title-ninja = Space ninja
+antag-name-eui-prompt = Choose the name you will be known by.
+antag-name-eui-current = Current name: {$name}
+antag-name-eui-placeholder = Enter a name or keep the random one
+antag-name-eui-confirm = Use name
+antag-name-eui-random = Keep random
