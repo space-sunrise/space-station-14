@@ -46,10 +46,13 @@ public sealed partial class ShipyardSystem : EntitySystem
 
     private readonly List<PendingShipyardAction> _pendingActions = new();
     private readonly List<PendingShipyardPurchase> _pendingPurchases = new();
+    private EntityQuery<ShipyardConsoleComponent> _consoleQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _consoleQuery = GetEntityQuery<ShipyardConsoleComponent>();
 
         Subs.BuiEvents<ShipyardConsoleComponent>(ShipyardConsoleUiKey.Key, subs =>
         {
@@ -76,7 +79,7 @@ public sealed partial class ShipyardSystem : EntitySystem
                 continue;
 
             _pendingActions.RemoveAt(i);
-            if (!TryComp<ShipyardConsoleComponent>(action.Console, out var console))
+            if (!_consoleQuery.TryComp(action.Console, out var console))
                 continue;
 
             CompleteSale((action.Console, console), action);
@@ -108,34 +111,68 @@ public sealed partial class ShipyardSystem : EntitySystem
         if (args.Handled || !HasComp<CashComponent>(args.Used))
             return;
 
-        if (!_access.IsAllowed(args.User, ent))
+        args.Handled = TryDepositCash(ent, args.Used, args.User);
+    }
+
+    public bool TryDepositCash(Entity<ShipyardConsoleComponent> ent, EntityUid cash, EntityUid user)
+    {
+        if (!CanDepositCash(ent, cash, user))
+            return false;
+
+        DoDepositCash(ent, cash, user);
+        return true;
+    }
+
+    public bool CanDepositCash(
+        Entity<ShipyardConsoleComponent> ent,
+        EntityUid cash,
+        EntityUid user,
+        bool quiet = false)
+    {
+        if (!HasComp<CashComponent>(cash))
+            return false;
+
+        if (!_access.IsAllowed(user, ent))
         {
-            Deny(ent, args.User, "shipyard-console-access-denied");
-            return;
+            if (!quiet)
+                Deny(ent, user, "shipyard-console-access-denied");
+            return false;
         }
 
-        var amount = (int) _pricing.GetPrice(args.Used);
+        var amount = (int) _pricing.GetPrice(cash);
         if (amount <= 0)
-            return;
+            return false;
 
         var stationUid = _station.GetOwningStation(ent);
         if (stationUid is not { } station ||
             !TryComp<StationBankAccountComponent>(station, out var bank))
         {
-            Deny(ent, args.User, "shipyard-console-station-not-found");
-            return;
+            if (!quiet)
+                Deny(ent, user, "shipyard-console-station-not-found");
+            return false;
         }
 
-        if (!_cargo.TryAdjustBankAccount((station, bank), ent.Comp.Account, amount))
+        if (!_cargo.TryGetAccount((station, bank), ent.Comp.Account, out _))
         {
-            Deny(ent, args.User, "shipyard-console-account-not-found");
-            return;
+            if (!quiet)
+                Deny(ent, user, "shipyard-console-account-not-found");
+            return false;
         }
 
-        QueueDel(args.Used);
-        args.Handled = true;
+        return true;
+    }
+
+    public void DoDepositCash(Entity<ShipyardConsoleComponent> ent, EntityUid cash, EntityUid user)
+    {
+        var amount = (int) _pricing.GetPrice(cash);
+        var station = _station.GetOwningStation(ent)!.Value;
+        var bank = Comp<StationBankAccountComponent>(station);
+
+        _cargo.TryAdjustBankAccount((station, bank), ent.Comp.Account, amount);
+        QueueDel(cash);
+
         _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
-        _popup.PopupEntity(Loc.GetString("shipyard-console-credit-deposit", ("amount", amount)), ent, args.User);
+        _popup.PopupEntity(Loc.GetString("shipyard-console-credit-deposit", ("amount", amount)), ent, user);
         UpdateUi(ent);
     }
 

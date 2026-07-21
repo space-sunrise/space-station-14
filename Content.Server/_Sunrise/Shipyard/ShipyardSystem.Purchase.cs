@@ -115,7 +115,7 @@ public sealed partial class ShipyardSystem
                 continue;
 
             _pendingPurchases.RemoveAt(i);
-            if (!TryComp<ShipyardConsoleComponent>(purchase.Console, out var console))
+            if (!_consoleQuery.TryComp(purchase.Console, out var console))
             {
                 RefundPendingPurchase(purchase);
                 DeleteStagingMap(purchase.StagingMap);

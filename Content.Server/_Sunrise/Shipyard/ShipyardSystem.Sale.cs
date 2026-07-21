@@ -264,6 +264,8 @@ public sealed partial class ShipyardSystem
             : Loc.GetString("shipyard-console-unknown-shuttle");
     }
 
+    // The refund is reduced proportionally to how much the vessel's valuation has decreased
+    // relative to the valuation at the time of purchase (for example, due to equipment removal).
     private int GetCurrentSellValue(ShipyardConsoleComponent component, EntityUid shuttleUid)
     {
         var maximumRefund = component.CurrentShuttlePrice * Math.Clamp(component.SellRate, 0f, 1f);

@@ -25,6 +25,9 @@ public sealed partial class ShipyardConsoleComponent : Component
     [DataField]
     public string VesselGroup = "station";
 
+    /// <summary>
+    /// Priority docking port tag used when selecting a vessel's docking location.
+    /// </summary>
     [DataField]
     public string? PriorityTag;
 
