@@ -6,6 +6,7 @@ borg-type-engineer = [color= #ff9900]engineer cyborgs[/color]
 borg-type-generic = [color= #666680]generic cyborgs[/color]
 borg-type-janitor = [color= #a747c0]janitor cyborgs[/color]
 borg-type-medical = [color= #5995ba]medical cyborgs[/color]
+borg-type-security = [color= #a0322c]security cyborgs[/color]
 borg-type-service = [color= #508242]service cyborgs[/color]
 
 borg-type-syndicate = [color= #962023]syndicate cyborgs[/color]
