@@ -51,10 +51,11 @@
   - type: SolutionContainerVisuals
     fillBaseName: cleaner-fill-
     inHandsMaxFillLevels: 4
-  #Sunrise-start
+  # Sunrise-start
   - type: Spray
+  # Скорость распыления увеличена для ускорения распыления космоочистителя.
     sprayVelocity: 5
-  #Sunrise-end
+  # Sunrise-end
 
 - type: entity
   parent: SprayBottle
@@ -80,7 +81,7 @@
   - type: Spray
     transferAmount: 15
     sprayedPrototype: BigVapor
-  # sprayVelocity: 3 Sunrise-edit, наследует от SprayBottle
+  # Sunrise-edit: скорость наследуется от SprayBottle.
     sprayDistance: 4.5
     spraySound:
       path: /Audio/Effects/spray2.ogg
