@@ -28,7 +28,7 @@
   - type: Spray
     solution: drink
     transferAmount: 10
-    sprayVelocity: 2
+    sprayVelocity: 5 #Sunrise-edit 3 -> 5
     spraySound:
       path: /Audio/Effects/spray2.ogg
   - type: TrashOnSolutionEmpty
@@ -76,7 +76,7 @@
   - type: Spray
     transferAmount: 15
     sprayedPrototype: BigVapor
-    sprayVelocity: 3
+    sprayVelocity: 5 #Sunrise-edit 3 -> 5
     sprayDistance: 4.5
     spraySound:
       path: /Audio/Effects/spray2.ogg
