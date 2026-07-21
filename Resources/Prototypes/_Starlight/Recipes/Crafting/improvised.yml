@@ -219,6 +219,16 @@
   description: crafting-menu-text-IRB
 
 - type: construction
+  name: crafting-menu-name-IRB556
+  id: CartridgeRifleImprovised
+  graph: ImprovisedRifleBulletGraph
+  startNode: start
+  targetNode: shell
+  category: construction-category-weapons
+  objectType: Item
+  description: crafting-menu-text-IRB556
+
+- type: construction
   name: crafting-menu-name-IMGB
   id: BaseMagazineBoxImprovised
   graph: ImprovisedMagazineBoxGraph

@@ -31,50 +31,50 @@
     # Ores
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockIron
-      count: 45 # Sunrise-edit
+      entity: SunriseVGRoidIronRockIronCrabChance # Sunrise-edit
+      count: 30 # Sunrise-edit
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockCoal
-      count: 45 # Sunrise-edit
+      entity: SunriseVGRoidIronRockCoalCrabChance # Sunrise-edit
+      count: 30 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockQuartz
-      count: 45 # Sunrise-edit
+      entity: SunriseVGRoidIronRockQuartzCrabChance # Sunrise-edit
+      count: 30 # Sunrise-edit
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockSalt
-      count: 40 # Sunrise-edit
+      entity: SunriseVGRoidIronRockSaltCrabChance # Sunrise-edit
+      count: 10 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockGold
-      count: 35 # Sunrise-edit
+      entity: SunriseVGRoidIronRockGoldCrabChance # Sunrise-edit
+      count: 25 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockSilver
-      count: 35 # Sunrise-edit
+      entity: SunriseVGRoidIronRockSilverCrabChance # Sunrise-edit
+      count: 25 # Sunrise-edit
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockPlasma
-      count: 35
+      entity: SunriseVGRoidIronRockPlasmaCrabChance # Sunrise-edit
+      count: 15
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockUranium
-      count: 30 # Sunrise-edit
+      entity: SunriseVGRoidIronRockUraniumCrabChance # Sunrise-edit
+      count: 20 # Sunrise-edit
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
@@ -85,8 +85,8 @@
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockDiamond
-      count: 15
+      entity: SunriseVGRoidIronRockDiamondCrabChance # Sunrise-edit
+      count: 10
       minGroupSize: 1
       maxGroupSize: 2
     - !type:OreDunGen
@@ -99,37 +99,37 @@
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockIronCrab
-      count: 7
+      count: 15
       minGroupSize: 3
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockCoalCrab
-      count: 7
+      count: 15
       minGroupSize: 2
       maxGroupSize: 2
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockQuartzCrab
-      count: 7
+      count: 15
       minGroupSize: 4
       maxGroupSize: 4
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockGoldCrab
-      count: 5
+      count: 10
       minGroupSize: 3
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockSilverCrab
-      count: 5
+      count: 10
       minGroupSize: 3
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockBananium
-      count: 7
+      entity: SunriseVGRoidIronRockBananiumCrabChance
+      count: 5
       minGroupSize: 2
       maxGroupSize: 3
     - !type:OreDunGen
@@ -140,8 +140,26 @@
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
-      entity: IronRockUraniumCrab
+      entity: IronRockSaltCrab
+      count: 15
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockPlasmaCrab
+      count: 15
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockDiamondCrab
       count: 5
+      minGroupSize: 1
+      maxGroupSize: 2
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockUraniumCrab
+      count: 10
       minGroupSize: 2
       maxGroupSize: 3
       # Sunrise-end
