@@ -1,43 +1,42 @@
+using Content.Shared._Sunrise.Shipyard.Prototypes;
+using Content.Shared.Cargo.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Maths;
 
 namespace Content.Shared._Sunrise.Shipyard.BUI;
 
+/// <summary>
+/// Server-authoritative state displayed by a shipyard console.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
 {
-    public readonly string AccountName;
-    public readonly Color AccountColor;
+    public readonly ProtoId<CargoAccountPrototype> Account;
     public readonly int Balance;
-    public readonly string? CurrentShuttleName;
-    public readonly int CurrentShuttlePrice;
+    public readonly ProtoId<ShipyardVesselPrototype>? CurrentShuttle;
     public readonly int CurrentShuttleSellValue;
-    public readonly float SellRate;
     public readonly bool TransactionPending;
     public readonly List<ShipyardVesselData> Vessels;
 
     public ShipyardConsoleInterfaceState(
-        string accountName,
-        Color accountColor,
+        ProtoId<CargoAccountPrototype> account,
         int balance,
-        string? currentShuttleName,
-        int currentShuttlePrice,
+        ProtoId<ShipyardVesselPrototype>? currentShuttle,
         int currentShuttleSellValue,
-        float sellRate,
         bool transactionPending,
         List<ShipyardVesselData> vessels)
     {
-        AccountName = accountName;
-        AccountColor = accountColor;
+        Account = account;
         Balance = balance;
-        CurrentShuttleName = currentShuttleName;
-        CurrentShuttlePrice = currentShuttlePrice;
+        CurrentShuttle = currentShuttle;
         CurrentShuttleSellValue = currentShuttleSellValue;
-        SellRate = sellRate;
         TransactionPending = transactionPending;
         Vessels = vessels;
     }
 }
 
+/// <summary>
+/// Identifies an available vessel and its purchase price.
+/// </summary>
 [Serializable, NetSerializable]
-public readonly record struct ShipyardVesselData(string Id, string Name, string Description, int Price);
+public readonly record struct ShipyardVesselData(ProtoId<ShipyardVesselPrototype> Id, int Price);

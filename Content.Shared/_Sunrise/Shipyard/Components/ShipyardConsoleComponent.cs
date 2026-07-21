@@ -70,6 +70,15 @@ public sealed partial class ShipyardConsoleComponent : Component
     [AutoNetworkedField]
     public int CurrentShuttlePrice;
 
+    /// <summary>
+    /// Appraised value of the shuttle immediately after purchase.
+    /// Used to reduce the refund when equipment is removed from the shuttle.
+    /// </summary>
+    public double InitialShuttleAppraisal;
+
+    /// <summary>
+    /// Prototype of the shuttle currently linked to the console.
+    /// </summary>
     [AutoNetworkedField]
-    public string? CurrentShuttleName;
+    public ProtoId<ShipyardVesselPrototype>? CurrentShuttleVessel;
 }

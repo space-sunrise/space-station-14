@@ -21,6 +21,7 @@ shipyard-console-account-not-found = The configured station account is unavailab
 shipyard-console-insufficient-funds = Insufficient funds. Required: {$cost} credits.
 shipyard-console-invalid-vessel = The selected shuttle is not available at this console.
 shipyard-console-load-failed = The shuttle could not be deployed.
+shipyard-console-docking-failed = No safe deployment point could be found for the shuttle.
 shipyard-console-sell-first = Sell the shuttle currently linked to this console first.
 shipyard-console-shuttle-occupied = The shuttle must be empty before it can be sold. Sentient organisms detected: {$count}.
 shipyard-console-shuttle-too-far = The shuttle is more than {$distance} meters from the station.

@@ -1,6 +1,5 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Numerics;
 
 namespace Content.Shared._Sunrise.Shipyard.Prototypes;
 
@@ -27,9 +26,6 @@ public sealed partial class ShipyardVesselPrototype : IPrototype
 
     [DataField]
     public string Group { get; private set; } = "station";
-
-    [DataField]
-    public Vector2 SpawnOffset { get; private set; } = new(32f, 0f);
 
     [DataField]
     public Angle Rotation { get; private set; } = Angle.Zero;

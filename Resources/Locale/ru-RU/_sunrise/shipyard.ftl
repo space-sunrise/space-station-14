@@ -21,6 +21,7 @@ shipyard-console-account-not-found = Указанный счёт станции 
 shipyard-console-insufficient-funds = Недостаточно средств. Требуется: {$cost} кредитов.
 shipyard-console-invalid-vessel = Выбранный шаттл недоступен на этой консоли.
 shipyard-console-load-failed = Не удалось развернуть шаттл.
+shipyard-console-docking-failed = Не удалось найти безопасную точку размещения шаттла.
 shipyard-console-sell-first = Сначала продайте шаттл, прикреплённый к этой консоли.
 shipyard-console-shuttle-occupied = Перед продажей шаттл должен быть пустым. Обнаружено разумных организмов: {$count}.
 shipyard-console-shuttle-too-far = Шаттл находится дальше {$distance} метров от станции.

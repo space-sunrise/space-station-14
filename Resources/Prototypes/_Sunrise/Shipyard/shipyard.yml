@@ -6,7 +6,6 @@
   price: 12000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/mining.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipAsteroidcracker
@@ -15,7 +14,6 @@
   price: 15000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/asteroidcracker.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipBison
@@ -24,7 +22,6 @@
   price: 75000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/bison.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipChisel
@@ -33,7 +30,6 @@
   price: 12000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/chisel.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipExpeditioneer
@@ -42,7 +38,6 @@
   price: 18000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/expeditioneer.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipNomad
@@ -51,7 +46,6 @@
   price: 30000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/nomad.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipOredozer
@@ -60,7 +54,6 @@
   price: 50000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/oredozer.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipPickaxe
@@ -69,7 +62,6 @@
   price: 14000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/pickaxe.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SalvageShipSiera
@@ -78,7 +70,6 @@
   price: 28000
   group: salvage
   gridPath: /Maps/_Sunrise/Shuttles/Salvage/siera.yml
-  spawnOffset: 32,0
 
 # region Security
 - type: shipyardVessel
@@ -88,7 +79,6 @@
   price: 20000
   group: security
   gridPath: /Maps/_Sunrise/Shuttles/Security/security.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SecurityShipAvangard
@@ -97,7 +87,6 @@
   price: 45000
   group: security
   gridPath: /Maps/_Sunrise/Shuttles/Security/avangard.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SecurityShipMosquitt
@@ -106,7 +95,6 @@
   price: 28000
   group: security
   gridPath: /Maps/_Sunrise/Shuttles/Security/mosquitt.yml
-  spawnOffset: 32,0
 
 - type: shipyardVessel
   id: SecurityShipShitcurity
@@ -115,7 +103,6 @@
   price: 80000
   group: security
   gridPath: /Maps/_Sunrise/Shuttles/Security/shitcurity.yml
-  spawnOffset: 36,0
 
 - type: shipyardVessel
   id: SecurityShipStargaze
@@ -124,4 +111,3 @@
   price: 60000
   group: security
   gridPath: /Maps/_Sunrise/Shuttles/Security/stargaze.yml
-  spawnOffset: 36,0

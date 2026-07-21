@@ -75,7 +75,7 @@
   - type: ShipyardConsole
     account: Cargo
     vesselGroup: station
-    announcementChannel: Supplyd
+    announcementChannel: Supply
   - type: ContainerContainer
     containers:
       board: !type:Container
