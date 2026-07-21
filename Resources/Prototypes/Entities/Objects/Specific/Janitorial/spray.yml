@@ -28,7 +28,7 @@
   - type: Spray
     solution: drink
     transferAmount: 10
-    sprayVelocity: 5 #Sunrise-edit 3 -> 5
+    sprayVelocity: 2
     spraySound:
       path: /Audio/Effects/spray2.ogg
   - type: TrashOnSolutionEmpty
@@ -51,6 +51,10 @@
   - type: SolutionContainerVisuals
     fillBaseName: cleaner-fill-
     inHandsMaxFillLevels: 4
+  #Sunrise-start
+  - type: Spray
+    sprayVelocity: 5
+  #Sunrise-end
 
 - type: entity
   parent: SprayBottle
@@ -76,7 +80,7 @@
   - type: Spray
     transferAmount: 15
     sprayedPrototype: BigVapor
-    sprayVelocity: 5 #Sunrise-edit 3 -> 5
+  # sprayVelocity: 3 Sunrise-edit, наследует от SprayBottle
     sprayDistance: 4.5
     spraySound:
       path: /Audio/Effects/spray2.ogg
