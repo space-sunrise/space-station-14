@@ -129,6 +129,7 @@ public sealed partial class HumanoidProfileEditor
                 Loc.GetString("player-joinable-map-additional-title", ("map", Loc.GetString(map.DisplayName))),
                 ref firstCategory);
 
+            var firstMapDepartment = true;
             foreach (var (department, jobs) in sections)
             {
                 AddPlayerJoinableMapDepartmentJobs(
@@ -137,7 +138,9 @@ public sealed partial class HumanoidProfileEditor
                     $"{map.ID}-{department.ID}",
                     priorityItems,
                     sponsorPrototypes,
-                    ref firstCategory);
+                    ref firstCategory,
+                    firstMapDepartment);
+                firstMapDepartment = false;
             }
         }
     }
@@ -173,7 +176,8 @@ public sealed partial class HumanoidProfileEditor
         string categoryId,
         (string LocKey, int Priority)[] priorityItems,
         string[] sponsorPrototypes,
-        ref bool firstCategory)
+        ref bool firstCategory,
+        bool firstMapDepartment)
     {
         if (jobs.Length == 0)
             return;
@@ -185,7 +189,7 @@ public sealed partial class HumanoidProfileEditor
             {
                 firstCategory = false;
             }
-            else
+            else if (!firstMapDepartment)
             {
                 JobList.AddChild(new Control
                 {

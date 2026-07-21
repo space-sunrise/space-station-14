@@ -2,8 +2,6 @@ using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Server.GameTicking;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.Roles;
-using Robust.Shared.Configuration;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #pragma warning disable IDE0130 // Namespace не соответствует папке из-за partial-портала.
@@ -13,14 +11,7 @@ public sealed partial class StationJobsSystem
 {
     [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMap = default!;
 
-    partial void InitializeStationJobsPortal()
-    {
-        foreach (var map in _prototypeManager.EnumeratePrototypes<PlayerJoinableMapPrototype>())
-        {
-            SubscribePlayerJoinableMapAccessCVar(PlayerJoinableMapAccess.GetEnabledCVar(map));
-            SubscribePlayerJoinableMapAccessCVar(PlayerJoinableMapAccess.GetMinPlayersCVar(map));
-        }
-    }
+    partial void FilterRoundStartJobsPortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs);
 
     partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation)
     {
@@ -28,13 +19,8 @@ public sealed partial class StationJobsSystem
         skipStation = jobs.Count == 0 && _playerJoinableMap.HasAnyPlayerJoinableJob(GetJobs(station));
     }
 
-    private void SubscribePlayerJoinableMapAccessCVar<T>(CVarDef<T>? cvar)
-        where T : notnull
+    partial void FilterRoundStartJobsPortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs)
     {
-        if (cvar == null)
-            return;
-
-        Subs.CVar<T>(_configurationManager, cvar, _ => UpdateJobsAvailable(), true);
+        _playerJoinableMap.FilterAvailableJobs((station, null), jobs, PlayerJoinKind.RoundStart);
     }
-
 }

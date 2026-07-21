@@ -7,12 +7,21 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    partial void ResolveDirectSpawnStationPortal(ICommonSession player, string? jobId, ref EntityUid station, ref bool handled);
+    partial void ResolveDirectSpawnStationPortal(
+        ICommonSession player,
+        string? jobId,
+        PlayerJoinKind joinKind,
+        ref EntityUid station,
+        ref bool handled);
     partial void FilterCanBeAntagPortal(EntityUid station, ref bool canBeAntag);
 
     [Dependency] private readonly PlayerJoinableMapSystem _playerJoinableMap = default!;
 
-    internal bool TryPreparePlayerJoinableMapJoin(ICommonSession player, string? jobId, ref EntityUid station)
+    internal bool TryPreparePlayerJoinableMapJoin(
+        ICommonSession player,
+        string? jobId,
+        PlayerJoinKind joinKind,
+        ref EntityUid station)
     {
         if (jobId == null)
             return true;
@@ -22,14 +31,14 @@ public sealed partial class GameTicker
 
         if (station != EntityUid.Invalid)
         {
-            if (_playerJoinableMap.CanJoinAs((station, null), job.ID, PlayerJoinKind.LateJoin))
+            if (_playerJoinableMap.CanJoinAs((station, null), job.ID, joinKind))
                 return true;
 
             NotifyJoinGameJobUnavailable(player, station, job);
             return false;
         }
 
-        if (_playerJoinableMap.TryResolveJoinableStationForJob(job.ID, PlayerJoinKind.LateJoin, out var resolvedStation, out var unavailableStation))
+        if (_playerJoinableMap.TryResolveJoinableStationForJob(job.ID, joinKind, out var resolvedStation, out var unavailableStation))
         {
             station = resolvedStation;
             return true;
@@ -43,9 +52,14 @@ public sealed partial class GameTicker
         return false;
     }
 
-    partial void ResolveDirectSpawnStationPortal(ICommonSession player, string? jobId, ref EntityUid station, ref bool handled)
+    partial void ResolveDirectSpawnStationPortal(
+        ICommonSession player,
+        string? jobId,
+        PlayerJoinKind joinKind,
+        ref EntityUid station,
+        ref bool handled)
     {
-        handled = !TryPreparePlayerJoinableMapJoin(player, jobId, ref station);
+        handled = !TryPreparePlayerJoinableMapJoin(player, jobId, joinKind, ref station);
     }
 
     partial void FilterCanBeAntagPortal(EntityUid station, ref bool canBeAntag)

@@ -3,6 +3,7 @@ using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.GameTicking;
+using Content.Server._Sunrise.GameTicking.Events;
 using Content.Server.Shuttles.Components;
 using Content.Shared._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Shared.GameTicking;
@@ -31,21 +32,44 @@ public sealed partial class PlayerJoinableMapSystem : EntitySystem
     [Dependency] private readonly SpawnPointSystem _spawnPoint = default!;
 
     private readonly PlayerJoinableMapIndex _mapIndex = new();
+    private readonly HashSet<ProtoId<PlayerJoinableMapPrototype>> _playerCountAccessibleMaps = [];
+    private readonly HashSet<string> _subscribedAccessCVars = [];
+    private int? _lastProcessedPlayerCount;
 
     public override void Initialize()
     {
         base.Initialize();
         _mapIndex.Rebuild(_prototype);
+        RefreshAccessCVarSubscriptions();
         InitializeManagedLoading();
         SubscribeLocalEvent<PlayerJoinableMapComponent, ComponentInit>(OnPlayerJoinableMapInit);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        SubscribeLocalEvent<RoundLobbyReadyEvent>(OnRoundLobbyReady);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby, before: [typeof(StationJobsSystem)]);
+        _player.PlayerStatusChanged += OnPlayerStatusChanged;
+
+        if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+            ResetPlayerCountAccessForLobby();
+    }
+
+    public override void Shutdown()
+    {
+        _player.PlayerStatusChanged -= OnPlayerStatusChanged;
+        _playerCountAccessibleMaps.Clear();
+        _lastProcessedPlayerCount = null;
+        base.Shutdown();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
         _mapIndex.Rebuild(_prototype);
-        RefreshManagedLoading();
+        RefreshAccessCVarSubscriptions();
+
+        if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+            UpdatePlayerCountAccess(true);
+
+        LoadAvailableManagedMaps();
+        _stationJobs.UpdateJobsAvailable();
     }
 
     private void OnPlayerJoinableMapInit(Entity<PlayerJoinableMapComponent> ent, ref ComponentInit args)
@@ -58,7 +82,86 @@ public sealed partial class PlayerJoinableMapSystem : EntitySystem
 
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent args)
     {
+        if (UpdatePlayerCountAccess())
+            _stationJobs.UpdateJobsAvailable();
+
         LoadAvailableManagedMaps();
+    }
+
+    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+    {
+        if (!UpdatePlayerCountAccess())
+            return;
+
+        LoadAvailableManagedMaps();
+        _stationJobs.UpdateJobsAvailable();
+    }
+
+    private void OnRoundLobbyReady(ref RoundLobbyReadyEvent args)
+    {
+        ResetPlayerCountAccessForLobby();
+        LoadAvailableManagedMaps();
+        _stationJobs.UpdateJobsAvailable();
+    }
+
+    private void RefreshAccessCVarSubscriptions()
+    {
+        foreach (var map in _mapIndex.Maps)
+        {
+            SubscribeAccessCVar(PlayerJoinableMapAccess.GetEnabledCVar(map));
+            SubscribeAccessCVar(PlayerJoinableMapAccess.GetMinPlayersCVar(map));
+        }
+    }
+
+    private void SubscribeAccessCVar<T>(CVarDef<T>? cvar)
+        where T : notnull
+    {
+        if (cvar == null || !_subscribedAccessCVars.Add(cvar.Name))
+            return;
+
+        Subs.CVar(_cfg, cvar, _ => OnAccessCVarChanged());
+    }
+
+    private void OnAccessCVarChanged()
+    {
+        if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+            UpdatePlayerCountAccess(true);
+
+        LoadAvailableManagedMaps();
+        _stationJobs.UpdateJobsAvailable();
+    }
+
+    private void ResetPlayerCountAccessForLobby()
+    {
+        _playerCountAccessibleMaps.Clear();
+        _lastProcessedPlayerCount = null;
+        UpdatePlayerCountAccess();
+    }
+
+    private bool UpdatePlayerCountAccess(bool force = false)
+    {
+        if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby)
+            return false;
+
+        var playerCount = _player.PlayerCount;
+        if (!force && _lastProcessedPlayerCount == playerCount)
+            return false;
+
+        _lastProcessedPlayerCount = playerCount;
+        var changed = false;
+        foreach (var map in _mapIndex.Maps)
+        {
+            if (!PlayerJoinableMapAccess.TryGetMinPlayers(map, _cfg, out var minPlayers) ||
+                Math.Max(0, minPlayers) == 0 ||
+                playerCount < Math.Max(0, minPlayers))
+            {
+                continue;
+            }
+
+            changed |= _playerCountAccessibleMaps.Add(map.ID);
+        }
+
+        return changed;
     }
 
     /// <summary>
@@ -271,7 +374,16 @@ public sealed partial class PlayerJoinableMapSystem : EntitySystem
 
     private bool IsPlayerAccessEnabled(PlayerJoinableMapPrototype map)
     {
-        return PlayerJoinableMapAccess.IsEnabled(map, _cfg, _player.PlayerCount);
+        if (!PlayerJoinableMapAccess.IsEnabledByCVar(map, _cfg))
+            return false;
+
+        if (!PlayerJoinableMapAccess.TryGetMinPlayers(map, _cfg, out var minPlayers) ||
+            Math.Max(0, minPlayers) == 0)
+        {
+            return true;
+        }
+
+        return _playerCountAccessibleMaps.Contains(map.ID);
     }
 
     private bool TryResolvePlayerJoinableMap(
@@ -294,6 +406,23 @@ public sealed partial class PlayerJoinableMapSystem : EntitySystem
 
         map = resolvedMap;
         return true;
+    }
+
+    /// <summary>
+    /// Resolves the spawn-point category for a station while preserving the caller's vanilla fallback.
+    /// </summary>
+    public SpawnPointType GetSpawnPointType(
+        Entity<PlayerJoinableMapComponent?> station,
+        PlayerJoinKind joinKind,
+        SpawnPointType fallback)
+    {
+        if (!Resolve(station, ref station.Comp, false))
+            return fallback;
+
+        if (!_prototype.TryIndex(station.Comp.Map, out var map))
+            return SpawnPointType.Unset;
+
+        return GetSpawnPointType(joinKind, map);
     }
 
     private static SpawnPointType GetSpawnPointType(PlayerJoinKind joinKind, PlayerJoinableMapPrototype playerJoinableMap)

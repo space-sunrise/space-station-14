@@ -1035,6 +1035,10 @@ namespace Content.Client.Lobby.UI
                 ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
             };
 
+            // Sunrise added start - вывод дополнительных карт перед обычными отделами
+            AddPlayerJoinableMapSectionsPortal(items, sponsorPrototypes, ref firstCategory);
+            // Sunrise added end
+
             foreach (var department in departments)
             {
                 var departmentName = Loc.GetString(department.Name);
@@ -1244,10 +1248,6 @@ namespace Content.Client.Lobby.UI
                     category.AddChild(jobContainer);
                 }
             }
-
-            // Sunrise added start - дополнительные секции Player Joinable Maps
-            AddPlayerJoinableMapSectionsPortal(items, sponsorPrototypes, ref firstCategory);
-            // Sunrise added end
 
             UpdateJobPriorities();
         }

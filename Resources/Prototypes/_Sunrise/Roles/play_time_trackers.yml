@@ -59,9 +59,6 @@
   id: JobPlanetPrisoner
 
 - type: playTimeTracker
-  id: AntagPlanetPrisoner
-
-- type: playTimeTracker
   id: JobHeadOfPrison
 
 - type: playTimeTracker

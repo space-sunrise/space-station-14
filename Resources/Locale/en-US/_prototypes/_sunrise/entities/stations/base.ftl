@@ -10,7 +10,6 @@ ent-BaseStationTransitHub = { "" }
     .desc = { "" }
 ent-BaseStationGoal = { "" }
     .desc = { "" }
-    .desc = { "" }
 ent-PrisonStationAlertLevels = { "" }
     .desc = { "" }
 ent-BaseStationAntagsTargets = { "" }

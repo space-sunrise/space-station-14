@@ -18,13 +18,13 @@ public sealed partial class SunriseCCVars
 
     public static readonly CVarDef<bool> PlayerJoinableMapPlanetPrisonEnabled =
         CVarDef.Create(
-            "player_joinable_maps.planet_prison.enabled",
+            "planet_prison.enable",
             true,
             CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     public static readonly CVarDef<int> PlayerJoinableMapPlanetPrisonMinPlayers =
         CVarDef.Create(
-            "player_joinable_maps.planet_prison.min_players",
+            "planet_prison.min_players",
             0,
             CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

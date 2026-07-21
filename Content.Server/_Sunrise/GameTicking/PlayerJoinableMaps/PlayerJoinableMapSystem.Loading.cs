@@ -7,7 +7,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Maps;
 using Content.Shared.Parallax.Biomes;
 using Robust.Server.GameObjects;
-using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -25,33 +24,10 @@ public sealed partial class PlayerJoinableMapSystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
 
     private readonly Dictionary<ProtoId<PlayerJoinableMapPrototype>, PlayerJoinableMapInstance> _loadedMaps = [];
-    private readonly HashSet<string> _subscribedLoadCVars = [];
 
     private void InitializeManagedLoading()
     {
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
-        RefreshManagedLoading();
-    }
-
-    private void RefreshManagedLoading()
-    {
-        foreach (var map in _mapIndex.Maps)
-        {
-            if (map.Load == null)
-                continue;
-
-            SubscribeManagedLoadCVar(PlayerJoinableMapAccess.GetEnabledCVar(map));
-            SubscribeManagedLoadCVar(PlayerJoinableMapAccess.GetMinPlayersCVar(map));
-        }
-    }
-
-    private void SubscribeManagedLoadCVar<T>(CVarDef<T>? cvar)
-        where T : notnull
-    {
-        if (cvar == null || !_subscribedLoadCVars.Add(cvar.Name))
-            return;
-
-        Subs.CVar(_cfg, cvar, _ => LoadAvailableManagedMaps());
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent args)
@@ -85,11 +61,13 @@ public sealed partial class PlayerJoinableMapSystem
 
         if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby ||
             !_prototype.TryIndex(id, out var map) ||
-            map.Load is not { } load ||
-            !IsPlayerAccessEnabled(map))
+            map.Load is not { } load)
         {
             return false;
         }
+
+        if (!IsPlayerAccessEnabled(map) && !map.SpawnWhenPlayerAccessDisabled)
+            return false;
 
         if (!TryValidateLoadConfiguration(id, load, out var gameMap, out var biome))
             return false;
@@ -231,8 +209,13 @@ public sealed partial class PlayerJoinableMapSystem
                 Color.LightBlue);
         }
 
-        if (!PlayerJoinableMapAccess.IsPlayerCountEnabled(map, _cfg, _player.PlayerCount))
+        if (!IsPlayerAccessEnabled(map) ||
+            !PlayerJoinableMapAccess.TryGetMinPlayers(map, _cfg, out var minPlayers) ||
+            Math.Max(0, minPlayers) == 0 ||
+            !_playerCountAccessibleMaps.Contains(map.ID))
+        {
             return;
+        }
 
         _chat.DispatchServerAnnouncement(
             Loc.GetString("player-joinable-map-module-activated", ("module", Loc.GetString(map.DisplayName))),

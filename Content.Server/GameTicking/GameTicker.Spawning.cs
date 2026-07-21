@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Server._Sunrise.Helpers;
 using Content.Server._Sunrise.Station;
 using Content.Server.Administration.Managers;
@@ -204,14 +205,10 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            // Sunrise-NewLife-Start
-            _newLife.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
-            _newLife.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLife.NewLifeTimeout));
-            // Sunrise-NewLife-End
-
             // Sunrise added start - маршрутизация direct-spawn роли на целевую station
             var directSpawnStationHandled = false;
-            ResolveDirectSpawnStationPortal(player, jobId, ref station, ref directSpawnStationHandled);
+            var joinKind = lateJoin ? PlayerJoinKind.LateJoin : PlayerJoinKind.RoundStart;
+            ResolveDirectSpawnStationPortal(player, jobId, joinKind, ref station, ref directSpawnStationHandled);
             if (directSpawnStationHandled)
                 return;
             // Sunrise added end
@@ -258,6 +255,10 @@ namespace Content.Server.GameTicking
             if (bev.Handled)
             {
                 PlayerJoinGame(player, silent);
+                // Sunrise added start - фиксация NewLife после успешного внешнего spawn-handler
+                if (player.AttachedEntity is { } attachedEntity && Exists(attachedEntity))
+                    CommitSuccessfulNewLifeJoin(player);
+                // Sunrise added end
                 return;
             }
 
@@ -297,10 +298,14 @@ namespace Content.Server.GameTicking
                 ? SpawnPointType.Job
                 : SpawnPointType.LateJoin;
             // Sunrise added start - выбор типа spawnpoint для Player Joinable Maps
-            SelectSpawnPointTypePortal(selectedJob, lateJoin, ref spawnPointType);
+            SelectSpawnPointTypePortal(station, selectedJob, lateJoin, ref spawnPointType);
             // Sunrise added end
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName, spawnPointType);
+
+            // Sunrise added start - фиксация NewLife только после успешного spawn
+            CommitSuccessfulNewLifeJoin(player);
+            // Sunrise added end
 
             if (HasComp<StationAntagsTargetsComponent>(station))
                 EnsureComp<AntagTargetComponent>(mob);
