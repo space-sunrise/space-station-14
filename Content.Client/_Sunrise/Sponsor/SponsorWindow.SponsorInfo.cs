@@ -79,6 +79,25 @@ public sealed partial class SponsorWindow
         return null;
     }
 
+    private SponsorInfo? GetVisibleSponsorTier(int sponsorTier)
+    {
+        var tier = GetSponsorTier(sponsorTier);
+        return tier is { IsTechnical: false } ? tier : null;
+    }
+
+    private List<SponsorInfo> GetVisibleSponsorTiers()
+    {
+        var visibleSponsorTiers = new List<SponsorInfo>();
+
+        foreach (var sponsorTier in _sponsorTiers)
+        {
+            if (!sponsorTier.IsTechnical)
+                visibleSponsorTiers.Add(sponsorTier);
+        }
+
+        return visibleSponsorTiers;
+    }
+
     private string GetCurrentSponsorDisplayText(int sponsorTier)
     {
         if (sponsorTier <= 0)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared._Sunrise.SponsorInventory;
 using Content.Shared.Armor;
+using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
@@ -28,10 +29,14 @@ public sealed partial class InventoryWindow
     private static readonly Color BagGridTileModulate = Color.FromHex("#C8C8D0");
     private void ApplySponsorSlotsToPreview(EntityUid dummy, SunriseInventorySelection selection)
     {
+        var replacementSlots = new HashSet<string>();
         foreach (var (slot, itemId) in selection.SlotItems)
         {
-            if (!TryGetSponsorItem(itemId, out var item))
+            if (!TryGetSponsorItem(itemId, out var item) ||
+                !CanReplaceLoadoutSlots(replacementSlots, slot))
+            {
                 continue;
+            }
 
             // Replacing a storage item must preserve its contents or restore the previous item if the sponsor item cannot fit.
             var spawned = _entManager.SpawnEntity(item.EntityPrototype, MapCoordinates.Nullspace);
@@ -57,6 +62,7 @@ public sealed partial class InventoryWindow
                 if (previousItem != null)
                     _entManager.DeleteEntity(previousItem.Value);
 
+                replacementSlots.Add(slot);
                 continue;
             }
 
@@ -372,8 +378,11 @@ public sealed partial class InventoryWindow
             if (!slot.ShowInWindow)
                 continue;
 
-            if (CanFitSlot(_previewDummy.Value, item, slot))
+            if (CanFitSlot(_previewDummy.Value, item, slot) &&
+                CanReplaceLoadoutSlot(slot.Name))
+            {
                 slots.Add(slot.Name);
+            }
         }
 
         _entManager.DeleteEntity(item);
@@ -437,6 +446,16 @@ public sealed partial class InventoryWindow
 
     private void AddSponsorItemToSlot(string itemId, string slot)
     {
+        if (_characterProfile == null || CurrentJobId == null)
+            return;
+
+        var jobLoadoutId = LoadoutSystem.GetJobPrototype(CurrentJobId);
+        var roleLoadout = GetRoleLoadout(jobLoadoutId);
+        roleLoadout.SetDefault(_characterProfile, _player.LocalSession, _prototype);
+        if (!TryClearLoadoutSlot(roleLoadout, slot, string.Empty, string.Empty))
+            return;
+
+        _characterProfile = _characterProfile.WithLoadout(roleLoadout);
         UpdateSponsorSelection(selection =>
         {
             RemoveSponsorItem(selection, itemId);
@@ -503,5 +522,33 @@ public sealed partial class InventoryWindow
         }
 
         return null;
+    }
+
+    private bool CanReplaceLoadoutSlot(string slot)
+    {
+        return TryGetCurrentRoleLoadout(out var roleLoadout) &&
+               SunriseInventoryValidation.CanReplaceLoadoutSlot(roleLoadout, slot, _prototype);
+    }
+
+    private bool CanReplaceLoadoutSlots(HashSet<string> replacementSlots, string slot)
+    {
+        if (!TryGetCurrentRoleLoadout(out var roleLoadout))
+            return false;
+
+        var slots = replacementSlots.ToHashSet();
+        slots.Add(slot);
+        return SunriseInventoryValidation.CanReplaceLoadoutSlots(roleLoadout, slots, _prototype);
+    }
+
+    private bool TryGetCurrentRoleLoadout(out RoleLoadout roleLoadout)
+    {
+        roleLoadout = default!;
+        if (_characterProfile == null || CurrentJobId == null)
+            return false;
+
+        var jobLoadoutId = LoadoutSystem.GetJobPrototype(CurrentJobId);
+        roleLoadout = GetRoleLoadout(jobLoadoutId);
+        roleLoadout.SetDefault(_characterProfile, _player.LocalSession, _prototype);
+        return true;
     }
 }

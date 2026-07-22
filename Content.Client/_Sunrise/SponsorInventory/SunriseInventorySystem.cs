@@ -23,6 +23,7 @@ public sealed class SunriseInventorySystem : EntitySystem
 
     private readonly Dictionary<int, SunriseInventoryProfile> _profiles = new();
     private readonly HashSet<string> _ownedItemIds = new();
+    private readonly HashSet<string> _entitlements = new();
     private SponsorInventoryConfig _config = new();
     private int _sponsorTier;
     private int? _balance;
@@ -65,6 +66,7 @@ public sealed class SunriseInventorySystem : EntitySystem
 
         _profiles.Clear();
         _ownedItemIds.Clear();
+        _entitlements.Clear();
         _config = new SponsorInventoryConfig();
         _sponsorTier = 0;
         _balance = null;
@@ -86,6 +88,13 @@ public sealed class SunriseInventorySystem : EntitySystem
         _balance = ev.Balance;
         _revision = ev.Revision ?? string.Empty;
         _hasInitialData = true;
+
+        _entitlements.Clear();
+        foreach (var entitlement in ev.Entitlements ?? [])
+        {
+            if (!string.IsNullOrWhiteSpace(entitlement))
+                _entitlements.Add(entitlement);
+        }
 
         _ownedItemIds.Clear();
         foreach (var item in ev.OwnedItemIds ?? [])
@@ -156,7 +165,8 @@ public sealed class SunriseInventorySystem : EntitySystem
             _prototype,
             GetSponsorInventoryConfig(),
             GetPurchasedInventoryItems(),
-            GetSponsorTier());
+            GetSponsorTier(),
+            GetSponsorInventoryEntitlements());
 
         ApplyInventoryProfile(slot, validProfile);
         InventoryDataChanged?.Invoke();
@@ -205,6 +215,16 @@ public sealed class SunriseInventorySystem : EntitySystem
         return _sponsors?.GetClientSponsorInventoryInitialData().SponsorTier ?? 0;
     }
 
+    public IReadOnlyCollection<string> GetSponsorInventoryEntitlements()
+    {
+        if (_hasInitialData)
+            return _entitlements.ToArray();
+
+        return _player.LocalSession == null
+            ? []
+            : _sponsors?.GetSponsorInventoryEntitlements(_player.LocalSession.UserId).ToArray() ?? [];
+    }
+
     public int? GetBalance()
     {
         return _balance;
@@ -226,7 +246,8 @@ public sealed class SunriseInventorySystem : EntitySystem
             _prototype,
             GetSponsorInventoryConfig(),
             GetPurchasedInventoryItems(),
-            GetSponsorTier());
+            GetSponsorTier(),
+            GetSponsorInventoryEntitlements());
     }
 
     /// <summary>
@@ -273,6 +294,8 @@ public sealed class SunriseInventorySystem : EntitySystem
                     EntityPrototype = item.EntityPrototype,
                     AvailableJobs = item.AvailableJobs?.ToArray(),
                     SponsorLevel = item.SponsorLevel,
+                    RequiredEntitlements = item.RequiredEntitlements?.ToArray() ?? [],
+                    Purchasable = item.Purchasable,
                     Price = item.Price,
                 })
                 .ToArray(),

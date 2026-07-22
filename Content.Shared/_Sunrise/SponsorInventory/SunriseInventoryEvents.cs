@@ -30,6 +30,7 @@ public sealed class SunriseInventoryInitialDataEvent(
     SponsorInventoryConfig config,
     string catalogVersion,
     int sponsorTier,
+    List<string> entitlements,
     List<string> ownedItemIds,
     Dictionary<int, SunriseInventoryProfile> profiles,
     int? balance,
@@ -38,6 +39,7 @@ public sealed class SunriseInventoryInitialDataEvent(
     public SponsorInventoryConfig Config = config;
     public string CatalogVersion = catalogVersion;
     public int SponsorTier = sponsorTier;
+    public List<string> Entitlements = entitlements;
     public List<string> OwnedItemIds = ownedItemIds;
     public Dictionary<int, SunriseInventoryProfile> Profiles = profiles;
     public int? Balance = balance;

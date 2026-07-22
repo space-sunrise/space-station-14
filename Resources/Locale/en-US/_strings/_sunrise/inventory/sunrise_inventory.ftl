@@ -109,6 +109,7 @@ sunrise-inventory-tooltip-requirements = Requirements:
 sunrise-inventory-requirement-loadout = Available through the selected job loadout.
 sunrise-inventory-requirement-owned = Purchased
 sunrise-inventory-requirement-sponsor-tier = Sponsor level { $level } or higher.
+sunrise-inventory-requirement-special-access = Special sponsor access.
 sunrise-inventory-requirement-job-allowed = Available for the selected job
 sunrise-inventory-requirement-job-unavailable = Not available for this job
 sunrise-inventory-requirement-unavailable = Unavailable: { $reason }

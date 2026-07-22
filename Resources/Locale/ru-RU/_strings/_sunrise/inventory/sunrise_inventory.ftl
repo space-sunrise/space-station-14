@@ -108,6 +108,7 @@ sunrise-inventory-tooltip-requirements = Требования:
 sunrise-inventory-requirement-loadout = Доступно через лодаут выбранной профессии.
 sunrise-inventory-requirement-owned = Куплено
 sunrise-inventory-requirement-sponsor-tier = Уровень спонсора { $level } или выше.
+sunrise-inventory-requirement-special-access = Специальный спонсорский доступ.
 sunrise-inventory-requirement-job-allowed = Доступно для выбранной профессии
 sunrise-inventory-requirement-job-unavailable = Недоступно для данной профессии
 sunrise-inventory-requirement-unavailable = Недоступно: { $reason }

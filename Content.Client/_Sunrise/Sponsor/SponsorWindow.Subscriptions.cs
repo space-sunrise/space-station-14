@@ -14,7 +14,9 @@ public sealed partial class SponsorWindow
     {
         SubscriptionCards.RemoveAllChildren();
 
-        if (_sponsorTiers.Count == 0)
+        var tiers = GetVisibleSponsorTiers();
+
+        if (tiers.Count == 0)
         {
             SubscriptionCards.AddChild(new Label
             {
@@ -24,7 +26,6 @@ public sealed partial class SponsorWindow
             return;
         }
 
-        var tiers = new List<SponsorInfo>(_sponsorTiers);
         tiers.Sort((a, b) => b.Tier.CompareTo(a.Tier));
 
         for (var i = 0; i < tiers.Count; i++)

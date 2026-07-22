@@ -55,7 +55,7 @@ public sealed partial class SunriseInventorySystem
                     continue;
 
                 ClearValidationDummyEquipment(dummy.Value);
-                EquipValidationDummyForJob(session, humanoid, dummy.Value, job);
+                var roleLoadout = EquipValidationDummyForJob(session, humanoid, dummy.Value, job);
 
                 var effectiveProfile = new SunriseInventoryProfile
                 {
@@ -67,7 +67,8 @@ public sealed partial class SunriseInventorySystem
                     dummy.Value,
                     effectiveSelection,
                     validateBag: true,
-                    items: items);
+                    items: items,
+                    roleLoadout: roleLoadout);
                 var validSelection = GetJobSpecificSelection(selection, validEffectiveSelection);
                 if (!validSelection.IsEmpty())
                     valid.Jobs[jobId] = validSelection;
@@ -85,11 +86,13 @@ public sealed partial class SunriseInventorySystem
         EntityUid dummy,
         SunriseInventorySelection selection,
         bool validateBag,
-        IReadOnlyDictionary<string, SponsorInventoryItemInfo> items)
+        IReadOnlyDictionary<string, SponsorInventoryItemInfo> items,
+        RoleLoadout? roleLoadout = null)
     {
         var valid = new SunriseInventorySelection();
         selection ??= new SunriseInventorySelection();
         var usedItems = new HashSet<string>();
+        var replacementSlots = new HashSet<string>();
 
         foreach (var (slot, itemId) in selection.SlotItems)
         {
@@ -97,8 +100,20 @@ public sealed partial class SunriseInventorySystem
                 !items.TryGetValue(itemId, out var item))
                 continue;
 
+            if (roleLoadout != null)
+            {
+                replacementSlots.Add(slot);
+                if (!SunriseInventoryValidation.CanReplaceLoadoutSlots(roleLoadout, replacementSlots, _prototype))
+                {
+                    replacementSlots.Remove(slot);
+                    usedItems.Remove(itemId);
+                    continue;
+                }
+            }
+
             if (!TryEquipSponsorItem(dummy, slot, item))
             {
+                replacementSlots.Remove(slot);
                 usedItems.Remove(itemId);
                 continue;
             }
@@ -143,24 +158,38 @@ public sealed partial class SunriseInventorySystem
         return dummy;
     }
 
-    private void EquipValidationDummyForJob(
+    private RoleLoadout? EquipValidationDummyForJob(
         ICommonSession session,
         HumanoidCharacterProfile profile,
         EntityUid dummy,
         JobPrototype job)
     {
+        RoleLoadout? loadout = null;
         var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
         var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototype);
         if (_prototype.TryIndex(effectiveJobLoadoutId, out var roleProto))
         {
-            profile.Loadouts.TryGetValue(jobLoadoutId, out var loadout);
-            loadout ??= new RoleLoadout(jobLoadoutId);
-            loadout.SetDefault(profile, session, _prototype);
+            loadout = GetRoleLoadoutForJob(session, profile, job.ID);
             _spawn.EquipRoleLoadout(dummy, loadout, roleProto);
         }
 
         if (job.StartingGear != null)
             _spawn.EquipStartingGear(dummy, job.StartingGear, raiseEvent: false);
+
+        return loadout;
+    }
+
+    private RoleLoadout GetRoleLoadoutForJob(
+        ICommonSession session,
+        HumanoidCharacterProfile profile,
+        string jobId)
+    {
+        var jobLoadoutId = LoadoutSystem.GetJobPrototype(jobId);
+        var loadout = profile.Loadouts.TryGetValue(jobLoadoutId, out var existing)
+            ? existing.Clone()
+            : new RoleLoadout(jobLoadoutId);
+        loadout.SetDefault(profile, session, _prototype);
+        return loadout;
     }
 
     private void ClearValidationDummyEquipment(EntityUid dummy)

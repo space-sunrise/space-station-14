@@ -52,7 +52,7 @@ public sealed partial class SponsorWindow
 
     private void OpenSponsorTierDetails()
     {
-        var sponsorTier = GetSponsorTier(_currentSponsorTier) ?? GetHighestSponsorTier();
+        var sponsorTier = GetVisibleSponsorTier(_currentSponsorTier) ?? GetHighestSponsorTier();
         if (sponsorTier == null)
             return;
 
@@ -61,7 +61,7 @@ public sealed partial class SponsorWindow
 
     private void OpenSponsorTierDetails(int sponsorTier)
     {
-        var tier = GetSponsorTier(sponsorTier);
+        var tier = GetVisibleSponsorTier(sponsorTier);
         if (tier == null)
             return;
 
@@ -110,7 +110,7 @@ public sealed partial class SponsorWindow
 
         var sponsorTier = _selectedSubscriptionDetailsTier == null
             ? null
-            : GetSponsorTier(_selectedSubscriptionDetailsTier.Value);
+            : GetVisibleSponsorTier(_selectedSubscriptionDetailsTier.Value);
 
         sponsorTier ??= GetHighestSponsorTier();
         if (sponsorTier == null)
@@ -127,7 +127,7 @@ public sealed partial class SponsorWindow
     private SponsorInfo? GetHighestSponsorTier()
     {
         SponsorInfo? highestTier = null;
-        foreach (var sponsorTier in _sponsorTiers)
+        foreach (var sponsorTier in GetVisibleSponsorTiers())
         {
             if (highestTier == null || sponsorTier.Tier > highestTier.Tier)
                 highestTier = sponsorTier;
@@ -140,7 +140,7 @@ public sealed partial class SponsorWindow
     {
         SubscriptionDetailsTierButtons.RemoveAllChildren();
 
-        var tiers = new List<SponsorInfo>(_sponsorTiers);
+        var tiers = GetVisibleSponsorTiers();
         tiers.Sort((left, right) => right.Tier.CompareTo(left.Tier));
 
         foreach (var sponsorTier in tiers)

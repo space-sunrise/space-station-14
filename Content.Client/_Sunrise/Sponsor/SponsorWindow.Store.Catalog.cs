@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Client._Sunrise.Sheetlets;
 using Content.Client._Sunrise.Sheetlets.SciFiStyle;
 using Content.Shared._Sunrise.Helpers;
+using Content.Shared._Sunrise.SponsorInventory;
 using Content.Shared.Roles;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Client.UserInterface;
@@ -123,13 +124,15 @@ public sealed partial class SponsorWindow
 
         var config = _sponsorInventory.GetSponsorInventoryConfig();
         var purchasedItems = new HashSet<string>(_sponsorInventory.GetPurchasedInventoryItems());
+        var sponsorTier = _sponsorInventory.GetSponsorTier();
+        var entitlements = new HashSet<string>(_sponsorInventory.GetSponsorInventoryEntitlements());
         var itemsById = BuildStoreItemsById(config);
 
         if (_storeCategory == StoreCatalogCategory.Items)
         {
             foreach (var item in config.Items ?? [])
             {
-                var entry = BuildStoreEntry(item, purchasedItems);
+                var entry = BuildStoreEntry(item, purchasedItems, sponsorTier, entitlements);
                 AddVisibleStoreEntry(entry);
             }
         }
@@ -137,7 +140,7 @@ public sealed partial class SponsorWindow
         {
             foreach (var pack in config.Packs ?? [])
             {
-                var entry = BuildStorePackEntry(pack, itemsById, purchasedItems);
+                var entry = BuildStorePackEntry(pack, itemsById, purchasedItems, sponsorTier, entitlements);
                 AddVisibleStoreEntry(entry);
             }
         }
@@ -192,9 +195,14 @@ public sealed partial class SponsorWindow
 
     private SponsorStoreEntry? BuildStoreEntry(
         SponsorInventoryItemInfo? item,
-        HashSet<string> purchasedItems)
+        HashSet<string> purchasedItems,
+        int sponsorTier,
+        HashSet<string> entitlements)
     {
         if (item == null)
+            return null;
+
+        if (!item.Purchasable)
             return null;
 
         if (string.IsNullOrWhiteSpace(item.Id) || string.IsNullOrWhiteSpace(item.EntityPrototype))
@@ -204,7 +212,12 @@ public sealed partial class SponsorWindow
             return null;
 
         var owned = purchasedItems.Contains(item.Id);
-        var details = BuildStoreDetails(item, entityPrototype, owned);
+        var sponsorAccessGranted = SunriseInventoryValidation.CanPurchaseForSponsorAccess(
+            item,
+            sponsorTier,
+            entitlements);
+        var requiresSpecialAccess = item.RequiredEntitlements is { Length: > 0 };
+        var details = BuildStoreDetails(item, entityPrototype, owned, sponsorAccessGranted);
 
         return new SponsorStoreEntry(
             SponsorStoreEntryKind.Item,
@@ -217,6 +230,8 @@ public sealed partial class SponsorWindow
             item.SponsorLevel,
             item.Price,
             owned,
+            sponsorAccessGranted,
+            requiresSpecialAccess,
             details,
             owned ? 1 : 0,
             1);
@@ -225,7 +240,9 @@ public sealed partial class SponsorWindow
     private SponsorStoreEntry? BuildStorePackEntry(
         SponsorInventoryPackInfo? pack,
         Dictionary<string, SponsorInventoryItemInfo> itemsById,
-        HashSet<string> purchasedItems)
+        HashSet<string> purchasedItems,
+        int sponsorTier,
+        HashSet<string> entitlements)
     {
         var packItemIds = pack?.InventoryItemIds;
         if (pack == null)
@@ -242,6 +259,8 @@ public sealed partial class SponsorWindow
         var uniqueItemIds = new HashSet<string>();
         int? requiredTier = null;
         var ownedCount = 0;
+        var sponsorAccessGranted = true;
+        var requiresSpecialAccess = false;
 
         foreach (var itemId in packItemIds)
         {
@@ -251,11 +270,20 @@ public sealed partial class SponsorWindow
             if (!itemsById.TryGetValue(itemId, out var item))
             {
                 itemNames.Add(itemId);
+                sponsorAccessGranted = false;
                 continue;
             }
 
+            if (!item.Purchasable)
+                return null;
+
             if (item.SponsorLevel != null)
                 requiredTier = Math.Max(requiredTier ?? 0, item.SponsorLevel.Value);
+
+            if (!SunriseInventoryValidation.CanPurchaseForSponsorAccess(item, sponsorTier, entitlements))
+                sponsorAccessGranted = false;
+
+            requiresSpecialAccess |= item.RequiredEntitlements is { Length: > 0 };
 
             if (purchasedItems.Contains(itemId))
                 ownedCount++;
@@ -293,7 +321,16 @@ public sealed partial class SponsorWindow
         };
         var packDescription = string.Join("\n", packDescriptionLines);
         var owned = ownedCount >= totalItemCount;
-        var details = BuildStorePackDetails(pack, description, itemNames, requiredTier, ownedCount, totalItemCount, owned);
+        var details = BuildStorePackDetails(
+            pack,
+            description,
+            itemNames,
+            requiredTier,
+            ownedCount,
+            totalItemCount,
+            owned,
+            sponsorAccessGranted,
+            requiresSpecialAccess);
 
         return new SponsorStoreEntry(
             SponsorStoreEntryKind.Pack,
@@ -306,6 +343,8 @@ public sealed partial class SponsorWindow
             requiredTier,
             pack.Price,
             owned,
+            sponsorAccessGranted,
+            requiresSpecialAccess,
             details,
             ownedCount,
             totalItemCount);
@@ -314,7 +353,8 @@ public sealed partial class SponsorWindow
     private string BuildStoreDetails(
         SponsorInventoryItemInfo item,
         EntityPrototype entityPrototype,
-        bool owned)
+        bool owned,
+        bool sponsorAccessGranted)
     {
         var lines = new List<string>();
 
@@ -329,6 +369,12 @@ public sealed partial class SponsorWindow
                 "donation-terminal-inventory-tier",
                 ("tier", item.SponsorLevel.Value)));
         }
+
+        if (item.RequiredEntitlements is { Length: > 0 })
+            lines.Add(Loc.GetString("donation-terminal-inventory-special-access"));
+
+        if (!owned && !sponsorAccessGranted)
+            lines.Add(Loc.GetString("donation-terminal-inventory-access-unavailable"));
 
         var jobs = GetJobListText(item.AvailableJobs);
         if (!string.IsNullOrWhiteSpace(jobs))
@@ -347,7 +393,9 @@ public sealed partial class SponsorWindow
         int? sponsorLevel,
         int ownedCount,
         int totalItemCount,
-        bool owned)
+        bool owned,
+        bool sponsorAccessGranted,
+        bool requiresSpecialAccess)
     {
         var lines = new List<string>
         {
@@ -366,6 +414,12 @@ public sealed partial class SponsorWindow
                 "donation-terminal-inventory-tier",
                 ("tier", sponsorLevel.Value)));
         }
+
+        if (requiresSpecialAccess)
+            lines.Add(Loc.GetString("donation-terminal-inventory-special-access"));
+
+        if (!owned && !sponsorAccessGranted)
+            lines.Add(Loc.GetString("donation-terminal-inventory-access-unavailable"));
 
         if (owned)
             lines.Add(Loc.GetString("donation-terminal-owned"));
@@ -463,7 +517,9 @@ public sealed partial class SponsorWindow
                        _selectedStoreEntry?.Key == entry.Key;
         var buyText = entry.Owned
             ? Loc.GetString("donation-terminal-owned-short")
-            : GetStoreBuyButtonText();
+            : entry.SponsorAccessGranted
+                ? GetStoreBuyButtonText()
+                : Loc.GetString("donation-terminal-unavailable");
 
         if (entry.Kind == SponsorStoreEntryKind.Pack)
         {
@@ -556,7 +612,7 @@ public sealed partial class SponsorWindow
         StoreDetailsNameLabel.SetMessage(FormattedMessage.FromUnformatted(entry.Name), SciFiPalette.Text);
         StoreDetailsNameLabel.ToolTip = entry.Name;
         SetCurrencyPriceRow(StoreDetailsPriceLabel, StoreDetailsPriceIcon, StoreDetailsPriceValueLabel, entry.Price);
-        StoreDetailsTierValue.Text = GetStoreRequiredLevelText(entry.SponsorLevel)
+        StoreDetailsTierValue.Text = GetStoreRequiredLevelText(entry)
             .WrapText(StoreDetailsTierLineLength, StoreDetailsTierLines);
         StoreDetailsTierValue.ToolTip = StoreDetailsTierValue.Text;
         StoreDetailsDescriptionLabel.SetMessage(
@@ -566,7 +622,9 @@ public sealed partial class SponsorWindow
             SciFiPalette.TextMuted);
         StoreDetailsBuyButton.Text = entry.Owned
             ? Loc.GetString("donation-terminal-owned")
-            : GetStoreBuyButtonText();
+            : entry.SponsorAccessGranted
+                ? GetStoreBuyButtonText()
+                : Loc.GetString("donation-terminal-unavailable");
         StoreDetailsBuyButton.Disabled = !CanBuyStoreEntry(entry);
 
         AddStoreEntryPreview(StoreDetailsPreviewHost, entry, StoreDetailsPreviewSize, 4f, true);
@@ -638,15 +696,22 @@ public sealed partial class SponsorWindow
         host.AddChild(preview);
     }
 
-    private string GetStoreRequiredLevelText(int? sponsorLevel)
+    private string GetStoreRequiredLevelText(SponsorStoreEntry entry)
     {
-        if (sponsorLevel == null)
-            return Loc.GetString("donation-terminal-shop-details-no-level");
+        if (entry.SponsorLevel == null)
+        {
+            return entry.RequiresSpecialAccess
+                ? Loc.GetString("donation-terminal-inventory-special-access")
+                : Loc.GetString("donation-terminal-shop-details-no-level");
+        }
 
-        var tierInfo = GetSponsorTier(sponsorLevel.Value);
-        return tierInfo == null
-            ? Loc.GetString("donation-terminal-sponsor-tier", ("tier", sponsorLevel.Value))
+        var tierInfo = GetSponsorTier(entry.SponsorLevel.Value);
+        var tierText = tierInfo == null
+            ? Loc.GetString("donation-terminal-sponsor-tier", ("tier", entry.SponsorLevel.Value))
             : GetSponsorTierName(tierInfo);
+        return entry.RequiresSpecialAccess
+            ? Loc.GetString("donation-terminal-inventory-tier-or-special-access", ("tier", tierText))
+            : tierText;
     }
 
     private string GetStoreBuyButtonText()
@@ -656,7 +721,7 @@ public sealed partial class SponsorWindow
 
     private bool CanBuyStoreEntry(SponsorStoreEntry entry)
     {
-        if (entry.Owned)
+        if (entry.Owned || !entry.SponsorAccessGranted)
             return false;
 
         var balance = _sponsorInventory.GetBalance();

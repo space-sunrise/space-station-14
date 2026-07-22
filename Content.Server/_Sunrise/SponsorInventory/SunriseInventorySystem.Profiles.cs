@@ -107,6 +107,7 @@ public sealed partial class SunriseInventorySystem
             config,
             catalogVersion,
             initialData.SponsorTier,
+            (initialData.Entitlements ?? []).ToList(),
             (initialData.OwnedItemIds ?? []).ToList(),
             profiles,
             initialData.Balance,

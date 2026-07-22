@@ -13,6 +13,8 @@ public sealed partial class SponsorWindow
         int? SponsorLevel,
         int Price,
         bool Owned,
+        bool SponsorAccessGranted,
+        bool RequiresSpecialAccess,
         string DetailsText,
         int OwnedItemCount,
         int TotalItemCount)

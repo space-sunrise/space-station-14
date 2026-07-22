@@ -69,10 +69,12 @@ public sealed partial class SponsorWindow
 
         if (!CanBuyStoreEntry(_pendingPurchaseEntry))
         {
-            SetPurchaseStatus(_pendingPurchaseEntry.Owned
+            var reason = _pendingPurchaseEntry.Owned
                 ? Loc.GetString("donation-terminal-inventory-already-owned")
-                : Loc.GetString("donation-terminal-inventory-not-enough-balance"),
-                Color.Red);
+                : !_pendingPurchaseEntry.SponsorAccessGranted
+                    ? Loc.GetString("donation-terminal-inventory-access-unavailable")
+                    : Loc.GetString("donation-terminal-inventory-not-enough-balance");
+            SetPurchaseStatus(reason, Color.Red);
             return;
         }
 

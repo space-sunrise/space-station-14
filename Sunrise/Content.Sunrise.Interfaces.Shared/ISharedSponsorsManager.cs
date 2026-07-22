@@ -38,6 +38,7 @@ public interface ISharedSponsorsManager
     public SponsorInventoryConfig GetSponsorInventoryConfig() => new();
     public List<string> GetClientPurchasedInventoryItems() => [];
     public SponsorInventoryInitialData GetClientSponsorInventoryInitialData() => new();
+    public IReadOnlyCollection<string> GetSponsorInventoryEntitlements(NetUserId userId) => [];
 
     // Server
     public bool TryGetPrototypes(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes);
@@ -82,6 +83,7 @@ public interface ISharedSponsorsManager
         {
             CatalogVersion = config.Version,
             SponsorTier = GetSponsorTier(userId),
+            Entitlements = GetSponsorInventoryEntitlements(userId).ToArray(),
             OwnedItemIds = ownedItemIds,
         });
     }
@@ -170,6 +172,18 @@ public sealed class SponsorInventoryItemInfo
     [JsonPropertyName("sponsorLevel")]
     public int? SponsorLevel { get; set; }
 
+    /// <summary>
+    /// Все идентификаторы прав, необходимые как альтернатива требованию спонсорского тира.
+    /// </summary>
+    [JsonPropertyName("requiredEntitlements")]
+    public string[] RequiredEntitlements { get; set; } = [];
+
+    /// <summary>
+    /// Может ли предмет отображаться в спонсорском магазине. Для наград за роль следует отключать.
+    /// </summary>
+    [JsonPropertyName("purchasable")]
+    public bool Purchasable { get; set; } = true;
+
     [JsonPropertyName("price")]
     public int Price { get; set; }
 }
@@ -219,6 +233,9 @@ public sealed class SponsorInventoryInitialData
 
     [JsonPropertyName("sponsorTier")]
     public int SponsorTier { get; set; }
+
+    [JsonPropertyName("entitlements")]
+    public string[] Entitlements { get; set; } = [];
 
     [JsonPropertyName("ownedItemIds")]
     public string[] OwnedItemIds { get; set; } = [];
@@ -279,6 +296,12 @@ public sealed class SponsorInventoryInitialDataApiResponse
     public int? SponsorTier { get; set; }
 
     /// <summary>
+    /// Итоговые спонсорские права, полученные от внешнего сервиса.
+    /// </summary>
+    [JsonPropertyName("entitlements")]
+    public string[]? Entitlements { get; set; }
+
+    /// <summary>
     /// Owned sponsor inventory item IDs, or null when the service returns no ownership data.
     /// </summary>
     [JsonPropertyName("ownedItemIds")]
@@ -328,6 +351,7 @@ public sealed class SponsorInventoryInitialDataApiResponse
                 ? CatalogVersion
                 : config.Version,
             SponsorTier = SponsorTier ?? fallbackSponsorTier,
+            Entitlements = Entitlements ?? [],
             OwnedItemIds = OwnedItemIds ?? [],
             Profiles = Profiles ?? new Dictionary<int, SponsorInventoryProfileInfo>(),
             Balance = Balance,
@@ -457,6 +481,9 @@ public sealed class SponsorInfo
 
     [JsonPropertyName("sizeFlavor")]
     public int SizeFlavor { get; set; }
+
+    [JsonPropertyName("isTechnical")]
+    public bool IsTechnical { get; set; } = false;
 
     [JsonPropertyName("ghostThemes")]
     public string[] GhostThemes { get; set; } = [];

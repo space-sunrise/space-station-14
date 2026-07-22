@@ -297,6 +297,8 @@ public sealed partial class InventoryWindow
         var purchased = _sponsorInventory.GetPurchasedInventoryItems().Contains(item.Id);
         var sponsorTier = _sponsorInventory.GetSponsorTier();
         var hasFailedRequirement = false;
+        var sponsorLevelMet = false;
+        var entitlementsMet = false;
 
         if (purchased)
             lines.Add(GetTooltipRequirementLine(Loc.GetString("sunrise-inventory-requirement-owned"), enabled: true));
@@ -306,10 +308,21 @@ public sealed partial class InventoryWindow
             var sponsorLevelRequirement = Loc.GetString(
                 "sunrise-inventory-requirement-sponsor-tier",
                 ("level", item.SponsorLevel.Value));
-            var sponsorLevelMet = sponsorTier >= item.SponsorLevel.Value;
-            hasFailedRequirement |= !sponsorLevelMet;
+            sponsorLevelMet = sponsorTier >= item.SponsorLevel.Value;
             lines.Add(GetTooltipRequirementLine(sponsorLevelRequirement, sponsorLevelMet));
         }
+
+        if (!purchased && item.RequiredEntitlements is { Length: > 0 })
+        {
+            var entitlements = _sponsorInventory.GetSponsorInventoryEntitlements();
+            entitlementsMet = item.RequiredEntitlements.All(entitlements.Contains);
+            lines.Add(GetTooltipRequirementLine(
+                Loc.GetString("sunrise-inventory-requirement-special-access"),
+                entitlementsMet));
+        }
+
+        if (!purchased && (item.SponsorLevel != null || item.RequiredEntitlements is { Length: > 0 }))
+            hasFailedRequirement = !sponsorLevelMet && !entitlementsMet;
 
         if (item.AvailableJobs is { Length: > 0 })
         {

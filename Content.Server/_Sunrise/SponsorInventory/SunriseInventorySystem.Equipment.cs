@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.Shared._Sunrise.SponsorInventory;
+using Content.Shared.Clothing;
 using Content.Shared.Item;
+using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Storage;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Player;
@@ -34,13 +37,34 @@ public sealed partial class SunriseInventorySystem
             return true;
 
         var itemLookup = BuildSponsorItemLookup(_sponsors.GetSponsorInventoryConfig());
+        var canValidateRoleLoadout = TryGetSelectedRoleLoadout(session, jobId, out var roleLoadout);
+        var replacementSlots = new HashSet<string>();
         var usedItems = new HashSet<string>();
         foreach (var (slot, itemId) in selection.SlotItems)
         {
-            if (!usedItems.Add(itemId) || !itemLookup.TryGetValue(itemId, out var item))
+            if (usedItems.Contains(itemId) || !itemLookup.TryGetValue(itemId, out var item))
                 continue;
 
-            TryEquipSponsorItem(mob, slot, item);
+            if (!canValidateRoleLoadout)
+                continue;
+
+            if (roleLoadout != null)
+            {
+                replacementSlots.Add(slot);
+                if (!SunriseInventoryValidation.CanReplaceLoadoutSlots(roleLoadout, replacementSlots, _prototype))
+                {
+                    replacementSlots.Remove(slot);
+                    continue;
+                }
+            }
+
+            if (!TryEquipSponsorItem(mob, slot, item))
+            {
+                replacementSlots.Remove(slot);
+                continue;
+            }
+
+            usedItems.Add(itemId);
         }
 
         if (!_inventory.TryGetSlotEntity(mob, "back", out var backEntity) ||
@@ -57,6 +81,31 @@ public sealed partial class SunriseInventorySystem
             TryStoreSponsorItem(backEntity.Value, storage, item);
         }
 
+        return true;
+    }
+
+    private bool TryGetSelectedRoleLoadout(
+        ICommonSession session,
+        string? jobId,
+        out RoleLoadout? roleLoadout)
+    {
+        roleLoadout = null;
+        if (jobId == null)
+            return true;
+
+        if (!_preferences.TryGetCachedPreferences(session.UserId, out var preferences) ||
+            !preferences.Characters.TryGetValue(preferences.SelectedCharacterIndex, out var character) ||
+            character is not HumanoidCharacterProfile humanoid)
+        {
+            return false;
+        }
+
+        var jobLoadoutId = LoadoutSystem.GetJobPrototype(jobId);
+        var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototype);
+        if (!_prototype.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
+            return true;
+
+        roleLoadout = GetRoleLoadoutForJob(session, humanoid, jobId);
         return true;
     }
 

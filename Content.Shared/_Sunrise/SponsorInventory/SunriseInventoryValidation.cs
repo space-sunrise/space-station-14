@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Player;
@@ -36,8 +38,9 @@ public static class SunriseInventoryValidation
 
         var purchasedItems = GetPurchasedItems(session, sponsors);
         var sponsorTier = sponsors.GetSponsorTier(session.UserId);
+        var entitlements = sponsors.GetSponsorInventoryEntitlements(session.UserId);
 
-        return EnsureValid(profile, prototype, config, purchasedItems, sponsorTier);
+        return EnsureValid(profile, prototype, config, purchasedItems, sponsorTier, entitlements);
     }
 
     /// <summary>
@@ -48,7 +51,8 @@ public static class SunriseInventoryValidation
         IPrototypeManager prototype,
         SponsorInventoryConfig config,
         IEnumerable<string> purchasedItems,
-        int sponsorTier)
+        int sponsorTier,
+        IEnumerable<string> entitlements)
     {
         profile ??= new SunriseInventoryProfile();
 
@@ -74,6 +78,8 @@ public static class SunriseInventoryValidation
                 purchased.Add(purchasedItem);
         }
 
+        var entitlementSet = GetValidEntitlements(entitlements);
+
         var valid = new SunriseInventoryProfile
         {
             Global = EnsureValidSelection(
@@ -82,6 +88,7 @@ public static class SunriseInventoryValidation
                 items,
                 purchased,
                 sponsorTier,
+                entitlementSet,
                 prototype),
         };
 
@@ -100,6 +107,7 @@ public static class SunriseInventoryValidation
                 items,
                 purchased,
                 sponsorTier,
+                entitlementSet,
                 prototype);
 
             if (!validSelection.IsEmpty())
@@ -145,6 +153,7 @@ public static class SunriseInventoryValidation
             jobId,
             GetPurchasedItems(session, sponsors),
             sponsors.GetSponsorTier(session.UserId),
+            GetValidEntitlements(sponsors.GetSponsorInventoryEntitlements(session.UserId)),
             prototype);
     }
 
@@ -157,7 +166,8 @@ public static class SunriseInventoryValidation
         IPrototypeManager prototype,
         SponsorInventoryConfig config,
         IEnumerable<string> purchasedItems,
-        int sponsorTier)
+        int sponsorTier,
+        IEnumerable<string> entitlements)
     {
         if (config == null || !IsReasonableId(inventoryItemId, MaxPrototypeIdLength))
             return false;
@@ -184,7 +194,7 @@ public static class SunriseInventoryValidation
         }
 
         return item != null &&
-               CanUseItem(item, jobId, purchased, sponsorTier, prototype);
+               CanUseItem(item, jobId, purchased, sponsorTier, GetValidEntitlements(entitlements), prototype);
     }
 
     /// <summary>
@@ -209,12 +219,73 @@ public static class SunriseInventoryValidation
         return selection;
     }
 
+    /// <summary>
+    /// Проверяет, может ли спонсорская замена слота удалить экипировку лоадаута из одного слота.
+    /// </summary>
+    public static bool CanReplaceLoadoutSlot(
+        RoleLoadout roleLoadout,
+        string slot,
+        IPrototypeManager prototype)
+    {
+        return IsReasonableId(slot, MaxSlotIdLength) &&
+               CanReplaceLoadoutSlots(roleLoadout, new[] { slot }, prototype);
+    }
+
+    /// <summary>
+    /// Проверяет, могут ли спонсорские замены слотов удалить экипировку лоадаута из всех указанных слотов.
+    /// </summary>
+    public static bool CanReplaceLoadoutSlots(
+        RoleLoadout roleLoadout,
+        IEnumerable<string> slots,
+        IPrototypeManager prototype)
+    {
+        var targetSlots = new HashSet<string>();
+        foreach (var slot in slots)
+        {
+            if (IsReasonableId(slot, MaxSlotIdLength))
+                targetSlots.Add(slot);
+        }
+
+        if (targetSlots.Count == 0)
+            return true;
+
+        var removalsByGroup = new Dictionary<ProtoId<LoadoutGroupPrototype>, int>();
+        foreach (var (groupId, selectedLoadouts) in roleLoadout.SelectedLoadouts)
+        {
+            foreach (var selectedLoadout in selectedLoadouts)
+            {
+                if (!prototype.TryIndex(selectedLoadout.Prototype, out LoadoutPrototype? loadout) ||
+                    !LoadoutHasAnyEquipmentSlot(loadout, targetSlots, prototype))
+                {
+                    continue;
+                }
+
+                removalsByGroup[groupId] = removalsByGroup.GetValueOrDefault(groupId) + 1;
+            }
+        }
+
+        foreach (var (groupId, removalCount) in removalsByGroup)
+        {
+            if (!roleLoadout.SelectedLoadouts.TryGetValue(groupId, out var selectedLoadouts))
+                return false;
+
+            if (!prototype.TryIndex(groupId, out LoadoutGroupPrototype? group))
+                continue;
+
+            if (selectedLoadouts.Count - removalCount < Math.Max(0, group.MinLimit))
+                return false;
+        }
+
+        return true;
+    }
+
     private static SunriseInventorySelection EnsureValidSelection(
         SunriseInventorySelection selection,
         string? jobId,
         Dictionary<string, SponsorInventoryItemInfo> items,
         HashSet<string> purchasedItems,
         int sponsorTier,
+        HashSet<string> entitlements,
         IPrototypeManager prototype)
     {
         var valid = new SunriseInventorySelection();
@@ -230,7 +301,7 @@ public static class SunriseInventoryValidation
                 !IsReasonableId(itemId, MaxPrototypeIdLength) ||
                 usedItems.Contains(itemId) ||
                 !items.TryGetValue(itemId, out var item) ||
-                !CanUseItem(item, jobId, purchasedItems, sponsorTier, prototype))
+                !CanUseItem(item, jobId, purchasedItems, sponsorTier, entitlements, prototype))
             {
                 continue;
             }
@@ -248,7 +319,7 @@ public static class SunriseInventoryValidation
             if (!IsReasonableId(itemId, MaxPrototypeIdLength) ||
                 usedItems.Contains(itemId) ||
                 !items.TryGetValue(itemId, out var item) ||
-                !CanUseItem(item, jobId, purchasedItems, sponsorTier, prototype))
+                !CanUseItem(item, jobId, purchasedItems, sponsorTier, entitlements, prototype))
             {
                 continue;
             }
@@ -297,11 +368,35 @@ public static class SunriseInventoryValidation
         return !string.IsNullOrWhiteSpace(id) && id.Length <= maxLength;
     }
 
+    private static bool LoadoutHasAnyEquipmentSlot(
+        LoadoutPrototype loadout,
+        HashSet<string> slots,
+        IPrototypeManager prototype)
+    {
+        foreach (var slot in slots)
+        {
+            if (loadout.Equipment.ContainsKey(slot))
+                return true;
+        }
+
+        if (!prototype.Resolve(loadout.StartingGear, out var startingGear))
+            return false;
+
+        foreach (var slot in slots)
+        {
+            if (startingGear.Equipment.ContainsKey(slot))
+                return true;
+        }
+
+        return false;
+    }
+
     private static bool CanUseItem(
         SponsorInventoryItemInfo item,
         string? jobId,
         HashSet<string> purchasedItems,
         int sponsorTier,
+        HashSet<string> entitlements,
         IPrototypeManager prototype)
     {
         if (!IsReasonableId(item.Id, MaxPrototypeIdLength) ||
@@ -317,7 +412,32 @@ public static class SunriseInventoryValidation
         if (purchasedItems.Contains(item.Id))
             return true;
 
-        return item.SponsorLevel != null && sponsorTier >= item.SponsorLevel.Value;
+        if (item.SponsorLevel == null && item.RequiredEntitlements is not { Length: > 0 })
+            return false;
+
+        return CanPurchaseForSponsorAccess(item, sponsorTier, entitlements);
+    }
+
+    public static bool CanPurchaseForSponsorAccess(
+        SponsorInventoryItemInfo item,
+        int sponsorTier,
+        IReadOnlySet<string> entitlements)
+    {
+        if (item.SponsorLevel != null && sponsorTier >= item.SponsorLevel.Value)
+            return true;
+
+        if (item.RequiredEntitlements is { Length: > 0 })
+        {
+            foreach (var entitlement in item.RequiredEntitlements)
+            {
+                if (!IsReasonableId(entitlement, MaxPrototypeIdLength) || !entitlements.Contains(entitlement))
+                    return false;
+            }
+
+            return true;
+        }
+
+        return item.SponsorLevel == null;
     }
 
     private static bool IsJobAllowed(SponsorInventoryItemInfo item, string? jobId)
@@ -337,5 +457,17 @@ public static class SunriseInventoryValidation
             return serverItems.ToHashSet();
 
         return sponsors.GetClientPurchasedInventoryItems()?.ToHashSet() ?? new HashSet<string>();
+    }
+
+    private static HashSet<string> GetValidEntitlements(IEnumerable<string>? entitlements)
+    {
+        var result = new HashSet<string>();
+        foreach (var entitlement in entitlements ?? [])
+        {
+            if (IsReasonableId(entitlement, MaxPrototypeIdLength))
+                result.Add(entitlement);
+        }
+
+        return result;
     }
 }
