@@ -15,7 +15,6 @@ news-write-ui-articles-label = Статьи:
 news-write-ui-delete-text = Удалить
 news-write-ui-publish-text = Опубликовать
 news-write-ui-create-text = Создать
-news-write-ui-write-text = Назад
 news-write-ui-cancel-text = Отмена
 news-write-ui-save-text = Сохранить
 news-write-ui-preview-text = Предпросмотр
