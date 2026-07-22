@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server._Sunrise.Shuttles.Components;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Server.Shuttles.Components;
@@ -1101,11 +1102,6 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private void Smimsh(EntityUid uid, FixturesComponent? manager = null, MapGridComponent? grid = null, TransformComponent? xform = null)
     {
-        // Sunrise-Start
-        if (HasComp<ArrivalsShuttleComponent>(uid) || HasComp<SunriseArrivalsShuttleComponent>(uid))
-            return;
-        // Sunrise-End
-
         if (!Resolve(uid, ref manager, ref grid, ref xform) || xform.MapUid == null)
             return;
 
@@ -1155,6 +1151,13 @@ public sealed partial class ShuttleSystem
                 {
                     continue;
                 }
+
+                // Sunrise-Start
+                if (childXform.GridUid != null && HasComp<ImmortalGridComponent>(childXform.GridUid.Value))
+                {
+                    continue;
+                }
+                // Sunrise-End
 
                 if (_bodyQuery.TryGetComponent(ent, out var mob))
                 {
