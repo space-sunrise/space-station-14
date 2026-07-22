@@ -1,7 +1,0 @@
-- type: radioChannel
-  id: Pirate
-  name: chat-radio-pirate
-  keycode: 'p'
-  frequency: 1782
-  color: "#a15608"
-  longRange: true
