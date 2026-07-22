@@ -13,7 +13,7 @@
 
 - type: entity
   id: ComputerCargoOrdersPirate
-  parent: [BaseRustGoldComputer, ComputerCargoOrders]
+  parent: BaseRustGoldComputer
   name: pirate-computer-request-name
   description: pirate-computer-request-description
   components:
@@ -30,11 +30,6 @@
       state: generic_keys
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: generic_panel_open
-  - type: CargoOrderConsole
-    allowedGroups: ["pirateMarket", "pirateMarketPirate", "pirateMarketFreelance", "pirateMarketBaron"]
-    account: Pirates
-    announcementChannel: Pirate
-    removeLimitAccess: ["Pirate"]
   - type: ActiveRadio
     channels:
     - Pirate
