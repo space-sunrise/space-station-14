@@ -584,8 +584,15 @@ public sealed partial class ShuttleSystem
         else if (HasComp<MapGridComponent>(target.EntityId) &&
                  !HasComp<MapComponent>(target.EntityId))
         {
-            var config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle,
-                entity.Comp1.Ignored, priorityTag: entity.Comp1.PriorityTag); // Sunrise-Edit
+            // Sunrise-Start
+            DockingConfig? config;
+            if (HasComp<SunriseArrivalsShuttleComponent>(uid))
+                config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle,
+                    ignored: false, priorityTag: entity.Comp1.PriorityTag);
+            else
+                config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle,
+                    entity.Comp1.Ignored, priorityTag: entity.Comp1.PriorityTag);
+            // Sunrise-End
             var mapCoordinates = _transform.ToMapCoordinates(target);
 
             // Couldn't dock somehow so just fallback to regular position FTL.
@@ -1094,6 +1101,11 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private void Smimsh(EntityUid uid, FixturesComponent? manager = null, MapGridComponent? grid = null, TransformComponent? xform = null)
     {
+        // Sunrise-Start
+        if (HasComp<ArrivalsShuttleComponent>(uid) || HasComp<SunriseArrivalsShuttleComponent>(uid))
+            return;
+        // Sunrise-End
+
         if (!Resolve(uid, ref manager, ref grid, ref xform) || xform.MapUid == null)
             return;
 
