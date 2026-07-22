@@ -1,6 +1,57 @@
 - type: entity
-  parent: WeaponPistolFlintlock
   id: WeaponPistolFlintlockPirateMarker
-  name: marker-flintlock-pistol-name
-  description: marker-flintlock-pistol-description
-  suffix: Pirate
+  parent: [BaseItem, BaseMajorContraband]
+  name: marker flintlock pistol
+  description: A self-loading flintlock pistol that marks targets for pirate raiders.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi
+    layers:
+    - state: base
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    minAngle: 0
+    maxAngle: 18
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 5 # Перезарядка кремнёвого пистолета.
+  - type: BatteryAmmoProvider
+    proto: SunrisePirateMarkerShot10
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: SunrisePirateMarkerShot10
+    - proto: SunrisePirateMarkerShot30
+    - proto: SunrisePirateMarkerShot60
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+  - type: StaticPrice
+    price: 0
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
