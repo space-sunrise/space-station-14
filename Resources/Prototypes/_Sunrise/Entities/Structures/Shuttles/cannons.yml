@@ -922,3 +922,24 @@
   - type: GunneryTrackable
   - type: StaticPrice
     price: 9000
+
+- type: entity
+  parent: ShuttleGunBase
+  id: ShuttleGunPirateCoveTurret
+  name: shuttle-gun-light-rifle-cove-name
+  description: shuttle-gun-light-rifle-cove-description
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    drawdepth: Mobs
+    layers:
+    - state: syndie_lethal
+  - type: Gun
+    fireRate: 6
+    projectileSpeed: 40
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BatteryAmmoProvider
+    proto: BulletLightRifleTraceAP

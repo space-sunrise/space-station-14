@@ -74,6 +74,29 @@
     access: [["Pirate"]]
 
 - type: entity
+  id: ComputerPirateShipyard
+  parent: BaseRustGoldComputer
+  name: pirate-computer-shipyard-name
+  description: pirate-computer-shipyard-description
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: goldrustcomputer
+    - map: ["computerLayerKeyboard"]
+      state: null
+    - map: ["computerLayerScreen"]
+      state: shuttlepirate
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: syndie_key
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
   id: ComputerPirateBounty
   parent: [BaseRustGoldComputer, ComputerSalvageJobBoard]
   name: pirate-computer-bounty-name

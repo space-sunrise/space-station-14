@@ -1,0 +1,6 @@
+- type: entity
+  parent: WeaponPistolFlintlock
+  id: WeaponPistolFlintlockPirateMarker
+  name: marker-flintlock-pistol-name
+  description: marker-flintlock-pistol-description
+  suffix: Pirate
