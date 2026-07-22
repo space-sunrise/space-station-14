@@ -691,7 +691,9 @@
       - Service
       - Theatre
       - NuclearOperative
+      - Pirate # Sunrise-Edit
       - SyndicateAgent
+      - Pirate
   - type: ActivatableUI
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface

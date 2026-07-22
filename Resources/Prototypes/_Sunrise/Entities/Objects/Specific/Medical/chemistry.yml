@@ -150,4 +150,82 @@
         - ReagentId: Tricordrazine
           Quantity: 1
   - type: TimedDespawn
-    lifetime: 30
+    lifetime: 25
+
+- type: entity
+  id: MiniSyringePyraDerma
+  parent: MiniSyringe
+  name: burn treatment mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Pyrazine
+          Quantity: 2.25
+        - ReagentId: Dermaline
+          Quantity: 2.75
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem
+
+- type: entity
+  id: MiniSyringePunctTranex
+  parent: MiniSyringe
+  name: trauma treatment mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Puncturase
+          Quantity: 4
+        - ReagentId: TranexamicAcid
+          Quantity: 1
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem
+
+- type: entity
+  id: MiniSyringeDexPlusSaline
+  parent: MiniSyringe
+  name: oxygenation mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: DexalinPlus
+          Quantity: 2.5
+        - ReagentId: Saline
+          Quantity: 2.5
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem
+
+- type: entity
+  id: MiniSyringeEphedrine
+  parent: MiniSyringe
+  name: stimulant mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 5
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem

@@ -99,7 +99,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellHigh
   - type: ToggleCellDraw
   - type: PowerCellDraw
     drawRate: 3.5
