@@ -1,0 +1,102 @@
+- type: entity
+  id: BaseRustGoldComputer
+  abstract: true
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: goldrustcomputer, sprite: _Sunrise/Structures/Machines/computers.rsi }
+          West: { state: goldrustcomputer_r, sprite: _Sunrise/Structures/Machines/computers.rsi }
+          East: { state: goldrustcomputer_l, sprite: _Sunrise/Structures/Machines/computers.rsi }
+          East, West: { state: goldrustcomputer_l_r, sprite: _Sunrise/Structures/Machines/computers.rsi }
+
+- type: entity
+  id: ComputerCargoOrdersPirate
+  parent: [BaseRustGoldComputer, ComputerCargoOrders]
+  name: pirate-computer-request-name
+  description: pirate-computer-request-description
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: goldrustcomputer
+    - map: ["computerLayerKeyboard"]
+      state: null
+    - map: ["computerLayerScreen"]
+      state: requestpirate
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    allowedGroups: ["pirateMarket", "pirateMarketPirate", "pirateMarketFreelance", "pirateMarketBaron"]
+    account: Pirates
+    announcementChannel: Pirate
+    removeLimitAccess: ["Pirate"]
+  - type: ActiveRadio
+    channels:
+    - Pirate
+  - type: Computer
+    board: PirateRequestComputerCircuitboard
+  - type: PointLight
+    color: "#c9c042"
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
+  id: ComputerPalletConsolePirate
+  parent: [BaseRustGoldComputer, ComputerPalletConsole]
+  name: pirate-computer-sale-name
+  description: pirate-computer-sale-description
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: goldrustcomputer
+    - map: ["computerLayerKeyboard"]
+      state: null
+    - map: ["computerLayerScreen"]
+      state: transferpirate
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: Computer
+    board: PirateSaleComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
+  id: ComputerPirateBounty
+  parent: [BaseRustGoldComputer, ComputerSalvageJobBoard]
+  name: pirate-computer-bounty-name
+  description: pirate-computer-bounty-description
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: goldrustcomputer
+    - map: ["computerLayerKeyboard"]
+      state: null
+    - map: ["computerLayerScreen"]
+      state: bountypirate
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: Computer
+    board: PirateBountyComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Pirate"]]

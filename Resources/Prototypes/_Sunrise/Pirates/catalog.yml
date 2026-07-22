@@ -1,0 +1,32 @@
+# Базовые cargo-прототипы для пиратских прототипов.
+- type: cargoAccount
+  id: Pirates
+  name: cargo-account-pirate-name
+  code: cargo-account-pirate-code
+  color: "#a15608"
+  radioChannel: Pirate
+  acquisitionSlip: PaperAcquisitionSlipCargo
+
+- type: cargoBountyGroup
+  id: Pirates
+
+- type: cargoBountyGroup
+  id: PirateBountyScrapper
+
+- type: cargoBountyGroup
+  id: PirateBountyPirate
+
+- type: cargoBountyGroup
+  id: PirateBountyFreelancer
+
+- type: cargoMarket
+  id: pirateMarket
+
+- type: cargoMarket
+  id: pirateMarketPirate
+
+- type: cargoMarket
+  id: pirateMarketFreelance
+
+- type: cargoMarket
+  id: pirateMarketBaron

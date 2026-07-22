@@ -1,0 +1,437 @@
+# Награды за контракты пиратов: обычные — от 7500, повышенные — от 12500, максимальные — от 20000.
+- type: cargoBounty
+  id: PirateBountyNuke
+  reward: 50000
+  description: bounty-description-nuke
+  idPrefix: GX
+  group: PirateBountyFreelancer
+  entries:
+  - name: bounty-item-nuke
+    amount: 1
+    whitelist:
+      components:
+      - Nuke
+
+- type: cargoBounty
+  id: PirateBountyAnomVessel
+  reward: 15000
+  description: bounty-description-anom-vessel
+  idPrefix: CS
+  group: PirateBountyPirate
+  entries:
+  - name: bounty-item-anom-vessel
+    amount: 1
+    whitelist:
+      components:
+      - AnomalyVessel
+
+- type: cargoBounty
+  id: PirateBountyArtifact
+  reward: 7500
+  description: bounty-description-artifact
+  idPrefix: SP
+  group: PirateBountyScrapper
+  entries:
+  - name: bounty-item-artifact
+    amount: 1
+    whitelist:
+      components:
+      - XenoArtifact
+
+- type: cargoBounty
+  id: PirateBountyCrewMonitor
+  reward: 12500
+  description: bounty-description-crew-monitor
+  idPrefix: CS
+  group: PirateBountyPirate
+  entries:
+  - name: bounty-item-crew-monitor
+    amount: 1
+    whitelist:
+      components:
+      - CrewMonitoringConsole
+
+- type: cargoBounty
+  id: PirateBountyVendingMachine
+  reward: 7500
+  description: bounty-description-vendmachine
+  idPrefix: DC
+  group: PirateBountyScrapper
+  entries:
+  - name: bounty-item-vendmachine
+    amount: 1
+    whitelist:
+      components:
+      - VendingMachine
+      - PlayerCountDependentStock
+    blacklist:
+      tags:
+      - Pirate
+
+- type: cargoBounty
+  id: PirateBountyTelecom
+  reward: 12500
+  description: bounty-description-telecom
+  idPrefix: SP
+  group: PirateBountyPirate
+  entries:
+  - name: bounty-item-telecom
+    amount: 1
+    whitelist:
+      components:
+      - TelecomServer
+
+- type: cargoBounty
+  id: PirateBountyShuttleParts
+  reward: 7500
+  description: bounty-description-shuttle-parts
+  idPrefix: SP
+  group: PirateBountyScrapper
+  entries:
+  - name: bounty-item-shuttle-parts
+    amount: 1
+    whitelist:
+      components:
+      - Thruster
+    blacklist:
+      tags:
+      - Pirate
+
+- type: cargoBounty
+  id: PirateBountyFaxmachine
+  reward: 20000
+  description: bounty-description-fax
+  idPrefix: SP
+  group: PirateBountyFreelancer
+  entries:
+  - name: bounty-item-fax
+    amount: 3
+    whitelist:
+      components:
+      - FaxMachine
+    blacklist:
+      tags:
+      - Pirate
+
+- type: cargoBounty
+  id: PirateBountyStasisBed
+  reward: 20000
+  description: bounty-description-stasis
+  idPrefix: ID
+  group: PirateBountyFreelancer
+  entries:
+  - name: bounty-item-stasis
+    amount: 1
+    whitelist:
+      components:
+      - StasisBed
+
+- type: cargoBounty
+  id: PirateBountyPDA
+  reward: 7500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-pda
+    amount: 3
+    whitelist:
+      components:
+      - Pda
+
+- type: cargoBounty
+  id: PirateBountyExtinguisher
+  reward: 2000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-extinguisher
+    amount: 4
+    whitelist:
+      tags:
+      - FireExtinguisher
+
+- type: cargoBounty
+  id: PirateBountyCaptainGloves
+  reward: 12500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-captain-gloves
+    amount: 2
+    whitelist:
+      components:
+      - Clothing
+      - Insulated
+      requireAll: true
+
+- type: cargoBounty
+  id: PirateBountyGyro
+  reward: 7500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-gyro
+    amount: 2
+    whitelist:
+      components:
+      - Thruster
+
+- type: cargoBounty
+  id: PirateBountyDefib
+  reward: 12500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-defib
+    amount: 3
+    whitelist:
+      components:
+      - Defibrillator
+
+- type: cargoBounty
+  id: PirateBountyAlcohol
+  reward: 7500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-alcohol
+    amount: 2
+    whitelist:
+      components:
+      - ReagentDispenser
+
+- type: cargoBounty
+  id: PirateBountyThruster
+  reward: 10000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-thruster
+    amount: 3
+    whitelist:
+      components:
+      - Thruster
+
+- type: cargoBounty
+  id: PirateBountyGravGen
+  reward: 12500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-grav-gen
+    amount: 2
+    whitelist:
+      components:
+      - GravityGenerator
+
+- type: cargoBounty
+  id: PirateBountyHardsuits
+  reward: 12500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-hardsuits
+    amount: 3
+    whitelist:
+      tags:
+      - Hardsuit
+
+- type: cargoBounty
+  id: PirateBountyRTG
+  reward: 20000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyFreelancer
+  entries:
+  - name: pirate-bounty-item-rtg
+    amount: 2
+    whitelist:
+      components:
+      - PowerSupplier
+
+- type: cargoBounty
+  id: PirateBountySalvGas
+  reward: 9000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-salv-gas
+    amount: 3
+    whitelist:
+      components:
+      - BreathMask
+      - Pierceable
+      requireAll: true
+
+- type: cargoBounty
+  id: PirateBountyRDHardsuit
+  reward: 50000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyFreelancer
+  entries:
+  - name: pirate-bounty-item-rd-hardsuit
+    amount: 1
+    whitelist:
+      tags:
+      - PirateBountyRDHardsuit
+
+- type: cargoBounty
+  id: PirateBountyOfficerHandgun
+  reward: 15000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-officerhandgun
+    amount: 2
+    whitelist:
+      components:
+      - Gun
+      - MagazineAmmoProvider
+      - StealTarget
+      requireAll: true
+
+- type: cargoBounty
+  id: PirateBountyHotplate
+  reward: 7500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-hotplate
+    amount: 1
+    whitelist:
+      components:
+      - SolutionHeater
+
+- type: cargoBounty
+  id: PirateBountyMedicalFabBoard
+  reward: 12500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-medical-fab-board
+    amount: 1
+    whitelist:
+      tags:
+      - PirateBountyMedicalFabBoard
+
+- type: cargoBounty
+  id: PirateBountyArtifactAnalyzer
+  reward: 15000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-artifact-analyzer
+    amount: 1
+    whitelist:
+      tags:
+      - PirateBountyArtifactAnalyzer
+
+- type: cargoBounty
+  id: PirateBountyOreBox
+  reward: 7500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-ore-box
+    amount: 2
+    whitelist:
+      components:
+      - Climbable
+      - Storage
+      requireAll: true
+
+- type: cargoBounty
+  id: PirateBountyAutolathe
+  reward: 10000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-autolathe
+    amount: 2
+    whitelist:
+      components:
+      - Lathe
+
+- type: cargoBounty
+  id: PirateBountyDiamond
+  reward: 30000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-diamond
+    amount: 10
+    whitelist:
+      tags:
+      - Diamond
+
+- type: cargoBounty
+  id: PirateBountyGold
+  reward: 13000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-gold
+    amount: 100
+    whitelist:
+      tags:
+      - PirateBountyGoldIngot
+
+- type: cargoBounty
+  id: PirateBountyPlasmaCanister
+  reward: 15000
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-plasma-canister
+    amount: 4
+    whitelist:
+      components:
+      - GasCanister
+
+- type: cargoBounty
+  id: PirateBountyHydroTray
+  reward: 7500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyScrapper
+  entries:
+  - name: pirate-bounty-item-hydro-tray
+    amount: 2
+    whitelist:
+      components:
+      - PlantHolder
+
+- type: cargoBounty
+  id: PirateBountyEnforcer
+  reward: 12500
+  description: bounty-description-pirate-generic
+  idPrefix: PB
+  group: PirateBountyPirate
+  entries:
+  - name: pirate-bounty-item-enforcer
+    amount: 1
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      requireAll: true
