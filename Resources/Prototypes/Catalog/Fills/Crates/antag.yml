@@ -201,9 +201,9 @@
           amount: 8
 
 - type: entity
-  id: CratePirateEVASuitBundle
+  id: CratePiraterEVASuitArmoredBundle
   suffix: Filled
-  parent: CratePiratePrivateSecure
+  parent: CrateGenericSteel
   components:
   - type: EntityTableContainerFill
     containers:
@@ -216,16 +216,15 @@
           - id: ClothingHeadHelmetPirateAlt2
         - !type:GroupSelector
           children:
-          - id: ClothingOuterEVASuitPirate
           - id: ClothingOuterEVASuitPirateArmoredAlt
           - id: ClothingOuterEVASuitPirateArmored
         - id: DoubleEmergencyNitrogenTankFilled
         - id: DoubleEmergencyOxygenTankFilled
 
 - type: entity
-  id: CratePiratePrivateerBundle
+  id: CratePiraterEVASuitBundle
   suffix: Filled
-  parent: CratePiratePrivateSecure
+  parent: CrateGenericSteel
   components:
   - type: EntityTableContainerFill
     containers:
@@ -233,35 +232,12 @@
         children:
         - !type:GroupSelector
           children:
-          - id: ClothingOuterHardsuitPrivateer
-          - id: ClothingOuterHardsuitPrivateerArmored
-          - id: ClothingBackpackDuffelMilitaryBundleScaf
+          - id: ClothingHeadHelmetPirate
+          - id: ClothingHeadHelmetPirateAlt
+          - id: ClothingHeadHelmetPirateAlt2
+        - id: ClothingOuterEVASuitPirate
         - id: DoubleEmergencyNitrogenTankFilled
         - id: DoubleEmergencyOxygenTankFilled
-
-- type: entity
-  id: CratePirateMechGunBundle
-  suffix: Filled
-  parent: CratePiratePrivateSecure
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - !type:GroupSelector
-          children:
-          - id: WeaponMechCombatPirateGrapeshot
-          - id: WeaponMechCombatPirateGrapeshotMini
-          - id: WeaponMechCombatPirateMachineCannon
-          - id: WeaponMechCombatChaingun
-          - id: WeaponMechCombatChaingunImprovised
-          - id: WeaponMechCombatPirateCannon
-          - id: WeaponMechCombatPirateGlassshot
-          - id: WeaponMechCombatMaxim
-          - id: WeaponMechCombatHeavyRifle
-          - id: WeaponMechCombatKord
-          - id: WeaponMechCombatXray
-          - id: WeaponMechCombatMG
 
 - type: entity
   id: CrateSyndicateSuperSurplusBundleAgent

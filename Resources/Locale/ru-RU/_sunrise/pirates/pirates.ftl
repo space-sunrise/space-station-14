@@ -95,9 +95,6 @@ ent-ShuttleGunLightRifleFMJ = { shuttle-gun-light-rifle-fmj-name }
     .desc = { shuttle-gun-light-rifle-fmj-description }
 ent-ShuttleGunLightRifleAP = { shuttle-gun-light-rifle-ap-name }
     .desc = { shuttle-gun-light-rifle-ap-description }
-ent-WeaponPistolFlintlockPirateMarker = { marker-flintlock-pistol-name }
-    .desc = { marker-flintlock-pistol-description }
-
 pirate-computer-request-name = Пиратский грузовой компьютер
 pirate-computer-request-description = Используется пиратами для покупки новой добычи.
 pirate-computer-sale-name = Пиратский компьютер продажи
@@ -142,5 +139,3 @@ shuttle-gun-light-rifle-fmj-name = BAL-762-FMJ «Бастард»
 shuttle-gun-light-rifle-fmj-description = Компактная баллистическая турель для стрельбы патронами с полной металлической оболочкой. Заряжается от сети шаттла.
 shuttle-gun-light-rifle-ap-name = BAL-762-AP «Бастард»
 shuttle-gun-light-rifle-ap-description = Компактная баллистическая турель для стрельбы бронебойными патронами малого калибра. Заряжается от сети шаттла.
-marker-flintlock-pistol-name = сигнальный кремнёвый пистолет
-marker-flintlock-pistol-description = Самозарядный кремнёвый пистолет, отмечающий цели для пиратских рейдеров.

@@ -95,9 +95,6 @@ ent-ShuttleGunLightRifleFMJ = { shuttle-gun-light-rifle-fmj-name }
     .desc = { shuttle-gun-light-rifle-fmj-description }
 ent-ShuttleGunLightRifleAP = { shuttle-gun-light-rifle-ap-name }
     .desc = { shuttle-gun-light-rifle-ap-description }
-ent-WeaponPistolFlintlockPirateMarker = { marker-flintlock-pistol-name }
-    .desc = { marker-flintlock-pistol-description }
-
 pirate-computer-request-name = Pirate cargo computer
 pirate-computer-request-description = Used by pirates to purchase new booty.
 pirate-computer-sale-name = Pirate sale computer
@@ -142,5 +139,3 @@ shuttle-gun-light-rifle-fmj-name = BAL-762-FMJ "Bastard"
 shuttle-gun-light-rifle-fmj-description = A compact light ballistic turret firing full metal jacket light rifle ammunition. It recharges from the ship's power grid.
 shuttle-gun-light-rifle-ap-name = BAL-762-AP "Bastard"
 shuttle-gun-light-rifle-ap-description = A compact light ballistic turret firing armor-piercing light rifle ammunition. It recharges from the ship's power grid.
-marker-flintlock-pistol-name = marker flintlock pistol
-marker-flintlock-pistol-description = A self-loading flintlock pistol that marks targets for pirate raiders.

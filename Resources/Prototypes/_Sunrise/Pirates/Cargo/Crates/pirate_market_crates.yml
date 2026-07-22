@@ -1200,3 +1200,66 @@
     contents:
       - id: SpeedLoaderMagnumAP
         amount: 6
+
+- type: entity
+  id: CratePirateEVASuitBundle
+  suffix: Filled
+  parent: CratePiratePrivateSecure
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: ClothingHeadHelmetPirate
+          - id: ClothingHeadHelmetPirateAlt
+          - id: ClothingHeadHelmetPirateAlt2
+        - !type:GroupSelector
+          children:
+          - id: ClothingOuterEVASuitPirate
+          - id: ClothingOuterEVASuitPirateArmoredAlt
+          - id: ClothingOuterEVASuitPirateArmored
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: DoubleEmergencyOxygenTankFilled
+
+- type: entity
+  id: CratePiratePrivateerBundle
+  suffix: Filled
+  parent: CratePiratePrivateSecure
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: ClothingOuterHardsuitPrivateer
+          - id: ClothingOuterHardsuitPrivateerArmored
+          - id: ClothingBackpackDuffelMilitaryBundleScaf
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: DoubleEmergencyOxygenTankFilled
+
+- type: entity
+  id: CratePirateMechGunBundle
+  suffix: Filled
+  parent: CratePiratePrivateSecure
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:GroupSelector
+          children:
+          - id: WeaponMechCombatPirateGrapeshot
+          - id: WeaponMechCombatPirateGrapeshotMini
+          - id: WeaponMechCombatPirateMachineCannon
+          - id: WeaponMechCombatChaingun
+          - id: WeaponMechCombatChaingunImprovised
+          - id: WeaponMechCombatPirateCannon
+          - id: WeaponMechCombatPirateGlassshot
+          - id: WeaponMechCombatMaxim
+          - id: WeaponMechCombatHeavyRifle
+          - id: WeaponMechCombatKord
+          - id: WeaponMechCombatXray
+          - id: WeaponMechCombatMG
