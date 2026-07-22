@@ -56,6 +56,14 @@
     price: 20000
 
 - type: entity
+  id: WeaponMechCombatChaingunImprovised
+  parent: WeaponMechCombatChaingun
+  components:
+  - type: BatteryAmmoProvider
+    proto: CartridgeRifleImprovised
+    fireCost: 4
+
+- type: entity
   id: WeaponMechCombatMaxim
   name: Mounted Kardashev-Maxim
   description: An ancient heavy machine gun given new life as a mech-mounted gun

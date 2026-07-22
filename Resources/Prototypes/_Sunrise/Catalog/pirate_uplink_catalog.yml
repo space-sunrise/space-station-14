@@ -1022,7 +1022,7 @@
   name: uplink-pirate-ammo-magnum-ap-name
   description: uplink-speedloader-magnu-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: CratePirateMagnumAPAmmo
+  productEntity: CratePirateSpeedLoaderMagnumAP
   cost:
     Doubloon: 1
   categories:
@@ -2544,23 +2544,12 @@
 
 - type: listing
   id: UplinkPirateSuitBundle
-  productEntity: CratePiraterEVASuitBundle
+  productEntity: CratePirateEVASuitBundle
   name: uplink-eva-bundle-name
   description: uplink-eva-bundle-desc
   icon: { sprite: /Textures/_Sunrise/Clothing/OuterClothing/Suits/pirateeva.rsi, state: icon }
   cost:
     Doubloon: 9
-  categories:
-  - UplinkPirateArmor
-
-- type: listing
-  id: UplinkPirateSuitArmoredBundle
-  productEntity: CratePiraterEVASuitArmoredBundle
-  name: uplink-eva-armored-bundle-name
-  description: uplink-eva-armored-bundle-desc
-  icon: { sprite: /Textures/_Sunrise/Clothing/OuterClothing/Suits/pirateeva_armored.rsi, state: icon }
-  cost:
-    Doubloon: 16
   categories:
   - UplinkPirateArmor
 

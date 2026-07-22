@@ -389,6 +389,20 @@
   - type: StaticPrice
     price: 1000
   - type: Appearance
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMajorContraband]
+  id: SunriseClothingHeadHelmetHardsuitRogue
+  categories: [ HideSpawnMenu ]
+  name: rogue combat suit helmet
+  description: Little space won't keep a tricorn out of style.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/rogue.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/rogue.rsi
+  - type: PointLight
+    color: "#ffeead"
   - type: UseDelay
     delay: 3.0
   - type: ToggleClothing

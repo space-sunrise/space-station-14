@@ -1,9 +1,120 @@
 - type: entity
   parent: CratePrivateSecure
   id: CratePiratePrivateSecure
+  name: rusty crate
+  description: Pirates seem to think that a coat of paint and a skull are enough to change ownership.
   components:
+  - type: Icon
+    sprite: _Sunrise/Structures/Storage/Crates/freelancecrate_secure.rsi
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/Crates/freelancecrate_secure.rsi
   - type: AccessReader
     access: [["Pirate"]]
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateDisposableLauncherTraining
+  name: disposable training launcher crate
+  description: Contains two disposable training launchers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SunriseWeaponDisposableRocketLauncherTraining
+        amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateDisposableLauncherEmp
+  name: disposable EMP launcher crate
+  description: Contains two disposable EMP launchers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SunriseWeaponDisposableRocketLauncherEmp
+        amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateDisposableLauncherSmoke
+  name: disposable smoke launcher crate
+  description: Contains two disposable smoke launchers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SunriseWeaponDisposableRocketLauncherSmoke
+        amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateDisposableLauncher
+  name: disposable launcher crate
+  description: Contains two disposable rocket launchers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SunriseWeaponDisposableRocketLauncher
+        amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateDisposableLauncherIncendiary
+  name: disposable thermobaric launcher crate
+  description: Contains two disposable thermobaric launchers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SunriseWeaponDisposableRocketLauncherIncendiary
+        amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateRadioImplanterFreelance
+  name: freelance radio implanter crate
+  description: Contains three freelance radio implanters.
+  components:
+  - type: StorageFill
+    contents:
+      - id: RadioImplanterFreelance
+        amount: 3
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateIK30
+  name: IK-30 crate
+  description: Contains two IK-30 laser carbines and additional ammunition.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponGunLaserCarbineSemi
+          amount: 2
+        - id: MagazineBatteryLr30
+          amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateMagazineBatteryLr60
+  name: LR-60 magazine crate
+  description: Contains six large laser magazines.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazineBatteryLr60
+          amount: 6
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: CratePirateMicroBombImplanter
+  name: micro-bomb implanter crate
+  description: Contains three micro-bomb implanters.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MicroBombImplanter
+        amount: 3
 
 - type: entity
   parent: CratePiratePrivateSecure
@@ -309,16 +420,6 @@
         amount: 2
 
 - type: entity
-  parent: CratePirate
-  id: CratePirateMagnumAPAmmo
-  name: AP speed loader crate
-  description: Contains an armor-piercing magnum speedloader.
-  components:
-  - type: StorageFill
-    contents:
-      - id: SpeedLoaderMagnumAP
-
-- type: entity
   parent: CratePiratePrivateSecure
   id: CratePirateAppraisalTool
   name: appraisal tool crate
@@ -445,6 +546,19 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  id: CratePiratePrivateerHardsuit
+  name: freelance hardsuit crate
+  description: Contains one random freelance hardsuit.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        children:
+        - id: ClothingOuterHardsuitPrivateer
+        - id: ClothingOuterHardsuitPrivateerArmored
+
+- type: entity
+  parent: CratePiratePrivateSecure
   id: CratePirateBuccaneerHardsuit
   name: buccaneer hardsuit crate
   description: Contains a buccaneer hardsuit.
@@ -540,6 +654,120 @@
     contents:
       - id: MagazineBoxAntiMateriel
         amount: 6
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateDravon75mmAmmo
+  name: 75mm ammunition crate
+  description: Contains one full DVN-75 artillery magazine.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineDravon75mmHE
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateMagazine50mmRocket
+  name: 50mm rocket crate
+  description: Contains one full ADMP-27 VESPERA rocket magazine.
+  components:
+  - type: StorageFill
+    contents:
+    - id: Magazine50mmRocket
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateAK57090mmAmmo
+  name: 90mm ammunition crate
+  description: Contains one full AK-90 artillery magazine.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineAK570_90mmHE
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateRocket120mm
+  name: 120mm rocket crate
+  description: Contains four standard RCT-120 Metla rockets.
+  components:
+  - type: StorageFill
+    contents:
+    - id: Rocket120mmMetla
+      amount: 4
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateRocket120mmLongFlight
+  name: extended rocket crate
+  description: Contains four extended-flight RCT-120 Metla rockets.
+  components:
+  - type: StorageFill
+    contents:
+    - id: Rocket120mmMetlaLongFlight
+      amount: 4
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateMagazine120mmBlast
+  name: 120mm magazine crate
+  description: Contains one full CYERXA blast grenade magazine.
+  components:
+  - type: StorageFill
+    contents:
+    - id: Magazine120mmGrenadeBlast
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateLeviathan240mmHE
+  name: 240mm HE crate
+  description: Contains two Leviathan 240mm high-explosive shell.
+  components:
+  - type: StorageFill
+    contents:
+      - id: CartridgeLeviathan240mmHEDamaged75
+        amount: 2
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateLeviathan240mmCluster
+  name: 240mm cluster crate
+  description: Contains two Leviathan 240mm cluster shell.
+  components:
+  - type: StorageFill
+    contents:
+      - id: CartridgeLeviathan240mmClusterDamaged75
+        amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateLeviathan240mmNuke
+  name: 240mm nuclear crate
+  description: Contains two Leviathan 240mm nuclear shell.
+  components:
+  - type: StorageFill
+    contents:
+      - id: CartridgeLeviathan240mmNukeDamaged75
+        amount: 2
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateCharon280mmSlug
+  name: 280mm slug crate
+  description: Contains one M381 CHARYBDIS 280mm kinetic slug.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CartridgeCharon280mmSlug
+
+- type: entity
+  parent: CratePiratePrivateSecure
+  id: SunriseCratePirateCharon280mmSubnuclear
+  name: subnuclear slug crate
+  description: Contains one M381 CHARYBDIS 280mm subnuclear slug.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CartridgeCharon280mmSubnuclear
 
 - type: entity
   parent: CratePiratePrivateSecure

@@ -1012,3 +1012,31 @@
     - Anchorable
   - type: BatteryAmmoProvider
     proto: BulletLightRifleTraceAP
+
+- type: entity
+  id: ShuttleGunPirateBombard
+  parent: ShuttleGunBase
+  name: shuttle-gun-pirate-bombard-name
+  description: shuttle-gun-pirate-bombard-description
+  components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    scale: 1.5, 1
+    sprite: Objects/Weapons/Guns/Shuttles/pirate_cannon.rsi
+    layers:
+    - state: base
+  - type: Gun
+    selectedMode: Burst
