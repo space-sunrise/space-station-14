@@ -1936,6 +1936,17 @@
   - UplinkPirateImplants
 
 - type: listing
+  id: UplinkPirateRadioImplanterPirate
+  name: uplink-pirate-radio-implanter-name
+  description: uplink-pirate-radio-implanter-desc
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
+  productEntity: RadioImplanterPirate
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateImplants
+
+- type: listing
   id: UplinkPirateMicroBombImplanter
   name: uplink-micro-bomb-implanter-name
   description: uplink-micro-bomb-implanter-desc

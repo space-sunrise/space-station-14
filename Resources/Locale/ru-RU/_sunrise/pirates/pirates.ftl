@@ -1,6 +1,7 @@
 cargo-account-pirate-name = Пиратская добыча
+uplink-pirate-radio-implanter-name = пиратский радиоимплантер
+uplink-pirate-radio-implanter-desc = Вживляет доступ к пиратскому радиоканалу, позволяя скрытно общаться без гарнитуры.
 cargo-account-pirate-code = SPH
-chat-radio-pirate = Пираты
 pirateproduct-category-name-weapons = Оружие
 pirateproduct-category-name-armor = Броня
 pirateproduct-category-name-ammo = Боеприпасы

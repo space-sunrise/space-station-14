@@ -1,6 +1,7 @@
 cargo-account-pirate-name = Space Pirate Hoard
+uplink-pirate-radio-implanter-name = pirate radio implanter
+uplink-pirate-radio-implanter-desc = Implants access to the Pirate radio channel, allowing covert communication without a headset.
 cargo-account-pirate-code = SPH
-chat-radio-pirate = Pirate
 pirateproduct-category-name-weapons = Weapons
 pirateproduct-category-name-armor = Armor
 pirateproduct-category-name-ammo = Ammo
