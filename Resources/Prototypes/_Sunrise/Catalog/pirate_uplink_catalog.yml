@@ -137,7 +137,7 @@
   cost:
     Doubloon: 2
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateDisposableTurret
@@ -147,7 +147,7 @@
   cost:
     Doubloon: 13
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateHristov
@@ -156,26 +156,97 @@
   cost:
     Doubloon: 45
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
 
 - type: listing
   id: UplinkPiratePistolFlintlock
-  productEntity: WeaponPistolFlintlock
+  icon: { sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi, state: base }
+  productEntity: CratePirateFlintlock
   cost:
-    Doubloon: 1
+    Doubloon: 3
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateRevolverPirate
-  productEntity: WeaponRevolverPirateEmpty
+  productEntity: CratePirateRevolver
   cost:
-    Doubloon: 2
+    Doubloon: 6
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPiratePistolMakeshift
+  productEntity: WeaponPistolMakeshiftCrafted
+  categories:
+  - UplinkPirateRangedWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: UplinkPirateRevolverMakeshift
+  productEntity: WeaponRevolverMakeshift
+  categories:
+  - UplinkPirateRangedWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: UplinkPirateShotgunMakeshift
+  productEntity: WeaponShotgunMakeshift
+  categories:
+  - UplinkPirateRangedWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: UplinkPirateSMGMakeshift
+  productEntity: WeaponSubMachineGunMakeshift
+  categories:
+  - UplinkPirateRangedWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: UplinkPirateSniperMakeshift
+  productEntity: WeaponSniperMakeshift
+  categories:
+  - UplinkPirateRangedWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: UplinkPirateShotgunImprovised
+  productEntity: WeaponShotgunImprovised
+  categories:
+  - UplinkPirateRangedWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: UplinkPiratePistolImprovised
+  productEntity: WeaponPistolImprovised
+  cost:
+    Doubloon: 1
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateRevolverImprovised
+  productEntity: WeaponRevolverImprovised
+  cost:
+    Doubloon: 1
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateSMGImprovised
@@ -183,7 +254,39 @@
   cost:
     Doubloon: 2
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateSniperImprovised
+  productEntity: WeaponSniperImprovised
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateGrenadeLauncherImprovised
+  productEntity: WeaponGrenadeLauncherImprovised
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPiratePneumaticCannonImprovised
+  productEntity: WeaponImprovisedPneumaticCannon
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPiratePistolForged
+  productEntity: WeaponPistolForged
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateRevolverForged
@@ -191,7 +294,15 @@
   cost:
     Doubloon: 3
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateShotgunForged
+  productEntity: WeaponShotgunForged
+  cost:
+    Doubloon: 4
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateSMGForged
@@ -199,7 +310,15 @@
   cost:
     Doubloon: 5
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateSniperForged
+  productEntity: WeaponSniperForged
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateMusket
@@ -207,15 +326,18 @@
   cost:
     Doubloon: 3
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateMakeshiftLaser
-  productEntity: WeaponMakeshiftLaser
+  productEntity: CratePirateMakeshiftLaser
   cost:
-    Doubloon: 2
+    Doubloon: 1
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: UplinkPirateLaserGun
@@ -223,7 +345,7 @@
   cost:
     Doubloon: 4
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateSnubRevolver
@@ -231,7 +353,15 @@
   cost:
     Doubloon: 10
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateRevolverSpearheadBlack
+  productEntity: WeaponRevolverSpearheadBlack
+  cost:
+    Doubloon: 18
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateRevolverPython
@@ -239,7 +369,7 @@
   cost:
     Doubloon: 16
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateMosin
@@ -247,7 +377,7 @@
   cost:
     Doubloon: 2
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateCrateMosin
@@ -257,15 +387,23 @@
   cost:
     Doubloon: 6
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateRepeater
-  productEntity: WeaponSniperRepeater
+  productEntity: CratePirateRifleLeverMagnum
   cost:
-    Doubloon: 4
+    Doubloon: 12
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateM16A4
+  productEntity: WeaponRifleM16A4
+  cost:
+    Doubloon: 18
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateSkorpion
@@ -273,15 +411,15 @@
   cost:
     Doubloon: 14
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateCannon
-  productEntity: WeaponLauncherPirateCannon
+  productEntity: CratePirateHandcannon
   cost:
-    Doubloon: 10
+    Doubloon: 15
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -292,7 +430,7 @@
   cost:
     Doubloon: 6
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -303,7 +441,25 @@
   cost:
     Doubloon: 70
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
+  restockTime: 3600
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkPirateCrateDP28
+  name: uplink-weapon-dpmg-name
+  productEntity: CrateAmmunitionSmallDP28
+  icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi, state: icon }
+  cost:
+    Doubloon: 65
+  categories:
+  - UplinkPirateRangedWeaponry
   restockTime: 3600
   conditions:
   - !type:ListingLimitedStockCondition
@@ -315,11 +471,11 @@
 
 - type: listing
   id: UplinkPirateL6SAW
-  productEntity: ClothingBackpackDuffelSyndicateFilledLMG
+  productEntity: WeaponLightMachineGunL6
   cost:
     Doubloon: 80
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   restockTime: 3600
   conditions:
   - !type:ListingLimitedStockCondition
@@ -335,7 +491,7 @@
   cost:
     Doubloon: 8
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPiratePistolVP78
@@ -344,15 +500,15 @@
     Doubloon: 16
   restockTime: 2700
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateDoubleBarreled
-  productEntity: WeaponShotgunDoubleBarreled
+  productEntity: CratePirateShotgunDoubleBarreled
   cost:
-    Doubloon: 7
+    Doubloon: 10
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPiratePistolViper
@@ -360,7 +516,7 @@
   cost:
     Doubloon: 15
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateMP38
@@ -368,7 +524,7 @@
   cost:
     Doubloon: 17
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirate4034Sawn
@@ -376,7 +532,7 @@
   cost:
     Doubloon: 11
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateMachineGunPirateCannon
@@ -384,7 +540,7 @@
   cost:
     Doubloon: 15
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
@@ -393,31 +549,31 @@
   id: UplinkPirateLCG
   productEntity: WeaponMachineGunLCG
   cost:
-    Doubloon: 19
+    Doubloon: 26
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateM24Scrap
   name: uplink-weapon-scrap-name
   description: uplink-weapon-scrap-desc
-  productEntity: ClothingBackpackMessengerPirateBundleSKM24Scrap
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/big.rsi, state: icon }
+  productEntity: CratePirateAkScrap
+  icon: { sprite: Structures/Storage/Crates/privatecrate_secure.rsi, state: icon }
   cost:
     Doubloon: 13
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateM24
   name: uplink-weapon-base-name
   description: uplink-weapon-base-desc
-  productEntity: ClothingBackpackMessengerMercenaryBundleSKM24
+  productEntity: CratePirateAk
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Base/big.rsi, state: icon }
   cost:
     Doubloon: 20
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateARG
@@ -428,7 +584,7 @@
   cost:
     Doubloon: 25
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateSKM28
@@ -436,7 +592,7 @@
   cost:
     Doubloon: 28
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
@@ -449,7 +605,7 @@
   cost:
     Doubloon: 28
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   restockTime: 2700
   conditions:
   - !type:ListingLimitedStockCondition
@@ -464,7 +620,7 @@
     Doubloon: 35
   restockTime: 2700
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
@@ -476,34 +632,26 @@
     Doubloon: 35
   restockTime: 2700
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
 
 - type: listing
   id: UplinkPirateShotgunBlunderbuss
-  productEntity: WeaponShotgunBlunderbuss
+  productEntity: CratePirateBlunderbuss
   cost:
-    Doubloon: 4
+    Doubloon: 10
   categories:
-  - UplinkPirateWeaponry
-
-- type: listing
-  id: UplinkPirateCombatKnife
-  productEntity: CombatKnife
-  cost:
-    Doubloon: 1
-  categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateCutlass
-  productEntity: Cutlass
+  productEntity: CratePirateCutlass
   cost:
-    Doubloon: 2
+    Doubloon: 5
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateEDagger
@@ -511,7 +659,7 @@
   cost:
     Doubloon: 12
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateECutlass
@@ -519,7 +667,7 @@
   cost:
     Doubloon: 13
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPiratePickaxe
@@ -527,7 +675,7 @@
   cost:
     Doubloon: 1
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateEnergyPickaxe
@@ -536,7 +684,7 @@
   cost:
     Doubloon: 5
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateGauntletDrill
@@ -544,7 +692,24 @@
   cost:
     Doubloon: 7
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
+
+- type: listing
+  id: UplinkPirateGrapplingGunCrate
+  productEntity: CratePirateGrapplingGun
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPiratePumpShotgunCrate
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/big.rsi, state: icon }
+  productEntity: CratePiratePumpShotgun
+  cost:
+    Doubloon: 22
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPiratePKA
@@ -552,7 +717,7 @@
   cost:
     Doubloon: 7
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPiratePlasmaCutter
@@ -560,7 +725,7 @@
   cost:
     Doubloon: 12
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateEshieldNukies
@@ -569,12 +734,9 @@
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
   productEntity: EnergyShield
   cost:
-    Doubloon: 39
+    Doubloon: 15
   categories:
-  - UplinkPirateWeaponry
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 2
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateGrenadeLauncherM79
@@ -585,10 +747,42 @@
   cost:
     Doubloon: 17
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: UplinkPirateDisposableRocketLauncherTraining
+  productEntity: SunriseWeaponDisposableRocketLauncherTraining
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateDisposableRocketLauncherEmp
+  productEntity: SunriseWeaponDisposableRocketLauncherEmp
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateDisposableRocketLauncher
+  productEntity: SunriseWeaponDisposableRocketLauncher
+  cost:
+    Doubloon: 6
+  categories:
+  - UplinkPirateRangedWeaponry
+
+- type: listing
+  id: UplinkPirateDisposableRocketLauncherIncendiary
+  productEntity: SunriseWeaponDisposableRocketLauncherIncendiary
+  cost:
+    Doubloon: 9
+  categories:
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateC40RBundle
@@ -599,7 +793,7 @@
   cost:
     Doubloon: 29
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
   restockTime: 2700
   conditions:
   - !type:ListingLimitedStockCondition
@@ -613,7 +807,7 @@
   cost:
     Doubloon: 43
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateRangedWeaponry
 
 - type: listing
   id: UplinkPirateCrusherGlaive
@@ -621,7 +815,7 @@
   cost:
     Doubloon: 8
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateCrusher
@@ -629,7 +823,7 @@
   cost:
     Doubloon: 8
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateCrusherAxe
@@ -637,7 +831,7 @@
   cost:
     Doubloon: 19
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
   restockTime: 900
   conditions:
   - !type:ListingLimitedStockCondition
@@ -652,7 +846,7 @@
   cost:
     Doubloon: 27
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
 
 - type: listing
   id: UplinkPirateEswordNuke
@@ -663,7 +857,7 @@
   cost:
     Doubloon: 30
   categories:
-  - UplinkPirateWeaponry
+  - UplinkPirateMeleeWeaponry
   restockTime: 2700
   conditions:
   - !type:ListingLimitedStockCondition
@@ -728,8 +922,9 @@
 
 - type: listing
   id: UplinkPirateMagCannonBallMini
+  name: uplink-pirate-ammo-cannonball-mini-name
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/cannonball_belt.rsi, state: base }
-  productEntity: MagazineCannonBallMini
+  productEntity: CratePirateMagazineCannonBallMini
   cost:
     Doubloon: 8
   categories:
@@ -747,7 +942,17 @@
 
 - type: listing
   id: UplinkPirateMagChainGun
-  productEntity: MagazineChainGun
+  name: uplink-pirate-ammo-chaingun-name
+  productEntity: CratePirateMagazineChainGun
+  cost:
+    Doubloon: 8
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
+  id: UplinkPirateMagChainGunImprovised
+  name: uplink-pirate-ammo-chaingun-name
+  productEntity: CratePirateMagazineChainGunImprovised
   cost:
     Doubloon: 5
   categories:
@@ -755,9 +960,10 @@
 
 - type: listing
   id: UplinkPirateMagSMGAP
+  name: uplink-pirate-ammo-smg-ap-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunAP
+  productEntity: CratePirateMagazinePistolSubMachineGunAP
   cost:
     Doubloon: 14
   categories:
@@ -766,9 +972,10 @@
 
 - type: listing
   id: UplinkPirateMagSMGIncendiary
+  name: uplink-pirate-ammo-smg-incendiary-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunIncendiary
+  productEntity: CratePirateMagazinePistolSubMachineGunIncendiary
   cost:
     Doubloon: 10
   categories:
@@ -776,83 +983,55 @@
   restockTime: 3600
 
 - type: listing
-  id: UplinkPirateMagSMGFMJ
+  id: UplinkPirateMagSMGMixed
+  name: uplink-pirate-ammo-smg-mixed-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunFMJ
+  productEntity: CratePirateSubMachineGunAmmo
   cost:
     Doubloon: 5
   categories:
   - UplinkPirateAmmo
-  restockTime: 1800
-
-- type: listing
-  id: UplinkPirateMagSMGSP
-  description: uplink-pistol-magazine-c20r-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunSP
-  cost:
-    Doubloon: 4
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateMagSMGHP
-  description: uplink-pistol-magazine-c20r-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunHP
-  cost:
-    Doubloon: 4
-  categories:
-  - UplinkPirateAmmo
+  restockTime: 300
 
 - type: listing
   id: UplinkPirateMagSMGRubber
+  name: uplink-pirate-ammo-smg-rubber-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunRubber
+  productEntity: CratePirateMagazinePistolSubMachineGunRubber
   cost:
-    Doubloon: 3
+    Doubloon: 1
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateSpeedLoaderMagnumAP
-  name: uplink-speedloader-magnum-name
+  name: uplink-pirate-ammo-magnum-ap-name
   description: uplink-speedloader-magnu-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumAP
+  productEntity: CratePirateSpeedLoaderMagnumAP
   cost:
-    Doubloon: 12
+    Doubloon: 6
   categories:
   - UplinkPirateAmmo
-  restockTime: 3600
+  restockTime: 900
 
 - type: listing
-  id: UplinkPirateSpeedLoaderMagnumFMJ
+  id: UplinkPirateMagnumAPAmmo
+  name: uplink-pirate-ammo-magnum-ap-name
   description: uplink-speedloader-magnu-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumFMJ
+  productEntity: CratePirateMagnumAPAmmo
   cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateSpeedLoaderMagnumSP
-  description: uplink-speedloader-magnu-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumSP
-  cost:
-    Doubloon: 3
+    Doubloon: 1
   categories:
   - UplinkPirateAmmo
 
 - type: listing
-  id: UplinkPirateSpeedLoaderMagnumHP
-  description: uplink-speedloader-magnu-desc
+  id: UplinkPirateSpeedLoaderMagnum
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumHP
+  productEntity: CratePirateMagnumAmmo
   cost:
     Doubloon: 3
   categories:
@@ -860,8 +1039,9 @@
 
 - type: listing
   id: UplinkPirateHristovAmmo
+  name: uplink-pirate-ammo-hristov-name
   description: uplink-sniper-ammo-desc
-  productEntity: MagazineBoxAntiMateriel
+  productEntity: CratePirateMagazineBoxAntiMateriel
   cost:
     Doubloon: 8
   categories:
@@ -869,8 +1049,9 @@
 
 - type: listing
   id: UplinkPirateHristovAmmoAP
+  name: uplink-pirate-ammo-hristov-ap-name
   description: uplink-sniper-ammo-pen-desc
-  productEntity: MagazineBoxAntiMaterielAP
+  productEntity: CratePirateMagazineBoxAntiMaterielAP
   cost:
     Doubloon: 10
   categories:
@@ -881,8 +1062,9 @@
 
 - type: listing
   id: UplinkPirateHristovAmmoFrag
+  name: uplink-pirate-ammo-hristov-frag-name
   description: uplink-sniper-ammo-frag-desc
-  productEntity: MagazineBoxAntiMaterielFrag
+  productEntity: CratePirateMagazineBoxAntiMaterielFrag
   cost:
     Doubloon: 10
   categories:
@@ -893,8 +1075,9 @@
 
 - type: listing
   id: UplinkPirateHristovAmmoBlast
+  name: uplink-pirate-ammo-hristov-blast-name
   description: uplink-sniper-ammo-blast-desc
-  productEntity: MagazineBoxAntiMaterielBlast
+  productEntity: CratePirateMagazineBoxAntiMaterielBlast
   cost:
     Doubloon: 12
   categories:
@@ -905,49 +1088,50 @@
 
 - type: listing
   id: UplinkPirateBoxImprovisedRifle
-  productEntity: MagazineBoxImprovisedRifle
-  cost:
-    Doubloon: 1
+  name: uplink-pirate-ammo-improvised-rifle-name
+  productEntity: CratePirateMagazineBoxImprovisedRifle
   categories:
   - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: UplinkPirateBoxImprovisedMagnum
-  productEntity: MagazineBoxImprovisedMagnum
-  cost:
-    Doubloon: 1
+  name: uplink-improvised-magnum-name
+  productEntity: CratePirateMagazineBoxImprovisedMagnum
   categories:
   - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: UplinkPirateBoxImprovisedShotgun
-  productEntity: MagazineBoxImprovisedShotgun
-  cost:
-    Doubloon: 1
+  name: uplink-pirate-ammo-improvised-shotgun-name
+  productEntity: CratePirateMagazineBoxImprovisedShotgun
   categories:
   - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: UplinkPirateBoxImprovisedPistol
-  productEntity: MagazineBoxImprovisedPistol
-  cost:
-    Doubloon: 1
+  name: uplink-pirate-ammo-improvised-pistol-name
+  productEntity: CratePirateMagazineBoxImprovisedPistol
   categories:
   - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateSMGMagImprovised
-  productEntity: MagazinePistolSubMachineGunImprovisedFilled
-  cost:
-    Doubloon: 1
-  categories:
-  - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: UplinkPirate40MagAP
+  name: uplink-pirate-ammo-40-ap-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol40AP
+  productEntity: CratePirateMagazinePistol40AP
   cost:
     Doubloon: 10
   categories:
@@ -955,29 +1139,11 @@
   restockTime: 3600
 
 - type: listing
-  id: UplinkPirate40MagFMJ
-  description: uplink-pistol-magazine-desc
-  productEntity: MagazinePistol40FMJ
-  cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirate40MagSP
+  id: UplinkPirate40MagMixed
+  name: uplink-pirate-ammo-40-mixed-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol40SP
-  cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirate40MagHP
-  description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol40HP
+  productEntity: CratePirateMagazinePistol40Mixed
   cost:
     Doubloon: 3
   categories:
@@ -985,9 +1151,10 @@
 
 - type: listing
   id: UplinkPirate9mmMagAP
+  name: uplink-pirate-ammo-machine-pistol-ap-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolHighCapacityAP
+  productEntity: CratePirateMagazinePistolHighCapacityAP
   cost:
     Doubloon: 10
   categories:
@@ -995,30 +1162,11 @@
   restockTime: 3600
 
 - type: listing
-  id: UplinkPirate9mmMagFMJ
+  id: UplinkPirate9mmMagMixed
+  name: uplink-pirate-ammo-machine-pistol-mixed-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolHighCapacityFMJ
-  cost:
-    Doubloon: 2
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirate9mmMagSP
-  description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolHighCapacitySP
-  cost:
-    Doubloon: 2
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirate9mmMagHP
-  description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolHighCapacityHP
+  productEntity: CratePirateMagazinePistolHighCapacityMixed
   cost:
     Doubloon: 2
   categories:
@@ -1026,68 +1174,63 @@
 
 - type: listing
   id: UplinkPirate9mmMagRubber
+  name: uplink-pirate-ammo-machine-pistol-rubber-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolHighCapacityRubber
+  productEntity: CratePirateMagazinePistolHighCapacityRubber
+  categories:
+  - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+
+- type: listing
+  id: UplinkPirateBox556Mixed
+  name: uplink-pirate-ammo-556-mixed-name
+  productEntity: CratePirateMagazineBoxRifleMixed
   cost:
     Doubloon: 2
   categories:
   - UplinkPirateAmmo
 
 - type: listing
-  id: UplinkPirateL6SAWBoxSP
+  id: UplinkPirateMagazineRifleBoxIncendiary
+  name: uplink-pirate-ammo-l6-incendiary-name
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
-  productEntity: MagazineRifleBoxSP
-  cost:
-    Doubloon: 10
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateL6SAWBoxFMJ
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
-  productEntity: MagazineRifleBoxFMJ
-  cost:
-    Doubloon: 12
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateL6SAWBoxIncendiary
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
-  productEntity: MagazineRifleBoxIncendiary
+  productEntity: CratePirateMagazineRifleBoxIncendiary
   cost:
     Doubloon: 16
   categories:
   - UplinkPirateAmmo
 
 - type: listing
-  id: UplinkPirateBox556SP
-  productEntity: MagazineBoxRifleSP
+  id: UplinkPirateRifleAmmo
+  productEntity: CratePirateRifleAmmo
   cost:
-    Doubloon: 1
+    Doubloon: 5
   categories:
   - UplinkPirateAmmo
 
 - type: listing
-  id: UplinkPirateBox556FMJ
-  productEntity: MagazineBoxRifleFMJ
+  id: UplinkPirateShotgunAmmo
+  productEntity: CratePirateShotgunAmmo
   cost:
-    Doubloon: 1
+    Doubloon: 5
   categories:
   - UplinkPirateAmmo
 
 - type: listing
-  id: UplinkPirateBox556HP
-  productEntity: MagazineBoxRifleHP
+  id: UplinkPirateMagazineRifleBoxMixed
+  productEntity: CratePirateMagazineRifleBoxMixed
   cost:
-    Doubloon: 1
+    Doubloon: 5
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateBox556AP
-  productEntity: MagazineBoxRifleAP
+  name: uplink-pirate-ammo-556-ap-name
+  productEntity: CratePirateMagazineBoxRifleAP
   cost:
     Doubloon: 6
   categories:
@@ -1096,7 +1239,8 @@
 
 - type: listing
   id: UplinkPirateBox556Incendiary
-  productEntity: MagazineBoxRifleIncendiary
+  name: uplink-pirate-ammo-556-incendiary-name
+  productEntity: CratePirateMagazineBoxRifleIncendiary
   cost:
     Doubloon: 4
   categories:
@@ -1104,24 +1248,19 @@
   restockTime: 900
 
 - type: listing
-  id: UplinkPiratePRDBeltBoxSP
-  productEntity: MagazineLightRifleBeltBox
+  id: UplinkPirateMag556Mixed
+  name: uplink-pirate-ammo-556-mag-mixed-name
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi, state: base }
+  productEntity: CratePirateMagazineRifleMixed
   cost:
-    Doubloon: 5
+    Doubloon: 4
   categories:
   - UplinkPirateAmmo
 
 - type: listing
-  id: UplinkPiratePRDBeltBoxFMJ
-  productEntity: MagazineLightRifleBeltBoxFMJ
-  cost:
-    Doubloon: 5
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPiratePRDBeltBoxHP
-  productEntity: MagazineLightRifleBeltBoxHP
+  id: UplinkPiratePRDBeltBoxMixed
+  name: uplink-pirate-ammo-prd-mixed-name
+  productEntity: CratePirateMagazineLightRifleBeltBoxMixed
   cost:
     Doubloon: 5
   categories:
@@ -1129,7 +1268,8 @@
 
 - type: listing
   id: UplinkPiratePRDBeltBoxAP
-  productEntity: MagazineLightRifleBeltBoxAP
+  name: uplink-pirate-ammo-prd-ap-name
+  productEntity: CratePirateMagazineLightRifleBeltBoxAP
   cost:
     Doubloon: 8
   categories:
@@ -1138,7 +1278,8 @@
 
 - type: listing
   id: UplinkPiratePRDBeltBoxIncendiary
-  productEntity: MagazineLightRifleBeltBoxIncendiary
+  name: uplink-pirate-ammo-prd-incendiary-name
+  productEntity: CratePirateMagazineLightRifleBeltBoxIncendiary
   cost:
     Doubloon: 7
   categories:
@@ -1147,15 +1288,18 @@
 
 - type: listing
   id: UplinkPiratePRDBeltBoxPractice
-  productEntity: MagazineLightRifleBeltBoxPractice
-  cost:
-    Doubloon: 3
+  name: uplink-pirate-ammo-prd-practice-name
+  productEntity: CratePirateMagazineLightRifleBeltBoxPractice
   categories:
   - UplinkPirateAmmo
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: UplinkPiratePRDBeltBoxUranium
-  productEntity: MagazineLightRifleBeltBoxUranium
+  name: uplink-pirate-ammo-prd-uranium-name
+  productEntity: CratePirateMagazineLightRifleBeltBoxUranium
   cost:
     Doubloon: 9
   categories:
@@ -1164,9 +1308,10 @@
 
 - type: listing
   id: UplinkPirateMagDragunov
+  name: uplink-pirate-ammo-dragunov-sp-name
   description: uplink-magazine-dragunov-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
-  productEntity: MagazineDragunovSP
+  productEntity: CratePirateMagazineDragunovSP
   cost:
     Doubloon: 6
   categories:
@@ -1182,8 +1327,18 @@
   - UplinkPirateAmmo
 
 - type: listing
+  id: UplinkPirateCrateAmmoMaxim
+  icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_small.rsi, state: icon }
+  productEntity: CrateAmmunitionSmallMaxim
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPirateAmmo
+
+- type: listing
   id: UplinkPirateBox762RAP
-  productEntity: MagazineBoxRifleMachineAP
+  name: uplink-pirate-ammo-762r-ap-name
+  productEntity: CratePirateMagazineBoxRifleMachineAP
   cost:
     Doubloon: 12
   categories:
@@ -1192,7 +1347,8 @@
 
 - type: listing
   id: UplinkPirateBox762RIncendiary
-  productEntity: MagazineBoxRifleMachineIncendiary
+  name: uplink-pirate-ammo-762r-incendiary-name
+  productEntity: CratePirateMagazineBoxRifleMachineIncendiary
   cost:
     Doubloon: 8
   categories:
@@ -1200,32 +1356,18 @@
   restockTime: 900
 
 - type: listing
-  id: UplinkPirateBox762RFMJ
-  productEntity: MagazineBoxRifleMachineFMJ
+  id: UplinkPirateBox762RMixed
+  name: uplink-pirate-ammo-762r-mixed-name
+  productEntity: CratePirateMagazineBoxRifleMachineMixed
   cost:
-    Doubloon: 1
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateBox762RSP
-  productEntity: MagazineBoxRifleMachineSP
-  cost:
-    Doubloon: 1
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateBox762RHP
-  productEntity: MagazineBoxRifleMachineHP
-  cost:
-    Doubloon: 1
+    Doubloon: 2
   categories:
   - UplinkPirateAmmo
 
 - type: listing
   id: UplinkPirateMag308AP
-  productEntity: MagazineRifleHeavyAP
+  name: uplink-pirate-ammo-308-ap-name
+  productEntity: CratePirateMagazineRifleHeavyAP
   cost:
     Doubloon: 14
   categories:
@@ -1233,24 +1375,9 @@
   restockTime: 3600
 
 - type: listing
-  id: UplinkPirateMag308FMJ
-  productEntity: MagazineRifleHeavyFMJ
-  cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateMag308SP
-  productEntity: MagazineRifleHeavySP
-  cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateAmmo
-
-- type: listing
-  id: UplinkPirateMag308HP
-  productEntity: MagazineRifleHeavyHP
+  id: UplinkPirateMag308Mixed
+  name: uplink-pirate-ammo-308-mixed-name
+  productEntity: CratePirateMagazineRifleHeavyMixed
   cost:
     Doubloon: 3
   categories:
@@ -1298,16 +1425,6 @@
   - UplinkPirateExplosives
 
 - type: listing
-  id: UplinkPirateGrenadierRig
-  name: uplink-grenadier-rig-name
-  description: uplink-grenadier-rig-desc
-  productEntity: ClothingBeltMilitaryWebbingGrenadeFilled
-  cost:
-    Doubloon: 35
-  categories:
-  - UplinkPirateExplosives
-
-- type: listing
   id: UplinkPirateC4Bundle
   name: uplink-c4-bundle-name
   description: uplink-c4-bundle-desc
@@ -1344,6 +1461,22 @@
   productEntity: GrenadeIncendiary
   cost:
     Doubloon: 3
+  categories:
+  - UplinkPirateExplosives
+
+- type: listing
+  id: UplinkPirateImprovisedExplosives
+  productEntity: CratePirateImprovisedExplosives
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateExplosives
+
+- type: listing
+  id: UplinkPirateGunpowderChargeCrate
+  productEntity: CratePirateGunpowderCharge
+  cost:
+    Doubloon: 5
   categories:
   - UplinkPirateExplosives
 
@@ -1441,7 +1574,19 @@
   id: UplinkPirateCombatMedkit
   name: uplink-combat-medkit-name
   description: uplink-combat-medkit-desc
-  productEntity: MedkitCombatFilled
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  productEntity: CratePirateCombatMedkit
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateChemicals
+
+- type: listing
+  id: UplinkPirateAdvancedMedkit
+  name: uplink-advanced-medkit-name
+  description: uplink-advanced-medkit-desc
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: advkit }
+  productEntity: CratePirateAdvancedMedkit
   cost:
     Doubloon: 3
   categories:
@@ -1535,9 +1680,17 @@
   id: UplinkPirateAccessBreaker
   name: uplink-access-breaker-name
   description: uplink-access-breaker-desc
-  productEntity: AccessBreakerPirate
+  productEntity: CratePirateSkeletonKey
   cost:
     Doubloon: 8
+  categories:
+  - UplinkPirateDisruption
+
+- type: listing
+  id: UplinkPirateKidnapCrate
+  productEntity: CratePirateKidnap
+  cost:
+    Doubloon: 6
   categories:
   - UplinkPirateDisruption
 
@@ -1881,6 +2034,30 @@
   - UplinkPirateDeception
 
 - type: listing
+  id: UplinkPirateAppraisalToolCrate
+  productEntity: CratePirateAppraisalTool
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateDeception
+
+- type: listing
+  id: UplinkPirateMassScannerCrate
+  productEntity: CratePirateMassScanner
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPirateDeception
+
+- type: listing
+  id: UplinkPirateFultonCrate
+  productEntity: CratePirateFulton
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateDeception
+
+- type: listing
   id: UplinkPirateSyndicateBombFake
   name: uplink-exploding-syndicate-bomb-fake-name
   description: uplink-exploding-syndicate-bomb-fake-desc
@@ -1902,7 +2079,7 @@
     }
   productEntity: CyberEyeNightVisionBox
   cost:
-    Doubloon: 8
+    Doubloon: 5
   categories:
   - UplinkPirateCybernetics
 
@@ -1977,7 +2154,7 @@
     }
   productEntity: CyberArmThrowerBox
   cost:
-    Doubloon: 20
+    Doubloon: 15
   categories:
   - UplinkPirateCybernetics
 
@@ -1992,7 +2169,7 @@
     }
   productEntity: CyberArmMantisBox
   cost:
-    Doubloon: 18
+    Doubloon: 15
   categories:
   - UplinkPirateCybernetics
 
@@ -2007,59 +2184,11 @@
     }
   productEntity: CyberEyeThermalBox
   cost:
-    Doubloon: 18
+    Doubloon: 15
   categories:
   - UplinkPirateCybernetics
 
 # region Allies
-- type: listing
-  id: UplinkPirateBorgDerelict
-  productEntity: PlayerBorgDerelictGhostRole
-  icon: { sprite: Mobs/Silicon/chassis.rsi, state: derelict }
-  cost:
-    Doubloon: 15
-  categories:
-  - UplinkPirateAllies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 2
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
-  id: UplinkPirateBorgMedicalDerelict
-  productEntity: PlayerMedicalBorgDerelictGhostRole
-  icon: { sprite: Mobs/Silicon/chassis.rsi, state: medical_derelict }
-  cost:
-    Doubloon: 20
-  categories:
-  - UplinkPirateAllies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 2
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
-  id: UplinkPirateBorgMiningDerelict
-  productEntity: PlayerMiningBorgDerelictGhostRole
-  icon: { sprite: Mobs/Silicon/chassis.rsi, state: miner_derelict }
-  cost:
-    Doubloon: 20
-  categories:
-  - UplinkPirateAllies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 2
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
 - type: listing
   id: UplinkPirateOldScoonerTeleport
   name: uplink-base-scooner-name
@@ -2079,23 +2208,67 @@
   icon: { sprite: _Sunrise/Objects/Tools/Decoys/pirate_decoy.rsi, state: eballoon }
   productEntity: ReinforcementPirateScooner
   cost:
-    Doubloon: 35
+    Doubloon: 29
   categories:
   - UplinkPirateAllies
   restockTime: 1800
+
+- type: listing
+  id: UplinkPirateBorgRandom
+  name: uplink-pirate-borg-random-name
+  description: uplink-pirate-borg-random-desc
+  productEntity: PlayerBorgPirateDerelictRandomSpawner
+  icon: { sprite: Mobs/Silicon/chassis.rsi, state: derelict }
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPirateAllies
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkPirateBorgAssaultRadio
+  name: uplink-pirate-borg-assault-name
+  description: uplink-pirate-borg-assault-desc
+  productEntity: PlayerBorgPirateAssaultGhostRole
+  icon: { sprite: _Sunrise/Mobs/Silicon/pirate_borg_chassis.rsi, state: pirate_icon }
+  cost:
+    Doubloon: 30
+  categories:
+  - UplinkPirateAllies
+  restockTime: 900
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkPirateBorgModuleUtility
+  productEntity: BorgModulePirateUtility
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateAllies
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkPirateBorgSyndicateDerelict
   productEntity: PlayerBorgSyndicateDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec_derelict }
   cost:
-    Doubloon: 25
+    Doubloon: 15
   categories:
   - UplinkPirateAllies
-  restockTime: 2700
+  restockTime: 300
   conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 2
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -2132,6 +2305,14 @@
   - UplinkPirateWearables
 
 - type: listing
+  id: UplinkPirateGasMaskCrate
+  productEntity: CratePirateGasMask
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateWearables
+
+- type: listing
   id: UplinkPirateBandolier
   productEntity: ClothingBeltBandolier
   cost:
@@ -2156,6 +2337,30 @@
     Doubloon: 8
   categories:
   - UplinkPirateWearables
+
+- type: listing
+  id: UplinkPirateWebvestCrate
+  productEntity: CratePirateWebvest
+  cost:
+    Doubloon: 12
+  categories:
+  - UplinkPirateArmor
+
+- type: listing
+  id: UplinkPirateMercenaryWebvestCrate
+  productEntity: CratePirateMercenaryWebvest
+  cost:
+    Doubloon: 8
+  categories:
+  - UplinkPirateArmor
+
+- type: listing
+  id: UplinkPirateSovietArmorVestCrate
+  productEntity: CratePirateSovietArmorVest
+  cost:
+    Doubloon: 4
+  categories:
+  - UplinkPirateArmor
 
 - type: listing
   id: UplinkPirateChameleon
@@ -2203,7 +2408,7 @@
   cost:
     Doubloon: 2
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
 
 
 - type: listing
@@ -2278,7 +2483,7 @@
   cost:
     Doubloon: 38
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   conditions:
   - !type:BuyerWhitelistCondition
     blacklist:
@@ -2299,7 +2504,7 @@
   id: UplinkPirateHardsuitPirateCapFree
   productEntity: ClothingOuterHardsuitPirateCap
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -2308,7 +2513,7 @@
   id: UplinkPiratePirateEVAFree
   productEntity: ClothingOuterHardsuitPirateEVA
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
@@ -2335,7 +2540,7 @@
   cost:
     Doubloon: 1
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
 
 - type: listing
   id: UplinkPirateSuitBundle
@@ -2346,7 +2551,7 @@
   cost:
     Doubloon: 9
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
 
 - type: listing
   id: UplinkPirateSuitArmoredBundle
@@ -2357,7 +2562,7 @@
   cost:
     Doubloon: 16
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
 
 - type: listing
   id: UplinkPirateBundlePirateEva
@@ -2368,7 +2573,7 @@
   cost:
     Doubloon: 23
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   restockTime: 900
 
 - type: listing
@@ -2377,7 +2582,7 @@
   cost:
     Doubloon: 23
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
 
 - type: listing
   id: UplinkPirateHardsuitPirateCap
@@ -2385,10 +2590,55 @@
   cost:
     Doubloon: 26
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: UplinkPirateBuccaneerHardsuitCrate
+  productEntity: CratePirateBuccaneerHardsuit
+  cost:
+    Doubloon: 30
+  categories:
+  - UplinkPirateArmor
+  restockTime: 3600
+
+- type: listing
+  id: UplinkPirateBlackbeardHardsuitCrate
+  productEntity: CratePirateBlackbeardHardsuit
+  cost:
+    Doubloon: 35
+  categories:
+  - UplinkPirateArmor
+  restockTime: 3600
+
+- type: listing
+  id: UplinkPirateDavyJonesHardsuitCrate
+  productEntity: CratePirateDavyJonesHardsuit
+  cost:
+    Doubloon: 45
+  categories:
+  - UplinkPirateArmor
+  restockTime: 3600
+
+- type: listing
+  id: UplinkPirateMurmilloHardsuitCrate
+  productEntity: CratePirateMurmilloHardsuit
+  cost:
+    Doubloon: 60
+  categories:
+  - UplinkPirateArmor
+  restockTime: 3600
+
+- type: listing
+  id: UplinkPirateSwashbucklerHardsuitCrate
+  productEntity: CratePirateSwashbucklerHardsuit
+  cost:
+    Doubloon: 28
+  categories:
+  - UplinkPirateArmor
+  restockTime: 3600
 
 - type: listing
   id: UplinkPirateBundleScaf
@@ -2399,7 +2649,7 @@
   cost:
     Doubloon: 38
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   restockTime: 3600
 
 - type: listing
@@ -2408,7 +2658,7 @@
   cost:
     Doubloon: 36
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   restockTime: 3600
 
 - type: listing
@@ -2417,25 +2667,8 @@
   cost:
     Doubloon: 45
   categories:
-  - UplinkPirateWearables
+  - UplinkPirateArmor
   restockTime: 3600
-
-- type: listing
-  id: UplinkPirateHardsuitInfiltration
-  name: uplink-hardsuit-infiltration-name
-  description: uplink-hardsuit-infiltration-desc
-  icon: { sprite: /Textures/_Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
-  cost:
-    Doubloon: 60
-  categories:
-  - UplinkPirateWearables
-  restockTime: 3600
-  conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
 
 # region UplinkPiratePointless
 - type: listing
@@ -2535,6 +2768,30 @@
   productEntity: ClothingEyesEyepatch
   cost:
     Doubloon: 1
+  categories:
+  - UplinkPiratePointless
+
+- type: listing
+  id: UplinkPirateEyepatchCrate
+  productEntity: CratePirateEyepatch
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPiratePointless
+
+- type: listing
+  id: UplinkPirateRobotParrotCrate
+  productEntity: CratePirateRobotParrot
+  cost:
+    Doubloon: 3
+  categories:
+  - UplinkPiratePointless
+
+- type: listing
+  id: UplinkPirateGreytideCrate
+  productEntity: CrateGreytide
+  cost:
+    Doubloon: 14
   categories:
   - UplinkPiratePointless
 
@@ -2667,32 +2924,3 @@
       components:
       - SurplusBundle
 
-- type: listing
-  id: UplinkPirateSulprus
-  productEntity: CratePirateSurplusBundle
-  cost:
-    Doubloon: 25
-  categories:
-  - UplinkPirateBundle
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
-  id: UplinkPirateSulprusSuper
-  productEntity: CratePirateSuperSurplusBundle
-  cost:
-    Doubloon: 50
-  categories:
-  - UplinkPirateBundle
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle

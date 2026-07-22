@@ -182,7 +182,7 @@ public sealed partial class SunriseCCVars : CVars
     /// Ссылка на повторы для показа в меню.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksReplays =
-        CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.replays", "https://replays.ss14.org", CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServerName =
         CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);

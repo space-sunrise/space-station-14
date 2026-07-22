@@ -22,6 +22,18 @@
 
 - type: entity
   parent: BaseMindRoleAntag
+  id: MindRolePlanetPrisoner
+  name: Planet Prisoner Role
+  components:
+  - type: MindRole
+    antagPrototype: PlanetPrisoner
+    exclusiveAntag: true
+    roleType: FreeAgent
+    subtype: role-subtype-prisoner
+  - type: PlanetPrisonerRole
+
+- type: entity
+  parent: BaseMindRoleAntag
   id: MindRoleLoneAbductor
   name: Lone Abductor Role
   components:
