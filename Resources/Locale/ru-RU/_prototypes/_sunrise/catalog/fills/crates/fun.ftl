@@ -6,14 +6,14 @@ ent-CrateGreytide = ящик грейтайда
     .desc = Ящик с вещичками для самых юных грейтайдов.
     .suffix = Дебаг
 
-ent-CrateGreytideMakeshiftWeapons = ящик грейтайда с самодельным оружием
+ent-CrateGreytideMakeshiftWeapons = грейтайд яшик самоделок
     .desc = Ящик грейтайда с несколькими случайными образцами самодельного оружия.
     .suffix = Самодельное оружие
 
-ent-CrateGreytideImprovisedWeapons = ящик грейтайда с импровизированным оружием
+ent-CrateGreytideImprovisedWeapons = грейтайд яшик импровизированного оружия
     .desc = Ящик грейтайда с несколькими случайными образцами импровизированного оружия.
     .suffix = Импровизированное оружие
 
-ent-CrateGreytideForgedWeapons = ящик грейтайда с кованым оружием
+ent-CrateGreytideForgedWeapons = грейтайд яшик кованного оружия
     .desc = Ящик грейтайда с несколькими случайными образцами кованого оружия.
     .suffix = Кованое оружие

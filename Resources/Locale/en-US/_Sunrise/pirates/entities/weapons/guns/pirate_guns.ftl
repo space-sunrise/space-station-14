@@ -30,8 +30,5 @@ ent-MagazineChainGunRandomSpawner = random chaingun ammo drum
 ent-MagazineChainGunLooseAmmoSpawner = random chaingun loose ammo
     .desc = { ent-BaseItem.desc }
 
-ent-WeaponPistolFlintlockPirateMarker = { marker-flintlock-pistol-name }
-    .desc = { marker-flintlock-pistol-description }
-
-marker-flintlock-pistol-name = marker flintlock pistol
-marker-flintlock-pistol-description = A self-loading flintlock pistol that marks targets for pirate raiders.
+ent-WeaponPistolFlintlockPirateMarker = marker flintlock pistol
+    .desc = A self-loading flintlock pistol that marks targets for pirate raiders.

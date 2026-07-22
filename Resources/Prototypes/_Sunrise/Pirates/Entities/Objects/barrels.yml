@@ -25,5 +25,5 @@
         reagents:
         - ReagentId: Rum
           Quantity: 150
-        - ReagentId: Rum
+        - ReagentId: RedRum
           Quantity: 350

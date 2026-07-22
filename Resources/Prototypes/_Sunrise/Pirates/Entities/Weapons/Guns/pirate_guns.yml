@@ -503,7 +503,7 @@
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: UseDelayOnShoot
   - type: UseDelay
-    delay: 5 # Перезарядка кремнёвого пистолета.
+    delay: 5
   - type: BatteryAmmoProvider
     proto: SunrisePirateMarkerShot10
     fireCost: 100

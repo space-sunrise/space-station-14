@@ -546,19 +546,6 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
-  id: CratePiratePrivateerHardsuit
-  name: freelance hardsuit crate
-  description: Contains one random freelance hardsuit.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:GroupSelector
-        children:
-        - id: ClothingOuterHardsuitPrivateer
-        - id: ClothingOuterHardsuitPrivateerArmored
-
-- type: entity
-  parent: CratePiratePrivateSecure
   id: CratePirateBuccaneerHardsuit
   name: buccaneer hardsuit crate
   description: Contains a buccaneer hardsuit.
@@ -657,6 +644,7 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  categories: [ HideSpawnMenu ]
   id: SunriseCratePirateDravon75mmAmmo
   name: 75mm ammunition crate
   description: Contains one full DVN-75 artillery magazine.
@@ -667,6 +655,7 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  categories: [ HideSpawnMenu ]
   id: SunriseCratePirateMagazine50mmRocket
   name: 50mm rocket crate
   description: Contains one full ADMP-27 VESPERA rocket magazine.
@@ -677,6 +666,7 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  categories: [ HideSpawnMenu ]
   id: SunriseCratePirateAK57090mmAmmo
   name: 90mm ammunition crate
   description: Contains one full AK-90 artillery magazine.
@@ -699,7 +689,7 @@
 - type: entity
   parent: CratePiratePrivateSecure
   id: SunriseCratePirateRocket120mmLongFlight
-  name: extended rocket crate
+  name: 120mm extended rocket crate
   description: Contains four extended-flight RCT-120 Metla rockets.
   components:
   - type: StorageFill
@@ -709,6 +699,7 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  categories: [ HideSpawnMenu ]
   id: SunriseCratePirateMagazine120mmBlast
   name: 120mm magazine crate
   description: Contains one full CYERXA blast grenade magazine.
@@ -727,6 +718,7 @@
     contents:
       - id: CartridgeLeviathan240mmHEDamaged75
         amount: 2
+
 - type: entity
   parent: CratePiratePrivateSecure
   id: SunriseCratePirateLeviathan240mmCluster
@@ -751,6 +743,7 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  categories: [ HideSpawnMenu ]
   id: SunriseCratePirateCharon280mmSlug
   name: 280mm slug crate
   description: Contains one M381 CHARYBDIS 280mm kinetic slug.
@@ -761,6 +754,7 @@
 
 - type: entity
   parent: CratePiratePrivateSecure
+  categories: [ HideSpawnMenu ]
   id: SunriseCratePirateCharon280mmSubnuclear
   name: subnuclear slug crate
   description: Contains one M381 CHARYBDIS 280mm subnuclear slug.

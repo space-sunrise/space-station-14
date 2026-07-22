@@ -30,8 +30,5 @@ ent-MagazineChainGunRandomSpawner = случайный барабан цепно
 ent-MagazineChainGunLooseAmmoSpawner = случайные патроны цепного пулемёта
     .desc = { ent-BaseItem.desc }
 
-ent-WeaponPistolFlintlockPirateMarker = { marker-flintlock-pistol-name }
-    .desc = { marker-flintlock-pistol-description }
-
-marker-flintlock-pistol-name = сигнальный кремнёвый пистолет
-marker-flintlock-pistol-description = Самозарядный кремнёвый пистолет, отмечающий цели для пиратских рейдеров.
+ent-WeaponPistolFlintlockPirateMarker = сигнальный кремнёвый пистолет
+    .desc = Самозарядный кремнёвый пистолет, отмечающий цели для пиратских рейдеров.

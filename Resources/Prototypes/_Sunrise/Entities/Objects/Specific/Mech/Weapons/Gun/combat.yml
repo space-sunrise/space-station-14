@@ -25,45 +25,6 @@
     price: 20000
 
 - type: entity
-  id: WeaponMechCombatChaingun
-  name: Mounted Chaingun
-  suffix: Mech Weapon, Gun, Combat
-  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Mech/mecha_chaingun.rsi
-    state: mecha_chaingun
-  - type: Gun
-    minAngle: 1
-    maxAngle: 45
-    angleIncrease: 0.5
-    angleDecay: 30
-    fireRate: 15
-    selectedMode: FullAuto
-    availableModes:
-      - FullAuto
-    soundGunshot:
-      collection: L6
-      params:
-        volume: -5
-        pitch: 1.03
-  - type: BatteryAmmoProvider
-    proto: CartridgeMinigun
-    fireCost: 1
-  - type: Appearance
-  - type: AmmoCounter
-  - type: StaticPrice
-    price: 20000
-
-- type: entity
-  id: WeaponMechCombatChaingunImprovised
-  parent: WeaponMechCombatChaingun
-  components:
-  - type: BatteryAmmoProvider
-    proto: CartridgeRifleImprovised
-    fireCost: 4
-
-- type: entity
   id: WeaponMechCombatMaxim
   name: Mounted Kardashev-Maxim
   description: An ancient heavy machine gun given new life as a mech-mounted gun
