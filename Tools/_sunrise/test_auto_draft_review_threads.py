@@ -12,6 +12,7 @@ SIGNAL_WORKFLOW_PATH = (
     REPO_ROOT / ".github" / "workflows" / "auto-draft-review-state-changed.yml"
 )
 CODERABBIT_PATH = REPO_ROOT / ".coderabbit.yaml"
+SCRIPT_PATH = REPO_ROOT / "Tools" / "_sunrise" / "auto_draft" / "review_threads.js"
 
 
 class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
@@ -20,6 +21,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         cls.workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         cls.signal_workflow = SIGNAL_WORKFLOW_PATH.read_text(encoding="utf-8")
         cls.coderabbit = CODERABBIT_PATH.read_text(encoding="utf-8")
+        cls.script = SCRIPT_PATH.read_text(encoding="utf-8")
 
     def test_review_events_are_relayed_without_privileged_operations(self):
         self.assertIn('name: "PR: Review State Changed"', self.signal_workflow)
@@ -46,12 +48,16 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertIn("permission-contents: write", self.workflow)
         self.assertIn("permission-issues: write", self.workflow)
         self.assertIn("permission-pull-requests: write", self.workflow)
+        self.assertIn("uses: actions/checkout@v6", self.workflow)
+        self.assertIn("ref: ${{ github.event.repository.default_branch }}", self.workflow)
+        self.assertIn("sparse-checkout: Tools/_sunrise/auto_draft/review_threads.js", self.workflow)
+        self.assertIn("persist-credentials: false", self.workflow)
         self.assertIn("github-token: ${{ steps.app-token.outputs.token }}", self.workflow)
         self.assertNotIn("AUTO_DRAFT_TOKEN", self.workflow)
         self.assertNotIn("secrets.GITHUB_TOKEN", self.workflow)
         self.assertNotIn("continue-on-error", self.workflow)
-        self.assertIn("const failures = [];", self.workflow)
-        self.assertIn("for (const number of numbers)", self.workflow)
+        self.assertIn("const failures = [];", self.script)
+        self.assertIn("for (const number of numbers)", self.script)
 
     def test_review_state_comes_from_regular_github_reviews(self):
         for expected in (
@@ -60,7 +66,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
             "pullRequestReview",
             "READY_FOR_REVIEW_EVENT",
         ):
-            self.assertIn(expected, self.workflow)
+            self.assertIn(expected, self.script)
 
         for obsolete in (
             "CODEOWNERS",
@@ -68,7 +74,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
             "createComment",
             "updateComment",
         ):
-            self.assertNotIn(obsolete, self.workflow)
+            self.assertNotIn(obsolete, self.script)
 
     def test_coderabbit_submits_real_review_decisions(self):
         self.assertRegex(
@@ -81,7 +87,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
             r"^\s*// AUTO_DRAFT_POLICY_START\s*$\n"
             r"(?P<policy>.*?)"
             r"^\s*// AUTO_DRAFT_POLICY_END\s*$",
-            self.workflow,
+            self.script,
             re.DOTALL | re.MULTILINE,
         )
         self.assertIsNotNone(match, "Не найдены стабильные маркеры функции политики")
