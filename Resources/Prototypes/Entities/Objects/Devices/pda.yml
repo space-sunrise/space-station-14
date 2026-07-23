@@ -1173,6 +1173,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - NavigatorCartridge # Sunrise-Edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1794,6 +1795,23 @@
   # Sunrise-End
   - type: Icon
     state: pda-seniorcourier
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, BasePDA ]
+  id: NinjaPDA
+  name: ninja PDA
+  description: You stealthy bastard, you!
+  components:
+  - type: Pda
+    id: NinjaIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-ninja
+  - type: Icon
+    sprite: Objects/Devices/pda.rsi
+    state: pda-ninja
 
 - type: entity
   parent: [ BaseMajorContraband, SyndiPDA ]

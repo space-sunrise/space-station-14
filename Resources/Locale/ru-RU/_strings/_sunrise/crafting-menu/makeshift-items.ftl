@@ -42,6 +42,8 @@ crafting-menu-name-FSKM = кованый автомат
 crafting-menu-text-FSKM = Кустарно выкованная версия SKM. Для финальной сборки потребуются сварочные принадлежности.
 crafting-menu-name-IRB = импровизированная винтовочная пуля
 crafting-menu-text-IRB = Лучше, чем ничего. Довольно сильно наполнена фосфором, но все равно не бьет так сильно.
+crafting-menu-name-IRB556 = импровизированная пуля 5.56
+crafting-menu-text-IRB556 = Самодельный патрон 5.56 с грубым сердечником и нестабильным фосфорным зарядом.
 crafting-menu-name-IMGB = импровизированная коробка для магазинов
 crafting-menu-text-IMGB = Организация — не самая сильная сторона любого тайдера. Может вмещать все виды патронов.
 crafting-menu-name-MC = самодельный лом
@@ -124,3 +126,5 @@ crafting-menu-text-IMGS = Выглядит как самодельная кор�
 
 crafting-menu-name-ASSFP = набор деталей для кузни
 crafting-menu-text-ASSFP = Небольшой набор компонентов для сборки горна на наковальне, включает воспламенитель и клапаны.
+crafting-menu-name-improvised-modular-receiver = импровизированный модульный ресивер
+crafting-menu-text-improvised-modular-receiver = Грубый, но рабочий блок ствольной коробки, собранный из подручных материалов.

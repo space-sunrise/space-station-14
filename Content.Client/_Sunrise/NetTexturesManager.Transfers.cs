@@ -14,13 +14,13 @@ public sealed partial class NetTexturesManager
 {
     #region Transfer Intake
     /// <summary>
-    /// Starts asynchronous processing for a high-bandwidth NetTextures transfer.
+    /// Запускает асинхронную обработку high-bandwidth передачи NetTextures.
     /// </summary>
     /// <remarks>
-    /// The transfer callback can run during a connect-sensitive window, so the stream is handed off to a
-    /// background worker before any file parsing begins.
+    /// Callback передачи может выполниться в чувствительное к подключению окно, поэтому stream передается
+    /// фоновому worker'у до начала разбора файлов.
     /// </remarks>
-    /// <param name="transfer">The transfer payload received from the server.</param>
+    /// <param name="transfer">Полезная нагрузка передачи, полученная от сервера.</param>
     private void ReceiveNetTexturesTransfer(TransferReceivedEvent transfer)
     {
         var generation = ReadSessionGeneration();
@@ -30,9 +30,9 @@ public sealed partial class NetTexturesManager
 
 #pragma warning disable CS0618
     /// <summary>
-    /// Accepts the legacy whole-file fallback message and publishes it through the normal client pipeline.
+    /// Принимает legacy whole-file fallback message и публикует его через обычный клиентский pipeline.
     /// </summary>
-    /// <param name="message">The legacy upload message containing a single resource file.</param>
+    /// <param name="message">Legacy upload message с одним файлом ресурса.</param>
     private void ReceiveFallbackUpload(NetworkResourceUploadMessage message)
 #pragma warning restore CS0618
     {
@@ -45,13 +45,13 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Accepts one chunk from the chunked fallback transport and assembles it into a complete uploaded file.
+    /// Принимает один chunk из chunked fallback transport и собирает его в полный загруженный файл.
     /// </summary>
     /// <remarks>
-    /// Assemblies are keyed by normalized relative path and are discarded on session reset, so partial fallback
-    /// state cannot leak into a later reconnect attempt.
+    /// Сборки ключуются по нормализованному относительному пути и сбрасываются при сбросе сессии, поэтому частичное
+    /// fallback-состояние не попадает в следующую попытку переподключения.
     /// </remarks>
-    /// <param name="message">The incoming fallback chunk.</param>
+    /// <param name="message">Входящий fallback chunk.</param>
     internal void ReceiveFallbackChunk(NetTextureResourceChunkMessage message)
     {
         var totalChunks = message.TotalChunks;
@@ -121,19 +121,19 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Publishes received raw files into the mounted in-memory uploaded root and refreshes pending consumers.
+    /// Публикует полученные сырые файлы в смонтированный in-memory корень загрузок и обновляет ожидающих потребителей.
     /// </summary>
-    /// <param name="files">The files to publish under <c>/Uploaded</c>.</param>
+    /// <param name="files">Файлы для публикации под <c>/Uploaded</c>.</param>
     internal void PublishFiles(List<(ResPath Relative, byte[] Data)> files)
     {
         PublishFiles(files, updatePendingResources: true);
     }
 
     /// <summary>
-    /// Publishes received raw files into the mounted in-memory uploaded root and optionally refreshes pending consumers.
+    /// Публикует полученные сырые файлы в смонтированный in-memory корень загрузок и опционально обновляет ожидающих потребителей.
     /// </summary>
-    /// <param name="files">The files to publish under <c>/Uploaded</c>.</param>
-    /// <param name="updatePendingResources">Whether to revisit pending resource readiness immediately.</param>
+    /// <param name="files">Файлы для публикации под <c>/Uploaded</c>.</param>
+    /// <param name="updatePendingResources">Нужно ли сразу перепроверить готовность ожидающих ресурсов.</param>
     internal void PublishFiles(List<(ResPath Relative, byte[] Data)> files, bool updatePendingResources)
     {
         foreach (var (relative, data) in files)
@@ -151,10 +151,10 @@ public sealed partial class NetTexturesManager
 
     #region Transfer Workers
     /// <summary>
-    /// Parses a transfer stream on a worker thread and marshals publication back to the main thread.
+    /// Разбирает stream передачи на worker thread и возвращает публикацию на main thread.
     /// </summary>
-    /// <param name="stream">The transfer stream returned by the HBT subsystem.</param>
-    /// <param name="generation">The session generation captured when the transfer started.</param>
+    /// <param name="stream">Stream передачи, возвращенный HBT subsystem.</param>
+    /// <param name="generation">Поколение сессии, зафиксированное при старте передачи.</param>
     private void ReceiveNetTexturesTransferWorker(Stream stream, int generation)
     {
         var startTime = DateTime.UtcNow;
@@ -180,11 +180,11 @@ public sealed partial class NetTexturesManager
 
     #region Transfer Parsing
     /// <summary>
-    /// Reads the NetTextures transfer stream into publish batches that can be drained incrementally on the main thread.
+    /// Читает stream передачи NetTextures в пакеты публикации, которые можно постепенно обработать на main thread.
     /// </summary>
-    /// <param name="stream">The transfer stream to parse.</param>
-    /// <param name="generation">The session generation captured when the transfer started.</param>
-    /// <returns>The total file count and total byte size parsed from the stream.</returns>
+    /// <param name="stream">Stream передачи для разбора.</param>
+    /// <param name="generation">Поколение сессии, зафиксированное при старте передачи.</param>
+    /// <returns>Общее число файлов и общий размер в байтах, прочитанные из stream.</returns>
     private (int FileCount, long TotalBytes) ReadTransferStream(Stream stream, int generation)
     {
         var files = new List<(ResPath Relative, byte[] Data)>();
@@ -245,10 +245,10 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Reads the exact number of bytes required for one transfer field.
+    /// Читает ровно столько байт, сколько требуется одному полю передачи.
     /// </summary>
-    /// <param name="stream">The input stream.</param>
-    /// <param name="buffer">The destination buffer that must be filled completely.</param>
+    /// <param name="stream">Входной stream.</param>
+    /// <param name="buffer">Целевой буфер, который нужно заполнить полностью.</param>
     private static void ReadExactly(Stream stream, byte[] buffer)
     {
         var offset = 0;
@@ -265,9 +265,9 @@ public sealed partial class NetTexturesManager
 
     #region Transfer Publication
     /// <summary>
-    /// Queues one parsed transfer batch for later publication on the main thread.
+    /// Ставит один разобранный пакет передачи в очередь для последующей публикации на main thread.
     /// </summary>
-    /// <param name="batch">The parsed transfer batch.</param>
+    /// <param name="batch">Разобранный пакет передачи.</param>
     private void EnqueueTransferPublishBatch(TransferPublishBatch batch)
     {
         lock (_pendingTransferBatches)
@@ -277,9 +277,9 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Publishes a bounded amount of already parsed transfer data on the main thread.
+    /// Публикует ограниченный объем уже разобранных данных передачи на main thread.
     /// </summary>
-    /// <param name="frameTime">The current frame time used to derive a per-frame publish budget.</param>
+    /// <param name="frameTime">Текущий frame time, используемый для расчета бюджета публикации на кадр.</param>
     private void ProcessPendingTransferBatches(float frameTime)
     {
         var budgetRemaining = Math.Clamp(
@@ -314,10 +314,10 @@ public sealed partial class NetTexturesManager
 
     #region Completeness Tracking
     /// <summary>
-    /// Updates incremental completeness state for uploaded RSI resources as individual files arrive.
+    /// Обновляет инкрементальное состояние полноты загруженных RSI-ресурсов по мере прихода отдельных файлов.
     /// </summary>
-    /// <param name="relativePath">The uploaded relative file path.</param>
-    /// <param name="data">The uploaded file bytes.</param>
+    /// <param name="relativePath">Относительный путь загруженного файла.</param>
+    /// <param name="data">Байты загруженного файла.</param>
     private void TrackPublishedFile(ResPath relativePath, byte[] data)
     {
         if (!TryGetRsiFile(relativePath, out var rsiRelativePath, out var fileName))
@@ -351,12 +351,12 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Determines whether an uploaded file belongs to an RSI directory and returns its directory-local file name.
+    /// Определяет, принадлежит ли загруженный файл к RSI-директории, и возвращает его локальное имя в директории.
     /// </summary>
-    /// <param name="relativePath">The uploaded relative file path.</param>
-    /// <param name="rsiRelativePath">The uploaded RSI directory path when the method returns <see langword="true"/>.</param>
-    /// <param name="fileName">The file name inside the RSI directory.</param>
-    /// <returns><see langword="true"/> if the file belongs to an RSI directory.</returns>
+    /// <param name="relativePath">Относительный путь загруженного файла.</param>
+    /// <param name="rsiRelativePath">Путь загруженной RSI-директории, когда метод возвращает <see langword="true"/>.</param>
+    /// <param name="fileName">Имя файла внутри RSI-директории.</param>
+    /// <returns><see langword="true"/>, если файл принадлежит RSI-директории.</returns>
     private static bool TryGetRsiFile(ResPath relativePath, out ResPath rsiRelativePath, out string fileName)
     {
         fileName = relativePath.Filename;

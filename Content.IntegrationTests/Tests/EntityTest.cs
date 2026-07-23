@@ -21,6 +21,9 @@ namespace Content.IntegrationTests.Tests
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
         [Test]
+        // Sunrise added start - не запускаем стресс-тест сущностей одновременно с другими тестами
+        [NonParallelizable]
+        // Sunrise added end
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -84,6 +87,9 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
+        // Sunrise added start - не запускаем стресс-тест сущностей одновременно с другими тестами
+        [NonParallelizable]
+        // Sunrise added end
         public async Task SpawnAndDeleteAllEntitiesInTheSameSpot()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -143,6 +149,9 @@ namespace Content.IntegrationTests.Tests
         ///     all components on every entity.
         /// </summary>
         [Test]
+        // Sunrise added start - не запускаем стресс-тест сущностей одновременно с другими тестами
+        [NonParallelizable]
+        // Sunrise added end
         [Ignore("For some reason this test causes github actions to crash")] // Sunrise
         public async Task SpawnAndDirtyAllEntities()
         {
@@ -229,6 +238,9 @@ namespace Content.IntegrationTests.Tests
         /// crude test to try catch issues like this, and possibly should just be disabled.
         /// </remarks>
         [Test]
+        // Sunrise added start - не запускаем стресс-тест сущностей одновременно с другими тестами
+        [NonParallelizable]
+        // Sunrise added end
         public async Task SpawnAndDeleteEntityCountTest()
         {
             var settings = new PoolSettings { Connected = true, Dirty = true };
@@ -274,7 +286,7 @@ namespace Content.IntegrationTests.Tests
                 .Where(p => !p.Abstract)
                 .Where(p => !pair.IsTestPrototype(p))
                 .Where(p => !excluded.Any(p.Components.ContainsKey))
-                // Sunrise added start - explicitly skip known entity-spawner components that intentionally violate this test invariant.
+                // Sunrise added start - явно пропускаем известные entity-spawner компоненты, которые намеренно нарушают этот тестовый инвариант.
                 .Where(p => !spawnLeakExcluded.Any(p.Components.ContainsKey))
                 // Sunrise added end
                 .Where(p => p.Categories.All(x => x.ID != SpawnerCategory))

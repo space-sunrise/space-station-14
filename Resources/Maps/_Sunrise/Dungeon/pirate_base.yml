@@ -5035,7 +5035,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 46.5,-0.5
       parent: 1
-- proto: AirlockSyndicateGlassLocked
+- proto: SunriseAirlockSyndicateGlassPirateAccessLocked
   entities:
   - uid: 12
     components:
@@ -5108,7 +5108,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 31.5,39.5
       parent: 1
-- proto: AirlockSyndicateLocked
+- proto: SunriseAirlockPirate
   entities:
   - uid: 19
     components:
@@ -5454,7 +5454,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 42
     components:
     - type: Transform
@@ -5463,7 +5463,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 43
     components:
     - type: Transform
@@ -5472,7 +5472,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 44
     components:
     - type: Transform
@@ -5481,7 +5481,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - SyndicateAgent
+      - - Pirate
   - uid: 45
     components:
     - type: Transform
@@ -5490,7 +5490,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
+      - - Pirate
   - uid: 46
     components:
     - type: Transform
@@ -5499,7 +5499,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
+      - - Pirate
   - uid: 47
     components:
     - type: Transform
@@ -5508,7 +5508,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
+      - - Pirate
   - uid: 48
     components:
     - type: Transform
@@ -11462,7 +11462,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 39.5,60.5
       parent: 1
-- proto: ComputerPirateExchanger
+- proto: ComputerPirateExchangerExpedition
   entities:
   - uid: 1104
     components:
@@ -11470,7 +11470,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,47.5
       parent: 1
-- proto: ComputerPirateExchangerWallmount
+- proto: ComputerPirateExchangerWallmountExpedition
   entities:
   - uid: 2518
     components:
@@ -11479,7 +11479,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: ComputerPirateUplink
+- proto: ComputerPirateUplinkExpedition
   entities:
   - uid: 2606
     components:
@@ -13539,8 +13539,7 @@ entities:
       parent: 1
     - type: AccessReader
       access:
-      - - NuclearOperative
-      - - SyndicateAgent
+      - - Pirate
     - type: DeviceLinkSource
       linkedPorts:
         45:
@@ -14302,7 +14301,7 @@ entities:
     - type: Transform
       pos: 15.5,1.5
       parent: 1
-- proto: MobPirateT2ExpeditionSpawner
+- proto: MobPirateT3ExpeditionSpawner
   entities:
   - uid: 2282
     components:
@@ -14329,8 +14328,6 @@ entities:
     - type: Transform
       pos: 22.5,1.5
       parent: 1
-- proto: MobPirateT3ExpeditionSpawner
-  entities:
   - uid: 1985
     components:
     - type: Transform
@@ -19335,7 +19332,7 @@ entities:
     - type: Transform
       pos: 28.5,30.5
       parent: 1
-- proto: VendingMachineWallMedicalCivilian
+- proto: VendingMachineWallMedicalCivilianSyndicate
   entities:
   - uid: 2591
     components:

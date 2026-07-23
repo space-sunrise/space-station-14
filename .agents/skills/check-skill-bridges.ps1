@@ -1,11 +1,11 @@
 param(
-    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\\..")).Path
+    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 )
 
 $ErrorActionPreference = "Stop"
 
-$sourceRoot = Join-Path $RepoRoot ".agent/skills"
-$codexBridgeRoot = Join-Path $RepoRoot ".agents/skills"
+$sourceRoot = Join-Path $RepoRoot ".agents/skills"
+$antigravityBridgeRoot = Join-Path $RepoRoot ".agent/skills"
 $claudeBridgeRoot = Join-Path $RepoRoot ".claude/skills"
 $cursorBridgeRoot = Join-Path $RepoRoot ".cursor/skills"
 $githubBridgeRoot = Join-Path $RepoRoot ".github/skills"
@@ -40,8 +40,8 @@ function Get-SkillData {
 if (-not (Test-Path $sourceRoot)) {
     throw "Source skills path not found: $sourceRoot"
 }
-if (-not (Test-Path $codexBridgeRoot)) {
-    throw "Codex bridge skills path not found: $codexBridgeRoot"
+if (-not (Test-Path $antigravityBridgeRoot)) {
+    throw "Antigravity bridge skills path not found: $antigravityBridgeRoot"
 }
 if (-not (Test-Path $claudeBridgeRoot)) {
     throw "Claude bridge skills path not found: $claudeBridgeRoot"
@@ -58,7 +58,7 @@ $errors = New-Object System.Collections.Generic.List[string]
 $sourceSkills = Get-ChildItem $sourceRoot -Directory |
     Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") } |
     Sort-Object Name
-$codexBridgeSkills = Get-ChildItem $codexBridgeRoot -Directory |
+$antigravityBridgeSkills = Get-ChildItem $antigravityBridgeRoot -Directory |
     Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") } |
     Sort-Object Name
 $claudeBridgeSkills = Get-ChildItem $claudeBridgeRoot -Directory |
@@ -72,7 +72,7 @@ $githubBridgeSkills = Get-ChildItem $githubBridgeRoot -Directory |
     Sort-Object Name
 
 $sourceNames = @($sourceSkills.Name)
-$codexBridgeNames = @($codexBridgeSkills.Name)
+$antigravityBridgeNames = @($antigravityBridgeSkills.Name)
 $claudeBridgeNames = @($claudeBridgeSkills.Name)
 $cursorBridgeNames = @($cursorBridgeSkills.Name)
 $githubBridgeNames = @($githubBridgeSkills.Name)
@@ -80,13 +80,13 @@ $githubBridgeNames = @($githubBridgeSkills.Name)
 foreach ($source in $sourceSkills) {
     $name = $source.Name
     $sourceSkillMd = Join-Path $source.FullName "SKILL.md"
-    $codexBridgeSkillMd = Join-Path $codexBridgeRoot "$name/SKILL.md"
+    $antigravityBridgeSkillMd = Join-Path $antigravityBridgeRoot "$name/SKILL.md"
     $claudeBridgeSkillMd = Join-Path $claudeBridgeRoot "$name/SKILL.md"
     $cursorBridgeSkillMd = Join-Path $cursorBridgeRoot "$name/SKILL.md"
     $githubBridgeSkillMd = Join-Path $githubBridgeRoot "$name/SKILL.md"
 
-    if (-not (Test-Path $codexBridgeSkillMd)) {
-        $errors.Add("Missing Codex bridge SKILL.md for '$name'.")
+    if (-not (Test-Path $antigravityBridgeSkillMd)) {
+        $errors.Add("Missing Antigravity bridge SKILL.md for '$name'.")
     }
     if (-not (Test-Path $claudeBridgeSkillMd)) {
         $errors.Add("Missing Claude bridge SKILL.md for '$name'.")
@@ -97,30 +97,31 @@ foreach ($source in $sourceSkills) {
     if (-not (Test-Path $githubBridgeSkillMd)) {
         $errors.Add("Missing GitHub Copilot bridge SKILL.md for '$name'.")
     }
-    if ((-not (Test-Path $codexBridgeSkillMd)) -or (-not (Test-Path $claudeBridgeSkillMd)) -or (-not (Test-Path $cursorBridgeSkillMd)) -or (-not (Test-Path $githubBridgeSkillMd))) {
+    if ((-not (Test-Path $antigravityBridgeSkillMd)) -or (-not (Test-Path $claudeBridgeSkillMd)) -or (-not (Test-Path $cursorBridgeSkillMd)) -or (-not (Test-Path $githubBridgeSkillMd))) {
         continue
     }
 
     $sourceData = Get-SkillData -SkillMdPath $sourceSkillMd
-    $codexData = Get-SkillData -SkillMdPath $codexBridgeSkillMd
+    $antigravityData = Get-SkillData -SkillMdPath $antigravityBridgeSkillMd
     $claudeData = Get-SkillData -SkillMdPath $claudeBridgeSkillMd
     $cursorData = Get-SkillData -SkillMdPath $cursorBridgeSkillMd
     $githubData = Get-SkillData -SkillMdPath $githubBridgeSkillMd
 
-    $expectedSourceSkill = "../../../.agent/skills/$name/SKILL.md"
-    $expectedCodexBridgeRef = "../../../.agents/skills/$name/SKILL.md"
-    $expectedClaudeBridgeRef = "../../../.claude/skills/$name/SKILL.md"
+    $expectedSourceSkill = "../../../.agents/skills/$name/SKILL.md"
 
-    if ($codexData.name -ne $name) {
-        $errors.Add("Codex bridge name mismatch for '$name': '$($codexData.name)'")
+    if ($antigravityData.name -ne $name) {
+        $errors.Add("Antigravity bridge name mismatch for '$name': '$($antigravityData.name)'")
     }
-    if ($codexData.description -ne $sourceData.description) {
-        $errors.Add("Codex bridge description mismatch for '$name'.")
+    if ($antigravityData.description -ne $sourceData.description) {
+        $errors.Add("Antigravity bridge description mismatch for '$name'.")
     }
-    if ($codexData.source_skill -ne $expectedSourceSkill) {
+    if ($antigravityData.source_skill -ne $expectedSourceSkill) {
         $errors.Add(
-            "Codex bridge source_skill mismatch for '$name': '$($codexData.source_skill)'"
+            "Antigravity bridge source_skill mismatch for '$name': '$($antigravityData.source_skill)'"
         )
+    }
+    if ($antigravityData.body -notmatch [regex]::Escape($expectedSourceSkill)) {
+        $errors.Add("Antigravity bridge reference mismatch for '$name'.")
     }
 
     if ($claudeData.name -ne $name) {
@@ -129,7 +130,7 @@ foreach ($source in $sourceSkills) {
     if ($claudeData.description -ne $sourceData.description) {
         $errors.Add("Claude bridge description mismatch for '$name'.")
     }
-    if ($claudeData.body -notmatch [regex]::Escape($expectedCodexBridgeRef)) {
+    if ($claudeData.body -notmatch [regex]::Escape($expectedSourceSkill)) {
         $errors.Add("Claude bridge reference mismatch for '$name'.")
     }
 
@@ -139,7 +140,7 @@ foreach ($source in $sourceSkills) {
     if ($cursorData.description -ne $sourceData.description) {
         $errors.Add("Cursor bridge description mismatch for '$name'.")
     }
-    if ($cursorData.body -notmatch [regex]::Escape($expectedClaudeBridgeRef)) {
+    if ($cursorData.body -notmatch [regex]::Escape($expectedSourceSkill)) {
         $errors.Add("Cursor bridge reference mismatch for '$name'.")
     }
 
@@ -159,33 +160,33 @@ foreach ($source in $sourceSkills) {
     }
 }
 
-foreach ($codexBridgeName in $codexBridgeNames) {
-    if ($sourceNames -notcontains $codexBridgeName) {
-        $errors.Add("Codex bridge exists without source skill: '$codexBridgeName'.")
+foreach ($bridgeName in $antigravityBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("Antigravity bridge exists without source skill: '$bridgeName'.")
     }
 }
 
-foreach ($claudeBridgeName in $claudeBridgeNames) {
-    if ($sourceNames -notcontains $claudeBridgeName) {
-        $errors.Add("Claude bridge exists without source skill: '$claudeBridgeName'.")
+foreach ($bridgeName in $claudeBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("Claude bridge exists without source skill: '$bridgeName'.")
     }
 }
 
-foreach ($cursorBridgeName in $cursorBridgeNames) {
-    if ($sourceNames -notcontains $cursorBridgeName) {
-        $errors.Add("Cursor bridge exists without source skill: '$cursorBridgeName'.")
+foreach ($bridgeName in $cursorBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("Cursor bridge exists without source skill: '$bridgeName'.")
     }
 }
 
-foreach ($githubBridgeName in $githubBridgeNames) {
-    if ($sourceNames -notcontains $githubBridgeName) {
-        $errors.Add("GitHub Copilot bridge exists without source skill: '$githubBridgeName'.")
+foreach ($bridgeName in $githubBridgeNames) {
+    if ($sourceNames -notcontains $bridgeName) {
+        $errors.Add("GitHub Copilot bridge exists without source skill: '$bridgeName'.")
     }
 }
 
 foreach ($sourceName in $sourceNames) {
-    if ($codexBridgeNames -notcontains $sourceName) {
-        $errors.Add("Source skill missing in Codex bridge tree: '$sourceName'.")
+    if ($antigravityBridgeNames -notcontains $sourceName) {
+        $errors.Add("Source skill missing in Antigravity bridge tree: '$sourceName'.")
     }
     if ($claudeBridgeNames -notcontains $sourceName) {
         $errors.Add("Source skill missing in Claude bridge tree: '$sourceName'.")
@@ -208,7 +209,7 @@ if ($errors.Count -gt 0) {
 
 Write-Host "Bridge check passed:"
 Write-Host "- source skills: $($sourceSkills.Count)"
-Write-Host "- codex bridges: $($codexBridgeSkills.Count)"
+Write-Host "- antigravity bridges: $($antigravityBridgeSkills.Count)"
 Write-Host "- claude bridges: $($claudeBridgeSkills.Count)"
 Write-Host "- cursor bridges: $($cursorBridgeSkills.Count)"
 Write-Host "- github copilot bridges: $($githubBridgeSkills.Count)"

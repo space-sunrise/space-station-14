@@ -12,7 +12,7 @@ public sealed partial class NetTexturesManager
 {
     #region Resource Tracking
     /// <summary>
-    /// Revisits all pending resources and advances any entries that became complete since the last update.
+    /// Повторно проверяет все ожидающие ресурсы и продвигает элементы, ставшие полными с прошлого обновления.
     /// </summary>
     private void UpdatePendingResources()
     {
@@ -48,10 +48,10 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Queues a complete resource for decode and upload preparation.
+    /// Ставит полный ресурс в очередь декодирования и подготовки к загрузке.
     /// </summary>
-    /// <param name="resourceKey">The normalized resource key.</param>
-    /// <param name="resPath">The normalized resource path.</param>
+    /// <param name="resourceKey">Нормализованный ключ ресурса.</param>
+    /// <param name="resPath">Нормализованный путь ресурса.</param>
     private void StartPreparingResource(string resourceKey, ResPath resPath)
     {
         if (IsResourceLoaded(resourceKey))
@@ -68,9 +68,9 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Sends a one-time network request for a resource that is not yet present locally.
+    /// Отправляет одноразовый сетевой запрос ресурса, которого еще нет локально.
     /// </summary>
-    /// <param name="resourceKey">The normalized requested resource path.</param>
+    /// <param name="resourceKey">Нормализованный путь запрошенного ресурса.</param>
     private void RequestResource(string resourceKey)
     {
         if (_requestedResources.Contains(resourceKey))
@@ -93,23 +93,23 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Checks whether the resource already has a fully prepared ready-to-use representation.
+    /// Проверяет, есть ли у ресурса полностью подготовленное представление для использования.
     /// </summary>
-    /// <param name="resourceKey">The normalized resource key.</param>
-    /// <returns><see langword="true"/> if the resource is already loaded.</returns>
+    /// <param name="resourceKey">Нормализованный ключ ресурса.</param>
+    /// <returns><see langword="true"/>, если ресурс уже загружен.</returns>
     private bool IsResourceLoaded(string resourceKey)
     {
         return _loadedTextures.ContainsKey(resourceKey) || _loadedRsis.ContainsKey(resourceKey);
     }
 
     /// <summary>
-    /// Checks whether the raw uploaded files required for a resource are present locally.
+    /// Проверяет, присутствуют ли локально сырые загруженные файлы, необходимые ресурсу.
     /// </summary>
     /// <remarks>
-    /// For RSI resources this requires full directory completeness, not just the presence of <c>meta.json</c>.
+    /// Для RSI-ресурсов нужна полная готовность директории, а не только наличие <c>meta.json</c>.
     /// </remarks>
-    /// <param name="resourcePath">The normalized resource path.</param>
-    /// <returns><see langword="true"/> if the raw uploaded resource is complete enough to prepare.</returns>
+    /// <param name="resourcePath">Нормализованный путь ресурса.</param>
+    /// <returns><see langword="true"/>, если сырой загруженный ресурс достаточно полон для подготовки.</returns>
     private bool IsResourceComplete(ResPath resourcePath)
     {
         var relativePath = resourcePath.ToRelativePath();
@@ -122,14 +122,14 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Checks resource completeness and converts corrupt payloads into terminal failures.
+    /// Проверяет полноту ресурса и превращает поврежденные полезные нагрузки в терминальные сбои.
     /// </summary>
-    /// <param name="resourceKey">The normalized resource key.</param>
-    /// <param name="resPath">The normalized resource path.</param>
-    /// <param name="isComplete">Whether the resource files are complete enough to prepare.</param>
+    /// <param name="resourceKey">Нормализованный ключ ресурса.</param>
+    /// <param name="resPath">Нормализованный путь ресурса.</param>
+    /// <param name="isComplete">Достаточно ли файлы ресурса полны для подготовки.</param>
     /// <returns>
-    /// <see langword="true"/> when the completeness check succeeded; otherwise <see langword="false"/> after the
-    /// resource has been marked failed.
+    /// <see langword="true"/>, если проверка полноты прошла; иначе <see langword="false"/> после того, как
+    /// ресурс был помечен как сбойный.
     /// </returns>
     private bool TryCheckResourceComplete(string resourceKey, ResPath resPath, out bool isComplete)
     {
@@ -149,10 +149,10 @@ public sealed partial class NetTexturesManager
 
     #region Connection State
     /// <summary>
-    /// Clears all session-local NetTextures state when the client leaves the connected game flow.
+    /// Очищает все локальное для сессии состояние NetTextures, когда клиент выходит из подключенного игрового flow.
     /// </summary>
-    /// <param name="sender">The event source.</param>
-    /// <param name="e">The run level transition.</param>
+    /// <param name="sender">Источник события.</param>
+    /// <param name="e">Переход run level.</param>
     private void OnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
     {
         if (e.OldLevel is not (ClientRunLevel.Connected or ClientRunLevel.InGame))
@@ -166,11 +166,11 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Resets requests, partial transfers, staged uploads, and loaded resources for the current session.
+    /// Сбрасывает запросы, частичные передачи, staged uploads и загруженные ресурсы для текущей сессии.
     /// </summary>
     /// <remarks>
-    /// This method is the reconnect safety boundary. Anything that could affect a later connect attempt must be
-    /// cleared here, including fallback chunk assemblies and partially published uploaded content.
+    /// Этот метод является границей безопасности для переподключения. Все, что может повлиять на следующую попытку подключения,
+    /// должно очищаться здесь, включая сборки fallback-чанков и частично опубликованный загруженный контент.
     /// </remarks>
     private void ResetState()
     {
@@ -226,7 +226,7 @@ public sealed partial class NetTexturesManager
 
     #region Preparation Queue
     /// <summary>
-    /// Starts the next queued preparation job if the single preparation worker is idle.
+    /// Запускает следующую задачу подготовки из очереди, если единственный preparation worker свободен.
     /// </summary>
     private void TryStartNextPreparation()
     {
@@ -254,11 +254,11 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Decodes one queued resource on a background worker and converts it into a staged upload job.
+    /// Декодирует один ресурс из очереди в background worker и превращает его в staged upload job.
     /// </summary>
-    /// <param name="request">The resource to prepare.</param>
-    /// <param name="requestId">The unique identifier of the active worker request.</param>
-    /// <param name="cancellationToken">The current session cancellation token.</param>
+    /// <param name="request">Ресурс для подготовки.</param>
+    /// <param name="requestId">Уникальный идентификатор активного worker request.</param>
+    /// <param name="cancellationToken">Текущий токен отмены сессии.</param>
     private void PrepareResourceWorker(PreparationRequest request, int requestId, CancellationToken cancellationToken)
     {
         PreparedUploadJob? upload = null;
@@ -291,12 +291,12 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Finalizes the worker result on the main thread and either enqueues the staged upload or records a failure.
+    /// Финализирует результат worker'а на main thread и либо ставит staged upload в очередь, либо записывает сбой.
     /// </summary>
-    /// <param name="request">The request completed by the worker.</param>
-    /// <param name="requestId">The unique identifier of the active worker request.</param>
-    /// <param name="upload">The staged upload job produced by the worker, if any.</param>
-    /// <param name="error">The decode failure, if the worker did not produce an upload.</param>
+    /// <param name="request">Запрос, завершенный worker'ом.</param>
+    /// <param name="requestId">Уникальный идентификатор активного worker request.</param>
+    /// <param name="upload">Staged upload job, созданная worker'ом, если есть.</param>
+    /// <param name="error">Сбой декодирования, если worker не создал upload.</param>
     private void FinishPreparationWorker(
         PreparationRequest request,
         int requestId,

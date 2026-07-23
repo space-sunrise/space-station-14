@@ -1,9 +1,14 @@
 ﻿vendor-salvage-ticket-machine = salvage ticket machine
 vendor-mining-ticket-machine = mining ticket machine
 store-category-salvage-equipment = Equipment
+store-category-ticket-tools = Tools
+store-category-ticket-consumeables = Consumables
+store-category-salvage-ammo = Ammo
+store-category-salvage-tools = Tools
 store-category-salvage-mech = Mech
 store-category-salvage-weapons = Weapons
 store-category-salvage-consumeables = Consumables
 store-category-mining-equipment = Equipment
+store-category-mining-tools = Tools
 store-category-mining-mech = Mech
 store-category-mining-consumeables = Consumables

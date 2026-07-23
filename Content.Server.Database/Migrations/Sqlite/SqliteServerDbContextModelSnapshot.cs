@@ -1547,6 +1547,40 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("ui_likes", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.TutorialCompletion", b =>
+                {
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_user_id");
+
+                    b.Property<string>("TutorialId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("tutorial_id");
+
+                    b.Property<double?>("AccountAgeDays")
+                        .HasColumnType("REAL")
+                        .HasColumnName("account_age_days");
+
+                    b.Property<DateTimeOffset>("CompletedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("completed_at");
+
+                    b.Property<int>("CompletionCount")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("completion_count");
+
+                    b.HasKey("PlayerUserId", "TutorialId")
+                        .HasName("PK_tutorial_completion");
+
+                    b.HasIndex("PlayerUserId")
+                        .HasDatabaseName("IX_tutorial_completion_player_user_id");
+
+                    b.HasIndex("TutorialId")
+                        .HasDatabaseName("IX_tutorial_completion_tutorial_id");
+
+                    b.ToTable("tutorial_completion", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.UploadedResourceLog", b =>
                 {
                     b.Property<int>("Id")

@@ -9,6 +9,7 @@
     containers:
       key_slots: !type:Container
   - type: Headset
+    toggleAction: ActionToggleHeadset
   - type: EncryptionKeyHolder
     keySlots: 4
   - type: Sprite
@@ -19,6 +20,10 @@
     slots:
     - ears
     sprite: Clothing/Ears/Headsets/base.rsi
+  - type: UserInterface
+    interfaces:
+      enum.HeadsetUiKey.Key:
+        type: HeadsetBoundUserInterface
 
 - type: entity
   abstract: true
@@ -303,7 +308,6 @@
       key_slots:
       - EncryptionKeyERT
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/ert.rsi
@@ -323,7 +327,6 @@
       - EncryptionKeyDeathSquad
       - EncryptionKeyERT
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/deathsquad.rsi
@@ -345,7 +348,6 @@
       - EncryptionKeyDeathSquad
       - EncryptionKeyERT
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/specopsofficer.rsi
@@ -364,7 +366,6 @@
     containers:
       key_slots:
       - EncryptionKeyStationMaster
-      - EncryptionKeyLaw
       - EncryptionKeyBlueShield
   - type: Sprite
     sprite: _Sunrise/Clothing/Ears/Headsets/representative.rsi

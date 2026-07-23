@@ -1,0 +1,5 @@
+<PanelContainer xmlns="https://spacestation14.io">
+    <Label Name="CounterLabel"
+           Align="Center"
+           VAlign="Center"/>
+</PanelContainer>

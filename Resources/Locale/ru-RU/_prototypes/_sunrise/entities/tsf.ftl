@@ -10,9 +10,9 @@ ent-ClothingHeadHatBeretTSF = берет ТСФ
 ent-ClothingHeadHatBeretTSFElite = берет MARSOC
     .desc = Берет морпехов Командования спецопераций морской пехоты ТСФ.
 
-ent-ClothingHeadHelmetTSF = боевой шлем морпеха Федерации
+ent-ClothingHeadHelmetTSF = боевой шлем морпеха
     .desc = Питание-зависимый боевой шлем морской пехоты Транс-Солнечной Федерации. Отлично защищает и усиливает зрение носителя системой OCULUS.
-ent-ClothingHeadHelmetTSFLeader = боевой шлем офицера морпехов Федерации
+ent-ClothingHeadHelmetTSFLeader = боевой шлем офицера морпехов
     .desc = Питание-зависимый боевой шлем офицеров морской пехоты Транс-Солнечной Федерации с продвинутой системой OCULUS.
 ent-ClothingHeadHelmetHardsuitTSF = шлем MARSOC
     .desc = Шлем морпехов Командования спецопераций морской пехоты ТСФ. Бронированный, герметичный и огнестойкий.

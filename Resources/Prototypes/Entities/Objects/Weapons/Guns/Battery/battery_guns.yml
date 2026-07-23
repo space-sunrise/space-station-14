@@ -102,7 +102,7 @@
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
+            #- PowerCellSmall # Sunrise-Edit
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: Appearance
@@ -142,6 +142,10 @@
     slots:
     - Belt
     - suitStorage
+  - type: CanDualWield # Sunrise-Edit
+    dualWieldInaccuracyPenalty: 0.25
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
 
 - type: entity
   id: BaseWeaponPowerCellSmall
@@ -158,6 +162,10 @@
     quickEquip: false
     slots:
     - Belt
+  - type: CanDualWield # Sunrise-Edit
+    dualWieldInaccuracyPenalty: 0.25
+    dualWieldFireRatePenalty: 0.25
+    dualWieldRecoilPenalty: 0.25
 
 - type: entity
   name: svalinn laser pistol
@@ -660,8 +668,10 @@
     heldPrefix: taser4
   - type: Clothing
     quickEquip: false
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi # Sunrise-Edit
     slots:
     - Belt
+    - suitStorage # Sunrise-Edit
   - type: Gun
     fireRate: 0.5
     soundGunshot:

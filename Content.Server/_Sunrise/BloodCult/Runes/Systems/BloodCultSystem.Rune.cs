@@ -508,7 +508,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                     _cultistTargetsConditionSystem.RefresTitle(obj, rule.CultTargets, killCultistTargetsComponent);
                 }
 
-                _bodySystem.GibBody(target);
+                _gibbingSystem.Gib(target);
                 _bloodCultRuleSystem.ChangeSacrificeCount(rule, rule.SacrificeCount + 1);
 
                 return true;
@@ -516,7 +516,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (!SpawnShard(target))
             {
-                _bodySystem.GibBody(target);
+                _gibbingSystem.Gib(target);
             }
 
             _bloodCultRuleSystem.ChangeSacrificeCount(rule, rule.SacrificeCount + 1);
@@ -541,7 +541,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
             if (!SpawnShard(target))
             {
-                _bodySystem.GibBody(target);
+                _gibbingSystem.Gib(target);
             }
 
             _bloodCultRuleSystem.ChangeSacrificeCount(rule, rule.SacrificeCount + 1);
@@ -1280,7 +1280,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (mindComponent.Mind.HasValue)
                 _mindSystem.TransferTo(mindComponent.Mind.Value, shard);
 
-            _bodySystem.GibBody(target);
+            _gibbingSystem.Gib(target);
 
             return true;
         }

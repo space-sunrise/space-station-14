@@ -7,14 +7,6 @@
     selectedBorgType: security
   - type: Loadout
     prototypes: [ BorgArmorSiliconLoadout ]
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-    - CanPilot
-    - SiliconEmotes
-    - Unimplantable
-    - NoPaint
 
 - type: entity
   id: BorgChassisPeace
@@ -173,8 +165,6 @@
       tags:
       - BorgModuleERT
       - BorgModuleSecurity
-      - BorgModuleSyndicate
-      - BorgModuleSyndicateAssault
     hasMindState: ert_borg_e
     noMindState: ert_borg_e_r
   - type: IntrinsicRadioTransmitter
@@ -211,13 +201,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 4.5
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - CanPilot
-    - FootstepSound
-    - EmagImmune
-    - NoPaint
   - type: InnateItem
     instantActions:
     - PortableSurveillanceCameraMonitorUnpowered
@@ -342,6 +325,10 @@
   - type: InnateItem
     entityTargetActions:
     - AccessBreaker
+  - type: FootprintEmitter
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked-heavy ]
+    rightBareFootState: [ footprint-tracked-heavy ]
 
 - type: entity
   id: BorgChassisSyndicateSpider
@@ -373,6 +360,8 @@
       tags:
       - BorgModuleGeneric
       - BorgModuleSecurity
+      - BorgModuleMedical
+      - BorgModuleEngineering
       - BorgModuleSyndicate
     hasMindState: spider_e
     noMindState: spider_e_r

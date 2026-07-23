@@ -1,5 +1,3 @@
-ent-DiseaseSpawn = { ent-BaseGameRule }
-    .desc = { ent-BaseGameRule.desc }
 ent-TerminatorSpawn = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-VentbullMigration = { ent-BaseGameRule }

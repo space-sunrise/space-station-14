@@ -29,18 +29,8 @@
     antagPrototype: PlanetPrisoner
     exclusiveAntag: true
     roleType: FreeAgent
+    subtype: role-subtype-prisoner
   - type: PlanetPrisonerRole
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleVampire
-  name: Vampire Role
-  components:
-  - type: MindRole
-    antagPrototype: Vampire
-    exclusiveAntag: true
-    roleType: SoloAntagonist
-  - type: VampireRole
 
 - type: entity
   parent: BaseMindRoleAntag
@@ -77,3 +67,14 @@
   components:
   - type: MindRole
     roleType: TSFAligned
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSELFAgent
+  name: S.E.L.F Agent
+  components:
+  - type: MindRole
+    antagPrototype: SELFAgent
+    subtype: roles-antag-selfagent-name
+    exclusiveAntag: true
+  - type: SELFAgentRole
