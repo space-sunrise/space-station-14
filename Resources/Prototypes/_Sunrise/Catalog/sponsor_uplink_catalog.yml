@@ -2004,9 +2004,9 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunriseMobBreadDog
-  name: uplink-sunrise-mob-bread-dog-name
-  productEntity: MobBreadDog
+  id: UplinkSunrisePetBreadDog
+  name: uplink-sunrise-pet-bread-dog-name
+  productEntity: PetBreadDog
   cost:
     Suntick: 15
   categories:

@@ -50,3 +50,5 @@ ent-PetMobCorgiIanPup = { ent-MobCorgiIanPup }
     .desc = { ent-MobCorgiIanPup.desc }
 ent-PetMobParrot = { ent-MobParrot }
     .desc = { ent-MobParrot.desc }
+ent-PetBreadDog = { ent-MobBreadDog }
+    .desc = { ent-MobBreadDog.desc }

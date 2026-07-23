@@ -1001,32 +1001,6 @@
     damage:
       groups:
         Brute: 1
-  # Sunrise-Start
-  - type: Physics
-    bodyType: KinematicController
-  - type: MobMover
-  - type: InputMover
-  - type: MobState
-    allowedStates:
-    - Alive
-    - Critical
-    - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Critical
-      100: Dead
-  - type: Damageable
-    damageContainer: Biological
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: base
-      Critical:
-        Base: dead
-      Dead:
-        Base: dead
-  # Sunrise-End
 
 - type: entity
   parent: FoodBreadBase
