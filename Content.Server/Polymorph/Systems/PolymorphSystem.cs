@@ -230,9 +230,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (configuration.PolymorphSound != null)
             _audio.PlayPvs(configuration.PolymorphSound, targetTransformComp.Coordinates);
 
-        // Sunrise-Start
-        var child = SpawnAttachedTo(configuration.Entity, targetTransformComp.Coordinates);
-        // Sunrise-End
+        var child = Spawn(configuration.Entity, _transform.GetMapCoordinates(uid, targetTransformComp), rotation: _transform.GetWorldRotation(uid));
 
         if (configuration.PolymorphPopup != null)
             _popup.PopupEntity(Loc.GetString(configuration.PolymorphPopup,

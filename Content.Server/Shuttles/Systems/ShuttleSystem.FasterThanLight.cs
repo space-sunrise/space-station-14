@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
-using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server._Sunrise.Shuttles.Components;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Server.Shuttles.Components;
@@ -1151,13 +1150,6 @@ public sealed partial class ShuttleSystem
                 {
                     continue;
                 }
-
-                // Sunrise-Start
-                if (childXform.GridUid != null && HasComp<ImmortalGridComponent>(childXform.GridUid.Value))
-                {
-                    continue;
-                }
-                // Sunrise-End
 
                 if (_bodyQuery.TryGetComponent(ent, out var mob))
                 {

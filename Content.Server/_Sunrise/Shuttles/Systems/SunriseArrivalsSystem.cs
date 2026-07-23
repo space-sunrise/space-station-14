@@ -8,6 +8,7 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
+using Content.Shared.Polymorph;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -121,6 +122,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, after: new []{ typeof(ContainerSpawnPointSystem) }, before: new []{ typeof(SpawnPointSystem) });
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, ComponentShutdown>(OnShuttleShutdown);
+        SubscribeLocalEvent<FTLSmashImmuneComponent, PolymorphedEvent>(OnImmunePolymorphed);
 
         _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttle, b => _enabled = b, true);
         _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttlePath, s => _shuttlePath = s, true);
@@ -173,6 +175,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
                 CleanupShuttle(shuttleUid.Value);
                 return;
             }
+
+            EnsureComp<FTLSmashImmuneComponent>(ev.SpawnResult.Value);
 
             var arrivals = EnsureComp<SunriseArrivalsShuttleComponent>(shuttleUid.Value);
             arrivals.Station = station;
@@ -254,6 +258,11 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         {
             pool.Queue.Remove(uid);
         }
+    }
+    private void OnImmunePolymorphed(EntityUid uid, FTLSmashImmuneComponent comp, ref PolymorphedEvent args)
+    {
+        if (!args.IsRevert)
+            EnsureComp<FTLSmashImmuneComponent>(args.NewEntity);
     }
 
     #endregion
@@ -475,6 +484,9 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         if (!playerOnShuttle)
         {
+            if (arrivals.PlayerExitTime == null && arrivals.Player != null)
+                RemComp<FTLSmashImmuneComponent>(arrivals.Player.Value);
+
             // Игрок вышел — запускаем grace timer
             arrivals.PlayerExitTime ??= curTime;
 
@@ -624,6 +636,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         EnsureComp<UnbuildableGridComponent>(shuttleGrid.Value);
         EnsureComp<ImmortalGridComponent>(shuttleGrid.Value);
         EnsureComp<PreventPilotComponent>(shuttleGrid.Value);
+        EnsureComp<FTLSmashImmuneComponent>(shuttleGrid.Value);
 
         return shuttleGrid.Value;
     }
