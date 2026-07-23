@@ -58,4 +58,7 @@ enabled = true
 # Sunrise-Edit
 [npc]
 disable_without_players = false
+
+[vote]
+ignore_preset_player_limits = true
 # Sunrise-Edit
