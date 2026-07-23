@@ -261,8 +261,17 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     }
     private void OnImmunePolymorphed(EntityUid uid, FTLSmashImmuneComponent comp, ref PolymorphedEvent args)
     {
-        if (!args.IsRevert)
-            EnsureComp<FTLSmashImmuneComponent>(args.NewEntity);
+        EnsureComp<FTLSmashImmuneComponent>(args.NewEntity);
+
+        var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent>();
+        while (query.MoveNext(out _, out var arrivals))
+        {
+            if (arrivals.Player == uid)
+            {
+                arrivals.Player = args.NewEntity;
+                break;
+            }
+        }
     }
 
     #endregion
