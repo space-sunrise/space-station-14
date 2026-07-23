@@ -34,7 +34,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertIn("workflow_run:", self.workflow)
         self.assertIn('workflows: ["PR: Review State Changed"]', self.workflow)
         self.assertNotIn("pull_request_review_comment:", self.workflow)
-        self.assertNotRegex(self.workflow, r"^  pull_request_review:\s*$")
+        self.assertNotRegex(self.workflow, r"(?m)^  pull_request_review:\s*$")
 
     def test_privileged_workflow_uses_organization_app_token(self):
         self.assertIn("uses: actions/create-github-app-token@v3", self.workflow)
