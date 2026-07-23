@@ -81,7 +81,7 @@
   - type: Spray
     transferAmount: 15
     sprayedPrototype: BigVapor
-  # Sunrise-edit: скорость наследуется от SprayBottle.
+    sprayVelocity: 6 # Sunrise-edit: увеличено с 3 -> 6
     sprayDistance: 4.5
     spraySound:
       path: /Audio/Effects/spray2.ogg
