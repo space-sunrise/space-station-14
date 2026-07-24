@@ -1,4 +1,4 @@
-using System.Linq;
+using Content.Server._Sunrise.StationEvents;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -7,7 +7,6 @@ using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Station.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -51,8 +50,8 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (stationEvent.StartAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
                 Loc.GetString(stationEvent.StartAnnouncement),
-                playDefault: false,
-                announcementSound: stationEvent.StartAudio,
+                playDefault: false, // Sunrise-Edit
+                announcementSound: stationEvent.StartAudio, // Sunrise-Edit
                 colorOverride: stationEvent.StartAnnouncementColor);
         else
         {
@@ -101,8 +100,8 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (stationEvent.EndAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
                 Loc.GetString(stationEvent.EndAnnouncement),
-                playDefault: false,
-                announcementSound: stationEvent.EndAudio,
+                playDefault: false, // Sunrise-Edit
+                announcementSound: stationEvent.EndAudio, // Sunrise-Edit
                 colorOverride: stationEvent.EndAnnouncementColor);
         else
         {
@@ -129,28 +128,15 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             if (!GameTicker.IsGameRuleAdded(uid, ruleData))
                 continue;
 
-            // Sunrise-Start: Исключаем ЦентКом из станционных событий
             if (!GameTicker.IsGameRuleActive(uid, ruleData) && !HasComp<DelayedStartRuleComponent>(uid))
             {
-                // Проверяем, не является ли целевая станция ЦентКомом
-                var targetStation = StationSystem.GetStations()
-                    .FirstOrDefault(station =>
-                    {
-                        if (!TryComp<StationDataComponent>(station, out var data))
-                            return false;
-
-                        if (data.StationConfig != null && data.StationConfig.StationPrototype == "NanotrasenCentralCommand")
-                            return false;
-
-                        return true;
-                    });
-
-                if (!targetStation.IsValid())
+                // Sunrise edit start - проверка доступности игровой станции (исключая ЦентКом)
+                if (StationEventHelper.ShouldSkipEvent(uid, StationSystem, EntityManager, Sawmill))
                 {
-                    Sawmill.Info($"Skipping event {ToPrettyString(uid)}: no valid target station");
                     GameTicker.EndGameRule(uid, ruleData);
                     continue;
                 }
+                // Sunrise edit end
 
                 GameTicker.StartGameRule(uid, ruleData);
             }
@@ -158,7 +144,6 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             {
                 GameTicker.EndGameRule(uid, ruleData);
             }
-            // Sunrise-End
         }
     }
 }
