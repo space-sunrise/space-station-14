@@ -1,4 +1,4 @@
-using Content.Server._Sunrise.StationEvents;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -7,9 +7,14 @@ using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+
+// Sunrise edit start - added helper for CentComm exclusion
+using Content.Server._Sunrise.StationEvents;
+// Sunrise edit end
 
 namespace Content.Server.StationEvents.Events;
 
@@ -41,6 +46,13 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (!TryComp<StationEventComponent>(uid, out var stationEvent))
             return;
 
+        // Sunrise edit start - check for valid player station before announcing
+        if (StationEventHelper.ShouldSkipEvent(uid, StationSystem, EntityManager, Sawmill))
+        {
+            return;
+        }
+        // Sunrise edit end
+
         AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(uid)}");
 
         // we don't want to send to players who aren't in game (i.e. in the lobby)
@@ -50,8 +62,8 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (stationEvent.StartAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
                 Loc.GetString(stationEvent.StartAnnouncement),
-                playDefault: false, // Sunrise-Edit
-                announcementSound: stationEvent.StartAudio, // Sunrise-Edit
+                playDefault: false,
+                announcementSound: stationEvent.StartAudio,
                 colorOverride: stationEvent.StartAnnouncementColor);
         else
         {
@@ -100,8 +112,8 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (stationEvent.EndAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
                 Loc.GetString(stationEvent.EndAnnouncement),
-                playDefault: false, // Sunrise-Edit
-                announcementSound: stationEvent.EndAudio, // Sunrise-Edit
+                playDefault: false,
+                announcementSound: stationEvent.EndAudio,
                 colorOverride: stationEvent.EndAnnouncementColor);
         else
         {
@@ -128,15 +140,14 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             if (!GameTicker.IsGameRuleAdded(uid, ruleData))
                 continue;
 
+            // Sunrise edit start - check for valid player station before starting
             if (!GameTicker.IsGameRuleActive(uid, ruleData) && !HasComp<DelayedStartRuleComponent>(uid))
             {
-                // Sunrise edit start - проверка доступности игровой станции (исключая ЦентКом)
                 if (StationEventHelper.ShouldSkipEvent(uid, StationSystem, EntityManager, Sawmill))
                 {
                     GameTicker.EndGameRule(uid, ruleData);
                     continue;
                 }
-                // Sunrise edit end
 
                 GameTicker.StartGameRule(uid, ruleData);
             }
@@ -144,6 +155,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             {
                 GameTicker.EndGameRule(uid, ruleData);
             }
+            // Sunrise edit end
         }
     }
 }
