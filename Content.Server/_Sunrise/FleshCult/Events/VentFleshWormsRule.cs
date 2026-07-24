@@ -17,19 +17,7 @@ public sealed class VentFleshWormsRule : StationEventSystem<VentFleshWormsRuleCo
     {
         base.Started(uid, component, gameRule, args);
 
-        // Исключаем ЦентКом по StationPrototype
-        var targetStation = _stationSystem.GetStations()
-            .FirstOrDefault(station =>
-            {
-                if (!TryComp<StationDataComponent>(station, out var data))
-                    return false;
-
-                // Проверяем StationConfig.StationPrototype
-                if (data.StationConfig != null && data.StationConfig.StationPrototype == "NanotrasenCentralCommand")
-                    return false;
-
-                return true;
-            });
+        var targetStation = _stationSystem.GetStations().FirstOrNull();
 
         if (!TryComp(targetStation, out StationDataComponent? data))
         {
