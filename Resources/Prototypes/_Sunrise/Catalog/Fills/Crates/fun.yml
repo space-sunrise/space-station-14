@@ -66,7 +66,7 @@
   id: CrateGreytideMakeshiftWeapons
   parent: CrateGreytide
   name: greytide makeshift weapons crate
-  description: A greytide crate with up to six random makeshift weapons.
+  description: A greytide crate with up to five random makeshift weapons.
   suffix: Makeshift Weapons
   components:
   - type: EntityTableContainerFill
@@ -87,7 +87,7 @@
   id: CrateGreytideImprovisedWeapons
   parent: CrateGreytide
   name: greytide improvised weapons crate
-  description: A greytide crate with up to six random improvised weapons.
+  description: A greytide crate with up to five random improvised weapons.
   suffix: Improvised Weapons
   components:
   - type: EntityTableContainerFill
@@ -109,7 +109,7 @@
   id: CrateGreytideForgedWeapons
   parent: CrateGreytide
   name: greytide forged weapons crate
-  description: A greytide crate with up to six random forged weapons.
+  description: A greytide crate with up to five random forged weapons.
   suffix: Forged Weapons
   components:
   - type: EntityTableContainerFill

@@ -153,6 +153,13 @@
     sprite: Objects/Consumable/Drinks/rumglass.rsi
     state: icon_empty
   metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
     Medicine:
       effects:
       - !type:HealthChange

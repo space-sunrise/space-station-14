@@ -57,7 +57,7 @@
 - type: entity
   parent: [DrinkVisualsAllFilled, DrinkBottleGlassBaseFull]
   id: DrinkDarkRedRumBottleFull
-  name: dark red rum bottle
+  name: dark-red rum bottle
   description: A bottle of dangerously strong dark red rum.
   components:
   - type: SolutionContainerManager

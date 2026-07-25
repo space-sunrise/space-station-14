@@ -6,5 +6,5 @@ ent-DrinkVodkizineBottleFull = бутылка водкизина
 ent-DrinkRedRumBottleFull = бутылка красного рома
     .desc = Бутылка крепкого красного рома.
 
-ent-DrinkDarkRedRumBottleFull = бутылка тёмного красного рома
+ent-DrinkDarkRedRumBottleFull = бутылка тёмно-красного рома
     .desc = Бутылка опасно крепкого тёмного красного рома.
