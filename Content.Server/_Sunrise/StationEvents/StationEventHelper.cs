@@ -40,8 +40,12 @@ public static class StationEventHelper
             if (!entityManager.TryGetComponent<StationDataComponent>(station, out var data))
                 continue;
 
+            // Skip stations without config
+            if (data.StationConfig is null)
+                continue;
+
             // Exclude CentComm by StationPrototype
-            if (data.StationConfig != null && data.StationConfig.StationPrototype == "NanotrasenCentralCommand")
+            if (data.StationConfig.StationPrototype == "NanotrasenCentralCommand")
                 continue;
 
             return true;

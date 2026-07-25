@@ -12,7 +12,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-// Sunrise edit start - added helper for CentComm exclusion
+// Sunrise edit start - добавлен помощник для исключения ЦентКома
 using Content.Server._Sunrise.StationEvents;
 // Sunrise edit end
 
@@ -46,9 +46,11 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (!TryComp<StationEventComponent>(uid, out var stationEvent))
             return;
 
-        // Sunrise edit start - check for valid player station before announcing
+        // Sunrise edit start - проверка доступной станции перед анонсом
         if (StationEventHelper.ShouldSkipEvent(uid, StationSystem, EntityManager, Sawmill))
         {
+            // Если нет доступной станции - отменяем правило без анонса
+            GameTicker.EndGameRule(uid, gameRule);
             return;
         }
         // Sunrise edit end
@@ -140,11 +142,13 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             if (!GameTicker.IsGameRuleAdded(uid, ruleData))
                 continue;
 
-            // Sunrise edit start - check for valid player station before starting
+            // Sunrise edit start - проверка доступной станции перед запуском
             if (!GameTicker.IsGameRuleActive(uid, ruleData) && !HasComp<DelayedStartRuleComponent>(uid))
             {
                 if (StationEventHelper.ShouldSkipEvent(uid, StationSystem, EntityManager, Sawmill))
                 {
+                    // Правило уже должно быть отменено в Added()
+                    // Завершаем без анонса
                     GameTicker.EndGameRule(uid, ruleData);
                     continue;
                 }
