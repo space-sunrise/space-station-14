@@ -860,6 +860,31 @@
         state: sp
 
 - type: entity
+  id: BulletRifleTraceImprovised
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    armorPenetration: -0.3
+    damage:
+      types:
+        Piercing: 9
+        Blunt: 3
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: ProjectilePierce
+    chance: 0.6
+    deviation: 0.08
+    pierceLevel: Metal
+  - type: ProjectileRicochet
+    chance: 0.9
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
+
+- type: entity
   id: BulletRifleTraceHP
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
@@ -997,7 +1022,7 @@
     bullet:
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: buckshot
+        state: grapeshot
 
 - type: entity
   id: PelletShotgunSlugTrace
@@ -1233,10 +1258,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
-    armorPenetration: -0.5
+    armorPenetration: -0.4
     damage:
       types:
-        Piercing: 1
+        Piercing: 3
   - type: ProjectilePierce
     chance: 0.001
   - type: HitscanBasicVisuals
