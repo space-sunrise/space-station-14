@@ -167,7 +167,7 @@ namespace Content.Server.Voting.Managers
         {
             // Handle active votes.
             var remQueue = new RemQueue<int>();
-            foreach (var v in _votes.Values)
+            foreach (var v in _votes.Values.ToArray()) // Sunrise-Edit: для системы многоэтапных голосований, без этого вызывал ошибку при старте голосования в тот же момент, когда закончено старое
             {
                 // Logger.Debug($"{_timing.ServerTime}");
                 if (_timing.RealTime >= v.EndTime)
@@ -411,9 +411,10 @@ namespace Content.Server.Voting.Managers
             // Still allow vote if availbable one is different from current one
             if (voteType == StandardVoteType.Preset)
             {
-                var presets = GetGamePresetsSunrise(); // Sunrise-Start
-                if (presets.Count == 1 && presets.Select(x => x.Key).Single() == _entityManager.System<GameTicker>().Preset?.ID)
+                // Sunrise edit start
+                if (!CanCallSunrisePresetVote())
                     return false;
+                // Sunrise edit end
             }
 
             return !_voteTimeout.TryGetValue(initiator.UserId, out timeSpan);
