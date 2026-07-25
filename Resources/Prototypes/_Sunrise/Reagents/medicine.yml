@@ -204,13 +204,14 @@
         amount: 3
       - !type:EvenHealthChange
         damage:
-          Burn: -3
+          Burn: -2
           Brute: -3
-          Toxin: -3
+          Toxin: -2
       - !type:HealthChange
         damage:
           types:
-            Bloodloss: -3
+            Bloodloss: -1
+            Asphyxiation: -1
       - !type:ModifyBleed
         amount: -1.5
       - !type:GenericStatusEffect
@@ -303,11 +304,11 @@
       - !type:HealthChange
         damage:
           groups:
-            Burn: -5
-            Brute: -10
+            Burn: -3
+            Brute: -5
           types:
-            Mangleness: -1
-            Poison: -1
+            Mangleness: -0.5
+            Poison: -0.5
       - !type:ModifyBleed
         amount: -1.5
       - !type:EvenHealthChange
@@ -345,7 +346,7 @@
           max: 20
         damage:
           types:
-            Asphyxiation: -3
+            Asphyxiation: -1
             Poison: -0.5
           groups:
             Brute: -1
