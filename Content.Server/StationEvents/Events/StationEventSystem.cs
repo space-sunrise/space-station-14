@@ -12,7 +12,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-// Sunrise edit start - добавлен помощник для исключения ЦентКома
+// Sunrise edit start - добавлен помощник для проверки игровой станции
 using Content.Server._Sunrise.StationEvents;
 // Sunrise edit end
 
@@ -30,12 +30,14 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     [Dependency] protected readonly StationSystem StationSystem = default!;
 
     protected ISawmill Sawmill = default!;
+    private EntityQuery<DelayedStartRuleComponent> _delayedStartQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
         Sawmill = Logger.GetSawmill("stationevents");
+        _delayedStartQuery = GetEntityQuery<DelayedStartRuleComponent>();
     }
 
     /// <inheritdoc/>
@@ -46,11 +48,11 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (!TryComp<StationEventComponent>(uid, out var stationEvent))
             return;
 
-        // Sunrise edit start - проверка доступной станции перед анонсом
-        if (StationEventHelper.ShouldSkipEvent(uid, StationSystem, EntityManager, Sawmill))
+        // Sunrise edit start - удаление события, если нет игровой станции
+        if (!StationEventHelper.HasValidPlayerStation(StationSystem, EntityManager))
         {
-            // Если нет доступной станции - отменяем правило без анонса
-            GameTicker.EndGameRule(uid, gameRule);
+            Sawmill.Info($"Событие {ToPrettyString(uid)} удалено: нет игровой станции");
+            QueueDel(uid);
             return;
         }
         // Sunrise edit end
@@ -142,24 +144,14 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             if (!GameTicker.IsGameRuleAdded(uid, ruleData))
                 continue;
 
-            // Sunrise edit start - проверка доступной станции перед запуском
-            if (!GameTicker.IsGameRuleActive(uid, ruleData) && !HasComp<DelayedStartRuleComponent>(uid))
+            if (!GameTicker.IsGameRuleActive(uid, ruleData) && !_delayedStartQuery.HasComponent(uid))
             {
-                if (StationEventHelper.ShouldSkipEvent(uid, StationSystem, EntityManager, Sawmill))
-                {
-                    // Правило уже должно быть отменено в Added()
-                    // Завершаем без анонса
-                    GameTicker.EndGameRule(uid, ruleData);
-                    continue;
-                }
-
                 GameTicker.StartGameRule(uid, ruleData);
             }
             else if (stationEvent.EndTime != null && Timing.CurTime >= stationEvent.EndTime && GameTicker.IsGameRuleActive(uid, ruleData))
             {
                 GameTicker.EndGameRule(uid, ruleData);
             }
-            // Sunrise edit end
         }
     }
 }

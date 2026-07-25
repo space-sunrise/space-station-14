@@ -1,50 +1,28 @@
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Station.Components;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server._Sunrise.StationEvents;
 
 /// <summary>
-/// Helper class for checking player station availability (excluding CentComm)
+/// Вспомогательный класс для проверки наличия игровой станции (исключая ЦентКом).
 /// </summary>
 public static class StationEventHelper
 {
     /// <summary>
-    /// Determines whether the event should be skipped due to no valid player station being available.
+    /// Проверяет наличие игровой станции (исключая ЦентКом).
     /// </summary>
-    public static bool ShouldSkipEvent(
-        EntityUid uid,
-        StationSystem stationSystem,
-        IEntityManager entityManager,
-        ISawmill sawmill)
+    public static bool HasValidPlayerStation(StationSystem stationSystem, IEntityManager entityManager)
     {
-        if (!HasValidTargetStation(stationSystem, entityManager))
-        {
-            sawmill.Info($"Skipping event {entityManager.ToPrettyString(uid)}: no valid target station (CentComm excluded)");
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Checks whether a valid player station (excluding CentComm) exists.
-    /// </summary>
-    public static bool HasValidTargetStation(StationSystem stationSystem, IEntityManager entityManager)
-    {
-        var stations = stationSystem.GetStations();
-
-        foreach (var station in stations)
+        foreach (var station in stationSystem.GetStations())
         {
             if (!entityManager.TryGetComponent<StationDataComponent>(station, out var data))
                 continue;
 
-            // Skip stations without config
             if (data.StationConfig is null)
                 continue;
 
-            // Exclude CentComm by StationPrototype
+            // ЦентКом не считается игровой станцией
             if (data.StationConfig.StationPrototype == "NanotrasenCentralCommand")
                 continue;
 
