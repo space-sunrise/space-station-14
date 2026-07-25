@@ -28,8 +28,6 @@
 - type: entity
   parent: BaseFlatpack
   id: ShuttleGunLightRifleImprovisedFlatpack
-  name: shuttle-gun-light-rifle-improvised-flatpack-name
-  description: shuttle-gun-light-rifle-improvised-flatpack-description
   components:
   - type: Flatpack
     entity: ShuttleGunLightRifleImprovised
@@ -37,8 +35,6 @@
 - type: entity
   parent: BaseFlatpack
   id: ShuttleGunLightRifleSPFlatpack
-  name: shuttle-gun-light-rifle-sp-flatpack-name
-  description: shuttle-gun-light-rifle-sp-flatpack-description
   components:
   - type: Flatpack
     entity: ShuttleGunLightRifleSP
@@ -46,8 +42,6 @@
 - type: entity
   parent: BaseFlatpack
   id: ShuttleGunLightRifleFMJFlatpack
-  name: shuttle-gun-light-rifle-fmj-flatpack-name
-  description: shuttle-gun-light-rifle-fmj-flatpack-description
   components:
   - type: Flatpack
     entity: ShuttleGunLightRifleFMJ
@@ -55,8 +49,6 @@
 - type: entity
   parent: BaseFlatpack
   id: ShuttleGunLightRifleAPFlatpack
-  name: shuttle-gun-light-rifle-ap-flatpack-name
-  description: shuttle-gun-light-rifle-ap-flatpack-description
   components:
   - type: Flatpack
     entity: ShuttleGunLightRifleAP

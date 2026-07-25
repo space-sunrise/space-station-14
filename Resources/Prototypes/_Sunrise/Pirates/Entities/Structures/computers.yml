@@ -14,8 +14,6 @@
 - type: entity
   id: ComputerCargoOrdersPirate
   parent: BaseRustGoldComputer
-  name: pirate-computer-request-name
-  description: pirate-computer-request-description
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/computers.rsi
@@ -43,8 +41,6 @@
 - type: entity
   id: ComputerPalletConsolePirate
   parent: [BaseRustGoldComputer, ComputerPalletConsole]
-  name: pirate-computer-sale-name
-  description: pirate-computer-sale-description
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/computers.rsi
@@ -71,8 +67,6 @@
 - type: entity
   id: ComputerPirateShipyard
   parent: BaseRustGoldComputer
-  name: pirate-computer-shipyard-name
-  description: pirate-computer-shipyard-description
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/computers.rsi
@@ -94,8 +88,6 @@
 - type: entity
   id: ComputerPirateBounty
   parent: [BaseRustGoldComputer, ComputerSalvageJobBoard]
-  name: pirate-computer-bounty-name
-  description: pirate-computer-bounty-description
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Machines/computers.rsi

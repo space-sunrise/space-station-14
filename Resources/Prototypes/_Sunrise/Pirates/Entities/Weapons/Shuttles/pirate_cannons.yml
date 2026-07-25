@@ -2,8 +2,6 @@
   id: ShuttleGunLightRifleBase
   parent: ShuttleGunAutocannon
   abstract: true
-  name: shuttle-gun-light-rifle-base-name
-  description: shuttle-gun-light-rifle-base-description
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
@@ -46,8 +44,6 @@
 - type: entity
   parent: ShuttleGunLightRiflePirateBase
   id: ShuttleGunLightRifleImprovised
-  name: shuttle-gun-light-rifle-improvised-name
-  description: shuttle-gun-light-rifle-improvised-description
   components:
   - type: BatteryAmmoProvider
     proto: BulletLightRifleTraceImprovised
@@ -55,14 +51,10 @@
 - type: entity
   parent: ShuttleGunLightRiflePirateBase
   id: ShuttleGunLightRifleSP
-  name: shuttle-gun-light-rifle-sp-name
-  description: shuttle-gun-light-rifle-sp-description
 
 - type: entity
   parent: ShuttleGunLightRiflePirateBase
   id: ShuttleGunLightRifleFMJ
-  name: shuttle-gun-light-rifle-fmj-name
-  description: shuttle-gun-light-rifle-fmj-description
   components:
   - type: BatteryAmmoProvider
     proto: BulletLightRifleTraceFMJ
@@ -70,8 +62,6 @@
 - type: entity
   parent: ShuttleGunLightRiflePirateBase
   id: ShuttleGunLightRifleAP
-  name: shuttle-gun-light-rifle-ap-name
-  description: shuttle-gun-light-rifle-ap-description
   components:
   - type: BatteryAmmoProvider
     proto: BulletLightRifleTraceAP
@@ -79,8 +69,6 @@
 - type: entity
   parent: ShuttleGunLightRiflePirateBase
   id: ShuttleGunPirateCoveTurret
-  name: shuttle-gun-light-rifle-cove-name
-  description: shuttle-gun-light-rifle-cove-description
   components:
   - type: Anchorable
     flags:
@@ -91,8 +79,6 @@
 - type: entity
   id: ShuttleGunPirateBombard
   parent: ShuttleGunBase
-  name: shuttle-gun-pirate-bombard-name
-  description: shuttle-gun-pirate-bombard-description
   components:
   - type: ContainerContainer
     containers:
