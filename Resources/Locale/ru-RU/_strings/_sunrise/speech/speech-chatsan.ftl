@@ -1,4 +1,4 @@
-﻿russian-chatsan-word-1 = нанотразен
+russian-chatsan-word-1 = нанотразен
 russian-chatsan-replacement-1 = NanoTrasen
 russian-chatsan-word-2 = нанотрасен
 russian-chatsan-replacement-2 = NanoTrasen
@@ -590,7 +590,7 @@ russian-chatsan-replacement-306 = впечатляет
 russian-chatsan-word-307 = хайп
 russian-chatsan-replacement-307 = ажиотаж
 russian-chatsan-word-308 = муд
-russian-chatsan-replacement-308 = моё настроение таково, что
+russian-chatsan-replacement-308 = такой уж настрой
 russian-chatsan-word-309 = вайб
 russian-chatsan-replacement-309 = атмосфера
 russian-chatsan-word-310 = трэш
