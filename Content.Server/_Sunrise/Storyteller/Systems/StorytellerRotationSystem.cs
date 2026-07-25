@@ -14,8 +14,6 @@ public sealed class StorytellerRotationSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
 
-    public static readonly string StorytellerInsaneId = "StorytellerInsane";
-
     public override void Initialize()
     {
         base.Initialize();
@@ -41,11 +39,11 @@ public sealed class StorytellerRotationSystem : EntitySystem
             int nextState;
             // If Calm was played previously (state == 2) and now Insane is selected, we want to
             // reset back to 0 (return all modes). Otherwise, selecting Insane puts it on cooldown.
-            if (currentPreset.ID == StorytellerInsaneId)
+            if (currentPreset.ID == StorytellerSystem.StorytellerInsaneId)
             {
                 nextState = prevState == 2 ? 0 : 1;
             }
-            else if (currentPreset.ID == StorytellerPresetHelper.StorytellerCalmId)
+            else if (currentPreset.ID == StorytellerSystem.StorytellerCalmId)
             {
                 nextState = 2;
             }

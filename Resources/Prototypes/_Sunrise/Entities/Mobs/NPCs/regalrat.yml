@@ -5,7 +5,7 @@
   suffix: No Guard
   components:
   - type: RatKing
-    maxGuardCount: 0
+    maxGuardCount: 1
 
 - type: entity
   parent: BaseAction

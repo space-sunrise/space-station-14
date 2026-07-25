@@ -182,7 +182,7 @@ public sealed partial class SunriseCCVars : CVars
     /// Ссылка на повторы для показа в меню.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksReplays =
-        CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.replays", "https://replays.ss14.org", CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServerName =
         CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
@@ -265,6 +265,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> ShowPresetVotes = CVarDef.Create("vote.show_preset_votes", true);
 
     public static readonly CVarDef<bool> ShowMapVotes = CVarDef.Create("vote.show_map_votes", true);
+
+    /// <summary>
+    ///     Makes preset votes ignore player count limits. Intended for local development.
+    /// </summary>
+    public static readonly CVarDef<bool> IgnorePresetPlayerLimits =
+        CVarDef.Create("vote.ignore_preset_player_limits", false, CVar.SERVERONLY);
 
     public static readonly CVarDef<bool> RunMapVoteAfterRestart =
         CVarDef.Create("vote.run_map_vote_after_restart", false);
