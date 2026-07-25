@@ -33,6 +33,10 @@
     - Pirate
   - type: Computer
     board: PirateRequestComputerCircuitboard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
   - type: PointLight
     color: "#c9c042"
   - type: AccessReader

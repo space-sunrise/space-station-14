@@ -389,6 +389,16 @@
       name: radio-jammer-component-setting-high
   - type: ItemToggle
     onUse: false
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+        showEnts: false
+        occludes: true
+        ents: []
+      cell_slot: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
   - type: Appearance
   - type: GenericVisualizer
     visuals:
