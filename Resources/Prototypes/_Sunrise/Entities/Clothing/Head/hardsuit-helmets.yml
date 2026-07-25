@@ -391,6 +391,26 @@
   - type: Appearance
 
 - type: entity
+  parent: ClothingHeadHelmetHardsuitPrivateer
+  id: ClothingHeadHelmetHardsuitPrivateSec
+  categories: [ HideSpawnMenu ]
+  name: private sec hardsuit helmet
+  description: A special hardsuit helmet, made for private sec.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/private_sec.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/private_sec.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      - state: on-equipped-HELMET # Always on, cause infitity NVD
+        shader: unshaded
+  - type: StaticPrice
+    price: 1000
+  - type: Appearance
+
+- type: entity
   parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMajorContraband]
   id: SunriseClothingHeadHelmetHardsuitRogue
   categories: [ HideSpawnMenu ]

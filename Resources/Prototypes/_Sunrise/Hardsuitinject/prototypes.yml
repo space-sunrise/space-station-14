@@ -238,7 +238,7 @@
     generated:
       reagents:
       - ReagentId: DarkRedRum
-        Quantity: 0.5
+        Quantity: 0.25
   - type: Tag
     tags:
     - FitsHardsuit

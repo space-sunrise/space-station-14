@@ -457,8 +457,27 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPrivateer
+  - type: Construction
+    graph: PrivateSecHardsuit
+    node: start
   - type: StaticPrice
     price: 0
+
+- type: entity
+  parent: ClothingOuterHardsuitPrivateer
+  id: ClothingOuterHardsuitPrivateSec
+  name: private sec hardsuit
+  description: A hardsuit worn by those who roam the stars without a flag, ready to dive into any raid or misadventure for a handful of doubloons. Scratched and dented but still holds air without duct tape.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/private_sec.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/private_sec.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPrivateSec
+  - type: Construction
+    graph: PrivateSecHardsuit
+    node: privateSec
 
 - type: entity
   parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase, BaseMajorContraband]
