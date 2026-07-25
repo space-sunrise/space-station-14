@@ -234,6 +234,77 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: ClothingOuterEVASuitPirate
+  id: ClothingOuterEVASuitPirateDamaged
+  name: damaged boarding EVA suit
+  description: A battered boarding EVA suit with punctured pressure layers. It no longer protects its wearer from space.
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 1
+    lowPressureMultiplier: 1
+  - type: TemperatureProtection
+    heatingCoefficient: 1
+    coolingCoefficient: 1
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - FullBodyOuter
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterEVASuitPirateArmored
+  id: ClothingOuterEVASuitPirateArmoredDamaged
+  name: damaged armored boarding EVA suit
+  description: An armored boarding EVA suit with torn seals and punctured pressure layers. It no longer protects its wearer from space.
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 1
+    lowPressureMultiplier: 1
+  - type: TemperatureProtection
+    heatingCoefficient: 1
+    coolingCoefficient: 1
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - FullBodyOuter
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterEVASuitPirateArmoredAlt
+  id: ClothingOuterEVASuitPirateArmoredAltDamaged
+  name: damaged armored boarding EVA suit
+  description: An armored boarding EVA suit with a painted skull and enough punctures to ruin the pressure seal. It no longer protects its wearer from space.
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 1
+    lowPressureMultiplier: 1
+  - type: TemperatureProtection
+    heatingCoefficient: 1
+    coolingCoefficient: 1
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - FullBodyOuter
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterHardsuitScaf
+  id: ClothingOuterHardsuitScafDamaged
+  name: damaged SCAF EVA suit
+  description: A green-and-brown EVA suit with split seams and punctured pressure layers. It no longer protects its wearer from space.
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 1
+    lowPressureMultiplier: 1
+  - type: TemperatureProtection
+    heatingCoefficient: 1
+    coolingCoefficient: 1
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+
+- type: entity
   parent: [ClothingOuterEVASuitBase, BaseTSFContraband]
   id: ClothingOuterArmorTSF
   name: Federation marine combat armor
