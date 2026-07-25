@@ -51,7 +51,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         // Sunrise edit start - удаление события, если нет игровой станции
         if (!StationEventHelper.HasValidPlayerStation(StationSystem, EntityManager))
         {
-            Sawmill.Info($"Событие {ToPrettyString(uid)} удалено: нет игровой станции");
+            Sawmill.Info($"Event {ToPrettyString(uid)} removed: no player station available");
             QueueDel(uid);
             return;
         }
@@ -144,9 +144,21 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             if (!GameTicker.IsGameRuleAdded(uid, ruleData))
                 continue;
 
-            if (!GameTicker.IsGameRuleActive(uid, ruleData) && !_delayedStartQuery.HasComponent(uid))
+            if (!GameTicker.IsGameRuleActive(uid, ruleData))
             {
-                GameTicker.StartGameRule(uid, ruleData);
+                // Sunrise edit start - проверка станции для всех неактивных правил (включая delayed)
+                if (!StationEventHelper.HasValidPlayerStation(StationSystem, EntityManager))
+                {
+                    Sawmill.Info($"Event {ToPrettyString(uid)} removed before start: no player station available");
+                    QueueDel(uid);
+                    continue;
+                }
+                // Sunrise edit end
+
+                if (!_delayedStartQuery.HasComponent(uid))
+                {
+                    GameTicker.StartGameRule(uid, ruleData);
+                }
             }
             else if (stationEvent.EndTime != null && Timing.CurTime >= stationEvent.EndTime && GameTicker.IsGameRuleActive(uid, ruleData))
             {
