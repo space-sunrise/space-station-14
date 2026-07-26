@@ -68,6 +68,26 @@
         type: ShipyardConsoleBoundUserInterface
   - type: Computer
     board: null
+  - type: Construction
+    graph: SunriseShipyardComputer
+    node: computer
+    deconstructionTarget: null
+    containers:
+    - board
+  - type: Repairable
+    doAfterDelay: 10
+    allowSelfRepair: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Breakage" ]
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -91,6 +111,15 @@
     - map: ["computerLayerKeys"]
       sprite: _Sunrise/Structures/Machines/computers.rsi
       state: tech_key
+    - map: ["enum.ShipyardConsoleVisualLayers.Broken"]
+      state: broken
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ShipyardConsoleVisuals.Broken:
+        enum.ShipyardConsoleVisualLayers.Broken:
+          True: { visible: true }
+          False: { visible: false }
 
 - type: entity
   parent: BaseComputerShipyard
@@ -135,6 +164,9 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+    - map: ["enum.ShipyardConsoleVisualLayers.Broken"]
+      state: broken
+      visible: false
 
 - type: entity
   id: ComputerSaleConsole

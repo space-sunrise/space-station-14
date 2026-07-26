@@ -3,16 +3,23 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared.Administration.Logs;
 using Content.Shared._Sunrise.Shipyard;
 using Content.Shared._Sunrise.Shipyard.Components;
 using Content.Shared._Sunrise.Shipyard.Events;
 using Content.Shared.Access.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
+using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Database;
+using Content.Shared.Destructible;
 using Content.Shared.Interaction;
+using Content.Shared.Repairable;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -25,10 +32,10 @@ namespace Content.Server._Sunrise.Shipyard;
 public sealed partial class ShipyardSystem : EntitySystem
 {
     private const string InvalidVesselMessage = "shipyard-console-invalid-vessel";
-    private static readonly TimeSpan PurchaseDeploymentDelay = TimeSpan.FromSeconds(5);
-    private static readonly TimeSpan TransactionDelay = TimeSpan.FromSeconds(30);
 
     [Dependency] private readonly AccessReaderSystem _access = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedCargoSystem _cargo = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
@@ -62,7 +69,10 @@ public sealed partial class ShipyardSystem : EntitySystem
         });
 
         SubscribeLocalEvent<ShipyardConsoleComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<ShipyardConsoleComponent, ActivatableUIOpenAttemptEvent>(OnUiOpenAttempt);
+        SubscribeLocalEvent<ShipyardConsoleComponent, BreakageEventArgs>(OnBreakage);
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
+        SubscribeLocalEvent<ShipyardConsoleComponent, RepairedEvent>(OnRepaired);
         SubscribeLocalEvent<StationBankAccountComponent, BankBalanceUpdatedEvent>(OnBankBalanceUpdated);
     }
 
@@ -96,7 +106,7 @@ public sealed partial class ShipyardSystem : EntitySystem
 
             _pendingPurchases.RemoveAt(i);
             RefundPendingPurchase(purchase);
-            DeleteStagingMap(purchase.StagingMap);
+            CleanupPendingPurchase(purchase);
         }
 
         for (var i = _pendingActions.Count - 1; i >= 0; i--)
@@ -111,69 +121,139 @@ public sealed partial class ShipyardSystem : EntitySystem
         if (args.Handled || !HasComp<CashComponent>(args.Used))
             return;
 
-        args.Handled = TryDepositCash(ent, args.Used, args.User);
+        args.Handled = TryDepositCash(
+            (ent.Owner, (ShipyardConsoleComponent?) ent.Comp),
+            args.Used,
+            args.User);
     }
 
-    public bool TryDepositCash(Entity<ShipyardConsoleComponent> ent, EntityUid cash, EntityUid user)
+    public bool TryDepositCash(Entity<ShipyardConsoleComponent?> ent, EntityUid cash, EntityUid user)
     {
-        if (!CanDepositCash(ent, cash, user))
+        if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        DoDepositCash(ent, cash, user);
+        Entity<ShipyardConsoleComponent> resolved = (ent.Owner, ent.Comp);
+
+        if (!CanDepositCash(ent, cash, user, out var reason))
+        {
+            if (reason is not null)
+                Deny(resolved, user, reason);
+
+            return false;
+        }
+
+        if (!DoDepositCash(resolved, cash, user))
+        {
+            Deny(resolved, user, "shipyard-console-transaction-failed");
+            return false;
+        }
+
         return true;
     }
 
     public bool CanDepositCash(
-        Entity<ShipyardConsoleComponent> ent,
+        Entity<ShipyardConsoleComponent?> ent,
         EntityUid cash,
         EntityUid user,
-        bool quiet = false)
+        out string? reason)
     {
+        reason = null;
+
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
         if (!HasComp<CashComponent>(cash))
             return false;
 
         if (!_access.IsAllowed(user, ent))
         {
-            if (!quiet)
-                Deny(ent, user, "shipyard-console-access-denied");
+            reason = "shipyard-console-access-denied";
             return false;
         }
 
-        var amount = (int) _pricing.GetPrice(cash);
-        if (amount <= 0)
+        if (IsConsoleBroken(ent))
+        {
+            reason = "shipyard-console-broken";
+            return false;
+        }
+
+        if (!TryGetCashValue(cash, out var amount))
             return false;
 
         var stationUid = _station.GetOwningStation(ent);
         if (stationUid is not { } station ||
             !TryComp<StationBankAccountComponent>(station, out var bank))
         {
-            if (!quiet)
-                Deny(ent, user, "shipyard-console-station-not-found");
+            reason = "shipyard-console-station-not-found";
             return false;
         }
 
-        if (!_cargo.TryGetAccount((station, bank), ent.Comp.Account, out _))
+        if (!_cargo.TryGetAccount((station, bank), ent.Comp.Account, out var balance))
         {
-            if (!quiet)
-                Deny(ent, user, "shipyard-console-account-not-found");
+            reason = "shipyard-console-account-not-found";
+            return false;
+        }
+
+        if ((long) balance + amount > int.MaxValue)
+        {
+            reason = "shipyard-console-account-limit-reached";
             return false;
         }
 
         return true;
     }
 
-    public void DoDepositCash(Entity<ShipyardConsoleComponent> ent, EntityUid cash, EntityUid user)
+    private bool DoDepositCash(Entity<ShipyardConsoleComponent> ent, EntityUid cash, EntityUid user)
     {
-        var amount = (int) _pricing.GetPrice(cash);
-        var station = _station.GetOwningStation(ent)!.Value;
-        var bank = Comp<StationBankAccountComponent>(station);
+        if (!TryGetCashValue(cash, out var amount) ||
+            _station.GetOwningStation(ent) is not { } station ||
+            !TryComp<StationBankAccountComponent>(station, out var bank) ||
+            !TryAdjustBankAccount((station, bank), ent.Comp.Account, amount))
+        {
+            return false;
+        }
 
-        _cargo.TryAdjustBankAccount((station, bank), ent.Comp.Account, amount);
+        _adminLogger.Add(
+            LogType.Action,
+            LogImpact.Medium,
+            $"{ToPrettyString(user):player} deposited {amount} credits using {ToPrettyString(cash):cash} into "
+            + $"{ent.Comp.Account} at {ToPrettyString(ent):console}.");
         QueueDel(cash);
 
         _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         _popup.PopupEntity(Loc.GetString("shipyard-console-credit-deposit", ("amount", amount)), ent, user);
         UpdateUi(ent);
+        return true;
+    }
+
+    private bool TryGetCashValue(EntityUid cash, out int amount)
+    {
+        amount = 0;
+        if (!HasComp<CashComponent>(cash))
+            return false;
+
+        var value = _pricing.GetPrice(cash);
+        if (!double.IsFinite(value) || value <= 0 || value > int.MaxValue)
+            return false;
+
+        amount = (int) value;
+        return amount > 0;
+    }
+
+    private bool TryAdjustBankAccount(
+        Entity<StationBankAccountComponent> station,
+        ProtoId<CargoAccountPrototype> account,
+        int amount)
+    {
+        Entity<StationBankAccountComponent?> bank = (station.Owner, station.Comp);
+        if (!_cargo.TryGetAccount(bank, account, out var balance))
+            return false;
+
+        var adjustedBalance = (long) balance + amount;
+        if (adjustedBalance is < 0 or > int.MaxValue)
+            return false;
+
+        return _cargo.TryAdjustBankAccount(bank, account, amount);
     }
 
     private void Deny(

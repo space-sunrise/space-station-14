@@ -3,8 +3,10 @@ using Content.Server.Shuttles.Components;
 using Content.Shared._Sunrise.Shipyard.Components;
 using Content.Shared._Sunrise.Shipyard.Events;
 using Content.Shared._Sunrise.Shipyard.Prototypes;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Database;
 using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -22,6 +24,12 @@ public sealed partial class ShipyardSystem
         if (!_access.IsAllowed(args.Actor, ent))
         {
             Deny(ent, args.Actor, "shipyard-console-access-denied");
+            return;
+        }
+
+        if (IsConsoleBroken(ent))
+        {
+            Deny(ent, args.Actor, "shipyard-console-broken");
             return;
         }
 
@@ -57,7 +65,13 @@ public sealed partial class ShipyardSystem
             return;
         }
 
-        if (vessel.Price < 0 || balance < vessel.Price)
+        if (vessel.Price <= 0)
+        {
+            Deny(ent, args.Actor, InvalidVesselMessage);
+            return;
+        }
+
+        if (balance < vessel.Price)
         {
             Deny(ent, args.Actor, "shipyard-console-insufficient-funds", ("cost", vessel.Price));
             return;
@@ -80,9 +94,9 @@ public sealed partial class ShipyardSystem
                 return;
             }
 
-            if (!_cargo.TryAdjustBankAccount((station, bank), ent.Comp.Account, -vessel.Price))
+            if (!TryAdjustBankAccount((station, bank), ent.Comp.Account, -vessel.Price))
             {
-                Deny(ent, args.Actor, "shipyard-console-account-not-found");
+                Deny(ent, args.Actor, "shipyard-console-transaction-failed");
                 return;
             }
 
@@ -90,7 +104,7 @@ public sealed partial class ShipyardSystem
                 ent.Owner,
                 args.Actor,
                 station,
-                _timing.CurTime + PurchaseDeploymentDelay,
+                _timing.CurTime + ent.Comp.PurchaseDelay,
                 stagingMapId,
                 shuttleUid,
                 vessel,
@@ -118,7 +132,7 @@ public sealed partial class ShipyardSystem
             if (!_consoleQuery.TryComp(purchase.Console, out var console))
             {
                 RefundPendingPurchase(purchase);
-                DeleteStagingMap(purchase.StagingMap);
+                CleanupPendingPurchase(purchase);
                 continue;
             }
 
@@ -128,6 +142,12 @@ public sealed partial class ShipyardSystem
 
     private void CompletePurchase(Entity<ShipyardConsoleComponent> ent, PendingShipyardPurchase purchase)
     {
+        if (IsConsoleBroken(ent))
+        {
+            CancelPendingPurchase(ent, purchase, "shipyard-console-broken");
+            return;
+        }
+
         if (!_map.MapExists(purchase.StagingMap) || !Exists(purchase.Shuttle))
         {
             CancelPendingPurchase(ent, purchase, "shipyard-console-load-failed");
@@ -176,8 +196,11 @@ public sealed partial class ShipyardSystem
 
         if (!Exists(purchase.Shuttle))
         {
-            RefundPendingPurchase(purchase);
-            Deny(ent, purchase.Actor, "shipyard-console-docking-failed");
+            var refunded = RefundPendingPurchase(purchase);
+            Deny(
+                ent,
+                purchase.Actor,
+                refunded ? "shipyard-console-docking-failed" : "shipyard-console-refund-failed");
             return;
         }
 
@@ -187,6 +210,12 @@ public sealed partial class ShipyardSystem
         ent.Comp.CurrentShuttleVessel = purchase.Vessel;
         Dirty(ent);
 
+        _adminLogger.Add(
+            LogType.StorePurchase,
+            LogImpact.Medium,
+            $"{ToPrettyString(purchase.Actor):player} purchased shuttle {ToPrettyString(purchase.Shuttle):shuttle} "
+            + $"({purchase.Vessel.ID}) for {purchase.Price} credits from {purchase.Account} using "
+            + $"{ToPrettyString(ent):console}.");
         _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         if (Exists(purchase.Actor))
             _popup.PopupEntity(Loc.GetString("shipyard-console-purchase-success"), ent, purchase.Actor);
@@ -200,15 +229,46 @@ public sealed partial class ShipyardSystem
         PendingShipyardPurchase purchase,
         string message)
     {
-        RefundPendingPurchase(purchase);
-        DeleteStagingMap(purchase.StagingMap);
-        Deny(ent, purchase.Actor, message);
+        var refunded = RefundPendingPurchase(purchase);
+        CleanupPendingPurchase(purchase);
+        Deny(
+            ent,
+            purchase.Actor,
+            refunded ? message : "shipyard-console-refund-failed");
     }
 
-    private void RefundPendingPurchase(PendingShipyardPurchase purchase)
+    private bool RefundPendingPurchase(PendingShipyardPurchase purchase)
     {
-        if (TryComp<StationBankAccountComponent>(purchase.Station, out var bank))
-            _cargo.TryAdjustBankAccount((purchase.Station, bank), purchase.Account, purchase.Price);
+        if (!TryComp<StationBankAccountComponent>(purchase.Station, out var bank) ||
+            !TryAdjustBankAccount((purchase.Station, bank), purchase.Account, purchase.Price))
+        {
+            Log.Error(
+                "Failed to refund {Price} credits for cancelled shipyard purchase {Vessel} at station {Station}",
+                purchase.Price,
+                purchase.Vessel.ID,
+                ToPrettyString(purchase.Station));
+            _adminLogger.Add(
+                LogType.StoreRefund,
+                LogImpact.High,
+                $"Failed to refund {purchase.Price} credits to {purchase.Account} for cancelled shipyard purchase "
+                + $"{purchase.Vessel.ID} by {ToPrettyString(purchase.Actor):player}.");
+            return false;
+        }
+
+        _adminLogger.Add(
+            LogType.StoreRefund,
+            LogImpact.Medium,
+            $"Refunded {purchase.Price} credits to {purchase.Account} for cancelled shipyard purchase "
+            + $"{purchase.Vessel.ID} by {ToPrettyString(purchase.Actor):player}.");
+        return true;
+    }
+
+    private void CleanupPendingPurchase(PendingShipyardPurchase purchase)
+    {
+        if (Exists(purchase.Shuttle))
+            QueueDel(purchase.Shuttle);
+
+        DeleteStagingMap(purchase.StagingMap);
     }
 
     private void DeleteStagingMap(MapId mapId)

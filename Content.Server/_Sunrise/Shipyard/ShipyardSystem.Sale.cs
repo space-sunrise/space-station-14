@@ -1,7 +1,9 @@
 using Content.Shared._Sunrise.Shipyard.Components;
 using Content.Shared._Sunrise.Shipyard.Events;
 using Content.Shared._Sunrise.Shipyard.Prototypes;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Cargo.Components;
+using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.SSDIndicator;
@@ -21,6 +23,12 @@ public sealed partial class ShipyardSystem
         if (!_access.IsAllowed(args.Actor, ent))
         {
             Deny(ent, args.Actor, "shipyard-console-access-denied");
+            return;
+        }
+
+        if (IsConsoleBroken(ent))
+        {
+            Deny(ent, args.Actor, "shipyard-console-broken");
             return;
         }
 
@@ -68,18 +76,24 @@ public sealed partial class ShipyardSystem
         _pendingActions.Add(new PendingShipyardAction(
             ent.Owner,
             args.Actor,
-            _timing.CurTime + TransactionDelay,
+            _timing.CurTime + ent.Comp.SaleDelay,
             soldName));
         _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         _popup.PopupEntity(Loc.GetString("shipyard-console-sale-queued",
-            ("delay", TransactionDelay.TotalSeconds), ("ship", soldName)), ent, args.Actor);
+            ("delay", ent.Comp.SaleDelay.TotalSeconds), ("ship", soldName)), ent, args.Actor);
         Announce(ent, "shipyard-console-sale-queued-announcement",
-            ("ship", soldName), ("delay", TransactionDelay.TotalSeconds));
+            ("ship", soldName), ("delay", ent.Comp.SaleDelay.TotalSeconds));
         UpdateUi(ent);
     }
 
     private void CompleteSale(Entity<ShipyardConsoleComponent> ent, PendingShipyardAction action)
     {
+        if (IsConsoleBroken(ent))
+        {
+            CancelAction(ent, action, "shipyard-console-broken");
+            return;
+        }
+
         if (ent.Comp.CurrentShuttle is not { } shuttleUid || !Exists(shuttleUid))
         {
             ClearShuttle(ent);
@@ -109,12 +123,17 @@ public sealed partial class ShipyardSystem
         }
 
         var refund = GetCurrentSellValue(ent.Comp, shuttleUid);
-        if (!_cargo.TryAdjustBankAccount((station, bank), ent.Comp.Account, refund))
+        if (!TryAdjustBankAccount((station, bank), ent.Comp.Account, refund))
         {
-            CancelAction(ent, action, "shipyard-console-account-not-found");
+            CancelAction(ent, action, "shipyard-console-transaction-failed");
             return;
         }
 
+        _adminLogger.Add(
+            LogType.StoreRefund,
+            LogImpact.Medium,
+            $"{ToPrettyString(action.Actor):player} sold shuttle {ToPrettyString(shuttleUid):shuttle} "
+            + $"for {refund} credits to {ent.Comp.Account} using {ToPrettyString(ent):console}.");
         QueueDel(shuttleUid);
         ClearShuttle(ent);
         _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
@@ -268,9 +287,9 @@ public sealed partial class ShipyardSystem
     // relative to the valuation at the time of purchase (for example, due to equipment removal).
     private int GetCurrentSellValue(ShipyardConsoleComponent component, EntityUid shuttleUid)
     {
-        var maximumRefund = component.CurrentShuttlePrice * Math.Clamp(component.SellRate, 0f, 1f);
+        var maximumRefund = component.CurrentShuttlePrice * Math.Clamp((double) component.SellRate, 0d, 1d);
         if (component.InitialShuttleAppraisal <= 0)
-            return (int) MathF.Round(maximumRefund);
+            return (int) Math.Round(maximumRefund);
 
         var currentAppraisal = Math.Max(0, _pricing.AppraiseGrid(shuttleUid));
         var retainedValue = Math.Clamp(currentAppraisal / component.InitialShuttleAppraisal, 0d, 1d);

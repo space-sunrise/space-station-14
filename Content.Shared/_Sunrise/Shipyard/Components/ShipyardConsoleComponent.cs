@@ -50,6 +50,18 @@ public sealed partial class ShipyardConsoleComponent : Component
     public float MaxSellDistance = 300f;
 
     /// <summary>
+    /// Delay between reserving funds and deploying a purchased shuttle.
+    /// </summary>
+    [DataField]
+    public TimeSpan PurchaseDelay = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// Delay before a queued shuttle sale is completed.
+    /// </summary>
+    [DataField]
+    public TimeSpan SaleDelay = TimeSpan.FromSeconds(30);
+
+    /// <summary>
     /// Radio channel used for purchase and sale announcements.
     /// </summary>
     [DataField]
