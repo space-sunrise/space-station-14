@@ -1,5 +1,4 @@
 using Content.Shared._Sunrise.CollectiveMind;
-using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.CollectiveMind;
@@ -11,20 +10,12 @@ public sealed class CollectiveMindSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<CollectiveMindComponent, ComponentInit>(OnMindInit);
         SubscribeLocalEvent<CollectiveMindGroupComponent, ComponentShutdown>(OnGroupShutdown);
-        SubscribeLocalEvent<CollectiveMindComponent, ComponentGetState>(OnGetState);
     }
 
-    private void OnGetState(Entity<CollectiveMindComponent> ent, ref ComponentGetState args)
-    {
-        var memberships = new List<CollectiveMindNetworkMembership>(ent.Comp.Memberships.Count);
-        foreach (var membership in ent.Comp.Memberships)
-        {
-            memberships.Add(new CollectiveMindNetworkMembership(membership.Mind, membership.Permissions));
-        }
-
-        args.State = new CollectiveMindComponentState(memberships);
-    }
+    private void OnMindInit(Entity<CollectiveMindComponent> ent, ref ComponentInit args)
+        => UpdateClientPermissions(ent);
 
     #region Group management
 
@@ -36,7 +27,7 @@ public sealed class CollectiveMindSystem : EntitySystem
         while (query.MoveNext(out var uid, out var collectiveMind))
         {
             if (collectiveMind.Memberships.RemoveAll(x => x.Group == ent.Owner) > 0)
-                Dirty(uid, collectiveMind);
+                UpdateClientPermissions((uid, collectiveMind));
         }
     }
 
@@ -108,26 +99,31 @@ public sealed class CollectiveMindSystem : EntitySystem
         return true;
     }
 
-    public bool TryRemoveMember(Entity<CollectiveMindComponent?> member, ProtoId<CollectiveMindPrototype> mind, EntityUid? group = null)
+    public bool TryRemoveMember(Entity<CollectiveMindComponent?> member, ProtoId<CollectiveMindPrototype> mind)
     {
-        if (!Resolve(member, ref member.Comp, false) ||
-            !TryFindMembership(member.Comp, mind, group, out var index))
+        if (!Resolve(member, ref member.Comp, false))
+            return false;
+
+        var index = FindMembership(member.Comp, mind);
+        if (index < 0)
             return false;
 
         member.Comp.Memberships.RemoveAt(index);
-        Dirty(member);
+        UpdateClientPermissions((member, member.Comp));
         return true;
     }
 
-    public bool TrySetMemberPermissions(Entity<CollectiveMindComponent?> member, ProtoId<CollectiveMindPrototype> mind, CollectiveMindPermissions permissions, EntityUid? group = null)
+    public bool TrySetMemberPermissions(Entity<CollectiveMindComponent?> member, ProtoId<CollectiveMindPrototype> mind, CollectiveMindPermissions permissions)
     {
-        if (!Resolve(member, ref member.Comp, false) ||
-            !TryFindMembership(member.Comp, mind, group, out var index))
+        if (!Resolve(member, ref member.Comp, false))
+            return false;
+
+        var index = FindMembership(member.Comp, mind);
+        if (index < 0)
             return false;
 
         member.Comp.Memberships[index] = member.Comp.Memberships[index] with { Permissions = permissions };
-
-        Dirty(member);
+        UpdateClientPermissions((member, member.Comp));
         return true;
     }
 
@@ -136,13 +132,6 @@ public sealed class CollectiveMindSystem : EntitySystem
     #region Message routing
 
     public bool TryResolveSender(Entity<CollectiveMindComponent?> member, ProtoId<CollectiveMindPrototype> mind, out EntityUid? group)
-    {
-        group = null;
-        return Resolve(member, ref member.Comp, false) &&
-               TryResolveSender(member.Comp, mind, out group);
-    }
-
-    public bool TryResolveSender(Entity<CollectiveMindComponent?> member, CollectiveMindPrototype mind, out EntityUid? group)
     {
         group = null;
         return Resolve(member, ref member.Comp, false) &&
@@ -262,17 +251,7 @@ public sealed class CollectiveMindSystem : EntitySystem
         else
             member.Comp.Memberships[index] = membership;
 
-        Dirty(member);
-    }
-
-    private bool TryFindMembership(CollectiveMindComponent collectiveMind, ProtoId<CollectiveMindPrototype> mind, EntityUid? group, out int index)
-    {
-        index = -1;
-        if (!TryGetMembershipGroupId(mind, group, out var groupId))
-            return false;
-
-        index = FindMembership(collectiveMind, mind, groupId);
-        return index >= 0;
+        UpdateClientPermissions(member);
     }
 
     private bool TryGetMembershipGroupId(ProtoId<CollectiveMindPrototype> mind, EntityUid? group, out EntityUid? groupId)
@@ -289,18 +268,6 @@ public sealed class CollectiveMindSystem : EntitySystem
 
         groupId = groupEntity;
         return true;
-    }
-
-    private static int FindMembership(CollectiveMindComponent component, ProtoId<CollectiveMindPrototype> mind, EntityUid? group)
-    {
-        for (var i = 0; i < component.Memberships.Count; i++)
-        {
-            var membership = component.Memberships[i];
-            if (membership.Mind == mind && membership.Group == group)
-                return i;
-        }
-
-        return -1;
     }
 
     private static int FindMembership(CollectiveMindComponent component, ProtoId<CollectiveMindPrototype> mind)
@@ -323,6 +290,21 @@ public sealed class CollectiveMindSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private void UpdateClientPermissions(Entity<CollectiveMindComponent> member)
+    {
+        var permissions = CollectiveMindPermissions.None;
+        foreach (var membership in member.Comp.Memberships)
+        {
+            permissions |= membership.Permissions;
+        }
+
+        if (member.Comp.ClientPermissions == permissions)
+            return;
+
+        member.Comp.ClientPermissions = permissions;
+        Dirty(member);
     }
 
     #endregion

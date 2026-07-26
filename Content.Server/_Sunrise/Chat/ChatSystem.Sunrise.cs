@@ -29,7 +29,7 @@ public sealed partial class ChatSystem
 
         if (mind is { } explicitMind)
         {
-            if (!_prototypeManager.Resolve(explicitMind, out var prototype) || !_collectiveMind.TryResolveSender(source, prototype, out _))
+            if (!_prototypeManager.Resolve(explicitMind, out var prototype) || !_collectiveMind.TryResolveSender(source, prototype.ID, out _))
                 return false;
 
             message = $"{CollectiveMindPrefix}{prototype.KeyCode} {message}";

@@ -1,7 +1,6 @@
 using Content.Client.Chat.Managers;
 using Content.Shared._Sunrise.CollectiveMind;
 using Robust.Client.Player;
-using Robust.Shared.GameStates;
 
 namespace Content.Client.Chat;
 
@@ -21,46 +20,17 @@ public sealed class CollectiveMindChatUpdateSystem : EntitySystem
 
         SubscribeLocalEvent<CollectiveMindComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<CollectiveMindComponent, ComponentRemove>(OnRemove);
-        SubscribeLocalEvent<CollectiveMindComponent, ComponentHandleState>(OnStateChanged);
+        SubscribeLocalEvent<CollectiveMindComponent, AfterAutoHandleStateEvent>(OnStateChanged);
     }
 
     private void OnInit(Entity<CollectiveMindComponent> ent, ref ComponentInit args)
-    {
-        if (_removingEntity == ent.Owner)
-            _removingEntity = null;
-
-        UpdatePermissions(ent);
-    }
+        => UpdatePermissions(ent);
 
     private void OnRemove(Entity<CollectiveMindComponent> ent, ref ComponentRemove args)
-    {
-        if (_player.LocalEntity != ent.Owner)
-            return;
+        => UpdatePermissions(ent, true);
 
-        _removingEntity = ent.Owner;
-        _chat.UpdatePermissions();
-    }
-
-    private void OnStateChanged(Entity<CollectiveMindComponent> ent, ref ComponentHandleState args)
-    {
-        if (args.Current is not CollectiveMindComponentState state)
-            return;
-
-        ent.Comp.Memberships.Clear();
-        foreach (var membership in state.Memberships)
-        {
-            ent.Comp.Memberships.Add(new CollectiveMindMembership
-            {
-                Mind = membership.Mind,
-                Permissions = membership.Permissions,
-            });
-        }
-
-        if (_removingEntity == ent.Owner)
-            _removingEntity = null;
-
-        UpdatePermissions(ent);
-    }
+    private void OnStateChanged(Entity<CollectiveMindComponent> ent, ref AfterAutoHandleStateEvent args)
+        => UpdatePermissions(ent);
 
     private bool HasPermission(CollectiveMindPermissions permission)
     {
@@ -69,20 +39,15 @@ public sealed class CollectiveMindChatUpdateSystem : EntitySystem
             !TryComp<CollectiveMindComponent>(localEntity, out var collectiveMind))
             return false;
 
-        foreach (var membership in collectiveMind.Memberships)
-        {
-            if ((membership.Permissions & permission) != 0)
-                return true;
-        }
-
-        return false;
+        return (collectiveMind.ClientPermissions & permission) != 0;
     }
 
-    private void UpdatePermissions(EntityUid uid)
+    private void UpdatePermissions(EntityUid uid, bool removing = false)
     {
         if (_player.LocalEntity != uid)
             return;
 
+        _removingEntity = removing ? uid : null;
         _chat.UpdatePermissions();
     }
 }
