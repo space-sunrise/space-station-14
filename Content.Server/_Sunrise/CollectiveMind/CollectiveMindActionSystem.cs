@@ -86,6 +86,7 @@ public sealed class CollectiveMindActionSystem : EntitySystem
             performer,
             message,
             mind,
-            player: session);
+            player: session
+            );
     }
 }
