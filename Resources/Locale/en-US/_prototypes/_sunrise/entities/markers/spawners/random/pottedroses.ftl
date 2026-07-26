@@ -1,2 +1,2 @@
-ent-PottedRoseRandom = random potted rose spawner
+ent-PottedRoseRandom = spawner random potted rose
     .desc = { ent-MarkerBase.desc }

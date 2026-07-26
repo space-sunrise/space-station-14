@@ -1,7 +1,7 @@
 - type: entity
   parent: MarkerBase
   id: PottedRoseRandom
-  name: random potted rose spawner
+  name: spawner random potted rose
   components:
   - type: Sprite
     layers:
