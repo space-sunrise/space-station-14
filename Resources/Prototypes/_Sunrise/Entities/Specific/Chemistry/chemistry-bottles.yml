@@ -71,7 +71,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 190
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -110,22 +110,5 @@
   - type: Item
     size: Tiny
     sprite: _Sunrise/Objects/Specific/Chemistry/bottle_durable2.rsi
-  - type: SolutionContainerVisuals
-    fillBaseName: bottle-1-
-
-- type: entity
-  parent: BaseChemistryEmptyBottleDurable
-  id: ChemistryEmptyBottleDurable03
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Chemistry/bottle_durable3.rsi
-    layers:
-    - state: bottle-1
-    - state: bottle-1-1
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: false
-  - type: Item
-    size: Tiny
-    sprite: _Sunrise/Objects/Specific/Chemistry/bottle_durable3.rsi
   - type: SolutionContainerVisuals
     fillBaseName: bottle-1-

@@ -106,6 +106,7 @@
   - AdvancedJetInjector
   - BluespacePillPatchCanister # Sunrise-Add
   - JugBluespace # Sunrise-Add
+  - ChemistryEmptyBottleDurable01 # Sunrise-Add
 
 - type: latheRecipePack
   id: MedicalBoards
