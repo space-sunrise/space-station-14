@@ -1,4 +1,3 @@
-using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Actions;
 using Content.Shared.Roles.Components;
 using Robust.Shared.GameStates;
@@ -81,8 +80,6 @@ public sealed partial class AbductorDispencerComponent : Component
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem))]
 public sealed partial class AbductorComponent : Component
 {
-    [ValidatePrototypeId<CollectiveMindPrototype>]
-    public string AbductorCollectiveMindProto = "Abductor";
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem)), AutoGenerateComponentState]

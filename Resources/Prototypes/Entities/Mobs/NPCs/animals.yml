@@ -2742,8 +2742,8 @@
       params:
         volume: -10
   - type: CollectiveMind
-    minds:
-    - Arachnids
+    memberships:
+    - mind: Arachnids
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -3994,8 +3994,8 @@
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
   - type: CollectiveMind
-    minds:
-    - Dioneas
+    memberships:
+    - mind: Dioneas
   - type: CanEscapeInventory
 
 - type: entity

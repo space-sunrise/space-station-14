@@ -65,8 +65,8 @@
     - type: ReplacementAccent
       accent: genericAggressive
     - type: CollectiveMind
-      minds:
-      - FleshCult
+      memberships:
+      - mind: FleshCult
     - type: IgnoreFleshSpiderWeb
 
 - type: entity
@@ -636,4 +636,3 @@
     sprite: _Sunrise/Interface/Misc/antag_preview.rsi
     state: flesh_cultist
     scale: 2, 2
-

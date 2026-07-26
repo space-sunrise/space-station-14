@@ -1,78 +1,79 @@
 - type: collectiveMind
   id: Xeno
   name: collective-mind-xeno
-  keycode: 'х'
+  keyCode: 'х'
   color: "#00ff40"
   voiceId: shadow_fiend_dota_2
 
 - type: collectiveMind
   id: Blob
   name: collective-mind-blob
-  keycode: 'б'
+  keyCode: 'б'
   color: "#66f263"
   voiceId: EvilThalya
 
 - type: collectiveMind
   id: FleshCult
   name: collective-mind-flesh-cult
-  keycode: 'п'
+  keyCode: 'п'
   color: "#ff2676"
   voiceId: legion_commander_demon_dota_2
 
 - type: collectiveMind
   id: Dioneas
   name: collective-mind-dioneas
-  keycode: 'д'
+  keyCode: 'д'
   color: "#0f6b1e"
   voiceId: shadow_shaman_dota_2
 
 - type: collectiveMind
   id: Arachnids
   name: collective-mind-arachnids
-  keycode: 'а'
+  keyCode: 'а'
   color: "#706d0d"
   voiceId: shadow_fiend_dota_2
 
 - type: collectiveMind
   id: Carp
   name: collective-mind-carp
-  keycode: 'р'
+  keyCode: 'р'
   color: "#787878"
   voiceId: EvilThalya
 
 - type: collectiveMind
   id: Zombie
   name: collective-mind-zombie
-  keycode: 'з'
+  keyCode: 'з'
   color: "#508053"
   voiceId: shadow_fiend_dota_2
 
 - type: collectiveMind
   id: Changeling
   name: collective-mind-changeling
-  keycode: 'г'
+  keyCode: 'г'
   color: "#ff75a8"
   voiceId: EvilThalya
 
 - type: collectiveMind
   id: BloodCult
   name: collective-mind-blood-cult
-  keycode: 'к'
+  keyCode: 'к'
   color: "#8b0000"
   voiceId: legion_commander_demon_dota_2
 
 - type: collectiveMind
   id: Abductor
   name: collective-mind-abductor
-  keycode: 'й'
+  keyCode: 'й'
   color: "#d600bd"
   voiceId: Glados
+  mode: Group
   showAuthor: true
 
 - type: collectiveMind
   id: Pirate
   name: collective-mind-pirate
-  keycode: 'ф' # Фриланс
+  keyCode: 'ф' # Фриланс
   color: "#d4af37"
   voiceId: necrophos_dota_2
   showAuthor: true

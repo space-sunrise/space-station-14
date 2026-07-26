@@ -1,4 +1,5 @@
-﻿using Content.Server.Actions;
+﻿using Content.Server._Sunrise.CollectiveMind;
+using Content.Server.Actions;
 using Content.Server.Antag;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
@@ -81,6 +82,7 @@ public sealed partial class FleshCultSystem : EntitySystem
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
+    [Dependency] private readonly CollectiveMindSystem _collectiveMind = default!;
 
     private readonly List<string> _speciesWhitelist =
     [
@@ -122,4 +124,3 @@ public sealed partial class FleshCultSystem : EntitySystem
         UpdateHeart(frameTime);
     }
 }
-

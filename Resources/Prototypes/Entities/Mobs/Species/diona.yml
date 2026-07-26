@@ -131,8 +131,8 @@
   - type: Rootable
   # Sunrise-Start
   - type: CollectiveMind
-    minds:
-    - Dioneas
+    memberships:
+    - mind: Dioneas
   - type: FootprintEmitter
     leftBareFootState:
       - "footprint-left-bare-diona"

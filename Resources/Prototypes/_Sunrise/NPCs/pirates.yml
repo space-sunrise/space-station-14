@@ -148,8 +148,8 @@
     - Pirate
   - type: NpcVeteranFollower
   - type: CollectiveMind
-    minds:
-    - Pirate
+    memberships:
+    - mind: Pirate
   - type: FootprintEmitter
   - type: MobThresholds
     thresholds:
@@ -4372,5 +4372,4 @@
   - type: GhostRole
     prob: 0.35
     makeSentient: true
-
 

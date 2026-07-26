@@ -240,8 +240,8 @@
       - FootstepSound
       - DoorBumpOpener
   - type: CollectiveMind
-    minds:
-    - Xeno
+    memberships:
+    - mind: Xeno
   - type: FootprintEmitter
     leftBareFootState: [ footprint-left-bare-lizard ]
     rightBareFootState: [ footprint-right-bare-lizard ]
@@ -356,4 +356,3 @@
             state: hardsuit
   - type: Body
     prototype: HumanoidXeno
-

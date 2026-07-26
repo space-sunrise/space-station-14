@@ -12,3 +12,5 @@ collective-mind-changeling = Генокрад
 collective-mind-blood-cult = Культ Крови
 collective-mind-abductor = Абдукторы
 collective-mind-pirate = Пираты
+collective-mind-action-dialog-title = Сообщение: { $channel }
+collective-mind-action-dialog-prompt = Сообщение

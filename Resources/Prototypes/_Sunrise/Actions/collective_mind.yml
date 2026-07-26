@@ -1,0 +1,23 @@
+- type: entity
+  id: BaseActionSunriseCollectiveMindSend
+  name: collective message
+  description: Send a message to your collective mind without speaking aloud.
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: comms_console
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:CollectiveMindSendActionEvent
+
+- type: entity
+  parent: BaseActionSunriseCollectiveMindSend
+  id: ActionSunriseCollectiveMindSendXeno
+  components:
+  - type: InstantAction
+    event: !type:CollectiveMindSendActionEvent
+      collectiveMind: Xeno

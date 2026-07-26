@@ -89,8 +89,8 @@
         path: /Audio/Effects/bite.ogg
     # Sunrise-Start
     - type: CollectiveMind
-      minds:
-      - Carp
+      memberships:
+      - mind: Carp
     - type: ToggleableNightVision
     # Sunrise-End
 

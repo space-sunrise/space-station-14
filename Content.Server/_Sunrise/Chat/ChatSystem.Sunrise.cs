@@ -1,45 +1,73 @@
 using System.Linq;
-using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
-using Robust.Shared.Player;
+using Content.Server._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.CollectiveMind;
-using Robust.Shared.Utility;
-using Robust.Shared.Audio;
-using Content.Server._Sunrise.Chat;
+using Content.Shared.Chat;
 using Content.Shared.Database;
+using Robust.Shared.Console;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Content.Server.Chat.Systems;
 
 public sealed partial class ChatSystem
 {
-    private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
+    [Dependency] private readonly CollectiveMindSystem _collectiveMind = default!;
+
+    /// <summary>
+    /// Отправляет сообщение через общий IC-пайплайн чата
+    /// </summary>
+    public bool TrySendCollectiveMindMessage(
+        EntityUid source,
+        string message,
+        ProtoId<CollectiveMindPrototype>? mind = null,
+        IConsoleShell? shell = null,
+        ICommonSession? player = null)
     {
-        if (_mobStateSystem.IsDead(source))
+        if (string.IsNullOrWhiteSpace(message))
+            return false;
+
+        if (mind is { } explicitMind)
+        {
+            if (!_prototypeManager.Resolve(explicitMind, out var prototype) || !_collectiveMind.TryResolveSender(source, prototype, out _))
+                return false;
+
+            message = $"{CollectiveMindPrefix}{prototype.KeyCode} {message}";
+        }
+
+        // Важно: санитизация сообщения происходит в TrySendInGameICMessage, поэтому здесь НЕ НУЖНО её делать
+        TrySendInGameICMessage(
+            source,
+            message,
+            InGameICChatType.CollectiveMind,
+            ChatTransmitRange.Normal,
+            shell: shell,
+            player: player,
+            checkRadioPrefix: false);
+        return true;
+    }
+
+    private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype collectiveMind)
+    {
+        if (_mobStateSystem.IsDead(source) || string.IsNullOrEmpty(message))
             return;
 
-        if (collectiveMind == null || message == "")
-            return;
-
-        if (!TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp))
-            return;
-
-        if (!sourseCollectiveMindComp.Minds.Contains(collectiveMind.ID))
+        if (!_collectiveMind.TryResolveSender(source, collectiveMind.ID, out var group))
             return;
 
         var clients = Filter.Empty();
         var receivers = new HashSet<EntityUid>();
-        var mindQuery = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
-        while (mindQuery.MoveNext(out var uid, out var collectMindComp, out var actorComp))
+        var query = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
+        while (query.MoveNext(out var uid, out var memberCollectiveMind, out var actor))
         {
             if (_mobStateSystem.IsDead(uid))
                 continue;
 
-            if (collectMindComp.Minds.Contains(collectiveMind.ID))
-            {
-                clients.AddPlayer(actorComp.PlayerSession);
-                receivers.Add(uid);
-            }
+            if (!_collectiveMind.CanReceive((uid, memberCollectiveMind), collectiveMind, group))
+                continue;
+
+            clients.AddPlayer(actor.PlayerSession);
+            receivers.Add(uid);
         }
 
         var admins = _adminManager.ActiveAdmins
@@ -66,7 +94,10 @@ public sealed partial class ChatSystem
             ("message", message),
             ("channel", collectiveMind.LocalizedName));
 
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
+        var groupLog = group?.ToString() ?? "global";
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"CollectiveMind {collectiveMind.ID} ({groupLog}) chat from {ToPrettyString(source):Player}: {message}");
 
         _chatManager.ChatMessageToManyFiltered(clients,
             ChatChannel.CollectiveMind,
@@ -86,8 +117,28 @@ public sealed partial class ChatSystem
             admins,
             collectiveMind.Color);
 
-        // Raise event for TTS
         RaiseLocalEvent(new CollectiveMindSpokeEvent(source, message, receivers, collectiveMind.ID));
+    }
+
+    private CollectiveMindPrototype? GetRedirectedCollectiveMind(EntityUid source, InGameICChatType desiredType)
+    {
+        if (desiredType is not (InGameICChatType.Speak or InGameICChatType.Whisper))
+            return null;
+
+        if (!_collectiveMind.TryGetRedirectedMind(source, out var mind) || !_prototypeManager.Resolve(mind, out var prototype))
+            return null;
+
+        return prototype;
+    }
+
+    private bool TryGetDefaultCollectiveMind(EntityUid source, out CollectiveMindPrototype collectiveMind)
+    {
+        collectiveMind = default!;
+        if (!_collectiveMind.TryGetDefaultMind(source, out var mind) || !_prototypeManager.Resolve(mind, out var prototype))
+            return false;
+
+        collectiveMind = prototype;
+        return true;
     }
 
     /// <summary>
