@@ -23,7 +23,7 @@ public sealed class CollectiveMindSystem : EntitySystem
     {
         var query = EntityQueryEnumerator<CollectiveMindComponent>();
 
-        /// "Член-ство" хранит EntityUid группы -> удаляем осиротевшие записи вместе с компонентом группы
+        // "Член-ство" хранит EntityUid группы -> удаляем осиротевшие записи вместе с компонентом группы
         while (query.MoveNext(out var uid, out var collectiveMind))
         {
             if (collectiveMind.Memberships.RemoveAll(x => x.Group == ent.Owner) > 0)

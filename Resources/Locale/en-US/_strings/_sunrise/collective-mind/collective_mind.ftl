@@ -1,6 +1,7 @@
 collective-mind-chat-wrap-message = [bold]{ $channel }: { $message }[/bold]
 collective-mind-chat-wrap-message-with-author = [bold]{ $channel } ({ $source }): { $message }[/bold]
 collective-mind-chat-wrap-message-admin = { $source } ({ $channel }): { $message }
+collective-mind-chat-no-default = You don't have access to a collective mind.
 collective-mind-flesh-cult = Плоть
 collective-mind-xeno = Ксено
 collective-mind-blob = Блоб

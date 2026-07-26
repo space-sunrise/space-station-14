@@ -265,9 +265,13 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
 
-            if (TryGetDefaultCollectiveMind(source, out var defaultCollectiveMind))
-                SendCollectiveMindChat(source, message, defaultCollectiveMind);
+            if (!TryGetDefaultCollectiveMind(source, out var defaultCollectiveMind))
+            {
+                shell?.WriteError(Loc.GetString("collective-mind-chat-no-default"));
+                return;
+            }
 
+            SendCollectiveMindChat(source, message, defaultCollectiveMind);
             return;
         }
         // Sunrise-End

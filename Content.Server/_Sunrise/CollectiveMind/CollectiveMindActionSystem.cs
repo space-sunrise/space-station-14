@@ -32,13 +32,24 @@ public sealed class CollectiveMindActionSystem : EntitySystem
             args.CollectiveMind);
     }
 
-    private bool TryOpenDialog(EntityUid performer, LocId dialogTitle, LocId dialogPrompt,
+    public bool TryOpenDialog(EntityUid performer, LocId dialogTitle, LocId dialogPrompt,
         ProtoId<CollectiveMindPrototype>? requestedMind = null)
     {
-        if (!TryComp<ActorComponent>(performer, out var actor))
+        if (!CanOpenDialog(performer, requestedMind, out var actor, out var mind))
             return false;
 
-        ProtoId<CollectiveMindPrototype> mind;
+        OpenDialog(actor, mind, dialogTitle, dialogPrompt);
+        return true;
+    }
+
+    public bool CanOpenDialog(EntityUid performer, ProtoId<CollectiveMindPrototype>? requestedMind,
+        out Entity<ActorComponent> actor, out ProtoId<CollectiveMindPrototype> mind)
+    {
+        actor = default;
+        mind = default;
+        if (!TryComp<ActorComponent>(performer, out var actorComponent))
+            return false;
+
         if (requestedMind is { } explicitMind)
             mind = explicitMind;
         else if (!_collectiveMind.TryGetDefaultMind(performer, out mind))
@@ -47,7 +58,14 @@ public sealed class CollectiveMindActionSystem : EntitySystem
         if (!_collectiveMind.TryResolveSender(performer, mind, out _))
             return false;
 
-        var session = actor.PlayerSession;
+        actor = (performer, actorComponent);
+        return true;
+    }
+
+    private void OpenDialog(Entity<ActorComponent> performer, ProtoId<CollectiveMindPrototype> mind,
+        LocId dialogTitle, LocId dialogPrompt)
+    {
+        var session = performer.Comp.PlayerSession;
         var prototype = _prototype.Index(mind);
         var title = Loc.GetString(dialogTitle, ("channel", prototype.LocalizedName));
 
@@ -56,8 +74,6 @@ public sealed class CollectiveMindActionSystem : EntitySystem
             title,
             Loc.GetString(dialogPrompt),
             message => TrySendMessage(performer, session, mind, message));
-
-        return true;
     }
 
     private bool TrySendMessage(EntityUid performer, ICommonSession session, ProtoId<CollectiveMindPrototype> mind, string message)

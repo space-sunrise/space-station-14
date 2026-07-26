@@ -13,11 +13,3 @@
     itemIconStyle: NoItem
   - type: InstantAction
     event: !type:CollectiveMindSendActionEvent
-
-- type: entity
-  parent: BaseActionSunriseCollectiveMindSend
-  id: ActionSunriseCollectiveMindSendXeno
-  components:
-  - type: InstantAction
-    event: !type:CollectiveMindSendActionEvent
-      collectiveMind: Xeno

@@ -71,14 +71,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         var xform = Transform(ent);
         ent.Comp.SpawnPosition = xform.Coordinates;
-        AssignTeamConsole(ent, xform, scientist: true);
+        AssignTeamConsole((ent, xform), scientist: true);
     }
 
     private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args)
     {
         var xform = Transform(ent);
         ent.Comp.SpawnPosition = xform.Coordinates;
-        AssignTeamConsole(ent, xform, scientist: false);
+        AssignTeamConsole((ent, xform), scientist: false);
     }
 
     private void OnReturn(AbductorReturnToShipEvent ev)
@@ -294,9 +294,9 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnExit(ExitConsoleEvent ev) => OnCameraExit(ev.Performer);
 
-    private void AssignTeamConsole(EntityUid member, TransformComponent memberXform, bool scientist)
+    private void AssignTeamConsole(Entity<TransformComponent> member, bool scientist)
     {
-        if (memberXform.GridUid is not { } grid)
+        if (member.Comp.GridUid is not { } grid)
             return;
 
         // через консоль идентифицируем группу, а GridUid разделяет одновременно созданные команды.
@@ -307,13 +307,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                 continue;
 
             var assigned = scientist ? console.Scientist : console.Agent;
-            if (assigned is { } other && Exists(other) && other != member)
+            if (assigned is { } other && Exists(other) && other != member.Owner)
                 continue;
 
             if (scientist)
-                console.Scientist = member;
+                console.Scientist = member.Owner;
             else
-                console.Agent = member;
+                console.Agent = member.Owner;
 
             SyncAbductors((uid, console));
             return;
