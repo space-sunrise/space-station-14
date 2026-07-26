@@ -1,0 +1,21 @@
+- type: entity
+  parent: MarkerBase
+  id: PottedRoseRandom
+  name: spawner random potted rose
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Furniture/potted_plants.rsi
+        state: random
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - PottedPlantRose
+      - PottedPlantRose1
+      - PottedPlantRose2
+      - PottedPlantRose3
+      - PottedPlantRose4
+      - PottedPlantRose5
+      - PottedPlantRose6
+    chance: 1
