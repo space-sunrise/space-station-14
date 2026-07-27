@@ -20,12 +20,15 @@ ROBUST_CDN_URL = os.environ["ROBUST_CDN_URL"].rstrip("/") + "/"
 
 def main():
     parser = argparse.ArgumentParser()
-    # Sunrise edit start - требуем настраиваемый идентификатор сборки
+    # Sunrise edit start - требуем непустой настраиваемый идентификатор сборки
     parser.add_argument("--fork-id", required=True)
-    # Sunrise edit end
 
     args = parser.parse_args()
+    if not args.fork_id.strip():
+        parser.error("--fork-id must not be empty or contain only whitespace")
+
     fork_id = args.fork_id
+    # Sunrise edit end
 
     session = requests.Session()
     session.headers = {

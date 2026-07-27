@@ -116,6 +116,15 @@ jobs:
       run: exit 1
     # Sunrise added end
 
+    # Sunrise added start - проверяем обязательную настройку CDN до сборки
+    - name: Validate CDN configuration
+      run: |
+        if [[ -z "${ROBUST_CDN_URL//[[:space:]]/}" ]]; then
+          echo "::error::Repository variable ROBUST_CDN_URL is not configured."
+          exit 1
+        fi
+    # Sunrise added end
+
     # Sunrise edit start - устанавливаем зависимости публикации через Python
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -131,6 +140,7 @@ jobs:
       with:
         ref: ${{ inputs.commit_hash }}
         submodules: 'recursive'
+        persist-credentials: false
     # Sunrise edit end
 
     # Sunrise added start - подключаем приватное содержимое по настройке пресета
@@ -180,7 +190,6 @@ jobs:
       # Sunrise edit end
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-        GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
     # Sunrise added start - отправляем уведомления по настройке пресета
     - name: Publish server update info
@@ -199,7 +208,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-        CHANGELOG_FILE: ${{ inputs.changelog_file }}
+        CHANGELOG_FILE: ${{ inputs.changelog_file || 'Resources/Changelog/ChangelogSunrise.yml' }}
     # Sunrise added end
 
     # Sunrise edit start - отключаем upstream-публикацию списка изменений
