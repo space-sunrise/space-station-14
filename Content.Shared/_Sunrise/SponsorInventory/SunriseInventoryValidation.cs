@@ -412,7 +412,7 @@ public static class SunriseInventoryValidation
         if (purchasedItems.Contains(item.Id))
             return true;
 
-        if (item.SponsorLevel == null && item.RequiredEntitlements is not { Length: > 0 })
+        if (item.Access.Tier == null && item.Access.Entitlements is not { Length: > 0 })
             return false;
 
         return CanPurchaseForSponsorAccess(item, sponsorTier, entitlements);
@@ -423,12 +423,18 @@ public static class SunriseInventoryValidation
         int sponsorTier,
         IReadOnlySet<string> entitlements)
     {
-        if (item.SponsorLevel != null && sponsorTier >= item.SponsorLevel.Value)
-            return true;
-
-        if (item.RequiredEntitlements is { Length: > 0 })
+        if (item.Access.Tier is { } tierAccess)
         {
-            foreach (var entitlement in item.RequiredEntitlements)
+            if ((tierAccess.Inherit && sponsorTier >= tierAccess.Value) ||
+                (!tierAccess.Inherit && sponsorTier == tierAccess.Value))
+            {
+                return true;
+            }
+        }
+
+        if (item.Access.Entitlements is { Length: > 0 })
+        {
+            foreach (var entitlement in item.Access.Entitlements)
             {
                 if (!IsReasonableId(entitlement, MaxPrototypeIdLength) || !entitlements.Contains(entitlement))
                     return false;
@@ -437,7 +443,7 @@ public static class SunriseInventoryValidation
             return true;
         }
 
-        return item.SponsorLevel == null;
+        return item.Access.Tier == null;
     }
 
     private static bool IsJobAllowed(SponsorInventoryItemInfo item, string? jobId)

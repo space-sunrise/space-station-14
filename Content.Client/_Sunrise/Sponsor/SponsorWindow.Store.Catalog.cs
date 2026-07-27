@@ -216,7 +216,7 @@ public sealed partial class SponsorWindow
             item,
             sponsorTier,
             entitlements);
-        var requiresSpecialAccess = item.RequiredEntitlements is { Length: > 0 };
+        var requiresSpecialAccess = item.Access.Entitlements is { Length: > 0 };
         var details = BuildStoreDetails(item, entityPrototype, owned, sponsorAccessGranted);
 
         return new SponsorStoreEntry(
@@ -227,7 +227,9 @@ public sealed partial class SponsorWindow
             entityPrototype.Description,
             item.EntityPrototype,
             [item.EntityPrototype],
-            item.SponsorLevel,
+            item.Access.Tier?.Value,
+            item.Access.Tier != null,
+            item.Access.Tier?.Inherit ?? true,
             item.Price,
             owned,
             sponsorAccessGranted,
@@ -257,7 +259,9 @@ public sealed partial class SponsorWindow
         var itemNames = new List<string>();
         var previewPrototypes = new List<string>();
         var uniqueItemIds = new HashSet<string>();
-        int? requiredTier = null;
+        int? minimumTier = null;
+        int? exactTier = null;
+        var exactTierConflict = false;
         var ownedCount = 0;
         var sponsorAccessGranted = true;
         var requiresSpecialAccess = false;
@@ -277,13 +281,26 @@ public sealed partial class SponsorWindow
             if (!item.Purchasable)
                 return null;
 
-            if (item.SponsorLevel != null)
-                requiredTier = Math.Max(requiredTier ?? 0, item.SponsorLevel.Value);
+            if (item.Access.Tier is { } tierAccess)
+            {
+                if (tierAccess.Inherit)
+                {
+                    minimumTier = Math.Max(minimumTier ?? 0, tierAccess.Value);
+                }
+                else if (exactTier == null)
+                {
+                    exactTier = tierAccess.Value;
+                }
+                else if (exactTier != tierAccess.Value)
+                {
+                    exactTierConflict = true;
+                }
+            }
 
             if (!SunriseInventoryValidation.CanPurchaseForSponsorAccess(item, sponsorTier, entitlements))
                 sponsorAccessGranted = false;
 
-            requiresSpecialAccess |= item.RequiredEntitlements is { Length: > 0 };
+            requiresSpecialAccess |= item.Access.Entitlements is { Length: > 0 };
 
             if (purchasedItems.Contains(itemId))
                 ownedCount++;
@@ -321,11 +338,29 @@ public sealed partial class SponsorWindow
         };
         var packDescription = string.Join("\n", packDescriptionLines);
         var owned = ownedCount >= totalItemCount;
+        var requiresTierAccess = minimumTier != null || exactTier != null;
+        int? requiredTier = null;
+        var requiredTierInherited = true;
+        if (!exactTierConflict)
+        {
+            if (exactTier is { } exactTierValue && exactTierValue >= (minimumTier ?? 0))
+            {
+                requiredTier = exactTierValue;
+                requiredTierInherited = false;
+            }
+            else if (exactTier == null)
+            {
+                requiredTier = minimumTier;
+            }
+        }
+
         var details = BuildStorePackDetails(
             pack,
             description,
             itemNames,
             requiredTier,
+            requiresTierAccess,
+            requiredTierInherited,
             ownedCount,
             totalItemCount,
             owned,
@@ -341,6 +376,8 @@ public sealed partial class SponsorWindow
             previewPrototype,
             previewPrototypes.ToArray(),
             requiredTier,
+            requiresTierAccess,
+            requiredTierInherited,
             pack.Price,
             owned,
             sponsorAccessGranted,
@@ -363,14 +400,16 @@ public sealed partial class SponsorWindow
 
         lines.Add(GetPriceText(item.Price));
 
-        if (item.SponsorLevel != null)
+        if (item.Access.Tier is { } tierAccess)
         {
             lines.Add(Loc.GetString(
-                "donation-terminal-inventory-tier",
-                ("tier", item.SponsorLevel.Value)));
+                tierAccess.Inherit
+                    ? "donation-terminal-inventory-tier"
+                    : "donation-terminal-inventory-tier-exact",
+                ("tier", tierAccess.Value)));
         }
 
-        if (item.RequiredEntitlements is { Length: > 0 })
+        if (item.Access.Entitlements is { Length: > 0 })
             lines.Add(Loc.GetString("donation-terminal-inventory-special-access"));
 
         if (!owned && !sponsorAccessGranted)
@@ -390,7 +429,9 @@ public sealed partial class SponsorWindow
         SponsorInventoryPackInfo pack,
         string description,
         List<string> itemNames,
-        int? sponsorLevel,
+        int? accessTier,
+        bool requiresTierAccess,
+        bool accessTierInherited,
         int ownedCount,
         int totalItemCount,
         bool owned,
@@ -408,11 +449,17 @@ public sealed partial class SponsorWindow
             Loc.GetString("donation-terminal-inventory-pack-items", ("items", string.Join(", ", itemNames))),
         };
 
-        if (sponsorLevel != null)
+        if (accessTier != null)
         {
             lines.Add(Loc.GetString(
-                "donation-terminal-inventory-tier",
-                ("tier", sponsorLevel.Value)));
+                accessTierInherited
+                    ? "donation-terminal-inventory-tier"
+                    : "donation-terminal-inventory-tier-exact",
+                ("tier", accessTier.Value)));
+        }
+        else if (requiresTierAccess)
+        {
+            lines.Add(Loc.GetString("donation-terminal-inventory-tier-specific"));
         }
 
         if (requiresSpecialAccess)
@@ -698,20 +745,34 @@ public sealed partial class SponsorWindow
 
     private string GetStoreRequiredLevelText(SponsorStoreEntry entry)
     {
-        if (entry.SponsorLevel == null)
+        if (entry.AccessTier == null)
         {
+            if (entry.RequiresTierAccess)
+            {
+                return entry.RequiresSpecialAccess
+                    ? Loc.GetString("donation-terminal-inventory-tier-specific-or-special-access")
+                    : Loc.GetString("donation-terminal-inventory-tier-specific");
+            }
+
             return entry.RequiresSpecialAccess
                 ? Loc.GetString("donation-terminal-inventory-special-access")
                 : Loc.GetString("donation-terminal-shop-details-no-level");
         }
 
-        var tierInfo = GetSponsorTier(entry.SponsorLevel.Value);
+        var tierInfo = GetSponsorTier(entry.AccessTier.Value);
         var tierText = tierInfo == null
-            ? Loc.GetString("donation-terminal-sponsor-tier", ("tier", entry.SponsorLevel.Value))
+            ? Loc.GetString("donation-terminal-sponsor-tier", ("tier", entry.AccessTier.Value))
             : GetSponsorTierName(tierInfo);
-        return entry.RequiresSpecialAccess
-            ? Loc.GetString("donation-terminal-inventory-tier-or-special-access", ("tier", tierText))
-            : tierText;
+        if (!entry.RequiresSpecialAccess)
+            return entry.AccessTierInherited
+                ? tierText
+                : Loc.GetString("donation-terminal-inventory-tier-exact-short", ("tier", tierText));
+
+        return Loc.GetString(
+            entry.AccessTierInherited
+                ? "donation-terminal-inventory-tier-or-special-access"
+                : "donation-terminal-inventory-tier-exact-or-special-access",
+            ("tier", tierText));
     }
 
     private string GetStoreBuyButtonText()

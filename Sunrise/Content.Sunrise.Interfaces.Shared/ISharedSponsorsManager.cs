@@ -149,7 +149,45 @@ public sealed class SponsorInventoryConfig
 }
 
 /// <summary>
-/// Catalog entry for a single sponsor inventory item.
+/// Условие доступа по спонсорскому тиру.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SponsorInventoryTierAccessInfo
+{
+    /// <summary>
+    /// Требуемый спонсорский тир.
+    /// </summary>
+    [JsonPropertyName("value"), JsonRequired]
+    public int Value { get; set; }
+
+    /// <summary>
+    /// Разрешает ли требование доступ более высоким тирам.
+    /// </summary>
+    [JsonPropertyName("inherit")]
+    public bool Inherit { get; set; } = true;
+}
+
+/// <summary>
+/// Альтернативные способы получить доступ к предмету спонсорского инвентаря.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SponsorInventoryAccessInfo
+{
+    /// <summary>
+    /// Условие доступа по спонсорскому тиру или null, если тир не является способом доступа.
+    /// </summary>
+    [JsonPropertyName("tier")]
+    public SponsorInventoryTierAccessInfo? Tier { get; set; }
+
+    /// <summary>
+    /// Набор прав, которые должны присутствовать одновременно.
+    /// </summary>
+    [JsonPropertyName("entitlements")]
+    public string[] Entitlements { get; set; } = [];
+}
+
+/// <summary>
+/// Элемент каталога спонсорского инвентаря.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class SponsorInventoryItemInfo
@@ -167,16 +205,10 @@ public sealed class SponsorInventoryItemInfo
     public string[]? AvailableJobs { get; set; }
 
     /// <summary>
-    /// Minimum sponsor tier required for this item, or null when tier does not restrict it.
+    /// Условия доступа: достаточный тир или одновременно все перечисленные права.
     /// </summary>
-    [JsonPropertyName("sponsorLevel")]
-    public int? SponsorLevel { get; set; }
-
-    /// <summary>
-    /// Все идентификаторы прав, необходимые как альтернатива требованию спонсорского тира.
-    /// </summary>
-    [JsonPropertyName("requiredEntitlements")]
-    public string[] RequiredEntitlements { get; set; } = [];
+    [JsonPropertyName("access")]
+    public SponsorInventoryAccessInfo Access { get; set; } = new();
 
     /// <summary>
     /// Может ли предмет отображаться в спонсорском магазине. Для наград за роль следует отключать.
