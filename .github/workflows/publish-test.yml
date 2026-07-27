@@ -30,6 +30,6 @@ jobs:
       private_commit_hash: ${{ inputs.private_commit_hash }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-      PRIVATE_REPOSITORY: ${{ secrets.SUNRISE_PRIVATE_REPO }}
-      PRIVATE_REPOSITORY_SSH_KEY: ${{ secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
+      PRIVATE_REPOSITORY: ${{ secrets.PRIVATE_REPOSITORY }}
+      PRIVATE_REPOSITORY_SSH_KEY: ${{ secrets.PRIVATE_REPOSITORY_SSH_KEY }}
 # Sunrise added end

@@ -116,11 +116,18 @@ jobs:
       run: exit 1
     # Sunrise added end
 
-    # Sunrise added start - проверяем обязательную настройку CDN до сборки
+    # Sunrise added start - проверяем обязательные настройки публикации до сборки
     - name: Validate CDN configuration
       run: |
         if [[ -z "${ROBUST_CDN_URL//[[:space:]]/}" ]]; then
           echo "::error::Repository variable ROBUST_CDN_URL is not configured."
+          exit 1
+        fi
+
+    - name: Validate publish fork ID
+      run: |
+        if [[ -z "${PUBLISH_FORK_ID//[[:space:]]/}" ]]; then
+          echo "::error::PUBLISH_FORK_ID is not configured or contains only whitespace."
           exit 1
         fi
     # Sunrise added end
@@ -148,9 +155,9 @@ jobs:
       if: ${{ inputs.use_private_content || github.event_name == 'schedule' }}
       uses: actions/checkout@v4.2.2
       with:
-        repository: ${{ secrets.PRIVATE_REPOSITORY || secrets.SUNRISE_PRIVATE_REPO }}
+        repository: ${{ secrets.PRIVATE_REPOSITORY }}
         path: PrivateContent
-        ssh-key: ${{ secrets.PRIVATE_REPOSITORY_SSH_KEY || secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
+        ssh-key: ${{ secrets.PRIVATE_REPOSITORY_SSH_KEY }}
         ref: ${{ inputs.private_commit_hash }}
 
     - name: Move private content files

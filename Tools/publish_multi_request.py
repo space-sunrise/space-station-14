@@ -4,6 +4,9 @@ import argparse
 import requests
 import os
 import subprocess
+# Sunrise added start - разбираем и проверяем адрес CDN
+from urllib.parse import urlparse
+# Sunrise added end
 from typing import Iterable
 
 PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
@@ -15,7 +18,17 @@ RELEASE_DIR = "release"
 
 # Sunrise edit start - используем единый настраиваемый адрес CDN
 # Параметры инфраструктуры передаются через переменные окружения.
-ROBUST_CDN_URL = os.environ["ROBUST_CDN_URL"].rstrip("/") + "/"
+_robust_cdn_url = os.environ["ROBUST_CDN_URL"].strip()
+_parsed_cdn_url = urlparse(_robust_cdn_url)
+if (
+    _parsed_cdn_url.scheme != "https"
+    or not _parsed_cdn_url.hostname
+    or _parsed_cdn_url.username is not None
+    or _parsed_cdn_url.password is not None
+):
+    raise ValueError("ROBUST_CDN_URL must be an HTTPS URL with a host and without user credentials")
+
+ROBUST_CDN_URL = _robust_cdn_url.rstrip("/") + "/"
 # Sunrise edit end
 
 def main():
@@ -27,7 +40,7 @@ def main():
     if not args.fork_id.strip():
         parser.error("--fork-id must not be empty or contain only whitespace")
 
-    fork_id = args.fork_id
+    fork_id = args.fork_id.strip()
     # Sunrise edit end
 
     session = requests.Session()
