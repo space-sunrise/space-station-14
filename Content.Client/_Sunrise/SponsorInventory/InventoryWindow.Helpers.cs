@@ -297,32 +297,36 @@ public sealed partial class InventoryWindow
         var purchased = _sponsorInventory.GetPurchasedInventoryItems().Contains(item.Id);
         var sponsorTier = _sponsorInventory.GetSponsorTier();
         var hasFailedRequirement = false;
-        var sponsorLevelMet = false;
+        var accessTierMet = false;
         var entitlementsMet = false;
 
         if (purchased)
             lines.Add(GetTooltipRequirementLine(Loc.GetString("sunrise-inventory-requirement-owned"), enabled: true));
 
-        if (!purchased && item.SponsorLevel != null)
+        if (!purchased && item.Access.Tier is { } tierAccess)
         {
-            var sponsorLevelRequirement = Loc.GetString(
-                "sunrise-inventory-requirement-sponsor-tier",
-                ("level", item.SponsorLevel.Value));
-            sponsorLevelMet = sponsorTier >= item.SponsorLevel.Value;
-            lines.Add(GetTooltipRequirementLine(sponsorLevelRequirement, sponsorLevelMet));
+            var accessTierRequirement = Loc.GetString(
+                tierAccess.Inherit
+                    ? "sunrise-inventory-requirement-sponsor-tier"
+                    : "sunrise-inventory-requirement-sponsor-tier-exact",
+                ("level", tierAccess.Value));
+            accessTierMet = tierAccess.Inherit
+                ? sponsorTier >= tierAccess.Value
+                : sponsorTier == tierAccess.Value;
+            lines.Add(GetTooltipRequirementLine(accessTierRequirement, accessTierMet));
         }
 
-        if (!purchased && item.RequiredEntitlements is { Length: > 0 })
+        if (!purchased && item.Access.Entitlements is { Length: > 0 })
         {
             var entitlements = _sponsorInventory.GetSponsorInventoryEntitlements();
-            entitlementsMet = item.RequiredEntitlements.All(entitlements.Contains);
+            entitlementsMet = item.Access.Entitlements.All(entitlements.Contains);
             lines.Add(GetTooltipRequirementLine(
                 Loc.GetString("sunrise-inventory-requirement-special-access"),
                 entitlementsMet));
         }
 
-        if (!purchased && (item.SponsorLevel != null || item.RequiredEntitlements is { Length: > 0 }))
-            hasFailedRequirement = !sponsorLevelMet && !entitlementsMet;
+        if (!purchased && (item.Access.Tier != null || item.Access.Entitlements is { Length: > 0 }))
+            hasFailedRequirement = !accessTierMet && !entitlementsMet;
 
         if (item.AvailableJobs is { Length: > 0 })
         {

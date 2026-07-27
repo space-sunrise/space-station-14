@@ -293,8 +293,17 @@ public sealed class SunriseInventorySystem : EntitySystem
                     Id = item.Id,
                     EntityPrototype = item.EntityPrototype,
                     AvailableJobs = item.AvailableJobs?.ToArray(),
-                    SponsorLevel = item.SponsorLevel,
-                    RequiredEntitlements = item.RequiredEntitlements?.ToArray() ?? [],
+                    Access = new SponsorInventoryAccessInfo
+                    {
+                        Tier = item.Access.Tier == null
+                            ? null
+                            : new SponsorInventoryTierAccessInfo
+                            {
+                                Value = item.Access.Tier.Value,
+                                Inherit = item.Access.Tier.Inherit,
+                            },
+                        Entitlements = item.Access.Entitlements.ToArray(),
+                    },
                     Purchasable = item.Purchasable,
                     Price = item.Price,
                 })
