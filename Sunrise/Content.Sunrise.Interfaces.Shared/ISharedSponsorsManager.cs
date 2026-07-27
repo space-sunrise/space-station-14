@@ -157,7 +157,7 @@ public sealed class SponsorInventoryTierAccessInfo
     /// <summary>
     /// Требуемый спонсорский тир.
     /// </summary>
-    [JsonPropertyName("value"), JsonRequired]
+    [JsonPropertyName("value")]
     public int Value { get; set; }
 
     /// <summary>
