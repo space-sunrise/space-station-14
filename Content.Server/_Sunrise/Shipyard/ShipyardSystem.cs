@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 using Content.Server.Cargo.Systems;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
@@ -155,15 +157,21 @@ public sealed partial class ShipyardSystem : EntitySystem
         Entity<ShipyardConsoleComponent?> ent,
         EntityUid cash,
         EntityUid user,
-        out string? reason)
+        [NotNullWhen(false)] out string? reason)
     {
         reason = null;
 
         if (!Resolve(ent, ref ent.Comp, false))
+        {
+            reason = "shipyard-console-unavailable";
             return false;
+        }
 
         if (!HasComp<CashComponent>(cash))
+        {
+            reason = "shipyard-console-invalid-cash";
             return false;
+        }
 
         if (!_access.IsAllowed(user, ent))
         {
@@ -178,7 +186,10 @@ public sealed partial class ShipyardSystem : EntitySystem
         }
 
         if (!TryGetCashValue(cash, out var amount))
+        {
+            reason = "shipyard-console-invalid-cash";
             return false;
+        }
 
         var stationUid = _station.GetOwningStation(ent);
         if (stationUid is not { } station ||

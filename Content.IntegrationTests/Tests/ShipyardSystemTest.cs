@@ -95,7 +95,8 @@ public sealed class ShipyardSystemTest
             Assert.That(consoleComponent.CurrentShuttle, Is.Null);
         });
 
-        await server.WaitRunTicks(2);
+        // Нулевая задержка завершается в следующем ShipyardSystem.Update().
+        await server.WaitRunTicks(1);
 
         await server.WaitAssertion(() =>
         {
@@ -119,7 +120,8 @@ public sealed class ShipyardSystemTest
             entities.EventBus.RaiseLocalEvent(console, sale);
         });
 
-        await server.WaitRunTicks(2);
+        // Нулевая задержка завершается в следующем ShipyardSystem.Update().
+        await server.WaitRunTicks(1);
 
         await server.WaitAssertion(() =>
         {
