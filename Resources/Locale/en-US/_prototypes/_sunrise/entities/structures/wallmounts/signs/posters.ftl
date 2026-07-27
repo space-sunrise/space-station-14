@@ -62,3 +62,16 @@ ent-PosterLegitOpenGift = open gift
 ent-PosterLegitRedLight = red garland
     .desc = New Year's poster with a garland. For those who didn't have enough money for a real garland.
     .suffix = NewYear
+
+ent-PosterJapanese1 = japanese poster
+    .desc = Japanese-style poster.
+ent-PosterJapanese2 = { ent-PosterJapanese1 }
+    .desc = { ent-PosterJapanese1.desc }
+ent-PosterJapanese3 = { ent-PosterJapanese1 }
+    .desc = { ent-PosterJapanese1.desc }
+ent-PosterJapanese4 = { ent-PosterJapanese1 }
+    .desc = { ent-PosterJapanese1.desc }
+ent-PosterJapanese5 = { ent-PosterJapanese1 }
+    .desc = { ent-PosterJapanese1.desc }
+ent-PosterJapanese6 = { ent-PosterJapanese1 }
+    .desc = { ent-PosterJapanese1.desc }
