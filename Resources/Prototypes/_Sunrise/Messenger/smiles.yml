@@ -1718,3 +1718,16 @@
   id: yu
   code: ":yu:"
   spriteState: yu
+
+- type: emoji
+  id: poster2_legit
+  code: ":poster2_legit:"
+  spritePath: Structures/Wallmounts/posters.rsi
+  spriteState: poster2_legit
+
+- type: emoji
+  id: banner_syndicate
+  code: ":banner_syndicate:"
+  spritePath: _Sunrise/Structures/Decoration/banner.rsi
+  spriteState: banner_syndicate
+

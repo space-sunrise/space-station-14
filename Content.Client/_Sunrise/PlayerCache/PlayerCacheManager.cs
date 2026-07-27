@@ -43,6 +43,41 @@ public sealed class PlayerCacheManager
                 cache.EmoteVisibility = b;
                 SetCache(cache);
             });
+        _cfg.OnValueChanged(SunriseCCVars.SponsorLobbyTtsEnabled,
+            b =>
+            {
+                var cache = GetCache();
+                cache.LobbyTtsEnabled = b;
+                SetCache(cache);
+            });
+        _cfg.OnValueChanged(SunriseCCVars.TTSLobbyOthersEnabled,
+            b =>
+            {
+                var cache = GetCache();
+                cache.LobbyOthersTtsEnabled = b;
+                SetCache(cache);
+            });
+        _cfg.OnValueChanged(SunriseCCVars.TTSAdminChatEnabled,
+            b =>
+            {
+                var cache = GetCache();
+                cache.AdminChatTtsEnabled = b;
+                SetCache(cache);
+            });
+        _cfg.OnValueChanged(SunriseCCVars.SponsorOocTitle,
+            s =>
+            {
+                var cache = GetCache();
+                cache.OocTitle = s;
+                SetCache(cache);
+            });
+        _cfg.OnValueChanged(SunriseCCVars.SponsorOocColor,
+            s =>
+            {
+                var cache = GetCache();
+                cache.OocColor = s;
+                SetCache(cache);
+            });
     }
 
     private void OnCacheRequest(MsgPlayerCacheRequest msg)
@@ -52,9 +87,12 @@ public sealed class PlayerCacheManager
             GhostTheme = _cfg.GetCVar(SunriseCCVars.SponsorGhostTheme),
             Pet = _cfg.GetCVar(SunriseCCVars.SponsorPet),
             EmoteVisibility = _cfg.GetCVar(InteractionsCVars.EmoteVisibility),
+            LobbyTtsEnabled = _cfg.GetCVar(SunriseCCVars.SponsorLobbyTtsEnabled),
+            LobbyOthersTtsEnabled = _cfg.GetCVar(SunriseCCVars.TTSLobbyOthersEnabled),
+            AdminChatTtsEnabled = _cfg.GetCVar(SunriseCCVars.TTSAdminChatEnabled),
+            OocTitle = _cfg.GetCVar(SunriseCCVars.SponsorOocTitle),
+            OocColor = _cfg.GetCVar(SunriseCCVars.SponsorOocColor),
         };
-        var sync = new MsgPlayerCacheSync { Cache = data };
-        _netManager.ClientSendMessage(sync);
         SetCache(data);
     }
 
@@ -62,6 +100,8 @@ public sealed class PlayerCacheManager
     public void SetCache(PlayerCacheData data)
     {
         _cache = data;
+        var sync = new MsgPlayerCacheSync { Cache = data };
+        _netManager.ClientSendMessage(sync);
         CacheChanged?.Invoke();
     }
 

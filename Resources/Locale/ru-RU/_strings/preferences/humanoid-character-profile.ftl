@@ -12,3 +12,19 @@ humanoid-character-profile-summary =
         [few] года
        *[other] лет
     }.
+
+# Sunrise edit start
+humanoid-character-profile-summary-species-sex =
+    { $gender ->
+        [male] Он
+        [female] Она
+        [epicene] Они
+       *[neuter] Оно
+    } { $species } { $sex ->
+        [male] мужского пола
+        [female] женского пола
+       *[other] неизвестного пола
+    }.
+humanoid-character-profile-summary-dream-job = Желаемая должность: { $job }.
+# Sunrise edit end
+

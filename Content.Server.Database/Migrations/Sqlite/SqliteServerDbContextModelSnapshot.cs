@@ -875,6 +875,37 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("play_time", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.PlayTimeSession", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("play_time_session_id");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("end_time");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_id");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("start_time");
+
+                    b.HasKey("Id")
+                        .HasName("PK_play_time_session");
+
+                    b.HasIndex("EndTime")
+                        .HasDatabaseName("IX_play_time_session_end_time");
+
+                    b.HasIndex("PlayerId")
+                        .HasDatabaseName("IX_play_time_session_player_id");
+
+                    b.ToTable("play_time_session", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
                     b.Property<int>("Id")
@@ -1522,31 +1553,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("trait", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
-                {
-                    b.Property<string>("ScopeId")
-                        .HasMaxLength(128)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("scope_id");
-
-                    b.Property<string>("ItemId")
-                        .HasMaxLength(128)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("item_id");
-
-                    b.Property<Guid>("PlayerUserId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("player_user_id");
-
-                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
-                        .HasName("PK_ui_likes");
-
-                    b.HasIndex("PlayerUserId", "ScopeId")
-                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
-
-                    b.ToTable("ui_likes", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.TutorialCompletion", b =>
                 {
                     b.Property<Guid>("PlayerUserId")
@@ -1579,6 +1585,31 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasDatabaseName("IX_tutorial_completion_tutorial_id");
 
                     b.ToTable("tutorial_completion", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
+                {
+                    b.Property<string>("ScopeId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("scope_id");
+
+                    b.Property<string>("ItemId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("item_id");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_user_id");
+
+                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
+                        .HasName("PK_ui_likes");
+
+                    b.HasIndex("PlayerUserId", "ScopeId")
+                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
+
+                    b.ToTable("ui_likes", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.UploadedResourceLog", b =>
@@ -1939,6 +1970,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Ticket");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.PlayTimeSession", b =>
+                {
+                    b.HasOne("Content.Server.Database.Player", "Player")
+                        .WithMany("PlayTimeSessions")
+                        .HasForeignKey("PlayerId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_play_time_session_player_player_id");
+
+                    b.Navigation("Player");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
                     b.OwnsOne("Content.Server.Database.TypedHwid", "LastSeenHWId", b1 =>
@@ -2288,6 +2332,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("AdminWatchlistsReceived");
 
                     b.Navigation("JobWhitelists");
+
+                    b.Navigation("PlayTimeSessions");
                 });
 
             modelBuilder.Entity("Content.Server.Database.Preference", b =>

@@ -24,6 +24,14 @@ public sealed class PanelSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet,
         var boxPositive = new StyleBoxFlat { BackgroundColor = sheet.PositivePalette.Background };
         var boxNegative = new StyleBoxFlat { BackgroundColor = sheet.NegativePalette.Background };
         var boxHighlight = new StyleBoxFlat { BackgroundColor = sheet.HighlightPalette.Background };
+        // Sunrise start
+        var boxSponsor = new StyleBoxFlat
+        {
+            BackgroundColor = sheet.SecondaryPalette.BackgroundDark,
+            BorderThickness = new Thickness(1),
+            BorderColor = sheet.SecondaryPalette.Background
+        };
+        // Sunrise end
 
         return
         [
@@ -34,6 +42,16 @@ public sealed class PanelSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet,
             E<PanelContainer>().Class(StyleClass.Negative).Panel(boxNegative),
             E<PanelContainer>().Class(StyleClass.Highlight).Panel(boxHighlight),
 
+            // Sunrise-Edit start - Добавляем классы стилей для панелей персонализации спонсоров
+            E<PanelContainer>().Class(StyleClass.SponsorTitlePanel).Panel(new StyleBoxFlat
+            {
+                BackgroundColor = sheet.SecondaryPalette.BackgroundDark,
+                BorderThickness = new Thickness(1),
+                BorderColor = sheet.SecondaryPalette.BackgroundLight
+            }),
+            E<PanelContainer>().Class(StyleClass.SponsorEmojiPanel).Panel(boxSponsor),
+            E<PanelContainer>().Class(StyleClass.SponsorPreviewPanel).Panel(boxSponsor),
+            // Sunrise-Edit end
             // TODO: this should probably be cleaned up but too many UIs rely on this hardcoded color so I'm scared to touch it
             E<PanelContainer>()
                 .Class("BackgroundDark")

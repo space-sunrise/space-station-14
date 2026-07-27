@@ -179,10 +179,10 @@ namespace Content.Client.Lobby
 
             RefreshContributorsHeader(_contributorsManager.ContributorsDataList);
 
-            // Sunrise-Start
             // Explicitly restore lobby background after reconnection
             // This ensures the background is loaded even if CVar events were called before Lobby initialization
             ApplyConfiguredLobbyBackground();
+            EnsureLobbyChangelogPopulated();
             // Sunrise-End
         }
 
@@ -362,26 +362,27 @@ namespace Content.Client.Lobby
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
             }
 
+            // Sunrise edit start - PlaytimeComment always visible
             var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
-            if (minutesToday > 60)
+            Lobby!.PlaytimeComment.Visible = true;
+
+            var totalMinutes = (int)Math.Ceiling(TimeSpan.FromMinutes(minutesToday).TotalMinutes);
+            var hoursToday = totalMinutes / 60;
+            var minutesTodayFormatted = totalMinutes % 60;
+
+            var chosenString = minutesToday switch
             {
-                Lobby!.PlaytimeComment.Visible = true;
+                < 60 => "lobby-state-playtime-comment-lazy",
+                < 180 => "lobby-state-playtime-comment-normal",
+                < 360 => "lobby-state-playtime-comment-concerning",
+                < 720 => "lobby-state-playtime-comment-grasstouchless",
+                _ => "lobby-state-playtime-comment-selfdestructive"
+            };
 
-                var hoursToday = Math.Round(minutesToday / 60f, 1);
-
-                var chosenString = minutesToday switch
-                {
-                    < 180 => "lobby-state-playtime-comment-normal",
-                    < 360 => "lobby-state-playtime-comment-concerning",
-                    < 720 => "lobby-state-playtime-comment-grasstouchless",
-                    _ => "lobby-state-playtime-comment-selfdestructive"
-                };
-
-                Lobby.PlaytimeComment.SetMarkup(Loc.GetString(chosenString, ("hours", hoursToday)));
-            }
-            else
-                Lobby!.PlaytimeComment.Visible = false;
+            Lobby.PlaytimeComment.SetMarkup(Loc.GetString(chosenString, ("playtime", Loc.GetString("ui-playtime-time-format-short", ("hours", hoursToday), ("minutes", minutesTodayFormatted)))));
+            // Sunrise edit end
         }
+
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
         {
@@ -564,7 +565,7 @@ namespace Content.Client.Lobby
                     return;
                 }
 
-                ApplyLobbyAnimationState(state, lobbyAnimationPrototype.Scale);
+                ApplyLobbyAnimationState(state);
                 return;
             }
 
@@ -574,7 +575,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            ApplyLobbyAnimationState(localState, lobbyAnimationPrototype.Scale);
+            ApplyLobbyAnimationState(localState);
         }
 
         private void SetLobbyArt(string lobbyArt)
@@ -1034,7 +1035,7 @@ namespace Content.Client.Lobby
             return null;
         }
 
-        private void ApplyLobbyAnimationState(NetTexturesManager.NetTextureAnimationState state, Vector2 scale)
+        private void ApplyLobbyAnimationState(NetTexturesManager.NetTextureAnimationState state)
         {
             if (Lobby == null)
                 return;
@@ -1045,12 +1046,11 @@ namespace Content.Client.Lobby
             _currentAnimationFrameTime = state.GetDelay(0);
 
             Lobby.LobbyAnimation.DisplayRect.Texture = state.Frame0;
-            Lobby.LobbyAnimation.DisplayRect.TextureScale = scale;
             Lobby.LobbyAnimation.Visible = true;
             HideLoadingAnimation();
         }
 
-        private void ApplyLobbyAnimationState(ClientRsi.State state, Vector2 scale)
+        private void ApplyLobbyAnimationState(ClientRsi.State state)
         {
             if (Lobby == null)
                 return;
@@ -1061,7 +1061,6 @@ namespace Content.Client.Lobby
             _currentAnimationFrameTime = state.GetDelay(0);
 
             Lobby.LobbyAnimation.DisplayRect.Texture = state.Frame0;
-            Lobby.LobbyAnimation.DisplayRect.TextureScale = scale;
             Lobby.LobbyAnimation.Visible = true;
             HideLoadingAnimation();
         }

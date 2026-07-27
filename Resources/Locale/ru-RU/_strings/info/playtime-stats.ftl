@@ -8,3 +8,13 @@ ui-playtime-roles = Игровое время по должностям
 ui-playtime-time-format = { $hours }ч { $minutes }м
 ui-playtime-header-role-type = Должность
 ui-playtime-header-role-time = Время
+ui-playtime-time-format-verbose =
+    { $hours ->
+        [0] { $minutes } минут
+       *[other] { $hours } часов { $minutes } минут
+    }
+ui-playtime-time-format-short =
+    { $hours ->
+        [0] { $minutes }м.
+       *[other] { $hours }ч { $minutes }м.
+    }
