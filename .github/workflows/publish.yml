@@ -12,18 +12,31 @@ env:
 
 on:
   workflow_dispatch:
+    # Sunrise added start - поддерживаем выбор конкретного коммита
+    inputs:
+      commit_hash:
+        description: 'Commit hash for this repository (leave empty for latest). USE ONLY IF YOU KNOW WHAT YOU ARE DOING'
+        required: false
+        type: string
+        default: ''
+    # Sunrise added end
+  # Sunrise edit start - сохраняем публикацию по расписанию для Sunrise
   schedule:
   - cron: '0 10 * * *'
+  # Sunrise edit end
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+    # Sunrise edit start - используем проверку ветки Sunrise
 #    - name: Fail if not on master branch
 #      if: ${{GITHUB.REF_NAME != 'master'}}
 #      run: exit 1
+    # Sunrise edit end
 
+    # Sunrise edit start - устанавливаем зависимости публикации через Python
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -31,15 +44,21 @@ jobs:
 
     - name: Install Dependencies
       run: pip install pyyaml requests
+    # Sunrise edit end
 
+    # Sunrise edit start - поддерживаем выбор конкретного коммита репозитория
     - uses: actions/checkout@v4.2.2
       with:
+        ref: ${{ inputs.commit_hash }}
         submodules: 'recursive'
+    # Sunrise edit end
 
+    # Sunrise edit start - используем закреплённую версию действия настройки .NET
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: 10.0.x
+    # Sunrise edit end
 
     - name: Get Engine Tag
       run: |
@@ -65,3 +84,17 @@ jobs:
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
+
+    # Sunrise edit start - отключаем upstream-публикацию списка изменений
+    # - name: Publish changelog (Discord)
+    #   run: Tools/actions_changelogs_since_last_run.py
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+
+    # - name: Publish changelog (RSS)
+    #   continue-on-error: true
+    #   run: Tools/actions_changelog_rss.py
+    #   env:
+    #     CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}
+    # Sunrise edit end

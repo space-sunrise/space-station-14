@@ -10,6 +10,12 @@ env:
 
 on:
   workflow_dispatch:
+    inputs:
+      commit_hash:
+        description: 'Commit hash for this repository (leave empty for latest). USE ONLY IF YOU KNOW WHAT YOU ARE DOING'
+        required: false
+        type: string
+        default: ''
 
 jobs:
   build:
@@ -26,6 +32,7 @@ jobs:
 
     - uses: actions/checkout@v4.2.2
       with:
+        ref: ${{ inputs.commit_hash }}
         submodules: 'recursive'
 
     - name: Checkout SunrisePrivate

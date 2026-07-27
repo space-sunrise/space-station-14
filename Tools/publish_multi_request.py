@@ -7,7 +7,9 @@ import subprocess
 from typing import Iterable
 
 PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
-VERSION = os.environ["GITHUB_SHA"]
+# Sunrise edit start - публикуем хеш реально собранного коммита
+VERSION = subprocess.check_output(["git", "rev-parse", "HEAD"], encoding="UTF-8").strip()
+# Sunrise edit end
 
 RELEASE_DIR = "release"
 
