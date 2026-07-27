@@ -182,3 +182,13 @@
     Glass: 100
     Steel: 100
     Plasma: 60
+
+- type: latheRecipe
+  id: PouchMedical
+  result: PouchMedical
+  completetime: 15
+  materials:
+    Durathread: 1000
+    Plastic: 500
+    Plasma: 200
+    Silver: 200

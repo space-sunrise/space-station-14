@@ -226,6 +226,11 @@
           tags:
           - Wrench
   - type: Appearance
+  # Sunrise-start
+  - type: Tag
+    tags:
+    - BeltMedical
+  # Sunrise-end
 
 - type: entity
   parent: ClothingBeltMedical
@@ -237,6 +242,11 @@
     sprite: Clothing/Belt/emt.rsi
   - type: Clothing
     sprite: Clothing/Belt/emt.rsi
+    # Sunrise-start
+  - type: Tag
+    tags:
+    - BeltMedicalEMT
+  # Sunrise-end
 
 - type: entity
   parent: ClothingBeltStorageBase

@@ -18,3 +18,8 @@ construction-graph-tag-white-lily = { ent-FoodWhiteLily }
 construction-graph-tag-white-lily-desc = { ent-FoodWhiteLily.desc }
 construction-graph-tag-welding-mask = { ent-ClothingHeadHatWelding }
 construction-graph-tag-welding-mask-desc = { ent-ClothingHeadHatWelding.desc }
+  # Advanced belts craft
+construction-graph-tag-beltmedical = пояс медика
+construction-graph-tag-beltmedicalemt = пояс парамедика
+construction-graph-tag-beltmedicalcmo = медицинский пояс главного врача
+construction-graph-tag-upgradebeltmedical =  медицинский подсумок

@@ -34,7 +34,7 @@
     - LeftLegCyber
     - LeftFootCyber
 
-- type: technology
+- type: technology  #Localisation
   id: AdvancedEquipment
   name: research-technology-advanced-equipment
   icon:
@@ -42,9 +42,10 @@
     state: bottle-1
   discipline: Biochemical
   tier: 1
-  cost: 4000
+  cost: 6000
   recipeUnlocks:
     - ChemistryEmptyBottleDurable01
+    - PouchMedical
 
 # Tier 2
 - type: technology

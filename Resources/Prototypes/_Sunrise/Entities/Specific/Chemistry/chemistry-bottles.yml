@@ -1,5 +1,5 @@
 - type: entity
-  name: bottle
+  name: explosion-proof bottle
   parent: BaseItem
   id: BaseChemistryEmptyBottleDurable
   abstract: true
@@ -96,19 +96,3 @@
   parent: BaseChemistryEmptyBottleDurable
   id: ChemistryEmptyBottleDurable01
 
-- type: entity
-  parent: BaseChemistryEmptyBottleDurable
-  id: ChemistryEmptyBottleDurable02
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Chemistry/bottle_durable2.rsi
-    layers:
-    - state: bottle-1
-    - state: bottle-1-1
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: false
-  - type: Item
-    size: Tiny
-    sprite: _Sunrise/Objects/Specific/Chemistry/bottle_durable2.rsi
-  - type: SolutionContainerVisuals
-    fillBaseName: bottle-1-
