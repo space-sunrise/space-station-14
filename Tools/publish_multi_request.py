@@ -11,16 +11,16 @@ VERSION = os.environ["GITHUB_SHA"]
 
 RELEASE_DIR = "release"
 
-#
-# CONFIGURATION PARAMETERS
-# Forks should change these to publish to their own infrastructure.
-#
-ROBUST_CDN_URL = "https://cdn.finland.ss14.org/" # Sunrise-Edit
-FORK_ID = "sunrise_station" # Sunrise-Edit - это fallback, настоящее значение передается как аргумент
+# Sunrise edit start - используем единый настраиваемый адрес CDN
+# Параметры инфраструктуры передаются через переменные окружения.
+ROBUST_CDN_URL = os.environ["ROBUST_CDN_URL"].rstrip("/") + "/"
+# Sunrise edit end
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--fork-id", default=FORK_ID)
+    # Sunrise edit start - требуем настраиваемый идентификатор сборки
+    parser.add_argument("--fork-id", required=True)
+    # Sunrise edit end
 
     args = parser.parse_args()
     fork_id = args.fork_id

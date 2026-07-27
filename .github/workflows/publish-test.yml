@@ -4,6 +4,10 @@ concurrency:
   group: publish
   cancel-in-progress: true
 
+env:
+  PUBLISH_FORK_ID: ${{ vars.PUBLISH_TEST_FORK_ID }}
+  ROBUST_CDN_URL: ${{ vars.ROBUST_CDN_URL }}
+
 on:
   workflow_dispatch:
 
@@ -57,7 +61,7 @@ jobs:
       run: dotnet run --project Content.Packaging client --no-wipe-release
 
     - name: Publish version
-      run: Tools/publish_multi_request.py --fork-id sunrise_station_test
+      run: Tools/publish_multi_request.py --fork-id "${PUBLISH_FORK_ID}"
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}

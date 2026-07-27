@@ -4,6 +4,12 @@ concurrency:
   group: publish
   cancel-in-progress: true
 
+# Sunrise added start - настраиваем публикацию через переменные GitHub
+env:
+  PUBLISH_FORK_ID: ${{ vars.PUBLISH_FORK_ID }}
+  ROBUST_CDN_URL: ${{ vars.ROBUST_CDN_URL }}
+# Sunrise added end
+
 on:
   workflow_dispatch:
   schedule:
@@ -53,7 +59,9 @@ jobs:
       run: dotnet run --project Content.Packaging client --no-wipe-release
 
     - name: Publish version
-      run: Tools/publish_multi_request.py --fork-id sunrise_station
+      # Sunrise edit start - передаём настраиваемый идентификатор сборки
+      run: Tools/publish_multi_request.py --fork-id "${PUBLISH_FORK_ID}"
+      # Sunrise edit end
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
