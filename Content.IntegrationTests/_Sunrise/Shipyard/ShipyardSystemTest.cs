@@ -11,7 +11,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests;
+namespace Content.IntegrationTests._Sunrise.Shipyard;
 
 [TestFixture]
 [TestOf(typeof(ShipyardSystem))]
