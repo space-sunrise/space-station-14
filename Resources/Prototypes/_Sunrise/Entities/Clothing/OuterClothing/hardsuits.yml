@@ -652,8 +652,8 @@
     unequipDelay: 9
     stripDelay: 18
   - type: ClothingSpeedModifier
-    walkModifier: 0.2
-    sprintModifier: 0.2
+    walkModifier: 0.3
+    sprintModifier: 0.3
   - type: EmitSoundOnWearerMove
     sound:
       path: /Audio/_Sunrise/Cyborg/robot_legs1.ogg
@@ -735,17 +735,6 @@
   suffix: Pirate
   description: An armored freelance hardsuit with cracked plates and punctured pressure seals. It no longer protects its wearer from space.
   components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.45
-        Slash: 0.35
-        Piercing: 0.25
-        Heat: 0.3
-        Radiation: 0.5
-        Caustic: 0.5
-      flatReductions:
-        Piercing: 5
   - type: PressureProtection
     highPressureMultiplier: 1
     lowPressureMultiplier: 1
@@ -763,6 +752,17 @@
   name: damaged murmillo hardsuit
   description: A damaged Murmillo hardsuit. Its pressure seals are no longer functional.
   components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.35
+        Piercing: 0.25
+        Heat: 0.3
+        Radiation: 0.5
+        Caustic: 0.5
+      flatReductions:
+        Piercing: 5
   - type: PressureProtection
     highPressureMultiplier: 1
     lowPressureMultiplier: 1
