@@ -165,7 +165,8 @@ public sealed partial class SunriseInventorySystem
             return false;
         }
 
-        if (_storage.TryGetAvailableGridSpace((storageEntity, storage), (spawned, itemComp), out var location) &&
+        if (_storage.CanInsert(storageEntity, spawned, out _, storageComp: storage, item: itemComp) &&
+            _storage.TryGetAvailableGridSpace((storageEntity, storage), (spawned, itemComp), out var location) &&
             _storage.InsertAt((storageEntity, storage), (spawned, itemComp), location.Value, out _, playSound: false, stackAutomatically: false))
         {
             return true;

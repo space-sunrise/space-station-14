@@ -170,6 +170,7 @@ public sealed partial class InventoryWindow
             // The spawned entity id is kept only for this preview rebuild so bag remove buttons can map back to sponsor item ids.
             var spawned = _entManager.SpawnEntity(item.EntityPrototype, MapCoordinates.Nullspace);
             if (!_entManager.TryGetComponent<ItemComponent>(spawned, out var itemComp) ||
+                !_storage.CanInsert(back, spawned, out _, storageComp: storage, item: itemComp) ||
                 !_storage.TryGetAvailableGridSpace((back, storage), (spawned, itemComp), out var location) ||
                 !_storage.InsertAt((back, storage), (spawned, itemComp), location.Value, out _, playSound: false, stackAutomatically: false))
             {
@@ -437,7 +438,7 @@ public sealed partial class InventoryWindow
 
         var spawned = _entManager.SpawnEntity(item.EntityPrototype, MapCoordinates.Nullspace);
         var canInsert = _entManager.TryGetComponent<ItemComponent>(spawned, out var itemComp) &&
-                        _storage.TryGetAvailableGridSpace((back, storage), (spawned, itemComp), out _);
+                        _storage.CanInsert(back, spawned, out _, storageComp: storage, item: itemComp);
         _entManager.DeleteEntity(spawned);
         return canInsert;
     }
