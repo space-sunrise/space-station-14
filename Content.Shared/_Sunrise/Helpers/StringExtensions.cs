@@ -166,6 +166,9 @@ public static class StringExtensions
         if (line.Length + Ellipsis.Length <= maxLineLength)
             return line + Ellipsis;
 
-        return line.TruncateWithEllipsis(maxLineLength);
+        if (maxLineLength <= Ellipsis.Length)
+            return Ellipsis[..maxLineLength];
+
+        return line[..(maxLineLength - Ellipsis.Length)] + Ellipsis;
     }
 }

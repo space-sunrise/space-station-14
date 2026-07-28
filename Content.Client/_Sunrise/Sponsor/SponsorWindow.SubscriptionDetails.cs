@@ -6,6 +6,8 @@ using Content.Client._Sunrise.TTS;
 using Content.Client.Humanoid;
 using Content.Client.Lobby;
 using Content.Shared._Sunrise.GhostTheme;
+using Content.Shared._Sunrise.Helpers;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Ghost.Roles;
 using Content.Shared.Humanoid;
@@ -31,6 +33,9 @@ public sealed partial class SponsorWindow
     [Dependency] private readonly IClientPreferencesManager _preferences = default!;
 
     private const int SponsorTierDetailsBuildBudget = 10;
+    private const int SponsorTierVoiceNameMaxLength = 22;
+    private const float SponsorTierVoiceButtonHeight = 40f;
+    private const float SponsorTierVoiceButtonWidth = 180f;
     private static readonly StyleBoxFlat SponsorTierVisualPanelStyle = new()
     {
         BackgroundColor = SciFiPalette.PanelBackgroundDark,
@@ -301,13 +306,29 @@ public sealed partial class SponsorWindow
         if (prototypeIds.Count == 0)
             return;
 
-        var grid = new GridContainer
+        Container entriesContainer;
+        if (kind == SponsorTierDetailsBuildKind.Voice)
         {
-            Columns = 4,
-            HSeparationOverride = 8,
-            HorizontalAlignment = HAlignment.Center,
-            VSeparationOverride = 8,
-        };
+            entriesContainer = new WrapContainer
+            {
+                CrossSeparationOverride = 8,
+                EqualSize = true,
+                HorizontalExpand = true,
+                Justification = WrapContainer.ItemJustification.Center,
+                LayoutAxis = Axis.Horizontal,
+                SeparationOverride = 8,
+            };
+        }
+        else
+        {
+            entriesContainer = new GridContainer
+            {
+                Columns = 4,
+                HSeparationOverride = 8,
+                HorizontalAlignment = HAlignment.Center,
+                VSeparationOverride = 8,
+            };
+        }
 
         var validEntries = 0;
         foreach (var prototypeId in prototypeIds)
@@ -316,7 +337,7 @@ public sealed partial class SponsorWindow
                 continue;
 
             var placeholder = CreateSponsorTierDetailsPlaceholder(kind);
-            grid.AddChild(placeholder);
+            entriesContainer.AddChild(placeholder);
             _sponsorTierDetailsBuildQueue.Enqueue(new SponsorTierDetailsBuildRequest(
                 kind,
                 prototypeId,
@@ -328,7 +349,7 @@ public sealed partial class SponsorWindow
             return;
 
         var section = CreateSponsorTierSection(titleKey, descriptionKey);
-        section.AddChild(grid);
+        section.AddChild(entriesContainer);
         SubscriptionDetailsBenefitsList.AddChild(section);
     }
 
@@ -398,7 +419,7 @@ public sealed partial class SponsorWindow
         {
             return new PanelContainer
             {
-                SetSize = new Vector2(180, 36),
+                SetSize = new Vector2(SponsorTierVoiceButtonWidth, SponsorTierVoiceButtonHeight),
             };
         }
 
@@ -529,13 +550,19 @@ public sealed partial class SponsorWindow
             return null;
 
         var voiceId = prototypeId;
+        var voiceName = Loc.GetString(prototype.Name);
         var button = new Button
         {
-            MaxWidth = 180,
-            MinHeight = 36,
-            MinWidth = 180,
-            Text = Loc.GetString(prototype.Name),
+            ClipText = true,
+            MaxHeight = SponsorTierVoiceButtonHeight,
+            MaxWidth = SponsorTierVoiceButtonWidth,
+            MinHeight = SponsorTierVoiceButtonHeight,
+            MinWidth = SponsorTierVoiceButtonWidth,
+            SetHeight = SponsorTierVoiceButtonHeight,
+            SetWidth = SponsorTierVoiceButtonWidth,
+            Text = voiceName.TruncateWithEllipsis(SponsorTierVoiceNameMaxLength),
             TextAlign = Label.AlignMode.Center,
+            ToolTip = voiceName,
             StyleClasses =
             {
                 SunriseStyleClass.StyleClassSciFiDonateButton,

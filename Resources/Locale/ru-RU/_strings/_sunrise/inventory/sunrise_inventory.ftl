@@ -1,3 +1,5 @@
+option-button-filter = Поиск
+
 sunrise-inventory-open-button = Инвентарь
 sunrise-inventory-window-title = Инвентарь
 sunrise-inventory-save = Сохранить

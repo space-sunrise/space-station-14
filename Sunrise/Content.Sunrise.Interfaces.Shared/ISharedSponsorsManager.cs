@@ -149,7 +149,7 @@ public sealed class SponsorInventoryConfig
 }
 
 /// <summary>
-/// Условие доступа по спонсорскому тиру.
+/// Условие временной выдачи предмета по спонсорскому тиру без покупки.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class SponsorInventoryTierAccessInfo
@@ -161,20 +161,20 @@ public sealed class SponsorInventoryTierAccessInfo
     public int Value { get; set; }
 
     /// <summary>
-    /// Разрешает ли требование доступ более высоким тирам.
+    /// Получают ли временный доступ более высокие тиры.
     /// </summary>
     [JsonPropertyName("inherit")]
     public bool Inherit { get; set; } = true;
 }
 
 /// <summary>
-/// Альтернативные способы получить доступ к предмету спонсорского инвентаря.
+/// Альтернативные способы временно использовать предмет спонсорского инвентаря без владения.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class SponsorInventoryAccessInfo
 {
     /// <summary>
-    /// Условие доступа по спонсорскому тиру или null, если тир не является способом доступа.
+    /// Условие временного доступа по спонсорскому тиру или null, если тир не выдаёт предмет.
     /// </summary>
     [JsonPropertyName("tier")]
     public SponsorInventoryTierAccessInfo? Tier { get; set; }
@@ -205,13 +205,13 @@ public sealed class SponsorInventoryItemInfo
     public string[]? AvailableJobs { get; set; }
 
     /// <summary>
-    /// Условия доступа: достаточный тир или одновременно все перечисленные права.
+    /// Условия временного доступа без владения: достаточный тир или одновременно все перечисленные права.
     /// </summary>
     [JsonPropertyName("access")]
     public SponsorInventoryAccessInfo Access { get; set; } = new();
 
     /// <summary>
-    /// Может ли предмет отображаться в спонсорском магазине. Для наград за роль следует отключать.
+    /// Можно ли купить предмет и отображать его в спонсорском магазине. Не зависит от <see cref="Access"/>.
     /// </summary>
     [JsonPropertyName("purchasable")]
     public bool Purchasable { get; set; } = true;
