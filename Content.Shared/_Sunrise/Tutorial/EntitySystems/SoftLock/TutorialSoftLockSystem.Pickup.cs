@@ -13,6 +13,7 @@ using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.Events;
+using Content.Shared.Throwing;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -29,6 +30,7 @@ public sealed partial class TutorialSoftLockSystem
     public void InitializePickup()
     {
         SubscribeLocalEvent<TutorialDropSoftLockComponent, DropAttemptEvent>(OnDropAttempt);
+        SubscribeLocalEvent<TutorialDropSoftLockComponent, BeforeThrowEvent>(OnBeforeThrow);
         SubscribeLocalEvent<TutorialPickupSoftLockComponent, PickupAttemptEvent>(OnPickupAttempt);
 
     }
@@ -39,6 +41,15 @@ public sealed partial class TutorialSoftLockSystem
             return;
 
         args.Cancel();
+        ShowPopup(ent, ent.Comp.Popup);
+    }
+
+    private void OnBeforeThrow(Entity<TutorialDropSoftLockComponent> ent, ref BeforeThrowEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        args.Cancelled = true;
         ShowPopup(ent, ent.Comp.Popup);
     }
 

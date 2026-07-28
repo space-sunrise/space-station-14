@@ -7,6 +7,31 @@ namespace Content.Shared._Sunrise.Tutorial.EntitySystems;
 
 public abstract partial class SharedTutorialSystem
 {
+    /// <summary>
+    /// Пытается пропустить текущий шаг туториала, используя штатный переход к следующему шагу.
+    /// </summary>
+    public bool TrySkipCurrentStep(Entity<TutorialPlayerComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (!CanSkipCurrentStep((ent.Owner, ent.Comp)))
+            return false;
+
+        Advance((ent.Owner, ent.Comp));
+        return true;
+    }
+
+    /// <summary>
+    /// Проверяет, можно ли пропустить текущий шаг туториала.
+    /// </summary>
+    public bool CanSkipCurrentStep(Entity<TutorialPlayerComponent> ent)
+    {
+        return !TerminatingOrDeleted(ent) &&
+               ent.Comp.TutorialInitialized &&
+               TryGetCurrentStep(ent, out _);
+    }
+
     private void CheckCondition(Entity<TutorialPlayerComponent> ent)
     {
         if (!TryGetCurrentStep(ent, out var step))

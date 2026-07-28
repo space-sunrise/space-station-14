@@ -13,6 +13,7 @@ using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.Events;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -30,10 +31,29 @@ public sealed partial class TutorialSoftLockSystem
     public void InitializeInteractions()
     {
         SubscribeLocalEvent<TutorialInteractSoftLockComponent, InteractionAttemptEvent>(OnHeldItemInteractionAttempt);
+        SubscribeLocalEvent<TutorialAttackSoftLockComponent, AttackAttemptEvent>(OnAttackAttempt);
+        SubscribeLocalEvent<TutorialAttackSoftLockComponent, ShotAttemptedEvent>(OnShotAttempted);
 
         SubscribeLocalEvent<TutorialSoftLockEntityComponent, ActivatableUIOpenAttemptEvent>(OnBuiOpen);
         SubscribeLocalEvent<TutorialOpenUiSoftLockComponent, TutorialShouldMarkEntityEvent>(OnOpenUiShouldMarkEntity);
     }
+
+    private void OnAttackAttempt(Entity<TutorialAttackSoftLockComponent> ent, ref AttackAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        TryBlockAttack(ent, args);
+    }
+
+    private void OnShotAttempted(Entity<TutorialAttackSoftLockComponent> ent, ref ShotAttemptedEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        TryBlockShot(ent, ref args);
+    }
+
     private void OnHeldItemInteractionAttempt(Entity<TutorialInteractSoftLockComponent> ent, ref InteractionAttemptEvent args)
     {
         if (args.Cancelled || args.Target is not { } target)
@@ -73,6 +93,77 @@ public sealed partial class TutorialSoftLockSystem
             return;
 
         args.ShouldMark = IsAllowedPrototype(args.Target, ent.Comp.Targets);
+    }
+
+    private bool TryBlockAttack(Entity<TutorialAttackSoftLockComponent> ent, AttackAttemptEvent args)
+    {
+        if (CanAttack(ent, args))
+            return false;
+
+        args.Cancel();
+        if (!ent.Comp.Silent)
+            ShowPopup(ent, ent.Comp.Popup);
+        return true;
+    }
+
+    private bool TryBlockShot(Entity<TutorialAttackSoftLockComponent> ent, ref ShotAttemptedEvent args)
+    {
+        if (CanShoot(ent, args))
+            return false;
+
+        args.Cancel();
+        if (!ent.Comp.Silent)
+            ShowPopup(ent, ent.Comp.Popup);
+        return true;
+    }
+
+    private bool CanAttack(Entity<TutorialAttackSoftLockComponent> ent, AttackAttemptEvent args)
+    {
+        // Широкий удар сначала проходит общую проверку без цели.
+        // Конкретные сущности в зоне удара проверяются повторно перед нанесением урона.
+        if (args.Target == null)
+        {
+            if (args.Weapon is { } untargetedWeapon)
+                return CanUseMeleeWeapon(ent, untargetedWeapon);
+
+            // Перед выстрелом оружейная система выполняет общую проверку без цели и оружия.
+            return ent.Comp.AllowedRangedWeapons.Count > 0;
+        }
+
+        if (!IsAttackAllowedPrototype(args.Target.Value, ent.Comp.AllowedTargets))
+            return false;
+
+        if (args.Disarm)
+            return ent.Comp.AllowDisarm;
+
+        if (args.Weapon is not { } weapon)
+            return false;
+
+        return CanUseMeleeWeapon(ent, weapon);
+    }
+
+    private bool CanUseMeleeWeapon(
+        Entity<TutorialAttackSoftLockComponent> ent,
+        EntityUid weapon)
+    {
+        if (weapon == ent.Owner)
+        {
+            // Клиент проверяет возможность атаки без цели до определения конкретного действия.
+            // Пустая рука должна пройти эту проверку как для обычного удара, так и для обезоруживания.
+            return ent.Comp.AllowUnarmed || ent.Comp.AllowDisarm;
+        }
+
+        return IsAttackAllowedPrototype(weapon, ent.Comp.AllowedMeleeWeapons);
+    }
+
+    private bool CanShoot(Entity<TutorialAttackSoftLockComponent> ent, ShotAttemptedEvent args)
+    {
+        return IsAttackAllowedPrototype(args.Used, ent.Comp.AllowedRangedWeapons);
+    }
+
+    private bool IsAttackAllowedPrototype(EntityUid uid, List<EntProtoId> allowedPrototypes)
+    {
+        return allowedPrototypes.Count > 0 && HasBlockedPrototype(uid, allowedPrototypes);
     }
 
     private bool ShouldBlockInteract(
