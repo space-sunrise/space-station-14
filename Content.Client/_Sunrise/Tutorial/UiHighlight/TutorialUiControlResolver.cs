@@ -2,21 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Content.Client.UserInterface;
+using Content.Client.UserInterface.Systems.Alerts.Controls;
 using Content.Shared._Sunrise.Tutorial.Prototypes;
+using Content.Shared.Alert;
 using Robust.Client.UserInterface;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Tutorial.UiHighlight;
 
-public sealed class TutorialUiControlResolver
+public sealed class TutorialUiControlResolver(IEntityManager entityManager)
 {
-    private readonly IEntityManager _entityManager;
-
-    public TutorialUiControlResolver(IEntityManager entityManager)
-    {
-        _entityManager = entityManager;
-    }
+    private readonly IEntityManager _entityManager = entityManager;
 
     public bool TryFind(
         Control root,
@@ -65,6 +62,9 @@ public sealed class TutorialUiControlResolver
 
             case UiByEntityPrototype byEntityPrototype:
                 return TryFindControlByEntityPrototype(root, byEntityPrototype.Prototype, byEntityPrototype.Index, out control);
+
+            case UiByAlertPrototype byAlertPrototype:
+                return TryFindControlByAlertPrototype(root, byAlertPrototype.Prototype, byAlertPrototype.Index, out control);
         }
 
         control = null;
@@ -136,6 +136,31 @@ public sealed class TutorialUiControlResolver
             }
 
             if (!string.Equals(meta.EntityPrototype.ID, prototype.Id, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            return currentIndex++ == targetIndex;
+        }, out control);
+    }
+
+    private static bool TryFindControlByAlertPrototype(
+        Control root,
+        ProtoId<AlertPrototype> prototype,
+        int targetIndex,
+        [NotNullWhen(true)] out Control? control)
+    {
+        if (targetIndex < 0)
+        {
+            control = null;
+            return false;
+        }
+
+        var currentIndex = 0;
+        return TryFindDescendant(root, candidate =>
+        {
+            if (candidate is not AlertControl alertControl)
+                return false;
+
+            if (!string.Equals(alertControl.Alert.ID, prototype.Id, StringComparison.OrdinalIgnoreCase))
                 return false;
 
             return currentIndex++ == targetIndex;

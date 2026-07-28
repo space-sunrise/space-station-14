@@ -1,6 +1,7 @@
 using Content.Shared._Sunrise.TTS;
 using Content.Shared._Sunrise.Tutorial.Conditions;
 using Content.Shared._Sunrise.Tutorial.Effects;
+using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
@@ -216,6 +217,18 @@ public sealed partial class UiByEntityPrototype : TutorialUiHighlightSelector
 {
     [DataField(required: true)]
     public EntProtoId Prototype;
+
+    [DataField]
+    public int Index;
+}
+
+/// <summary>
+///     Находит элемент конкретного алерта персонажа.
+/// </summary>
+public sealed partial class UiByAlertPrototype : TutorialUiHighlightSelector
+{
+    [DataField(required: true)]
+    public ProtoId<AlertPrototype> Prototype;
 
     [DataField]
     public int Index;
