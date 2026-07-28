@@ -464,7 +464,7 @@ public static class SunriseInventoryValidation
             return false;
         }
 
-        if (!IsJobAllowed(item, jobId))
+        if (!IsUsageAllowed(item, jobId, prototype))
             return false;
 
         return CanUseForOwnershipOrSponsorAccess(item, purchasedItems, sponsorTier, entitlements);
@@ -480,8 +480,8 @@ public static class SunriseInventoryValidation
     {
         if (item.Access.Tier is { } tierAccess)
         {
-            if ((tierAccess.Inherit && sponsorTier >= tierAccess.Value) ||
-                (!tierAccess.Inherit && sponsorTier == tierAccess.Value))
+            if (tierAccess.Inherit && sponsorTier >= tierAccess.Value ||
+                !tierAccess.Inherit && sponsorTier == tierAccess.Value)
             {
                 return true;
             }
@@ -542,15 +542,48 @@ public static class SunriseInventoryValidation
         }
     }
 
-    private static bool IsJobAllowed(SponsorInventoryItemInfo item, string? jobId)
+    /// <summary>
+    /// Возвращает, разрешено ли использовать предмет выбранной профессии согласно каталогу.
+    /// Разрешающие списки профессий и отделов объединяются по OR, а исключение профессии имеет приоритет.
+    /// </summary>
+    public static bool IsUsageAllowed(
+        SponsorInventoryItemInfo item,
+        string? jobId,
+        IPrototypeManager prototype)
     {
-        if (item.AvailableJobs is not { Length: > 0 })
+        var usage = item.Usage;
+        var jobs = usage?.Jobs;
+        var departments = usage?.Departments;
+        var excludedJobs = usage?.ExcludeJobs;
+        var hasAllowedJobs = jobs is { Length: > 0 };
+        var hasAllowedDepartments = departments is { Length: > 0 };
+        var hasExcludedJobs = excludedJobs is { Length: > 0 };
+
+        if (!hasAllowedJobs && !hasAllowedDepartments && !hasExcludedJobs)
             return true;
 
         if (jobId == null || !IsReasonableId(jobId, MaxPrototypeIdLength))
             return false;
 
-        return item.AvailableJobs.Contains(jobId);
+        if (hasExcludedJobs && excludedJobs!.Contains(jobId))
+            return false;
+
+        if (hasAllowedJobs && jobs!.Contains(jobId))
+            return true;
+
+        if (hasAllowedDepartments)
+        {
+            foreach (var departmentId in departments!)
+            {
+                if (!prototype.TryIndex<DepartmentPrototype>(departmentId, out var department))
+                    continue;
+
+                if (department.Roles.Contains(jobId))
+                    return true;
+            }
+        }
+
+        return !hasAllowedJobs && !hasAllowedDepartments;
     }
 
     private static HashSet<string> GetPurchasedItems(ICommonSession session, ISharedSponsorsManager sponsors)

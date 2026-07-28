@@ -202,7 +202,6 @@
   - BlueShieldBackpack
   - BlueShieldSatchel
   - BlueShieldDuffel
-  - BlueShieldModsuit
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -1543,7 +1542,6 @@
   name: loadout-group-commaid-backpack
   loadouts:
   - ComMaidBackpackSatchelLeather
-  - ComMaidModsuit
 
 - type: loadoutGroup
   id: ComMaidNeck
@@ -1792,10 +1790,3 @@
   loadouts:
   - HeadOfPrisonJumpsuitAlt
   - HeadOfPrisonJumpsuitOld
-
-- type: loadoutGroup
-  id: Contributors
-  name: loadout-group-contributors
-  minLimit: 0
-  loadouts:
-  - ContributorLoadout

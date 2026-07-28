@@ -413,9 +413,28 @@ public sealed partial class SponsorWindow
             lines.Add(Loc.GetString("donation-terminal-inventory-temporary-access-unavailable"));
         }
 
-        var jobs = GetJobListText(item.AvailableJobs);
+        var usageJobs = item.Usage?.Jobs ?? [];
+        var usageDepartments = item.Usage?.Departments ?? [];
+        var excludedUsageJobs = item.Usage?.ExcludeJobs ?? [];
+        var jobs = GetJobListText(usageJobs);
         if (!string.IsNullOrWhiteSpace(jobs))
             lines.Add(Loc.GetString("donation-terminal-inventory-jobs", ("jobs", jobs)));
+
+        var departments = GetDepartmentListText(usageDepartments);
+        if (!string.IsNullOrWhiteSpace(departments))
+        {
+            lines.Add(Loc.GetString(
+                "donation-terminal-inventory-departments",
+                ("departments", departments)));
+        }
+
+        var excludedJobs = GetJobListText(excludedUsageJobs);
+        if (!string.IsNullOrWhiteSpace(excludedJobs))
+        {
+            lines.Add(Loc.GetString(
+                "donation-terminal-inventory-excluded-jobs",
+                ("jobs", excludedJobs)));
+        }
 
         if (owned)
             lines.Add(Loc.GetString("donation-terminal-owned"));
@@ -524,6 +543,27 @@ public sealed partial class SponsorWindow
 
         jobNames.Sort((a, b) => string.Compare(a, b, StringComparison.OrdinalIgnoreCase));
         return string.Join(", ", jobNames);
+    }
+
+    private string GetDepartmentListText(string[]? departmentIds)
+    {
+        if (departmentIds is not { Length: > 0 })
+            return string.Empty;
+
+        var departmentNames = new List<string>();
+        foreach (var departmentId in departmentIds)
+        {
+            if (string.IsNullOrWhiteSpace(departmentId))
+                continue;
+
+            if (_prototype.TryIndex<DepartmentPrototype>(departmentId, out var departmentPrototype))
+                departmentNames.Add(Loc.GetString(departmentPrototype.Name));
+            else
+                departmentNames.Add(departmentId);
+        }
+
+        departmentNames.Sort((a, b) => string.Compare(a, b, StringComparison.OrdinalIgnoreCase));
+        return string.Join(", ", departmentNames);
     }
 
     private bool EntryMatchesSearch(SponsorStoreEntry entry, string? search)

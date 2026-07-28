@@ -10,7 +10,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobMagistrat
@@ -22,7 +21,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobNtrOfficer
@@ -35,7 +33,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -52,7 +49,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobCentCommOfficial
@@ -65,7 +61,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobCentCommOperator
@@ -78,7 +73,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobBlueShieldEnsign
@@ -95,7 +89,6 @@
   - SunriseSurvivalSecurity
   - GroupSpeciesBreathTool
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobBlueShieldOfficer
@@ -112,7 +105,6 @@
   - SunriseSurvivalSecurity
   - GroupSpeciesBreathTool
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobSeniorOfficer
@@ -130,7 +122,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobSeniorResearcher
@@ -146,7 +137,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobSeniorPhysician
@@ -168,7 +158,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobMedicalPathologist
@@ -190,7 +179,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobSeniorEngineer
@@ -210,7 +198,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobRoboticist
@@ -227,7 +214,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobSecurityPilot
@@ -244,7 +230,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 #- type: roleLoadout
 #  id: JobPrisonGuard
@@ -277,7 +262,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPrisonInspector
@@ -292,7 +276,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPrisonWorker
@@ -305,7 +288,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPrisonEngineer
@@ -320,7 +302,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPrisonScientist
@@ -333,7 +314,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPrisonDoctor
@@ -346,7 +326,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPrisonTrainee
@@ -360,7 +339,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPrisonChef
@@ -373,7 +351,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobPlanetPrisoner
@@ -386,7 +363,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 #- type: roleLoadout
 #  id: JobPrisonPilot
@@ -415,7 +391,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobBarber
@@ -428,7 +403,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobAdjutant
@@ -443,7 +417,6 @@
   - SunriseTrinkets
   - GroupSpeciesBreathTool
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: JobMailCarrier
@@ -460,7 +433,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: RoleSurvivalAssaultOps
@@ -468,7 +440,6 @@
   - SunriseSurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
-  - Contributors
 
 - type: roleLoadout
   id: SunriseRoleSurvivalSyndicate
@@ -503,7 +474,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 # Silicons
 
@@ -562,7 +532,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: RoleSurvivalScooner

@@ -292,7 +292,12 @@ public sealed class SunriseInventorySystem : EntitySystem
                 {
                     Id = item.Id,
                     EntityPrototype = item.EntityPrototype,
-                    AvailableJobs = item.AvailableJobs?.ToArray(),
+                    Usage = new SponsorInventoryUsageInfo
+                    {
+                        Jobs = item.Usage?.Jobs?.ToArray() ?? [],
+                        Departments = item.Usage?.Departments?.ToArray() ?? [],
+                        ExcludeJobs = item.Usage?.ExcludeJobs?.ToArray() ?? [],
+                    },
                     Access = new SponsorInventoryAccessInfo
                     {
                         Tier = item.Access.Tier == null

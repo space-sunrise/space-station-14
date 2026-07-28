@@ -187,6 +187,33 @@ public sealed class SponsorInventoryAccessInfo
 }
 
 /// <summary>
+/// Ограничения использования предмета спонсорского инвентаря выбранной профессией.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SponsorInventoryUsageInfo
+{
+    /// <summary>
+    /// Профессии, которым разрешено использовать предмет.
+    /// Объединяются с <see cref="Departments"/> по OR.
+    /// </summary>
+    [JsonPropertyName("jobs")]
+    public string[] Jobs { get; set; } = [];
+
+    /// <summary>
+    /// Отделы, профессиям которых разрешено использовать предмет.
+    /// Если профессии и отделы не заданы, предмет разрешён всем профессиям вне исключений.
+    /// </summary>
+    [JsonPropertyName("departments")]
+    public string[] Departments { get; set; } = [];
+
+    /// <summary>
+    /// Профессии, которым запрещено использовать предмет независимо от разрешающих условий.
+    /// </summary>
+    [JsonPropertyName("excludeJobs")]
+    public string[] ExcludeJobs { get; set; } = [];
+}
+
+/// <summary>
 /// Элемент каталога спонсорского инвентаря.
 /// </summary>
 [Serializable, NetSerializable]
@@ -199,10 +226,10 @@ public sealed class SponsorInventoryItemInfo
     public string EntityPrototype { get; set; } = string.Empty;
 
     /// <summary>
-    /// Job IDs that may use this item, or null when the item is not job-restricted.
+    /// Ограничения использования предмета выбранной профессией. Не влияют на покупку.
     /// </summary>
-    [JsonPropertyName("availableJobs")]
-    public string[]? AvailableJobs { get; set; }
+    [JsonPropertyName("usage")]
+    public SponsorInventoryUsageInfo Usage { get; set; } = new();
 
     /// <summary>
     /// Условия временного доступа без владения: достаточный тир или одновременно все перечисленные права.
