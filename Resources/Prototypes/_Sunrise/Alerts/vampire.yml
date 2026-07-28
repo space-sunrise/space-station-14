@@ -40,19 +40,3 @@
   maxSeverity: 5
   name: alerts-vampire-fed-name
   description: alerts-vampire-fed-desc
-
-- type: alert
-  id: VampireBloodSwell
-  icons:
-  - sprite: _Sunrise/Vampire/hud_icons.rsi
-    state: hudblood_swell
-  name: alerts-vampire-blood-swell-name
-  description: alerts-vampire-blood-swell-desc
-
-- type: alert
-  id: VampireBloodRush
-  icons:
-  - sprite: _Sunrise/Vampire/hud_icons.rsi
-    state: hudblood_rush
-  name: alerts-vampire-blood-rush-name
-  description: alerts-vampire-blood-rush-desc
