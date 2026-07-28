@@ -32,19 +32,19 @@
         <Control
             HorizontalAlignment="Center"
             MaxHeight="36"
-            MaxWidth="76"
+            MaxWidth="86"
             RectClipContent="True"
             SetHeight="36"
-            SetWidth="76">
+            SetWidth="86">
             <Label
                 Name="ItemName"
                 Align="Center"
                 ClipText="True"
                 HorizontalAlignment="Center"
                 MaxHeight="36"
-                MaxWidth="76"
+                MaxWidth="86"
                 SetHeight="36"
-                SetWidth="76"
+                SetWidth="86"
                 StyleClasses="LabelSubText"
                 VAlign="Top" />
         </Control>

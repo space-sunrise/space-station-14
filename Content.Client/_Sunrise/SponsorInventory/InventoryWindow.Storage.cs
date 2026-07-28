@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Sunrise.Helpers;
 using Content.Shared._Sunrise.SponsorInventory;
 using Content.Shared.Armor;
 using Content.Shared.Clothing;
@@ -26,7 +27,9 @@ public sealed partial class InventoryWindow
     /*
      * Preview entity equipment and bag storage rendering for selected loadout and sponsor items.
      */
+    private const int BagTitleMaxLength = 36;
     private static readonly Color BagGridTileModulate = Color.FromHex("#C8C8D0");
+
     private void ApplySponsorSlotsToPreview(EntityUid dummy, SunriseInventorySelection selection)
     {
         var replacementSlots = new HashSet<string>();
@@ -197,7 +200,9 @@ public sealed partial class InventoryWindow
         BagGridHost.SetHeight = height;
 
         // The bag grid is rendered from the preview storage component, so loadout and sponsor items share one view.
-        BagTitle.Text = Loc.GetString("sunrise-inventory-bag-title-named", ("bag", GetEntityName(back)));
+        var bagTitle = Loc.GetString("sunrise-inventory-bag-title-named", ("bag", GetEntityName(back)));
+        BagTitle.Text = bagTitle.TruncateWithEllipsis(BagTitleMaxLength);
+        BagTitle.ToolTip = bagTitle;
         BagCapacityLabel.Text = Loc.GetString(
             "sunrise-inventory-bag-capacity",
             ("used", CountStorageUsedCells(storage)),

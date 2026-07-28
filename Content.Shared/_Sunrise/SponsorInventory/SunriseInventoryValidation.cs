@@ -241,7 +241,7 @@ public static class SunriseInventoryValidation
                     continue;
 
                 catalogItemFound = true;
-                if (!CanUseForOwnership(item, purchasedItems, sponsorTier, entitlements))
+                if (!CanUseForOwnershipOrSponsorAccess(item, purchasedItems, sponsorTier, entitlements))
                     continue;
 
                 catalogItemAllowed = true;
@@ -467,10 +467,13 @@ public static class SunriseInventoryValidation
         if (!IsJobAllowed(item, jobId))
             return false;
 
-        return CanUseForOwnership(item, purchasedItems, sponsorTier, entitlements);
+        return CanUseForOwnershipOrSponsorAccess(item, purchasedItems, sponsorTier, entitlements);
     }
 
-    public static bool CanPurchaseForSponsorAccess(
+    /// <summary>
+    /// Возвращает, выдаёт ли активная подписка или entitlement временный доступ к предмету без покупки.
+    /// </summary>
+    public static bool HasSponsorAccess(
         SponsorInventoryItemInfo item,
         int sponsorTier,
         IReadOnlySet<string> entitlements)
@@ -495,10 +498,10 @@ public static class SunriseInventoryValidation
             return true;
         }
 
-        return item.Access.Tier == null;
+        return false;
     }
 
-    private static bool CanUseForOwnership(
+    private static bool CanUseForOwnershipOrSponsorAccess(
         SponsorInventoryItemInfo item,
         IReadOnlySet<string> purchasedItems,
         int sponsorTier,
@@ -507,13 +510,7 @@ public static class SunriseInventoryValidation
         if (purchasedItems.Contains(item.Id))
             return true;
 
-        if (item.Purchasable ||
-            (item.Access.Tier == null && item.Access.Entitlements is not { Length: > 0 }))
-        {
-            return false;
-        }
-
-        return CanPurchaseForSponsorAccess(item, sponsorTier, entitlements);
+        return HasSponsorAccess(item, sponsorTier, entitlements);
     }
 
     private static IEnumerable<string> GetLoadoutEntityPrototypes(

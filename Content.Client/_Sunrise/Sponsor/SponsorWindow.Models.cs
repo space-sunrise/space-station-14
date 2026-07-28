@@ -15,7 +15,6 @@ public sealed partial class SponsorWindow
         bool AccessTierInherited,
         int Price,
         bool Owned,
-        bool SponsorAccessGranted,
         bool RequiresSpecialAccess,
         string DetailsText,
         int OwnedItemCount,
