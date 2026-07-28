@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Preferences.Loadouts;
@@ -277,66 +276,6 @@ public static class SunriseInventoryValidation
         return selection;
     }
 
-    /// <summary>
-    /// Проверяет, может ли спонсорская замена слота удалить экипировку лоадаута из одного слота.
-    /// </summary>
-    public static bool CanReplaceLoadoutSlot(
-        RoleLoadout roleLoadout,
-        string slot,
-        IPrototypeManager prototype)
-    {
-        return IsReasonableId(slot, MaxSlotIdLength) &&
-               CanReplaceLoadoutSlots(roleLoadout, new[] { slot }, prototype);
-    }
-
-    /// <summary>
-    /// Проверяет, могут ли спонсорские замены слотов удалить экипировку лоадаута из всех указанных слотов.
-    /// </summary>
-    public static bool CanReplaceLoadoutSlots(
-        RoleLoadout roleLoadout,
-        IEnumerable<string> slots,
-        IPrototypeManager prototype)
-    {
-        var targetSlots = new HashSet<string>();
-        foreach (var slot in slots)
-        {
-            if (IsReasonableId(slot, MaxSlotIdLength))
-                targetSlots.Add(slot);
-        }
-
-        if (targetSlots.Count == 0)
-            return true;
-
-        var removalsByGroup = new Dictionary<ProtoId<LoadoutGroupPrototype>, int>();
-        foreach (var (groupId, selectedLoadouts) in roleLoadout.SelectedLoadouts)
-        {
-            foreach (var selectedLoadout in selectedLoadouts)
-            {
-                if (!prototype.TryIndex(selectedLoadout.Prototype, out LoadoutPrototype? loadout) ||
-                    !LoadoutHasAnyEquipmentSlot(loadout, targetSlots, prototype))
-                {
-                    continue;
-                }
-
-                removalsByGroup[groupId] = removalsByGroup.GetValueOrDefault(groupId) + 1;
-            }
-        }
-
-        foreach (var (groupId, removalCount) in removalsByGroup)
-        {
-            if (!roleLoadout.SelectedLoadouts.TryGetValue(groupId, out var selectedLoadouts))
-                return false;
-
-            if (!prototype.TryIndex(groupId, out LoadoutGroupPrototype? group))
-                continue;
-
-            if (selectedLoadouts.Count - removalCount < Math.Max(0, group.MinLimit))
-                return false;
-        }
-
-        return true;
-    }
-
     private static SunriseInventorySelection EnsureValidSelection(
         SunriseInventorySelection selection,
         string? jobId,
@@ -424,29 +363,6 @@ public static class SunriseInventoryValidation
     private static bool IsReasonableId(string? id, int maxLength)
     {
         return !string.IsNullOrWhiteSpace(id) && id.Length <= maxLength;
-    }
-
-    private static bool LoadoutHasAnyEquipmentSlot(
-        LoadoutPrototype loadout,
-        HashSet<string> slots,
-        IPrototypeManager prototype)
-    {
-        foreach (var slot in slots)
-        {
-            if (loadout.Equipment.ContainsKey(slot))
-                return true;
-        }
-
-        if (!prototype.Resolve(loadout.StartingGear, out var startingGear))
-            return false;
-
-        foreach (var slot in slots)
-        {
-            if (startingGear.Equipment.ContainsKey(slot))
-                return true;
-        }
-
-        return false;
     }
 
     private static bool CanUseItem(
