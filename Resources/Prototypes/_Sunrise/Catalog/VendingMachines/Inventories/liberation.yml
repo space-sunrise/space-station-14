@@ -9,8 +9,7 @@
     WeaponPistolCHIMP: 3
     WeaponPulsePistol: 3
     WeaponPistolVP78: 3
-    WeaponPistolG22: 3
-    WeaponPistolG22Auto: 3
+    WeaponPistolEnforcer: 3
     WeaponPistolHIB88M4: 3
     WeaponPistolACP14: 3
     WeaponPistolEchis: 3
@@ -345,7 +344,6 @@
     MagazinePistolSubMachineGunPPSHExtended: 3
     MagazinePistolSubMachineGunPPSH: 3
     MagazineVP78: 5
-    MagazineGlock22: 5
     MagazineDeagle: 5
     MagazineHIBrowning: 5
     MagazineACP14: 5

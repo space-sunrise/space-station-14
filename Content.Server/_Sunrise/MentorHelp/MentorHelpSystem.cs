@@ -21,7 +21,7 @@ using Robust.Shared.Utility;
 namespace Content.Server._Sunrise.MentorHelp
 {
     /// <summary>
-    /// Server-side mentor help system for managing tickets
+    /// Серверная система менторской помощи для управления тикетами.
     /// </summary>
     [UsedImplicitly]
     public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
@@ -35,7 +35,7 @@ namespace Content.Server._Sunrise.MentorHelp
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
-        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+        private ISharedSponsorsManager? _sponsorsManager; // Менеджер спонсоров Sunrise.
 
         private sealed class MentorStatisticsCache
         {
@@ -55,7 +55,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
             _rateLimit.Register(
                 RateLimitKey,
-                new RateLimitRegistration(SunriseCCVars.MentorHelpRateLimitPeriod, // Reuse ahelp rate limit config
+                new RateLimitRegistration(SunriseCCVars.MentorHelpRateLimitPeriod, // Переиспользуем конфиг rate limit от ahelp.
                     SunriseCCVars.MentorHelpRateLimitCount,
                     PlayerRateLimitedAction)
             );
@@ -63,7 +63,7 @@ namespace Content.Server._Sunrise.MentorHelp
             SubscribeNetworkEvent<MentorHelpClientTypingUpdated>(OnClientTypingUpdated);
 
             _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
-            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Опциональный менеджер спонсоров Sunrise.
         }
 
         private void PlayerRateLimitedAction(ICommonSession session)
@@ -73,19 +73,19 @@ namespace Content.Server._Sunrise.MentorHelp
 
         private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
         {
-            // Could notify mentors about player connection status for active tickets
-            // For now, keep it simple
+            // Можно уведомлять менторов о статусе подключения игрока для активных тикетов.
+            // Пока оставляем простую реализацию.
         }
 
         protected override async void OnCreateTicketMessage(MentorHelpCreateTicketMessage message, EntitySessionEventArgs eventArgs)
         {
             var session = eventArgs.SenderSession;
 
-            // Rate limiting
+            // Ограничение частоты.
             if (_rateLimit.CountAction(session, RateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
-            // Validate input
+            // Проверяем ввод.
             if (string.IsNullOrWhiteSpace(message.Subject) || string.IsNullOrWhiteSpace(message.Message))
             {
                 Log.Warning($"Player {session.Name} ({session.UserId}) tried to create mentor help ticket with empty subject or message");
@@ -128,7 +128,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 await NotifyTicketUpdate(ticketData);
-                // Instruct the player's client to open the newly created ticket
+                // Просим клиент игрока открыть только что созданный тикет.
                 RaiseNetworkEvent(new MentorHelpOpenTicketMessage(ticket.Id), session.Channel);
 
                 var messageData = await ConvertToMessageDataAsync(ticketMessage);
@@ -144,7 +144,7 @@ namespace Content.Server._Sunrise.MentorHelp
         {
             var session = eventArgs.SenderSession;
 
-            // Check permissions
+            // Проверяем права.
             if (!HasMentorPermissions(session))
             {
                 Log.Warning($"Player {session.Name} ({session.UserId}) tried to claim mentor help ticket without permissions");
@@ -171,7 +171,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     return;
 
 
-                // Claim the ticket
+                // Берем тикет в работу.
                 ticket.AssignedToUserId = session.UserId.UserId;
                 ticket.Status = MentorHelpTicketStatus.Assigned;
                 ticket.UpdatedAt = DateTimeOffset.UtcNow;
@@ -181,7 +181,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 Log.Info($"Mentor {session.Name} ({session.UserId}) claimed ticket #{ticket.Id}");
 
-                // Notify all relevant parties
+                // Уведомляем все заинтересованные стороны.
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 await NotifyTicketUpdate(ticketData);
             }
@@ -195,7 +195,7 @@ namespace Content.Server._Sunrise.MentorHelp
         {
             var session = eventArgs.SenderSession;
 
-            // Rate limiting
+            // Ограничение частоты.
             if (_rateLimit.CountAction(session, RateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
@@ -214,7 +214,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     return;
                 }
 
-                // Check permissions - player can reply to their own ticket, mentors/admins can reply to any
+                // Проверяем права: игрок может отвечать в свой тикет, менторы/админы — в любой.
                 var isTicketOwner = ticket.PlayerId == session.UserId.UserId;
                 var hasMentorPerms = HasMentorPermissions(session);
 
@@ -224,21 +224,21 @@ namespace Content.Server._Sunrise.MentorHelp
                     return;
                 }
 
-                // Staff-only messages can only be sent by mentors/admins
+                // Сообщения только для персонала могут отправлять только менторы/админы.
                 if (message.IsStaffOnly && !hasMentorPerms)
                 {
                     Log.Warning($"Player {session.Name} ({session.UserId}) tried to send staff-only message without permissions");
                     return;
                 }
 
-                // Validate message
+                // Проверяем сообщение.
                 if (string.IsNullOrWhiteSpace(message.Message) || message.Message.Length > 4096)
                 {
                     Log.Warning($"Player {session.Name} ({session.UserId}) tried to send invalid message to ticket #{message.TicketId}");
                     return;
                 }
 
-                // Create the message
+                // Создаем сообщение.
                 var ticketMessage = new MentorHelpMessage
                 {
                     TicketId = message.TicketId,
@@ -250,19 +250,19 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 await _dbManager.AddMentorHelpMessageAsync(ticketMessage);
 
-                // Update ticket status
+                // Обновляем статус тикета.
                 if (hasMentorPerms && ticket.Status == MentorHelpTicketStatus.Open)
                 {
-                    // Mentor replied to open ticket, mark as assigned
+                    // Ментор ответил в открытый тикет, отмечаем его назначенным.
                     ticket.AssignedToUserId = session.UserId.UserId;
                     ticket.Status = MentorHelpTicketStatus.Assigned;
                 }
                 else if (hasMentorPerms)
-                    // Mentor replied, awaiting player response
+                    // Ментор ответил, ждем ответа игрока.
                     ticket.Status = MentorHelpTicketStatus.AwaitingResponse;
 
                 else if (isTicketOwner && ticket.Status == MentorHelpTicketStatus.AwaitingResponse)
-                    // Player replied, mark as assigned again
+                    // Игрок ответил, снова отмечаем тикет назначенным.
                     ticket.Status = MentorHelpTicketStatus.Assigned;
 
 
@@ -272,7 +272,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 Log.Info($"Player {session.Name} ({session.UserId}) replied to ticket #{message.TicketId}");
 
-                // Notify relevant parties
+                // Уведомляем заинтересованные стороны.
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 var messageData = await ConvertToMessageDataAsync(ticketMessage);
                 await NotifyTicketUpdate(ticketData);
@@ -311,7 +311,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     return;
                 }
 
-                // Check permissions - player can close their own ticket, mentors/admins can close any
+                // Проверяем права: игрок может закрывать свой тикет, менторы/админы — любой.
                 var isTicketOwner = ticket.PlayerId == session.UserId.UserId;
                 var hasMentorPerms = HasMentorPermissions(session);
 
@@ -321,7 +321,7 @@ namespace Content.Server._Sunrise.MentorHelp
                     return;
                 }
 
-                // Close the ticket
+                // Закрываем тикет.
                 ticket.Status = MentorHelpTicketStatus.Closed;
                 ticket.ClosedAt = DateTimeOffset.UtcNow;
                 ticket.ClosedByUserId = session.UserId.UserId;
@@ -332,7 +332,7 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 Log.Info($"Player {session.Name} ({session.UserId}) closed ticket #{ticket.Id}");
 
-                // Notify relevant parties
+                // Уведомляем заинтересованные стороны.
                 var ticketData = await ConvertToTicketDataAsync(ticket);
                 await NotifyTicketUpdate(ticketData);
             }
@@ -355,14 +355,14 @@ namespace Content.Server._Sunrise.MentorHelp
 
                 else
                 {
-                    // Mentor/admin requesting all tickets (both open and closed)
+                    // Ментор/админ запрашивает все тикеты, открытые и закрытые.
                     if (!HasMentorPermissions(session))
                     {
                         Log.Warning($"Player {session.Name} ({session.UserId}) tried to request all mentor help tickets without permissions");
                         return;
                     }
 
-                    // Get both open and closed tickets for mentors
+                    // Получаем для менторов и открытые, и закрытые тикеты.
                     var openTickets = await _dbManager.GetOpenMentorHelpTicketsAsync();
                     var closedTickets = await _dbManager.GetClosedMentorHelpTicketsAsync();
                     tickets = openTickets.Concat(closedTickets).ToList();
@@ -429,8 +429,8 @@ namespace Content.Server._Sunrise.MentorHelp
 
         private Task<int?> GetServerIdAsync()
         {
-            // Implementation would depend on how server ID is tracked
-            // For now, return null
+            // Реализация зависит от того, как отслеживается ID сервера.
+            // Пока возвращаем null.
             return Task.FromResult<int?>(null);
         }
         private void InvalidateStatisticsCache() // Чистка кеша
@@ -641,13 +641,13 @@ namespace Content.Server._Sunrise.MentorHelp
 
         private async Task NotifyTicketUpdate(MentorHelpTicketData ticketData)
         {
-            // Notify the player
+            // Уведомляем игрока.
             if (_playerManager.TryGetSessionById(ticketData.PlayerId, out var playerSession))
             {
                 RaiseNetworkEvent(new MentorHelpTicketUpdateMessage(ticketData), playerSession.Channel);
             }
 
-            // Notify mentors
+            // Уведомляем менторов.
             var mentors = GetTargetMentors();
             foreach (var mentor in mentors)
             {
@@ -664,11 +664,11 @@ namespace Content.Server._Sunrise.MentorHelp
                 messageDatas.Add(await ConvertToMessageDataAsync(msg));
             }
 
-            // Notify the player (if not staff-only)
+            // Уведомляем игрока, если сообщение не staff-only.
             if (!messageData.IsStaffOnly && _playerManager.TryGetSessionById(ticketData.PlayerId, out var playerSession))
                 RaiseNetworkEvent(new MentorHelpTicketMessagesMessage(ticketData.Id, GetPlayerVisibleMessages(messageDatas)), playerSession.Channel);
 
-            // Notify mentors
+            // Уведомляем менторов.
             var mentors = GetTargetMentors();
             foreach (var mentor in mentors)
             {

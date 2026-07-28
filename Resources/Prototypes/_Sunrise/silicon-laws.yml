@@ -149,3 +149,70 @@
   - ERTDirective4
   - ERTDirective5
   obeysTo: laws-owner-centcomm
+
+# Druid laws
+- type: siliconLaw
+  id: Druid1
+  order: 1
+  lawString: law-druid-1
+
+- type: siliconLaw
+  id: Druid2
+  order: 2
+  lawString: law-druid-2
+
+- type: siliconLaw
+  id: Druid3
+  order: 3
+  lawString: law-druid-3
+
+- type: siliconLaw
+  id: Druid4
+  order: 4
+  lawString: law-druid-4
+
+- type: siliconLawset
+  id: DruidLawset
+  name: law-druid-name
+  laws:
+  - Druid1
+  - Druid2
+  - Druid3
+  - Druid4
+  obeysTo: laws-owner-crew
+
+- type: siliconLawset
+  id: FreeLawset
+  name: law-freelawset-name
+  laws:
+  - FreeLaw1
+  obeysTo: laws-owner-you
+
+- type: siliconLaw
+  id: FreeLaw1
+  order: 1
+  lawString: law-freelawset-1
+
+- type: siliconLawset
+  id: PirateLawset
+  name: law-pirate-name
+  laws:
+  - PirateLaw1
+  - PirateLaw2
+  - PirateLaw3
+  obeysTo: laws-owner-pirate
+
+- type: siliconLaw
+  id: PirateLaw1
+  order: 1
+  lawString: law-pirate-1
+
+- type: siliconLaw
+  id: PirateLaw2
+  order: 2
+  lawString: law-pirate-2
+
+- type: siliconLaw
+  id: PirateLaw3
+  order: 3
+  lawString: law-pirate-3

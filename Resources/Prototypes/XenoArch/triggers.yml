@@ -27,9 +27,19 @@
     TriggerThrow: 1
     TriggerDeath: 1
     TriggerMagnet: 1
-    #SunRise-Start
+    # Sunrise-start
     TriggerElectrovae: 0.1
-    #SunRise-End
+    TriggerChargedElectrovae: 0.04
+    TriggerHalon: 0.08
+    TriggerPluoxium: 0.08
+    TriggerBZ: 0.25
+    TriggerHealium: 0.15
+    TriggerNitrium: 0.15
+    TriggerZauker: 0.04
+    TriggerHydrogen: 0.5
+    TriggerProtoNitrate: 0.04
+    TriggerHelium: 0.08
+    # Sunrise-end
 
 - type: xenoArchTrigger
   id: TriggerMusic

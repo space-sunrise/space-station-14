@@ -7,6 +7,7 @@
   - MobPassiveRegen
   name: comrade
   id: MobSovietBase
+  suffix: AI, Soviet
   categories: [ Spawner ]
   components:
   - type: Climbing
@@ -21,7 +22,7 @@
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.7
   - type: Fixtures
     fixtures:
       fix1:
@@ -118,7 +119,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 125
+    damageCap: 115
   - type: Stamina
     baseCritThreshold: 125
   - type: DamageStateVisuals
@@ -717,7 +718,7 @@
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   components:
   - type: TTS
-    voice: TfSniper
+    voice: TfDemoman
   - type: Loadout
     prototypes:
     - MobSovietGearRangedAltT1
@@ -820,6 +821,8 @@
       state: equipped-HAND
     - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
       state: wielded-inhand-right
+  - type: TTS
+    voice: Anduin
 
 #region Tier 2
 - type: entity
@@ -1275,6 +1278,11 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT2Mech
   components:
+  - type: RadarBlip
+    color: "#3DFF8CFF"
+    scale: 2
+    shape: Triangle
+    requireInSpace: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -1327,10 +1335,17 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
-  - type: GibOnTrigger
-    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -1434,6 +1449,11 @@
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT3Mech
   components:
+  - type: RadarBlip
+    color: "#1FA8FFFF"
+    scale: 2
+    shape: Square
+    requireInSpace: false
   - type: NoSlip
   - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
@@ -1494,10 +1514,17 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
-  - type: GibOnTrigger
-    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -1609,6 +1636,23 @@
   id: MobSovietCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   components:
+  - type: RadarBlip
+    color: "#55FFEEFF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: RadarBlip
   - type: TTS
     voice: Khajiit
   - type: Tag
@@ -1691,6 +1735,7 @@
   id: MobSovietBearBase
   parent: MobBearSpace
   description: Smells like booze.
+  suffix: AI, Soviet
   components:
   - type: NpcFactionMember
     factions:
@@ -2159,21 +2204,5 @@
       tableId: SovietHeavyMechanizedSquadTable
     deleteSpawnerAfterSpawn: true
 
-# Backward-compat aliases for old Tier 1 IDs used by procedural spawners/maps.
-- type: entity
-  parent: MobSovietT1Knife
-  id: MobSovietKnife
-
-- type: entity
-  parent: MobSovietT1Pistol
-  id: MobSovietPistol
-
-- type: entity
-  parent: MobSovietT1Mosin
-  id: MobSovietMosin
-
-- type: entity
-  parent: MobSovietT1MosinAlt
-  id: MobSovietMosinAlt
 
 

@@ -32,7 +32,7 @@
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesCombat
+    # - id: ClothingHandsGlovesCombat # Sunrise-Edit
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWardenSecblu # Sunrise-Edit
     - id: ClothingOuterWinterWardenSecblu # Sunrise-Edit
@@ -50,6 +50,7 @@
     - id: Binoculars
     - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
     - id: ClothingHandsKnuckleDustersStun # Sunrise-edit
+
 
 - type: entityTable
   id: FillLockerWardenHarduit

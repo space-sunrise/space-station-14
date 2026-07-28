@@ -69,3 +69,7 @@ marking-HumanHairVictory = Победа
 marking-HumanHairViper = Гадюка
 marking-HumanHairWife = Жена
 marking-HumanHairZiegler = Циглер
+
+marking-HairEmoNew = Emo (New)
+marking-HairCascade = Cascade (New)
+marking-HairLacePonytail = Lace ponytail (New)

@@ -73,7 +73,6 @@
     - CanPilot
     - FootstepSound
     - SiliconEmotes
-    - EmagImmune
     - Unimplantable
     - NoPaint
 
@@ -160,8 +159,6 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleSecurity
-    - BorgModuleSyndicate
-    - BorgModuleSyndicateAssault
 
   defaultModules:
   - BorgModuleStandart
@@ -235,6 +232,5 @@
     - CanPilot
     - FootstepSound
     - SiliconEmotes
-    - EmagImmune
     - Unimplantable
     - NoPaint

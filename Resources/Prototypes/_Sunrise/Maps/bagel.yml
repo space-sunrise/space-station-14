@@ -17,6 +17,12 @@
           prefixCreator: '14'
       - type: StationEmergencyShuttle
         emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency-centipede.yml
+      - type: SpawnGridAndDockToStation
+        grids:
+          - gridPath: /Maps/_Sunrise/Shuttles/Salvage/mining.yml
+            priorityTag: DockMining                
+          - gridPath: /Maps/_Sunrise/Shuttles/Security/mosquitt.yml
+            priorityTag: DockSecurity
       - type: StationJobs
         availableJobs:
           #command
@@ -67,10 +73,10 @@
           SecurityCadet: [ 4, 5 ]
           #supply
           Quartermaster: [ 1, 1 ]
-          SalvageSpecialist: [ 3, 3 ]
+          SalvageSpecialist: [ 3, 4 ]
           MiningSpecialist: [ 1, 1 ]
           CargoTechnician: [ 3, 3 ]
-          MailCarrier: [ 1, 2 ]
+          MailCarrier: [ 1, 1 ]
           #civilian
           Passenger: [ -1, -1 ]
           Clown: [ 1, 1 ]

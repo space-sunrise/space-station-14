@@ -1,0 +1,60 @@
+- type: quickConstructionCategory
+  id: Glass
+  name: quickconstruction-category-glass
+  constructionEntries:
+  - SheetRGlass
+  - SheetUGlass
+  - SheetPGlass
+  - Window
+  - WindowDiagonal
+  - WindowDirectional
+
+- type: quickConstructionCategory
+  id: ReinforcedGlass
+  name: quickconstruction-category-reinforced-glass
+  constructionEntries:
+  - SheetRUGlass1
+  - SheetRPGlass1
+  - ReinforcedWindow
+  - ReinforcedWindowDiagonal
+  - WindowReinforcedDirectional
+
+- type: quickConstructionCategory
+  id: UraniumGlass
+  name: quickconstruction-category-uranium-glass
+  constructionEntries:
+  - SheetRUGlass0
+  - UraniumWindow
+  - UraniumWindowDiagonal
+
+- type: quickConstructionCategory
+  id: ReinforcedUraniumGlass
+  name: quickconstruction-category-reinforced-uranium-glass
+  constructionEntries:
+  - ReinforcedUraniumWindow
+  - ReinforcedUraniumWindowDiagonal
+
+- type: quickConstructionCategory
+  id: PlasmaGlass
+  name: quickconstruction-category-plasma-glass
+  constructionEntries:
+  - SheetRPGlass0
+  - PlasmaWindow
+  - PlasmaWindowDiagonal
+  - PlasmaWindowDirectional
+
+- type: quickConstructionCategory
+  id: ReinforcedPlasmaGlass
+  name: quickconstruction-category-reinforced-plasma-glass
+  constructionEntries:
+  - ReinforcedPlasmaWindow
+  - ReinforcedPlasmaWindowDiagonal
+  - PlasmaReinforcedWindowDirectional
+
+- type: quickConstructionCategory
+  id: ClockworkGlass
+  name: quickconstruction-category-clockwork-glass
+  constructionEntries:
+  - ClockworkWindow
+  - ClockworkWindowDiagonal
+  - WindowClockworkDirectional

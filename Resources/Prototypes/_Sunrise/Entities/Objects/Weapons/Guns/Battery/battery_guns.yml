@@ -14,7 +14,7 @@
     size: Huge
   - type: AmmoCounter
   - type: Gun
-    fireRate: 6
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -1210,4 +1210,78 @@
   - type: Tag
     tags:
     - Sidearm
+    - LaserWeapon
+
+- type: entity
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponPilotLasgun
+  name: pilot lasgun
+  description: The Imperium's main argument in disputes with heretics and cultists. Cauterizes wounds on hit, saving a battle brother's bandages.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun_world.rsi
+    scale: 0.83, 0.83
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun.rsi
+  - type: Gun
+    minAngle: 8
+    maxAngle: 12
+    fireRate: 2
+    selectedMode: SemiAuto
+    shotsPerBurst: 2
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      collection: plasma_pistol
+  - type: GunWieldBonus
+    minAngle: -4
+    maxAngle: -6
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 20
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: RedLaser
+      fireCost: 20
+      name: lasgun-fire-mode-low
+    - proto: RedMediumLaser
+      fireCost: 50
+      name: lasgun-fire-mode-standard
+    - proto: RedHeavyLaser
+      fireCost: 100
+      name: lasgun-fire-mode-overcharge
+  - type: Appearance
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Piercing: 12
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  - type: StaticPrice
+    price: 900
+  - type: Tag
+    tags:
     - LaserWeapon

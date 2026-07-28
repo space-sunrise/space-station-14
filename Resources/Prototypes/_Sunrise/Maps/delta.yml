@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/delta.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 0
+  minPlayers: 65
   stations:
     Delta:
       stationProto: StandardNanotrasenStation
@@ -16,7 +16,7 @@
             prefixCreator: 'TG'
         - type: SpawnGridAndDockToStation
           grids:
-          - gridPath: /Maps/_Sunrise/Shuttles/Salvage/expeditioneer.yml
+          - gridPath: /Maps/_Sunrise/Shuttles/Salvage/asteroidcracker.yml
             priorityTag: DockMining
           - gridPath: /Maps/_Sunrise/Shuttles/Security/security.yml
             priorityTag: DockSecurity

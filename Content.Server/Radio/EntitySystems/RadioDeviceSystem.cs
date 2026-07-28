@@ -13,6 +13,7 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -161,6 +162,14 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnAttemptListen(EntityUid uid, RadioMicrophoneComponent component, ListenAttemptEvent args)
     {
+        // Sunrise added start - запрещаем интеркому ретранслировать речь неигровых источников
+        if (HasComp<IntercomComponent>(uid) && !HasComp<ActorComponent>(args.Source))
+        {
+            args.Cancel();
+            return;
+        }
+        // Sunrise added end
+
         if (component.PowerRequired && !this.IsPowered(uid, EntityManager)
             || component.UnobstructedRequired && !_interaction.InRangeUnobstructed(args.Source, uid, 0))
         {

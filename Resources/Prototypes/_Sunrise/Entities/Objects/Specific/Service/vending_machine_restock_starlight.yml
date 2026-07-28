@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: VendingMachineRestockDonk
+  name: donk on the go restock box
+  description: A box full of what is legally food. Load it into a Donk on the Go vendor for a refill.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - DonkPocketsMachineInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_donksoft

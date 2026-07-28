@@ -89,6 +89,11 @@
         - state: inhand-right-fill-1
           map: [ "enum.SolutionContainerLayers.Fill" ]
           visible: false
+    - type: SolutionContainerVisuals
+      maxFillLevels: 6
+      fillBaseName: jug
+      inHandsMaxFillLevels: 5
+      inHandsFillBaseName: -fill-
     - type: StaticPrice
       price: 30 # Consistent with BaseBeakerMetallic
     - type: Destructible # Hacky - takes damage, but shouldn't be destructible
@@ -126,3 +131,101 @@
     sprite: _Sunrise/Objects/Specific/Chemistry/vial_bluespace.rsi
   - type: StaticPrice
     price: 100
+
+- type: entity
+  id: MiniSyringeRSMedical
+  parent: MiniSyringe
+  name: toxic mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Ipecac
+          Quantity: 3
+        - ReagentId: Licoxide
+          Quantity: 1
+        - ReagentId: Tricordrazine
+          Quantity: 1
+  - type: TimedDespawn
+    lifetime: 25
+
+- type: entity
+  id: MiniSyringePyraDerma
+  parent: MiniSyringe
+  name: burn treatment mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Pyrazine
+          Quantity: 2.25
+        - ReagentId: Dermaline
+          Quantity: 2.75
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem
+
+- type: entity
+  id: MiniSyringePunctTranex
+  parent: MiniSyringe
+  name: trauma treatment mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Puncturase
+          Quantity: 4
+        - ReagentId: TranexamicAcid
+          Quantity: 1
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem
+
+- type: entity
+  id: MiniSyringeDexPlusSaline
+  parent: MiniSyringe
+  name: oxygenation mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: DexalinPlus
+          Quantity: 2.5
+        - ReagentId: Saline
+          Quantity: 2.5
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem
+
+- type: entity
+  id: MiniSyringeEphedrine
+  parent: MiniSyringe
+  name: stimulant mini syringe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 5
+  - type: TimedDespawn
+    lifetime: 25
+  - type: SpawnOnDespawn
+    prototype: AcidifierItem

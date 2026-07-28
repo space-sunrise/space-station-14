@@ -5,7 +5,7 @@ description: Parses the AtmosSystem architecture in Space Station 14 at the serv
 
 # Cursor Bridge
 
-Canonical bridge skill file:
-../../../.claude/skills/ss14-atmos-system-core/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-atmos-system-core/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

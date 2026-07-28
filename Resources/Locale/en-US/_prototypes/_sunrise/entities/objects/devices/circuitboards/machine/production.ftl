@@ -1,3 +1,6 @@
+ent-SunriseAdvancedSalvageMagnetMachineCircuitboard = advanced salvage magnet machine board
+    .desc = A machine printed circuit board for an advanced salvage magnet.
+
 ent-CopyMachineMachineCircuitboard = copy machine board
     .desc = A machine printed circuit board for an document printer
 ent-PacificatorCircuitboard = pacifism generator machine board
@@ -15,3 +18,7 @@ ent-SewingPrinterPrisonMachineCircuitboard = prison sewing printer machine board
 
 ent-PirateTechFabCircuitboard = pirate techfab machine board
     .desc = { ent-BaseMachineCircuitboard.desc }
+ent-TelecomServerT2Circuitboard = advanced telecommunication server machine board
+    .desc = { ent-TelecomServerCircuitboard.desc }
+ent-TelecomServerT3Circuitboard = experimental telecommunication server machine board
+    .desc = { ent-TelecomServerCircuitboard.desc }

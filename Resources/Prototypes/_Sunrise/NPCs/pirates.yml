@@ -121,6 +121,7 @@
   - MobHumanoidInvetorySimplified
   - MobPassiveRegen
   id: MobPirateBase
+  suffix: AI, Pirate
   components:
   # Allows ghosts/admins to quickly warp to pirates from the ghost teleport panel
   - type: GhostPanelAntagonistMarker
@@ -130,7 +131,7 @@
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.8
   - type: Fixtures
     fixtures:
       fix1:
@@ -229,7 +230,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 125
+    damageCap: 115
   - type: Stamina
     baseCritThreshold: 150
   - type: DamageStateVisuals
@@ -2520,8 +2521,6 @@
     - Dead
   - type: SpawnOnTrigger
     proto: MobPirateT2RevolverCutlass
-  - type: GibOnTrigger
-    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -2634,21 +2633,20 @@
     damageCap: 250
   - type: SlowOnDamage
     speedModifierThresholds:
-      25: 1.1
-      75: 1.15
+      50: 1.1
       100: 1.2
       125: 1.3
       150: 1.4
       175: 1.5
       200: 1.6
       215: 1.8
-      225: 2
+      225: 1.9
   - type: Stamina
     baseCritThreshold: 500
   - type: HellSpawnInvincibility
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.75
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepCyborgLegs
@@ -2669,9 +2667,9 @@
   - type: LeechOnMarker
     leech:
       groups:
-        Brute: -45
+        Brute: -30
       types:
-        Piercing: -10
+        Piercing: -15
         Heat: -5
         Bloodloss: -5
         Mangleness: -5
@@ -2681,7 +2679,7 @@
     damage:
       types:
         Blunt: 8
-        Slash: 12
+        Slash: 8
         Structural: 40
     bluntStaminaDamageFactor: 1
     soundHit:
@@ -2698,7 +2696,7 @@
     netsync: false
     radius: 1.75
     energy: 1.5
-    mask: /Textures/Effects/LightMasks/soft_cone.png
+    mask: /Textures/Effects/LightMasks/triple.png
     color: "#8cff00"
   - type: AmbientSound
     range: 4
@@ -3474,7 +3472,7 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 2
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRFMJ
+    proto: CartridgeHeavyRifleRSP
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 9
@@ -4044,6 +4042,25 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobPirateT1Boss
   components:
+  - type: RadarBlip
+    color: "#FF7A33FF"
+    scale: 2
+    shape: Triangle
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobPirateGearMeleeT4Alt
@@ -4120,6 +4137,25 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT2Ranged]
   id: MobPirateT2Boss
   components:
+  - type: RadarBlip
+    color: "#FFD447FF"
+    scale: 2
+    shape: Circle
+    requireInSpace: false
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: Loadout
     prototypes:
     - MobPirateGearRangedT4
@@ -4180,6 +4216,11 @@
   parent: [MobHostileBossBase, MobPirateVeteranChatterBaseT3Ranged, MobPirateSparkEffectBase]
   id: MobPirateT3Boss
   components:
+  - type: RadarBlip
+    color: "#C642FFFF"
+    scale: 2
+    shape: Square
+    requireInSpace: false
   - type: MechVulnerableToEMP
   - type: NPCUseActionWhenTargetInRange
     delay: 2
@@ -4231,10 +4272,19 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
+  - type: RemoveComponentsOnTrigger
+    triggerOnce: true
+    components:
+    - type: Gun
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: Reflect
+    - type: HellSpawnRush
+    - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobPirateT3Revolver
-  - type: GibOnTrigger
-    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:

@@ -5,7 +5,7 @@ description: Guide to Creating and Managing Database Migrations in SS14 (Postgre
 
 # Cursor Bridge
 
-Canonical bridge skill file:
-../../../.claude/skills/ss14-migrations/SKILL.md.
+Canonical source skill file:
+../../../.agents/skills/ss14-migrations/SKILL.md.
 
-Use that file as the entrypoint and follow its source mapping.
+Use that file as the entrypoint and load resources from the same source skill directory.

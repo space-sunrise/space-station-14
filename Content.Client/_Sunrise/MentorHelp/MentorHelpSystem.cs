@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 namespace Content.Client._Sunrise.MentorHelp
 {
     /// <summary>
-    /// Client-side mentor help system
+    /// Клиентская система менторской помощи.
     /// </summary>
     [UsedImplicitly]
     public sealed class MentorHelpSystem : SharedMentorHelpSystem
@@ -24,37 +24,37 @@ namespace Content.Client._Sunrise.MentorHelp
 
         protected override void OnCreateTicketMessage(MentorHelpCreateTicketMessage message, EntitySessionEventArgs eventArgs)
         {
-            // Client doesn't handle this directly
+            // Клиент не обрабатывает это напрямую.
         }
 
         protected override void OnClaimTicketMessage(MentorHelpClaimTicketMessage message, EntitySessionEventArgs eventArgs)
         {
-            // Client doesn't handle this directly
+            // Клиент не обрабатывает это напрямую.
         }
 
         protected override void OnReplyMessage(MentorHelpReplyMessage message, EntitySessionEventArgs eventArgs)
         {
-            // Client doesn't handle this directly
+            // Клиент не обрабатывает это напрямую.
         }
 
         protected override void OnCloseTicketMessage(MentorHelpCloseTicketMessage message, EntitySessionEventArgs eventArgs)
         {
-            // Client doesn't handle this directly
+            // Клиент не обрабатывает это напрямую.
         }
 
         protected override void OnRequestTicketsMessage(MentorHelpRequestTicketsMessage message, EntitySessionEventArgs eventArgs)
         {
-            // Client doesn't handle this directly
+            // Клиент не обрабатывает это напрямую.
         }
 
         protected override void OnUnassignTicketMessage(MentorHelpUnassignTicketMessage message, EntitySessionEventArgs eventArgs)
         {
-            // Client doesn't handle this directly
+            // Клиент не обрабатывает это напрямую.
         }
 
         protected override void OnRequestStatisticsMessage(MentorHelpRequestStatisticsMessage message, EntitySessionEventArgs eventArgs)
         {
-            // Client doesn't handle this directly
+            // Клиент не обрабатывает это напрямую.
         }
 
         public override void Initialize()
@@ -95,7 +95,7 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         /// <summary>
-        /// Create a new mentor help ticket
+        /// Обрабатывает полученную статистику менторской помощи.
         /// </summary>
         private void OnStatistics(MentorHelpStatisticsMessage message, EntitySessionEventArgs eventArgs)
         {
@@ -108,7 +108,7 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         /// <summary>
-        /// Claim a mentor help ticket
+        /// Взять тикет менторской помощи в работу.
         /// </summary>
         public void ClaimTicket(int ticketId)
         {
@@ -116,7 +116,7 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         /// <summary>
-        /// Unassign a mentor help ticket
+        /// Снять назначение с тикета менторской помощи.
         /// </summary>
         public void UnassignTicket(int ticketId)
         {
@@ -124,7 +124,7 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         /// <summary>
-        /// Reply to a mentor help ticket
+        /// Ответить в тикет менторской помощи.
         /// </summary>
         public void ReplyToTicket(int ticketId, string message, bool isStaffOnly = false)
         {
@@ -132,7 +132,7 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         /// <summary>
-        /// Close a mentor help ticket
+        /// Закрыть тикет менторской помощи.
         /// </summary>
         public void CloseTicket(int ticketId)
         {
@@ -140,7 +140,7 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         /// <summary>
-        /// Request tickets (either all for mentors/admins, or only own for players)
+        /// Запросить тикеты: все для менторов/админов или только свои для игроков.
         /// </summary>
         public void RequestTickets(bool onlyMine = false)
         {
@@ -148,16 +148,16 @@ namespace Content.Client._Sunrise.MentorHelp
         }
 
         /// <summary>
-        /// Request messages for a specific ticket
+        /// Запросить сообщения конкретного тикета.
         /// </summary>
         public void RequestTicketMessages(int ticketId)
         {
-            // Send a request to the server to fetch messages for the given ticket
+            // Отправляем на сервер запрос сообщений для указанного тикета.
             RaiseNetworkEvent(new MentorHelpRequestTicketMessagesMessage(ticketId));
         }
 
         /// <summary>
-        /// Request mentor help statistics
+        /// Запросить статистику менторской помощи.
         /// </summary>
         public void RequestStatistics()
         {

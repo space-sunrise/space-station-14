@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Grid
   engineVersion: 271.1.0
-  forkId: sunrise_station
-  forkVersion: 3d228476023a6bf59421fcf2eb1acbaf5e034ca8
-  time: 04/10/2026 21:45:58
-  entityCount: 716
+  forkId: ""
+  forkVersion: ""
+  time: 05/30/2026 23:23:49
+  entityCount: 722
 maps: []
 grids:
 - 1
@@ -1127,12 +1127,94 @@ entities:
     - type: GridAtmosphere
       version: 2
       data:
+        tiles:
+          0,-4:
+            0: 3
+            1: 65152
+          -1,-4:
+            1: 65378
+          0,-3:
+            1: 65326
+          -1,-3:
+            1: 32895
+            0: 4096
+          0,-2:
+            1: 35854
+            0: 256
+          0,-1:
+            0: 2
+            1: 8
+          1,-4:
+            1: 65399
+          1,-3:
+            1: 47663
+          1,-2:
+            1: 65323
+          1,-1:
+            1: 47
+          1,-5:
+            1: 30037
+          2,-4:
+            1: 63239
+          2,-3:
+            1: 30583
+          2,-2:
+            1: 259
+            0: 1024
+          2,-1:
+            0: 2
+          2,-5:
+            0: 32768
+          3,-4:
+            1: 62718
+          3,-3:
+            1: 383
+            0: 10240
+          3,-2:
+            0: 1
+          3,-5:
+            1: 32768
+            0: 64
+          4,-4:
+            1: 4145
+            0: 16392
+          4,-3:
+            0: 20
+          -3,-4:
+            0: 8
+          -2,-5:
+            1: 63264
+          -2,-4:
+            1: 51342
+            0: 8960
+          -2,-3:
+            0: 1026
+            1: 8
+          -1,-2:
+            0: 4
+          4,-5:
+            1: 22272
+            0: 128
+          -3,-5:
+            0: 128
+          -1,-5:
+            0: 528
+        uniqueMixes:
+        - volume: 2500
+          immutable: True
+          moles: {}
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: IFF
-      flags: HideLabel
     - type: ExplosionAirtightGrid
     - type: RadiationGridResistance
+    - type: NavMap
+    - type: IFFConsole
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -1235,6 +1317,8 @@ entities:
     - type: Transform
       pos: 4.5,-17.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 10
     components:
     - type: Transform
@@ -1415,7 +1499,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: AtmosDeviceFanDirectionalInvisible
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 36
     components:
@@ -1442,6 +1526,18 @@ entities:
     components:
     - type: Transform
       pos: -6.5,-18.5
+      parent: 1
+- proto: AtmosDeviceFanTiny
+  entities:
+  - uid: 717
+    components:
+    - type: Transform
+      pos: 4.5,-17.5
+      parent: 1
+  - uid: 718
+    components:
+    - type: Transform
+      pos: 6.5,-17.5
       parent: 1
 - proto: Autolathe
   entities:
@@ -2594,6 +2690,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-3.5
       parent: 1
+- proto: ClosetWall
+  entities:
+  - uid: 720
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-14.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 721
+          - 722
+    - type: Fixtures
+      fixtures: {}
 - proto: ClosetWallEmergencyFilledRandom
   entities:
   - uid: 260
@@ -4448,6 +4562,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 15.84642,-15.908871
       parent: 1
+  - uid: 719
+    components:
+    - type: Transform
+      pos: -2.5137057,-12.530694
+      parent: 1
+    - type: Paper
+      content: Топливо в настенном ящике у генераторов
 - proto: Pen
   entities:
   - uid: 503
@@ -4466,27 +4587,39 @@ entities:
   - uid: 505
     components:
     - type: Transform
+      anchored: True
       pos: -4.5,-11.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PortableGeneratorPacman
   entities:
   - uid: 506
     components:
     - type: Transform
+      anchored: True
       pos: -1.5,-14.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 507
     components:
     - type: Transform
+      anchored: True
       pos: -2.5,-14.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PortableScrubber
   entities:
   - uid: 508
     components:
     - type: Transform
+      anchored: True
       pos: -1.5,-10.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PosterLegitShoukou
   entities:
   - uid: 509
@@ -4716,6 +4849,24 @@ entities:
     - type: Transform
       pos: 10.5,-10.5
       parent: 1
+- proto: SheetPlasma
+  entities:
+  - uid: 721
+    components:
+    - type: Transform
+      parent: 720
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 720
+  - uid: 722
+    components:
+    - type: Transform
+      parent: 720
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 720
 - proto: ShellShotgun
   entities:
   - uid: 545
@@ -5100,7 +5251,7 @@ entities:
           - Forward
         - - Middle
           - Off
-- proto: VendingMachineMedical
+- proto: VendingMachineMedicalBase
   entities:
   - uid: 598
     components:

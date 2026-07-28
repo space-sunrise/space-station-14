@@ -97,6 +97,9 @@
                                     StyleClasses="ButtonBig" />
                             <Button Name="CloseTicketButton" Access="Public" Text="{Loc 'mentor-help-close-ticket'}"
                                     StyleClasses="ButtonBig" />
+                            <Control HorizontalExpand="True" />
+                            <Button Name="TeleportButton" Access="Public" Text="{Loc 'mentor-help-teleport'}"
+                                    StyleClasses="ButtonBig" Visible="False"  />
                         </BoxContainer>
                     </BoxContainer>
                 </BoxContainer>

@@ -4,6 +4,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Chat;
 using Content.Shared.Humanoid;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Salvage.Expeditions;
@@ -40,10 +41,14 @@ public sealed partial class SalvageSystem
         }
 
         // TODO: This is terrible but need bluespace harnesses or something.
-        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent, MindContainerComponent, TransformComponent>(); // Sunrise-Edit
 
-        while (query.MoveNext(out var uid, out _, out var mobState, out var mobXform))
+        while (query.MoveNext(out var uid, out _, out var mobState, out var mind, out var mobXform)) // Sunrise-Edit
         {
+            // Sunrise-Edit-Start - NPC экспедиции не должны блокировать ранний вылет шаттла.
+            if (!mind.HasMind)
+                continue;
+            // Sunrise-Edit-End
             if (mobXform.MapUid != xform.MapUid)
                 continue;
 

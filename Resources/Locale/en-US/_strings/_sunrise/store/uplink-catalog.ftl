@@ -44,6 +44,49 @@ uplink-magazine-bulldog-uraniumslug-desc = Shotgun magazine with 8 shells filled
 uplink-magazine-bulldog-uranium-desc = Shotgun magazine with 8 shells filled with uranium pellet. Compatible with the Bulldog.
 uplink-pistol-magnum-magazine-name = Deagle Magazine
 uplink-pistol-magnum-magazine-desc = A 7-round single-stack pistol magazine loaded with SP rounds. Compatible with the Deagle.
+uplink-magazine-dragunov-ap-name = Dragunov Magazine (AP)
+uplink-magazine-dragunov-ap-desc = A 10-round magazine for the Dragunov, loaded with 7.62x54R armor-piercing rounds.
+uplink-magazine-dragunov-uranium-name = Dragunov Magazine (Uranium)
+uplink-magazine-dragunov-uranium-desc = A 10-round magazine for the Dragunov, loaded with 7.62x54R uranium rounds.
+uplink-improvised-magnum-name = Bulk ammunition boxes (.45 magnum improvised)
+uplink-pirate-ammo-cannonball-mini-name = Bulk mini cannonball magazines
+uplink-pirate-ammo-chaingun-name = Bulk chaingun ammo drums
+uplink-pirate-ammo-smg-ap-name = Bulk SMG magazines (.35 auto AP)
+uplink-pirate-ammo-smg-incendiary-name = Bulk SMG magazines (.35 auto incendiary)
+uplink-pirate-ammo-smg-mixed-name = Bulk basic SMG magazines (.35 auto)
+uplink-pirate-ammo-smg-rubber-name = Bulk SMG magazines (.35 auto rubber)
+uplink-pirate-ammo-magnum-ap-name = Bulk speedloaders (.45 magnum AP)
+uplink-pirate-ammo-hristov-name = Bulk ammunition boxes (15mm)
+uplink-pirate-ammo-hristov-ap-name = Bulk ammunition boxes (15mm AP)
+uplink-pirate-ammo-hristov-frag-name = Bulk ammunition boxes (15mm frag)
+uplink-pirate-ammo-hristov-blast-name = Bulk ammunition boxes (15mm blast)
+uplink-pirate-ammo-improvised-rifle-name = Bulk ammunition boxes (7.62 improvised)
+uplink-pirate-ammo-improvised-shotgun-name = Bulk ammunition boxes (12 gauge improvised)
+uplink-pirate-ammo-improvised-pistol-name = Bulk ammunition boxes (.35 auto improvised)
+uplink-pirate-ammo-40-ap-name = Bulk magazines (.40 AP)
+uplink-pirate-ammo-40-mixed-name = Bulk basic magazines (.40)
+uplink-pirate-ammo-machine-pistol-ap-name = Bulk machine pistol magazines (.35 auto AP)
+uplink-pirate-ammo-machine-pistol-mixed-name = Bulk basic machine pistol magazines (.35 auto)
+uplink-pirate-ammo-machine-pistol-rubber-name = Bulk machine pistol magazines (.35 auto rubber)
+uplink-pirate-ammo-l6-incendiary-name = Bulk L6 SAW boxes (5.56 incendiary)
+uplink-pirate-ammo-556-mixed-name = Bulk basic ammunition boxes (5.56)
+uplink-pirate-ammo-556-ap-name = Bulk ammunition boxes (5.56 AP)
+uplink-pirate-ammo-556-incendiary-name = Bulk ammunition boxes (5.56 incendiary)
+uplink-pirate-ammo-556-mag-mixed-name = Bulk basic magazines (5.56)
+uplink-pirate-ammo-prd-mixed-name = Bulk basic belt boxes (7.62)
+uplink-pirate-ammo-prd-ap-name = Bulk belt boxes (7.62 AP)
+uplink-pirate-ammo-prd-incendiary-name = Bulk belt boxes (7.62 incendiary)
+uplink-pirate-ammo-prd-practice-name = Bulk belt boxes (7.62 practice)
+uplink-pirate-ammo-prd-uranium-name = Bulk belt boxes (7.62 uranium)
+uplink-pirate-ammo-dragunov-sp-name = Bulk Dragunov magazines (7.62R SP)
+uplink-pirate-ammo-762r-ap-name = Bulk ammunition boxes (7.62R AP)
+uplink-pirate-ammo-762r-incendiary-name = Bulk ammunition boxes (7.62R incendiary)
+uplink-pirate-ammo-762r-mixed-name = Bulk basic ammunition boxes (7.62R)
+uplink-pirate-ammo-308-ap-name = Bulk magazines (.308 AP)
+uplink-pirate-ammo-308-mixed-name = Bulk basic magazines (.308)
+
+uplink-magazine-127hp-desc = A Bauer SR-127 magazine with 7 hollow point rounds. Trades almost all breaching power for massive personnel damage.
+uplink-sniper-ammo-hp-desc = A box of 14 hollow point cartridges for the Hristov sniper rifle or SR-127. Trades almost all breaching power for massive personnel damage.
 
 ## Misc
 
@@ -60,16 +103,18 @@ uplink-syndie-thermal-name = Optical Thermal Visor
 uplink-syndie-thermal-desc = A compact thermal scanner with an IFF-equipped visor. Perfect for identifying and eliminating NanoTrasen personnel.
 uplink-thermal-desc = A compact thermal scanner. Ideal for discovering NanoTrasen personnel's secrets from behind walls.
 uplink-clothing-backpack-syndie-name = Syndicate Backpack
-uplink-hardsuit-syndie-commander-name = Syndicate Commander Hardsuit
-uplink-hardsuit-syndie-commander-desc = A hardsuit designed for Gorlax squad commanders.
-uplink-hardsuit-syndie-medic-name = Syndicate Medic Hardsuit
-uplink-hardsuit-syndie-medic-desc = A hardsuit designed for Gorlax combat medics.
 uplink-50blessing-name = 50 Blessings Gift Set
 uplink-50blessing-desc = For agents who want to conceal their identity in style, with love from Egor Semenov.
 uplink-slipknotset-name = slipknot masks gift set
 uplink-slipknotset-desc = Five masks. Five souls. Numbers 7, 8, 6, 1 and 5 inside a black box — filthy Iowa fury.
 uplink-clothing-murder-socks-name = Murder Socks
 uplink-clothing-murder-socks-desc = For the agent who truly understands style.
+uplink-clothing-chameleon-silent-name = Silent shoes
+uplink-clothing-chameleon-silent-desc = Specialized shoes designed for silent movement. Every step disappears into the void.
+uplink-clothing-belt-syndicate-utility-name = Syndicate Utility Belt
+uplink-clothing-belt-syndicate-utility-desc = A toolbelt that passes a glance, but feels too deliberate in the hand.
+uplink-clothing-belt-syndicate-utility-chameleon-name = Chameleon Syndicate Utility Belt
+uplink-clothing-belt-syndicate-utility-chameleon-desc = A toolbelt for agents who prefer their equipment to look ordinary until it matters.
 uplink-syndie-maid-raid-name = Maid Raider
 uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female agents, yet for some reason only men ever wear it.
 
@@ -77,6 +122,8 @@ uplink-syndie-maid-raid-desc = Syndicate developed this specifically for female 
 
 uplink-clothing-backpack-syndie-aj100-name = AJ-100 SMG Kit
 uplink-clothing-backpack-syndie-aj100-desc = Includes an AJ-100 submachine gun and two magazines.
+uplink-type88-amr-name = Type 88 AMR Case
+uplink-type88-amr-desc = A secure case containing a Type 88 anti-materiel rifle and two 15mm magazines.
 uplink-weapon-syndie-laser-pistol-name = SAM-300
 uplink-clothing-backpack-syndie-dl6902-name = DL6902 Kit
 uplink-clothing-backpack-syndie-dl6902-desc = Includes a DL6902 machine gun and one magazine.
@@ -113,6 +160,10 @@ uplink-reinforcement-radio-syndicate-cyborg-medical-name = Syndicate Medical Bor
 uplink-reinforcement-radio-syndicate-cyborg-medical-desc = Sends a Syndicate borg to support you.
 uplink-reinforcement-radio-syndicate-cyborg-reaper-name = Syndicate "Reaper" Borg Reinforcement Teleporter
 uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Sends a Syndicate borg to support you.
+uplink-pirate-borg-assault-name = Pirate Boarding Cyborg
+uplink-pirate-borg-assault-desc = Calls in a pirate boarding cyborg with boarding gear and a self-loading musket to support you.
+uplink-pirate-borg-random-name = Reprogrammed Derelict Cyborg
+uplink-pirate-borg-random-desc = Calls in a random derelict cyborg with pirate laws damaged by ion storms. Its laws may not favor you.
 
 ## Equipment
 
@@ -132,6 +183,8 @@ uplink-xeno-artifact-throwing-auto-injector-name = Artifact throwing Auto-Inject
 uplink-xeno-artifact-throwing-auto-injector-desc = A single-use, throwable folding device. Upon striking a living target, it embeds and injects artifact particles. Ineffective against synthetics.
 uplink-roboticist-nuclear-operative-id-card-name = Roboticist operative ID card
 uplink-roboticist-nuclear-operative-id-card-desc = A roboticist ID card with standard job access and additional Syndicate access.
+uplink-med-hypospray-name = Hacked Medical Hypospray
+uplink-med-hypospray-desc = A sterile injector for rapid administration of medicine to patients. It used to contain an internal toxin filter. Now it does not.
 
 ## Implants
 
@@ -155,10 +208,45 @@ uplink-cluster-mini-bomb-name = Cluster Minibomb
 uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.
 
 uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
-uplink-mech-teleporter-heavy-desc = Contains Cybersun heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
+uplink-mech-teleporter-heavy-desc = Contains a Cybersun Mauler heavy combat mech, a syndicate repair toolbox, a toy Mauler, and sometimes a Meowler paint kit. The mech arrives with its current integrated equipment.
+uplink-mech-teleporter-death-name = Death Ripley teleporter
+uplink-mech-teleporter-death-desc = Contains a Death Ripley MK-II and a syndicate repair toolbox. It ships without extra modules, so remember to buy a Syndicate access card if you need cockpit access.
 
 uplink-mech-teleporter-assault-name = Assault Mech teleporter
-uplink-mech-teleporter-assault-desc = Contains Cybersun lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
+uplink-mech-teleporter-assault-desc = Contains a Cybersun Dark Gygax light combat mech, a syndicate repair toolbox, and a toy Gygax. The mech arrives with its current integrated equipment.
+
+## Mechs equipment
+
+uplink-mech-equipment-tesla-cannon-name = P-X Tesla Cannon
+uplink-mech-equipment-tesla-cannon-desc = Mounted Tesla cannon that fires slow energy balls based on experimental Tesla engine technology.
+uplink-mech-equipment-shotgun-name = LBX AC 10 "Scattershot"
+uplink-mech-equipment-shotgun-desc = Mounted lethal shotgun for combat mechs. Simple, direct, and still extremely unpleasant up close.
+uplink-mech-equipment-shotgun-auto-name = LBX AC 20 "Minotaur"
+uplink-mech-equipment-shotgun-auto-desc = Mounted automatic shotgun that sends three bursts of buckshot downrange per attack cycle.
+uplink-mech-equipment-shotgun-incendiary-name = FNX-99 "Hades" Carbine
+uplink-mech-equipment-shotgun-incendiary-desc = Mounted carbine loaded with incendiary shotgun shells.
+uplink-mech-equipment-ultra-rifle-name = Ultra AC-2
+uplink-mech-equipment-ultra-rifle-desc = Burst-fire mounted rifle using heavy rifle cartridges. Good for sustained pressure at medium range.
+uplink-mech-equipment-ion-name = Mk.IV Ion Heavy Cannon
+uplink-mech-equipment-ion-desc = Mounted ion cannon with a high energy cost. Extremely effective against synthetics, robots, and other mechs.
+uplink-mech-equipment-chain-sword-name = exosuit chainsword
+uplink-mech-equipment-chain-sword-desc = A brutal melee attachment for cutting through targets that get too close to the mech.
+uplink-mech-equipment-kord-name = mounted "Kord"
+uplink-mech-equipment-kord-desc = Heavy 12.7 x 108 mm machine gun with high recoil and strong sustained fire.
+uplink-mech-equipment-amlg90-name = AMLG90
+uplink-mech-equipment-amlg90-desc = Burst-fire laser machine gun for combat mechs.
+uplink-mech-equipment-vindictor-name = mounted MG-100 Vindicator minigun
+uplink-mech-equipment-vindictor-desc = High-rate minigun fed by standard rifle cartridges. Built for suppressive fire.
+uplink-mech-equipment-chaingun-name = mounted chaingun
+uplink-mech-equipment-chaingun-desc = Very fast rotary gun fed by minigun cartridges. Its spread grows quickly, but so does the volume of fire.
+uplink-mech-equipment-maxim-name = mounted Kardashev-Maxim
+uplink-mech-equipment-maxim-desc = Old heavy machine gun refitted for mech use. Fires heavy rifle cartridges at a steady full-auto rate.
+uplink-mech-equipment-heavy-rifle-name = mounted heavy rifle gun
+uplink-mech-equipment-heavy-rifle-desc = Semi-automatic anti-materiel rifle for mechs. Slow, loud, and made for punching through hard targets.
+uplink-mech-equipment-uvm31-name = UVM-31 "Drake"
+uplink-mech-equipment-uvm31-desc = Cybersun plasma minigun adapted as a mech-mounted weapon. High rate of fire with a tight firing cone.
+uplink-mech-missile-rack8frag-name = BRM-50 missile rack
+uplink-mech-missile-rack8frag-desc = SRM-8 rack refitted for 50mm rockets. The warheads do not break tiles, but scatter short-lived shrapnel on detonation.
 
 uplink-cleaner-kit-name = Mob Cleaner Kit
 uplink-cleaner-kit-desc = Clean up any evidence, make sure it can't be traced back to you.
@@ -205,6 +293,9 @@ uplink-energy-dome-desc = A personal shield generator that protects the wearer f
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
 
+uplink-viscerator-cluster-grenade-name = Viscerator cluster grenade
+uplink-viscerator-cluster-grenade-desc = Releases eight syndicate viscerator drones after a short timer.
+
 # OTHER
 uplink-reinforcement-radio-syndicate-cyborg-infiltrator-name = Cyborg Infiltrator Reinforcement Teleport
 uplink-reinforcement-radio-syndicate-cyborg-infiltrator-desc = Sends you support for the syndicate's borg.
@@ -222,6 +313,10 @@ uplink-shuttle-board-desc = A computer printed circuit board for a syndicate shu
 uplink-shuttle-bundle-name = Syndicate shuttle crate
 uplink-shuttle-bundle-desc = Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required).
 uplink-friendship-bundle-name = Friendship bundle
+uplink-lube-grenade-name = Lube Grenade
+uplink-lube-grenade-desc = A grenade that spreads a slippery cloud of lube around the detonation area.
+uplink-glue-grenade-name = Glue Grenade
+uplink-glue-grenade-desc = A grenade that spreads a sticky cloud of glue around the detonation area.
 uplink-friendship-bundle-desc = Friendship packaged in a convenient crate*. (Some assembly required).
 uplink-bullfrog-bundle-name = Bullfrog bundle
 uplink-bullfrog-bundle-desc = A bundle crate for assembling the EXP-3600g "Bullfrog" shuttle cannon.
@@ -229,3 +324,43 @@ uplink-longbow-bundle-name = Longbow bundle
 uplink-longbow-bundle-desc = A bundle crate for assembling the BAL-15 "Longbow" shuttle cannon.
 uplink-quadling-bundle-name = Quadling bundle
 uplink-quadling-bundle-desc = A bundle crate for assembling the BAL-15-4 "Quadling" shuttle cannon.
+
+uplink-contortionist-jumpsuit-name = Contortionist's Jumpsuit
+uplink-contortionist-jumpsuit-desc = It looks like an atmos jumpsuit, but it really is. This jumpsuit allows the agent to slip through the vents.
+uplink-heavy-cleanade-name = Deep Cleaning Grenade
+uplink-heavy-cleanade-desc = A cleaning grenade filled with an extremely caustic chemical that looks just like ordinary cleaning foam.
+uplink-cane-shotgun-name = Cane Shotgun
+uplink-cane-shotgun-desc = A cane with a hidden single-shot shotgun. Comes in a box with spare intoxicating shells.
+uplink-marriage-axe-name = Marriage axe
+uplink-marriage-axe-desc = A charming subtle instrument of chaosâ€”perfect for when diplomacy fails. Screams like a banshee, cuts like a demon, and turns people into regrettable memories. Handle with enthusiasm.
+uplink-mini-energy-crossbow-name = mini energy crossbow
+uplink-mini-energy-crossbow-desc = Fires low-damage kinetic bolts at a short range.
+uplink-minotaur-name = Minotaur bundle
+uplink-minotaur-desc = Lean and mean: Contains smooth, powerful, highly illegal Shotgun, a 5 12g buckshot drums.
+uplink-stechkin-name = Stechkin pistol
+uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
+uplink-magillitis-serum-implanter-name = Magillitis Serum Implanter
+uplink-magillitis-serum-implanter-desc = An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
+uplink-pitbull-bundle-name = Pitbull Bundle
+uplink-pitbull-desc = A large bullpup rifle with a low fire-rate but excellent accuracy. Chambered in .45 magnum.
+uplink-rifle-magazine-pitbull-name = Bullpup magazine (.45 magnum)
+uplink-rifle-magazine-pitbull-desc = Bullpup magazines with 20 cartrides. Compatible with the Pitbull.
+uplink-nightvision-eyes = Night Vision Cyber Eyes
+uplink-nightvision-eyes-desc = Allows you to see in the dark but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
+uplink-thermalvision-eyes = Thermal Vision Cyber Eyes
+uplink-thermalvision-eyes-desc = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
+uplink-mantis-blade-arms-name = Mantis Blade Arms Bundle
+uplink-mantis-blade-arms-desc = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. (Warning: You will need a surgical assistant for the procedure.)
+uplink-uzi-bundle-name = Type U3 Uzi Bundle
+uplink-uzi-magazine-name = Uzi Magazine (.35 auto)
+uplink-uzi-magazine-desc = Submachine gun magazine with 32 cartridges. Compatible with the Type U3 Uzi
+uplink-breaching-magazine-name = Shotgun Magazine (.50 breaching)
+uplink-breaching-magazine-desc = A magazine loaded with breaching shells, for breaking down airlocks, windows and walls. Less effective on people.
+uplink-syndicate-borgi-name = Syndicate Borgi
+uplink-syndicate-borgi-desc = A basic syndicate borgi
+uplink-syndicate-borgi-kitted-name = Kitted Syndicate Borgi
+uplink-syndicate-borgi-kitted-desc = A syndicate borgi, with assault modules
+uplink-syndicate-borgi-speed-name = Speed Syndicate Borgi
+uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed
+uplink-ecronizer-name = Ecronizer
+uplink-ecronizer-desc = A small device that can be used to bypass most scanning devices, making you and your items invisible to them.

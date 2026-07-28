@@ -1,0 +1,45 @@
+- type: entity
+  parent: [ BaseSyndicateContraband, SmokeGrenade ]
+  id: LubeGrenade
+  name: lube grenade
+  description: A tactical grenade that releases a slippery cloud of lube.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/lube.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Grenades/lube.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Grenades/lube.rsi
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 15
+    spreadAmount: 50
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceLube
+        Quantity: 30
+
+- type: entity
+  parent: [ BaseSyndicateContraband, SmokeGrenade ]
+  id: GlueGrenade
+  name: glue grenade
+  description: A tactical grenade that releases an adhesive cloud of glue.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/glue.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Grenades/glue.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Grenades/glue.rsi
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 15
+    spreadAmount: 50
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceGlue
+        Quantity: 30

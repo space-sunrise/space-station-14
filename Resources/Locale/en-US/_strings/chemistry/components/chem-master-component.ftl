@@ -18,11 +18,6 @@ chem-master-window-buffer-label = buffer:
 chem-master-window-buffer-all-amount = All
 chem-master-window-buffer-empty-text = Buffer empty.
 chem-master-window-buffer-low-text = Not enough solution in the Buffer.
-#starlight start
-chem-master-window-beaker-empty-text = The Beaker is empty.
-chem-master-window-beaker-low-text = Not enough solution in the Beaker.
-chem-master-window-beaker-label = Beaker
-#starlight end
 chem-master-window-transfer-button = Transfer
 chem-master-window-discard-button = Discard
 chem-master-window-packaging-text = Packaging
@@ -40,3 +35,10 @@ chem-master-window-sort-type-none = Sort by: Oldest First
 chem-master-window-sort-type-alphabetical = Sort by: Alphabetical
 chem-master-window-sort-type-quantity = Sort by: Quantity
 chem-master-window-sort-type-latest = Sort by: Recent First
+chem-master-output-buffer-draw = Buffer
+chem-master-output-beaker-draw = Beaker
+chem-master-window-no-beaker-text = No beaker loaded
+chem-master-window-beaker-empty-text = Beaker Empty
+chem-master-window-beaker-low-text = Not enough solution in beaker
+chem-master-output-source = Packaging source:
+chem-master-no-source = No Source

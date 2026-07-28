@@ -5,11 +5,11 @@ namespace Content.Shared._Sunrise.SunriseCCVars;
 public sealed partial class SunriseCCVars
 {
     /*
-     * Chat visuals
+     * Визуал чата
      */
 
     /// <summary>
-    /// Включает отображение иконок радиоканалов и других chat icon тегов в клиентском чате.
+    /// Включает отображение иконок радиоканалов и других тегов иконок чата в клиентском чате.
     /// </summary>
     public static readonly CVarDef<bool> ChatIconsEnabled =
         CVarDef.Create("chat_icon.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -21,7 +21,7 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("chat_icon_pointing.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
-     * Chat anti-spam
+     * Антиспам чата
      */
 
     /// <summary>
@@ -43,7 +43,7 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("anti_spam.counter_long", 2, CVar.SERVER | CVar.ARCHIVE);
 
     /// <summary>
-    /// Длительность мута за spam trigger, в секундах.
+    /// Длительность мута за срабатывание спама, в секундах.
     /// </summary>
     public static readonly CVarDef<float> ChatAntiSpamMuteDuration =
         CVarDef.Create("anti_spam.mute_duration", 10f, CVar.SERVER | CVar.ARCHIVE);
@@ -61,7 +61,7 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("anti_spam.time_long", 5f, CVar.SERVER | CVar.ARCHIVE);
 
     /*
-     * Chat sanitization
+     * Санитизация чата
      */
 
     /// <summary>
@@ -79,29 +79,29 @@ public sealed partial class SunriseCCVars
         CVarDef.Create("chatsan.aggressive", true, CVar.SERVER | CVar.ARCHIVE);
 
     /*
-     * Mentor help
+     * Менторская помощь
      */
 
     /// <summary>
-    /// Добавляет админский префикс к имени отправителя в mentor help сообщениях, если он является администратором.
+    /// Добавляет админский префикс к имени отправителя в сообщениях менторской помощи, если он является администратором.
     /// </summary>
     public static readonly CVarDef<bool> MentorHelpAdminPrefixEnabled =
         CVarDef.Create("mentor_help.admin_prefix", true, CVar.SERVERONLY);
 
     /// <summary>
-    /// Длина окна rate limit для mentor help, в секундах.
+    /// Длина окна rate limit для менторской помощи, в секундах.
     /// </summary>
     public static readonly CVarDef<float> MentorHelpRateLimitPeriod =
         CVarDef.Create("mentor_help.rate_limit_period", 2f, CVar.SERVERONLY);
 
     /// <summary>
-    /// Максимальное количество mentor help сообщений за окно rate limit.
+    /// Максимальное количество сообщений менторской помощи за окно rate limit.
     /// </summary>
     public static readonly CVarDef<int> MentorHelpRateLimitCount =
         CVarDef.Create("mentor_help.rate_limit_count", 10, CVar.SERVERONLY);
 
     /// <summary>
-    /// Включает клиентский звук уведомления при получении mentor help сообщения.
+    /// Включает клиентский звук уведомления при получении сообщения менторской помощи.
     /// </summary>
     public static readonly CVarDef<bool> MentorHelpSoundEnabled =
         CVarDef.Create("mentor_help.mentor_help_sound_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
@@ -117,38 +117,38 @@ public sealed partial class SunriseCCVars
      */
 
     /// <summary>
-    /// Недавно использованные смайлики в messenger UI, разделённые запятыми.
-    /// Хранится на клиенте, используется для быстрого доступа в picker'е.
+    /// Недавно использованные смайлики в интерфейсе messenger, разделённые запятыми.
+    /// Хранится на клиенте, используется для быстрого доступа в окне выбора.
     /// </summary>
     public static readonly CVarDef<string> MessengerRecentEmojis =
         CVarDef.Create("messenger.recent_emojis", "", CVar.ARCHIVE | CVar.CLIENTONLY);
 
     /// <summary>
-    /// Избранные смайлики в messenger UI, разделённые запятыми.
+    /// Избранные смайлики в интерфейсе messenger, разделённые запятыми.
     /// </summary>
     public static readonly CVarDef<string> MessengerFavoriteEmojis =
         CVarDef.Create("messenger.favorite_emojis", "", CVar.ARCHIVE | CVar.CLIENTONLY);
 
     /// <summary>
-    /// Включает механику автоматических spam-рассылок в messenger.
+    /// Включает механику автоматических спам-рассылок в messenger.
     /// </summary>
     public static readonly CVarDef<bool> MessengerSpamEnabled =
         CVarDef.Create("messenger.spam_enabled", true, CVar.SERVERONLY);
 
     /// <summary>
-    /// Минимальная задержка между spam-волнами messenger, в секундах.
+    /// Минимальная задержка между спам-волнами messenger, в секундах.
     /// </summary>
     public static readonly CVarDef<float> MessengerSpamMinInterval =
         CVarDef.Create("messenger.spam_min_time", 300f, CVar.SERVERONLY);
 
     /// <summary>
-    /// Максимальная задержка между spam-волнами messenger, в секундах.
+    /// Максимальная задержка между спам-волнами messenger, в секундах.
     /// </summary>
     public static readonly CVarDef<float> MessengerSpamMaxInterval =
         CVarDef.Create("messenger.spam_max_time", 600f, CVar.SERVERONLY);
 
     /// <summary>
-    /// Доля пользователей станции, которые получат spam во время одной волны.
+    /// Доля пользователей станции, которые получат спам во время одной волны.
     /// Значение задаётся в диапазоне от 0.0 до 1.0.
     /// </summary>
     public static readonly CVarDef<float> MessengerSpamPlayerPercentage =

@@ -20,10 +20,6 @@
     tags:
     - Kangaroo
     - WhitelistChameleon
-  # Sunrise-Start
-  - type: DiseaseImmuneClothing
-    prob: 0.2
-  # Sunrise-End
 
 - type: entity
   parent: ClothingHandsGlovesBoxingBase
@@ -191,8 +187,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/nitrile.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: Clothing/Hands/Gloves/nitrile.rsi
   - type: Fiber

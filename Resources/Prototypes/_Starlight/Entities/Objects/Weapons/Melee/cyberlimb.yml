@@ -359,7 +359,7 @@
       - state: base
         map: ["enum.GunVisualLayers.Base"]
   - type: Gun
-    fireRate: 0.1
+    fireRate: 0.55
     minAngle: 6
     maxAngle: 18
     selectedMode: SemiAuto
@@ -419,6 +419,8 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     projectileSpeed: 15
     bigTrigger: true
+  - type: Item
+    size: Normal
   - type: BatteryAmmoProvider
     proto: AirGrenade
     fireCost: 130
