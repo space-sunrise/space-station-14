@@ -102,7 +102,8 @@ public sealed class PointLightingOverlay : Overlay
         ref BloomLightQueryState queryState,
         in ComponentTreeEntry<BloomOverlayVisualsComponent> bloomEntry)
     {
-        if (!queryState.PointLightQuery.TryComp(bloomEntry.Uid, out var pointLight))
+        if (!queryState.PointLightQuery.TryComp(bloomEntry.Uid, out var pointLight) ||
+            !pointLight.Enabled)
             return true;
 
         var bloomVisuals = bloomEntry.Component;
