@@ -1,0 +1,114 @@
+# Base abilities
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireToggleFangs
+  name: Extend Fangs
+  description: Bare your fangs to feed on a blood-bearing creature with an empty hand. A covered mouth, movement, damage, changing hands or losing range interrupts feeding; vampires cannot be drained and faith may protect the target.
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: NoItem
+    priority: 1
+    icon:
+      sprite: _Sunrise/Vampire/actions_vampire.rsi
+      state: fangs_retracted
+    iconOn:
+      sprite: _Sunrise/Vampire/actions_vampire.rsi
+      state: fangs_extended
+  - type: InstantAction
+    event: !type:VampireToggleFangsActionEvent {}
+  - type: VampireAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireGlare
+  name: Glare
+  description: Drains the stamina of nearby creatures and paralyzes those in front for longer. Cannot be used while blind; flash protection such as sunglasses may weaken or block it.
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: NoItem
+    priority: 2
+    icon:
+      sprite: _Sunrise/Vampire/actions_vampire.rsi
+      state: glare
+  - type: InstantAction
+    event: !type:VampireGlareActionEvent {}
+  - type: VampireAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireSleep
+  name: Sleep
+  description: After 5 seconds of concentration, puts a humanoid to sleep for 20 seconds at the cost of 15 blood. The vampire moving, taking damage, or losing proximity to the target interrupts the ability, while flash protection, mindshields and faith may block it.
+  components:
+  - type: Action
+    useDelay: 120
+    itemIconStyle: NoItem
+    priority: 25
+    icon:
+      sprite: _Sunrise/Vampire/actions_vampire.rsi
+      state: sleep_icon
+  - type: TargetAction
+    range: 2
+    checkCanAccess: false
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidAppearance
+    event: !type:VampireSleepActionEvent
+  - type: VampireAction
+    bloodCost: 15
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireRejuvenateI
+  name: Rejuvenation
+  description: Removes stuns and knockdown and restores stamina, even while incapacitated. Does not heal or purge chemicals.
+  components:
+  - type: Action
+    useDelay: 35
+    itemIconStyle: NoItem
+    priority: 3
+    checkCanInteract: false
+    checkConsciousness: false
+    icon:
+      sprite: _Sunrise/Vampire/actions_vampire.rsi
+      state: rejuvinate
+  - type: InstantAction
+    event: !type:VampireRejuvenateIActionEvent {}
+  - type: VampireAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireRejuvenateII
+  name: Greater Rejuvenation
+  description: Removes stuns, restores stamina and purges up to 10 units of poisons, then gradually heals common injuries. Cannot revive the dead.
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: NoItem
+    priority: 4
+    checkCanInteract: false
+    checkConsciousness: false
+    icon:
+      sprite: _Sunrise/Vampire/actions_vampire.rsi
+      state: rejuvinate
+  - type: InstantAction
+    event: !type:VampireRejuvenateIIActionEvent
+      reagentPurgeAmount: 10
+      purgedMetabolismGroups:
+      - Poison
+      healTicks: 5
+      healTickInterval: 3.5
+      healGroups:
+        Brute: 4
+        Burn: 4
+      healTypes:
+        Poison: 4
+        Asphyxiation: 5
+  - type: VampireAction
+    requiredPowerLevel: Awakened

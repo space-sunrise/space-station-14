@@ -1,0 +1,29 @@
+- type: vampirePowerLevel
+  id: SunriseVampirePowerNeonate
+  level: Neonate
+  requiredTotalBlood: 0
+
+- type: vampirePowerLevel
+  id: SunriseVampirePowerAwakened
+  level: Awakened
+  requiredTotalBlood: 200
+
+- type: vampirePowerLevel
+  id: SunriseVampirePowerNightborn
+  level: Nightborn
+  requiredTotalBlood: 600
+
+- type: vampirePowerLevel
+  id: SunriseVampirePowerAncient
+  level: Ancient
+  requiredTotalBlood: 1000
+
+# Этот уровень будет выдаваться отдельной механикой возвышения.
+- type: vampirePowerLevel
+  id: SunriseVampirePowerAscendant
+  level: Ascendant
+
+# Этот уровень выставляется только администрацией.
+- type: vampirePowerLevel
+  id: SunriseVampirePowerAbsolute
+  level: Absolute
