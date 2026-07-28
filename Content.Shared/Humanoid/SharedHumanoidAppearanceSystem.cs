@@ -599,6 +599,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Voice = voiceId;
         comp.VoicePrototypeId = voiceId;
+        Dirty(uid, comp);
     }
     // Sunrise-TTS-End
 

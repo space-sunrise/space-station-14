@@ -7,13 +7,13 @@ namespace Content.Shared._Sunrise.TTS;
 /// <summary>
 /// Apply TTS for entity chat say messages
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSComponent : Component
 {
     /// <summary>
     /// Prototype of used voice for TTS.
     /// </summary>
-    [DataField("voice")]
+    [DataField("voice"), AutoNetworkedField]
     public ProtoId<TTSVoicePrototype>? VoicePrototypeId;
 }
