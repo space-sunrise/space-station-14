@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Sunrise.SponsorInventory;
 using Content.Shared.CCVar;
-using Content.Shared.Clothing; // Sunrise-edit
+using Content.Shared.Clothing;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Collections;
 using Robust.Shared.Network;
 using Robust.Shared.Configuration;
@@ -284,6 +286,17 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             reason = FormattedMessage.FromUnformatted("loadouts-prototype-missing");
             return false;
         }
+
+        // Sunrise edit start - не позволяем обычному loadout обходить владение предметом спонсорского каталога.
+        if (session != null &&
+            collection.TryResolveType<ISharedSponsorsManager>(out var sponsors) &&
+            sponsors != null &&
+            !SunriseInventoryValidation.CanUseLoadout(loadoutProto, session, protoManager, sponsors))
+        {
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("sunrise-inventory-item-unavailable"));
+            return false;
+        }
+        // Sunrise edit end
 
         var valid = true;
 
