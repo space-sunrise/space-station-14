@@ -296,7 +296,7 @@
 - type: entity
   parent: PosterBase
   id: PosterJapanese1
-  name: japanese poster
+  name: "Sunset over Torii"
   description: Japanese-style poster.
   components:
   - type: Sprite
@@ -306,7 +306,7 @@
 - type: entity
   parent: PosterBase
   id: PosterJapanese2
-  name: japanese poster
+  name: "Spring cherry blossom scroll"
   description: Japanese-style poster.
   components:
   - type: Sprite
@@ -316,7 +316,7 @@
 - type: entity
   parent: PosterBase
   id: PosterJapanese3
-  name: japanese poster
+  name: "PuckDitTea"
   description: Japanese-style poster.
   components:
   - type: Sprite
@@ -326,8 +326,8 @@
 - type: entity
   parent: PosterBase
   id: PosterJapanese4
-  name: japanese poster
-  description: Japanese-style poster.
+  name: "Pisces of mind and feelings"
+  description: You ask... Why reason? Why feelings? And you shouldn't give a damn.
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Wallmounts/japanese_poster.rsi
@@ -336,7 +336,7 @@
 - type: entity
   parent: PosterBase
   id: PosterJapanese5
-  name: japanese poster
+  name: "Fvudtdcy Mountain"
   description: Japanese-style poster.
   components:
   - type: Sprite
@@ -346,7 +346,7 @@
 - type: entity
   parent: PosterBase
   id: PosterJapanese6
-  name: japanese poster
+  name: "Keto demon"
   description: Japanese-style poster.
   components:
   - type: Sprite
