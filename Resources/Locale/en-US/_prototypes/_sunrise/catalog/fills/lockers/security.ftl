@@ -72,7 +72,7 @@ ent-GunSafeRifleM16A4 = safe
 
 ent-GunSafeRifleM52 = safe
     .suffix = M-52, LMG/HAR
-    .desc = { ent-GunSafeSuperweaponSecureGamma.desc }
+    .desc = { ent-GunSafeBaseSecure.desc }
 
 ent-GunSafeRifleAKMU = safe
     .suffix = AKMU

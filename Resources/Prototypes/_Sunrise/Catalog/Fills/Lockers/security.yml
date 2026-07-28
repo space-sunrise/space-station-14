@@ -377,7 +377,7 @@
 
 # region Rifles safes
 - type: entity
-  parent: GunSafeSuperweaponSecureGamma
+  parent: GunSafeBaseSecureSunrise
   id: GunSafeRifleM52
   name: safe
   suffix: M-52, LMG/HAR
