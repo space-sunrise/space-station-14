@@ -4,32 +4,32 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.Lathe;
 
 /// <summary>
-/// Синхронизирует временной интервал активного производства для клиентской шкалы прогресса.
+/// Synchronizes the active production time interval for the client progress bar.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class SunriseLatheProgressComponent : Component
 {
     /// <summary>
-    /// Время начала производства текущего предмета.
+    /// The time when production of the current item started.
     /// </summary>
     [AutoNetworkedField]
     public TimeSpan StartTime;
 
     /// <summary>
-    /// Время окончания производства текущего предмета.
+    /// The time when production of the current item ends.
     /// </summary>
     [AutoNetworkedField]
     public TimeSpan EndTime;
 
     /// <summary>
-    /// Текущее состояние шкалы производства.
+    /// The current production progress bar state.
     /// </summary>
     [AutoNetworkedField]
     public SunriseLatheProgressState State;
 }
 
 /// <summary>
-/// Визуальное состояние шкалы производства.
+/// The visual state of the production progress bar.
 /// </summary>
 [Serializable, NetSerializable]
 public enum SunriseLatheProgressState : byte

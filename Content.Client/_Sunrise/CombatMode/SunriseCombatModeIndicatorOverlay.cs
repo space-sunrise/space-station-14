@@ -22,30 +22,35 @@ public sealed class SunriseCombatModeIndicatorOverlay : Overlay
     private static readonly Vector2 IndicatorOffset =
         new(-11f / EyeManager.PixelsPerMeter, -14f / EyeManager.PixelsPerMeter);
 
-    private readonly IEntityManager _entity;
+    private readonly IEyeManager _eye;
     private readonly IPlayerManager _player;
     private readonly CombatModeSystem _combatMode;
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
+    private readonly EntityQuery<SpriteComponent> _spriteQuery;
+    private readonly EntityQuery<TransformComponent> _transformQuery;
     private readonly Texture[] _frames;
     private readonly float[] _frameDelays;
 
     private float _frameTime;
     private int _frameIndex;
 
-    public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
+    public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
     public SunriseCombatModeIndicatorOverlay(
         IEntityManager entity,
+        IEyeManager eye,
         IPlayerManager player,
         CombatModeSystem combatMode,
         IResourceCache resources)
     {
-        _entity = entity;
+        _eye = eye;
         _player = player;
         _combatMode = combatMode;
         _sprite = entity.System<SpriteSystem>();
         _transform = entity.System<TransformSystem>();
+        _spriteQuery = entity.GetEntityQuery<SpriteComponent>();
+        _transformQuery = entity.GetEntityQuery<TransformComponent>();
 
         var rsi = resources.GetResource<RSIResource>(IndicatorRsi).RSI;
         if (!rsi.TryGetState(IndicatorState, out var state))
@@ -57,8 +62,9 @@ public sealed class SunriseCombatModeIndicatorOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        return _combatMode.IsInCombatMode() &&
-               _player.LocalEntity != null &&
+        return _player.LocalEntity is { Valid: true } &&
+               _combatMode.IsInCombatMode() &&
+               args.Viewport.Eye == _eye.CurrentEye &&
                base.BeforeDraw(in args);
     }
 
@@ -79,21 +85,22 @@ public sealed class SunriseCombatModeIndicatorOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (_player.LocalEntity is not { } player ||
-            !_entity.TryGetComponent(player, out TransformComponent? xform) ||
-            xform.MapID != args.MapId)
-        {
+        if (_player.LocalEntity is not { Valid: true } player ||
+            !_transformQuery.TryComp(player, out var transform))
             return;
-        }
 
-        var halfHeight = 0.5f;
-        if (_entity.TryGetComponent(player, out SpriteComponent? sprite))
-            halfHeight = _sprite.GetLocalBounds((player, sprite)).Height / 2f;
+        Entity<TransformComponent> playerTransform = (player, transform);
+        if (playerTransform.Comp.MapID != args.MapId)
+            return;
+
+        var spriteTop = 0.5f;
+        if (_spriteQuery.TryComp(playerTransform, out var sprite))
+            spriteTop = _sprite.GetLocalBounds((playerTransform, sprite)).Top;
 
         var eyeRotation = args.Viewport.Eye?.Rotation ?? default;
         var headOffset = (-eyeRotation).ToWorldVec() *
-                         -(halfHeight + IndicatorSize / 2f + HeadGap);
-        var worldPosition = _transform.GetWorldPosition(xform) + headOffset;
+                         -(spriteTop + IndicatorSize / 2f + HeadGap);
+        var worldPosition = _transform.GetWorldPosition(playerTransform.Comp) + headOffset;
 
         var rotationMatrix = Matrix3Helpers.CreateRotation(-eyeRotation);
         var positionMatrix = Matrix3Helpers.CreateTranslation(worldPosition);

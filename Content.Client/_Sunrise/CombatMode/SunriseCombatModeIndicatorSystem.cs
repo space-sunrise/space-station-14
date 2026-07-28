@@ -15,6 +15,8 @@ public sealed class SunriseCombatModeIndicatorSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly CombatModeSystem _combatMode = default!;
+    [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IResourceCache _resources = default!;
@@ -50,14 +52,19 @@ public sealed class SunriseCombatModeIndicatorSystem : EntitySystem
     {
         if (show)
         {
+            if (_overlay.HasOverlay<SunriseCombatModeIndicatorOverlay>())
+                return;
+
             _overlay.AddOverlay(new SunriseCombatModeIndicatorOverlay(
                 EntityManager,
+                _eye,
                 _player,
-                EntityManager.System<CombatModeSystem>(),
+                _combatMode,
                 _resources));
             return;
         }
 
-        _overlay.RemoveOverlay<SunriseCombatModeIndicatorOverlay>();
+        if (_overlay.HasOverlay<SunriseCombatModeIndicatorOverlay>())
+            _overlay.RemoveOverlay<SunriseCombatModeIndicatorOverlay>();
     }
 }
