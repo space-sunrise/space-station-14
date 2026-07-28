@@ -5,6 +5,7 @@ using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Inventory.Controls;
+using Content.Shared._Sunrise.SponsorInventory;
 using Content.Shared.Clothing;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences.Loadouts;
@@ -44,6 +45,10 @@ public sealed partial class InventoryWindow
 
         var loadoutSystem = _entManager.System<LoadoutSystem>();
         var collection = IoCManager.Instance!;
+        var sponsorConfig = _sponsorInventory.GetSponsorInventoryConfig();
+        var purchasedSponsorItems = _sponsorInventory.GetPurchasedInventoryItems().ToHashSet();
+        var sponsorTier = _sponsorInventory.GetSponsorTier();
+        var sponsorEntitlements = _sponsorInventory.GetSponsorInventoryEntitlements().ToHashSet();
 
         // Group metadata is copied onto each entry so the palette can sort and show limits without re-reading prototypes.
         for (var groupOrder = 0; groupOrder < roleLoadoutProto.Groups.Count; groupOrder++)
@@ -74,6 +79,20 @@ public sealed partial class InventoryWindow
                     loadout.ID,
                     collection,
                     out reason);
+
+                // Sunrise-Edit: проверяем UI по актуальному снимку каталога и владения из SunriseInventorySystem.
+                if (enabled && !SunriseInventoryValidation.CanUseLoadout(
+                        loadout,
+                        _prototype,
+                        sponsorConfig,
+                        purchasedSponsorItems,
+                        sponsorTier,
+                        sponsorEntitlements))
+                {
+                    enabled = false;
+                    reason = FormattedMessage.FromUnformatted(
+                        Loc.GetString("sunrise-inventory-item-unavailable"));
+                }
 
                 var equipment = GetLoadoutEquipment(loadout);
                 var storage = GetLoadoutStorage(loadout);

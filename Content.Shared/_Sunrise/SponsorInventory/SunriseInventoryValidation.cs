@@ -198,6 +198,64 @@ public static class SunriseInventoryValidation
     }
 
     /// <summary>
+    /// Проверяет обычный loadout на наличие предметов каталога, требующих владения или наградного доступа.
+    /// </summary>
+    public static bool CanUseLoadout(
+        LoadoutPrototype loadout,
+        ICommonSession session,
+        IPrototypeManager prototype,
+        ISharedSponsorsManager sponsors)
+    {
+        var config = sponsors.GetSponsorInventoryConfig();
+        return CanUseLoadout(
+            loadout,
+            prototype,
+            config,
+            GetPurchasedItems(session, sponsors),
+            sponsors.GetSponsorTier(session.UserId),
+            GetValidEntitlements(sponsors.GetSponsorInventoryEntitlements(session.UserId)));
+    }
+
+    /// <summary>
+    /// Проверяет обычный loadout по уже загруженному снимку спонсорского инвентаря.
+    /// </summary>
+    public static bool CanUseLoadout(
+        LoadoutPrototype loadout,
+        IPrototypeManager prototype,
+        SponsorInventoryConfig config,
+        IReadOnlySet<string> purchasedItems,
+        int sponsorTier,
+        IReadOnlySet<string> entitlements)
+    {
+        if (config.Items is not { Length: > 0 })
+            return true;
+
+        foreach (var entityPrototype in GetLoadoutEntityPrototypes(loadout, prototype))
+        {
+            var catalogItemFound = false;
+            var catalogItemAllowed = false;
+
+            foreach (var item in config.Items)
+            {
+                if (item == null || item.EntityPrototype != entityPrototype)
+                    continue;
+
+                catalogItemFound = true;
+                if (!CanUseForOwnership(item, purchasedItems, sponsorTier, entitlements))
+                    continue;
+
+                catalogItemAllowed = true;
+                break;
+            }
+
+            if (catalogItemFound && !catalogItemAllowed)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
     /// Merges global sponsor inventory choices with job-specific overrides.
     /// </summary>
     public static SunriseInventorySelection GetEffectiveSelection(SunriseInventoryProfile profile, string? jobId)
@@ -409,13 +467,7 @@ public static class SunriseInventoryValidation
         if (!IsJobAllowed(item, jobId))
             return false;
 
-        if (purchasedItems.Contains(item.Id))
-            return true;
-
-        if (item.Access.Tier == null && item.Access.Entitlements is not { Length: > 0 })
-            return false;
-
-        return CanPurchaseForSponsorAccess(item, sponsorTier, entitlements);
+        return CanUseForOwnership(item, purchasedItems, sponsorTier, entitlements);
     }
 
     public static bool CanPurchaseForSponsorAccess(
@@ -444,6 +496,53 @@ public static class SunriseInventoryValidation
         }
 
         return item.Access.Tier == null;
+    }
+
+    private static bool CanUseForOwnership(
+        SponsorInventoryItemInfo item,
+        IReadOnlySet<string> purchasedItems,
+        int sponsorTier,
+        IReadOnlySet<string> entitlements)
+    {
+        if (purchasedItems.Contains(item.Id))
+            return true;
+
+        if (item.Purchasable ||
+            (item.Access.Tier == null && item.Access.Entitlements is not { Length: > 0 }))
+        {
+            return false;
+        }
+
+        return CanPurchaseForSponsorAccess(item, sponsorTier, entitlements);
+    }
+
+    private static IEnumerable<string> GetLoadoutEntityPrototypes(
+        LoadoutPrototype loadout,
+        IPrototypeManager prototype)
+    {
+        foreach (var entityPrototype in GetEquipmentLoadoutEntityPrototypes(loadout))
+            yield return entityPrototype;
+
+        if (!prototype.Resolve(loadout.StartingGear, out var startingGear))
+            yield break;
+
+        foreach (var entityPrototype in GetEquipmentLoadoutEntityPrototypes(startingGear))
+            yield return entityPrototype;
+    }
+
+    private static IEnumerable<string> GetEquipmentLoadoutEntityPrototypes(IEquipmentLoadout loadout)
+    {
+        foreach (var entityPrototype in loadout.Equipment.Values)
+            yield return entityPrototype.Id;
+
+        foreach (var entityPrototype in loadout.Inhand)
+            yield return entityPrototype.Id;
+
+        foreach (var storedPrototypes in loadout.Storage.Values)
+        {
+            foreach (var entityPrototype in storedPrototypes)
+                yield return entityPrototype.Id;
+        }
     }
 
     private static bool IsJobAllowed(SponsorInventoryItemInfo item, string? jobId)
