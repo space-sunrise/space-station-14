@@ -34,7 +34,10 @@ public sealed class TTSExamineSystem : EntitySystem
 
         var message = new FormattedMessage();
         var voiceName = Loc.GetString(voice.Name);
-        message.AddMarkupOrThrow(Loc.GetString("tts-examine", ("ent", ent.Owner), ("voice", voiceName)));
+        message.AddMarkupOrThrow(Loc.GetString(
+            "tts-examine",
+            ("ent", ent.Owner),
+            ("voice", FormattedMessage.EscapeText(voiceName))));
 
         _examine.AddDetailedExamineVerb(
             args,
