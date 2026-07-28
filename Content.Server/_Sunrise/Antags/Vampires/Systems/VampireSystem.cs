@@ -9,6 +9,9 @@ using Content.Shared._Sunrise.Antags.Vampires;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -71,6 +74,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedRoleSystem _role = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
 
     private const float VampireObjectiveMaxDifficulty = 10f;
 
@@ -81,12 +85,18 @@ public sealed partial class VampireSystem : EntitySystem
     private static readonly ProtoId<DamageTypePrototype> OxyLossTypeId = "Asphyxiation";
     private static readonly ProtoId<DamageTypePrototype> HeatTypeId = "Heat";
     private static readonly ProtoId<DamageTypePrototype> PierceTypeId = "Piercing";
+    private static readonly ProtoId<ReagentPrototype> MuteToxinReagentId = "MuteToxin";
     private static readonly SoundSpecifier SpaceBurnSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
     private static readonly SoundSpecifier VampireBriefingSound =
         new SoundPathSpecifier("/Audio/_Sunrise/Ambience/Antag/vampire_start.ogg");
     private static readonly EntProtoId VampireMindRoleId = "MindRoleVampire";
     private static readonly EntProtoId VampireKillObjectiveId = "VampireKillRandomPersonObjective";
     private static readonly EntProtoId VampireDrainObjectiveId = "VampireDrainObjective";
+    private static readonly EntProtoId VampireFangsActionId = "ActionVampireToggleFangs";
+    private static readonly EntProtoId VampireGlareActionId = "ActionVampireGlare";
+    private static readonly EntProtoId VampireSleepActionId = "ActionVampireSleep";
+    private static readonly EntProtoId VampireRejuvenateIActionId = "ActionVampireRejuvenateI";
+    private static readonly EntProtoId VampireRejuvenateIIActionId = "ActionVampireRejuvenateII";
     private static readonly ProtoId<WeightedRandomPrototype> VampireStateObjectiveGroupId =
         "VampireObjectiveGroupsStateOnly";
     private static readonly ProtoId<WeightedRandomPrototype> VampireStealObjectiveGroupId =
@@ -429,10 +439,60 @@ public sealed partial class VampireSystem : EntitySystem
         return changed;
     }
 
+    /// <summary>
+    /// Копирует настройки текущего уровня силы в runtime-компонент вампира.
+    /// </summary>
+    private void ApplyPowerLevelSettings(Entity<VampireComponent> ent)
+    {
+        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
+            return;
+
+        var fangs = level.Fangs;
+
+        ent.Comp.MaxBloodFullness = level.MaxBloodFullness;
+        ent.Comp.FullnessDecayPerSecond = level.FullnessDecayPerSecond;
+        ent.Comp.BloodFullness = MathF.Min(ent.Comp.BloodFullness, ent.Comp.MaxBloodFullness);
+
+        ent.Comp.SipInterval = fangs.SipInterval;
+        ent.Comp.BloodGainPerSip = fangs.BloodGain;
+        ent.Comp.TargetBloodDrainPerSip = fangs.TargetBloodDrain;
+        ent.Comp.AnimalEfficiency = fangs.AnimalEfficiency;
+        ent.Comp.CorpseEfficiency = fangs.CorpseEfficiency;
+        ent.Comp.BitePierceDamage = fangs.PierceDamage;
+        ent.Comp.BiteBleedAmount = fangs.BleedAmount;
+        ent.Comp.BiteDistanceThreshold = fangs.Range;
+        ent.Comp.MaxBloodPerTarget = fangs.MaxBloodPerTarget;
+        ent.Comp.VampHealBrute = fangs.HealBrute;
+        ent.Comp.VampHealBurn = fangs.HealBurn;
+        ent.Comp.VampHealPois = fangs.HealPoison;
+        ent.Comp.VampHealAsphyxiation = fangs.HealAsphyxiation;
+
+        Dirty(ent);
+        UpdateVampireFedAlert(ent);
+    }
+
+    private bool TryGetPowerLevelPrototype(
+        VampirePowerLevel powerLevel,
+        out VampirePowerLevelPrototype prototype)
+    {
+        foreach (var candidate in _prototype.EnumeratePrototypes<VampirePowerLevelPrototype>())
+        {
+            if (candidate.Level != powerLevel)
+                continue;
+
+            prototype = candidate;
+            return true;
+        }
+
+        _sawmill?.Error($"Missing vampire power level prototype for {powerLevel}");
+        prototype = default!;
+        return false;
+    }
+
     private void RefreshAllActions(Entity<VampireComponent> ent)
     {
-        foreach (var (_, actionEntity) in ent.Comp.ActionEntities)
-            TryRefreshVampireAction(ent, actionEntity);
+        foreach (var (actionId, actionEntity) in ent.Comp.ActionEntities)
+            TryRefreshVampireAction(ent, actionId, actionEntity);
     }
 
     private void OnActionsComponentStartup(Entity<ActionsComponent> ent, ref ComponentStartup args)
@@ -468,6 +528,7 @@ public sealed partial class VampireSystem : EntitySystem
     {
         EnsureComp<VampireSunlightComponent>(ent);
         UpdatePowerLevel(ent, syncActions: false);
+        ApplyPowerLevelSettings(ent);
 
         foreach (var actionId in ent.Comp.BaseVampireActions)
         {
@@ -496,7 +557,10 @@ public sealed partial class VampireSystem : EntitySystem
     partial void UpdateVampireAlert(EntityUid uid);
     partial void UpdateVampireFedAlert(Entity<VampireComponent> ent);
 
-    private void TryRefreshVampireAction(Entity<VampireComponent> ent, EntityUid? actionEntity)
+    private void TryRefreshVampireAction(
+        Entity<VampireComponent> ent,
+        EntProtoId actionId,
+        EntityUid? actionEntity)
     {
         if (actionEntity is null)
             return;
@@ -510,10 +574,109 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
+        ConfigureVampireAction(ent, actionId, actionEntity.Value);
+
         var enabled = ent.Comp.PowerLevel >= vac.RequiredPowerLevel;
 
         _actions.SetEnabled(action.AsNullable(), enabled);
     }
+
+    /// <summary>
+    /// Применяет к action параметры текущего уровня силы и сохраняет прогресс его заряда.
+    /// </summary>
+    private void ConfigureVampireAction(
+        Entity<VampireComponent> ent,
+        EntProtoId actionId,
+        EntityUid actionEntity,
+        VampireActionChargeState? previousChargeState = null)
+    {
+        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
+            return;
+
+        VampireActionChargeSettings? chargeSettings = null;
+
+        if (actionId == VampireFangsActionId)
+        {
+            _actions.SetUseDelay(actionEntity, TimeSpan.FromSeconds(2));
+        }
+        else if (actionId == VampireGlareActionId)
+        {
+            chargeSettings = level.Glare.Action;
+        }
+        else if (actionId == VampireSleepActionId)
+        {
+            chargeSettings = level.Sleep.Action;
+
+            if (TryComp<VampireActionComponent>(actionEntity, out var vampireAction))
+                vampireAction.BloodCost = level.Sleep.BloodCost;
+
+            _actions.SetRange(actionEntity, level.Sleep.TargetRange);
+        }
+        else if (actionId == VampireRejuvenateIActionId ||
+                 actionId == VampireRejuvenateIIActionId)
+        {
+            chargeSettings = level.Rejuvenation.Action;
+        }
+
+        if (chargeSettings is null)
+            return;
+
+        _actions.SetUseDelay(actionEntity, chargeSettings.UseDelay);
+        ConfigureActionCharges(actionEntity, chargeSettings, previousChargeState);
+    }
+
+    /// <summary>
+    /// Настраивает заряды action, сохраняя текущий заряд и долю уже прошедшего восстановления.
+    /// При увеличении максимума новые ячейки сразу заполняются.
+    /// </summary>
+    private void ConfigureActionCharges(
+        EntityUid actionEntity,
+        VampireActionChargeSettings settings,
+        VampireActionChargeState? previousChargeState = null)
+    {
+        if (!TryComp<LimitedChargesComponent>(actionEntity, out var charges) ||
+            !TryComp<AutoRechargeComponent>(actionEntity, out var recharge))
+        {
+            return;
+        }
+
+        var previous = previousChargeState ?? CaptureActionChargeState(actionEntity);
+        var addedCapacity = Math.Max(0, settings.MaxCharges - previous.MaxCharges);
+        var newCharges = Math.Clamp(previous.CurrentCharges + addedCapacity, 0, settings.MaxCharges);
+
+        _charges.SetMaxCharges((actionEntity, charges), settings.MaxCharges);
+        _charges.SetCharges((actionEntity, charges), newCharges);
+        _charges.SetRechargeDuration(
+            (actionEntity, charges, recharge),
+            settings.RechargeDuration,
+            newCharges < settings.MaxCharges ? previous.RechargeProgress : 0f);
+    }
+
+    private VampireActionChargeState CaptureActionChargeState(EntityUid actionEntity)
+    {
+        if (!TryComp<LimitedChargesComponent>(actionEntity, out var charges) ||
+            !TryComp<AutoRechargeComponent>(actionEntity, out var recharge))
+        {
+            return new VampireActionChargeState(0, 0, 0f);
+        }
+
+        var currentCharges = _charges.GetCurrentCharges((actionEntity, charges, recharge));
+        var progress = 0f;
+
+        if (currentCharges < charges.MaxCharges && recharge.RechargeDuration > TimeSpan.Zero)
+        {
+            var elapsed = _timing.CurTime - charges.LastUpdate;
+            var elapsedTicks = Math.Max(0L, elapsed.Ticks % recharge.RechargeDuration.Ticks);
+            progress = Math.Clamp((float)elapsedTicks / recharge.RechargeDuration.Ticks, 0f, 1f);
+        }
+
+        return new VampireActionChargeState(currentCharges, charges.MaxCharges, progress);
+    }
+
+    private readonly record struct VampireActionChargeState(
+        int CurrentCharges,
+        int MaxCharges,
+        float RechargeProgress);
 
     private VampirePowerLevel GetRequiredPowerLevel(EntProtoId actionId)
     {
@@ -539,16 +702,23 @@ public sealed partial class VampireSystem : EntitySystem
         if (ent.Comp.PowerLevel < requiredPowerLevel)
             return;
 
+        VampireActionChargeState? previousChargeState = null;
+        if (ent.Comp.ActionEntities.TryGetValue(rejuvenateI, out var firstAction))
+            previousChargeState = CaptureActionChargeState(firstAction);
+
         if (!ent.Comp.ActionEntities.ContainsKey(rejuvenateII))
         {
             EntityUid? action = null;
             _actions.AddAction(ent.Owner, ref action, rejuvenateII, ent.Owner);
             if (action is not null)
+            {
                 ent.Comp.ActionEntities[rejuvenateII] = action.Value;
+                ConfigureVampireAction(ent, rejuvenateII, action.Value, previousChargeState);
+            }
         }
 
-        TryRefreshVampireAction(ent, ent.Comp.ActionEntities[rejuvenateII]);
-        if (ent.Comp.ActionEntities.TryGetValue(rejuvenateI, out var firstAction))
+        TryRefreshVampireAction(ent, rejuvenateII, ent.Comp.ActionEntities[rejuvenateII]);
+        if (ent.Comp.ActionEntities.TryGetValue(rejuvenateI, out firstAction))
         {
             _actions.RemoveAction(ent.Owner, firstAction);
             ent.Comp.ActionEntities.Remove(rejuvenateI);

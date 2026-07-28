@@ -27,7 +27,7 @@
   description: Drains the stamina of nearby creatures and paralyzes those in front for longer. Cannot be used while blind; flash protection such as sunglasses may weaken or block it.
   components:
   - type: Action
-    useDelay: 60
+    useDelay: 12
     itemIconStyle: NoItem
     priority: 2
     icon:
@@ -35,16 +35,20 @@
       state: glare
   - type: InstantAction
     event: !type:VampireGlareActionEvent {}
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 75
   - type: VampireAction
 
 - type: entity
   parent: BaseAction
   id: ActionVampireSleep
   name: Sleep
-  description: After 5 seconds of concentration, puts a humanoid to sleep for 20 seconds at the cost of 15 blood. The vampire moving, taking damage, or losing proximity to the target interrupts the ability, while flash protection, mindshields and faith may block it.
+  description: Hypnotizes a humanoid after a short concentration. Movement, damage or losing proximity interrupts the attempt, while protected eyes, a guarded mind or faith may resist it.
   components:
   - type: Action
-    useDelay: 120
+    useDelay: 15
     itemIconStyle: NoItem
     priority: 25
     icon:
@@ -60,8 +64,12 @@
       components:
       - HumanoidAppearance
     event: !type:VampireSleepActionEvent
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 150
   - type: VampireAction
-    bloodCost: 15
+    bloodCost: 20
 
 - type: entity
   parent: BaseAction
@@ -70,7 +78,7 @@
   description: Removes stuns and knockdown and restores stamina, even while incapacitated. Does not heal or purge chemicals.
   components:
   - type: Action
-    useDelay: 35
+    useDelay: 8
     itemIconStyle: NoItem
     priority: 3
     checkCanInteract: false
@@ -80,16 +88,20 @@
       state: rejuvinate
   - type: InstantAction
     event: !type:VampireRejuvenateIActionEvent {}
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 100
   - type: VampireAction
 
 - type: entity
   parent: BaseAction
   id: ActionVampireRejuvenateII
   name: Greater Rejuvenation
-  description: Removes stuns, restores stamina and purges up to 10 units of poisons, then gradually heals common injuries. Cannot revive the dead.
+  description: Removes stuns, restores stamina, purges poisons and gradually heals common injuries. Cannot revive the dead.
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 7
     itemIconStyle: NoItem
     priority: 4
     checkCanInteract: false
@@ -98,17 +110,10 @@
       sprite: _Sunrise/Vampire/actions_vampire.rsi
       state: rejuvinate
   - type: InstantAction
-    event: !type:VampireRejuvenateIIActionEvent
-      reagentPurgeAmount: 10
-      purgedMetabolismGroups:
-      - Poison
-      healTicks: 5
-      healTickInterval: 3.5
-      healGroups:
-        Brute: 4
-        Burn: 4
-      healTypes:
-        Poison: 4
-        Asphyxiation: 5
+    event: !type:VampireRejuvenateIIActionEvent {}
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 90
   - type: VampireAction
-    requiredPowerLevel: Awakened
+    requiredPowerLevel: Nightborn

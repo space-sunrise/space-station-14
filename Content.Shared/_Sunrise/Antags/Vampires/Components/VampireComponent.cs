@@ -43,42 +43,53 @@ public sealed partial class VampireComponent : Component
     public int DrunkBlood = 0;
 
     /// <summary>
-    /// bites since last time blindness was applied.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public int BlindInc = 0;
-
-    /// <summary>
     /// Determines whether the fangs are extended or not.
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool FangsExtended = false;
 
     /// <summary>
-    /// amount of blood in u consumed by the vampire per bite
+    /// Время между последовательными укусами.
     /// </summary>
     [DataField]
-    public float SipAmount = 10f;
+    public TimeSpan SipInterval = TimeSpan.FromSeconds(1.25);
+
     /// <summary>
-    /// damage per 1u of blood drawn from target
+    /// Количество крови, получаемое из живого гуманоида за укус.
     /// </summary>
     [DataField]
-    public float SipPierceDamage = 0.05f;
+    public float BloodGainPerSip = 10f;
+
     /// <summary>
-    /// how much blood drawn from target is actually drank vs spilled from humanoids
+    /// Количество крови, отнимаемое у цели за укус.
     /// </summary>
     [DataField]
-    public float HumanoidEfficiency = 0.5f;
+    public float TargetBloodDrainPerSip = 20f;
+
     /// <summary>
-    /// how much blood drawn from target is actually drank vs spilled from animals
+    /// Эффективность крови животных относительно живого гуманоида.
     /// </summary>
     [DataField]
-    public float NonHumanoidEfficiency = 0.125f;
+    public float AnimalEfficiency = 0.05f;
+
     /// <summary>
-    /// how much blood is gained when the target is dead (0 disables drinking from the dead completely)
+    /// Эффективность крови трупов относительно живой цели.
     /// </summary>
     [DataField]
-    public float DeadEfficiency = 0.75f;
+    public float CorpseEfficiency = 0.1f;
+
+    /// <summary>
+    /// Колющий урон за один успешный укус.
+    /// </summary>
+    [DataField]
+    public float BitePierceDamage = 0.5f;
+
+    /// <summary>
+    /// Кровотечение за один успешный укус.
+    /// </summary>
+    [DataField]
+    public float BiteBleedAmount = 1f;
+
     /// <summary>
     /// How much blood is gained when the target has not yet rotted (less than 30 seconds since death)
     /// </summary>
@@ -155,10 +166,10 @@ public sealed partial class VampireComponent : Component
     /// <summary>
     /// tracking how much blood was drunk from each target.
     /// </summary>
-    public Dictionary<EntityUid, int> BloodDrunkFromTargets = [];
+    public Dictionary<EntityUid, float> BloodDrunkFromTargets = [];
 
     [DataField]
-    public int MaxBloodPerTarget = 200;
+    public float MaxBloodPerTarget = 200f;
     [DataField]
     public TimeSpan HolyTickDelay = TimeSpan.FromSeconds(2);
 
@@ -169,16 +180,16 @@ public sealed partial class VampireComponent : Component
     /// Healing factors
     /// </summary>
     [DataField]
-    public int VampHealBurn = 2;
+    public float VampHealBurn = 1f;
 
     [DataField]
-    public int VampHealBrute = 2;
+    public float VampHealBrute = 1f;
 
     [DataField]
-    public int VampHealAsphyxiation = 10;
+    public float VampHealAsphyxiation = 4f;
 
     [DataField]
-    public int VampHealPois = 4;
+    public float VampHealPois = 2f;
 
     [DataField]
     public ProtoId<ReagentPrototype> HolyWaterReagentId = "Holywater";
@@ -189,6 +200,23 @@ public sealed partial class VampireComponent : Component
     public TimeSpan NextHolyPlacePopup = TimeSpan.Zero;
 
     public float StarvationDrunkBloodDrainAccumulator;
+
+    /// <summary>
+    /// Дробная часть накопленной крови, ожидающая преобразования в целые единицы.
+    /// </summary>
+    [DataField]
+    public float DrunkBloodRemainder;
+
+    /// <summary>
+    /// Дробная часть крови гуманоидов для прогрессии уровня силы.
+    /// </summary>
+    [DataField]
+    public float TotalBloodRemainder;
+
+    /// <summary>
+    /// Количество укусов каждой цели после последнего повреждения глаз.
+    /// </summary>
+    public Dictionary<EntityUid, int> BiteCountsByTarget = [];
 
     /// <summary>
     /// Наивысший достигнутый уровень силы. Автоматическая прогрессия никогда не понижает его.
