@@ -72,7 +72,7 @@ ent-GunSafeRifleM16A4 = safe
 
 ent-GunSafeRifleM52 = safe
     .suffix = M-52, LMG/HAR
-    .desc = { ent-GunSafeBaseSecure.desc }
+    .desc = { ent-GunSafeSuperweaponSecureGamma.desc }
 
 ent-GunSafeRifleAKMU = safe
     .suffix = AKMU
@@ -126,10 +126,10 @@ ent-GunSafeSuperIonRifle = Ion-Temperature safe
     .desc = { ent-GunSafeSuperweaponBaseSecure.desc }
 
 ent-GunSafeSuperDMR = Larker safe
-    .desc = { ent-GunSafeSuperweaponBaseSecure.desc }
+    .desc = { ent-GunSafeSuperweaponSecureGamma.desc }
 
 ent-GunSafeSuperDMRElite = SKM-28 safe
-    .desc = { ent-GunSafeSuperweaponBaseSecure.desc }
+    .desc = { ent-GunSafeSuperweaponSecureGamma.desc }
 
 ent-SpawnerSafeSmallArms = Armory Safe Spawner
     .suffix = Armory, Pistols
