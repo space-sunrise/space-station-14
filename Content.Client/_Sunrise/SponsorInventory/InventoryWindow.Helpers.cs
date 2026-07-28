@@ -328,9 +328,9 @@ public sealed partial class InventoryWindow
         if (!purchased && (item.Access.Tier != null || item.Access.Entitlements is { Length: > 0 }))
             hasFailedRequirement = !accessTierMet && !entitlementsMet;
 
-        if (item.AvailableJobs is { Length: > 0 })
+        if (HasSponsorItemUsageRestrictions(item))
         {
-            var jobAllowed = IsSponsorItemJobAllowed(item);
+            var jobAllowed = SunriseInventoryValidation.IsUsageAllowed(item, CurrentJobId, _prototype);
             hasFailedRequirement |= !jobAllowed;
             lines.Add(GetTooltipRequirementLine(
                 Loc.GetString(jobAllowed
@@ -349,13 +349,11 @@ public sealed partial class InventoryWindow
             : string.Join("\n", lines);
     }
 
-    private bool IsSponsorItemJobAllowed(SponsorInventoryItemInfo item)
+    private static bool HasSponsorItemUsageRestrictions(SponsorInventoryItemInfo item)
     {
-        if (item.AvailableJobs is not { Length: > 0 })
-            return true;
-
-        var jobId = CurrentJobId;
-        return jobId != null && item.AvailableJobs.Contains(jobId);
+        return item.Usage?.Jobs is { Length: > 0 } ||
+               item.Usage?.Departments is { Length: > 0 } ||
+               item.Usage?.ExcludeJobs is { Length: > 0 };
     }
 
     private List<EntityUid> TakeStorageItems(EntityUid storageEntity)
