@@ -1,8 +1,10 @@
 using System.Numerics;
+using Content.Shared.Examine;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.ComponentTrees;
 using Robust.Shared.Enums;
+using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -17,6 +19,7 @@ public sealed class PointLightingOverlay : Overlay
     private static readonly ProtoId<ShaderPrototype> BloomShader = "SunriseLightingOverlay";
 
     private readonly BloomOverlayTreeSystem _bloomTree;
+    private readonly ExamineSystemShared _examine;
     private readonly Dictionary<BloomMaskKey, BloomMaskData> _maskCache = [];
     private readonly EntityQuery<PointLightComponent> _pointLightQuery;
     private readonly ShaderInstance _shader;
@@ -33,6 +36,7 @@ public sealed class PointLightingOverlay : Overlay
 
     public PointLightingOverlay(
         BloomOverlayTreeSystem bloomTree,
+        ExamineSystemShared examine,
         IPrototypeManager prototypeManager,
         SpriteSystem spriteSystem,
         TransformSystem transform,
@@ -43,6 +47,7 @@ public sealed class PointLightingOverlay : Overlay
         float strength)
     {
         _bloomTree = bloomTree;
+        _examine = examine;
         _shader = prototypeManager.Index(BloomShader).InstanceUnique();
         _sprite = spriteSystem;
         _transform = transform;
@@ -58,6 +63,10 @@ public sealed class PointLightingOverlay : Overlay
         if (BloomStrength <= 0f)
             return false;
 
+        var eye = args.Viewport.Eye;
+        if (eye == null)
+            return false;
+
         _visibleLights.Clear();
         var visibleArea = args.WorldAABB.Enlarged(1f);
         var queryState = new BloomLightQueryState(
@@ -65,7 +74,10 @@ public sealed class PointLightingOverlay : Overlay
             _maskCache,
             _pointLightQuery,
             _sprite,
-            _transform);
+            _transform,
+            _examine,
+            eye.Position,
+            eye.DrawFov);
         _bloomTree.QueryAabb(ref queryState, CollectBloomLight, args.MapId, visibleArea);
         return _visibleLights.Count > 0;
     }
@@ -102,12 +114,23 @@ public sealed class PointLightingOverlay : Overlay
         ref BloomLightQueryState queryState,
         in ComponentTreeEntry<BloomOverlayVisualsComponent> bloomEntry)
     {
-        if (!queryState.PointLightQuery.TryComp(bloomEntry.Uid, out var pointLight))
+        if (!queryState.PointLightQuery.TryComp(bloomEntry.Uid, out var pointLight) ||
+            !pointLight.Enabled)
             return true;
 
         var bloomVisuals = bloomEntry.Component;
         var transform = bloomEntry.Transform;
-        var (_, _, worldMatrix) = queryState.Transform.GetWorldPositionRotationMatrix(transform);
+        var (worldPosition, _, worldMatrix) = queryState.Transform.GetWorldPositionRotationMatrix(transform);
+
+        if (queryState.DrawFov &&
+            !queryState.Examine.InRangeUnOccluded(
+                queryState.EyePosition,
+                new MapCoordinates(worldPosition, transform.MapID),
+                30f,
+                null))
+        {
+            return true;
+        }
 
         var maskKey = new BloomMaskKey(bloomVisuals.MaskSprite, bloomVisuals.MaskOffset);
         if (!queryState.MaskCache.TryGetValue(maskKey, out var mask))
@@ -133,7 +156,10 @@ public sealed class PointLightingOverlay : Overlay
         Dictionary<BloomMaskKey, BloomMaskData> MaskCache,
         EntityQuery<PointLightComponent> PointLightQuery,
         SpriteSystem Sprite,
-        TransformSystem Transform);
+        TransformSystem Transform,
+        ExamineSystemShared Examine,
+        MapCoordinates EyePosition,
+        bool DrawFov);
 
     private readonly record struct BloomMaskKey(SpriteSpecifier Sprite, Vector2 Offset);
 
