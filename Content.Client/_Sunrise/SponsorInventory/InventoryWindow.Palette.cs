@@ -176,7 +176,7 @@ public sealed partial class InventoryWindow
                 canFitBag = CanAddSponsorItemToBag(sponsorItem.Id);
                 bagFitCache[sponsorItem.Id] = canFitBag;
             }
-            var canPlaceInBag = canUse && (selectedInBag || canFitBag);
+            var canPlaceInBag = selectedInBag || canFitBag;
 
             var enabled = canUse && (targetSlots.Count > 0 || canPlaceInBag);
             var reason = !canUse

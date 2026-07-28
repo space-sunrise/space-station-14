@@ -32,14 +32,10 @@ public sealed partial class InventoryWindow
 
     private void ApplySponsorSlotsToPreview(EntityUid dummy, SunriseInventorySelection selection)
     {
-        var replacementSlots = new HashSet<string>();
         foreach (var (slot, itemId) in selection.SlotItems)
         {
-            if (!TryGetSponsorItem(itemId, out var item) ||
-                !CanReplaceLoadoutSlots(replacementSlots, slot))
-            {
+            if (!TryGetSponsorItem(itemId, out var item))
                 continue;
-            }
 
             // Replacing a storage item must preserve its contents or restore the previous item if the sponsor item cannot fit.
             var spawned = _entManager.SpawnEntity(item.EntityPrototype, MapCoordinates.Nullspace);
@@ -65,7 +61,6 @@ public sealed partial class InventoryWindow
                 if (previousItem != null)
                     _entManager.DeleteEntity(previousItem.Value);
 
-                replacementSlots.Add(slot);
                 continue;
             }
 
@@ -376,18 +371,16 @@ public sealed partial class InventoryWindow
             return slots;
         }
 
-        // Spawn a nullspace probe so the real inventory whitelist/dependency checks can be reused for prototype filtering.
+        // Пробная сущность позволяет проверить реальные whitelist и зависимости слотов.
+        // Спонсорский слой заменяет уже выданный loadout, поэтому его обязательные предметы здесь не ограничивают выбор.
         var item = _entManager.SpawnEntity(entityPrototype, MapCoordinates.Nullspace);
         foreach (var slot in slotDefinitions)
         {
             if (!slot.ShowInWindow)
                 continue;
 
-            if (CanFitSlot(_previewDummy.Value, item, slot) &&
-                CanReplaceLoadoutSlot(slot.Name))
-            {
+            if (CanFitSlot(_previewDummy.Value, item, slot))
                 slots.Add(slot.Name);
-            }
         }
 
         _entManager.DeleteEntity(item);
@@ -454,13 +447,7 @@ public sealed partial class InventoryWindow
         if (_characterProfile == null || CurrentJobId == null)
             return;
 
-        var jobLoadoutId = LoadoutSystem.GetJobPrototype(CurrentJobId);
-        var roleLoadout = GetRoleLoadout(jobLoadoutId);
-        roleLoadout.SetDefault(_characterProfile, _player.LocalSession, _prototype);
-        if (!TryClearLoadoutSlot(roleLoadout, slot, string.Empty, string.Empty))
-            return;
-
-        _characterProfile = _characterProfile.WithLoadout(roleLoadout);
+        // Обычный loadout остаётся неизменным, а спонсорский выбор применяется поверх него при предпросмотре и спавне.
         UpdateSponsorSelection(selection =>
         {
             RemoveSponsorItem(selection, itemId);
@@ -529,31 +516,4 @@ public sealed partial class InventoryWindow
         return null;
     }
 
-    private bool CanReplaceLoadoutSlot(string slot)
-    {
-        return TryGetCurrentRoleLoadout(out var roleLoadout) &&
-               SunriseInventoryValidation.CanReplaceLoadoutSlot(roleLoadout, slot, _prototype);
-    }
-
-    private bool CanReplaceLoadoutSlots(HashSet<string> replacementSlots, string slot)
-    {
-        if (!TryGetCurrentRoleLoadout(out var roleLoadout))
-            return false;
-
-        var slots = replacementSlots.ToHashSet();
-        slots.Add(slot);
-        return SunriseInventoryValidation.CanReplaceLoadoutSlots(roleLoadout, slots, _prototype);
-    }
-
-    private bool TryGetCurrentRoleLoadout(out RoleLoadout roleLoadout)
-    {
-        roleLoadout = default!;
-        if (_characterProfile == null || CurrentJobId == null)
-            return false;
-
-        var jobLoadoutId = LoadoutSystem.GetJobPrototype(CurrentJobId);
-        roleLoadout = GetRoleLoadout(jobLoadoutId);
-        roleLoadout.SetDefault(_characterProfile, _player.LocalSession, _prototype);
-        return true;
-    }
 }
