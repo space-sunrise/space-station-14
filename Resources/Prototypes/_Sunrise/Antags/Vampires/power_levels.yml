@@ -21,7 +21,7 @@
   glare:
     action:
       maxCharges: 1
-      rechargeDuration: 75
+      rechargeDuration: 55
       useDelay: 12
     range: 1
     frontParalyzeDuration: 3
@@ -32,7 +32,7 @@
   sleep:
     action:
       maxCharges: 1
-      rechargeDuration: 150
+      rechargeDuration: 110
       useDelay: 15
     channelTime: 6
     targetRange: 2
@@ -42,7 +42,7 @@
   rejuvenation:
     action:
       maxCharges: 1
-      rechargeDuration: 100
+      rechargeDuration: 75
       useDelay: 8
 
 - type: vampirePowerLevel
@@ -68,7 +68,7 @@
   glare:
     action:
       maxCharges: 1
-      rechargeDuration: 72
+      rechargeDuration: 52
       useDelay: 12
     range: 1.25
     frontParalyzeDuration: 4
@@ -79,7 +79,7 @@
   sleep:
     action:
       maxCharges: 1
-      rechargeDuration: 145
+      rechargeDuration: 105
       useDelay: 15
     channelTime: 5.75
     targetRange: 2
@@ -89,7 +89,7 @@
   rejuvenation:
     action:
       maxCharges: 1
-      rechargeDuration: 95
+      rechargeDuration: 70
       useDelay: 8
 
 - type: vampirePowerLevel
@@ -115,7 +115,7 @@
   glare:
     action:
       maxCharges: 2
-      rechargeDuration: 68
+      rechargeDuration: 48
       useDelay: 11
     range: 1.5
     frontParalyzeDuration: 5
@@ -126,7 +126,7 @@
   sleep:
     action:
       maxCharges: 2
-      rechargeDuration: 135
+      rechargeDuration: 95
       useDelay: 14
     channelTime: 5.5
     targetRange: 2.25
@@ -136,7 +136,7 @@
   rejuvenation:
     action:
       maxCharges: 2
-      rechargeDuration: 90
+      rechargeDuration: 65
       useDelay: 7
     reagentPurgeAmount: 10
     healTicks: 5
@@ -169,7 +169,7 @@
   glare:
     action:
       maxCharges: 2
-      rechargeDuration: 65
+      rechargeDuration: 45
       useDelay: 10
     range: 1.75
     frontParalyzeDuration: 5.5
@@ -180,7 +180,7 @@
   sleep:
     action:
       maxCharges: 2
-      rechargeDuration: 125
+      rechargeDuration: 90
       useDelay: 13
     channelTime: 5.25
     targetRange: 2.5
@@ -191,7 +191,7 @@
   rejuvenation:
     action:
       maxCharges: 2
-      rechargeDuration: 85
+      rechargeDuration: 60
       useDelay: 7
     reagentPurgeAmount: 15
     healTicks: 5
@@ -224,7 +224,7 @@
   glare:
     action:
       maxCharges: 3
-      rechargeDuration: 60
+      rechargeDuration: 40
       useDelay: 9
     range: 2
     frontParalyzeDuration: 6
@@ -235,7 +235,7 @@
   sleep:
     action:
       maxCharges: 3
-      rechargeDuration: 115
+      rechargeDuration: 85
       useDelay: 12
     channelTime: 5
     targetRange: 3
@@ -246,7 +246,7 @@
   rejuvenation:
     action:
       maxCharges: 3
-      rechargeDuration: 80
+      rechargeDuration: 55
       useDelay: 6
     reagentPurgeAmount: 20
     healTicks: 6
@@ -279,7 +279,7 @@
   glare:
     action:
       maxCharges: 6
-      rechargeDuration: 50
+      rechargeDuration: 35
       useDelay: 8
     range: 2.5
     frontParalyzeDuration: 7
@@ -290,7 +290,7 @@
   sleep:
     action:
       maxCharges: 6
-      rechargeDuration: 90
+      rechargeDuration: 70
       useDelay: 10
     channelTime: 4.5
     targetRange: 3.5
@@ -301,7 +301,7 @@
   rejuvenation:
     action:
       maxCharges: 6
-      rechargeDuration: 65
+      rechargeDuration: 45
       useDelay: 5
     reagentPurgeAmount: 25
     healTicks: 6

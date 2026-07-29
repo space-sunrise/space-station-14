@@ -38,7 +38,7 @@
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
-    rechargeDuration: 75
+    rechargeDuration: 55
   - type: VampireAction
 
 - type: entity
@@ -67,7 +67,7 @@
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
-    rechargeDuration: 150
+    rechargeDuration: 110
   - type: VampireAction
     bloodCost: 20
 
@@ -91,7 +91,7 @@
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
-    rechargeDuration: 100
+    rechargeDuration: 75
   - type: VampireAction
 
 - type: entity
@@ -114,6 +114,6 @@
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
-    rechargeDuration: 90
+    rechargeDuration: 65
   - type: VampireAction
     requiredPowerLevel: Nightborn
