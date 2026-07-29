@@ -8,7 +8,7 @@ ent-ActionVampireSleep = Sleep
     .desc = Hypnotizes a humanoid after a short concentration. Losing focus or proximity interrupts the attempt, while protected eyes or a guarded mind can resist it.
 
 ent-ActionVampireRejuvenateI = Rejuvenation
-    .desc = Removes stuns and knockdown and restores stamina, even while incapacitated. Does not heal or purge chemicals.
+    .desc = Removes stuns and knockdown, even while incapacitated. Does not heal or purge chemicals.
 
 ent-ActionVampireRejuvenateII = Greater Rejuvenation
-    .desc = Removes stuns, restores stamina, purges poisons and gradually heals injuries. Cannot revive the dead.
+    .desc = Removes stuns, purges poisons and gradually heals injuries. Cannot revive the dead.

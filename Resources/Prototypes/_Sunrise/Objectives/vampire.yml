@@ -123,12 +123,12 @@
 - type: entity
   parent: [BaseVampireObjective, BaseSurviveObjective]
   id: VampireSurviveObjective
-  name: Survive
+  name: survive
   description: I must survive no matter what.
   components:
   - type: Objective
     icon:
-      sprite: /Textures/_Sunrise/Vampire/actions_vampire.rsi
+      sprite: _Sunrise/Vampire/actions_vampire.rsi
       state: survive_icon
 
 - type: entity
@@ -163,7 +163,7 @@
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
-  name: Escape to Central Command alive and unrestrained.
+  name: escape to CentCom
   description: I must leave on the evacuation shuttle while remaining undercover.
   components:
   - type: Objective

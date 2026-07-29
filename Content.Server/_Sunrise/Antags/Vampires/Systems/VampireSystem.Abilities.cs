@@ -56,7 +56,7 @@ public sealed partial class VampireSystem : EntitySystem
     private static readonly SoundSpecifier DevourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
 
     // Антимета
-    private static readonly string[] SleepTargetPopupIds =
+    private static readonly LocId[] SleepTargetPopupIds =
     [
         "vampire-sleep-target-warning-1",
         "vampire-sleep-target-warning-2",
@@ -349,7 +349,8 @@ public sealed partial class VampireSystem : EntitySystem
         if (!ent.Comp.FangsExtended)
             ent.Comp.IsDrinking = false;
 
-        if (ent.Comp.ActionEntities.TryGetValue("ActionVampireToggleFangs", out var actionEntity) && _actions.GetAction(actionEntity) is { } action)
+        if (ent.Comp.ActionEntities.TryGetValue(VampireFangsActionId, out var actionEntity) &&
+            _actions.GetAction(actionEntity) is { } action)
             _actions.SetToggled(action.AsNullable(), ent.Comp.FangsExtended);
 
         Dirty(ent);
@@ -366,23 +367,8 @@ public sealed partial class VampireSystem : EntitySystem
         if (target == ent.Owner || !HasComp<BloodstreamComponent>(target))
             return;
 
-        if (IsInvalidDrinkTarget(ent.Owner, target))
-            return;
-
-        if (IsProtectedByFaith(target) && ent.Comp.PowerLevel < VampirePowerLevel.Ancient)
-        {
-            _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), ent.Owner, ent.Owner, Shared.Popups.PopupType.MediumCaution);
-            return;
-        }
-
-        if (IsMouthBlocked(ent.Owner))
-        {
-            _popup.PopupEntity(Loc.GetString("vampire-mouth-covered"), ent.Owner, ent.Owner);
-            return;
-        }
-
-        StartDrinkDoAfter(ent, target, showPopup: true);
-        args.Handled = true;
+        if (TryStartDrinkBlood(ent, target))
+            args.Handled = true;
     }
 
     private void OnBeforeInteractHand(Entity<VampireComponent> ent, ref BeforeInteractHandEvent args)
@@ -403,22 +389,32 @@ public sealed partial class VampireSystem : EntitySystem
         if (!hasBloodstream)
             return;
 
+        TryStartDrinkBlood(ent, target);
+    }
+
+    private bool TryStartDrinkBlood(Entity<VampireComponent> ent, EntityUid target)
+    {
         if (IsInvalidDrinkTarget(ent.Owner, target))
-            return;
+            return false;
 
         if (IsProtectedByFaith(target) && ent.Comp.PowerLevel < VampirePowerLevel.Ancient)
         {
-            _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), ent.Owner, ent.Owner, Shared.Popups.PopupType.MediumCaution);
-            return;
+            _popup.PopupEntity(
+                Loc.GetString("vampire-target-protected-by-faith"),
+                ent.Owner,
+                ent.Owner,
+                PopupType.MediumCaution);
+            return false;
         }
 
         if (IsMouthBlocked(ent.Owner))
         {
             _popup.PopupEntity(Loc.GetString("vampire-mouth-covered"), ent.Owner, ent.Owner);
-            return;
+            return false;
         }
 
         StartDrinkDoAfter(ent, target, showPopup: true);
+        return true;
     }
 
     /// <summary>
@@ -810,7 +806,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
             return;
 
-        if (!ent.Comp.ActionEntities.TryGetValue("ActionVampireGlare", out var actionEntity))
+        if (!ent.Comp.ActionEntities.TryGetValue(VampireGlareActionId, out var actionEntity))
             return;
 
         if (!CheckAndConsumeBloodCost(ent, actionEntity))
@@ -821,9 +817,8 @@ public sealed partial class VampireSystem : EntitySystem
             settings.Range,
             LookupFlags.Dynamic | LookupFlags.Sundries);
 
-        var ourXform = Transform(ent);
-        var ourDirection = ourXform.LocalRotation.ToWorldVec();
-        var ourPosition = ourXform.LocalPosition;
+        var (ourPosition, ourRotation) = _transform.GetWorldPositionRotation(Transform(ent));
+        var ourDirection = ourRotation.ToWorldVec();
 
         foreach (var target in targets)
         {
@@ -837,10 +832,10 @@ public sealed partial class VampireSystem : EntitySystem
             if (effectScale <= 0)
                 continue;
 
-            var targetPosition = Transform(target).LocalPosition;
-            var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);
-
-            var dot = Vector2.Dot(ourDirection, vectorToTarget);
+            var offset = _transform.GetWorldPosition(target) - ourPosition;
+            var dot = offset.LengthSquared() > 0f
+                ? Vector2.Dot(ourDirection, Vector2.Normalize(offset))
+                : 0f;
 
             if (!TryComp<StaminaComponent>(target, out var stam))
                 continue;
@@ -895,13 +890,13 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!ent.Comp.ActionEntities.TryGetValue("ActionVampireRejuvenateI", out var actionEntity))
+        if (!ent.Comp.ActionEntities.TryGetValue(VampireRejuvenateIActionId, out var actionEntity))
             return;
 
         if (!CheckAndConsumeBloodCost(ent, actionEntity))
             return;
 
-        ResetRejuvenateEffects(ent.Owner, resetStamina: true, removeStuns: true);
+        RemoveRejuvenateStuns(ent.Owner);
 
         args.Handled = true;
     }
@@ -911,7 +906,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!ent.Comp.ActionEntities.TryGetValue("ActionVampireRejuvenateII", out var actionEntity))
+        if (!ent.Comp.ActionEntities.TryGetValue(VampireRejuvenateIIActionId, out var actionEntity))
             return;
 
         if (!CheckAndConsumeBloodCost(ent, actionEntity))
@@ -922,29 +917,15 @@ public sealed partial class VampireSystem : EntitySystem
 
         var settings = level.Rejuvenation;
 
-        ResetRejuvenateEffects(ent.Owner, resetStamina: true, removeStuns: true);
+        RemoveRejuvenateStuns(ent.Owner);
         PurgeRejuvenateReagents(ent.Owner, settings.ReagentPurgeAmount);
         StartRejuvenateHealing(ent.Owner, settings);
 
         args.Handled = true;
     }
 
-    private void ResetRejuvenateEffects(EntityUid uid, bool resetStamina, bool removeStuns)
+    private void RemoveRejuvenateStuns(EntityUid uid)
     {
-        if (resetStamina && TryComp<StaminaComponent>(uid, out var stamina))
-        {
-            stamina.StaminaDamage = 0f;
-            stamina.Critical = false;
-            stamina.AfterCritical = false;
-            RemComp<ActiveStaminaComponent>(uid);
-            _statusEffects.TryRemoveStatusEffect(uid, SharedStaminaSystem.StaminaLow);
-
-            Dirty(uid, stamina);
-        }
-
-        if (!removeStuns)
-            return;
-
         _statusEffects.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
         _stun.TryUnstun(uid);
         RemComp<KnockedDownComponent>(uid);
@@ -996,16 +977,10 @@ public sealed partial class VampireSystem : EntitySystem
         active.TicksRemaining = settings.HealTicks;
         active.TickInterval = settings.HealTickInterval;
         active.NextTick = _timing.CurTime;
-        active.HealGroups = new Dictionary<string, FixedPoint2>
-        {
-            { "Brute", FixedPoint2.New(settings.HealBrute) },
-            { "Burn", FixedPoint2.New(settings.HealBurn) },
-        };
-        active.HealTypes = new Dictionary<string, FixedPoint2>
-        {
-            { "Poison", FixedPoint2.New(settings.HealPoison) },
-            { "Asphyxiation", FixedPoint2.New(settings.HealAsphyxiation) },
-        };
+        active.HealBrute = FixedPoint2.New(settings.HealBrute);
+        active.HealBurn = FixedPoint2.New(settings.HealBurn);
+        active.HealPoison = FixedPoint2.New(settings.HealPoison);
+        active.HealAsphyxiation = FixedPoint2.New(settings.HealAsphyxiation);
     }
 
     private void ProcessActiveRejuvenation(TimeSpan now)
@@ -1016,12 +991,12 @@ public sealed partial class VampireSystem : EntitySystem
             if (now < rejuvenate.NextTick)
                 continue;
 
-            ApplyConfiguredHeal(uid, rejuvenate.HealGroups, rejuvenate.HealTypes);
+            ApplyConfiguredHeal(uid, rejuvenate);
             rejuvenate.TicksRemaining--;
 
             if (rejuvenate.TicksRemaining <= 0)
             {
-                RemComp<ActiveVampireRejuvenateComponent>(uid);
+                RemCompDeferred<ActiveVampireRejuvenateComponent>(uid);
                 continue;
             }
 
@@ -1029,28 +1004,25 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private void ApplyConfiguredHeal(
-        EntityUid uid,
-        IReadOnlyDictionary<string, FixedPoint2> healGroups,
-        IReadOnlyDictionary<string, FixedPoint2> healTypes)
+    private void ApplyConfiguredHeal(EntityUid uid, ActiveVampireRejuvenateComponent rejuvenate)
     {
         var healSpec = new DamageSpecifier();
 
-        foreach (var (groupId, amount) in healGroups)
-        {
-            if (amount <= FixedPoint2.Zero || !_prototype.TryIndex<DamageGroupPrototype>(groupId, out var group))
-                continue;
+        if (rejuvenate.HealBrute > FixedPoint2.Zero &&
+            _prototype.TryIndex<DamageGroupPrototype>(BruteGroupId, out var brute))
+            healSpec += new DamageSpecifier(brute, -rejuvenate.HealBrute);
 
-            healSpec += new DamageSpecifier(group, -amount);
-        }
+        if (rejuvenate.HealBurn > FixedPoint2.Zero &&
+            _prototype.TryIndex<DamageGroupPrototype>(BurnGroupId, out var burn))
+            healSpec += new DamageSpecifier(burn, -rejuvenate.HealBurn);
 
-        foreach (var (typeId, amount) in healTypes)
-        {
-            if (amount <= FixedPoint2.Zero || !_prototype.TryIndex<DamageTypePrototype>(typeId, out var type))
-                continue;
+        if (rejuvenate.HealPoison > FixedPoint2.Zero &&
+            _prototype.TryIndex<DamageTypePrototype>(PoisonTypeId, out var poison))
+            healSpec += new DamageSpecifier(poison, -rejuvenate.HealPoison);
 
-            healSpec += new DamageSpecifier(type, -amount);
-        }
+        if (rejuvenate.HealAsphyxiation > FixedPoint2.Zero &&
+            _prototype.TryIndex<DamageTypePrototype>(OxyLossTypeId, out var asphyxiation))
+            healSpec += new DamageSpecifier(asphyxiation, -rejuvenate.HealAsphyxiation);
 
         if (healSpec.Empty)
             return;

@@ -75,7 +75,7 @@
   parent: BaseAction
   id: ActionVampireRejuvenateI
   name: Rejuvenation
-  description: Removes stuns and knockdown and restores stamina, even while incapacitated. Does not heal or purge chemicals.
+  description: Removes stuns and knockdown, even while incapacitated. Does not heal or purge chemicals.
   components:
   - type: Action
     useDelay: 8
@@ -98,7 +98,7 @@
   parent: BaseAction
   id: ActionVampireRejuvenateII
   name: Greater Rejuvenation
-  description: Removes stuns, restores stamina, purges poisons and gradually heals common injuries. Cannot revive the dead.
+  description: Removes stuns, purges poisons and gradually heals common injuries. Cannot revive the dead.
   components:
   - type: Action
     useDelay: 7

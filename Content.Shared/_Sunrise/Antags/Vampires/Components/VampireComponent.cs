@@ -196,7 +196,11 @@ public sealed partial class VampireComponent : Component
 
     [AutoPausedField]
     public TimeSpan NextHolyWaterTick = TimeSpan.Zero;
+
+    [AutoPausedField]
     public TimeSpan NextHolyPlaceTick = TimeSpan.Zero;
+
+    [AutoPausedField]
     public TimeSpan NextHolyPlacePopup = TimeSpan.Zero;
 
     public float StarvationDrunkBloodDrainAccumulator;

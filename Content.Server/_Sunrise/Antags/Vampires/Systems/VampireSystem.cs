@@ -9,6 +9,7 @@ using Content.Shared._Sunrise.Antags.Vampires;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Chemistry.Reagent;
@@ -71,12 +72,15 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly MetabolizerSystem _metabolizer = default!;
     [Dependency] private readonly SharedRoleSystem _role = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
 
     private const float VampireObjectiveMaxDifficulty = 10f;
+    private const string VampireMetabolizerTypeId = "Vampire";
 
     private static readonly ProtoId<DamageGroupPrototype> BruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> BurnGroupId = "Burn";
@@ -110,6 +114,7 @@ public sealed partial class VampireSystem : EntitySystem
         _sawmill = _log.GetSawmill("Vampire");
 
         SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<VampireComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ActionsComponent, ComponentStartup>(OnActionsComponentStartup);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BloodDrainConditionComponent, ObjectiveGetProgressEvent>(OnBloodDrainGetProgress);
@@ -527,6 +532,7 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnStartup(Entity<VampireComponent> ent, ref ComponentStartup args)
     {
         EnsureComp<VampireSunlightComponent>(ent);
+        SetVampireMetabolism(ent.Owner, enabled: true);
         UpdatePowerLevel(ent, syncActions: false);
         ApplyPowerLevelSettings(ent);
 
@@ -552,6 +558,25 @@ public sealed partial class VampireSystem : EntitySystem
         SyncVampireActions(ent);
         _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);
 
+    }
+
+    private void OnShutdown(Entity<VampireComponent> ent, ref ComponentShutdown args)
+    {
+        SetVampireMetabolism(ent.Owner, enabled: false);
+    }
+
+    private void SetVampireMetabolism(EntityUid uid, bool enabled)
+    {
+        foreach (var (organUid, _) in _body.GetBodyOrgans(uid))
+        {
+            if (!TryComp<MetabolizerComponent>(organUid, out var metabolizer))
+                continue;
+
+            if (enabled)
+                _metabolizer.TryAddMetabolizerType(metabolizer, VampireMetabolizerTypeId);
+            else
+                _metabolizer.TryRemoveMetabolizerType(metabolizer, VampireMetabolizerTypeId);
+        }
     }
 
     partial void UpdateVampireAlert(EntityUid uid);
@@ -717,7 +742,9 @@ public sealed partial class VampireSystem : EntitySystem
             }
         }
 
-        TryRefreshVampireAction(ent, rejuvenateII, ent.Comp.ActionEntities[rejuvenateII]);
+        if (ent.Comp.ActionEntities.TryGetValue(rejuvenateII, out var secondAction))
+            TryRefreshVampireAction(ent, rejuvenateII, secondAction);
+
         if (ent.Comp.ActionEntities.TryGetValue(rejuvenateI, out firstAction))
         {
             _actions.RemoveAction(ent.Owner, firstAction);

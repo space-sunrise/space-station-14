@@ -12,7 +12,11 @@ public sealed partial class ActiveVampireRejuvenateComponent : Component
     [AutoPausedField]
     public TimeSpan NextTick;
 
-    public Dictionary<string, FixedPoint2> HealGroups = [];
+    public FixedPoint2 HealBrute;
 
-    public Dictionary<string, FixedPoint2> HealTypes = [];
+    public FixedPoint2 HealBurn;
+
+    public FixedPoint2 HealPoison;
+
+    public FixedPoint2 HealAsphyxiation;
 }

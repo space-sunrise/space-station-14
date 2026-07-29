@@ -28,12 +28,14 @@ public sealed class VampireSystem : EntitySystem
 
     private void OnBeforeInteractHand(Entity<VampireComponent> ent, ref BeforeInteractHandEvent args)
     {
-        if (ent.Comp.FangsExtended &&
-            (HasComp<BloodstreamComponent>(args.Target) ||
-             HasComp<InteractionPopupComponent>(args.Target)))
-        {
-            args.Handled = true;
-        }
+        if (!ent.Comp.FangsExtended || !args.Target.IsValid())
+            return;
+
+        if (!HasComp<BloodstreamComponent>(args.Target) &&
+            !HasComp<InteractionPopupComponent>(args.Target))
+            return;
+
+        args.Handled = true;
     }
 
     private void OnUpdateAlert(Entity<VampireComponent> ent, ref UpdateAlertSpriteEvent args)
