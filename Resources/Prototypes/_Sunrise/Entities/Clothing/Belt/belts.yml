@@ -575,8 +575,33 @@
     - 0,0,5,1
     - 7,0,7,1
     - 0,3,7,4
+    whitelist:
+      tags:
+      - Wrench
+      - Bottle
+      - Spray
+      - Brutepack
+      - Bloodpack
+      - Gauze
+      - Ointment
+      - Tourniquet
+      - CigPack
+      - PillCanister
+      - Radio
+      - DiscreteHealthAnalyzer
+      - SurgeryTool
+      - Dropper
+      - Patch
+      - PatchPack
+      - AutoMender
+      - Medkit
+      components:
+      - Injector
+      - Pill
+      - HandLabeler
+      - FitsInDispenser
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.3
   - type: Construction
     graph: ClothingBeltMedicalAdvanced
     node: upgradebeltmedical

@@ -23,7 +23,7 @@
   - type: SolutionContainerManager
     solutions:
       drink: # This solution name and target volume is hard-coded in ChemMasterComponent
-        maxVol: 45
+        maxVol: 30
   - type: MixableSolution
     solution: drink
   - type: RefillableSolution
@@ -36,7 +36,7 @@
   - type: DrawableSolution
     solution: drink
   - type: SolutionTransfer
-    maxTransferAmount: 45
+    maxTransferAmount: 30
     canChangeTransferAmount: true
   - type: SolutionItemStatus
     solution: drink

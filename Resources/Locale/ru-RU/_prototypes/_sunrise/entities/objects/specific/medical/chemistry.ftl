@@ -16,5 +16,5 @@ ent-MiniSyringeDexPlusSaline = оксигенирующий мини-шприц
 ent-MiniSyringeEphedrine = стимулирующий мини-шприц
     .desc = Компактный одноразовый шприц с дозой стимулятора.
 
-ent-ChemistryEmptyBottleDurable01 = титановая бутылочка
+ent-ChemistryEmptyBottleDurable01 = армированная бутылочка
     .desc = Новое слово в безопасном хранении лекарств.

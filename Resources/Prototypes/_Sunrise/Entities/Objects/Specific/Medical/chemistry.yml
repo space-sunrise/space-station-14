@@ -108,6 +108,7 @@
   - type: Tag
     tags:
     - CentrifugeCompatible
+    - Bottle
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Chemistry/vial_bluespace.rsi
     layers:

@@ -15,8 +15,8 @@
             - tag: PouchMedical
               name: construction-graph-tag-upgradebeltmedical
               icon:
-                sprite: _RMC14/Objects/Storage/procase_mini.rsi #Sprite
-                state: closed
+                sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
+                state: pouch
               doAfter: 5
     - node: upgradebeltmedical
       entity: ClothingBeltMedicalAdvanced
@@ -38,8 +38,8 @@
             - tag: PouchMedical
               name: construction-graph-tag-upgradebeltmedical
               icon:
-                sprite: _RMC14/Objects/Storage/procase_mini.rsi #Sprite
-                state: closed
+                sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
+                state: pouch
               doAfter: 5
     - node: upgradebeltmedicalemt
       entity: ClothingBeltMedicalEMTAdvanced
@@ -61,8 +61,8 @@
             - tag: PouchMedical
               name: construction-graph-tag-upgradebeltmedical
               icon:
-                sprite: _RMC14/Objects/Storage/procase_mini.rsi #Sprite
-                state: closed
+                sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
+                state: pouch
               doAfter: 5
     - node: upgradebeltmedicalcmo
       entity: ClothingBeltMedicalCMOAdvanced

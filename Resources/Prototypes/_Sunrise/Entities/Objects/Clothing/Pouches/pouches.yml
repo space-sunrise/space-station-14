@@ -128,9 +128,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Clothing/Pouches/large_explosive.rsi
-    layers:
-    - state: icon
+    sprite: _Sunrise/Objects/Clothing/Pouches/medicine_pouch.rsi
+    state: pouch
   - type: Appearance
   - type: Item
     size: Huge
@@ -144,41 +143,28 @@
 - type: entity
   parent: PouchCivil
   id: PouchMedical
-  name: medical pouch
+  name: medicine pouch
   description: It can carry different medical stuff.
   components:
   - type: Sprite
-    sprite: _RMC14/Objects/Clothing/Pouches/large_ammo_mag.rsi
+    sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
+    state: pouch
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Normal
     grid:
     - 0,0,2,1
     whitelist:
       tags:
-      - Wrench
       - Bottle
       - Spray
-      - Brutepack
-      - Bloodpack
-      - Gauze
-      - Ointment
-      - Tourniquet
-      - CigPack
-      - PillCanister
-      - Radio
-      - DiscreteHealthAnalyzer
-      - SurgeryTool
-      - Dropper
-      - Patch
-      - PatchPack
       - AutoMender
-      - Medkit
+      - GlassBeaker
+      - ChemDispensable
       components:
       - Injector
-      - Pill
-      - HandLabeler
+      - FitsInDispenser
   - type: Tag
     tags:
     - PouchMedical
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.4

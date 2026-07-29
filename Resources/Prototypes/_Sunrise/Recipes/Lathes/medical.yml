@@ -180,8 +180,8 @@
   completetime: 2
   materials:
     Glass: 100
-    Steel: 100
-    Plasma: 60
+    Steel: 50
+    Plasma: 50
 
 - type: latheRecipe
   id: PouchMedical

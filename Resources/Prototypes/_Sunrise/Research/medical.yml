@@ -34,7 +34,7 @@
     - LeftLegCyber
     - LeftFootCyber
 
-- type: technology  #Localisation
+- type: technology
   id: AdvancedEquipment
   name: research-technology-advanced-equipment
   icon:
