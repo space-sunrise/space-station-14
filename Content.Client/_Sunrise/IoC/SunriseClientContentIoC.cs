@@ -1,3 +1,5 @@
+using Content.Client._Sunrise.UploadedContent;
+
 #if SUNRISE_PRIVATE
 using Content.Client._SunrisePrivate.JoinQueue;
 using Content.Client._SunrisePrivate.MakuraAuth;
@@ -12,6 +14,7 @@ internal static class SunriseClientContentIoC
 {
     public static void Register()
     {
+        IoCManager.Register<UploadedContentProgressManager>();
 #if SUNRISE_PRIVATE
         var collection = IoCManager.Instance!;
         collection.Register<ISharedAccountBindingsManager, ClientAccountBindingsManager>();

@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.UploadedContent;
 using Content.Shared._Sunrise.Localization;
 using Robust.Client.Input;
 using Robust.Shared.Input;
@@ -35,6 +36,8 @@ public sealed class SunriseClientEntry
                 ? binding.GetKeyString()
                 : null;
         };
+
+        IoCManager.Resolve<UploadedContentProgressManager>().Initialize();
     }
 
     public static void PostInit()

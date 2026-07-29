@@ -1,3 +1,5 @@
+using Content.Server._Sunrise.UploadedContent;
+
 #if SUNRISE_PRIVATE
 using Content.Server._SunrisePrivate.JoinQueue;
 using Content.Server._SunrisePrivate.MakuraAuth;
@@ -16,6 +18,7 @@ internal static class SunriseServerContentIoC
 {
     public static void Register()
     {
+        IoCManager.Register<UploadedContentManifestManager>();
 #if SUNRISE_PRIVATE
         IoCManager.Register<ISharedAccountBindingsManager, ServerAccountBindingsManager>();
         IoCManager.Register<ISharedSponsorsManager, ServerSponsorsManager>();

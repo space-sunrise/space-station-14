@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.UploadedContent;
 using Content.Shared._Sunrise.Localization;
 using Robust.Shared.IoC;
 using Robust.Shared.Localization;
@@ -28,6 +29,7 @@ public sealed class SunriseServerEntry
         }
 
         KeybindLocalization.ResolveKeybind = null;
+        IoCManager.Resolve<UploadedContentManifestManager>().Initialize();
 #if SUNRISE_PRIVATE
         IoCManager.Resolve<ISharedAccountBindingsManager>().Initialize();
         IoCManager.Resolve<ISharedSponsorsManager>().Initialize();

@@ -90,6 +90,30 @@
                                        StyleClasses="LabelSubText"
                                        Align="Center"
                                        Margin="0 10"/>
+                                <!-- Sunrise added start - показываем подтверждённый и приблизительный прогресс runtime-ресурсов. -->
+                                <BoxContainer Name="UploadedContentProgress"
+                                              Orientation="Vertical"
+                                              Visible="False"
+                                              MinWidth="360"
+                                              Margin="10 0">
+                                    <Label Name="UploadedContentCurrentLabel"
+                                           StyleClasses="LabelSubText"
+                                           Align="Center"/>
+                                    <ProgressBar Name="UploadedContentCurrentBar"
+                                                 MinValue="0"
+                                                 MaxValue="1"
+                                                 HorizontalExpand="True"
+                                                 Margin="0 3 0 8"/>
+                                    <Label Name="UploadedContentTotalLabel"
+                                           StyleClasses="LabelSubText"
+                                           Align="Center"/>
+                                    <ProgressBar Name="UploadedContentTotalBar"
+                                                 MinValue="0"
+                                                 MaxValue="1"
+                                                 HorizontalExpand="True"
+                                                 Margin="0 3 0 0"/>
+                                </BoxContainer>
+                                <!-- Sunrise added end -->
                             </BoxContainer>
 
                             <!-- Connection Failed -->

@@ -20,3 +20,15 @@ connecting-state-ResolvingHost = Определение хоста
 connecting-state-EstablishingConnection = Установка соединения
 connecting-state-Handshake = Подключение
 connecting-state-Connected = Подключён
+
+# Sunrise added start - показываем прогресс runtime-контента во время подключения.
+connecting-uploaded-content-checking = Проверка дополнительного контента…
+connecting-uploaded-content-downloading = Скачивается дополнительный контент
+connecting-uploaded-content-current-calculating = Текущий файл: расчёт скорости…
+connecting-uploaded-content-current-estimated = Текущий файл: ~{ $percent }% · ~{ $speed }/с
+connecting-uploaded-content-total =
+    Всего: { $completedBytes } / { $totalBytes } · { $completedFiles } из { $totalFiles } { $totalFiles ->
+        [one] файла
+       *[other] файлов
+    }
+# Sunrise added end

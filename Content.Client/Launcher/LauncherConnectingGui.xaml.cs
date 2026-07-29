@@ -200,6 +200,7 @@ namespace Content.Client.Launcher
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);
+            UpdateUploadedContentProgress(); // Sunrise-Edit: обновляем прогресс runtime-ресурсов только на экране подключения.
 
             var button = _state.CurrentPage == LauncherConnecting.Page.ConnectFailed
                 ? RetryButton
@@ -251,6 +252,7 @@ namespace Content.Client.Launcher
         private void ConnectionStateChanged(ClientConnectionState state)
         {
             ConnectStatus.Text = Loc.GetString($"connecting-state-{state}");
+            UpdateUploadedContentConnectionState(state); // Sunrise-Edit: уточняем этап Connected по манифесту runtime-ресурсов.
         }
     }
 }

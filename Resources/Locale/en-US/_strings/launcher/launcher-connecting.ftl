@@ -19,3 +19,15 @@ connecting-state-ResolvingHost = Resolving host
 connecting-state-EstablishingConnection = Establishing connection
 connecting-state-Handshake = Handshake
 connecting-state-Connected = Connected
+
+# Sunrise added start - показываем прогресс runtime-контента во время подключения.
+connecting-uploaded-content-checking = Checking additional content…
+connecting-uploaded-content-downloading = Downloading additional content
+connecting-uploaded-content-current-calculating = Current file: calculating speed…
+connecting-uploaded-content-current-estimated = Current file: ~{ $percent }% · ~{ $speed }/s
+connecting-uploaded-content-total =
+    Total: { $completedBytes } / { $totalBytes } · { $completedFiles } of { $totalFiles } { $totalFiles ->
+        [one] file
+       *[other] files
+    }
+# Sunrise added end
