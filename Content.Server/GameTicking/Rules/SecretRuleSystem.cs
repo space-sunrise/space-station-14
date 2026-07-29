@@ -161,30 +161,8 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
     /// </summary>
     private bool CanPick([NotNullWhen(true)] GamePresetPrototype? selected, int players)
     {
-        if (selected == null)
-            return false;
-
-        // Sunrise added start - Почему раньше это НЕ учитывалось
-        if (players < selected.MinPlayers)
-            return false;
-
-        if (players > selected.MaxPlayers)
-            return false;
-        // Sunrise added end
-
-        foreach (var ruleId in selected.Rules)
-        {
-            if (!_prototypeManager.TryIndex(ruleId, out EntityPrototype? rule)
-                || !rule.TryGetComponent(_ruleCompName, out GameRuleComponent? ruleComp))
-            {
-                Log.Error($"Encountered invalid rule {ruleId} in preset {selected.ID}");
-                return false;
-            }
-
-            if (ruleComp.MinPlayers > players && ruleComp.CancelPresetOnTooFewPlayers)
-                return false;
-        }
-
-        return true;
+        // Sunrise edit start - используем общую проверку доступности пресета
+        return GameTicker.IsPresetEligible(selected, players, _ruleCompName);
+        // Sunrise edit end
     }
 }
