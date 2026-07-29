@@ -128,7 +128,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Clothing/Pouches/medicine_pouch.rsi
+    sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
     state: pouch
   - type: Appearance
   - type: Item
@@ -167,4 +167,4 @@
     tags:
     - PouchMedical
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.2
