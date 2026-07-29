@@ -1015,7 +1015,7 @@
 
 - type: entity
   id: BulletAcid
-  name: acid spit
+  name: acid spit 
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
@@ -1347,7 +1347,7 @@
     impactEffect: BulletImpactEffectOrangeDisabler
     damage:
       types:
-        Heat: 20
+        Heat: 13
 
 - type: entity
   name: destroying bolt
@@ -1403,7 +1403,7 @@
   components:
   - type: ProjectileSpread
     proto: BulletLaser
-    count: 3 # Sunrise-Edit: У оффов урон должен бытл быть 52. После повышение урона "BulletLaser" с 13 до 20, урон стал 80. Я уменьшил снарядов с 4 до 3, что бы итоговый урон стал 60, на 8 больше чем у оффов
+    count: 4 #52 heat damage if you hit all your shots, but narrower spread
     spread: 10
 
 - type: entity
