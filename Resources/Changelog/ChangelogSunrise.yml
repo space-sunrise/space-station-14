@@ -8417,3 +8417,12 @@
   id: 1980
   time: '2026-07-27T16:11:47.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4599
+- author: Kinar_7
+  changes:
+  - message: "\u042D\u043D\u0435\u0440\u0433\u043E\u0434\u0440\u043E\u0431\u043E\u0432\
+      \u0438\u043A \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435\u043B\u044F. \u0423\
+      \u0440\u043E\u043D \u043E\u0436\u043E\u0433\u0430\u043C\u0438 \u0441 80 > 53"
+    type: Tweak
+  id: 1981
+  time: '2026-07-29T11:16:50.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4665
