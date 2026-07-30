@@ -8,7 +8,6 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
-using Content.Shared.Polymorph;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -122,7 +121,6 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning, after: new []{ typeof(ContainerSpawnPointSystem) }, before: new []{ typeof(SpawnPointSystem) });
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, ComponentShutdown>(OnShuttleShutdown);
-        SubscribeLocalEvent<FTLSmashImmuneComponent, PolymorphedEvent>(OnImmunePolymorphed);
 
         _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttle, b => _enabled = b, true);
         _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttlePath, s => _shuttlePath = s, true);
@@ -257,20 +255,6 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         while (poolQuery.MoveNext(out _, out var pool))
         {
             pool.Queue.Remove(uid);
-        }
-    }
-    private void OnImmunePolymorphed(EntityUid uid, FTLSmashImmuneComponent comp, ref PolymorphedEvent args)
-    {
-        EnsureComp<FTLSmashImmuneComponent>(args.NewEntity);
-
-        var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent>();
-        while (query.MoveNext(out _, out var arrivals))
-        {
-            if (arrivals.Player == uid)
-            {
-                arrivals.Player = args.NewEntity;
-                break;
-            }
         }
     }
 
