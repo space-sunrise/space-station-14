@@ -4,6 +4,10 @@
   description: job-description-rd
   playTimeTracker: JobResearchDirector
   requirements:
+  # Sunrise added start
+  - !type:AgeRequirement
+    requiredAge: 23
+  # Sunrise added end
   - !type:RoleTimeRequirement
     role: JobScientist
     time: 5h

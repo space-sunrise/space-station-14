@@ -5,6 +5,8 @@
   description: job-description-senior-engineer
   playTimeTracker: JobSeniorEngineer
   requirements:
+    - !type:AgeRequirement
+      requiredAge: 24
     - !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
       time: 21600 # 6 hrs

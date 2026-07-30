@@ -4,6 +4,10 @@
   description: job-description-qm
   playTimeTracker: JobQuartermaster
   requirements:
+    # Sunrise added start
+    - !type:AgeRequirement
+      requiredAge: 21
+    # Sunrise added end
     - !type:RoleTimeRequirement
       role: JobCargoTechnician
       time: 5h

@@ -4,6 +4,10 @@
   description: job-description-warden
   playTimeTracker: JobWarden
   requirements:
+    # Sunrise added start
+    - !type:AgeRequirement
+      requiredAge: 22
+    # Sunrise added end
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
       time: 5h

@@ -4,6 +4,8 @@
   description: job-description-senior-officer
   playTimeTracker: JobSeniorOfficer
   requirements:
+    - !type:AgeRequirement
+      requiredAge: 24
     - !type:RoleTimeRequirement
       role: JobWarden
       time: 21600 # 6 hrs

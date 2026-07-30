@@ -6,6 +6,10 @@
   description: job-description-cmo
   playTimeTracker: JobChiefMedicalOfficer
   requirements:
+    # Sunrise added start
+    - !type:AgeRequirement
+      requiredAge: 24
+    # Sunrise added end
     - !type:RoleTimeRequirement
       role: JobChemist
       time: 2.5h

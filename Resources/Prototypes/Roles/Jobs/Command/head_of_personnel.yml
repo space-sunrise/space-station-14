@@ -4,6 +4,10 @@
   description: job-description-hop
   playTimeTracker: JobHeadOfPersonnel
   requirements:
+    # Sunrise added start
+    - !type:AgeRequirement
+      requiredAge: 22
+    # Sunrise added end
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 2.5h
@@ -95,4 +99,3 @@
     mask: ClothingMaskNeckGaiterRed
     neck: ClothingNeckCloakHop
     outerClothing: ClothingOuterWinterHoP
-

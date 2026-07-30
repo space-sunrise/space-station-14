@@ -4,6 +4,10 @@
   description: job-description-captain
   playTimeTracker: JobCaptain
   requirements:
+    # Sunrise added start
+    - !type:AgeRequirement
+      requiredAge: 25
+    # Sunrise added end
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 4h
