@@ -1077,4 +1077,10 @@ JugSalineSunrise: JugSaline
 JugDexalinSunrise: null
 # 2026-06-29
 ClothingBackpackMessengerPirateBundleSKM24Scrap: CratePirateAkScrap
+# 2026-07-30
+RifleHeavyMagazineArtillery: RifleHeavyMagazineSP
+RifleHeavyMagazineArtilleryLarge: RifleHeavyMagazineFMJ
+RifleHeavyMagazineArtilleryLargeExtra: RifleHeavyMagazineAP
+MagazineRPD: MagazineLightRifleBeltBoxFMJ
+CartridgeRifleHeavyArtillery: CartridgeRifleHeavySP
 # region Sunrise-End

@@ -226,7 +226,6 @@
     - ShellFragArtillery
     - MagazineBauer127
 #    - MagazineBauer127Penetrator
-    - RifleHeavyMagazineArtillery
     - MagazineBoxBelt127Artillery
 #    - MagazineBauer127Blast
     - MagazineBauer127Frag
@@ -423,7 +422,6 @@
   - MagazineBoxBelt127Frag
   - MagazineBoxBelt127Blast
   - MagazineBoxBelt127Emp
-  - RifleHeavyMagazineArtillery
   - ShuttleGunQuadlingCircuitboard
   - ShuttleGunTeslaHyperionCircuitboard
   - ShuttleGunBullfrogCircuitboard

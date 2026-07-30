@@ -125,8 +125,6 @@ uplink-clothing-backpack-syndie-aj100-desc = Includes an AJ-100 submachine gun a
 uplink-type88-amr-name = Type 88 AMR Case
 uplink-type88-amr-desc = A secure case containing a Type 88 anti-materiel rifle and two 15mm magazines.
 uplink-weapon-syndie-laser-pistol-name = SAM-300
-uplink-clothing-backpack-syndie-dl6902-name = DL6902 Kit
-uplink-clothing-backpack-syndie-dl6902-desc = Includes a DL6902 machine gun and one magazine.
 uplink-clothing-backpack-syndie-siar52-name = SIAR-52 Kit
 uplink-clothing-backpack-syndie-siar52-desc = Includes a SIAR-52 machine gun and two magazines.
 uplink-weapon-syndie-laser-minigun-name = UVL-21 "Wyvern"
@@ -279,13 +277,13 @@ uplink-ammo-shotgunuraniumkit-name = Shotgun uranium Ammo Kit
 uplink-ammo-shotgunuraniumkit-desc = Reloading! Contains 8 uranium magazines for the Bulldog.
 
 uplink-ammo-lmgkit-name = LMG Ammo Kit
-uplink-ammo-lmgkit-desc = Reloading! Contains 8 magazines for the L6 Saw or DL6902.
+uplink-ammo-lmgkit-desc = Reloading! Contains 8 magazines for the L6 Saw.
 
 uplink-ammo-lmgincendiarykit-name = LMG incendiary Ammo Kit
-uplink-ammo-lmgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the L6 Saw or DL6902.
+uplink-ammo-lmgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the L6 Saw.
 
 uplink-ammo-lmguraniumkit-name = LMG uranium Ammo Kit
-uplink-ammo-lmguraniumkit-desc = Reloading! Contains 8 uranium magazines for the L6 Saw or DL6902.
+uplink-ammo-lmguraniumkit-desc = Reloading! Contains 8 uranium magazines for the L6 Saw.
 
 uplink-energy-dome-name = Personal energy dome
 uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.

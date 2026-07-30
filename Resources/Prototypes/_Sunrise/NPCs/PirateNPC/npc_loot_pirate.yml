@@ -3542,7 +3542,7 @@
     - id: WeaponLightMachineGunRPD
       prob: 0.15
     # Items
-    - id: MagazineRPD
+    - id: MagazineLightRifleBeltBox
       orGroup: AmmoMGPool
     - id: MagazineBoxLightRifleBig
       orGroup: AmmoMGPool

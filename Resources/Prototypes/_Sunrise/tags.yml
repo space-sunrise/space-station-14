@@ -274,9 +274,6 @@
   id: MagazineDeagle
 
 - type: Tag
-  id: MagazineDl6902
-
-- type: Tag
   id: MagazineDragunov
 
 - type: Tag
@@ -329,9 +326,6 @@
 
 - type: Tag
   id: MagazinePistolSubMachineGunCap
-
-- type: Tag
-  id: MagazineRPD
 
 - type: Tag
   id: MagazineScorpion

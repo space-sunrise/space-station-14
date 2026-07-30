@@ -45,7 +45,6 @@
         - id: SMGAmmoKit
         - id: ShotGunKit
         - id: LMGKit
-        - id: MMGKit
         - id: CaselessAmmoKit
         - id: RifleAmmoKit
         - id: DragunovAmmoKit

@@ -149,16 +149,6 @@
     - Pirate
 
 - type: entity
-  parent: WeaponDL6902
-  id: WeaponDL6902Biocode
-  suffix: BIOCODE
-  components:
-  - type: FactionWeaponBlocker
-    factions:
-    - Syndicate
-    - Pirate
-
-- type: entity
   parent: WeaponAJ100
   id: WeaponAJ100Biocode
   suffix: BIOCODE

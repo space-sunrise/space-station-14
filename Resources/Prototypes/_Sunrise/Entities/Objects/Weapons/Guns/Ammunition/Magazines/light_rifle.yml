@@ -113,48 +113,6 @@
       - state: inhand-right-stripe
         color: "#000000a3"
 
-# region Light LMG
-- type: entity
-  id: MagazineDl6902
-  name: box-magazine DL6902
-  parent: BaseMagazineLightRifle
-  components:
-  - type: Tag
-    tags:
-      - MagazineDl6902
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
-    capacity: 200
-  - type: Item
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/dl6902_mag.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: MagazineRPD
-  name: RPD magazine
-  parent: BaseMagazineLightRifle
-  components:
-  - type: Item
-    size: Normal
-  - type: Tag
-    tags:
-    - MagazineRPD
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
-    capacity: 100
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/pk_box.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
-
 # region Heavy LMG
 - type: entity
   id: MagazineMachineGunMG42
@@ -172,7 +130,7 @@
       - CartridgeHeavyRifle
     capacity: 50
   - type: Item
-    size: Normal
+    size: Small
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

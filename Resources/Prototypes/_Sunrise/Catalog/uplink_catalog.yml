@@ -439,6 +439,43 @@
       - NukeOpsUplink
       - LoneOpsUplink
 
+# For the L6 MAX
+- type: listing
+  id: UplinkRifleHeavyMagazineSP
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg42_large.rsi, state: icon }
+  productEntity: RifleHeavyMagazineSP
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
+  id: UplinkRifleHeavyMagazineFMJ
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg42_large.rsi, state: icon }
+  productEntity: RifleHeavyMagazineFMJ
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
 # For the SIAR52
 - type: listing
   id: UplinkMagazinePistolSubMachineGunCaselessExtended
@@ -453,26 +490,6 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
-
-- type: listing
-  id: UplinkMagazineDl6902
-  name: uplink-magazine-dl6902-name
-  description: uplink-magazine-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/dl6902_mag.rsi, state: base }
-  productEntity: MagazineDl6902
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 6
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
 
 # region SR-127
 - type: listing
@@ -1271,26 +1288,6 @@
       - AssaultOpsUplink
 
 - type: listing
-  id: UplinkClothingBackpackSyndieDL6902Filled
-  name: uplink-clothing-backpack-syndie-dl6902-name
-  productEntity: ClothingBackpackSyndieDL6902Filled
-  description: uplink-clothing-backpack-syndie-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902.rsi, state: icon }
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 20
-  cost:
-    Telecrystal: 30
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
   id: UplinkPowerpackDL6902
   name: uplink-power-backpack-dl6902-name
   productEntity: PowerpackDL6902
@@ -1377,7 +1374,7 @@
   discountDownTo:
     Telecrystal: 15
   cost:
-    Telecrystal: 25
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
   conditions:
@@ -1409,7 +1406,7 @@
   discountDownTo:
     Telecrystal: 18
   cost:
-    Telecrystal: 25
+    Telecrystal: 28
   categories:
   - UplinkWeaponry
   conditions:

@@ -945,13 +945,6 @@
     Plastic: 1875
     Gold: 560
 
-# .308 belt box
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: RifleHeavyMagazineArtillery
-  result: RifleHeavyMagazineArtillery
-  materials:
-    Steel: 750
 # Moved from ammo.yml
 # Base prototypes
 

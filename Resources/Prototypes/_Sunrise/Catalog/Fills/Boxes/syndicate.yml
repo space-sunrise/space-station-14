@@ -240,32 +240,13 @@
 
 - type: entity
   parent: BaseSyndicateAmmoKit
-  id: MMGKit
-  name: DL6902 ammo kit
+  id: LMGKit
+  name: L6 Saw ammo kit
   components:
   - type: Item
     size: Large
     shape:
     - 0,0,1,1
-  - type: Storage
-    grid:
-    - 0,0,2,1
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: MagazineDl6902
-          amount: 3
-  - type: Sprite
-    layers:
-    - state: box_of_doom_big
-    - state: dl6902
-
-- type: entity
-  parent: MMGKit
-  id: LMGKit
-  name: L6 Saw ammo kit
-  components:
   - type: Storage
     grid:
     - 0,0,2,1
