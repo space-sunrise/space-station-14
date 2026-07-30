@@ -116,21 +116,36 @@ jobs:
       run: exit 1
     # Sunrise added end
 
-    # Sunrise added start - проверяем обязательные настройки публикации до сборки
-    - name: Validate CDN configuration
-      run: |
-        if [[ -z "${ROBUST_CDN_URL//[[:space:]]/}" ]]; then
-          echo "::error::Repository variable ROBUST_CDN_URL is not configured."
-          exit 1
-        fi
+    # Sunrise edit start - получаем скрипт проверки из текущей ревизии workflow
+    - name: Checkout workflow revision
+      uses: actions/checkout@v4.2.2
+      with:
+        submodules: 'recursive'
+        persist-credentials: false
+    # Sunrise edit end
 
-    - name: Validate publish fork ID
-      run: |
-        if [[ -z "${PUBLISH_FORK_ID//[[:space:]]/}" ]]; then
-          echo "::error::PUBLISH_FORK_ID is not configured or contains only whitespace."
-          exit 1
-        fi
+    # Sunrise added start - проверяем настройки публикации до сборки
+    - name: Validate publish configuration
+      env:
+        COMMIT_HASH: ${{ inputs.commit_hash }}
+        PRIVATE_COMMIT_HASH: ${{ inputs.private_commit_hash }}
+        CURRENT_REF_NAME: ${{ github.ref_name }}
+        CURRENT_REF_TYPE: ${{ github.ref_type }}
+        USE_PRIVATE_CONTENT: ${{ inputs.use_private_content || github.event_name == 'schedule' }}
+        PRIVATE_REPOSITORY: ${{ secrets.PRIVATE_REPOSITORY }}
+        PRIVATE_REPOSITORY_SSH_KEY: ${{ secrets.PRIVATE_REPOSITORY_SSH_KEY }}
+      run: python3 Tools/_sunrise/validate_publish.py
     # Sunrise added end
+
+    # Sunrise edit start - переключаемся на выбранный коммит после проверки
+    - name: Checkout requested revision
+      if: ${{ inputs.commit_hash != '' }}
+      uses: actions/checkout@v4.2.2
+      with:
+        ref: ${{ inputs.commit_hash }}
+        submodules: 'recursive'
+        persist-credentials: false
+    # Sunrise edit end
 
     # Sunrise edit start - устанавливаем зависимости публикации через Python
     - name: Set up Python
@@ -140,14 +155,6 @@ jobs:
 
     - name: Install Dependencies
       run: pip install pyyaml requests
-    # Sunrise edit end
-
-    # Sunrise edit start - поддерживаем выбор конкретного коммита репозитория
-    - uses: actions/checkout@v4.2.2
-      with:
-        ref: ${{ inputs.commit_hash }}
-        submodules: 'recursive'
-        persist-credentials: false
     # Sunrise edit end
 
     # Sunrise added start - подключаем приватное содержимое по настройке пресета

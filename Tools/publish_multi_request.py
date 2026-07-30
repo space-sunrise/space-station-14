@@ -18,15 +18,27 @@ RELEASE_DIR = "release"
 
 # Sunrise edit start - используем единый настраиваемый адрес CDN
 # Параметры инфраструктуры передаются через переменные окружения.
+INVALID_ROBUST_CDN_URL_MESSAGE = (
+    "ROBUST_CDN_URL must be an HTTPS URL with a host and "
+    "without user credentials, query, or fragment"
+)
 _robust_cdn_url = os.environ["ROBUST_CDN_URL"].strip()
-_parsed_cdn_url = urlparse(_robust_cdn_url)
+try:
+    _parsed_cdn_url = urlparse(_robust_cdn_url)
+    _hostname = _parsed_cdn_url.hostname
+    _ = _parsed_cdn_url.port  # Проверяем корректность порта.
+except ValueError as error:
+    raise ValueError(INVALID_ROBUST_CDN_URL_MESSAGE) from error
+
 if (
     _parsed_cdn_url.scheme != "https"
-    or not _parsed_cdn_url.hostname
+    or not _hostname
     or _parsed_cdn_url.username is not None
     or _parsed_cdn_url.password is not None
+    or _parsed_cdn_url.query
+    or _parsed_cdn_url.fragment
 ):
-    raise ValueError("ROBUST_CDN_URL must be an HTTPS URL with a host and without user credentials")
+    raise ValueError(INVALID_ROBUST_CDN_URL_MESSAGE)
 
 ROBUST_CDN_URL = _robust_cdn_url.rstrip("/") + "/"
 # Sunrise edit end
