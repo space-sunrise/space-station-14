@@ -266,21 +266,6 @@
         - id: PouchAmmoFilledPistol40
           amount: 4
 
-- type: entity
-  parent: GunSafePistolG22 #GunSafeHandgunBaseSecureSunrise
-  id: GunSafePistolACP14
-  name: safe
-  suffix: ACP-14
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: WeaponPistolACP14
-          amount: 4
-        - id: PouchAmmoFilledPistol40
-          amount: 4
-
 # region SMGs safes
 
 - type: entity
@@ -451,7 +436,7 @@
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
-  id: GunSafeRifleAKMU
+  id: GunSafeRifleSKM24
   name: safe
   suffix: SKM-24
   components:
@@ -775,7 +760,6 @@
     - !type:GroupSelector
       weight: 5
       children:
-      - id: GunSafePistolACP14
       - id: GunSafePistolVP78
       - id: GunSafePistolM1984
       - id: GunSafeSubMachineGunSkorpion
@@ -854,7 +838,7 @@
       weight: 40
       children:
       - id: GunSafeLecterBeer
-      - id: GunSafeRifleAKMU
+      - id: GunSafeRifleSKM24
       - id: GunSafeRifleLecterMk2
       - id: GunSafeRifleM16A4
       - id: GunSafeSuperDMR
@@ -1017,7 +1001,7 @@
     - !type:GroupSelector
       weight: 25
       children:
-      - id: GunSafeRifleAKMU
+      - id: GunSafeRifleSKM24
       - id: GunSafeRifleLecterMk2
       - id: GunSafeRifleM16A4
       - id: GunSafeRifleFamas

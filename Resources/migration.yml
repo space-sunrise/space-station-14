@@ -953,7 +953,7 @@ WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
 MagazinePistolSubMachineGunCaseless: BaseMagazinePistolCaselessRifleExtended
 SyndicateCircuitBoard: SyndimovCircuitBoard
-WeaponRifleAKM: WeaponRifleAKMU
+WeaponRifleAKM: WeaponRifleSKM24
 CrateArmoryAKMS: null
 SpawnPointPrisonGuard: null
 # 2025-12-21
@@ -1083,4 +1083,16 @@ RifleHeavyMagazineArtilleryLarge: RifleHeavyMagazineFMJ
 RifleHeavyMagazineArtilleryLargeExtra: RifleHeavyMagazineAP
 MagazineRPD: MagazineLightRifleBeltBoxFMJ
 CartridgeRifleHeavyArtillery: CartridgeRifleHeavySP
+WeaponRevolverSpearheadBlack: WeaponRevolverSpearhead
+WeaponPistolHIB88M4: WeaponPistolViper
+WeaponPistolACP14: WeaponPistolM1984
+WeaponRifleAKMU: WeaponRifleSKM24
+MagazineHIBrowning: MagazinePistolHighCapacity
+MagazineACP14: MagazinePistol40SP
+ACP14Box: MK58Box
+GunSafePistolACP14: GunSafePistolM1984
+GunSafeRifleAKMU: GunSafeRifleSKM24
+WeaponPistolDeagleMetus: WeaponPistolDeagle
+WeaponSubMachineGunMP38: WeaponSubMachineGunForged
+MagazineGlock22Metus: MagazinePistolHighCapacityRubber
 # region Sunrise-End

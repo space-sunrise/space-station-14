@@ -3098,7 +3098,7 @@
     # Weapons
     - id: CombatKnife
       prob: 0.15
-    - id: WeaponSubMachineGunMP38
+    - id: WeaponSubMachineGunForged
       prob: 0.5
     - id: MagazinePistolSubMachineGunEmpty
       prob: 0.9

@@ -21,17 +21,6 @@
 
 - type: entity
   parent: GlockBox
-  id: ACP14Box
-  name: ACP14 box
-  description: It contains a pistol and a magazine for it. Did you want something else?
-  components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: MagazinePistol40HP
-      - id: WeaponPistolACP14
-
-- type: entity
-  parent: GlockBox
   id: MK58Box
   name: MK58 box
   description: It contains a MK58 and a rubber magazine for it. Did you want something else?

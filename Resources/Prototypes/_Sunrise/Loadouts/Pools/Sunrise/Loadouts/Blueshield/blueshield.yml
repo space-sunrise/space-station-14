@@ -119,11 +119,6 @@
     belt: ClothingBeltBlueShieldWebbingFilled
 
 - type: loadout
-  id: BlueshieldACP14
-  inhand:
-  - ACP14Box
-
-- type: loadout
   id: BlueshieldWT550
   inhand:
   - ClothingBackpackDuffelWeaponSubMachineGunWt550

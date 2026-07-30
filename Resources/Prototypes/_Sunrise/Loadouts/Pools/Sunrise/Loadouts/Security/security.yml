@@ -137,19 +137,6 @@
     - MK58Box
 
 - type: loadout
-  id: ACP14Box
-  startingGear: ACP14Box
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterSecurity
-
-- type: startingGear
-  id: ACP14Box
-  storage:
-    back:
-    - ACP14Box
-
-- type: loadout
   id: SnubRevolverBox
   startingGear: SnubRevolverBox
 

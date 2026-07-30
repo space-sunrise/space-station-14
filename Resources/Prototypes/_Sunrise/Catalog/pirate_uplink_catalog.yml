@@ -356,8 +356,8 @@
   - UplinkPirateRangedWeaponry
 
 - type: listing
-  id: UplinkPirateRevolverSpearheadBlack
-  productEntity: WeaponRevolverSpearheadBlack
+  id: UplinkPirateRevolverSpearhead
+  productEntity: WeaponRevolverSpearhead
   cost:
     Doubloon: 18
   categories:
@@ -515,14 +515,6 @@
   productEntity: WeaponPistolViper
   cost:
     Doubloon: 15
-  categories:
-  - UplinkPirateRangedWeaponry
-
-- type: listing
-  id: UplinkPirateMP38
-  productEntity: WeaponSubMachineGunMP38
-  cost:
-    Doubloon: 17
   categories:
   - UplinkPirateRangedWeaponry
 

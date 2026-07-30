@@ -86,65 +86,6 @@
         knockback: 0.1
 
 - type: entity
-  name: AKM-U
-  parent: BaseWeaponRifle
-  id: WeaponRifleAKMU
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak74u.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,2,1
-  - type: GunWieldBonus
-    minAngle: -1
-    maxAngle: -25
-  - type: Gun
-    minAngle: 4
-    maxAngle: 50
-    fireRate: 5.5
-    angleIncrease: 3.65
-    angleDecay: 14
-    soundGunshot:
-      collection: ak47
-  - type: ChamberMagazineAmmoProvider
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineLightRifleSP
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineLightRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeLightRifleSP
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-
-- type: entity
   name: AK-514
   parent: BaseWeaponRifle
   id: WeaponRifleAK514
@@ -572,6 +513,10 @@
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_shot.ogg
   - type: ChamberMagazineAmmoProvider
+    availablePrefixes:
+    - ""
+    - white
+    - green
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
   - type: ItemSlots
@@ -605,32 +550,15 @@
 - type: entity
   parent: WeaponRifleSKM24
   id: WeaponRifleSKM24White
-  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Saved is earned. Wood replaced with cheap plastic.
-  components:
-  - type: Sprite
-    scale: 0.9,0.9
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/big.rsi
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/tiny.rsi
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/White/tiny.rsi
 
 - type: entity
   parent: WeaponRifleSKM24
   id: WeaponRifleSKM24Green
-  description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. The favorite color of low-income mercenaries and ordinary USSP members.
-  components:
-  - type: Sprite
-    scale: 0.9,0.9
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/big.rsi
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Green/tiny.rsi
 
 - type: entity
   parent: WeaponRifleSKM24
   id: WeaponRifleSKM24Scrap
+  suffix: Scrap
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. This specimen has seen some rough stuff...and not just once.
   components:
   - type: Sprite
@@ -640,6 +568,8 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    availablePrefixes: []
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
     dismantleChance: 0.004 # Примерно 150-200 патронов
@@ -688,6 +618,7 @@
 - type: entity
   parent: WeaponRifleSKM24Scrap
   id: WeaponRifleSKM24ScrapEmpty
+  categories: [ HideSpawnMenu ]
   components:
   - type: ItemSlots
     slots:
@@ -711,6 +642,7 @@
 - type: entity
   parent: WeaponRifleSKM24
   id: WeaponRifleSKM24Syndi
+  suffix: Syndicate
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Spare option if you lost all your telecrystals at the casino.
   components:
   - type: Sprite
@@ -720,10 +652,13 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Syndicate/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    availablePrefixes: []
 
 - type: entity
   parent: [BaseSecurityContraband, WeaponRifleSKM24]
   id: WeaponRifleSKM24Nano
+  suffix: NanoTrasen
   description: Cheap and reliable. Enough firepower, little accuracy. Easy to repair, hard to control during sustained. Money doesn't smell.
   components:
   - type: Sprite
@@ -733,6 +668,8 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/tiny.rsi
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Nano/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    availablePrefixes: []
 
 - type: entity
   name: SKM-28

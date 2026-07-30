@@ -38,10 +38,6 @@ ent-GunSafePistolVP78 = safe
     .suffix = VP-78
     .desc = { ent-GunSafeBaseSecure.desc }
 
-ent-GunSafePistolACP14 = safe
-    .suffix = ACP-14
-    .desc = { ent-GunSafeBaseSecure.desc }
-
 ent-GunSafeSubMachineGunVector = safe
     .suffix = Vector
     .desc = { ent-GunSafe.desc }
@@ -74,8 +70,8 @@ ent-GunSafeRifleM52 = safe
     .suffix = M-52, LMG/HAR
     .desc = { ent-GunSafeBaseSecure.desc }
 
-ent-GunSafeRifleAKMU = safe
-    .suffix = AKMU
+ent-GunSafeRifleSKM24 = safe
+    .suffix = SKM-24
     .desc = { ent-GunSafeBaseSecure.desc }
 
 ent-GunSafeRifleLecterMk2 = safe lecter Mk2

@@ -1,7 +1,5 @@
 ent-WeaponRifleAKM = AKMS
     .desc = { ent-BaseWeaponRifle.desc }
-ent-WeaponRifleAKMU = AKM-U
-    .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleAK514 = AK-514
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleFamas = Famas

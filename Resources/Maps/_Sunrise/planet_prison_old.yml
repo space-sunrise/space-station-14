@@ -40944,29 +40944,6 @@ entities:
           Telecrystal: 4
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: UplinkPirateMP38
-        productEntity: WeaponSubMachineGunMP38
-        name: null
-        discountCategory: null
-        description: null
-        categories:
-        - UplinkPirateWeaponry
-        originalCost:
-          Doubloon: 18
-        conditions: null
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkSunriseClothingOuterCoatBomber
         productEntity: ClothingOuterCoatBomber
         name: uplink-sunrise-clothing-outer-coat-bomber-name
@@ -94648,7 +94625,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: GunSafeRifleAKMU
+- proto: GunSafeRifleSKM24
   entities:
   - uid: 9473
     components:
@@ -131930,7 +131907,7 @@ entities:
       parent: 2
     - type: Item
       heldPrefix: disabler
-- proto: WeaponPistolACP14
+- proto: WeaponPistolM1984
   entities:
   - uid: 12162
     components:

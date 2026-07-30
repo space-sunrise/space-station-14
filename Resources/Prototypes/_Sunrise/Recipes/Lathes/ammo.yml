@@ -1162,15 +1162,6 @@
     Steel: 850
 
 - type: latheRecipe
-  id: MagazineHIBrowning
-  result: MagazineHIBrowning
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-- type: latheRecipe
   id: MagazineDeagle
   result: MagazineDeagle
   categories:
