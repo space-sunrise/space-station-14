@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using Content.Server._Sunrise.Presets;
+using Content.Server._Sunrise.Storyteller.Systems;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
@@ -10,6 +11,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Shared.Destructible.Thresholds;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -229,6 +231,9 @@ namespace Content.Server.Voting.Managers
 
         private void CreatePresetVote(ICommonSession? initiator)
         {
+            if (TryCreateSunriseTwoStagePresetVote(initiator)) // Sunrise-Edit
+                return;
+
             var presets = GetGamePresetsSunrise(); // Sunrise-Edit
 
             // Sunrise-Start
@@ -661,74 +666,25 @@ namespace Content.Server.Voting.Managers
         // Sunrise-Start
         private Dictionary<string, string> GetGamePresetsSunrise()
         {
-            var presets = new Dictionary<string, string>();
-
-            var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+            var ticker = _entityManager.System<GameTicker>();
             var excluded = ticker.ExcludedPresets.ToHashSet();
-            var validPresets = new List<GamePresetPrototype>();
             var presetPoolId = _cfg.GetCVar(SunriseCCVars.GamePresetPool);
 
-            if (_prototypeManager.TryIndex<GamePresetPoolPrototype>(presetPoolId, out var presetPoolProto))
+            if (!_prototypeManager.TryIndex<GamePresetPoolPrototype>(presetPoolId, out var presetPoolProto))
+                return new Dictionary<string, string>();
+
+            var poolPresets = new Dictionary<string, MinMax>(presetPoolProto.Presets);
+            _entityManager.System<StorytellerSystem>().AdjustPresetPool(poolPresets);
+            var presets = ticker.GetEligibleVotePresets(poolPresets, _playerManager.PlayerCount, excluded);
+
+            if (presets.Count == 0 && excluded.Count > 0)
             {
-                // Sunrise-Start
-                var poolPresets = new Dictionary<string, int[]>(presetPoolProto.Presets);
-                _Sunrise.Storyteller.StorytellerPresetHelper.AdjustPresetPool(poolPresets, _cfg, _playerManager.PlayerCount);
-                // Sunrise-End
-
-                foreach (var (presetId, limits) in poolPresets)
-                {
-                    // Sunrise-Start
-                    if (!_Sunrise.Storyteller.StorytellerPresetHelper.ShouldBypassExclusion(presetId) && excluded.Contains(presetId))
-                        continue;
-                    // Sunrise-End
-
-                    if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
-                        continue;
-
-                    if (!preset.ShowInVote)
-                        continue;
-
-                    var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
-                    var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
-
-                    if (_playerManager.PlayerCount < minPlayers || _playerManager.PlayerCount > maxPlayers)
-                        continue;
-
-                    validPresets.Add(preset);
-                }
-
-                if (validPresets.Count == 0 && excluded.Count > 0)
-                {
-                    ticker.ClearExcludedPresets();
-                    foreach (var (presetId, limits) in poolPresets)
-                    {
-                        if (!_prototypeManager.TryIndex<GamePresetPrototype>(presetId, out var preset))
-                            continue;
-
-                        if (!preset.ShowInVote)
-                            continue;
-
-                        var minPlayers = limits.Length > 0 ? limits[0] : int.MinValue;
-                        var maxPlayers = limits.Length > 1 ? limits[1] : int.MaxValue;
-
-                        if (_playerManager.PlayerCount < minPlayers || _playerManager.PlayerCount > maxPlayers)
-                            continue;
-
-                        validPresets.Add(preset);
-                    }
-                }
+                ticker.ClearExcludedPresets();
+                presets = ticker.GetEligibleVotePresets(poolPresets, _playerManager.PlayerCount);
             }
 
-            if (validPresets.Count == 0)
-            {
+            if (presets.Count == 0)
                 Logger.Warning("No suitable game modes for the current player count.");
-                return presets;
-            }
-
-            foreach (var preset in validPresets)
-            {
-                presets[preset.ID] = preset.ModeTitle;
-            }
 
             return presets;
         }

@@ -419,6 +419,8 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     projectileSpeed: 15
     bigTrigger: true
+  - type: Item
+    size: Normal
   - type: BatteryAmmoProvider
     proto: AirGrenade
     fireCost: 130

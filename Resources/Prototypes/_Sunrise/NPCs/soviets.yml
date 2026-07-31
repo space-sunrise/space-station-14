@@ -119,7 +119,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 125
+    damageCap: 115
   - type: Stamina
     baseCritThreshold: 125
   - type: DamageStateVisuals
@@ -1346,8 +1346,6 @@
     - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
-  - type: GibOnTrigger
-    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -1527,8 +1525,6 @@
     - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
-  - type: GibOnTrigger
-    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:

@@ -2471,6 +2471,8 @@ entities:
     - type: Transform
       pos: 1.526844,9.891994
       parent: 1
+- proto: RandomHumanoidSpawnerERTEngineerGammaHighPopulation
+  entities:
   - uid: 323
     components:
     - type: Transform
@@ -2509,6 +2511,8 @@ entities:
     - type: Transform
       pos: 0.49325943,0.438686
       parent: 1
+- proto: RandomHumanoidSpawnerERTSecurityGammaHighPopulation
+  entities:
   - uid: 327
     components:
     - type: Transform

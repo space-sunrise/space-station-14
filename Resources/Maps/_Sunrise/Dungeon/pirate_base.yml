@@ -19332,7 +19332,7 @@ entities:
     - type: Transform
       pos: 28.5,30.5
       parent: 1
-- proto: VendingMachineWallMedicalCivilian
+- proto: VendingMachineWallMedicalCivilianSyndicate
   entities:
   - uid: 2591
     components:
