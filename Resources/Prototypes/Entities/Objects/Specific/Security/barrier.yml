@@ -3,22 +3,35 @@
   id: DeployableBarrier
   description: A deployable barrier. Swipe your ID card to lock/unlock it.
   parent: BaseStructure
+
   components:
   - type: Transform
     anchored: false
     noRot: true
+
   - type: Sprite
     sprite: Objects/Specific/Security/barrier.rsi
     layers:
     - state: idle
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+
   - type: Appearance
+
   - type: LockVisuals
+
   - type: InteractionOutline
+
+  - type: Tag
+    tags:
+    - Wall
+
   - type: Physics
     bodyType: Dynamic
     canCollide: false
+
+  - type: Airtight
+
   - type: Fixtures
     fixtures:
       base:
@@ -28,49 +41,72 @@
         density: 75
         mask:
         - MachineMask
+
       barrier:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.45
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 150
+        mask:
+        - SpecialWallLayer
         layer:
-        - WallLayer
+        - SpecialWallLayer
+
   - type: DeployableBarrier
     fixture: barrier
+
+  # Проверка защиты от бронебойного пробития
+  - type: Pierceable
+    level: Rock
+
   - type: AccessReader
     access: [["Security"]]
+
   - type: Lock
     locked: false
-    lockOnClick: true # toggle lock just by clicking on barrier
+    lockOnClick: true
     lockTime: 5
     unlockTime: 5
+
+  # Барьер получает урон
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.15
+        Blunt: 0.25
+        Slash: 0.2
+        Heat: 0.4
+        Caustic: 0.5
+
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
+        damage: 800
+
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel:
             min: 5
             max: 5
+
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+
       - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+        acts:
+        - Destruction
+
   - type: PointLight
     enabled: false
     radius: 3
     color: red
+
   - type: StaticPrice
     price: 200
