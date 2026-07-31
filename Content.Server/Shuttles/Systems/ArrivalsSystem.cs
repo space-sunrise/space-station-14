@@ -505,7 +505,7 @@ public sealed class ArrivalsSystem : EntitySystem
                 if (xform.MapUid != arrivalsXform.MapUid)
                 {
                     if (arrivals.IsValid())
-                        _shuttles.FTLToDock(uid, shuttle, arrivals, priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
+                        _shuttles.FTLToDockSunrise(uid, shuttle, arrivals, priorityTag: "DockArrivals", ignored: true, deleteObstacles: true); // Sunrise-Edit - используем FTL-расширение из partial-класса.
 
                     comp.NextArrivalsTime = _timing.CurTime + TimeSpan.FromSeconds(tripTime);
                 }
@@ -515,7 +515,7 @@ public sealed class ArrivalsSystem : EntitySystem
                     var targetGrid = _station.GetLargestGrid(comp.Station);
 
                     if (targetGrid != null)
-                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value, priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
+                        _shuttles.FTLToDockSunrise(uid, shuttle, targetGrid.Value, priorityTag: "DockArrivals", ignored: true, deleteObstacles: true); // Sunrise-Edit - используем FTL-расширение из partial-класса.
 
                     // The ArrivalsCooldown includes the trip there, so we only need to add the time taken for
                     // the trip back.
@@ -692,8 +692,8 @@ public sealed class ArrivalsSystem : EntitySystem
             EnsureComp<ProtectedGridComponent>(shuttle.Value); // Sunrise-Edit
             EnsureComp<UnbuildableGridComponent>(shuttle.Value); // Sunrise-edit
             EnsureComp<ImmortalGridComponent>(shuttle.Value); // Sunrise-edit
-            _shuttles.FTLToDock(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration,
-                priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
+            _shuttles.FTLToDockSunrise(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration,
+                priorityTag: "DockArrivals", ignored: true, deleteObstacles: true); // Sunrise-Edit - используем FTL-расширение из partial-класса.
             arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
 
