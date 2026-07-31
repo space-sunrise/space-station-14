@@ -74,10 +74,8 @@
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
-      # Sunrise edit start - radial active equipment selector
       enum.MechEquipmentSelectUiKey.Key:
         type: MechEquipmentSelectBoundUserInterface
-      # Sunrise edit end
   - type: Puller
     needsHands: false
   - type: InputMover
@@ -308,16 +306,6 @@
     whitelist:
       tags:
       - Ore
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-      enum.MechUiKey.Key:
-        type: MechBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: [ ]
   - type: Speech
     speechSounds: Borg
   - type: TTS
