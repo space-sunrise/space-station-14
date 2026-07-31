@@ -1276,9 +1276,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledLMGMax
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 20
+    Telecrystal: 24
   cost:
-    Telecrystal: 25
+    Telecrystal: 30
   categories:
   - UplinkWeaponry
   conditions:
