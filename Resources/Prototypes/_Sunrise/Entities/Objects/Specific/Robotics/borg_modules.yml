@@ -698,6 +698,10 @@
     hands:
     - item: WeaponPistolEchis
     - item: CyberMantisBlade
+  - type: Tag
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSyndicateEmag
 
 - type: entity
   id: BorgModuleSyndicateHypoAdvanced
@@ -732,6 +736,10 @@
     - item: CloakingDevice
     - item: RadioJammerSyndicateBorg
     - item: ChameleonProjector
+  - type: Tag
+    tags:
+    - BorgModuleMedical
+    - BorgModuleSyndicateEmag
 
 - type: entity
   id: BorgModuleSyndicatePenetration
@@ -765,6 +773,10 @@
     - item: SyndicateJawsOfLife
     - item: Emag
     - item: PinpointerIcarus
+  - type: Tag
+    tags:
+    - BorgModuleEngineering
+    - BorgModuleSyndicateEmag
 
 # region end
 

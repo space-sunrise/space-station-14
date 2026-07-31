@@ -5,6 +5,10 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
+  - type: BorgModuleBlacklist
+    blacklist:
+      tags:
+      - BorgModuleSyndicateEmag
   - type: Loadout
     prototypes: [ BorgArmorSiliconLoadout ]
 
@@ -15,6 +19,10 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: peace
+  - type: BorgModuleBlacklist
+    blacklist:
+      tags:
+      - BorgModuleSyndicateEmag
 
 - type: entity
   id: BorgChassisClown

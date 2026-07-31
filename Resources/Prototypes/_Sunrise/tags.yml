@@ -138,6 +138,9 @@
   id: BorgModuleSecurity
 
 - type: Tag
+  id: BorgModuleSyndicateEmag
+
+- type: Tag
   id: BorgModulePirate
 
 # region Tools / devices
