@@ -71,3 +71,19 @@
           type: IcarusTerminalBoundUserInterface
     - type: ActivatableUI
       key: enum.IcarusTerminalUiKey.Key
+    - type: Anchorable
+      tool: Welding
+      delay: 60
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 30000
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: monitorBroken
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
