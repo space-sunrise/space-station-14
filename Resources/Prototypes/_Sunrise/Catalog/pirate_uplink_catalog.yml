@@ -1739,7 +1739,7 @@
   id: UplinkPirateToolbox
   name: uplink-toolbox-name
   description: uplink-toolbox-desc
-  productEntity: ToolboxSyndicateFilled
+  productEntity: SunriseToolboxSyndicateFilled
   cost:
     Doubloon: 4
   categories:

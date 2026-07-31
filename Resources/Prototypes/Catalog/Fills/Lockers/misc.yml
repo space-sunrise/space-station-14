@@ -181,7 +181,7 @@
     - id: ClothingBackpackDuffelSyndicatePyjamaBundle
     - id: ClothingBeltMilitaryWebbing
     - id: ClothingShoesBootsCombatFilled
-    - id: ToolboxSyndicateFilled
+    - id: SunriseToolboxSyndicateFilled # Sunrise-Edit - замена официального ящика версией Sunrise
     - id: BalloonSyn
     - id: WeaponSniperMosin
       #Sunrise-start

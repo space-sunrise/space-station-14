@@ -73,7 +73,7 @@
       key: enum.IcarusTerminalUiKey.Key
     - type: Anchorable
       tool: Welding
-      delay: 60
+      delay: 120
     - type: Destructible
       thresholds:
       - trigger:
