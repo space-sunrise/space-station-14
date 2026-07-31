@@ -276,14 +276,14 @@ uplink-ammo-shotgunincendiarykit-desc = Reloading! Contains 8 incendiary magazin
 uplink-ammo-shotgunuraniumkit-name = Shotgun uranium Ammo Kit
 uplink-ammo-shotgunuraniumkit-desc = Reloading! Contains 8 uranium magazines for the Bulldog.
 
-uplink-ammo-lmgkit-name = L6 MAX .308 ammo kit
-uplink-ammo-lmgkit-desc = Reloading! Contains .308 ammunition boxes for the L6 MAX.
+uplink-ammo-lmgkit-name = LMG ammo kit
+uplink-ammo-lmgkit-desc = Reloading! Contains 8 magazines for the L6 Saw.
 
-uplink-ammo-lmgincendiarykit-name = L6 MAX .308 incendiary ammo kit
-uplink-ammo-lmgincendiarykit-desc = Reloading! Contains incendiary .308 ammunition boxes for the L6 MAX.
+uplink-ammo-lmgincendiarykit-name = LMG incendiary ammo kit
+uplink-ammo-lmgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the L6 Saw.
 
-uplink-ammo-lmguraniumkit-name = L6 MAX .308 uranium ammo kit
-uplink-ammo-lmguraniumkit-desc = Reloading! Contains uranium .308 ammunition boxes for the L6 MAX.
+uplink-ammo-lmguraniumkit-name = LMG uranium ammo kit
+uplink-ammo-lmguraniumkit-desc = Reloading! Contains 8 uranium magazines for the L6 Saw.
 
 uplink-energy-dome-name = Personal energy dome
 uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.
