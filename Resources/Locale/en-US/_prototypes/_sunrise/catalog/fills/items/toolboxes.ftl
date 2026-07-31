@@ -1,6 +1,11 @@
-ent-ToolboxSyndicateFilledCoreExtraction = { ent-ToolboxSyndicate }
+ent-ToolboxSyndicateFilledCoreExtraction = { ent-SunriseToolboxSyndicate }
     .suffix = Filled, Core Extraction
-    .desc = { ent-ToolboxSyndicate.desc }
+    .desc = { ent-SunriseToolboxSyndicate.desc }
+
+ent-ToolboxSyndicateFilledRepair = { ent-SunriseToolboxSyndicate }
+    .suffix = Filled, Repair
+    .desc = { ent-SunriseToolboxSyndicate.desc }
+
 ent-ToolboxElectricalTurretPirateFilled = { ent-ToolboxElectricalTurretPirate }
     .suffix = Pirate, Turret, Filled
     .desc = { ent-ToolboxElectricalTurretPirate.desc }

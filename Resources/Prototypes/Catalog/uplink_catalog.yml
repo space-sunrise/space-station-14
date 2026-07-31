@@ -1221,7 +1221,7 @@
   id: UplinkToolbox
   name: uplink-toolbox-name
   description: uplink-toolbox-desc
-  productEntity: SunriseToolboxSyndicateFilled # Sunrise-Edit - замена официального ящика версией Sunrise
+  productEntity: SunriseToolboxSyndicateFilled # Sunrise-Edit
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 1

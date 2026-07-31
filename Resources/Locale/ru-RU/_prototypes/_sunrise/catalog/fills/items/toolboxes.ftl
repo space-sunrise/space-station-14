@@ -1,8 +1,8 @@
-ent-ToolboxSyndicateFilledCoreExtraction = { ent-ToolboxSyndicate }
-    .desc = { ent-ToolboxSyndicate.desc }
+ent-ToolboxSyndicateFilledCoreExtraction = { ent-SunriseToolboxSyndicate }
+    .desc = { ent-SunriseToolboxSyndicate.desc }
     .suffix = Заполнен, Извлечение ядра
-ent-ToolboxSyndicateFilledRepair = { ent-ToolboxSyndicate }
-    .desc = { ent-ToolboxSyndicate.desc }
+ent-ToolboxSyndicateFilledRepair = { ent-SunriseToolboxSyndicate }
+    .desc = { ent-SunriseToolboxSyndicate.desc }
     .suffix = Заполнен, Ремонт мехов
 
 

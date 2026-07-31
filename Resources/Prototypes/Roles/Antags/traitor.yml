@@ -81,7 +81,7 @@
   equipment:
     pocket1: WeaponPistolViper
   inhand:
-    - SunriseToolboxSyndicateFilled # Sunrise-Edit - замена официального ящика версией Sunrise
+    - SunriseToolboxSyndicateFilled # Sunrise-Edit
   storage:
     back:
     - SyndicateJawsOfLife

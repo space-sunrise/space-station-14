@@ -90,7 +90,7 @@
         - !type:ChangeConstructionNodeBehavior
           node: monitorBroken
         - !type:DoActsBehavior
-          acts: ["Destruction"]
+          acts: ["Breakage"]
 
 - type: constructionGraph
   id: IcarusTerminal
