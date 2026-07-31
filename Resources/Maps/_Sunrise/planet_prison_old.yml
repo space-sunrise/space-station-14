@@ -46680,7 +46680,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-        costModifiersBySourceId: {}
       - id: UplinkHristovAmmo
         productEntity: MagazineBoxAntiMateriel
         name: uplink-sniper-ammo-name
