@@ -1095,4 +1095,8 @@ GunSafeRifleAKMU: GunSafeRifleSKM24
 WeaponPistolDeagleMetus: WeaponPistolDeagle
 WeaponSubMachineGunMP38: WeaponSubMachineGunForged
 MagazineGlock22Metus: MagazinePistolHighCapacityRubber
+WeaponPistolTec9: WeaponPistolCobra
+WeaponRifleBR64: WeaponRifleSKM28Nano
+ClothingBackpackDuffelWeaponRifleBR64Filled: ClothingBackpackDuffelWeaponRifleSKM28Filled
+WeaponShotgunMakeshift: WeaponShotgunImprovised
 # region Sunrise-End

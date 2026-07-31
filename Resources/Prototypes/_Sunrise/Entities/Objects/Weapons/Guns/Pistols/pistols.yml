@@ -353,52 +353,6 @@
     availablePrefixes: []
 
 - type: entity
-  name: Tac-Tec
-  parent: BaseWeaponPistolSunrise
-  id: WeaponPistolTec9
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi
-    scale: 0.65, 0.65
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/tiny.rsi
-  - type: ChamberMagazineAmmoProvider
-    boltClosed: null
-  - type: Gun
-    fireRate: 6
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
-    availableModes:
-    - SemiAuto
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: BaseMagazinePistolCaselessRifleExtended
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 1
-        whitelist:
-          tags:
-          - MagazinePistolCaselessRifle
-          - MagazineCaselessRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeCaselessRifle
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgeCaselessRifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-
-- type: entity
   name: stechkin APS
   parent: [WeaponPistolMk58, BaseSovietContraband]
   id: SunriseWeaponPistolAPS

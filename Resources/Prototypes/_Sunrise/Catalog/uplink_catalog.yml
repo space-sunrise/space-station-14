@@ -3425,20 +3425,6 @@
   - UplinkPointless
 
 - type: listing
-  id: UplinkWeaponPistolTec9
-  name: uplink-pistoltec9-name
-  description: uplink-pistoltec9-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi, state: icon }
-  productEntity: WeaponPistolTec9
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 5
-  categories:
-  - UplinkWeaponry
-
-- type: listing
   id: UplinkPizzaBomb
   name: uplink-pizza-bomb-name
   description: uplink-pizza-bomb-desc

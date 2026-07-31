@@ -256,9 +256,6 @@
   id: MagazineBoxL6Cap
 
 - type: Tag
-  id: MagazineBR64
-
-- type: Tag
   id: MagazineCannonBallMini
 
 - type: Tag
@@ -272,6 +269,9 @@
 
 - type: Tag
   id: MagazineDragunov
+
+- type: Tag
+  id: MagazineGarand
 
 - type: Tag
   id: MagazineHeavyRifle
@@ -302,9 +302,6 @@
 
 - type: Tag
   id: MagazineP90
-
-- type: Tag
-  id: MagazinePistolCaselessRifleTec9
 
 - type: Tag
   id: MagazinePistolDPSubMachineGun

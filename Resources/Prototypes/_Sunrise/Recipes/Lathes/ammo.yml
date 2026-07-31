@@ -632,6 +632,13 @@
 
 # Heavy .308
 - type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineGarand
+  result: MagazineGarand
+  materials:
+    Steel: 320
+
+- type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineRifleHeavyEmpty
   result: MagazineRifleHeavyEmpty

@@ -22,8 +22,5 @@ ent-WeaponPistolDeagleGolden = Золотой Десерт Игл
 ent-WeaponPistolDeagleGoldenBiocode = { ent-WeaponPistolDeagleGolden }
     .suffix = БИОКОД
     .desc = { ent-WeaponPistolDeagleGolden.desc }
-ent-WeaponPistolTec9 = Tac-Tec
-    .desc = Очень дешёвый в производстве и очень простой в использовании, надёжный как СКМ-24.
-
 ent-SunriseWeaponSubMachineGunUzi = Тип U3 Узи
     .desc = Лёгкий и культовый пистолет-пулемёт с большим магазином и скорострельностью.

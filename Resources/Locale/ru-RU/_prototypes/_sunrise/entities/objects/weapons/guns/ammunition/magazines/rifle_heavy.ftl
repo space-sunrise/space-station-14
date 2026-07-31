@@ -17,3 +17,5 @@ ent-MagazineRifleHeavyPractice = магазин (.308 учебные)
     .desc = { ent-BaseMagazineRifleHeavy.desc }
 ent-MagazineRifleHeavyUranium = магазин (.308 урановые)
     .desc = { ent-BaseMagazineRifleHeavy.desc }
+ent-MagazineGarand = клипса M1 Garand (.308 FMJ)
+    .desc = Восьмизарядная пачечная клипса для M1 Garand, снаряжённая патронами .308 FMJ.

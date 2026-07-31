@@ -254,6 +254,17 @@
   - SalvageWeapons
 
 - type: listing
+  id: VendorSalvageBriefcaseWeaponGarand
+  productEntity: BriefcaseWeaponGarandFilled
+  cost:
+    SalvageTicket: 750
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+
+- type: listing
   id: VendorSalvageCrateShelfMosin
   icon: { sprite: _Sunrise/Structures/Storage/Crates/woodcrate_ussp_mosin.rsi, state: icon }
   productEntity: CrateShelfMosin

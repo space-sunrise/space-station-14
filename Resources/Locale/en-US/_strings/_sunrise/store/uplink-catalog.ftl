@@ -131,8 +131,6 @@ uplink-weapon-syndie-laser-minigun-name = UVL-21 "Wyvern"
 uplink-weapon-syndie-laser-gun-name = S-13 "Black Mamba"
 uplink-deagle-name = Desert Eagle Pistol
 uplink-deagle-desc = A serious argument in any dispute. Engraved: "Peace through superior firepower."
-uplink-pistoltec9-name = Tac-Tec
-uplink-pistoltec9-desc = Very cheap to manufacture and extremely easy to use, reliable as an SKM-24.
 uplink-uzi-name = Uzi Submachine Gun
 uplink-uzi-desc = A lightweight and iconic submachine gun with a large magazine and high rate of fire.
 uplink-stechkin-aps-name = Stechkin APS
@@ -143,6 +141,8 @@ uplink-goldendeagle-name = Golden Desert Eagle
 uplink-goldendeagle-desc = Uses .45 magnum rounds. Engraved: "All I have left of him in my memory are two gold-plated Desert Eagle .45s."
 uplink-cornivoregloves-name = Cornivore Crimson Harvest Gloves
 uplink-cornivoregloves-desc = We can't say if you thirst for blood... but these gloves certainly do. Each claw is a surgical tool for bloodletting, filling its target with our signature chemical cocktail. Your victim will bleed and bleed and bleed... while you contemplate the next incision. Remember: red is the new black. And it's always in fashion.
+uplink-l6-sawmax-bundle-name = L6 MAX bundle
+uplink-l6-sawmax-bundle-desc = More dakka: The reinforced L6 MAX machine gun, bundled with three 100-round .308 ammunition boxes: two SP and one FMJ. Its reinforced barrel and powerful cartridge can suppress enemies and tear their cover to splinters, at the cost of bulk and mobility.
 uplink-pizza-bomb-name = Nefarious Pizza bomb
 uplink-pizza-bomb-desc = Originally developed covertly by DONK Co to dissuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
 
@@ -276,14 +276,14 @@ uplink-ammo-shotgunincendiarykit-desc = Reloading! Contains 8 incendiary magazin
 uplink-ammo-shotgunuraniumkit-name = Shotgun uranium Ammo Kit
 uplink-ammo-shotgunuraniumkit-desc = Reloading! Contains 8 uranium magazines for the Bulldog.
 
-uplink-ammo-lmgkit-name = LMG Ammo Kit
-uplink-ammo-lmgkit-desc = Reloading! Contains 8 magazines for the L6 Saw.
+uplink-ammo-lmgkit-name = L6 MAX .308 ammo kit
+uplink-ammo-lmgkit-desc = Reloading! Contains .308 ammunition boxes for the L6 MAX.
 
-uplink-ammo-lmgincendiarykit-name = LMG incendiary Ammo Kit
-uplink-ammo-lmgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the L6 Saw.
+uplink-ammo-lmgincendiarykit-name = L6 MAX .308 incendiary ammo kit
+uplink-ammo-lmgincendiarykit-desc = Reloading! Contains incendiary .308 ammunition boxes for the L6 MAX.
 
-uplink-ammo-lmguraniumkit-name = LMG uranium Ammo Kit
-uplink-ammo-lmguraniumkit-desc = Reloading! Contains 8 uranium magazines for the L6 Saw.
+uplink-ammo-lmguraniumkit-name = L6 MAX .308 uranium ammo kit
+uplink-ammo-lmguraniumkit-desc = Reloading! Contains uranium .308 ammunition boxes for the L6 MAX.
 
 uplink-energy-dome-name = Personal energy dome
 uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.

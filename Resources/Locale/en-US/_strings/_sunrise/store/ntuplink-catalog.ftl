@@ -24,7 +24,6 @@ ntuplink-gun-bundlep90-name = Bundle P-90
 ntuplink-gun-bundleams42-name = Bundle AMS-42
 ntuplink-gun-bundleg36-name = Bundle G36
 ntuplink-gun-bundlemg342-name = Bundle MG-342
-ntuplink-gun-bundlebr64-name = Bundle BR-64
 ntuplink-gun-bundlezauer-name = Bundle Zauer
 ntuplink-gun-bundlehristov-name = Bundle Hristov
 ntuplink-gun-bundlexm1014-name = Bundle XM1014

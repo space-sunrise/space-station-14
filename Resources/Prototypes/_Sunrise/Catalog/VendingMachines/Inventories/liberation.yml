@@ -13,7 +13,6 @@
     WeaponPistolEchis: 3
     WeaponPistolDeagle: 6
     WeaponPistolM1984: 3
-    WeaponPistolTec9: 3
     WeaponPistolG22Prison: 3
     WeaponPistolImprovised: 3
     WeaponPistolMakeshiftCrafted: 3
@@ -47,7 +46,6 @@
     WeaponRifleLecter: 3
     WeaponRifleM16A4: 3
     WeaponRifleEstoc: 3
-    WeaponRifleBR64: 3
     WeaponRifleLecterXL8: 3
     WeaponRifleLeikha: 3
     WeaponRifleAsh12: 3
@@ -74,7 +72,6 @@
     WeaponShotgunGA12: 3
     WeaponShotgunMinotaur: 3
     WeaponShotgunForged: 3
-    WeaponShotgunMakeshift: 3
 
     WeaponSubMachineGunAtreides: 3
     WeaponSubMachineGunC20r: 3
@@ -388,7 +385,6 @@
     MagazineBoxHeavyRiflePractice: 3
     MagazineBoxHeavyRifleIncendiary: 3
     MagazineBoxHeavyRifleUranium: 3
-    MagazineBR64: 5
     MagazineDragunovSP: 5
     MagazineBauer127: 5
     MagazineBoxAntiMateriel: 3

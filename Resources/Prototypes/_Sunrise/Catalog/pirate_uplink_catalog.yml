@@ -197,15 +197,6 @@
     stock: 8
 
 - type: listing
-  id: UplinkPirateShotgunMakeshift
-  productEntity: WeaponShotgunMakeshift
-  categories:
-  - UplinkPirateRangedWeaponry
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 8
-
-- type: listing
   id: UplinkPirateSMGMakeshift
   productEntity: WeaponSubMachineGunMakeshift
   categories:

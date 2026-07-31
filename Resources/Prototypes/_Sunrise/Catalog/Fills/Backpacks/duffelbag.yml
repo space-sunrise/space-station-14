@@ -353,20 +353,6 @@
         - id: FireExtinguisher
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleBR64Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle br64
-  description: BR64 with 2 raspy magazines.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponRifleBR64
-        - id: MagazineRifleHeavyFMJ
-          amount: 2
-
-- type: entity
   id: ClothingBackpackDuffelWeaponLightMachineGunM492
   parent: ClothingBackpackDuffelMilitary
   name: Bundle smart gun M492

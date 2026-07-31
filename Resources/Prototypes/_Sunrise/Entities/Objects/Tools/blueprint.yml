@@ -127,6 +127,17 @@
     providedRecipes:
     - MagazineAsh12Flare
 
+# region salvage
+- type: entity
+  parent: BaseBlueprintSecurity
+  id: BlueprintMagazineGarand
+  name: Garand clip blueprint
+  description: A blueprint for producing loaded .308 Garand clips in an autolathe.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - MagazineGarand
+
 # region medical
 - type: entity
   parent: TechnologyDiskBlueprint
