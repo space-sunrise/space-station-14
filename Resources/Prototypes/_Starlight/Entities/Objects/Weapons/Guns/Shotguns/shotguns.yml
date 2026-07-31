@@ -70,6 +70,9 @@
   description: A semi automatic shotgun with tactical furniture and a six-shell capacity underneath.
   components:
   - type: Item
+    size: Large
+    shape:
+    - 0,0,3,0
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
   - type: Gun
     spread: 20

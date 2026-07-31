@@ -40,7 +40,7 @@
     neck: ClothingNeckCloakHOSCloak
     shoes: ClothingShoesBootsJack
     pocket1: WeaponPistolDeagle
-    pocket2: MagazineDeagle
+    pocket2: MagazineMagnum
     outerClothing: ClothingOuterArmorRiot
 
 - type: chameleonOutfit

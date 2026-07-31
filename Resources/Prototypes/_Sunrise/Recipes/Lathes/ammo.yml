@@ -1094,16 +1094,6 @@
     Plastic: 140
     Uranium: 100
 
-####
-- type: latheRecipe
-  id: MagazineNewVector
-  result: MagazineNewVector
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
 - type: latheRecipe
   id: MagazineMP5
   result: MagazineMP5
@@ -1167,15 +1157,6 @@
   completetime: 5
   materials:
     Steel: 850
-
-- type: latheRecipe
-  id: MagazineDeagle
-  result: MagazineDeagle
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 220
 
 #
 #- type: latheRecipe  # Отдельной технологией

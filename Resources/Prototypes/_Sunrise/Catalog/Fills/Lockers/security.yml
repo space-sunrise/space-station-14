@@ -542,29 +542,6 @@
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
-  id: GunSafeShotgunSPAS12
-  name: safe
-  suffix: LAW-12
-  components:
-  - type: EntityStorageVisuals
-    stateDoorClosed: enforcer
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: WeaponShotgunSPAS12
-          amount: 2
-        - id: SpeedLoaderShellShotgun
-          amount: 4
-        - id: BoxBeanbag
-          amount: 1
-        - id: BoxShotgunSlug
-          amount: 1
-        - id: BoxShotgunFlare
-          amount: 1
-
-- type: entity
-  parent: GunSafeBaseSecureSunrise
   id: GunSafeShotgunCombat
   name: safe
   suffix: Shotgun Combat
@@ -802,7 +779,6 @@
     - !type:GroupSelector
       weight: 5
       children:
-      - id: GunSafeShotgunSPAS12
       - id: GunSafeShotgunEnforcer
       - id: GunSafeShotgunCombat
     - id: SpawnerSafeLethal

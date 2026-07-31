@@ -365,7 +365,7 @@
   description: uplink-skm28-ammo-desc
   productEntity: MagazineRifleHeavySP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:
@@ -379,7 +379,7 @@
   description: uplink-skm28-ammo-desc
   productEntity: MagazineRifleHeavyHP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:
@@ -393,7 +393,7 @@
   description: uplink-skm28-ammo-desc
   productEntity: MagazineRifleHeavyFMJ
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:

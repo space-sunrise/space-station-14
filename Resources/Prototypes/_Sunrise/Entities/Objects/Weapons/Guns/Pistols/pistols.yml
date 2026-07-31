@@ -80,7 +80,6 @@
         whitelist:
           tags:
           - MagazinePistolDP
-          - MagazineVP78
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol40FMJ # .45 ACP
@@ -194,14 +193,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineDeagle
+        startingItem: MagazineMagnum
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazineMagnum
-          - MagazineDeagle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeMagnumSP
@@ -323,7 +321,6 @@
         whitelist:
           tags:
           - MagazinePistolDP
-          - MagazineVP78
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol40FMJ # .45 ACP

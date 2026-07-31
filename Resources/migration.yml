@@ -848,8 +848,8 @@ ScienceTechFab: null
 ReverseEngineeringMachine: null
 ScienceTechFabCircuitboard: null
 EngineeringTechFabCircuitboard: null
-MagazineDeagle: null
-MagazineMagnum: null
+MagazineDeagle: MagazineMagnum
+MagazineDeagleExtended: MagazineMagnum
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
 PoweredLightBlueInterior: null
 RandomItem: null
@@ -1099,4 +1099,9 @@ WeaponPistolTec9: WeaponPistolCobra
 WeaponRifleBR64: WeaponRifleSKM28Nano
 ClothingBackpackDuffelWeaponRifleBR64Filled: ClothingBackpackDuffelWeaponRifleSKM28Filled
 WeaponShotgunMakeshift: WeaponShotgunImprovised
+MagazineVP78: MagazinePistol40FMJ
+MagazineNewVector: MagazinePistolHighCapacitySP
+WeaponShotgunSPAS12: WeaponShotgunCombat
+WeaponShotgunSPAS12Rubber: WeaponShotgunCombat
+GunSafeShotgunSPAS12: GunSafeShotgunCombat
 # region Sunrise-End

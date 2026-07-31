@@ -375,8 +375,8 @@
           tags:
             - CartridgeHeavyRifle
   - type: SpeedModifiedOnWield
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: GunRequiresWield
   - type: ClothingSpeedModifier
     walkModifier: 1
@@ -388,9 +388,9 @@
   - type: Gun
     minAngle: 24
     maxAngle: 35
-    angleIncrease: 2
+    angleIncrease: 4
     angleDecay: 18
-    fireRate: 6.5
+    fireRate: 6
     soundGunshot:
       collection: m249 # Sunrise-Edit
       params:
@@ -398,8 +398,16 @@
         pitch: 1.1
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4
-    pvsIncrease: 0.4
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 2
+        staminaMultiplier: 15
+      Felinid:
+        knockback: 1 #half of what resomi take
+        staminaMultiplier: 15
 
 - type: entity
   id: WeaponMachineGunLCG

@@ -27,5 +27,5 @@ ntuplink-gun-bundlemg342-name = Bundle MG-342
 ntuplink-gun-bundlezauer-name = Bundle Zauer
 ntuplink-gun-bundlehristov-name = Bundle Hristov
 ntuplink-gun-bundlexm1014-name = Bundle XM1014
-ntuplink-gun-bundlelaw12-name = Bundle Law-12
+ntuplink-gun-bundlelaw12-name = Combat shotgun bundle
 ntuplink-gun-minigun-desc = When one barrel isn’t enough. A rotary beast built for situations where accuracy is replaced by volume. Requires resolve, strong arms, and a healthy spine.

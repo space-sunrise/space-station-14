@@ -276,14 +276,14 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponShotgun12Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle law12
-  description: Law-12 with 1 Box ammo.
+  name: Combat shotgun bundle
+  description: A combat shotgun with three boxes of ammunition.
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponShotgunSPAS12
+        - id: WeaponShotgunCombat
         - id: BoxLethalshot
         - id: BoxShotgunFlare
         - id: BoxShotgunSlug
@@ -485,7 +485,7 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponPistolDeagle
-        - id: MagazineDeagle
+        - id: MagazineMagnum
           amount: 3
 
 - type: entity

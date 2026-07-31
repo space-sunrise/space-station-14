@@ -265,9 +265,6 @@
   id: MagazineChainGun
 
 - type: Tag
-  id: MagazineDeagle
-
-- type: Tag
   id: MagazineDragunov
 
 - type: Tag
@@ -298,9 +295,6 @@
   id: MagazineMP7
 
 - type: Tag
-  id: MagazineNewVector
-
-- type: Tag
   id: MagazineP90
 
 - type: Tag
@@ -314,9 +308,6 @@
 
 - type: Tag
   id: MagazineScorpion
-
-- type: Tag
-  id: MagazineVP78
 
 # region Weapons
 

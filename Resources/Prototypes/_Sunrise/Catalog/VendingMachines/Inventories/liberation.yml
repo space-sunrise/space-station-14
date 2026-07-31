@@ -64,7 +64,6 @@
     WeaponEnergyShotgun: 3
     WeaponShotgunTrenchgun4034: 3
     WeaponShotgunTrenchgun4034Sawn: 3
-    WeaponShotgunSPAS12: 3
     WeaponShotgunRiot: 3
     WeaponShotgunRiotSawn: 3
     WeaponShotgunCombat: 3
@@ -222,7 +221,6 @@
     WeaponRifleSKM28Nano: 3
     WeaponRifleSKM28Syndi: 3
     WeaponRifleType88AMR: 3
-    WeaponShotgunSPAS12Rubber: 3
     WeaponSniperMosinLubed: 3
     WeaponTurretPirate: 3
     WeaponTurretPirateDisposable: 3
@@ -332,13 +330,10 @@
     MagazineBoxImprovisedPistol: 3
     MagazinePistolSubMachineGunPPSHExtended: 3
     MagazinePistolSubMachineGunPPSH: 3
-    MagazineVP78: 5
-    MagazineDeagle: 5
     MagazineP90: 5
     MagazineMP7: 5
     MagazineMP5: 5
     MagazineScorpion: 5
-    MagazineNewVector: 5
     MagazineBoxPistolRubber: 3
     MagazineBoxPistolSP: 3
     MagazineBoxPistolHP: 3

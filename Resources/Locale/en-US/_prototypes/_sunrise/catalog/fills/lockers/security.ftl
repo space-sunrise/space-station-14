@@ -94,10 +94,6 @@ ent-GunSafeShotgunRiot = safe
     .suffix = Shotgun Riot
     .desc = { ent-GunSafeBaseSecure.desc }
 
-ent-GunSafeShotgunSPAS12 = safe
-    .suffix = LAW-12
-    .desc = { ent-GunSafe.desc }
-
 ent-GunSafeShotgunCombat = safe
     .suffix = Shotgun Combat
     .desc = { ent-GunSafeBaseSecure.desc }
