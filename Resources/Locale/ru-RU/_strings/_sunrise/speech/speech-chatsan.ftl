@@ -575,8 +575,8 @@ russian-chatsan-word-299 = дратути
 russian-chatsan-replacement-299 = здравствуйте
 russian-chatsan-word-300 = дратуть
 russian-chatsan-replacement-300 = моё почтение
-russian-chatsan-word-301 = салам
-russian-chatsan-replacement-301 = здравствуйте
+russian-chatsan-word-301 = анроб
+russian-chatsan-replacement-301 = неопытный
 russian-chatsan-word-302 = кринж
 russian-chatsan-replacement-302 = испанский стыд
 russian-chatsan-word-303 = кринге
@@ -757,8 +757,8 @@ russian-chatsan-word-390 = сорян
 russian-chatsan-replacement-390 = приношу извинения
 russian-chatsan-word-391 = сори
 russian-chatsan-replacement-391 = извиняюсь
-russian-chatsan-word-392 = бро
-russian-chatsan-replacement-392 = товарищ
+russian-chatsan-word-392 = анробище
+russian-chatsan-replacement-392 = неопытный
 russian-chatsan-word-393 = внатуре
 russian-chatsan-replacement-393 = действительно
 russian-chatsan-word-394 = кент
@@ -779,5 +779,10 @@ russian-chatsan-word-401 = сходу
 russian-chatsan-replacement-401 = немедленно
 russian-chatsan-word-402 = прям щас
 russian-chatsan-replacement-402 = незамедлительно
+
+russian-chatsan-word-403 = сикс севен
+russian-chatsan-replacement-403 = мне плохо
+russian-chatsan-word-404 = сиксевен
+russian-chatsan-replacement-404 = мне плохо
 
 
