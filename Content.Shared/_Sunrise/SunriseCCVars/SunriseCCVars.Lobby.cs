@@ -57,4 +57,16 @@ public sealed partial class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Показывать ли профиль пользователя в лобби.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyUserProfileEnabled =
+        CVarDef.Create("lobby.user_profile_enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Показывать ли панель со входом в спонсорское меню в лобби.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbySponsorPanelEnabled =
+        CVarDef.Create("lobby.sponsor_panel_enabled", true, CVar.SERVER | CVar.REPLICATED);
 }

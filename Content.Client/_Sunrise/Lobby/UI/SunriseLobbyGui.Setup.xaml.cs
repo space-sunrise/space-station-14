@@ -151,6 +151,8 @@ public sealed partial class SunriseLobbyGui
         _cfgHandlersSubscribed = true;
 
         _cfg.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.LobbyUserProfileEnabled, OnLobbyUserProfileEnabledChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.LobbySponsorPanelEnabled, OnLobbySponsorPanelEnabledChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.ContributorsEnable, OnContributorsEnableChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.ServerName, OnServerNameChanged, true);
@@ -169,6 +171,8 @@ public sealed partial class SunriseLobbyGui
         _cfgHandlersSubscribed = false;
 
         _cfg.UnsubValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.LobbyUserProfileEnabled, OnLobbyUserProfileEnabledChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.LobbySponsorPanelEnabled, OnLobbySponsorPanelEnabledChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.ContributorsEnable, OnContributorsEnableChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.ServerName, OnServerNameChanged);

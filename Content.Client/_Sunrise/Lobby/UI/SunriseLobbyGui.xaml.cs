@@ -210,6 +210,16 @@ public sealed partial class SunriseLobbyGui : UIScreen
         SetServersHubEnable(enable);
     }
 
+    private void OnLobbyUserProfileEnabledChanged(bool enabled)
+    {
+        BottomCenterProfilePanel.Visible = enabled;
+    }
+
+    private void OnLobbySponsorPanelEnabledChanged(bool enabled)
+    {
+        SponsorStripPanel.Visible = enabled;
+    }
+
     private void OnContributorsEnableChanged(bool enable)
     {
         SetContributorsEnable(enable);
