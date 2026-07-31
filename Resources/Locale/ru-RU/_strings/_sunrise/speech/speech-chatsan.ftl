@@ -785,4 +785,7 @@ russian-chatsan-replacement-403 = мне плохо
 russian-chatsan-word-404 = сиксевен
 russian-chatsan-replacement-404 = мне плохо
 
+russian-chatsan-word-405 = 6 7
+russian-chatsan-replacement-405 = мне плохо
+
 
