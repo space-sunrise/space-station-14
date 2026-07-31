@@ -198,10 +198,10 @@
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
     soundAutoEject:
-      collection: DeskBell
+      collection: ChurchBell
       params:
         variation: 0.03
-        volume: 20
+        pitch: 1.5
   - type: ItemSlots
     slots:
       gun_magazine:
