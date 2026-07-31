@@ -1,5 +1,5 @@
 - type: markingsGroup
-  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
+  parent: Undergarments
   id: Slime
   limits:
     enum.HumanoidVisualLayers.Hair:
@@ -79,7 +79,6 @@
   id: MobSlimePerson
   name: Urist McWobble
   components:
-  - type: Interactions
   - type: Storage
     clickInsert: false
     grid:
@@ -99,16 +98,16 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      # Sunrise start
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      # Sunrise-Start
       enum.SummonCultistUiKey.Key:
         type: SummonCultistListWindowBUI
       enum.CultSpellProviderUiKey.Key:
         type: SpellSelectorBUI
-      # Sunrise-End
+      # Sunrise end
   - type: UseDelay
     delay: 0.5
   - type: Speech
@@ -131,7 +130,7 @@
     damage:
       types:
         Heat: -0.14
-        Mangleness: -0.03
+        Mangleness: -0.03 # Sunrise
       groups:
         Brute: -0.14
   - type: DamageVisuals
@@ -175,7 +174,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatSlimeJelly
+    - id: FoodMeatSlimeJelly # Sunrise
       amount: 5
   - type: Respirator
     damage:
@@ -191,6 +190,7 @@
       - "footprint-left-bare-slime"
     rightBareFootState:
       - "footprint-right-bare-slime"
+  - type: Interactions
   # Sunrise end
 
 - type: entity
@@ -229,7 +229,7 @@
       group: Slime
 
 - type: entity
-  parent: [ OrganBaseTorso, OrganSlimePersonExternal ]
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganSlimePersonExternal ]
   id: OrganSlimePersonTorso
 
 - type: entity
@@ -281,15 +281,7 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
-    removeEmpty: true
-    groups:
-    - id: Food
-    - id: Drink
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-    - id: Alcohol
-      rateModifier: 2.5
+    stages: [ Digestion, Bloodstream, Metabolites ]
 
 - type: entity
   parent: [ OrganBaseLungs, OrganSlimePersonInternal, OrganSlimePersonMetabolizer ]

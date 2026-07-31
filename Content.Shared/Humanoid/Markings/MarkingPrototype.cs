@@ -35,9 +35,6 @@ namespace Content.Shared.Humanoid.Markings
         public bool SponsorOnly = false;
         // Sunrise-Sponsors-End
 
-        [DataField("followSkinColor")]
-        public bool FollowSkinColor { get; private set; } = false;
-
         [DataField("forcedColoring")]
         public bool ForcedColoring { get; private set; } = false;
 

@@ -50,7 +50,7 @@ namespace Content.Shared.Humanoid.Markings
             for (int i = 0; i < colorCount; i++)
             {
                 colors.Add(Color.White);
-                MarkingEffects.Add(ColorMarkingEffect.White);
+                MarkingEffects.Add(ColorMarkingEffect.White); // Sunrise edit
             }
 
             _markingColors = colors;

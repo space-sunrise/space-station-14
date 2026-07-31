@@ -1,5 +1,5 @@
 - type: markingsGroup
-  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
+  parent: Undergarments
   id: Reptilian
   onlyGroupWhitelisted: true
   limits:
@@ -74,11 +74,13 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      # Sunrise start
       socks:
         sizeMaps:
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: socks
+      # Sunrise end
     displacements:
       head:
         sizeMaps:
@@ -90,6 +92,7 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      # Sunrise start
       shoes:
         sizeMaps:
           32:
@@ -136,6 +139,7 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
+      # Sunrise end
   - type: InitialBody
     organs:
       Torso: OrganReptilianTorso
@@ -175,7 +179,6 @@
   id: MobReptilian
   name: Urissst Mz'Hand
   components:
-  - type: Interactions
   - type: Puller
     needsHands: false
   - type: Butcherable
@@ -226,6 +229,7 @@
       285: 0.7
   - type: Wagging
   # Sunrise start
+  - type: Interactions
   - type: Tag
     tags:
     - CanPilot
@@ -275,12 +279,22 @@
       group: Reptilian
 
 - type: entity
-  parent: [ OrganBaseTorso, OrganReptilianExternal ]
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganReptilianExternal ]
   id: OrganReptilianTorso
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Tail
 
 - type: entity
-  parent: [ OrganBaseHead, OrganReptilianExternal ]
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganReptilianExternal ]
   id: OrganReptilianHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganReptilianExternal ]

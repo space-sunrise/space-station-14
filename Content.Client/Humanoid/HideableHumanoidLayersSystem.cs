@@ -28,13 +28,13 @@ public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersS
         UpdateSprite(ent);
     }
 
-    public override void SetLayerVisibility(
+    public override void SetLayerOcclusion(
         Entity<HideableHumanoidLayersComponent?> ent,
         HumanoidVisualLayers layer,
         bool visible,
         SlotFlags source)
     {
-        base.SetLayerVisibility(ent, layer, visible, source);
+        base.SetLayerOcclusion(ent, layer, visible, source);
 
         if (Resolve(ent, ref ent.Comp))
             UpdateSprite((ent, ent.Comp));
@@ -47,14 +47,14 @@ public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersS
             if (ent.Comp.HiddenLayers.ContainsKey(item))
                 continue;
 
-            var visible = _sunriseBody.IsLayerVisible(ent.Owner, item, ent.Comp);
-            var evt = new HumanoidLayerVisibilityChangedEvent(item, visible);
+            var visible = _sunriseBody.IsLayerVisible(ent.Owner, item, ent.Comp); // Sunrise-edit
+            var evt = new HumanoidLayerVisibilityChangedEvent(item, true);
             RaiseLocalEvent(ent, ref evt);
 
             if (!_sprite.LayerMapTryGet(ent.Owner, item, out var index, true))
                 continue;
 
-            _sprite.LayerSetVisible(ent.Owner, index, visible);
+            _sprite.LayerSetVisible(ent.Owner, index, visible); // Sunrise-edit
         }
 
         foreach (var item in ent.Comp.HiddenLayers.Keys)

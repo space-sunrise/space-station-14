@@ -115,6 +115,7 @@
         - id: MagazineRifleAP
       # Sunrise-end
 
+
 - type: entity
   id: BriefcaseWeaponChinaLakeFilled
   parent: BriefcaseWeapon

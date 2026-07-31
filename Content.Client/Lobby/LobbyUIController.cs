@@ -3,6 +3,7 @@ using Content.Client._Sunrise.Lobby.UI;
 using Content.Client._Sunrise.Humanoid;
 using Content.Client._Sunrise.Pets;
 using Content.Client.Body;
+using Content.Client.Body;
 using Content.Client.Guidebook;
 using Content.Shared._Sunrise.Pets;
 using Content.Shared._Sunrise.Humanoid;
@@ -14,7 +15,6 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -31,7 +31,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Sunrise.Interfaces.Shared;
-using Content.Client._Sunrise.PlayerCache; // Sunrise-Sponsors
+using Content.Client._Sunrise.PlayerCache;
+using Content.Shared.Humanoid;
 
 namespace Content.Client.Lobby;
 
@@ -597,6 +598,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         if (humanoid != null && job != null && jobClothes) // Sunrise-Edit
         {
+            DebugTools.Assert(job != null);
+
             GiveDummyJobClothes(dummyEnt, humanoid, job);
 
             // Sunrise-start

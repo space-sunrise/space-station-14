@@ -28,6 +28,7 @@ public sealed partial class LayerMarkingItem : BoxContainer, ISearchableControl
     private bool _interactive;
 
     private List<ColorSelectorSliders>? _colorSliders;
+
     public event Action<GUIBoundKeyEventArgs, LayerMarkingItem>? Pressed;
     public event Action<GUIBoundKeyEventArgs, LayerMarkingItem>? Unpressed;
     public ProtoId<MarkingPrototype> MarkingId => _markingPrototype.ID;
@@ -102,14 +103,11 @@ public sealed partial class LayerMarkingItem : BoxContainer, ISearchableControl
             ColorsContainer.Visible = false;
         }
 
-        // Sunrise start
-        if (_markingsModel.TryGetMarking(_organ, _layer, _markingPrototype.ID) is { } marking)
+        if (_markingsModel.TryGetMarking(_organ, _layer, _markingPrototype.ID) is { } marking &&
+            _colorSliders is { } sliders)
         {
-            UpdateSunriseColorSelectors(marking);
+            UpdateSunriseColorSelectors(marking); // Sunrise-edit
 
-            if (_colorSliders is not { } sliders)
-                return;
-            // Sunrise end
             for (var i = 0; i < _markingPrototype.Sprites.Count; i++)
             {
                 sliders[i].Color = marking.MarkingColors[i];

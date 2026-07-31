@@ -1,5 +1,5 @@
 - type: markingsGroup
-  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
+  parent: Undergarments
   id: Diona
   onlyGroupWhitelisted: true
   limits:
@@ -288,14 +288,7 @@
   components:
   - type: Metabolizer
     maxReagents: 6
-    removeEmpty: true
-    groups:
-    - id: Food
-    - id: Drink
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-    - id: Alcohol
+    stages: [ Digestion, Bloodstream, Metabolites ]
 
 - type: entity
   parent: OrganDionaBrain

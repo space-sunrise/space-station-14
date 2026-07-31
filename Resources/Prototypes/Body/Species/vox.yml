@@ -1,16 +1,18 @@
 - type: markingsGroup
-  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
+  parent: Undergarments
   id: Vox
   limits:
     enum.HumanoidVisualLayers.Hair:
       limit: 1
+      onlyGroupWhitelisted: true
       required: false
     enum.HumanoidVisualLayers.FacialHair:
       limit: 1
+      onlyGroupWhitelisted: true
       required: false
     enum.HumanoidVisualLayers.Head:
       limit: 4
-      required: true
+      required: false
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: true
@@ -19,12 +21,12 @@
       limit: 1
       required: false
     enum.HumanoidVisualLayers.LArm:
-      limit: 1
-      required: true
+      limit: 2
+      required: false
       default: [ VoxLArmScales ]
     enum.HumanoidVisualLayers.RArm:
-      limit: 1
-      required: true
+      limit: 2
+      required: false
       default: [ VoxRArmScales ]
     enum.HumanoidVisualLayers.LHand:
       limit: 1
@@ -36,11 +38,11 @@
       default: [ VoxRHandScales ]
     enum.HumanoidVisualLayers.LLeg:
       limit: 1
-      required: true
+      required: false
       default: [ VoxLLegScales ]
     enum.HumanoidVisualLayers.RLeg:
       limit: 1
-      required: true
+      required: false
       default: [ VoxRLegScales ]
     enum.HumanoidVisualLayers.LFoot:
       limit: 1
@@ -57,16 +59,14 @@
       limit: 1
       required: true
       default: [ VoxTail ]
-    # Sunrise edit start - underwear is handled by separate clothing layers.
-    # enum.HumanoidVisualLayers.UndergarmentTop:
-    #   limit: 1
-    #   required: false
-    #   nudityDefault: [ UndergarmentTopTanktopVox ]
-    # enum.HumanoidVisualLayers.UndergarmentBottom:
-    #   limit: 1
-    #   required: false
-    #   nudityDefault: [ UndergarmentBottomBoxersVox ]
-    # Sunrise edit end
+    enum.HumanoidVisualLayers.UndergarmentTop:
+      limit: 1
+      required: false
+      nudityDefault: [ UndergarmentTopTanktopVox ]
+    enum.HumanoidVisualLayers.UndergarmentBottom:
+      limit: 1
+      required: false
+      nudityDefault: [ UndergarmentBottomBoxersVox ]
 
 - type: entity
   parent: BaseSpeciesAppearance
@@ -155,6 +155,7 @@
   - type: SunriseHumanoidProfile
     bodyType: VoxNormal
   # Sunrise-end
+
 - type: entity
   parent:
   - AppearanceVox
@@ -286,12 +287,6 @@
   - type: VisualOrganMarkings
     markingData:
       group: Vox
-    markingsDisplacement:
-      Hair:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: hair
 
 - type: entity
   parent: [ OrganVox, OrganVoxVisual ]
@@ -304,22 +299,19 @@
 - type: entity
   parent: [ OrganBaseTorso, OrganVoxExternal ]
   id: OrganVoxTorso
-  components:
-  - type: Sprite
-    state: torso
-  - type: VisualOrgan
-    data:
-      state: torso
 
 - type: entity
   parent: [ OrganBaseHead, OrganVoxExternal ]
   id: OrganVoxHead
   components:
-  - type: Sprite
-    state: head
-  - type: VisualOrgan
-    data:
-      state: head
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Snout:
+      - enum.HumanoidVisualLayers.SnoutCover
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganVoxExternal ]
@@ -384,6 +376,12 @@
 - type: entity
   parent: [ OrganBaseStomach, OrganVoxInternal, OrganVoxMetabolizer ]
   id: OrganVoxStomach
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - Trash
+    isSpecialDigestibleExclusive: false
 
 - type: entity
   parent: [ OrganBaseLiver, OrganSpriteHumanInternal, OrganVoxInternal, OrganVoxMetabolizer ]

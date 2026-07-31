@@ -280,6 +280,24 @@ public sealed partial class ClientClothingSystem : ClothingSystem
         // Select displacement maps
         var displacementData = inventory.Displacements.GetValueOrDefault(slot); //Default unsexed map
 
+        // Sunrise edit start - удаление подбора markings официалов
+        // var equipeeSex = CompOrNull<HumanoidProfileComponent>(equipee)?.Sex;
+        // if (equipeeSex != null)
+        // {
+        //    switch (equipeeSex)
+        //    {
+        //        case Sex.Male:
+        //            if (inventory.MaleDisplacements.Count > 0)
+        //                displacementData = inventory.MaleDisplacements.GetValueOrDefault(slot);
+        //            break;
+        //        case Sex.Female:
+        //            if (inventory.FemaleDisplacements.Count > 0)
+        //                displacementData = inventory.FemaleDisplacements.GetValueOrDefault(slot);
+        //            break;
+        //    }
+        // }
+        // Sunrise edit end
+
         // Sunrise edit start - подбор displacement по body type
         var bodyTypeVisualKey = GetSunriseBodyTypeVisualKey(equipee);
         displacementData = GetSunriseBodyTypeDisplacement(equipee, equipment, slot, inventory, bodyTypeVisualKey, displacementData);

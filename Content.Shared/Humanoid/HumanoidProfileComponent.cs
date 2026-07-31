@@ -1,6 +1,6 @@
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
-using Content.Shared._Sunrise.Humanoid; // Sunrise-Edit
+using Content.Shared._Sunrise.Humanoid;
 using Robust.Shared.Enums;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;

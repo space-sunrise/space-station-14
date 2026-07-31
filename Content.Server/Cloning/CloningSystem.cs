@@ -37,10 +37,10 @@ public sealed partial class CloningSystem : SharedCloningSystem
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!; // Sunrise-Edit
-    [Dependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
     [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!; //TODO: This system has to support both the old and new status effect systems, until the old is able to be fully removed.
+    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!; // Sunrise-Edit
+    [Dependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
 
     /// <summary>
     ///     Spawns a clone of the given humanoid mob at the specified location or in nullspace.

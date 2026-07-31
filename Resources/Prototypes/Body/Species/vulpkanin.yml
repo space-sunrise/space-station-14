@@ -1,5 +1,5 @@
 - type: markingsGroup
-  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
+  parent: Undergarments
   id: Vulpkanin
   limits:
     enum.HumanoidVisualLayers.Hair:
@@ -26,7 +26,7 @@
     enum.HumanoidVisualLayers.Tail:
       limit: 1
       required: true
-      default: [ VulpTail ] # Sunrise edit
+      default: [ VulpTailVulp ]
     enum.HumanoidVisualLayers.LArm:
       limit: 2
       required: false
@@ -51,16 +51,14 @@
     enum.HumanoidVisualLayers.RFoot:
       limit: 2
       required: false
-    # Sunrise-start
-    #enum.HumanoidVisualLayers.UndergarmentTop:
-      #limit: 1
-      #required: false
-      #nudityDefault: [ UndergarmentTopTanktopVulpkanin ]
-    #enum.HumanoidVisualLayers.UndergarmentBottom:
-      #limit: 1
-      #required: false
-      #nudityDefault: [ UndergarmentBottomBoxersVulpkanin ]
-    # Sunrise-end
+    enum.HumanoidVisualLayers.UndergarmentTop:
+      limit: 1
+      required: false
+      nudityDefault: [ UndergarmentTopTanktopVulpkanin ]
+    enum.HumanoidVisualLayers.UndergarmentBottom:
+      limit: 1
+      required: false
+      nudityDefault: [ UndergarmentBottomBoxersVulpkanin ]
 
 - type: entity
   parent: BaseSpeciesAppearance
@@ -306,16 +304,8 @@
   id: MobVulpkanin
   name: Urist McArfArf
   components:
-  - type: Interactions
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
   - type: MessyDrinker
     spillChance: 0.33
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeatVulpkanin
-      amount: 5
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
@@ -348,9 +338,6 @@
         Heat: 2.5 # Per second, scales with temperature & other constants
   # - type: Wagging TODO: Add back once we have animated tails again. Were removed due to the sprite rework, causing all of them to not fit anymore.
   #   action: ActionToggleWaggingVulpkanin
-  - type: VulpaAccent
-  - type: FlashModifier
-    modifier: 1.4
   - type: TemperatureProtection
     heatingCoefficient: 1.2
     coolingCoefficient: 0.3
@@ -364,8 +351,19 @@
         pitch: 1.33
         volume: -5
         variation: 0.05
+  # Sunrise edit start
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatVulpkanin
+      amount: 5
+  - type: VulpaAccent
+  - type: FlashModifier
+    modifier: 1.4
+  - type: Interactions
+  - type: ToggleableNightVision
+    effect: EffectNightVisioSpecies
   - type: FootprintEmitter
-    # Sunrise edit start
     leftBareFootState: [ footprint-left-bare-cat ]
     rightBareFootState: [ footprint-right-bare-cat ]
     # Sunrise edit end
@@ -417,12 +415,23 @@
     sprite: Mobs/Species/Vulpkanin/parts.rsi
 
 - type: entity
-  parent: [ OrganBaseTorso, OrganVulpkaninExternal ]
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganVulpkaninExternal ]
   id: OrganVulpkaninTorso
 
 - type: entity
   parent: [ OrganBaseHead, OrganVulpkaninExternal ]
   id: OrganVulpkaninHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Snout:
+      - enum.HumanoidVisualLayers.SnoutCover
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganVulpkaninExternal ]

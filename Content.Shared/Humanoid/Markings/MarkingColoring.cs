@@ -89,7 +89,7 @@ public static class MarkingColoring
 public sealed partial class LayerColoringDefinition
 {
     [DataField("type")]
-    public LayerColoringType Type = new ColoringTypes.SkinColoring();
+    public LayerColoringType? Type = new ColoringTypes.SkinColoring();
 
     /// <summary>
     ///     Coloring types that will be used if main coloring type will return nil
@@ -105,7 +105,9 @@ public sealed partial class LayerColoringDefinition
 
     public Color GetColor(Color? skin, Color? eyes, List<Marking> otherMarkings)
     {
-        var color = Type.GetColor(skin, eyes, otherMarkings);
+        Color? color = null;
+        if (Type != null)
+            color = Type.GetColor(skin, eyes, otherMarkings);
         if (color == null)
         {
             foreach (var type in FallbackTypes)

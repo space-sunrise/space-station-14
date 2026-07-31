@@ -1,5 +1,5 @@
 - type: markingsGroup
-  # parent: Undergarments # Sunrise-Edit - underwear is handled by separate clothing layers.
+  parent: Undergarments
   id: Moth
   onlyGroupWhitelisted: true
   limits:
@@ -81,11 +81,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Sunrise start
       socks:
         sizeMaps:
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Sunrise end
     displacements:
       jumpsuit:
         sizeMaps:
@@ -112,11 +114,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Sunrise-start
       socks:
         sizeMaps:
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Sunrise-end
   - type: InitialBody
     organs:
       Torso: OrganMothTorso
@@ -152,7 +156,6 @@
   id: MobMoth
   name: Urist McFluff
   components:
-  - type: Interactions
   - type: Damageable
     damageModifierSet: Moth
   - type: ZombieAccentOverride
@@ -162,11 +165,6 @@
     allowedEmotes: ['Chitter', 'Squeak']
   - type: TypingIndicator
     proto: moth
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeat
-      amount: 5
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -210,7 +208,10 @@
       289: 0.9
       275: 0.8
       250: 0.7
+  # Sunrise-start
   - type: FootprintEmitter
+  - type: Interactions
+  # Sunrise-end
 
 - type: entity
   parent: OrganBase
@@ -253,12 +254,16 @@
     sprite: Mobs/Species/Moth/parts.rsi
 
 - type: entity
-  parent: [ OrganBaseTorso, OrganMothExternal ]
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganMothExternal ]
   id: OrganMothTorso
 
 - type: entity
   parent: [ OrganBaseHead, OrganMothExternal ]
   id: OrganMothHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.HeadTop
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganMothExternal ]

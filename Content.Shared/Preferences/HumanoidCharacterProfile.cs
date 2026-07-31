@@ -809,7 +809,8 @@ namespace Content.Shared.Preferences
             return new HumanoidCharacterProfile(this);
         }
 
-        public DataNode ToDataNode(ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
+        public DataNode ToDataNode(ISerializationManager? serialization = null,
+            IConfigurationManager? configuration = null)
         {
             IoCManager.Resolve(ref serialization);
             IoCManager.Resolve(ref configuration);

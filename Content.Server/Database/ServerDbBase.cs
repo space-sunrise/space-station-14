@@ -282,6 +282,29 @@ namespace Content.Server.Database
                     markingsList.Add(parsed);
                 }
 
+                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } facialMarking)
+                    markingsList.Add(facialMarking);
+
+                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } hairMarking)
+                    markingsList.Add(hairMarking);
+
+                var completion = new TaskCompletionSource();
+                _task.RunOnMainThread(() =>
+                {
+                    var markingManager = IoCManager.Resolve<MarkingManager>();
+
+                    try
+                    {
+                        markings = markingManager.ConvertMarkings(markingsList, profile.Species);
+                        completion.SetResult();
+                    }
+                    catch (Exception ex)
+                    {
+                        completion.TrySetException(ex);
+                    }
+                });
+                await completion.Task;
+
                 // Sunrise edit start - legacy hair color compability
                 if (CreateLegacyHairMarking(
                         profile.FacialHairName,
@@ -355,8 +378,8 @@ namespace Content.Server.Database
                 gender,
                 new HumanoidCharacterAppearance
                 (
-                    Color.FromHex(string.IsNullOrEmpty(profile.EyeColor) ? "#000000FF" : profile.EyeColor),
-                    Color.FromHex(string.IsNullOrEmpty(profile.SkinColor) ? "#C0967FFF" : profile.SkinColor),
+                    Color.FromHex(profile.EyeColor),
+                    Color.FromHex(profile.SkinColor),
                     markings
                 ),
                 spawnPriority,
@@ -445,14 +468,6 @@ namespace Content.Server.Database
             profile ??= new Profile();
             var appearance = (HumanoidCharacterAppearance) humanoid.CharacterAppearance;
             var dataNode = _serialization.WriteValue(appearance.Markings, alwaysWrite: true, notNullableOverride: true);
-
-            // Debug logging for incoming appearance values
-            List<string> markingStrings = new();
-            foreach (var marking in appearance.Markings)
-            {
-                markingStrings.Add(marking.ToString());
-            }
-            var markings = JsonSerializer.SerializeToDocument(markingStrings);
 
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;
