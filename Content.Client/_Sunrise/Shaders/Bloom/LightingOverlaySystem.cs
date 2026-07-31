@@ -1,5 +1,4 @@
 using Content.Shared._Sunrise.SunriseCCVars;
-using Content.Shared.Examine;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
@@ -15,7 +14,6 @@ public sealed class LightingOverlaySystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly BloomOverlayTreeSystem _bloomTree = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -68,7 +66,6 @@ public sealed class LightingOverlaySystem : EntitySystem
 
         _bloomOverlay ??= new PointLightingOverlay(
             _bloomTree,
-            _examine,
             _prototype,
             _sprite,
             _transform,

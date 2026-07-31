@@ -12,6 +12,9 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 [RegisterComponent]
 public sealed partial class BloomOverlayVisualsComponent : Component, IComponentTreeEntry<BloomOverlayVisualsComponent>
 {
+    /// <summary>
+    /// Определяет, участвует ли источник света в дереве bloom-эффекта.
+    /// </summary>
     [DataField]
     public bool Enabled = true;
 
