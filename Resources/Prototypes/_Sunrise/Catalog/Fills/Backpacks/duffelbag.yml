@@ -9,13 +9,11 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponRifleBauer127Biocode
-        - id: AntimaterialAmmoKit
-          amount: 3
         - id: SmokeGrenade
         - id: ChameleonProjector
-        - id: MagazineBauer127HP
-          amount: 5
         - id: ClothingEyesGlassesSniperThermalSyndie
+        - id: AntimaterialAmmoKit
+          amount: 3
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

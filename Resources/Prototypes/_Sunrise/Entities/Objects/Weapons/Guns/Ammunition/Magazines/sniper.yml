@@ -17,13 +17,13 @@
     tags:
       - MagazineBauer127
   - type: Item
-    size: Small
+    size: Tiny
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
         - CartridgeAntiMateriel
-    capacity: 7
+    capacity: 5
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
