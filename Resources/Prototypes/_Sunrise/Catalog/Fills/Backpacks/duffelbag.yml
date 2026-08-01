@@ -617,7 +617,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-  name: China-Lake bundle
+  name: М79 grenade launcher bundle
   description: "An old m79 grenade launcher bundled with 11 rounds of various destruction capability."
   components:
   - type: EntityTableContainerFill
@@ -641,7 +641,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70
-  name: China-Lake bundle
+  name: L70 grenade launcher bundle
   description: "GL70 grenade launcher bundled with 11 rounds of various destruction capability."
   components:
   - type: EntityTableContainerFill
