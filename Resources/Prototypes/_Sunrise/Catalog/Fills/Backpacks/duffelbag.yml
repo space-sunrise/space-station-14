@@ -617,7 +617,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-  name: М79 grenade launcher bundle
+  name: M79 grenade launcher bundle
   description: "An old m79 grenade launcher bundled with 11 rounds of various destruction capability."
   components:
   - type: EntityTableContainerFill
