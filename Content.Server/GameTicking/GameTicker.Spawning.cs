@@ -185,6 +185,17 @@ namespace Content.Server.GameTicking
             if (DummyTicker)
                 return;
 
+            // Sunrise added start - job-aware выбор station до случайного fallback
+            if (!lateJoin || !DisallowLateJoin)
+            {
+                var directSpawnStationHandled = false;
+                var joinKind = lateJoin ? PlayerJoinKind.LateJoin : PlayerJoinKind.RoundStart;
+                ResolveDirectSpawnStationPortal(player, jobId, joinKind, ref station, ref directSpawnStationHandled);
+                if (directSpawnStationHandled)
+                    return;
+            }
+            // Sunrise added end
+
             if (station == EntityUid.Invalid)
             {
                 // Sunrise added start - фильтрация fallback stations для Player Joinable Maps
@@ -204,14 +215,6 @@ namespace Content.Server.GameTicking
                 JoinAsObserver(player);
                 return;
             }
-
-            // Sunrise added start - маршрутизация direct-spawn роли на целевую station
-            var directSpawnStationHandled = false;
-            var joinKind = lateJoin ? PlayerJoinKind.LateJoin : PlayerJoinKind.RoundStart;
-            ResolveDirectSpawnStationPortal(player, jobId, joinKind, ref station, ref directSpawnStationHandled);
-            if (directSpawnStationHandled)
-                return;
-            // Sunrise added end
 
             // Sunrise added start - запрет antag для специальной station
             FilterCanBeAntagPortal(station, ref canBeAntag);
@@ -325,6 +328,7 @@ namespace Content.Server.GameTicking
                         playDefault: false,
                         colorOverride: Color.Gold);
                 }
+                // Sunrise edit start - отключение обычных latejoin-объявлений
                 // else
                 // {
                 //     _chatSystem.DispatchStationAnnouncement(station,
@@ -337,6 +341,7 @@ namespace Content.Server.GameTicking
                 //         playDefault: false,
                 //         playTts: false);
                 // }
+                // Sunrise edit end
             }
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))

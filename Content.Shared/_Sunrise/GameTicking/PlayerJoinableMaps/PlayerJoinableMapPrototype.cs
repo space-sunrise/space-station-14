@@ -107,7 +107,7 @@ public sealed partial class PlayerJoinableMapLoadConfiguration
     /// automatic <see cref="ProtoId{T}"/> validator. Consumers still receive a typed ID, and the server loader
     /// validates it against <see cref="GameMapPrototype"/> before loading.
     /// </remarks>
-    [DataField("gameMap", required: true)]
+    [DataField(required: true)]
     private string _gameMap = default!;
 
     public ProtoId<GameMapPrototype> GameMap => _gameMap;
