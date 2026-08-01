@@ -27,6 +27,15 @@
     - id: PottedPlant23
     - id: PottedPlant24
     - id: PottedPlant26
+    # Sunrise-start
+    - id: PottedPlantRose
+    - id: PottedPlantRose1
+    - id: PottedPlantRose2
+    - id: PottedPlantRose3
+    - id: PottedPlantRose4
+    - id: PottedPlantRose5
+    - id: PottedPlantRose6
+    # Sunrise-end
 
 - type: entity
   parent: CrateGenericSteel
