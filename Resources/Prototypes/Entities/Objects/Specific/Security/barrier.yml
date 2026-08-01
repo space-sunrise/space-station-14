@@ -1,37 +1,33 @@
+# Sunrise edit start - DeployableBarrier projectile blocking changes
 - type: entity
   name: deployable barrier
   id: DeployableBarrier
   description: A deployable barrier. Swipe your ID card to lock/unlock it.
   parent: BaseStructure
-
   components:
   - type: Transform
     anchored: false
     noRot: true
-
   - type: Sprite
     sprite: Objects/Specific/Security/barrier.rsi
     layers:
     - state: idle
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
-
   - type: Appearance
-
   - type: LockVisuals
-
+  # Sunrise edit start - Чтобы барьер считался объектом типа стены и корректнее взаимодействовал с системами, которые проверяют стены.
   - type: InteractionOutline
-
   - type: Tag
     tags:
     - Wall
-
+  # Sunrise edit end
+  # Sunrise edit start - Добавлена отдельная коллизия барьера для блокировки снарядов
   - type: Physics
     bodyType: Dynamic
     canCollide: false
-
+  # Sunrise edit end
   - type: Airtight
-
   - type: Fixtures
     fixtures:
       base:
@@ -41,7 +37,7 @@
         density: 75
         mask:
         - MachineMask
-
+      # Sunrise edit start - заменил маленькую круглую коллизию на прямоугольную
       barrier:
         shape:
           !type:PhysShapeAabb
@@ -51,28 +47,25 @@
         - SpecialWallLayer
         layer:
         - SpecialWallLayer
-
+      # Sunrise edit end
   - type: DeployableBarrier
     fixture: barrier
-
-  # Проверка защиты от бронебойного пробития
+  # Sunrise edit start -  Настройка поведения пробития снарядов для DeployableBarrier
   - type: Pierceable
     level: Rock
-
+  # Sunrise edit end
   - type: AccessReader
     access: [["Security"]]
-
   - type: Lock
     locked: false
     lockOnClick: true
     lockTime: 5
     unlockTime: 5
-
-  # Барьер получает урон
+  # Sunrise edit start - Барьер получает урон
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
-
+  # Sunrise edit end
   - type: Armor
     modifiers:
       coefficients:
@@ -81,32 +74,27 @@
         Slash: 0.2
         Heat: 0.4
         Caustic: 0.5
-
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
         damage: 800
-
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel:
             min: 5
             max: 5
-
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-
       - !type:DoActsBehavior
         acts:
         - Destruction
-
   - type: PointLight
     enabled: false
     radius: 3
     color: red
-
   - type: StaticPrice
     price: 200
+# Sunrise edit end
