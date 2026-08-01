@@ -63,6 +63,38 @@
     price: 3000
 
 - type: entity
+  name: skewer
+  parent: SyndicateRapier
+  id: SunriseSkewerRapier
+  description: A thin rod of metal used to skewer just about anything and cook it.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/skewer.rsi
+    layers:
+    - state: skewer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 15
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,0,6
+    storedSprite:
+      state: skewer
+      sprite: Objects/Consumable/Food/skewer.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
+      right:
+      - state: inhand-right
+        sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
+  - type: SolutionContainerVisuals
+    fillBaseName: null
+    inHandsFillBaseName: null
+
+- type: entity
   name: dragon slayer
   parent: Claymore
   id: GutsSword
