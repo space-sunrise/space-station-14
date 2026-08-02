@@ -69,6 +69,11 @@
           components:
           - MachineBoard
           - ComputerBoard
+        # Sunrise added start - предотвращение упаковки плат турелей
+        blacklist:
+          tags:
+          - TurretMachineCircuitboard
+        # Sunrise added end
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
