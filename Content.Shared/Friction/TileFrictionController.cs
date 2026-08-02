@@ -17,7 +17,7 @@ using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Systems;
 // using Robust.Shared.Utility; //sunrise
-// using Content.Shared.Mech.Components; //sunrise-edit //sunrise
+// using Content.Shared.Mech.Components; //sunrise-edit
 using Robust.Shared.Maths; //sunrise
 
 namespace Content.Shared.Friction
@@ -86,7 +86,7 @@ namespace Content.Shared.Friction
             if (_tileFrictionCacheSerial == 0)
                 _tileFrictionCacheSerial = 1;
 
-            if (_tileFrictionCache.Count > 8192)
+            if (_tileFrictionCache.Count >= 8192)
                 _tileFrictionCache.Clear();
 		//sunrise-end
             foreach (var ent in PhysicsSystem.AwakeBodies)
@@ -96,8 +96,8 @@ namespace Content.Shared.Friction
 
                 // Only apply friction when it's not a mob (or the mob doesn't have control)
                 // We may want to instead only apply friction to dynamic entities and not mobs ever.
-//                if (_mechQuery.HasComp(uid)) //sunrise-edit //sunrise-edit
-//                    continue; //sunrise-edit //sunrise-edit
+//                if (_mechQuery.HasComp(uid)) //sunrise-edit
+//                    continue; //sunrise-edit
 
                 if (prediction && !body.Predict || _mover.UseMobMovement(uid))
                     continue;

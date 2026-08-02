@@ -132,54 +132,54 @@
   id: LatticeHalfE
   parent: TrainLattice
   name: E-half-lattice
-  sprite: /Textures/_Fish/Tiles/lattice/half_e.png
+  sprite: /Textures/_Sunrise/Tiles/lattice/half_e.png
   vertices: ['0, 0', '0, 1', '0.5, 1', '0.5, 0']
   
 - type: tile
   id: LatticeHalfN
   parent: TrainLattice
   name: N-half-lattice
-  sprite: /Textures/_Fish/Tiles/lattice/half_n.png
+  sprite: /Textures/_Sunrise/Tiles/lattice/half_n.png
   vertices: ['0, 0.5', '0, 1', '1, 1', '1, 0.5']
   
 - type: tile
   id: LatticeHalfS
   parent: TrainLattice
   name: S-half-lattice
-  sprite: /Textures/_Fish/Tiles/lattice/half_s.png
+  sprite: /Textures/_Sunrise/Tiles/lattice/half_s.png
   vertices: ['0, 0', '0, 0.5', '1, 0.5', '1, 0']
 
 - type: tile
   id: LatticeHalfW
   parent: TrainLattice
   name: W-half-lattice
-  sprite: /Textures/_Fish/Tiles/lattice/half_w.png
+  sprite: /Textures/_Sunrise/Tiles/lattice/half_w.png
   vertices: ['0.5, 0', '0.5, 1', '1, 1', '1, 0']
 
 - type: tile
   id: PlatingHalfE
   parent: Plating
   name: E-half-plating
-  sprite: /Textures/_Fish/Tiles/plating/half_e.png
+  sprite: /Textures/_Sunrise/Tiles/plating/half_e.png
   vertices: ['0, 0', '0, 1', '0.5, 1', '0.5, 0']
   
 - type: tile
   id: PlatingHalfN
   parent: Plating
   name: N-half-plating
-  sprite: /Textures/_Fish/Tiles/plating/half_n.png
+  sprite: /Textures/_Sunrise/Tiles/plating/half_n.png
   vertices: ['0, 0.5', '0, 1', '1, 1', '1, 0.5']
   
 - type: tile
   id: PlatingHalfS
   parent: Plating
   name: S-half-plating
-  sprite: /Textures/_Fish/Tiles/plating/half_s.png
+  sprite: /Textures/_Sunrise/Tiles/plating/half_s.png
   vertices: ['0, 0', '0, 0.5', '1, 0.5', '1, 0']
 
 - type: tile
   id: PlatingHalfW
   parent: Plating
   name: W-half-plating
-  sprite: /Textures/_Fish/Tiles/plating/half_w.png
+  sprite: /Textures/_Sunrise/Tiles/plating/half_w.png
   vertices: ['0.5, 0', '0.5, 1', '1, 1', '1, 0']

@@ -24,9 +24,9 @@ namespace Content.Client.Shuttles.UI;
 [Virtual]
 public partial class BaseShuttleControl : MapGridControl
 {
-    [Dependency] private IParallelManager _parallel = default!;
-    [Dependency] private ITileDefinitionManager _tileDef = default!; // sunrise
-    protected readonly EntityLookupSystem _lookup; // sunrise
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDef = default!; // sunrise
+    protected readonly EntityLookupSystem lookup; // sunrise
     protected readonly SharedMapSystem Maps;
 
     protected readonly Font Font;
@@ -451,6 +451,8 @@ public partial class BaseShuttleControl : MapGridControl
 
                 // Mono - drawing logic rewritten
                 var def = (ContentTileDefinition)_tileDef[tileRef.Value.Tile.TypeId];
+                if (def.Vertices.Count < 3)
+                    continue;
                 _gridTileList[index] = def;
                 _gridDirEdges[index] = new Box2?[4];
 
@@ -537,6 +539,11 @@ public partial class BaseShuttleControl : MapGridControl
                                 var otherPrev = neighbor.BottomLeft + offset;
                                 var otherVert = neighbor.TopRight + offset;
                                 var otherEdgeVec = otherVert - otherPrev;
+                                if (otherEdgeVec.LengthSquared() <= float.Epsilon)
+                                {
+                                    _edges.Add((bl + wasPrev * tileSize, bl + vert * tileSize));
+                                    continue;
+                                }
                                 // so we can map points onto the parametric form of our line
                                 var otherEdgeAdj = otherEdgeVec / otherEdgeVec.LengthSquared();
 

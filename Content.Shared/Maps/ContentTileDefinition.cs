@@ -63,7 +63,8 @@ namespace Content.Shared.Maps
 		
         // <sunrise>
         /// <summary>
-        /// Vertices for drawing purposes. Has to be a convex shape.
+        /// Vertices for drawing purposes. Has to be a convex shape with at least 3 vertices,
+        /// listed in counter-clockwise order in tile-local space (0..1 on both axes).
         /// </summary>
         [DataField]
         public List<Vector2> Vertices = new() { Vector2.Zero, new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
@@ -134,7 +135,7 @@ namespace Content.Shared.Maps
         /// anchored entity blocks the cell (see GridTileCollisionSystem).
         /// </summary>
         // sunrise edit - прозрачные тайлы без собственной grid-grid collision
-        [DataField("enableGridCollision")]
+        [DataField]
         public bool EnableGridCollision { get; private set; } = true;
 
         /// <summary>
