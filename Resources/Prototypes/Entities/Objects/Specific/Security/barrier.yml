@@ -1,4 +1,3 @@
-# Sunrise edit start - DeployableBarrier projectile blocking changes
 - type: entity
   name: deployable barrier
   id: DeployableBarrier
@@ -16,17 +15,15 @@
       map: ["enum.LockVisualLayers.Lock"]
   - type: Appearance
   - type: LockVisuals
-  # Sunrise edit start - Чтобы барьер считался объектом типа стены и корректнее взаимодействовал с системами, которые проверяют стены.
+  # Sunrise edit - Добавлен Wall tag для корректной работы систем, проверяющих стены.
   - type: InteractionOutline
   - type: Tag
     tags:
     - Wall
-  # Sunrise edit end
-  # Sunrise edit start - Добавлена отдельная коллизия барьера для блокировки снарядов
+  # Sunrise edit - Добавлена физика для взаимодействия снарядов с барьером.
   - type: Physics
     bodyType: Dynamic
     canCollide: false
-  # Sunrise edit end
   - type: Airtight
   - type: Fixtures
     fixtures:
@@ -37,7 +34,7 @@
         density: 75
         mask:
         - MachineMask
-      # Sunrise edit start - заменил маленькую круглую коллизию на прямоугольную
+      # Sunrise edit - Изменена форма коллизии барьера для более точного блокирования снарядов.
       barrier:
         shape:
           !type:PhysShapeAabb
@@ -47,13 +44,11 @@
         - SpecialWallLayer
         layer:
         - SpecialWallLayer
-      # Sunrise edit end
   - type: DeployableBarrier
     fixture: barrier
-  # Sunrise edit start -  Настройка поведения пробития снарядов для DeployableBarrier
+  # Sunrise edit - Настройка взаимодействия барьера с системой пробития снарядов.
   - type: Pierceable
     level: Rock
-  # Sunrise edit end
   - type: AccessReader
     access: [["Security"]]
   - type: Lock
@@ -61,11 +56,10 @@
     lockOnClick: true
     lockTime: 5
     unlockTime: 5
-  # Sunrise edit start - Барьер получает урон
+  # Sunrise edit - Добавлена возможность получать урон от атак.
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
-  # Sunrise edit end
   - type: Armor
     modifiers:
       coefficients:
@@ -97,4 +91,3 @@
     color: red
   - type: StaticPrice
     price: 200
-# Sunrise edit end
