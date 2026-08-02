@@ -57,9 +57,9 @@
   id: WeaponPistolVP78
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78.rsi
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78.rsi
   - type: Gun
     fireRate: 4.25
     selectedMode: FullAuto
@@ -144,20 +144,13 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
-  name: Mateba
-  parent: BaseWeaponRevolver
+  parent: WeaponRevolverMateba
   id: WeaponRevolverMatebaNew
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba.rsi
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
-  - type: Gun
-    fireRate: 3
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba.rsi
   - type: StealTarget
     stealGroup: OfficerHandgun
 

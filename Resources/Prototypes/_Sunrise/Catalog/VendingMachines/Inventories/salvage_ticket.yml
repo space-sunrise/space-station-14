@@ -225,23 +225,19 @@
     stock: 5
 
 # weapons
-
-- type: listing
-  id: VendorSalvageWeaponLaserLNT620
-  productEntity: WeaponLaserLNT620
-  cost:
-    SalvageTicket: 999
-  categories:
-  - SalvageWeapons
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-
 - type: listing
   id: VendorSalvageWeaponLaserSvalinn
   productEntity: WeaponLaserSvalinn
   cost:
     SalvageTicket: 200
+  categories:
+  - SalvageWeapons
+
+- type: listing
+  id: VendorSalvageSunriseWeaponLaserCarbineBattery
+  productEntity: SunriseWeaponLaserCarbineBattery
+  cost:
+    SalvageTicket: 600
   categories:
   - SalvageWeapons
 

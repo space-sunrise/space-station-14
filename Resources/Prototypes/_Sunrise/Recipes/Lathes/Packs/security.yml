@@ -201,12 +201,16 @@
   id: SecurityDynamicSunrise
   recipes:
     - ComputerGunneryCircuitboard
-    - WeaponEnergyGun
     - WeaponMiniEnergyGun
+    - WeaponEnergyGunPistol
+    - WeaponLaserSvalinn
+    - SunriseWeaponLaserCarbineBattery
+    - WeaponLaserLNT620
     - WeaponIonCarbine
     - WeaponDecloner
     - ScanGateMachineCircuitboard
     - MagazineBatteryLr30
+    - MagazineBatteryLr60
     - WeaponSunriseLaserPistol
     - FlareGunSecurityUpgrade
 # Sunrise-TODO: Нужен ребаланс с учетом типов боеприпасов

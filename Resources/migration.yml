@@ -1104,4 +1104,17 @@ MagazineNewVector: MagazinePistolHighCapacitySP
 WeaponShotgunSPAS12: WeaponShotgunCombat
 WeaponShotgunSPAS12Rubber: WeaponShotgunCombat
 GunSafeShotgunSPAS12: GunSafeShotgunCombat
+# 2026-08-02
+WeaponDominator: WeaponMiniEnergyGun
+WeaponEnergyGunPistolSecurity: null
+WeaponEnergyGunTactical: null
+WeaponEnergyGun: null
+WeaponEnergyGunPulseRevolver: null
+WeaponPDW9: WeaponEnergyGunPistol
+WeaponSubMachineGunMP7: WeaponSubMachineGunMP5
+ClothingBackpackDuffelWeaponSubMachineGunMP7Filled: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
+GunSafeEnergyGunPistolSecurity: null
+GunSafeEnergyGun: null
+GunSafeEnergyGunSMG: null
+GunSafeSubMachineGunMP7: GunSafeSubMachineGunMP5
 # region Sunrise-End

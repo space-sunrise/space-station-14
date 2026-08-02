@@ -79,7 +79,6 @@
     WeaponSubMachineGunDrozdMk2: 3
     WeaponSubMachineGunP90: 3
     WeaponSubMachineGunForged: 6
-    WeaponSubMachineGunMP7: 3
     WeaponSubMachineGunMP5: 3
     WeaponSubMachineGunSkorpion: 3
     WeaponSubMachineGunNewVector: 3
@@ -157,7 +156,6 @@
     WeaponAdvancedTaser: 3
     WeaponTaserSuper: 3
     WeaponMiniEnergyGun: 3
-    WeaponDominator: 3
     WeaponMultiphaseGun: 3
     WeaponIonRifle: 3
     WeaponIonCarbine: 3
@@ -166,7 +164,7 @@
     WeaponGunLaserCarbineSemi: 3
     WeaponGunLaserCarbineAutomatic: 3
     WeaponM1911: 3
-    WeaponPDW9: 3
+    WeaponEnergyGunPistol: 3
     WeaponEnergySniper: 3
     WeaponEnergyMagnum: 3
     WeaponANNIHILATOR: 3
@@ -175,11 +173,6 @@
     WeaponEnergyCrossbowLarge: 3
     WeaponEnergyCrossbow: 3
     WeaponLaserLNT620: 3
-    WeaponEnergyGun: 3
-    WeaponEnergyGunPulseRevolver: 3
-    WeaponEnergyGunPistol: 3
-    WeaponEnergyGunPistolSecurity: 3
-    WeaponEnergyGunTactical: 3
     WeaponEarthGovLaserPistol: 3
     WeaponEarthGovLaserRifle: 3
     WeaponEarthGovLaserCarbine: 3

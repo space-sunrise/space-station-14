@@ -429,7 +429,7 @@
   - MK58Box
   - MK58GoldBox
   - SnubRevolverBox
-  - WeaponDominator
+  - SunriseLaserPistol
   - WeaponDisabler
   - WeaponTaser
 
@@ -480,7 +480,8 @@
   - MK58Box
   - MK58GoldBox
   - SnubRevolverBox
-  - WeaponDominator
+  - SunriseLaserPistol
+  - CadetWeaponMiniEnergyGun
   - WeaponDisabler
   - WeaponTaser
 
@@ -491,7 +492,7 @@
   maxLimit: 1
   loadouts:
   - WeaponDisabler
-  - WeaponDominatorBrigmed
+  - SunriseWeaponTaserBrigmed
   - WeaponTaserBrigmed
 
 # Security  HoS

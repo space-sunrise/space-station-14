@@ -1,7 +1,5 @@
 ent-WeaponSubMachineGunP90 = P-90
     .desc = { ent-BaseWeaponSubMachineGun.desc }
-ent-WeaponSubMachineGunMP7 = MP7
-    .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunMP5 = MP5
     .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunSkorpion = Scorpion VZ-61

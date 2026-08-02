@@ -410,40 +410,6 @@
   - !type:ListingLimitedStockCondition
     stock: 6
 
-- type: listing
-  id: ERTUplinkWeaponEnergyGunTactical
-  productEntity: WeaponEnergyGunTactical
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun_tac }
-  cost:
-    Bluecrystal: 10
-  categories:
-  - NTLasers
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 6
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - CBURN
-      - ERTEpsilon
-
-- type: listing
-  id: ERTUplinkWeaponWeaponEnergyGun
-  productEntity: WeaponEnergyGun
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun }
-  cost:
-    Bluecrystal: 3
-  categories:
-  - NTLasers
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - CBURN
-      - ERTGamma
-      - ERTEpsilon
 
 # region Пистолеты:
 - type: listing
@@ -487,17 +453,6 @@
       - ERTRed
       - ERTGamma
 
-# - type: listing
-#   id: ERTUplinkWeaponEnergyGunPistolSecurity
-#   productEntity: WeaponEnergyGunPistolSecurity
-#   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun-psec }
-#   cost:
-#     Bluecrystal: 4
-#   categories:
-#   - NTPistols
-#   conditions:
-#   - !type:ListingLimitedStockCondition
-#     stock: 4
 
 - type: listing
   id: ERTUplinkWeaponPistolN1984

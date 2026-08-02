@@ -117,20 +117,6 @@
           amount: 4
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponSubMachineGunMP7Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle MP7
-  description: MP7 with 3 raspy magazines.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponSubMachineGunMP7
-        - id: MagazinePistolHighCapacityFMJ
-          amount: 3
-
-- type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunWt550
   parent: ClothingBackpackDuffelMilitary
   name: Bundle WT550

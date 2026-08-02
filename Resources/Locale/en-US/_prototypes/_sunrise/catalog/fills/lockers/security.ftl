@@ -2,24 +2,12 @@ ent-GunSafeEnergyGunMini = mini energy cannons safe
     .suffix = SUNRISE
     .desc = { ent-GunSafe.desc }
 
-ent-GunSafeEnergyGunPistolSecurity = safe
-    .suffix = Energy Pistol «Judge»
-    .desc = { ent-GunSafe.desc }
-
 ent-GunSafeEnergyPistolDominator = safe
-    .suffix = Energy Pistol «Dominator»
+    .suffix = Mini energy guns
     .desc = { ent-GunSafeBaseSecure.desc }
-
-ent-GunSafeEnergyGun = safe
-    .suffix = Tactical Energy guns
-    .desc = { ent-GunSafe.desc }
 
 ent-GunSafeLaserGunSMG = safe
     .suffix = Laser SMG
-    .desc = { ent-GunSafeBaseSecure.desc }
-
-ent-GunSafeEnergyGunSMG = safe
-    .suffix = Tactical Energy SMG
     .desc = { ent-GunSafeBaseSecure.desc }
 
 ent-GunSafePistolG22 = safe
@@ -40,10 +28,6 @@ ent-GunSafePistolVP78 = safe
 
 ent-GunSafeSubMachineGunVector = safe
     .suffix = Vector
-    .desc = { ent-GunSafe.desc }
-
-ent-GunSafeSubMachineGunMP7 = safe
-    .suffix = MP7, SUNRISE
     .desc = { ent-GunSafe.desc }
 
 ent-GunSafeSubMachineGunSkorpion = safe
