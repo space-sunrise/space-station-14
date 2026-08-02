@@ -39531,8 +39531,6 @@ entities:
       pos: -72.5,54.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 163
   - uid: 900
@@ -39773,8 +39771,6 @@ entities:
       pos: 21.5,21.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 925
   - uid: 836
@@ -39783,8 +39779,6 @@ entities:
       pos: 24.5,21.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 925
 - proto: AltarBananium
