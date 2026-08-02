@@ -86,7 +86,7 @@ namespace Content.Shared.Friction
             if (_tileFrictionCacheSerial == 0)
                 _tileFrictionCacheSerial = 1;
 
-            if (_tileFrictionCache.Count >= 8192)
+            if (_tileFrictionCache.Count > 8192)
                 _tileFrictionCache.Clear();
 		//sunrise-end
             foreach (var ent in PhysicsSystem.AwakeBodies)
