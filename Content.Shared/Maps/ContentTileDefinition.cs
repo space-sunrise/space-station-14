@@ -4,12 +4,14 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
+using Robust.Shared.Maths; // sunrise
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Utility;
+using System.Numerics; // sunrise
 
 namespace Content.Shared.Maps
 {
@@ -58,6 +60,14 @@ namespace Content.Shared.Maps
         /// </summary>
         [DataField]
         public float Mass = 800f;
+		
+        // <sunrise>
+        /// <summary>
+        /// Vertices for drawing purposes. Has to be a convex shape.
+        /// </summary>
+        [DataField]
+        public List<Vector2> Vertices = new() { Vector2.Zero, new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+        // </sunrise>
 
         /// <remarks>
         /// Legacy AF but nice to have.
@@ -118,6 +128,14 @@ namespace Content.Shared.Maps
         public float? MobAcceleration { get; private set; }
 
         [DataField("sturdy")] public bool Sturdy { get; private set; } = true;
+
+        /// <summary>
+        /// When false, this tile does not hard-collide with other grids unless a dense
+        /// anchored entity blocks the cell (see GridTileCollisionSystem).
+        /// </summary>
+        // sunrise edit - прозрачные тайлы без собственной grid-grid collision
+        [DataField("enableGridCollision")]
+        public bool EnableGridCollision { get; private set; } = true;
 
         /// <summary>
         /// Can weather affect this tile.
