@@ -26,7 +26,7 @@ public partial class BaseShuttleControl : MapGridControl
 {
     [Dependency] private readonly IParallelManager _parallel = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDef = default!; // sunrise
-    protected readonly EntityLookupSystem lookup; // sunrise
+    protected readonly EntityLookupSystem _lookup; // sunrise
     protected readonly SharedMapSystem Maps;
 
     protected readonly Font Font;
