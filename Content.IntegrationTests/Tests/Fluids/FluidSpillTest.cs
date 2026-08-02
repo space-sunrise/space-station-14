@@ -60,7 +60,7 @@ public sealed class FluidSpill
             gridId = grid.Owner;
 			
             // sunrise start
-            var plating = tileDefinitionManager[PlatingTile];
+            var plating = tileDefinitionManager["Plating"];
             var platingTile = new Tile(plating.TileId);
             // sunrise end
 
