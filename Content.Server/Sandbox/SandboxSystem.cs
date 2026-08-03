@@ -1,6 +1,6 @@
+using Content.Server.GameTicking;
 using System.Linq;
 using Content.Server._Sunrise.Mapping;
-using Content.Server.GameTicking;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -8,6 +8,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
+using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.Sandbox;
 using Robust.Server.Console;
@@ -52,6 +53,7 @@ namespace Content.Server.Sandbox
             SubscribeNetworkEvent<MsgSandboxGiveAccess>(SandboxGiveAccessReceived);
             SubscribeNetworkEvent<MsgSandboxGiveAghost>(SandboxGiveAghostReceived);
             SubscribeNetworkEvent<MsgSandboxSuicide>(SandboxSuicideReceived);
+            SubscribeNetworkEvent<MsgSandboxThermalVision>(UpdateSandboxThermalVision);
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(GameTickerOnOnRunLevelChanged);
 
@@ -196,6 +198,19 @@ namespace Content.Server.Sandbox
         private void UpdateSandboxStatusForAll()
         {
             RaiseNetworkEvent(new MsgSandboxStatus { SandboxAllowed = IsSandboxEnabled });
+        }
+
+        private void UpdateSandboxThermalVision(MsgSandboxThermalVision message, EntitySessionEventArgs args)
+        {
+            if (!IsSandboxEnabled)
+                return;
+
+            var ent = args.SenderSession.AttachedEntity;
+            if (ent == null) return;
+            if (HasComp<ThermalSightComponent>(ent))
+                RemComp<ThermalSightComponent>(ent.Value);
+            else
+                EnsureComp<ThermalSightComponent>(ent.Value);
         }
     }
 }

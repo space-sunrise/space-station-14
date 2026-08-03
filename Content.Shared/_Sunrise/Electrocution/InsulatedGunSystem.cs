@@ -20,7 +20,7 @@ public sealed class InsulatedGunSystem : EntitySystem
         Entity<InsulatedComponent> ent,
         ref InventoryRelayedEvent<ShotAttemptedEvent> args)
     {
-        if (!ent.Comp.PreventOpperatinGuns || args.Args.Used.Comp.BigTrigger)
+        if (!ent.Comp.PreventOperatingGuns || args.Args.Used.Comp.BigTrigger)
             return;
 
         _popup.PopupPredicted(Loc.GetString("gun-Insulated-gloves"), args.Args.User, args.Args.User);

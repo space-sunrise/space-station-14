@@ -10,7 +10,7 @@ namespace Content.Shared.Humanoid;
 public sealed partial class HumanoidCharacterAppearance
 {
     /// <summary>
-    /// Creates the hair markings used by randomly generated humanoids. Temp fix
+    /// Создаёт маркировки волос для случайно сгенерированных гуманоидов.
     /// </summary>
     private static Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> CreateRandomHairMarkings(
         ProtoId<SpeciesPrototype> species,

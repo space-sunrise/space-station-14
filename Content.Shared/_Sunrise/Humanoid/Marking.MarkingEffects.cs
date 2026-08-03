@@ -8,7 +8,7 @@ namespace Content.Shared.Humanoid.Markings;
 public partial record struct Marking
 {
     /// <summary>
-    /// Visual effects associated with each color layer of the marking.
+    /// Визуальные эффекты, связанные с каждым цветовым слоем маркировки.
     /// </summary>
     [DataField("markingEffects", customTypeSerializer: typeof(MarkingEffectListSerializer))]
     public List<MarkingEffect> MarkingEffects = [];
@@ -24,7 +24,7 @@ public partial record struct Marking
     }
 
     /// <summary>
-    /// Creates an independent copy, including mutable color and effect collections.
+    /// Создаёт независимую копию, включая изменяемые коллекции цветов и эффектов.
     /// </summary>
     public Marking DeepClone()
     {
@@ -35,7 +35,7 @@ public partial record struct Marking
     }
 
     /// <summary>
-    /// Keeps the effect collection aligned with the marking color collection.
+    /// Синхронизирует размер коллекции эффектов с коллекцией цветов маркировки.
     /// </summary>
     public void EnsureMarkingEffects()
     {
@@ -58,7 +58,7 @@ public partial record struct Marking
     }
 
     /// <summary>
-    /// Returns the effect for a color layer or a compatible solid-color fallback.
+    /// Возвращает эффект цветового слоя либо совместимый одноцветный эффект по умолчанию.
     /// </summary>
     public MarkingEffect GetMarkingEffectOrDefault(int colorIndex)
     {
@@ -72,7 +72,7 @@ public partial record struct Marking
     }
 
     /// <summary>
-    /// Checks whether this marking and another marking have equivalent visual effects.
+    /// Проверяет эквивалентность визуальных эффектов двух маркировок.
     /// </summary>
     public bool MarkingEffectsEqual(Marking other)
     {
@@ -97,7 +97,7 @@ public partial record struct Marking
     }
 
     /// <summary>
-    /// Replaces the effect associated with a specific color layer.
+    /// Заменяет эффект указанного цветового слоя.
     /// </summary>
     public void SetMarkingEffect(int colorIndex, MarkingEffect effect)
     {
@@ -108,7 +108,7 @@ public partial record struct Marking
     }
 
     /// <summary>
-    /// Replaces every color-layer effect with the provided effect.
+    /// Заменяет эффект каждого цветового слоя переданным эффектом.
     /// </summary>
     public void SetMarkingEffect(MarkingEffect effect)
     {

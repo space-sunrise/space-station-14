@@ -88,9 +88,6 @@ reagent-desc-oldFashioned = Как сказал величайший класс�
 reagent-name-badTouch = проникновение
 reagent-desc-badTouch = Входит... И выходит... И входит... Замечательно выходит!
 
-reagent-name-darkAndStormy = тьма и буря
-reagent-desc-darkAndStormy = Прямиком с Бермудских Островов! Пират слева говорит, что именно поэтому напиток и пропадает с барной стойки.
-
 reagent-name-bramble = брамбл
 reagent-desc-bramble = Ягодки, джин, и довольно стрёмный вид.
 

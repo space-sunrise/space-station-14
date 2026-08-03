@@ -809,7 +809,7 @@
     solutions:
       melee:
         reagents:
-        - ReagentId: Warfarin
+        - ReagentId: Heparin
           Quantity: 90
         maxVol: 90
   - type: MeleeChemicalInjector
@@ -923,7 +923,7 @@
     solutions:
       melee:
         reagents:
-        - ReagentId: Warfarin
+        - ReagentId: Heparin
           Quantity: 90
         maxVol: 90
   - type: MeleeChemicalInjector

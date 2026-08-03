@@ -2,11 +2,14 @@ using System.Linq;
 using Content.Client._Sunrise.Humanoid;
 using Content.Client._Sunrise.PlayerCache;
 using Content.Client.Body;
+using Content.Client.Inventory;
+using Content.Client.Station;
 using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -27,6 +30,8 @@ public sealed partial class LobbyUIController
     [UISystemDependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
     [UISystemDependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!;
     [UISystemDependency] private readonly SunriseHumanoidProfileVisualSystem _sunriseProfileVisual = default!;
+    [UISystemDependency] private readonly InventorySystem _inventory = default!;
+    [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
 
     private ISharedSponsorsManager? _sponsorsManager;
 

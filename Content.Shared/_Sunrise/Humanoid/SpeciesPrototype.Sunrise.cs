@@ -8,104 +8,104 @@ namespace Content.Shared.Humanoid.Prototypes;
 public sealed partial class SpeciesPrototype
 {
     /// <summary>
-    /// Whether the species is only available to sponsors.
+    /// Доступен ли вид только спонсорам.
     /// </summary>
     [DataField]
     public bool SponsorOnly { get; private set; }
 
     /// <summary>
-    /// Body type prototypes available to this species.
+    /// Прототипы телосложения, доступные этому виду.
     /// </summary>
     [DataField(required: true)]
     public List<string> BodyTypes { get; private set; } = default!;
 
     /// <summary>
-    /// Dataset used for masculine last names.
+    /// Набор мужских фамилий.
     /// </summary>
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; private set; } = "NamesLast";
 
     /// <summary>
-    /// Dataset used for feminine last names.
+    /// Набор женских фамилий.
     /// </summary>
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "NamesLast";
 
     /// <summary>
-    /// Minimum character width multiplier.
+    /// Минимальный множитель ширины персонажа.
     /// </summary>
     [DataField]
     public float MinWidth = 0.95f;
 
     /// <summary>
-    /// Maximum character width multiplier.
+    /// Максимальный множитель ширины персонажа.
     /// </summary>
     [DataField]
     public float MaxWidth = 1.1f;
 
     /// <summary>
-    /// Default character width multiplier.
+    /// Множитель ширины персонажа по умолчанию.
     /// </summary>
     [DataField]
     public float DefaultWidth = 1f;
 
     /// <summary>
-    /// Minimum character height multiplier.
+    /// Минимальный множитель роста персонажа.
     /// </summary>
     [DataField]
     public float MinHeight = 0.9f;
 
     /// <summary>
-    /// Maximum character height multiplier.
+    /// Максимальный множитель роста персонажа.
     /// </summary>
     [DataField]
     public float MaxHeight = 1.1f;
 
     /// <summary>
-    /// Default character height multiplier.
+    /// Множитель роста персонажа по умолчанию.
     /// </summary>
     [DataField]
     public float DefaultHeight = 1f;
 
     /// <summary>
-    /// Minimum displayed height in centimeters.
+    /// Минимальный отображаемый рост в сантиметрах.
     /// </summary>
     [DataField]
     public float MinHeightCm = 150f;
 
     /// <summary>
-    /// Maximum displayed height in centimeters.
+    /// Максимальный отображаемый рост в сантиметрах.
     /// </summary>
     [DataField]
     public float MaxHeightCm = 200f;
 
     /// <summary>
-    /// Weight in kilograms at the default height and width.
+    /// Вес в килограммах при стандартных росте и ширине.
     /// </summary>
     [DataField]
     public int StandardWeight = 75;
 
     /// <summary>
-    /// Density used to scale weight with character size.
+    /// Плотность, используемая для масштабирования веса вместе с размером персонажа.
     /// </summary>
     [DataField]
     public int StandardDensity = 120;
 
     /// <summary>
-    /// Whether station records hide this species by default.
+    /// Скрывается ли вид в записях станции по умолчанию.
     /// </summary>
     [DataField]
     public bool StationRecordsHidden;
 
     /// <summary>
-    /// Sprite used for species previews.
+    /// Спрайт предпросмотра вида.
     /// </summary>
     [DataField]
     public SpriteSpecifier Preview { get; private set; } =
         new SpriteSpecifier.Rsi(new ResPath("/Textures/Mobs/Species/Human/parts.rsi"), "full");
 
     /// <summary>
-    /// Sprite used by the Sunrise butt scanner.
+    /// Спрайт для сканера ягодиц Sunrise.
     /// </summary>
     [DataField]
     public SpriteSpecifier ButtScan =

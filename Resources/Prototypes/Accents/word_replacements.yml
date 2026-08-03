@@ -571,7 +571,6 @@
     accent-southern-words-4: accent-southern-words-replace-4
     accent-southern-words-5: accent-southern-words-replace-5
     accent-southern-words-6: accent-southern-words-replace-6
-
 # For the chat sanitization system
 - type: accent
   id: chatsanitize

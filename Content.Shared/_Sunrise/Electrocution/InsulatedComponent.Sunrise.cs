@@ -4,8 +4,8 @@ namespace Content.Shared.Electrocution;
 public sealed partial class InsulatedComponent
 {
     /// <summary>
-    /// Prevents the wearer from operating guns without a large trigger guard.
+    /// Запрещает владельцу использовать оружие без увеличенной спусковой скобы.
     /// </summary>
-    [DataField]
-    public bool PreventOpperatinGuns;
+    [DataField("preventOpperatinGuns")]
+    public bool PreventOperatingGuns;
 }

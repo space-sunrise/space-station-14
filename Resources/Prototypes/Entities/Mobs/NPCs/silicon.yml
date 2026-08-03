@@ -17,14 +17,9 @@
     allowed:
     - Electrocution
   - type: Repairable
-    # Sunrise-Start
-    doAfterDelay: 3
-    damage:
-      types:
-        Blunt: -15
-        Slash: -15
-        Piercing: -15
-    # Sunrise-End
+    damageValue: -15 # 8 seconds to repair from dead
+    doAfterDelay: 1
+    fuelCost: 0.5
   - type: Pullable
   - type: Tag
     tags:

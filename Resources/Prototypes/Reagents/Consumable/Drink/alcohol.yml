@@ -150,22 +150,23 @@
         - !type:ReagentCondition
           reagent: Ethanol
           min: 15
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
         damage:
           types:
             Poison: 0.1
       # dwarves take less toxin damage and heal a marginal amount of brute
-      # Sunrise-Start
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Ethanol
-          min: 25
+          min: 15
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:
           types:
             Poison: 0.02
-      # Sunrise-End
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -176,18 +177,16 @@
         damage:
           groups:
             Brute: -0.1
-      # Sunrise-Start
-      - !type:HealthChange
-        damage:
-          types:
-            Radiation: -0.2
-      # Sunrise-End
       - !type:Vomit
         probability: 0.04
         conditions:
         - !type:ReagentCondition
           reagent: Ethanol
           min: 12
+        # dwarves immune to vomiting from alcohol
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
       - !type:Drunk
         boozePower: 2
 
@@ -2282,6 +2281,9 @@
         - !type:ReagentCondition
           reagent: BacchusBlessing
           min: 6
+        - !type:MetabolizerTypeCondition
+          type: [Dwarf]
+          inverted: true
         damage:
           types:
             Poison: 0.2 # TODO: Figure out poison amount. Ethanol does 0.1, this does 0.2 but also metabolises almost 3 to 4 times as fast as ethanol. This would be more Liver damage when that time arrives.
@@ -2301,3 +2303,6 @@
         - !type:ReagentCondition
           reagent: BacchusBlessing
           min: 8
+        - !type:MetabolizerTypeCondition
+          type: [Dwarf]
+          inverted: true
