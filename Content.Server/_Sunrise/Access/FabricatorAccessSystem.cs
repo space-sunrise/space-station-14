@@ -24,83 +24,81 @@ public sealed class FabricatorAccessSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<LatheComponent, ComponentInit>(OnLatheInit);
         SubscribeLocalEvent<LatheComponent, ActivatableUIOpenAttemptEvent>(OnLatheUiOpenAttempt);
         SubscribeLocalEvent<LatheComponent, BoundUserInterfaceMessageAttempt>(OnLatheUiMessageAttempt);
 
-        SubscribeLocalEvent<FlatpackCreatorComponent, ComponentInit>(OnFlatpackerInit);
         SubscribeLocalEvent<FlatpackCreatorComponent, ActivatableUIOpenAttemptEvent>(OnFlatpackerUiOpenAttempt);
         SubscribeLocalEvent<FlatpackCreatorComponent, BoundUserInterfaceMessageAttempt>(OnFlatpackerUiMessageAttempt);
     }
 
-    private void OnLatheInit(Entity<LatheComponent> ent, ref ComponentInit args)
-    {
-        EnsureAccessReader(ent);
-    }
-
-    private void OnFlatpackerInit(Entity<FlatpackCreatorComponent> ent, ref ComponentInit args)
-    {
-        EnsureAccessReader(ent);
-    }
-
     private void OnLatheUiOpenAttempt(Entity<LatheComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (TryDenyUiOpen(ent, args.User, args.Silent))
+        if (!TryUseFabricator((ent.Owner, null), args.User, args.Silent))
             args.Cancel();
     }
 
     private void OnFlatpackerUiOpenAttempt(Entity<FlatpackCreatorComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (TryDenyUiOpen(ent, args.User, args.Silent))
+        if (!TryUseFabricator((ent.Owner, null), args.User, args.Silent))
             args.Cancel();
     }
 
     private void OnLatheUiMessageAttempt(Entity<LatheComponent> ent, ref BoundUserInterfaceMessageAttempt args)
     {
-        if (TryDenyUiMessage(ent, LatheUiKey.Key, args))
-            args.Cancel();
+        if (!Equals(args.UiKey, LatheUiKey.Key) ||
+            TryUseFabricator((ent.Owner, null), args.Actor, quiet: true))
+            return;
+
+        DenyUiMessage(ent, args);
     }
 
     private void OnFlatpackerUiMessageAttempt(
         Entity<FlatpackCreatorComponent> ent,
         ref BoundUserInterfaceMessageAttempt args)
     {
-        if (TryDenyUiMessage(ent, FlatpackCreatorUIKey.Key, args))
-            args.Cancel();
+        if (!Equals(args.UiKey, FlatpackCreatorUIKey.Key) ||
+            TryUseFabricator((ent.Owner, null), args.Actor, quiet: true))
+            return;
+
+        DenyUiMessage(ent, args);
     }
 
-    public bool TryDenyUiOpen(EntityUid fabricator, EntityUid user, bool silent)
+    /// <summary>
+    /// Пытается разрешить пользователю работу с производственным оборудованием.
+    /// </summary>
+    public bool TryUseFabricator(
+        Entity<AccessReaderComponent?> fabricator,
+        EntityUid user,
+        bool quiet = false)
     {
-        if (CanUseFabricator(fabricator, user))
-            return false;
+        return CanUseFabricator(fabricator, user, quiet);
+    }
 
-        if (!silent)
+    /// <summary>
+    /// Проверяет, позволяет ли настроенный доступ использовать производственное оборудование.
+    /// </summary>
+    public bool CanUseFabricator(
+        Entity<AccessReaderComponent?> fabricator,
+        EntityUid user,
+        bool quiet = false)
+    {
+        if (!Resolve(fabricator, ref fabricator.Comp, false))
+            return true;
+
+        if (_access.IsAllowed(user, fabricator, fabricator.Comp))
+            return true;
+
+        if (!quiet)
             PlayAccessDeniedSound(fabricator, user);
 
-        return true;
+        return false;
     }
 
-    public bool TryDenyUiMessage(
-        EntityUid fabricator,
-        Enum expectedUiKey,
-        BoundUserInterfaceMessageAttempt args)
+    private void DenyUiMessage(EntityUid fabricator, BoundUserInterfaceMessageAttempt args)
     {
-        if (!Equals(args.UiKey, expectedUiKey) || CanUseFabricator(fabricator, args.Actor))
-            return false;
-
         _ui.CloseUi((fabricator, null), args.UiKey, args.Actor);
         PlayAccessDeniedSound(fabricator, args.Actor);
-        return true;
-    }
-
-    public bool CanUseFabricator(EntityUid fabricator, EntityUid user)
-    {
-        return _access.IsAllowed(user, fabricator);
-    }
-
-    private void EnsureAccessReader(EntityUid fabricator)
-    {
-        EnsureComp<AccessReaderComponent>(fabricator);
+        args.Cancel();
     }
 
     private void PlayAccessDeniedSound(EntityUid fabricator, EntityUid user)
