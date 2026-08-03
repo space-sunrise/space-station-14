@@ -14,7 +14,7 @@ tutorial-base-step-pickup-chat = Поднимите предмет, чтобы �
 tutorial-base-step-pickup-tts = Поднимите предмет, чтобы взять его в руку.
 tutorial-base-step-activate-action-chat = Активируйте кнопку с текстурой на панели кнопок (слева или сверху).
 tutorial-base-step-activate-action-tts = Активируйте акшен.
-tutorial-base-step-use-bubble = Используйте предмет в руке. Нажмите [tutkeybind="UseItemInHand"].
+tutorial-base-step-use-bubble = Используйте предмет в руке. Нажмите [tutkeybind="ActivateItemInHand"].
 tutorial-base-step-use-chat = Теперь используйте предмет в руке.
 tutorial-base-step-use-tts = Теперь используйте предмет в руке.
 tutorial-base-step-equip-bubble = Экипируйте предмет в слот одежды [tutkeybind="UIClick"] или [tutkeybind="ActivateItemInHand"].
@@ -86,6 +86,14 @@ intro-tut-go-center-bubble = Идите в центр локации - след�
 intro-tut-go-center-chat = Отлично! Теперь двигайтесь в центральный зал.
 intro-tut-go-center-tts = Отлично! Теперь двигайтесь в центральный зал.
 
+intro-tut-pull-chair-bubble = Начните тащить подсвеченный стул: удерживайте [tutkeybind="TryPullObject"] и нажмите на него.
+intro-tut-pull-chair-chat = Таскание позволяет двигать ящики, раненых персонажей и другие тяжёлые объекты, не занимая предметом руку.
+intro-tut-pull-chair-tts = Попробуйте потянуть стул. Удерживайте клавишу таскания и нажмите на стул. Так можно перемещать ящики, раненых персонажей и другие тяжёлые объекты.
+
+intro-tut-release-chair-bubble = Отпустите стул с помощью [tutkeybind="ReleasePulledObject"].
+intro-tut-release-chair-chat = Не забывайте отпускать объект, когда донесли его до нужного места: таскание немного замедляет движение.
+intro-tut-release-chair-tts = Теперь отпустите стул клавишей прекращения таскания. Пока вы тянете объект, персонаж двигается немного медленнее.
+
 intro-tut-lie-down-stand-up-bubble = Лягте на пол и снова встаньте. Нажмите [tutkeybind="ToggleStanding"] один раз, чтобы лечь, затем нажмите еще раз, чтобы встать.
 intro-tut-lie-down-stand-up-chat = Лежать полезно, чтобы пролезать под некоторыми объектами и отыгрывать ситуации. Перед продолжением убедитесь, что снова встали.
 intro-tut-lie-down-stand-up-tts = Лежать полезно, чтобы пролезать под некоторыми объектами и отыгрывать ситуации. Перед продолжением убедитесь, что снова встали.
@@ -94,9 +102,13 @@ intro-tut-go-bar-bubble = Направляйтесь в бар - следуйт�
 intro-tut-go-bar-chat = Загляните в бар - там можно перевести дыхание, выпить напитков и хорошо провести время.
 intro-tut-go-bar-tts = Загляните в бар - там можно перевести дыхание, выпить напитков и хорошо провести время.
 
-intro-tut-sit-chair-bubble = Присядьте на барный табурет [tutkeybind="UIClick"] по стулу.
-intro-tut-sit-chair-chat = Щёлкните по ближайшему табурету, чтобы присесть.
-intro-tut-sit-chair-tts = Щёлкните по табурету, чтобы присесть.
+intro-tut-sit-chair-bubble = Сядьте на подсвеченный стул: нажмите по нему [tutkeybind="UIClick"].
+intro-tut-sit-chair-chat = На стулья, кресла и другие сиденья можно садиться обычным взаимодействием. Пока персонаж сидит, он не может ходить.
+intro-tut-sit-chair-tts = Нажмите по подсвеченному стулу, чтобы сесть. Пока персонаж сидит, он не может ходить.
+
+intro-tut-stand-from-chair-bubble = Встаньте со стула: нажмите по нему [tutkeybind="UIClick"] ещё раз.
+intro-tut-stand-from-chair-chat = Чтобы встать, повторно нажмите по своему сиденью. Этим же способом можно освободиться от кресла или каталки, но иногда это занимает несколько секунд.
+intro-tut-stand-from-chair-tts = Чтобы встать, ещё раз нажмите по стулу. Так же можно освободиться от кресла или каталки, но иногда это занимает несколько секунд.
 
 intro-tut-pickup-drink-bubble = Возьмите стакан апельсинового сока со стойки [tutkeybind="UIClick"].
 intro-tut-pickup-drink-chat = На стойке стоит апельсиновый сок. Возьмите его!

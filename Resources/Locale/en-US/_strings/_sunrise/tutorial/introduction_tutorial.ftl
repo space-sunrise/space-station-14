@@ -14,7 +14,7 @@ tutorial-base-step-pickup-chat = Pick up the item to hold it in your hand.
 tutorial-base-step-pickup-tts = Pick up the item to hold it in your hand.
 tutorial-base-step-activate-action-chat = Activate the button with an icon on the action panel, either on the left or at the top.
 tutorial-base-step-activate-action-tts = Activate the action.
-tutorial-base-step-use-bubble = Use the item in your hand. Press [tutkeybind="UseItemInHand"].
+tutorial-base-step-use-bubble = Use the item in your hand. Press [tutkeybind="ActivateItemInHand"].
 tutorial-base-step-use-chat = Now use the item in your hand.
 tutorial-base-step-use-tts = Now use the item in your hand.
 tutorial-base-step-equip-bubble = Equip the item into a clothing slot with [tutkeybind="UIClick"] or [tutkeybind="ActivateItemInHand"].
@@ -86,6 +86,14 @@ intro-tut-go-center-bubble = Go to the center of the location. Follow the marker
 intro-tut-go-center-chat = Great! Now move to the central hall.
 intro-tut-go-center-tts = Great! Now move to the central hall.
 
+intro-tut-pull-chair-bubble = Start pulling the highlighted chair: hold [tutkeybind="TryPullObject"] and click it.
+intro-tut-pull-chair-chat = Pulling lets you move crates, injured characters, and other heavy objects without holding them as items.
+intro-tut-pull-chair-tts = Try pulling the chair. Hold the pull key and click the chair. This is how you move crates, injured characters, and other heavy objects.
+
+intro-tut-release-chair-bubble = Release the chair with [tutkeybind="ReleasePulledObject"].
+intro-tut-release-chair-chat = Release an object after moving it where it belongs: pulling slightly slows your movement.
+intro-tut-release-chair-tts = Now release the chair with the stop-pulling key. Your character moves a little slower while pulling an object.
+
 intro-tut-lie-down-stand-up-bubble = Lie down and stand back up. Press [tutkeybind="ToggleStanding"] once to lie down, then press it again to stand up.
 intro-tut-lie-down-stand-up-chat = Lying down helps you crawl under some objects and roleplay situations. Remember how to stand up again before moving on.
 intro-tut-lie-down-stand-up-tts = Lying down helps you crawl under some objects and roleplay situations. Remember how to stand up again before moving on.
@@ -94,9 +102,13 @@ intro-tut-go-bar-bubble = Head to the bar. Follow the marker.
 intro-tut-go-bar-chat = Take a look at the bar. You can catch your breath, drink something, and have a good time there.
 intro-tut-go-bar-tts = Take a look at the bar. You can catch your breath, drink something, and have a good time there.
 
-intro-tut-sit-chair-bubble = Sit on the bar stool with [tutkeybind="UIClick"] on the chair.
-intro-tut-sit-chair-chat = Click the nearest stool to sit down.
-intro-tut-sit-chair-tts = Click the stool to sit down.
+intro-tut-sit-chair-bubble = Sit on the highlighted chair by clicking it with [tutkeybind="UIClick"].
+intro-tut-sit-chair-chat = You can sit on chairs, armchairs, and other seats with a normal interaction. Your character cannot walk while seated.
+intro-tut-sit-chair-tts = Click the highlighted chair to sit down. Your character cannot walk while seated.
+
+intro-tut-stand-from-chair-bubble = Stand up by clicking the chair again with [tutkeybind="UIClick"].
+intro-tut-stand-from-chair-chat = Click your seat again to stand up. The same method frees you from chairs or stretchers, though this may sometimes take a few seconds.
+intro-tut-stand-from-chair-tts = Click the chair again to stand up. This also frees you from chairs or stretchers, though it may sometimes take a few seconds.
 
 intro-tut-pickup-drink-bubble = Pick up the glass of orange juice from the counter with [tutkeybind="UIClick"].
 intro-tut-pickup-drink-chat = There is orange juice on the counter. Take it!
@@ -193,3 +205,5 @@ intro-tut-drop-id-card-tts = We will not need the card anymore. Drop it.
 intro-tut-store-flashlight-bubble = Put the flashlight into your backpack or drop it with [tutkeybind="Drop"] before shooting.
 intro-tut-store-flashlight-chat = Free your hands before taking a weapon.
 intro-tut-store-flashlight-tts = Free your hands before taking a weapon.
+
+int-tut-softlock-open-ui = Examine the vending machine first!

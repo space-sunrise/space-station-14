@@ -188,6 +188,11 @@
   parent: BaseTutorialPlayer
   id: AccessTutorialPlayer
   components:
+  - type: TutorialUnequipSoftLock
+    slots: IDCARD
+    items:
+    - TechnicalAssistantIDCard
+    popup: access-tut-softlock-keep-id-card
   - type: Loadout
     prototypes: [AccessTutorialPlayerGear]
   - type: Godmode

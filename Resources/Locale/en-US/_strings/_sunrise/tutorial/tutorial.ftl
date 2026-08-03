@@ -21,6 +21,8 @@ tutorial-status-loading = [color=cyan]Loading...[/color]
 tutorial-start-denied-max-active = All training slots are occupied. Try again later.
 tutorial-cooldown-denied = Wait { $cooldown } sec. before starting another training session.
 tutorial-softlock-action-blocked = Do not do that right now. Follow the training hint.
+tutorial-softlock-buckle-disabled = Do not sit down right now. Complete the current training step first.
+tutorial-softlock-wield-disabled = Do not wield the item right now. Complete the current training step first.
 tutorial-softlock-keep-backpack = Keep the backpack equipped for this storage step.
 tutorial-softlock-keep-belt = Keep the belt equipped for this toolbelt step.
 tutorial-softlock-use-highlighted-inventory = Use the highlighted slot right now. Do not put this item into other storage.

@@ -21,6 +21,8 @@ tutorial-status-loading = [color=cyan]Загрузка...[/color]
 tutorial-start-denied-max-active = Все слоты обучения заняты. Попробуйте позже.
 tutorial-cooldown-denied = Подождите { $cooldown } сек. чтобы начать новое обучение.
 tutorial-softlock-action-blocked = Сейчас лучше не делать это. Следуйте подсказке обучения.
+tutorial-softlock-buckle-disabled = Сейчас садиться не нужно. Сначала завершите текущий шаг обучения.
+tutorial-softlock-wield-disabled = Сейчас не нужно брать предмет в обе руки. Сначала завершите текущий шаг обучения.
 tutorial-softlock-keep-backpack = Пока не снимайте рюкзак: этот шаг обучает работе с рюкзаком.
 tutorial-softlock-keep-belt = Пока не снимайте пояс: этот шаг обучает работе с поясом.
 tutorial-softlock-use-highlighted-inventory = Сейчас используйте подсвеченный слот. Не кладите этот предмет в другое хранилище.

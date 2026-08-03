@@ -115,7 +115,7 @@ public sealed partial class TutorialStepPrototype : IPrototype, IInheritingProto
     /// <summary>
     ///     Effects applied while this step is active.
     /// </summary>
-    [DataField]
+    [DataField, AlwaysPushInheritance]
     public List<TutorialEffect> Effects = [];
 
     /// <summary>

@@ -154,6 +154,7 @@ public sealed class TutorialUIController : UIController,
         prompt.OnStartPressed -= OnPromptStartPressed;
         prompt.OnSkipPressed -= OnPromptSkipPressed;
         prompt.Orphan();
+        prompt.DisposeAllChildren();
         _prompt = null;
     }
 

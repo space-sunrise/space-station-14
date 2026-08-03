@@ -513,6 +513,12 @@
     text: medical-tut-finish-bubble
   chatMessage: medical-tut-finish-chat
   ttsMessage: medical-tut-finish-tts
+  effects:
+  - !type:TutorialComponentEffect
+    removeExisting: false
+    removeOnExit: false
+    components:
+    - type: Godmode
   conditions:
   - !type:StepDelayCondition
     delay: 11

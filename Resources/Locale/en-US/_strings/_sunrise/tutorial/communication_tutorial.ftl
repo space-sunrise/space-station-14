@@ -17,13 +17,13 @@ comm-tut-looc-bubble = Write a short question in LOOC. Start the message with _,
 comm-tut-looc-chat = LOOC is out-of-character chat near your character. Use it for short mechanics questions when asking IC would not work.
 comm-tut-looc-tts = LOOC is out-of-character chat near your character. Use it for short mechanics questions when asking IC would not work.
 
-comm-tut-radio-explain-bubble = Local chat is heard nearby. Radio is heard by people with the right channel in their headset.
-comm-tut-radio-explain-chat = If you need to ask for help from people outside the room, use the radio. The common channel is heard by almost the whole station.
-comm-tut-radio-explain-tts = If you need to ask for help from people outside the room, use the radio. The common channel is heard by almost the whole station.
+comm-tut-radio-explain-bubble = A frequency key at the start selects a radio channel: common uses “;”, while a department uses “:” and its letter.
+comm-tut-radio-explain-chat = Frequency keys route a message to a headset channel. A semicolon selects common; a colon followed by a letter selects a department.
+comm-tut-radio-explain-tts = Use the radio to reach people outside the room. Put a frequency key at the start of the message. A semicolon sends to common. A colon followed by the channel letter sends to your department.
 
 comm-tut-common-radio-bubble = Write in the common radio channel. Start the message with ; for example: ";Comms check".
 comm-tut-common-radio-chat = Now send a message in the common radio channel. This lets you quickly ask the whole station for help.
-comm-tut-common-radio-tts = Now send a message in the common radio channel. This lets you quickly ask the whole station for help.
+comm-tut-common-radio-tts = Start the message with a semicolon and send it to the common radio channel. Almost the whole station can hear it.
 
 comm-tut-open-inventory-bubble = Open the inventory with the button on the left panel or [tutkeybind="OpenInventoryMenu"].
 comm-tut-open-inventory-chat = The inventory shows equipped items. Right now we need the ears slot with your headset.
@@ -33,9 +33,13 @@ comm-tut-radio-ui-bubble = Examine the headset in your ears slot with [tutkeybin
 comm-tut-radio-ui-chat = Your headset decides which channels you can use. You have an engineering headset: besides common, it gives you engineering.
 comm-tut-radio-ui-tts = Your headset decides which channels you can use. You have an engineering headset: besides common, it gives you engineering.
 
+comm-tut-department-radio-explain-bubble = The engineering frequency key is :e. Put it at the very start, add a space, then write your message.
+comm-tut-department-radio-explain-chat = Use “:e” for engineering. The letter depends on the selected channel and your current keyboard layout.
+comm-tut-department-radio-explain-tts = The engineering frequency key is colon E. Put it at the very start of the message, add a space, and then write your request.
+
 comm-tut-department-radio-bubble = Write in the engineering channel. You can start the message with :e, for example: ":e Need help in maintenance".
 comm-tut-department-radio-chat = Departments often handle their tasks in departmental channels. This creates less noise for the whole station.
-comm-tut-department-radio-tts = Departments often handle their tasks in departmental channels. This creates less noise for the whole station.
+comm-tut-department-radio-tts = Start the message with colon E and send it to engineering. This keeps unnecessary traffic out of common.
 
 comm-tut-help-request-example-bubble = A good help request is short and clear: where you are, what happened, and what help you need.
 comm-tut-help-request-example-chat = Example: "Engineering, maint tunnel near brig, no power, need an engineer". Try to include the place, the problem, and the action needed.

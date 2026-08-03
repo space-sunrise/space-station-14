@@ -249,6 +249,10 @@
   - !type:TutorialRemoveComponentEffect
     components:
     - type: TutorialSimulatedAlert
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialPickupSoftLock
+      blockAll: true
   conditions:
   - !type:StepDelayCondition
     delay: 10
@@ -359,6 +363,10 @@
   - !type:TutorialRemoveComponentEffect
     components:
     - type: TutorialSimulatedAlert
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialPickupSoftLock
+      blockAll: true
   conditions:
   - !type:StepDelayCondition
     delay: 10
@@ -374,6 +382,10 @@
   - !type:TutorialRemoveComponentEffect
     components:
     - type: TutorialOpenUiSoftLock
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialPickupSoftLock
+      blockAll: true
   conditions:
   - !type:StepDelayCondition
     delay: 10

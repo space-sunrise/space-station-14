@@ -40,6 +40,13 @@ public sealed class TutorialSystem : SharedTutorialSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private static readonly ProtoId<ShaderPrototype> TutorialShader = "TutorialTargetOutline";
+    private static readonly Color TargetOutlineColor = Color.FromHex("#FFF15C");
+
+    private const float TargetOutlineMinAlpha = 0.65f;
+    private const float TargetOutlineMaxAlpha = 1f;
+    private const float TargetOutlineMinWidth = 1.5f;
+    private const float TargetOutlineMaxWidth = 4f;
+    private const float HighlightPulseSpeed = 3.5f;
 
     private ShaderInstance? _shaderInstance;
     private EntityUid? _highlightedTarget;
@@ -80,13 +87,30 @@ public sealed class TutorialSystem : SharedTutorialSystem
         SubscribeNetworkEvent<TutorialWindowDataResponseEvent>(OnWindowDataResponse);
         SubscribeNetworkEvent<TutorialStartDeniedEvent>(OnStartDenied);
 
-        _tutorialBubbleRoot = new LayoutContainer();
+        _tutorialBubbleRoot = new LayoutContainer
+        {
+            MouseFilter = Control.MouseFilterMode.Ignore,
+        };
         _bubbleUiQuery = GetEntityQuery<TutorialBubbleUiComponent>();
         _spriteQuery = GetEntityQuery<SpriteComponent>();
         _ui.OnScreenChanged += OnScreenChanged;
 
         _shaderInstance = _proto.Index(TutorialShader).InstanceUnique();
         _overlayManager.AddOverlay(new TutorialPathOverlay(EntityManager, _player, _timing, _transform, _proto));
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_highlightedTarget == null || _shaderInstance == null)
+            return;
+
+        var pulse = (MathF.Sin((float)_timing.RealTime.TotalSeconds * HighlightPulseSpeed) + 1f) * 0.5f;
+        var alpha = TargetOutlineMinAlpha + (TargetOutlineMaxAlpha - TargetOutlineMinAlpha) * pulse;
+        var width = TargetOutlineMinWidth + (TargetOutlineMaxWidth - TargetOutlineMinWidth) * pulse;
+        _shaderInstance.SetParameter("outline_color", TargetOutlineColor.WithAlpha(alpha));
+        _shaderInstance.SetParameter("outline_width", width);
     }
 
     private void OnFirstChanceKeyEvent(KeyEventArgs args, KeyEventType type)
@@ -249,14 +273,12 @@ public sealed class TutorialSystem : SharedTutorialSystem
         if (_ui.ActiveScreen is not InGameScreen)
             return;
 
-        var viewportContainer = _ui.ActiveScreen.FindControl<LayoutContainer>("ViewportContainer");
-
         if (_bubbleUiQuery.TryGetComponent(ent.Owner, out var uiComp) && uiComp.Bubble != null)
         {
             if (uiComp.LastInstruction == ent.Comp.Instruction)
             {
                 // Text unchanged — just ensure parenting is correct.
-                SetSpeechBubbleRoot(viewportContainer, uiComp.Bubble);
+                SetSpeechBubbleRoot(uiComp.Bubble);
                 return;
             }
 
@@ -270,17 +292,19 @@ public sealed class TutorialSystem : SharedTutorialSystem
             Loc.GetString(ent.Comp.Instruction),
             ent);
 
-        SetSpeechBubbleRoot(viewportContainer, bubble);
+        SetSpeechBubbleRoot(bubble);
 
         var bubbleUi = EnsureComp<TutorialBubbleUiComponent>(ent.Owner);
         bubbleUi.Bubble = bubble;
         bubbleUi.LastInstruction = ent.Comp.Instruction;
     }
 
-    private void SetSpeechBubbleRoot(LayoutContainer root, TutorialBubble bubble)
+    private void SetSpeechBubbleRoot(TutorialBubble bubble)
     {
         if (_tutorialBubbleRoot == null)
             return;
+
+        var root = _ui.PopupRoot;
 
         if (bubble.Parent != _tutorialBubbleRoot)
             _tutorialBubbleRoot.AddChild(bubble);
@@ -342,18 +366,21 @@ public sealed class TutorialSystem : SharedTutorialSystem
             return;
         }
 
-        var root = _ui.RootControl;
-        _uiHighlightOverlay ??= new TutorialUiHighlightOverlay(root, selectors, blockInput);
-        _uiHighlightOverlay.SetTarget(root, selectors, blockInput);
+        var resolverRoot = _ui.RootControl;
+        var overlayRoot = _ui.PopupRoot;
+        _uiHighlightOverlay ??= new TutorialUiHighlightOverlay(resolverRoot, selectors, blockInput);
+        _uiHighlightOverlay.SetTarget(resolverRoot, selectors, blockInput);
 
-        if (_uiHighlightOverlay.Parent != root)
+        if (_uiHighlightOverlay.Parent != overlayRoot)
         {
             _uiHighlightOverlay.Orphan();
-            root.AddChild(_uiHighlightOverlay);
+            overlayRoot.AddChild(_uiHighlightOverlay);
             LayoutContainer.SetAnchorPreset(_uiHighlightOverlay, LayoutContainer.LayoutPreset.Wide);
         }
 
         _uiHighlightOverlay.SetPositionLast();
+        if (_tutorialBubbleRoot?.Parent != null)
+            _tutorialBubbleRoot.SetPositionLast();
 
         if (!blockInput)
             return;
@@ -424,6 +451,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
         ClearUiHighlight();
         _ui.OnScreenChanged -= OnScreenChanged;
         _overlayManager.RemoveOverlay<TutorialPathOverlay>();
-
+        _shaderInstance?.Dispose();
+        _shaderInstance = null;
     }
 }

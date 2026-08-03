@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Content.Shared._Sunrise.Tutorial.Components;
 using Content.Shared._Sunrise.Tutorial.Prototypes;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -20,6 +21,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Item;
 using Content.Shared.UserInterface;
+using Content.Shared.Wieldable;
 
 namespace Content.Shared._Sunrise.Tutorial.EntitySystems.SoftLock;
 
@@ -33,9 +35,30 @@ public sealed partial class TutorialSoftLockSystem
         SubscribeLocalEvent<TutorialInteractSoftLockComponent, InteractionAttemptEvent>(OnHeldItemInteractionAttempt);
         SubscribeLocalEvent<TutorialAttackSoftLockComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<TutorialAttackSoftLockComponent, ShotAttemptedEvent>(OnShotAttempted);
+        SubscribeLocalEvent<TutorialBuckleSoftLockComponent, BuckleAttemptEvent>(OnBuckleAttempt);
+        SubscribeLocalEvent<TutorialWieldSoftLockComponent, WieldAttemptEvent>(OnWieldAttempt);
 
         SubscribeLocalEvent<TutorialSoftLockEntityComponent, ActivatableUIOpenAttemptEvent>(OnBuiOpen);
         SubscribeLocalEvent<TutorialOpenUiSoftLockComponent, TutorialShouldMarkEntityEvent>(OnOpenUiShouldMarkEntity);
+    }
+
+    private void OnBuckleAttempt(Entity<TutorialBuckleSoftLockComponent> ent, ref BuckleAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        args.Cancelled = true;
+        if (args.Popup)
+            ShowPopup(args.User ?? ent.Owner, ent.Comp.Popup);
+    }
+
+    private void OnWieldAttempt(Entity<TutorialWieldSoftLockComponent> ent, ref WieldAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        args.Cancel();
+        ShowPopup(ent, ent.Comp.Popup);
     }
 
     private void OnAttackAttempt(Entity<TutorialAttackSoftLockComponent> ent, ref AttackAttemptEvent args)

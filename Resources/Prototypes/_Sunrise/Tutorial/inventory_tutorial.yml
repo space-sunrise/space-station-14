@@ -53,8 +53,47 @@
   - TutorialMHelp
 
 - type: tutorialStep
-  id: InvTutOpenInventory
+  id: InventoryTutorialWardrobeStepBase
   parent: BaseTutorialStepBase
+  abstract: true
+  effects:
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialOpenUiSoftLock
+      targets:
+      - ClothingBackpack
+      - ClothingBeltUtility
+      - InventoryTutorialPDA
+      popup: inv-tut-softlock-storage-ui-not-yet
+
+- type: tutorialStep
+  id: InventoryTutorialBackpackStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  effects:
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialOpenUiSoftLock
+      targets:
+      - ClothingBeltUtility
+      - InventoryTutorialPDA
+      popup: inv-tut-softlock-storage-ui-not-yet
+
+- type: tutorialStep
+  id: InventoryTutorialToolbeltStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  effects:
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialOpenUiSoftLock
+      targets:
+      - InventoryTutorialPDA
+      popup: inv-tut-softlock-storage-ui-not-yet
+
+- type: tutorialStep
+  id: InvTutOpenInventory
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-open-inventory-bubble
   chatMessage: inv-tut-open-inventory-chat
@@ -311,7 +350,7 @@
 
 - type: tutorialStep
   id: InvTutOpenWardrobe
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: InventoryTutorialWardrobe
   bubble:
     text: inv-tut-open-wardrobe-bubble
@@ -337,7 +376,7 @@
 
 - type: tutorialStep
   id: InvTutTakeShoes
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingShoesColorBlack
   bubble:
     text: inv-tut-take-shoes-bubble
@@ -364,7 +403,7 @@
 
 - type: tutorialStep
   id: InvTutEquipShoes
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-shoes-bubble
   chatMessage: inv-tut-equip-shoes-chat
@@ -399,7 +438,7 @@
 
 - type: tutorialStep
   id: InvTutTakeGloves
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingHandsGlovesColorBlack
   bubble:
     text: inv-tut-take-gloves-bubble
@@ -426,7 +465,7 @@
 
 - type: tutorialStep
   id: InvTutEquipGloves
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-gloves-bubble
   chatMessage: inv-tut-equip-gloves-chat
@@ -461,7 +500,7 @@
 
 - type: tutorialStep
   id: InvTutTakeEyes
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingEyesGlassesGar
   bubble:
     text: inv-tut-take-eyes-bubble
@@ -488,7 +527,7 @@
 
 - type: tutorialStep
   id: InvTutEquipEyes
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-eyes-bubble
   chatMessage: inv-tut-equip-eyes-chat
@@ -523,7 +562,7 @@
 
 - type: tutorialStep
   id: InvTutTakeEars
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingHeadsetGrey
   bubble:
     text: inv-tut-take-ears-bubble
@@ -550,7 +589,7 @@
 
 - type: tutorialStep
   id: InvTutEquipEars
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-ears-bubble
   chatMessage: inv-tut-equip-ears-chat
@@ -585,7 +624,7 @@
 
 - type: tutorialStep
   id: InvTutTakeMask
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingMaskBreath
   bubble:
     text: inv-tut-take-mask-bubble
@@ -612,7 +651,7 @@
 
 - type: tutorialStep
   id: InvTutEquipMask
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-mask-bubble
   chatMessage: inv-tut-equip-mask-chat
@@ -647,7 +686,7 @@
 
 - type: tutorialStep
   id: InvTutTakeHead
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingHeadHatBeret
   bubble:
     text: inv-tut-take-head-bubble
@@ -674,7 +713,7 @@
 
 - type: tutorialStep
   id: InvTutEquipHead
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-head-bubble
   chatMessage: inv-tut-equip-head-chat
@@ -709,7 +748,7 @@
 
 - type: tutorialStep
   id: InvTutTakeNeck
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingNeckScarfStripedRed
   bubble:
     text: inv-tut-take-neck-bubble
@@ -736,7 +775,7 @@
 
 - type: tutorialStep
   id: InvTutEquipNeck
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-neck-bubble
   chatMessage: inv-tut-equip-neck-chat
@@ -771,7 +810,7 @@
 
 - type: tutorialStep
   id: InvTutTakeOuter
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingOuterWinterCoat
   bubble:
     text: inv-tut-take-outer-bubble
@@ -798,7 +837,7 @@
 
 - type: tutorialStep
   id: InvTutEquipOuter
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-outer-bubble
   chatMessage: inv-tut-equip-outer-chat
@@ -833,7 +872,7 @@
 
 - type: tutorialStep
   id: InvTutTakeBack
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingBackpack
   bubble:
     text: inv-tut-take-back-bubble
@@ -860,7 +899,7 @@
 
 - type: tutorialStep
   id: InvTutEquipBack
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-back-bubble
   chatMessage: inv-tut-equip-back-chat
@@ -897,7 +936,7 @@
 
 - type: tutorialStep
   id: InvTutTakeBelt
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: ClothingBeltUtility
   bubble:
     text: inv-tut-take-belt-bubble
@@ -925,7 +964,7 @@
 
 - type: tutorialStep
   id: InvTutEquipBelt
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-belt-bubble
   chatMessage: inv-tut-equip-belt-chat
@@ -962,7 +1001,7 @@
 
 - type: tutorialStep
   id: InvTutTakeId
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: InventoryTutorialPDA
   bubble:
     text: inv-tut-take-id-bubble
@@ -989,7 +1028,7 @@
 
 - type: tutorialStep
   id: InvTutEquipId
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-equip-id-bubble
   chatMessage: inv-tut-equip-id-chat
@@ -1026,7 +1065,7 @@
 
 - type: tutorialStep
   id: InvTutTakePaper
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: Paper
   bubble:
     text: inv-tut-take-paper-bubble
@@ -1054,7 +1093,7 @@
 
 - type: tutorialStep
   id: InvTutPutPaperPocket
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   bubble:
     text: inv-tut-put-paper-pocket-bubble
   chatMessage: inv-tut-put-paper-pocket-chat
@@ -1089,7 +1128,7 @@
 
 - type: tutorialStep
   id: InvTutTakeFlashlight
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialWardrobeStepBase
   target: FlashlightLantern
   bubble:
     text: inv-tut-take-flashlight-bubble
@@ -1117,7 +1156,7 @@
 
 - type: tutorialStep
   id: InvTutOpenBackpack
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialBackpackStepBase
   bubble:
     text: inv-tut-open-backpack-bubble
   chatMessage: inv-tut-open-backpack-chat
@@ -1153,7 +1192,7 @@
 
 - type: tutorialStep
   id: InvTutPutFlashlightBackpack
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialBackpackStepBase
   bubble:
     text: inv-tut-put-flashlight-backpack-bubble
   chatMessage: inv-tut-put-flashlight-backpack-chat
@@ -1191,7 +1230,7 @@
 
 - type: tutorialStep
   id: InvTutTakeFlashlightBack
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialBackpackStepBase
   target: FlashlightLantern
   bubble:
     text: inv-tut-take-flashlight-back-bubble
@@ -1221,7 +1260,7 @@
 
 - type: tutorialStep
   id: InvTutTakeScrewdriver
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialBackpackStepBase
   target: Screwdriver
   bubble:
     text: inv-tut-pick-up-tool-bubble
@@ -1246,7 +1285,7 @@
 
 - type: tutorialStep
   id: InvTutOpenToolbelt
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialToolbeltStepBase
   bubble:
     text: inv-tut-open-toolbelt-bubble
   chatMessage: inv-tut-open-toolbelt-chat
@@ -1282,7 +1321,7 @@
 
 - type: tutorialStep
   id: InvTutPutScrewdriverToolbelt
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialToolbeltStepBase
   bubble:
     text: inv-tut-put-screwdriver-toolbelt-bubble
   chatMessage: inv-tut-put-screwdriver-toolbelt-chat
@@ -1320,7 +1359,7 @@
 
 - type: tutorialStep
   id: InvTutTakeScrewdriverBack
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialToolbeltStepBase
   target: Screwdriver
   bubble:
     text: inv-tut-take-screwdriver-back-bubble
@@ -1350,7 +1389,7 @@
 
 - type: tutorialStep
   id: InvTutFinalState
-  parent: BaseTutorialStepBase
+  parent: InventoryTutorialToolbeltStepBase
   bubble:
     text: inv-tut-final-state-bubble
   chatMessage: inv-tut-final-state-chat
@@ -1397,6 +1436,7 @@
   parent: BaseTutorialPlayer
   id: InventoryTutorialPlayer
   components:
+  - type: TutorialBuckleSoftLock
   - type: Inventory
     templateId: nonUnderwear
   - type: Loadout

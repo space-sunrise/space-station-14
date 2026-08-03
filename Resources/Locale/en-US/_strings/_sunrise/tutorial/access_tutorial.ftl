@@ -1,5 +1,6 @@
 access-tutorial-name = Access, doors, and navigation
 access-tutorial-tooltip = Learn how your ID card affects doors and how to find an alternate route.
+access-tut-softlock-keep-id-card = Keep your ID card: it is required throughout this training.
 
 access-tut-welcome-bubble = Learn how ID access, detours, bolts, and signal controls affect airlocks.
 access-tut-welcome-chat = This tutorial shows why some airlocks open, why others deny access, and how to find a safe route when the direct path is blocked.

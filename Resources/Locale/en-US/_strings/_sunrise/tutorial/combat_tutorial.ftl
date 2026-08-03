@@ -2,7 +2,7 @@ combat-tutorial-name = Combat and self-defense
 combat-tutorial-tooltip = Learn to use combat mode safely, distinguish attack types, and handle training weapons.
 
 combat-tut-welcome-bubble = This tutorial covers combat mode and safe weapon handling.
-combat-tut-welcome-chat = You will try an unarmed strike, disarming, precise and wide attacks with a training weapon, and a safe practice pistol. The tutorial will also show when to disable combat mode and why attacking people without a reason is unacceptable.
+combat-tut-welcome-chat = You will try an unarmed strike, disarming, precise and wide attacks with a training weapon, a safe practice pistol, and a laser carbine. The tutorial also covers two-handed accuracy, ammunition types, and when to disable combat mode.
 combat-tut-welcome-tts = Welcome! This tutorial will teach you combat mode, several kinds of attacks, and how to avoid endangering others with accidental strikes.
 
 combat-tut-action-bar-bubble = This is the action bar. It contains your character's abilities and toggles.
@@ -61,6 +61,26 @@ combat-tut-return-pistol-bubble = Put down the practice pistol [tutkeybind="Drop
 combat-tut-return-pistol-chat = Do not keep a weapon in your hands without a reason. Put the practice pistol down nearby after the exercise.
 combat-tut-return-pistol-tts = Put down the practice pistol after the exercise.
 
+combat-tut-take-carbine-bubble = Pick up the highlighted practice laser carbine [tutkeybind="UIClick"].
+combat-tut-take-carbine-chat = You will now try a long gun. Unlike a pistol, the carbine becomes noticeably less accurate when fired with one hand.
+combat-tut-take-carbine-tts = Pick up the highlighted practice laser carbine. You will compare its accuracy when held with one hand and with both hands.
+
+combat-tut-shoot-carbine-unwielded-bubble = Without wielding the carbine, fire three shots at the distant target [tutkeybind="UIClick"].
+combat-tut-shoot-carbine-unwielded-chat = The carbine has a wide spread when held with one hand. Watch how far its beams diverge: this causes frequent misses at long range.
+combat-tut-shoot-carbine-unwielded-tts = Fire three shots at the distant target while holding the carbine with one hand. Notice the wide beam spread.
+
+combat-tut-wield-carbine-bubble = Wield the carbine with both hands using [tutkeybind="ActivateItemInHand"].
+combat-tut-wield-carbine-chat = Long guns are usually more accurate when wielded with both hands. This requires a free second hand; using the item again returns it to a one-handed grip.
+combat-tut-wield-carbine-tts = Use the item-in-hand key to wield the carbine with both hands. Your second hand must be free.
+
+combat-tut-shoot-carbine-wielded-bubble = Fire another three shots at the distant target [tutkeybind="UIClick"].
+combat-tut-shoot-carbine-wielded-chat = Compare the new spread with your previous shots. Wielding greatly improves the accuracy of long guns, though the exact effect depends on the weapon.
+combat-tut-shoot-carbine-wielded-tts = Fire three more shots at the distant target and compare the spread. The carbine is much more accurate when wielded.
+
+combat-tut-charge-carbine-bubble = Insert the carbine into the highlighted recharger [tutkeybind="UIClick"].
+combat-tut-charge-carbine-chat = The previous practice pistol recharged itself only for this exercise. Normally, ballistic weapons require suitable cartridges and magazines, while energy weapons consume an internal battery and recharge in dedicated stations. Check the power source and remaining ammunition before use.
+combat-tut-charge-carbine-tts = Insert the carbine into the recharger. The practice pistol was an exception: ballistic weapons need ammunition and magazines, while energy weapons need battery power and a dedicated station.
+
 combat-tut-force-escalation-bubble = Use only the force that is necessary.
 combat-tut-force-escalation-chat = Permitted weapons and force depend on your role, the situation, and the server rules. Start with the least dangerous way to stop a threat when circumstances allow it. Retreat and call security when that is safer. Stop attacking as soon as the immediate threat has ended.
 combat-tut-force-escalation-tts = Weapons and permitted force depend on your role, situation, and rules. Use the least dangerous sufficient response, retreat, and call security when possible. Stop attacking when the threat has ended.
@@ -78,6 +98,10 @@ combat-tut-softlock-shoot-target = Fire only the practice pistol at the target.
 combat-tut-softlock-keep-weapon = Do not drop or store the weapon; it is needed for the current exercise.
 combat-tut-softlock-keep-melee = Strike the training target with the training blade first.
 combat-tut-softlock-keep-pistol = Finish the practice pistol exercise first.
+combat-tut-softlock-keep-carbine = Do not drop or store the carbine; it is needed for the current exercise.
+combat-tut-softlock-shoot-one-handed = Fire three shots while holding the carbine with one hand first.
+combat-tut-softlock-shoot-carbine = Fire only the practice laser carbine right now.
+combat-tut-softlock-charge-carbine = Insert the carbine into the highlighted recharger.
 combat-tut-softlock-return-weapon = Put down the training weapon.
 
 ent-CombatTutorialWeaponDisablerPractice = self-charging practice disabler

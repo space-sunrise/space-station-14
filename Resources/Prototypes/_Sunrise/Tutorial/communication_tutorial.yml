@@ -24,25 +24,27 @@
   - CommTutOpenInventory
   # 8. Examine headset
   - CommTutRadioUi
-  # 9. Department radio
+  # 9. Engineering frequency key
+  - CommTutDepartmentRadioExplain
+  # 10. Department radio
   - CommTutDepartmentRadio
-  # 10. Help request example
+  # 11. Help request example
   - CommTutHelpRequestExample
-  # 11. Open PDA messenger
+  # 12. Open PDA messenger
   - CommTutOpenMessenger
-  # 12. Messenger chats list
+  # 13. Messenger chats list
   - CommTutMessengerChats
-  # 13. Messenger message area
+  # 14. Messenger message area
   - CommTutMessengerMessages
-  # 14. Open group chats tab
+  # 15. Open group chats tab
   - CommTutMessengerGroupTab
-  # 15. Select common messenger chat
+  # 16. Select common messenger chat
   - CommTutMessengerCommonChat
-  # 16. Send messenger message
+  # 17. Send messenger message
   - CommTutSendMessenger
-  # 17. IC, LOOC and AHelp
+  # 18. IC, LOOC and AHelp
   - CommTutAskHelp
-  # 18. Mentor help
+  # 19. Mentor help
   - TutorialMHelp
 
 - type: tutorialStep
@@ -133,7 +135,7 @@
     name: ChannelSelector
   conditions:
   - !type:StepDelayCondition
-    delay: 6
+    delay: 19
 
 - type: tutorialStep
   id: CommTutCommonRadio
@@ -190,6 +192,24 @@
   conditions:
   - !type:ExamineListenedCondition
     target: CommunicationTutorialHeadset
+
+- type: tutorialStep
+  id: CommTutDepartmentRadioExplain
+  parent: BaseTutorialStepBase
+  bubble:
+    text: comm-tut-department-radio-explain-bubble
+  chatMessage: comm-tut-department-radio-explain-chat
+  ttsMessage: comm-tut-department-radio-explain-tts
+  uiHighlight:
+  - !type:UiByName
+    name: Chat
+  - !type:UiByName
+    name: ChatInput
+  - !type:UiByName
+    name: Input
+  conditions:
+  - !type:StepDelayCondition
+    delay: 15
 
 - type: tutorialStep
   id: CommTutDepartmentRadio
