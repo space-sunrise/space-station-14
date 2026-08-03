@@ -20,10 +20,10 @@
   - type: Tag
     tags:
     - Wall
-  # Sunrise edit - Добавлена физика для взаимодействия снарядов с барьером.
+  # Sunrise edit - Включена физическая коллизия для проверки блокировки снарядов.
   - type: Physics
     bodyType: Dynamic
-    canCollide: false
+    canCollide: true
   - type: Airtight
   - type: Fixtures
     fixtures:
@@ -34,7 +34,7 @@
         density: 75
         mask:
         - MachineMask
-      # Sunrise edit - Изменена форма коллизии барьера для более точного блокирования снарядов.
+      # Sunrise edit - Изменена коллизия барьера для более точного взаимодействия со снарядами.
       barrier:
         shape:
           !type:PhysShapeAabb
@@ -46,7 +46,7 @@
         - SpecialWallLayer
   - type: DeployableBarrier
     fixture: barrier
-  # Sunrise edit - Настройка взаимодействия барьера с системой пробития снарядов.
+  # Sunrise edit - Добавлен Pierceable для корректного взаимодействия DeployableBarrier с системой пробития снарядов.
   - type: Pierceable
     level: Rock
   - type: AccessReader
@@ -56,7 +56,7 @@
     lockOnClick: true
     lockTime: 5
     unlockTime: 5
-  # Sunrise edit - Добавлена возможность получать урон от атак.
+  # Sunrise edit - Барьер получает урон от атак.
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
