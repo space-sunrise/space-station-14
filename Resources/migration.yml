@@ -1106,15 +1106,24 @@ WeaponShotgunSPAS12Rubber: WeaponShotgunCombat
 GunSafeShotgunSPAS12: GunSafeShotgunCombat
 # 2026-08-02
 WeaponDominator: WeaponMiniEnergyGun
-WeaponEnergyGunPistolSecurity: null
+WeaponEnergyGunPistolSecurity: WeaponEnergyGunPistol
 WeaponEnergyGunTactical: null
 WeaponEnergyGun: null
 WeaponEnergyGunPulseRevolver: null
 WeaponPDW9: WeaponEnergyGunPistol
+WeaponPistolStechkin: SunriseWeaponPistolAPS
+WeaponAMS-42: WeaponRifleLecterMk3
+ClothingBackpackDuffelWeaponAMS42Filled: ClothingBackpackDuffelWeaponLecterMk3Filled
 WeaponSubMachineGunMP7: WeaponSubMachineGunMP5
 ClothingBackpackDuffelWeaponSubMachineGunMP7Filled: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
 GunSafeEnergyGunPistolSecurity: null
 GunSafeEnergyGun: null
 GunSafeEnergyGunSMG: null
 GunSafeSubMachineGunMP7: GunSafeSubMachineGunMP5
+# 2026-08-03
+WeaponRifleFamas: WeaponRifleLecter
+WeaponRifleG36: WeaponRifleLeikha
+ClothingBackpackDuffelWeaponRifleG36Filled: ClothingBackpackDuffelWeaponRifleLeikhaFilled
+GunSafeRifleFamas: null
+GunSafeWeaponRifleG36: null
 # region Sunrise-End

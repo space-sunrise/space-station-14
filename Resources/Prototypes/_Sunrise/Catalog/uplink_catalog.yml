@@ -1768,7 +1768,7 @@
   description: uplink-stechkin-bundle-desc
   icon:
     {
-      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi,
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/aps.rsi,
       state: icon,
     }
   productEntity: BigBoxSyndicateBundle
@@ -3484,19 +3484,6 @@
     Telecrystal: 10
   cost:
     Telecrystal: 12
-  categories:
-  - UplinkWeaponry
-
-- type: listing
-  id: UplinkWeaponStechkinAPS
-  name: uplink-stechkin-aps-name
-  description: uplink-stechkin-aps-desc
-  productEntity: SunriseWeaponPistolAPS
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 4
   categories:
   - UplinkWeaponry
 

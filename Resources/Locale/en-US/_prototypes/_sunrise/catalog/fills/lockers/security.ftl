@@ -62,14 +62,6 @@ ent-GunSafeRifleLecterMk2 = safe lecter Mk2
     .suffix = Lecter Mk2
     .desc = { ent-GunSafeBaseSecure.desc }
 
-ent-GunSafeRifleFamas = safe
-    .suffix = Famas
-    .desc = { ent-GunSafeBaseSecure.desc }
-
-ent-GunSafeWeaponRifleG36 = safe
-    .suffix = G-36
-    .desc = { ent-GunSafeBaseSecure.desc }
-
 ent-GunSafeShotgunTrenchgun4034 = safe
     .suffix = Trenchgun 4034
     .desc = { ent-GunSafe.desc }

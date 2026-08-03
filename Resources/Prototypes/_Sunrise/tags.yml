@@ -376,6 +376,9 @@
   id: UpgradeLecter
 
 - type: Tag
+  id: UpgradeLecterMk3
+
+- type: Tag
   id: UpgradeWebVest
 
 - type: Tag

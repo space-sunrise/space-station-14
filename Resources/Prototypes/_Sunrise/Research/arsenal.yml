@@ -196,9 +196,6 @@
 #- type: technology
 #  id: ExtendedAmunitions
 #  name: research-technology-extended-amunitions
-#  icon:
-#    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/famas.rsi
-#    state: base
 #  discipline: Arsenal
 #  tier: 2
 #  cost: 12500
@@ -247,6 +244,7 @@
   recipeUnlocks:
   - VestSecUpgradeBulletHeavy
   - VestSecUpgradeWeb
+  - LecterMk3Upgrade
   technologyPrerequisites:
   - CombatEquipment
   radioChannels:

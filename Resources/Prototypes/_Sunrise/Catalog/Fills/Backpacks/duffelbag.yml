@@ -199,30 +199,30 @@
         - id: MagazineP90FMJ
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponAMS42Filled
+  id: ClothingBackpackDuffelWeaponLecterMk3Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle ams42
-  description: AMS-42 with 4 raspy magazines.
+  name: Bundle Lecter Mk3
+  description: Lecter Mk3 with 4 raspy magazines.
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponAMS-42
+        - id: WeaponRifleLecterMk3
         - id: MagazineRifleSP
           amount: 4
 
 - type: entity
-  id: ClothingBackpackDuffelWeaponRifleG36Filled
+  id: ClothingBackpackDuffelWeaponRifleLeikhaFilled
   parent: ClothingBackpackDuffelMilitary
-  name: Bundle G36
-  description: G36 with 4 raspy magazines.
+  name: Bundle Leikha
+  description: Leikha with 4 raspy magazines.
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponRifleG36
+        - id: WeaponRifleLeikha
         - id: MagazineRifleSP
           amount: 4
 

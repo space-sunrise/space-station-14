@@ -55,10 +55,10 @@
       - ERTEpsilon
 
 - type: listing
-  id: ERTUplinkWeaponRifleG36Filled
-  name: ntuplink-gun-bundleg36-name
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: g36 }
-  productEntity: ClothingBackpackDuffelWeaponRifleG36Filled
+  id: ERTUplinkWeaponRifleLeikhaFilled
+  name: ntuplink-gun-bundle-leikha-name
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16a4.rsi, state: base }
+  productEntity: ClothingBackpackDuffelWeaponRifleLeikhaFilled
   cost:
     Bluecrystal: 13
   categories:
@@ -104,10 +104,10 @@
       - CBURN
 
 - type: listing
-  id: ERTUplinkWeaponAMS42Filled
-  name: ntuplink-gun-bundleams42-name
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
-  productEntity: ClothingBackpackDuffelWeaponAMS42Filled
+  id: ERTUplinkWeaponLecterMk3Filled
+  name: ntuplink-gun-bundle-lecter-mk3-name
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter_mk3 }
+  productEntity: ClothingBackpackDuffelWeaponLecterMk3Filled
   cost:
     Bluecrystal: 15
   categories:

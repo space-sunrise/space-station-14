@@ -34,8 +34,6 @@
 
     WeaponRifleAk: 3
     WeaponRifleAK514: 3
-    WeaponRifleFamas: 3
-    WeaponRifleG36: 3
     WeaponRifleSKM28: 3
     WeaponRifleSKM24: 3
     WeaponRifleLecterMk2: 3
@@ -82,7 +80,7 @@
     WeaponSubMachineGunMP5: 3
     WeaponSubMachineGunSkorpion: 3
     WeaponSubMachineGunNewVector: 3
-    WeaponAMS-42: 3
+    WeaponRifleLecterMk3: 3
     WeaponAJ100: 3
     WeaponSIAR52: 3
     WeaponSubMachineGunSP91RC: 3
@@ -200,7 +198,7 @@
     WeaponPistolDeagleGolden: 3
     WeaponPistolGoldenMk58: 3
     WeaponPistolM1911: 3
-    WeaponPistolStechkin: 3
+    SunriseWeaponPistolAPS: 3
     WeaponProjectileMoltenAmputator: 3
     WeaponProtoKineticHeavy: 3
     WeaponProtoKineticRepeater: 3

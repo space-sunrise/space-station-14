@@ -295,30 +295,30 @@
             - CartridgePistol
 
 - type: entity
-  name: MS-42
+  name: Lecter Mk3
   parent: BaseWeaponSubMachineGun
-  id: WeaponAMS-42
+  id: WeaponRifleLecterMk3
   description: A more advanced version of Lecter.
   components:
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,3,2
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/lecter_mk3.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ms_42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/lecter_mk3.rsi
   - type: Gun
     minAngle: 10
     maxAngle: 35
-    angleIncrease: 3.2
+    angleIncrease: 2
     angleDecay: 16
-    fireRate: 6
+    fireRate: 5.5
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
@@ -326,8 +326,8 @@
     - FullAuto
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -7.2
-    maxAngle: -23
+    minAngle: -8
+    maxAngle: -22
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -351,6 +351,34 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+  - type: Construction
+    graph: LecterSecurity
+    node: upgradelectermk3
+
+- type: entity
+  name: Lecter Mk3
+  parent: WeaponRifleLecterMk3
+  id: WeaponRifleLecterMk3Empty
+  categories: [HideSpawnMenu]
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle
 
 - type: entity
   name: AJ-100

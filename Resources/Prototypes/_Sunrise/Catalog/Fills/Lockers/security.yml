@@ -347,34 +347,13 @@
         children:
         - id: WeaponRifleLecterMk2
           amount: 2
-        - id: WeaponRifleG36
+        - id: WeaponRifleLeikha
         - id: MagazineRifleSP
           amount: 4
         - id: MagazineRifleHP
           amount: 2
         - id: MagazineRifleFMJ
           amount: 2
-
-- type: entity
-  parent: GunSafeBaseSecure
-  id: GunSafeRifleFamas
-  name: safe
-  suffix: Famas
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: WeaponRifleFamas
-          amount: 2
-        - id: WeaponRifleG36
-        - id: MagazineRifleSP
-          amount: 4
-        - id: MagazineRifleHP
-          amount: 2
-        - id: MagazineRifleFMJ
-          amount: 2
-
 
 - type: entity
   parent: GunSafeBaseSecureSunrise
@@ -759,10 +738,6 @@
       - id: GunSafeRifleLecterMk2
       - id: GunSafeRifleM16A4
       - id: GunSafeSuperDMR
-    - !type:GroupSelector
-      weight: 5
-      children:
-      - id: GunSafeRifleFamas
     - id: SpawnerSafeLethal
       weight: 15
 
@@ -917,7 +892,6 @@
       - id: GunSafeRifleSKM24
       - id: GunSafeRifleLecterMk2
       - id: GunSafeRifleM16A4
-      - id: GunSafeRifleFamas
       - id: GunSafeSuperDMR
     - !type:GroupSelector
       weight: 10

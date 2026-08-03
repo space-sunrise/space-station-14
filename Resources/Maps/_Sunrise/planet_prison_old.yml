@@ -48395,9 +48395,9 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: ERTUplinkWeaponRifleG36Filled
-        productEntity: ClothingBackpackDuffelWeaponRifleG36Filled
-        name: ntuplink-gun-bundleg36-name
+      - id: ERTUplinkWeaponRifleLeikhaFilled
+        productEntity: ClothingBackpackDuffelWeaponRifleLeikhaFilled
+        name: ntuplink-gun-bundle-leikha-name
         discountCategory: null
         description: null
         categories:
@@ -48419,8 +48419,8 @@ entities:
             sizes: null
             components: null
         icon:
-          sprite: _Sunrise/Interface/Misc/nt_icons.rsi
-          state: g36
+          sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16a4.rsi
+          state: base
         priority: 0
         productAction: null
         applyToMob: False
