@@ -7,7 +7,7 @@ using Robust.Shared.Network;
 
 namespace Content.Server.Database
 {
-    public sealed class ServerBanDef
+    public sealed partial class ServerBanDef // Sunrise-Edit
     {
         public int? Id { get; }
         public NetUserId? UserId { get; }
@@ -82,13 +82,7 @@ namespace Content.Server.Database
                     : loc.GetString("ban-banned-permanent");
             }
 
-            return $"""
-                {loc.GetString("ban-banned-1")}
-                {loc.GetString("ban-banned-2", ("id", Id.ToString() ?? ""))}
-                {loc.GetString("ban-banned-3", ("reason", Reason))}
-                {expires}
-                {loc.GetString("ban-banned-4")}
-                """;
+            return FormatSunriseBanMessage(loc, expires); // Sunrise-Edit - показываем идентификатор бана
         }
     }
 }

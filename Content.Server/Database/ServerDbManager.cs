@@ -5,9 +5,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
-using Content.Shared._Sunrise.MentorHelp;
-using Content.Shared._Sunrise.Tutorial.Prototypes;
-using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -132,10 +129,6 @@ namespace Content.Server.Database
         /// <returns><see cref="ServerBanExemptFlags.None"/> if the user is not exempt from any bans.</returns>
         Task<ServerBanExemptFlags> GetBanExemption(NetUserId userId, CancellationToken cancel = default);
 
-        // Sunrise-Start
-        Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since);
-        Task DeleteServerBanAsync(int banId);
-        // Sunrise-End
         #endregion
 
         #region Role Bans
@@ -203,7 +196,6 @@ namespace Content.Server.Database
             ImmutableTypedHwid? hwId);
         Task<PlayerRecord?> GetPlayerRecordByUserName(string userName, CancellationToken cancel = default);
         Task<PlayerRecord?> GetPlayerRecordByUserId(NetUserId userId, CancellationToken cancel = default);
-        Task<Dictionary<Guid, string>> GetPlayerNamesBatchAsync(IEnumerable<Guid> userIds, CancellationToken cancel = default);
         #endregion
 
         #region Connection Logs
@@ -375,45 +367,6 @@ namespace Content.Server.Database
         Task SendNotification(DatabaseNotification notification);
 
         #endregion
-
-        // Sunrise-Start
-        #region Ahelp
-
-        Task AddAHelpMessage(Guid senderSessionUserId, Guid messageUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly);
-
-        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverAsync(Guid receiverUserId);
-
-        #endregion
-
-        #region MentorHelp
-
-        Task<List<MentorHelpStatistics>> GetMentorHelpStatisticsAsync(DateTimeOffset? from);
-        Task AddMentorHelpTicketAsync(MentorHelpTicket ticket);
-        Task<MentorHelpTicket?> GetMentorHelpTicketAsync(int ticketId);
-        Task UpdateMentorHelpTicketAsync(MentorHelpTicket ticket);
-        Task<List<MentorHelpTicket>> GetMentorHelpTicketsByPlayerAsync(Guid playerId);
-        Task<List<MentorHelpTicket>> GetOpenMentorHelpTicketsAsync();
-        Task<List<MentorHelpTicket>> GetAssignedMentorHelpTicketsAsync(Guid mentorId);
-        Task AddMentorHelpMessageAsync(MentorHelpMessage message);
-        Task<List<MentorHelpMessage>> GetMentorHelpMessagesByTicketAsync(int ticketId);
-        Task<List<MentorHelpTicket>> GetClosedMentorHelpTicketsAsync();
-
-        #endregion
-
-
-        #region Tutorial
-        Task AddTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial, TimeSpan? accountAge = null);
-
-        Task<List<string>> GetTutorial(Guid player, CancellationToken cancel = default);
-        Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
-
-        Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
-        Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default);
-        Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default);
-
-        #endregion
-
-        // Sunrise-End
     }
 
     /// <summary>
@@ -626,20 +579,6 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetBanExemption(userId, cancel));
         }
 
-        // Sunrise-Start
-        public Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerBansByAdminAsync(adminId, since));
-        }
-
-        public Task DeleteServerBanAsync(int banId)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.DeleteServerBanAsync(banId));
-        }
-        // Sunrise-End
-
         #region Role Ban
         public Task<ServerRoleBanDef?> GetServerRoleBanAsync(int id)
         {
@@ -713,12 +652,6 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetPlayerRecordByUserId(userId, cancel));
-        }
-
-        public Task<Dictionary<Guid, string>> GetPlayerNamesBatchAsync(IEnumerable<Guid> userIds, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetPlayerNamesBatchAsync(userIds, cancel));
         }
 
         public Task<int> AddConnectionLogAsync(
@@ -1124,110 +1057,7 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
-        // Sunrise-start
-        public Task AddAHelpMessage(Guid senderUserId, Guid receiverUserId, string message, DateTimeOffset sentAt, bool playSound, bool adminOnly)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddAHelpMessage(senderUserId, receiverUserId, message, sentAt, playSound, adminOnly));
-        }
 
-        public Task<List<AHelpMessage>> GetAHelpMessagesByReceiverAsync(Guid receiverUserId)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetAHelpMessagesByReceiverAsync(receiverUserId));
-        }
-
-        // MentorHelp implementations
-        public Task AddMentorHelpTicketAsync(MentorHelpTicket ticket)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddMentorHelpTicketAsync(ticket));
-        }
-
-        public Task<List<MentorHelpStatistics>> GetMentorHelpStatisticsAsync(DateTimeOffset? from)
-        {
-            return RunDbCommand(() => _db.GetMentorHelpStatisticsAsync(from));
-        }
-
-        public Task<MentorHelpTicket?> GetMentorHelpTicketAsync(int ticketId)
-        {
-            return RunDbCommand(() => _db.GetMentorHelpTicketAsync(ticketId));
-        }
-
-        public Task UpdateMentorHelpTicketAsync(MentorHelpTicket ticket)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.UpdateMentorHelpTicketAsync(ticket));
-        }
-
-        public Task<List<MentorHelpTicket>> GetMentorHelpTicketsByPlayerAsync(Guid playerId)
-        {
-            return RunDbCommand(() => _db.GetMentorHelpTicketsByPlayerAsync(playerId));
-        }
-
-        public Task<List<MentorHelpTicket>> GetOpenMentorHelpTicketsAsync()
-        {
-            return RunDbCommand(() => _db.GetOpenMentorHelpTicketsAsync());
-        }
-
-        public Task<List<MentorHelpTicket>> GetAssignedMentorHelpTicketsAsync(Guid mentorId)
-        {
-            return RunDbCommand(() => _db.GetAssignedMentorHelpTicketsAsync(mentorId));
-        }
-
-        public Task AddMentorHelpMessageAsync(MentorHelpMessage message)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddMentorHelpMessageAsync(message));
-        }
-
-        public Task<List<MentorHelpMessage>> GetMentorHelpMessagesByTicketAsync(int ticketId)
-        {
-            return RunDbCommand(() => _db.GetMentorHelpMessagesByTicketAsync(ticketId));
-        }
-
-        public Task<List<MentorHelpTicket>> GetClosedMentorHelpTicketsAsync()
-        {
-            return RunDbCommand(() => _db.GetClosedMentorHelpTicketsAsync());
-        }
-
-        public Task AddTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial, TimeSpan? accountAge = null)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddTutorial(player, tutorial, accountAge));
-        }
-
-        public Task<List<string>> GetTutorial(Guid player, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetTutorial(player, cancel));
-        }
-
-        public Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.IsTutorialCompleted(player, tutorial));
-        }
-
-        public Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.RemoveTutorial(player, tutorial));
-        }
-
-        public Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetTutorialCompletionMetricsAsync(cancel));
-        }
-
-        public Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.PruneInvalidTutorialCompletionsAsync(validTutorialIds, cancel));
-        }
-
-        // Sunrise-end
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
         {
             lock (_notificationHandlers)

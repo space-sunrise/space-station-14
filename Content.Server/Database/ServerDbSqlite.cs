@@ -23,7 +23,7 @@ namespace Content.Server.Database
     ///     Provides methods to retrieve and update character preferences.
     ///     Don't use this directly, go through <see cref="ServerPreferencesManager" /> instead.
     /// </summary>
-    public sealed class ServerDbSqlite : ServerDbBase
+    public sealed partial class ServerDbSqlite : ServerDbBase // Sunrise-Edit
     {
         private readonly Func<DbContextOptions<SqliteServerDbContext>> _options;
 
@@ -104,38 +104,6 @@ namespace Content.Server.Database
 
             return (await GetServerBanQueryAsync(db, address, userId, hwId, modernHWIds, includeUnbanned)).ToList();
         }
-
-        // Sunrise-Start
-        public override async Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since)
-        {
-            await using var db = await GetDbImpl();
-            var bans = await db.SqliteDbContext.Ban
-                .Include(b => b.Unban)
-                .Where(b => b.BanningAdmin == adminId.UserId && b.BanTime >= since.UtcDateTime)
-                .ToListAsync();
-            var result = new List<ServerBanDef>();
-            foreach (var ban in bans)
-            {
-                var banDef = ConvertBan(ban);
-                if (banDef != null)
-                    result.Add(banDef);
-            }
-            return result;
-        }
-
-        public override async Task DeleteServerBanAsync(int banId)
-        {
-            await using var db = await GetDbImpl();
-            var unbans = db.SqliteDbContext.Unban.Where(u => u.BanId == banId);
-            db.SqliteDbContext.Unban.RemoveRange(unbans);
-            var ban = await db.SqliteDbContext.Ban.SingleOrDefaultAsync(b => b.Id == banId);
-            if (ban != null)
-            {
-                db.SqliteDbContext.Ban.Remove(ban);
-                await db.SqliteDbContext.SaveChangesAsync();
-            }
-        }
-        // Sunrise-End
 
         private async Task<IEnumerable<ServerBanDef>> GetServerBanQueryAsync(
             DbGuardImpl db,

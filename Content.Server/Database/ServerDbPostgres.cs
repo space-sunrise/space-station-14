@@ -81,12 +81,7 @@ namespace Content.Server.Database
             ImmutableArray<byte>? hwId,
             ImmutableArray<ImmutableArray<byte>>? modernHWIds)
         {
-            // Sunrise edit start - поиск по modern HWID может быть единственным ключом бана.
-            if (!HasBanLookupKey(address, userId, hwId, modernHWIds))
-            {
-                throw new ArgumentException("Address, userId, hwId, and modernHWIds cannot all be empty");
-            }
-            // Sunrise edit end
+            EnsureSunriseBanLookupKey(address, userId, hwId, modernHWIds); // Sunrise-Edit - modern HWID может быть единственным ключом
 
             await using var db = await GetDbImpl();
 
@@ -106,12 +101,7 @@ namespace Content.Server.Database
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
             bool includeUnbanned)
         {
-            // Sunrise edit start - поиск по modern HWID может быть единственным ключом бана.
-            if (!HasBanLookupKey(address, userId, hwId, modernHWIds))
-            {
-                throw new ArgumentException("Address, userId, hwId, and modernHWIds cannot all be empty");
-            }
-            // Sunrise edit end
+            EnsureSunriseBanLookupKey(address, userId, hwId, modernHWIds); // Sunrise-Edit - modern HWID может быть единственным ключом
 
             await using var db = await GetDbImpl();
 
@@ -134,38 +124,6 @@ namespace Content.Server.Database
 
             return bans;
         }
-
-        // Sunrise-Start
-        public override async Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since)
-        {
-            await using var db = await GetDbImpl();
-            var bans = await db.PgDbContext.Ban
-                .Include(b => b.Unban)
-                .Where(b => b.BanningAdmin == adminId.UserId && b.BanTime >= since.UtcDateTime)
-                .ToListAsync();
-            var result = new List<ServerBanDef>();
-            foreach (var ban in bans)
-            {
-                var banDef = ConvertBan(ban);
-                if (banDef != null)
-                    result.Add(banDef);
-            }
-            return result;
-        }
-
-        public override async Task DeleteServerBanAsync(int banId)
-        {
-            await using var db = await GetDbImpl();
-            var unbans = db.PgDbContext.Unban.Where(u => u.BanId == banId);
-            db.PgDbContext.Unban.RemoveRange(unbans);
-            var ban = await db.PgDbContext.Ban.SingleOrDefaultAsync(b => b.Id == banId);
-            if (ban != null)
-            {
-                db.PgDbContext.Ban.Remove(ban);
-                await db.PgDbContext.SaveChangesAsync();
-            }
-        }
-        // Sunrise-End
 
         private static IQueryable<ServerBan> MakeBanLookupQuery(
             IPAddress? address,
@@ -198,7 +156,7 @@ namespace Content.Server.Database
 
             DebugTools.Assert(
                 query != null,
-                "At least one ban lookup key (IP/UserID/Legacy HWID/Modern HWID) must have been given to make query not null."); // Sunrise-Edit
+                SunriseBanLookupError); // Sunrise-Edit
 
             if (!includeUnbanned)
             {
