@@ -244,6 +244,7 @@
     - WeaponTemperatureGun
     #- ModularReceiverAuto
     - LecterUpgrade
+    - LecterMk3Upgrade
     - DrozdUpgrade
   #####################BOX#######################
   # Light Rifle
