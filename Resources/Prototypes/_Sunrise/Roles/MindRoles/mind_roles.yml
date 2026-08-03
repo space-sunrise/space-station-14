@@ -29,6 +29,7 @@
     antagPrototype: PlanetPrisoner
     exclusiveAntag: true
     roleType: FreeAgent
+    subtype: role-subtype-prisoner
   - type: PlanetPrisonerRole
 
 - type: entity

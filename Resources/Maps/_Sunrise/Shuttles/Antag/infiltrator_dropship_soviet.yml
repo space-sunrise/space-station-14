@@ -1712,7 +1712,7 @@ entities:
     - type: Transform
       pos: 3.322369,-0.9404789
       parent: 1
-- proto: VendingMachineWallMedicalCivilian
+- proto: VendingMachineWallMedicalCivilianSyndicate
   entities:
   - uid: 189
     components:
