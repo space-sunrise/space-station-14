@@ -108,7 +108,7 @@
   id: UplinkOuterHardsuitChameleon
   name: uplink-clothing-outer-hardsuit-chameleon-name
   description: uplink-clothing-hardsuit-chameleon-desc
-  productEntity: ClothingOuterHardsuitChameleon
+  productEntity: BoxHardsuitChameleon
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 3

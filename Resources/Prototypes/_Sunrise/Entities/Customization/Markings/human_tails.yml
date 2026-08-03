@@ -54,3 +54,13 @@
     state: lizard_tail_primary
   - sprite: _Sunrise/Mobs/Customization/human_tails.rsi
     state: lizard_tail_secondary
+
+- type: marking
+  id: RabbitTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human]
+  sponsorOnly: false
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/rabbit_markings_parts.rsi
+    state: tail_rabbit
