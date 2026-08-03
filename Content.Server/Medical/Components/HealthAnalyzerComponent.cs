@@ -5,7 +5,12 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Medical.Components;
 
-/// <inheritdoc/>
+/// <summary>
+/// After scanning, retrieves the target Uid to use with its related UI.
+/// </summary>
+/// <remarks>
+/// Requires <c>ItemToggleComponent</c>.
+/// </remarks>
 [RegisterComponent, AutoGenerateComponentPause]
 [Access(typeof(HealthAnalyzerSystem), typeof(CryoPodSystem))]
 public sealed partial class HealthAnalyzerComponent : AbstractAnalyzerComponent

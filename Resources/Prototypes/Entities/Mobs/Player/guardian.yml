@@ -112,6 +112,8 @@
     - type: Tag
       tags:
         - CannotSuicide
+        - StunImmune
+        - SlowImmune
         - NoPaint  # Sunrise-edit
     # Sunrise-Start
     - type: Puller

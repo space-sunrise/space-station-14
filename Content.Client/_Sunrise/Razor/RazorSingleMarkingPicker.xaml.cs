@@ -206,12 +206,14 @@ public sealed partial class RazorSingleMarkingPicker : BoxContainer
         }
 
         var oldMarking = _markings![Slot];
-        _markings[Slot] = proto.AsMarking();
+        var newMarking = proto.AsMarking();
 
-        for (var i = 0; i < _markings[Slot].MarkingColors.Count && i < oldMarking.MarkingColors.Count; i++)
+        for (var i = 0; i < newMarking.MarkingColors.Count && i < oldMarking.MarkingColors.Count; i++)
         {
-            _markings[Slot].SetColor(i, oldMarking.MarkingColors[i]);
+            newMarking.SetColor(i, oldMarking.MarkingColors[i]);
         }
+
+        _markings[Slot] = newMarking;
 
         OnMarkingSelect!((_slot, id));
     }

@@ -17,9 +17,15 @@ public sealed partial class MarkingsViewModel
         int colorIndex,
         MarkingEffect effect)
     {
-        if (TryGetMarking(organ, layer, markingId) is not { } marking)
+        if (!Markings.TryGetValue(organ, out var markingSet) ||
+            !markingSet.TryGetValue(layer, out var markings))
             return;
 
+        var markingIndex = markings.FindIndex(marking => marking.MarkingId == markingId);
+        if (markingIndex < 0)
+            return;
+
+        var marking = markings[markingIndex];
         if (colorIndex < 0 || colorIndex >= marking.MarkingColors.Count)
             return;
 
@@ -41,6 +47,7 @@ public sealed partial class MarkingsViewModel
         if (!changed)
             return;
 
+        markings[markingIndex] = marking;
         MarkingsChanged?.Invoke(organ, layer);
     }
 }

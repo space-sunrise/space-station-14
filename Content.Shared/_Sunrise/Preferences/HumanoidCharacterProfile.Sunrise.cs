@@ -90,7 +90,7 @@ public sealed partial class HumanoidCharacterProfile
                         !prototype.TryIndex<MarkingPrototype>(marking.MarkingId, out var markingPrototype) ||
                         !markingPrototype.SponsorOnly ||
                         sponsorPrototypes.Contains(marking.MarkingId))
-                    .Select(marking => new Marking(marking))
+                    .Select(marking => marking.DeepClone())
                     .ToList()));
 
         return appearance.WithMarkings(markings);

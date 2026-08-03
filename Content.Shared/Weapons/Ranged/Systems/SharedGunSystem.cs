@@ -155,9 +155,11 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         // Sunrise edit end
 
-        gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
-        gun.Target = GetEntity(msg.Target);
-        AttemptShoot(user.Value, ent, gun);
+        gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
+        gun.Comp.Target = GetEntity(msg.Target);
+        AttemptShoot(user.Value, gun);
+        if (msg.Continuous)
+            gun.Comp.ShotCounter = 0;
 
         // Sunrise added start - rotate dual-wield queue after each attempt
         RotateDualWieldQueue(user.Value, gun, isDualWield, dualWield);

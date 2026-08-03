@@ -26,7 +26,7 @@ public sealed class SunriseHumanoidMarkingSystem : EntitySystem
                 continue;
 
             foreach (var marking in layerMarkings)
-                markings.Add(new Marking(marking));
+                markings.Add(marking.DeepClone());
 
             return true;
         }
@@ -84,7 +84,7 @@ public sealed class SunriseHumanoidMarkingSystem : EntitySystem
         var oldMarking = layerMarkings[index];
         var newMarking = prototype.AsMarking();
         newMarking.Forced = oldMarking.Forced;
-        CopyMarkingStyle(oldMarking, newMarking);
+        CopyMarkingStyle(oldMarking, ref newMarking);
         layerMarkings[index] = newMarking;
 
         _visualBody.ApplyMarkings(uid, markings);
@@ -99,7 +99,7 @@ public sealed class SunriseHumanoidMarkingSystem : EntitySystem
         if (index < 0 || index >= layerMarkings.Count)
             return false;
 
-        var marking = new Marking(layerMarkings[index]);
+        var marking = layerMarkings[index].DeepClone();
         var count = Math.Min(colors.Count, marking.MarkingColors.Count);
         for (var i = 0; i < count; i++)
             marking.SetColor(i, colors[i]);
@@ -119,7 +119,7 @@ public sealed class SunriseHumanoidMarkingSystem : EntitySystem
 
         for (var i = 0; i < layerMarkings.Count; i++)
         {
-            var marking = new Marking(layerMarkings[i]);
+            var marking = layerMarkings[i].DeepClone();
             marking.SetColor(color);
             layerMarkings[i] = marking;
         }
@@ -277,7 +277,7 @@ public sealed class SunriseHumanoidMarkingSystem : EntitySystem
         return false;
     }
 
-    private static void CopyMarkingStyle(Marking source, Marking target)
+    private static void CopyMarkingStyle(Marking source, ref Marking target)
     {
         var colorCount = Math.Min(source.MarkingColors.Count, target.MarkingColors.Count);
         for (var i = 0; i < colorCount; i++)
@@ -300,7 +300,7 @@ public sealed class SunriseHumanoidMarkingSystem : EntitySystem
             {
                 var markingClone = new List<Marking>(markings.Count);
                 foreach (var marking in markings)
-                    markingClone.Add(new Marking(marking));
+                    markingClone.Add(marking.DeepClone());
 
                 layerClone[layer] = markingClone;
             }

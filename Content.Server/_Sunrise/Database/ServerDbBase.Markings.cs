@@ -99,8 +99,12 @@ public abstract partial class ServerDbBase
             if (!organMarkings.TryGetValue(layer, out var layerMarkings))
                 continue;
 
-            foreach (var marking in layerMarkings)
+            for (var i = 0; i < layerMarkings.Count; i++)
+            {
+                var marking = layerMarkings[i];
                 marking.SetMarkingEffect(0, effect.Clone());
+                layerMarkings[i] = marking;
+            }
         }
     }
 

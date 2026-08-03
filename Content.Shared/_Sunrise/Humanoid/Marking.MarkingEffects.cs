@@ -1,10 +1,11 @@
 using System.Linq;
 using Content.Shared._Sunrise.MarkingEffects;
+using Robust.Shared.Prototypes;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace Content.Shared.Humanoid.Markings;
 
-public sealed partial class Marking
+public partial record struct Marking
 {
     /// <summary>
     /// Visual effects associated with each color layer of the marking.
@@ -12,18 +13,25 @@ public sealed partial class Marking
     [DataField("markingEffects", customTypeSerializer: typeof(MarkingEffectListSerializer))]
     public List<MarkingEffect> MarkingEffects = [];
 
-    public Marking(string markingId, List<Color> markingColors, List<MarkingEffect>? markingEffects)
+    public Marking(
+        ProtoId<MarkingPrototype> markingId,
+        IEnumerable<Color> markingColors,
+        IEnumerable<MarkingEffect>? markingEffects)
         : this(markingId, markingColors)
     {
-        MarkingEffects = markingEffects ?? [];
+        MarkingEffects = markingEffects?.Select(effect => effect.Clone()).ToList() ?? [];
         EnsureMarkingEffects();
     }
 
-    public Marking(string markingId, IReadOnlyList<Color> markingColors, IReadOnlyList<MarkingEffect>? markingEffects)
-        : this(markingId,
-            new List<Color>(markingColors),
-            markingEffects is null ? [] : new List<MarkingEffect>(markingEffects))
+    /// <summary>
+    /// Creates an independent copy, including mutable color and effect collections.
+    /// </summary>
+    public Marking DeepClone()
     {
+        return new Marking(MarkingId, _markingColors, MarkingEffects)
+        {
+            Forced = Forced,
+        };
     }
 
     /// <summary>
@@ -80,6 +88,14 @@ public sealed partial class Marking
         return true;
     }
 
+    public void SetColor(int colorIndex, Color color) => _markingColors[colorIndex] = color;
+
+    public void SetColor(Color color)
+    {
+        for (var i = 0; i < _markingColors.Count; i++)
+            _markingColors[i] = color;
+    }
+
     /// <summary>
     /// Replaces the effect associated with a specific color layer.
     /// </summary>
@@ -99,22 +115,14 @@ public sealed partial class Marking
         EnsureMarkingEffects();
 
         for (var i = 0; i < MarkingEffects.Count; i++)
-        {
-            MarkingEffects[i] = effect;
-        }
+            MarkingEffects[i] = effect.Clone();
     }
 
-    private void CopyMarkingEffects(Marking other)
-    {
-        MarkingEffects = other.MarkingEffects?.Select(effect => effect.Clone()).ToList() ?? [];
-        EnsureMarkingEffects();
-    }
-
-    private string ToDbString()
+    public override string ToString()
     {
         EnsureMarkingEffects();
 
-        var sanitizedName = MarkingId.Replace('@', '_');
+        var sanitizedName = MarkingId.Id.Replace('@', '_');
         var colors = _markingColors.Select(color => color.ToHex());
 
         if (MarkingEffects.Count == 0)
@@ -123,7 +131,36 @@ public sealed partial class Marking
         return $"{sanitizedName}@{string.Join(",", colors)}@{string.Join(";", MarkingEffects)}";
     }
 
-    private static Marking? ParseDbString(string input)
+    private void InitializeSunriseMarkingEffects()
+    {
+        MarkingEffects = [];
+        EnsureMarkingEffects();
+    }
+
+    private Marking WithSunriseColors(List<Color> colors)
+    {
+        var copy = DeepClone();
+        copy._markingColors = colors;
+        copy.EnsureMarkingEffects();
+        return copy;
+    }
+
+    private int GetSunriseHashCode()
+    {
+        var hash = new HashCode();
+        hash.Add(MarkingId);
+        hash.Add(Forced);
+
+        foreach (var color in MarkingColors)
+            hash.Add(color);
+
+        for (var i = 0; i < MarkingColors.Count; i++)
+            hash.Add(GetMarkingEffectOrDefault(i).Type);
+
+        return hash.ToHashCode();
+    }
+
+    private static Marking? ParseSunriseDbString(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
             return null;
@@ -134,9 +171,7 @@ public sealed partial class Marking
 
         var colors = new List<Color>();
         foreach (var colorHex in split[1].Split(','))
-        {
             colors.Add(Color.FromHex(colorHex));
-        }
 
         if (split.Length == 2)
             return new Marking(split[0], colors);

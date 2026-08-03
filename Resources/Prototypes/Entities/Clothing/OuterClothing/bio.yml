@@ -82,6 +82,9 @@
     sprite: _Sunrise/Clothing/OuterClothing/Bio/security.rsi #Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Bio/security.rsi #Sunrise-Edit
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: Armor
     modifiers:
       coefficients:

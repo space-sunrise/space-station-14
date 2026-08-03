@@ -220,7 +220,7 @@ public sealed class SunriseHumanoidBodySystem : EntitySystem
             {
                 var markingClone = new List<Marking>(markings.Count);
                 foreach (var marking in markings)
-                    markingClone.Add(new Marking(marking));
+                    markingClone.Add(marking.DeepClone());
 
                 layerClone[layer] = markingClone;
             }

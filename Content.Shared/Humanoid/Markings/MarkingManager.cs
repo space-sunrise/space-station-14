@@ -137,7 +137,11 @@ public sealed partial class MarkingManager
                     markings[i] = new Marking(marking.ID, marking.Sprites.Count);
                 }
 
-                markings[i].EnsureMarkingEffects(); // Sunrise-Edit
+                // Sunrise edit start - Marking является структурой, поэтому сохраняем изменённое значение обратно в список
+                var currentMarking = markings[i];
+                currentMarking.EnsureMarkingEffects();
+                markings[i] = currentMarking;
+                // Sunrise edit end
             }
         }
     }
