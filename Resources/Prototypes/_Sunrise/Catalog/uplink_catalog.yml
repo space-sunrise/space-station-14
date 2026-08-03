@@ -3505,6 +3505,26 @@
   - UplinkWeaponry
 
 - type: listing
+  id: UplinkEstoc
+  name: uplink-estoc-name
+  description: uplink-estoc-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
+  productEntity: BriefcaseWeaponDMRFilled
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 9
+  cost:
+    Telecrystal: 11
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
   id: UplinkWeaponStechkinAPS
   name: uplink-stechkin-aps-name
   description: uplink-stechkin-aps-desc

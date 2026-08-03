@@ -170,7 +170,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
 
         for (var i = 0; i < markings.Count; i++)
         {
-            var current = markings[i].MarkingId;
+            var current = markings[i].MarkingId.Id;
 
             if (string.IsNullOrEmpty(current))
                 continue;
@@ -202,7 +202,7 @@ public sealed partial class WingFlightSystem : SharedWingFlightSystem
             if (!_prototype.HasIndex<MarkingPrototype>(original))
                 continue;
 
-            if (markings[index].MarkingId == original)
+            if (markings[index].MarkingId.Id == original)
                 continue;
 
             _sunriseMarking.SetMarkingId(ent, HumanoidVisualLayers.Tail, index, original);

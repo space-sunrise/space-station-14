@@ -11,6 +11,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Sunrise.Interfaces.Shared;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
@@ -45,7 +46,7 @@ public sealed partial class LobbyUIController
         var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
         var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
         var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
-        if (!_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
+        if (!_prototypeManager.HasIndex(effectiveJobLoadoutId))
             return;
 
         var loadout = profile.GetLoadoutOrDefault(

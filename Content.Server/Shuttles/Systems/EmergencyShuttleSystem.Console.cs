@@ -228,21 +228,7 @@ public sealed partial class EmergencyShuttleSystem
 
         // All the others.
         if (_consoleAccumulator < minTime)
-        {
-            var query = AllEntityQuery<StationTransitHubComponent, TransformComponent>(); // Sunrise-Edit
-
-            // Guarantees that emergency shuttle arrives first before anyone else can FTL.
-            while (query.MoveNext(out var comp, out var centcommXform))
-            {
-                if (Deleted(comp.Entity))
-                    continue;
-
-                if (_shuttle.TryAddFTLDestination(centcommXform.MapID, true, out var ftlComp))
-                {
-                    _shuttle.SetFTLWhitelist((centcommXform.MapUid!.Value, ftlComp), null);
-                }
-            }
-        }
+            EnableTransitHubFtlDestination(); // Sunrise-Edit - открываем FTL именно на карте транзитного хаба.
     }
 
     private void OnEmergencyRepealAll(EntityUid uid, EmergencyShuttleConsoleComponent component, EmergencyShuttleRepealAllMessage args)

@@ -1,10 +1,8 @@
 using System.Threading;
-using Content.Server._Sunrise.TransitHub;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Screens.Components;
@@ -17,6 +15,7 @@ using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
@@ -29,7 +28,7 @@ namespace Content.Server.RoundEnd
     /// Handles ending rounds normally and also via requesting it (e.g. via comms console)
     /// If you request a round end then an escape shuttle will be used.
     /// </summary>
-    public sealed class RoundEndSystem : EntitySystem
+    public sealed partial class RoundEndSystem : EntitySystem
     {
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -112,14 +111,13 @@ namespace Content.Server.RoundEnd
             return targetGrid == null ? null : Transform(targetGrid.Value).MapUid;
         }
 
-        // Sunrise-Start
-        public EntityUid? GetTransitHub()
+        /// <summary>
+        ///     Attempts to get centcomm's MapUid
+        /// </summary>
+        public EntityUid? GetCentcomm()
         {
-            AllEntityQuery<StationTransitHubComponent>().MoveNext(out var transitHub);
-
-            return transitHub == null ? null : transitHub.MapEntity;
+            return GetTransitHub(); // Sunrise-Edit - эвакуационный шаттл использует транзитный хаб вместо карты ЦК Wizden.
         }
-        // Sunrise-End
 
         public bool CanCallOrRecall()
         {
@@ -211,6 +209,9 @@ namespace Content.Server.RoundEnd
                 null,
                 colorOverride: Color.Gold); // Sunrise-TTS
 
+            if (ShouldPlayDefaultSunriseShuttleSounds()) // Sunrise-Edit — TTS заменяет стандартный звук объявления.
+                _audio.PlayGlobal("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast(), true);
+
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
 
@@ -226,7 +227,7 @@ namespace Content.Server.RoundEnd
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                    [ShuttleTimerMasks.SourceMap] = GetTransitHub(), // Sunrise-Edit
+                    [ShuttleTimerMasks.SourceMap] = GetSunriseShuttleSourceMap(), // Sunrise-Edit — шаттл отправляется из транзитного хаба.
                     [ShuttleTimerMasks.DestMap] = GetStation(),
                     [ShuttleTimerMasks.ShuttleTime] = countdownTime,
                     [ShuttleTimerMasks.SourceTime] = countdownTime +
@@ -261,7 +262,8 @@ namespace Content.Server.RoundEnd
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
 
-            //_audio.PlayGlobal("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast(), true);
+            if (ShouldPlayDefaultSunriseShuttleSounds()) // Sunrise-Edit — TTS заменяет стандартный звук объявления.
+                _audio.PlayGlobal("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast(), true);
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
@@ -276,7 +278,7 @@ namespace Content.Server.RoundEnd
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                    [ShuttleTimerMasks.SourceMap] = GetTransitHub(), // Sunrsie-Edit
+                    [ShuttleTimerMasks.SourceMap] = GetSunriseShuttleSourceMap(), // Sunrise-Edit — используем транзитный хаб.
                     [ShuttleTimerMasks.DestMap] = GetStation(),
                     [ShuttleTimerMasks.ShuttleTime] = zero,
                     [ShuttleTimerMasks.SourceTime] = zero,
@@ -390,8 +392,8 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    _autoCalledBefore = true; // Move before call RequestRoundEnd to play correct announcement sound type
                     RequestRoundEnd(checkCooldown: false, text: "round-end-system-shuttle-auto-called-announcement");
+                    _autoCalledBefore = true;
                 }
 
                 // Always reset auto-call in case of a recall.
@@ -399,57 +401,6 @@ namespace Content.Server.RoundEnd
             }
         }
 
-        // Sunrise-start
-        public TimeSpan TimeToCallShuttle()
-        {
-            var autoCalledBefore = _autoCalledBefore
-                ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
-                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
-            return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
-        }
-
-        public void DelayCursedShuttle(TimeSpan delay)
-        {
-            if (_gameTicker.RunLevel != GameRunLevel.InRound)
-                return;
-
-            if (_countdownTokenSource == null)
-                return;
-
-            var countdown = ExpectedCountdownEnd - _gameTiming.CurTime + delay;
-            ExpectedCountdownEnd = _gameTiming.CurTime + countdown;
-
-            _countdownTokenSource.Cancel();
-            _countdownTokenSource = new();
-
-            if (countdown != null)
-                Timer.Spawn(countdown.Value, _shuttle.DockEmergencyShuttle, _countdownTokenSource.Token);
-
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-curse-delayed-announcement"),
-                Loc.GetString("Station"),
-                colorOverride: Color.Gold);
-        }
-
-        public bool ShuttleCalled()
-        {
-            return ExpectedCountdownEnd != null;
-        }
-
-        // Sunrise-Start - force set the countdown and call the evac shuttle
-        public void ForceSetCountdown(TimeSpan countdownTime, bool cantRecall = true)
-        {
-            if (_gameTicker.RunLevel != GameRunLevel.InRound)
-                return;
-
-            if (_countdownTokenSource != null)
-            {
-                _countdownTokenSource.Cancel();
-                _countdownTokenSource = null;
-            }
-
-            RequestRoundEnd(countdownTime, null, false, cantRecall: cantRecall);
-        }
-        // Sunrise-End
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs

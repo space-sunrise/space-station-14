@@ -690,7 +690,6 @@ namespace Content.Client.Lobby.UI
                 return;
 
             SpriteView.ReloadProfilePreview(Profile);
-            ApplySunriseProfileToPreview(); // Sunrise-Edit
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();

@@ -24,7 +24,6 @@ public sealed partial class StatusEffectsSystem : EntitySystem
     private EntityQuery<StatusEffectComponent> _effectQuery;
 
     public readonly HashSet<string> StatusEffectPrototypes = [];
-    private static readonly object StatusEffectPrototypesLock = new();
 
     public override void Initialize()
     {
@@ -79,17 +78,12 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
     private void ReloadStatusEffectsCache()
     {
-        var prototypes = new HashSet<string>();
+        StatusEffectPrototypes.Clear();
 
         foreach (var ent in _proto.EnumeratePrototypes<EntityPrototype>())
         {
             if (ent.TryGetComponent<StatusEffectComponent>(out _, _factory))
-                prototypes.Add(ent.ID);
-        }
-
-        lock (StatusEffectPrototypesLock)
-        {
-            StatusEffectPrototypes = prototypes;
+                StatusEffectPrototypes.Add(ent.ID);
         }
     }
 

@@ -65,4 +65,10 @@ public abstract partial class AbstractAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public bool Silent;
+
+    /// <summary>
+    /// Временное состояние непрерывного сканирования до принятия Wizden общего рефакторинга анализаторов.
+    /// </summary>
+    [DataField]
+    public bool IsAnalyzerActive;
 }

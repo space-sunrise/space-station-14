@@ -368,7 +368,7 @@ namespace Content.Server.Voting.Managers
                     }
                     else
                     {
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-invalid", ("winner", maps[picked])));
+                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-invalid", ("winner", picked.MapName)));
                     }
                     ticker.UpdateInfoText(); // Sunrise-Edit
                 }

@@ -22,6 +22,8 @@ public sealed partial class StationCentCommSystem : EntitySystem
 
     public override void Initialize()
     {
+        base.Initialize();
+
         _sawmill = Logger.GetSawmill("station.centcomm");
         SubscribeLocalEvent<StationCentCommComponent, ComponentShutdown>(OnCentcommShutdown);
         SubscribeLocalEvent<StationCentCommComponent, ComponentInit>(OnCentcommInit);
@@ -68,6 +70,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
             if (_prototypeManager.TryIndex<GameMapPrototype>(component.Station, out var gameMap))
             {
                 _gameTicker.LoadGameMap(gameMap, out var mapId);
+                component.MapId = mapId;
 
                 var mapEnt = _map.GetMapOrInvalid(mapId);
 

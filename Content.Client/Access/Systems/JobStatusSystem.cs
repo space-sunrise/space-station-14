@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Access.Systems;
 
-public sealed class JobStatusSystem : SharedJobStatusSystem
+public sealed partial class JobStatusSystem : SharedJobStatusSystem
 {
     [Dependency] private readonly ShowJobIconsSystem _showJobIcons = default!;
     [Dependency] private readonly ShowCrewIconsSystem _showCrewIcons = default!;
@@ -25,6 +25,9 @@ public sealed class JobStatusSystem : SharedJobStatusSystem
     // show the status icons if the player has the correponding HUDs
     private void OnGetStatusIconsEvent(Entity<JobStatusComponent> ent, ref GetStatusIconsEvent ev)
     {
+        if (!CanShowSunriseJobStatusIcons(ent)) // Sunrise-Edit — скрываем служебные иконки лежащих персонажей.
+            return;
+
         if (_showJobIcons.IsActive && ent.Comp.JobStatusIcon != null)
             ev.StatusIcons.Add(_prototype.Index(ent.Comp.JobStatusIcon));
 

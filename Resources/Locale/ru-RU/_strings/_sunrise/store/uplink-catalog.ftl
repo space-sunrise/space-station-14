@@ -359,3 +359,5 @@ uplink-lube-grenade-name = Граната со смазкой
 uplink-lube-grenade-desc = Граната, создающая в зоне детонации скользкое облако смазки.
 uplink-glue-grenade-name = Граната с клеем
 uplink-glue-grenade-desc = Граната, создающая в зоне детонации липкое облако клея.
+uplink-estoc-name = Эсток
+uplink-estoc-desc = Марксманская винтовка Эсток с прицелом средней дальности для ведения боя на дистанции.

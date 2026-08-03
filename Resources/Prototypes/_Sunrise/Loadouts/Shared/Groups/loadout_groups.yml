@@ -998,7 +998,7 @@
   name: loadout-group-jobtrinkets
   minLimit: 0
   loadouts:
-  - LizardPlushiePassenger
+  - SunriseLizardPlushiePassengerLoadout
   - SunriseRubberStampPassenger
   - SunriseToyFigurinePassenger
 

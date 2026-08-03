@@ -4,7 +4,6 @@ using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
 using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Body;
-using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;

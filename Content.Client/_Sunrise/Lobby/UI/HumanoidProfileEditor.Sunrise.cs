@@ -1,5 +1,4 @@
 using Content.Shared._Sunrise;
-using Content.Shared._Sunrise.Humanoid;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
@@ -122,15 +121,6 @@ public sealed partial class HumanoidProfileEditor
             ("weight", GetWeightKg(species, width, height)));
 
         _updatingSunriseControls = false;
-    }
-
-    private void ApplySunriseProfileToPreview()
-    {
-        if (Profile is null || !_entManager.EntityExists(PreviewDummy))
-            return;
-
-        _entManager.System<SunriseHumanoidProfileSystem>().ApplyProfileTo(PreviewDummy, Profile);
-        _entManager.System<Content.Client._Sunrise.Humanoid.SunriseHumanoidProfileVisualSystem>().Refresh(PreviewDummy);
     }
 
     private void SetVoice(string voice)

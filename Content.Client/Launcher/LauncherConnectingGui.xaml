@@ -10,7 +10,7 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center"
                   Margin="40 0 0 0">
-        <PanelContainer StyleClasses="StyleClassSocialBox" MinWidth="200">
+        <PanelContainer StyleClasses="SocialBox" MinWidth="200">
             <BoxContainer Orientation="Vertical" Margin="0 5">
                 <controls:StripeBack>
                     <BoxContainer Orientation="Vertical" Margin="0 8">

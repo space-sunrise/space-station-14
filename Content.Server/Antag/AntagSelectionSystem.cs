@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
@@ -37,10 +36,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared.Roles;
-using Robust.Shared.Prototypes;
-using Content.Sunrise.Interfaces.Shared;
-using AddComponentSpecial = Content.Server.Jobs.AddComponentSpecial; // Sunrise-Sponsors
 
 namespace Content.Server.Antag;
 
@@ -69,8 +64,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ArrivalsSystem _arrivals = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -90,8 +83,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
-
-        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+        InitializeSunriseAntagSelection(); // Sunrise-Edit — приоритет спонсоров при выборе антагонистов.
     }
 
     private void OnTakeGhostRole(Entity<GhostRoleAntagSpawnerComponent> ent, ref TakeGhostRoleEvent args)
@@ -187,10 +179,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!args.LateJoin)
             return;
 
-        // Sunrise-Start
-        if (!args.CanBeAntag)
+        if (!CanSelectSunriseLateJoinAntag(args)) // Sunrise-Edit — учитываем запрет антагонистов у позднего подключения.
             return;
-        // Sunrise-End
 
         TryMakeLateJoinAntag(args.Player);
     }
@@ -231,28 +221,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!TryGetNextAvailableDefinition((uid, antag), out var def, players))
                 continue;
 
-            // Sunrise-Start
-            if (_jobs.IsCommandStaff(session))
-            {
-                if (!def.Value.PickCommandStaff)
-                    continue;
-
-                var selectedCommandStaff = 0;
-
-                foreach (var compSelectedSession in antag.AssignedSessions)
-                {
-                    if (_jobs.IsCommandStaff(compSelectedSession))
-                    {
-                        selectedCommandStaff += 1;
-                    }
-                }
-
-                if (def.Value.MaxCommandStaff != 0 && selectedCommandStaff >= def.Value.MaxCommandStaff)
-                {
-                    continue;
-                }
-            }
-            // Sunrise-End
+            if (!CanSelectSunriseCommandStaff((uid, antag), session, def.Value)) // Sunrise-Edit — ограничиваем командный состав.
+                continue;
 
             if (TryMakeAntag((uid, antag), session, def.Value))
                 return true;
@@ -329,7 +299,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         AntagSelectionDefinition def,
         bool midround = false)
     {
-        var playerPool = GetPlayerPool(ent, pool, def);
+        var playerPool = GetSunrisePlayerPools(ent, pool, def); // Sunrise-Edit — добавляем приоритет спонсоров и фильтр командования.
         var existingAntagCount = ent.Comp.PreSelectedSessions.TryGetValue(def, out var existingAntags) ? existingAntags.Count : 0;
         var count = GetTargetAntagCount(ent, GetTotalPlayerCount(pool), def) - existingAntagCount;
 
@@ -350,33 +320,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             var session = (ICommonSession?)null;
             if (picking)
             {
-                // Sunrise-Sponsors-Start
-                if (!TryPickAntagSession(playerPool.List, def.PrefRoles, out session))
-                    break;
-                // Sunrise-Sponsors-End
-
-                // Sunrise-Start
-                if (_jobs.IsCommandStaff(session))
+                if (!TryPickSunriseAntagSession(ent, playerPool, def, out session) && noSpawner) // Sunrise-Edit
                 {
-                    if (!def.PickCommandStaff)
-                        continue;
-
-                    var selectedCommandStaff = 0;
-
-                    foreach (var compSelectedSession in ent.Comp.AssignedSessions)
-                    {
-                        if (_jobs.IsCommandStaff(compSelectedSession))
-                        {
-                            selectedCommandStaff += 1;
-                        }
-                    }
-
-                    if (def.MaxCommandStaff != 0 && selectedCommandStaff >= def.MaxCommandStaff)
-                    {
-                        continue;
-                    }
+                    Log.Warning($"Couldn't pick a player for {ToPrettyString(ent):rule}, no longer choosing antags for this definition");
+                    break;
                 }
-                // Sunrise-End
 
                 if (session != null && ent.Comp.PreSelectedSessions.Values.Any(x => x.Contains(session)))
                 {
@@ -413,46 +361,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         ent.Comp.AssignmentComplete = true;
-
-        // Sunrise-Start
-        var selectionCompleteEv = new AntagSelectionCompleteEvent(ent);
-        RaiseLocalEvent(ent, ref selectionCompleteEv, true);
-        // Sunrise-End
+        RaiseSunriseAntagSelectionComplete(ent); // Sunrise-Edit — уведомляем системы Sunrise о завершении выбора.
     }
-
-    // Sunrise-Start
-    public bool TryPickAntagSession(List<List<ICommonSession>> orderedPools, List<ProtoId<AntagPrototype>> prefRoles, [NotNullWhen(true)] out ICommonSession? session)
-    {
-        session = null;
-
-        foreach (var prefRole in prefRoles)
-        {
-            foreach (var commonSessions in orderedPools[..2])
-            {
-                if (_sponsorsManager == null)
-                    continue;
-
-                var prioritySessions = _sponsorsManager.PickPrioritySessions(commonSessions, prefRole);
-                if (prioritySessions.Count == 0)
-                    continue;
-
-                session = _random.PickAndTake(prioritySessions);
-                return true;
-            }
-        }
-
-        foreach (var pool in orderedPools)
-        {
-            if (pool.Count == 0)
-                continue;
-
-            session = _random.PickAndTake(pool);
-            break;
-        }
-
-        return session != null;
-    }
-    // Sunrise-End
 
     /// <summary>
     /// Tries to makes a given player into the specified antagonist.
@@ -461,7 +371,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(ent)}");
 
-        if (checkPref && !def.IgnorePrefCheck && !ValidAntagPreference(session, def.PrefRoles)) // Sunrise-Edit
+        if (checkPref && ShouldCheckSunriseAntagPreference(def) && !ValidAntagPreference(session, def.PrefRoles)) // Sunrise-Edit
             return false;
 
         if (!IsSessionValid(ent, session, def) || !IsEntityValid(session.AttachedEntity, def))
@@ -504,6 +414,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         spawnerComp.Rule = ent;
         spawnerComp.Definition = def;
+        TrackSunriseAntagSpawner(ent); // Sunrise-Edit — восстанавливаем учёт созданных спавнеров.
         return spawner;
     }
 
@@ -674,7 +585,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 continue;
 
             // Add player to the appropriate antag pool
-            if (def.IgnorePrefCheck || ValidAntagPreference(session, def.PrefRoles)) // Sunrise-Edit
+            if (!ShouldCheckSunriseAntagPreference(def) || ValidAntagPreference(session, def.PrefRoles)) // Sunrise-Edit
             {
                 preferredList.Add(session);
             }
@@ -729,7 +640,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         // todo: expand this to allow for more fine antag-selection logic for game rules.
-        if (!_jobs.CanBeAntag(session) && !def.IgnoreCanBeAntag)
+        if (!_jobs.CanBeAntag(session) && !CanIgnoreSunriseAntagRestriction(def)) // Sunrise-Edit
             return false;
 
         return true;
@@ -817,7 +728,3 @@ public record struct AntagSelectLocationEvent(Entity<AntagSelectionComponent> Ga
 /// </summary>
 [ByRefEvent]
 public readonly record struct AfterAntagEntitySelectedEvent(ICommonSession? Session, EntityUid EntityUid, Entity<AntagSelectionComponent> GameRule, AntagSelectionDefinition Def);
-// Sunrise-Start
-[ByRefEvent]
-public readonly record struct AntagSelectionCompleteEvent(Entity<AntagSelectionComponent> GameRule);
-// Sunrise-End

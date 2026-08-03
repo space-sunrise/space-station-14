@@ -4,7 +4,6 @@ using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Chat;
 using Content.Server.Chat.Managers;
-using Content.Server.Ghost;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Ghost.Roles.Components;

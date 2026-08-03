@@ -364,3 +364,5 @@ uplink-syndicate-borgi-speed-name = Speed Syndicate Borgi
 uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed
 uplink-ecronizer-name = Ecronizer
 uplink-ecronizer-desc = A small device that can be used to bypass most scanning devices, making you and your items invisible to them.
+uplink-estoc-name = Estoc DMR
+uplink-estoc-desc = A designated marksman rifle, fitted with a mid-range optic for longer-range combat.
