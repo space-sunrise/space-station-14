@@ -327,6 +327,10 @@
 - type: latheRecipePack
   id: SecurityDynamicSunriseClothing
   recipes:
+    - ClothingHandsGlovesCombatFingerless
+    - SunriseClothingBackpackMilitary
+    - SunriseClothingBeltMilitaryWebbing
+    - ClothingShoesSwat
     - ClothingHeadHelmetPubg
     - ClothingShoesBootsMagSec
     - ClothingShoesBootsMagCombat

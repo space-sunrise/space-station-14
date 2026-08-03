@@ -169,6 +169,10 @@
   tier: 2
   cost: 7500
   recipeUnlocks:
+  - ClothingHandsGlovesCombatFingerless
+  - SunriseClothingBackpackMilitary
+  - SunriseClothingBeltMilitaryWebbing
+  - ClothingShoesSwat
   - ClothingShoesBootsMagCombat
   #- ModularReceiverAuto
   - LecterUpgrade

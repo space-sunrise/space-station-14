@@ -316,6 +316,51 @@
 
 # Clothing
 - type: latheRecipe
+  id: ClothingHandsGlovesCombatFingerless
+  result: ClothingHandsGlovesCombatFingerless
+  categories:
+  - Clothing
+  completetime: 8
+  materials:
+    Cloth: 400
+    Durathread: 200
+
+- type: latheRecipe
+  id: SunriseClothingBackpackMilitary
+  result: SunriseClothingBackpackMilitary
+  categories:
+  - Clothing
+  completetime: 15
+  materials:
+    Cloth: 2000
+    Durathread: 1000
+    Plasteel: 200
+    Plasma: 200
+
+- type: latheRecipe
+  id: SunriseClothingBeltMilitaryWebbing
+  result: SunriseClothingBeltMilitaryWebbing
+  categories:
+  - Clothing
+  completetime: 12
+  materials:
+    Cloth: 1000
+    Durathread: 500
+    Plasteel: 100
+    Plasma: 250
+
+- type: latheRecipe
+  id: ClothingShoesSwat
+  result: ClothingShoesSwat
+  categories:
+  - Clothing
+  completetime: 10
+  materials:
+    Cloth: 600
+    Durathread: 300
+    Plasteel: 100
+
+- type: latheRecipe
   id: ClothingHeadHelmetPubg
   result: ClothingHeadHelmetPubg
   categories:

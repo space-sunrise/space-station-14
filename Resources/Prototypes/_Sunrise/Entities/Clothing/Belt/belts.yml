@@ -301,6 +301,12 @@
       # - 12,0,13,1 #Без второго 2на2
 
 - type: entity
+  parent: [ClothingBeltMilitaryWebbing, BaseSecurityContraband]
+  id: SunriseClothingBeltMilitaryWebbing
+  name: security chest rig
+  description: Reinforced tactical webbing issued to security personnel.
+
+- type: entity
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltSyndicateUtility
   name: utility belt
