@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared._Sunrise.MentorHelp;
 using Content.Shared._Sunrise.Tutorial.Prototypes;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
@@ -12,18 +11,6 @@ namespace Content.Server.Database;
 
 public sealed partial class ServerDbManager
 {
-    public Task<List<ServerBanDef>> GetServerBansByAdminAsync(NetUserId adminId, DateTimeOffset since)
-    {
-        DbReadOpsMetric.Inc();
-        return RunDbCommand(() => _db.GetServerBansByAdminAsync(adminId, since));
-    }
-
-    public Task DeleteServerBanAsync(int banId)
-    {
-        DbWriteOpsMetric.Inc();
-        return RunDbCommand(() => _db.DeleteServerBanAsync(banId));
-    }
-
     public Task<Dictionary<Guid, string>> GetPlayerNamesBatchAsync(
         IEnumerable<Guid> userIds,
         CancellationToken cancel = default)
