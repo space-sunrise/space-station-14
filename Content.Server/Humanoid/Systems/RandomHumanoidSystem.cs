@@ -2,7 +2,6 @@ using Content.Server.Humanoid.Components;
 using Content.Server.RandomMetadata;
 using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Body;
-using Content.Shared.Body;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;

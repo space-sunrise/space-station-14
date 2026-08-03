@@ -13,7 +13,6 @@ public sealed partial class CyberLimbSystem : EntitySystem
 {
     public void InitializeLimbWithItems()
     {
-        base.Initialize();
         SubscribeLocalEvent<LimbWithItemsComponent, ToggleLimbEvent>(OnLimbToggle);
         SubscribeLocalEvent<BodyComponent, LimbRemovedEvent<LimbWithItemsComponent>>(LimbWithItemsRemoved);
 

@@ -85,7 +85,7 @@
     # Sunrise-start
     Ampula: 5
     Dropper: 2
-    BaseChemistryEmptyVial: 2
+    ChemistryEmptyVial: 2
     PatchPack: 3
     PatchPackBrute: 1
     PatchPackHeat: 1

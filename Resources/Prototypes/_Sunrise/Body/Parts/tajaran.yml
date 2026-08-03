@@ -39,6 +39,13 @@
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
     state: "head_m"
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
   - type: Extractable
     juiceSolution:
       reagents:

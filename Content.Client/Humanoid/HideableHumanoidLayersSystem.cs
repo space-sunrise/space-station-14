@@ -48,7 +48,7 @@ public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersS
                 continue;
 
             var visible = _sunriseBody.IsLayerVisible(ent.Owner, item, ent.Comp); // Sunrise-edit
-            var evt = new HumanoidLayerVisibilityChangedEvent(item, true);
+            var evt = new HumanoidLayerVisibilityChangedEvent(item, visible); // Sunrise-Edit - учитываем постоянно скрытые слои
             RaiseLocalEvent(ent, ref evt);
 
             if (!_sprite.LayerMapTryGet(ent.Owner, item, out var index, true))

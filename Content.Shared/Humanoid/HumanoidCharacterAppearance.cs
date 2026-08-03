@@ -88,7 +88,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var random = IoCManager.Resolve<IRobustRandom>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
 
-        // TODO: Add random markings
+        var markings = CreateRandomHairMarkings(species, sex, random, markingManager); // Sunrise-Edit - возвращаем волосы случайным персонажам после перехода на органные маркировки
 
         var newEyeColor = random.Pick(_realisticEyeColors);
 
@@ -103,12 +103,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             _ => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
         };
 
-        return new HumanoidCharacterAppearance(newEyeColor, newSkinColor, new());
-
-        float RandomizeColor(float channel)
-        {
-            return MathHelper.Clamp01(channel + random.Next(-25, 25) / 100f);
-        }
+        // Sunrise-Edit - обязательные видовые маркировки также должны применяться к случайным персонажам
+        return EnsureValid(new HumanoidCharacterAppearance(newEyeColor, newSkinColor, markings), species, sex);
     }
 
     public static Color ClampColor(Color color)

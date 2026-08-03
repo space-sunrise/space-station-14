@@ -125,10 +125,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Slime ]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
 
 - type: entity
   id: OrganAbductorStomach
@@ -155,9 +152,7 @@
     # mm yummy
     maxReagents: 3
     metabolizerTypes: [ Slime ]
-    groups:
-    - id: Food
-    - id: Drink
+    stages: [ Digestion ]
 
 - type: entity
   id: OrganAbductorLiver
@@ -170,9 +165,8 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [ Slime ]
-    groups:
-    - id: Alcohol
-      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
+    stages: [ Metabolites ]
+    updateIntervalMultiplier: 5 # Медленно перерабатывает метаболиты, сохраняя старую скорость печени.
 
 - type: entity
   id: OrganAbductorKidneys
@@ -188,4 +182,3 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Slime ]
-    removeEmpty: true

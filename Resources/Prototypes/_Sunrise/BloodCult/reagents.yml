@@ -7,7 +7,7 @@
   flavor: spooky
   color: "#313538"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:

@@ -108,11 +108,11 @@
       - id: NitrogenTankFilled
     - !type:NestedSelector
       tableId: FillEmergencyInflatables
-      # Sunrise-Start
-      - id: CrowbarRed
-      - id: CrowbarRed
-      - id: CrowbarRed
-      # Sunrise-End
+    # Sunrise-Start
+    - id: CrowbarRed
+    - id: CrowbarRed
+    - id: CrowbarRed
+    # Sunrise-End
 
 - type: entity
   id: ClosetEmergencyN2FilledRandom

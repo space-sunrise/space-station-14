@@ -242,7 +242,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   #Sunrise-Start
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:

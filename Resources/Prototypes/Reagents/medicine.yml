@@ -743,10 +743,6 @@
         #Sunrise-End
         - !type:SatiateThirst
           factor: 6
-          conditions:
-          - !type:MetabolizerTypeCondition
-            type: [ Dwarf ]
-            inverted: true
         - !type:ModifyBloodLevel
           amount: 6
 
@@ -1238,7 +1234,7 @@
           reagent: Holywater
           min: 10 # Пусть культистов крови не будут выбивать сразу из раунда, а попробуют перевести в нормальных людей
       # Sunrise-End
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:

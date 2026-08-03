@@ -12,7 +12,7 @@
       effects:
       - !type:SatiateHunger
 #sunrise-start
-    Medicine:
+    Bloodstream:
       effects:
         - !type:HealthChange
           damage:
@@ -48,7 +48,7 @@
         amount: -0.25
       - !type:SatiateHunger #Numbers are balanced with this in mind + it helps limit how much healing you can get from fo
   #sunrise-start
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -83,7 +83,7 @@
         amount: 1 # weaker than iron but pretty good all things considered
       - !type:SatiateHunger
     #sunrise-start
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -111,7 +111,7 @@
           min: 0.1
         factor: 1
   #sunrise-start
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:

@@ -27,6 +27,11 @@
   components:
     - type: Sprite
       state: "head_m"
+    - type: VisualOrganMarkings
+      hideableLayers:
+      - enum.HumanoidVisualLayers.Hair
+      - enum.HumanoidVisualLayers.FacialHair
+      - enum.HumanoidVisualLayers.HeadTop
 
 - type: entity
   id: LeftArmSwine

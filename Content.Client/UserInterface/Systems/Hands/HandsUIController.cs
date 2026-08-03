@@ -114,7 +114,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
     private void UnloadPlayerHands()
     {
         HandsGui?.Visible = false;
-        HandsGui?.HandContainer.ClearButtons();
+        HandsGui?.ClearHandButtons(); // Sunrise-Edit - очищаем также функциональные руки имплантов
         _playerHandsComponent = null;
     }
 
@@ -122,7 +122,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
     {
         DebugTools.Assert(_playerHandsComponent == null);
         HandsGui?.Visible = true;
-        HandsGui?.HandContainer.PlayerHandsComponent = handsComp;
+        HandsGui?.SetPlayerHandsComponent(handsComp); // Sunrise-Edit - передаем порядок рук обоим контейнерам
         _playerHandsComponent = handsComp;
         foreach (var (name, hand) in handsComp.Comp.Hands)
         {
@@ -167,7 +167,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     private void HandBlocked(string handName)
     {
-        if (HandsGui?.HandContainer.TryGetButton(handName, out var hand) != true)
+        if (HandsGui?.TryGetHandButton(handName, out var hand) != true) // Sunrise-Edit - ищем руку во всех контейнерах
             return;
 
         hand!.Blocked = true;
@@ -175,7 +175,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     private void HandUnblocked(string handName)
     {
-        if (HandsGui?.HandContainer.TryGetButton(handName, out var hand) != true)
+        if (HandsGui?.TryGetHandButton(handName, out var hand) != true) // Sunrise-Edit - ищем руку во всех контейнерах
             return;
 
         hand!.Blocked = false;
@@ -243,7 +243,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             return;
         }
 
-        if (HandsGui?.HandContainer.TryGetButton(handName, out var handControl) != true || handControl == _activeHand)
+        if (HandsGui?.TryGetHandButton(handName, out var handControl) != true || handControl == _activeHand) // Sunrise-Edit - функциональная рука тоже может быть активной
             return;
 
         if (_activeHand != null)
@@ -277,7 +277,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     private HandButton? GetHand(string handName)
     {
-        return HandsGui?.HandContainer.GetButton(handName);
+        return HandsGui?.GetHandButton(handName); // Sunrise-Edit - ищем обычные и функциональные руки
     }
 
     private HandButton AddHand(string handName, Hand hand)
@@ -286,7 +286,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         button.StoragePressed += StorageActivate;
         button.Pressed += HandPressed;
 
-        HandsGui?.HandContainer.TryAddButton(button);
+        HandsGui?.AddHandButton(button); // Sunrise-Edit - функциональные руки выводятся отдельно
 
         if (hand.EmptyRepresentative is { } representative)
         {
@@ -318,7 +318,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     private void RemoveHand(string handName)
     {
-        if (HandsGui?.HandContainer.TryRemoveButton(handName, out var handButton) != true)
+        if (HandsGui?.TryRemoveHandButton(handName, out var handButton) != true) // Sunrise-Edit - удаляем руку из нужного контейнера
             return;
 
         if (_statusHandLeft == handButton)
@@ -337,7 +337,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         if (HandsGui is null)
             return;
 
-        foreach (var hand in HandsGui.HandContainer.GetButtons())
+        foreach (var hand in HandsGui.GetHandButtons()) // Sunrise-Edit - учитываем функциональные руки
         {
             if (hand.HandLocation == HandLocation.Left)
             {
@@ -365,7 +365,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             return;
 
         // TODO this should be event based but 2 systems modify the same component differently for some reason
-        foreach (var hand in handsGui.HandContainer.GetButtons())
+        foreach (var hand in handsGui.GetHandButtons()) // Sunrise-Edit - обновляем задержки функциональных рук
         {
 
             if (!_entities.TryGetComponent(hand.Entity, out UseDelayComponent? useDelay))

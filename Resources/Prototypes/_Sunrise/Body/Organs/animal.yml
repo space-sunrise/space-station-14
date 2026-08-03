@@ -8,7 +8,7 @@
     specialDigestible:
       components:
         - Identity
-    isDigestibleAddition: true
+    isSpecialDigestibleExclusive: false
 
 - type: entity
   id: OrganPrimateHeart

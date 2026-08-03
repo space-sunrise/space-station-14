@@ -150,9 +150,6 @@
         - !type:ReagentCondition
           reagent: Ethanol
           min: 15
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-          inverted: true
         damage:
           types:
             Poison: 0.1
@@ -191,10 +188,6 @@
         - !type:ReagentCondition
           reagent: Ethanol
           min: 12
-        # dwarves immune to vomiting from alcohol
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-          inverted: true
       - !type:Drunk
         boozePower: 2
 
@@ -2289,9 +2282,6 @@
         - !type:ReagentCondition
           reagent: BacchusBlessing
           min: 6
-        - !type:MetabolizerTypeCondition
-          type: [Dwarf]
-          inverted: true
         damage:
           types:
             Poison: 0.2 # TODO: Figure out poison amount. Ethanol does 0.1, this does 0.2 but also metabolises almost 3 to 4 times as fast as ethanol. This would be more Liver damage when that time arrives.
@@ -2311,6 +2301,3 @@
         - !type:ReagentCondition
           reagent: BacchusBlessing
           min: 8
-        - !type:MetabolizerTypeCondition
-          type: [Dwarf]
-          inverted: true

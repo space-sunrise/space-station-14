@@ -39,6 +39,10 @@
   - type: Sprite
     sprite: _Sunrise/Abductor/Mobs/Species/Abductor/parts.rsi
     state: "head"
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
   - type: Extractable
     juiceSolution:
       reagents:

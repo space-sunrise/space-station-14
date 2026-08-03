@@ -13,8 +13,4 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
-    removeEmpty: true
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]

@@ -54,8 +54,7 @@
 - type: marking
   id: RabbitTail
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Human]
+  groupWhitelist: [ Human ]
   sponsorOnly: false
   sprites:
   - sprite: _Sunrise/Mobs/Customization/rabbit_markings_parts.rsi

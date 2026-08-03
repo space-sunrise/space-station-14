@@ -4,6 +4,7 @@ using Content.Shared._Sunrise.NightVision.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Actions.Components;
+using Content.Shared.Body;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
@@ -46,6 +47,14 @@ public sealed partial class FleshCultSystem
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string StolenMutationPointPrototype = "StolenMutationPoint";
 
+    private static readonly HumanoidVisualLayers[] FleshSpiderLegLayers =
+    [
+        HumanoidVisualLayers.RLeg,
+        HumanoidVisualLayers.LLeg,
+        HumanoidVisualLayers.RFoot,
+        HumanoidVisualLayers.LFoot,
+    ];
+
     private void InitializeCultist()
     {
         SubscribeLocalEvent<FleshCultistComponent, ComponentStartup>(OnStartup);
@@ -59,12 +68,18 @@ public sealed partial class FleshCultSystem
         SubscribeLocalEvent<FleshCultistComponent, IsEquippingAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<FleshCultistComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistShopActionEvent>(OnShop);
+        SubscribeLocalEvent<FleshCultistComponent, OrganInsertedIntoEvent>(OnOrganInserted);
     }
 
     private void OnShop(EntityUid uid, FleshCultistComponent component, FleshCultistShopActionEvent args)
     {
         if (TryComp<StoreComponent>(uid, out var store))
             _store.ToggleUi(uid, uid, store);
+    }
+
+    private void OnOrganInserted(Entity<FleshCultistComponent> _, ref OrganInsertedIntoEvent args)
+    {
+        MakeFleshSpiderLegMarkingsHideable(args.Organ);
     }
 
     private void OnMobStateChanged(EntityUid uid, FleshCultistComponent component, MobStateChangedEvent args)
@@ -172,12 +187,32 @@ public sealed partial class FleshCultSystem
 
     private void InitializeAppearance(EntityUid uid)
     {
-        var hideable = EnsureComp<HideableHumanoidLayersComponent>(uid);
-        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.RLeg);
-        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.LLeg);
-        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.RFoot);
-        hideable.HideLayersOnEquip.Add(HumanoidVisualLayers.LFoot);
-        Dirty(uid, hideable);
+        EnsureComp<HideableHumanoidLayersComponent>(uid);
+
+        if (!TryComp<BodyComponent>(uid, out var body))
+            return;
+
+        foreach (var organ in body.Organs?.ContainedEntities ?? [])
+        {
+            MakeFleshSpiderLegMarkingsHideable(organ);
+        }
+    }
+
+    private void MakeFleshSpiderLegMarkingsHideable(EntityUid organ)
+    {
+        if (!TryComp<VisualOrganMarkingsComponent>(organ, out var markings))
+            return;
+
+        var dirty = false;
+        foreach (var layer in FleshSpiderLegLayers)
+        {
+            // Разрешаем одежде скрывать только те слои, которые принадлежат этому органу.
+            if (markings.MarkingData.Layers.Contains(layer))
+                dirty |= markings.HideableLayers.Add(layer);
+        }
+
+        if (dirty)
+            DirtyField(organ, markings, nameof(VisualOrganMarkingsComponent.HideableLayers));
     }
 
     private void OnShutdown(EntityUid uid, FleshCultistComponent component, ComponentShutdown args)

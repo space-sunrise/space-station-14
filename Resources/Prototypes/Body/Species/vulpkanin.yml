@@ -26,7 +26,7 @@
     enum.HumanoidVisualLayers.Tail:
       limit: 1
       required: true
-      default: [ VulpTailVulp ]
+      default: [ VulpTail ] # Sunrise edit
     enum.HumanoidVisualLayers.LArm:
       limit: 2
       required: false
@@ -91,14 +91,6 @@
     species: Vulpkanin
     #undergarmentTop: UndergarmentTopTanktopVulpkanin # Sunrise-edit
     #undergarmentBottom: UndergarmentBottomBoxersVulpkanin # Sunrise-edit
-  - type: HideableHumanoidLayers
-    hideLayersOnEquip:
-    - Snout
-    - SnoutCover
-    - HeadTop
-    - HeadSide
-    - FacialHair
-    - Hair
   - type: Inventory
 # SUNRISE EDIT
     speciesId: vulpkanin

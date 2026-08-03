@@ -17,10 +17,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Human]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
   - type: Item
     size: Small
     heldPrefix: heart

@@ -38,11 +38,6 @@
     species: Tajaran
   - type: SunriseHumanoidProfile
   - type: SunriseHumanoidBaseLayers
-  - type: HideableHumanoidLayers
-    hideLayersOnEquip:
-    - Snout
-    - HeadTop
-    - HeadSide
   - type: Butcherable
     butcheringType: Spike
     spawned:

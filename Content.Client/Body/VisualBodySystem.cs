@@ -274,5 +274,8 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
                 }
             }
         }
+
+        // Sunrise-Edit - учитываем постоянное скрытие и displacement-слои
+        UpdateSunriseMarkingVisibility(ent, args.Body.Owner, args.Args.Layer, args.Args.Visible);
     }
 }

@@ -565,7 +565,7 @@
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileOrange
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
   - SunriseGlovesNitrileBlue
 
 - type: loadoutGroup
@@ -685,7 +685,7 @@
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileOrange
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
   - SunriseGlovesNitrileBlue
 
 - type: loadoutGroup
@@ -748,7 +748,7 @@
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileOrange
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
 
 - type: loadoutGroup
   id: SunriseChemistShoes
@@ -817,7 +817,7 @@
   loadouts:
   - LatexGloves
   - SunriseWhiteGloves
-  - NitrileGloves
+  - SunriseNitrileGloves
 
 - type: loadoutGroup
   id: SunrisePsychologistShoes
@@ -882,7 +882,7 @@
   - SunriseBlueGloves
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
   - SunriseGlovesNitrileBlue
 
 - type: loadoutGroup
@@ -973,7 +973,7 @@
   - SunriseGlovesNitrileBlack
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
 
 - type: loadoutGroup
   id: MedicalTrinkets

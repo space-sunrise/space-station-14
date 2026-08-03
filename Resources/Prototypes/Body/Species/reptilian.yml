@@ -164,12 +164,6 @@
       Kidneys: OrganReptilianKidneys
   - type: HumanoidProfile
     species: Reptilian
-  - type: HideableHumanoidLayers
-    hideLayersOnEquip:
-    - Snout
-    - HeadTop
-    - HeadSide
-    - Tail
     #undergarmentBottom: UndergarmentBottomBoxersReptilian
 
 - type: entity
@@ -285,6 +279,9 @@
   - type: VisualOrganMarkings
     hideableLayers:
     - enum.HumanoidVisualLayers.Tail
+    markingData:
+      layers:
+      - Back # Sunrise-Edit - сохраняем Sunrise-маркировки спины после NuBody
 
 - type: entity
   parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganReptilianExternal ]

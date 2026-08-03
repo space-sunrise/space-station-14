@@ -87,9 +87,9 @@ public sealed partial class PsychologistSystem : EntitySystem
 
                 if (reagent.Metabolisms != null)
                 {
-                    foreach (var metabolism in reagent.Metabolisms)
+                    foreach (var metabolism in reagent.Metabolisms.Metabolisms.Values)
                     {
-                        foreach (var effect in metabolism.Value.Effects)
+                        foreach (var effect in metabolism.Effects)
                         {
                             if (effect is AdjustReagent adjust && adjust.Reagent == ent.Comp.ReagentForBlock)
                             {

@@ -145,9 +145,6 @@
       Kidneys: OrganMothKidneys
   - type: HumanoidProfile
     species: Moth
-  - type: HideableHumanoidLayers
-    hideLayersOnEquip:
-    - HeadTop
 
 - type: entity
   parent:

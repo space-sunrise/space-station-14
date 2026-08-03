@@ -81,15 +81,6 @@
       Kidneys: OrganHumanKidneys
   - type: HumanoidProfile
     species: Human
-  - type: HideableHumanoidLayers
-    hideLayersOnEquip:
-    - Hair
-    - Snout
-    # Sunrise start
-    - HeadTop
-    - Special
-    - Tail
-    # Sunrise end
 
 - type: entity
   parent:
@@ -155,6 +146,10 @@
     hideableLayers:
     - enum.HumanoidVisualLayers.Hair
     - enum.HumanoidVisualLayers.Snout
+    # Sunrise start - сохраняем скрытие Sunrise-маркировок ушей головными уборами
+    - enum.HumanoidVisualLayers.FacialHair
+    - enum.HumanoidVisualLayers.HeadTop
+    # Sunrise end
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganHumanExternal ]

@@ -47,6 +47,15 @@
         Quantity: 5
       - ReagentId: FluorosulfuricAcidHumanoidXeno
         Quantity: 10
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Dreadlocks
+      - Rings
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Hair:
+      - enum.HumanoidVisualLayers.Dreadlocks
+      - enum.HumanoidVisualLayers.Rings
 
 - type: entity
   id: LeftArmPredator

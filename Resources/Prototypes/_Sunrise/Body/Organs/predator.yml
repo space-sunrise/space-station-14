@@ -103,13 +103,8 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
     metabolizerTypes: [ Human ]
-    groups:
-    - id: Gas
-      rateModifier: 100.0
+    stages: [ Respiration ]
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -136,10 +131,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Human]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
 
 - type: entity
   id: OrganPredatorStomach
@@ -162,9 +154,7 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [Human, Animal]
-    groups:
-    - id: Food
-    - id: Drink
+    stages: [ Digestion ]
 
 - type: entity
   id: OrganPredatorLiver
@@ -177,9 +167,8 @@
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [Human]
-    groups:
-    - id: Alcohol
-      rateModifier: 0.1
+    stages: [ Metabolites ]
+    updateIntervalMultiplier: 10
 
 - type: entity
   id: OrganPredatorKidneys
@@ -194,7 +183,6 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Human]
-    removeEmpty: true
 
 - type: entity
   id: OrganPredatorEyes

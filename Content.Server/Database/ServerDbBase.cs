@@ -282,28 +282,11 @@ namespace Content.Server.Database
                     markingsList.Add(parsed);
                 }
 
-                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } facialMarking)
-                    markingsList.Add(facialMarking);
+                // if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } facialMarking)
+                //     markingsList.Add(facialMarking);
 
-                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } hairMarking)
-                    markingsList.Add(hairMarking);
-
-                var completion = new TaskCompletionSource();
-                _task.RunOnMainThread(() =>
-                {
-                    var markingManager = IoCManager.Resolve<MarkingManager>();
-
-                    try
-                    {
-                        markings = markingManager.ConvertMarkings(markingsList, profile.Species);
-                        completion.SetResult();
-                    }
-                    catch (Exception ex)
-                    {
-                        completion.TrySetException(ex);
-                    }
-                });
-                await completion.Task;
+                // if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } hairMarking)
+                //     markingsList.Add(hairMarking);
 
                 // Sunrise edit start - legacy hair color compability
                 if (CreateLegacyHairMarking(

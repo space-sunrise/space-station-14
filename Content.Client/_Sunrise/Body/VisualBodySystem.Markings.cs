@@ -88,6 +88,39 @@ public sealed partial class VisualBodySystem
             _sprite.LayerSetVisible(target, displacementIndex, visible);
     }
 
+    private void UpdateSunriseMarkingVisibility(
+        Entity<VisualOrganMarkingsComponent> ent,
+        EntityUid target,
+        HumanoidVisualLayers layer,
+        bool visible)
+    {
+        ent.Comp.DependentHidingLayers.TryGetValue(layer, out var dependentLayers);
+
+        foreach (var marking in ent.Comp.AppliedMarkings)
+        {
+            if (!_marking.TryGetMarking(marking, out var proto))
+                continue;
+
+            if (proto.BodyPart != layer && dependentLayers?.Contains(proto.BodyPart) != true)
+                continue;
+
+            var layerVisible = IsSunriseLayerVisible(target, proto.BodyPart, visible);
+            foreach (var sprite in proto.Sprites)
+            {
+                DebugTools.Assert(sprite is SpriteSpecifier.Rsi);
+                if (sprite is not SpriteSpecifier.Rsi rsi)
+                    continue;
+
+                var layerId = $"{proto.ID}-{rsi.RsiState}";
+                if (!_sprite.LayerMapTryGet(target, layerId, out var index, true))
+                    continue;
+
+                _sprite.LayerSetVisible(target, index, layerVisible);
+                SetSunriseMarkingDisplacementVisible(target, layerId, layerVisible);
+            }
+        }
+    }
+
     private ShaderInstance? GetMarkingShader(
         Marking marking,
         int index,

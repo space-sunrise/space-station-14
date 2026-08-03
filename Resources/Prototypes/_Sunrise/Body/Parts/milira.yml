@@ -39,6 +39,11 @@
   - type: Sprite
     sprite: _Sunrise/Mobs/Species/Milira/parts.rsi
     state: "head_m"
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
+    - enum.HumanoidVisualLayers.HeadTop
   - type: Extractable
     juiceSolution:
       reagents:

@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared._Sunrise.MarkingEffects;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -13,33 +12,21 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("markingColor")]
         private List<Color> _markingColors = new();
 
-        // sunrise gradient edit start
-        [DataField("markingEffects", customTypeSerializer: typeof(MarkingEffectListSerializer))]
-        public List<MarkingEffect> MarkingEffects = new();
-        // sunrise gradient edit end
-
-
         private Marking()
         {
         }
 
         public Marking(string markingId,
-            List<Color> markingColors,
-            List<MarkingEffect>? markingEffects = null)
+            List<Color> markingColors)
         {
             MarkingId = markingId;
             _markingColors = markingColors;
-            MarkingEffects = markingEffects ?? new(); // sunrise gradient edit
-            EnsureMarkingEffects(); // Sunrise-Edit
+            EnsureMarkingEffects(); // Sunrise-Edit - создаём эффекты для каждого цвета маркировки
         }
 
         public Marking(string markingId,
-            IReadOnlyList<Color> markingColors,
-            IReadOnlyList<MarkingEffect>? markingEffects = null)
-            : this(
-                markingId,
-                new List<Color>(markingColors),
-                markingEffects is not null ? new List<MarkingEffect>(markingEffects) : new List<MarkingEffect>())
+            IReadOnlyList<Color> markingColors)
+            : this(markingId, new List<Color>(markingColors))
         {
         }
 
@@ -48,20 +35,17 @@ namespace Content.Shared.Humanoid.Markings
             MarkingId = markingId;
             List<Color> colors = new();
             for (int i = 0; i < colorCount; i++)
-            {
                 colors.Add(Color.White);
-                MarkingEffects.Add(ColorMarkingEffect.White); // Sunrise edit
-            }
 
             _markingColors = colors;
+            EnsureMarkingEffects(); // Sunrise-Edit - создаём эффекты для каждого цвета маркировки
         }
 
         public Marking(Marking other)
         {
             MarkingId = other.MarkingId;
             _markingColors = new(other.MarkingColors);
-            MarkingEffects = other.MarkingEffects?.Select(e => e.Clone()).ToList() ?? new(); // Sunrise-Edit
-            EnsureMarkingEffects(); // Sunrise-Edit
+            CopyMarkingEffects(other); // Sunrise-Edit - сохраняем эффекты маркировок в изолированной partial-части
             Forced = other.Forced;
         }
 
@@ -91,24 +75,6 @@ namespace Content.Shared.Humanoid.Markings
             for (int i = 0; i < _markingColors.Count; i++)
             {
                 _markingColors[i] = color;
-            }
-        }
-
-        public void SetMarkingEffect(int colorIndex, MarkingEffect effect)
-        {
-            EnsureMarkingEffects(); // Sunrise-Edit
-
-            if(MarkingEffects.Count > colorIndex && colorIndex >= 0)
-                MarkingEffects[colorIndex] = effect;
-        }
-
-        public void SetMarkingEffect(MarkingEffect effect)
-        {
-            EnsureMarkingEffects(); // Sunrise-Edit
-
-            for (int i = 0; i < MarkingEffects.Count; i++)
-            {
-                MarkingEffects[i] = effect;
             }
         }
 
@@ -153,53 +119,9 @@ namespace Content.Shared.Humanoid.Markings
         // doesn't seem to have compatible interfaces? this 'works'
         // for now but should eventually be improved so that this can,
         // in fact just be serialized through a convenient interface
-        public new string ToString()
-        {
-            string sanitizedName = this.MarkingId.Replace('@', '_');
+        public new string ToString() => ToDbString(); // Sunrise-Edit - сериализация расширенных эффектов вынесена в partial
 
-            var colorStringList = _markingColors.Select(c => c.ToHex()).ToList();
-            if (MarkingEffects == null || MarkingEffects.Count == 0)
-                return $"{sanitizedName}@{string.Join(',', colorStringList)}";
-
-            var extColorsList = MarkingEffects.Select(ext => ext.ToString());
-
-            var extColorsString = string.Join(";", extColorsList);
-            return $"{sanitizedName}@{string.Join(',', colorStringList)}@{extColorsString}";
-        }
-
-        public static Marking? ParseFromDbString(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-                return null;
-
-            var split = input.Split('@');
-            if (split.Length < 2)
-                return null;
-
-            var name = split[0];
-            var colorsRaw = split[1];
-
-            var colorList = new List<Color>();
-            foreach (var colorHex in colorsRaw.Split(','))
-            {
-                colorList.Add(Color.FromHex(colorHex));
-            }
-
-            if (split.Length == 2)
-                return new Marking(name, colorList);
-
-            var extColorsRaw = split[2];
-            var markingEffects = new List<MarkingEffect>();
-
-            foreach (var extColorStr in extColorsRaw.Split(';'))
-            {
-                var parsed = MarkingEffect.Parse(extColorStr);
-                if (parsed != null)
-                    markingEffects.Add(parsed);
-            }
-
-            return new Marking(name, colorList, markingEffects);
-        }
+        public static Marking? ParseFromDbString(string input) => ParseDbString(input); // Sunrise-Edit - поддерживаем расширенный формат БД через partial
 
     }
 }

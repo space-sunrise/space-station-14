@@ -172,10 +172,6 @@
       effects:
       - !type:SatiateThirst
         factor: 1.5
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-          inverted: true
     # Dragon doesn't require airloss healing, so omnizine is still best for humans.
       - !type:ModifyBloodLevel
         amount: 3
@@ -236,12 +232,6 @@
       effects:
       - !type:SatiateThirst
         factor: 0.5
-        # Sunrise-start
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-          inverted: true
-        # Sunrise-end
   footstepSound:
     collection: FootstepBlood
     params:
