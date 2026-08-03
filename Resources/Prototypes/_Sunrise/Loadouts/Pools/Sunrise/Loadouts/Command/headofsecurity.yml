@@ -80,7 +80,6 @@
 
 - type: loadout
   id: HeadofSecurityJumpsuitHoSOld
-  sponsorOnly: false
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoSOld
   effects:
@@ -89,7 +88,6 @@
 
 - type: loadout
   id: HeadofSecurityJumpsuitUSSPBlack
-  sponsorOnly: false
   equipment:
     jumpsuit: ClothingUniformJumpsuitUSSPBlack
 
@@ -103,25 +101,21 @@
 
 - type: loadout
   id: HeadofSecurityCapUSSPBlack
-  sponsorOnly: false
   equipment:
     head: ClothingHeadHatCapUSSPBlack
 
 - type: loadout
   id: HeadofSecurityCapLeather
-  sponsorOnly: false
   equipment:
     head: ClothingHeadHatCapLeatherHoS
 
 - type: loadout
   id: HeadofSecurityCloakHOSCloak
-  sponsorOnly: false
   equipment:
     neck: ClothingNeckCloakHOSCloak
 
 - type: loadout
   id: HeadofSecurityDarthHOSCloak
-  sponsorOnly: false
   equipment:
     neck: ClothingNeckCloakDarthHOSCloak
   effects:
@@ -138,7 +132,6 @@
 
 - type: loadout
   id: HeadofSecurityGreatcoatBlack
-  sponsorOnly: false
   equipment:
     outerClothing: ClothingOuterCoatHOSOvercoatBlack
   effects:
@@ -147,13 +140,11 @@
 
 - type: loadout
   id: HeadofSecurityUSSPBlack
-  sponsorOnly: false
   equipment:
     outerClothing: ClothingOuterCoatUSSPOvercoatBlack
 
 - type: loadout
   id: HeadofSecurityOvercoat
-  sponsorOnly: false
   equipment:
     outerClothing: ClothingOuterCoatHoSOvercoat
 

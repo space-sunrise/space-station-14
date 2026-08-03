@@ -166,8 +166,7 @@ public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Доб�
         var effectiveId = GetEffectiveRolePrototype(id, _protoMan); // Sunrise-edit
         var proto = _protoMan.Index(effectiveId); // Sunrise-edit
         var loadout = new RoleLoadout(id);
-        // Sunrise-Fix: Я пока-что в душе не ебу как здесь достать спонсорские прототипы, потому []
-        loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, [], true);
+        loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, force: true);
         _station.EquipRoleLoadout(uid, loadout, proto);
 
         GearEquipped(uid);

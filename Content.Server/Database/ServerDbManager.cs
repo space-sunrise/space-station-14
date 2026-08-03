@@ -409,8 +409,23 @@ namespace Content.Server.Database
 
         #endregion
 
+        #region SponsorInventory
+
+        Task<DatabaseSponsorInventoryProfile?> GetSponsorInventoryProfileAsync(Guid player, int slot, CancellationToken cancel = default);
+        Task<Dictionary<int, DatabaseSponsorInventoryProfile>> GetSponsorInventoryProfilesAsync(Guid player, CancellationToken cancel = default);
+        Task<DatabaseSponsorInventoryProfile> SaveSponsorInventoryProfileAsync(Guid player, int slot, string profileJson, string revision, DateTimeOffset updatedAt, CancellationToken cancel = default);
+        Task<bool> DeleteSponsorInventoryProfileAsync(Guid player, int slot, CancellationToken cancel = default);
+
+        #endregion
+
         // Sunrise-End
     }
+
+    public sealed record DatabaseSponsorInventoryProfile(
+        int Slot,
+        string ProfileJson,
+        string Revision,
+        DateTimeOffset UpdatedAt);
 
     /// <summary>
     /// Represents a notification sent between servers via the database layer.
@@ -1219,6 +1234,44 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.PruneInvalidTutorialCompletionsAsync(validTutorialIds, cancel));
+        }
+
+        public Task<DatabaseSponsorInventoryProfile?> GetSponsorInventoryProfileAsync(
+            Guid player,
+            int slot,
+            CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetSponsorInventoryProfileAsync(player, slot, cancel));
+        }
+
+        public Task<Dictionary<int, DatabaseSponsorInventoryProfile>> GetSponsorInventoryProfilesAsync(
+            Guid player,
+            CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetSponsorInventoryProfilesAsync(player, cancel));
+        }
+
+        public Task<DatabaseSponsorInventoryProfile> SaveSponsorInventoryProfileAsync(
+            Guid player,
+            int slot,
+            string profileJson,
+            string revision,
+            DateTimeOffset updatedAt,
+            CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SaveSponsorInventoryProfileAsync(player, slot, profileJson, revision, updatedAt, cancel));
+        }
+
+        public Task<bool> DeleteSponsorInventoryProfileAsync(
+            Guid player,
+            int slot,
+            CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteSponsorInventoryProfileAsync(player, slot, cancel));
         }
 
         // Sunrise-end

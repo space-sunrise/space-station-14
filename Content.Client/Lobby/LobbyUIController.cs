@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Client._Sunrise.Lobby.UI;
-using Content.Client._Sunrise.Pets;
+using Content.Client._Sunrise.SponsorInventory;
 using Content.Client.Guidebook;
 using Content.Shared._Sunrise.Pets;
 using Content.Client.Humanoid;
@@ -49,20 +49,16 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
-    [UISystemDependency] private readonly PetSelectionSystem _petSelectionSystem = default!;
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
-    private PetSelectionMenu? _petSelectionMenu;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.
     /// </summary>
     private LobbyCharacterPreviewPanel? PreviewPanel => GetLobbyPreview();
-
-    private LobbyPetPreviewPanel? PetPreviewPanel => GetLobbyPetPreview();
 
     /// <summary>
     /// This is the modified profile currently being edited.
@@ -105,16 +101,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             return lobby.Lobby?.CharacterPreview;
         }
 
-        return null;
-    }
-
-    private LobbyPetPreviewPanel? GetLobbyPetPreview()
-    {
-        // Sunrise-Edit
-        // if (_stateManager.CurrentState is LobbyState lobby)
-        // {
-        //     return lobby.Lobby?.PetPreview;
-        // }
         return null;
     }
 
@@ -240,8 +226,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         var currentPetSelection = GetCurrentPetSelection();
 
-        PreviewPanel.OnChangePetRequested -= OpenPetPanel;
-        PreviewPanel.OnChangePetRequested += OpenPetPanel;
+        PreviewPanel.OnInventoryRequested -= OpenInventory;
+        PreviewPanel.OnInventoryRequested += OpenInventory;
 
         EntityUid? petDummy = null;
         if (!string.IsNullOrEmpty(currentPetSelection) &&
@@ -253,23 +239,9 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         PreviewPanel.SetPetSprite(petDummy);
     }
 
-    private void OpenPetPanel()
+    private void OpenInventory()
     {
-        if (_petSelectionMenu is { IsOpen: true })
-            return;
-
-        _petSelectionMenu = new PetSelectionMenu();
-
-        _petSelectionMenu.UpdateState();
-        _petSelectionMenu.OnIdSelected += OnPetSelectionChanged;
-
-        _petSelectionMenu.OpenCentered();
-    }
-
-    private void OnPetSelectionChanged(string selectedPet)
-    {
-        RefreshPetPreview();
-        _petSelectionSystem.PetSelectionSelected(selectedPet);
+        UIManager.GetUIController<InventoryUIController>().Open();
     }
 
     private string? GetCurrentPetSelection()
@@ -421,15 +393,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         var job = jobProto ?? GetPreferredJob(profile);
         GiveDummyJobClothes(dummy, profile, job);
 
-        // Sunrise-Start
-        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
-
         var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID);
         var effectiveJobLoadoutId = LoadoutSystem.GetEffectiveRolePrototype(jobLoadoutId, _prototypeManager);
         if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
-        // Sunrise-end
         {
-            var loadout = profile.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager, sponsorPrototypes); // Sunrise-edit
+            var loadout = profile.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, _prototypeManager); // Sunrise-edit
             GiveDummyLoadout(dummy, loadout, true);
         }
     }
@@ -560,10 +528,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     {
         EntityUid dummyEnt;
 
-        // Sunrise-Start
-        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
-        // Sunrise-End
-
         EntProtoId? previewEntity = null;
         if (humanoid != null && jobClothes)
         {
@@ -600,7 +564,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(effectiveJobLoadoutId))
             // Sunrise-end
             {
-                var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager, sponsorPrototypes);  // Sunrise-edit
+                var loadout = humanoid.GetLoadoutOrDefault(jobLoadoutId, _playerManager.LocalSession, _prototypeManager);  // Sunrise-edit
                 GiveDummyLoadout(dummyEnt, loadout, jobClothes);
             }
         }

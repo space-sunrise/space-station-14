@@ -16,7 +16,6 @@
   - ResearchDirectorJobTrinkets
   - GroupSpeciesBreathTool
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: SunriseJobScientist
@@ -37,7 +36,6 @@
   - Bra
   - Pants
   - Socks
-  - Contributors
 
 - type: roleLoadout
   id: SunriseJobResearchAssistant
@@ -53,4 +51,3 @@
   - Bra
   - Pants
   - Socks
-  - Contributors

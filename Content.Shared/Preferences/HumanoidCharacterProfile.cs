@@ -762,7 +762,7 @@ namespace Content.Shared.Preferences
                 // This happens after we verify the prototype exists
                 // These values are set equal in the database and we need to make sure they're equal here too!
                 loadouts.Role = roleName;
-                loadouts.EnsureValid(this, session, collection, sponsorPrototypes); // Sunrise-Sponsors
+                loadouts.EnsureValid(this, session, collection);
             }
 
             foreach (var value in toRemove)
@@ -888,15 +888,15 @@ namespace Content.Shared.Preferences
             return profile;
         }
 
-        public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager, string [] sponsorPrototypes)
+        public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, IPrototypeManager protoManager)
         {
             if (!_loadouts.TryGetValue(id, out var loadout))
             {
                 loadout = new RoleLoadout(id);
-                loadout.SetDefault(this, session, protoManager, sponsorPrototypes, force: true);
+                loadout.SetDefault(this, session, protoManager, force: true);
             }
 
-            loadout.SetDefault(this, session, protoManager, sponsorPrototypes);
+            loadout.SetDefault(this, session, protoManager);
             return loadout;
         }
 
