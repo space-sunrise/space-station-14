@@ -53,9 +53,8 @@ public sealed class BloodCultWeaponSystem : EntitySystem
         if (HasComp<BloodCultistComponent>(args.Target))
         {
             if (_solutionContainer.TryGetInjectableSolution(args.Target, out var injectableSolution, out _))
-            {
-                injectableSolution.Value.Comp.Solution.AddReagent(ent.Comp.UnholyProto, ent.Comp.UnholyVolume);
-            }
+                _solutionContainer.TryAddReagent(injectableSolution.Value, ent.Comp.UnholyProto, ent.Comp.UnholyVolume, out _);
+
             return;
         }
         if (HasComp<MobStateComponent>(args.Target))
@@ -117,7 +116,6 @@ public sealed class BloodCultWeaponSystem : EntitySystem
 
     private bool TryConvertHolyWater(Entity<SolutionComponent> solution, string fromReagentId, string toReagentId)
     {
-        var converted = false;
         var contents = solution.Comp.Solution.Contents;
 
         // Идём с конца: RemoveReagent использует RemoveSwap и меняет порядок списка.
@@ -127,18 +125,19 @@ public sealed class BloodCultWeaponSystem : EntitySystem
             if (reagent.Reagent.Prototype != fromReagentId)
                 continue;
 
-            var amount = solution.Comp.Solution.RemoveReagent(reagent.Reagent, reagent.Quantity);
+            var amount = _solutionContainer.RemoveReagent(solution, reagent.Reagent, reagent.Quantity);
             if (amount <= FixedPoint2.Zero)
                 continue;
 
-            solution.Comp.Solution.AddReagent(new ReagentId(toReagentId, reagent.Reagent.Data), amount);
-            converted = true;
+            var convertedReagent = new ReagentId(toReagentId, reagent.Reagent.Data);
+            _solutionContainer.TryAddReagent(solution, convertedReagent, amount, out var added);
+            if (added < amount)
+                _solutionContainer.TryAddReagent(solution, reagent.Reagent, amount - added, out _);
+
+            return added > FixedPoint2.Zero;
         }
 
-        if (converted)
-            _solutionContainer.UpdateChemicals(solution);
-
-        return converted;
+        return false;
     }
 
     private void OnMeleeHit(EntityUid uid, BloodCultWeaponComponent component, MeleeHitEvent args)

@@ -16,9 +16,20 @@
     - type: MoldovanAccent # Sunrise-traits
     - type: LizardAccent
     - type: MothAccent
+    - type: ReplacementAccent
+      accent: scottish
     - type: FormalAccent # Fish-edit
 
 # 1 Cost
+
+- type: trait
+  id: SouthernAccent
+  name: trait-southern-name
+  description: trait-southern-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+  - type: SouthernAccent
 
 - type: trait
   id: GermanAccent
@@ -56,6 +67,16 @@
   components:
   - type: ReplacementAccent
     accent: liar
+
+- type: trait
+  id: ScottishAccent
+  name: trait-scottish-name
+  description: trait-scottish-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+  - type: ReplacementAccent
+    accent: scottish
 
 - type: trait
   id: MoldovanAccent

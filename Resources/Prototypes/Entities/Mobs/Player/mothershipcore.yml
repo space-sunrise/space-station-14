@@ -41,15 +41,15 @@
     idleState: core-idle
     runningState: core-active
     staticPacks:
+    - XenoborgMachines
     - EmptyXenoborgs
     - XenoborgUpgradeModules
     - XenoborgSunrise # Sunrise-add
   - type: MaterialStorage
     whitelist:
       tags:
+      - XenoborgCrystal
       - Sheet
-      - RawMaterial
-      - Ingot
   - type: PointLight
     color: "#0033ff"
     enabled: true

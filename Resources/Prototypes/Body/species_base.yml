@@ -212,9 +212,10 @@
     damage:
       types:
         Heat: -0.07
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
         Mangleness: -0.02 #SUNRISE-EDIT
-      groups:
-        Brute: -0.07
   - type: Fingerprint
   - type: Blindable
   - type: Temperature

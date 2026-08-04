@@ -183,7 +183,7 @@ public sealed partial class AdminVerbSystem
         _popupSystem.PopupEntity("3.6 roentgen, not great, not terrible...", target, target, PopupType.LargeCaution);
         var damageSpecifier = new DamageSpecifier()
         {
-            DamageDict = new Dictionary<string, FixedPoint2>
+            DamageDict = new()
             {
                 { "Radiation", GetDamageToKill(target) }
             }
@@ -208,7 +208,7 @@ public sealed partial class AdminVerbSystem
                 // Apply heat damage after the delay
                 var damageSpecifier = new DamageSpecifier()
                 {
-                    DamageDict = new Dictionary<string, FixedPoint2>
+                    DamageDict = new()
                     {
                         { "Heat", GetDamageToKill(target) - 50 }
                     }
@@ -236,9 +236,9 @@ public sealed partial class AdminVerbSystem
         _vomitSystem.Vomit(target, -1000, -1000);
         var damageSpecifier = new DamageSpecifier()
         {
-            DamageDict = new Dictionary<string, FixedPoint2>
+            DamageDict = new()
             {
-                { "Toxin", GetDamageToKill(target) }
+                { "Poison", GetDamageToKill(target) }
             }
         };
         _damageable.SetDamage(target, damageSpecifier);
@@ -271,7 +271,7 @@ public sealed partial class AdminVerbSystem
 
         var damageSpecifier = new DamageSpecifier()
         {
-            DamageDict = new Dictionary<string, FixedPoint2>
+            DamageDict = new()
             {
                 { "Slash", GetDamageToKill(target) }
             }

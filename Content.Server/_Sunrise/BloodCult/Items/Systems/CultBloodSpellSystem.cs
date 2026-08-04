@@ -277,23 +277,22 @@ public sealed class CultBloodSpellSystem : EntitySystem
                 continue;
             }
 
-            foreach (var puddleSolutionContent in puddleSolution.Value.Comp.Solution.ToList())
+            foreach (var puddleSolutionContent in puddleSolution.Value.Comp.Solution.Contents.ToList())
             {
                 if (puddleSolutionContent.Reagent.Prototype != "Blood")
                     continue;
 
-                var blood = puddleSolution.Value.Comp.Solution.SplitSolutionWithOnly(
-                    puddleSolutionContent.Quantity,
-                    puddleSolutionContent.Reagent.Prototype);
-
-                if (blood.Volume == 0)
+                var amount = _solutionSystem.RemoveReagent(
+                    puddleSolution.Value,
+                    puddleSolutionContent.Reagent,
+                    puddleSolutionContent.Quantity);
+                if (amount <= FixedPoint2.Zero)
                     continue;
 
+                var blood = new Solution();
+                blood.AddReagent(puddleSolutionContent.Reagent, amount);
                 absorbBlood.AddSolution(blood, _prototypeManager);
                 Spawn("CultTileSpawnEffect", Transform(puddle).Coordinates);
-
-                var ev = new SolutionContainerChangedEvent(puddleSolution.Value.Comp.Solution, solution);
-                RaiseLocalEvent(puddle, ref ev);
             }
         }
 

@@ -13,8 +13,10 @@
         amount: -4.2
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -3.2
+          types:
+            Blunt: -1.07
+            Slash: -1.07
+            Piercing: -1.06
       - !type:HealthChange
         damage:
           types:

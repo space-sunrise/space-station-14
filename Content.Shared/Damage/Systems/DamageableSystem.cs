@@ -45,6 +45,8 @@ public sealed partial class DamageableSystem : EntitySystem
     public float DamageModifier = 1f; // Sunrise-Edit
     public float HealModifier = 1f; // Sunrise-Edit
 
+    private Dictionary<ProtoId<DamageContainerPrototype>, HashSet<ProtoId<DamageTypePrototype>>> _supportedTypesByContainer = new();
+
     /// <summary>
     ///     If the damage in a DamageableComponent was changed this function should be called.
     /// </summary>
@@ -76,31 +78,6 @@ public sealed partial class DamageableSystem : EntitySystem
         // TODO DAMAGE
         // byref struct event.
         RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin));
-    }
-    private void DamageableGetState(Entity<DamageableComponent> ent, ref ComponentGetState args)
-    {
-        if (_netMan.IsServer)
-        {
-            args.State = new DamageableComponentState(
-                ent.Comp.Damage.DamageDict,
-                ent.Comp.DamageContainerID,
-                ent.Comp.DamageModifierSetId,
-                ent.Comp.HealthBarThreshold
-            );
-            // TODO BODY SYSTEM pass damage onto body system
-            // BOBBY WHEN? 😭
-            // BOBBY SOON 🫡
-
-            return;
-        }
-
-        // avoid mispredicting damage on newly spawned entities.
-        args.State = new DamageableComponentState(
-            ent.Comp.Damage.DamageDict.ShallowClone(),
-            ent.Comp.DamageContainerID,
-            ent.Comp.DamageModifierSetId,
-            ent.Comp.HealthBarThreshold
-        );
     }
 
     /// <summary>

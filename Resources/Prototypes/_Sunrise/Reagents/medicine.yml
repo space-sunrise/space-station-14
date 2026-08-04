@@ -58,8 +58,10 @@
         - !type:TemperatureCondition
           max: 213.0
         damage:
-          groups:
-            Brute: -6
+          types:
+            Blunt: -2
+            Slash: -2
+            Piercing: -2
 
 - type: reagent
   id: Celliminol
@@ -137,6 +139,11 @@
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -4
-            Brute: -4
+          types:
+            Heat: -1
+            Shock: -1
+            Cold: -1
+            Caustic: -1
+            Blunt: -1.33
+            Slash: -1.33
+            Piercing: -1.34

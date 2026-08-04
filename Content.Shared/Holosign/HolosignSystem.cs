@@ -49,7 +49,10 @@ public sealed partial class HolosignSystem : EntitySystem // Sunrise-Edit
 
         // overlapping of the same holo on one tile remains allowed to allow holofan refreshes
         if (ent.Comp.PredictedSpawn || _net.IsServer)
-            PredictedSpawnAtPosition(ent.Comp.SignProto, args.ClickLocation);
+        {
+            var holosign = PredictedSpawnAtPosition(ent.Comp.SignProto, args.ClickLocation);
+            Transform(holosign).LocalRotation = Angle.Zero;
+        }
 
         args.Handled = true;
     }

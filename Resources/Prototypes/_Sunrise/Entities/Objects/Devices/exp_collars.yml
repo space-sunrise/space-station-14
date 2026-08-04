@@ -20,9 +20,14 @@
     beepSound:
       path: /Audio/Effects/beep1.ogg
     damage:
-      groups:
-        Brute: 400
-        Burn: 400
+      types:
+        Blunt: 133.33
+        Slash: 133.33
+        Piercing: 133.34
+        Heat: 100
+        Shock: 100
+        Cold: 100
+        Caustic: 100
   - type: StaticPrice
     price: 3000
 

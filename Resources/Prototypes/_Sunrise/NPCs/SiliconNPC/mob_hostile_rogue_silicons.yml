@@ -249,10 +249,16 @@
     - Critical
     damageCap: 600
     damage:
-      groups:
-        Brute: -0.75
-        Burn: -0.75
-        Airloss: -1
+      types:
+        Blunt: -0.25
+        Slash: -0.25
+        Piercing: -0.25
+        Heat: -0.19
+        Shock: -0.19
+        Cold: -0.19
+        Caustic: -0.18
+        Asphyxiation: -0.5
+        Bloodloss: -0.5
 
 - type: entity
   parent:

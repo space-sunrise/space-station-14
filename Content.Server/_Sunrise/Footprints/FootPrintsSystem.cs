@@ -152,7 +152,8 @@ public sealed class FootprintSystem : EntitySystem
         {
             if (_solution.TryGetSolution(footprint.Owner, footprint.Comp.ContainerName, out var stepSol))
             {
-                totalFootprintsVolume += stepSol.Value.Comp.Solution.Volume.Float();
+                var footprintSolution = stepSol.Value.Comp.Solution;
+                totalFootprintsVolume += footprintSolution.Volume.Float();
             }
         }
 

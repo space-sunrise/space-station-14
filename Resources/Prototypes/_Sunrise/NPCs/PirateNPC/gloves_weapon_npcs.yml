@@ -925,9 +925,10 @@
       path: "/Audio/Items/drill_use.ogg"
     attackRate: 5
     damage:
-      groups:
-        Brute: 9
       types:
+        Blunt: 3
+        Slash: 3
+        Piercing: 3
         Structural: 25
     bluntStaminaDamageFactor: 1.5
 

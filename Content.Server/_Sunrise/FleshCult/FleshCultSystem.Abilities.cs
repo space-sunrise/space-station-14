@@ -351,19 +351,23 @@ public sealed partial class FleshCultSystem
             {
                 continue;
             }
-            foreach (var puddleSolutionContent in puddleSolution.Value.Comp.Solution.ToList())
+            foreach (var puddleSolutionContent in puddleSolution.Value.Comp.Solution.Contents.ToList())
             {
                 if (!component.BloodWhitelist.Contains(puddleSolutionContent.Reagent.Prototype))
                     continue;
 
-                var blood = puddleSolution.Value.Comp.Solution.SplitSolutionWithOnly(
-                    puddleSolutionContent.Quantity, puddleSolutionContent.Reagent.Prototype);
+                var amount = _solutionContainerSystem.RemoveReagent(
+                    puddleSolution.Value,
+                    puddleSolutionContent.Reagent,
+                    puddleSolutionContent.Quantity);
+                if (amount <= FixedPoint2.Zero)
+                    continue;
+
+                var blood = new Solution();
+                blood.AddReagent(puddleSolutionContent.Reagent, amount);
 
                 absorbBlood.AddSolution(blood, _prototypeManager);
             }
-
-            var ev = new SolutionContainerChangedEvent(puddleSolution.Value.Comp.Solution, solution);
-            RaiseLocalEvent(puddle, ref ev);
         }
 
         if (absorbBlood.Volume == 0)

@@ -175,7 +175,7 @@ public sealed partial class ZombieComponent : Component
     [DataField]
     public DamageSpecifier Damage = new()
     {
-        DamageDict = new Dictionary<string, FixedPoint2>
+        DamageDict = new()
         {
             { "Slash", 15 },
         },

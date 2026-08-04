@@ -669,6 +669,7 @@
       borg_brain:
       - Boris # Sunrise-Edit
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleConstruction
@@ -707,6 +708,7 @@
       borg_brain:
         - Boris # Sunrise-Edit
       borg_module:
+        - BorgModulePrying
         - BorgModuleTool
         - BorgModuleFireExtinguisher
   - type: ItemSlots
@@ -742,6 +744,7 @@
       borg_brain:
       - Boris # Sunrise-Edit
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleCleaning
@@ -779,6 +782,7 @@
       borg_brain:
       - Boris # Sunrise-Edit
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleChemical
@@ -817,6 +821,7 @@
       borg_brain:
       - Boris # Sunrise-Edit
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool #No fire extinguisher, traversal is better
       - BorgModuleMining
       - BorgModuleTraversal

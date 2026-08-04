@@ -115,9 +115,10 @@
     allowSelfRepair: false
   # Sunrise-Start
     damage:
-      groups:
-        Brute: -10
       types:
+        Blunt: -3.34
+        Slash: -3.33
+        Piercing: -3.33
         Heat: -5
         Shock: -5
         Caustic: -5

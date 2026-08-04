@@ -332,7 +332,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                     out var vapor))
                 return;
 
-            if (vapor.Value.Comp.Solution.Any(x => x.Reagent.Prototype == "Holywater"))
+            if (vapor.Value.Comp.Solution.Contents.Any(x => x.Reagent.Prototype == "Holywater"))
             {
                 Del(uid);
             }

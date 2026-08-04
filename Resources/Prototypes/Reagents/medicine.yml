@@ -40,8 +40,8 @@
           reagent: Dylovene
           min: 20
         damage:
-          groups:
-            Brute: 2
+          types:
+            Blunt: 2
       - !type:Jitter
         conditions:
         - !type:ReagentCondition
@@ -136,9 +136,8 @@
         damage:
           types:
             Radiation: -3
+            Blunt: 1.5
             Mangleness: 0.225 #Sunrise-Edit
-          groups:
-            Brute: 1.5
 
 - type: reagent
   id: Bicaridine
@@ -266,8 +265,7 @@
           types:
             Asphyxiation: 1
             Cold: 2
-          groups:
-            Brute: 0.5
+            Blunt: 0.5
       - !type:Jitter
         conditions:
         - !type:ReagentCondition
@@ -366,9 +364,17 @@
           types:
             Asphyxiation: -3
             Poison: -0.5
-          groups:
-            Brute: -1 # Sunrise-Edit # Бафф эпинефрина, ибо он лечил крайне мало
-            Burn: -1 # Sunrise-Edit
+      - !type:EvenHealthChange
+        conditions:
+          # they gotta be in crit first
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentCondition
+          reagent: Epinephrine
+          max: 20
+        damage:
+          Brute: -1 # Sunrise-Edit # Бафф эпинефрина, ибо он лечил крайне мало
+          Burn: -1 # Sunrise-Edit
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -657,13 +663,16 @@
   metabolisms:
     Bloodstream:
       effects:
+      - !type:EvenHealthChange
+        damage:
+          Brute: -1.75
+          Airloss: -1
+      # Sunrise edit start=
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -3.5
           types:
-            Asphyxiation: -2.5
-            Mangleness: 0.05 #Sunrise-Edit
+            Mangleness: 0.05
+      # Sunrise edit end
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -858,19 +867,23 @@
   metabolisms:
     Bloodstream:
       effects:
+      - !type:EvenHealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          max: 50
+        damage:
+          Brute: -1
+          Burn: -1
+          Toxin: -0.5
+      # Sunrise edit start
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
           max: 50
         damage:
-          groups:
-            Brute: -1
           types:
-            Poison: -0.5 ##Should be about what it was when it healed the toxin group
-            Heat: -0.33
-            Shock: -0.33
-            Cold: -0.33
-            Mangleness: -0.05 #Sunrise-Edit
+            Mangleness: -0.05
+      # Sunrise edit end
 
 - type: reagent
   id: Lipozine
@@ -949,9 +962,8 @@
           min: 0
           max: 20
         damage:
-          groups:
-            Brute: 1.5
           types:
+            Blunt: 1.5
             Mangleness: 0.05 #Sunrise-Edit
       - !type:EvenHealthChange
         conditions:
@@ -966,8 +978,8 @@
           reagent: Ultravasculine
           min: 20
         damage:
-          groups:
-            Brute: 6
+          types:
+            Blunt: 6
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
