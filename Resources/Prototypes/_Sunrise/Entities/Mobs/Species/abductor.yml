@@ -50,8 +50,8 @@
       - ReagentId: AbductorBlood
         Quantity: 300
   - type: CollectiveMind
-    minds:
-    - Abductor
+    defaultMind: Abductor
+    redirectSpeech: true
 
 - type: entity
   parent: BaseSpeciesDummy

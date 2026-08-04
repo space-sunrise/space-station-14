@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Popups;
 using Content.Shared._Starlight.Action;
 using Content.Shared.Actions.Components;
@@ -70,30 +69,16 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     }
     private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args)
     {
-        ent.Comp.SpawnPosition = EnsureComp<TransformComponent>(ent).Coordinates;
-
-        EnsureComp<TransformComponent>(ent, out var xform);
-        var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic).FirstOrDefault();
-
-        if (console == default)
-            return;
-
-        console.Comp.Scientist = ent;
-        SyncAbductors(console);
+        var xform = Transform(ent);
+        ent.Comp.SpawnPosition = xform.Coordinates;
+        AssignTeamConsole((ent, xform), scientist: true);
     }
 
     private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args)
     {
-        ent.Comp.SpawnPosition = EnsureComp<TransformComponent>(ent).Coordinates;
-
-        EnsureComp<TransformComponent>(ent, out var xform);
-        var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic).FirstOrDefault();
-
-        if (console == default)
-            return;
-
-        console.Comp.Agent = ent;
-        SyncAbductors(console);
+        var xform = Transform(ent);
+        ent.Comp.SpawnPosition = xform.Coordinates;
+        AssignTeamConsole((ent, xform), scientist: false);
     }
 
     private void OnReturn(AbductorReturnToShipEvent ev)
@@ -308,6 +293,32 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     }
 
     private void OnExit(ExitConsoleEvent ev) => OnCameraExit(ev.Performer);
+
+    private void AssignTeamConsole(Entity<TransformComponent> member, bool scientist)
+    {
+        if (member.Comp.GridUid is not { } grid)
+            return;
+
+        // через консоль идентифицируем группу, а GridUid разделяет одновременно созданные команды.
+        var query = EntityQueryEnumerator<AbductorConsoleComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var console, out var consoleXform))
+        {
+            if (consoleXform.GridUid != grid)
+                continue;
+
+            var assigned = scientist ? console.Scientist : console.Agent;
+            if (assigned is { } other && Exists(other) && other != member.Owner)
+                continue;
+
+            if (scientist)
+                console.Scientist = member.Owner;
+            else
+                console.Agent = member.Owner;
+
+            SyncAbductors((uid, console));
+            return;
+        }
+    }
 
     private void AddActions(AbductorBeaconChosenBuiMsg args)
     {

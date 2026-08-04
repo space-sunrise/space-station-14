@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._Sunrise.BloodCult.Objectives.Components;
 using Content.Server._Sunrise.BloodCult.Objectives.Systems;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
+using Content.Server._Sunrise.CollectiveMind;
 using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Antag;
 using Content.Server.Bed.Cryostorage;
@@ -58,9 +59,11 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
+    [Dependency] private readonly CollectiveMindSystem _collectiveMind = default!;
 
     private readonly EntProtoId _mindRoleCultistPrototypeId = "MindRoleCultist";
     private readonly EntProtoId _cultistKillObjective = "CultistKillObjective";
+    private static readonly ProtoId<CollectiveMindPrototype> _bloodCultCollectiveMind = "BloodCult";
 
     public override void Initialize()
     {
@@ -364,13 +367,11 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
     private void OnCultistComponentRemoved(EntityUid uid, BloodCultistComponent component, ComponentRemove args)
     {
-        if (TryComp<CollectiveMindComponent>(uid, out var collectiveMind))
-        {
-            collectiveMind.Minds.Remove("BloodCult");
+        _collectiveMind.TryRemoveMember(uid, _bloodCultCollectiveMind);
 
-            if (collectiveMind.Minds.Count == 0)
-                RemComp<CollectiveMindComponent>(uid);
-        }
+        if (TryComp<CollectiveMindComponent>(uid, out var collectiveMind) &&
+            collectiveMind.Memberships.Count == 0)
+            RemComp<CollectiveMindComponent>(uid);
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
         {
@@ -499,8 +500,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         EnsureComp<CultMemberComponent>(cultist);
 
-        var collectiveMind = EnsureComp<CollectiveMindComponent>(cultist);
-        collectiveMind.Minds.Add("BloodCult");
+        _collectiveMind.TryAddMember(cultist, _bloodCultCollectiveMind);
 
         _tagSystem.AddTag(cultist, "Cultist");
 

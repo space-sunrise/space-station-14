@@ -17,7 +17,6 @@ using Content.Server.StationEvents.Components;
 using Content.Server.Speech.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
-using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Hands.Components;
@@ -182,15 +181,7 @@ public sealed partial class ZombieSystem
 
         // Sunrise-Start
         RemComp<CuffableComponent>(target);
-
-        var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(target);
-        foreach (var collectiveMind in collectiveMindComponent.Minds.ToArray())
-        {
-            collectiveMindComponent.Minds.Remove(collectiveMind);
-        }
-
-        if (!collectiveMindComponent.Minds.Contains("Zombie"))
-            collectiveMindComponent.Minds.Add("Zombie");
+        SetZombieCollectiveMind(target);
         // Sunrise-End
 
         if (mobState.CurrentState == MobState.Alive)

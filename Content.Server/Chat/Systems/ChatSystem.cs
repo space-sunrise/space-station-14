@@ -12,8 +12,6 @@ using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
-using Content.Shared._Sunrise.Antags.Abductor;
-using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -163,15 +161,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool isFormatted = false //sunrise-edit
         )
     {
-        if (TryComp<AbductorComponent>(source, out var comp) && desiredType != InGameICChatType.Emote) // Sunrise-Edit for abuctors to speak in emoutes
+        // Sunrise edit start
+        // универсальное перенаправление речи в коллективный разум
+        var redirectedCollectiveMind = GetRedirectedCollectiveMind(source, desiredType);
+        if (redirectedCollectiveMind != null)
         {
-            if (!TryProcessSunriseChatMessage(source, ref message, InGameICChatType.CollectiveMind))
-                return;
-
-            _prototypeManager.TryIndex<CollectiveMindPrototype>(comp.AbductorCollectiveMindProto, out var channel);
-            SendCollectiveMindChat(source, message, channel);
-            return;
+            desiredType = InGameICChatType.CollectiveMind;
+            checkRadioPrefix = false;
         }
+        // Sunrise edit end
+
         if (HasComp<GhostComponent>(source))
         {
             // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
@@ -249,11 +248,31 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Sunrise-Start
         if (desiredType == InGameICChatType.CollectiveMind)
         {
-            if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel))
+            if (redirectedCollectiveMind != null)
             {
-                SendCollectiveMindChat(source, modMessage, channel);
+                SendCollectiveMindChat(source, message, redirectedCollectiveMind);
                 return;
             }
+
+            if (message.StartsWith(CollectiveMindPrefix))
+            {
+                if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel) &&
+                    channel is { } collectiveMind)
+                {
+                    SendCollectiveMindChat(source, modMessage, collectiveMind);
+                }
+
+                return;
+            }
+
+            if (!TryGetDefaultCollectiveMind(source, out var defaultCollectiveMind))
+            {
+                shell?.WriteError(Loc.GetString("collective-mind-chat-no-default"));
+                return;
+            }
+
+            SendCollectiveMindChat(source, message, defaultCollectiveMind);
+            return;
         }
         // Sunrise-End
 

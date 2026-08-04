@@ -594,11 +594,12 @@ public sealed partial class ChatUIController : UIController
         }
 
         // Sunrise-Start
-        if (_collectiveMind != null && _collectiveMind.IsCollectiveMind)
-        {
+        if (_collectiveMind?.CanReceive == true)
             FilterableChannels |= ChatChannel.CollectiveMind;
+
+        if (_collectiveMind?.CanSend == true)
             CanSendChannels |= ChatSelectChannel.CollectiveMind;
-        }
+
         // Sunrise-End
 
         SelectableChannels = CanSendChannels;

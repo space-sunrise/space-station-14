@@ -113,8 +113,8 @@
     speechVerb: LargeMob
   # Sunrise-Start
   - type: CollectiveMind
-    minds:
-    - Xeno
+    memberships:
+    - mind: Xeno
   # Sunrise-End
 
 - type: entity

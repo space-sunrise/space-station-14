@@ -1,4 +1,5 @@
 using Content.Server.Objectives.Systems;
+using Content.Server._Sunrise.CollectiveMind;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Item.ItemToggle.Components;
@@ -22,6 +23,7 @@ namespace Content.Server._Sunrise.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
+    [Dependency] private readonly CollectiveMindSystem _collectiveMind = default!;
     [Dependency] private readonly NumberObjectiveSystem _number = default!;
     [Dependency] private readonly SharedItemSwitchSystem _itemSwitch = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -240,11 +242,31 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (ent.Comp.Agent == null && ent.Comp.Scientist == null)
             return;
 
+        SyncCollectiveMind(ent);
+
         if (TryComp<AbductorScientistComponent>(ent.Comp.Scientist, out var scientistComp))
             scientistComp.Agent = ent.Comp.Agent;
 
         if (TryComp<AbductorAgentComponent>(ent.Comp.Agent, out var agentComp))
             agentComp.Scientist = ent.Comp.Scientist;
+    }
+
+    private void SyncCollectiveMind(Entity<AbductorConsoleComponent> ent)
+    {
+        if ((ent.Comp.Scientist ?? ent.Comp.Agent) is not { } member)
+            return;
+
+        if (!_collectiveMind.TryGetConfiguredMind(member, out var mind))
+            return;
+
+        if (!_collectiveMind.TryCreateGroup(ent, mind))
+            return;
+
+        if (ent.Comp.Scientist is { } scientist)
+            _collectiveMind.TryAddMember(scientist, mind, ent);
+
+        if (ent.Comp.Agent is { } agent)
+            _collectiveMind.TryAddMember(agent, mind, ent);
     }
 
     protected override void UpdateGui(NetEntity? target, Entity<AbductorConsoleComponent> computer)

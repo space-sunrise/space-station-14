@@ -167,8 +167,8 @@
       path: /Audio/Items/crowbar.ogg
   # Sunrise-Start
   - type: CollectiveMind
-    minds:
-    - Carp
+    memberships:
+    - mind: Carp
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Dragon

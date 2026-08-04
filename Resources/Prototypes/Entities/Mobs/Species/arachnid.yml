@@ -139,8 +139,8 @@
       params:
         volume: -10
   - type: CollectiveMind
-    minds:
-    - Arachnids
+    memberships:
+    - mind: Arachnids
   - type: FootprintEmitter
     leftBareFootState:
       - "footprint-left-bare-spider"

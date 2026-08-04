@@ -154,9 +154,7 @@ public sealed partial class FleshCultSystem
     private void InitializeStore(EntityUid uid, FleshCultistComponent component)
     {
         var storeComp = EnsureComp<StoreComponent>(uid);
-        var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(uid);
-        if (!collectiveMindComponent.Minds.Contains(FleshCollectiveMindProto))
-            collectiveMindComponent.Minds.Add(FleshCollectiveMindProto);
+        _collectiveMind.TryAddMember(uid, FleshCollectiveMindProto);
 
         storeComp.Categories.Add("FleshCultistPassiveSkills");
         storeComp.Categories.Add("FleshCultistActiveSkills");
@@ -216,11 +214,8 @@ public sealed partial class FleshCultSystem
         RemCompDeferred<FleshAbilitiesComponent>(uid);
     }
 
-    private void RemoveCollectiveMind(EntityUid uid)
-    {
-        if (TryComp(uid, out CollectiveMindComponent? collectiveMind) && collectiveMind.Minds.Contains(FleshCollectiveMindProto))
-            collectiveMind.Minds.Remove(FleshCollectiveMindProto);
-    }
+    private void RemoveCollectiveMind(EntityUid uid) =>
+        _collectiveMind.TryRemoveMember(uid, FleshCollectiveMindProto);
 
     private void RemoveObjectives(EntityUid uid)
     {
