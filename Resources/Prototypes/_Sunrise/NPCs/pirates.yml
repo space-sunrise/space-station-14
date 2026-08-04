@@ -230,7 +230,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 115
   - type: Stamina
     baseCritThreshold: 150
   - type: DamageStateVisuals
@@ -304,7 +303,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 95
   - type: Stamina
     baseCritThreshold: 100
   - type: Butcherable
@@ -2580,7 +2578,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 400
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 1.1
@@ -2668,7 +2665,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 250
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 1.1
@@ -2778,7 +2774,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 250
   - type: Stamina
     baseCritThreshold: 500
   - type: FootstepModifier
@@ -4344,7 +4339,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 450
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9

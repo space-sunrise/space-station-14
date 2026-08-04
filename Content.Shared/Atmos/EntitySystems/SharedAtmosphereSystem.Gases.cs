@@ -116,7 +116,7 @@ public abstract partial class SharedAtmosphereSystem
     [PublicAPI]
     public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.001f)
     {
-        return !IsSunriseIgnitionSuppressed(mixture) // Sunrise-Edit — HyperNoblium подавляет реакции горения
+        return !IsSunriseReactionSuppressed(mixture) // Sunrise-Edit — HyperNoblium подавляет реакции горения
             && IsMixtureFuel(mixture, epsilon)
             && IsMixtureOxidizer(mixture, epsilon);
     }

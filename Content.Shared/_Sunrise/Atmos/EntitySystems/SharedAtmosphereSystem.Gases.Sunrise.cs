@@ -3,10 +3,11 @@ namespace Content.Shared.Atmos.EntitySystems;
 public abstract partial class SharedAtmosphereSystem
 {
     /// <summary>
-    /// Проверяет Sunrise-газ, подавляющий воспламенение смеси.
+    /// Проверяет, подавляет ли HyperNoblium газовые реакции Sunrise.
     /// </summary>
-    private static bool IsSunriseIgnitionSuppressed(GasMixture mixture)
+    public bool IsSunriseReactionSuppressed(GasMixture mixture)
     {
-        return mixture.GetMoles(Gas.HyperNoblium) >= Atmospherics.ReactionSuppressionThreshold;
+        return mixture.GetMoles(Gas.HyperNoblium) >= Atmospherics.ReactionSuppressionThreshold
+            && mixture.Temperature > Atmospherics.ReactionSuppressionMinimumTemperature;
     }
 }

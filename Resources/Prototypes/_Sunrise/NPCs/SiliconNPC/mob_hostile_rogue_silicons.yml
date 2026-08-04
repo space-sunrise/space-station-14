@@ -247,7 +247,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 600
     damage:
       types:
         Blunt: -0.25
@@ -1627,7 +1626,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 450
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9

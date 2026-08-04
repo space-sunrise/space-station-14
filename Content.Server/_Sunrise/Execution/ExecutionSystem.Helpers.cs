@@ -96,10 +96,10 @@ public sealed partial class ExecutionSystem
         if (!TryComp<GunComponent>(weapon, out var gun) || !_gunSystem.CanShoot(gun))
             return false;
 
-        if (TryComp<DamageableComponent>(victim, out var damageable))
+        if (HasComp<DamageableComponent>(victim))
         {
             if (TryComp<BatteryAmmoProviderComponent>(weapon, out var battery) &&
-                !PrototypeHasLethalEffect((victim, damageable), battery.Prototype))
+                !PrototypeHasLethalEffect(battery.Prototype))
             {
                 return false;
             }
@@ -156,7 +156,7 @@ public sealed partial class ExecutionSystem
 
     // Чтобы не убивало от пустых патрон
     // Вероятно можно было сделать это более элегантно, но лень переделывать сейча. Сорян
-    private bool PrototypeHasLethalEffect(Entity<DamageableComponent> damageable, EntProtoId ammoPrototype)
+    private bool PrototypeHasLethalEffect(EntProtoId ammoPrototype)
     {
         var proto = _prototypeManager.Index<EntityPrototype>(ammoPrototype);
 
@@ -173,10 +173,9 @@ public sealed partial class ExecutionSystem
         if (damage == null)
             return false;
 
-        var supportedDamage = _damageableSystem.GetAllDamage(damageable.AsNullable());
         foreach (var (type, value) in damage.DamageDict)
         {
-            if (value > FixedPoint2.Zero && supportedDamage.DamageDict.ContainsKey(type))
+            if (type != StructuralDamageType && value > FixedPoint2.Zero)
                 return true;
         }
 
@@ -197,20 +196,16 @@ public sealed partial class ExecutionSystem
         return false;
     }
 
-    private DamageSpecifier FilterToSupportedDamage(Entity<DamageableComponent> damageable, DamageSpecifier damage)
+    private static DamageSpecifier FilterPositiveDamage(DamageSpecifier damage)
     {
         if (damage.Empty)
             return new DamageSpecifier();
 
         var filtered = new DamageSpecifier();
 
-        var supportedDamage = _damageableSystem.GetAllDamage(damageable.AsNullable());
         foreach (var (type, value) in damage.DamageDict)
         {
             if (value <= FixedPoint2.Zero)
-                continue;
-
-            if (!supportedDamage.DamageDict.ContainsKey(type))
                 continue;
 
             filtered.DamageDict[type] = value;
@@ -231,13 +226,13 @@ public sealed partial class ExecutionSystem
             return false;
 
         Entity<DamageableComponent> damageableEntity = (victim, damageable);
-        var damage = FilterToSupportedDamage(damageableEntity, baseDamage);
+        var damage = FilterPositiveDamage(baseDamage);
         if (damage.Empty || !damage.AnyPositive())
             return false;
 
         if (!forceLethal)
         {
-            _damageableSystem.ChangeDamage(
+            var appliedNonLethalDamage = _damageableSystem.ChangeDamage(
                 victim,
                 damage,
                 ignoreResistances: false,
@@ -245,7 +240,7 @@ public sealed partial class ExecutionSystem
                 ignoreVariance: true,
                 ignoreGlobalModifiers: false);
 
-            return true;
+            return !appliedNonLethalDamage.Empty && appliedNonLethalDamage.AnyPositive();
         }
 
         if (!TryComp<MobThresholdsComponent>(victim, out var thresholds))
@@ -268,7 +263,7 @@ public sealed partial class ExecutionSystem
         if (finalDamage.Empty || !finalDamage.AnyPositive())
             return false;
 
-        _damageableSystem.ChangeDamage(
+        var appliedLethalDamage = _damageableSystem.ChangeDamage(
             victim,
             finalDamage,
             ignoreResistances: true,
@@ -276,7 +271,7 @@ public sealed partial class ExecutionSystem
             ignoreVariance: true,
             ignoreGlobalModifiers: true);
 
-        return true;
+        return !appliedLethalDamage.Empty && appliedLethalDamage.AnyPositive();
     }
 
     private static DamageSpecifier DistributeDamage(DamageSpecifier weights, FixedPoint2 total)

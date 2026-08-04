@@ -191,7 +191,7 @@
     collection: FootstepJanitorBorg
     params:
       volume: -5
-  # Sunrise-Start
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgShort

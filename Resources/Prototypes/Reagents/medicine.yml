@@ -874,9 +874,6 @@
           Toxin: -0.5
       # Sunrise edit start
       - !type:HealthChange
-        conditions:
-        - !type:TotalDamageCondition
-          max: 50
         damage:
           types:
             Mangleness: -0.05

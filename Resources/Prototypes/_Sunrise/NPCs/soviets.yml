@@ -119,7 +119,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 115
   - type: Stamina
     baseCritThreshold: 125
   - type: DamageStateVisuals
@@ -1395,7 +1394,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 350
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9
@@ -1589,7 +1587,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 450
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9

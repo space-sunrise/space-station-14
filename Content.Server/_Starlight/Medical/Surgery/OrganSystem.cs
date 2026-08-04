@@ -58,21 +58,22 @@ public sealed partial class OrganSystem : EntitySystem
 
     private void OnOrganImplanted(Entity<DamageableComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
-        if (!TryComp<DamageableComponent>(args.Body, out var bodyDamageable)) return;
+        if (!HasComp<DamageableComponent>(args.Body))
+            return;
 
-        var change = _damageableSystem.ChangeDamage(args.Body, ent.Comp.Damage, true, false);
-        if (change is not null)
-            _damageableSystem.ChangeDamage(ent.Owner, change.Invert(), true, false);
+        var organDamage = _damageableSystem.GetAllDamage(ent.AsNullable());
+        var change = _damageableSystem.ChangeDamage(args.Body, organDamage, true, false);
+        _damageableSystem.ChangeDamage(ent.Owner, change.Invert(), true, false);
     }
     private void OnOrganExtracted(Entity<DamageableComponent> ent, ref SurgeryOrganExtracted args)
     {
         if (!TryComp<OrganDamageComponent>(ent.Owner, out var damageRule)
-         || damageRule.Damage is null
-         || !TryComp<DamageableComponent>(args.Body, out var bodyDamageable)) return;
+            || damageRule.Damage is null
+            || !HasComp<DamageableComponent>(args.Body))
+            return;
 
         var change = _damageableSystem.ChangeDamage(args.Body, damageRule.Damage.Invert(), true, false);
-        if (change is not null)
-            _damageableSystem.ChangeDamage(ent.Owner, change.Invert(), true, false);
+        _damageableSystem.ChangeDamage(ent.Owner, change.Invert(), true, false);
     }
     private void OnTongueImplanted(Entity<OrganTongueComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
