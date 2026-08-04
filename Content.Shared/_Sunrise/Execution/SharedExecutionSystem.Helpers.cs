@@ -1,6 +1,7 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -25,6 +26,7 @@ public abstract partial class SharedExecutionSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
     protected static bool TryGetVerbContext(
         ref GetVerbsEvent<UtilityVerb> args,
@@ -93,7 +95,7 @@ public abstract partial class SharedExecutionSystem
         if (TryComp<DamageableComponent>(victim, out var damageable))
         {
             if (TryComp<BatteryAmmoProviderComponent>(weapon, out var battery) &&
-                !PrototypeHasLethalEffect(damageable, battery.Prototype))
+                !PrototypeHasLethalEffect((victim, damageable), battery.Prototype))
                 return false;
 
             if (HasNonLethalAmmoPrototype(weapon))
@@ -136,7 +138,7 @@ public abstract partial class SharedExecutionSystem
         return false;
     }
 
-    private bool PrototypeHasLethalEffect(DamageableComponent damageable, EntProtoId ammoPrototype)
+    private bool PrototypeHasLethalEffect(Entity<DamageableComponent> damageable, EntProtoId ammoPrototype)
     {
         var proto = _prototypeManager.Index(ammoPrototype);
 
@@ -153,9 +155,10 @@ public abstract partial class SharedExecutionSystem
         if (damage == null)
             return false;
 
+        var supportedDamage = _damageableSystem.GetAllDamage(damageable.AsNullable());
         foreach (var (type, value) in damage.DamageDict)
         {
-            if (value > FixedPoint2.Zero && damageable.Damage.DamageDict.ContainsKey(type))
+            if (value > FixedPoint2.Zero && supportedDamage.DamageDict.ContainsKey(type))
                 return true;
         }
 

@@ -28,7 +28,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!TryComp(ent.Owner, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
+        if (!TryComp(ent.Owner, out DamageableComponent? damageable))
+            return;
+
+        var totalDamage = _damageableSystem.GetTotalDamage((ent.Owner, damageable));
+        if (totalDamage == 0)
             return;
 
         if (ent.Comp.DamageValue != null)
@@ -38,7 +42,7 @@ public sealed partial class RepairableSystem : EntitySystem
         else
             RepairAllDamage((ent, damageable), args.User);
 
-        args.Repeat = ent.Comp.AutoDoAfter && damageable.TotalDamage > 0;
+        args.Repeat = ent.Comp.AutoDoAfter && totalDamage > 0;
         args.Args.Event.Repeat = args.Repeat;
         args.Handled = true;
 
@@ -94,12 +98,14 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Handled)
             return;
 
+        var damage = _damageableSystem.GetAllDamage(ent.Owner);
+
         // Only try repair the target if it is damaged
-        if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
+        if (damage.GetTotal() == 0)
             return;
 
         // Sunrise-start
-        if (!CanRepair(damageable.Damage, ent.Comp))
+        if (!CanRepair(damage, ent.Comp))
             return;
         // Sunrise-end
 

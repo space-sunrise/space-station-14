@@ -208,7 +208,6 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 30 #Sunrise-Edit
     damage:
       types:
         Heat: -0.07

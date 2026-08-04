@@ -192,7 +192,8 @@ public sealed class PylonSystem : EntitySystem
                 ? damageComp
                 : null;
 
-            if (playerDamageComp == null || playerDamageComp.Damage.GetTotal() == 0)
+            if (playerDamageComp == null ||
+                _damageSystem.GetTotalDamage((playerEntity, playerDamageComp)) == 0)
                 continue;
 
             var uid = comp.Owner;

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Content.IntegrationTests;
 using Content.IntegrationTests._Sunrise.Patches;
+using Content.IntegrationTests.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization.Markdown.Validation;
@@ -20,6 +21,7 @@ namespace Content.YAMLLinter
         {
             // Sunrise edit start - линтеру нужны метаданные RSI, но не декодированные изображения
             RsiLoadingPatch.Apply();
+            GameDataScrounger.NoScrounging = true; // Ugly hack for YAML Linter.
             PoolManager.Startup();
             try
             {

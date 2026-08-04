@@ -99,7 +99,7 @@ public sealed partial class ExecutionSystem
         if (TryComp<DamageableComponent>(victim, out var damageable))
         {
             if (TryComp<BatteryAmmoProviderComponent>(weapon, out var battery) &&
-                !PrototypeHasLethalEffect(damageable, battery.Prototype))
+                !PrototypeHasLethalEffect((victim, damageable), battery.Prototype))
             {
                 return false;
             }
@@ -156,7 +156,7 @@ public sealed partial class ExecutionSystem
 
     // Чтобы не убивало от пустых патрон
     // Вероятно можно было сделать это более элегантно, но лень переделывать сейча. Сорян
-    private bool PrototypeHasLethalEffect(DamageableComponent damageable, EntProtoId ammoPrototype)
+    private bool PrototypeHasLethalEffect(Entity<DamageableComponent> damageable, EntProtoId ammoPrototype)
     {
         var proto = _prototypeManager.Index<EntityPrototype>(ammoPrototype);
 
@@ -173,9 +173,10 @@ public sealed partial class ExecutionSystem
         if (damage == null)
             return false;
 
+        var supportedDamage = _damageableSystem.GetAllDamage(damageable.AsNullable());
         foreach (var (type, value) in damage.DamageDict)
         {
-            if (value > FixedPoint2.Zero && damageable.Damage.DamageDict.ContainsKey(type))
+            if (value > FixedPoint2.Zero && supportedDamage.DamageDict.ContainsKey(type))
                 return true;
         }
 
@@ -196,19 +197,20 @@ public sealed partial class ExecutionSystem
         return false;
     }
 
-    private static DamageSpecifier FilterToSupportedDamage(DamageableComponent damageable, DamageSpecifier damage)
+    private DamageSpecifier FilterToSupportedDamage(Entity<DamageableComponent> damageable, DamageSpecifier damage)
     {
         if (damage.Empty)
             return new DamageSpecifier();
 
         var filtered = new DamageSpecifier();
 
+        var supportedDamage = _damageableSystem.GetAllDamage(damageable.AsNullable());
         foreach (var (type, value) in damage.DamageDict)
         {
             if (value <= FixedPoint2.Zero)
                 continue;
 
-            if (!damageable.Damage.DamageDict.ContainsKey(type))
+            if (!supportedDamage.DamageDict.ContainsKey(type))
                 continue;
 
             filtered.DamageDict[type] = value;
@@ -228,7 +230,8 @@ public sealed partial class ExecutionSystem
         if (!TryComp<DamageableComponent>(victim, out var damageable))
             return false;
 
-        var damage = FilterToSupportedDamage(damageable, baseDamage);
+        Entity<DamageableComponent> damageableEntity = (victim, damageable);
+        var damage = FilterToSupportedDamage(damageableEntity, baseDamage);
         if (damage.Empty || !damage.AnyPositive())
             return false;
 
@@ -252,7 +255,8 @@ public sealed partial class ExecutionSystem
         if (damage.Empty || !damage.AnyPositive())
             return false;
 
-        var lethalRemaining = thresholds.Thresholds.Keys.Last() - damageable.TotalDamage;
+        var lethalRemaining = thresholds.Thresholds.Keys.Last()
+            - _damageableSystem.GetTotalDamage(damageableEntity.AsNullable());
         if (lethalRemaining <= FixedPoint2.Zero)
             return true;
 

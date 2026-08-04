@@ -228,7 +228,6 @@
     # This allows Vox to take their mask off temporarily to eat something without needing a trip to medbay afterwards.
     allowedStates:
     - Alive
-    damageCap: 30 #Sunrise-Edit
     damage:
       types:
         Heat: -0.07
