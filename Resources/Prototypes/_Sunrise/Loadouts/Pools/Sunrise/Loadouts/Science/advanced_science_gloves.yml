@@ -1,0 +1,10 @@
+- type: loadout
+  id: AdvancedScienceGloves
+  equipment:
+    gloves: ClothingHandsGlovesAdvancedScience
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Science
+      time: 100h
