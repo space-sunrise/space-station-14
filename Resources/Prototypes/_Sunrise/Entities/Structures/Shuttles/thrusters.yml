@@ -199,10 +199,7 @@
   suffix: 20KThrust
   components:
   - type: Thruster
-    thrusterType: Angular
-    requireSpace: false
     thrust: 20000
-    machinePartThrust: Manipulator
     
 - type: entity
   id: GyroscopeSuperThrust
@@ -210,10 +207,7 @@
   suffix: 200KThrust
   components:
   - type: Thruster
-    thrusterType: Angular
-    requireSpace: false
     thrust: 200000
-    machinePartThrust: Manipulator
     
 - type: entity
   id: GyroscopeHyperThrust
@@ -221,7 +215,4 @@
   suffix: 2MThrust
   components:
   - type: Thruster
-    thrusterType: Angular
-    requireSpace: false
     thrust: 2000000
-    machinePartThrust: Manipulator
