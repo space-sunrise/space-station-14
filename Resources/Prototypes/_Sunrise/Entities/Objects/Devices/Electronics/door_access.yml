@@ -40,6 +40,14 @@
 
 - type: entity
   parent: DoorElectronics
+  id: DoorElectronicsPirate
+  suffix: Pirate, Locked
+  components:
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
+  parent: DoorElectronics
   id: DoorElectronicsInternalAffairs
   suffix: Internal Affairs, Locked
   components:
@@ -53,14 +61,6 @@
   components:
   - type: AccessReader
     access: [["Security"], ["IAA"]]
-
-- type: entity
-  parent: DoorElectronics
-  id: DoorElectronicsPirate
-  suffix: Pirate, Locked
-  components:
-  - type: AccessReader
-    access: [["Pirate"]]
 
 - type: entity
   parent: DoorElectronics
