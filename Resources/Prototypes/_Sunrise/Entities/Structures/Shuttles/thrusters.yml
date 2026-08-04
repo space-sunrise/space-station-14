@@ -192,3 +192,36 @@
       shader: unshaded
       visible: false
       offset: 1, 3.75
+
+- type: entity
+  id: GyroscopeHugeThrust
+  parent: Gyroscope
+  suffix: 20KThrust
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    thrust: 20000
+    machinePartThrust: Manipulator
+    
+- type: entity
+  id: GyroscopeSuperThrust
+  parent: Gyroscope
+  suffix: 200KThrust
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    thrust: 200000
+    machinePartThrust: Manipulator
+    
+- type: entity
+  id: GyroscopeHyperThrust
+  parent: Gyroscope
+  suffix: 2MThrust
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    thrust: 2000000
+    machinePartThrust: Manipulator
