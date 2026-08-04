@@ -7,9 +7,9 @@ ent-HugeThruster = огромный ракетный двигатель
 ent-HugeRedThruster = огромный красный ракетный двигатель
     .desc = { ent-Thruster }
 	
-ent-GyroscopeHugeThrust = { ent-Gyroscope }
+ent-SunriseGyroscopeHugeThrust = { ent-Gyroscope }
     .desc = { ent-Gyroscope.desc }
-ent-GyroscopeSuperThrust = { ent-Gyroscope }
+ent-SunriseGyroscopeSuperThrust = { ent-Gyroscope }
     .desc = { ent-Gyroscope.desc }
-ent-GyroscopeHyperThrust = { ent-Gyroscope }
+ent-SunriseGyroscopeHyperThrust = { ent-Gyroscope }
     .desc = { ent-Gyroscope.desc }

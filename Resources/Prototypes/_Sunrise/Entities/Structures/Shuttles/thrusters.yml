@@ -194,7 +194,7 @@
       offset: 1, 3.75
 
 - type: entity
-  id: GyroscopeHugeThrust
+  id: SunriseGyroscopeHugeThrust
   parent: Gyroscope
   suffix: 20KThrust
   components:
@@ -202,7 +202,7 @@
     thrust: 20000
     
 - type: entity
-  id: GyroscopeSuperThrust
+  id: SunriseGyroscopeSuperThrust
   parent: Gyroscope
   suffix: 200KThrust
   components:
@@ -210,7 +210,7 @@
     thrust: 200000
     
 - type: entity
-  id: GyroscopeHyperThrust
+  id: SunriseGyroscopeHyperThrust
   parent: Gyroscope
   suffix: 2MThrust
   components:
