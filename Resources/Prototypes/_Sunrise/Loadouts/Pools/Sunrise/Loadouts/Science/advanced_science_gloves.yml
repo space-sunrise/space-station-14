@@ -1,7 +1,7 @@
 - type: loadout
-  id: AdvancedScienceGloves
+  id: SunriseAdvancedScienceGloves
   equipment:
-    gloves: ClothingHandsGlovesAdvancedScience
+    gloves: SunriseClothingHandsGlovesAdvancedScience
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:

@@ -1084,7 +1084,7 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
-  - AdvancedScienceGloves # Sunrise-Edit
+  - SunriseAdvancedScienceGloves # Sunrise-Edit
 
 
 - type: loadoutGroup
