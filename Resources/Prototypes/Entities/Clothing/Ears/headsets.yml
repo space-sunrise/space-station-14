@@ -247,6 +247,7 @@
     sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi # Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Clothing/Ears/Headsets/security.rsi # Sunrise-Edit
+  - type: FlashbangProtection
 
 - type: entity
   parent: [ClothingHeadset, BaseSecurityContraband]

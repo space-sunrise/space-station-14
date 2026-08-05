@@ -349,6 +349,8 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashbangProtection
+    protectionRangeCoefficient: 1
   - type: Tag
     tags:
     - CorgiWearable
@@ -762,6 +764,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashbangProtection
+    protectionRangeCoefficient: 1
+  - type: FlashImmunity
   - type: Tag
     tags:
     - CorgiWearable

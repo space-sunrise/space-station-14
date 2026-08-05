@@ -54,7 +54,7 @@
   - type: SpawnOnTrigger
     keysIn:
     - timer
-    proto: GrenadeFlashEffect
+    proto: GrenadeFlashbangEffect
     predicted: true
   - type: Appearance
   - type: TimerTriggerVisuals
@@ -87,6 +87,24 @@
       duration: 0.5
     - type: TimedDespawn
       lifetime: 0.5
+
+- type: entity
+  id: GrenadeFlashbangEffect 
+  parent: GrenadeFlashEffect 
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TriggerOnSpawn
+    - type: FlashbangRadiusOnTrigger
+      range: 7
+
+- type: entity
+  id: PayloadFlashbangEffect 
+  parent: GrenadeFlashEffect 
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TriggerOnSpawn
+    - type: FlashbangRadiusOnTrigger
+      range: 6
 
 # Tuned to be a general bomb that deals equipment damage without explicitly gibbing, however it will still gladly instakill anyone that mishandles it.
 # One of the few syndie bombs that should punch holes in space.
