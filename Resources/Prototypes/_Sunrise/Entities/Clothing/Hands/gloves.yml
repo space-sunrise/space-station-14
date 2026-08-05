@@ -316,7 +316,7 @@
     sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi
 
 - type: entity
-  parent: [ ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband ]
+  parent: [ ClothingHandsGlovesColorBlack, BaseScienceContraband]
   id: ClothingHandsGlovesAdvancedScience
   name: advanced science gloves
   description: These tactical gloves are fireproof, shock resistant, and very comfortable. However, they are a poor choice for punching. They have a purple trim, indicating advanced science department clearance.
