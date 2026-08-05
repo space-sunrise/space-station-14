@@ -162,7 +162,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual([2], [item["number"] for item in result])
         request.assert_called_once()
 
-    def test_workflow_has_all_entry_points_and_safe_write_retry(self):
+    def test_workflow_has_all_entry_points_and_safe_app_write_retry(self):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         document = yaml.load(workflow, Loader=yaml.BaseLoader)
 
@@ -172,9 +172,14 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("push:", workflow)
         self.assertIn("workflow_dispatch:", workflow)
         self.assertIn("schedule:", workflow)
-        self.assertIn("contents: write", workflow)
-        self.assertIn("pull-requests: read", workflow)
-        self.assertIn("ssh-key: ${{ secrets.CHANGELOG_SSH_KEY }}", workflow)
+        self.assertIn("permissions: {}", workflow)
+        self.assertIn("actions/create-github-app-token@v3.2.0", workflow)
+        self.assertIn("client-id: ${{ vars.CHANGELOG_APP_CLIENT_ID }}", workflow)
+        self.assertIn("private-key: ${{ secrets.CHANGELOG_APP_PRIVATE_KEY }}", workflow)
+        self.assertIn("token: ${{ steps.app-token.outputs.token }}", workflow)
+        self.assertNotIn("CHANGELOG_TOKEN", workflow)
+        self.assertNotIn("CHANGELOG_SSH_KEY", workflow)
+        self.assertNotIn("github.token", workflow)
         self.assertNotIn("concurrency:", workflow)
         self.assertIn("git reset --hard origin/master", workflow)
         self.assertIn("for attempt in {1..5}", workflow)
