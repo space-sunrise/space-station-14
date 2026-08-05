@@ -20,29 +20,7 @@ namespace Content.Server._Sunrise.Execution;
 
 public sealed partial class ExecutionSystem
 {
-    private static bool TryGetVerbContext(
-        ref GetVerbsEvent<UtilityVerb> args,
-        out EntityUid attacker,
-        out EntityUid weapon,
-        out EntityUid victim,
-        out bool suicide)
-    {
-        attacker = default;
-        weapon = default;
-        victim = default;
-        suicide = false;
-
-        if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract)
-            return false;
-
-        attacker = args.User;
-        weapon = args.Using.Value;
-        victim = args.Target;
-        suicide = attacker == victim;
-        return true;
-    }
-
-    private bool CanExecuteWithAny(EntityUid victim, EntityUid attacker)
+    private bool CanExecuteWithAnyServer(EntityUid victim, EntityUid attacker)
     {
         // No point executing someone if they can't take damage
         if (!HasComp<DamageableComponent>(victim))
@@ -75,9 +53,9 @@ public sealed partial class ExecutionSystem
         return true;
     }
 
-    private bool CanExecuteWithMelee(EntityUid weapon, EntityUid victim, EntityUid user)
+    private bool CanExecuteWithMeleeServer(EntityUid weapon, EntityUid victim, EntityUid user)
     {
-        if (!CanExecuteWithAny(victim, user))
+        if (!CanExecuteWithAnyServer(victim, user))
             return false;
 
         // We must be able to actually hurt people with the weapon
@@ -87,9 +65,9 @@ public sealed partial class ExecutionSystem
         return true;
     }
 
-    private bool CanExecuteWithGun(EntityUid weapon, EntityUid victim, EntityUid user)
+    private bool CanExecuteWithGunServer(EntityUid weapon, EntityUid victim, EntityUid user)
     {
-        if (!CanExecuteWithAny(victim, user))
+        if (!CanExecuteWithAnyServer(victim, user))
             return false;
 
         // We must be able to actually fire the gun
@@ -115,20 +93,20 @@ public sealed partial class ExecutionSystem
     {
         if (TryComp<BallisticAmmoProviderComponent>(weapon, out var ballistic) &&
             ballistic.Proto != null &&
-            IsNonLethalAmmo(ballistic.Proto.Value))
+            IsNonLethalAmmoServer(ballistic.Proto.Value))
         {
             return true;
         }
 
         if (TryComp<RevolverAmmoProviderComponent>(weapon, out var revolver) &&
             revolver.FillPrototype != null &&
-            IsNonLethalAmmo(revolver.FillPrototype))
+            IsNonLethalAmmoServer(revolver.FillPrototype))
         {
             return true;
         }
 
         if (TryComp<BasicEntityAmmoProviderComponent>(weapon, out var basic) &&
-            IsNonLethalAmmo(basic.Proto))
+            IsNonLethalAmmoServer(basic.Proto))
         {
             return true;
         }
@@ -139,13 +117,13 @@ public sealed partial class ExecutionSystem
         {
             if (TryComp<BallisticAmmoProviderComponent>(magEntity, out var magBallistic) &&
                 magBallistic.Proto != null &&
-                IsNonLethalAmmo(magBallistic.Proto.Value))
+                IsNonLethalAmmoServer(magBallistic.Proto.Value))
             {
                 return true;
             }
 
             if (TryComp<BasicEntityAmmoProviderComponent>(magEntity, out var magBasic) &&
-                IsNonLethalAmmo(magBasic.Proto))
+                IsNonLethalAmmoServer(magBasic.Proto))
             {
                 return true;
             }
@@ -182,7 +160,7 @@ public sealed partial class ExecutionSystem
         return false;
     }
 
-    private static bool IsNonLethalAmmo(string? prototypeId)
+    private static bool IsNonLethalAmmoServer(string? prototypeId)
     {
         if (string.IsNullOrWhiteSpace(prototypeId))
             return false;

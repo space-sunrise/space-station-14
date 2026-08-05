@@ -37,6 +37,8 @@ namespace Content.Server.Zombies
 {
     public sealed partial class ZombieSystem : SharedZombieSystem
     {
+        private static readonly Regex ColorTagRegex = new(@"\[\s*\/?\s*color(?:=[^\]]*)?\]", RegexOptions.IgnoreCase);
+
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IPrototypeManager _protoManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
@@ -126,7 +128,6 @@ namespace Content.Server.Zombies
 
             var zombieXform = Transform(uid);
             EntityUid? nearestUid = default!;
-            TransformComponent? nearestXform = default!;
             float? minDistance = null;
             var query = AllEntityQuery<HumanoidProfileComponent>();
             while (query.MoveNext(out var targetUid, out var humanoidAppearanceComponent))
@@ -165,9 +166,8 @@ namespace Content.Server.Zombies
         private string RemoveColorTags(string input)
         {
             // Регулярное выражение для поиска тэгов [color=...] и [/color]
-            var pattern = @"\[\s*\/?\s*color(?:=[^\]]*)?\]";
             // Заменяем найденные тэги на пустую строку
-            var result = Regex.Replace(input, pattern, string.Empty, RegexOptions.IgnoreCase);
+            var result = ColorTagRegex.Replace(input, string.Empty);
             return result;
         }
 

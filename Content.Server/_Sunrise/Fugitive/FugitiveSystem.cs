@@ -79,7 +79,7 @@ namespace Content.Server._Sunrise.Fugitive
         public bool SendFugiReport(EntityUid fugitive)
         {
             var report = GenerateFugiReport(fugitive);
-            var faxes = EntityManager.EntityQuery<FaxMachineComponent>();
+            var faxes = EntityQuery<FaxMachineComponent>();
             var wasSent = false;
             foreach (var fax in faxes)
             {

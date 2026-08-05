@@ -57,6 +57,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
+    private static readonly ProtoId<TagPrototype> PowerCageTag = "PowerCage";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -103,7 +104,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
-        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery) && _tag.HasTag(args.Used, "PowerCage"))
+        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery) && _tag.HasTag(args.Used, PowerCageTag))
         {
             InsertBattery(uid, args.Used, component, battery);
             _actionBlocker.UpdateCanMove(uid);

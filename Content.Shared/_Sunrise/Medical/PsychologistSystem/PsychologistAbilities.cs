@@ -16,6 +16,8 @@ public sealed partial class PsychologistSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 
+    private readonly string _actionProto = "PsychologistAlcoholBlock";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -112,7 +114,7 @@ public sealed partial class PsychologistSystem : EntitySystem
     }
     private void OnPsychologistBlockAlcohol(Entity<PsychologistBlockAlcoholComponent> ent, ref ComponentStartup args)
     {
-        _actionsSystem.AddAction(ent.Owner, "PsychologistAlcoholBlock");
+        _actionsSystem.AddAction(ent.Owner, _actionProto);
     }
 
 }

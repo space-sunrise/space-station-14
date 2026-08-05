@@ -119,7 +119,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             // during this physics tick.
             if (!deleted)
             {
-                if (TryComp<TransformComponent>(target, out var targetXform))
+                if (TryComp(target, out TransformComponent? targetXform))
                     _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager));
             }
 

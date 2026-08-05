@@ -33,11 +33,14 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.FleshCult;
 
 public sealed partial class FleshCultSystem
 {
+    private static readonly ProtoId<BodyTypePrototype> SkeletonBodyType = "SkeletonNormal";
+
     private void InitializeAbilities()
     {
         SubscribeLocalEvent<FleshAbilitiesComponent, FleshCultistHandTransformEvent>(OnHandTransformEvent);
@@ -133,7 +136,7 @@ public sealed partial class FleshCultSystem
             switch (targetState.CurrentState)
             {
                 case MobState.Dead:
-                    if (EntityManager.TryGetComponent(target, out HumanoidProfileComponent? humanoidAppearance))
+                    if (TryComp(target, out HumanoidProfileComponent? humanoidAppearance))
                     {
                         if (!_speciesWhitelist.Contains(humanoidAppearance.Species))
                         {
@@ -265,7 +268,7 @@ public sealed partial class FleshCultSystem
                 }
             }
 
-            var bodyType = _prototypeManager.Index<BodyTypePrototype>("SkeletonNormal");
+            var bodyType = _prototypeManager.Index(SkeletonBodyType);
             foreach (var (key, data) in bodyType.Layers)
             {
                 if (key != HumanoidVisualLayers.Head)
@@ -467,7 +470,7 @@ public sealed partial class FleshCultSystem
             // Удаляем компонент наручников, если есть
             if (HasComp<CuffableComponent>(uid))
             {
-                EntityManager.RemoveComponent<CuffableComponent>(uid);
+                RemComp<CuffableComponent>(uid);
             }
         }
         else
@@ -514,7 +517,7 @@ public sealed partial class FleshCultSystem
                 _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-body-remove",
                     ("User", uid), ("Mod", equippedItem)), uid, PopupType.LargeCaution);
-                EntityManager.DeleteEntity(equippedItem.Value);
+                Del(equippedItem.Value);
                 _movement.RefreshMovementSpeedModifiers(uid);
                 args.Handled = true;
                 return;
@@ -583,7 +586,7 @@ public sealed partial class FleshCultSystem
             }
         }
         _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-        EntityManager.SpawnEntity(component.FleshHeartId, targetCord);
+        Spawn(component.FleshHeartId, targetCord);
         args.Handled = true;
     }
 

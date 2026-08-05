@@ -8,7 +8,6 @@ namespace Content.Server._Sunrise.Chat;
 
 public sealed class SayWithIntervalSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ChatSystem _chat = default!;

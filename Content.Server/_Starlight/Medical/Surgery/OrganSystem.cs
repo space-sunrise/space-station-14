@@ -43,15 +43,15 @@ public sealed partial class OrganSystem : EntitySystem
     private void OnFunctionalOrganImplanted(Entity<FunctionalOrganComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
-            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
-                EntityManager.AddComponent(args.Body, _compFactory.GetComponent(comp.Component.GetType()));
+            if (!HasComp(args.Body, comp.Component.GetType()))
+                AddComp(args.Body, _compFactory.GetComponent(comp.Component.GetType()));
     }
 
     private void OnFunctionalOrganExtracted(Entity<FunctionalOrganComponent> ent, ref SurgeryOrganExtracted args)
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
-            if (EntityManager.HasComponent(args.Body, comp.Component.GetType()))
-                EntityManager.RemoveComponent(args.Body, _compFactory.GetComponent(comp.Component.GetType()));
+            if (HasComp(args.Body, comp.Component.GetType()))
+                RemComp(args.Body, _compFactory.GetComponent(comp.Component.GetType()));
     }
 
     //

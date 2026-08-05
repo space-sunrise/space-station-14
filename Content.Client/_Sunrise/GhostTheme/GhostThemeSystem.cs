@@ -1,14 +1,16 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared._Sunrise.GhostTheme;
+using Content.Shared.Movement.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.GhostTheme;
 
-public sealed class GhostThemeSystem: EntitySystem
+public sealed class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -19,21 +21,21 @@ public sealed class GhostThemeSystem: EntitySystem
     private void OnInit(EntityUid uid, GhostThemeComponent component, ref AfterAutoHandleStateEvent args)
     {
         if (component.GhostTheme == null
-            || !_prototypeManager.TryIndex<GhostThemePrototype>(component.GhostTheme, out var ghostThemePrototype))
+            || !_proto.TryIndex<GhostThemePrototype>(component.GhostTheme, out var ghostTheme))
             return;
 
-        if (!EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite))
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        if (!sprite.LayerMapTryGet(EffectLayers.Unshaded, out var layer))
+        if (!_sprite.LayerMapTryGet((uid, sprite), EffectLayers.Unshaded, out var layer, false))
         {
-            sprite.LayerSetSprite(layer, ghostThemePrototype.Sprite);
+            _sprite.LayerSetSprite((uid, sprite), layer, ghostTheme.Sprite);
             sprite.LayerSetShader(layer, "unshaded");
-            sprite.LayerSetColor(layer, ghostThemePrototype.SpriteColor);
-            sprite.LayerSetScale(layer, ghostThemePrototype.Scale);
+            _sprite.LayerSetColor((uid, sprite), layer, ghostTheme.SpriteColor);
+            _sprite.LayerSetScale((uid, sprite), layer, ghostTheme.Scale);
         }
 
-        sprite.DrawDepth = DrawDepth.Default + 11;
+        _sprite.SetDrawDepth((uid, sprite), DrawDepth.Default + 11);
         sprite.OverrideContainerOcclusion = true;
         sprite.NoRotation = true;
     }

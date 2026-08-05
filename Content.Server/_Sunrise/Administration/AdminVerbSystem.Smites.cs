@@ -257,7 +257,7 @@ public sealed partial class AdminVerbSystem
         Spawn(bluespaceEffect, currentCoordinates);
 
         // Trigger the explosion after teleportation
-        EntityManager.QueueDeleteEntity(target);
+        QueueDel(target);
     }
 
     private void BleedOut(EntityUid target)

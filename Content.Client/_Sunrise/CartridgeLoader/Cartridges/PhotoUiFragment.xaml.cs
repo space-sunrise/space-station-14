@@ -18,7 +18,6 @@ public sealed partial class PhotoUiFragment : BoxContainer
 {
     public event Action? OnCapturePhoto;
     public event Action<string>? OnDeletePhoto;
-    public event Action<string, string?, string?>? OnSendPhotoToMessenger;
     public event Action? OnRequestGallery;
     public event Action<bool>? OnToggleFlash;
 

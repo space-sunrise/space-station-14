@@ -20,7 +20,6 @@ public sealed partial class AddWantedStatusSystem : EntitySystem
     [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
     public override void Initialize()

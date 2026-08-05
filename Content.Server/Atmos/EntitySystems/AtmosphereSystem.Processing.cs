@@ -714,7 +714,7 @@ namespace Content.Server.Atmos.EntitySystems
                     }
 
                     atmosphere.ProcessingPaused = false;
-                    // SunRise-start
+                    // Sunrise edit start — отдельный этап обработки заряженного Electrovae.
                     atmosphere.State = AtmosphereProcessingState.ChargedElectrovae;
                     return AtmosphereProcessingCompletionState.Continue;
                 case AtmosphereProcessingState.ChargedElectrovae:
@@ -725,7 +725,7 @@ namespace Content.Server.Atmos.EntitySystems
                     }
 
                     atmosphere.ProcessingPaused = false;
-                    // SunRise-end
+                    // Sunrise edit end
 
                     // Next state depends on whether monstermos equalization is enabled or not.
                     // Note: We do this here instead of on the tile equalization step to prevent ending it early.

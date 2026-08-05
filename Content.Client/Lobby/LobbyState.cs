@@ -50,7 +50,6 @@ namespace Content.Client.Lobby
     // TODO: Полностью скопировать в папку санрайза, это сбросить до состояния оффов или закоментировать
     public sealed class LobbyState : Robust.Client.State.State
     {
-        [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;

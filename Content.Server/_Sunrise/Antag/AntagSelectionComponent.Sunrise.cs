@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Content.Server.Antag;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
@@ -16,6 +17,7 @@ public sealed partial class AntagSelectionComponent
     public int SpawnersCount;
 }
 
+[StructLayout(LayoutKind.Auto)]
 public partial struct AntagSelectionDefinition
 {
     /// <summary>

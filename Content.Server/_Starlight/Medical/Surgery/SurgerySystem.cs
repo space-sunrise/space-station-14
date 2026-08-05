@@ -26,7 +26,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly ContainerSystem _containers = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()

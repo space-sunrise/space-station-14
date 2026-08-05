@@ -5,7 +5,7 @@ using Content.Shared.Random.Helpers;
 
 namespace Content.Shared.StationRecords;
 
-public abstract class SharedStationRecordsSystem : EntitySystem
+public abstract partial class SharedStationRecordsSystem : EntitySystem // Sunrise-Edit — дополнительные API записей вынесены в partial.
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
 

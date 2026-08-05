@@ -2,7 +2,6 @@
                           xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                           SetSize="1450 720"
                           MinSize="1450 720"
-                          Name="Window"
                           Title="{Loc ui-tutorial}">
     <PanelContainer>
         <PanelContainer.PanelOverride>

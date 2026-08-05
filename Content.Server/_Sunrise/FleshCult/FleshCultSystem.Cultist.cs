@@ -35,6 +35,8 @@ public sealed partial class FleshCultSystem
     [ValidatePrototypeId<TagPrototype>]
     private const string FleshTagProto = "Flesh";
 
+    private static readonly ProtoId<TagPrototype> FullBodyOuterTag = "FullBodyOuter";
+
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultFleshCultRule = "FleshCult";
 
@@ -123,7 +125,7 @@ public sealed partial class FleshCultSystem
     {
         if (_inventory.TryGetSlotEntity(uid, slot, out var entity) && HasComp<FleshBodyModComponent>(entity))
         {
-            EntityManager.DeleteEntity(entity.Value);
+            Del(entity.Value);
             _movement.RefreshMovementSpeedModifiers(uid);
             _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
         }
@@ -138,7 +140,7 @@ public sealed partial class FleshCultSystem
             return;
         if (!HasComp<FleshBodyModComponent>(shoes))
             return;
-        if (!_tagSystem.HasTag(args.Equipment, "FullBodyOuter"))
+        if (!_tagSystem.HasTag(args.Equipment, FullBodyOuterTag))
             return;
         _popup.PopupEntity(Loc.GetString("flesh-cultist-equiped-outer-clothing-blocked",
             ("Entity", uid)), uid, PopupType.Large);

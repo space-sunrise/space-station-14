@@ -11,8 +11,6 @@ using Content.Shared.Silicons.StationAi;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using System.Linq;
 
 
 namespace Content.Server.StationRecords.Systems;

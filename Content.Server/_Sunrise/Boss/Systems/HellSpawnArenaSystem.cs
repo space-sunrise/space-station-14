@@ -36,28 +36,21 @@ using Robust.Shared.Utility;
 using System.Numerics;
 using Content.Shared.Gibbing;
 using Robust.Shared.Maths;
-using Content.Shared.Gibbing;
 
 namespace Content.Server._Sunrise.Boss.Systems;
 
 /// <inheritdoc />
 public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly ConstructionSystem _construction = default!;
-    [Dependency] private readonly SharedConstructionSystem _shConstruction = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -169,7 +162,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
         Status = HellSpawnBossStatus.Idle;
         UpdateArenaUi();
         if (AllEntityQuery<HellSpawnConsoleComponent, TransformComponent>()
-            .MoveNext(out var consoleUid, out _, out _) && consoleUid != null) // В идеальном случае в мире только один алтарь призыва
+            .MoveNext(out var consoleUid, out _, out _)) // В идеальном случае в мире только один алтарь призыва
             _transform.SetCoordinates(uid, Transform(consoleUid).Coordinates);
         await Task.Delay(1000);
         if (ArenaMap != null)
@@ -193,8 +186,7 @@ public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
             {
                 if (fighter.TeleportedFromCoordinates == null)
                 {
-                    if (consoleEntity != null)
-                        _transform.SetCoordinates(fighter.Owner, cnsXform.Coordinates);
+                    _transform.SetCoordinates(fighter.Owner, cnsXform.Coordinates);
                     continue;
                 }
 

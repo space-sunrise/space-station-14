@@ -43,6 +43,9 @@ public sealed class StatsBoardSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
+    private static readonly ProtoId<TagPrototype> HamsterTag = "Hamster";
+    private static readonly ProtoId<TagPrototype> MouseTag = "Mouse";
+
     private (EntityUid? killer, EntityUid? victim, TimeSpan time) _firstMurder = (null, null, TimeSpan.Zero);
     private EntityUid? _hamsterKiller;
     private int _jointCreated;
@@ -104,7 +107,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (!_statisticEntries.TryGetValue(uid, out var value))
             return;
 
-        if (!TryComp<MetaDataComponent>(ev.Item, out var metaDataComponent))
+        if (!TryComp(ev.Item, out MetaDataComponent? metaDataComponent))
             return;
 
         if (metaDataComponent.EntityPrototype == null)
@@ -217,7 +220,7 @@ public sealed class StatsBoardSystem : EntitySystem
 
                 if (origin != null)
                 {
-                    if (_hamsterKiller == null && _tagSystem.HasTag(uid, "Hamster"))
+                    if (_hamsterKiller == null && _tagSystem.HasTag(uid, HamsterTag))
                     {
                         _hamsterKiller = origin.Value;
                     }
@@ -225,7 +228,7 @@ public sealed class StatsBoardSystem : EntitySystem
                     if (!_statisticEntries.TryGetValue(origin.Value, out var originEntry))
                         return;
 
-                    if (_tagSystem.HasTag(uid, "Mouse"))
+                    if (_tagSystem.HasTag(uid, MouseTag))
                     {
                         originEntry.KilledMouseCount += 1;
                     }
@@ -311,7 +314,7 @@ public sealed class StatsBoardSystem : EntitySystem
             if (!_statisticEntries.TryGetValue(ent, out var value))
                 return;
 
-            if (TryComp<TransformComponent>(ent, out var transformComponent) &&
+            if (TryComp(ent, out TransformComponent? transformComponent) &&
                 transformComponent.GridUid == null && HasComp<HumanoidProfileComponent>(ent))
                 value.SpaceTime += TimeSpan.FromSeconds(frameTime);
 
@@ -765,7 +768,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (_statisticEntries.TryGetValue(uid, out var value))
             return value.Name;
 
-        if (TryComp<MetaDataComponent>(uid, out var metaDataComponent))
+        if (TryComp(uid, out MetaDataComponent? metaDataComponent))
             return metaDataComponent.EntityName;
 
         return "Кто это блядь?";

@@ -3,7 +3,6 @@ using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
 using Content.Shared.Body;
 using Content.Shared._Sunrise.Humanoid;
-using Content.Shared.Body;
 using Content.Server._Sunrise.Movement.Carrying;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;

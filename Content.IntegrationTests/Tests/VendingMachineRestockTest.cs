@@ -24,7 +24,7 @@ namespace Content.IntegrationTests.Tests
     public sealed class VendingMachineRestockTest : EntitySystem
     {
         // Sunrise-start
-        private static readonly HashSet<EntProtoId> Whitelist = new()
+        private static readonly HashSet<EntProtoId<VendingMachineRestockComponent>> Whitelist = new()
         {
             "VendingMachineRestockAbductorDispenser",
         };
@@ -188,7 +188,7 @@ namespace Content.IntegrationTests.Tests
                 // Sunrise-start
                 foreach (var proto in Whitelist)
                 {
-                    restocks.Remove(proto);
+                    restockEntities.Remove(proto);
                 }
                 // Sunrise-end
                 Assert.Multiple(() =>

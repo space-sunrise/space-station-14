@@ -29,8 +29,6 @@ namespace Content.Client.Hands.Systems
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
-        [Dependency] private readonly IPrototypeManager _prototype = default!;
-
         [Dependency] private readonly StrippableSystem _stripSys = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
         [Dependency] private readonly ExamineSystem _examine = default!;

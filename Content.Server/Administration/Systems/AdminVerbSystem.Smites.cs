@@ -101,7 +101,6 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
-    private static int _lastTestedEventIndex = 0;
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";

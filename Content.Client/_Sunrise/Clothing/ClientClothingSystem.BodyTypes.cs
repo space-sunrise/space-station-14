@@ -18,6 +18,8 @@ public sealed partial class ClientClothingSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
+    private readonly string _hardsuitTag = "Hardsuit";
+
     public void RefreshEquipmentVisuals(Entity<InventoryComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
@@ -94,7 +96,7 @@ public sealed partial class ClientClothingSystem
         var displacement = sexDisplacements.GetValueOrDefault($"{slot}-{bodyTypeVisualKey}")
                            ?? sexDisplacements.GetValueOrDefault(slot);
 
-        if (!_tag.HasTag(equipment, "Hardsuit"))
+        if (!_tag.HasTag(equipment, _hardsuitTag))
             return displacement;
 
         return sexDisplacements.GetValueOrDefault($"hardsuit-{bodyTypeVisualKey}")

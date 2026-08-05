@@ -384,28 +384,6 @@ public sealed class SurgeryBui : BoundUserInterface
         }
     }
 
-    private void UpdateDisabledPanel()
-    {
-        if (_window == null)
-            return;
-
-        _window.DisabledPanel.Visible = false;
-        _window.DisabledPanel.MouseFilter = MouseFilterMode.Ignore;
-        return;
-
-        if (!_system.IsLyingDown(Owner))
-        {
-            _window.DisabledPanel.Visible = true;
-            if (_window.DisabledLabel.GetMessage() is null)
-            {
-                var text = new FormattedMessage();
-                text.AddMarkupOrThrow(_loc.GetString("surgery-window-reguires-laydown"));
-                _window.DisabledLabel.SetMessage(text);
-            }
-            _window.DisabledPanel.MouseFilter = MouseFilterMode.Stop;
-        }
-    }
-
     private void View(ViewType type)
     {
         if (_window == null)

@@ -20,6 +20,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Medical.Healing;
 
@@ -105,9 +106,10 @@ public sealed class HealingSystem : EntitySystem
                 var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
                 foreach(var reagent in solution.Contents)
                 {
-                    var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
-                    if (solutionEntity != null && drainReagent != null)
-                        reagentsToRemove.Add((reagent, drainReagent.Quantity));
+                    var drainReagent = healing.ReagentsToDrain.FirstOrNull(drain =>
+                        drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
+                    if (solutionEntity != null && drainReagent is { } drain)
+                        reagentsToRemove.Add((reagent, drain.Quantity));
                 }
 
                 foreach (var (reagent, amount) in reagentsToRemove)

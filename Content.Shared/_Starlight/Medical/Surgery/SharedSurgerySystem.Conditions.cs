@@ -60,7 +60,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (!EntityManager.TryGetComponent<HumanoidProfileComponent>(args.Body, out var humanoidAppearanceComponent))
+        if (!TryComp<HumanoidProfileComponent>(args.Body, out var humanoidAppearanceComponent))
         {
             args.Cancelled = true;
             return;

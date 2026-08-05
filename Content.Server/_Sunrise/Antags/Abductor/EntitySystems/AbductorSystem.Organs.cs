@@ -8,9 +8,6 @@ using Content.Shared.Popups;
 using Robust.Shared.Timing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Chat.Systems;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Server.Speech.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared._Sunrise.Humanoid;
@@ -30,13 +27,11 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
-    [Dependency] private readonly SunriseHumanoidMarkingSystem _sunriseMarking = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly SunriseHumanoidMarkingSystem _sunriseMarking = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
     private static readonly EntProtoId DefaultRule = "AbductorVictim";
 
 
@@ -204,8 +199,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                     return;
 
                 victim.LastActivation = curTime;
-                TryComp<SolutionContainerManagerComponent>(uid, out var solution);
-
                 if (_solutions.TryGetInjectableSolution(uid, out var injectable, out _))
                     _solutions.TryAddReagent(injectable.Value, "Ephedrine", 5f);
                 break;

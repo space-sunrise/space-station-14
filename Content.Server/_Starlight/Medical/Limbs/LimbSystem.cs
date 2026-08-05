@@ -223,7 +223,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
         if (RaiseLocalEventRefMethod == null)
             return;
 
-        foreach (var comp in EntityManager.GetComponents(limb))
+        foreach (var comp in AllComps(limb))
         {
             if (comp is not IImplantable)
                 continue;

@@ -33,6 +33,8 @@ public sealed partial class BanManager
     private const string SunriseBanWebhookName = "Sunrise Ban";
     private const string SunriseBanWebhookAvatarUrl = "https://i.ibb.co/WfGqKtG/avatar.png";
 
+    private static readonly Regex SunriseBanWebhookUrlRegex = new(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*?/).*)$");
+
 #if SUNRISE_PRIVATE
     private readonly HttpClient _sunriseBanIdentityHttpClient = new();
     private MakuraAccountIdentityResolver? _sunriseBanIdentityResolver;
@@ -302,7 +304,7 @@ public sealed partial class BanManager
         if (string.IsNullOrWhiteSpace(url))
             return;
 
-        if (!Regex.IsMatch(url, @"^https://discord\.com/api/webhooks/(\d+)/((?!.*?/).*)$"))
+        if (!SunriseBanWebhookUrlRegex.IsMatch(url))
             _sawmill.Warning("Discord ban webhook URL does not appear to be valid.");
     }
 

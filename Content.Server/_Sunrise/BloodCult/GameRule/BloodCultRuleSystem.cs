@@ -29,6 +29,7 @@ using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon.Components;
@@ -60,6 +61,11 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
     [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!;
+
+    private static readonly ProtoId<TagPrototype> CultistTag = "Cultist";
+    private static readonly ProtoId<TagPrototype> DeconvertedCultistTag = "DeconvertedCultist";
+    private static readonly ProtoId<NpcFactionPrototype> BloodCultFaction = "BloodCult";
+    private static readonly ProtoId<NpcFactionPrototype> NanoTrasenFaction = "NanoTrasen";
 
     private readonly EntProtoId _mindRoleCultistPrototypeId = "MindRoleCultist";
     private readonly EntProtoId _cultistKillObjective = "CultistKillObjective";
@@ -481,7 +487,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         if (!_mindSystem.TryGetMind(cultist, out var mindId, out var mind))
             return false;
 
-        if (_tagSystem.HasTag(cultist, "DeconvertedCultist"))
+        if (_tagSystem.HasTag(cultist, DeconvertedCultistTag))
             return false;
 
         _roles.MindAddRole(mindId, _mindRoleCultistPrototypeId);
@@ -498,10 +504,10 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         var collectiveMind = EnsureComp<CollectiveMindComponent>(cultist);
         collectiveMind.Minds.Add("BloodCult");
 
-        _tagSystem.AddTag(cultist, "Cultist");
+        _tagSystem.AddTag(cultist, CultistTag);
 
-        _factionSystem.RemoveFaction(cultist, "NanoTrasen", false);
-        _factionSystem.AddFaction(cultist, "BloodCult");
+        _factionSystem.RemoveFaction(cultist, NanoTrasenFaction, false);
+        _factionSystem.AddFaction(cultist, BloodCultFaction);
 
         // Для животных нужно добавить компонент StatusIcon, чтобы показывать иконку культиста
         if (!isHumanoid && !HasComp<StatusIconComponent>(cultist))

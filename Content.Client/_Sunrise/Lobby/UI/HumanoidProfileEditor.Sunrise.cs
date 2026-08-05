@@ -32,7 +32,7 @@ public sealed partial class HumanoidProfileEditor
             if (_updatingSunriseControls)
                 return;
 
-            SetHeight(HeightSlider.Value);
+            SetCharacterHeight(HeightSlider.Value);
         };
 
         WidthSlider.OnValueChanged += _ =>
@@ -40,7 +40,7 @@ public sealed partial class HumanoidProfileEditor
             if (_updatingSunriseControls)
                 return;
 
-            SetWidth(WidthSlider.Value);
+            SetCharacterWidth(WidthSlider.Value);
         };
 
         HeightResetButton.OnPressed += _ => ResetHeight();
@@ -135,14 +135,14 @@ public sealed partial class HumanoidProfileEditor
         ReloadPreview();
     }
 
-    private void SetHeight(float height)
+    private void SetCharacterHeight(float height)
     {
         Profile = Profile?.WithHeight(height);
         UpdateSizeControls();
         ReloadProfilePreview();
     }
 
-    private void SetWidth(float width)
+    private void SetCharacterWidth(float width)
     {
         Profile = Profile?.WithWidth(width);
         UpdateSizeControls();
@@ -157,7 +157,7 @@ public sealed partial class HumanoidProfileEditor
             return;
         }
 
-        SetHeight(species.DefaultHeight);
+        SetCharacterHeight(species.DefaultHeight);
     }
 
     private void ResetWidth()
@@ -168,7 +168,7 @@ public sealed partial class HumanoidProfileEditor
             return;
         }
 
-        SetWidth(species.DefaultWidth);
+        SetCharacterWidth(species.DefaultWidth);
     }
 
     private static int GetHeightCm(SpeciesPrototype species, float height)

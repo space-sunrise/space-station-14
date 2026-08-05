@@ -44,6 +44,8 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
 
+    private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -217,7 +219,7 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
     private void TryHatchCheck(EntityUid uid, CarpEggComponent egg)
     {
-        if (!TryComp<TransformComponent>(uid, out var xform))
+        if (!TryComp(uid, out TransformComponent? xform))
             return;
 
         // Вылупляем только яйца вне контейнеров.
@@ -268,12 +270,12 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
 
         // Сущность FloorWaterEntity тоже считается достаточным источником жидкости.
         var gridId = tile.GridUid;
-        if (gridId != null)
+        if (gridId.IsValid())
         {
             // Сначала проверяем закрепленные сущности.
-            if (gridId is { } gid && TryComp<MapGridComponent>(gid, out var grid))
+            if (TryComp<MapGridComponent>(gridId, out var grid))
             {
-                var enumerator = _map.GetAnchoredEntitiesEnumerator(gid, grid, tile.GridIndices);
+                var enumerator = _map.GetAnchoredEntitiesEnumerator(gridId, grid, tile.GridIndices);
                 while (enumerator.MoveNext(out EntityUid? ent))
                 {
                     if (!ent.HasValue)
@@ -311,7 +313,7 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
         else
         {
             // Запасной вариант для FloorWaterEntity: используем цвет реагента Water.
-            color = _protos.Index<ReagentPrototype>("Water").SubstanceColor;
+            color = _protos.Index(WaterReagent).SubstanceColor;
         }
 
         // На сервере красим только свет; оттенок спрайта обрабатывается клиентским visualizer.
@@ -351,7 +353,7 @@ public sealed class CarpEggSystem : CarpQueenAccessSystem
             else
             {
                 // Запасной вариант для FloorWaterEntity: используем цвет реагента Water.
-                liquidColor = _protos.Index<ReagentPrototype>("Water").SubstanceColor;
+                liquidColor = _protos.Index(WaterReagent).SubstanceColor;
                 rememberedReagents["Water"] = FixedPoint2.New(30); // Считаем это водой.
             }
         }

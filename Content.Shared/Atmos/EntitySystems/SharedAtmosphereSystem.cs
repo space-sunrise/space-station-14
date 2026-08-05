@@ -71,6 +71,7 @@ public enum AtmosphereProcessingState : byte
     HighPressureDelta,
     DeltaPressure,
     Hotspots,
+    ChargedElectrovae, // Sunrise-Edit — отдельный этап обработки заряженного Electrovae.
     Superconductivity,
     PipeNet,
     AtmosDevices,

@@ -46,6 +46,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -53,6 +54,10 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 {
     public partial class BloodCultSystem
     {
+        private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+        private static readonly ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute";
+        private static readonly ProtoId<DamageGroupPrototype> BurnDamageGroup = "Burn";
+
         public void InitializeRunes()
         {
             // Runes
@@ -700,15 +705,15 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             var selectedRune = new EntityUid(args.SelectedItem);
             var baseRune = uid;
 
-            if (!TryComp<TransformComponent>(selectedRune, out var xFormSelected) ||
-                !TryComp<TransformComponent>(baseRune, out var xFormBase))
+            if (!TryComp(selectedRune, out TransformComponent? xFormSelected) ||
+                !TryComp(baseRune, out TransformComponent? xFormBase))
                 return;
 
             foreach (var target in targets)
             {
                 if (TryComp<PullableComponent>(target, out var pullable))
                     _pulling.TryStopPull(target, pullable);
-                if (HasComp<HumanoidProfileComponent>(target) && TryComp<TransformComponent>(target, out TransformComponent? targetm))
+                if (HasComp<HumanoidProfileComponent>(target) && TryComp(target, out TransformComponent? targetm))
                 {
                     _entityManager.SpawnEntity(TeleportInEffect, xFormSelected.Coordinates);
                     _entityManager.SpawnEntity(TeleportOutEffect, targetm.Coordinates);
@@ -1031,7 +1036,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             if (baseRune == null)
                 return;
 
-            if (!TryComp<TransformComponent>(baseRune, out var xFormBase))
+            if (!TryComp(baseRune, out TransformComponent? xFormBase))
                 return;
 
             var isCuffed = cuffableComponent.CuffedHandCount > 0;
@@ -1259,7 +1264,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 // ыыыы
             }
 
-            var damageSpecifier = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Slash"), 10);
+            var damageSpecifier = new DamageSpecifier(_prototypeManager.Index(SlashDamageType), 10);
             _damageableSystem.TryChangeDamage(uid, damageSpecifier, true, false);
 
             _entityManager.SpawnEntity(rune, coords);
@@ -1308,8 +1313,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
 
         private void HealCultist(EntityUid player)
         {
-            var damageSpecifier = _prototypeManager.Index<DamageGroupPrototype>("Brute");
-            var damageSpecifier2 = _prototypeManager.Index<DamageGroupPrototype>("Burn");
+            var damageSpecifier = _prototypeManager.Index(BruteDamageGroup);
+            var damageSpecifier2 = _prototypeManager.Index(BurnDamageGroup);
 
             _damageableSystem.TryChangeDamage(player, new DamageSpecifier(damageSpecifier, -40));
             _damageableSystem.TryChangeDamage(player, new DamageSpecifier(damageSpecifier2, -40));

@@ -43,7 +43,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
     private void OnCentcommInit(EntityUid uid, StationCentCommComponent component, ComponentInit args)
     {
         // Post mapinit? fancy
-        if (TryComp<TransformComponent>(component.Entity, out var xform))
+        if (TryComp(component.Entity, out TransformComponent? xform))
         {
             component.MapId = xform.MapID;
             return;

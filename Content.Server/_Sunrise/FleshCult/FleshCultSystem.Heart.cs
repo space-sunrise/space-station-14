@@ -30,6 +30,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.FleshCult;
 
@@ -37,6 +38,9 @@ public sealed partial class FleshCultSystem
 {
     [Dependency] private readonly FleshCultRuleSystem _fleshCultRule = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+
+    private static readonly ProtoId<TagPrototype>[] FleshWallTags = ["Wall", "Flesh"];
+    private static readonly ProtoId<TagPrototype>[] FleshSpawnBlockingTags = ["Wall", "Window", "Flesh"];
 
     public void InitializeHeart()
     {
@@ -84,7 +88,7 @@ public sealed partial class FleshCultSystem
                     continue;
                 if (!TryComp<TagComponent>(ent, out var tagComponent))
                     continue;
-                if (_tagSystem.HasAllTags(tagComponent, "Wall", "Flesh"))
+                if (_tagSystem.HasAllTags(tagComponent, FleshWallTags))
                     _damageableSystem.TryChangeDamage(ent, component.DamageMobsIfHeartDestruct);
                 else
                     QueueDel(ent);
@@ -96,7 +100,7 @@ public sealed partial class FleshCultSystem
             {
                 if (!TryComp<TagComponent>(ent, out var tagComponent))
                     continue;
-                var isFleshWall = _tagSystem.HasAllTags(tagComponent, "Wall", "Flesh");
+                var isFleshWall = _tagSystem.HasAllTags(tagComponent, FleshWallTags);
                 if (isFleshWall)
                 {
                     fleshWalls.Add(ent);
@@ -298,7 +302,7 @@ public sealed partial class FleshCultSystem
                 }
             }
 
-            var bodyType = _prototypeManager.Index<BodyTypePrototype>("SkeletonNormal");
+            var bodyType = _prototypeManager.Index(SkeletonBodyType);
             foreach (var (key, data) in bodyType.Layers)
             {
                 if (key != HumanoidVisualLayers.Head)
@@ -360,13 +364,13 @@ public sealed partial class FleshCultSystem
             var canSpawnFloor = true;
             foreach (var ent in grid.GetAnchoredEntities(tileref.GridIndices).ToList())
             {
-                if (_tagSystem.HasAnyTag(ent, "Wall", "Window", "Flesh"))
+                if (_tagSystem.HasAnyTag(ent, FleshSpawnBlockingTags))
                     canSpawnFloor = false;
             }
             if (canSpawnFloor)
             {
                 var location = _mapSystem.ToCenterCoordinates(tileref, grid);
-                var fleshTile = EntityManager.SpawnEntity(component.FleshTileId, location);
+                var fleshTile = Spawn(component.FleshTileId, location);
                 var spreaderFleshComponent = EnsureComp<SpreaderFleshComponent>(fleshTile);
                 spreaderFleshComponent.Source = fleshHeart;
             }

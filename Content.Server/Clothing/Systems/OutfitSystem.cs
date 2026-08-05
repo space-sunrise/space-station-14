@@ -25,7 +25,6 @@ public sealed class OutfitSystem : EntitySystem
     [Dependency] private readonly HandsSystem _handSystem = default!;
     [Dependency] private readonly InventorySystem _invSystem = default!;
     [Dependency] private readonly SharedStationSpawningSystem _spawningSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;  // Sunrise-edit
 
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 

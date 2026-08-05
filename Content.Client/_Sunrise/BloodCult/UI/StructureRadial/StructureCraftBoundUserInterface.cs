@@ -18,7 +18,6 @@ public sealed class StructureCraftBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IPlacementManager _placement = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
 
     private RadialContainer? _menu;

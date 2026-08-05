@@ -43,7 +43,6 @@ public sealed partial class SponsorTierEntry : Control
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly MarkingManager _marking = default!;
 
     private readonly LobbyUIController _lobbyUIController;

@@ -50,13 +50,12 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnExtractDoAfter(Entity<AbductorExtractorComponent> ent, ref AbductorExtractDoAfterEvent args)
     {
-        if (args.Target == null || args.User == null) return;
-
-        if (!_body.TryGetOrganWithComponent<OrganHeartComponent>(args.Target.Value, out var heart))
+        if (args.Target is not { } target ||
+            !_body.TryGetOrganWithComponent<OrganHeartComponent>(target, out var heart))
             return;
 
-        _admin.Add(LogType.InteractUsing, LogImpact.Low, $"Heart successfully extracted from {ToPrettyString(args.Target.Value)} using {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}");
+        _admin.Add(LogType.InteractUsing, LogImpact.Low, $"Heart successfully extracted from {ToPrettyString(target)} using {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}");
 
-        _body.TryRemoveOrgan((heart, _entityManager.GetComponent<OrganComponent>(heart)));
+        _body.TryRemoveOrgan((heart, Comp<OrganComponent>(heart)));
     }
 }

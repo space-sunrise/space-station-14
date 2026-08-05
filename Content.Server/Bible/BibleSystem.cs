@@ -29,8 +29,6 @@ namespace Content.Server.Bible
 {
     public sealed class BibleSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly ActionBlockerSystem _blocker = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -41,8 +39,6 @@ namespace Content.Server.Bible
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly EntityLookupSystem _lookUp = default!;
-        [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public override void Initialize()
         {

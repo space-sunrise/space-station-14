@@ -382,7 +382,7 @@ public sealed partial class RevenantSystem
             var damage = new DamageSpecifier();
             damage.DamageDict.Add(component.DrainDamageType, amount);
 
-            if (_damage.TryChangeDamage(target, damage, origin: uid) != null)
+            if (_damage.TryChangeDamage(target, damage, origin: uid))
                 totalEssence += amount;
         }
 
