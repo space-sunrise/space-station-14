@@ -13,6 +13,7 @@ using Content.Shared.Wieldable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Item.ItemToggle;
 /// <summary>
@@ -27,6 +28,7 @@ public sealed class ItemToggleSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
@@ -386,8 +388,7 @@ public sealed class ItemToggleSystem : EntitySystem
     /// </summary>
     private void TurnOnOnWielded(Entity<ItemToggleComponent> ent, ref ItemWieldedEvent args)
     {
-        // FIXME: for some reason both client and server play sound
-        TryActivate((ent, ent.Comp));
+        TryActivate((ent, ent.Comp), args.User);
     }
 
     public bool IsActivated(Entity<ItemToggleComponent?> ent)
@@ -411,7 +412,7 @@ public sealed class ItemToggleSystem : EntitySystem
     /// </summary>
     private void UpdateActiveSound(Entity<ItemToggleActiveSoundComponent> ent, ref ItemToggledEvent args)
     {
-        if (_netManager.IsClient)
+        if (!_gameTiming.IsFirstTimePredicted)
             return;
 
         var (uid, comp) = ent;
@@ -424,7 +425,9 @@ public sealed class ItemToggleSystem : EntitySystem
         if (comp.ActiveSound != null && comp.PlayingStream == null)
         {
             var loop = comp.ActiveSound.Params.WithLoop(true);
-            var stream = _audio.PlayPvs(comp.ActiveSound, uid, loop);
+            var stream = args.Predicted
+                ? _audio.PlayPredicted(comp.ActiveSound, uid, args.User, loop)
+                : _audio.PlayPvs(comp.ActiveSound, uid, loop);
             if (stream?.Entity is {} entity)
                 comp.PlayingStream = entity;
         }

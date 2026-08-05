@@ -31,6 +31,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Atmos;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 
