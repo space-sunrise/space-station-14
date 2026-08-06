@@ -13,7 +13,8 @@
     xmlns:vote="clr-namespace:Content.Client.Voting.UI"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ui="clr-namespace:Content.Client._Sunrise.Lobby.UI">
+    xmlns:ui="clr-namespace:Content.Client._Sunrise.Lobby.UI"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <!--  Background  -->
     <TextureRect
         Access="Public"
@@ -113,15 +114,18 @@
                                                 StyleClasses="ButtonBig"
                                                 Text="{Loc 'ui-lobby-ready-up-button'}"
                                                 ToggleMode="True" />
-                                            <cc:CommandButton
+                                            <Button
+                                                Name="TutorialButton"
                                                 Access="Public"
-                                                Command="ghostroles"
                                                 HorizontalAlignment="Stretch"
                                                 HorizontalExpand="True"
                                                 MinWidth="200"
-                                                Name="GhostRolesButton"
-                                                StyleClasses="ButtonBig"
-                                                Text="{Loc 'ghost-roles-window-title'}" />
+                                                Text="{Loc 'ui-tutorial'}">
+                                                <Button.StyleClasses>
+                                                    <system:String>ButtonBig</system:String>
+                                                    <system:String>negative</system:String>
+                                                </Button.StyleClasses>
+                                            </Button>
                                         </BoxContainer>
                                     </controls:StripeBack>
                                     <RichTextLabel
