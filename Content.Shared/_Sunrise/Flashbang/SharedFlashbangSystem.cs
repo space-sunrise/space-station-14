@@ -82,10 +82,11 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
         float realDistance,
         FlashbangRadiusOnTriggerComponent comp)
     {
-        bool isVulnerable = HasComp<FlashbangVulnerableComponent>(target);
+        TryComp<FlashbangVulnerableComponent>(target, out var vulnComp);
+        bool bypassProtection = comp.IgnoreResistances || (vulnComp?.BypassProtection ?? false);
 
         float protectionDistance = 0f;
-        if (!comp.IgnoreResistances && !isVulnerable)
+        if (!bypassProtection)
         {
             var protEv = new GetFlashbangProtectionEvent
             {
@@ -112,11 +113,12 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
         if (attemptEv.Cancelled || attemptEv.Handled)
             return;
 
-        var stunDuration = comp.StunDuration * t;
-        var knockdownDuration = comp.KnockdownDuration * t;
+        var effectMultiplier = vulnComp?.EffectMultiplier ?? 1f;
+        var stunDuration = comp.StunDuration * t * effectMultiplier;
+        var knockdownDuration = comp.KnockdownDuration * t * effectMultiplier;
 
         _stun.TryUpdateStunDuration(target, stunDuration);
-        _stun.TryKnockdown(target, knockdownDuration, force: comp.IgnoreResistances || isVulnerable);
+        _stun.TryKnockdown(target, knockdownDuration, force: bypassProtection);
     }
 
     private void OnProtectionDirect(EntityUid uid, FlashbangProtectionComponent comp, GetFlashbangProtectionEvent args)

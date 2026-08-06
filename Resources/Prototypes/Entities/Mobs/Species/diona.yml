@@ -129,6 +129,8 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
   - type: Rootable
+  - type: FlashbangVulnerable # Sunrise-Edit
+    effectMultiplier: 0.5
   # Sunrise-Start
   - type: CollectiveMind
     minds:

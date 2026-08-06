@@ -226,6 +226,9 @@
     rightBareFootState:
     - "footprint-right-bare-lizard"
   # Sunrise edit end.
+  - type: FlashbangVulnerable # Sunrise-Edit
+    effectMultiplier: 0.5
+    bypassProtection: false
 
 - type: entity
   parent: BaseSpeciesDummy

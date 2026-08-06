@@ -40,4 +40,11 @@ public sealed partial class FlashbangRadiusOnTriggerComponent : BaseXOnTriggerCo
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool IgnoreResistances;
+
+    /// <summary>
+    /// Минимальное давление атмосферы в источнике (кПа), при котором эффект применяется.
+    /// В вакууме и разреженной среде звук не распространяется.
+    /// </summary>
+    [DataField]
+    public float MinAmbientPressure = 5f;
 }
