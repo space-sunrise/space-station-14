@@ -105,6 +105,7 @@ class TestShardFilterTests(unittest.TestCase):
 
         self.assertIn("<DisplayName>FullName</DisplayName>", settings)
         self.assertIn("<MapWarningTo>Failed</MapWarningTo>", settings)
+        self.assertIn("<NumberOfTestWorkers>1</NumberOfTestWorkers>", settings)
         self.assertIn(
             "<Where>class=='Fixture'&amp;&amp;method=='Test'</Where>",
             settings,

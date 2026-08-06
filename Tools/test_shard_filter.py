@@ -362,6 +362,7 @@ def build_runsettings(filter_expr):
   <NUnit>
     <DisplayName>FullName</DisplayName>
     <MapWarningTo>Failed</MapWarningTo>
+    <NumberOfTestWorkers>1</NumberOfTestWorkers>
     <Where>{escape(filter_expr)}</Where>
   </NUnit>
 </RunSettings>

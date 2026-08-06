@@ -13,9 +13,6 @@ public sealed class PoolManagerTestEventHandler
         // Sunrise added start - не декодируем изображения, когда тестам достаточно структуры RSI
         _Sunrise.Patches.RsiLoadingPatch.Apply();
         // Sunrise added end
-        // Sunrise added start - повторяем коррекцию при временном рассогласовании тиков пары
-        _Sunrise.Patches.TestPairSyncTicksPatch.Apply();
-        // Sunrise added end
         PoolManager.Startup();
         // If the tests seem to be stuck, we try to end it semi-nicely
         _ = Task.Delay(MaximumTotalTestingTimeLimit).ContinueWith(_ =>
@@ -43,7 +40,6 @@ public sealed class PoolManagerTestEventHandler
         }
         finally
         {
-            _Sunrise.Patches.TestPairSyncTicksPatch.Unpatch();
             _Sunrise.Patches.EventTimingSummaryPatch.Unpatch();
             _Sunrise.Patches.RsiLoadingPatch.Unpatch();
         }
