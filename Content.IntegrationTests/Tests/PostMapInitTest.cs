@@ -27,6 +27,7 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
+    [NonParallelizable] // Sunrise edit
     public sealed class PostMapInitTest
     {
         private const bool SkipTestMaps = true;
