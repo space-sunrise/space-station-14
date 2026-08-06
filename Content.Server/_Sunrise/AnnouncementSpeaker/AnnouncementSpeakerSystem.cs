@@ -37,7 +37,7 @@ public sealed class AnnouncementSpeakerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TTSSystem _ttsSystem = default!;
 
-    private static readonly ProtoId<TTSVoicePrototype> FallbackVoice = "father_grigori";
+    private static readonly ProtoId<TTSVoicePrototype> FallbackVoice = "FatherGrigori";
 
     private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";

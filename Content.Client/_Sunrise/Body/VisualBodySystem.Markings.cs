@@ -84,7 +84,7 @@ public sealed partial class VisualBodySystem
     public void SetSunriseMarkingDisplacementVisible(EntityUid target, string layerId, bool visible)
     {
         var displacementLayerId = $"{layerId}-displacement";
-        if (_sprite.LayerMapTryGet(target, displacementLayerId, out var displacementIndex, true))
+        if (_sprite.LayerMapTryGet(target, displacementLayerId, out var displacementIndex, false))
             _sprite.LayerSetVisible(target, displacementIndex, visible);
     }
 

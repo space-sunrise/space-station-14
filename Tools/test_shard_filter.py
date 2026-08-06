@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Partitions test classes across shards for parallel CI execution.
+Partitions test groups across shards for parallel CI execution.
 
 Mode 1 - Generate all shard runsettings files:
     dotnet test --list-tests ... | python3 test_shard_filter.py generate <total-shards> <output-dir>
@@ -20,6 +20,11 @@ import os
 import sys
 import xml.etree.ElementTree as ET
 from xml.sax.saxutils import escape
+
+
+# Large parameterized methods otherwise become a single indivisible shard group.
+# Exact NUnit test names let us distribute their cases without fragmenting every method.
+PARAMETERIZED_CASE_SPLIT_THRESHOLD = 256
 
 
 # Weight multipliers for tests that are lighter than their test count suggests.
@@ -297,15 +302,24 @@ def parse_tests(lines):
 
 
 def extract_groups(tests):
-    """Extract unique fixture+method groups with their test case counts."""
-    counts = {}
+    """Extract fixture+method groups, splitting exceptionally large parameterized methods."""
+    method_cases = {}
     for test in tests:
-        name = test.split("(")[0].strip()
+        name = test.split("(", 1)[0].strip()
         dot = name.rfind(".")
         fixture = name[:dot] if dot > 0 else ""
         method = name[dot + 1:] if dot > 0 else name
-        group = (fixture, method)
-        counts[group] = counts.get(group, 0) + 1
+        method_cases.setdefault((fixture, method), []).append(test)
+
+    counts = {}
+    for (fixture, method), cases in method_cases.items():
+        if len(cases) > PARAMETERIZED_CASE_SPLIT_THRESHOLD and len(set(cases)) > 1:
+            for test in cases:
+                group = (fixture, method, test)
+                counts[group] = counts.get(group, 0) + 1
+        else:
+            counts[(fixture, method, None)] = len(cases)
+
     return counts
 
 
@@ -315,17 +329,20 @@ def quote_tsl(value):
 
 
 def build_filter(groups):
-    """Build an exact NUnit.Where expression from fixture+method groups.
+    """Build an exact NUnit.Where expression from method groups and individual test cases.
 
     A method-only fallback keeps the script usable with older discovery output,
-    while full NUnit display names let CI split identically named methods from
-    different fixtures.
+    while exact test names let CI split very large parameterized methods.
     """
     if not groups:
         return ""
 
     expressions = []
-    for fixture, method in sorted(groups):
+    for fixture, method, test in sorted(groups, key=lambda group: (group[0], group[1], group[2] or "")):
+        if test is not None:
+            expressions.append(f"test=='{quote_tsl(test)}'")
+            continue
+
         method_expr = f"method=='{quote_tsl(method)}'"
         if fixture:
             expressions.append(f"(class=='{quote_tsl(fixture)}'&&{method_expr})")
@@ -349,6 +366,25 @@ def build_runsettings(filter_expr):
   </NUnit>
 </RunSettings>
 """
+
+
+def group_weight(group_counts, group):
+    """Return the estimated cost of a method group or an exact test case."""
+    multiplier = WEIGHT_OVERRIDES.get(group[1], 1.0)
+    return group_counts[group] * multiplier
+
+
+def distribute_groups(group_counts, total):
+    """Distribute groups greedily, placing the next heaviest group on the lightest shard."""
+    shards = [[] for _ in range(total)]
+    shard_loads = [0.0] * total
+
+    for group in sorted(group_counts, key=lambda item: group_weight(group_counts, item), reverse=True):
+        lightest = min(range(total), key=lambda shard: shard_loads[shard])
+        shards[lightest].append(group)
+        shard_loads[lightest] += group_weight(group_counts, group)
+
+    return shards, shard_loads
 
 
 def cmd_generate():
@@ -378,16 +414,7 @@ def cmd_generate():
 
     os.makedirs(output_dir, exist_ok=True)
 
-    def group_weight(group) -> float:
-        multiplier = WEIGHT_OVERRIDES.get(group[1], 1.0)
-        return group_counts[group] * multiplier
-
-    shards = [[] for _ in range(total)]
-    shard_loads = [0.0] * total
-    for group in sorted(group_counts, key=group_weight, reverse=True):
-        lightest = min(range(total), key=lambda s: shard_loads[s])
-        shards[lightest].append(group)
-        shard_loads[lightest] += group_weight(group)
+    shards, shard_loads = distribute_groups(group_counts, total)
 
     for shard in range(total):
         my_groups = sorted(shards[shard])
@@ -396,10 +423,22 @@ def cmd_generate():
         with open(path, "w", encoding="utf-8") as f:
             f.write(build_runsettings(filter_expr))
         print(f"  Shard {shard}: {len(my_groups)} groups, weight {shard_loads[shard]:.1f} ({sum(group_counts[g] for g in my_groups)} tests)", file=sys.stderr)
+        split_summaries = {}
         for group in my_groups:
-            weight = group_weight(group)
-            name = ".".join(part for part in group if part)
+            weight = group_weight(group_counts, group)
+            fixture, method, test = group
+            if test is not None:
+                key = (fixture, method)
+                count, total_weight = split_summaries.get(key, (0, 0.0))
+                split_summaries[key] = (count + group_counts[group], total_weight + weight)
+                continue
+
+            name = ".".join(part for part in (fixture, method) if part)
             print(f"    - {name} ({group_counts[group]} tests, weight {weight:.1f})", file=sys.stderr)
+
+        for (fixture, method), (count, weight) in sorted(split_summaries.items()):
+            name = ".".join(part for part in (fixture, method) if part)
+            print(f"    - {name} ({count} split cases, weight {weight:.1f})", file=sys.stderr)
 
 
 def cmd_read():

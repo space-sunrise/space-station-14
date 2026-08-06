@@ -6,6 +6,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Prototypes;
 
@@ -36,7 +37,8 @@ public sealed partial class MechSystem
     /// </summary>
     private void SetSunriseMaxIntegrity(EntityUid uid, MechComponent component)
     {
-        if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold)
+        if (TryComp<MobThresholdsComponent>(uid, out var thresholds)
+            && _mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds)
             && threshold is { } maxIntegrity)
         {
             component.MaxIntegrity = maxIntegrity;

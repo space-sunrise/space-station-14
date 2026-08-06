@@ -175,6 +175,10 @@
     data:
       state: l_leg
   - type: VisualOrganMarkings
+    # Sunrise edit start - ноги паука скрывают визуальные слои обычных ног.
+    hideableLayers:
+    - enum.HumanoidVisualLayers.LLeg
+    # Sunrise edit end
     markingData:
       layers:
       - LLeg
@@ -194,6 +198,10 @@
     data:
       state: r_leg
   - type: VisualOrganMarkings
+    # Sunrise edit start - ноги паука скрывают визуальные слои обычных ног.
+    hideableLayers:
+    - enum.HumanoidVisualLayers.RLeg
+    # Sunrise edit end
     markingData:
       layers:
       - RLeg
@@ -213,6 +221,10 @@
     data:
       state: l_foot
   - type: VisualOrganMarkings
+    # Sunrise edit start - ноги паука скрывают визуальные слои обычных стоп.
+    hideableLayers:
+    - enum.HumanoidVisualLayers.LFoot
+    # Sunrise edit end
     markingData:
       layers:
       - LFoot
@@ -232,6 +244,10 @@
     data:
       state: r_foot
   - type: VisualOrganMarkings
+    # Sunrise edit start - ноги паука скрывают визуальные слои обычных стоп.
+    hideableLayers:
+    - enum.HumanoidVisualLayers.RFoot
+    # Sunrise edit end
     markingData:
       layers:
       - RFoot

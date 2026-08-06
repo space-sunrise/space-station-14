@@ -120,7 +120,7 @@ jobs:
 
     - name: Run Content.Tests
       timeout-minutes: 15
-      run: dotnet test bin/Content.Tests/Content.Tests.dll --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
+      run: dotnet test bin/Content.Tests/Content.Tests.dll --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results -- NUnit.ConsoleOut=0 NUnit.WorkDirectory="/tmp/test-results"
     # Sunrise edit end
 
     - name: Test results
@@ -129,7 +129,7 @@ jobs:
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
         mkdir -p /tmp/test-results
-        trx --path /tmp/test-results -o -v verbose || true
+        trx --path /tmp/test-results -o -v quiet || true
 
   integration-tests:
     needs: build
@@ -162,7 +162,7 @@ jobs:
       run: |
         SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
         timeout --signal=TERM --kill-after=2m 15m \
-          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini
+          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --blame-hang-dump-type mini -- NUnit.ConsoleOut=0 NUnit.WorkDirectory="/tmp/test-results"
     # Sunrise edit end
 
     - name: Test results
@@ -171,19 +171,7 @@ jobs:
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
         mkdir -p /tmp/test-results
-        trx --path /tmp/test-results -o -v verbose || true
-
-    # Sunrise added start - последовательность зависания нужна даже после успешного повтора
-    - name: Upload hang sequences
-      id: upload-sequences
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: blame-sequence-shard-${{ matrix.shard }}
-        path: /tmp/test-results/**/*Sequence*.xml
-        retention-days: 3
-        if-no-files-found: ignore
-    # Sunrise added end
+        trx --path /tmp/test-results -o -v quiet || true
 
     # Sunrise edit start - загружаем многогигабайтный дамп только после падения тестов
     - name: Upload crash dumps

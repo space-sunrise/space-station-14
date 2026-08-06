@@ -1,6 +1,6 @@
 ﻿namespace Content.Server.Silicons.Laws;
 
-public sealed class IonLawLocalizationSystem : EntitySystem
+public sealed partial class IonLawLocalizationSystem : EntitySystem
 {
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly IonLawSystem _ionLaw = default!;
@@ -46,6 +46,8 @@ public sealed class IonLawLocalizationSystem : EntitySystem
         _loc.AddFunction(culture, "ION-OBJECT", _ => GetIonLawValue("ION-OBJECT"));
         _loc.AddFunction(culture, "ION-HARM-PROTECT", _ => GetIonLawValue("ION-HARM-PROTECT"));
         _loc.AddFunction(culture, "ION-VERB", _ => GetIonLawValue("ION-VERB"));
+
+        RegisterFallbackIonFunctions(culture); // Sunrise-Edit — ION-функции нужны загруженным fallback-культурам.
     }
 
     /// <summary>

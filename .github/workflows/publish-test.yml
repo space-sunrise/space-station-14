@@ -6,6 +6,12 @@ concurrency:
 
 on:
   workflow_dispatch:
+    inputs:
+      private_ref:
+        description: 'Branch, tag, or commit hash for SunrisePrivate (leave empty for default branch)'
+        required: false
+        type: string
+        default: ''
 
 jobs:
   build:
@@ -27,9 +33,10 @@ jobs:
     - name: Checkout SunrisePrivate
       uses: actions/checkout@v4.2.2
       with:
-        repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
+        repository: ${{ secrets.MAKURA_PRIVATE_REPO }}
         path: SunrisePrivate
-        ssh-key: ${{ secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
+        ssh-key: ${{ secrets.MAKURA_PRIVATE_REPO_SSH_KEY }}
+        ref: ${{ inputs.private_ref }}
 
     - name: Move Sunrise Private files
       run: python3 Tools/_sunrise/move_private.py --clone-dir "SunrisePrivate" --target-dirs "Resources"
@@ -57,7 +64,7 @@ jobs:
       run: dotnet run --project Content.Packaging client --no-wipe-release
 
     - name: Publish version
-      run: Tools/publish_multi_request.py --fork-id sunrise_station_test
+      run: Tools/publish_multi_request.py --fork-id test_sunrise
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}

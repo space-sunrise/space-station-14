@@ -13,6 +13,12 @@ public sealed class HideableHumanoidLayersTest : InteractionTest
 {
     protected override string PlayerPrototype => "MobVulpkanin";
 
+    // Sunrise edit start - Sunrise заменяет стандартные маркировки морды Vulpkanin своим набором.
+    private const string SnoutLayerId = "VulpSnout-muzzle";
+    private const string SnoutCoverMarkingId = "VoxBeakCoverStripe";
+    private const string SnoutCoverLayerId = "VoxBeakCoverStripe-beakcover_stripe";
+    // Sunrise edit end
+
     [Test]
     public async Task BasicHiding()
     {
@@ -45,7 +51,7 @@ public sealed class HideableHumanoidLayersTest : InteractionTest
             {
                 ["Head"] = new()
                 {
-                    [HumanoidVisualLayers.SnoutCover] = new List<Marking>() { new("VulpSnoutNose", 1) },
+                    [HumanoidVisualLayers.SnoutCover] = new List<Marking>() { new(SnoutCoverMarkingId, 1) }, // Sunrise-Edit
                 },
             });
         });
@@ -59,8 +65,8 @@ public sealed class HideableHumanoidLayersTest : InteractionTest
         await Client.WaitAssertion(() =>
         {
             var spriteSystem = CEntMan.System<SpriteSystem>();
-            var snoutIndex = spriteSystem.LayerMapGet(CPlayer, "VulpSnout-snout");
-            var snoutCoverIndex = spriteSystem.LayerMapGet(CPlayer, "VulpSnoutNose-snout-nose");
+            var snoutIndex = spriteSystem.LayerMapGet(CPlayer, SnoutLayerId); // Sunrise-Edit
+            var snoutCoverIndex = spriteSystem.LayerMapGet(CPlayer, SnoutCoverLayerId); // Sunrise-Edit
             var spriteComp = CEntMan.GetComponent<SpriteComponent>(CPlayer);
 
             Assert.That(spriteComp[snoutIndex].Visible, Is.False);
@@ -77,8 +83,8 @@ public sealed class HideableHumanoidLayersTest : InteractionTest
         await Client.WaitAssertion(() =>
         {
             var spriteSystem = CEntMan.System<SpriteSystem>();
-            var snoutIndex = spriteSystem.LayerMapGet(CPlayer, "VulpSnout-snout");
-            var snoutCoverIndex = spriteSystem.LayerMapGet(CPlayer, "VulpSnoutNose-snout-nose");
+            var snoutIndex = spriteSystem.LayerMapGet(CPlayer, SnoutLayerId); // Sunrise-Edit
+            var snoutCoverIndex = spriteSystem.LayerMapGet(CPlayer, SnoutCoverLayerId); // Sunrise-Edit
             var spriteComp = CEntMan.GetComponent<SpriteComponent>(CPlayer);
 
             Assert.That(spriteComp[snoutIndex].Visible, Is.True);

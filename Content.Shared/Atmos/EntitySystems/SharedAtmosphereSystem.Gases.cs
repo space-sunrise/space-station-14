@@ -115,7 +115,7 @@ public abstract partial class SharedAtmosphereSystem
     /// considered ignitable, for both oxidizer and fuel.</param>
     /// <returns>True if the <see cref="GasMixture"/> is ignitable, otherwise, false.</returns>
     [PublicAPI]
-    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = 0.001f)
+    public bool IsMixtureIgnitable(GasMixture mixture, float epsilon = Atmospherics.Epsilon)
     {
         return !IsSunriseReactionSuppressed(mixture) // Sunrise-Edit — HyperNoblium подавляет реакции горения
             && IsMixtureFuel(mixture, epsilon)
@@ -130,7 +130,7 @@ public abstract partial class SharedAtmosphereSystem
     /// is considered fuel.</param>
     /// <returns>True if the <see cref="GasMixture"/> is fuel, otherwise, false.</returns>
     [PublicAPI]
-    public abstract bool IsMixtureFuel(GasMixture mixture, float epsilon = 0.001f);
+    public abstract bool IsMixtureFuel(GasMixture mixture, float epsilon = Atmospherics.Epsilon);
 
     /// <summary>
     /// Determines if a <see cref="GasMixture"/> has oxidizer gases in it or not.
@@ -140,7 +140,7 @@ public abstract partial class SharedAtmosphereSystem
     /// is considered an oxidizer.</param>
     /// <returns>True if the <see cref="GasMixture"/> is an oxidizer, otherwise, false.</returns>
     [PublicAPI]
-    public abstract bool IsMixtureOxidizer(GasMixture mixture, float epsilon = 0.001f);
+    public abstract bool IsMixtureOxidizer(GasMixture mixture, float epsilon = Atmospherics.Epsilon);
 
     /// <summary>
     /// Calculates the heat capacity for a <see cref="GasMixture"/>.

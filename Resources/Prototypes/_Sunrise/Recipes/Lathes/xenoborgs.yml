@@ -68,7 +68,7 @@
 - type: latheRecipe
   parent: BaseXenoborgRecipeHigh
   id: XenoborgCircuitBoard
-  result: XenoborgLawsetCircuitBoard
+  result: XenoborgCircuitBoard
   materials:
     Steel: 100
     Glass: 500

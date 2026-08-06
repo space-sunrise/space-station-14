@@ -52,14 +52,20 @@ public sealed class HolosignProjectorTest : MovementTest
             await Interact(null, TargetCoords);
         }
 
-        // The total should be the same as the initial charges.
+        // Sunrise edit start - учитываем ограничение числа одинаковых голограмм на тайле
+        var expectedSignCount = Math.Min(initialUses, projectorComp.CountPerTileLimit);
+
+        // Общее число голограмм не должно превышать ограничение на тайле.
         await AssertEntityLookup(
-            (signProtoId, initialUses),
+            (signProtoId, expectedSignCount),
             (WallPrototype, 2));
 
-        // We should have no charges left.
+        // Отклонённые из-за ограничения попытки не должны расходовать заряд.
         remainingUses = powerCellSystem.GetRemainingUses(ToServer(projector), projectorComp.ChargeUse);
-        Assert.That(remainingUses, Is.Zero, "Holoprojector did not use up all charges.");
+        Assert.That(remainingUses,
+            Is.EqualTo(initialUses - expectedSignCount),
+            "Holoprojector used charge for a holosign blocked by the per-tile limit.");
+        // Sunrise edit end
     }
 
     /// <summary>
