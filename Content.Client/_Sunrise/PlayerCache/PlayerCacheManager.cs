@@ -69,6 +69,20 @@ public sealed class PlayerCacheManager
         CacheChanged?.Invoke();
     }
 
+    public bool IsTutorialPromptSeen()
+    {
+        return _cfg.GetCVar(SunriseCCVars.TutorialPromptSeen);
+    }
+
+    public void SetTutorialPromptSeen()
+    {
+        if (IsTutorialPromptSeen())
+            return;
+
+        _cfg.SetCVar(SunriseCCVars.TutorialPromptSeen, true);
+        _cfg.SaveToFile();
+    }
+
     public bool TryGetCachedGhostTheme(out string? theme)
     {
         if (!string.IsNullOrEmpty(_cache.GhostTheme))

@@ -98,6 +98,7 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
         _escapeWindow.QuitTutorialButton.OnPressed += _ =>
         {
+            CloseEscapeWindow();
             var tutorialSystem = _entSys.GetEntitySystem<TutorialSystem>();
             tutorialSystem.RequestQuitTutorial();
         };

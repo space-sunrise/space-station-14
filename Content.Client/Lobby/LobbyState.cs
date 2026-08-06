@@ -343,7 +343,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = false;
                 Lobby!.ReadyButton.Pressed = false;
                 Lobby!.ObserveButton.Disabled = false;
-                Lobby!.GhostRolesButton.Disabled = false;
+                // Lobby!.GhostRolesButton.Disabled = false; // Sunrise-edit
             }
             else
             {
@@ -353,7 +353,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ObserveButton.Disabled = true;
-                Lobby!.GhostRolesButton.Disabled = true;
+                // Lobby!.GhostRolesButton.Disabled = true; // Sunrise-edit
             }
 
             if (_gameTicker.ServerInfoBlob != null)

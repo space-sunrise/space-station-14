@@ -162,6 +162,7 @@ namespace Content.Server.Entry
             _serverApi.Initialize();
 
             // Sunrise-Start
+            _discord.SetupClient();
             _ttsManager.Initialize();
             _accountCreation.Initialize();
             _netTexturesManager.Initialize();
@@ -171,7 +172,6 @@ namespace Content.Server.Entry
             _ipBlockingSystem?.Initialize();
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);
-            _discord.SetupClient();
             // Sunrise-End
 
             _voteManager.Initialize();
