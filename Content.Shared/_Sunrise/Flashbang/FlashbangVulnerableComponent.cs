@@ -14,5 +14,5 @@ public sealed partial class FlashbangVulnerableComponent : Component
 
     /// <summary>Если true — защита от экипировки игнорируется и knockdown принудительный.</summary>
     [DataField]
-    public bool BypassProtection = true;
+    public bool BypassProtection = false;
 }

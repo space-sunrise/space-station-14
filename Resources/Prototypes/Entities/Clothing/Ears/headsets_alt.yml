@@ -9,7 +9,7 @@
     state: icon_alt
   - type: Clothing
     equippedPrefix: alt
-  - type: FlashbangProtection
+  - type: FlashbangProtection # Sunrise-Edit
 
 - type: entity
   parent: ClothingHeadsetAlt

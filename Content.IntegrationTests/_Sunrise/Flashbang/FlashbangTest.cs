@@ -22,6 +22,7 @@ public sealed class FlashbangTest
     stunDuration: 4
     knockdownDuration: 4
     minEffectStrength: 0.01
+    minAmbientPressure: 0
 
 - type: entity
   id: FlashbangTestTarget
@@ -50,6 +51,7 @@ public sealed class FlashbangTest
   parent: FlashbangTestTarget
   components:
   - type: FlashbangVulnerable
+    bypassProtection: true
 ";
 
     /// <summary>
@@ -168,11 +170,11 @@ public sealed class FlashbangTest
             mapSys.CreateMap(out mapId);
             mapMan.CreateGrid(mapId);
             source = entMan.SpawnEntity("FlashbangTestSource", new MapCoordinates(0f, 0f, mapId));
-            // Реальная дистанция = 7, protection = 4, effective = 11 >= range 10 → эффект не применяется
+            // Реальная дистанция = 7, coeff = 0.5, effective = 12 >= range 10 → эффект не применяется
             target = entMan.SpawnEntity("FlashbangTestTarget", new MapCoordinates(7f, 0f, mapId));
             // Добавляем защиту напрямую на цель (имитирует шлем/ухо)
             var prot = entMan.AddComponent<FlashbangProtectionComponent>(target);
-            prot.ProtectionDistance = 4f;
+            prot.ProtectionRangeCoefficient = 0.5f;
             entMan.Dirty(target, prot);
         });
 
@@ -222,7 +224,7 @@ public sealed class FlashbangTest
             // Реальная дистанция = 7, большая защита
             target = entMan.SpawnEntity("FlashbangTestTarget", new MapCoordinates(7f, 0f, mapId));
             var prot = entMan.AddComponent<FlashbangProtectionComponent>(target);
-            prot.ProtectionDistance = 100f;
+            prot.ProtectionRangeCoefficient = 1f;
             entMan.Dirty(target, prot);
 
             // Получаем компонент и включаем IgnoreResistances
@@ -277,7 +279,7 @@ public sealed class FlashbangTest
             target = entMan.SpawnEntity("FlashbangTestVulnerableTarget", new MapCoordinates(3f, 0f, mapId));
             // Добавляем большую защиту — для уязвимой цели она должна игнорироваться
             var prot = entMan.AddComponent<FlashbangProtectionComponent>(target);
-            prot.ProtectionDistance = 100f;
+            prot.ProtectionRangeCoefficient = 1f;
             entMan.Dirty(target, prot);
         });
 
