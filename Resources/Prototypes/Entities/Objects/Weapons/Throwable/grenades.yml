@@ -96,6 +96,8 @@
     - type: TriggerOnSpawn
     - type: FlashbangRadiusOnTrigger
       range: 7
+      stunDuration: 5
+      knockdownDuration: 10
 
 - type: entity
   id: PayloadFlashbangEffect 
@@ -105,6 +107,8 @@
     - type: TriggerOnSpawn
     - type: FlashbangRadiusOnTrigger
       range: 6
+      stunDuration: 5
+      knockdownDuration: 10
 
 # Tuned to be a general bomb that deals equipment damage without explicitly gibbing, however it will still gladly instakill anyone that mishandles it.
 # One of the few syndie bombs that should punch holes in space.
