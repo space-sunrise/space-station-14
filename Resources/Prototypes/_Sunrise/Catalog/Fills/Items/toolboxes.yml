@@ -1,5 +1,25 @@
 - type: entity
-  parent: ToolboxSyndicate
+  parent: SunriseToolboxSyndicate
+  id: SunriseToolboxSyndicateFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: Multitool
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingMaskGasSyndicate
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: SunriseToolboxSyndicate
   id: ToolboxSyndicateFilledCoreExtraction
   suffix: Filled, Core Extraction
   components:
@@ -16,7 +36,7 @@
     price: 1500
 
 - type: entity
-  parent: ToolboxSyndicate
+  parent: SunriseToolboxSyndicate
   id: ToolboxSyndicateFilledRepair
   suffix: Filled, Repair
   components:

@@ -56981,7 +56981,7 @@ entities:
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkPirateToolbox
-        productEntity: ToolboxSyndicateFilled
+        productEntity: SunriseToolboxSyndicateFilled
         name: uplink-toolbox-name
         discountCategory: null
         description: uplink-toolbox-desc
@@ -60171,7 +60171,7 @@ entities:
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkToolbox
-        productEntity: ToolboxSyndicateFilled
+        productEntity: SunriseToolboxSyndicateFilled
         name: uplink-toolbox-name
         discountCategory: rareDiscounts
         description: uplink-toolbox-desc

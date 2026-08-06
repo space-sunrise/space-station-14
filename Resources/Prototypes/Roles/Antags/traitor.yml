@@ -81,7 +81,7 @@
   equipment:
     pocket1: WeaponPistolViper
   inhand:
-    - ToolboxSyndicateFilled
+    - SunriseToolboxSyndicateFilled # Sunrise-Edit
   storage:
     back:
     - SyndicateJawsOfLife

@@ -71,3 +71,32 @@
           type: IcarusTerminalBoundUserInterface
     - type: ActivatableUI
       key: enum.IcarusTerminalUiKey.Key
+    - type: Construction
+      graph: IcarusTerminal
+      node: icarusTerminal
+      deconstructionTarget: null
+    - type: Anchorable
+      tool: Welding
+      delay: 120
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 30000
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: monitorBroken
+        - !type:DoActsBehavior
+          acts: ["Breakage"]
+
+- type: constructionGraph
+  id: IcarusTerminal
+  start: icarusTerminal
+  graph:
+    - node: icarusTerminal
+      entity: ComputerIcarus
+    - node: monitorBroken
+      entity: ComputerBroken

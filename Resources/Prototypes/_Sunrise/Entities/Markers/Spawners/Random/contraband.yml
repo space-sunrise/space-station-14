@@ -20,7 +20,7 @@
         - ClothingOuterEVASuitSyndicate
         - ClothingHeadHelmetSyndicate
         - ClothingHeadHelmetSwatSyndicate
-        - ToolboxSyndicateFilled
+        - SunriseToolboxSyndicateFilled
         - ClothingOuterVestWeb
         - SyndicateJawsOfLife
         - HappyHonkNukie
@@ -58,7 +58,7 @@
         - ClothingNeckScarfStripedSyndieRed
         - ClothingShoesBootsWinterSyndicate
         - ClothingBeltSyndieHolster
-        - ToolboxSyndicate
+        - SunriseToolboxSyndicate
       chance: 0.8
       offset: 0.0
 

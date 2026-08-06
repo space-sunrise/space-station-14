@@ -37,3 +37,9 @@
               WeaponTurretPirateDisposable:
                 min: 1
                 max: 1
+
+- type: entity
+  parent: ToolboxSyndicate
+  id: SunriseToolboxSyndicate
+  name: blood-red toolbox
+  description: A blood-red toolbox packed with elite Syndicate tools.
