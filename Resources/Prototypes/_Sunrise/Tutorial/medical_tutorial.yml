@@ -540,7 +540,7 @@
   - type: Godmode
 
 - type: entity
-  parent: BaseMobHuman
+  parent: MobHuman
   id: MedicalTutorialPatient
   name: medical tutorial patient
   suffix: Training
