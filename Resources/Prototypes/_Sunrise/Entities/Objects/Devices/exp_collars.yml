@@ -8,7 +8,7 @@
     equipDelay: 2
     unequipDelay: 20
   - type: Explosive
-    explosionType: MicroBomb
+    explosionType: IncineratorBomb
     totalIntensity: 150
     intensitySlope: 500
     maxIntensity: 30
@@ -21,7 +21,6 @@
       path: /Audio/Effects/beep1.ogg
     damage:
       groups:
-        Brute: 400
         Burn: 400
   - type: StaticPrice
     price: 3000
@@ -51,3 +50,4 @@
     sprite: _Sunrise/Objects/Devices/white_collar.rsi
 
 # TODO: инструкция
+
