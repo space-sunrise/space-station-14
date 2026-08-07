@@ -53,7 +53,8 @@ public sealed partial class TTSSystem : EntitySystem
     private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";
     private List<ICommonSession> _ignoredRecipients = new();
-    private const float AnnouncementTtsVolumeModifier = 0.75f; // громкость объявлений в динамиках по сравнению с обычной речью
+    private const float AnnouncementTtsVolumeModifier = 0.68f; // громкость объявлений в динамиках по сравнению с обычной речью
+    private const int MaxAnnouncementTtsSources = 4;
     private const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
     private const int WhisperVoiceRange = 3; // how far whisper goes in world units
     private string _radioEffect = string.Empty;
@@ -241,7 +242,9 @@ public sealed partial class TTSSystem : EntitySystem
                 continue;
 
             var heardSpeakers = new List<MultiSpeakerTtsSource>();
-            foreach (var (speakerUid, speakerComp) in speakerData)
+            foreach (var (speakerUid, speakerComp) in speakerData
+                         .OrderBy(speaker => Transform(speaker.Uid).Coordinates.TryDistance(EntityManager,
+                             playerXform.Coordinates, out var distance) ? distance : float.MaxValue))
             {
                 if (Transform(speakerUid).Coordinates.TryDistance(EntityManager, playerXform.Coordinates, out var dist) &&
                     dist <= speakerComp.Range)
@@ -250,6 +253,9 @@ public sealed partial class TTSSystem : EntitySystem
                         _xforms.GetMapCoordinates(speakerUid),
                         speakerComp.VolumeModifier,
                         speakerComp.Range));
+
+                    if (heardSpeakers.Count == MaxAnnouncementTtsSources)
+                        break;
                 }
             }
             if (heardSpeakers.Count > 0)
