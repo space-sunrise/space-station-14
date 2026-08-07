@@ -148,7 +148,18 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                         {
                             if (transform.GridUid != null)
                             {
-                                coordinates = transform.Coordinates;
+                                // Sunrise-Edit: Камеры в контейнерах (надетые бодикамеры) хранят координаты
+                                // относительно родительской сущности (игрока), которая может покинуть PVS консоли.
+                                // Используем мировые координаты относительно грида — он всегда в scope.
+                                if ((MetaData(cameraUid).Flags & MetaDataFlags.InContainer) != 0)
+                                {
+                                    coordinates = new EntityCoordinates(transform.GridUid.Value,
+                                        _transform.GetWorldPosition(transform, xformQuery));
+                                }
+                                else
+                                {
+                                    coordinates = transform.Coordinates;
+                                }
                             }
                             else if (transform.MapUid != null)
                             {

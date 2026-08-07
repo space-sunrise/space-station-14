@@ -18,6 +18,11 @@ namespace Content.Server.DeviceNetwork.Systems
         /// </summary>
         private void OnBeforePacketSent(EntityUid uid, WiredNetworkComponent component, BeforePacketSentEvent args)
         {
+            // Sunrise-Edit: разрешаем пакеты от сущностей в контейнерах (надетые бодикамеры),
+            // чтобы они могли общаться с роутерами/мониторами при смене грида.
+            if ((MetaData(args.Sender).Flags & MetaDataFlags.InContainer) != 0)
+                return;
+
             if (Transform(uid).GridUid != args.SenderTransform.GridUid)
             {
                 args.Cancel();
