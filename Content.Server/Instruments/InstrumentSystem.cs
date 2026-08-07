@@ -336,6 +336,12 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiEventRx(InstrumentMidiEventEvent msg, EntitySessionEventArgs args)
     {
+        // Sunrise edit start - ограничение midi до обработки остальной хуйни
+        var eventCount = msg.MidiEvent.Length;
+        if (!TryConsumeSessionMidiBudget(args.SenderSession.UserId, eventCount))
+            return;
+        // Sunrise edit end
+
         // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid,
                 args,
@@ -348,7 +354,6 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             return;
         }
 
-        var eventCount = msg.MidiEvent.Length;
         if (eventCount == 0
             || eventCount > MaxMidiEventsPerBatch
             || !InstrumentMidiValidation.IsValidBatch(msg.MidiEvent))
@@ -361,21 +366,17 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         var send = true;
         var droppedBatch = false; // Sunrise added
 
-        var minTick = uint.MaxValue;
         var maxTick = uint.MinValue;
 
         for (var i = 0; i < eventCount; i++)  // Sunrise edit
         {
             var tick = msg.MidiEvent[i].Tick;
 
-            if (tick < minTick)
-                minTick = tick;
-
             if (tick > maxTick)
                 maxTick = tick;
         }
 
-        if (instrument.LastSequencerTick > minTick)
+        if (instrument.LastSequencerTick > maxTick)
         {
             instrument.LaggedBatches++;
 
@@ -394,18 +395,10 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             }
 
             if (instrument.LaggedBatches > MaxMidiLaggedBatches)
-            {
                 send = false;
-            }
         }
 
         // Sunrise added start
-        if (!TryConsumeSessionMidiBudget(args.SenderSession.UserId, eventCount))
-        {
-            droppedBatch = true;
-            send = false;
-        }
-
         instrument.MidiEventCount += eventCount;
         if (instrument.MidiEventCount > MaxMidiEventsPerSecond)
         {
@@ -417,7 +410,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             instrument.BatchesDropped++;
         // Sunrise added end
 
-        instrument.LastSequencerTick = Math.Max(maxTick, minTick);
+        instrument.LastSequencerTick = Math.Max(instrument.LastSequencerTick, maxTick);
 
         // Sunrise edit start - ограничиваем forwarded MIDI traffic ближайшими слушателями
         if (!send)

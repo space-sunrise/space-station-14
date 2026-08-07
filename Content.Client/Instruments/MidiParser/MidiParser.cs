@@ -7,10 +7,28 @@ namespace Content.Client.Instruments.MidiParser;
 public static class MidiParser
 {
     // Thanks again to http://www.somascape.org/midi/tech/mfile.html
+    // Sunrise edit start - сломанный midi-файл теперь не крашит игру
     public static bool TryGetMidiTracks(
         byte[] data,
         [NotNullWhen(true)] out MidiTrack[]? tracks,
         [NotNullWhen(false)] out string? error)
+    {
+        try
+        {
+            return TryGetMidiTracksCore(data, out tracks, out error);
+        }
+        catch (Exception exception)
+        {
+            tracks = null;
+            error = exception.Message;
+            return false;
+        }
+    }
+    private static bool TryGetMidiTracksCore(
+        byte[] data,
+        [NotNullWhen(true)] out MidiTrack[]? tracks,
+        [NotNullWhen(false)] out string? error)
+        // Sunrise edit end
     {
         tracks = null;
         error = null;

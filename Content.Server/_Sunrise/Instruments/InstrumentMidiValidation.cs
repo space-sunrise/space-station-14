@@ -35,7 +35,7 @@ internal static class InstrumentMidiValidation
             RobustMidiCommand.ControlChange => IsSevenBit(midiEvent.Control) && IsSevenBit(midiEvent.Value),
             RobustMidiCommand.ProgramChange => IsSevenBit(midiEvent.Program),
             RobustMidiCommand.ChannelPressure => IsSevenBit(midiEvent.Pressure),
-            RobustMidiCommand.PitchBend => IsSevenBit(midiEvent.Data1) && IsSevenBit(midiEvent.Data2),
+            RobustMidiCommand.PitchBend => midiEvent.Pitch <= 0x3FFF,
             RobustMidiCommand.SystemMessage => IsValidSystemMessage(midiEvent),
             _ => false
         };
