@@ -1,15 +1,10 @@
 using Content.Shared.Inventory.Events;
 using Content.Shared.Silicons.StationAi;
-using Content.Shared.StationAi;
 
 namespace Content.Server._Sunrise.Silicons.StationAi;
 
 /// <summary>
 /// Позволяет ИИ видеть через предметы со <see cref="StationAiVisionComponent"/>, надетые на персонажей.
-/// Когда игрок надевает такой предмет (например, бодикамеру), система добавляет ему
-/// <see cref="StationAiVisionComponent"/> с нулевым радиусом — достаточным, чтобы
-/// <c>StationAiVisionSystem</c> нашёл владельца в пространственном запросе и затем
-/// через <c>AddContained</c> обнаружил сам предмет в инвентаре.
 /// </summary>
 public sealed class WornStationAiVisionSystem : EntitySystem
 {
@@ -20,14 +15,12 @@ public sealed class WornStationAiVisionSystem : EntitySystem
         SubscribeLocalEvent<StationAiVisionComponent, GotUnequippedEvent>(OnVisionItemUnequipped);
     }
 
-    private void OnVisionItemEquipped(EntityUid uid, StationAiVisionComponent visionComp, GotEquippedEvent args)
+    private void OnVisionItemEquipped(Entity<StationAiVisionComponent> ent, GotEquippedEvent args)
     {
         var wearer = args.Equipee;
-
         var tracker = EnsureComp<WornStationAiVisionTrackerComponent>(wearer);
         tracker.Count++;
 
-        // Добавляем StationAiVisionComponent только если у владельца его ещё нет
         if (tracker.Count == 1 && !HasComp<StationAiVisionComponent>(wearer))
         {
             EnsureComp<StationAiVisionComponent>(wearer);
@@ -35,7 +28,7 @@ public sealed class WornStationAiVisionSystem : EntitySystem
         }
     }
 
-    private void OnVisionItemUnequipped(EntityUid uid, StationAiVisionComponent visionComp, GotUnequippedEvent args)
+    private void OnVisionItemUnequipped(Entity<StationAiVisionComponent> ent, GotUnequippedEvent args)
     {
         var wearer = args.Equipee;
 
@@ -47,7 +40,6 @@ public sealed class WornStationAiVisionSystem : EntitySystem
         if (tracker.Count > 0)
             return;
 
-        // Последний предмет снят
         if (tracker.AddedVisionComponent)
             RemComp<StationAiVisionComponent>(wearer);
 
