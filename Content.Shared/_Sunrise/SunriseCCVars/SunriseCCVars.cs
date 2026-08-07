@@ -586,7 +586,12 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("tutorial.max_active", 10, CVar.SERVERONLY);
 
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
-        CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
+        CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(5), CVar.SERVERONLY);
 
+    public static readonly CVarDef<float> TutorialPromptSkipDelay =
+        CVarDef.Create("tutorial.prompt_skip_delay", 15f, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> TutorialPromptSeen =
+        CVarDef.Create("tutorial.prompt_seen", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
 }

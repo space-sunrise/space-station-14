@@ -13,6 +13,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Antags.Abductor;
+using Content.Shared._Sunrise.Chat;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -685,6 +686,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(ChatChannel.Emotes, action, wrappedMessage, source, false, session.Channel);
             }
         } // sunrise-end
+
+        // Sunrise added start - событие для произвольных эмоций в туториалах
+        var ev = new EntityEmotedEvent(source, action);
+        RaiseLocalEvent(source, ref ev, true);
+        // Sunrise added end
 
         if (hideLog)
             return;
