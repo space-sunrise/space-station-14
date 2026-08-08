@@ -366,7 +366,9 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         var send = true;
         var droppedBatch = false; // Sunrise added
 
+        // Sunrise edit start - используем верхнюю границу пакета
         var maxTick = uint.MinValue;
+        // Sunrise edit end
 
         for (var i = 0; i < eventCount; i++)  // Sunrise edit
         {
@@ -376,6 +378,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
                 maxTick = tick;
         }
 
+        // Sunrise edit start - считаем устаревшими только полностью запоздавшие пакеты
         if (instrument.LastSequencerTick > maxTick)
         {
             instrument.LaggedBatches++;
@@ -397,6 +400,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             if (instrument.LaggedBatches > MaxMidiLaggedBatches)
                 send = false;
         }
+        // Sunrise edit end
 
         // Sunrise added start
         instrument.MidiEventCount += eventCount;
@@ -410,7 +414,9 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             instrument.BatchesDropped++;
         // Sunrise added end
 
+        // Sunrise edit start - не даём старому пакету откатить sequencer tick
         instrument.LastSequencerTick = Math.Max(instrument.LastSequencerTick, maxTick);
+        // Sunrise edit end
 
         // Sunrise edit start - ограничиваем forwarded MIDI traffic ближайшими слушателями
         if (!send)
