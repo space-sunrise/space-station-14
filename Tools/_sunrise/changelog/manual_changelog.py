@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Update the changelog manually, for when you don't want to bother setting up the bot.
+# Обновляет чейнджлог вручную, когда настраивать бота не требуется.
 
 import argparse
 import datetime
@@ -10,7 +10,7 @@ from yaml import safe_load as yaml_safe_load, dump as yaml_dump
 
 def make_timestamp():
     now = datetime.datetime.now(datetime.timezone.utc)
-    return now.isoformat()
+    return now.isoformat(timespec="microseconds")
 
 def load_changelog(infile):
     print(f"Loading changelog {infile.name} ...")
@@ -72,11 +72,11 @@ def parse_github_pull_request(changelog, stream):
     print("Type or paste in changelog entries from GitHub.\n")
 
     try:
-        # Parse the stream.
+        # Разбираем входной поток.
         for line in stream:
             line = line.strip()
 
-            # Read change lines.
+            # Читаем строки изменений.
             match = re_change.match(line)
 
             if match:
@@ -91,11 +91,11 @@ def parse_github_pull_request(changelog, stream):
                 ))
                 continue
 
-            # Read author lines.
+            # Читаем строки с авторами.
             match = re_changelog_header.match(line)
 
             if match:
-                # Flush any changes before setting the new author.
+                # Сохраняем накопленные изменения перед сменой автора.
                 flush_changes(stored_changes)
 
                 group = match.groupdict()
@@ -103,14 +103,14 @@ def parse_github_pull_request(changelog, stream):
     except KeyboardInterrupt:
         pass
 
-    # Finished reading from stream.
+    # Чтение входного потока завершено.
 
-    # Flush any changes.
+    # Сохраняем оставшиеся изменения.
     flush_changes(stored_changes)
 
     print("")
 
-    # Deal with unspecified authors.
+    # Обрабатываем записи без указанного автора.
     for entry in pending_entries_with_unspecified_author:
         print(f"[!] Entry with unspecified author:\n{entry}")
         print("\nEnter author> ", end='')

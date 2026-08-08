@@ -321,7 +321,7 @@ def main() -> None:
     parser.add_argument("--extra-category", action="append", default=[])
     args = parser.parse_args()
 
-    repo_root = Path(__file__).resolve().parents[2]
+    repo_root = Path(__file__).resolve().parents[3]
     category_files = CATEGORY_FILES.copy()
     configured_categories = [
         category.strip()

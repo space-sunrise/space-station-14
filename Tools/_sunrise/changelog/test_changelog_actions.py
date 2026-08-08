@@ -1,12 +1,16 @@
+import subprocess
+import sys
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import yaml
 
+import actions_changelogs_since_last_run as discord_changelog
 import changelog_actions
+import manual_changelog
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -162,6 +166,77 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertEqual([2], [item["number"] for item in result])
         request.assert_called_once()
+
+    def test_main_resolves_repository_root_after_tool_move(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            changelog_dir = repo_root / changelog_actions.CHANGELOG_PATH
+            parts_dir = repo_root / changelog_actions.PARTS_PATH
+            tools_dir = repo_root / "Tools"
+            changelog_dir.mkdir(parents=True)
+            parts_dir.mkdir(parents=True)
+            tools_dir.mkdir()
+            (tools_dir / "update_changelog.py").write_bytes(
+                (REPO_ROOT / "Tools/update_changelog.py").read_bytes(),
+            )
+            (changelog_dir / "ChangelogSunrise.yml").write_text("Entries: []\n", encoding="utf-8")
+            event_path = repo_root / "event.json"
+            event_path.write_text("{}", encoding="utf-8")
+            script_path = repo_root / "Tools/_sunrise/changelog/changelog_actions.py"
+
+            with patch.object(changelog_actions, "__file__", str(script_path)), patch.object(
+                sys,
+                "argv",
+                ["changelog_actions.py", "--event-path", str(event_path)],
+            ), patch.object(changelog_actions, "list_merged_pull_requests", return_value=[]):
+                changelog_actions.main()
+
+            self.assertTrue((repo_root / changelog_actions.STATE_PATH).exists())
+
+    def test_discord_rate_limit_retries_are_bounded(self):
+        response = Mock(status_code=429)
+        response.json.return_value = {"retry_after": 0}
+        response.raise_for_status.side_effect = discord_changelog.requests.HTTPError("rate limited")
+
+        with patch.object(discord_changelog.requests, "post", return_value=response) as post, patch.object(
+            discord_changelog.time,
+            "sleep",
+        ):
+            with self.assertRaises(discord_changelog.requests.HTTPError):
+                discord_changelog.send_embed_discord({"description": "test"})
+
+        self.assertEqual(discord_changelog.DISCORD_RETRY_LIMIT + 1, post.call_count)
+        self.assertTrue(
+            all(call.kwargs["timeout"] == discord_changelog.HTTP_REQUEST_TIMEOUT for call in post.call_args_list),
+        )
+
+    def test_manual_and_reader_timestamps_support_optional_microseconds(self):
+        self.assertRegex(manual_changelog.make_timestamp(), r"\.\d{6}\+00:00$")
+
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            changelog_path = repo_root / "Resources/Changelog/ChangelogSunrise.yml"
+            changelog_path.parent.mkdir(parents=True)
+            changelog_path.write_text(
+                """Entries:
+- author: Tester
+  time: "2026-08-08T12:00:00+00:00"
+  changes: []
+- author: Tester
+  time: "2026-08-08T12:00:00.123456+00:00"
+  changes: []
+""",
+                encoding="utf-8",
+            )
+            result = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "Tools/_sunrise/changelog/read_changelog.py")],
+                cwd=repo_root,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+        self.assertNotIn("Error formatting time", result.stdout)
 
     def test_workflow_has_all_entry_points_and_safe_app_write_retry(self):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
