@@ -162,7 +162,7 @@ jobs:
       run: |
         SETTINGS=.integration-filters/shard_${{ matrix.shard }}.runsettings
         timeout --signal=TERM --kill-after=2m 15m \
-          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 6min --blame-hang-dump-type none -- NUnit.ConsoleOut=0 NUnit.WorkDirectory="/tmp/test-results"
+          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll --settings "$SETTINGS" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 6min --blame-hang-dump-type mini -- NUnit.ConsoleOut=0 NUnit.WorkDirectory="/tmp/test-results"
     # Sunrise edit end
 
     - name: Test results
@@ -173,7 +173,7 @@ jobs:
         mkdir -p /tmp/test-results
         trx --path /tmp/test-results -o -v quiet || true
 
-    # Sunrise added start - сохраняем последовательность таймаута без многогигабайтного дампа
+    # Sunrise added start - сохраняем последовательность таймаута для диагностики
     - name: Upload hang sequences
       id: upload-sequences
       uses: actions/upload-artifact@v4
@@ -184,6 +184,18 @@ jobs:
         retention-days: 3
         if-no-files-found: ignore
     # Sunrise added end
+
+    # Sunrise edit start - загружаем дамп только после падения интеграционных тестов
+    - name: Upload crash dumps
+      id: upload-dumps
+      uses: actions/upload-artifact@v4
+      if: always() && steps.integration-tests.outcome == 'failure'
+      with:
+        name: blame-dump-shard-${{ matrix.shard }}
+        path: /tmp/test-results/**/*.dmp
+        retention-days: 3
+        if-no-files-found: ignore
+    # Sunrise edit end
 
     - name: Report timed out tests
       continue-on-error: true
@@ -206,6 +218,9 @@ jobs:
             echo ":page_facing_up: [Download hang sequence](${{ steps.upload-sequences.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
           fi
           # Sunrise added end
+          if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
+            echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          fi
         fi
 
   ci-success:
