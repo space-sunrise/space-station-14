@@ -15,7 +15,6 @@ on:
         required: false
         type: number
   schedule:
-    # Sunrise added - страховочная сверка на случай пропущенного или упавшего события GitHub
     - cron: "17 * * * *"
 
 permissions: {}
@@ -49,47 +48,10 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --disable-pip-version-check PyYAML==6.0.2
 
-      - name: Save event payload
-        run: cp "$GITHUB_EVENT_PATH" "$RUNNER_TEMP/changelog-event.json"
-
       - name: Update changelog
         shell: bash
         env:
           CHANGELOG_EXTRA_CATEGORIES: ${{ vars.CHANGELOG_EXTRA_CATEGORIES }}
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || '' }}
-        run: |
-          set -euo pipefail
-
-          git config user.name "Sunrise-Bot"
-          git config user.email "sunrise.project.top@gmail.com"
-
-          for attempt in {1..5}; do
-            git fetch --no-tags origin master
-            git reset --hard origin/master
-            git clean -fd -- Resources/Changelog/Parts .github/changelog-state.json
-
-            arguments=(--event-path "$RUNNER_TEMP/changelog-event.json" --target-branch master)
-            if [[ -n "${PR_NUMBER:-}" ]]; then
-              arguments+=(--pr-number "$PR_NUMBER")
-            fi
-
-            python Tools/_sunrise/changelog_actions.py "${arguments[@]}"
-            git add -- Resources/Changelog .github/changelog-state.json
-
-            if git diff --cached --quiet; then
-              echo "Чейнджлог уже актуален."
-              exit 0
-            fi
-
-            git commit -m "Automatic changelog update"
-            if git push origin HEAD:master; then
-              exit 0
-            fi
-
-            echo "Отправка не удалась, повторяем поверх свежего master (${attempt}/5)."
-            sleep $((attempt * 2))
-          done
-
-          echo "Не удалось отправить чейнджлог после пяти попыток." >&2
-          exit 1
+        run: bash Tools/_sunrise/changelog/run.sh

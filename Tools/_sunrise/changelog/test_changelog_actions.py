@@ -9,8 +9,9 @@ import yaml
 import changelog_actions
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 WORKFLOW_PATH = REPO_ROOT / ".github/workflows/changelog.yml"
+RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 
 class ChangelogActionsTests(unittest.TestCase):
@@ -164,6 +165,7 @@ class ChangelogActionsTests(unittest.TestCase):
 
     def test_workflow_has_all_entry_points_and_safe_app_write_retry(self):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
+        runner = RUNNER_PATH.read_text(encoding="utf-8")
         document = yaml.load(workflow, Loader=yaml.BaseLoader)
 
         self.assertIn("on", document)
@@ -181,8 +183,11 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)
         self.assertNotIn("github.token", workflow)
         self.assertNotIn("concurrency:", workflow)
-        self.assertIn("git reset --hard origin/master", workflow)
-        self.assertIn("for attempt in {1..5}", workflow)
+        self.assertIn("run: bash Tools/_sunrise/changelog/run.sh", workflow)
+        self.assertNotIn("git reset --hard origin/master", workflow)
+        self.assertIn("git reset --hard origin/master", runner)
+        self.assertIn("for attempt in {1..5}", runner)
+        self.assertIn("python Tools/_sunrise/changelog/changelog_actions.py", runner)
         self.assertNotIn("github.event.pull_request.head", workflow)
 
 
