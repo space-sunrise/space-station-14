@@ -248,7 +248,7 @@
   - type: AccessReader
   - type: DamageOverlay # Sunrise-Edit
   - type: ExplosionResistance # Sunrise-Edit
-    damageCoefficient: 0.8 # Sunrise-Edit
+    damageCoefficient: 0.9 # Sunrise-Edit
   - type: ProtectedFromStepTriggers # Sunrise-added
   - type: ComplexInteraction # Sunrise-added
 
