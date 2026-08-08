@@ -76,7 +76,7 @@
   cost: 11500
   recipeUnlocks:
   - SpeedLoaderMagnumAP
-  - MagazineMagnumAP
+  #- MagazineMagnumAP
   - MagazinePistolAP
   - MagazinePistol40AP
   - MagazineRifleAP
