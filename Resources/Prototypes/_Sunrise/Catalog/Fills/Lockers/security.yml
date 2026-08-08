@@ -242,21 +242,6 @@
 
 - type: entity
   parent: GunSafeBaseSecure
-  id: GunSafeSubMachineGunSkorpion
-  name: safe
-  suffix: Skorpion
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: WeaponSubMachineGunSkorpion
-          amount: 3
-        - id: MagazinePistolSubMachineGunSP
-          amount: 6
-
-- type: entity
-  parent: GunSafeBaseSecure
   id: GunSafeSubMachineGunMP5
   name: safe
   suffix: MP5
@@ -651,7 +636,6 @@
     - !type:GroupSelector
       weight: 25
       children:
-      - id: GunSafeEnergyPistolDominator
       - id: GunSafeEnergyGunMini
       - id: GunSafeSnubRevolver
     - !type:GroupSelector
@@ -659,7 +643,6 @@
       children:
       - id: GunSafePistolVP78
       - id: GunSafePistolM1984
-      - id: GunSafeSubMachineGunSkorpion
     - id: SpawnerSafeLethal
       weight: 15
 

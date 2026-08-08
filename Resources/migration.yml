@@ -1127,4 +1127,12 @@ ClothingBackpackDuffelWeaponRifleG36Filled: ClothingBackpackDuffelWeaponRifleLei
 GunSafeRifleFamas: null
 GunSafeWeaponRifleG36: null
 WeaponRifleAK514: WeaponRifleSKM24
+GunSafeEnergyPistolDominator: GunSafeEnergyGunMini
+GunSafeSubMachineGunSkorpion: GunSafeSubMachineGunWt550
+WeaponSubMachineGunSkorpion: WeaponSubMachineGunWt550
+MagazineScorpion: MagazinePistolSubMachineGunTopMounted
+BlueprintMagAsh12Slug: BlueprintMagAsh12Basic
+BlueprintMagAsh12Beanbag: null
+BlueprintMagAsh12Flare: null
+ClothingBackpackDuffelWeaponRifleAsh12: Ash12Box
 # region Sunrise-End

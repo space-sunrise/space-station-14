@@ -502,14 +502,9 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - GlockBox
-  - MK58Box
-  - MK58GoldBox
-  - HeadofSecurityWeapon20h
+  - HeadofSecurityWeapon
   - HeadofSecurityWeapon50h
-  - HeadofSecurityWeapon50h2
-  - HeadofSecurityWeapon100h
-  - HeadofSecurityWeapon100h2
+  - HeadofSecurityWeapon1984h
 
 # Medical
 - type: loadoutGroup

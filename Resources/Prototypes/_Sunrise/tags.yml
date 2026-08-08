@@ -306,9 +306,6 @@
 - type: Tag
   id: MagazinePistolSubMachineGunCap
 
-- type: Tag
-  id: MagazineScorpion
-
 # region Weapons
 
 - type: Tag

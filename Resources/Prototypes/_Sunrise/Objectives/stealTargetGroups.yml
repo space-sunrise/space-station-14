@@ -6,6 +6,13 @@
     state: base
 
 - type: stealTargetGroup
+  id: HOSWeapon
+  name: steal-target-groups-hos-weapon
+  sprite:
+    sprite: _Starlight/Objects/Misc/hos_weapons_obj.rsi
+    state: icon
+
+- type: stealTargetGroup
   id: PlutoniumCore
   name: steal-target-groups-plutonium # plutonium core
   sprite:

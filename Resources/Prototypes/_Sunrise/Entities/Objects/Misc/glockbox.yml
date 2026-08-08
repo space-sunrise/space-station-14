@@ -62,3 +62,25 @@
     items:
       - id: WeaponPistolVP78
       - id: PouchAmmoFilledPistol40
+
+- type: entity
+  parent: GlockBox
+  id: DeagleGoldBox
+  name: Deagle Gold box
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponPistolDeagleGolden
+      - id: MagazineMagnumRubber
+      - id: BlueprintMagMagnumBasic
+
+- type: entity
+  parent: GlockBox
+  id: Ash12Box
+  name: Ash12 box
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponRifleAsh12
+      - id: MagazineAsh12Beanbag
+      - id: BlueprintMagAsh12Basic

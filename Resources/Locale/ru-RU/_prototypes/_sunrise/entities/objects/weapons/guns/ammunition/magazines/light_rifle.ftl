@@ -1,5 +1,3 @@
-ent-MagazineScorpion = магазин ПП Скорпион
-    .desc = Использует патроны калибра .35 Авто.
 ent-MagazineMachineGunMG42 = малый короб .308 (FMJ)
     .desc = { ent-BaseItem.desc }
 ent-MagazineLightMachineGunMG60 = Короб ПКМ

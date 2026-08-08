@@ -425,18 +425,6 @@
     stock: 4
 
 - type: listing
-  id: ERTUplinkWeaponSubMachineGunSkorpion
-  productEntity: WeaponSubMachineGunSkorpion
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skorpion }
-  cost:
-    Bluecrystal: 6
-  categories:
-  - NTPistols
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
-
-- type: listing
   id: ERTUplinkWeaponPulsePistol
   productEntity: WeaponPulsePistol
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-p }

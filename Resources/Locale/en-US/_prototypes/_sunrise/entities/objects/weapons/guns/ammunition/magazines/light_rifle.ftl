@@ -1,5 +1,3 @@
-ent-MagazineScorpion = Scorpion magazine
-    .desc = { ent-BaseItem.desc }
 ent-MagazineMachineGunMG42 = MG42 magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineLightMachineGunMG60 = MG60 magazine

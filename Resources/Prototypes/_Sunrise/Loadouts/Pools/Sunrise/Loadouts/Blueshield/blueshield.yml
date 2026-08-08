@@ -145,7 +145,7 @@
 - type: loadout
   id: BlueshieldAsh12
   inhand:
-  - ClothingBackpackDuffelWeaponRifleAsh12
+  - Ash12Box
   effects:
   - !type:GroupLoadoutEffect
     proto: MisterBlueShit50

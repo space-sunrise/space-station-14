@@ -30,10 +30,6 @@ ent-GunSafeSubMachineGunVector = safe
     .suffix = Vector
     .desc = { ent-GunSafe.desc }
 
-ent-GunSafeSubMachineGunSkorpion = safe
-    .suffix = Skorpion, SUNRISE
-    .desc = { ent-GunSafe.desc }
-
 ent-GunSafeSubMachineGunMP5 = safe
     .suffix = MP5, SUNRISE
     .desc = { ent-GunSafeBaseSecure.desc }
