@@ -7,6 +7,7 @@ namespace Content.Client.Instruments;
 
 public sealed partial class InstrumentSystem
 {
+    // безопасно разбирает midi для получения названий дорожек
     private static bool TryGetMidiTracks(
         byte[] data,
         [NotNullWhen(true)] out MidiTrack[]? tracks,
