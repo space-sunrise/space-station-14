@@ -1,7 +1,9 @@
+import io
 import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import Mock, patch
@@ -80,6 +82,71 @@ class ChangelogActionsTests(unittest.TestCase):
             ),
             parsed,
         )
+
+    def test_pull_request_without_marker_is_logged_as_skip(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            (repo_root / changelog_actions.CHANGELOG_PATH).mkdir(parents=True)
+            (repo_root / changelog_actions.PARTS_PATH).mkdir(parents=True)
+            pull_request = {
+                "number": 123,
+                "merged": True,
+                "merged_at": "2026-08-08T12:00:00Z",
+                "body": "Изменение без чейнджлога",
+                "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
+                "user": {"login": "Tester"},
+                "base": {"ref": "master"},
+            }
+            output = io.StringIO()
+
+            with redirect_stdout(output):
+                written = changelog_actions.write_pull_request_parts(repo_root, [pull_request], "master")
+
+        self.assertEqual(0, written)
+        self.assertIn("::notice::PR #123 пропущен: отсутствует маркер :cl: или 🆑.", output.getvalue())
+
+    def test_pull_request_with_malformed_entry_is_an_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            (repo_root / changelog_actions.CHANGELOG_PATH).mkdir(parents=True)
+            (repo_root / changelog_actions.PARTS_PATH).mkdir(parents=True)
+            pull_request = {
+                "number": 123,
+                "merged": True,
+                "merged_at": "2026-08-08T12:00:00Z",
+                "body": ":cl: Tester\n- add:",
+                "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
+                "user": {"login": "Tester"},
+                "base": {"ref": "master"},
+            }
+
+            with self.assertRaisesRegex(RuntimeError, "PR #123: не удалось распознать строку чейнжлога"):
+                changelog_actions.write_pull_request_parts(repo_root, [pull_request], "master")
+
+    def test_status_is_written_to_actions_log_and_summary(self):
+        with tempfile.TemporaryDirectory() as directory:
+            summary_path = Path(directory) / "summary.md"
+            output = io.StringIO()
+
+            with patch.dict("os.environ", {"GITHUB_STEP_SUMMARY": str(summary_path)}), redirect_stdout(output):
+                changelog_actions.report_status("success", "Чейнджлог обновлён.")
+
+            self.assertEqual("::notice::Чейнджлог обновлён.\n", output.getvalue())
+            self.assertEqual(
+                "## Автоматический чейнджлог\n\n- ✅ Чейнджлог обновлён.\n",
+                summary_path.read_text(encoding="utf-8"),
+            )
+
+    def test_runtime_error_is_reported_to_actions(self):
+        output = io.StringIO()
+
+        with patch.object(changelog_actions, "main", side_effect=RuntimeError("не удалось разобрать PR")), redirect_stdout(
+            output,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "не удалось разобрать PR"):
+                changelog_actions.run()
+
+        self.assertIn("::error::Чейнджлог завершился с ошибкой: не удалось разобрать PR", output.getvalue())
 
     def test_active_sunrise_config_supports_emoji_header_and_keeps_extras_in_main(self):
         parsed = changelog_actions.parse_pr_body(
@@ -263,6 +330,9 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("git reset --hard origin/master", runner)
         self.assertIn("for attempt in {1..5}", runner)
         self.assertIn("python Tools/_sunrise/changelog/changelog_actions.py", runner)
+        self.assertIn("Чейнджлог уже актуален: публикация не требуется.", runner)
+        self.assertIn("Чейнджлог успешно опубликован в master.", runner)
+        self.assertIn("Не удалось отправить чейнджлог после пяти попыток.", runner)
         self.assertNotIn("github.event.pull_request.head", workflow)
 
 

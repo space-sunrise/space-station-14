@@ -26,6 +26,7 @@ PARTS_PATH = Path("Resources/Changelog/Parts")
 CHANGELOG_PATH = Path("Resources/Changelog")
 
 COMMENT_RE = re.compile(r"(?<!\\)<!--([^>]+)(?<!\\)-->")
+MARKER_RE = re.compile(r"^\s*(?::cl:|🆑)", re.IGNORECASE | re.MULTILINE)
 HEADER_RE = re.compile(
     r"^\s*(?::cl:|🆑) *([a-z0-9_\- ,&]+)?\s*$",
     re.IGNORECASE | re.MULTILINE,
@@ -34,6 +35,7 @@ ENTRY_RE = re.compile(
     r"^ *[*-]? *(add|remove|tweak|fix|bug|bugfix): *([^\n\r]+)\r?$",
     re.IGNORECASE,
 )
+MALFORMED_ENTRY_RE = re.compile(r"^ *[*-] *(?:[a-z]+):", re.IGNORECASE)
 CATEGORY_RE = re.compile(r"^\s*([a-z]+):\s*$", re.IGNORECASE)
 CHANGE_TYPES = {
     "add": "Add",
@@ -43,12 +45,31 @@ CHANGE_TYPES = {
     "bug": "Fix",
     "bugfix": "Fix",
 }
+STATUS_FORMAT = {
+    "success": ("notice", "✅"),
+    "skip": ("notice", "⏭️"),
+    "error": ("error", "❌"),
+}
 
 
 @dataclass(frozen=True)
 class ParsedCategory:
     name: str
     changes: list[dict[str, str]]
+
+
+def report_status(status: str, message: str) -> None:
+    command, icon = STATUS_FORMAT[status]
+    escaped = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    print(f"::{command}::{escaped}")
+
+    if summary_path := os.environ.get("GITHUB_STEP_SUMMARY"):
+        summary_file = Path(summary_path)
+        is_empty = not summary_file.exists() or summary_file.stat().st_size == 0
+        with summary_file.open("a", encoding="utf-8") as summary:
+            if is_empty:
+                summary.write("## Автоматический чейнджлог\n\n")
+            summary.write(f"- {icon} {message}\n")
 
 
 def parse_time(value: str) -> datetime:
@@ -76,6 +97,8 @@ def parse_pr_body(
     text = COMMENT_RE.sub("", body or "")
     header = HEADER_RE.search(text)
     if header is None:
+        if MARKER_RE.search(text):
+            raise ValueError("маркер чейнжлога найден, но его заголовок не удалось распознать")
         return None
 
     author = header.group(1).strip() if header.group(1) else fallback_author
@@ -93,6 +116,8 @@ def parse_pr_body(
 
         entry_match = ENTRY_RE.match(line)
         if entry_match is None:
+            if MALFORMED_ENTRY_RE.match(line):
+                raise ValueError(f"не удалось распознать строку чейнжлога: {line.strip()[:120]}")
             continue
 
         change_type = CHANGE_TYPES[entry_match.group(1).lower()]
@@ -245,21 +270,32 @@ def write_pull_request_parts(
     written = 0
 
     for pull_request in sorted(pull_requests, key=lambda item: item.get("merged_at") or ""):
+        number = int(pull_request["number"])
         if not is_target_pull_request(pull_request, target_branch):
+            report_status("skip", f"PR #{number} пропущен: он не был слит в ветку {target_branch}.")
             continue
 
-        parsed = parse_pr_body(
-            pull_request.get("body"),
-            pull_request.get("user", {}).get("login", "unknown"),
-            tuple(category_files),
-        )
+        try:
+            parsed = parse_pr_body(
+                pull_request.get("body"),
+                pull_request.get("user", {}).get("login", "unknown"),
+                tuple(category_files),
+            )
+        except ValueError as error:
+            raise RuntimeError(f"PR #{number}: {error}") from error
         if parsed is None:
+            report_status("skip", f"PR #{number} пропущен: отсутствует маркер :cl: или 🆑.")
             continue
 
         author, categories = parsed
+        if not categories:
+            raise RuntimeError(
+                f"PR #{number}: маркер чейнжлога найден, но ни одну запись изменений распознать не удалось.",
+            )
+
         url = str(pull_request["html_url"])
-        number = int(pull_request["number"])
         merged_at = format_changelog_time(pull_request.get("merged_at"))
+        pull_request_written = 0
 
         for category in categories:
             if url in known_urls[category.name]:
@@ -281,6 +317,12 @@ def write_pull_request_parts(
             )
             known_urls[category.name].add(url)
             written += 1
+            pull_request_written += 1
+
+        if pull_request_written:
+            report_status("success", f"PR #{number} обработан: подготовлено фрагментов — {pull_request_written}.")
+        else:
+            report_status("skip", f"PR #{number} пропущен: его записи уже присутствуют в чейнжлоге.")
 
     return written
 
@@ -359,8 +401,19 @@ def main() -> None:
         if item.get("merged_at")
     ]
     save_checkpoint(repo_root, max([checkpoint, *merged_times]))
-    print(f"Подготовлено фрагментов из PR: {written}")
+    if written:
+        report_status("success", f"Чейнджлог обновлён: подготовлено фрагментов — {written}.")
+    else:
+        report_status("success", "Сверка завершена: новых фрагментов для чейнжлога нет.")
+
+
+def run() -> None:
+    try:
+        main()
+    except Exception as error:
+        report_status("error", f"Чейнджлог завершился с ошибкой: {error}")
+        raise
 
 
 if __name__ == "__main__":
-    main()
+    run()
