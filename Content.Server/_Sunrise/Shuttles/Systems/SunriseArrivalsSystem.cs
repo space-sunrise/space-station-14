@@ -73,6 +73,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     /// </summary>
     private const float InitialFtlTime = 15f;
 
+    private const float HoldingFtlTime = 3600f;
+
     /// <summary>
     /// Задержка после завершения FTL перед удалением улетающего шаттла.
     /// </summary>
@@ -113,6 +115,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     /// Интервал между сообщениями ЦК станции о заблокированных прибытиях.
     /// </summary>
     private static readonly TimeSpan StationWarnInterval = TimeSpan.FromMinutes(1);
+
+    private static readonly TimeSpan DispatchRetryInterval = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
     {
@@ -196,7 +200,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
     public bool TrySpawnForPlayer(EntityUid station, EntityUid player)
     {
-        if (!_enabled || !_arrivalsEnabled)
+        if (!_enabled || !_arrivalsEnabled || !Exists(station) || !Exists(player) ||
+            !HasComp<StationArrivalsComponent>(station))
             return false;
 
         var shuttleUid = SpawnShuttle(station);
@@ -234,9 +239,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         EnqueueShuttle(shuttleUid);
 
-        var shuttleComp = Comp<ShuttleComponent>(shuttleUid);
-        _shuttle.FTLToCoordinates(shuttleUid, shuttleComp,
-            Transform(shuttleUid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
+        EnsureHoldingFtl(shuttleUid);
 
         Log.Info($"arrivals shuttle {ToPrettyString(shuttleUid)} spawned for " +
                  $"'{arrivals.PlayerName}' heading to {ToPrettyString(station)}");
@@ -273,13 +276,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         RemComp<FTLComponent>(uid);
 
-        if (!TryComp<ShuttleComponent>(uid, out var shuttleComp))
-        {
-            return;
-        }
-
-        _shuttle.FTLToCoordinates(uid, shuttleComp,
-            Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
+        EnsureHoldingFtl(uid);
     }
 
     private void OnShuttleShutdown(EntityUid uid, SunriseArrivalsShuttleComponent component, ComponentShutdown args)
@@ -304,7 +301,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         var curTime = _timing.CurTime;
 
-        TryDispatchFromQueue();
+        TryDispatchFromQueue(curTime);
 
         var query = EntityQueryEnumerator<SunriseArrivalsShuttleComponent>();
         while (query.MoveNext(out var uid, out var arrivals))
@@ -370,13 +367,15 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     /// Пытается отправить шаттлы из очереди к свободным docks.
     /// Отправляет один шаттл на каждый свободный док за тик.
     /// </summary>
-    private void TryDispatchFromQueue()
+    private void TryDispatchFromQueue(TimeSpan curTime)
     {
         var poolQuery = EntityQueryEnumerator<SunriseArrivalsPoolComponent>();
         while (poolQuery.MoveNext(out _, out var pool))
         {
-            if (pool.Queue.Count == 0)
+            if (pool.Queue.Count == 0 || curTime < pool.NextDispatchTime)
                 continue;
+
+            pool.NextDispatchTime = curTime + DispatchRetryInterval;
 
             // Обрабатываем очередь и пытаемся отправить столько шаттлов, сколько есть свободных docks
             for (var i = 0; i < pool.Queue.Count; i++)
@@ -540,6 +539,9 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         }
         else
         {
+            if (arrivals.Player != null)
+                EnsureComp<FTLSmashImmuneComponent>(arrivals.Player.Value);
+
             // Игрок вернулся — сбрасываем exit timer
             arrivals.PlayerExitTime = null;
         }
@@ -825,7 +827,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             return;
 
         _shuttle.FTLToCoordinates(uid, shuttleComp,
-            Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: 3600f);
+            Transform(uid).Coordinates, Angle.Zero, hyperspaceTime: HoldingFtlTime);
     }
 
     private void RemovePlayerFtlImmunity(SunriseArrivalsShuttleComponent arrivals)
