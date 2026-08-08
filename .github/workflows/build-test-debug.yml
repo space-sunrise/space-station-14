@@ -174,36 +174,36 @@ jobs:
         trx --path /tmp/test-results -o -v quiet || true
 
     # Sunrise added start - сохраняем последовательность таймаута для диагностики
-    - name: Upload hang sequences
+    - name: Upload timeout sequences
       id: upload-sequences
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: blame-sequence-shard-${{ matrix.shard }}
-        path: /tmp/test-results/**/*Sequence*.xml
+        name: test-timeout-sequence-shard-${{ matrix.shard }}
+        path: /tmp/test-results/*/Sequence*.xml
         retention-days: 3
         if-no-files-found: ignore
     # Sunrise added end
 
     # Sunrise edit start - загружаем дамп только после падения интеграционных тестов
-    - name: Upload crash dumps
+    - name: Upload timeout dumps
       id: upload-dumps
       uses: actions/upload-artifact@v4
       if: always() && steps.integration-tests.outcome == 'failure'
       with:
-        name: blame-dump-shard-${{ matrix.shard }}
-        path: /tmp/test-results/**/*.dmp
+        name: test-timeout-dump-shard-${{ matrix.shard }}
+        path: /tmp/test-results/*/*.dmp
         retention-days: 3
         if-no-files-found: ignore
     # Sunrise edit end
 
-    - name: Report timed out tests
+    - name: Report test timeout
       continue-on-error: true
       if: always()
       run: |
-        shopt -s nullglob globstar
+        shopt -s nullglob
         found=false
-        for seq in /tmp/test-results/**/*Sequence*.xml; do
+        for seq in /tmp/test-results/*/Sequence*.xml; do
           if [ "$found" = false ]; then
             echo "## :warning: Test timeout detected (shard ${{ matrix.shard }})" >> "$GITHUB_STEP_SUMMARY"
             echo '```xml' >> "$GITHUB_STEP_SUMMARY"
@@ -213,13 +213,13 @@ jobs:
         done
         if [ "$found" = true ]; then
           echo '```' >> "$GITHUB_STEP_SUMMARY"
-          # Sunrise added start - добавляем прямую ссылку на сохранённую последовательность зависания
+          # Sunrise added start - добавляем прямую ссылку на сохранённую последовательность таймаута
           if [ -n "${{ steps.upload-sequences.outputs.artifact-url }}" ]; then
-            echo ":page_facing_up: [Download hang sequence](${{ steps.upload-sequences.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+            echo ":page_facing_up: [Download timeout sequence](${{ steps.upload-sequences.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
           fi
           # Sunrise added end
           if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
-            echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+            echo ":floppy_disk: [Download timeout dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
           fi
         fi
 
