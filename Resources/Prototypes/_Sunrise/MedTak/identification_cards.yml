@@ -1,0 +1,96 @@
+﻿# MedTak ID cards
+# Anchor: lust-job-icon-rsi points to _Sunrise job icon RSI
+- type: entity
+  parent: IDCardStandard
+  id: MedTakTeamLeadIDCard
+  name: MedTak team leader ID card
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: &lust-icon-rsi _Sunrise/Interface/Misc/job_icons.rsi
+          offset: &lust-icon-offset -0.09375, 0.0625
+          state: MedTakLeader
+    - type: IdCard
+      jobTitle: job-name-medtak-leader
+      jobIcon: JobIconMedTakLeader
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakDispatcherIDCard
+  name: MedTak dispatcher ID card
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *lust-icon-rsi
+          offset: *lust-icon-offset
+          state: MedTakDispatcher
+    - type: IdCard
+      jobTitle: job-name-medtak-dispatcher
+      jobIcon: JobIconMedTakDispatcher
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakMedicIDCard
+  name: MedTak medic ID card
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *lust-icon-rsi
+          offset: *lust-icon-offset
+          state: MedTakMedic
+    - type: IdCard
+      jobTitle: job-name-medtak-medic
+      jobIcon: JobIconMedTakMedic
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakPilotIDCard
+  name: MedTak pilot ID card
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *lust-icon-rsi
+          offset: *lust-icon-offset
+          state: MedTakPilot
+    - type: IdCard
+      jobTitle: job-name-medtak-pilot
+      jobIcon: JobIconMedTakPilot
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakSecurityIDCard
+  name: MedTak security ID card
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *lust-icon-rsi
+          offset: *lust-icon-offset
+          state: MedTakSecurity
+    - type: IdCard
+      jobTitle: job-name-medtak-security
+      jobIcon: JobIconMedTakSecurity
+    - type: Access
+      tags:
+        - MedTak

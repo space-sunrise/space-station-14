@@ -33,6 +33,47 @@
         },
         {
             "name": "icon-combat"
+        },
+        {
+            "name": "medtak"
+        },
+        {
+            "name": "icon-medtak-med"
+        },
+        {
+            "name": "icon-medtak-sec"
+        },
+        {
+            "name": "base-icon-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-icon-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-right",
+            "directions": 4
         }
     ]
 

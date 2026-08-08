@@ -311,6 +311,17 @@
     sprite: _Sunrise/Clothing/Neck/Cloaks/blueshieldc.rsi
 
 - type: entity
+  parent: [ ClothingNeckBase, BaseTSFContraband ]
+  id: ClothingNeckCloakTSF
+  name: TSF marshal overcoat
+  description: A formal TSF marshal overcoat.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/tsfdetective.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/tsfdetective.rsi
+
+- type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakContrib
   name: Contributors cloak

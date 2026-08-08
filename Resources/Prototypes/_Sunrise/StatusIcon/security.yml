@@ -1,0 +1,7 @@
+# MedTak mindshield icon
+- type: securityIcon
+  parent: MindShieldIcon
+  id: MedTakMindShieldIcon
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: MedTakMindShield

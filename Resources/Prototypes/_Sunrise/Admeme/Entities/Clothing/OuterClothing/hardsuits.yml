@@ -1,0 +1,104 @@
+﻿# MedTak hardsuits
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMedTakContraband ]
+  id: ClothingHeadHelmetHardsuitMedTak
+  categories: [ HideSpawnMenu ]
+  name: MedTak operator helmet
+  description: An armoured hardsuit helmet worn by MedTak operators.
+  components:
+    - type: BreathMask
+    - type: Sprite
+      sprite: _Sunrise/Admeme/Clothing/Head/Hardsuits/medtak_helmet.rsi
+    - type: Clothing
+      sprite: _Sunrise/Admeme/Clothing/Head/Hardsuits/medtak_helmet.rsi
+    - type: PointLight
+      color: "#90EE90"
+      radius: 8
+      energy: 3
+    - type: PressureProtection
+      highPressureMultiplier: 0.08
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      heatingCoefficient: 0.005
+      coolingCoefficient: 0.005
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.75
+          Slash: 0.76
+          Piercing: 0.75
+          Heat: 0.55
+          Radiation: 0.4
+          Caustic: 0.7
+    - type: EyeProtection
+    - type: FlashImmunity
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitMedTak
+  id: ClothingHeadHelmetHardsuitMedTakLeader
+  categories: [ HideSpawnMenu ]
+  name: MedTak leader helmet
+  description: An armoured hardsuit helmet worn by MedTak team leaders.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Admeme/Clothing/Head/Hardsuits/medtak_leader_helmet.rsi
+    - type: Clothing
+      sprite: _Sunrise/Admeme/Clothing/Head/Hardsuits/medtak_leader_helmet.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.85
+          Piercing: 0.85
+          Heat: 0.85
+          Radiation: 0.85
+          Caustic: 1.0
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseMedTakContraband ]
+  id: ClothingOuterHardsuitMedTak
+  name: MedTak operator hardsuit
+  description: An armoured hardsuit worn by MedTak operators.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: Clothing
+      sprite: _Sunrise/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMedTak
+    - type: PressureProtection
+      highPressureMultiplier: 0.05
+      lowPressureMultiplier: 1000
+    - type: ZombificationResistance
+      zombificationResistanceCoefficient: 0.0
+    - type: StaminaResistance
+      damageCoefficient: 0.75
+    - type: ExplosionResistance
+      damageCoefficient: 0.5
+    - type: Armor # ERT sec values
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
+    - type: ClothingSpeedModifier
+      walkModifier: 0.9
+      sprintModifier: 0.9
+    - type: HeldSpeedModifier
+    - type: Tag
+      tags:
+        - Hardsuit
+
+- type: entity
+  parent: ClothingOuterHardsuitMedTak
+  id: ClothingOuterHardsuitMedTakLeader
+  name: MedTak team leader hardsuit
+  description: An armoured hardsuit worn by MedTak team leaders.
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMedTakLeader

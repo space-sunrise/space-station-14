@@ -742,6 +742,13 @@
 - type: Tag
   id: BoxMaints
 
+# MedTak module and stretcher tags
+- type: Tag
+  id: BorgModuleMedTak
+
+- type: Tag
+  id: RollerBed
+
 # region INTERACTION TAG
 # Как одежда закрывает/не закрывает ту или иную область тела
 - type: Tag

@@ -1,0 +1,33 @@
+﻿# MedTak airlocks
+- type: entity
+  parent: AirlockMedical
+  id: AirlockMedTakLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+- type: entity
+  parent: AirlockMedicalGlass
+  id: AirlockMedTakGlassLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleMedTakLocked
+  suffix: Glass, Docking, MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
