@@ -397,14 +397,6 @@
   - UplinkPirateRangedWeaponry
 
 - type: listing
-  id: UplinkPirateSkorpion
-  productEntity: WeaponSubMachineGunSkorpion
-  cost:
-    Doubloon: 14
-  categories:
-  - UplinkPirateRangedWeaponry
-
-- type: listing
   id: UplinkPirateCannon
   productEntity: CratePirateHandcannon
   cost:

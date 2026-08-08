@@ -9,7 +9,7 @@
   id: HOSWeapon
   name: steal-target-groups-hos-weapon
   sprite:
-    sprite: _Starlight/Objects/Misc/hos_weapons_obj.rsi
+    sprite: _Sunrise/Objects/Misc/Traitor/hos_weapons_obj.rsi
     state: icon
 
 - type: stealTargetGroup

@@ -75,12 +75,22 @@
       - id: BlueprintMagMagnumBasic
 
 - type: entity
-  parent: GlockBox
+  parent: BaseItem
   id: Ash12Box
-  name: Ash12 box
+  name: Ash12
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ash12/big.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
   - type: SpawnItemsOnUse
     items:
       - id: WeaponRifleAsh12
       - id: MagazineAsh12Beanbag
       - id: BlueprintMagAsh12Basic
+    sound:
+      path: /Audio/Effects/unwrap.ogg

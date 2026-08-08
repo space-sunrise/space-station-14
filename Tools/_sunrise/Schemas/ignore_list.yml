@@ -62,6 +62,7 @@ ignore_list:
   - 'WT550'
   - 'WT550r'
   - 'WT550g'
+  - 'WT550b'
   - 'SKM-24'
   - 'SKM-28'
   - 'N1984'

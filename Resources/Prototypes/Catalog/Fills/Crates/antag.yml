@@ -93,8 +93,6 @@
           prob: 0.25
         - id: WeaponRevolverPython
           prob: 0.25
-        - id: WeaponSubMachineGunSkorpion
-          prob: 0.15
         - id: WeaponRifleSKM24Scrap
           prob: 0.15
         - id: WeaponSubMachineGunPPSH

@@ -3296,8 +3296,12 @@
     # Cash
     - id: PirateCashSpawner06
     # Weapons
-    - id: WeaponSubMachineGunSkorpion
-      prob: 0.75
+    - id: WeaponPistolViper
+      prob: 0.5
+      orGroup: PistolT3Pool
+    - id: SunriseWeaponSubMachineGunUzi
+      prob: 0.33
+      orGroup: PistolT3Pool
     - id: RiotBulletShield
       prob: 0.65
     - id: MagazinePistolSubMachineGunEmpty

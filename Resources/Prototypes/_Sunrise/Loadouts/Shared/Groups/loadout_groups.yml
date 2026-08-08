@@ -345,10 +345,12 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - BlueshieldWT550
   - BlueshieldLecterMk2
-  - BlueshieldVP78
+  - BlueshieldWT550
+  - BlueshieldWT550Blue
+  - BlueshieldLecterMk3
   - BlueshieldAsh12
+  - BlueshieldLecterXL8
 
 - type: loadoutGroup
   id: BarberJumpsuit
