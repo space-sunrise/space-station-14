@@ -193,6 +193,7 @@
   - BlueShieldBeret
   - BlueShieldSwatHelmet
   - BlueShieldTSFMarineHelmet
+  - BlueShieldTSFMARSOCHelmet
 
 - type: loadoutGroup
   id: BlueShieldBackpack
@@ -349,10 +350,6 @@
   - BlueshieldLecterMk2
   - BlueshieldVP78
   - BlueshieldAsh12
-  - BlueshieldShotgun12
-  - BlueshieldMP5
-  - BlueshieldSKM24
-  - BlueshieldDrozdMk2
 
 - type: loadoutGroup
   id: BarberJumpsuit

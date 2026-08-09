@@ -55,15 +55,23 @@
   - !type:GroupLoadoutEffect
     proto: BlueShieldLoadout20Hours
   equipment:
-    head: ClothingHeadHelmetBlueShield
+    head: ClothingHeadHelmetSwat
 
 - type: loadout
   id: BlueShieldTSFMarineHelmet
   effects:
   - !type:GroupLoadoutEffect
-    proto: MisterBlueShit50
+    proto: BlueShieldLoadout20Hours
   equipment:
     head: ClothingHeadHelmetTSF
+
+- type: loadout
+  id: BlueShieldTSFMARSOCHelmet
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BlueShieldLoadout100Hours
+  equipment:
+    head: ClothingHeadHelmetHardsuitTSF
 
 - type: loadout
   id: BlueShieldBackpack
@@ -116,33 +124,9 @@
   - ACP14Box
 
 - type: loadout
-  id: BlueshieldVP78
+  id: BlueshieldWT550
   inhand:
-  - VP78Box
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MisterBlueShit
-
-- type: loadout
-  id: BlueshieldShotgun12
-  inhand:
-  - ClothingBackpackDuffelWeaponShotgun12Filled
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MisterBlueShit5
-
-- type: loadout
-  id: BlueshieldMP5
-  inhand:
-  - ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MisterBlueShit5
-
-- type: loadout
-  id: BlueshieldDrozdMk2
-  inhand:
-  - ClothingBackpackDuffelWeaponSubMachineGunDrozdMk2
+  - ClothingBackpackDuffelWeaponSubMachineGunWt550
   effects:
   - !type:GroupLoadoutEffect
     proto: MisterBlueShit5
@@ -156,20 +140,12 @@
     proto: MisterBlueShit5
 
 - type: loadout
-  id: BlueshieldSKM24
+  id: BlueshieldVP78
   inhand:
-  - ClothingBackpackDuffelWeaponRifleSKM24Filled
+  - VP78Box
   effects:
   - !type:GroupLoadoutEffect
-    proto: BlueShieldLoadout20Hours
-
-- type: loadout
-  id: BlueshieldWT550
-  inhand:
-  - ClothingBackpackDuffelWeaponSubMachineGunWt550
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: BlueShieldLoadout20Hours
+    proto: MisterBlueShit
 
 - type: loadout
   id: BlueshieldAsh12
