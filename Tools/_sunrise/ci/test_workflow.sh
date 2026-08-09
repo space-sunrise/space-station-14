@@ -76,15 +76,25 @@ archive_build() {
     local variant="${1:?Не указан вариант артефакта}"
     case "$variant" in
         test)
-            tar -I 'zstd -T0 -3' -cf /tmp/integration-build.tar.zst \
+            mkdir -p /tmp/integration-build-output/Tools/_sunrise/ci
+            cp Tools/_sunrise/ci/test_workflow.sh \
+                /tmp/integration-build-output/Tools/_sunrise/ci/test_workflow.sh
+            tar -I 'zstd -T0 -3' -cf /tmp/integration-build-output/integration-build.tar.zst \
                 Resources RobustToolbox/Resources .integration-filters \
                 Tools/_sunrise/ci \
                 bin/Content.Client bin/Content.Server bin/Content.IntegrationTests
-            tar -I 'zstd -T0 -3' -cf /tmp/content-tests-build.tar.zst \
+
+            mkdir -p /tmp/content-tests-build-output/Tools/_sunrise/ci
+            cp Tools/_sunrise/ci/test_workflow.sh \
+                /tmp/content-tests-build-output/Tools/_sunrise/ci/test_workflow.sh
+            tar -I 'zstd -T0 -3' -cf /tmp/content-tests-build-output/content-tests-build.tar.zst \
                 Tools/_sunrise/ci bin/Content.Tests
             ;;
         profile)
-            tar -I 'zstd -T0 -3' -cf /tmp/integration-profile-build.tar.zst \
+            mkdir -p /tmp/integration-profile-build/Tools/_sunrise/ci
+            cp Tools/_sunrise/ci/test_workflow.sh \
+                /tmp/integration-profile-build/Tools/_sunrise/ci/test_workflow.sh
+            tar -I 'zstd -T0 -3' -cf /tmp/integration-profile-build/integration-profile-build.tar.zst \
                 Resources RobustToolbox/Resources Tools/_sunrise/ci \
                 bin/Content.Client bin/Content.Server bin/Content.IntegrationTests
             ;;

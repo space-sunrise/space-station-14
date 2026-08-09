@@ -62,7 +62,7 @@ jobs:
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: integration-build-output
-        path: /tmp/integration-build.tar.zst
+        path: /tmp/integration-build-output
         retention-days: 1
         compression-level: 0
 
@@ -70,7 +70,7 @@ jobs:
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: content-tests-build-output
-        path: /tmp/content-tests-build.tar.zst
+        path: /tmp/content-tests-build-output
         retention-days: 1
         compression-level: 0
     # Sunrise edit end
