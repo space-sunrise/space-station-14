@@ -193,7 +193,6 @@
   - BlueShieldBeret
   - BlueShieldSwatHelmet
   - BlueShieldTSFMarineHelmet
-  - BlueShieldTSFMARSOCHelmet
 
 - type: loadoutGroup
   id: BlueShieldBackpack
@@ -496,6 +495,7 @@
   - WeaponDisabler
   - SunriseWeaponTaserBrigmed
   - WeaponTaserBrigmed
+  - WeaponMiniEnergyGunBrigmed
 
 # Security  HoS
 - type: loadoutGroup

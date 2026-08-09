@@ -111,26 +111,6 @@
 
 - type: entity
   parent: BaseBlueprintSecurity
-  id: BlueprintMagAsh12Beanbag
-  name: ash-12 magazine beanbag blueprint
-  description: A blueprint with a schematic of a ash-12 magazine with beanbag. It can be inserted into an autolathe and security fabricator.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineAsh12Beanbag
-
-- type: entity
-  parent: BaseBlueprintSecurity
-  id: BlueprintMagAsh12Flare
-  name: ash-12 magazine flare blueprint
-  description: A blueprint with a schematic of a ash-12 magazine with flare. It can be inserted into an autolathe and security fabricator.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineAsh12Flare
-
-- type: entity
-  parent: BaseBlueprintSecurity
   id: BlueprintMagMagnumBasic
   name: magnum basic magazine blueprint
   description: A blueprint with a schematic of a basic magnum magazine. It can be inserted into an autolathe and security fabricator.

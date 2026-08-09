@@ -55,23 +55,15 @@
   - !type:GroupLoadoutEffect
     proto: MisterBlueShit20
   equipment:
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetBlueShield
 
 - type: loadout
   id: BlueShieldTSFMarineHelmet
   effects:
   - !type:GroupLoadoutEffect
-    proto: MisterBlueShit20
+    proto: MisterBlueShit50
   equipment:
     head: ClothingHeadHelmetTSF
-
-- type: loadout
-  id: BlueShieldTSFMARSOCHelmet
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MisterBlueShit100
-  equipment:
-    head: ClothingHeadHelmetHardsuitTSF
 
 - type: loadout
   id: BlueShieldBackpack

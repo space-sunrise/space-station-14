@@ -234,10 +234,23 @@
   startingGear: WeaponTaserBrigmed
   effects:
   - !type:GroupLoadoutEffect
-    proto: MasterSecurity #MasterSecurityCam
+    proto: MasterSecurity
 
 - type: startingGear
   id: WeaponTaserBrigmed
   storage:
     back:
     - WeaponAdvancedTaser
+
+- type: loadout
+  id: WeaponMiniEnergyGunBrigmed
+  startingGear: WeaponMiniEnergyGunBrigmed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterSecurity
+
+- type: startingGear
+  id: WeaponMiniEnergyGunBrigmed
+  storage:
+    back:
+    - WeaponMiniEnergyGun
