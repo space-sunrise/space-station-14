@@ -1,0 +1,231 @@
+# Sunrise added - ручное измерение времени интеграционных тестов
+name: Profile Integration Test Timings
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile_runs:
+        description: Количество полных повторов всех интеграционных тестов
+        required: true
+        default: '20'
+        type: choice
+        options:
+        - '10'
+        - '20'
+        - '30'
+        - '50'
+      max_parallel_runners:
+        description: Максимальное количество одновременно занятых GitHub-раннеров (1–20)
+        required: true
+        default: 5
+        type: number
+
+permissions:
+  contents: read
+
+concurrency:
+  group: integration-test-timing-profile
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    name: Prepare profiling matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+      max_parallel: ${{ steps.matrix.outputs.max_parallel }}
+    steps:
+    - name: Validate inputs and create matrix
+      id: matrix
+      env:
+        PROFILE_RUNS: ${{ inputs.profile_runs }}
+        MAX_PARALLEL_RUNNERS: ${{ inputs.max_parallel_runners }}
+      shell: bash
+      run: |
+        python3 - <<'PY'
+        import json
+        import os
+
+        profile_runs = int(os.environ["PROFILE_RUNS"])
+        max_parallel = int(os.environ["MAX_PARALLEL_RUNNERS"])
+        if profile_runs not in (10, 20, 30, 50):
+            raise SystemExit("profile_runs must be one of: 10, 20, 30, 50")
+        if not 1 <= max_parallel <= 20:
+            raise SystemExit("max_parallel_runners must be between 1 and 20")
+
+        # ponytail: одно задание — один полный повтор; так матрица не разрастается по числу шардов.
+        matrix = {"profile_run": list(range(1, profile_runs + 1))}
+        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+            output.write(f"matrix={json.dumps(matrix, separators=(',', ':'))}\n")
+            output.write(f"max_parallel={max_parallel}\n")
+        PY
+
+  build:
+    name: Build and discover tests
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4.2.2
+
+    - name: Setup Submodule
+      run: git submodule update --init --recursive
+
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+
+    - name: Update Engine Submodules
+      working-directory: RobustToolbox
+      run: git submodule update --init --recursive
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Install dependencies
+      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
+
+    - name: Build Project
+      run: dotnet build Content.IntegrationTests/Content.IntegrationTests.csproj --configuration DebugOpt --no-restore /m
+
+    - name: Discover Integration Tests
+      shell: bash
+      run: |
+        set -o pipefail
+        dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.DisplayName=FullName 2>&1 | tee integration-test-discovery.log
+
+    - name: Prune build artifact
+      shell: bash
+      run: |
+        test "$PWD" = "$GITHUB_WORKSPACE"
+        test -f bin/Content.Client/Content.Client.dll
+        test -f bin/Content.Server/Content.Server.dll
+        test -f bin/Content.IntegrationTests/Content.IntegrationTests.dll
+
+        find . -path './.git' -prune -o -type d -name obj -prune -exec rm -rf -- {} +
+        find . -path './.git' -prune -o -type d -name bin ! -path './bin' -prune -exec rm -rf -- {} +
+        find bin -mindepth 1 -maxdepth 1 -type d \
+          ! -name Content.IntegrationTests \
+          -exec rm -rf -- {} +
+        mkdir -p bin/Content.Client bin/Content.Server
+
+    - name: Archive build output
+      run: |
+        tar -I 'zstd -T0 -3' -cf /tmp/integration-profile-build.tar.zst \
+          Resources RobustToolbox/Resources Tools/test_shard_filter.py \
+          bin/Content.Client bin/Content.Server bin/Content.IntegrationTests
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-profile-build
+        path: /tmp/integration-profile-build.tar.zst
+        retention-days: 1
+        compression-level: 0
+
+    - name: Upload discovery artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-profile-discovery
+        path: integration-test-discovery.log
+        retention-days: 1
+
+  profile:
+    name: Profile run ${{ matrix.profile_run }}
+    needs:
+    - prepare
+    - build
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.prepare.outputs.max_parallel) }}
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: integration-profile-build
+
+    - name: Extract build
+      run: tar --zstd -xf integration-profile-build.tar.zst && rm integration-profile-build.tar.zst
+
+    - name: Run Content.IntegrationTests
+      id: integration-tests
+      continue-on-error: true
+      env:
+        DOTNET_gcServer: '1'
+      shell: bash
+      run: |
+        mkdir -p /tmp/test-results
+        timeout --signal=TERM --kill-after=2m 22m \
+          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll \
+          --logger "trx;LogFileName=results.trx" \
+          --logger "console;verbosity=minimal" \
+          --results-directory /tmp/test-results \
+          -- NUnit.DisplayName=FullName NUnit.ConsoleOut=0 NUnit.WorkDirectory="/tmp/test-results"
+
+    - name: Collect successful durations
+      if: always()
+      run: |
+        python3 Tools/test_shard_filter.py collect \
+          ${{ matrix.profile_run }} /tmp/test-results \
+          /tmp/integration-timing-${{ matrix.profile_run }}.json
+
+    - name: Upload compact timing sample
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-timing-run-${{ matrix.profile_run }}
+        path: /tmp/integration-timing-${{ matrix.profile_run }}.json
+        retention-days: 1
+        if-no-files-found: error
+
+  aggregate:
+    name: Build timing configuration
+    if: always() && needs.build.result == 'success'
+    needs:
+    - prepare
+    - build
+    - profile
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4.2.2
+
+    - name: Download discovery
+      uses: actions/download-artifact@v4
+      with:
+        name: integration-profile-discovery
+
+    - name: Download compact timing samples
+      uses: actions/download-artifact@v4
+      with:
+        pattern: integration-timing-run-*
+        path: integration-timing-samples
+        merge-multiple: true
+
+    - name: Aggregate timing configuration
+      env:
+        PROFILE_RUNS: ${{ inputs.profile_runs }}
+      shell: bash
+      run: |
+        python3 Tools/test_shard_filter.py aggregate \
+          integration-test-discovery.log integration-timing-samples \
+          integration_test_timings.json "$PROFILE_RUNS" \
+          "${{ github.sha }}" "${{ github.run_id }}" \
+          | tee -a "$GITHUB_STEP_SUMMARY"
+
+    - name: Upload timing configuration
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-test-timings-${{ github.run_id }}
+        path: integration_test_timings.json
+        retention-days: 14
+        if-no-files-found: error

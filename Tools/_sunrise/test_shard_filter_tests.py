@@ -10,6 +10,13 @@ SHARD_FILTER = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(SHARD_FILTER)
 
+TIMINGS = {
+    "defaultCaseSeconds": 1.0,
+    "defaultMethodSeconds": 2.0,
+    "methodCaseSeconds": {},
+    "caseSeconds": {},
+}
+
 
 class TestShardFilterTests(unittest.TestCase):
     def test_parses_localized_test_list_header(self):
@@ -23,12 +30,14 @@ class TestShardFilterTests(unittest.TestCase):
         self.assertEqual(tests, ["Content.Tests.Fixture.Test"])
 
     def test_groups_identically_named_methods_by_fixture(self):
-        groups = SHARD_FILTER.extract_groups(
+        groups, seconds = SHARD_FILTER.extract_groups(
             [
                 "Content.Tests.FirstFixture.Test",
                 "Content.Tests.SecondFixture.Test",
                 "Content.Tests.SecondFixture.Test(1)",
-            ]
+            ],
+            TIMINGS,
+            1,
         )
 
         self.assertEqual(
@@ -38,12 +47,13 @@ class TestShardFilterTests(unittest.TestCase):
                 ("Content.Tests.SecondFixture", "Test", None): 2,
             },
         )
+        self.assertEqual(seconds["Content.Tests.FirstFixture", "Test", None], 2.0)
 
     def test_splits_large_parameterized_methods_into_individual_cases(self):
         case_count = SHARD_FILTER.PARAMETERIZED_CASE_SPLIT_THRESHOLD + 1
         tests = [f"Content.Tests.Fixture.Test({index})" for index in range(case_count)]
 
-        groups = SHARD_FILTER.extract_groups(tests)
+        groups, _ = SHARD_FILTER.extract_groups(tests, TIMINGS, 1)
 
         self.assertEqual(len(groups), case_count)
         self.assertEqual(
@@ -81,8 +91,12 @@ class TestShardFilterTests(unittest.TestCase):
             "test=='Content.Tests.Fixture.Test(\\'value\\')'",
         )
 
-    def test_supports_legacy_method_only_discovery(self):
-        groups = SHARD_FILTER.extract_groups(["Test", "ParameterizedTest(1)"])
+    def test_supports_method_only_discovery(self):
+        groups, _ = SHARD_FILTER.extract_groups(
+            ["Test", "ParameterizedTest(1)"],
+            TIMINGS,
+            1,
+        )
 
         self.assertEqual(
             groups,
@@ -101,8 +115,9 @@ class TestShardFilterTests(unittest.TestCase):
             ("Content.Tests.Fixture", "Test", f"Content.Tests.Fixture.Test({index})"): 1
             for index in range(4)
         }
+        seconds = {group: 1.0 for group in groups}
 
-        shards, loads = SHARD_FILTER.distribute_groups(groups, 2)
+        shards, loads = SHARD_FILTER.distribute_groups(groups, seconds, 2)
 
         self.assertEqual(loads, [2.0, 2.0])
         self.assertEqual([len(shard) for shard in shards], [2, 2])
@@ -116,6 +131,51 @@ class TestShardFilterTests(unittest.TestCase):
             "<Where>class=='Fixture'&amp;&amp;method=='Test'</Where>",
             settings,
         )
+
+    def test_splits_parameterized_method_that_exceeds_target_seconds(self):
+        tests = [
+            "Content.Tests.Fixture.Slow(1)",
+            "Content.Tests.Fixture.Slow(2)",
+            "Content.Tests.Fixture.Fast",
+        ]
+        timings = {
+            **TIMINGS,
+            "caseSeconds": {
+                tests[0]: 10.0,
+                tests[1]: 10.0,
+                tests[2]: 1.0,
+            },
+        }
+
+        groups, seconds = SHARD_FILTER.extract_groups(tests, timings, 2)
+
+        self.assertIn(("Content.Tests.Fixture", "Slow", tests[0]), groups)
+        self.assertEqual(seconds["Content.Tests.Fixture", "Slow", tests[0]], 10.0)
+
+    def test_parses_trx_duration(self):
+        self.assertEqual(
+            SHARD_FILTER._parse_trx_duration("00:01:02.5000000"),
+            62.5,
+        )
+
+    def test_requires_eighty_percent_of_timing_observations(self):
+        measured = "Content.Tests.Fixture.Measured"
+        missing = "Content.Tests.Fixture.Missing"
+        observations = {
+            measured: {run: 1.0 for run in range(8)},
+            missing: {run: 1.0 for run in range(7)},
+        }
+
+        config, missing_tests = SHARD_FILTER.build_timing_config(
+            [measured, missing],
+            observations,
+            10,
+            "commit",
+            [123],
+        )
+
+        self.assertEqual(config["caseSeconds"], {measured: 1.0})
+        self.assertEqual(missing_tests, [missing])
 
 
 if __name__ == "__main__":

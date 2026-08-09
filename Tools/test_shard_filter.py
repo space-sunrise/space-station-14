@@ -1,285 +1,25 @@
 #!/usr/bin/env python3
 
-"""
-Partitions test groups across shards for parallel CI execution.
+"""Распределяет интеграционные тесты по шардам и собирает их длительности из TRX."""
 
-Mode 1 - Generate all shard runsettings files:
-    dotnet test --list-tests ... | python3 test_shard_filter.py generate <total-shards> <output-dir>
-    Writes <output-dir>/shard_0.runsettings .. shard_N.runsettings
-
-Mode 2 - Read a filter from a pre-generated runsettings file:
-    python3 test_shard_filter.py read <runsettings-file>
-    Prints the filter to stdout (empty output if file is empty/missing)
-
-Exit codes:
-    0 - success
-    1 - error (bad arguments or no tests discovered in generate mode)
-"""
-
+import json
+import math
 import os
+import statistics
 import sys
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
+from pathlib import Path
 from xml.sax.saxutils import escape
 
 
-# ponytail: Делим только очень большие методы; порог можно снизить при перекосе мелких групп.
-# Точные имена NUnit позволяют распределить варианты, не дробя каждый параметризованный метод.
 PARAMETERIZED_CASE_SPLIT_THRESHOLD = 256
-
-
-# Weight multipliers for tests that are lighter than their test count suggests.
-# Looking at this, you are probably thinking,
-# Monsieur, have you lost your mind.
-# But this is a temporary solution. Once multithreading in the engine is fixed, all of this will be reverted.
-# How do you use it? Run the test, take the one that finished the fastest and decrease its weight, then increase the weight of the slowest one until they balance out.
-WEIGHT_OVERRIDES = {
-    # Sunrise-Edit
-    "DisconnectFromLobbyClearsLoadedTextureAndAllowsReload": 2.0,
-    "IncompleteFallbackAssemblyDoesNotSurviveLobbyReconnect": 2.0,
-    "LargeStillTextureLoadsAcrossMultipleUploadTiles": 2.0,
-    "LateTransferBatchFromPreviousSessionIsIgnoredAfterLobbyReconnect": 2.0,
-    "PartialRsiRequiresAllStateImagesBeforeReady": 2.0,
-    # Sunrise-Edit
-    "AbsorbentOnRefillableTest": 0.125,
-    "AbsorbentOnSmallRefillableTest": 0.125,
-    "AddListRemoveObjectiveTest": 0.125,
-    "AddPlayerSessionLog": 0.25,
-    "AdjustJobsTest": 0.5,
-    "AgeRequirementsTest": 0.5,
-    "AirConsistencyTest": 0.5,
-    "AirlockBlockTest": 0.5,
-    "AllCommandsHaveDescriptions": 0.5,
-    "AllComponentsOneToOneDeleteTest": 0.5,
-    "AllItemsHaveSpritesTest": 0.25,
-    "AllMapsTested": 0.5,
-    "AllSalvageMapsLoadableTest": 5.0,
-    "AndTest": 0.5,
-    "ApcChargingTest": 0.5,
-    "ApcNetTest": 1.0,
-    "ArmBladeActivateDeactivateTest": 0.5,
-    "AutoRecordReplayTest": 0.25,
-    "BananaSlipTest": 0.5,
-    "BucklePullTest": 0.25,
-    "BuckleInteractBuckleUnbuckleSelf": 0.5,
-    "BuckleUnbuckleCooldownRangeTest": 0.25,
-    "BulkAddLogs": 0.25,
-    "CancelRepeatedWeld": 0.25,
-    "CancelTilePry": 0.5,
-    "CancelWallConstruct": 0.5,
-    "ChairTest": 0.25,
-    "ChasmFallTest": 0.5,
-    "ChasmGrappleTest": 0.25,
-    "ClientPrototypeSaveLoadSaveTest": 0.125,
-    "CommsServerKeys": 0.25,
-    "Component_InitDataCorrect": 0.25,
-    "ConstructProtolathe": 0.25,
-    "ConstructReinforcedWindow": 0.5,
-    "ConstructionGraphEdgeValid": 0.25,
-    "ConstructionGraphSpawnPrototypeValid": 0.5,
-    "CraftGrenade": 0.25,
-    "CraftRods": 0.5,
-    "CrossInstrumentSpamUsesAggregateSessionBudget": 3.0,
-    "CreateDeleteCreateTest": 0.25,
-    "CreateSaveLoadSaveGrid": 0.25,
-    "Date": 0.0625,
-    "DeconstructComputer": 0.25,
-    "DeconstructTable": 0.0625,
-    "DeconstructWall": 0.25,
-    "DeconstructWindow": 0.5,
-    "Delete_CacheUpdatesOnAtmosTick": 0.25,
-    "DeonstructReinforcedWindow": 0.25,
-    "DeserializeNullDefinitionTest": 0.5,
-    "DeserializeNullTest": 0.5,
-    "DisciplineValidTierPrerequesitesTest": 0.5,
-    "DispenseItemTest": 0.125,
-    "DragDropOntoDrainTest": 0.125,
-    "DragDropOpensStrip": 0.5,
-    "DuplicatePlayerIdDoesNotThrowTest": 0.5,
-    "EarlyRejectedBatchesDoNotAdvanceStateOrForward": 3.0,
-    "EORPluralizationTest": 0.5,
-    "EmergencyEvacTest": 0.5,
-    "EnsureNoEdgeClobbering": 0.5,
-    "EntityEntityTest": 1.0,
-    "EntityShowDepartmentsAndJobs": 0.25,
-    "FillLevelSpritesExist": 0.0625,
-    "FireSpreading": 0.25,
-    "FloorConstructDeconstruct": 0.25,
-    "FollowerMapDeleteTest": 0.125,
-    "ForceUnbuckleBuckleTest": 0.5,
-    "GasSpecificHeats_Agree": 0.5,
-    "GasSpreading": 0.5,
-    "GetAndReturnCup": 0.25,
-    "HeadsetKeys": 0.25,
-    "HeatScaleCVar_Replicates_Agree": 0.25,
-    "HumanMoveOverTest": 0.125,
-    "HungerThirstIncreaseDecreaseTest": 3.0,
-    "IgnoredComponentsExistInTheCorrectPlaces": 0.5,
-    "InsertAndDispenseItemTest": 0.125,
-    "InsertDumpableInsertableItemTest": 0.5,
-    "InsertEjectBuiTest": 0.0625,
-    "InsideContainerInteractionBlockTest": 0.25,
-    "InteractUITest": 0.25,
-    "InteractionOutOfRangeTest": 0.5,
-    "InteractionTest": 0.25,
-    "JobPreferenceTest": 0.25,
-    "JobWeightTest": 1.0,
-    "KillAndReviveTest": 0.5,
-    "LoadSaveTicksSave": 0.5,
-    "LoadTickLoad": 0.5,
-    "LoadTickLoadBagel": 2.0,
-    "MagazineVisualsSpritesExist": 0.125,
-    "MicrowaveRecipesFreezeTest": 0.125,
-    "MouseMoveOverTest": 0.25,
-    "MultiTile_Component_InitDataCorrect": 0.25,
-    "MultiTile_Delete_CacheUpdatesOnAtmosTick": 0.25,
-    "MultiTile_Spawn_CacheUpdatesOnAtmosTick": 0.125,
-    "NoCargoBountyArbitrageTest": 0.25,
-    "NoCargoOrderArbitrage": 0.25,
-    "NoMaterialArbitrage": 15.0,
-    "NoLimitInstrumentStillUsesHardNetworkGuard": 2.0,
-    "NonGameMapsLoadableTest": 80.0,
-    "NoSavedPostMapInitTest": 30.0,
-    "NoSliceableBountyArbitrageTest": 0.5,
-    "NullOutTileAtmosphereGasMixture": 0.5,
-    "PardonTest": 0.25,
-    "ParseTestDocument": 2.0,
-    "PlaceThenCutLattice": 2.0,
-    "PoweredClosedAirlock_Pry_DoesNotOpen": 0.25,
-    "PoweredOpenAirlock_Pry_DoesNotClose": 0.25,
-    "PreRoundAddAndGetSingle": 0.5,
-    "ProcessingAbsoluteDamageTest": 0.25,
-    "ProcessingAbsoluteStandbyTest": 0.25,
-    "ProcessingDeltaDamageTest": 0.125,
-    "ProcessingListAutoJoinTest": 0.5,
-    "PrototypesHaveKnownComponents": 2.0,
-    "PryLattice": 0.25,
-    "PullerIsConsideredInteractingTest": 2.0,
-    "PullerSanityTest": 0.5,
-    "QuerySingleLog": 0.5,
-    "RejuvenateDeadTest": 0.25,
-    "Relogin": 0.5,
-    "RepairReinforcedWindow": 0.5,
-    "ResettingEntitySystemResetTest": 0.25,
-    "RestartRoundAfterStart": 0.5,
-    "RestartTest": 0.5,
-    "RestockTest": 0.5,
-    "SelectionTest": 0.5,
-    "ServerPrototypeSaveLoadSaveTest": 30.0,
-    "SetWorkingState_AlreadyInState_NoChange": 0.5,
-    "SetWorkingState_IdleToWorking_UpdatesLoad": 0.25,
-    "ShuttlesLoadableTest": 70.0,
-    "SpaceNoPuddleTest": 0.25,
-    "SpawnAndDeleteAllEntitiesOnDifferentMaps": 100.0,
-    "SpawnAndDeleteAllEntitiesInTheSameSpot": 60.0,
-    "SpawnAndDeleteEntityCountTest": 115.0,
-    "SpawnAndDirtyAllEntities": 100.0,
-    "SpawnItemInSlotTest": 0.25,
-    "Spawn_CacheUpdatesOnAtmosTick": 0.125,
-    "Spawn_ReconstructedUpdatesImmediately": 0.5,
-    "SpillCorner": 0.5,
-    "StackPrice": 0.5,
-    "StartRoundTest": 0.5,
-    "StopHardCodingWidgetsJesusChristTest": 2.0,
-    "StorageSizeArbitrageTest": 0.25,
-    "TakeRoleAndReturn": 0.125,
-    "TestAb": 0.5,
-    "TestAddRemoveHasRoles": 2.0,
-    "TestAlarmThreshold": 0.5,
-    "TestAllClientPrototypesAreSerializable": 35.0,
-    "TestAllConcurrent": 0.25,
-    "TestAllRestocksAreAvailableToBuy": 0.5,
-    "TestAllServerPrototypesAreSerializable": 35.0,
-    "TestApcLoad": 10.0,
-    "TestBatteriesProportional": 0.5,
-    "TestBatteryRamp": 0.25,
-    "TestBladeServerBoardHasValidBladeServer": 0.25,
-    "TestClientStart": 0.25,
-    "TestCombatActionsAdded": 0.5,
-    "TestComputerBoardHasValidComputer": 0.25,
-    "TestConnect": 0.5,
-    "TestDamageSpecifierOperations": 0.5,
-    "TestDeleteCharacter": 0.5,
-    "TestDeleteThrownItem": 0.5,
-    "TestDeleteVisiting": 0.5,
-    "TestDeletedCanReconnect": 0.25,
-    "TestDisconnectWhileEmbedded": 0.5,
-    "TestDockingConfig": 0.5,
-    "TestDungeonPresets": 0.25,
-    "TestDungeonRoomPackBounds": 0.25,
-    "TestDuplicatePrevention": 0.25,
-    "TestEntityDeadWhenGibbed": 0.0625,
-    "TestFinished": 0.25,
-    "TestFullBattery": 0.0625,
-    "TestGasArrayDeserialization": 0.5,
-    "TestGhostDoesNotInfiniteLoop": 0.5,
-    "TestGhostGridNotTerminating": 0.5,
-    "TestGhostsCanReconnect": 1.0,
-    "TestGib": 0.25,
-    "TestGridGhostOnQueueDelete": 0.5,
-    "TestGridJoinAtmosphere": 0.125,
-    "TestInternalsAutoActivateInSpaceForEntitySpawn": 0.5,
-    "TestLatheRecipeIngredientsFitLathe": 0.5,
-    "TestLayoutInheritance": 0.25,
-    "TestLobbyPlayersValid": 0.25,
-    "TestLogErrorCausesTestFailure": 0.5,
-    "TestMindTransfersToOtherEntity": 0.5,
-    "TestNoDemandRampdown": 0.5,
-    "TestNoManualEntityLocStrings": 0.5,
-    "TestOriginalDeletedWhileGhostingKeepsGhost": 0.25,
-    "TestOwningPlayerCanBeChanged": 0.25,
-    "TestPickupDrop": 0.5,
-    "TestPlayerCanGhost": 0.5,
-    "TestPvsCommands": 2.0,
-    "TestReplaceMind": 0.5,
-    "TestRestockBreaksOpen": 0.5,
-    "TestRestockInventoryBounds": 2.0,
-    "TestSerializable": 0.25,
-    "TestSimpleBatteryChargeDeficit": 0.25,
-    "TestSimpleDeficit": 0.5,
-    "TestStartIsValid": 0.25,
-    "TestStartReachesValidTarget": 0.125,
-    "TestStartingGearStorage": 0.5,
-    "TestStaticAnchorPrototypes": 0.25,
-    "TestStationStartingPowerWindow": 0.125,
-    "TestStorageFillPrototypes": 0.25,
-    "TestSufficientSpaceForEntityStorageFill": 0.0625,
-    "TestSufficientSpaceForFill": 0.5,
-    "TestSuicide": 0.5,
-    "TestSuicideByHeldItemSpreadDamage": 0.5,
-    "TestSuicideWhileDamaged": 0.5,
-    "TestSupplyPrioritized": 0.5,
-    "TestSupplyRamp": 0.125,
-    "TestTags": 0.5,
-    "TestTargetIsValid": 0.5,
-    "TestTemperatureCalculations": 0.25,
-    "TestTerminalNodeGroups": 0.25,
-    "TestThrownEggBreaks": 2.0,
-    "TestUserDoesNotExist": 2.0,
-    "TestVisitingReconnect": 0.5,
-    "ThrowItemIntoDisposalUnitTest": 0.125,
-    "TryAddTooMuchNonReactiveReagent": 0.25,
-    "TryAddTwoNonReactiveReagent": 0.25,
-    "TryAllTest": 0.5,
-    "TryMixAndOverflowTooMuchReagent": 0.5,
-    "TryStopNukeOpsFromConstantlyFailing": 0.125,
-    "UiInteractTest": 2.0,
-    "UnpoweredOpenAirlock_Pry_Closes": 0.5,
-    "ValidateJobPrototypes": 0.125,
-    "ValidateMobThresholds": 0.125,
-    "ValidatePrototypeContents": 0.5,
-    "ValidateRolePrototypes": 65.0,
-    "WeightlessStatusTest": 0.25,
-    "WindowOnGrille": 0.25,
-    "WirelessNetworkDeviceSendAndReceive": 0.25,
-    "WiresPanelScrewing": 0.25,
-    "XenoArtifactBuildActiveNodesTest": 0.25,
-    "XenoArtifactRemoveNodeTest": 0.5,
-    "XenoArtifactResizeTest": 1.0,
-}
+TIMINGS_SCHEMA_VERSION = 1
+TIMINGS_PATH = Path(__file__).resolve().parent / "_sunrise" / "integration_test_timings.json"
 
 
 def parse_tests(lines):
-    """Parse test names from `dotnet test --list-tests` output."""
+    """Извлекает полные имена из вывода `dotnet test --list-tests`."""
     list_headers = {
         "The following Tests are available:",
         "Доступны следующие тесты:",
@@ -301,39 +41,128 @@ def parse_tests(lines):
     return tests
 
 
-def extract_groups(tests):
-    """Собирает группы fixture+method и дробит очень большие параметризованные методы."""
+def split_test_name(test):
+    """Возвращает имя класса, метода и полное имя метода NUnit."""
+    name = test.split("(", 1)[0].strip()
+    dot = name.rfind(".")
+    fixture = name[:dot] if dot > 0 else ""
+    method = name[dot + 1:] if dot > 0 else name
+    full_method = ".".join(part for part in (fixture, method) if part)
+    return fixture, method, full_method
+
+
+def _positive_number(value):
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(value)
+        and value > 0
+    )
+
+
+def load_timings(path=TIMINGS_PATH):
+    """Загружает конфигурацию секунд и отклоняет повреждённые данные."""
+    try:
+        with open(path, encoding="utf-8") as file:
+            timings = json.load(file)
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot read integration test timings from {path}: {error}") from error
+
+    if not isinstance(timings, dict) or timings.get("schemaVersion") != TIMINGS_SCHEMA_VERSION:
+        raise ValueError(
+            f"integration test timings must use schemaVersion {TIMINGS_SCHEMA_VERSION}"
+        )
+
+    for field in ("generatedAtUtc", "discoveryCommit"):
+        if not isinstance(timings.get(field), str) or not timings[field]:
+            raise ValueError(f"integration test timings field {field} must be a non-empty string")
+    if (
+        not isinstance(timings.get("profileRuns"), int)
+        or isinstance(timings["profileRuns"], bool)
+        or timings["profileRuns"] <= 0
+    ):
+        raise ValueError("integration test timings field profileRuns must be a positive integer")
+    source_run_ids = timings.get("sourceRunIds")
+    if not isinstance(source_run_ids, list) or not source_run_ids or any(
+        not isinstance(run_id, int) or isinstance(run_id, bool) or run_id <= 0
+        for run_id in source_run_ids
+    ):
+        raise ValueError("integration test timings field sourceRunIds must be an array of run IDs")
+
+    for field in ("defaultCaseSeconds", "defaultMethodSeconds"):
+        if not _positive_number(timings.get(field)):
+            raise ValueError(f"integration test timings field {field} must be a positive number")
+
+    for field in ("methodCaseSeconds", "caseSeconds"):
+        values = timings.get(field)
+        if not isinstance(values, dict):
+            raise ValueError(f"integration test timings field {field} must be an object")
+        if any(not isinstance(name, str) or not _positive_number(seconds) for name, seconds in values.items()):
+            raise ValueError(
+                f"integration test timings field {field} must map names to positive seconds"
+            )
+
+    return timings
+
+
+def extract_groups(tests, timings, total_shards):
+    """Группирует методы, а тяжёлые параметризованные методы делит по кейсам."""
     method_cases = {}
     for test in tests:
-        name = test.split("(", 1)[0].strip()
-        dot = name.rfind(".")
-        fixture = name[:dot] if dot > 0 else ""
-        method = name[dot + 1:] if dot > 0 else name
-        method_cases.setdefault((fixture, method), []).append(test)
+        fixture, method, full_method = split_test_name(test)
+        method_cases.setdefault((fixture, method, full_method), []).append(test)
 
-    counts = {}
-    for (fixture, method), cases in method_cases.items():
-        if len(cases) > PARAMETERIZED_CASE_SPLIT_THRESHOLD and len(set(cases)) > 1:
-            for test in cases:
-                group = (fixture, method, test)
-                counts[group] = counts.get(group, 0) + 1
+    estimates = {}
+    total_seconds = 0.0
+    for key, cases in method_cases.items():
+        full_method = key[2]
+        method_default = timings["methodCaseSeconds"].get(full_method)
+        exact = timings["caseSeconds"]
+
+        if method_default is None and not any(test in exact for test in cases):
+            method_total = max(
+                timings["defaultMethodSeconds"],
+                len(cases) * timings["defaultCaseSeconds"],
+            )
+            case_estimates = [method_total / len(cases)] * len(cases)
         else:
-            counts[(fixture, method, None)] = len(cases)
+            fallback = method_default or timings["defaultCaseSeconds"]
+            case_estimates = [exact.get(test, fallback) for test in cases]
 
-    return counts
+        estimates[key] = case_estimates
+        total_seconds += sum(case_estimates)
+
+    target_seconds = total_seconds / total_shards
+    group_counts = {}
+    group_seconds = {}
+    for (fixture, method, full_method), cases in method_cases.items():
+        case_estimates = estimates[(fixture, method, full_method)]
+        split_cases = len(set(cases)) > 1 and (
+            len(cases) > PARAMETERIZED_CASE_SPLIT_THRESHOLD
+            or sum(case_estimates) > target_seconds
+        )
+
+        if split_cases:
+            for test, seconds in zip(cases, case_estimates):
+                group = (fixture, method, test)
+                group_counts[group] = group_counts.get(group, 0) + 1
+                group_seconds[group] = group_seconds.get(group, 0.0) + seconds
+            continue
+
+        group = (fixture, method, None)
+        group_counts[group] = len(cases)
+        group_seconds[group] = sum(case_estimates)
+
+    return group_counts, group_seconds
 
 
 def quote_tsl(value):
-    """Quote a value for NUnit Test Selection Language."""
+    """Экранирует значение для NUnit Test Selection Language."""
     return value.replace("\\", "\\\\").replace("'", "\\'")
 
 
 def build_filter(groups):
-    """Строит точный NUnit.Where для групп методов и отдельных вариантов теста.
-
-    Фильтр только по методу поддерживает старый вывод обнаружения тестов,
-    а полное имя позволяет CI разделять очень большие параметризованные методы.
-    """
+    """Строит точный NUnit.Where для методов и отдельных тест-кейсов."""
     if not groups:
         return ""
 
@@ -356,7 +185,7 @@ def build_filter(groups):
 
 
 def build_runsettings(filter_expr):
-    """Build a VSTest runsettings file containing NUnit adapter settings."""
+    """Строит runsettings с фильтром адаптера NUnit."""
     if not filter_expr:
         filter_expr = "method=='__no_tests_assigned__'"
 
@@ -371,27 +200,117 @@ def build_runsettings(filter_expr):
 """
 
 
-def group_weight(group_counts, group):
-    """Возвращает расчётную стоимость группы методов или отдельного варианта теста."""
-    multiplier = WEIGHT_OVERRIDES.get(group[1], 1.0)
-    return group_counts[group] * multiplier
-
-
-def distribute_groups(group_counts, total):
-    """Жадно распределяет группы: следующая тяжёлая группа идёт в самый лёгкий шард."""
+def distribute_groups(group_counts, group_seconds, total):
+    """Кладёт следующую самую долгую группу в самый быстрый шард."""
     shards = [[] for _ in range(total)]
-    shard_loads = [0.0] * total
+    shard_seconds = [0.0] * total
 
     for group in sorted(
         group_counts,
-        key=lambda item: group_weight(group_counts, item),
-        reverse=True,
+        key=lambda item: (
+            -group_seconds[item],
+            item[0],
+            item[1],
+            item[2] or "",
+        ),
     ):
-        lightest = min(range(total), key=lambda shard: shard_loads[shard])
+        lightest = min(range(total), key=lambda shard: (shard_seconds[shard], shard))
         shards[lightest].append(group)
-        shard_loads[lightest] += group_weight(group_counts, group)
+        shard_seconds[lightest] += group_seconds[group]
 
-    return shards, shard_loads
+    return shards, shard_seconds
+
+
+def _parse_trx_duration(value):
+    """Преобразует формат TimeSpan из TRX в секунды."""
+    hours, minutes, seconds = value.split(":")
+    days = 0
+    if "." in hours:
+        days, hours = hours.split(".", 1)
+    return int(days) * 86400 + int(hours) * 3600 + int(minutes) * 60 + float(seconds)
+
+
+def collect_trx_results(directory):
+    """Собирает только успешно завершившиеся тесты из всех TRX в каталоге."""
+    results = {}
+    for path in Path(directory).rglob("*.trx"):
+        try:
+            root = ET.parse(path).getroot()
+        except (OSError, ET.ParseError) as error:
+            print(f"Warning: cannot parse {path}: {error}", file=sys.stderr)
+            continue
+
+        for element in root.iter():
+            if not element.tag.endswith("UnitTestResult") or element.get("outcome") != "Passed":
+                continue
+            name = element.get("testName")
+            duration = element.get("duration")
+            if name and duration:
+                results[name] = _parse_trx_duration(duration)
+    return results
+
+
+def _trimmed_mean(values):
+    ordered = sorted(values)
+    trim = len(ordered) // 10
+    if trim:
+        ordered = ordered[trim:-trim]
+    return statistics.fmean(ordered)
+
+
+def _percentile(values, fraction):
+    ordered = sorted(values)
+    position = (len(ordered) - 1) * fraction
+    lower = math.floor(position)
+    upper = math.ceil(position)
+    if lower == upper:
+        return ordered[lower]
+    return ordered[lower] + (ordered[upper] - ordered[lower]) * (position - lower)
+
+
+def build_timing_config(tests, observations, profile_runs, commit, source_run_ids):
+    """Строит итоговую конфигурацию по наблюдениям отдельных запусков."""
+    required_observations = math.ceil(profile_runs * 0.8)
+    case_seconds = {
+        test: _trimmed_mean(list(observations[test].values()))
+        for test in sorted(set(tests))
+        if len(observations.get(test, {})) >= required_observations
+    }
+    if not case_seconds:
+        raise ValueError("no tests have enough successful timing observations")
+
+    method_cases = {}
+    for test in tests:
+        method_cases.setdefault(split_test_name(test)[2], []).append(test)
+
+    method_case_seconds = {}
+    method_totals = []
+    for method, cases in method_cases.items():
+        measured = [case_seconds[test] for test in cases if test in case_seconds]
+        if not measured:
+            continue
+        fallback = statistics.median(measured)
+        method_case_seconds[method] = fallback
+        method_totals.append(sum(case_seconds.get(test, fallback) for test in cases))
+
+    rounded_cases = {name: round(seconds, 6) for name, seconds in case_seconds.items()}
+    rounded_methods = {
+        name: round(seconds, 6)
+        for name, seconds in sorted(method_case_seconds.items())
+    }
+    config = {
+        "schemaVersion": TIMINGS_SCHEMA_VERSION,
+        "generatedAtUtc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "discoveryCommit": commit,
+        "sourceRunIds": source_run_ids,
+        "profileRuns": profile_runs,
+        "defaultCaseSeconds": round(_percentile(list(case_seconds.values()), 0.75), 6),
+        "defaultMethodSeconds": round(_percentile(method_totals, 0.75), 6),
+        "methodCaseSeconds": rounded_methods,
+        "caseSeconds": rounded_cases,
+    }
+    missing = sorted(set(tests) - case_seconds.keys())
+    return config, missing
 
 
 def cmd_generate():
@@ -407,48 +326,146 @@ def cmd_generate():
     if total <= 0:
         print("Error: total-shards must be a positive integer", file=sys.stderr)
         sys.exit(1)
-    output_dir = sys.argv[3]
 
-    lines = sys.stdin.read().splitlines()
-    tests = parse_tests(lines)
-
+    tests = parse_tests(sys.stdin.read().splitlines())
     if not tests:
         print("Error: no tests discovered from input", file=sys.stderr)
         sys.exit(1)
 
-    group_counts = extract_groups(tests)
-    print(f"Discovered {len(tests)} tests in {len(group_counts)} groups, distributing across {total} shards", file=sys.stderr)
+    try:
+        timings = load_timings()
+    except ValueError as error:
+        print(f"Error: {error}", file=sys.stderr)
+        sys.exit(1)
 
+    group_counts, group_seconds = extract_groups(tests, timings, total)
+    print(
+        f"Discovered {len(tests)} tests in {len(group_counts)} groups, "
+        f"distributing across {total} shards",
+        file=sys.stderr,
+    )
+
+    output_dir = sys.argv[3]
     os.makedirs(output_dir, exist_ok=True)
-
-    shards, shard_loads = distribute_groups(group_counts, total)
+    shards, shard_seconds = distribute_groups(group_counts, group_seconds, total)
 
     for shard in range(total):
         my_groups = sorted(
             shards[shard],
             key=lambda group: (group[0], group[1], group[2] or ""),
         )
-        filter_expr = build_filter(my_groups)
         path = os.path.join(output_dir, f"shard_{shard}.runsettings")
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(build_runsettings(filter_expr))
-        print(f"  Shard {shard}: {len(my_groups)} groups, weight {shard_loads[shard]:.1f} ({sum(group_counts[g] for g in my_groups)} tests)", file=sys.stderr)
-        split_summaries = {}
-        for group in my_groups:
-            weight = group_weight(group_counts, group)
-            fixture, method, test = group
-            if test is not None:
-                key = (fixture, method)
-                count, total_weight = split_summaries.get(key, (0, 0.0))
-                split_summaries[key] = (count + group_counts[group], total_weight + weight)
-                continue
+        with open(path, "w", encoding="utf-8") as file:
+            file.write(build_runsettings(build_filter(my_groups)))
+        print(
+            f"  Shard {shard}: {len(my_groups)} groups, "
+            f"{shard_seconds[shard]:.1f} estimated seconds "
+            f"({sum(group_counts[group] for group in my_groups)} tests)",
+            file=sys.stderr,
+        )
 
-            name = ".".join(part for part in (fixture, method) if part)
-            print(f"    - {name} ({group_counts[group]} tests, weight {weight:.1f})", file=sys.stderr)
 
-        for (fixture, method), (count, weight) in sorted(split_summaries.items()):
-            name = ".".join(part for part in (fixture, method) if part)
-            print(f"    - {name} ({count} split cases, weight {weight:.1f})", file=sys.stderr)
+def cmd_collect():
+    if len(sys.argv) != 5:
+        print(
+            f"Usage: {sys.argv[0]} collect <profile-run> <trx-dir> <output-json>",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    try:
+        profile_run = int(sys.argv[2])
+    except ValueError:
+        print("Error: profile-run must be an integer", file=sys.stderr)
+        sys.exit(1)
+
+    output = Path(sys.argv[4])
+    output.parent.mkdir(parents=True, exist_ok=True)
+    data = {
+        "profileRun": profile_run,
+        "caseSeconds": collect_trx_results(sys.argv[3]),
+    }
+    output.write_text(json.dumps(data, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+    print(f"Collected {len(data['caseSeconds'])} successful test durations", file=sys.stderr)
+
+
+def cmd_aggregate():
+    if len(sys.argv) != 8:
+        print(
+            f"Usage: {sys.argv[0]} aggregate <discovery-log> <samples-dir> "
+            "<output-json> <profile-runs> <commit> <source-run-id>",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    try:
+        profile_runs = int(sys.argv[5])
+        source_run_id = int(sys.argv[7])
+    except ValueError:
+        print("Error: profile-runs and source-run-id must be integers", file=sys.stderr)
+        sys.exit(1)
+
+    discovery = Path(sys.argv[2]).read_text(encoding="utf-8", errors="replace")
+    tests = parse_tests(discovery.splitlines())
+    if not tests:
+        print("Error: no tests discovered from discovery log", file=sys.stderr)
+        sys.exit(1)
+
+    observations = {}
+    for path in Path(sys.argv[3]).glob("*.json"):
+        try:
+            sample = json.loads(path.read_text(encoding="utf-8"))
+            profile_run = int(sample["profileRun"])
+            values = sample["caseSeconds"]
+        except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as error:
+            print(f"Warning: ignoring invalid sample {path}: {error}", file=sys.stderr)
+            continue
+        for test, seconds in values.items():
+            if test in tests and _positive_number(seconds):
+                observations.setdefault(test, {}).setdefault(profile_run, seconds)
+
+    try:
+        config, missing = build_timing_config(
+            tests,
+            observations,
+            profile_runs,
+            sys.argv[6],
+            [source_run_id],
+        )
+    except ValueError as error:
+        print(f"Error: {error}", file=sys.stderr)
+        sys.exit(1)
+
+    output = Path(sys.argv[4])
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
+        json.dumps(config, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    print("## Профиль времени интеграционных тестов")
+    print()
+    print(f"Измерено тест-кейсов: {len(config['caseSeconds'])} из {len(set(tests))}.")
+    print(f"Полных повторов: {profile_runs}; минимум успешных наблюдений: {math.ceil(profile_runs * 0.8)}.")
+    print()
+    print("### Самые долгие тест-кейсы")
+    print()
+    print("| Тест | Среднее после отсечения |")
+    print("| --- | ---: |")
+    for test, seconds in sorted(
+        config["caseSeconds"].items(),
+        key=lambda item: item[1],
+        reverse=True,
+    )[:20]:
+        escaped_test = test.replace("|", "\\|")
+        print(f"| `{escaped_test}` | {seconds:.3f} с |")
+    if missing:
+        print()
+        print("### Недостаточно успешных наблюдений")
+        print()
+        print(f"Таких тест-кейсов: {len(missing)}. Для них сработают значения метода или общие значения.")
+        for test in missing[:20]:
+            print(f"- `{test}`")
 
 
 def cmd_read():
@@ -468,17 +485,20 @@ def cmd_read():
 
 def main():
     if len(sys.argv) < 2:
-        print(f"Usage: {sys.argv[0]} <generate|read> ...", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} <generate|collect|aggregate|read> ...", file=sys.stderr)
         sys.exit(1)
 
-    cmd = sys.argv[1]
-    if cmd == "generate":
-        cmd_generate()
-    elif cmd == "read":
-        cmd_read()
-    else:
-        print(f"Unknown command: {cmd}", file=sys.stderr)
+    commands = {
+        "generate": cmd_generate,
+        "collect": cmd_collect,
+        "aggregate": cmd_aggregate,
+        "read": cmd_read,
+    }
+    command = commands.get(sys.argv[1])
+    if command is None:
+        print(f"Unknown command: {sys.argv[1]}", file=sys.stderr)
         sys.exit(1)
+    command()
 
 
 if __name__ == "__main__":
