@@ -177,6 +177,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: integration-test-timings-${{ github.run_id }}
-        path: integration_test_timings.json
+        path: Tools/_sunrise/ci/sharding/integration_test_timings.json
         retention-days: 14
         if-no-files-found: error

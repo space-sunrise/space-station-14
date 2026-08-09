@@ -188,7 +188,7 @@ collect_profile() {
 aggregate_profile() {
     python3 "$SHARDING_SCRIPT" aggregate \
         integration-test-discovery.log integration-timing-samples \
-        integration_test_timings.json "$PROFILE_RUNS" \
+        Tools/_sunrise/ci/sharding/integration_test_timings.json "$PROFILE_RUNS" \
         "$GITHUB_SHA" "$GITHUB_RUN_ID" \
         | tee -a "$GITHUB_STEP_SUMMARY"
 }

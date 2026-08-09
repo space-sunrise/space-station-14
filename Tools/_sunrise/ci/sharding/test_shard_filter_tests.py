@@ -1,4 +1,6 @@
 import importlib.util
+import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -16,8 +18,40 @@ TIMINGS = {
     "caseSeconds": {},
 }
 
+VALID_TIMINGS = {
+    "schemaVersion": 1,
+    "generatedAtUtc": "2026-08-09T00:00:00Z",
+    "discoveryCommit": "commit",
+    "sourceRunIds": [123],
+    "profileRuns": 1,
+    **TIMINGS,
+}
+
 
 class TestShardFilterTests(unittest.TestCase):
+    def test_rejects_incorrect_timing_schema(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "timings.json"
+            path.write_text(
+                json.dumps({**VALID_TIMINGS, "schemaVersion": 2}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "schemaVersion"):
+                SHARD_FILTER.load_timings(path)
+
+    def test_rejects_non_positive_timing_seconds(self):
+        for seconds in (0.0, -1.0):
+            with self.subTest(seconds=seconds), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "timings.json"
+                path.write_text(
+                    json.dumps({**VALID_TIMINGS, "defaultCaseSeconds": seconds}),
+                    encoding="utf-8",
+                )
+
+                with self.assertRaisesRegex(ValueError, "positive number"):
+                    SHARD_FILTER.load_timings(path)
+
     def test_parses_localized_test_list_header(self):
         tests = SHARD_FILTER.parse_tests(
             [
@@ -156,6 +190,40 @@ class TestShardFilterTests(unittest.TestCase):
             SHARD_FILTER._parse_trx_duration("00:01:02.5000000"),
             62.5,
         )
+
+    def test_skips_invalid_trx_duration(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "results.trx"
+            path.write_text(
+                "<TestRun><Results>"
+                '<UnitTestResult testName="Tests.Valid" outcome="Passed" '
+                'duration="00:00:01.2500000" />'
+                '<UnitTestResult testName="Tests.Invalid" outcome="Passed" '
+                'duration="invalid" />'
+                "</Results></TestRun>",
+                encoding="utf-8",
+            )
+
+            results = SHARD_FILTER.collect_trx_results(directory)
+
+        self.assertEqual(results, {"Tests.Valid": 1.25})
+
+    def test_keeps_rounded_timing_seconds_positive(self):
+        test = "Content.Tests.Fixture.Fast"
+        config, _ = SHARD_FILTER.build_timing_config(
+            [test],
+            {test: {1: 0.0000001}},
+            1,
+            "commit",
+            [123],
+        )
+
+        self.assertEqual(
+            config["caseSeconds"][test],
+            SHARD_FILTER.MIN_RECORDED_SECONDS,
+        )
+        self.assertGreater(config["defaultCaseSeconds"], 0)
+        self.assertGreater(config["defaultMethodSeconds"], 0)
 
     def test_requires_eighty_percent_of_timing_observations(self):
         measured = "Content.Tests.Fixture.Measured"

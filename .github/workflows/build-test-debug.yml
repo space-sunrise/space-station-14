@@ -59,7 +59,7 @@ jobs:
       run: bash Tools/_sunrise/ci/test_workflow.sh archive-build test
 
     - name: Upload integration build artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: integration-build-output
         path: /tmp/integration-build.tar.zst
@@ -67,7 +67,7 @@ jobs:
         compression-level: 0
 
     - name: Upload content tests build artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: content-tests-build-output
         path: /tmp/content-tests-build.tar.zst
@@ -147,7 +147,7 @@ jobs:
     # Sunrise added start - сохраняем последовательность таймаута для диагностики
     - name: Upload timeout sequences
       id: upload-sequences
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       if: always()
       with:
         name: test-timeout-sequence-shard-${{ matrix.shard }}
@@ -159,7 +159,7 @@ jobs:
     # Sunrise edit start - загружаем дамп только после падения интеграционных тестов
     - name: Upload timeout dumps
       id: upload-dumps
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       if: always() && steps.integration-tests.outcome == 'failure'
       with:
         name: test-timeout-dump-shard-${{ matrix.shard }}

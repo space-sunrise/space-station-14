@@ -15,6 +15,7 @@ from xml.sax.saxutils import escape
 
 PARAMETERIZED_CASE_SPLIT_THRESHOLD = 256
 TIMINGS_SCHEMA_VERSION = 1
+MIN_RECORDED_SECONDS = 0.000001
 TIMINGS_PATH = Path(__file__).with_name("integration_test_timings.json")
 
 
@@ -246,7 +247,14 @@ def collect_trx_results(directory):
             name = element.get("testName")
             duration = element.get("duration")
             if name and duration:
-                results[name] = _parse_trx_duration(duration)
+                try:
+                    results[name] = _parse_trx_duration(duration)
+                except ValueError as error:
+                    print(
+                        f"Warning: cannot parse duration for {name} in {path}: {error}",
+                        file=sys.stderr,
+                    )
+                    continue
     return results
 
 
@@ -266,6 +274,10 @@ def _percentile(values, fraction):
     if lower == upper:
         return ordered[lower]
     return ordered[lower] + (ordered[upper] - ordered[lower]) * (position - lower)
+
+
+def _round_seconds(seconds):
+    return max(round(seconds, 6), MIN_RECORDED_SECONDS)
 
 
 def build_timing_config(tests, observations, profile_runs, commit, source_run_ids):
@@ -293,9 +305,12 @@ def build_timing_config(tests, observations, profile_runs, commit, source_run_id
         method_case_seconds[method] = fallback
         method_totals.append(sum(case_seconds.get(test, fallback) for test in cases))
 
-    rounded_cases = {name: round(seconds, 6) for name, seconds in case_seconds.items()}
+    rounded_cases = {
+        name: _round_seconds(seconds)
+        for name, seconds in case_seconds.items()
+    }
     rounded_methods = {
-        name: round(seconds, 6)
+        name: _round_seconds(seconds)
         for name, seconds in sorted(method_case_seconds.items())
     }
     config = {
@@ -304,8 +319,10 @@ def build_timing_config(tests, observations, profile_runs, commit, source_run_id
         "discoveryCommit": commit,
         "sourceRunIds": source_run_ids,
         "profileRuns": profile_runs,
-        "defaultCaseSeconds": round(_percentile(list(case_seconds.values()), 0.75), 6),
-        "defaultMethodSeconds": round(_percentile(method_totals, 0.75), 6),
+        "defaultCaseSeconds": _round_seconds(
+            _percentile(list(case_seconds.values()), 0.75)
+        ),
+        "defaultMethodSeconds": _round_seconds(_percentile(method_totals, 0.75)),
         "methodCaseSeconds": rounded_methods,
         "caseSeconds": rounded_cases,
     }
@@ -439,6 +456,7 @@ def cmd_aggregate():
     if not tests:
         print("Error: no tests discovered from discovery log", file=sys.stderr)
         sys.exit(1)
+    test_set = set(tests)
 
     observations = {}
     for path in Path(sys.argv[3]).glob("*.json"):
@@ -450,7 +468,7 @@ def cmd_aggregate():
             print(f"Warning: ignoring invalid sample {path}: {error}", file=sys.stderr)
             continue
         for test, seconds in values.items():
-            if test in tests and _positive_number(seconds):
+            if test in test_set and _positive_number(seconds):
                 observations.setdefault(test, {}).setdefault(profile_run, seconds)
 
     try:
