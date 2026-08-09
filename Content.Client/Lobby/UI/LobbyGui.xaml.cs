@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Client.Parallax; // Sunrise-Edit — общая отрисовка повёрнутых слоёв параллакса.
 using Content.Client.Parallax.Managers;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
@@ -327,10 +328,13 @@ namespace Content.Client.Lobby.UI
 
             foreach (var layer in _parallaxManager.GetParallaxLayers(LobbyParallax))
             {
+                // Sunrise-Edit — лобби поддерживает процедурные shader-слои параллакса.
+                handle.UseShader(layer.Shader);
                 var tex = layer.Texture;
+                var rotation = layer.Config.Rotation; // Sunrise-Edit — вращаем геометрию слоя без UV-обрезки.
                 var texSize = new Vector2i(
-                    (tex.Size.X * (int)Size.X * 1) / 1920,
-                    (tex.Size.Y * (int)Size.X * 1) / 1920
+                    (int)(layer.TextureSize.X * Size.X * layer.Config.Scale.X / 1920),
+                    (int)(layer.TextureSize.Y * Size.X * layer.Config.Scale.Y / 1920)
                 );
                 var ourSize = PixelSize;
 
@@ -353,16 +357,27 @@ namespace Content.Client.Lobby.UI
                     {
                         for (var y = -scaledOffset.Y; y < ourSize.Y; y += texSize.Y)
                         {
-                            handle.DrawTextureRect(tex, UIBox2.FromDimensions(new Vector2(x, y), texSize));
+                            ParallaxDrawingHelpers.DrawTextureRect(
+                                handle,
+                                tex,
+                                UIBox2.FromDimensions(new Vector2(x, y), texSize),
+                                rotation);
                         }
                     }
                 }
                 else
                 {
                     var origin = ((ourSize - texSize) / 2) + layer.Config.ControlHomePosition;
-                    handle.DrawTextureRect(tex, UIBox2.FromDimensions(origin, texSize));
+                    ParallaxDrawingHelpers.DrawTextureRect(
+                        handle,
+                        tex,
+                        UIBox2.FromDimensions(origin, texSize),
+                        rotation);
                 }
             }
+
+            // Sunrise-Edit — не оставляем shader state активным для следующих UI-контролов.
+            handle.UseShader(null);
         }
 
         private void SetupButtonIcon(Button button, string iconPath, string tooltip)

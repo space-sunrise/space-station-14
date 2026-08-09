@@ -8,6 +8,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics;
 using Content.Client.Lobby;
+using Content.Client.Parallax;
 using Content.Client.Parallax.Managers;
 using Content.Client.Resources;
 using Content.Client.Stylesheets.Palette;
@@ -271,10 +272,13 @@ public sealed partial class SunriseLobbyGui : UIScreen
 
         foreach (var layer in _parallax.GetParallaxLayers(LobbyParallax))
         {
+            handle.UseShader(layer.Shader);
             var tex = layer.Texture;
+            var rotation = layer.Config.Rotation;
 
-            var scaledWidth = Math.Max(1, (tex.Size.X * Math.Max(1, (int) Size.X)) / 1920);
-            var scaledHeight = Math.Max(1, (tex.Size.Y * Math.Max(1, (int) Size.X)) / 1920);
+            var screenScale = Math.Max(1f, Size.X) / 1920f;
+            var scaledWidth = Math.Max(1, (int) (layer.TextureSize.X * layer.Config.Scale.X * screenScale));
+            var scaledHeight = Math.Max(1, (int) (layer.TextureSize.Y * layer.Config.Scale.Y * screenScale));
             var texSize = new Vector2i(scaledWidth, scaledHeight);
 
             var ourSize = PixelSize;
@@ -298,16 +302,26 @@ public sealed partial class SunriseLobbyGui : UIScreen
                 {
                     for (var y = -scaledOffset.Y; y < ourSize.Y; y += texSize.Y)
                     {
-                        handle.DrawTextureRect(tex, UIBox2.FromDimensions(new Vector2(x, y), texSize));
+                        ParallaxDrawingHelpers.DrawTextureRect(
+                            handle,
+                            tex,
+                            UIBox2.FromDimensions(new Vector2(x, y), texSize),
+                            rotation);
                     }
                 }
             }
             else
             {
                 var origin = ((ourSize - texSize) / 2) + layer.Config.ControlHomePosition;
-                handle.DrawTextureRect(tex, UIBox2.FromDimensions(origin, texSize));
+                ParallaxDrawingHelpers.DrawTextureRect(
+                    handle,
+                    tex,
+                    UIBox2.FromDimensions(origin, texSize),
+                    rotation);
             }
         }
+
+        handle.UseShader(null);
     }
 
     private void SetupButtonIcon(Button button, string iconPath, string tooltip)

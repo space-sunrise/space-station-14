@@ -1,0 +1,103 @@
+- type: parallax
+  id: SunriseMilkyWayEarth
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_earth.png"
+      slowness: 0.9993
+      tiled: false
+      scale: "0.5, 0.5"
+      rotation: 45
+      shader: SunriseParallaxMilkyWayEarth
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+      slowness: 0.996625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.989375
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars-2.toml"
+      slowness: 0.987265625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml"
+      slowness: 0.984352
+  layersLQ:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_earth.png"
+      slowness: 0.9993
+      tiled: false
+      scale: "0.9, 0.9"
+      rotation: 45
+      shader: SunriseParallaxMilkyWayEarth
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "lq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.95
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: ""
+        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+      slowness: 0.875
+  layersLQUseHQ: false
+
+- type: parallax
+  id: SunriseMilkyWayDisk
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_disk.png"
+      slowness: 0.9978
+      tiled: false
+      scale: "0.32, 0.32"
+      rotation: 90
+      shader: SunriseParallaxMilkyWayDisk
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+      slowness: 0.996625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.989375
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars-2.toml"
+      slowness: 0.987265625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml"
+      slowness: 0.984352
+  layersLQ:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_disk.png"
+      slowness: 0.9978
+      tiled: false
+      scale: "0.52, 0.52"
+      rotation: 45
+      shader: SunriseParallaxMilkyWayDisk
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "lq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.95
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: ""
+        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+      slowness: 0.875
+  layersLQUseHQ: false
