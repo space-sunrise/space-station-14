@@ -171,7 +171,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponRifleM90GrenadeLauncherBiocode # Sunrise-edit
+        - id: WeaponRifleM90GrenadeLauncher
         - id: MagazineRifle
           amount: 2
         - id: GrenadeBlastTimer # Sunrise-edit
