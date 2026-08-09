@@ -15,7 +15,7 @@ from xml.sax.saxutils import escape
 
 PARAMETERIZED_CASE_SPLIT_THRESHOLD = 256
 TIMINGS_SCHEMA_VERSION = 1
-TIMINGS_PATH = Path(__file__).resolve().parent / "_sunrise" / "integration_test_timings.json"
+TIMINGS_PATH = Path(__file__).with_name("integration_test_timings.json")
 
 
 def parse_tests(lines):
@@ -365,6 +365,35 @@ def cmd_generate():
         )
 
 
+def cmd_matrix():
+    if len(sys.argv) != 5:
+        print(
+            f"Usage: {sys.argv[0]} matrix <profile-runs> <max-parallel> <github-output>",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    try:
+        profile_runs = int(sys.argv[2])
+        max_parallel = int(sys.argv[3])
+    except ValueError:
+        print("Error: profile-runs and max-parallel must be integers", file=sys.stderr)
+        sys.exit(1)
+
+    if profile_runs not in (10, 20, 30, 50):
+        print("Error: profile-runs must be one of: 10, 20, 30, 50", file=sys.stderr)
+        sys.exit(1)
+    if not 1 <= max_parallel <= 20:
+        print("Error: max-parallel must be between 1 and 20", file=sys.stderr)
+        sys.exit(1)
+
+    # ponytail: одно задание — один полный повтор; матрица не разрастается по числу шардов.
+    matrix = {"profile_run": list(range(1, profile_runs + 1))}
+    with open(sys.argv[4], "a", encoding="utf-8") as output:
+        output.write(f"matrix={json.dumps(matrix, separators=(',', ':'))}\n")
+        output.write(f"max_parallel={max_parallel}\n")
+
+
 def cmd_collect():
     if len(sys.argv) != 5:
         print(
@@ -485,11 +514,15 @@ def cmd_read():
 
 def main():
     if len(sys.argv) < 2:
-        print(f"Usage: {sys.argv[0]} <generate|collect|aggregate|read> ...", file=sys.stderr)
+        print(
+            f"Usage: {sys.argv[0]} <generate|matrix|collect|aggregate|read> ...",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     commands = {
         "generate": cmd_generate,
+        "matrix": cmd_matrix,
         "collect": cmd_collect,
         "aggregate": cmd_aggregate,
         "read": cmd_read,

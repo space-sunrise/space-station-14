@@ -35,30 +35,15 @@ jobs:
       matrix: ${{ steps.matrix.outputs.matrix }}
       max_parallel: ${{ steps.matrix.outputs.max_parallel }}
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4.2.2
+
     - name: Validate inputs and create matrix
       id: matrix
       env:
         PROFILE_RUNS: ${{ inputs.profile_runs }}
         MAX_PARALLEL_RUNNERS: ${{ inputs.max_parallel_runners }}
-      shell: bash
-      run: |
-        python3 - <<'PY'
-        import json
-        import os
-
-        profile_runs = int(os.environ["PROFILE_RUNS"])
-        max_parallel = int(os.environ["MAX_PARALLEL_RUNNERS"])
-        if profile_runs not in (10, 20, 30, 50):
-            raise SystemExit("profile_runs must be one of: 10, 20, 30, 50")
-        if not 1 <= max_parallel <= 20:
-            raise SystemExit("max_parallel_runners must be between 1 and 20")
-
-        # ponytail: одно задание — один полный повтор; так матрица не разрастается по числу шардов.
-        matrix = {"profile_run": list(range(1, profile_runs + 1))}
-        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
-            output.write(f"matrix={json.dumps(matrix, separators=(',', ':'))}\n")
-            output.write(f"max_parallel={max_parallel}\n")
-        PY
+      run: bash Tools/_sunrise/ci/test_workflow.sh prepare-profile-matrix
 
   build:
     name: Build and discover tests
@@ -69,14 +54,13 @@ jobs:
       uses: actions/checkout@v4.2.2
 
     - name: Setup Submodule
-      run: git submodule update --init --recursive
+      run: bash Tools/_sunrise/ci/test_workflow.sh setup-root-submodules
 
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
 
     - name: Update Engine Submodules
-      working-directory: RobustToolbox
-      run: git submodule update --init --recursive
+      run: bash Tools/_sunrise/ci/test_workflow.sh setup-engine-submodules
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
@@ -84,37 +68,19 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Install dependencies
-      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
+      run: bash Tools/_sunrise/ci/test_workflow.sh restore-integration
 
     - name: Build Project
-      run: dotnet build Content.IntegrationTests/Content.IntegrationTests.csproj --configuration DebugOpt --no-restore /m
+      run: bash Tools/_sunrise/ci/test_workflow.sh build-integration
 
     - name: Discover Integration Tests
-      shell: bash
-      run: |
-        set -o pipefail
-        dotnet test --list-tests --no-build --no-restore --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.DisplayName=FullName 2>&1 | tee integration-test-discovery.log
+      run: bash Tools/_sunrise/ci/test_workflow.sh discover-profile
 
     - name: Prune build artifact
-      shell: bash
-      run: |
-        test "$PWD" = "$GITHUB_WORKSPACE"
-        test -f bin/Content.Client/Content.Client.dll
-        test -f bin/Content.Server/Content.Server.dll
-        test -f bin/Content.IntegrationTests/Content.IntegrationTests.dll
-
-        find . -path './.git' -prune -o -type d -name obj -prune -exec rm -rf -- {} +
-        find . -path './.git' -prune -o -type d -name bin ! -path './bin' -prune -exec rm -rf -- {} +
-        find bin -mindepth 1 -maxdepth 1 -type d \
-          ! -name Content.IntegrationTests \
-          -exec rm -rf -- {} +
-        mkdir -p bin/Content.Client bin/Content.Server
+      run: bash Tools/_sunrise/ci/test_workflow.sh prune-build profile
 
     - name: Archive build output
-      run: |
-        tar -I 'zstd -T0 -3' -cf /tmp/integration-profile-build.tar.zst \
-          Resources RobustToolbox/Resources Tools/test_shard_filter.py \
-          bin/Content.Client bin/Content.Server bin/Content.IntegrationTests
+      run: bash Tools/_sunrise/ci/test_workflow.sh archive-build profile
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
@@ -154,29 +120,20 @@ jobs:
         name: integration-profile-build
 
     - name: Extract build
-      run: tar --zstd -xf integration-profile-build.tar.zst && rm integration-profile-build.tar.zst
+      run: bash Tools/_sunrise/ci/test_workflow.sh extract-build integration-profile-build.tar.zst
 
     - name: Run Content.IntegrationTests
       id: integration-tests
       continue-on-error: true
       env:
         DOTNET_gcServer: '1'
-      shell: bash
-      run: |
-        mkdir -p /tmp/test-results
-        timeout --signal=TERM --kill-after=2m 22m \
-          dotnet test bin/Content.IntegrationTests/Content.IntegrationTests.dll \
-          --logger "trx;LogFileName=results.trx" \
-          --logger "console;verbosity=minimal" \
-          --results-directory /tmp/test-results \
-          -- NUnit.DisplayName=FullName NUnit.ConsoleOut=0 NUnit.WorkDirectory="/tmp/test-results"
+      run: bash Tools/_sunrise/ci/test_workflow.sh run-profile
 
     - name: Collect successful durations
       if: always()
-      run: |
-        python3 Tools/test_shard_filter.py collect \
-          ${{ matrix.profile_run }} /tmp/test-results \
-          /tmp/integration-timing-${{ matrix.profile_run }}.json
+      env:
+        PROFILE_RUN: ${{ matrix.profile_run }}
+      run: bash Tools/_sunrise/ci/test_workflow.sh collect-profile
 
     - name: Upload compact timing sample
       if: always()
@@ -214,13 +171,7 @@ jobs:
     - name: Aggregate timing configuration
       env:
         PROFILE_RUNS: ${{ inputs.profile_runs }}
-      shell: bash
-      run: |
-        python3 Tools/test_shard_filter.py aggregate \
-          integration-test-discovery.log integration-timing-samples \
-          integration_test_timings.json "$PROFILE_RUNS" \
-          "${{ github.sha }}" "${{ github.run_id }}" \
-          | tee -a "$GITHUB_STEP_SUMMARY"
+      run: bash Tools/_sunrise/ci/test_workflow.sh aggregate-profile
 
     - name: Upload timing configuration
       uses: actions/upload-artifact@v4

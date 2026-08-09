@@ -3,8 +3,7 @@ import unittest
 from pathlib import Path
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-SCRIPT_PATH = REPO_ROOT / "Tools" / "test_shard_filter.py"
+SCRIPT_PATH = Path(__file__).with_name("test_shard_filter.py")
 SPEC = importlib.util.spec_from_file_location("test_shard_filter", SCRIPT_PATH)
 SHARD_FILTER = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
