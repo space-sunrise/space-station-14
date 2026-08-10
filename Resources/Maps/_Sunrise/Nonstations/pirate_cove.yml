@@ -128,7 +128,7 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
-    - type: PirateBase
+    #- type: PirateBase # Sunrise-TODO: Вернуть это позже
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
