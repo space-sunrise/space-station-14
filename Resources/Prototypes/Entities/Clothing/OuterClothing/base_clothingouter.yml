@@ -191,6 +191,7 @@
     - WhitelistChameleon
     - FullBodyOuter # Sunrise-Edit
     - WhitelistChameleonSuit #Sunrise-edit
+    - NoPaint #Sunrise-edit
   # Sunrise-start
   - type: StaminaResistance
     damageCoefficient: 0.8
