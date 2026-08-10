@@ -117,10 +117,16 @@ public sealed class CartridgeDeactivatedEvent : EntityEventArgs
 public sealed class CartridgeUiReadyEvent : EntityEventArgs
 {
     public readonly EntityUid Loader;
+    // Sunrise added start - передаём игрока, для которого подготовлен UI программы.
+    public readonly EntityUid Actor;
+    // Sunrise added end
 
-    public CartridgeUiReadyEvent(EntityUid loader)
+    public CartridgeUiReadyEvent(EntityUid loader, EntityUid actor = default) // Sunrise-Edit - передаём игрока, для которого подготовлен UI программы.
     {
         Loader = loader;
+        // Sunrise added start - передаём игрока, для которого подготовлен UI программы.
+        Actor = actor;
+        // Sunrise added end
     }
 }
 
