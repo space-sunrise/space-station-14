@@ -119,6 +119,9 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     /// </summary>
     private static readonly TimeSpan StationWarnInterval = TimeSpan.FromMinutes(1);
 
+    /// <summary>
+    /// Минимальная задержка между проверками очереди прибывающих шаттлов.
+    /// </summary>
     private static readonly TimeSpan DispatchRetryInterval = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
