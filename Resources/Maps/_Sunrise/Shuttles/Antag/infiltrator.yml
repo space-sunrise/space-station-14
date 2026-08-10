@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 270.0.0
+  engineVersion: 271.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/29/2025 01:15:46
+  time: 07/17/2026 19:58:29
   entityCount: 883
 maps: []
 grids:
@@ -525,8 +525,8 @@ entities:
           decals:
             19: 0,-6
     - type: IFF
-      color: '#FFC000FF'
-      flags: Hide
+      color: '#7F0000FF'
+      flags: HideLabel
     - type: OccluderTree
     - type: Shuttle
       dampingModifier: 0.25
@@ -539,6 +539,8 @@ entities:
     - type: GridPathfinding
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
 - proto: ActionToggleInternals
   entities:
   - uid: 510
@@ -722,6 +724,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-29.5
       parent: 1
+- proto: APCElectronics
+  entities:
+  - uid: 21
+    components:
+    - type: Transform
+      parent: 20
+    - type: Physics
+      canCollide: False
 - proto: APCHighCapacitySyndicate
   entities:
   - uid: 18
@@ -763,15 +773,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: APCElectronics
-  entities:
-  - uid: 21
-    components:
-    - type: Transform
-      parent: 20
-    - type: Physics
-      canCollide: False
-- proto: AtmosDeviceFanDirectionalDev
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 30
     components:
@@ -2504,7 +2506,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-5.5
       parent: 1
-- proto: ComputerIFFSyndicate
+- proto: ComputerIFF
   entities:
   - uid: 337
     components:
@@ -4566,6 +4568,13 @@ entities:
     - type: Transform
       pos: -1.5,-1.5
       parent: 1
+- proto: ShuttleAnchorOff
+  entities:
+  - uid: 604
+    components:
+    - type: Transform
+      pos: -5.5,-22.5
+      parent: 1
 - proto: SignalButton
   entities:
   - uid: 666
@@ -4750,13 +4759,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-19.5
-      parent: 1
-- proto: ShuttleAnchorOff
-  entities:
-  - uid: 604
-    components:
-    - type: Transform
-      pos: -5.5,-22.5
       parent: 1
 - proto: StorageCanister
   entities:

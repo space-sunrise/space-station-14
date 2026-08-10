@@ -140,3 +140,243 @@
           groups:
             Burn: -4
             Brute: -4
+
+- type: reagent
+  id: RedRum
+  parent: Vodkizine
+  name: reagent-name-redrum
+  desc: reagent-desc-redrum
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: rum
+  color: "#f07c42"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/rumglass.rsi
+    state: icon_empty
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -6
+            Brute: -10
+          types:
+            Mangleness: -1
+            Poison: -1
+
+- type: reagent
+  id: DarkRedRum
+  parent: RedRum
+  name: reagent-name-dark-red-rum
+  desc: reagent-desc-dark-red-rum
+  physicalDesc: reagent-physical-desc-strong-smelling
+  contrabandSeverity: Syndicate
+  flavor: rum
+  color: "#700a0a"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/rumglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+      - !type:SatiateThirst
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      - !type:ModifyBloodLevel
+        amount: 3
+      - !type:EvenHealthChange
+        damage:
+          Burn: -2
+          Brute: -3
+          Toxin: -2
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -1
+            Asphyxiation: -1
+      - !type:ModifyBleed
+        amount: -1.5
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 9
+    Narcotic:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.5
+        sprintSpeedModifier: 1.5
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina
+        time: 3
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 3.5
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 3.5
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Remove
+      - !type:Jitter
+      - !type:Emote
+        emote: Scream
+        showInChat: true
+        force: true
+        probability: 0.05
+      - !type:Emote
+        emote: Growl
+        showInChat: true
+        force: true
+        probability: 0.05
+      - !type:Emote
+        emote: Laugh
+        showInChat: true
+        probability: 0.05
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 5
+      - !type:Emote
+        emote: Whistle
+        showInChat: true
+        probability: 0.05
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 5
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages:
+        - "psicodine-effect-fearless"
+        - "psicodine-effect-anxieties-wash-away"
+        - "psicodine-effect-at-peace"
+        probability: 0.1
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 10
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          min: 10
+        damage:
+          types:
+            Mangleness: 1.5
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Haloperidol
+          max: 0.01
+        effectProto: StatusEffectDrowsiness
+        time: 10
+        type: Remove
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -3
+            Brute: -5
+          types:
+            Mangleness: -0.5
+            Poison: -0.5
+      - !type:ModifyBleed
+        amount: -1.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          min: 70
+        damage:
+          Burn: -0.5
+          Brute: -0.5
+      - !type:HealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          min: 95
+        damage:
+          types:
+            Asphyxiation: -2
+      - !type:ResetNarcolepsy
+      - !type:SatiateHunger
+        factor: 1
+      - !type:SatiateThirst
+        factor: 1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Histamine
+          min: 45
+        reagent: Histamine
+        amount: -5
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -1
+            Poison: -0.5
+          groups:
+            Brute: -1
+            Burn: -1
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 1
+      - !type:AdjustReagent
+        reagent: HeartbreakerToxin
+        amount: -2
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: DarkRedRum
+        amount: -1
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 0.75
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 0.75
+        type: Remove
+      - !type:CleanBloodstream
+        excluded: DarkRedRum
+        cleanseRate: 3

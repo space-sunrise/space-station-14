@@ -42,6 +42,15 @@
       - PottedPlant23
       - PottedPlant24
       - PottedPlant26
+      # Sunrise-start
+      - PottedPlantRose
+      - PottedPlantRose1
+      - PottedPlantRose2
+      - PottedPlantRose3
+      - PottedPlantRose4
+      - PottedPlantRose5
+      - PottedPlantRose6
+      # Sunrise-end
     chance: 1
 
 - type: entity
