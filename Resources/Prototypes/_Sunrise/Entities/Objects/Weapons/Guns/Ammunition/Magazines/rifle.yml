@@ -92,6 +92,33 @@
       - state: inhand-right-stripe
         color: "#540000"
 
+- type: entity
+  id: MagazineRifleImprovised
+  name: "magazine (.20 rifle improvised)"
+  parent: BaseMagazineRifle
+  description: 25-round double stack magazine for combat rifles. Intended to hold improvised ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleImprovised
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#000000a3"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#000000a3"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#000000a3"
+
 # region M-52
 - type: entity
   id: BaseMagazineRifleM52

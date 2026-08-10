@@ -293,7 +293,7 @@
   id: MobPirateGearRangedT2
   equipment:
     gloves: ClothingHandsMercRevolvers
-    belt: ClothingBeltWebbingMercenaryTier2Revolver
+    belt: ClothingBeltWebbingMercenaryTier3Revolver
     pocket1: FlippoLighterSunriseContractor
     pocket2: CigPackSyndicate
     shoes: ClothingShoesBootsSalvage
@@ -538,7 +538,7 @@
 - type: startingGear
   id: MobPirateT2JuggernautGear
   equipment:
-    gloves: ClothingHandsPirateArmorT2Invisible
+    gloves: ClothingHandsPirateArmorMurmilo
     shoes: ClothingBackOreCrateBoss
     pocket1: ClothingHeadHatGladiator
     pocket2: StimkitFilled
