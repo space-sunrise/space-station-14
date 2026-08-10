@@ -1,5 +1,5 @@
 using Content.Shared.Inventory.Events;
-using Content.Shared.Silicons.StationAi;
+using Content.Shared.StationAi;
 
 namespace Content.Server._Sunrise.Silicons.StationAi;
 
@@ -15,7 +15,7 @@ public sealed class WornStationAiVisionSystem : EntitySystem
         SubscribeLocalEvent<StationAiVisionComponent, GotUnequippedEvent>(OnVisionItemUnequipped);
     }
 
-    private void OnVisionItemEquipped(Entity<StationAiVisionComponent> ent, GotEquippedEvent args)
+    private void OnVisionItemEquipped(Entity<StationAiVisionComponent> ent, ref GotEquippedEvent args)
     {
         var wearer = args.Equipee;
         var tracker = EnsureComp<WornStationAiVisionTrackerComponent>(wearer);
@@ -28,7 +28,7 @@ public sealed class WornStationAiVisionSystem : EntitySystem
         }
     }
 
-    private void OnVisionItemUnequipped(Entity<StationAiVisionComponent> ent, GotUnequippedEvent args)
+    private void OnVisionItemUnequipped(Entity<StationAiVisionComponent> ent, ref GotUnequippedEvent args)
     {
         var wearer = args.Equipee;
 
