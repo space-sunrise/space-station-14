@@ -5,39 +5,37 @@ using Content.Shared.Administration;
 using JetBrains.Annotations;
 using Robust.Shared.Console;
 
-namespace Content.Server._Sunrise.Shuttles.Commands;
+namespace Content.Server._Sunrise.Chat.Commands;
 
 [UsedImplicitly]
-[AdminCommand(AdminFlags.Fun)]
-public sealed class SpawnArrivalsShuttleCommand : IConsoleCommand
+[AdminCommand(AdminFlags.Debug)]
+public sealed class SpawnArrivalsShuttleCommand : LocalizedCommands
 {
     [Dependency] private readonly IEntityManager _entities = default!;
 
-    public string Command => "spawnarrivalsshuttle";
-    public string Description => "sends the executing player to a arrivals shuttle";
-    public string Help => "spawnarrivalsshuttle";
+    public override string Command => "spawnarrivalsshuttle";
 
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (shell.Player?.AttachedEntity is not { } player)
         {
-            shell.WriteError("no attached entity");
+            shell.WriteError(Loc.GetString("shell-must-be-attached-to-entity"));
             return;
         }
 
         var stationSystem = _entities.System<StationSystem>();
         if (stationSystem.GetOwningStation(player) is not { } station)
         {
-            shell.WriteError("be on a station");
+            shell.WriteError(Loc.GetString("cmd-spawnarrivalsshuttle-not-on-station"));
             return;
         }
 
         if (!_entities.System<SunriseArrivalsSystem>().TrySpawnForPlayer(station, player))
         {
-            shell.WriteError("unable to spawn sunrise arrivals shuttle");
+            shell.WriteError(Loc.GetString("cmd-spawnarrivalsshuttle-failed"));
             return;
         }
 
-        shell.WriteLine("ok");
+        shell.WriteLine(Loc.GetString("shell-command-success"));
     }
 }

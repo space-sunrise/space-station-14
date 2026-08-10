@@ -73,6 +73,9 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     /// </summary>
     private const float InitialFtlTime = 15f;
 
+    /// <summary>
+    /// Время удерживающего FTL, пока шаттл ожидает свободный док.
+    /// </summary>
     private const float HoldingFtlTime = 3600f;
 
     /// <summary>
@@ -126,18 +129,9 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
         SubscribeLocalEvent<SunriseArrivalsShuttleComponent, ComponentShutdown>(OnShuttleShutdown);
 
-        _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttle, OnSingleShuttleChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.ArrivalsSingleShuttlePath, OnShuttlePathChanged, true);
-        _cfg.OnValueChanged(CCVars.ArrivalsShuttles, OnArrivalsEnabledChanged, true);
-    }
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-
-        _cfg.UnsubValueChanged(SunriseCCVars.ArrivalsSingleShuttle, OnSingleShuttleChanged);
-        _cfg.UnsubValueChanged(SunriseCCVars.ArrivalsSingleShuttlePath, OnShuttlePathChanged);
-        _cfg.UnsubValueChanged(CCVars.ArrivalsShuttles, OnArrivalsEnabledChanged);
+        Subs.CVar(_cfg, SunriseCCVars.ArrivalsSingleShuttle, OnSingleShuttleChanged, true);
+        Subs.CVar(_cfg, SunriseCCVars.ArrivalsSingleShuttlePath, OnShuttlePathChanged, true);
+        Subs.CVar(_cfg, CCVars.ArrivalsShuttles, OnArrivalsEnabledChanged, true);
     }
 
     private void OnSingleShuttleChanged(bool value) => _enabled = value;
@@ -314,8 +308,10 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             switch (arrivals.State)
             {
                 case SunriseArrivalsShuttleState.Queued:
+                    // Обрабатывается в TryDispatchFromQueue.
                     break;
                 case SunriseArrivalsShuttleState.Travelling:
+                    // Обрабатывается в OnFTLCompleted или аварийной защите.
                     break;
                 case SunriseArrivalsShuttleState.Docked:
                     ProcessDocked(uid, arrivals, curTime);
@@ -412,10 +408,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     private bool TryDispatchShuttle(EntityUid uid, SunriseArrivalsShuttleComponent arrivals)
     {
         if (arrivals.ReservedDocks.Count > 0)
-        {
             ReleaseDockReservations(uid, arrivals);
-            return false;
-        }
 
         if (!TryComp<FTLComponent>(uid, out var ftl))
         {
@@ -499,10 +492,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         Log.Warning($"Failsafe triggered for arrivals shuttle {ToPrettyString(uid)}, " +
                      $"player: '{arrivals.PlayerName}', state: {arrivals.State}");
 
-        if (IsPlayerOnShuttle(uid, arrivals.Player) && !TryTeleportPlayer(uid, arrivals))
-        {
+        if (!TryTeleportPlayer(uid, arrivals))
             return true;
-        }
 
         var msg = Loc.GetString("sunrise-arrivals-failsafe-teleport");
         if (arrivals.Player != null && TryComp<ActorComponent>(arrivals.Player.Value, out var actor))
@@ -563,7 +554,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         if (curTime < dockTime + TimeSpan.FromSeconds(DockWaitTime))
             return;
 
-        if (playerOnShuttle && !TryTeleportPlayer(uid, arrivals))
+        if (!TryTeleportPlayer(uid, arrivals))
             return;
 
         StartDeparture(uid, arrivals);
@@ -699,11 +690,9 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     {
         if (TryComp<SunriseArrivalsShuttleComponent>(uid, out var arrivals))
         {
-            // Безопасность: телепортируем игрока, если он все еще на шаттле
-            if (IsPlayerOnShuttle(uid, arrivals.Player) && !TryTeleportPlayer(uid, arrivals))
-            {
+            // Безопасность: эвакуируем игрока перед удалением шаттла.
+            if (!TryTeleportPlayer(uid, arrivals))
                 return;
-            }
 
             ReleaseDockReservations(uid, arrivals);
             RemovePlayerFtlImmunity(arrivals);
