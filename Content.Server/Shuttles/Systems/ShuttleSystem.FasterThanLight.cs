@@ -584,8 +584,12 @@ public sealed partial class ShuttleSystem
         else if (HasComp<MapGridComponent>(target.EntityId) &&
                  !HasComp<MapComponent>(target.EntityId))
         {
+            // Sunrise edit start - Ignored был позиционным аргументом, кто-то его перепутал и он устанавливал fallback, а ignored по дефолту оставался true
+            // из-за этого шаттлы всегда накладывались друг на друга, даже если это не нужно
+            var ignored = !HasComp<SunriseArrivalsShuttleComponent>(uid) && entity.Comp1.Ignored;
             var config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle,
-                entity.Comp1.Ignored, priorityTag: entity.Comp1.PriorityTag); // Sunrise-Edit
+                ignored: ignored, priorityTag: entity.Comp1.PriorityTag);
+            // Sunrise edit end
             var mapCoordinates = _transform.ToMapCoordinates(target);
 
             // Couldn't dock somehow so just fallback to regular position FTL.
