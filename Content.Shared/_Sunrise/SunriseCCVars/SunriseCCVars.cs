@@ -266,6 +266,12 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<bool> ShowMapVotes = CVarDef.Create("vote.show_map_votes", true);
 
+    /// <summary>
+    ///     Makes preset votes ignore player count limits. Intended for local development.
+    /// </summary>
+    public static readonly CVarDef<bool> IgnorePresetPlayerLimits =
+        CVarDef.Create("vote.ignore_preset_player_limits", false, CVar.SERVERONLY);
+
     public static readonly CVarDef<bool> RunMapVoteAfterRestart =
         CVarDef.Create("vote.run_map_vote_after_restart", false);
 
@@ -580,7 +586,12 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("tutorial.max_active", 10, CVar.SERVERONLY);
 
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
-        CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
+        CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(5), CVar.SERVERONLY);
 
+    public static readonly CVarDef<float> TutorialPromptSkipDelay =
+        CVarDef.Create("tutorial.prompt_skip_delay", 15f, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> TutorialPromptSeen =
+        CVarDef.Create("tutorial.prompt_seen", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
 }
