@@ -1,4 +1,3 @@
-# region Base Projectiles
 - type: entity
   id: BaseBulletGrenade
   parent: BaseItem
