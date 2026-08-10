@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -27,6 +28,21 @@ public sealed partial class TutorialSequencePrototype : IPrototype
     public string Tooltip = string.Empty;
 
     /// <summary>
+    ///     Lower values are shown earlier inside a tutorial category.
+    /// </summary>
+    [DataField]
+    public int Priority;
+
+    /// <summary>
+    ///     Optional preview image displayed in the tutorial selection UI.
+    /// </summary>
+    [DataField]
+    public ResPath? Texture;
+
+    [DataField]
+    public Vector2 CropFocus = new(0.5f, 0.5f);
+
+    /// <summary>
     ///     Grid map loaded for this tutorial sequence.
     /// </summary>
     [DataField(required: true)]
@@ -37,12 +53,6 @@ public sealed partial class TutorialSequencePrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public EntProtoId PlayerEntity;
-
-    /// <summary>
-    ///     Texture displayed for this tutorial in the tutorial menu.
-    /// </summary>
-    [DataField(required: true)]
-    public ResPath Texture;
 
     /// <summary>
     ///     Duration of tutorial
