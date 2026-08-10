@@ -11,15 +11,32 @@ internal static class InstrumentMidiValidation
         return channel >= 0 && channel < RobustMidiEvent.MaxChannels;
     }
 
-    public static bool IsValidBatch(ReadOnlySpan<RobustMidiEvent> midiEvents)
+    public static bool TryFilterBatch(RobustMidiEvent[] midiEvents, out RobustMidiEvent[] validEvents)
     {
-        if (midiEvents.IsEmpty)
+        validEvents = midiEvents;
+
+        if (midiEvents.Length == 0)
             return false;
 
+        var validCount = 0;
         foreach (var midiEvent in midiEvents)
         {
-            if (!IsValidEvent(midiEvent))
-                return false;
+            if (IsValidEvent(midiEvent))
+                validCount++;
+        }
+
+        if (validCount == midiEvents.Length)
+            return true;
+
+        if (validCount == 0)
+            return false;
+
+        validEvents = new RobustMidiEvent[validCount];
+        var index = 0;
+        foreach (var midiEvent in midiEvents)
+        {
+            if (IsValidEvent(midiEvent))
+                validEvents[index++] = midiEvent;
         }
 
         return true;

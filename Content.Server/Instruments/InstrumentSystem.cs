@@ -328,15 +328,13 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         instrument.Playing = false;
         instrument.Master = null;
         instrument.FilteredChannels.SetAll(false);
-        instrument.LastSequencerTick = 0;
         instrument.BatchesDropped = 0;
-        instrument.LaggedBatches = 0;
         Dirty(uid, instrument);
     }
 
     private void OnMidiEventRx(InstrumentMidiEventEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - ограничение midi до обработки остальной хуйни
+        // Sunrise edit start - ограничение MIDI до валидации и обработки
         var eventCount = msg.MidiEvent.Length;
         if (!TryConsumeSessionMidiBudget(args.SenderSession.UserId, eventCount))
             return;
@@ -354,53 +352,21 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             return;
         }
 
-        if (eventCount == 0
-            || eventCount > MaxMidiEventsPerBatch
-            || !InstrumentMidiValidation.IsValidBatch(msg.MidiEvent))
+        if (eventCount == 0 || eventCount > MaxMidiEventsPerBatch)
         {
             instrument.BatchesDropped++; // Sunrise added
             return;
         }
+
+        if (!InstrumentMidiValidation.TryFilterBatch(msg.MidiEvent, out var validEvents))
+            return;
+
+        if (validEvents != msg.MidiEvent)
+            msg = new InstrumentMidiEventEvent(msg.Uid, validEvents);
         // Sunrise edit end
 
         var send = true;
         var droppedBatch = false; // Sunrise added
-
-        // Sunrise edit start - используем верхнюю границу пакета
-        var maxTick = uint.MinValue;
-        // Sunrise edit end
-
-        for (var i = 0; i < eventCount; i++)  // Sunrise edit
-        {
-            var tick = msg.MidiEvent[i].Tick;
-
-            if (tick > maxTick)
-                maxTick = tick;
-        }
-
-        // Sunrise edit start - считаем устаревшими только полностью запоздавшие пакеты
-        if (instrument.LastSequencerTick > maxTick)
-        {
-            instrument.LaggedBatches++;
-
-            if (instrument.RespectMidiLimits)
-            {
-                if (instrument.LaggedBatches == (int) (MaxMidiLaggedBatches * (1 / 3d) + 1))
-                {
-                    _popup.PopupEntity(Loc.GetString("instrument-component-finger-cramps-light-message"),
-                        uid, attached, PopupType.SmallCaution);
-                }
-                else if (instrument.LaggedBatches == (int) (MaxMidiLaggedBatches * (2 / 3d) + 1))
-                {
-                    _popup.PopupEntity(Loc.GetString("instrument-component-finger-cramps-serious-message"),
-                        uid, attached, PopupType.MediumCaution);
-                }
-            }
-
-            if (instrument.LaggedBatches > MaxMidiLaggedBatches)
-                send = false;
-        }
-        // Sunrise edit end
 
         // Sunrise added start
         instrument.MidiEventCount += eventCount;
@@ -413,10 +379,6 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         if (droppedBatch)
             instrument.BatchesDropped++;
         // Sunrise added end
-
-        // Sunrise edit start - не даём старому пакету откатить sequencer tick
-        instrument.LastSequencerTick = Math.Max(instrument.LastSequencerTick, maxTick);
-        // Sunrise edit end
 
         // Sunrise edit start - ограничиваем forwarded MIDI traffic ближайшими слушателями
         if (!send)
@@ -473,9 +435,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
                 }
             }
 
-            if (instrument.RespectMidiLimits &&
-                (instrument.BatchesDropped >= MaxMidiBatchesDropped
-                 || instrument.LaggedBatches >= MaxMidiLaggedBatches))
+            if (instrument.RespectMidiLimits && instrument.BatchesDropped >= MaxMidiBatchesDropped)
             {
                 if (instrument.InstrumentPlayer is {Valid: true} mob)
                 {
@@ -496,7 +456,6 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
             instrument.Timer = 0f;
             instrument.MidiEventCount = 0;
-            instrument.LaggedBatches = 0;
             instrument.BatchesDropped = 0;
         }
     }
