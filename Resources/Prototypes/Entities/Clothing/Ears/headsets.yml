@@ -254,7 +254,6 @@
     protectionRangeCoefficient: 0.25
   # Sunrise-Edit end
 
-
 - type: entity
   parent: [ClothingHeadset, BaseSecurityContraband]
   id: ClothingHeadsetBrigmedic
