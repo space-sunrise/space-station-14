@@ -1,10 +1,10 @@
 using Content.Shared.Inventory;
-using Content.Shared.Item.ItemToggle.Components; // Sunrise Edit
+using Content.Shared.Item.ItemToggle.Components; 
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
-using Content.Shared.Silicons.Borgs.Components; // Sunrise Edit
+using Content.Shared.Silicons.Borgs.Components; 
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -56,9 +56,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             // Sunrise Start - skip if magnet toggle is disabled
             if (TryComp<ItemToggleComponent>(uid, out var toggle) && !toggle.Activated)
                 continue;
-            // Sunrise End
 
-            // Sunrise Edit Start
             if (!_borgQuery.HasComponent(xform.ParentUid))
             {
                 if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef) ||
