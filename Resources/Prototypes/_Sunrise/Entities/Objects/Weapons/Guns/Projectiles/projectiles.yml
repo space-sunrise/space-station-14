@@ -419,7 +419,7 @@
   - type: FlashOnTrigger
     range: 7
   - type: SpawnOnTrigger
-    proto: GrenadeFlashbangEffect # Sunrise-Edit
+    proto: GrenadeFlashbangEffect
     predicted: true
   - type: DeleteOnTrigger
 

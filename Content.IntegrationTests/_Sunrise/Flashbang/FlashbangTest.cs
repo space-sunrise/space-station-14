@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared._Sunrise.Flashbang;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stunnable;
@@ -11,48 +10,18 @@ namespace Content.IntegrationTests._Sunrise.Flashbang;
 [TestOf(typeof(SharedFlashbangSystem))]
 public sealed class FlashbangTest
 {
-    [TestPrototypes]
-    private const string Prototypes = @"
-- type: entity
-  id: FlashbangTestSource
-  name: FlashbangTestSource
-  components:
-  - type: FlashbangRadiusOnTrigger
-    range: 10
-    stunDuration: 4
-    knockdownDuration: 4
-    minEffectStrength: 0.01
-    minAmbientPressure: 0
-
-- type: entity
-  id: FlashbangTestTarget
-  name: FlashbangTestTarget
-  components:
-  - type: MobState
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Dead
-  - type: Damageable
-  - type: StandingState
-  - type: StatusEffectContainer
-  - type: Physics
-    bodyType: KinematicController
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-
-- type: entity
-  id: FlashbangTestVulnerableTarget
-  name: FlashbangTestVulnerableTarget
-  parent: FlashbangTestTarget
-  components:
-  - type: FlashbangVulnerable
-    bypassProtection: true
-";
+    private static EntityUid CreateSource(IEntityManager entMan, MapCoordinates coords)
+    {
+        var source = entMan.SpawnEntity(null, coords);
+        var comp = entMan.AddComponent<FlashbangRadiusOnTriggerComponent>(source);
+        comp.Range = 10f;
+        comp.StunDuration = TimeSpan.FromSeconds(4);
+        comp.KnockdownDuration = TimeSpan.FromSeconds(4);
+        comp.MinEffectStrength = 0.01f;
+        comp.MinAmbientPressure = 0f; // в тестах атмосферы нет
+        entMan.Dirty(source, comp);
+        return source;
+    }
 
     /// <summary>
     /// Цель в эпицентре должна получить стан и нокдаун.
@@ -63,30 +32,25 @@ public sealed class FlashbangTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var entMan = server.ResolveDependency<IEntityManager>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = entMan.System<SharedMapSystem>();
         var flashbangSys = entMan.System<SharedFlashbangSystem>();
 
         EntityUid source = default;
         EntityUid target = default;
-        MapId mapId = default;
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out mapId);
-            mapMan.CreateGrid(mapId);
-            source = entMan.SpawnEntity("FlashbangTestSource", new MapCoordinates(0f, 0f, mapId));
-            target = entMan.SpawnEntity("FlashbangTestTarget", new MapCoordinates(0f, 0f, mapId));
+            mapSys.CreateMap(out var mapId);
+            source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
+            target = entMan.SpawnEntity("MobHuman", new MapCoordinates(0f, 0f, mapId));
         });
-
-        await pair.RunTicksSync(5);
 
         await server.WaitPost(() =>
         {
             flashbangSys.TryFlashbangArea(source, null);
         });
 
-        await pair.RunTicksSync(3);
+        await pair.RunTicksSync(1);
 
         await server.WaitAssertion(() =>
         {
@@ -103,37 +67,36 @@ public sealed class FlashbangTest
     /// <summary>
     /// Цель за пределами радиуса не должна получить эффект.
     /// </summary>
-    [Test]
-    public async Task TargetOutsideRange_ShouldNotBeAffected()
+    [TestCase(15f, 0f, TestName = "TargetOutsideRange_Right")]
+    [TestCase(-15f, 0f, TestName = "TargetOutsideRange_Left")]
+    [TestCase(0f, 15f, TestName = "TargetOutsideRange_Top")]
+    [TestCase(0f, -15f, TestName = "TargetOutsideRange_Bottom")]
+    [TestCase(11f, 11f, TestName = "TargetOutsideRange_Diagonal")]
+    public async Task TargetOutsideRange_ShouldNotBeAffected(float x, float y)
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var entMan = server.ResolveDependency<IEntityManager>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = entMan.System<SharedMapSystem>();
         var flashbangSys = entMan.System<SharedFlashbangSystem>();
 
         EntityUid source = default;
         EntityUid target = default;
-        MapId mapId = default;
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out mapId);
-            mapMan.CreateGrid(mapId);
-            source = entMan.SpawnEntity("FlashbangTestSource", new MapCoordinates(0f, 0f, mapId));
+            mapSys.CreateMap(out var mapId);
+            source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             // Range = 10, ставим за пределами
-            target = entMan.SpawnEntity("FlashbangTestTarget", new MapCoordinates(15f, 0f, mapId));
+            target = entMan.SpawnEntity("MobHuman", new MapCoordinates(x, y, mapId));
         });
-
-        await pair.RunTicksSync(5);
 
         await server.WaitPost(() =>
         {
             flashbangSys.TryFlashbangArea(source, null);
         });
 
-        await pair.RunTicksSync(3);
+        await pair.RunTicksSync(1);
 
         await server.WaitAssertion(() =>
         {
@@ -157,35 +120,30 @@ public sealed class FlashbangTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var entMan = server.ResolveDependency<IEntityManager>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = entMan.System<SharedMapSystem>();
         var flashbangSys = entMan.System<SharedFlashbangSystem>();
 
         EntityUid source = default;
         EntityUid target = default;
-        MapId mapId = default;
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out mapId);
-            mapMan.CreateGrid(mapId);
-            source = entMan.SpawnEntity("FlashbangTestSource", new MapCoordinates(0f, 0f, mapId));
+            mapSys.CreateMap(out var mapId);
+            source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             // Реальная дистанция = 7, coeff = 0.5, effective = 12 >= range 10 → эффект не применяется
-            target = entMan.SpawnEntity("FlashbangTestTarget", new MapCoordinates(7f, 0f, mapId));
+            target = entMan.SpawnEntity("MobHuman", new MapCoordinates(7f, 0f, mapId));
             // Добавляем защиту напрямую на цель (имитирует шлем/ухо)
             var prot = entMan.AddComponent<FlashbangProtectionComponent>(target);
             prot.ProtectionRangeCoefficient = 0.5f;
             entMan.Dirty(target, prot);
         });
 
-        await pair.RunTicksSync(5);
-
         await server.WaitPost(() =>
         {
             flashbangSys.TryFlashbangArea(source, null);
         });
 
-        await pair.RunTicksSync(3);
+        await pair.RunTicksSync(1);
 
         await server.WaitAssertion(() =>
         {
@@ -208,21 +166,18 @@ public sealed class FlashbangTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var entMan = server.ResolveDependency<IEntityManager>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = entMan.System<SharedMapSystem>();
         var flashbangSys = entMan.System<SharedFlashbangSystem>();
 
         EntityUid source = default;
         EntityUid target = default;
-        MapId mapId = default;
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out mapId);
-            mapMan.CreateGrid(mapId);
-            source = entMan.SpawnEntity("FlashbangTestSource", new MapCoordinates(0f, 0f, mapId));
+            mapSys.CreateMap(out var mapId);
+            source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             // Реальная дистанция = 7, большая защита
-            target = entMan.SpawnEntity("FlashbangTestTarget", new MapCoordinates(7f, 0f, mapId));
+            target = entMan.SpawnEntity("MobHuman", new MapCoordinates(7f, 0f, mapId));
             var prot = entMan.AddComponent<FlashbangProtectionComponent>(target);
             prot.ProtectionRangeCoefficient = 1f;
             entMan.Dirty(target, prot);
@@ -233,14 +188,12 @@ public sealed class FlashbangTest
             entMan.Dirty(source, comp);
         });
 
-        await pair.RunTicksSync(5);
-
         await server.WaitPost(() =>
         {
             flashbangSys.TryFlashbangArea(source, null);
         });
 
-        await pair.RunTicksSync(3);
+        await pair.RunTicksSync(1);
 
         await server.WaitAssertion(() =>
         {
@@ -263,34 +216,32 @@ public sealed class FlashbangTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var entMan = server.ResolveDependency<IEntityManager>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = entMan.System<SharedMapSystem>();
         var flashbangSys = entMan.System<SharedFlashbangSystem>();
 
         EntityUid source = default;
         EntityUid target = default;
-        MapId mapId = default;
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out mapId);
-            mapMan.CreateGrid(mapId);
-            source = entMan.SpawnEntity("FlashbangTestSource", new MapCoordinates(0f, 0f, mapId));
-            target = entMan.SpawnEntity("FlashbangTestVulnerableTarget", new MapCoordinates(3f, 0f, mapId));
+            mapSys.CreateMap(out var mapId);
+            source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
+            target = entMan.SpawnEntity("MobHuman", new MapCoordinates(3f, 0f, mapId));
+            var vuln = entMan.AddComponent<FlashbangVulnerableComponent>(target);
+            vuln.BypassProtection = true;
+            entMan.Dirty(target, vuln);
             // Добавляем большую защиту — для уязвимой цели она должна игнорироваться
             var prot = entMan.AddComponent<FlashbangProtectionComponent>(target);
             prot.ProtectionRangeCoefficient = 1f;
             entMan.Dirty(target, prot);
         });
 
-        await pair.RunTicksSync(5);
-
         await server.WaitPost(() =>
         {
             flashbangSys.TryFlashbangArea(source, null);
         });
 
-        await pair.RunTicksSync(3);
+        await pair.RunTicksSync(1);
 
         await server.WaitAssertion(() =>
         {
@@ -313,38 +264,37 @@ public sealed class FlashbangTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var entMan = server.ResolveDependency<IEntityManager>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = entMan.System<SharedMapSystem>();
         var flashbangSys = entMan.System<SharedFlashbangSystem>();
 
         EntityUid source = default;
         EntityUid target = default;
-        MapId mapId = default;
         bool eventRaised = false;
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out mapId);
-            mapMan.CreateGrid(mapId);
-            source = entMan.SpawnEntity("FlashbangTestSource", new MapCoordinates(0f, 0f, mapId));
-            target = entMan.SpawnEntity("FlashbangTestTarget", new MapCoordinates(0f, 0f, mapId));
+            mapSys.CreateMap(out var mapId);
+            source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
+            target = entMan.SpawnEntity("MobHuman", new MapCoordinates(0f, 0f, mapId));
 
             // Подписываемся на событие попытки и отменяем
-            entMan.EventBus.SubscribeLocalEvent<FlashbangAttemptEvent>(target, (ref FlashbangAttemptEvent ev) =>
-            {
-                ev.Cancelled = true;
-                eventRaised = true;
-            });
+            entMan.EventBus.SubscribeLocalEvent<MobStateComponent, FlashbangAttemptEvent>(
+                (EntityUid uid, MobStateComponent _, ref FlashbangAttemptEvent ev) =>
+                {
+                    if (uid != target)
+                        return;
+                    ev.Cancelled = true;
+                    eventRaised = true;
+                },
+                typeof(FlashbangTest));
         });
-
-        await pair.RunTicksSync(5);
 
         await server.WaitPost(() =>
         {
             flashbangSys.TryFlashbangArea(source, null);
         });
 
-        await pair.RunTicksSync(3);
+        await pair.RunTicksSync(1);
 
         await server.WaitAssertion(() =>
         {
