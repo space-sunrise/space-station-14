@@ -39,6 +39,14 @@
   description: construction-graph-tag-sunflower-crown-desc
 
 - type: construction
+  id: PrivateSecHardsuit
+  graph: PrivateSecHardsuit
+  startNode: start
+  targetNode: privateSec
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
   name: construction-graph-tag-atmoscross
   id: AtmosCrossCraft
   graph: AtmosCrossCraft
