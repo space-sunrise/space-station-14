@@ -10,7 +10,7 @@ SHARD_COUNT = 8
 
 
 def main():
-    project_root = Path(__file__).resolve().parents[2]
+    project_root = Path(__file__).resolve().parents[4]
     filter_dir = project_root / ".integration-filters"
     environment = os.environ.copy()
 
@@ -59,7 +59,7 @@ def main():
     subprocess.run(
         [
             sys.executable,
-            str(project_root / "Tools" / "test_shard_filter.py"),
+            str(Path(__file__).with_name("test_shard_filter.py")),
             "generate",
             str(SHARD_COUNT),
             str(filter_dir),
