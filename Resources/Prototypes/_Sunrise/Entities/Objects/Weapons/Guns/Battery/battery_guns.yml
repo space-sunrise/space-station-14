@@ -1220,7 +1220,7 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pilot_lasgun_world.rsi
-    scale: 0.83, 0.83
+    scale: 0.8, 0.8
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -1260,17 +1260,17 @@
     - proto: RedMediumLaser
       fireCost: 50
       name: lasgun-fire-mode-standard
-    - proto: RedHeavyLaser
+    - proto: RedLaserBeam
       fireCost: 100
       name: lasgun-fire-mode-overcharge
   - type: Appearance
   - type: MeleeWeapon
-    wideAnimationRotation: -135
-    angle: 0
-    animation: WeaponArcThrust
+    wideAnimationRotation: 90
     damage:
       types:
         Piercing: 12
+    angle: 0
+    animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: MeleeRequiresWield
