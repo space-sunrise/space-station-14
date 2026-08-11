@@ -28,6 +28,8 @@ def configured_changelog_file() -> Path:
     path = Path(value)
     if path.is_absolute() or ".." in path.parts:
         raise RuntimeError("CHANGELOG_FILE должен быть относительным путём внутри репозитория")
+    if path.parent == Path("."):
+        raise RuntimeError("CHANGELOG_FILE должен включать родительский каталог")
     return path
 
 

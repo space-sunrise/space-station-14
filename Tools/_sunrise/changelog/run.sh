@@ -22,6 +22,14 @@ if [[ -z "${CHANGELOG_FILE:-}" ]]; then
     exit 1
 fi
 changelog_directory="$(dirname -- "$CHANGELOG_FILE")"
+changelog_files=("$CHANGELOG_FILE")
+IFS=',' read -ra extra_categories <<< "${CHANGELOG_EXTRA_CATEGORIES:-}"
+for category in "${extra_categories[@]}"; do
+    category="${category//[[:space:]]/}"
+    if [[ -n "$category" ]]; then
+        changelog_files+=("$changelog_directory/$category.yml")
+    fi
+done
 
 for attempt in {1..5}; do
     git fetch --no-tags origin master
@@ -34,7 +42,8 @@ for attempt in {1..5}; do
     fi
 
     python Tools/_sunrise/changelog/changelog_actions.py "${arguments[@]}"
-    git add -- "$changelog_directory" Resources/Changelog/Parts
+    git add -- "${changelog_files[@]}"
+    git add -u -- Resources/Changelog/Parts
 
     if git diff --cached --quiet; then
         report_status notice "✅" "Чейнджлог уже актуален: публикация не требуется."

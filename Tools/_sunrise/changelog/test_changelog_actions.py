@@ -11,7 +11,7 @@ from unittest.mock import Mock, patch
 
 import yaml
 
-os.environ.setdefault("CHANGELOG_FILE", "Resources/Changelog/ChangelogSunrise.yml")
+os.environ["CHANGELOG_FILE"] = "Resources/Changelog/ChangelogSunrise.yml"
 
 import actions_changelogs_since_last_run as discord_changelog
 import changelog_actions
@@ -28,6 +28,10 @@ class ChangelogActionsTests(unittest.TestCase):
     def test_changelog_file_must_stay_inside_repository(self):
         with patch.dict("os.environ", {"CHANGELOG_FILE": "../outside.yml"}):
             with self.assertRaisesRegex(RuntimeError, "относительным путём внутри репозитория"):
+                changelog_actions.configured_changelog_file()
+
+        with patch.dict("os.environ", {"CHANGELOG_FILE": "Changelog.yml"}):
+            with self.assertRaisesRegex(RuntimeError, "родительский каталог"):
                 changelog_actions.configured_changelog_file()
 
     def test_legacy_non_padded_changelog_time_is_supported(self):
@@ -465,6 +469,10 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn('git commit -m "Automatic changelog update [skip ci]"', runner)
         self.assertIn('if [[ -z "${CHANGELOG_FILE:-}" ]]', runner)
         self.assertIn('changelog_directory="$(dirname -- "$CHANGELOG_FILE")"', runner)
+        self.assertIn('changelog_files+=("$changelog_directory/$category.yml")', runner)
+        self.assertIn('git add -- "${changelog_files[@]}"', runner)
+        self.assertIn("git add -u -- Resources/Changelog/Parts", runner)
+        self.assertNotIn('git add -- "$changelog_directory"', runner)
         self.assertIn("Чейнджлог уже актуален: публикация не требуется.", runner)
         self.assertIn("Чейнджлог успешно опубликован в master.", runner)
         self.assertIn("Не удалось отправить чейнджлог после пяти попыток.", runner)
