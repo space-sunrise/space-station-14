@@ -18,12 +18,26 @@ import yaml
 
 
 MAIN_CATEGORY = "Main"
+
+
+def configured_changelog_file() -> Path:
+    value = os.environ.get("CHANGELOG_FILE", "").strip()
+    if not value:
+        raise RuntimeError("Переменная CHANGELOG_FILE не задана")
+
+    path = Path(value)
+    if path.is_absolute() or ".." in path.parts:
+        raise RuntimeError("CHANGELOG_FILE должен быть относительным путём внутри репозитория")
+    return path
+
+
+CHANGELOG_FILE = configured_changelog_file()
 CATEGORY_FILES = {
-    MAIN_CATEGORY: "ChangelogSunrise.yml",
+    MAIN_CATEGORY: CHANGELOG_FILE.name,
 }
 WORKFLOW_FILE = "changelog.yml"
 PARTS_PATH = Path("Resources/Changelog/Parts")
-CHANGELOG_PATH = Path("Resources/Changelog")
+CHANGELOG_PATH = CHANGELOG_FILE.parent
 
 COMMENT_RE = re.compile(r"(?<!\\)<!--([^>]+)(?<!\\)-->")
 MARKER_RE = re.compile(r"^\s*(?::cl:|🆑)", re.IGNORECASE | re.MULTILINE)
@@ -366,6 +380,9 @@ def main() -> None:
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[3]
+    if not (repo_root / CHANGELOG_FILE).is_file():
+        raise RuntimeError(f"Файл чейнжлога не найден: {CHANGELOG_FILE}")
+
     category_files = CATEGORY_FILES.copy()
     configured_categories = [
         category.strip()

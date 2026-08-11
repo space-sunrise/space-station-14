@@ -27,7 +27,7 @@ DISCORD_PUBLISH_TIMEOUT = 14 * 60
 DISCORD_SPLIT_LIMIT = 2000
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
-CHANGELOG_FILE = os.environ.get("CHANGELOG_FILE", "Resources/Changelog/ChangelogSunrise.yml")
+CHANGELOG_FILE = os.environ.get("CHANGELOG_FILE")
 
 TYPES_TO_EMOJI = {
     "Fix":    "🪛",
@@ -53,6 +53,8 @@ class DiscordPublishTimeoutError(TimeoutError):
 def main():
     if not DISCORD_WEBHOOK_URL:
         return
+    if not CHANGELOG_FILE:
+        raise RuntimeError("Переменная CHANGELOG_FILE не задана")
 
     if DEBUG:
         # Для локальной отладки можно использовать отдельный файл

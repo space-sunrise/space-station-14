@@ -59,6 +59,7 @@ jobs:
         shell: bash
         env:
           CHANGELOG_EXTRA_CATEGORIES: ${{ vars.CHANGELOG_EXTRA_CATEGORIES }}
+          CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}
           ACTIONS_TOKEN: ${{ github.token }}
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || '' }}

@@ -1,3 +1,4 @@
+import os
 import yaml
 from datetime import datetime
 
@@ -10,7 +11,11 @@ def format_timestamp(timestamp):
 
     return formatted_time
 
-with open("Resources/Changelog/ChangelogSunrise.yml", "r", encoding="utf-8") as file:
+changelog_file = os.environ.get("CHANGELOG_FILE")
+if not changelog_file:
+    raise RuntimeError("Переменная CHANGELOG_FILE не задана")
+
+with open(changelog_file, "r", encoding="utf-8") as file:
     data = yaml.safe_load(file)
 
 entries = data.get("Entries", [])

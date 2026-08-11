@@ -17,6 +17,12 @@ report_status() {
 git config user.name "Sunrise-Bot"
 git config user.email "sunrise.project.top@gmail.com"
 
+if [[ -z "${CHANGELOG_FILE:-}" ]]; then
+    report_status error "❌" "Переменная CHANGELOG_FILE не задана."
+    exit 1
+fi
+changelog_directory="$(dirname -- "$CHANGELOG_FILE")"
+
 for attempt in {1..5}; do
     git fetch --no-tags origin master
     git reset --hard origin/master
@@ -28,7 +34,7 @@ for attempt in {1..5}; do
     fi
 
     python Tools/_sunrise/changelog/changelog_actions.py "${arguments[@]}"
-    git add -- Resources/Changelog
+    git add -- "$changelog_directory" Resources/Changelog/Parts
 
     if git diff --cached --quiet; then
         report_status notice "✅" "Чейнджлог уже актуален: публикация не требуется."

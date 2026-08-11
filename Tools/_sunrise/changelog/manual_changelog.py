@@ -3,6 +3,7 @@
 
 import argparse
 import datetime
+import os
 from re import compile as re_compile, I as re_I
 from sys import stdin
 from yaml import safe_load as yaml_safe_load, dump as yaml_dump
@@ -119,7 +120,7 @@ def parse_github_pull_request(changelog, stream):
 
 
 def main():
-    default_filename = 'Resources/Changelog/ChangelogSunrise.yml'
+    default_filename = os.environ.get('CHANGELOG_FILE')
 
     parser = argparse.ArgumentParser(description='Update the changelog manually.')
 
@@ -132,6 +133,9 @@ def main():
                         help='which file to save results to')
 
     args = parser.parse_args()
+
+    if not args.infile or not args.outfile:
+        parser.error('задайте CHANGELOG_FILE либо передайте --infile и --outfile')
 
     infile = open(args.infile, 'r', encoding="utf-8-sig")
     cl = load_changelog(infile)
