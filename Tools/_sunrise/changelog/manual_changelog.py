@@ -73,8 +73,8 @@ def parse_github_pull_request(changelog, stream):
 
     try:
         # Разбираем входной поток.
-        for line in stream:
-            line = line.strip()
+        for raw_line in stream:
+            line = raw_line.strip()
 
             # Читаем строки изменений.
             match = re_change.match(line)

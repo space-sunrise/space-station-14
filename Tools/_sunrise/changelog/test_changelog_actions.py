@@ -277,6 +277,16 @@ class ChangelogActionsTests(unittest.TestCase):
             all(call.kwargs["timeout"] == discord_changelog.HTTP_REQUEST_TIMEOUT for call in post.call_args_list),
         )
 
+    def test_unexpected_discord_status_keeps_status_code(self):
+        response = Mock(status_code=200)
+
+        with patch.object(discord_changelog.requests, "post", return_value=response):
+            with self.assertRaises(discord_changelog.UnexpectedDiscordStatusError) as raised:
+                discord_changelog.send_embed_discord({"description": "test"})
+
+        self.assertEqual(200, raised.exception.status_code)
+        self.assertEqual("Discord webhook вернул неожиданный статус 200", str(raised.exception))
+
     def test_manual_and_reader_timestamps_support_optional_microseconds(self):
         self.assertRegex(manual_changelog.make_timestamp(), r"\.\d{6}\+00:00$")
 
@@ -317,9 +327,23 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("workflow_dispatch:", workflow)
         self.assertIn("schedule:", workflow)
         self.assertIn("permissions: {}", workflow)
-        self.assertIn("actions/create-github-app-token@v3.2.0", workflow)
+        self.assertIn(
+            "actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0",
+            workflow,
+        )
+        self.assertIn("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2", workflow)
+        self.assertIn(
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0",
+            workflow,
+        )
+        self.assertNotRegex(
+            workflow,
+            r"uses: actions/(?:create-github-app-token|checkout|setup-python)@v",
+        )
         self.assertIn("client-id: ${{ vars.CHANGELOG_APP_CLIENT_ID }}", workflow)
         self.assertIn("private-key: ${{ secrets.CHANGELOG_APP_PRIVATE_KEY }}", workflow)
+        self.assertIn("permission-contents: write", workflow)
+        self.assertIn("permission-pull-requests: read", workflow)
         self.assertIn("token: ${{ steps.app-token.outputs.token }}", workflow)
         self.assertNotIn("CHANGELOG_TOKEN", workflow)
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)

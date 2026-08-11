@@ -35,6 +35,13 @@ TYPES_TO_EMOJI = {
 
 ChangelogEntry = dict[str, Any]
 
+
+class UnexpectedDiscordStatusError(RuntimeError):
+    def __init__(self, status_code: int) -> None:
+        self.status_code = status_code
+        super().__init__(f"Discord webhook вернул неожиданный статус {status_code}")
+
+
 def main():
     if not DISCORD_WEBHOOK_URL:
         return
@@ -181,12 +188,12 @@ def send_embed_discord(embed: dict) -> None:
             return
         if response.status_code == 429 and retry_count < DISCORD_RETRY_LIMIT:
             retry_after = response.json().get("retry_after", 1)
-            print(f"Rate limited: sleeep {retry_after} seconds")
+            print(f"Rate limited: sleep {retry_after} seconds")
             time.sleep(retry_after)
             continue
 
         response.raise_for_status()
-        raise RuntimeError(f"Discord webhook вернул неожиданный статус {response.status_code}")
+        raise UnexpectedDiscordStatusError(response.status_code)
 
 
 def split_message(message: str, limit: int = DISCORD_SPLIT_LIMIT) -> list[str]:
