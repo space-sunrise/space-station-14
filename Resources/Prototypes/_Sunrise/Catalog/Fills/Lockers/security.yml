@@ -85,7 +85,7 @@
         - id: WeaponTemperatureGun
 
 - type: entity
-  parent: GunSafeSuperweaponBaseSecure
+  parent: GunSafeSuperweaponSecureGamma
   id: GunSafeSuperDMR
   name: Larker safe
   components:
@@ -101,7 +101,7 @@
           amount: 2
 
 - type: entity
-  parent: GunSafeSuperweaponBaseSecure
+  parent: GunSafeSuperweaponSecureGamma
   id: GunSafeSuperDMRElite
   name: SKM-28 safe
   components:

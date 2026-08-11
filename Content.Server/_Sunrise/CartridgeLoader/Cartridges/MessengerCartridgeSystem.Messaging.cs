@@ -1,8 +1,10 @@
 using Content.Server._Sunrise.Messenger;
+using Content.Shared._Sunrise.Messenger;
 using Content.Shared.CartridgeLoader;
 using Content.Shared._Sunrise.CartridgeLoader.Cartridges;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.PDA;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
@@ -23,8 +25,11 @@ public sealed partial class MessengerCartridgeSystem
         switch (message.Action)
         {
             case MessengerUiAction.SendMessage:
-                if (message.Content != null)
+                if (message.Content != null && HasMessagePayload(message.Content, message.ImagePath))
+                {
+                    RaiseMessengerMessageSent(message.Actor, loaderUid, message.RecipientId, message.GroupId);
                     SendMessage(uid, component, loaderUid, deviceNetwork, message.RecipientId, message.GroupId, message.Content, message.ImagePath);
+                }
                 break;
             case MessengerUiAction.CreateGroup:
                 if (message.GroupName != null)
@@ -136,8 +141,29 @@ public sealed partial class MessengerCartridgeSystem
         };
 
         _deviceNetwork.QueuePacket(loaderUid, component.ServerAddress, payload, frequency: messengerFreq, network: pdaDevice.DeviceNetId);
-
         RestoreFrequency(loaderUid, pdaDevice, originalFreq);
+    }
+
+    private static bool HasMessagePayload(string content, string? imagePath)
+    {
+        return !string.IsNullOrWhiteSpace(content) || !string.IsNullOrWhiteSpace(imagePath);
+    }
+
+    private void RaiseMessengerMessageSent(EntityUid actor, EntityUid pdaUid, string? recipientId, string? groupId)
+    {
+        if (actor.IsValid() && Exists(actor))
+        {
+            RaiseLocalEvent(actor, new MessengerMessageSentEvent(actor, recipientId, groupId));
+            return;
+        }
+
+        if (!TryComp<PdaComponent>(pdaUid, out var pda) ||
+            pda.PdaOwner is not { } owner)
+        {
+            return;
+        }
+
+        RaiseLocalEvent(owner, new MessengerMessageSentEvent(owner, recipientId, groupId));
     }
 
     private void CreateGroup(EntityUid uid, MessengerCartridgeComponent component, EntityUid loaderUid, DeviceNetworkComponent deviceNetwork, string groupName)
