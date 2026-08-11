@@ -10,6 +10,7 @@ import os
 import time
 import textwrap
 from pathlib import Path
+from urllib.parse import quote
 
 import requests
 import yaml
@@ -151,9 +152,10 @@ def get_last_changelog_by_sha(
         "ref": sha,
     }
     headers = {"Accept": "application/vnd.github.raw"}
+    encoded_changelog_path = quote(changelog_file.as_posix(), safe="/")
 
     resp = sess.get(
-        f"{GITHUB_API_URL}/repos/{github_repository}/contents/{changelog_file.as_posix()}",
+        f"{GITHUB_API_URL}/repos/{github_repository}/contents/{encoded_changelog_path}",
         headers=headers,
         params=params,
         timeout=HTTP_REQUEST_TIMEOUT,

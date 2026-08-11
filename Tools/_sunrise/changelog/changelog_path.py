@@ -12,6 +12,8 @@ def validate_changelog_path(value: str | None) -> Path:
     if (
         posix_path.is_absolute()
         or windows_path.is_absolute()
+        or windows_path.drive
+        or windows_path.root
         or ".." in posix_path.parts
         or ".." in windows_path.parts
     ):

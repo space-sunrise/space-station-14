@@ -26,7 +26,13 @@ RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 class ChangelogActionsTests(unittest.TestCase):
     def test_changelog_file_must_stay_inside_repository(self):
-        for invalid_path in ("../outside.yml", "/outside.yml", "C:/outside.yml"):
+        for invalid_path in (
+            "../outside.yml",
+            "/outside.yml",
+            "C:/outside.yml",
+            "C:outside.yml",
+            "\\outside.yml",
+        ):
             with self.subTest(invalid_path=invalid_path), patch.dict(
                 "os.environ", {"CHANGELOG_FILE": invalid_path}
             ):
@@ -327,6 +333,24 @@ class ChangelogActionsTests(unittest.TestCase):
                 discord_changelog.get_last_changelog_by_sha(session, "abc", "space-sunrise/repo")
 
         session.get.assert_not_called()
+
+    def test_discord_api_encodes_changelog_path(self):
+        session = Mock()
+
+        discord_changelog.get_last_changelog_by_sha(
+            session,
+            "abc",
+            "space-sunrise/repo",
+            Path("Resources/Changelog/Changelog?test.yml"),
+        )
+
+        session.get.assert_called_once_with(
+            "https://api.github.com/repos/space-sunrise/repo/contents/"
+            "Resources/Changelog/Changelog%3Ftest.yml",
+            headers={"Accept": "application/vnd.github.raw"},
+            params={"ref": "abc"},
+            timeout=discord_changelog.HTTP_REQUEST_TIMEOUT,
+        )
 
     def test_checkpoint_falls_back_to_latest_changelog_entry(self):
         with tempfile.TemporaryDirectory() as directory:
