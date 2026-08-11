@@ -15,6 +15,8 @@ import requests
 import yaml
 from typing import Any, Iterable
 
+from changelog_path import validate_changelog_path
+
 DEBUG = False
 DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
 GITHUB_API_URL    = os.environ.get("GITHUB_API_URL", "https://api.github.com")
@@ -53,8 +55,7 @@ class DiscordPublishTimeoutError(TimeoutError):
 def main():
     if not DISCORD_WEBHOOK_URL:
         return
-    if not CHANGELOG_FILE:
-        raise RuntimeError("Переменная CHANGELOG_FILE не задана")
+    changelog_file = validate_changelog_path(CHANGELOG_FILE)
 
     if DEBUG:
         # Для локальной отладки можно использовать отдельный файл
@@ -63,10 +64,10 @@ def main():
     else:
         # При обычном запуске через GitHub Actions предыдущий
         # чейнджлог загружается через GitHub API.
-        last_changelog_stream = get_last_changelog()
+        last_changelog_stream = get_last_changelog(changelog_file)
 
     last_changelog = yaml.safe_load(last_changelog_stream)
-    with open(CHANGELOG_FILE, "r") as f:
+    with changelog_file.open("r") as f:
         cur_changelog = yaml.safe_load(f)
 
     diff = diff_changelog(last_changelog, cur_changelog)
@@ -111,7 +112,10 @@ def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
     return resp.json()
 
 
-def get_last_changelog() -> str:
+def get_last_changelog(changelog_file: Path | None = None) -> str:
+    changelog_file = validate_changelog_path(
+        str(changelog_file) if changelog_file else CHANGELOG_FILE,
+    )
     github_repository = os.environ["GITHUB_REPOSITORY"]
     github_run = os.environ["GITHUB_RUN_ID"]
     github_token = os.environ["GITHUB_TOKEN"]
@@ -125,24 +129,31 @@ def get_last_changelog() -> str:
     last_sha = most_recent["head_commit"]["id"]
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog_stream = get_last_changelog_by_sha(
-        session, last_sha, github_repository
+        session, last_sha, github_repository, changelog_file
     )
 
     return last_changelog_stream
 
+
 def get_last_changelog_by_sha(
-    sess: requests.Session, sha: str, github_repository: str
+    sess: requests.Session,
+    sha: str,
+    github_repository: str,
+    changelog_file: Path | None = None,
 ) -> str:
     """
     Получает предыдущую версию YAML-чейнджлога через GitHub API, поскольку Actions использует неглубокий клон.
     """
+    changelog_file = validate_changelog_path(
+        str(changelog_file) if changelog_file else CHANGELOG_FILE,
+    )
     params = {
         "ref": sha,
     }
     headers = {"Accept": "application/vnd.github.raw"}
 
     resp = sess.get(
-        f"{GITHUB_API_URL}/repos/{github_repository}/contents/{CHANGELOG_FILE}",
+        f"{GITHUB_API_URL}/repos/{github_repository}/contents/{changelog_file.as_posix()}",
         headers=headers,
         params=params,
         timeout=HTTP_REQUEST_TIMEOUT,

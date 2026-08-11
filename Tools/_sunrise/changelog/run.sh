@@ -26,9 +26,14 @@ changelog_files=("$CHANGELOG_FILE")
 IFS=',' read -ra extra_categories <<< "${CHANGELOG_EXTRA_CATEGORIES:-}"
 for category in "${extra_categories[@]}"; do
     category="${category//[[:space:]]/}"
-    if [[ -n "$category" ]]; then
-        changelog_files+=("$changelog_directory/$category.yml")
+    if [[ -z "$category" ]]; then
+        continue
     fi
+    if [[ "$category" == /* || "$category" == *".."* || ! "$category" =~ ^[A-Za-z]+$ ]]; then
+        report_status error "❌" "Недопустимое имя категории чейнжлога: $category"
+        exit 1
+    fi
+    changelog_files+=("$changelog_directory/$category.yml")
 done
 
 for attempt in {1..5}; do
@@ -43,7 +48,7 @@ for attempt in {1..5}; do
 
     python Tools/_sunrise/changelog/changelog_actions.py "${arguments[@]}"
     git add -- "${changelog_files[@]}"
-    git add -u -- Resources/Changelog/Parts
+    git add -A -- Resources/Changelog/Parts
 
     if git diff --cached --quiet; then
         report_status notice "✅" "Чейнджлог уже актуален: публикация не требуется."

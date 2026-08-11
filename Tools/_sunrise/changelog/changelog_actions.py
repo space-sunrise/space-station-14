@@ -16,21 +16,14 @@ from urllib.request import Request, urlopen
 
 import yaml
 
+from changelog_path import validate_changelog_path
+
 
 MAIN_CATEGORY = "Main"
 
 
 def configured_changelog_file() -> Path:
-    value = os.environ.get("CHANGELOG_FILE", "").strip()
-    if not value:
-        raise RuntimeError("Переменная CHANGELOG_FILE не задана")
-
-    path = Path(value)
-    if path.is_absolute() or ".." in path.parts:
-        raise RuntimeError("CHANGELOG_FILE должен быть относительным путём внутри репозитория")
-    if path.parent == Path("."):
-        raise RuntimeError("CHANGELOG_FILE должен включать родительский каталог")
-    return path
+    return validate_changelog_path(os.environ.get("CHANGELOG_FILE"))
 
 
 CHANGELOG_FILE = configured_changelog_file()
@@ -204,20 +197,32 @@ def load_checkpoint(repo_root: Path, category_files: dict[str, str] = CATEGORY_F
         token_environment="ACTIONS_TOKEN",
     )
     current_run_id = os.environ.get("GITHUB_RUN_ID")
-    previous_runs = [
-        run
-        for run in response.get("workflow_runs", [])
-        if str(run.get("id")) != current_run_id
-    ]
-    if not previous_runs:
-        report_status(
-            "skip",
-            "Предыдущий успешный запуск Actions не найден: сверяем от последней записи чейнжлога.",
+    previous_runs = sorted(
+        [
+            run
+            for run in response.get("workflow_runs", [])
+            if str(run.get("id")) != current_run_id
+        ],
+        key=lambda run: parse_time(run["created_at"]),
+        reverse=True,
+    )
+    for previous_run in previous_runs:
+        jobs = github_request(
+            f"/repos/{repository_slug()}/actions/runs/{previous_run['id']}/jobs",
+            {"per_page": 100},
+            token_environment="ACTIONS_TOKEN",
         )
-        return latest_changelog_time(repo_root, category_files)
+        if any(
+            job.get("name") == "update" and job.get("conclusion") == "success"
+            for job in jobs.get("jobs", [])
+        ):
+            return parse_time(previous_run.get("run_started_at") or previous_run["created_at"])
 
-    previous_run = max(previous_runs, key=lambda run: parse_time(run["created_at"]))
-    return parse_time(previous_run.get("run_started_at") or previous_run["created_at"])
+    report_status(
+        "skip",
+        "Предыдущий успешный запуск Actions не найден: сверяем от последней записи чейнжлога.",
+    )
+    return latest_changelog_time(repo_root, category_files)
 
 
 def list_merged_pull_requests(checkpoint: datetime) -> list[dict[str, Any]]:

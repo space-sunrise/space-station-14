@@ -8,6 +8,8 @@ from re import compile as re_compile, I as re_I
 from sys import stdin
 from yaml import safe_load as yaml_safe_load, dump as yaml_dump
 
+from changelog_path import validate_changelog_path
+
 
 def make_timestamp():
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -120,7 +122,12 @@ def parse_github_pull_request(changelog, stream):
 
 
 def main():
-    default_filename = os.environ.get('CHANGELOG_FILE')
+    configured_filename = os.environ.get('CHANGELOG_FILE')
+    default_filename = (
+        str(validate_changelog_path(configured_filename))
+        if configured_filename
+        else None
+    )
 
     parser = argparse.ArgumentParser(description='Update the changelog manually.')
 

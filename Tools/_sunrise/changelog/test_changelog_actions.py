@@ -7,7 +7,7 @@ import unittest
 from contextlib import redirect_stdout
 from datetime import datetime, timezone
 from pathlib import Path
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, call, patch
 
 import yaml
 
@@ -26,9 +26,12 @@ RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 class ChangelogActionsTests(unittest.TestCase):
     def test_changelog_file_must_stay_inside_repository(self):
-        with patch.dict("os.environ", {"CHANGELOG_FILE": "../outside.yml"}):
-            with self.assertRaisesRegex(RuntimeError, "относительным путём внутри репозитория"):
-                changelog_actions.configured_changelog_file()
+        for invalid_path in ("../outside.yml", "/outside.yml", "C:/outside.yml"):
+            with self.subTest(invalid_path=invalid_path), patch.dict(
+                "os.environ", {"CHANGELOG_FILE": invalid_path}
+            ):
+                with self.assertRaisesRegex(RuntimeError, "относительным путём внутри репозитория"):
+                    changelog_actions.configured_changelog_file()
 
         with patch.dict("os.environ", {"CHANGELOG_FILE": "Changelog.yml"}):
             with self.assertRaisesRegex(RuntimeError, "родительский каталог"):
@@ -256,6 +259,11 @@ class ChangelogActionsTests(unittest.TestCase):
                     "run_started_at": "2026-08-11T13:01:00Z",
                 },
                 {
+                    "id": 150,
+                    "created_at": "2026-08-11T12:30:00Z",
+                    "run_started_at": "2026-08-11T12:31:00Z",
+                },
+                {
                     "id": 100,
                     "created_at": "2026-08-11T12:00:00Z",
                     "run_started_at": "2026-08-11T12:01:00Z",
@@ -263,21 +271,62 @@ class ChangelogActionsTests(unittest.TestCase):
             ],
         }
 
+        def request_response(path, *_args, **_kwargs):
+            if path.endswith("/actions/workflows/changelog.yml/runs"):
+                return response
+            if path.endswith("/actions/runs/150/jobs"):
+                return {
+                    "jobs": [
+                        {"name": "update", "status": "completed", "conclusion": "skipped"},
+                    ],
+                }
+            if path.endswith("/actions/runs/100/jobs"):
+                return {
+                    "jobs": [
+                        {"name": "update", "status": "completed", "conclusion": "success"},
+                    ],
+                }
+            self.fail(f"Неожиданный запрос: {path}")
+
         with patch.dict(
             "os.environ",
             {
                 "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
                 "GITHUB_RUN_ID": "200",
             },
-        ), patch.object(changelog_actions, "github_request", return_value=response) as request:
+        ), patch.object(changelog_actions, "github_request", side_effect=request_response) as request:
             checkpoint = changelog_actions.load_checkpoint(Path("."))
 
         self.assertEqual(datetime(2026, 8, 11, 12, 1, tzinfo=timezone.utc), checkpoint)
-        request.assert_called_once_with(
-            "/repos/space-sunrise/sunrise-station/actions/workflows/changelog.yml/runs",
-            {"status": "success", "per_page": 100},
-            token_environment="ACTIONS_TOKEN",
+        self.assertEqual(
+            [
+                call(
+                    "/repos/space-sunrise/sunrise-station/actions/workflows/changelog.yml/runs",
+                    {"status": "success", "per_page": 100},
+                    token_environment="ACTIONS_TOKEN",
+                ),
+                call(
+                    "/repos/space-sunrise/sunrise-station/actions/runs/150/jobs",
+                    {"per_page": 100},
+                    token_environment="ACTIONS_TOKEN",
+                ),
+                call(
+                    "/repos/space-sunrise/sunrise-station/actions/runs/100/jobs",
+                    {"per_page": 100},
+                    token_environment="ACTIONS_TOKEN",
+                ),
+            ],
+            request.call_args_list,
         )
+
+    def test_discord_api_rejects_unsafe_changelog_path(self):
+        session = Mock()
+
+        with patch.object(discord_changelog, "CHANGELOG_FILE", "../outside.yml"):
+            with self.assertRaisesRegex(RuntimeError, "относительным путём внутри репозитория"):
+                discord_changelog.get_last_changelog_by_sha(session, "abc", "space-sunrise/repo")
+
+        session.get.assert_not_called()
 
     def test_checkpoint_falls_back_to_latest_changelog_entry(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -469,14 +518,53 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn('git commit -m "Automatic changelog update [skip ci]"', runner)
         self.assertIn('if [[ -z "${CHANGELOG_FILE:-}" ]]', runner)
         self.assertIn('changelog_directory="$(dirname -- "$CHANGELOG_FILE")"', runner)
+        self.assertIn('"$category" == *".."*', runner)
+        self.assertIn('! "$category" =~ ^[A-Za-z]+$', runner)
         self.assertIn('changelog_files+=("$changelog_directory/$category.yml")', runner)
         self.assertIn('git add -- "${changelog_files[@]}"', runner)
-        self.assertIn("git add -u -- Resources/Changelog/Parts", runner)
+        self.assertIn("git add -A -- Resources/Changelog/Parts", runner)
         self.assertNotIn('git add -- "$changelog_directory"', runner)
         self.assertIn("Чейнджлог уже актуален: публикация не требуется.", runner)
         self.assertIn("Чейнджлог успешно опубликован в master.", runner)
         self.assertIn("Не удалось отправить чейнджлог после пяти попыток.", runner)
         self.assertNotIn("github.event.pull_request.head", workflow)
+
+    def test_parts_staging_includes_new_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            changelog = repo_root / "Resources/Changelog/ChangelogSunrise.yml"
+            part = repo_root / "Resources/Changelog/Parts/new.yml"
+            changelog.parent.mkdir(parents=True)
+            part.parent.mkdir(parents=True)
+            changelog.write_text("Entries: []\n", encoding="utf-8")
+            part.write_text("changes: []\n", encoding="utf-8")
+
+            subprocess.run(["git", "init", "--quiet"], cwd=repo_root, check=True)
+            subprocess.run(
+                ["git", "add", "--", "Resources/Changelog/ChangelogSunrise.yml"],
+                cwd=repo_root,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "add", "-A", "--", "Resources/Changelog/Parts"],
+                cwd=repo_root,
+                check=True,
+            )
+            staged = subprocess.run(
+                ["git", "diff", "--cached", "--name-only"],
+                cwd=repo_root,
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.splitlines()
+
+        self.assertEqual(
+            [
+                "Resources/Changelog/ChangelogSunrise.yml",
+                "Resources/Changelog/Parts/new.yml",
+            ],
+            staged,
+        )
 
 
 if __name__ == "__main__":

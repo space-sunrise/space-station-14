@@ -1,6 +1,10 @@
-import os
-import yaml
 from datetime import datetime
+import os
+
+import yaml
+
+from changelog_path import validate_changelog_path
+
 
 def format_timestamp(timestamp):
     # Разбираем дату и время в формате ISO 8601.
@@ -11,11 +15,9 @@ def format_timestamp(timestamp):
 
     return formatted_time
 
-changelog_file = os.environ.get("CHANGELOG_FILE")
-if not changelog_file:
-    raise RuntimeError("Переменная CHANGELOG_FILE не задана")
+changelog_file = validate_changelog_path(os.environ.get("CHANGELOG_FILE"))
 
-with open(changelog_file, "r", encoding="utf-8") as file:
+with changelog_file.open("r", encoding="utf-8") as file:
     data = yaml.safe_load(file)
 
 entries = data.get("Entries", [])
