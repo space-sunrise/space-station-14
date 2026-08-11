@@ -8,7 +8,10 @@
   },
   "states": [
     {
-      "name": "pouch"
+      "name": "icon"
+    },
+    {
+      "name": "icon-open"
     }
   ]
 }

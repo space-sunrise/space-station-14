@@ -128,8 +128,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
-    state: pouch
+    layers:
+      - map: [ base ]
+        state: icon
   - type: Appearance
   - type: Item
     size: Huge
@@ -139,6 +140,12 @@
     quickEquip: false
     slots:
     - pocket
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
 
 - type: entity
   parent: PouchCivil
@@ -148,7 +155,7 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
-    state: pouch
+    state: icon
   - type: Storage
     maxItemSize: Normal
     grid:
