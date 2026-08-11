@@ -17,7 +17,12 @@ on:
   schedule:
     - cron: "17 * * * *"
 
-permissions: {}
+permissions:
+  actions: read
+
+concurrency:
+  group: automatic-changelog
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -54,6 +59,8 @@ jobs:
         shell: bash
         env:
           CHANGELOG_EXTRA_CATEGORIES: ${{ vars.CHANGELOG_EXTRA_CATEGORIES }}
+          CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}
+          ACTIONS_TOKEN: ${{ github.token }}
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || '' }}
         run: bash Tools/_sunrise/changelog/run.sh
