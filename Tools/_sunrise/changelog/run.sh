@@ -35,7 +35,7 @@ for attempt in {1..5}; do
         exit 0
     fi
 
-    git commit -m "Automatic changelog update"
+    git commit -m "Automatic changelog update [skip ci]"
     if git push origin HEAD:master; then
         report_status notice "✅" "Чейнджлог успешно опубликован в master."
         exit 0

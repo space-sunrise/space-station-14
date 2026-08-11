@@ -450,6 +450,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("for attempt in {1..5}", runner)
         self.assertIn("python Tools/_sunrise/changelog/changelog_actions.py", runner)
         self.assertNotIn("changelog-state.json", runner)
+        self.assertIn('git commit -m "Automatic changelog update [skip ci]"', runner)
         self.assertIn("Чейнджлог уже актуален: публикация не требуется.", runner)
         self.assertIn("Чейнджлог успешно опубликован в master.", runner)
         self.assertIn("Не удалось отправить чейнджлог после пяти попыток.", runner)
