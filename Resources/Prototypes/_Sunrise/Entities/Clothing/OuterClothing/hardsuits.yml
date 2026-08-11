@@ -414,7 +414,7 @@
     price: 0
 
 - type: entity
-  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterStorageBase, ClothingOuterHardsuitBase ]
+  parent: [ HardsuitSlotAmpulaPirate, ClothingOuterHardsuitBase, ClothingOuterStorageBase, BaseMajorContraband ]
   id: ClothingOuterHardsuitPrivateer
   name: freelance hardsuit
   suffix: Pirate
