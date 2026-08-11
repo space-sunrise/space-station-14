@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+# Sunrise added start - публикация чейнджлога Sunrise в Discord
 #
-# Sends updates to a Discord webhook for new changelog entries since the last GitHub Actions publish run.
-# Automatically figures out the last run and changelog contents with the GitHub API.
+# Отправляет новые записи чейнджлога в вебхук Discord после последнего запуска публикации GitHub Actions.
+# Автоматически определяет последний запуск и получает чейнджлог через GitHub API.
 #
 import io
+import math
 import os
 import time
 import textwrap
@@ -17,6 +18,10 @@ from typing import Any, Iterable
 DEBUG = False
 DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
 GITHUB_API_URL    = os.environ.get("GITHUB_API_URL", "https://api.github.com")
+HTTP_REQUEST_TIMEOUT = 30
+DISCORD_RETRY_LIMIT = 5
+DISCORD_DEFAULT_RETRY_AFTER = 1
+DISCORD_PUBLISH_TIMEOUT = 14 * 60
 
 # https://discord.com/developers/docs/resources/webhook
 DISCORD_SPLIT_LIMIT = 2000
@@ -33,17 +38,29 @@ TYPES_TO_EMOJI = {
 
 ChangelogEntry = dict[str, Any]
 
+
+class UnexpectedDiscordStatusError(RuntimeError):
+    def __init__(self, status_code: int) -> None:
+        self.status_code = status_code
+        super().__init__(f"Discord webhook вернул неожиданный статус {status_code}")
+
+
+class DiscordPublishTimeoutError(TimeoutError):
+    def __init__(self) -> None:
+        super().__init__("Истёк общий дедлайн публикации чейнжлога в Discord")
+
+
 def main():
     if not DISCORD_WEBHOOK_URL:
         return
 
     if DEBUG:
-        # to debug this script locally, you can use
-        # a separate local file as the old changelog
+        # Для локальной отладки можно использовать отдельный файл
+        # в качестве предыдущего чейнджлога.
         last_changelog_stream = DEBUG_CHANGELOG_FILE_OLD.read_text()
     else:
-        # when running this normally in a GitHub actions workflow,
-        # it will get the old changelog from the GitHub API
+        # При обычном запуске через GitHub Actions предыдущий
+        # чейнджлог загружается через GitHub API.
         last_changelog_stream = get_last_changelog()
 
     last_changelog = yaml.safe_load(last_changelog_stream)
@@ -60,7 +77,7 @@ def get_most_recent_workflow(
     workflow_run = get_current_run(sess, github_repository, github_run)
     past_runs = get_past_runs(sess, workflow_run)
     for run in past_runs["workflow_runs"]:
-        # First past successful run that isn't our current run.
+        # Первый предыдущий успешный запуск, отличный от текущего.
         if run["id"] == workflow_run["id"]:
             continue
 
@@ -71,7 +88,8 @@ def get_current_run(
     sess: requests.Session, github_repository: str, github_run: str
 ) -> Any:
     resp = sess.get(
-        f"{GITHUB_API_URL}/repos/{github_repository}/actions/runs/{github_run}"
+        f"{GITHUB_API_URL}/repos/{github_repository}/actions/runs/{github_run}",
+        timeout=HTTP_REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
     return resp.json()
@@ -79,10 +97,14 @@ def get_current_run(
 
 def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
     """
-    Get all successful workflow runs before our current one.
+    Возвращает все успешные запуски рабочего процесса до текущего.
     """
     params = {"status": "success", "created": f"<={current_run['created_at']}"}
-    resp = sess.get(f"{current_run['workflow_url']}/runs", params=params)
+    resp = sess.get(
+        f"{current_run['workflow_url']}/runs",
+        params=params,
+        timeout=HTTP_REQUEST_TIMEOUT,
+    )
     resp.raise_for_status()
     return resp.json()
 
@@ -94,7 +116,7 @@ def get_last_changelog() -> str:
 
     session = requests.Session()
     session.headers["Authorization"] = f"Bearer {github_token}"
-    session.headers["Accept"] = "Accept: application/vnd.github+json"
+    session.headers["Accept"] = "application/vnd.github+json"
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
     most_recent = get_most_recent_workflow(session, github_repository, github_run)
@@ -110,7 +132,7 @@ def get_last_changelog_by_sha(
     sess: requests.Session, sha: str, github_repository: str
 ) -> str:
     """
-    Use GitHub API to get the previous version of the changelog YAML (Actions builds are fetched with a shallow clone)
+    Получает предыдущую версию YAML-чейнджлога через GitHub API, поскольку Actions использует неглубокий клон.
     """
     params = {
         "ref": sha,
@@ -121,6 +143,7 @@ def get_last_changelog_by_sha(
         f"{GITHUB_API_URL}/repos/{github_repository}/contents/{CHANGELOG_FILE}",
         headers=headers,
         params=params,
+        timeout=HTTP_REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
     return resp.text
@@ -130,7 +153,7 @@ def diff_changelog(
     old: dict[str, Any], cur: dict[str, Any]
 ) -> Iterable[ChangelogEntry]:
     """
-    Find all new entries not present in the previous publish.
+    Находит новые записи, которых не было в предыдущей публикации.
     """
     old_entry_ids = {e["id"] for e in old["Entries"]}
     return (e for e in cur["Entries"] if e["id"] not in old_entry_ids)
@@ -139,9 +162,9 @@ def diff_changelog(
 def get_discord_body(content: str):
     return {
         "content": content,
-        # Do not allow any mentions.
+        # Запрещаем любые упоминания.
         "allowed_mentions": {"parse": []},
-        # SUPPRESS_EMBEDS
+        # Флаг SUPPRESS_EMBEDS.
         "flags": 1 << 2,
     }
 
@@ -149,10 +172,29 @@ def get_discord_body(content: str):
 def send_discord(content: str):
     body = get_discord_body(content)
 
-    response = requests.post(DISCORD_WEBHOOK_URL, json=body)
+    response = requests.post(DISCORD_WEBHOOK_URL, json=body, timeout=HTTP_REQUEST_TIMEOUT)
     response.raise_for_status()
 
-def send_embed_discord(embed: dict) -> None:
+
+def get_retry_after(response: requests.Response) -> int | float:
+    try:
+        retry_after = response.json().get("retry_after")
+    except (AttributeError, TypeError, ValueError):
+        return DISCORD_DEFAULT_RETRY_AFTER
+
+    if isinstance(retry_after, bool):
+        return DISCORD_DEFAULT_RETRY_AFTER
+    if isinstance(retry_after, int):
+        return retry_after if retry_after >= 0 else DISCORD_DEFAULT_RETRY_AFTER
+    if not isinstance(retry_after, float) or not math.isfinite(retry_after) or retry_after < 0:
+        return DISCORD_DEFAULT_RETRY_AFTER
+    return retry_after
+
+
+def send_embed_discord(embed: dict, deadline: float | None = None) -> None:
+    if deadline is None:
+        deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
+
     headers = {
         "Content-Type": "application/json"
     }
@@ -161,18 +203,31 @@ def send_embed_discord(embed: dict) -> None:
         "embeds": [embed]
     }
 
-    while True:
-        response = requests.post(DISCORD_WEBHOOK_URL, json=payload, headers=headers)
+    for retry_count in range(DISCORD_RETRY_LIMIT + 1):
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise DiscordPublishTimeoutError
+
+        response = requests.post(
+            DISCORD_WEBHOOK_URL,
+            json=payload,
+            headers=headers,
+            timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
+        )
 
         if response.status_code == 204:
-            break
-        elif response.status_code == 429:
-            retry_after = response.json().get("retry_after", 1)
-            print(f"Rate limited: sleeep {retry_after} seconds")
+            return
+        if response.status_code == 429 and retry_count < DISCORD_RETRY_LIMIT:
+            retry_after = get_retry_after(response)
+            remaining = deadline - time.monotonic()
+            if retry_after >= remaining:
+                response.raise_for_status()
+            print(f"Rate limited: sleep {retry_after} seconds")
             time.sleep(retry_after)
-        else:
-            print(f"Failed to send message to Discord: {response.status_code} {response.text}")
-            break
+            continue
+
+        response.raise_for_status()
+        raise UnexpectedDiscordStatusError(response.status_code)
 
 
 def split_message(message: str, limit: int = DISCORD_SPLIT_LIMIT) -> list[str]:
@@ -183,6 +238,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         print("No discord webhook URL found, skipping discord send")
         return
 
+    deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
     for entry in entries:
         content_string = io.StringIO()
         for change in entry["changes"]:
@@ -203,7 +259,9 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
                 "color": 0x3498db
             }
             if len(part) > 0:
-                send_embed_discord(embed)
+                send_embed_discord(embed, deadline)
 
 
-main()
+if __name__ == "__main__":
+    main()
+# Sunrise added end

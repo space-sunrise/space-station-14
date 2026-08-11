@@ -1,11 +1,11 @@
 import yaml
-from datetime import datetime, timezone
+from datetime import datetime
 
 def format_timestamp(timestamp):
-    # Parse the datetime part
-    dt_object = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.%f%z')
+    # Разбираем дату и время в формате ISO 8601.
+    dt_object = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
 
-    # Format the time as a string without microseconds
+    # Форматируем время без микросекунд.
     formatted_time = dt_object.strftime('%Y-%m-%d %H:%M')
 
     return formatted_time
