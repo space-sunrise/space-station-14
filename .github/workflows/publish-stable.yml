@@ -88,5 +88,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-        # Sunrise-Edit - путь задаётся переменной репозитория для поддержки форков
         CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}
