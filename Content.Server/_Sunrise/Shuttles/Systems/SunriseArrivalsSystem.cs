@@ -433,6 +433,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         {
             var reservation = EnsureComp<FtlReservationComponent>(docks.DockBUid);
             reservation.ReservedBy = uid;
+            reservation.Area = config.Area;
 
             if (!arrivals.ReservedDocks.Contains(docks.DockBUid))
                 arrivals.ReservedDocks.Add(docks.DockBUid);
