@@ -32,7 +32,9 @@ jobs:
     name: Prepare profiling matrix
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.matrix.outputs.matrix }}
+      matrix_first: ${{ steps.matrix.outputs.matrix_first }}
+      matrix_second: ${{ steps.matrix.outputs.matrix_second }}
+      has_second: ${{ steps.matrix.outputs.has_second }}
       max_parallel: ${{ steps.matrix.outputs.max_parallel }}
     steps:
     - name: Checkout
@@ -95,19 +97,19 @@ jobs:
       with:
         name: integration-profile-discovery
         path: integration-test-discovery.log
-        retention-days: 1
+        retention-days: 3
 
-  profile:
-    name: Profile run ${{ matrix.profile_run }}
+  profile-first:
+    name: Profile run ${{ matrix.profile_run }}, shard ${{ matrix.shard }}
     needs:
     - prepare
     - build
     strategy:
       fail-fast: false
       max-parallel: ${{ fromJSON(needs.prepare.outputs.max_parallel) }}
-      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix_first) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 25
     steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
@@ -127,21 +129,74 @@ jobs:
       continue-on-error: true
       env:
         DOTNET_gcServer: '1'
-      run: bash Tools/_sunrise/ci/test_workflow.sh run-profile
+        SHARD: ${{ matrix.shard }}
+      run: bash Tools/_sunrise/ci/test_workflow.sh run-profile-shard
 
     - name: Collect successful durations
       if: always()
       env:
         PROFILE_RUN: ${{ matrix.profile_run }}
+        SHARD: ${{ matrix.shard }}
       run: bash Tools/_sunrise/ci/test_workflow.sh collect-profile
 
     - name: Upload compact timing sample
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: integration-timing-run-${{ matrix.profile_run }}
-        path: /tmp/integration-timing-${{ matrix.profile_run }}.json
-        retention-days: 1
+        name: integration-timing-run-${{ matrix.profile_run }}-shard-${{ matrix.shard }}
+        path: /tmp/integration-timing-${{ matrix.profile_run }}-${{ matrix.shard }}.json
+        retention-days: 3
+        if-no-files-found: error
+
+  profile-second:
+    name: Profile run ${{ matrix.profile_run }}, shard ${{ matrix.shard }}
+    if: always() && needs.prepare.result == 'success' && needs.build.result == 'success' && needs.prepare.outputs.has_second == 'true'
+    needs:
+    - prepare
+    - build
+    - profile-first
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.prepare.outputs.max_parallel) }}
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix_second) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: integration-profile-build
+
+    - name: Extract build
+      run: bash Tools/_sunrise/ci/test_workflow.sh extract-build integration-profile-build.tar.zst
+
+    - name: Run Content.IntegrationTests
+      id: integration-tests
+      continue-on-error: true
+      env:
+        DOTNET_gcServer: '1'
+        SHARD: ${{ matrix.shard }}
+      run: bash Tools/_sunrise/ci/test_workflow.sh run-profile-shard
+
+    - name: Collect successful durations
+      if: always()
+      env:
+        PROFILE_RUN: ${{ matrix.profile_run }}
+        SHARD: ${{ matrix.shard }}
+      run: bash Tools/_sunrise/ci/test_workflow.sh collect-profile
+
+    - name: Upload compact timing sample
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-timing-run-${{ matrix.profile_run }}-shard-${{ matrix.shard }}
+        path: /tmp/integration-timing-${{ matrix.profile_run }}-${{ matrix.shard }}.json
+        retention-days: 3
         if-no-files-found: error
 
   aggregate:
@@ -150,7 +205,8 @@ jobs:
     needs:
     - prepare
     - build
-    - profile
+    - profile-first
+    - profile-second
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
