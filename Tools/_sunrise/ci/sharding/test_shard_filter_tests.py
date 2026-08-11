@@ -1,7 +1,9 @@
 import importlib.util
+import io
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stderr
 from pathlib import Path
 
 
@@ -283,6 +285,30 @@ class TestShardFilterTests(unittest.TestCase):
             observations = SHARD_FILTER.load_observations(path, tests)
 
         self.assertEqual(observations, {tests[0]: {1: 1.0}, tests[1]: {1: 2.0}})
+
+    def test_ignores_invalid_profile_samples(self):
+        test = "Content.Tests.Fixture.Valid"
+        invalid_samples = {
+            "null-cases.json": {"profileRun": 1, "caseSeconds": None},
+            "zero-run.json": {"profileRun": 0, "caseSeconds": {test: 1.0}},
+            "boolean-run.json": {"profileRun": True, "caseSeconds": {test: 1.0}},
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)
+            (path / "valid.json").write_text(
+                json.dumps({"profileRun": 1, "caseSeconds": {test: 2.0}}),
+                encoding="utf-8",
+            )
+            for filename, sample in invalid_samples.items():
+                (path / filename).write_text(json.dumps(sample), encoding="utf-8")
+
+            stderr = io.StringIO()
+            with redirect_stderr(stderr):
+                observations = SHARD_FILTER.load_observations(path, [test])
+
+        self.assertEqual(observations, {test: {1: 2.0}})
+        for filename in invalid_samples:
+            self.assertIn(filename, stderr.getvalue())
 
 
 if __name__ == "__main__":

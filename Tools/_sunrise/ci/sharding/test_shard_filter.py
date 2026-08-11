@@ -349,8 +349,16 @@ def load_observations(directory, tests):
     for path in Path(directory).glob("*.json"):
         try:
             sample = json.loads(path.read_text(encoding="utf-8"))
-            profile_run = int(sample["profileRun"])
+            profile_run = sample["profileRun"]
             values = sample["caseSeconds"]
+            if (
+                not isinstance(profile_run, int)
+                or isinstance(profile_run, bool)
+                or profile_run <= 0
+            ):
+                raise ValueError("profileRun must be a positive integer")
+            if not isinstance(values, dict):
+                raise ValueError("caseSeconds must be an object")
         except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as error:
             print(f"Warning: ignoring invalid sample {path}: {error}", file=sys.stderr)
             continue

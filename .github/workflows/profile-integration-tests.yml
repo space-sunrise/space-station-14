@@ -38,7 +38,7 @@ jobs:
       max_parallel: ${{ steps.matrix.outputs.max_parallel }}
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4.2.2
 
     - name: Validate inputs and create matrix
       id: matrix
@@ -53,19 +53,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4.2.2
 
     - name: Setup Submodule
       run: bash Tools/_sunrise/ci/test_workflow.sh setup-root-submodules
 
     - name: Pull engine updates
-      uses: space-wizards/submodule-dependency@v0.1.5
+      uses: space-wizards/submodule-dependency@548a726da00ca348ce9e1ea9f026da8f528caa71 # space-wizards/submodule-dependency@v0.1.5
 
     - name: Update Engine Submodules
       run: bash Tools/_sunrise/ci/test_workflow.sh setup-engine-submodules
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+      uses: actions/setup-dotnet@3e891b0cb619bf60e2c25674b222b8940e2c1c25 # actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: 10.0.x
 
@@ -85,7 +85,7 @@ jobs:
       run: bash Tools/_sunrise/ci/test_workflow.sh archive-build profile
 
     - name: Upload build artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: integration-profile-build
         path: /tmp/integration-profile-build
@@ -93,7 +93,7 @@ jobs:
         compression-level: 0
 
     - name: Upload discovery artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: integration-profile-discovery
         path: integration-test-discovery.log
@@ -112,12 +112,12 @@ jobs:
     timeout-minutes: 25
     steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+      uses: actions/setup-dotnet@3e891b0cb619bf60e2c25674b222b8940e2c1c25 # actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: 10.0.x
 
     - name: Download build artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4
       with:
         name: integration-profile-build
 
@@ -141,7 +141,7 @@ jobs:
 
     - name: Upload compact timing sample
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: integration-timing-run-${{ matrix.profile_run }}-shard-${{ matrix.shard }}
         path: /tmp/integration-timing-${{ matrix.profile_run }}-${{ matrix.shard }}.json
@@ -163,12 +163,12 @@ jobs:
     timeout-minutes: 25
     steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+      uses: actions/setup-dotnet@3e891b0cb619bf60e2c25674b222b8940e2c1c25 # actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: 10.0.x
 
     - name: Download build artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4
       with:
         name: integration-profile-build
 
@@ -192,7 +192,7 @@ jobs:
 
     - name: Upload compact timing sample
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: integration-timing-run-${{ matrix.profile_run }}-shard-${{ matrix.shard }}
         path: /tmp/integration-timing-${{ matrix.profile_run }}-${{ matrix.shard }}.json
@@ -210,15 +210,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4.2.2
 
     - name: Download discovery
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4
       with:
         name: integration-profile-discovery
 
     - name: Download compact timing samples
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4
       with:
         pattern: integration-timing-run-*
         path: integration-timing-samples
@@ -230,7 +230,7 @@ jobs:
       run: bash Tools/_sunrise/ci/test_workflow.sh aggregate-profile
 
     - name: Upload timing configuration
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4
       with:
         name: integration-test-timings-${{ github.run_id }}
         path: Tools/_sunrise/ci/sharding/integration_test_timings.json
