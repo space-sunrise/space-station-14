@@ -20,7 +20,7 @@ git config user.email "sunrise.project.top@gmail.com"
 for attempt in {1..5}; do
     git fetch --no-tags origin master
     git reset --hard origin/master
-    git clean -fd -- Resources/Changelog/Parts .github/changelog-state.json
+    git clean -fd -- Resources/Changelog/Parts
 
     arguments=(--event-path "$GITHUB_EVENT_PATH" --target-branch master)
     if [[ -n "${PR_NUMBER:-}" ]]; then
@@ -28,7 +28,7 @@ for attempt in {1..5}; do
     fi
 
     python Tools/_sunrise/changelog/changelog_actions.py "${arguments[@]}"
-    git add -- Resources/Changelog .github/changelog-state.json
+    git add -- Resources/Changelog
 
     if git diff --cached --quiet; then
         report_status notice "✅" "Чейнджлог уже актуален: публикация не требуется."

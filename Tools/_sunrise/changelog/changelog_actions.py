@@ -21,7 +21,7 @@ MAIN_CATEGORY = "Main"
 CATEGORY_FILES = {
     MAIN_CATEGORY: "ChangelogSunrise.yml",
 }
-STATE_PATH = Path(".github/changelog-state.json")
+WORKFLOW_FILE = "changelog.yml"
 PARTS_PATH = Path("Resources/Changelog/Parts")
 CHANGELOG_PATH = Path("Resources/Changelog")
 
@@ -85,10 +85,6 @@ def format_changelog_time(value: str | None) -> str:
     return timestamp.strftime("%Y-%m-%dT%H:%M:%S.") + f"{timestamp.microsecond:06d}0+00:00"
 
 
-def format_state_time(value: datetime) -> str:
-    return value.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
-
-
 def parse_pr_body(
     body: str | None,
     fallback_author: str,
@@ -128,7 +124,11 @@ def parse_pr_body(
     return author, [ParsedCategory(name, changes) for name, changes in entries.items()]
 
 
-def github_request(path: str, query: dict[str, str | int] | None = None) -> Any:
+def github_request(
+    path: str,
+    query: dict[str, str | int] | None = None,
+    token_environment: str = "GITHUB_TOKEN",
+) -> Any:
     api_url = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
     url = f"{api_url}{path}"
     if query:
@@ -139,7 +139,7 @@ def github_request(path: str, query: dict[str, str | int] | None = None) -> Any:
         "User-Agent": "Sunrise-Changelog-Actions",
         "X-GitHub-Api-Version": "2022-11-28",
     }
-    if token := os.environ.get("GITHUB_TOKEN"):
+    if token := os.environ.get(token_environment):
         headers["Authorization"] = f"Bearer {token}"
 
     try:
@@ -182,12 +182,26 @@ def latest_changelog_time(repo_root: Path, category_files: dict[str, str] = CATE
 
 
 def load_checkpoint(repo_root: Path, category_files: dict[str, str] = CATEGORY_FILES) -> datetime:
-    state_path = repo_root / STATE_PATH
-    if not state_path.exists():
+    response = github_request(
+        f"/repos/{repository_slug()}/actions/workflows/{WORKFLOW_FILE}/runs",
+        {"status": "success", "per_page": 100},
+        token_environment="ACTIONS_TOKEN",
+    )
+    current_run_id = os.environ.get("GITHUB_RUN_ID")
+    previous_runs = [
+        run
+        for run in response.get("workflow_runs", [])
+        if str(run.get("id")) != current_run_id
+    ]
+    if not previous_runs:
+        report_status(
+            "skip",
+            "Предыдущий успешный запуск Actions не найден: сверяем от последней записи чейнжлога.",
+        )
         return latest_changelog_time(repo_root, category_files)
 
-    state = json.loads(state_path.read_text(encoding="utf-8"))
-    return parse_time(state["last_reconciled_merged_at"])
+    previous_run = max(previous_runs, key=lambda run: parse_time(run["created_at"]))
+    return parse_time(previous_run.get("run_started_at") or previous_run["created_at"])
 
 
 def list_merged_pull_requests(checkpoint: datetime) -> list[dict[str, Any]]:
@@ -343,18 +357,6 @@ def update_changelogs(repo_root: Path, category_files: dict[str, str] = CATEGORY
         subprocess.run(command, check=True)
 
 
-def save_checkpoint(repo_root: Path, checkpoint: datetime) -> None:
-    path = repo_root / STATE_PATH
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(
-            {"last_reconciled_merged_at": format_state_time(checkpoint)},
-            indent=2,
-        ) + "\n",
-        encoding="utf-8",
-    )
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description="Обновляет чейнджлог Sunrise из событий GitHub Actions.")
     parser.add_argument("--event-path", type=Path, required=True)
@@ -395,12 +397,6 @@ def main() -> None:
     )
     update_changelogs(repo_root, category_files)
 
-    merged_times = [
-        parse_time(item["merged_at"])
-        for item in pull_requests
-        if item.get("merged_at")
-    ]
-    save_checkpoint(repo_root, max([checkpoint, *merged_times]))
     if written:
         report_status("success", f"Чейнджлог обновлён: подготовлено фрагментов — {written}.")
     else:

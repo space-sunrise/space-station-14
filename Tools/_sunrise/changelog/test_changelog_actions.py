@@ -234,6 +234,60 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual([2], [item["number"] for item in result])
         request.assert_called_once()
 
+    def test_checkpoint_uses_previous_successful_actions_run(self):
+        response = {
+            "workflow_runs": [
+                {
+                    "id": 200,
+                    "created_at": "2026-08-11T13:00:00Z",
+                    "run_started_at": "2026-08-11T13:01:00Z",
+                },
+                {
+                    "id": 100,
+                    "created_at": "2026-08-11T12:00:00Z",
+                    "run_started_at": "2026-08-11T12:01:00Z",
+                },
+            ],
+        }
+
+        with patch.dict(
+            "os.environ",
+            {
+                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_RUN_ID": "200",
+            },
+        ), patch.object(changelog_actions, "github_request", return_value=response) as request:
+            checkpoint = changelog_actions.load_checkpoint(Path("."))
+
+        self.assertEqual(datetime(2026, 8, 11, 12, 1, tzinfo=timezone.utc), checkpoint)
+        request.assert_called_once_with(
+            "/repos/space-sunrise/sunrise-station/actions/workflows/changelog.yml/runs",
+            {"status": "success", "per_page": 100},
+            token_environment="ACTIONS_TOKEN",
+        )
+
+    def test_checkpoint_falls_back_to_latest_changelog_entry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            changelog_dir = repo_root / changelog_actions.CHANGELOG_PATH
+            changelog_dir.mkdir(parents=True)
+            (changelog_dir / "ChangelogSunrise.yml").write_text(
+                'Entries:\n- time: "2026-08-10T12:00:00Z"\n',
+                encoding="utf-8",
+            )
+
+            with patch.dict(
+                "os.environ",
+                {"GITHUB_REPOSITORY": "space-sunrise/sunrise-station"},
+            ), patch.object(
+                changelog_actions,
+                "github_request",
+                return_value={"workflow_runs": []},
+            ):
+                checkpoint = changelog_actions.load_checkpoint(repo_root)
+
+        self.assertEqual(datetime(2026, 8, 10, 12, tzinfo=timezone.utc), checkpoint)
+
     def test_main_resolves_repository_root_after_tool_move(self):
         with tempfile.TemporaryDirectory() as directory:
             repo_root = Path(directory)
@@ -255,10 +309,17 @@ class ChangelogActionsTests(unittest.TestCase):
                 sys,
                 "argv",
                 ["changelog_actions.py", "--event-path", str(event_path)],
+            ), patch.object(
+                changelog_actions,
+                "load_checkpoint",
+                return_value=datetime(2026, 8, 11, tzinfo=timezone.utc),
             ), patch.object(changelog_actions, "list_merged_pull_requests", return_value=[]):
                 changelog_actions.main()
 
-            self.assertTrue((repo_root / changelog_actions.STATE_PATH).exists())
+            self.assertEqual(
+                {"Entries": []},
+                yaml.safe_load((changelog_dir / "ChangelogSunrise.yml").read_text(encoding="utf-8")),
+            )
 
     def test_discord_rate_limit_retries_are_bounded(self):
         response = Mock(status_code=429)
@@ -359,7 +420,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("push:", workflow)
         self.assertIn("workflow_dispatch:", workflow)
         self.assertIn("schedule:", workflow)
-        self.assertIn("permissions: {}", workflow)
+        self.assertIn("permissions:\n  actions: read", workflow)
         self.assertIn(
             "actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0",
             workflow,
@@ -378,15 +439,17 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("permission-contents: write", workflow)
         self.assertIn("permission-pull-requests: read", workflow)
         self.assertIn("token: ${{ steps.app-token.outputs.token }}", workflow)
+        self.assertIn("ACTIONS_TOKEN: ${{ github.token }}", workflow)
         self.assertNotIn("CHANGELOG_TOKEN", workflow)
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)
-        self.assertNotIn("github.token", workflow)
-        self.assertNotIn("concurrency:", workflow)
+        self.assertIn("concurrency:", workflow)
+        self.assertIn("cancel-in-progress: false", workflow)
         self.assertIn("run: bash Tools/_sunrise/changelog/run.sh", workflow)
         self.assertNotIn("git reset --hard origin/master", workflow)
         self.assertIn("git reset --hard origin/master", runner)
         self.assertIn("for attempt in {1..5}", runner)
         self.assertIn("python Tools/_sunrise/changelog/changelog_actions.py", runner)
+        self.assertNotIn("changelog-state.json", runner)
         self.assertIn("Чейнджлог уже актуален: публикация не требуется.", runner)
         self.assertIn("Чейнджлог успешно опубликован в master.", runner)
         self.assertIn("Не удалось отправить чейнджлог после пяти попыток.", runner)
