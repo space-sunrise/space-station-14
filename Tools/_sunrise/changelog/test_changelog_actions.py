@@ -277,6 +277,39 @@ class ChangelogActionsTests(unittest.TestCase):
             all(call.kwargs["timeout"] == discord_changelog.HTTP_REQUEST_TIMEOUT for call in post.call_args_list),
         )
 
+    def test_large_discord_retry_after_fails_without_sleeping_past_deadline(self):
+        response = Mock(status_code=429)
+        response.json.return_value = {"retry_after": 10**1_000}
+        response.raise_for_status.side_effect = discord_changelog.requests.HTTPError("rate limited")
+
+        with patch.object(discord_changelog.requests, "post", return_value=response), patch.object(
+            discord_changelog.time,
+            "monotonic",
+            return_value=100,
+        ), patch.object(discord_changelog.time, "sleep") as sleep:
+            with self.assertRaises(discord_changelog.requests.HTTPError):
+                discord_changelog.send_embed_discord({"description": "test"}, deadline=110)
+
+        sleep.assert_not_called()
+
+    def test_invalid_discord_retry_after_uses_safe_default(self):
+        invalid_values = ("invalid", float("nan"), -1, True, None)
+
+        for retry_after in invalid_values:
+            with self.subTest(retry_after=retry_after):
+                rate_limited = Mock(status_code=429)
+                rate_limited.json.return_value = {"retry_after": retry_after}
+                sent = Mock(status_code=204)
+
+                with patch.object(
+                    discord_changelog.requests,
+                    "post",
+                    side_effect=(rate_limited, sent),
+                ), patch.object(discord_changelog.time, "sleep") as sleep:
+                    discord_changelog.send_embed_discord({"description": "test"})
+
+                sleep.assert_called_once_with(discord_changelog.DISCORD_DEFAULT_RETRY_AFTER)
+
     def test_unexpected_discord_status_keeps_status_code(self):
         response = Mock(status_code=200)
 

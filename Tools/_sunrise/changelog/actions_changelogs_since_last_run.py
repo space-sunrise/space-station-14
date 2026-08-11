@@ -5,6 +5,7 @@
 # Автоматически определяет последний запуск и получает чейнджлог через GitHub API.
 #
 import io
+import math
 import os
 import time
 import textwrap
@@ -19,6 +20,8 @@ DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
 GITHUB_API_URL    = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 HTTP_REQUEST_TIMEOUT = 30
 DISCORD_RETRY_LIMIT = 5
+DISCORD_DEFAULT_RETRY_AFTER = 1
+DISCORD_PUBLISH_TIMEOUT = 14 * 60
 
 # https://discord.com/developers/docs/resources/webhook
 DISCORD_SPLIT_LIMIT = 2000
@@ -40,6 +43,11 @@ class UnexpectedDiscordStatusError(RuntimeError):
     def __init__(self, status_code: int) -> None:
         self.status_code = status_code
         super().__init__(f"Discord webhook вернул неожиданный статус {status_code}")
+
+
+class DiscordPublishTimeoutError(TimeoutError):
+    def __init__(self) -> None:
+        super().__init__("Истёк общий дедлайн публикации чейнжлога в Discord")
 
 
 def main():
@@ -167,7 +175,26 @@ def send_discord(content: str):
     response = requests.post(DISCORD_WEBHOOK_URL, json=body, timeout=HTTP_REQUEST_TIMEOUT)
     response.raise_for_status()
 
-def send_embed_discord(embed: dict) -> None:
+
+def get_retry_after(response: requests.Response) -> int | float:
+    try:
+        retry_after = response.json().get("retry_after")
+    except (AttributeError, TypeError, ValueError):
+        return DISCORD_DEFAULT_RETRY_AFTER
+
+    if isinstance(retry_after, bool):
+        return DISCORD_DEFAULT_RETRY_AFTER
+    if isinstance(retry_after, int):
+        return retry_after if retry_after >= 0 else DISCORD_DEFAULT_RETRY_AFTER
+    if not isinstance(retry_after, float) or not math.isfinite(retry_after) or retry_after < 0:
+        return DISCORD_DEFAULT_RETRY_AFTER
+    return retry_after
+
+
+def send_embed_discord(embed: dict, deadline: float | None = None) -> None:
+    if deadline is None:
+        deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
+
     headers = {
         "Content-Type": "application/json"
     }
@@ -177,17 +204,24 @@ def send_embed_discord(embed: dict) -> None:
     }
 
     for retry_count in range(DISCORD_RETRY_LIMIT + 1):
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise DiscordPublishTimeoutError
+
         response = requests.post(
             DISCORD_WEBHOOK_URL,
             json=payload,
             headers=headers,
-            timeout=HTTP_REQUEST_TIMEOUT,
+            timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
         )
 
         if response.status_code == 204:
             return
         if response.status_code == 429 and retry_count < DISCORD_RETRY_LIMIT:
-            retry_after = response.json().get("retry_after", 1)
+            retry_after = get_retry_after(response)
+            remaining = deadline - time.monotonic()
+            if retry_after >= remaining:
+                response.raise_for_status()
             print(f"Rate limited: sleep {retry_after} seconds")
             time.sleep(retry_after)
             continue
@@ -204,6 +238,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         print("No discord webhook URL found, skipping discord send")
         return
 
+    deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
     for entry in entries:
         content_string = io.StringIO()
         for change in entry["changes"]:
@@ -224,7 +259,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
                 "color": 0x3498db
             }
             if len(part) > 0:
-                send_embed_discord(embed)
+                send_embed_discord(embed, deadline)
 
 
 if __name__ == "__main__":
