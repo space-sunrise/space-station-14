@@ -54,7 +54,7 @@ entities:
     - type: MetaData
       name: PRT-PIRATE COVE
     - type: Transform
-      pos: -1.976629,2.094124
+      pos: 1,1
     - type: MapGrid
       chunks:
         0,0:
