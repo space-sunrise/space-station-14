@@ -87,6 +87,16 @@
   - type: BalloonPopper
 
 - type: entity
+  parent: Solution
+  id: SolutionDart
+  categories: [ HideSpawnMenu ] # Not abstract so weapons with multiple solutions can exist
+  components:
+  - type: Solution
+    id: melee
+    solution:
+      maxVol: 2
+
+- type: entity
   parent: Dart
   id: DartBlue
   components:
