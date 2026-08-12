@@ -6,6 +6,7 @@ import os
 import re
 import subprocess
 import sys
+import unicodedata
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -33,11 +34,12 @@ CATEGORY_FILES = {
 WORKFLOW_FILE = "changelog.yml"
 PARTS_PATH = Path("Resources/Changelog/Parts")
 CHANGELOG_PATH = CHANGELOG_FILE.parent
+PULL_REQUEST_TEMPLATE_PATH = Path(".github/PULL_REQUEST_TEMPLATE.md")
 
 COMMENT_RE = re.compile(r"(?<!\\)<!--([^>]+)(?<!\\)-->")
 MARKER_RE = re.compile(r"^\s*(?::cl:|🆑)", re.IGNORECASE | re.MULTILINE)
 HEADER_RE = re.compile(
-    r"^\s*(?::cl:|🆑) *([a-z0-9_\- ,&]+)?\s*$",
+    r"^[ \t]*(?::cl:|🆑)[ \t]*([^\r\n]*?)[ \t]*\r?$",
     re.IGNORECASE | re.MULTILINE,
 )
 ENTRY_RE = re.compile(
@@ -131,6 +133,35 @@ def parse_pr_body(
         )
 
     return author, [ParsedCategory(name, changes) for name, changes in entries.items()]
+
+
+def changelog_block(body: str | None) -> str | None:
+    text = COMMENT_RE.sub("", body or "")
+    marker = MARKER_RE.search(text)
+    return text[marker.start():] if marker else None
+
+
+def normalize_template_changelog(value: str) -> str:
+    return "".join(
+        character
+        for character in value
+        if not character.isspace() and unicodedata.category(character) not in {"Cc", "Cf"}
+    )
+
+
+def is_changelog_template(body: str | None, template: str | None) -> bool:
+    body_block = changelog_block(body)
+    template_block = changelog_block(template)
+    return bool(
+        body_block
+        and template_block
+        and normalize_template_changelog(body_block) == normalize_template_changelog(template_block)
+    )
+
+
+def load_pull_request_template(repo_root: Path) -> str | None:
+    path = repo_root / PULL_REQUEST_TEMPLATE_PATH
+    return path.read_text(encoding="utf-8-sig") if path.is_file() else None
 
 
 def github_request(
@@ -302,12 +333,17 @@ def write_pull_request_parts(
     category_files: dict[str, str] = CATEGORY_FILES,
 ) -> int:
     known_urls = load_known_urls(repo_root, category_files)
+    pull_request_template = load_pull_request_template(repo_root)
     written = 0
 
     for pull_request in sorted(pull_requests, key=lambda item: item.get("merged_at") or ""):
         number = int(pull_request["number"])
         if not is_target_pull_request(pull_request, target_branch):
             report_status("skip", f"PR #{number} пропущен: он не был слит в ветку {target_branch}.")
+            continue
+
+        if is_changelog_template(pull_request.get("body"), pull_request_template):
+            report_status("skip", f"PR #{number} пропущен: оставлен шаблон чейнжлога.")
             continue
 
         try:

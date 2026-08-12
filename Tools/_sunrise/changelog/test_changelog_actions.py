@@ -105,6 +105,56 @@ class ChangelogActionsTests(unittest.TestCase):
             parsed,
         )
 
+    def test_parser_accepts_russian_author_and_text(self):
+        parsed = changelog_actions.parse_pr_body(
+            ":cl: Иван Иванов\n- add: Добавлена очень важная рыба",
+            "Fallback",
+        )
+
+        self.assertEqual(
+            (
+                "Иван Иванов",
+                [
+                    changelog_actions.ParsedCategory(
+                        "Main",
+                        [{"type": "Add", "message": "Добавлена очень важная рыба"}],
+                    ),
+                ],
+            ),
+            parsed,
+        )
+
+    def test_unchanged_changelog_template_is_logged_as_skip(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            template_path = repo_root / changelog_actions.PULL_REQUEST_TEMPLATE_PATH
+            template_path.parent.mkdir(parents=True)
+            template_path.write_text(
+                "Описание\n\n:cl: ВАШЕ_ИМЯ\n- add: ТЕКСТ\n- fix: ТЕКСТ\n",
+                encoding="utf-8",
+            )
+            pull_request = {
+                "number": 123,
+                "merged": True,
+                "merged_at": "2026-08-08T12:00:00Z",
+                "body": (
+                    "Заполненное описание\n\n"
+                    ":cl:\u200b ВАШЕ_ИМЯ\n"
+                    "\t-\tadd:\u00a0ТЕКСТ\n"
+                    " - fix: ТЕКСТ\ufeff\n"
+                ),
+                "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
+                "user": {"login": "Tester"},
+                "base": {"ref": "master"},
+            }
+            output = io.StringIO()
+
+            with redirect_stdout(output):
+                written = changelog_actions.write_pull_request_parts(repo_root, [pull_request], "master")
+
+        self.assertEqual(0, written)
+        self.assertIn("::notice::PR #123 пропущен: оставлен шаблон чейнжлога.", output.getvalue())
+
     def test_pull_request_without_marker_is_logged_as_skip(self):
         with tempfile.TemporaryDirectory() as directory:
             repo_root = Path(directory)
