@@ -877,25 +877,33 @@ class ChangelogActionsTests(unittest.TestCase):
             [item["media"]["url"] for item in items],
         )
 
-    def test_remote_service_preview_stays_in_authored_order(self):
+    def test_remote_service_link_stays_in_authored_order(self):
         youtube = discord_changelog.RemoteMedia(
             "https://www.youtube.com/watch?v=example", "YouTube", change_index=0
         )
         image = discord_changelog.DownloadedMedia(
             "image", None, b"png", "image/png", "media-2.png", change_index=0
         )
+        vimeo = discord_changelog.RemoteMedia(
+            "https://vimeo.com/example", "Vimeo", change_index=0
+        )
 
-        payload, files = discord_changelog.build_media_payload(None, [youtube, image])
+        payload, files = discord_changelog.build_media_payload(None, [youtube, image, vimeo])
 
-        items = payload["components"][0]["components"][0]["items"]
+        components = payload["components"][0]["components"]
         self.assertEqual(
-            ["https://www.youtube.com/watch?v=example", "attachment://media-2.png"],
-            [item["media"]["url"] for item in items],
+            "🔗 **YouTube**\n<https://www.youtube.com/watch?v=example>",
+            components[0]["content"],
+        )
+        self.assertEqual("attachment://media-2.png", components[1]["items"][0]["media"]["url"])
+        self.assertEqual(
+            "🔗 **Vimeo**\n<https://vimeo.com/example>",
+            components[2]["content"],
         )
         self.assertEqual([{"id": 0, "filename": "media-2.png"}], payload["attachments"])
         self.assertEqual(["files[0]"], [field for field, _ in files])
 
-    def test_unsupported_download_becomes_remote_service_preview(self):
+    def test_unsupported_download_becomes_remote_service_link(self):
         entry = {
             "changes": [{"type": "Add", "message": "Видео"}],
             "media": [{"url": "https://www.youtube.com/watch?v=example", "change": 0}],

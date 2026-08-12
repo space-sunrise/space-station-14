@@ -548,26 +548,46 @@ def _append_text_components(components: list[dict[str, Any]], content: str) -> N
 
 
 def _media_components(media: list[DiscordMedia]) -> list[dict[str, Any]]:
-    if not media:
-        return []
-    return [
-        {
+    components: list[dict[str, Any]] = []
+    downloaded: list[DownloadedMedia] = []
+    remote: list[RemoteMedia] = []
+
+    def flush_downloaded() -> None:
+        if not downloaded:
+            return
+        components.append({
             "type": 12,
             "items": [
                 {
-                    "media": {
-                        "url": (
-                            f"attachment://{item.filename}"
-                            if isinstance(item, DownloadedMedia)
-                            else item.url
-                        ),
-                    },
+                    "media": {"url": f"attachment://{item.filename}"},
                     **({"description": item.description[:1024]} if item.description else {}),
                 }
-                for item in media
+                for item in downloaded
             ],
-        },
-    ]
+        })
+        downloaded.clear()
+
+    def flush_remote() -> None:
+        if not remote:
+            return
+        lines = []
+        for item in remote:
+            description = " ".join((item.description or "Внешнее медиа").split())
+            lines.append(f"🔗 **{description}**\n<{item.url}>")
+        _append_text_components(components, "\n".join(lines))
+        remote.clear()
+
+    for item in media:
+        if isinstance(item, DownloadedMedia):
+            flush_remote()
+            downloaded.append(item)
+        else:
+            flush_downloaded()
+            remote.append(item)
+
+    flush_downloaded()
+    flush_remote()
+    return components
 
 
 def build_media_payload(
