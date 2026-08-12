@@ -1,16 +1,23 @@
+from datetime import datetime
+import os
+
 import yaml
-from datetime import datetime, timezone
+
+from changelog_path import validate_changelog_path
+
 
 def format_timestamp(timestamp):
-    # Parse the datetime part
-    dt_object = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.%f%z')
+    # Разбираем дату и время в формате ISO 8601.
+    dt_object = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
 
-    # Format the time as a string without microseconds
+    # Форматируем время без микросекунд.
     formatted_time = dt_object.strftime('%Y-%m-%d %H:%M')
 
     return formatted_time
 
-with open("Resources/Changelog/ChangelogSunrise.yml", "r", encoding="utf-8") as file:
+changelog_file = validate_changelog_path(os.environ.get("CHANGELOG_FILE"))
+
+with changelog_file.open("r", encoding="utf-8") as file:
     data = yaml.safe_load(file)
 
 entries = data.get("Entries", [])
