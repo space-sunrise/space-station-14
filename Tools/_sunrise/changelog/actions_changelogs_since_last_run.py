@@ -10,6 +10,7 @@ import ipaddress
 import json
 import math
 import os
+import re
 import socket
 import ssl
 import time
@@ -38,6 +39,7 @@ MEDIA_MAX_REQUEST_SIZE = 24 * 1024 * 1024
 MEDIA_MAX_REDIRECTS = 3
 MEDIA_READ_CHUNK_SIZE = 64 * 1024
 MEDIA_REDIRECT_STATUSES = {300, 301, 302, 303, 307, 308}
+DISCORD_RUN_TITLE_RE = re.compile(r"^Discord changelog for ([0-9a-f]{40,64})$")
 
 # https://discord.com/developers/docs/resources/webhook
 DISCORD_SPLIT_LIMIT = 2000
@@ -315,7 +317,7 @@ def main():
 
 def get_most_recent_workflow(
     sess: requests.Session, github_repository: str, github_run: str
-) -> Any:
+) -> Any | None:
     workflow_run = get_current_run(sess, github_repository, github_run)
     past_runs = get_past_runs(sess, workflow_run)
     for run in past_runs["workflow_runs"]:
@@ -365,7 +367,20 @@ def get_last_changelog(changelog_file: Path | None = None) -> str:
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
     most_recent = get_most_recent_workflow(session, github_repository, github_run)
-    last_sha = most_recent["head_commit"]["id"]
+    if most_recent is not None:
+        title = str(most_recent.get("display_title", ""))
+        match = DISCORD_RUN_TITLE_RE.fullmatch(title)
+        if match is None:
+            raise RuntimeError("Предыдущий запуск Discord не содержит SHA опубликованного релиза")
+        last_sha = match.group(1)
+    elif source_run := os.environ.get("SOURCE_WORKFLOW_RUN_ID"):
+        most_recent = get_most_recent_workflow(session, github_repository, source_run)
+        if most_recent is None:
+            raise RuntimeError("Не найден предыдущий успешный stable-релиз")
+        last_sha = most_recent["head_commit"]["id"]
+    else:
+        raise RuntimeError("Не найден предыдущий успешный запуск публикации чейнжлога")
+
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog_stream = get_last_changelog_by_sha(
         session, last_sha, github_repository, changelog_file

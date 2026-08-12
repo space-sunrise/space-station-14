@@ -22,6 +22,7 @@ import manual_changelog
 REPO_ROOT = Path(__file__).resolve().parents[3]
 WORKFLOW_PATH = REPO_ROOT / ".github/workflows/changelog.yml"
 PUBLISH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-stable.yml"
+DISCORD_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-discord-changelog.yml"
 RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 
@@ -522,6 +523,63 @@ class ChangelogActionsTests(unittest.TestCase):
             timeout=discord_changelog.HTTP_REQUEST_TIMEOUT,
         )
 
+    def test_first_discord_workflow_uses_previous_stable_publish(self):
+        previous = {"id": 100, "head_commit": {"id": "abc"}}
+
+        with patch.dict(
+            "os.environ",
+            {
+                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_RUN_ID": "300",
+                "GITHUB_TOKEN": "token",
+                "SOURCE_WORKFLOW_RUN_ID": "200",
+            },
+        ), patch.object(
+            discord_changelog,
+            "get_most_recent_workflow",
+            side_effect=[None, previous],
+        ) as recent, patch.object(
+            discord_changelog,
+            "get_last_changelog_by_sha",
+            return_value="Entries: []",
+        ) as load:
+            result = discord_changelog.get_last_changelog(Path("Resources/Changelog/ChangelogSunrise.yml"))
+
+        self.assertEqual("Entries: []", result)
+        self.assertEqual("300", recent.call_args_list[0].args[2])
+        self.assertEqual("200", recent.call_args_list[1].args[2])
+        self.assertEqual("abc", load.call_args.args[1])
+
+    def test_discord_workflow_keeps_last_successful_released_sha(self):
+        sha = "a" * 40
+        previous = {
+            "id": 250,
+            "display_title": f"Discord changelog for {sha}",
+            "head_commit": {"id": "default-branch-sha"},
+        }
+
+        with patch.dict(
+            "os.environ",
+            {
+                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_RUN_ID": "300",
+                "GITHUB_TOKEN": "token",
+                "SOURCE_WORKFLOW_RUN_ID": "200",
+            },
+        ), patch.object(
+            discord_changelog,
+            "get_most_recent_workflow",
+            return_value=previous,
+        ) as recent, patch.object(
+            discord_changelog,
+            "get_last_changelog_by_sha",
+            return_value="Entries: []",
+        ) as load:
+            discord_changelog.get_last_changelog(Path("Resources/Changelog/ChangelogSunrise.yml"))
+
+        recent.assert_called_once()
+        self.assertEqual(sha, load.call_args.args[1])
+
     def test_checkpoint_falls_back_to_latest_changelog_entry(self):
         with tempfile.TemporaryDirectory() as directory:
             repo_root = Path(directory)
@@ -856,8 +914,10 @@ class ChangelogActionsTests(unittest.TestCase):
     def test_workflow_has_all_entry_points_and_safe_app_write_retry(self):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         publish_workflow = PUBLISH_WORKFLOW_PATH.read_text(encoding="utf-8")
+        discord_workflow = DISCORD_WORKFLOW_PATH.read_text(encoding="utf-8")
         runner = RUNNER_PATH.read_text(encoding="utf-8")
         document = yaml.load(workflow, Loader=yaml.BaseLoader)
+        yaml.load(discord_workflow, Loader=yaml.BaseLoader)
 
         self.assertIn("on", document)
         self.assertIn("jobs", document)
@@ -893,7 +953,17 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("token: ${{ steps.app-token.outputs.token }}", workflow)
         self.assertIn("ACTIONS_TOKEN: ${{ github.token }}", workflow)
         self.assertIn("CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}", workflow)
-        self.assertIn("CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}", publish_workflow)
+        self.assertNotIn("actions_changelogs_since_last_run.py", publish_workflow)
+        self.assertIn('workflows: ["Publish Stable"]', discord_workflow)
+        self.assertIn("run-name: Discord changelog for ${{ github.event.workflow_run.head_sha }}", discord_workflow)
+        self.assertIn("branches: [stable]", discord_workflow)
+        self.assertIn("github.event.workflow_run.conclusion == 'success'", discord_workflow)
+        self.assertIn("ref: ${{ github.event.workflow_run.head_sha }}", discord_workflow)
+        self.assertIn("SOURCE_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}", discord_workflow)
+        self.assertIn("CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}", discord_workflow)
+        self.assertIn("GITHUB_TOKEN: ${{ github.token }}", discord_workflow)
+        self.assertIn("group: publish-discord-changelog", discord_workflow)
+        self.assertIn("actions_changelogs_since_last_run.py", discord_workflow)
         self.assertNotIn("CHANGELOG_TOKEN", workflow)
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)
         self.assertIn("concurrency:", workflow)
