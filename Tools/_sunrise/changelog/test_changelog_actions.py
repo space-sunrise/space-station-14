@@ -142,6 +142,37 @@ class ChangelogActionsTests(unittest.TestCase):
         )
         self.assertEqual("Другая запись", parsed[1][0].changes[1]["message"])
 
+    def test_parser_stops_at_explicit_or_double_blank_boundary(self):
+        for body in (
+            ":cl: Иван\n- add: Нужная запись\n:end-cl:\n- fix: Не чейнжлог",
+            ":cl: Иван\n- add: Нужная запись\n\n\n- fix: Не чейнжлог",
+        ):
+            with self.subTest(body=body):
+                parsed = changelog_actions.parse_pr_body(body, "Fallback")
+                self.assertEqual(
+                    [{"type": "Add", "message": "Нужная запись"}],
+                    parsed[1][0].changes,
+                )
+
+    def test_parser_keeps_legacy_body_without_boundary_and_ignores_comment_spacing(self):
+        parsed = changelog_actions.parse_pr_body(
+            ":cl: Иван\n"
+            "<!-- Комментарий можно оставить. -->\n"
+            "- add: Первая запись\n"
+            "<!-- Комментарий не считается пустой строкой. -->\n"
+            "\n"
+            "- fix: Вторая запись",
+            "Fallback",
+        )
+
+        self.assertEqual(
+            [
+                {"type": "Add", "message": "Первая запись"},
+                {"type": "Fix", "message": "Вторая запись"},
+            ],
+            parsed[1][0].changes,
+        )
+
     def test_parser_attaches_media_to_preceding_change(self):
         parsed = changelog_actions.parse_pr_body(
             ":cl: Иван\n"

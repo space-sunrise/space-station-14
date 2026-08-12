@@ -38,6 +38,7 @@ PULL_REQUEST_TEMPLATE_PATH = Path(".github/PULL_REQUEST_TEMPLATE.md")
 UPDATER_PATH = Path("Tools/_sunrise/changelog/update_changelog.py")
 
 COMMENT_RE = re.compile(r"(?<!\\)<!--([^>]+)(?<!\\)-->")
+COMMENT_PLACEHOLDER = "\0"
 MARKER_RE = re.compile(r"^\s*(?::cl:|🆑)", re.IGNORECASE | re.MULTILINE)
 HEADER_RE = re.compile(
     r"^[ \t]*(?::cl:|🆑)[ \t]*([^\r\n]*?)[ \t]*\r?$",
@@ -57,6 +58,7 @@ CATEGORY_RE = re.compile(r"^\s*([a-z]+):\s*$", re.IGNORECASE)
 MEDIA_RE = re.compile(r"^\s*media:\s*(.+?)\s*$", re.IGNORECASE)
 MEDIA_MARKDOWN_RE = re.compile(r"^!?\[([^\]]*)\]\(\s*([^()\s]+)\s*\)$")
 MEDIA_URL_RE = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*://\S+$")
+END_MARKER_RE = re.compile(r"^\s*:end-cl:\s*$", re.IGNORECASE)
 CHANGE_TYPES = {
     "add": "Add",
     "remove": "Remove",
@@ -128,7 +130,10 @@ def parse_pr_body(
     fallback_author: str,
     category_names: tuple[str, ...] = tuple(CATEGORY_FILES),
 ) -> tuple[str, list[ParsedCategory]] | None:
-    text = COMMENT_RE.sub("", body or "")
+    text = COMMENT_RE.sub(
+        lambda match: "".join("\n" if char == "\n" else COMMENT_PLACEHOLDER for char in match.group()),
+        body or "",
+    )
     header = HEADER_RE.search(text)
     if header is None:
         if MARKER_RE.search(text):
@@ -139,11 +144,22 @@ def parse_pr_body(
     current_category = MAIN_CATEGORY
     entries: dict[str, dict[str, list[dict[str, Any]]]] = {}
     current_change: dict[str, str] | None = None
+    empty_lines = 0
 
     for line in text[header.end():].splitlines():
+        had_comment = COMMENT_PLACEHOLDER in line
+        line = line.replace(COMMENT_PLACEHOLDER, "")
+        if END_MARKER_RE.match(line):
+            break
         if not line.strip():
             current_change = None
+            if had_comment:
+                continue
+            empty_lines += 1
+            if empty_lines >= 2:
+                break
             continue
+        empty_lines = 0
 
         category_match = CATEGORY_RE.match(line)
         if category_match:
