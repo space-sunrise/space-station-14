@@ -7,7 +7,7 @@ import re
 import subprocess
 import sys
 import unicodedata
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -42,12 +42,20 @@ HEADER_RE = re.compile(
     r"^[ \t]*(?::cl:|🆑)[ \t]*([^\r\n]*?)[ \t]*\r?$",
     re.IGNORECASE | re.MULTILINE,
 )
+CI_MARKER_RE = re.compile(r"^\s*:ci:", re.IGNORECASE | re.MULTILINE)
+CI_HEADER_RE = re.compile(
+    r"^[ \t]*:ci:[ \t]*([^\r\n]*?)[ \t]*\r?$",
+    re.IGNORECASE | re.MULTILINE,
+)
 ENTRY_RE = re.compile(
     r"^ *[*-]? *(add|remove|tweak|fix|bug|bugfix): *([^\n\r]+)\r?$",
     re.IGNORECASE,
 )
 MALFORMED_ENTRY_RE = re.compile(r"^ *[*-] *(?:[a-z]+):", re.IGNORECASE)
 CATEGORY_RE = re.compile(r"^\s*([a-z]+):\s*$", re.IGNORECASE)
+MEDIA_RE = re.compile(r"^\s*media:\s*(.+?)\s*$", re.IGNORECASE)
+MEDIA_MARKDOWN_RE = re.compile(r"^!?\[([^\]]*)\]\(\s*([^()\s]+)\s*\)$")
+MEDIA_URL_RE = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*://\S+$")
 CHANGE_TYPES = {
     "add": "Add",
     "remove": "Remove",
@@ -67,6 +75,7 @@ STATUS_FORMAT = {
 class ParsedCategory:
     name: str
     changes: list[dict[str, str]]
+    media: list[dict[str, str]] = field(default_factory=list)
 
 
 def report_status(status: str, message: str) -> None:
@@ -96,6 +105,23 @@ def format_changelog_time(value: str | None) -> str:
     return timestamp.strftime("%Y-%m-%dT%H:%M:%S.") + f"{timestamp.microsecond:06d}0+00:00"
 
 
+def parse_media_value(value: str) -> dict[str, str]:
+    markdown = MEDIA_MARKDOWN_RE.fullmatch(value.strip())
+    if markdown:
+        url = markdown.group(2)
+        description = markdown.group(1).strip()
+        result = {"url": url}
+        if description:
+            result["description"] = description
+        return result
+
+    url = value.strip()
+    if MEDIA_URL_RE.fullmatch(url):
+        return {"url": url}
+
+    raise ValueError(f"не удалось распознать строку медиа: media: {value.strip()[:120]}")
+
+
 def parse_pr_body(
     body: str | None,
     fallback_author: str,
@@ -110,7 +136,7 @@ def parse_pr_body(
 
     author = header.group(1).strip() if header.group(1) else fallback_author
     current_category = MAIN_CATEGORY
-    entries: dict[str, list[dict[str, str]]] = {}
+    entries: dict[str, dict[str, list[dict[str, str]]]] = {}
 
     for line in text[header.end():].splitlines():
         category_match = CATEGORY_RE.match(line)
@@ -121,6 +147,12 @@ def parse_pr_body(
                 current_category = matched
             continue
 
+        media_match = MEDIA_RE.match(line)
+        if media_match:
+            category = entries.setdefault(current_category, {"changes": [], "media": []})
+            category["media"].append(parse_media_value(media_match.group(1)))
+            continue
+
         entry_match = ENTRY_RE.match(line)
         if entry_match is None:
             if MALFORMED_ENTRY_RE.match(line):
@@ -128,11 +160,41 @@ def parse_pr_body(
             continue
 
         change_type = CHANGE_TYPES[entry_match.group(1).lower()]
-        entries.setdefault(current_category, []).append(
+        category = entries.setdefault(current_category, {"changes": [], "media": []})
+        category["changes"].append(
             {"type": change_type, "message": entry_match.group(2).strip()},
         )
 
-    return author, [ParsedCategory(name, changes) for name, changes in entries.items()]
+    for name, category in entries.items():
+        if category["media"] and not category["changes"]:
+            raise ValueError(f"категория {name} содержит медиа, но не содержит записей изменений")
+
+    return author, [
+        ParsedCategory(name, category["changes"], category["media"])
+        for name, category in entries.items()
+    ]
+
+
+def parse_manual_changelog(
+    body: str | None,
+    category_names: tuple[str, ...] = tuple(CATEGORY_FILES),
+) -> tuple[str, list[ParsedCategory]]:
+    text = COMMENT_RE.sub("", body or "")
+    header = CI_HEADER_RE.search(text)
+    if header is None:
+        if CI_MARKER_RE.search(text):
+            raise ValueError("маркер :ci: найден, но его заголовок не удалось распознать")
+        raise ValueError("ручной чейнжлог должен начинаться со строки :ci: Автор")
+
+    author = header.group(1).strip()
+    if not author:
+        raise ValueError("после :ci: необходимо указать имя автора")
+
+    normalized = f":cl: {author}{text[header.end():]}"
+    parsed = parse_pr_body(normalized, "", category_names)
+    if parsed is None:
+        raise ValueError("не удалось разобрать ручной чейнжлог")
+    return parsed
 
 
 def changelog_block(body: str | None) -> str | None:
@@ -378,6 +440,8 @@ def write_pull_request_parts(
                 "url": url,
                 "changes": category.changes,
             }
+            if category.media:
+                part["media"] = category.media
             if category.name != MAIN_CATEGORY:
                 part["category"] = category.name
 
@@ -394,6 +458,52 @@ def write_pull_request_parts(
             report_status("success", f"PR #{number} обработан: подготовлено фрагментов — {pull_request_written}.")
         else:
             report_status("skip", f"PR #{number} пропущен: его записи уже присутствуют в чейнжлоге.")
+
+    return written
+
+
+def write_manual_parts(
+    repo_root: Path,
+    body: str,
+    category_files: dict[str, str] = CATEGORY_FILES,
+) -> int:
+    author, categories = parse_manual_changelog(body, tuple(category_files))
+    if not categories:
+        raise RuntimeError("маркер :ci: найден, но ни одну запись изменений распознать не удалось")
+
+    run_id = os.environ.get("GITHUB_RUN_ID", "local")
+    if re.fullmatch(r"[A-Za-z0-9-]+", run_id) is None:
+        raise RuntimeError("GITHUB_RUN_ID содержит недопустимые символы")
+
+    repository = os.environ.get("GITHUB_REPOSITORY")
+    url = f"https://github.com/{repository}/actions/runs/{run_id}" if repository else None
+    timestamp = format_changelog_time(None)
+    known_urls = load_known_urls(repo_root, category_files)
+    written = 0
+
+    for category in categories:
+        if url and url in known_urls[category.name]:
+            continue
+
+        part = {
+            "author": author,
+            "time": timestamp,
+            "url": url,
+            "changes": category.changes,
+        }
+        if category.media:
+            part["media"] = category.media
+        if category.name != MAIN_CATEGORY:
+            part["category"] = category.name
+
+        path = repo_root / PARTS_PATH / f"manual-{run_id}-{category.name}.yml"
+        path.write_text(
+            yaml.safe_dump(part, sort_keys=False, allow_unicode=True),
+            encoding="utf-8",
+        )
+        if url:
+            known_urls[category.name].add(url)
+        written += 1
 
     return written
 
@@ -418,6 +528,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Обновляет чейнджлог Sunrise из событий GitHub Actions.")
     parser.add_argument("--event-path", type=Path, required=True)
     parser.add_argument("--pr-number", type=int)
+    parser.add_argument("--manual-changelog", action="store_true")
     parser.add_argument("--target-branch", default="master")
     parser.add_argument("--extra-category", action="append", default=[])
     args = parser.parse_args()
@@ -441,20 +552,24 @@ def main() -> None:
             raise RuntimeError(f"Для категории {category} отсутствует {filename}")
         category_files[category] = filename
 
-    checkpoint = load_checkpoint(repo_root, category_files)
-    pull_requests = list_merged_pull_requests(checkpoint)
+    if args.manual_changelog:
+        manual_changelog = os.environ.get("MANUAL_CHANGELOG", "")
+        written = write_manual_parts(repo_root, manual_changelog, category_files)
+    else:
+        checkpoint = load_checkpoint(repo_root, category_files)
+        pull_requests = list_merged_pull_requests(checkpoint)
 
-    explicit = load_pull_request(args.pr_number) if args.pr_number else load_event_pull_request(args.event_path)
-    by_number = {int(item["number"]): item for item in pull_requests}
-    if explicit is not None:
-        by_number[int(explicit["number"])] = explicit
+        explicit = load_pull_request(args.pr_number) if args.pr_number else load_event_pull_request(args.event_path)
+        by_number = {int(item["number"]): item for item in pull_requests}
+        if explicit is not None:
+            by_number[int(explicit["number"])] = explicit
 
-    written = write_pull_request_parts(
-        repo_root,
-        list(by_number.values()),
-        args.target_branch,
-        category_files,
-    )
+        written = write_pull_request_parts(
+            repo_root,
+            list(by_number.values()),
+            args.target_branch,
+            category_files,
+        )
     update_changelogs(repo_root, category_files)
 
     if written:

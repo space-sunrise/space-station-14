@@ -1,4 +1,5 @@
 import io
+import json
 import os
 import subprocess
 import sys
@@ -123,6 +124,108 @@ class ChangelogActionsTests(unittest.TestCase):
             ),
             parsed,
         )
+
+    def test_parser_collects_media_by_category(self):
+        parsed = changelog_actions.parse_pr_body(
+            ":cl: Иван\n"
+            "- add: Добавлена новая рыба\n"
+            "media: https://example.org/fish.mp4\n"
+            "media: ![Рыба в игре](https://example.org/fish.png)\n"
+            "media: [Демонстрация](https://example.org/demo.webm)\n"
+            "ADMIN:\n"
+            "- fix: Исправлен доступ\n"
+            "media: ![Админская панель](https://example.org/admin.gif)",
+            "Fallback",
+            ("Main", "Admin"),
+        )
+
+        self.assertEqual("Иван", parsed[0])
+        self.assertEqual(
+            [
+                {"url": "https://example.org/fish.mp4"},
+                {"url": "https://example.org/fish.png", "description": "Рыба в игре"},
+                {"url": "https://example.org/demo.webm", "description": "Демонстрация"},
+            ],
+            parsed[1][0].media,
+        )
+        self.assertEqual(
+            [{"url": "https://example.org/admin.gif", "description": "Админская панель"}],
+            parsed[1][1].media,
+        )
+
+    def test_parser_rejects_media_without_changes(self):
+        with self.assertRaisesRegex(ValueError, "категория Admin содержит медиа"):
+            changelog_actions.parse_pr_body(
+                ":cl: Иван\nADMIN:\nmedia: https://example.org/admin.png",
+                "Fallback",
+                ("Main", "Admin"),
+            )
+
+    def test_manual_parser_requires_ci_author_and_supports_media(self):
+        author, categories = changelog_actions.parse_manual_changelog(
+            ":ci: Иван Иванов\n"
+            "- add: Добавлена рыба\n"
+            "media: ![Рыба](https://example.org/fish.png)\n"
+            "ADMIN:\n"
+            "- fix: Исправлена команда\n"
+            "media: https://example.org/demo.webm",
+            ("Main", "Admin"),
+        )
+
+        self.assertEqual("Иван Иванов", author)
+        self.assertEqual(["Main", "Admin"], [category.name for category in categories])
+        self.assertEqual("Рыба", categories[0].media[0]["description"])
+        self.assertEqual("https://example.org/demo.webm", categories[1].media[0]["url"])
+
+        for body, error in (
+            (":cl: Иван\n- add: Рыба", "должен начинаться со строки :ci: Автор"),
+            (":ci:\n- add: Рыба", "необходимо указать имя автора"),
+        ):
+            with self.subTest(body=body), self.assertRaisesRegex(ValueError, error):
+                changelog_actions.parse_manual_changelog(body)
+
+    def test_manual_changelog_is_written_once_per_actions_run(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            changelog_dir = repo_root / changelog_actions.CHANGELOG_PATH
+            parts_dir = repo_root / changelog_actions.PARTS_PATH
+            parts_dir.mkdir(parents=True)
+            for filename in ("ChangelogSunrise.yml", "Admin.yml"):
+                (changelog_dir / filename).write_text("Entries: []\n", encoding="utf-8")
+
+            categories = {"Main": "ChangelogSunrise.yml", "Admin": "Admin.yml"}
+            body = ":ci: Иван\n- add: Рыба\nADMIN:\n- fix: Команда"
+            environment = {
+                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_RUN_ID": "123456",
+            }
+            with patch.dict("os.environ", environment):
+                self.assertEqual(2, changelog_actions.write_manual_parts(repo_root, body, categories))
+
+            main_part = yaml.safe_load((parts_dir / "manual-123456-Main.yml").read_text(encoding="utf-8"))
+            admin_part = yaml.safe_load((parts_dir / "manual-123456-Admin.yml").read_text(encoding="utf-8"))
+            self.assertEqual("Иван", main_part["author"])
+            self.assertNotIn("category", main_part)
+            self.assertEqual("Admin", admin_part["category"])
+            self.assertEqual(
+                "https://github.com/space-sunrise/sunrise-station/actions/runs/123456",
+                main_part["url"],
+            )
+
+            (changelog_dir / "ChangelogSunrise.yml").write_text(
+                yaml.safe_dump({"Entries": [{"url": main_part["url"]}]}),
+                encoding="utf-8",
+            )
+            (changelog_dir / "Admin.yml").write_text(
+                yaml.safe_dump({"Entries": [{"url": admin_part["url"]}]}),
+                encoding="utf-8",
+            )
+            for path in parts_dir.glob("*.yml"):
+                path.unlink()
+
+            with patch.dict("os.environ", environment):
+                self.assertEqual(0, changelog_actions.write_manual_parts(repo_root, body, categories))
+            self.assertEqual([], list(parts_dir.glob("*.yml")))
 
     def test_unchanged_changelog_template_is_logged_as_skip(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -258,7 +361,11 @@ class ChangelogActionsTests(unittest.TestCase):
                 "number": 123,
                 "merged": True,
                 "merged_at": "2026-07-29T11:16:50Z",
-                "body": ":cl: Tester\n- add: Added",
+                "body": (
+                    ":cl: Tester\n"
+                    "- add: Added\n"
+                    "media: ![Рыба](https://example.org/fish.png)"
+                ),
                 "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
                 "user": {"login": "Fallback"},
                 "base": {"ref": "master"},
@@ -275,6 +382,10 @@ class ChangelogActionsTests(unittest.TestCase):
             )
             self.assertEqual("Tester", document["Entries"][0]["author"])
             self.assertEqual("Add", document["Entries"][0]["changes"][0]["type"])
+            self.assertEqual(
+                [{"url": "https://example.org/fish.png", "description": "Рыба"}],
+                document["Entries"][0]["media"],
+            )
             self.assertEqual("2026-07-29T11:16:50.0000000+00:00", document["Entries"][0]["time"])
             self.assertEqual(
                 0,
@@ -517,6 +628,163 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual(200, raised.exception.status_code)
         self.assertEqual("Discord webhook вернул неожиданный статус 200", str(raised.exception))
 
+    def test_media_url_rejections_do_not_resolve_or_connect(self):
+        invalid_urls = (
+            "http://example.org/file.png",
+            "https://user:password@example.org/file.png",
+            "https://example.org:8443/file.png",
+            "https://127.0.0.1/file.png",
+        )
+
+        with patch.object(discord_changelog.socket, "getaddrinfo") as resolve, patch.object(
+            discord_changelog, "_VerifiedHTTPSConnection"
+        ) as connection:
+            for url in invalid_urls:
+                with self.subTest(url=url), self.assertRaises(discord_changelog.MediaError):
+                    discord_changelog.download_media(url)
+
+        resolve.assert_not_called()
+        connection.assert_not_called()
+
+    def test_media_dns_rebinding_on_redirect_is_rejected(self):
+        redirect = Mock(status=302)
+        redirect.getheader.return_value = "https://next.example/file.png"
+        connection = Mock()
+        connection.getresponse.return_value = redirect
+
+        with patch.object(
+            discord_changelog,
+            "_resolve_public_address",
+            side_effect=[(discord_changelog.socket.AF_INET, "93.184.216.34"), discord_changelog.MediaError("private")],
+        ), patch.object(discord_changelog, "_VerifiedHTTPSConnection", return_value=connection) as connect:
+            with self.assertRaises(discord_changelog.MediaError):
+                discord_changelog.download_media("https://example.org/file.png")
+
+        connect.assert_called_once()
+        connection.request.assert_called_once()
+
+    def test_media_redirect_limit_is_checked_before_extra_request(self):
+        responses = []
+        for index in range(discord_changelog.MEDIA_MAX_REDIRECTS + 1):
+            response = Mock(status=302)
+            response.getheader.return_value = f"https://redirect-{index}.example/file.png"
+            responses.append(response)
+        connection = Mock()
+        connection.getresponse.side_effect = responses
+
+        with patch.object(
+            discord_changelog,
+            "_resolve_public_address",
+            return_value=(discord_changelog.socket.AF_INET, "93.184.216.34"),
+        ), patch.object(discord_changelog, "_VerifiedHTTPSConnection", return_value=connection):
+            with self.assertRaisesRegex(discord_changelog.MediaError, "превышено число перенаправлений"):
+                discord_changelog.download_media("https://example.org/file.png")
+
+        self.assertEqual(discord_changelog.MEDIA_MAX_REDIRECTS + 1, connection.request.call_count)
+
+    def test_media_size_and_signature_are_checked_after_streaming(self):
+        too_large = Mock(status=200)
+        too_large.getheader.side_effect = lambda name: str(discord_changelog.MEDIA_MAX_SIZE + 1) if name == "Content-Length" else None
+        too_large_connection = Mock()
+        too_large_connection.getresponse.return_value = too_large
+
+        with patch.object(
+            discord_changelog,
+            "_resolve_public_address",
+            return_value=(discord_changelog.socket.AF_INET, "93.184.216.34"),
+        ), patch.object(discord_changelog, "_VerifiedHTTPSConnection", return_value=too_large_connection):
+            with self.assertRaisesRegex(discord_changelog.MediaError, "превышает лимит"):
+                discord_changelog.download_media("https://example.org/file.bin")
+        too_large.read.assert_not_called()
+
+        unknown = Mock(status=200)
+        unknown.getheader.return_value = None
+        unknown.read.side_effect = [b"not a supported file", b""]
+        unknown_connection = Mock()
+        unknown_connection.getresponse.return_value = unknown
+        with patch.object(
+            discord_changelog,
+            "_resolve_public_address",
+            return_value=(discord_changelog.socket.AF_INET, "93.184.216.34"),
+        ), patch.object(discord_changelog, "_VerifiedHTTPSConnection", return_value=unknown_connection):
+            with self.assertRaisesRegex(discord_changelog.MediaError, "сигнатура файла"):
+                discord_changelog.download_media("https://example.org/file.bin")
+
+    def test_media_payload_uses_attachments_for_images_and_videos(self):
+        image = discord_changelog.DownloadedMedia(
+            "https://example.org/image.png", "Изображение", b"png", "image/png", "media-1.png"
+        )
+        video = discord_changelog.DownloadedMedia(
+            "https://example.org/video.mp4", None, b"mp4", "video/mp4", "media-2.mp4"
+        )
+        text_embed = {"title": "Автор", "description": "Текст"}
+
+        payload, files = discord_changelog.build_media_payload(text_embed, [image, video])
+
+        self.assertEqual("attachment://media-1.png", payload["embeds"][-1]["image"]["url"])
+        self.assertEqual(["files[0]", "files[1]"], [field for field, _ in files])
+        self.assertEqual(("media-2.mp4", b"mp4", "video/mp4"), files[1][1])
+        self.assertEqual(1, len(payload["embeds"]))
+
+    def test_media_batches_obey_file_count_and_request_size(self):
+        small = [
+            discord_changelog.DownloadedMedia(str(index), None, b"x", "video/mp4", f"media-{index}.mp4")
+            for index in range(11)
+        ]
+        batches = discord_changelog.split_media_batches(small)
+        self.assertEqual([10, 1], [len(batch) for batch in batches])
+
+        item_size = discord_changelog.MEDIA_MAX_REQUEST_SIZE // 8 + 1
+        large = [
+            discord_changelog.DownloadedMedia(str(index), None, b"x" * item_size, "video/mp4", f"media-{index}.mp4")
+            for index in range(9)
+        ]
+        self.assertEqual([7, 2], [len(batch) for batch in discord_changelog.split_media_batches(large)])
+
+    def test_multipart_payload_and_rate_limit_retry(self):
+        payload = {"embeds": [{"description": "Текст"}]}
+        files = [("files[0]", ("media.png", b"png", "image/png"))]
+        limited = Mock(status_code=429)
+        limited.json.return_value = {"retry_after": 0}
+        sent = Mock(status_code=204)
+
+        with patch.object(discord_changelog.requests, "post", side_effect=[limited, sent]) as post, patch.object(
+            discord_changelog.time, "sleep"
+        ):
+            discord_changelog.send_multipart_discord(
+                payload,
+                files,
+                deadline=discord_changelog.time.monotonic() + 10,
+            )
+
+        self.assertEqual(
+            {"payload_json": json.dumps(payload, ensure_ascii=False)},
+            post.call_args_list[0].kwargs["data"],
+        )
+        self.assertEqual(files, post.call_args_list[0].kwargs["files"])
+
+    def test_media_send_failure_falls_back_to_text_and_warns(self):
+        entry = {
+            "author": "Tester",
+            "changes": [{"type": "Add", "message": "Добавлено"}],
+            "media": [{"url": "https://example.org/image.png"}],
+        }
+        media = discord_changelog.DownloadedMedia(
+            entry["media"][0]["url"], None, b"png", "image/png", "media-1.png"
+        )
+        output = io.StringIO()
+
+        with patch.object(discord_changelog, "DISCORD_WEBHOOK_URL", "https://discord.example/webhook"), patch.object(
+            discord_changelog, "download_media", return_value=media
+        ), patch.object(
+            discord_changelog, "send_multipart_discord", side_effect=RuntimeError("Discord недоступен")
+        ) as multipart, patch.object(discord_changelog, "send_embed_discord") as text_send, redirect_stdout(output):
+            discord_changelog.send_to_discord([entry])
+
+        multipart.assert_called_once()
+        text_send.assert_called_once()
+        self.assertIn("::warning::Медиа https://example.org/image.png", output.getvalue())
+
     def test_manual_and_reader_timestamps_support_optional_microseconds(self):
         self.assertRegex(manual_changelog.make_timestamp(), r"\.\d{6}\+00:00$")
 
@@ -553,10 +821,17 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertIn("on", document)
         self.assertIn("jobs", document)
-        self.assertIn("pull_request_target:", workflow)
-        self.assertIn("push:", workflow)
+        self.assertIn("pull_request_target:\n    types: [closed]\n    branches: [master]", workflow)
         self.assertIn("workflow_dispatch:", workflow)
-        self.assertIn("schedule:", workflow)
+        self.assertIn("changelog:", workflow)
+        self.assertIn("type: string", workflow)
+        self.assertIn(":ci: Автор", workflow)
+        self.assertIn("Много строк — через gh/API", workflow)
+        self.assertIn("if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true", workflow)
+        self.assertNotIn("push:", workflow)
+        self.assertNotIn("schedule:", workflow)
+        self.assertNotIn("PR_NUMBER:", workflow)
+        self.assertIn("MANUAL_CHANGELOG: ${{ inputs.changelog }}", workflow)
         self.assertIn("permissions:\n  actions: read", workflow)
         self.assertIn(
             "actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0",
@@ -588,6 +863,8 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("git reset --hard origin/master", runner)
         self.assertIn("for attempt in {1..5}", runner)
         self.assertIn("python Tools/_sunrise/changelog/changelog_actions.py", runner)
+        self.assertIn('arguments+=(--manual-changelog)', runner)
+        self.assertIn('if [[ -z "${MANUAL_CHANGELOG:-}" ]]', runner)
         self.assertNotIn("changelog-state.json", runner)
         self.assertIn('git commit -m "Automatic changelog update [skip ci]"', runner)
         self.assertIn('if [[ -z "${CHANGELOG_FILE:-}" ]]', runner)

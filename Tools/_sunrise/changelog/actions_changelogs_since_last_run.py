@@ -4,13 +4,19 @@
 # Отправляет новые записи чейнджлога в вебхук Discord после последнего запуска публикации GitHub Actions.
 # Автоматически определяет последний запуск и получает чейнджлог через GitHub API.
 #
+import http.client
 import io
+import ipaddress
+import json
 import math
 import os
+import socket
+import ssl
 import time
 import textwrap
+from dataclasses import dataclass
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, urljoin, urlsplit, urlunsplit
 
 import requests
 import yaml
@@ -25,6 +31,12 @@ HTTP_REQUEST_TIMEOUT = 30
 DISCORD_RETRY_LIMIT = 5
 DISCORD_DEFAULT_RETRY_AFTER = 1
 DISCORD_PUBLISH_TIMEOUT = 14 * 60
+MEDIA_MAX_SIZE = 10 * 1024 * 1024
+MEDIA_MAX_FILES_PER_REQUEST = 10
+MEDIA_MAX_REQUEST_SIZE = 24 * 1024 * 1024
+MEDIA_MAX_REDIRECTS = 3
+MEDIA_READ_CHUNK_SIZE = 64 * 1024
+MEDIA_REDIRECT_STATUSES = {300, 301, 302, 303, 307, 308}
 
 # https://discord.com/developers/docs/resources/webhook
 DISCORD_SPLIT_LIMIT = 2000
@@ -42,6 +54,19 @@ TYPES_TO_EMOJI = {
 ChangelogEntry = dict[str, Any]
 
 
+@dataclass(frozen=True)
+class DownloadedMedia:
+    url: str
+    description: str | None
+    data: bytes
+    content_type: str
+    filename: str
+
+
+class MediaError(ValueError):
+    pass
+
+
 class UnexpectedDiscordStatusError(RuntimeError):
     def __init__(self, status_code: int) -> None:
         self.status_code = status_code
@@ -51,6 +76,200 @@ class UnexpectedDiscordStatusError(RuntimeError):
 class DiscordPublishTimeoutError(TimeoutError):
     def __init__(self) -> None:
         super().__init__("Истёк общий дедлайн публикации чейнжлога в Discord")
+
+
+def validate_media_url(url: str):
+    if not isinstance(url, str) or not url or url != url.strip() or any(char.isspace() for char in url):
+        raise MediaError("ссылка должна быть непустым URL без пробелов")
+
+    try:
+        parsed = urlsplit(url)
+        hostname = parsed.hostname
+        port = parsed.port
+    except ValueError as error:
+        raise MediaError(f"некорректный URL: {error}") from error
+
+    if parsed.scheme.casefold() != "https":
+        raise MediaError("разрешены только HTTPS-ссылки")
+    if parsed.username is not None or parsed.password is not None:
+        raise MediaError("ссылки с credentials запрещены")
+    if hostname is None:
+        raise MediaError("в URL отсутствует имя хоста")
+    if port not in (None, 443):
+        raise MediaError("разрешён только стандартный HTTPS-порт 443")
+
+    return parsed
+
+
+def _is_public_ip(address: str) -> bool:
+    try:
+        parsed = ipaddress.ip_address(address)
+    except ValueError:
+        return False
+    return parsed.is_global and not (
+        parsed.is_private
+        or parsed.is_loopback
+        or parsed.is_link_local
+        or parsed.is_reserved
+        or parsed.is_multicast
+        or parsed.is_unspecified
+    )
+
+
+def _resolve_public_address(hostname: str, port: int) -> tuple[int, str]:
+    try:
+        literal = ipaddress.ip_address(hostname)
+    except ValueError:
+        literal = None
+
+    if literal is not None:
+        if not _is_public_ip(hostname):
+            raise MediaError("имя хоста указывает на запрещённый IP-адрес")
+        family = socket.AF_INET6 if literal.version == 6 else socket.AF_INET
+        return family, hostname
+
+    try:
+        addresses = socket.getaddrinfo(hostname, port, type=socket.SOCK_STREAM)
+    except OSError as error:
+        raise MediaError(f"не удалось разрешить имя хоста: {error}") from error
+
+    resolved: list[tuple[int, str]] = []
+    for family, _, _, _, sockaddr in addresses:
+        if family not in (socket.AF_INET, socket.AF_INET6):
+            continue
+        address = sockaddr[0]
+        if not _is_public_ip(address):
+            raise MediaError("DNS-имя указывает на запрещённый IP-адрес")
+        resolved.append((family, address))
+
+    if not resolved:
+        raise MediaError("DNS-имя не вернуло IP-адрес")
+    return resolved[0]
+
+
+class _VerifiedHTTPSConnection(http.client.HTTPSConnection):
+    def __init__(self, hostname: str, port: int, address: tuple[int, str], timeout: float) -> None:
+        super().__init__(hostname, port=port, timeout=timeout, context=ssl.create_default_context())
+        self._verified_family, self._verified_address = address
+
+    def connect(self) -> None:
+        sock = socket.socket(self._verified_family, socket.SOCK_STREAM)
+        try:
+            sock.settimeout(self.timeout)
+            address = (self._verified_address, self.port, 0, 0) if self._verified_family == socket.AF_INET6 else (
+                self._verified_address,
+                self.port,
+            )
+            sock.connect(address)
+            self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
+        except BaseException:
+            sock.close()
+            raise
+
+
+def detect_media_type(data: bytes) -> tuple[str, str] | None:
+    if data.startswith(b"\xff\xd8\xff"):
+        return "image/jpeg", "jpg"
+    if data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "image/png", "png"
+    if data.startswith((b"GIF87a", b"GIF89a")):
+        return "image/gif", "gif"
+    if len(data) >= 12 and data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        return "image/webp", "webp"
+    if data.startswith(b"\x1a\x45\xdf\xa3"):
+        return "video/webm", "webm"
+    if len(data) >= 12 and data[4:8] == b"ftyp":
+        brand = data[8:12]
+        mp4_brands = {
+            b"avc1", b"dash", b"iso2", b"iso5", b"isom", b"mp41", b"mp42", b"M4V ", b"MSNV",
+        }
+        if brand == b"qt  ":
+            return "video/quicktime", "mov"
+        if brand in mp4_brands or any(
+            data[offset:offset + 4] in mp4_brands
+            for offset in range(16, min(len(data) - 3, 128), 4)
+        ):
+            return "video/mp4", "mp4"
+    return None
+
+
+def _read_media_response(response) -> bytes:
+    content_length = response.getheader("Content-Length")
+    if content_length:
+        try:
+            content_length = int(content_length)
+        except (TypeError, ValueError):
+            content_length = None
+        if content_length is not None and content_length > MEDIA_MAX_SIZE:
+            raise MediaError("файл превышает лимит 10 МиБ")
+
+    data = bytearray()
+    while True:
+        chunk = response.read(MEDIA_READ_CHUNK_SIZE)
+        if not chunk:
+            break
+        data.extend(chunk)
+        if len(data) > MEDIA_MAX_SIZE:
+            raise MediaError("файл превышает лимит 10 МиБ")
+    return bytes(data)
+
+
+def download_media(url: str, description: str | None = None, filename_prefix: str | None = None) -> DownloadedMedia:
+    original_url = url
+    current_url = url
+
+    for redirect_count in range(MEDIA_MAX_REDIRECTS + 1):
+        parsed = validate_media_url(current_url)
+        hostname = parsed.hostname.encode("idna").decode("ascii")
+        port = parsed.port or 443
+        address = _resolve_public_address(hostname, port)
+        connection = _VerifiedHTTPSConnection(hostname, port, address, HTTP_REQUEST_TIMEOUT)
+
+        try:
+            request_path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
+            host_header = f"[{hostname}]" if ":" in hostname else hostname
+            connection.request(
+                "GET",
+                request_path,
+                headers={
+                    "Accept-Encoding": "identity",
+                    "Connection": "close",
+                    "Host": host_header,
+                },
+            )
+            response = connection.getresponse()
+            if response.status in MEDIA_REDIRECT_STATUSES:
+                location = response.getheader("Location")
+                if not location:
+                    raise MediaError("сервер вернул перенаправление без Location")
+                if redirect_count >= MEDIA_MAX_REDIRECTS:
+                    raise MediaError("превышено число перенаправлений")
+                current_url = urljoin(current_url, location)
+                continue
+            if response.status != 200:
+                raise MediaError(f"сервер вернул HTTP {response.status}")
+            data = _read_media_response(response)
+        except MediaError:
+            raise
+        except Exception as error:
+            raise MediaError(f"ошибка загрузки: {error}") from error
+        finally:
+            connection.close()
+
+        detected = detect_media_type(data)
+        if detected is None:
+            raise MediaError("сигнатура файла не поддерживается")
+        content_type, extension = detected
+        filename = f"{filename_prefix or 'media'}.{extension}"
+        return DownloadedMedia(original_url, description, data, content_type, filename)
+
+    raise MediaError("превышено число перенаправлений")
+
+
+def report_media_warning(url: str, reason: str) -> None:
+    message = f"Медиа {url}: {reason}"
+    escaped = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    print(f"::warning::{escaped}")
 
 
 def main():
@@ -206,29 +425,33 @@ def get_retry_after(response: requests.Response) -> int | float:
     return retry_after
 
 
-def send_embed_discord(embed: dict, deadline: float | None = None) -> None:
+def _send_discord_payload(
+    payload: dict[str, Any],
+    deadline: float | None = None,
+    files: list[tuple[str, tuple[str, bytes, str]]] | None = None,
+) -> None:
     if deadline is None:
         deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
-
-    headers = {
-        "Content-Type": "application/json"
-    }
-
-    payload = {
-        "embeds": [embed]
-    }
 
     for retry_count in range(DISCORD_RETRY_LIMIT + 1):
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             raise DiscordPublishTimeoutError
 
-        response = requests.post(
-            DISCORD_WEBHOOK_URL,
-            json=payload,
-            headers=headers,
-            timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
-        )
+        if files is None:
+            response = requests.post(
+                DISCORD_WEBHOOK_URL,
+                json=payload,
+                headers={"Content-Type": "application/json"},
+                timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
+            )
+        else:
+            response = requests.post(
+                DISCORD_WEBHOOK_URL,
+                data={"payload_json": json.dumps(payload, ensure_ascii=False)},
+                files=files,
+                timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
+            )
 
         if response.status_code == 204:
             return
@@ -245,8 +468,125 @@ def send_embed_discord(embed: dict, deadline: float | None = None) -> None:
         raise UnexpectedDiscordStatusError(response.status_code)
 
 
+def send_embed_discord(embed: dict, deadline: float | None = None) -> None:
+    _send_discord_payload({"embeds": [embed]}, deadline)
+
+
+def send_multipart_discord(
+    payload: dict[str, Any],
+    files: list[tuple[str, tuple[str, bytes, str]]],
+    deadline: float | None = None,
+) -> None:
+    _send_discord_payload(payload, deadline, files)
+
+
 def split_message(message: str, limit: int = DISCORD_SPLIT_LIMIT) -> list[str]:
     return textwrap.wrap(message, width=limit, replace_whitespace=False)
+
+
+def split_media_batches(media: list[DownloadedMedia]) -> list[list[DownloadedMedia]]:
+    batches: list[list[DownloadedMedia]] = []
+    current: list[DownloadedMedia] = []
+    current_size = 0
+
+    for item in media:
+        item_size = len(item.data)
+        if current and (
+            len(current) >= MEDIA_MAX_FILES_PER_REQUEST
+            or current_size + item_size > MEDIA_MAX_REQUEST_SIZE
+        ):
+            batches.append(current)
+            current = []
+            current_size = 0
+        current.append(item)
+        current_size += item_size
+
+    if current:
+        batches.append(current)
+    return batches
+
+
+def build_media_payload(
+    text_embed: dict[str, Any] | None,
+    media: list[DownloadedMedia],
+) -> tuple[dict[str, Any], list[tuple[str, tuple[str, bytes, str]]]]:
+    image_embeds = [
+        {"image": {"url": f"attachment://{item.filename}"}}
+        for item in media
+        if item.content_type.startswith("image/")
+    ]
+
+    if text_embed is None:
+        embeds = image_embeds
+    else:
+        text = dict(text_embed)
+        if image_embeds:
+            text["image"] = image_embeds[0]["image"]
+            embeds = image_embeds[1:] + [text]
+        else:
+            embeds = [text]
+
+    files = [
+        (
+            f"files[{index}]",
+            (item.filename, item.data, item.content_type),
+        )
+        for index, item in enumerate(media)
+    ]
+    return {"embeds": embeds}, files
+
+
+def iter_entry_media_batches(entry: ChangelogEntry) -> Iterable[list[DownloadedMedia]]:
+    records = entry.get("media") or []
+    if not isinstance(records, list):
+        report_media_warning(str(records), "поле media имеет неверный формат")
+        return
+
+    batch: list[DownloadedMedia] = []
+    batch_size = 0
+    for index, record in enumerate(records, start=1):
+        if not isinstance(record, dict) or not isinstance(record.get("url"), str):
+            report_media_warning(str(record), "запись media не содержит URL")
+            continue
+
+        url = record["url"]
+        description = record.get("description")
+        if not isinstance(description, str):
+            description = None
+        try:
+            item = download_media(url, description, f"media-{index}")
+        except Exception as error:
+            report_media_warning(url, str(error))
+            continue
+
+        item_size = len(item.data)
+        if batch and (
+            len(batch) >= MEDIA_MAX_FILES_PER_REQUEST
+            or batch_size + item_size > MEDIA_MAX_REQUEST_SIZE
+        ):
+            yield batch
+            batch = []
+            batch_size = 0
+        batch.append(item)
+        batch_size += item_size
+
+    if batch:
+        yield batch
+
+def send_media_batch(
+    batch: list[DownloadedMedia],
+    text_embed: dict[str, Any] | None,
+    deadline: float,
+) -> None:
+    try:
+        payload, files = build_media_payload(text_embed, batch)
+        send_multipart_discord(payload, files, deadline)
+    except Exception as error:
+        for item in batch:
+            report_media_warning(item.url, f"не удалось отправить файл: {error}")
+        if text_embed is not None:
+            send_embed_discord(text_embed, deadline)
+
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
@@ -267,14 +607,32 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         full_content = content_string.getvalue()
         parts = split_message(full_content, DISCORD_SPLIT_LIMIT)
 
-        for part in parts:
-            embed = {
+        embeds = [
+            {
                 "title": f"Автор: **{entry['author']}**",
                 "description": part,
                 "color": 0x3498db
             }
-            if len(part) > 0:
-                send_embed_discord(embed, deadline)
+            for part in parts
+            if part
+        ]
+        if not embeds:
+            continue
+
+        for embed in embeds[:-1]:
+            send_embed_discord(embed, deadline)
+
+        last_embed = embeds[-1]
+        media_batches = iter_entry_media_batches(entry)
+        try:
+            first_batch = next(media_batches)
+        except StopIteration:
+            send_embed_discord(last_embed, deadline)
+            continue
+
+        send_media_batch(first_batch, last_embed, deadline)
+        for batch in media_batches:
+            send_media_batch(batch, None, deadline)
 
 
 if __name__ == "__main__":

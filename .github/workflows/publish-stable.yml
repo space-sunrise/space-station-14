@@ -82,7 +82,6 @@ jobs:
         BUILD_PATH: ./release/SS14.Client.zip
 
     - name: Publish discord changelog
-      continue-on-error: true
       # Sunrise-Edit - запуск скрипта публикации чейнджлога из каталога Sunrise
       run: Tools/_sunrise/changelog/actions_changelogs_since_last_run.py
       env:
