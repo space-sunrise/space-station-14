@@ -14,6 +14,7 @@ permissions:
 
 concurrency:
   group: publish-discord-changelog
+  queue: max
   cancel-in-progress: false
 
 jobs:

@@ -1016,6 +1016,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}", discord_workflow)
         self.assertIn("GITHUB_TOKEN: ${{ github.token }}", discord_workflow)
         self.assertIn("group: publish-discord-changelog", discord_workflow)
+        self.assertIn("queue: max", discord_workflow)
         self.assertIn("actions_changelogs_since_last_run.py", discord_workflow)
         self.assertNotIn("CHANGELOG_TOKEN", workflow)
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)
