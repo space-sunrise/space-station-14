@@ -21,3 +21,5 @@ ent-MagazineBoxLightRifle = ammunition box (.30 rifle)
     .desc = A cardboard box of .30 rifle rounds. Intended to hold general-purpose kinetic ammunition.
 ent-MagazineBoxImprovisedRifle = improvised ammunition box (.30 rifle improvised)
     .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing on top. Mixing ammo is not advised.
+ent-MagazineBoxImprovisedRifle556 = improvised ammunition box (5.56 rifle improvised)
+    .desc = This looks suspiciously like a .20 magazine box with a crude bullet drawing on top. Mixing ammo is not advised.

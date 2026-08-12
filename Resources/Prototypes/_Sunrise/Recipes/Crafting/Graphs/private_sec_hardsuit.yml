@@ -1,0 +1,13 @@
+- type: constructionGraph
+  id: PrivateSecHardsuit
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: privateSec
+      steps:
+      - tag: Soap
+        name: ent-Soap
+        doAfter: 5
+  - node: privateSec
+    entity: ClothingOuterHardsuitPrivateSec
