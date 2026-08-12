@@ -10,6 +10,7 @@ using Content.Shared.DeviceNetwork.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
+using Robust.Server.GameObjects;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
@@ -28,6 +29,7 @@ public sealed partial class MessengerCartridgeSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly RingerSystem _ringer = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     private ISawmill Sawmill { get; set; } = default!;
     private const string MessengerFrequencyId = "Messenger";
@@ -44,8 +46,10 @@ public sealed partial class MessengerCartridgeSystem : EntitySystem
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeMessageEvent>(OnUiMessage);
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeActivatedEvent>(OnCartridgeActivated);
+        SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeDeactivatedEvent>(OnCartridgeDeactivated);
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeAddedEvent>(OnCartridgeAdded);
         SubscribeLocalEvent<MessengerCartridgeComponent, CartridgeDeviceNetPacketEvent>(OnPacketReceived);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BoundUIClosedEvent>(OnLoaderUiClosed);
     }
 
     public override void Update(float frameTime)

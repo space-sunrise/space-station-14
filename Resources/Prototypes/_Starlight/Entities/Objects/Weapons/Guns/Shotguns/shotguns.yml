@@ -9,6 +9,8 @@
   - type: Gun
     spread: 20
     projectileSpeed: 35
+  - type: GunSpreadModifier # Sunrise-Add
+    spread: 1.2
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
   - type: Clothing
@@ -33,15 +35,19 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn.rsi
   - type: Item
-    size: Small
+    size: Normal
     shape:
     - 0,0,2,0
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_sawn_inhands_64x.rsi
   - type: Gun
+    fireRate: 1.65
     spread: 30
     projectileSpeed: 35
+  - type: GunSpreadModifier # Sunrise-Add
+    spread: 1.4
   - type: BallisticAmmoProvider
     capacity: 5
+    proto: ShellShotgunBeanbag
   - type: Construction
     graph: ShotgunRiotSawn
     node: shotgunsawn
@@ -74,6 +80,8 @@
   - type: Gun
     spread: 20
     projectileSpeed: 25
+  - type: GunSpreadModifier # Sunrise-Add
+    spread: 1.2
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
   - type: Clothing
@@ -219,6 +227,8 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
+  - type: GunSpreadModifier # Sunrise-Add
+    spread: 1.2
   - type: ItemSlots
     slots:
       gun_magazine:

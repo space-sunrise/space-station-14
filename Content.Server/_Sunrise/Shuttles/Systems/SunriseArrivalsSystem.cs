@@ -174,6 +174,8 @@ public sealed class SunriseArrivalsSystem : EntitySystem
                 return;
             }
 
+            EnsureComp<FTLSmashImmuneComponent>(ev.SpawnResult.Value);
+
             var arrivals = EnsureComp<SunriseArrivalsShuttleComponent>(shuttleUid.Value);
             arrivals.Station = station;
             arrivals.Player = ev.SpawnResult.Value;
@@ -475,6 +477,9 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
         if (!playerOnShuttle)
         {
+            if (arrivals.PlayerExitTime == null && arrivals.Player != null)
+                RemComp<FTLSmashImmuneComponent>(arrivals.Player.Value);
+
             // Игрок вышел — запускаем grace timer
             arrivals.PlayerExitTime ??= curTime;
 
@@ -624,6 +629,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         EnsureComp<UnbuildableGridComponent>(shuttleGrid.Value);
         EnsureComp<ImmortalGridComponent>(shuttleGrid.Value);
         EnsureComp<PreventPilotComponent>(shuttleGrid.Value);
+        EnsureComp<FTLSmashImmuneComponent>(shuttleGrid.Value);
 
         return shuttleGrid.Value;
     }
