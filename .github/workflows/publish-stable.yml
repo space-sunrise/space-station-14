@@ -88,4 +88,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-        CHANGELOG_FILE: 'Resources/Changelog/ChangelogSunrise.yml'
+        CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}
