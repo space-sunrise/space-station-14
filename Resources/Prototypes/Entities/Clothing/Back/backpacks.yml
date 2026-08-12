@@ -395,7 +395,7 @@
   - type: DeviceLinkSink
     ports:
       - Trigger
-  - type: ElectropackCombatModeShock # Sunrise-Edit
+  - type: TriggerOnCombatModeEnabled # Sunrise-Edit
 
 # Debug
 - type: entity
