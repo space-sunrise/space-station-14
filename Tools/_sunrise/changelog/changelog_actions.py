@@ -35,6 +35,7 @@ WORKFLOW_FILE = "changelog.yml"
 PARTS_PATH = Path("Resources/Changelog/Parts")
 CHANGELOG_PATH = CHANGELOG_FILE.parent
 PULL_REQUEST_TEMPLATE_PATH = Path(".github/PULL_REQUEST_TEMPLATE.md")
+UPDATER_PATH = Path("Tools/_sunrise/changelog/update_changelog.py")
 
 COMMENT_RE = re.compile(r"(?<!\\)<!--([^>]+)(?<!\\)-->")
 MARKER_RE = re.compile(r"^\s*(?::cl:|🆑)", re.IGNORECASE | re.MULTILINE)
@@ -517,7 +518,7 @@ def write_manual_parts(
 
 
 def update_changelogs(repo_root: Path, category_files: dict[str, str] = CATEGORY_FILES) -> None:
-    updater = repo_root / "Tools/update_changelog.py"
+    updater = repo_root / UPDATER_PATH
     parts = repo_root / PARTS_PATH
 
     for category, filename in category_files.items():

@@ -72,7 +72,6 @@ def main():
         )
         changes = partyaml["changes"]
         url = partyaml.get("url")
-        media = partyaml.get("media")
 
         if not isinstance(changes, list):
             changes = [changes]
@@ -82,10 +81,9 @@ def main():
             max_id += 1
             new_id = max_id
 
-            entry = {"author": author, "time": time, "changes": changes, "id": new_id, "url": url}
-            if media:
-                entry["media"] = media
-            entries_list.append(entry)
+            entries_list.append(
+                {"author": author, "time": time, "changes": changes, "id": new_id, "url": url}
+            )
 
         os.remove(partpath)
 

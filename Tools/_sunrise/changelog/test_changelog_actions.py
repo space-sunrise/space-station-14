@@ -361,14 +361,14 @@ class ChangelogActionsTests(unittest.TestCase):
             repo_root = Path(directory)
             changelog_dir = repo_root / changelog_actions.CHANGELOG_PATH
             parts_dir = repo_root / changelog_actions.PARTS_PATH
-            tools_dir = repo_root / "Tools"
+            updater_path = repo_root / changelog_actions.UPDATER_PATH
             parts_dir.mkdir(parents=True)
-            tools_dir.mkdir()
+            updater_path.parent.mkdir(parents=True)
 
             for filename in changelog_actions.CATEGORY_FILES.values():
                 (changelog_dir / filename).write_text("Entries: []\n", encoding="utf-8")
-            (tools_dir / "update_changelog.py").write_bytes(
-                (REPO_ROOT / "Tools/update_changelog.py").read_bytes(),
+            updater_path.write_bytes(
+                (REPO_ROOT / changelog_actions.UPDATER_PATH).read_bytes(),
             )
 
             pull_request = {
@@ -620,12 +620,12 @@ class ChangelogActionsTests(unittest.TestCase):
             repo_root = Path(directory)
             changelog_dir = repo_root / changelog_actions.CHANGELOG_PATH
             parts_dir = repo_root / changelog_actions.PARTS_PATH
-            tools_dir = repo_root / "Tools"
+            updater_path = repo_root / changelog_actions.UPDATER_PATH
             changelog_dir.mkdir(parents=True)
             parts_dir.mkdir(parents=True)
-            tools_dir.mkdir()
-            (tools_dir / "update_changelog.py").write_bytes(
-                (REPO_ROOT / "Tools/update_changelog.py").read_bytes(),
+            updater_path.parent.mkdir(parents=True)
+            updater_path.write_bytes(
+                (REPO_ROOT / changelog_actions.UPDATER_PATH).read_bytes(),
             )
             (changelog_dir / "ChangelogSunrise.yml").write_text("Entries: []\n", encoding="utf-8")
             event_path = repo_root / "event.json"
