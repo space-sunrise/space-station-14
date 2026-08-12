@@ -9,4 +9,8 @@
 - type: entity
   parent: LockableButton
   id: LockableButtonPersonal
-  suffix: Granted access
+  suffix: General access
+  components:
+  - type: Construction
+    graph: LockableButtonPersonal
+    node: SignalButtonNode
