@@ -38,10 +38,13 @@ def main():
     with open(args.changelog_file, "r", encoding="utf-8-sig") as file:
         current_data = yaml.load(file, Loader=NoDatesSafeLoader)
 
-    entries_list: List[Any] = [] if current_data is None else current_data["Entries"]
-    max_id = max((entry["id"] for entry in entries_list), default=0)
+    entries_list: List[Any] = [] if current_data is None else current_data.get("Entries") or []
+    max_id = max(
+        (entry["id"] for entry in entries_list if isinstance(entry, dict) and type(entry.get("id")) is int),
+        default=0,
+    )
 
-    for part_name in os.listdir(args.parts_dir):
+    for part_name in sorted(os.listdir(args.parts_dir)):
         if not part_name.endswith(".yml"):
             continue
 
@@ -75,7 +78,11 @@ def main():
         os.remove(part_path)
 
     print(f"Have {len(entries_list)} changelog entries")
-    entries_list.sort(key=lambda entry: entry["id"])
+    entries_list.sort(
+        key=lambda entry: entry["id"]
+        if isinstance(entry, dict) and type(entry.get("id")) is int
+        else 0,
+    )
     overflow = len(entries_list) - MAX_ENTRIES
     if overflow > 0:
         print(f"Removing {overflow} old entries.")
@@ -86,7 +93,7 @@ def main():
         new_data.update((key, value) for key, value in current_data.items() if key != "Entries")
 
     with open(args.changelog_file, "w", encoding="utf-8-sig") as file:
-        yaml.safe_dump(new_data, file)
+        yaml.safe_dump(new_data, file, allow_unicode=True, sort_keys=False)
 
 
 main()

@@ -142,6 +142,26 @@ class ChangelogActionsTests(unittest.TestCase):
         )
         self.assertEqual("Другая запись", parsed[1][0].changes[1]["message"])
 
+    def test_comments_with_greater_than_are_removed(self):
+        body = ":cl: Иван\n- add: Начало <!-- 2 > 1 --> конец"
+
+        parsed = changelog_actions.parse_pr_body(body, "Fallback")
+
+        self.assertEqual("Начало  конец", parsed[1][0].changes[0]["message"])
+        self.assertTrue(
+            changelog_actions.is_changelog_template(
+                body,
+                ":cl: Иван\n- add: Начало  конец",
+            ),
+        )
+        self.assertIsNone(changelog_actions.COMMENT_RE.search(r"\<!-- не комментарий -->"))
+        self.assertEqual(
+            r"<!-- первый \--> настоящий конец -->",
+            changelog_actions.COMMENT_RE.search(
+                r"<!-- первый \--> настоящий конец -->",
+            ).group(),
+        )
+
     def test_parser_stops_at_explicit_or_double_blank_boundary(self):
         for body in (
             ":cl: Иван\n- add: Нужная запись\n:end-cl:\n- fix: Не чейнжлог",
@@ -221,6 +241,16 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual(["Main", "Admin"], [category.name for category in categories])
         self.assertEqual("Рыба", categories[0].media[0]["description"])
         self.assertEqual("https://example.org/demo.webm", categories[1].media[0]["url"])
+
+    def test_manual_parser_cleans_author_comment_and_preserves_multiline_text(self):
+        author, categories = changelog_actions.parse_manual_changelog(
+            ":ci: Иван <!-- служебный комментарий: 2 > 1 -->\n"
+            "- add: Первая строка\n"
+            "Вторая строка",
+        )
+
+        self.assertEqual("Иван", author)
+        self.assertEqual("Первая строка\nВторая строка", categories[0].changes[0]["message"])
 
         for body, error in (
             (":cl: Иван\n- add: Рыба", "должен начинаться со строки :ci: Автор"),
@@ -437,6 +467,73 @@ class ChangelogActionsTests(unittest.TestCase):
                 changelog_actions.write_pull_request_parts(repo_root, [pull_request], "master"),
             )
 
+    def test_updater_handles_null_entries_deterministically_and_keeps_unicode(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            changelog = root / "Changelog.yml"
+            parts = root / "Parts"
+            parts.mkdir()
+            changelog.write_text("Entries:\nOther: Значение\n", encoding="utf-8")
+            for filename, author in (("z.yml", "Яна"), ("a.yml", "Алиса")):
+                (parts / filename).write_text(
+                    yaml.safe_dump(
+                        {"author": author, "changes": [{"type": "Add", "message": "Рыба"}]},
+                        allow_unicode=True,
+                        sort_keys=False,
+                    ),
+                    encoding="utf-8",
+                )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "Tools/_sunrise/changelog/update_changelog.py"),
+                    str(changelog),
+                    str(parts),
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            text = changelog.read_text(encoding="utf-8-sig")
+            document = yaml.safe_load(text)
+
+        self.assertEqual(["Алиса", "Яна"], [entry["author"] for entry in document["Entries"]])
+        self.assertEqual([1, 2], [entry["id"] for entry in document["Entries"]])
+        self.assertLess(text.index("Entries:"), text.index("Other:"))
+        self.assertIn("Алиса", text)
+
+    def test_updater_ignores_existing_entry_without_id(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            changelog = root / "Changelog.yml"
+            parts = root / "Parts"
+            parts.mkdir()
+            changelog.write_text(
+                "Entries:\n- author: Без идентификатора\n- author: С идентификатором\n  id: 7\n",
+                encoding="utf-8",
+            )
+            (parts / "part.yml").write_text(
+                "author: Новая запись\nchanges:\n- type: Add\n  message: Добавлено\n",
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "Tools/_sunrise/changelog/update_changelog.py"),
+                    str(changelog),
+                    str(parts),
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            document = yaml.safe_load(changelog.read_text(encoding="utf-8-sig"))
+
+        self.assertEqual(8, document["Entries"][-1]["id"])
+
     def test_reconciliation_includes_equal_timestamps_and_stops_on_older_updates(self):
         checkpoint = datetime(2026, 7, 29, 11, 16, 50, tzinfo=timezone.utc)
         page = [
@@ -623,6 +720,32 @@ class ChangelogActionsTests(unittest.TestCase):
 
         recent.assert_called_once()
         self.assertEqual(sha, load.call_args.args[1])
+
+    def test_discord_workflow_falls_back_when_previous_title_has_no_sha(self):
+        previous_discord = {"id": 250, "display_title": "Старое имя запуска"}
+        previous_stable = {"id": 100, "head_commit": {"id": "stable-sha"}}
+
+        with patch.dict(
+            "os.environ",
+            {
+                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_RUN_ID": "300",
+                "GITHUB_TOKEN": "token",
+                "SOURCE_WORKFLOW_RUN_ID": "200",
+            },
+        ), patch.object(
+            discord_changelog,
+            "get_most_recent_workflow",
+            side_effect=[previous_discord, previous_stable],
+        ) as recent, patch.object(
+            discord_changelog,
+            "get_last_changelog_by_sha",
+            return_value="Entries: []",
+        ) as load:
+            discord_changelog.get_last_changelog(Path("Resources/Changelog/ChangelogSunrise.yml"))
+
+        self.assertEqual(["300", "200"], [item.args[2] for item in recent.call_args_list])
+        self.assertEqual("stable-sha", load.call_args.args[1])
 
     def test_checkpoint_falls_back_to_latest_changelog_entry(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -1012,6 +1135,16 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertEqual([0, 1], [item.change_index for item in batch])
 
+    def test_invalid_change_record_is_skipped_when_collecting_media(self):
+        output = io.StringIO()
+
+        with patch.object(discord_changelog, "download_media") as download, redirect_stdout(output):
+            batches = list(discord_changelog.iter_entry_media_batches({"changes": ["не объект"]}))
+
+        self.assertEqual([], batches)
+        download.assert_not_called()
+        self.assertIn("запись changes имеет неверный формат", output.getvalue())
+
     def test_media_count_and_total_deadline_are_bounded(self):
         records = [
             {"url": f"https://example.org/{index}.png"}
@@ -1116,6 +1249,49 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIsNotNone(send.call_args_list[0].args[1])
         send_text.assert_not_called()
 
+    def test_split_text_with_media_uses_only_the_selected_text_part(self):
+        media = discord_changelog.DownloadedMedia(
+            "https://example.org/image.png", None, b"png", "image/png", "media-1.png"
+        )
+        entry = {"author": "Tester", "changes": [{"type": "Add", "message": "Добавлено"}]}
+
+        with patch.object(discord_changelog, "DISCORD_WEBHOOK_URL", "https://discord.example/webhook"), patch.object(
+            discord_changelog,
+            "split_message",
+            return_value=["Первая часть", "Последняя часть"],
+        ), patch.object(
+            discord_changelog,
+            "iter_entry_media_batches",
+            return_value=iter([[media], [media]]),
+        ), patch.object(discord_changelog, "send_media_batch") as send, patch.object(
+            discord_changelog,
+            "send_embed_discord",
+        ) as send_text:
+            discord_changelog.send_to_discord([entry])
+
+        self.assertEqual("Последняя часть", send.call_args_list[0].args[1]["description"])
+        self.assertEqual([None, None], [item.args[3] for item in send.call_args_list])
+        send_text.assert_not_called()
+
+    def test_all_split_text_parts_are_sent_when_there_is_no_media(self):
+        entry = {"author": "Tester", "changes": [{"type": "Add", "message": "Добавлено"}]}
+
+        with patch.object(discord_changelog, "DISCORD_WEBHOOK_URL", "https://discord.example/webhook"), patch.object(
+            discord_changelog,
+            "split_message",
+            return_value=["Первая часть", "Последняя часть"],
+        ), patch.object(
+            discord_changelog,
+            "iter_entry_media_batches",
+            return_value=iter([]),
+        ), patch.object(discord_changelog, "send_embed_discord") as send:
+            discord_changelog.send_to_discord([entry])
+
+        self.assertEqual(
+            ["Первая часть", "Последняя часть"],
+            [item.args[0]["description"] for item in send.call_args_list],
+        )
+
     def test_manual_and_reader_timestamps_support_optional_microseconds(self):
         self.assertRegex(manual_changelog.make_timestamp(), r"\.\d{6}\+00:00$")
 
@@ -1196,7 +1372,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}", discord_workflow)
         self.assertIn("GITHUB_TOKEN: ${{ github.token }}", discord_workflow)
         self.assertIn("group: publish-discord-changelog", discord_workflow)
-        self.assertIn("queue: max", discord_workflow)
+        self.assertIn("persist-credentials: false", discord_workflow)
         self.assertIn("actions_changelogs_since_last_run.py", discord_workflow)
         self.assertNotIn("CHANGELOG_TOKEN", workflow)
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)

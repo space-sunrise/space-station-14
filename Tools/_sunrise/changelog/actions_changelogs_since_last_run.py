@@ -15,6 +15,7 @@ import socket
 import ssl
 import time
 import textwrap
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import quote, urljoin, urlsplit, urlunsplit
@@ -382,20 +383,22 @@ def get_last_changelog(changelog_file: Path | None = None) -> str:
     session.headers["Accept"] = "application/vnd.github+json"
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
+    source_run = os.environ.get("SOURCE_WORKFLOW_RUN_ID")
     most_recent = get_most_recent_workflow(session, github_repository, github_run)
+    last_sha = None
     if most_recent is not None:
         title = str(most_recent.get("display_title", ""))
         match = DISCORD_RUN_TITLE_RE.fullmatch(title)
-        if match is None:
-            raise RuntimeError("Предыдущий запуск Discord не содержит SHA опубликованного релиза")
-        last_sha = match.group(1)
-    elif source_run := os.environ.get("SOURCE_WORKFLOW_RUN_ID"):
+        if match is not None:
+            last_sha = match.group(1)
+
+    if last_sha is None and source_run:
         most_recent = get_most_recent_workflow(session, github_repository, source_run)
-        if most_recent is None:
-            raise RuntimeError("Не найден предыдущий успешный stable-релиз")
-        last_sha = most_recent["head_commit"]["id"]
-    else:
-        raise RuntimeError("Не найден предыдущий успешный запуск публикации чейнжлога")
+        head_commit = most_recent.get("head_commit") if isinstance(most_recent, Mapping) else None
+        last_sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
+
+    if not last_sha:
+        raise RuntimeError("Не найден предыдущий успешный запуск с SHA опубликованного релиза")
 
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog_stream = get_last_changelog_by_sha(
@@ -669,6 +672,9 @@ def iter_entry_media_batches(
 ) -> Iterable[list[DiscordMedia]]:
     records: list[tuple[Any, int | None]] = []
     for change_index, change in enumerate(entry.get("changes") or []):
+        if not isinstance(change, Mapping):
+            report_media_warning(str(change), "запись changes имеет неверный формат")
+            continue
         change_records = change.get("media") or []
         if not isinstance(change_records, list):
             report_media_warning(str(change_records), "поле media имеет неверный формат")
@@ -795,21 +801,20 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         if not embeds:
             continue
 
-        for embed in embeds[:-1]:
-            send_embed_discord(embed, deadline)
-
         last_embed = embeds[-1]
         media_batches = iter_entry_media_batches(entry, deadline)
         try:
             first_batch = next(media_batches)
         except StopIteration:
-            send_embed_discord(last_embed, deadline)
+            for embed in embeds:
+                send_embed_discord(embed, deadline)
             continue
 
-        send_media_batch(first_batch, last_embed, deadline, entry)
+        media_entry = entry if len(embeds) == 1 else None
+        send_media_batch(first_batch, last_embed, deadline, media_entry)
 
         for batch in media_batches:
-            send_media_batch(batch, None, deadline, entry)
+            send_media_batch(batch, None, deadline, media_entry)
 
 
 if __name__ == "__main__":

@@ -37,7 +37,7 @@ CHANGELOG_PATH = CHANGELOG_FILE.parent
 PULL_REQUEST_TEMPLATE_PATH = Path(".github/PULL_REQUEST_TEMPLATE.md")
 UPDATER_PATH = Path("Tools/_sunrise/changelog/update_changelog.py")
 
-COMMENT_RE = re.compile(r"(?<!\\)<!--([^>]+)(?<!\\)-->")
+COMMENT_RE = re.compile(r"(?<!\\)<!--([\s\S]*?)(?<!\\)-->")
 COMMENT_PLACEHOLDER = "\0"
 MARKER_RE = re.compile(r"^\s*(?::cl:|🆑)", re.IGNORECASE | re.MULTILINE)
 HEADER_RE = re.compile(
@@ -203,18 +203,22 @@ def parse_manual_changelog(
     body: str | None,
     category_names: tuple[str, ...] = tuple(CATEGORY_FILES),
 ) -> tuple[str, list[ParsedCategory]]:
-    text = COMMENT_RE.sub("", body or "")
+    source = body or ""
+    text = COMMENT_RE.sub(
+        lambda match: "".join("\n" if char == "\n" else COMMENT_PLACEHOLDER for char in match.group()),
+        source,
+    )
     header = CI_HEADER_RE.search(text)
     if header is None:
         if CI_MARKER_RE.search(text):
             raise ValueError("маркер :ci: найден, но его заголовок не удалось распознать")
         raise ValueError("ручной чейнжлог должен начинаться со строки :ci: Автор")
 
-    author = header.group(1).strip()
+    author = header.group(1).replace(COMMENT_PLACEHOLDER, "").strip()
     if not author:
         raise ValueError("после :ci: необходимо указать имя автора")
 
-    normalized = f":cl: {author}{text[header.end():]}"
+    normalized = f":cl: {author}{source[header.end():]}"
     parsed = parse_pr_body(normalized, "", category_names)
     if parsed is None:
         raise ValueError("не удалось разобрать ручной чейнжлог")
