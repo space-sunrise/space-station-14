@@ -673,6 +673,8 @@
     fireModes:
     - proto: BulletEnergyTurretDisabler
       fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargeRate: 5
   - type: Destructible
     thresholds:
     - trigger:
@@ -820,22 +822,17 @@
     table: !type:AllSelector
       children:
       - id: ScrapSteel
-        prob: 0.25
+        prob: 0.75
       - id: ScrapAirlock1
-        prob: 0.25
+        prob: 0.33
       - id: ScrapAirlock1
-        prob: 0.25
+        prob: 0.33
       - id: ScrapGlass
-        prob: 0.25
-      - id: MagazineBoxBelt127Empty
-        prob: 0.25
-      - id: MagazineBoxBelt127Empty
-        prob: 0.25
-      - id: ScrapAirlock1
-        amount: 2
+        prob: 0.33
+      - id: SpawnLootMagazineBoxBelt127
+        prob: 0.75
       - id: ScrapGlass
-      - id: MagazineBoxBelt127Empty
-        amount: 2
+        prob: 0.33
       - id: ShuttleGunVympelCircuitboard
         prob: 0.2
 
@@ -952,6 +949,8 @@
     fireModes:
     - proto: BulletEnergyTurretLaser
       fireCost: 1
+  - type: BatterySelfRecharger
+    autoRechargeRate: 5
   - type: Destructible
     thresholds:
     - trigger:
