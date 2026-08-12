@@ -328,7 +328,7 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
-    - state: base-tip-5
+    - state: mag-tip-5
       map: [ "enum.GunVisualLayers.Tip" ]
       color: "#C7B458"
   - type: MagazineVisuals
@@ -368,7 +368,7 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
-    - state: base-tip-5
+    - state: mag-tip-5
       map: [ "enum.GunVisualLayers.Tip" ]
       color: "#540000"
   - type: BallisticAmmoProvider
@@ -396,7 +396,7 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
-    - state: base-tip-5
+    - state: mag-tip-5
       map: [ "enum.GunVisualLayers.Tip" ]
       color: "#ff6e52"
   - type: BallisticAmmoProvider
