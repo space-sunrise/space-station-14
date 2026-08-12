@@ -534,25 +534,20 @@ def _append_text_components(components: list[dict[str, Any]], content: str) -> N
 
 
 def _media_components(media: list[DownloadedMedia]) -> list[dict[str, Any]]:
-    images = [item for item in media if item.content_type.startswith("image/")]
-    videos = [item for item in media if not item.content_type.startswith("image/")]
-    components = []
-    for items in (images, videos):
-        if not items:
-            continue
-        if components:
-            components.append({"type": 14, "divider": True, "spacing": 2})
-        components.append({
+    if not media:
+        return []
+    return [
+        {
             "type": 12,
             "items": [
                 {
                     "media": {"url": f"attachment://{item.filename}"},
                     **({"description": item.description[:1024]} if item.description else {}),
                 }
-                for item in items
+                for item in media
             ],
-        })
-    return components
+        },
+    ]
 
 
 def build_media_payload(
@@ -570,25 +565,34 @@ def build_media_payload(
         components.extend(_media_components(media))
     else:
         pending_lines: list[str] = []
+        separate_from_previous_media = False
         selected_indices = {item.change_index for item in media if item.change_index is not None}
         for index, change in enumerate(entry["changes"]):
             change_media = [item for item in media if item.change_index == index]
             if text_embed is None and index not in selected_indices:
                 continue
 
+            if separate_from_previous_media:
+                components.append({"type": 14, "divider": True, "spacing": 2})
+                separate_from_previous_media = False
             emoji = TYPES_TO_EMOJI.get(change["type"], "❓")
             pending_lines.append(f"{emoji} {change['message']}")
             if change_media:
                 _append_text_components(components, "\n".join(pending_lines))
                 pending_lines.clear()
                 components.extend(_media_components(change_media))
+                separate_from_previous_media = True
 
         if pending_lines:
             _append_text_components(components, "\n".join(pending_lines))
 
         root_media = [item for item in media if item.change_index is None]
-        components.extend(_media_components(root_media))
+        if root_media:
+            components.extend(_media_components(root_media))
+            separate_from_previous_media = True
         if text_embed is not None and (url := entry.get("url")) and url.strip():
+            if separate_from_previous_media:
+                components.append({"type": 14, "divider": True, "spacing": 1})
             _append_text_components(components, f"[GitHub Pull Request]({url})")
 
     files = [

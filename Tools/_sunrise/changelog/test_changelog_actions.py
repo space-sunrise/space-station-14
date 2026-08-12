@@ -126,6 +126,22 @@ class ChangelogActionsTests(unittest.TestCase):
             parsed,
         )
 
+    def test_parser_preserves_multiline_change_text(self):
+        parsed = changelog_actions.parse_pr_body(
+            ":cl: Иван\n"
+            "- add: Первая строка\n"
+            "Вторая строка\n"
+            "  Третья строка\n"
+            "- fix: Другая запись",
+            "Fallback",
+        )
+
+        self.assertEqual(
+            "Первая строка\nВторая строка\nТретья строка",
+            parsed[1][0].changes[0]["message"],
+        )
+        self.assertEqual("Другая запись", parsed[1][0].changes[1]["message"])
+
     def test_parser_attaches_media_to_preceding_change(self):
         parsed = changelog_actions.parse_pr_body(
             ":cl: Иван\n"
@@ -800,10 +816,9 @@ class ChangelogActionsTests(unittest.TestCase):
             "attachment://media-1.png",
             container["components"][2]["items"][0]["media"]["url"],
         )
-        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, container["components"][3])
         self.assertEqual(
             "attachment://media-2.mp4",
-            container["components"][4]["items"][0]["media"]["url"],
+            container["components"][2]["items"][1]["media"]["url"],
         )
         self.assertEqual(
             [
@@ -814,6 +829,22 @@ class ChangelogActionsTests(unittest.TestCase):
         )
         self.assertEqual(["files[0]", "files[1]"], [field for field, _ in files])
         self.assertEqual(("media-2.mp4", b"mp4", "video/mp4"), files[1][1])
+
+    def test_media_gallery_keeps_author_order_regardless_of_type(self):
+        video = discord_changelog.DownloadedMedia(
+            "video", None, b"webm", "video/webm", "media-1.webm"
+        )
+        image = discord_changelog.DownloadedMedia(
+            "image", None, b"png", "image/png", "media-2.png"
+        )
+
+        payload, _ = discord_changelog.build_media_payload(None, [video, image])
+
+        items = payload["components"][0]["components"][0]["items"]
+        self.assertEqual(
+            ["attachment://media-1.webm", "attachment://media-2.png"],
+            [item["media"]["url"] for item in items],
+        )
 
     def test_media_is_rendered_after_its_changelog_line(self):
         image = discord_changelog.DownloadedMedia(
@@ -845,10 +876,11 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual("### Автор: Tester", components[0]["content"])
         self.assertEqual("🆕 Первая строка", components[1]["content"])
         self.assertEqual("attachment://media-1.png", components[2]["items"][0]["media"]["url"])
-        self.assertEqual(14, components[3]["type"])
-        self.assertEqual("attachment://media-2.webm", components[4]["items"][0]["media"]["url"])
-        self.assertEqual("🪛 Вторая строка\n⚒️ Третья строка", components[5]["content"])
-        self.assertEqual("attachment://media-3.png", components[6]["items"][0]["media"]["url"])
+        self.assertEqual("attachment://media-2.webm", components[2]["items"][1]["media"]["url"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[3])
+        self.assertEqual("🪛 Вторая строка\n⚒️ Третья строка", components[4]["content"])
+        self.assertEqual("attachment://media-3.png", components[5]["items"][0]["media"]["url"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 1}, components[6])
         self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[7]["content"])
 
     def test_media_batches_obey_file_count_and_request_size(self):

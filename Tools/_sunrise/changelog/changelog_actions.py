@@ -137,14 +137,20 @@ def parse_pr_body(
     author = header.group(1).strip() if header.group(1) else fallback_author
     current_category = MAIN_CATEGORY
     entries: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    current_change: dict[str, str] | None = None
 
     for line in text[header.end():].splitlines():
+        if not line.strip():
+            current_change = None
+            continue
+
         category_match = CATEGORY_RE.match(line)
         if category_match:
             requested = category_match.group(1)
             matched = next((name for name in category_names if name.casefold() == requested.casefold()), None)
             if matched is not None:
                 current_category = matched
+                current_change = None
             continue
 
         media_match = MEDIA_RE.match(line)
@@ -161,13 +167,14 @@ def parse_pr_body(
         if entry_match is None:
             if MALFORMED_ENTRY_RE.match(line):
                 raise ValueError(f"не удалось распознать строку чейнжлога: {line.strip()[:120]}")
+            if current_change is not None:
+                current_change["message"] += f"\n{line.strip()}"
             continue
 
         change_type = CHANGE_TYPES[entry_match.group(1).lower()]
         category = entries.setdefault(current_category, {"changes": [], "media": []})
-        category["changes"].append(
-            {"type": change_type, "message": entry_match.group(2).strip()},
-        )
+        current_change = {"type": change_type, "message": entry_match.group(2).strip()}
+        category["changes"].append(current_change)
 
     return author, [
         ParsedCategory(name, category["changes"], category["media"])
