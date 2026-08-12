@@ -18,3 +18,5 @@ ent-MagazineM28 = M28 magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineM28Extended = { ent-MagazineM28 }
     .desc = { ent-MagazineM28.desc }
+ent-MagazineRifleImprovised = magazine (.20 rifle improvised)
+    .desc = 25-round double stack magazine for combat rifles. Intended to hold improvised ammunition.
