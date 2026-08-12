@@ -5,3 +5,8 @@
   components:
   - type: AccessReader
     access: [["Pirate"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonPersonal
+  suffix: Granted access

@@ -187,13 +187,6 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
 
-# Sunrise-start
-- type: entity
-  parent: LockableButton
-  id: LockableButtonPersonal
-  suffix: Granted access
-# Sunrise-end
-
 - type: entity
   parent: LockableButton
   id: LockableButtonCaptain
