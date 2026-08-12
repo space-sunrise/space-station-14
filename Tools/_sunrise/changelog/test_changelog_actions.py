@@ -422,16 +422,25 @@ class ChangelogActionsTests(unittest.TestCase):
             "workflow_runs": [
                 {
                     "id": 200,
+                    "event": "pull_request_target",
                     "created_at": "2026-08-11T13:00:00Z",
                     "run_started_at": "2026-08-11T13:01:00Z",
                 },
                 {
                     "id": 150,
+                    "event": "workflow_dispatch",
                     "created_at": "2026-08-11T12:30:00Z",
                     "run_started_at": "2026-08-11T12:31:00Z",
                 },
                 {
+                    "id": 125,
+                    "event": "pull_request_target",
+                    "created_at": "2026-08-11T12:15:00Z",
+                    "run_started_at": "2026-08-11T12:16:00Z",
+                },
+                {
                     "id": 100,
+                    "event": "pull_request_target",
                     "created_at": "2026-08-11T12:00:00Z",
                     "run_started_at": "2026-08-11T12:01:00Z",
                 },
@@ -441,7 +450,7 @@ class ChangelogActionsTests(unittest.TestCase):
         def request_response(path, *_args, **_kwargs):
             if path.endswith("/actions/workflows/changelog.yml/runs"):
                 return response
-            if path.endswith("/actions/runs/150/jobs"):
+            if path.endswith("/actions/runs/125/jobs"):
                 return {
                     "jobs": [
                         {"name": "update", "status": "completed", "conclusion": "skipped"},
@@ -473,7 +482,7 @@ class ChangelogActionsTests(unittest.TestCase):
                     token_environment="ACTIONS_TOKEN",
                 ),
                 call(
-                    "/repos/space-sunrise/sunrise-station/actions/runs/150/jobs",
+                    "/repos/space-sunrise/sunrise-station/actions/runs/125/jobs",
                     {"per_page": 100},
                     token_environment="ACTIONS_TOKEN",
                 ),
@@ -722,16 +731,28 @@ class ChangelogActionsTests(unittest.TestCase):
         payload, files = discord_changelog.build_media_payload(text_embed, [image, video])
 
         self.assertEqual("attachment://media-1.png", payload["embeds"][-1]["image"]["url"])
+        self.assertEqual(
+            [
+                {"id": 0, "filename": "media-1.png", "description": "Изображение"},
+                {"id": 1, "filename": "media-2.mp4"},
+            ],
+            payload["attachments"],
+        )
         self.assertEqual(["files[0]", "files[1]"], [field for field, _ in files])
         self.assertEqual(("media-2.mp4", b"mp4", "video/mp4"), files[1][1])
         self.assertEqual(1, len(payload["embeds"]))
 
     def test_media_batches_obey_file_count_and_request_size(self):
+        def batches_for(media):
+            entry = {"media": [{"url": item.url} for item in media]}
+            with patch.object(discord_changelog, "download_media", side_effect=media):
+                return list(discord_changelog.iter_entry_media_batches(entry))
+
         small = [
             discord_changelog.DownloadedMedia(str(index), None, b"x", "video/mp4", f"media-{index}.mp4")
             for index in range(11)
         ]
-        batches = discord_changelog.split_media_batches(small)
+        batches = batches_for(small)
         self.assertEqual([10, 1], [len(batch) for batch in batches])
 
         item_size = discord_changelog.MEDIA_MAX_REQUEST_SIZE // 8 + 1
@@ -739,7 +760,26 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog.DownloadedMedia(str(index), None, b"x" * item_size, "video/mp4", f"media-{index}.mp4")
             for index in range(9)
         ]
-        self.assertEqual([7, 2], [len(batch) for batch in discord_changelog.split_media_batches(large)])
+        self.assertEqual([7, 2], [len(batch) for batch in batches_for(large)])
+
+    def test_media_count_and_total_deadline_are_bounded(self):
+        records = [
+            {"url": f"https://example.org/{index}.png"}
+            for index in range(discord_changelog.MEDIA_MAX_FILES_PER_ENTRY + 1)
+        ]
+        media = discord_changelog.DownloadedMedia("url", None, b"png", "image/png", "media.png")
+
+        with patch.object(discord_changelog, "download_media", return_value=media) as download:
+            batches = list(discord_changelog.iter_entry_media_batches({"media": records}))
+
+        self.assertEqual(discord_changelog.MEDIA_MAX_FILES_PER_ENTRY, sum(map(len, batches)))
+        self.assertEqual(discord_changelog.MEDIA_MAX_FILES_PER_ENTRY, download.call_count)
+
+        with self.assertRaises(discord_changelog.DiscordPublishTimeoutError):
+            discord_changelog.download_media(
+                "https://example.org/image.png",
+                deadline=discord_changelog.time.monotonic() - 1,
+            )
 
     def test_multipart_payload_and_rate_limit_retry(self):
         payload = {"embeds": [{"description": "Текст"}]}

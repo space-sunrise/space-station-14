@@ -295,6 +295,7 @@ def load_checkpoint(repo_root: Path, category_files: dict[str, str] = CATEGORY_F
             run
             for run in response.get("workflow_runs", [])
             if str(run.get("id")) != current_run_id
+            and run.get("event") == "pull_request_target"
         ],
         key=lambda run: parse_time(run["created_at"]),
         reverse=True,

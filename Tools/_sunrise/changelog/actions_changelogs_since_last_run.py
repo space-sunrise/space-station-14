@@ -33,6 +33,7 @@ DISCORD_DEFAULT_RETRY_AFTER = 1
 DISCORD_PUBLISH_TIMEOUT = 14 * 60
 MEDIA_MAX_SIZE = 10 * 1024 * 1024
 MEDIA_MAX_FILES_PER_REQUEST = 10
+MEDIA_MAX_FILES_PER_ENTRY = 20
 MEDIA_MAX_REQUEST_SIZE = 24 * 1024 * 1024
 MEDIA_MAX_REDIRECTS = 3
 MEDIA_READ_CHUNK_SIZE = 64 * 1024
@@ -193,7 +194,14 @@ def detect_media_type(data: bytes) -> tuple[str, str] | None:
     return None
 
 
-def _read_media_response(response) -> bytes:
+def _remaining_timeout(deadline: float) -> float:
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise DiscordPublishTimeoutError
+    return min(HTTP_REQUEST_TIMEOUT, remaining)
+
+
+def _read_media_response(response, connection: http.client.HTTPSConnection, deadline: float) -> bytes:
     content_length = response.getheader("Content-Length")
     if content_length:
         try:
@@ -205,6 +213,8 @@ def _read_media_response(response) -> bytes:
 
     data = bytearray()
     while True:
+        if connection.sock is not None:
+            connection.sock.settimeout(_remaining_timeout(deadline))
         chunk = response.read(MEDIA_READ_CHUNK_SIZE)
         if not chunk:
             break
@@ -214,16 +224,23 @@ def _read_media_response(response) -> bytes:
     return bytes(data)
 
 
-def download_media(url: str, description: str | None = None, filename_prefix: str | None = None) -> DownloadedMedia:
+def download_media(
+    url: str,
+    description: str | None = None,
+    filename_prefix: str | None = None,
+    deadline: float | None = None,
+) -> DownloadedMedia:
     original_url = url
     current_url = url
+    if deadline is None:
+        deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
 
     for redirect_count in range(MEDIA_MAX_REDIRECTS + 1):
         parsed = validate_media_url(current_url)
         hostname = parsed.hostname.encode("idna").decode("ascii")
         port = parsed.port or 443
         address = _resolve_public_address(hostname, port)
-        connection = _VerifiedHTTPSConnection(hostname, port, address, HTTP_REQUEST_TIMEOUT)
+        connection = _VerifiedHTTPSConnection(hostname, port, address, _remaining_timeout(deadline))
 
         try:
             request_path = urlunsplit(("", "", parsed.path or "/", parsed.query, ""))
@@ -248,7 +265,9 @@ def download_media(url: str, description: str | None = None, filename_prefix: st
                 continue
             if response.status != 200:
                 raise MediaError(f"сервер вернул HTTP {response.status}")
-            data = _read_media_response(response)
+            data = _read_media_response(response, connection, deadline)
+        except DiscordPublishTimeoutError:
+            raise
         except MediaError:
             raise
         except Exception as error:
@@ -484,28 +503,6 @@ def split_message(message: str, limit: int = DISCORD_SPLIT_LIMIT) -> list[str]:
     return textwrap.wrap(message, width=limit, replace_whitespace=False)
 
 
-def split_media_batches(media: list[DownloadedMedia]) -> list[list[DownloadedMedia]]:
-    batches: list[list[DownloadedMedia]] = []
-    current: list[DownloadedMedia] = []
-    current_size = 0
-
-    for item in media:
-        item_size = len(item.data)
-        if current and (
-            len(current) >= MEDIA_MAX_FILES_PER_REQUEST
-            or current_size + item_size > MEDIA_MAX_REQUEST_SIZE
-        ):
-            batches.append(current)
-            current = []
-            current_size = 0
-        current.append(item)
-        current_size += item_size
-
-    if current:
-        batches.append(current)
-    return batches
-
-
 def build_media_payload(
     text_embed: dict[str, Any] | None,
     media: list[DownloadedMedia],
@@ -533,14 +530,38 @@ def build_media_payload(
         )
         for index, item in enumerate(media)
     ]
-    return {"embeds": embeds}, files
+    attachments = [
+        {
+            "id": index,
+            "filename": item.filename,
+            **({"description": item.description[:1024]} if item.description else {}),
+        }
+        for index, item in enumerate(media)
+    ]
+    return {"embeds": embeds, "attachments": attachments}, files
 
 
-def iter_entry_media_batches(entry: ChangelogEntry) -> Iterable[list[DownloadedMedia]]:
+def iter_entry_media_batches(
+    entry: ChangelogEntry,
+    deadline: float | None = None,
+) -> Iterable[list[DownloadedMedia]]:
     records = entry.get("media") or []
     if not isinstance(records, list):
         report_media_warning(str(records), "поле media имеет неверный формат")
         return
+
+    if len(records) > MEDIA_MAX_FILES_PER_ENTRY:
+        first_ignored = records[MEDIA_MAX_FILES_PER_ENTRY]
+        ignored_url = (
+            first_ignored.get("url", "<неизвестно>")
+            if isinstance(first_ignored, dict)
+            else first_ignored
+        )
+        report_media_warning(
+            str(ignored_url),
+            f"превышен предел {MEDIA_MAX_FILES_PER_ENTRY} файлов на запись",
+        )
+        records = records[:MEDIA_MAX_FILES_PER_ENTRY]
 
     batch: list[DownloadedMedia] = []
     batch_size = 0
@@ -554,7 +575,9 @@ def iter_entry_media_batches(entry: ChangelogEntry) -> Iterable[list[DownloadedM
         if not isinstance(description, str):
             description = None
         try:
-            item = download_media(url, description, f"media-{index}")
+            item = download_media(url, description, f"media-{index}", deadline)
+        except DiscordPublishTimeoutError:
+            raise
         except Exception as error:
             report_media_warning(url, str(error))
             continue
@@ -581,6 +604,8 @@ def send_media_batch(
     try:
         payload, files = build_media_payload(text_embed, batch)
         send_multipart_discord(payload, files, deadline)
+    except DiscordPublishTimeoutError:
+        raise
     except Exception as error:
         for item in batch:
             report_media_warning(item.url, f"не удалось отправить файл: {error}")
@@ -623,7 +648,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             send_embed_discord(embed, deadline)
 
         last_embed = embeds[-1]
-        media_batches = iter_entry_media_batches(entry)
+        media_batches = iter_entry_media_batches(entry, deadline)
         try:
             first_batch = next(media_batches)
         except StopIteration:
