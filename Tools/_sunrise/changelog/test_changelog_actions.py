@@ -126,7 +126,7 @@ class ChangelogActionsTests(unittest.TestCase):
             parsed,
         )
 
-    def test_parser_collects_media_by_category(self):
+    def test_parser_attaches_media_to_preceding_change(self):
         parsed = changelog_actions.parse_pr_body(
             ":cl: Иван\n"
             "- add: Добавлена новая рыба\n"
@@ -141,16 +141,13 @@ class ChangelogActionsTests(unittest.TestCase):
         )
 
         self.assertEqual("Иван", parsed[0])
+        self.assertEqual([
+            {"url": "https://example.org/fish.mp4", "change": 0},
+            {"url": "https://example.org/fish.png", "description": "Рыба в игре", "change": 0},
+            {"url": "https://example.org/demo.webm", "description": "Демонстрация", "change": 0},
+        ], parsed[1][0].media)
         self.assertEqual(
-            [
-                {"url": "https://example.org/fish.mp4"},
-                {"url": "https://example.org/fish.png", "description": "Рыба в игре"},
-                {"url": "https://example.org/demo.webm", "description": "Демонстрация"},
-            ],
-            parsed[1][0].media,
-        )
-        self.assertEqual(
-            [{"url": "https://example.org/admin.gif", "description": "Админская панель"}],
+            [{"url": "https://example.org/admin.gif", "description": "Админская панель", "change": 0}],
             parsed[1][1].media,
         )
 
@@ -384,7 +381,7 @@ class ChangelogActionsTests(unittest.TestCase):
             self.assertEqual("Tester", document["Entries"][0]["author"])
             self.assertEqual("Add", document["Entries"][0]["changes"][0]["type"])
             self.assertEqual(
-                [{"url": "https://example.org/fish.png", "description": "Рыба"}],
+                [{"url": "https://example.org/fish.png", "description": "Рыба", "change": 0}],
                 document["Entries"][0]["media"],
             )
             self.assertEqual("2026-07-29T11:16:50.0000000+00:00", document["Entries"][0]["time"])
@@ -797,10 +794,16 @@ class ChangelogActionsTests(unittest.TestCase):
 
         container = payload["components"][0]
         self.assertEqual(discord_changelog.DISCORD_COMPONENTS_V2_FLAG, payload["flags"])
-        self.assertEqual("**Автор**\nТекст", container["components"][0]["content"])
+        self.assertEqual("### Автор", container["components"][0]["content"])
+        self.assertEqual("Текст", container["components"][1]["content"])
         self.assertEqual(
-            ["attachment://media-1.png", "attachment://media-2.mp4"],
-            [item["media"]["url"] for item in container["components"][1]["items"]],
+            "attachment://media-1.png",
+            container["components"][2]["items"][0]["media"]["url"],
+        )
+        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, container["components"][3])
+        self.assertEqual(
+            "attachment://media-2.mp4",
+            container["components"][4]["items"][0]["media"]["url"],
         )
         self.assertEqual(
             [
@@ -811,6 +814,42 @@ class ChangelogActionsTests(unittest.TestCase):
         )
         self.assertEqual(["files[0]", "files[1]"], [field for field, _ in files])
         self.assertEqual(("media-2.mp4", b"mp4", "video/mp4"), files[1][1])
+
+    def test_media_is_rendered_after_its_changelog_line(self):
+        image = discord_changelog.DownloadedMedia(
+            "image", None, b"png", "image/png", "media-1.png", change_index=0
+        )
+        video = discord_changelog.DownloadedMedia(
+            "video", None, b"webm", "video/webm", "media-2.webm", change_index=0
+        )
+        second_image = discord_changelog.DownloadedMedia(
+            "second", None, b"png", "image/png", "media-3.png", change_index=2
+        )
+        entry = {
+            "author": "Tester",
+            "changes": [
+                {"type": "Add", "message": "Первая строка"},
+                {"type": "Fix", "message": "Вторая строка"},
+                {"type": "Tweak", "message": "Третья строка"},
+            ],
+            "url": "https://example.org/pr/1",
+        }
+
+        payload, _ = discord_changelog.build_media_payload(
+            {"title": "Автор: Tester", "description": ""},
+            [image, video, second_image],
+            entry,
+        )
+
+        components = payload["components"][0]["components"]
+        self.assertEqual("### Автор: Tester", components[0]["content"])
+        self.assertEqual("🆕 Первая строка", components[1]["content"])
+        self.assertEqual("attachment://media-1.png", components[2]["items"][0]["media"]["url"])
+        self.assertEqual(14, components[3]["type"])
+        self.assertEqual("attachment://media-2.webm", components[4]["items"][0]["media"]["url"])
+        self.assertEqual("🪛 Вторая строка\n⚒️ Третья строка", components[5]["content"])
+        self.assertEqual("attachment://media-3.png", components[6]["items"][0]["media"]["url"])
+        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[7]["content"])
 
     def test_media_batches_obey_file_count_and_request_size(self):
         def batches_for(media):
@@ -831,6 +870,24 @@ class ChangelogActionsTests(unittest.TestCase):
             for index in range(9)
         ]
         self.assertEqual([7, 2], [len(batch) for batch in batches_for(large)])
+
+    def test_downloaded_media_keeps_its_change_index(self):
+        entry = {
+            "changes": [{}, {}],
+            "media": [
+                {"url": "https://example.org/first.png", "change": 0},
+                {"url": "https://example.org/second.webm", "change": 1},
+            ],
+        }
+        media = [
+            discord_changelog.DownloadedMedia("first", None, b"png", "image/png", "first.png"),
+            discord_changelog.DownloadedMedia("second", None, b"webm", "video/webm", "second.webm"),
+        ]
+
+        with patch.object(discord_changelog, "download_media", side_effect=media):
+            batch = next(iter(discord_changelog.iter_entry_media_batches(entry)))
+
+        self.assertEqual([0, 1], [item.change_index for item in batch])
 
     def test_media_count_and_total_deadline_are_bounded(self):
         records = [

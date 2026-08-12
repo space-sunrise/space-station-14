@@ -65,6 +65,7 @@ class DownloadedMedia:
     data: bytes
     content_type: str
     filename: str
+    change_index: int | None = None
 
 
 class MediaError(ValueError):
@@ -524,26 +525,71 @@ def split_message(message: str, limit: int = DISCORD_SPLIT_LIMIT) -> list[str]:
     return textwrap.wrap(message, width=limit, replace_whitespace=False)
 
 
+def _append_text_components(components: list[dict[str, Any]], content: str) -> None:
+    components.extend(
+        {"type": 10, "content": part}
+        for part in split_message(content)
+        if part
+    )
+
+
+def _media_components(media: list[DownloadedMedia]) -> list[dict[str, Any]]:
+    images = [item for item in media if item.content_type.startswith("image/")]
+    videos = [item for item in media if not item.content_type.startswith("image/")]
+    components = []
+    for items in (images, videos):
+        if not items:
+            continue
+        if components:
+            components.append({"type": 14, "divider": True, "spacing": 2})
+        components.append({
+            "type": 12,
+            "items": [
+                {
+                    "media": {"url": f"attachment://{item.filename}"},
+                    **({"description": item.description[:1024]} if item.description else {}),
+                }
+                for item in items
+            ],
+        })
+    return components
+
+
 def build_media_payload(
     text_embed: dict[str, Any] | None,
     media: list[DownloadedMedia],
+    entry: ChangelogEntry | None = None,
 ) -> tuple[dict[str, Any], list[tuple[str, tuple[str, bytes, str]]]]:
     components: list[dict[str, Any]] = []
     if text_embed is not None:
-        components.append({
-            "type": 10,
-            "content": f"**{text_embed['title']}**\n{text_embed['description']}",
-        })
-    components.append({
-        "type": 12,
-        "items": [
-            {
-                "media": {"url": f"attachment://{item.filename}"},
-                **({"description": item.description[:1024]} if item.description else {}),
-            }
-            for item in media
-        ],
-    })
+        components.append({"type": 10, "content": f"### {text_embed['title']}"})
+
+    if entry is None:
+        if text_embed is not None:
+            _append_text_components(components, text_embed["description"])
+        components.extend(_media_components(media))
+    else:
+        pending_lines: list[str] = []
+        selected_indices = {item.change_index for item in media if item.change_index is not None}
+        for index, change in enumerate(entry["changes"]):
+            change_media = [item for item in media if item.change_index == index]
+            if text_embed is None and index not in selected_indices:
+                continue
+
+            emoji = TYPES_TO_EMOJI.get(change["type"], "❓")
+            pending_lines.append(f"{emoji} {change['message']}")
+            if change_media:
+                _append_text_components(components, "\n".join(pending_lines))
+                pending_lines.clear()
+                components.extend(_media_components(change_media))
+
+        if pending_lines:
+            _append_text_components(components, "\n".join(pending_lines))
+
+        root_media = [item for item in media if item.change_index is None]
+        components.extend(_media_components(root_media))
+        if text_embed is not None and (url := entry.get("url")) and url.strip():
+            _append_text_components(components, f"[GitHub Pull Request]({url})")
 
     files = [
         (
@@ -576,13 +622,26 @@ def iter_entry_media_batches(
     entry: ChangelogEntry,
     deadline: float | None = None,
 ) -> Iterable[list[DownloadedMedia]]:
-    records = entry.get("media") or []
-    if not isinstance(records, list):
-        report_media_warning(str(records), "поле media имеет неверный формат")
-        return
+    records: list[tuple[Any, int | None]] = []
+    for change_index, change in enumerate(entry.get("changes") or []):
+        change_records = change.get("media") or []
+        if not isinstance(change_records, list):
+            report_media_warning(str(change_records), "поле media имеет неверный формат")
+            continue
+        records.extend((record, change_index) for record in change_records)
+
+    entry_records = entry.get("media") or []
+    if not isinstance(entry_records, list):
+        report_media_warning(str(entry_records), "поле media имеет неверный формат")
+    else:
+        for record in entry_records:
+            change_index = record.get("change") if isinstance(record, dict) else None
+            if type(change_index) is not int or not 0 <= change_index < len(entry.get("changes") or []):
+                change_index = None
+            records.append((record, change_index))
 
     if len(records) > MEDIA_MAX_FILES_PER_ENTRY:
-        first_ignored = records[MEDIA_MAX_FILES_PER_ENTRY]
+        first_ignored = records[MEDIA_MAX_FILES_PER_ENTRY][0]
         ignored_url = (
             first_ignored.get("url", "<неизвестно>")
             if isinstance(first_ignored, dict)
@@ -596,7 +655,7 @@ def iter_entry_media_batches(
 
     batch: list[DownloadedMedia] = []
     batch_size = 0
-    for index, record in enumerate(records, start=1):
+    for index, (record, change_index) in enumerate(records, start=1):
         if not isinstance(record, dict) or not isinstance(record.get("url"), str):
             report_media_warning(str(record), "запись media не содержит URL")
             continue
@@ -612,6 +671,15 @@ def iter_entry_media_batches(
         except Exception as error:
             report_media_warning(url, str(error))
             continue
+
+        item = DownloadedMedia(
+            item.url,
+            item.description,
+            item.data,
+            item.content_type,
+            item.filename,
+            change_index,
+        )
 
         item_size = len(item.data)
         if batch and (
@@ -631,9 +699,10 @@ def send_media_batch(
     batch: list[DownloadedMedia],
     text_embed: dict[str, Any] | None,
     deadline: float,
+    entry: ChangelogEntry | None = None,
 ) -> None:
     try:
-        payload, files = build_media_payload(text_embed, batch)
+        payload, files = build_media_payload(text_embed, batch, entry)
         send_multipart_discord(payload, files, deadline)
     except DiscordPublishTimeoutError:
         raise
@@ -686,10 +755,10 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             send_embed_discord(last_embed, deadline)
             continue
 
-        send_media_batch(first_batch, last_embed, deadline)
+        send_media_batch(first_batch, last_embed, deadline, entry)
 
         for batch in media_batches:
-            send_media_batch(batch, None, deadline)
+            send_media_batch(batch, None, deadline, entry)
 
 
 if __name__ == "__main__":

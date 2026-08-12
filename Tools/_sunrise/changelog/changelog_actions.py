@@ -75,7 +75,7 @@ STATUS_FORMAT = {
 class ParsedCategory:
     name: str
     changes: list[dict[str, str]]
-    media: list[dict[str, str]] = field(default_factory=list)
+    media: list[dict[str, Any]] = field(default_factory=list)
 
 
 def report_status(status: str, message: str) -> None:
@@ -105,7 +105,7 @@ def format_changelog_time(value: str | None) -> str:
     return timestamp.strftime("%Y-%m-%dT%H:%M:%S.") + f"{timestamp.microsecond:06d}0+00:00"
 
 
-def parse_media_value(value: str) -> dict[str, str]:
+def parse_media_value(value: str) -> dict[str, Any]:
     markdown = MEDIA_MARKDOWN_RE.fullmatch(value.strip())
     if markdown:
         url = markdown.group(2)
@@ -136,7 +136,7 @@ def parse_pr_body(
 
     author = header.group(1).strip() if header.group(1) else fallback_author
     current_category = MAIN_CATEGORY
-    entries: dict[str, dict[str, list[dict[str, str]]]] = {}
+    entries: dict[str, dict[str, list[dict[str, Any]]]] = {}
 
     for line in text[header.end():].splitlines():
         category_match = CATEGORY_RE.match(line)
@@ -150,7 +150,11 @@ def parse_pr_body(
         media_match = MEDIA_RE.match(line)
         if media_match:
             category = entries.setdefault(current_category, {"changes": [], "media": []})
-            category["media"].append(parse_media_value(media_match.group(1)))
+            if not category["changes"]:
+                raise ValueError(f"категория {current_category} содержит медиа, но не содержит записей изменений")
+            media = parse_media_value(media_match.group(1))
+            media["change"] = len(category["changes"]) - 1
+            category["media"].append(media)
             continue
 
         entry_match = ENTRY_RE.match(line)
@@ -164,10 +168,6 @@ def parse_pr_body(
         category["changes"].append(
             {"type": change_type, "message": entry_match.group(2).strip()},
         )
-
-    for name, category in entries.items():
-        if category["media"] and not category["changes"]:
-            raise ValueError(f"категория {name} содержит медиа, но не содержит записей изменений")
 
     return author, [
         ParsedCategory(name, category["changes"], category["media"])
