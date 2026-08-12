@@ -675,7 +675,7 @@
   name: damaged freelance hardsuit
   suffix: Pirate
   description: A freelance hardsuit with cracked plating and punctured pressure seals. It no longer protects its wearer from space.
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: PressureProtection
     highPressureMultiplier: 1
@@ -697,7 +697,7 @@
   name: damaged armored freelance hardsuit
   suffix: Pirate
   description: An armored freelance hardsuit with cracked plates and punctured pressure seals. It no longer protects its wearer from space.
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: PressureProtection
     highPressureMultiplier: 1
