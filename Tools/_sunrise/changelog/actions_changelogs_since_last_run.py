@@ -68,7 +68,21 @@ class DownloadedMedia:
     change_index: int | None = None
 
 
+@dataclass(frozen=True)
+class RemoteMedia:
+    url: str
+    description: str | None
+    change_index: int | None = None
+
+
+DiscordMedia = DownloadedMedia | RemoteMedia
+
+
 class MediaError(ValueError):
+    pass
+
+
+class UnsafeMediaUrlError(MediaError):
     pass
 
 
@@ -85,23 +99,23 @@ class DiscordPublishTimeoutError(TimeoutError):
 
 def validate_media_url(url: str):
     if not isinstance(url, str) or not url or url != url.strip() or any(char.isspace() for char in url):
-        raise MediaError("ссылка должна быть непустым URL без пробелов")
+        raise UnsafeMediaUrlError("ссылка должна быть непустым URL без пробелов")
 
     try:
         parsed = urlsplit(url)
         hostname = parsed.hostname
         port = parsed.port
     except ValueError as error:
-        raise MediaError(f"некорректный URL: {error}") from error
+        raise UnsafeMediaUrlError(f"некорректный URL: {error}") from error
 
     if parsed.scheme.casefold() != "https":
-        raise MediaError("разрешены только HTTPS-ссылки")
+        raise UnsafeMediaUrlError("разрешены только HTTPS-ссылки")
     if parsed.username is not None or parsed.password is not None:
-        raise MediaError("ссылки с credentials запрещены")
+        raise UnsafeMediaUrlError("ссылки с credentials запрещены")
     if hostname is None:
-        raise MediaError("в URL отсутствует имя хоста")
+        raise UnsafeMediaUrlError("в URL отсутствует имя хоста")
     if port not in (None, 443):
-        raise MediaError("разрешён только стандартный HTTPS-порт 443")
+        raise UnsafeMediaUrlError("разрешён только стандартный HTTPS-порт 443")
 
     return parsed
 
@@ -129,7 +143,7 @@ def _resolve_public_address(hostname: str, port: int) -> tuple[int, str]:
 
     if literal is not None:
         if not _is_public_ip(hostname):
-            raise MediaError("имя хоста указывает на запрещённый IP-адрес")
+            raise UnsafeMediaUrlError("имя хоста указывает на запрещённый IP-адрес")
         family = socket.AF_INET6 if literal.version == 6 else socket.AF_INET
         return family, hostname
 
@@ -144,7 +158,7 @@ def _resolve_public_address(hostname: str, port: int) -> tuple[int, str]:
             continue
         address = sockaddr[0]
         if not _is_public_ip(address):
-            raise MediaError("DNS-имя указывает на запрещённый IP-адрес")
+            raise UnsafeMediaUrlError("DNS-имя указывает на запрещённый IP-адрес")
         resolved.append((family, address))
 
     if not resolved:
@@ -533,7 +547,7 @@ def _append_text_components(components: list[dict[str, Any]], content: str) -> N
     )
 
 
-def _media_components(media: list[DownloadedMedia]) -> list[dict[str, Any]]:
+def _media_components(media: list[DiscordMedia]) -> list[dict[str, Any]]:
     if not media:
         return []
     return [
@@ -541,7 +555,13 @@ def _media_components(media: list[DownloadedMedia]) -> list[dict[str, Any]]:
             "type": 12,
             "items": [
                 {
-                    "media": {"url": f"attachment://{item.filename}"},
+                    "media": {
+                        "url": (
+                            f"attachment://{item.filename}"
+                            if isinstance(item, DownloadedMedia)
+                            else item.url
+                        ),
+                    },
                     **({"description": item.description[:1024]} if item.description else {}),
                 }
                 for item in media
@@ -552,7 +572,7 @@ def _media_components(media: list[DownloadedMedia]) -> list[dict[str, Any]]:
 
 def build_media_payload(
     text_embed: dict[str, Any] | None,
-    media: list[DownloadedMedia],
+    media: list[DiscordMedia],
     entry: ChangelogEntry | None = None,
 ) -> tuple[dict[str, Any], list[tuple[str, tuple[str, bytes, str]]]]:
     components: list[dict[str, Any]] = []
@@ -595,12 +615,13 @@ def build_media_payload(
                 components.append({"type": 14, "divider": True, "spacing": 1})
             _append_text_components(components, f"[GitHub Pull Request]({url})")
 
+    downloaded = [item for item in media if isinstance(item, DownloadedMedia)]
     files = [
         (
             f"files[{index}]",
             (item.filename, item.data, item.content_type),
         )
-        for index, item in enumerate(media)
+        for index, item in enumerate(downloaded)
     ]
     attachments = [
         {
@@ -608,7 +629,7 @@ def build_media_payload(
             "filename": item.filename,
             **({"description": item.description[:1024]} if item.description else {}),
         }
-        for index, item in enumerate(media)
+        for index, item in enumerate(downloaded)
     ]
     return {
         "flags": DISCORD_COMPONENTS_V2_FLAG,
@@ -625,7 +646,7 @@ def build_media_payload(
 def iter_entry_media_batches(
     entry: ChangelogEntry,
     deadline: float | None = None,
-) -> Iterable[list[DownloadedMedia]]:
+) -> Iterable[list[DiscordMedia]]:
     records: list[tuple[Any, int | None]] = []
     for change_index, change in enumerate(entry.get("changes") or []):
         change_records = change.get("media") or []
@@ -657,7 +678,7 @@ def iter_entry_media_batches(
         )
         records = records[:MEDIA_MAX_FILES_PER_ENTRY]
 
-    batch: list[DownloadedMedia] = []
+    batch: list[DiscordMedia] = []
     batch_size = 0
     for index, (record, change_index) in enumerate(records, start=1):
         if not isinstance(record, dict) or not isinstance(record.get("url"), str):
@@ -672,20 +693,23 @@ def iter_entry_media_batches(
             item = download_media(url, description, f"media-{index}", deadline)
         except DiscordPublishTimeoutError:
             raise
-        except Exception as error:
+        except UnsafeMediaUrlError as error:
             report_media_warning(url, str(error))
             continue
+        except Exception as error:
+            print(f"::notice::Медиа {url} передаётся Discord как внешняя ссылка: {error}")
+            item = RemoteMedia(url, description, change_index)
+        else:
+            item = DownloadedMedia(
+                item.url,
+                item.description,
+                item.data,
+                item.content_type,
+                item.filename,
+                change_index,
+            )
 
-        item = DownloadedMedia(
-            item.url,
-            item.description,
-            item.data,
-            item.content_type,
-            item.filename,
-            change_index,
-        )
-
-        item_size = len(item.data)
+        item_size = len(item.data) if isinstance(item, DownloadedMedia) else 0
         if batch and (
             len(batch) >= MEDIA_MAX_FILES_PER_REQUEST
             or batch_size + item_size > MEDIA_MAX_REQUEST_SIZE
@@ -700,14 +724,17 @@ def iter_entry_media_batches(
         yield batch
 
 def send_media_batch(
-    batch: list[DownloadedMedia],
+    batch: list[DiscordMedia],
     text_embed: dict[str, Any] | None,
     deadline: float,
     entry: ChangelogEntry | None = None,
 ) -> None:
     try:
         payload, files = build_media_payload(text_embed, batch, entry)
-        send_multipart_discord(payload, files, deadline)
+        if files:
+            send_multipart_discord(payload, files, deadline)
+        else:
+            _send_discord_payload(payload, deadline)
     except DiscordPublishTimeoutError:
         raise
     except Exception as error:

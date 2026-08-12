@@ -877,6 +877,58 @@ class ChangelogActionsTests(unittest.TestCase):
             [item["media"]["url"] for item in items],
         )
 
+    def test_remote_service_preview_stays_in_authored_order(self):
+        youtube = discord_changelog.RemoteMedia(
+            "https://www.youtube.com/watch?v=example", "YouTube", change_index=0
+        )
+        image = discord_changelog.DownloadedMedia(
+            "image", None, b"png", "image/png", "media-2.png", change_index=0
+        )
+
+        payload, files = discord_changelog.build_media_payload(None, [youtube, image])
+
+        items = payload["components"][0]["components"][0]["items"]
+        self.assertEqual(
+            ["https://www.youtube.com/watch?v=example", "attachment://media-2.png"],
+            [item["media"]["url"] for item in items],
+        )
+        self.assertEqual([{"id": 0, "filename": "media-2.png"}], payload["attachments"])
+        self.assertEqual(["files[0]"], [field for field, _ in files])
+
+    def test_unsupported_download_becomes_remote_service_preview(self):
+        entry = {
+            "changes": [{"type": "Add", "message": "Видео"}],
+            "media": [{"url": "https://www.youtube.com/watch?v=example", "change": 0}],
+        }
+
+        with patch.object(
+            discord_changelog,
+            "download_media",
+            side_effect=discord_changelog.MediaError("сигнатура файла не поддерживается"),
+        ):
+            batch = next(iter(discord_changelog.iter_entry_media_batches(entry)))
+
+        self.assertEqual(
+            discord_changelog.RemoteMedia(
+                "https://www.youtube.com/watch?v=example",
+                None,
+                change_index=0,
+            ),
+            batch[0],
+        )
+
+    def test_remote_only_batch_uses_json_request(self):
+        remote = discord_changelog.RemoteMedia("https://www.youtube.com/watch?v=example", None)
+
+        with patch.object(discord_changelog, "_send_discord_payload") as send_json, patch.object(
+            discord_changelog,
+            "send_multipart_discord",
+        ) as send_multipart:
+            discord_changelog.send_media_batch([remote], None, discord_changelog.time.monotonic() + 10)
+
+        send_json.assert_called_once()
+        send_multipart.assert_not_called()
+
     def test_media_is_rendered_after_its_changelog_line(self):
         image = discord_changelog.DownloadedMedia(
             "image", None, b"png", "image/png", "media-1.png", change_index=0
