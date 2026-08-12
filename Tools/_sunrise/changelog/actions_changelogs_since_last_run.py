@@ -487,7 +487,7 @@ def _send_discord_payload(
                 timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
             )
 
-        if response.status_code == 204:
+        if response.status_code in (200, 204):
             return
         if response.status_code == 429 and retry_count < DISCORD_RETRY_LIMIT:
             retry_after = get_retry_after(response)
@@ -670,7 +670,15 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             send_embed_discord(last_embed, deadline)
             continue
 
-        send_media_batch(first_batch, last_embed, deadline)
+        images = [item for item in first_batch if item.content_type.startswith("image/")]
+        videos = [item for item in first_batch if not item.content_type.startswith("image/")]
+        if images:
+            send_media_batch(images, last_embed, deadline)
+        else:
+            send_embed_discord(last_embed, deadline)
+        if videos:
+            send_media_batch(videos, None, deadline)
+
         for batch in media_batches:
             send_media_batch(batch, None, deadline)
 

@@ -685,15 +685,22 @@ class ChangelogActionsTests(unittest.TestCase):
 
                 sleep.assert_called_once_with(discord_changelog.DISCORD_DEFAULT_RETRY_AFTER)
 
+    def test_discord_accepts_message_and_no_content_statuses(self):
+        for status_code in (200, 204):
+            with self.subTest(status_code=status_code):
+                response = Mock(status_code=status_code)
+                with patch.object(discord_changelog.requests, "post", return_value=response):
+                    discord_changelog.send_embed_discord({"description": "test"})
+
     def test_unexpected_discord_status_keeps_status_code(self):
-        response = Mock(status_code=200)
+        response = Mock(status_code=201)
 
         with patch.object(discord_changelog.requests, "post", return_value=response):
             with self.assertRaises(discord_changelog.UnexpectedDiscordStatusError) as raised:
                 discord_changelog.send_embed_discord({"description": "test"})
 
-        self.assertEqual(200, raised.exception.status_code)
-        self.assertEqual("Discord webhook вернул неожиданный статус 200", str(raised.exception))
+        self.assertEqual(201, raised.exception.status_code)
+        self.assertEqual("Discord webhook вернул неожиданный статус 201", str(raised.exception))
 
     def test_media_url_rejections_do_not_resolve_or_connect(self):
         invalid_urls = (
@@ -882,6 +889,34 @@ class ChangelogActionsTests(unittest.TestCase):
         multipart.assert_called_once()
         text_send.assert_called_once()
         self.assertIn("::warning::Медиа https://example.org/image.png", output.getvalue())
+
+    def test_video_is_sent_after_changelog_and_images(self):
+        image = discord_changelog.DownloadedMedia(
+            "https://example.org/image.png", None, b"png", "image/png", "media-1.png"
+        )
+        video = discord_changelog.DownloadedMedia(
+            "https://example.org/video.webm", None, b"webm", "video/webm", "media-2.webm"
+        )
+        entry = {
+            "author": "Tester",
+            "changes": [{"type": "Add", "message": "Добавлено"}],
+        }
+
+        with patch.object(discord_changelog, "DISCORD_WEBHOOK_URL", "https://discord.example/webhook"), patch.object(
+            discord_changelog,
+            "iter_entry_media_batches",
+            return_value=iter([[image, video]]),
+        ), patch.object(discord_changelog, "send_media_batch") as send, patch.object(
+            discord_changelog,
+            "send_embed_discord",
+        ) as send_text:
+            discord_changelog.send_to_discord([entry])
+
+        self.assertEqual([image], send.call_args_list[0].args[0])
+        self.assertIsNotNone(send.call_args_list[0].args[1])
+        self.assertEqual([video], send.call_args_list[1].args[0])
+        self.assertIsNone(send.call_args_list[1].args[1])
+        send_text.assert_not_called()
 
     def test_manual_and_reader_timestamps_support_optional_microseconds(self):
         self.assertRegex(manual_changelog.make_timestamp(), r"\.\d{6}\+00:00$")
