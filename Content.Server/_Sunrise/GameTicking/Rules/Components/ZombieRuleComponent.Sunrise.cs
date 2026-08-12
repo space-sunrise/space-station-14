@@ -4,6 +4,10 @@ namespace Content.Server.GameTicking.Rules.Components;
 
 public sealed partial class ZombieRuleComponent
 {
+    /*
+     * Sunrise-часть компонента хранит пороги заражения и состояние одноразовых реакций.
+     */
+
     /// <summary>
     /// After this amount of the crew become zombies, the CBURN shuttle game rule will be started.
     /// </summary>

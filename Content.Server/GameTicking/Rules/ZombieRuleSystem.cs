@@ -23,6 +23,7 @@ namespace Content.Server.GameTicking.Rules;
 
 public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent> // Sunrise-Edit
 {
+    // Базовая часть системы содержит основную логику зомби-раунда.
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

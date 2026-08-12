@@ -97,6 +97,7 @@
   name: ghost role spawn point
   suffix: CBURN
   parent: BaseAntagSpawner
+  categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: GhostRole
     name: ghost-role-information-cburn-agent-name
