@@ -795,7 +795,13 @@ class ChangelogActionsTests(unittest.TestCase):
 
         payload, files = discord_changelog.build_media_payload(text_embed, [image, video])
 
-        self.assertEqual("attachment://media-1.png", payload["embeds"][-1]["image"]["url"])
+        container = payload["components"][0]
+        self.assertEqual(discord_changelog.DISCORD_COMPONENTS_V2_FLAG, payload["flags"])
+        self.assertEqual("**Автор**\nТекст", container["components"][0]["content"])
+        self.assertEqual(
+            ["attachment://media-1.png", "attachment://media-2.mp4"],
+            [item["media"]["url"] for item in container["components"][1]["items"]],
+        )
         self.assertEqual(
             [
                 {"id": 0, "filename": "media-1.png", "description": "Изображение"},
@@ -805,7 +811,6 @@ class ChangelogActionsTests(unittest.TestCase):
         )
         self.assertEqual(["files[0]", "files[1]"], [field for field, _ in files])
         self.assertEqual(("media-2.mp4", b"mp4", "video/mp4"), files[1][1])
-        self.assertEqual(1, len(payload["embeds"]))
 
     def test_media_batches_obey_file_count_and_request_size(self):
         def batches_for(media):
@@ -868,6 +873,20 @@ class ChangelogActionsTests(unittest.TestCase):
         )
         self.assertEqual(files, post.call_args_list[0].kwargs["files"])
 
+    def test_components_v2_payload_enables_webhook_components(self):
+        payload = {"flags": discord_changelog.DISCORD_COMPONENTS_V2_FLAG, "components": []}
+
+        with patch.object(discord_changelog, "DISCORD_WEBHOOK_URL", "https://discord.example/webhook"), patch.object(
+            discord_changelog.requests, "post", return_value=Mock(status_code=204)
+        ) as post:
+            discord_changelog.send_multipart_discord(
+                payload,
+                [],
+                deadline=discord_changelog.time.monotonic() + 10,
+            )
+
+        self.assertEqual("https://discord.example/webhook?with_components=true", post.call_args.args[0])
+
     def test_media_send_failure_falls_back_to_text_and_warns(self):
         entry = {
             "author": "Tester",
@@ -890,7 +909,7 @@ class ChangelogActionsTests(unittest.TestCase):
         text_send.assert_called_once()
         self.assertIn("::warning::Медиа https://example.org/image.png", output.getvalue())
 
-    def test_video_is_sent_after_changelog_and_images(self):
+    def test_images_and_videos_are_sent_with_changelog_in_source_order(self):
         image = discord_changelog.DownloadedMedia(
             "https://example.org/image.png", None, b"png", "image/png", "media-1.png"
         )
@@ -912,10 +931,9 @@ class ChangelogActionsTests(unittest.TestCase):
         ) as send_text:
             discord_changelog.send_to_discord([entry])
 
-        self.assertEqual([image], send.call_args_list[0].args[0])
+        send.assert_called_once()
+        self.assertEqual([image, video], send.call_args.args[0])
         self.assertIsNotNone(send.call_args_list[0].args[1])
-        self.assertEqual([video], send.call_args_list[1].args[0])
-        self.assertIsNone(send.call_args_list[1].args[1])
         send_text.assert_not_called()
 
     def test_manual_and_reader_timestamps_support_optional_microseconds(self):

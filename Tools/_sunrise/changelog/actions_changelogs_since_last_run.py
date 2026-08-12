@@ -32,6 +32,7 @@ HTTP_REQUEST_TIMEOUT = 30
 DISCORD_RETRY_LIMIT = 5
 DISCORD_DEFAULT_RETRY_AFTER = 1
 DISCORD_PUBLISH_TIMEOUT = 14 * 60
+DISCORD_COMPONENTS_V2_FLAG = 1 << 15
 MEDIA_MAX_SIZE = 10 * 1024 * 1024
 MEDIA_MAX_FILES_PER_REQUEST = 10
 MEDIA_MAX_FILES_PER_ENTRY = 20
@@ -467,6 +468,11 @@ def _send_discord_payload(
     if deadline is None:
         deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
 
+    webhook_url = DISCORD_WEBHOOK_URL
+    if payload.get("flags", 0) & DISCORD_COMPONENTS_V2_FLAG:
+        separator = "&" if "?" in webhook_url else "?"
+        webhook_url = f"{webhook_url}{separator}with_components=true"
+
     for retry_count in range(DISCORD_RETRY_LIMIT + 1):
         remaining = deadline - time.monotonic()
         if remaining <= 0:
@@ -474,14 +480,14 @@ def _send_discord_payload(
 
         if files is None:
             response = requests.post(
-                DISCORD_WEBHOOK_URL,
+                webhook_url,
                 json=payload,
                 headers={"Content-Type": "application/json"},
                 timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
             )
         else:
             response = requests.post(
-                DISCORD_WEBHOOK_URL,
+                webhook_url,
                 data={"payload_json": json.dumps(payload, ensure_ascii=False)},
                 files=files,
                 timeout=min(HTTP_REQUEST_TIMEOUT, remaining),
@@ -522,21 +528,22 @@ def build_media_payload(
     text_embed: dict[str, Any] | None,
     media: list[DownloadedMedia],
 ) -> tuple[dict[str, Any], list[tuple[str, tuple[str, bytes, str]]]]:
-    image_embeds = [
-        {"image": {"url": f"attachment://{item.filename}"}}
-        for item in media
-        if item.content_type.startswith("image/")
-    ]
-
-    if text_embed is None:
-        embeds = image_embeds
-    else:
-        text = dict(text_embed)
-        if image_embeds:
-            text["image"] = image_embeds[0]["image"]
-            embeds = image_embeds[1:] + [text]
-        else:
-            embeds = [text]
+    components: list[dict[str, Any]] = []
+    if text_embed is not None:
+        components.append({
+            "type": 10,
+            "content": f"**{text_embed['title']}**\n{text_embed['description']}",
+        })
+    components.append({
+        "type": 12,
+        "items": [
+            {
+                "media": {"url": f"attachment://{item.filename}"},
+                **({"description": item.description[:1024]} if item.description else {}),
+            }
+            for item in media
+        ],
+    })
 
     files = [
         (
@@ -553,7 +560,16 @@ def build_media_payload(
         }
         for index, item in enumerate(media)
     ]
-    return {"embeds": embeds, "attachments": attachments}, files
+    return {
+        "flags": DISCORD_COMPONENTS_V2_FLAG,
+        "components": [{
+            "type": 17,
+            "accent_color": text_embed.get("color", 0x3498db) if text_embed else 0x3498db,
+            "components": components,
+        }],
+        "attachments": attachments,
+        "allowed_mentions": {"parse": []},
+    }, files
 
 
 def iter_entry_media_batches(
@@ -649,7 +665,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
 
         embeds = [
             {
-                "title": f"Автор: **{entry['author']}**",
+                "title": f"Автор: {entry['author']}",
                 "description": part,
                 "color": 0x3498db
             }
@@ -670,14 +686,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             send_embed_discord(last_embed, deadline)
             continue
 
-        images = [item for item in first_batch if item.content_type.startswith("image/")]
-        videos = [item for item in first_batch if not item.content_type.startswith("image/")]
-        if images:
-            send_media_batch(images, last_embed, deadline)
-        else:
-            send_embed_discord(last_embed, deadline)
-        if videos:
-            send_media_batch(videos, None, deadline)
+        send_media_batch(first_batch, last_embed, deadline)
 
         for batch in media_batches:
             send_media_batch(batch, None, deadline)
