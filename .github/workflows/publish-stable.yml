@@ -83,8 +83,9 @@ jobs:
 
     - name: Publish discord changelog
       continue-on-error: true
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
+      # Sunrise-Edit - запуск скрипта публикации чейнджлога из каталога Sunrise
+      run: Tools/_sunrise/changelog/actions_changelogs_since_last_run.py
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-        CHANGELOG_FILE: 'Resources/Changelog/ChangelogSunrise.yml'
+        CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}

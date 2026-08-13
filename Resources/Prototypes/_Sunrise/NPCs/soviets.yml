@@ -52,6 +52,8 @@
     - Dead
   - type: TimedDespawn
     lifetime: 3600
+  - type: SpawnOnDespawn
+    prototype: RedspaceImplantEffect
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
