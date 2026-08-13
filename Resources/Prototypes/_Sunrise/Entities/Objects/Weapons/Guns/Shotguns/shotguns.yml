@@ -57,6 +57,8 @@
     pump: true
     fireRate: 1.8
     projectileSpeed: 35
+  - type: GunSpreadModifier
+    spread: 1.2
   - type: Construction
     graph: ShotgunTrenchgun4034Sawn
     node: start
@@ -152,6 +154,8 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
+  - type: GunSpreadModifier
+    spread: 1.2
   - type: ItemSlots
     slots:
       gun_magazine:
