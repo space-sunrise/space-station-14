@@ -13,6 +13,7 @@ using Content.Shared._Sunrise.AnnouncementSpeaker.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -53,7 +54,8 @@ public sealed partial class TTSSystem : EntitySystem
     private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";
     private List<ICommonSession> _ignoredRecipients = new();
-    private const float AnnouncementTtsVolumeModifier = 0.75f; // громкость объявлений в динамиках по сравнению с обычной речью
+    private const float AnnouncementTtsVolumeModifier = 0.68f; // громкость объявлений в динамиках по сравнению с обычной речью
+    private const int MaxAnnouncementTtsSources = 4;
     private const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
     private const int WhisperVoiceRange = 3; // how far whisper goes in world units
     private string _radioEffect = string.Empty;
@@ -218,19 +220,19 @@ public sealed partial class TTSSystem : EntitySystem
         if (ev.TtsData == null || ev.TtsData.Length <= 0)
             return;
 
-        var speakerData = new List<(EntityUid Uid, AnnouncementSpeakerComponent Comp)>();
+        var speakerData = new List<(MapCoordinates Coordinates, AnnouncementSpeakerComponent Comp)>();
         foreach (var speaker in speakers)
         {
             if (!TryComp<AnnouncementSpeakerComponent>(speaker, out var speakerComp))
                 continue;
-            if (!speakerComp.Enabled)
+            if (!speakerComp.Enabled || speakerComp.VolumeModifier <= 0f)
                 continue;
             if (speakerComp.RequiresPower)
             {
                 if (!TryComp<ApcPowerReceiverComponent>(speaker, out var powerReceiver) || !powerReceiver.Powered)
                     continue;
             }
-            speakerData.Add((speaker, speakerComp));
+            speakerData.Add((_xforms.GetMapCoordinates(speaker), speakerComp));
         }
 
         // Для каждого игрока на станции определяем, какие динамики он слышит
@@ -240,18 +242,22 @@ public sealed partial class TTSSystem : EntitySystem
             if (_ignoredRecipients.Contains(actor.PlayerSession))
                 continue;
 
-            var heardSpeakers = new List<MultiSpeakerTtsSource>();
-            foreach (var (speakerUid, speakerComp) in speakerData)
-            {
-                if (Transform(speakerUid).Coordinates.TryDistance(EntityManager, playerXform.Coordinates, out var dist) &&
-                    dist <= speakerComp.Range)
-                {
-                    heardSpeakers.Add(new MultiSpeakerTtsSource(
-                        _xforms.GetMapCoordinates(speakerUid),
-                        speakerComp.VolumeModifier,
-                        speakerComp.Range));
-                }
-            }
+            var playerCoordinates = _xforms.GetMapCoordinates(playerXform);
+            var heardSpeakers = speakerData
+                .Where(speaker => speaker.Coordinates.MapId == playerCoordinates.MapId)
+                .Select(speaker => (
+                    speaker.Coordinates,
+                    speaker.Comp,
+                    DistanceSquared: (speaker.Coordinates.Position - playerCoordinates.Position).LengthSquared()))
+                .Where(speaker => speaker.DistanceSquared <= speaker.Comp.Range * speaker.Comp.Range)
+                .OrderBy(speaker => speaker.DistanceSquared)
+                .Take(MaxAnnouncementTtsSources)
+                .Select(speaker => new MultiSpeakerTtsSource(
+                    speaker.Coordinates,
+                    speaker.Comp.VolumeModifier,
+                    speaker.Comp.Range))
+                .ToList();
+
             if (heardSpeakers.Count > 0)
             {
                 var evMulti = new PlayMultiSpeakerTTSEvent(heardSpeakers, ev.TtsData, volumeModifier: AnnouncementTtsVolumeModifier);

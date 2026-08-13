@@ -5035,7 +5035,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 46.5,-0.5
       parent: 1
-- proto: SunriseAirlockSyndicateGlassPirateAccessLocked
+- proto: SunriseAirlockPirateGlassLocked
   entities:
   - uid: 12
     components:
