@@ -30,7 +30,7 @@ public sealed partial class LobbyUIController
     [UISystemDependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
     [UISystemDependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!;
     [UISystemDependency] private readonly SunriseHumanoidProfileVisualSystem _sunriseProfileVisual = default!;
-    [UISystemDependency] private readonly InventorySystem _inventory = default!;
+    [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
 
     private ISharedSponsorsManager? _sponsorsManager;
