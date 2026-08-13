@@ -11,5 +11,3 @@ ent-SunriseGyroscopeHugeThrust = { ent-Gyroscope }
     .desc = { ent-Gyroscope.desc }
 ent-SunriseGyroscopeSuperThrust = { ent-Gyroscope }
     .desc = { ent-Gyroscope.desc }
-ent-SunriseGyroscopeHyperThrust = { ent-Gyroscope }
-    .desc = { ent-Gyroscope.desc }
