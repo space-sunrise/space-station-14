@@ -162,6 +162,49 @@ class ChangelogActionsTests(unittest.TestCase):
             ).group(),
         )
 
+    def test_parser_ignores_changelog_inside_fenced_code(self):
+        for fence in ("```md", "~~~text"):
+            with self.subTest(fence=fence):
+                body = (
+                    f"{fence}\r\n"
+                    ":cl: Пример\r\n"
+                    "- add: Не настоящий чейнджлог\r\n"
+                    f"{fence[:3]}\r\n"
+                    "\r\n"
+                    ":cl: Настоящий автор\r\n"
+                    "- fix: Настоящее исправление\r\n"
+                    ":end-cl:\r\n"
+                )
+
+                parsed = changelog_actions.parse_pr_body(body, "Fallback")
+
+                self.assertEqual("Настоящий автор", parsed[0])
+                self.assertEqual(
+                    [{"type": "Fix", "message": "Настоящее исправление"}],
+                    parsed[1][0].changes,
+                )
+
+        self.assertIsNone(
+            changelog_actions.parse_pr_body(
+                "```md\n:cl: Только пример\n- add: Не публиковать\n```",
+                "Fallback",
+            ),
+        )
+
+    def test_template_check_ignores_fenced_example_and_text_after_boundary(self):
+        template = ":cl: ВАШЕ_ИМЯ\n- add: ТЕКСТ\n:end-cl:"
+        body = (
+            "```md\n:cl: Пример\n- add: Не настоящий чейнджлог\n```\n"
+            ":cl: ВАШЕ_ИМЯ\n"
+            "<!-- Комментарии при сравнении не учитываются. -->\n"
+            "- add: ТЕКСТ\n"
+            ":end-cl:\n"
+            "## Summary by CodeRabbit\n"
+            "Этот текст находится за границей."
+        )
+
+        self.assertTrue(changelog_actions.is_changelog_template(body, template))
+
     def test_parser_stops_at_explicit_or_double_blank_boundary(self):
         for body in (
             ":cl: Иван\n- add: Нужная запись\n:end-cl:\n- fix: Не чейнжлог",
@@ -1271,7 +1314,8 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertEqual("Последняя часть", send.call_args_list[0].args[1]["description"])
         self.assertEqual([None, None], [item.args[3] for item in send.call_args_list])
-        send_text.assert_not_called()
+        send_text.assert_called_once()
+        self.assertEqual("Первая часть", send_text.call_args.args[0]["description"])
 
     def test_all_split_text_parts_are_sent_when_there_is_no_media(self):
         entry = {"author": "Tester", "changes": [{"type": "Add", "message": "Добавлено"}]}

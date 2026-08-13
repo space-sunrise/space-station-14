@@ -39,6 +39,7 @@ UPDATER_PATH = Path("Tools/_sunrise/changelog/update_changelog.py")
 
 COMMENT_RE = re.compile(r"(?<!\\)<!--([\s\S]*?)(?<!\\)-->")
 COMMENT_PLACEHOLDER = "\0"
+FENCE_RE = re.compile(r"^[ ]{0,3}(`{3,}|~{3,})")
 MARKER_RE = re.compile(r"^\s*(?::cl:|🆑)", re.IGNORECASE | re.MULTILINE)
 HEADER_RE = re.compile(
     r"^[ \t]*(?::cl:|🆑)[ \t]*([^\r\n]*?)[ \t]*\r?$",
@@ -72,6 +73,38 @@ STATUS_FORMAT = {
     "skip": ("notice", "⏭️"),
     "error": ("error", "❌"),
 }
+
+
+def _mask_ignored_text(value: str) -> str:
+    def mask(text: str) -> str:
+        return "".join(char if char in "\r\n" else COMMENT_PLACEHOLDER for char in text)
+
+    text = COMMENT_RE.sub(lambda match: mask(match.group()), value)
+    result: list[str] = []
+    fence_character: str | None = None
+    fence_length = 0
+    for line in text.splitlines(keepends=True):
+        content = line.rstrip("\r\n")
+        if fence_character is None:
+            if match := FENCE_RE.match(content):
+                fence = match.group(1)
+                fence_character = fence[0]
+                fence_length = len(fence)
+                result.append(mask(line))
+            else:
+                result.append(line)
+            continue
+
+        result.append(mask(line))
+        closing = content.lstrip(" ")
+        if (
+            len(content) - len(closing) <= 3
+            and len(closing.rstrip(" \t")) >= fence_length
+            and set(closing.rstrip(" \t")) == {fence_character}
+        ):
+            fence_character = None
+
+    return "".join(result)
 
 
 @dataclass(frozen=True)
@@ -130,10 +163,7 @@ def parse_pr_body(
     fallback_author: str,
     category_names: tuple[str, ...] = tuple(CATEGORY_FILES),
 ) -> tuple[str, list[ParsedCategory]] | None:
-    text = COMMENT_RE.sub(
-        lambda match: "".join("\n" if char == "\n" else COMMENT_PLACEHOLDER for char in match.group()),
-        body or "",
-    )
+    text = _mask_ignored_text(body or "")
     header = HEADER_RE.search(text)
     if header is None:
         if MARKER_RE.search(text):
@@ -204,10 +234,7 @@ def parse_manual_changelog(
     category_names: tuple[str, ...] = tuple(CATEGORY_FILES),
 ) -> tuple[str, list[ParsedCategory]]:
     source = body or ""
-    text = COMMENT_RE.sub(
-        lambda match: "".join("\n" if char == "\n" else COMMENT_PLACEHOLDER for char in match.group()),
-        source,
-    )
+    text = _mask_ignored_text(source)
     header = CI_HEADER_RE.search(text)
     if header is None:
         if CI_MARKER_RE.search(text):
@@ -226,9 +253,30 @@ def parse_manual_changelog(
 
 
 def changelog_block(body: str | None) -> str | None:
-    text = COMMENT_RE.sub("", body or "")
+    text = _mask_ignored_text(body or "")
     marker = MARKER_RE.search(text)
-    return text[marker.start():] if marker else None
+    if marker is None:
+        return None
+
+    block: list[str] = []
+    empty_lines = 0
+    for line in text[marker.start():].splitlines(keepends=True):
+        had_ignored_text = COMMENT_PLACEHOLDER in line
+        line = line.replace(COMMENT_PLACEHOLDER, "")
+        if END_MARKER_RE.match(line):
+            block.append(line)
+            break
+        if not line.strip():
+            if had_ignored_text:
+                continue
+            empty_lines += 1
+            if empty_lines >= 2:
+                break
+        else:
+            empty_lines = 0
+        block.append(line)
+
+    return "".join(block)
 
 
 def normalize_template_changelog(value: str) -> str:

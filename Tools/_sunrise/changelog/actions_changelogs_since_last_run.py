@@ -810,6 +810,9 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
                 send_embed_discord(embed, deadline)
             continue
 
+        for embed in embeds[:-1]:
+            send_embed_discord(embed, deadline)
+
         media_entry = entry if len(embeds) == 1 else None
         send_media_batch(first_batch, last_embed, deadline, media_entry)
 
