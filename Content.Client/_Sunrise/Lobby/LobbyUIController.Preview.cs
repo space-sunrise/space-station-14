@@ -30,9 +30,7 @@ public sealed partial class LobbyUIController
     [UISystemDependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
     [UISystemDependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!;
     [UISystemDependency] private readonly SunriseHumanoidProfileVisualSystem _sunriseProfileVisual = default!;
-    [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
-
     private ISharedSponsorsManager? _sponsorsManager;
 
     private void InitializeSunrisePreviewHelpers()
@@ -99,7 +97,8 @@ public sealed partial class LobbyUIController
     /// </summary>
     public void GiveDummyJobClothes(EntityUid dummy, HumanoidCharacterProfile profile, JobPrototype job)
     {
-        if (!_inventory.TryGetSlots(dummy, out var slots))
+        var inventory = EntityManager.System<ClientInventorySystem>();
+        if (!inventory.TryGetSlots(dummy, out var slots))
             return;
 
         if (profile.Loadouts.TryGetValue(job.ID, out var jobLoadout))
@@ -116,7 +115,7 @@ public sealed partial class LobbyUIController
                         var equipment = _prototypeManager.Resolve(loadoutPrototype.StartingGear, out var loadoutGear)
                             ? (IEquipmentLoadout) loadoutGear
                             : loadoutPrototype;
-                        ReplaceDummyEquipment(dummy, slot.Name, equipment.GetGear(slot.Name));
+                        ReplaceDummyEquipment(dummy, slot.Name, equipment.GetGear(slot.Name), inventory);
                     }
                 }
             }
@@ -126,7 +125,7 @@ public sealed partial class LobbyUIController
             return;
 
         foreach (var slot in slots)
-            ReplaceDummyEquipment(dummy, slot.Name, ((IEquipmentLoadout) gear).GetGear(slot.Name));
+            ReplaceDummyEquipment(dummy, slot.Name, ((IEquipmentLoadout) gear).GetGear(slot.Name), inventory);
     }
 
     /// <summary>
@@ -185,15 +184,19 @@ public sealed partial class LobbyUIController
         return dummy;
     }
 
-    private void ReplaceDummyEquipment(EntityUid dummy, string slot, string prototype)
+    private void ReplaceDummyEquipment(
+        EntityUid dummy,
+        string slot,
+        string prototype,
+        ClientInventorySystem inventory)
     {
-        if (_inventory.TryUnequip(dummy, slot, out var unequippedItem, silent: true, force: true, reparent: false))
+        if (inventory.TryUnequip(dummy, slot, out var unequippedItem, silent: true, force: true, reparent: false))
             EntityManager.DeleteEntity(unequippedItem.Value);
 
         if (prototype == string.Empty)
             return;
 
         var item = EntityManager.SpawnEntity(prototype, MapCoordinates.Nullspace);
-        _inventory.TryEquip(dummy, item, slot, true, true);
+        inventory.TryEquip(dummy, item, slot, true, true);
     }
 }
