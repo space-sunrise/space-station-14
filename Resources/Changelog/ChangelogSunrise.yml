@@ -8728,3 +8728,11 @@
   id: 1993
   time: '2026-08-12T21:20:33.0000000+00:00'
   url: https://github.com/space-sunrise/sunrise-station/pull/4703
+- author: XsenonDash
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D \u0440\u0430\u0437\u043C\u0435\
+      \u0440 \u0432 \u0438\u043C\u043F\u043B\u0430\u043D\u0442\u0435\u0440\u0435 SELF"
+    type: Tweak
+  id: 1994
+  time: '2026-08-13T22:18:00.0000000+00:00'
+  url: https://github.com/space-sunrise/sunrise-station/pull/4710
