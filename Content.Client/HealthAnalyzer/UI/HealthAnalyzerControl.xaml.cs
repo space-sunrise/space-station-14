@@ -115,9 +115,9 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         // Alerts
 
-        var showAlerts = state.Unrevivable == true || state.Bleeding == true;
+        var showAlerts = state.Unrevivable == true || state.Bleeding == true || state.CureProgress != null; // Sunrise-Edit
 
-        AlertsDivider.Visible = showAlerts;
+    AlertsDivider.Visible = showAlerts;
         AlertsContainer.Visible = showAlerts;
 
         if (showAlerts)
@@ -138,6 +138,22 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 Margin = new Thickness(0, 4),
                 MaxWidth = 300
             });
+        // Sunrise-Start
+        if (state.CureProgress != null)
+        {
+            var percent = Math.Clamp(state.CureProgress.Value, 0f, 1f) * 100f;
+
+            AlertsContainer.AddChild(new RichTextLabel
+            {
+                Text = Loc.GetString(
+                    "health-analyzer-window-entity-infected-text", ("progress", percent.ToString("F1")
+                    )
+                ),
+                Margin = new Thickness(0, 4),
+                MaxWidth = 300
+            });
+        }
+        // Sunrise-End
 
         // Damage Groups
 

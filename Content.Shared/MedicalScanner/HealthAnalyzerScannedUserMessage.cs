@@ -31,11 +31,12 @@ public struct HealthAnalyzerUiState
     // Sunrise-Edit start - add hunger and thirst levels to UI state
     public float? HungerLevel;
     public float? ThirstLevel;
+    public float? CureProgress;
     // Sunrise-Edit end
 
     public HealthAnalyzerUiState() {}
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, float? hungerLevel = null, float? thirstLevel = null)
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, float? hungerLevel = null, float? thirstLevel = null, float? cureProgress = null)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -46,6 +47,7 @@ public struct HealthAnalyzerUiState
         // Sunrise-Edit start - assign hunger and thirst
         HungerLevel = hungerLevel;
         ThirstLevel = thirstLevel;
+        CureProgress = cureProgress;
         // Sunrise-Edit end
     }
 }

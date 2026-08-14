@@ -21,6 +21,7 @@ using Robust.Shared.Timing;
 using Content.Server.Body.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared._Sunrise.Research.Artifact;
+using Content.Shared._Sunrise.Disease.Components;
 
 namespace Content.Server.Medical;
 
@@ -252,6 +253,16 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         }
 
         RaiseLocalEvent(entity, new EntityAnalyzedEvent());
+
+        float? infectionLevel = null;
+        if (TryComp<DiseaseComponent>(entity, out var virus))
+        {
+            var curProg = virus.Data.MaxThreshold > 0f
+                ? virus.Data.Threshold / virus.Data.MaxThreshold
+                : 0f;
+
+            infectionLevel = 1f - curProg;
+        }
         // Sunrise-Edit end
 
         // Sunrise-Edit start - return state with hunger and thirst
@@ -263,7 +274,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bleeding,
             unrevivable,
             hungerLevel,
-            thirstLevel
+            thirstLevel,
+            infectionLevel // Sunrise-disease-edit
         );
         // Sunrise-Edit end
     }

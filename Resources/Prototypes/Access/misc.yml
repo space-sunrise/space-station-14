@@ -48,6 +48,7 @@
   - Mining  # Sunrise-edit
   - CargoPurchaseAccess  # Sunrise-edit
   - ResearchConsoleAccess  # Sunrise-edit
+  - Virology # Sunrise-disease-edit
 
 - type: accessGroup
   id: General

@@ -1,0 +1,33 @@
+# - type: gamePreset
+#   id: SentientDisease
+#   alias:
+#     - SentientDisease
+#   name: sentient-virus-title
+#   description: sentient-virus-description
+#   showInVote: true
+#   showInAdminVote: true
+#   voteType: rdm
+#   rules:
+#   - WageScheduler
+#   - SentientDiseaseRule
+#   - BasicStationEventScheduler
+#   - MeteorSwarmScheduler
+#   - SpaceTrafficControlEventScheduler
+#   - BasicRoundstartVariation
+
+# - type: gamePreset
+#   id: SecretSentientDisease
+#   alias:
+#     - secretSentientDisease
+#   name: secret-title
+#   description: secret-description
+#   showInVote: false
+#   showInAdminVote: false
+#   voteType: admin
+#   rules:
+#   - WageScheduler
+#   - SentientDiseaseRule
+#   - BasicStationEventScheduler
+#   - MeteorSwarmScheduler
+#   - SpaceTrafficControlEventScheduler
+#   - BasicRoundstartVariation

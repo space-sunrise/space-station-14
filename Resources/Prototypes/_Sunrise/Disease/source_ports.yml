@@ -1,0 +1,19 @@
+- type: sourcePort
+  id: DiseaseDiagnoserDataServerSender
+  name: signal-port-name-disease-data-server-sender
+  description: signal-port-description-disease-data-server-sender
+  defaultLinks: 
+  - DiseaseDiagnoserDataServerReceiver
+
+- type: sourcePort
+  id: DiseaseDiagnoserSender
+  name: signal-port-name-disease-diagnoser-sender
+  description: signal-port-description-disease-diagnoser-sender
+  defaultLinks: [ DiseaseDiagnoserReceiver ]
+
+- type: sourcePort
+  id: DiseaseSolutionAnalyzerSender
+  name: signal-port-name-disease-solution-analyzer-sender
+  description: signal-port-description-disease-solution-analyzer-sender
+  defaultLinks: 
+  - DiseaseSolutionAnalyzerReceiver

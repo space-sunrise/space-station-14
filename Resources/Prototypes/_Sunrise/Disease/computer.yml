@@ -1,0 +1,73 @@
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerDiagnoserConsoleCircuitboard
+  name: машинная плата консоли диагноста заболеваний
+  description: Компьютерная печатная плата для консоли диагноста заболеваний.
+  components:
+    - type: Sprite
+      state: cpu_medical
+    - type: ComputerBoard
+      prototype: ComputerDiagnoserConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerDiseaseEvolutionConsoleCircuitboard
+  name: машинная плата консоли эволюции заболеваний
+  description: Компьютерная печатная плата для консоли эволюции заболеваний.
+  components:
+    - type: Sprite
+      state: cpu_medical
+    - type: ComputerBoard
+      prototype: ComputerDiseaseEvolutionConsole
+
+- type: entity
+  id: DiagnoserMachineCircuitboardNox
+  parent: BaseMachineCircuitboard
+  name: diagnoser machine board
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: DiseaseDiagnoser
+    stackRequirements:
+      Cable: 5
+    tagRequirements:
+      GlassBeaker:
+        amount: 1
+        defaultPrototype: Beaker
+    componentRequirements:
+      BotanySwab:
+        amount: 1
+        defaultPrototype: DiseaseSwab
+
+- type: entity
+  id: DiseaseSolutionAnalyzerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: машинная плата диагност веществ
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: DiseaseSolutionAnalyzer
+    stackRequirements:
+      Cable: 5
+    tagRequirements:
+      GlassBeaker:
+        amount: 1
+        defaultPrototype: Beaker
+    componentRequirements:
+      BotanySwab:
+        amount: 1
+        defaultPrototype: DiseaseSwab
+
+- type: entity
+  id: ComputerDiagnoserDataServerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: машинная плата сервера данных диагноста заболеваний
+  description: омпьютерная печатная плата для сервера данных диагноста заболеваний.
+  components:
+  - type: MachineBoard
+    prototype: DiseaseDataServer
+    stackRequirements:
+      Steel: 1
+      Cable: 2

@@ -1,0 +1,176 @@
+<!--
+Developed by Nox for the Sunrise Station project.
+Author: KloopRe
+-->
+
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'disease-diagnoser-window-title'}"
+               MinSize="600 400"
+               SetSize="600 400">
+
+    <TabContainer Name="MasterTabContainer">
+
+        <!-- ================= SERVER TAB ================= -->
+        <BoxContainer Name="ServerTab"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      HorizontalExpand="True">
+
+            <!-- SERVER CONNECTED -->
+            <PanelContainer Name="ServerContents"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <BoxContainer Orientation="Vertical" Margin="5 5 5 5"
+                              VerticalExpand="True" HorizontalExpand="True">
+
+                    <Label Text="{Loc 'disease-diagnoser-server-strains-label'}"
+                           HorizontalAlignment="Center" />
+                    
+                    <RichTextLabel Name="ResearchAmountLabel"/>
+
+                    <ItemList Name="StrainList"
+                              Access="Public"
+                              VerticalExpand="True"
+                              SelectMode="Single" />
+
+                    <Button Name="DeleteStrainButton"
+                            Access="Public"
+                            Text="{Loc 'disease-diagnoser-delete-strain-button'}"
+                            HorizontalAlignment="Center"
+                            Disabled="True" />
+
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- SERVER MISSING -->
+            <PanelContainer Name="ServerMissing"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Loc 'disease-diagnoser-server-missing'}" />
+            </PanelContainer>
+
+            <!-- SERVER FAR -->
+            <PanelContainer Name="ServerFar"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Loc 'disease-diagnoser-server-far'}" />
+            </PanelContainer>
+
+        </BoxContainer>
+
+
+        <!-- ================= DIAGNOSER TAB ================= -->
+        <BoxContainer Name="DiagnoserTab"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      HorizontalExpand="True">
+
+            <PanelContainer Name="DiagnoserContents"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+
+                <BoxContainer Orientation="Vertical" Margin="5 5 5 5"
+                              VerticalExpand="True" HorizontalExpand="True">
+
+                    <Label Text="{Loc 'disease-diagnoser-actions-label'}"
+                           HorizontalAlignment="Center" />
+
+                    <BoxContainer Orientation="Horizontal"
+                                  HorizontalExpand="True"
+                                  VerticalAlignment="Center"
+                                  SeparationOverride="10">
+
+                        <Button Name="ScanDiseaseButton"
+                                Access="Public"
+                                Text="{Loc 'disease-diagnoser-scan-button'}"
+                                HorizontalExpand="True" />
+
+                        <Button Name="PrintReportButton"
+                                Access="Public"
+                                Text="{Loc 'disease-diagnoser-print-button'}"
+                                HorizontalExpand="True"
+                                Disabled="True" />
+
+                        <Button Name="GenerateDiseaseButton"
+                                Access="Public"
+                                Text="{Loc 'disease-diagnoser-generate-button'}"
+                                HorizontalExpand="True" 
+                                Disabled="True" />
+
+                    </BoxContainer>
+
+                </BoxContainer>
+
+            </PanelContainer>
+
+
+            <PanelContainer Name="DiagnoserMissing"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Loc 'disease-diagnoser-missing'}" />
+            </PanelContainer>
+
+            <PanelContainer Name="DiagnoserFar"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Loc 'disease-diagnoser-far'}" />
+            </PanelContainer>
+
+        </BoxContainer>
+
+        <!-- ================= SolutionAnalyzer TAB ================= -->
+        <BoxContainer Name="SolutionAnalyzerTab"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      HorizontalExpand="True">
+
+            <!-- SolutionAnalyzer CONNECTED -->
+            <PanelContainer Name="SolutionAnalyzerContents"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <BoxContainer Orientation="Vertical" Margin="5 5 5 5"
+                              VerticalExpand="True" HorizontalExpand="True">
+
+                    <Button Name="StartAnalysButton"
+                            Access="Public"
+                            Text="{Loc 'disease-solution-analyser-start-analys-button'}"
+                            HorizontalAlignment="Center" />
+
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- SolutionAnalyzer MISSING -->
+            <PanelContainer Name="SolutionAnalyzerMissing"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Loc 'disease-solution-analyser-missing'}" />
+            </PanelContainer>
+
+            <!-- SolutionAnalyzer FAR -->
+            <PanelContainer Name="SolutionAnalyzerFar"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5 5 5 5">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Loc 'disease-solution-analyser-far'}" />
+            </PanelContainer>
+
+        </BoxContainer>
+    
+    </TabContainer>
+
+</DefaultWindow>
+

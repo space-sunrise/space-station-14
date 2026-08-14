@@ -1,0 +1,89 @@
+- type: entity
+  id: ChemistryBottleInfectizine
+  suffix: бактеризин
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-infectizine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Infectizine
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleMycocline
+  suffix: микоклин
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-mycocline
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Mycocline
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleVirucidine
+  suffix: вируцид
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-virucidine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Virucidine
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottlePanacemycin
+  suffix: панацемицин
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-panacemycin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Panacemycin
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleSeptomycin
+  suffix: септомицин
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-septomycin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Septomycin
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleNecrovir
+  suffix: некровир
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-necrovir
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Necrovir
+          Quantity: 30

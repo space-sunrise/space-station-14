@@ -1,0 +1,115 @@
+- type: entity
+  id: AntisepticSmokeEmitter
+  placement:
+    mode: SnapgridCenter
+  name: антисептический дымогенератор
+  description: Устройство, выпускающее облако антисептического дыма по сигналу. Можно связать мультитулом с кнопкой.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Physics
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Structures/Specific/Atmospherics/sensor.rsi
+    layers:
+    - state: gsensor1
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { state: gsensor1 }
+          False: { state: gsensor0 }
+  - type: DiseaseSmokeOnTrigger
+    duration: 10
+    spreadAmount: 25
+    smokePrototype: Smoke
+    solution:
+      reagents:
+      - ReagentId: Antiseptic
+        Quantity: 30
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
+  - type: UseDelayOnTrigger
+    checkDelayed: true
+  - type: UseDelayTriggerCondition
+  - type: UseDelay
+    delay: 10
+  - type: TriggerOnSignal
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: Tag
+    tags:
+    - SignalTrigger
+    - Unstackable
+
+- type: entity
+  description: Распылитель с антисептическим раствором для обеззараживания поверхностей и подавления инфекции.
+  id: SprayBottleAntiseptic
+  parent: SprayBottle
+  suffix: Антисептик
+  name: распылитель
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 100
+        reagents:
+        - ReagentId: Antiseptic
+          Quantity: 100
+  - type: Label
+    currentLabel: антисептик
+  - type: Tag
+    tags:
+      - Spray
+
+- type: entity
+  parent: GenericTank
+  id: AntisepticTankFull
+  name: резервуар с антисептиком
+  description: Большой резервуар, заполненный антисептическим раствором для борьбы с инфекциями.
+  suffix: Полный
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/tanks.rsi
+    layers:
+      - state: generictank-1
+      - state: generictank-1-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: Antiseptic
+          Quantity: 1500

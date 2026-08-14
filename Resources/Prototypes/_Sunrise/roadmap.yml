@@ -27,13 +27,9 @@
       name: roadmap-goal-assault-ops-name
       desc: roadmap-goal-assault-ops-desc
       state: Complete
-    - id: flesh-cult-name
-      name: roadmap-goal-flesh-cult-name
-      desc: roadmap-goal-flesh-cult-desc
-      state: Complete
-    - id: blood-cult-name
-      name: roadmap-goal-blood-cult-name
-      desc: roadmap-goal-blood-cult-desc
+    - id: cargo-rework-old-name
+      name: cargo-rework-name
+      desc: cargo-rework-desc
       state: Complete
     - id: mechs-name
       name: roadmap-goal-mechs-name

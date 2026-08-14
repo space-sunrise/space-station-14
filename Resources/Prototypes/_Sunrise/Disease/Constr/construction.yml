@@ -1,0 +1,9 @@
+- type: construction
+  id: Petri
+  graph: petri
+  startNode: start
+  targetNode: petriNode
+  category: construction-category-misc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

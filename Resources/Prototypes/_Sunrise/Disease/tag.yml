@@ -1,0 +1,14 @@
+- type: Tag
+  id: DiagnoserFlask
+
+- type: Tag
+  id: DiagnoserDataCollector
+
+- type: Tag
+  id: DiseaseAlwaysInfectable
+
+- type: Tag
+  id: IgnoreCanInfect
+
+- type: Tag
+  id: DiseaseIgnorSymptoms

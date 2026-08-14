@@ -1,0 +1,213 @@
+using Content.Server.Spreader;
+using Content.Shared._Sunrise.Disease.Components;
+using Content.Shared.Examine;
+using Robust.Shared.GameStates;
+using Robust.Shared.Map;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+
+namespace Content.Server._Sunrise.Disease.Systems;
+
+public sealed class DiseaseInfectionCloudSystem : EntitySystem
+{
+    [Dependency] private readonly DiseaseSystem _disease = default!;
+    [Dependency] private readonly DiseaseContaminationSystem _contamination = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
+    private static readonly EntProtoId CloudPrototype = "DiseaseInfectionCloud";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, SpreadNeighborsEvent>(OnSpreadNeighbors);
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, ComponentGetState>(OnGetState);
+        SubscribeLocalEvent<DiseaseInfectionCloudComponent, ExaminedEvent>(OnExamine);
+    }
+
+    private void OnInit(Entity<DiseaseInfectionCloudComponent> ent, ref ComponentInit args)
+    {
+        if (ent.Comp.NewData)
+            ent.Comp.Data = new DiseaseData();
+        else
+            ent.Comp.Data = null;
+
+        Dirty(ent, ent.Comp);
+    }
+
+    private void OnExamine(EntityUid uid, DiseaseInfectionCloudComponent component, ExaminedEvent args)
+    {
+        if (component.Data == null)
+            return;
+
+        var strainId = string.IsNullOrWhiteSpace(component.Data.StrainId)
+            ? "неизвестная"
+            : component.Data.StrainId;
+
+        var infectivityPercent = (_disease.CalcInfectionInfectivity(component.Data) * 100f).ToString("0");
+
+        args.PushMarkup(Loc.GetString("disease-infection-cloud-examine-strain", ("strain", strainId)));
+        args.PushMarkup(Loc.GetString("disease-infection-cloud-examine-infectivity", ("infectivity", infectivityPercent)));
+    }
+
+    private void OnGetState(EntityUid uid, DiseaseInfectionCloudComponent component, ref ComponentGetState args)
+    {
+        args.State = new DiseaseInfectionCloudComponentState(component.Data?.Color ?? Color.Yellow);
+    }
+
+    private void OnStartCollide(Entity<DiseaseInfectionCloudComponent> ent, ref StartCollideEvent args)
+    {
+        TryInfectOnCollide((ent.Owner, ent.Comp), args.OtherEntity);
+        _contamination.TryContaminateFromCloud((ent.Owner, ent.Comp), args.OtherEntity);
+    }
+
+    private void OnSpreadNeighbors(Entity<DiseaseInfectionCloudComponent> ent, ref SpreadNeighborsEvent args)
+    {
+        if (args.Updates <= 0)
+            return;
+
+        if (ent.Comp.Data == null || ent.Comp.SpreadAmount <= 0)
+        {
+            RemCompDeferred<ActiveEdgeSpreaderComponent>(ent);
+            return;
+        }
+
+        if (args.NeighborFreeTiles.Count == 0)
+            return;
+
+        var randomTile = args.NeighborFreeTiles[_random.Next(args.NeighborFreeTiles.Count)];
+        var coords = _map.GridTileToLocal(randomTile.Tile.GridUid, randomTile.Grid, randomTile.Tile.GridIndices);
+
+        SpawnCloud(
+            ent.Comp.Data!,
+            coords,
+            CloudPrototype,
+            0);
+
+        ent.Comp.SpreadAmount--;
+        args.Updates--;
+
+        if (ent.Comp.SpreadAmount <= 0)
+            RemCompDeferred<ActiveEdgeSpreaderComponent>(ent);
+    }
+
+    public bool TryInfectOnCollide(Entity<DiseaseInfectionCloudComponent?> cloud, EntityUid target)
+    {
+        if (!Resolve(cloud, ref cloud.Comp, false))
+            return false;
+
+        if (!CanInfectOnCollide(cloud, target))
+            return false;
+
+        _disease.ProbInfect(cloud.Comp.Data!, target, infectivity: _disease.CalcInfectionInfectivity(cloud.Comp.Data!));
+        return true;
+    }
+
+    public bool CanInfectOnCollide(Entity<DiseaseInfectionCloudComponent?> cloud, EntityUid target)
+    {
+        if (!Resolve(cloud, ref cloud.Comp, false))
+            return false;
+
+        if (target == cloud.Owner)
+            return false;
+
+        return cloud.Comp.Data != null;
+    }
+
+    public bool TrySpawnCloud(
+        Entity<DiseaseComponent?> host,
+        out EntityUid cloud,
+        int spreadAmount = 4,
+        float checkRange = 0.01f)
+    {
+        cloud = EntityUid.Invalid;
+
+        if (!Resolve(host, ref host.Comp, false))
+            return false;
+
+        return TrySpawnCloud(host.Comp.Data, Transform(host).Coordinates, CloudPrototype, out cloud, spreadAmount, checkRange);
+    }
+
+    public bool TrySpawnCloud(
+        DiseaseData disease,
+        EntityCoordinates coordinates,
+        out EntityUid cloud,
+        int spreadAmount = 4,
+        float checkRange = 0.01f)
+    {
+        return TrySpawnCloud(disease, coordinates, CloudPrototype, out cloud, spreadAmount, checkRange);
+    }
+
+    public bool TrySpawnCloud(
+        DiseaseData disease,
+        EntityCoordinates coordinates,
+        EntProtoId cloudPrototype,
+        out EntityUid cloud,
+        int spreadAmount = 4,
+        float checkRange = 0.01f)
+    {
+        cloud = EntityUid.Invalid;
+
+        if (!CanSpawnCloud(coordinates, checkRange))
+            return false;
+
+        cloud = SpawnCloud(disease, coordinates, cloudPrototype, spreadAmount);
+        return true;
+    }
+
+    public bool CanSpawnCloud(EntityCoordinates coordinates, float checkRange = 0f)
+    {
+        foreach (var _ in _entityLookup.GetEntitiesInRange<DiseaseInfectionCloudComponent>(coordinates, checkRange))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private EntityUid SpawnCloud(
+        DiseaseData disease,
+        EntityCoordinates coordinates,
+        EntProtoId cloudPrototype,
+        int spreadAmount = 4)
+    {
+        var uid = Spawn(cloudPrototype, coordinates);
+
+        if (!TryComp(uid, out DiseaseInfectionCloudComponent? cloud))
+            return uid;
+
+        cloud.Data = (DiseaseData)disease.CloneForInfection();
+        cloud.SpreadAmount = spreadAmount;
+
+        Dirty(uid, cloud);
+
+        if (cloud.SpreadAmount > 0)
+        {
+            EnsureComp<ActiveEdgeSpreaderComponent>(uid);
+        }
+        else
+            RemCompDeferred<ActiveEdgeSpreaderComponent>(uid);
+
+        return uid;
+    }
+
+    public void UpdateInfectionForStrain(DiseaseData data)
+    {
+        if (data == null || string.IsNullOrWhiteSpace(data.StrainId))
+            return;
+
+        var query = EntityQueryEnumerator<DiseaseInfectionCloudComponent>();
+        while (query.MoveNext(out var uid, out var cloud))
+        {
+            if (cloud.Data == null || cloud.Data.StrainId != data.StrainId)
+                continue;
+
+            cloud.Data = (DiseaseData)data.CloneForInfection();
+            Dirty(uid, cloud);
+        }
+    }
+}

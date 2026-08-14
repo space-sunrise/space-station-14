@@ -1,0 +1,7 @@
+- type: entity
+  parent: StaminaModifierStatusEffect
+  id: StatusEffectDiseaseStaminaModifier
+  name: модификатор выносливости при симптоме болезни
+  components:
+  - type: StaminaModifierStatusEffect
+    modifier: 1.2

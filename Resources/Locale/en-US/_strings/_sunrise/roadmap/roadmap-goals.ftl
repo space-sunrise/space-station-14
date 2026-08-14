@@ -5,8 +5,56 @@ roadmap-planned = Planned
 
 # ---- Already Available ----
 
-roadmap-goal-fugitive-name = Fugitive
-roadmap-goal-fugitive-desc = An escaped prisoner whose goal is to survive.
+##########
+fugitive-name = Беглец
+fugitive-desc = Сбежавший заключенный, цель которого - выжить.
+planet-prison-name = Планетарная тюрьма
+planet-prison-desc = Тюрьма на планете работающая как отдельная станция.
+cyborg-update-name = Станционные борги
+cyborg-update-desc = Новые борги.
+collective-mind-name = Коллективный разум
+collective-mind-desc = Система позволяющая общяться некоторым созданиям между собой если он у них есть.
+syndicate-cyborgs-name = Новые борги синдиката
+syndicate-cyborgs-desc = Более продвинутые и полезные борги синдиката.
+new-guns-name = Расширение огнестрела
+new-guns-desc = Добавление разннобразного огнестрельного вооружения(а как-же огнемёт?).
+cargo-rework-name = Реворк карго
+cargo-rework-desc = Удаление торгового аванпоста и шаттла карго, реализация покупки и продажи на станции.
+new-maps-name = Глобальная переработка карт
+new-maps-desc = Значительные доработки карт (дельта, бокс).
+fully-translating-name = Полный перевод всего
+fully-translating-desc = перевод всех вещей, меню. С целью упростить геймплей.
+night-vision-name = Ночное виденье
+night-vision-desc = ПНВ, ночное виденье у некоторых животных/расс.
+ipc-name = КПБ
+ipc-desc = Расса разумных машин, в переработке.
+blob-name = Блоб
+blob-desc = Антагонист цель которого поглотить и тем самым уничтожить станцию.
+assault-ops-name = Диверсионый отряд
+assault-ops-desc = Отряд наемников, цель которого незаметно совершать диверсии на станции, нарушая ее работу.
+ert-call-name = Консоль вызова ОБР
+ert-call-desc = Консоль с помощью которой можно вызвать обр.
+ussp-name = Станция СССП
+ussp-desc = Отдельная станция СССП с своими задачами на смену.
+vent-crawling-name = Передвижение по вентиляции
+vent-crawling-desc = Возможность мелким существам и разным антагонистами передвигаться по вентиляционной системе.
+flesh-cult-name = Культ плоти
+flesh-cult-desc = Культ плоти цель которого уничтожить станцию.
+blood-cult-name = Культ крови (Нар'Си, Пир'кус, Жнец)
+blood-cult-desc = Культ который идёт за богом Нар`Си, цель культа призвать своего покровителя который позже уничтожит станцию.
+economy-name = Экономика
+economy-desc = Добавление денег, зарплаты, почта будет давать деньги а вендоматы будут брать деньги за еду.
+extend-med-name = Расширение мед. отдела
+extend-med-desc = Добавление новых механик, ролей.
+pathologist-name = Паталогоанатом
+pathologist-desc = Новая роль мед.отдела. Задача которой следить за моргом.
+arena-name = Арена для призраков
+arena-desc = Арена где призраки могут занять своё время что-бы не летать по станции в ожидании конца раунда.
+limbo-name = Лимбо
+limbo-desc = Отдельный мирок для призраков где нет правил.
+taipan-name = Тайпан
+taipan-desc = Отдельная станция синдиката с своими задачами на смену.
+##########
 
 roadmap-goal-planet-prison-name = Planet Prison
 roadmap-goal-planet-prison-desc = A prison on a planet, functioning as a separate station.

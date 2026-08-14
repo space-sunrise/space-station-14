@@ -1,0 +1,33 @@
+// Developed by Nox for the Sunrise Station project.
+// Author: KloopRe
+
+using Content.Server._Sunrise.Disease.Components;
+using Content.Shared.Buckle.Components;
+using Content.Shared._Sunrise.Disease.Components;
+using Content.Shared._Sunrise.Disease;
+
+namespace Content.Server._Sunrise.Disease.Systems;
+
+public sealed class BedRegenerationSystem : EntitySystem
+{
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<BedRegenerationComponent, StrappedEvent>(OnStrapped);
+        SubscribeLocalEvent<BedRegenerationComponent, UnstrappedEvent>(OnUnstrapped);
+    }
+
+    private void OnStrapped(Entity<BedRegenerationComponent> bed, ref StrappedEvent args)
+    {
+        if (TryComp<DiseaseComponent>(args.Buckle, out var diseaseComponent))
+            diseaseComponent.RegenerationType = bed.Comp.RegenerationType;
+    }
+
+    private void OnUnstrapped(Entity<BedRegenerationComponent> bed, ref UnstrappedEvent args)
+    {
+        if (TryComp<DiseaseComponent>(args.Buckle, out var diseaseComponent))
+            diseaseComponent.RegenerationType = BedRegenerationType.None;
+    }
+}

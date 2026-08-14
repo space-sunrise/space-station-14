@@ -14,3 +14,8 @@
   id: MetalFoam
   updatesPerSecond: 16
   preventSpreadOnSpaced: false
+
+- type: edgeSpreader
+  id: SunriseDiseaseCloud
+  updatesPerSecond: 4
+  preventSpreadOnSpaced: false

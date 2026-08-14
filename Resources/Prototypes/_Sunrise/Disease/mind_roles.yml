@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSentientDisease
+  name: Роль разумного заболевания
+  components:
+  - type: MindRole
+    antagPrototype: SentientDisease
+    roleType: SoloAntagonist
+    subtype: role-subtype-sentient-disease
+    exclusiveAntag: true
+  - type: SentientDiseaseRole

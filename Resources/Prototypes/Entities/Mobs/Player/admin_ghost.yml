@@ -119,6 +119,7 @@
   - type: BypassInteractionChecks
   - type: ExplosionResistance
     damageCoefficient: 0
+  - type: DiseaseInfectionDetectorUser # Sunrize-disease
 
 - type: entity
   abstract: true

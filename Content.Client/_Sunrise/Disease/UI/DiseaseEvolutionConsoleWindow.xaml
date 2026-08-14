@@ -1,0 +1,194 @@
+<!--
+Developed by Nox for the Sunrise Station project.
+Author: KloopRe
+-->
+
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'disease-evolution-window-title'}"
+               MinSize="900 600"
+               SetSize="1000 700">
+
+    <TabContainer Name="MasterTabContainer">
+
+        <!-- ================= EVOLUTION TAB ================= -->
+        <BoxContainer Name="EvolutionTab"
+                      Orientation="Vertical"
+                      HorizontalExpand="True"
+                      VerticalExpand="True">
+
+            <!-- CONTENTS -->
+            <PanelContainer Name="EvolutionContents"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5">
+
+                <BoxContainer Orientation="Horizontal"
+                              HorizontalExpand="True"
+                              VerticalExpand="True">
+
+                    <!-- Available symptoms -->
+                    <PanelContainer MinWidth="300" Margin="5">
+                        <BoxContainer Orientation="Vertical">
+                            <Label Text="{Loc 'disease-evolution-available-symptoms'}" />
+                            <ScrollContainer VerticalExpand="True">
+                                <ItemList Name="AvailableSymptomsList"
+                                          Access="Public"
+                                          SelectMode="Single" />
+                            </ScrollContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Center -->
+                    <PanelContainer Margin="5"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical"
+                                      VerticalExpand="True">
+                            <!-- Статистика вируса -->
+                            <BoxContainer Orientation="Vertical" Margin="0 0 0 10">
+                                <Label Name="DiseaseHealthLabel" StyleClasses="LabelSmall"/>
+                                <Label Name="InfectivityLabel" StyleClasses="LabelSmall"/>
+                                <Label Name="InfectedCountLabel" StyleClasses="LabelSmall"/>
+                                <Label Name="PointsPerSecondLabel" StyleClasses="LabelSmall"/>
+                            </BoxContainer>
+
+                            <Label Text="{Loc 'disease-evolution-description-header'}" />
+                            <BoxContainer Orientation="Horizontal"
+                                        HorizontalAlignment="Left">
+                                <RichTextLabel Name="SymptomDescription"
+                                            MinWidth="300"
+                                            MaxWidth="300"
+                                            Margin="5"/>
+                            </BoxContainer>
+
+
+                            <Label Name="WhitelistMutationPointsLabel"/>
+                            <Label Name="SymptomCostLabel"/>
+
+                            <Button Name="BuySymptomButton"
+                                    Access="Public"
+                                    Text="{Loc 'disease-evolution-buy-button'}"
+                                    Disabled="True"/>
+
+                            <Button Name="DeleteSymptomButton"
+                                    Access="Public"
+                                    Text="{Loc 'disease-evolution-delete-button'}"
+                                    Disabled="True"/>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Active symptoms -->
+                    <PanelContainer MinWidth="300" Margin="5">
+                        <BoxContainer Orientation="Vertical">
+                            <Label Text="{Loc 'disease-evolution-active-symptoms'}" />
+                            <ScrollContainer VerticalExpand="True">
+                                <ItemList Name="ActiveSymptomsList"
+                                          Access="Public"
+                                          SelectMode="Single" />
+                            </ScrollContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- DATASERVER MISSING -->
+            <PanelContainer Name="EvolutionServerMissing"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5">
+                <Label HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="{Loc 'disease-evolution-dataserver-missing'}"/>
+            </PanelContainer>
+
+            <!-- !HASVIRUS -->
+            <PanelContainer Name="DiseaseDataMissing"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5">
+                <Label HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="{Loc 'disease-evolution-diseasedata-missing'}"/>
+            </PanelContainer>
+
+            <!-- DATASERVER FAR -->
+            <PanelContainer Name="EvolutionServerFar"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5">
+                <Label HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="{Loc 'disease-evolution-dataserver-far'}"/>
+            </PanelContainer>
+
+        </BoxContainer>
+
+        <!-- ================= WHITELIST TAB ================= -->
+        <BoxContainer Name="WhitelistTab"
+                    Orientation="Vertical"
+                    VerticalExpand="True">
+
+            <PanelContainer Name="WhitelistContents"
+                            StyleClasses="Inset"
+                            VerticalExpand="True"
+                            Margin="5">
+
+                <BoxContainer Orientation="Horizontal"
+                            HorizontalExpand="True"
+                            VerticalExpand="True">
+
+                    <!-- Available bodies -->
+                    <PanelContainer MinWidth="220" Margin="5">
+                        <BoxContainer Orientation="Vertical">
+                            <Label Text="{Loc 'disease-evolution-available-bodies'}"/>
+                            <ScrollContainer VerticalExpand="True">
+                                <ItemList Name="AvailableBodiesList"
+                                        Access="Public"
+                                        SelectMode="Single"/>
+                            </ScrollContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Center -->
+                    <PanelContainer Margin="5"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical">
+                            <Label Name="MutationPointsLabel"/>
+                            <Label Name="BodyCostLabel"/>
+
+                            <Button Name="BuyBodyButton"
+                                    Access="Public"
+                                    Text="{Loc 'disease-evolution-buy-body'}"
+                                    Disabled="True"/>
+                            
+                            <Button Name="DeleteBodyButton"
+                                    Access="Public"
+                                    Text="{Loc 'disease-evolution-delete-body'}"
+                                    Disabled="True"/>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <!-- Active bodies -->
+                    <PanelContainer MinWidth="220" Margin="5">
+                        <BoxContainer Orientation="Vertical">
+                            <Label Text="{Loc 'disease-evolution-active-bodies'}"/>
+                            <ScrollContainer VerticalExpand="True">
+                                <ItemList Name="ActiveBodiesList"
+                                        Access="Public"
+                                        SelectMode="Single"/>
+                            </ScrollContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- SERVER MISSING / FAR — без изменений -->
+
+        </BoxContainer>
+
+    </TabContainer>
+</DefaultWindow>
+

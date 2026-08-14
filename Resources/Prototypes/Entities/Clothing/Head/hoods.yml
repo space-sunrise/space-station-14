@@ -26,6 +26,10 @@
       Snout: HEAD
       HeadTop: HEAD
       HeadSide: HEAD
+  # Sunrise-disease-start
+  - type: DiseaseResistance
+    diseaseResistanceCoefficient: 0.25
+  # Sunrise-disease-end
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
