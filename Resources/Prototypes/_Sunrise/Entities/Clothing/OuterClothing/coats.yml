@@ -610,7 +610,7 @@
         Caustic: 0.7
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing ]
   id: ClothingOuterCoatRedMist
   name: red mist coat
   description: A long coat in dark fabric with silver fasteners and exposed strap work. More campaign article than decoration.
