@@ -2,3 +2,8 @@
   parent: [ BaseElectronicsRecipe, BaseCircuitryRecipeCategory ]
   id: SunriseWallhornElectronics
   result: SunriseWallhornElectronics
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
+  id: SunriseTechDiskComputerCircuitboard
+  result: SunriseTechDiskComputerCircuitboard
