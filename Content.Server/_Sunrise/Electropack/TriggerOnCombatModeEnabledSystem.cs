@@ -24,27 +24,23 @@ public sealed class TriggerOnCombatModeEnabledSystem : EntitySystem
         SubscribeLocalEvent<CombatModeComponent, CombatModeChangedEvent>(OnCombatModeChanged);
     }
 
-    private void OnCombatModeChanged(EntityUid uid, CombatModeComponent combatComp, ref CombatModeChangedEvent args)
+    private void OnCombatModeChanged(Entity<CombatModeComponent> ent, ref CombatModeChangedEvent args)
     {
-        // Триггер на боевой режим
         if (!args.IsInCombatMode)
             return;
 
-        // Это что бы зеки не суицидались
-        if (!_mobState.IsAlive(uid))
+        if (!_mobState.IsAlive(ent))
             return;
 
-        // Проверка на ношение
-        if (!_inventory.TryGetSlotEntity(uid, "back", out var backpack))
+        if (!_inventory.TryGetSlotEntity(ent, "back", out var backpack))
             return;
 
-        if (!HasComp<TriggerOnCombatModeEnabledComponent>(backpack))
+        if (!TryComp<TriggerOnCombatModeEnabledComponent>(backpack, out var triggerComp))
             return;
 
-        // Используем ShockOnTriggerComponent
-        _trigger.Trigger(backpack.Value, uid);
+        _trigger.Trigger(backpack.Value, ent);
 
-        // Принудительное отключение боевоего режима после удара током. 
-        _combatMode.SetInCombatMode(uid, false, combatComp);
+        if (triggerComp.DisableCombatModeAfterTrigger)
+            _combatMode.SetInCombatMode(ent, false, ent.Comp);
     }
 }
