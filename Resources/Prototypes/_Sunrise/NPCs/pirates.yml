@@ -553,6 +553,12 @@
       - MobPirateT1SMG
       - MobPirateT1Flintlock
     rarePrototypes:
+      - PirateSquadT1LMG
+      - PirateSquadT1Breach
+      - PirateSquadT1Assault
+      - PirateSquadT1Heavy
+      - PirateSquadT1Infiltrator
+      - PirateSquadT1Monkey
       - MobPirateT1MonkeyFireBomb
       - MobPirateT1MonkeyEDagger
       - MobPirateT1Hunter
@@ -569,7 +575,7 @@
       - MobPirateT1BorgAssault
       - MobPirateT1BorgMining
       - MobPirateT1BorgDerelict
-    rareChance: 0.2
+    rareChance: 0.15
 
 - type: entity
   name: pirate T2 spawner
@@ -611,8 +617,10 @@
       - MobPirateT2Mech
       - MobPirateT2Juggernaut
       - MobPirateT2JuggernautMG
+      - MobPirateT1BorgAssault
       - MobPirateT2BorgAssault
-    rareChance: 0.2
+      - MobPirateT1BorgMining
+    rareChance: 0.15
 
 - type: entity
   name: pirate T3 spawner
@@ -648,7 +656,8 @@
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
       - MobPirateT3Sniper
-    rareChance: 0.2
+      - MobPirateT1BorgAssault
+    rareChance: 0.15
 
 # mixed all tiers spawner
 - type: entity
