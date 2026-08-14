@@ -12,7 +12,7 @@
   - type: Tag
     tags:
     - Board
-    - TurretMachineCircuitboard
+    - CannotBeFlatpacked
   # Sunrise added end
   - type: MachineBoard
     prototype: WeaponEnergyTurretStation
