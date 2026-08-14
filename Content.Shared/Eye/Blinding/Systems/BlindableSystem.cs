@@ -8,6 +8,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using JetBrains.Annotations;
+using Content.Shared.Starlight.Medical.Surgery; // Sunrise-edit
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
@@ -58,11 +59,15 @@ public sealed class BlindableSystem : EntitySystem
         var old = blindable.Comp.IsBlind;
 
         var forceBlind = false;
-        if(TryComp<BodyComponent>(blindable.Owner, out var body))
+
+        // Sunrise-start
+        if (HasComp<SurgeryTargetComponent>(blindable.Owner) &&
+            TryComp<BodyComponent>(blindable.Owner, out var body))
         {
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, body));
             forceBlind = eyes.Count == 0;
         }
+        // Sunrise-end
 
         // Don't bother raising an event if the eye is too damaged.
         if (blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage || forceBlind)
