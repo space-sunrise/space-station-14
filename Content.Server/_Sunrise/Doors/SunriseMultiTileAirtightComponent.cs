@@ -18,5 +18,10 @@ public sealed partial class SunriseMultiTileAirtightComponent : Component
     ///    Cписок заспавненных блокеров, используется системой для обновления airtight
     /// </summary>
     public List<EntityUid> Blockers = new();
+    /// <summary>
+    ///     Наитупейшее кэширование
+    /// </summary>
+    public Vector2i CachedTile;
+    public EntityUid? CachedGrid;
 }
 
