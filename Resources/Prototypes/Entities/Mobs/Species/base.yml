@@ -264,6 +264,7 @@
   abstract: true
   components:
   # Sunrise-Start
+  - type: Blink
   - type: DarkenedVision
   - type: CanEscapeInventory
   - type: Mood
