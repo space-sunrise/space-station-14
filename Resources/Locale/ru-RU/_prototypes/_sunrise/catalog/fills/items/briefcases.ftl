@@ -23,3 +23,5 @@ ent-BriefcaseWeaponUziFilled = кейс для Узи
     .desc = { ent-BriefcaseWeaponSmall.desc }
 ent-BriefcaseWeaponType88AMRFilled = кейс для Тип 88
     .desc = { ent-BriefcaseWeapon.desc }
+ent-BriefcaseWeaponGarandFilled = оружейный кейс Garand
+    .desc = Прочный оружейный кейс с винтовкой M1 Garand, запасной обоймой .308 и чертежом для производства новых обойм.

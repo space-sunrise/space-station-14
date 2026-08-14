@@ -49,7 +49,6 @@ ent-ClothingHandsSovietFlakRPD = перчатки
 ent-ClothingHandsFinkaSovietFlak = перчатки
 ent-ClothingHandsFinkaSovietNoOuter = перчатки
 ent-ClothingHandsMercMosinSovietNoOuter = перчатки
-ent-ClothingHandsMp38SovietNoOuter = перчатки
 ent-ClothingHandsBottleSovietNoOuter = перчатки
 ent-ClothingHandsSKM24GSovietNoOuter = перчатки
 ent-ClothingHandsSKM24GSovietUSSPLight = перчатки

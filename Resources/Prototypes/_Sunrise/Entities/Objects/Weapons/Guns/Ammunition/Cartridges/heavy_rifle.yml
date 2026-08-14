@@ -48,32 +48,6 @@
 
 # .308 cartridges
 - type: entity
-  parent: [ BaseCartridge, BaseSecurityContraband ]
-  id: CartridgeRifleHeavyArtillery
-  name: cartridge (.308 space)
-  components:
-  - type: Tag
-    tags:
-      - Cartridge
-      - CartridgeHeavyRifle
-  - type: CartridgeAmmo
-    proto: BulletHeavyRifleArtillery
-    deleteOnSpawn: true
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/7.62x51.rsi
-    scale: 0.60, 0.60
-    layers:
-    - state: base
-      map: [ "enum.AmmoVisualLayers.Base" ]
-    - state: tip
-      map: [ "enum.AmmoVisualLayers.Tip" ]
-      color: "#7f009b"
-  - type: Appearance
-  - type: SpentAmmoVisuals
-  - type: StaticPrice
-    price: 1
-
-- type: entity
   id: CartridgeRifleHeavySP
   name: cartridge (.308 SP)
   parent: BaseCartridgeRifleHeavy

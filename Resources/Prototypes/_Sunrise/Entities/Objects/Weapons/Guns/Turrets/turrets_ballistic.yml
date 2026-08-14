@@ -204,7 +204,7 @@
       params:
         pitch: 0.8
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleHeavyArtillery
+    proto: CartridgeRifleHeavySP
     capacity: 160
   - type: Destructible
     thresholds:
@@ -726,23 +726,23 @@
         prob: 0.25
       - id: ScrapGlass
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: CartridgeRifleHeavyArtillery
+      - id: CartridgeRifleHeavySP
         prob: 0.25
-      - id: RifleHeavyMagazineArtillery
+      - id: RifleHeavyMagazineSP
         prob: 0.25
       - id: ShuttleGunSquallCircuitboard
         prob: 0.2

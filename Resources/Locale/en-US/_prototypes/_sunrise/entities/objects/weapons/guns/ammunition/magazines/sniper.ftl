@@ -1,5 +1,3 @@
-ent-MagazineBR64 = BR64 magazine
-    .desc = Standart EarthGov type of heavy magazines.
 ent-BaseMagazineBauer127 = magazine (15mm anti-materiel)
     .desc = A large magazine for a heavy weapon, holds 15×115mm anti-materiel rounds.
 ent-MagazineBauer127Large = large magazine (15mm space anti-materiel)

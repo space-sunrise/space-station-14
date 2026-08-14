@@ -53110,7 +53110,7 @@ entities:
     - type: Transform
       pos: 19.602985,-32.30516
       parent: 2
-- proto: WeaponPistolHIB88M4
+- proto: WeaponPistolViper
   entities:
   - uid: 3788
     components:

@@ -197,15 +197,6 @@
     stock: 8
 
 - type: listing
-  id: UplinkPirateShotgunMakeshift
-  productEntity: WeaponShotgunMakeshift
-  categories:
-  - UplinkPirateRangedWeaponry
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 8
-
-- type: listing
   id: UplinkPirateSMGMakeshift
   productEntity: WeaponSubMachineGunMakeshift
   categories:
@@ -356,8 +347,8 @@
   - UplinkPirateRangedWeaponry
 
 - type: listing
-  id: UplinkPirateRevolverSpearheadBlack
-  productEntity: WeaponRevolverSpearheadBlack
+  id: UplinkPirateRevolverSpearhead
+  productEntity: WeaponRevolverSpearhead
   cost:
     Doubloon: 18
   categories:
@@ -402,14 +393,6 @@
   productEntity: WeaponRifleM16A4
   cost:
     Doubloon: 18
-  categories:
-  - UplinkPirateRangedWeaponry
-
-- type: listing
-  id: UplinkPirateSkorpion
-  productEntity: WeaponSubMachineGunSkorpion
-  cost:
-    Doubloon: 14
   categories:
   - UplinkPirateRangedWeaponry
 
@@ -515,14 +498,6 @@
   productEntity: WeaponPistolViper
   cost:
     Doubloon: 15
-  categories:
-  - UplinkPirateRangedWeaponry
-
-- type: listing
-  id: UplinkPirateMP38
-  productEntity: WeaponSubMachineGunMP38
-  cost:
-    Doubloon: 17
   categories:
   - UplinkPirateRangedWeaponry
 
