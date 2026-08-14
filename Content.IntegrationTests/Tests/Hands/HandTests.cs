@@ -78,7 +78,8 @@ public sealed class HandTests
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
         {
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Dirty = true, // Sunrise added - у нас тесты в другом порядке запустились и упали потому что визден забыл тут Dirty
         });
         var server = pair.Server;
         var map = await pair.CreateTestMap();
