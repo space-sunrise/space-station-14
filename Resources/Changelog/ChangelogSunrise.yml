@@ -4885,3 +4885,12 @@
       судороги
   id: 1996
   url: https://github.com/space-sunrise/sunrise-station/pull/4693
+- author: Ligyb
+  time: '2026-08-14T10:14:16.0000000+00:00'
+  changes:
+  - type: Fix
+    message: Исправлено бесконечное ожидание прибытия на станцию
+  - type: Fix
+    message: Исправлен двойной / неожиданный телепорт на станцию с шаттла прибытия
+  id: 1997
+  url: https://github.com/space-sunrise/sunrise-station/pull/4695
