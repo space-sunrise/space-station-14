@@ -1,0 +1,27 @@
+- type: entity
+  parent: ComputerTechnologyDiskTerminal
+  id: SunriseComputerTechnologyDiskTerminal
+  name: R&D disk terminal
+  suffix: Sunrise
+  description: A terminal used to print technology and research point disks.
+  components:
+  - type: SunriseDiskConsole
+    diskOptions:
+    - prototype: ResearchDisk
+      pointCost: 1000
+    - prototype: ResearchDisk5000
+      pointCost: 5000
+    - prototype: ResearchDisk10000
+      pointCost: 10000
+  - type: Computer
+    board: SunriseTechDiskComputerCircuitboard
+  - type: ActivatableUI
+    key: enum.SunriseDiskConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SunriseDiskConsoleUiKey.Key:
+        type: SunriseDiskConsoleBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface

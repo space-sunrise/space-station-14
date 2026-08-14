@@ -278,3 +278,12 @@
   components:
   - type: ComputerBoard
     prototype: ComputerPrisonerManagement
+
+- type: entity
+  parent: TechDiskComputerCircuitboard
+  id: SunriseTechDiskComputerCircuitboard
+  name: R&D disk terminal board
+  description: A computer printed circuit board for an R&D disk terminal.
+  components:
+  - type: ComputerBoard
+    prototype: SunriseComputerTechnologyDiskTerminal

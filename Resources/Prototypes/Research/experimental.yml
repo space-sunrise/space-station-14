@@ -58,6 +58,7 @@
   cost: 5000
   recipeUnlocks:
   - TechDiskComputerCircuitboard
+  - SunriseTechDiskComputerCircuitboard # Sunrise-Edit
 
 - type: technology
   id: MagnetsTech

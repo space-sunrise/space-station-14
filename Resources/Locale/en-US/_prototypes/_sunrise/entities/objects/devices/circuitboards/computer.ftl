@@ -46,3 +46,5 @@ ent-ShipyardComputerCircuitboard = shipyard computer board
     .desc = A computer printed circuit board for a shipyard computer.
 ent-CommandConsoleCircuitboard = { ent-BaseComputerCircuitboard }
     .desc = { ent-BaseComputerCircuitboard.desc }
+ent-SunriseTechDiskComputerCircuitboard = R&D disk terminal board
+    .desc = A computer printed circuit board for an R&D disk terminal.

@@ -46,3 +46,5 @@ ent-ShipyardComputerCircuitboard = плата компьютера верфи
     .desc = Компьютерная печатная плата для компьютера верфи.
 ent-CommandConsoleCircuitboard = { ent-BaseComputerCircuitboard }
     .desc = { ent-BaseComputerCircuitboard.desc }
+ent-SunriseTechDiskComputerCircuitboard = терминал дисков РнД (консольная плата)
+    .desc = Консольная плата для терминала дисков РнД.
