@@ -1080,4 +1080,8 @@ SunriseAirlockSyndicateGlassPirateAccessLocked: SunriseAirlockPirateGlassLocked
 ClothingBackpackMessengerPirateBundleSKM24Scrap: CratePirateAkScrap
 ClothingOuterEliteHardsuitUSSP: null
 GasMinerPlasma: null
+# 2026-08-14
+MobPirateT1ExpeditionSpawner: MobPirateT1Spawner
+MobPirateT2ExpeditionSpawner: MobPirateT2Spawner
+MobPirateT3ExpeditionSpawner: MobPirateT3Spawner
 # region Sunrise-End
