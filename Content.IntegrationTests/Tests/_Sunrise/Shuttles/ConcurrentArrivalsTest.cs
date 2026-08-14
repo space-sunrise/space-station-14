@@ -37,7 +37,7 @@ public sealed class ConcurrentArrivalsTest
         {
             entMan.DeleteEntity(map.Grid);
 
-            var station = MakeStation(pair, map.MapId, 8, 2.5f, 5.5f);
+            var station = MakeStation(pair, map.MapId, 8, 2, 5);
             var first = MakeShuttle(pair, map.MapId, new Vector2(-100f, 0f));
             var second = MakeShuttle(pair, map.MapId, new Vector2(-200f, 0f));
 
@@ -55,14 +55,11 @@ public sealed class ConcurrentArrivalsTest
         await server.WaitAssertion(() =>
         {
             Assert.That(hasFirstConfig, Is.True);
-            if (!hasSecondConfig)
-                return;
-
             Assert.Multiple(() =>
             {
-                Assert.That(SharesTargetDock(firstConfig, secondConfig), Is.False,
+                Assert.That(hasSecondConfig && SharesTargetDock(firstConfig, secondConfig), Is.False,
                     "the second shuttle reused a dock reserved by the first shuttle");
-                Assert.That(firstConfig.Area.Intersects(secondConfig.Area), Is.False,
+                Assert.That(hasSecondConfig && HasOverlappingArea(firstConfig, secondConfig), Is.False,
                     "the second shuttle was dispatched into an area reserved by the first shuttle");
             });
         });
@@ -96,7 +93,7 @@ public sealed class ConcurrentArrivalsTest
         {
             entMan.DeleteEntity(map.Grid);
 
-            var station = MakeStation(pair, map.MapId, 14, 2.5f, 10.5f);
+            var station = MakeStation(pair, map.MapId, 14, 2, 10);
             first = MakeShuttle(pair, map.MapId, new Vector2(-100f, 0f));
             second = MakeShuttle(pair, map.MapId, new Vector2(-200f, 0f));
             firstDock = GetShuttleDock(entMan, first);
@@ -124,14 +121,9 @@ public sealed class ConcurrentArrivalsTest
 
         await server.WaitAssertion(() =>
         {
-            Assert.Multiple(() =>
-            {
-                Assert.That(hasFirstConfig, Is.True);
-                Assert.That(hasSecondConfig, Is.True);
-            });
-
-            if (hasFirstConfig && hasSecondConfig)
-                Assert.That(firstConfig.Area.Intersects(secondConfig.Area), Is.False);
+            Assert.That(hasFirstConfig, Is.True);
+            Assert.That(hasSecondConfig, Is.True);
+            Assert.That(HasOverlappingArea(firstConfig, secondConfig), Is.False);
         });
 
         await server.WaitPost(() =>
@@ -192,17 +184,29 @@ public sealed class ConcurrentArrivalsTest
         return false;
     }
 
-    private static EntityUid MakeStation(TestPair pair, MapId mapId, int width, params float[] docks)
+    private static bool HasOverlappingArea(DockingConfig first, DockingConfig second)
+    {
+        return Box2.Area(first.Area.Intersect(second.Area)) > 0f;
+    }
+
+    private static EntityUid MakeStation(TestPair pair, MapId mapId, int width, params int[] docks)
     {
         var server = pair.Server;
         var map = server.System<SharedMapSystem>();
         var station = server.MapMan.CreateGridEntity(mapId);
 
+        // - is tile; + is dock
+        // --+--+-- width 8 docks 2, 5
+        // --+-------+--- width 14 docks 2, 10.
         for (var x = 0; x < width; x++)
+        {
             map.SetTile(station.Owner, station.Comp, new Vector2i(x, 0), new Tile(1));
+        }
 
         foreach (var dock in docks)
-            server.EntMan.SpawnEntity("AirlockShuttle", new EntityCoordinates(station.Owner, dock, 0.5f));
+        {
+            server.EntMan.SpawnEntity("AirlockShuttle", new EntityCoordinates(station.Owner, dock, 0f));
+        }
 
         return station.Owner;
     }
@@ -214,14 +218,20 @@ public sealed class ConcurrentArrivalsTest
         var transform = server.System<SharedTransformSystem>();
         var shuttle = server.MapMan.CreateGridEntity(mapId);
 
+        // shuttle preview
+        // #####
+        // #####
+        // ##+##
         for (var x = -2; x <= 2; x++)
         {
             for (var y = 0; y < 3; y++)
+            {
                 map.SetTile(shuttle.Owner, shuttle.Comp, new Vector2i(x, y), new Tile(1));
+            }
         }
 
         transform.SetLocalPosition(shuttle.Owner, position);
-        server.EntMan.SpawnEntity("AirlockShuttle", new EntityCoordinates(shuttle.Owner, 0.5f, 0.5f));
+        server.EntMan.SpawnEntity("AirlockShuttle", new EntityCoordinates(shuttle.Owner, 0f, 0f));
         return shuttle.Owner;
     }
 
@@ -248,7 +258,8 @@ public sealed class ConcurrentArrivalsTest
             var landed = true;
             foreach (var shuttle in shuttles)
             {
-                if (entMan.TryGetComponent<FTLComponent>(shuttle, out var ftl) && ftl.State != FTLState.Cooldown)
+                if (entMan.TryGetComponent<FTLComponent>(shuttle, out var ftl) &&
+                    ftl.State is not (FTLState.Cooldown or FTLState.Available))
                 {
                     landed = false;
                     break;

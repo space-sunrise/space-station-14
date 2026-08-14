@@ -197,8 +197,13 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
     public bool TrySpawnForPlayer(EntityUid station, EntityUid player)
     {
-        if (!_enabled || !_arrivalsEnabled || !Exists(station) || !Exists(player) ||
-            !HasComp<StationArrivalsComponent>(station))
+        if (!_enabled || !_arrivalsEnabled)
+            return false;
+
+        if (!Exists(station) || !Exists(player))
+            return false;
+
+        if (!HasComp<StationArrivalsComponent>(station))
             return false;
 
         var shuttleUid = SpawnShuttle(station);
@@ -435,8 +440,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
             reservation.ReservedBy = uid;
             reservation.Area = config.Area;
 
-            if (!arrivals.ReservedDocks.Contains(docks.DockBUid))
-                arrivals.ReservedDocks.Add(docks.DockBUid);
+            arrivals.ReservedDocks.Add(docks.DockBUid);
         }
 
         // Перенаправляем существующий бесконечный FTL к доку.
@@ -496,7 +500,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         Log.Warning($"Failsafe triggered for arrivals shuttle {ToPrettyString(uid)}, " +
                      $"player: '{arrivals.PlayerName}', state: {arrivals.State}");
 
-        if (!TryTeleportPlayer(uid, arrivals))
+        if (IsPlayerOnShuttle(uid, arrivals.Player) && !TryTeleportPlayer(uid, arrivals))
             return true;
 
         var msg = Loc.GetString("sunrise-arrivals-failsafe-teleport");
@@ -627,13 +631,10 @@ public sealed class SunriseArrivalsSystem : EntitySystem
     private bool TryTeleportPlayer(EntityUid gridUid, SunriseArrivalsShuttleComponent arrivals)
     {
         if (arrivals.Player == null)
-            return true;
+            return false;
 
         if (!IsPlayerOnShuttle(gridUid, arrivals.Player))
-        {
-            RemovePlayerFtlImmunity(arrivals);
-            return true;
-        }
+            return false;
 
         var station = arrivals.Station;
         if (!station.IsValid())
@@ -695,7 +696,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
         if (TryComp<SunriseArrivalsShuttleComponent>(uid, out var arrivals))
         {
             // Безопасность: эвакуируем игрока перед удалением шаттла.
-            if (!TryTeleportPlayer(uid, arrivals))
+            if (IsPlayerOnShuttle(uid, arrivals.Player) && !TryTeleportPlayer(uid, arrivals))
                 return;
 
             ReleaseDockReservations(uid, arrivals);
