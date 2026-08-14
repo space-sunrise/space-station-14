@@ -3162,7 +3162,7 @@
     # Weapons
     - id: CombatKnife
       prob: 0.15
-    - id: WeaponSubMachineGunMP38
+    - id: WeaponSubMachineGunForged
       prob: 0.5
     - id: MagazinePistolSubMachineGunEmpty
       prob: 0.9
@@ -3362,8 +3362,12 @@
     # Cash
     - id: PirateCashSpawner06
     # Weapons
-    - id: WeaponSubMachineGunSkorpion
-      prob: 0.75
+    - id: WeaponPistolViper
+      prob: 0.5
+      orGroup: PistolT3Pool
+    - id: SunriseWeaponSubMachineGunUzi
+      prob: 0.33
+      orGroup: PistolT3Pool
     - id: RiotBulletShield
       prob: 0.65
     - id: MagazinePistolSubMachineGunEmpty
@@ -3616,7 +3620,7 @@
     - id: WeaponLightMachineGunRPD
       prob: 0.15
     # Items
-    - id: MagazineRPD
+    - id: MagazineLightRifleBeltBox
       orGroup: AmmoMGPool
     - id: MagazineBoxLightRifleBig
       orGroup: AmmoMGPool
