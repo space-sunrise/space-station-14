@@ -80,12 +80,3 @@ jobs:
         DISCORD_WEBHOOK_URL: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_WEBHOOK }}
         DISCORD_ROLE_ID: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_ROLE_ID }}
         BUILD_PATH: ./release/SS14.Client.zip
-
-    - name: Publish discord changelog
-      continue-on-error: true
-      # Sunrise-Edit - запуск скрипта публикации чейнджлога из каталога Sunrise
-      run: Tools/_sunrise/changelog/actions_changelogs_since_last_run.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-        CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}
