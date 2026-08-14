@@ -1,0 +1,649 @@
+using System.Numerics;
+using Content.Server.Actions;
+using Content.Server.Bible.Components;
+using Content.Server.Light.EntitySystems;
+using Content.Server.Temperature.Systems;
+using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
+using Content.Shared._Sunrise.Antags.Vampires.Systems.Classes;
+using Content.Shared.Coordinates;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
+using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint;
+using Content.Shared.Humanoid;
+using Content.Shared.Interaction;
+using Content.Shared.Light.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Physics;
+using Content.Shared.Popups;
+using Content.Shared.Temperature.Components;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using Content.Shared.Mobs;
+
+namespace Content.Server._Sunrise.Antags.Vampires.Systems.Classes;
+
+public sealed class UmbraeSystem : EntitySystem
+{
+    private static readonly ProtoId<DamageTypePrototype> BluntTypeId = "Blunt";
+
+    [Dependency] private readonly VampireSystem _vampire = default!;
+
+    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
+    [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly SharedUmbraeSystem _sharedUmbrae = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<VampireComponent, VampireDarkPassageActionEvent>(OnDarkPassage);
+        SubscribeLocalEvent<VampireComponent, VampireExtinguishActionEvent>(OnExtinguish);
+        SubscribeLocalEvent<VampireComponent, VampireEternalDarknessActionEvent>(OnEternalDarkness);
+        SubscribeLocalEvent<VampireComponent, VampireShadowAnchorActionEvent>(OnShadowAnchor);
+        SubscribeLocalEvent<VampireComponent, VampireShadowAnchorDoAfterEvent>(OnShadowAnchorDoAfter);
+        SubscribeLocalEvent<VampireComponent, VampireShadowSnareActionEvent>(OnShadowSnare);
+        SubscribeLocalEvent<VampireShadowBoxingStartAttemptEvent>(OnShadowBoxingStartAttempt);
+
+        SubscribeLocalEvent<UmbraeComponent, VampireBloodDrankEvent>(OnBloodDrank);
+        SubscribeLocalEvent<UmbraeComponent, VampireFullPowerAchievedEvent>(OnFullPower);
+        SubscribeLocalEvent<UmbraeComponent, MobStateChangedEvent>(OnUmbraeMobStateChanged);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var now = _timing.CurTime;
+
+        ProcessShadowAnchorAutoReturns(now);
+        ProcessActiveEternalDarkness(now);
+        ProcessActiveShadowBoxing(now);
+    }
+
+    private void OnBloodDrank(Entity<UmbraeComponent> ent, ref VampireBloodDrankEvent args)
+    {
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        if (vampire.TotalBlood < ent.Comp.BreakLightBloodThreshold)
+            return;
+
+        TryBreakRandomLightNear(ent);
+    }
+
+    private void OnUmbraeMobStateChanged(Entity<UmbraeComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Critical)
+            return;
+
+        if (!ent.Comp.CloakOfDarknessActive)
+            return;
+
+        _sharedUmbrae.DeactivateCloakOfDarkness(ent);
+
+        if (TryComp<VampireComponent>(ent, out var vampire)
+            && vampire.ActionEntities.TryGetValue("ActionVampireCloakOfDarkness", out var actionEntity)
+            && _actions.GetAction(actionEntity) is { } action)
+        {
+            _actions.SetToggled(action.AsNullable(), false);
+        }
+    }
+
+    private void TryBreakRandomLightNear(Entity<UmbraeComponent> ent)
+    {
+        var center = Transform(ent).Coordinates;
+        var list = new List<EntityUid>();
+
+        foreach (var target in _lookup.GetEntitiesInRange(center, ent.Comp.BreakLightRange))
+        {
+            if (TryComp<PoweredLightComponent>(target, out var light) && light.On)
+                list.Add(target);
+        }
+
+        if (list.Count == 0)
+            return;
+
+        var pick = _random.Pick(list);
+
+        if (TryComp<PoweredLightComponent>(pick, out var pl))
+            _poweredLight.TryDestroyBulb(pick, pl);
+    }
+
+    private void OnShadowSnare(Entity<VampireComponent> ent, ref VampireShadowSnareActionEvent args)
+    {
+        if (args.Handled || !TryComp<UmbraeComponent>(ent, out var umbrae))
+            return;
+
+        var target = args.Target;
+        var curXform = Transform(ent);
+
+        if (curXform.MapID != _transform.GetMapId(target))
+            return;
+
+        if (!_transform.GetGrid(target).HasValue)
+            return;
+
+        if (!_vampire.IsValidTile(target))
+        {
+            _popup.PopupEntity(Loc.GetString("action-vampire-shadow-snare-wrong-place"), ent, ent);
+            return;
+        }
+
+        if (!_vampire.CheckAndConsumeBloodCost(ent, args.Action.Owner))
+            return;
+
+        umbrae.PlacedSnares.RemoveAll(e => !Exists(e));
+
+        if (umbrae.PlacedSnares.Count >= umbrae.MaxSnares)
+        {
+            var oldestSnare = umbrae.PlacedSnares[0];
+            umbrae.PlacedSnares.RemoveAt(0);
+            if (Exists(oldestSnare))
+            {
+                QueueDel(oldestSnare);
+                _popup.PopupEntity(Loc.GetString("vampire-shadow-snare-oldest-removed"), ent, ent);
+            }
+        }
+
+        var snare = EntityManager.SpawnAttachedTo(args.SnarePrototype, target);
+        umbrae.PlacedSnares.Add(snare);
+        Dirty<UmbraeComponent>((ent.Owner, umbrae));
+
+        _popup.PopupEntity(Loc.GetString("action-vampire-shadow-snare-placed"), ent, ent);
+        args.Handled = true;
+    }
+
+    private void OnDarkPassage(Entity<VampireComponent> ent, ref VampireDarkPassageActionEvent args)
+    {
+        if (args.Handled || !HasComp<UmbraeComponent>(ent))
+            return;
+
+        var target = args.Target;
+        var curXform = Transform(ent);
+
+        if (curXform.MapID != _transform.GetMapId(target))
+            return;
+
+        if (!_transform.GetGrid(target).HasValue)
+            return;
+
+        if (!_vampire.IsValidTile(target))
+        {
+            _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-wrong-place"), ent, ent);
+            return;
+        }
+
+        if (!ent.Comp.FullPower
+            && !_interaction.InRangeUnobstructed(ent, target, range: 100, collisionMask: CollisionGroup.Impassable, popup: false))
+        {
+            _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-wrong-place"), ent, ent);
+            return;
+        }
+
+        if (!_vampire.CheckAndConsumeBloodCost(ent, args.Action.Owner))
+            return;
+
+        EntityManager.SpawnAttachedTo(args.MistInPrototype, curXform.Coordinates);
+
+        _transform.SetCoordinates(ent, target);
+        _transform.AttachToGridOrMap(ent, curXform);
+
+        EntityManager.SpawnAttachedTo(args.MistOutPrototype, target);
+
+        _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-activated"), ent, ent);
+        _audio.PlayPvs(args.Sound, ent, AudioParams.Default.WithVolume(-1f));
+        args.Handled = true;
+    }
+
+    private void OnExtinguish(Entity<VampireComponent> ent, ref VampireExtinguishActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!ent.Comp.ActionEntities.TryGetValue("ActionVampireExtinguish", out var actionEntity))
+            return;
+
+        if (!HasComp<UmbraeComponent>(ent))
+            return;
+
+        if (!_vampire.CheckAndConsumeBloodCost(ent, actionEntity))
+            return;
+
+        var center = Transform(ent).Coordinates;
+
+        var toProcess = _lookup.GetEntitiesInRange(center, args.Radius);
+        var count = 0;
+        foreach (var target in toProcess)
+        {
+            if (target == ent.Owner)
+                continue;
+
+            if (TryComp<PoweredLightComponent>(target, out var light) && light.On)
+            {
+                _poweredLight.TryDestroyBulb(target, light);
+                count++;
+            }
+        }
+
+        _popup.PopupEntity(Loc.GetString("action-vampire-extinguish-activated", ("count", count)), ent, ent);
+        args.Handled = true;
+    }
+
+    private void OnEternalDarkness(Entity<VampireComponent> ent, ref VampireEternalDarknessActionEvent args)
+    {
+        if (args.Handled || !TryComp<UmbraeComponent>(ent, out var umbrae))
+            return;
+
+        if (!umbrae.EternalDarknessActive)
+        {
+            if (!ent.Comp.FullPower)
+            {
+                _popup.PopupEntity(Loc.GetString("action-vampire-not-enough-power"), ent, ent);
+                args.Handled = true;
+                return;
+            }
+
+            umbrae.EternalDarknessActive = true;
+        }
+        else
+        {
+            umbrae.EternalDarknessActive = false;
+        }
+
+        Dirty<UmbraeComponent>((ent.Owner, umbrae));
+
+        if (_actions.GetAction(args.Action.Owner) is { } action)
+            _actions.SetToggled(action.AsNullable(), umbrae.EternalDarknessActive);
+
+        if (umbrae.EternalDarknessActive)
+        {
+            _popup.PopupEntity(Loc.GetString("action-vampire-eternal-darkness-start"), ent, ent);
+            if (umbrae.EternalDarknessAuraEntity is null || !Exists(umbrae.EternalDarknessAuraEntity))
+            {
+                var aura = SpawnAttachedTo(args.AuraPrototype, ent.Owner.ToCoordinates());
+                umbrae.EternalDarknessAuraEntity = aura;
+            }
+
+            var active = EnsureComp<ActiveVampireEternalDarknessComponent>(ent);
+            active.TicksRemaining = Math.Max(1, args.MaxTicks);
+            active.CurrentTick = 0;
+            active.BloodPerTick = args.BloodPerTick;
+            active.TempDropInterval = args.TempDropInterval;
+            active.FreezeRadius = args.FreezeRadius;
+            active.TargetFreezeTemp = args.TargetFreezeTemp;
+            active.TempDropPerInterval = args.TempDropPerInterval;
+            active.NextTick = _timing.CurTime;
+        }
+        else
+        {
+            _popup.PopupEntity(Loc.GetString("action-vampire-eternal-darkness-stop"), ent, ent);
+            if (umbrae.EternalDarknessAuraEntity is not null && Exists(umbrae.EternalDarknessAuraEntity))
+                QueueDel(umbrae.EternalDarknessAuraEntity.Value);
+            umbrae.EternalDarknessAuraEntity = null;
+            RemComp<ActiveVampireEternalDarknessComponent>(ent);
+        }
+
+        args.Handled = true;
+    }
+
+    private void ProcessActiveEternalDarkness(TimeSpan now)
+    {
+        var query = EntityQueryEnumerator<ActiveVampireEternalDarknessComponent, VampireComponent, UmbraeComponent>();
+        while (query.MoveNext(out var uid, out var active, out var comp, out var umbrae))
+        {
+            Entity<VampireComponent, UmbraeComponent> ent = (uid, comp, umbrae);
+
+            if (now < active.NextTick)
+                continue;
+
+            if (active.TicksRemaining <= 0)
+            {
+                DeactivateEternalDarkness(ent);
+                continue;
+            }
+
+            var canKeepActive = umbrae.EternalDarknessActive
+                && ValidateEternalDarknessConditions(ent)
+                && ConsumeEternalDarknessBlood(ent, active.BloodPerTick);
+            if (!canKeepActive)
+                continue;
+
+            ProcessEternalDarknessEffects(uid, active.CurrentTick, active.TempDropInterval, active.FreezeRadius, active.TargetFreezeTemp,
+                active.TempDropPerInterval);
+
+            active.CurrentTick++;
+            active.TicksRemaining--;
+
+            if (active.TicksRemaining <= 0)
+            {
+                DeactivateEternalDarkness(ent);
+                continue;
+            }
+
+            active.NextTick = now + TimeSpan.FromSeconds(1);
+        }
+    }
+
+    private bool ValidateEternalDarknessConditions(Entity<VampireComponent, UmbraeComponent> ent)
+    {
+        if (TryComp<MobStateComponent>(ent, out var mob) && mob.CurrentState == Shared.Mobs.MobState.Dead)
+        {
+            DeactivateEternalDarkness(ent);
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool ConsumeEternalDarknessBlood(Entity<VampireComponent, UmbraeComponent> ent, int bloodPerTick)
+    {
+        if (ent.Comp1.DrunkBlood < bloodPerTick)
+        {
+            DeactivateEternalDarkness(ent, Loc.GetString("action-vampire-eternal-darkness-not-enough-blood"));
+            return false;
+        }
+
+        return _vampire.TrySpendBlood((ent.Owner, ent.Comp1), bloodPerTick);
+    }
+
+    private void DeactivateEternalDarkness(Entity<VampireComponent, UmbraeComponent> ent, string? message = null)
+    {
+        ent.Comp2.EternalDarknessActive = false;
+
+        if (ent.Comp1.ActionEntities.TryGetValue("ActionVampireEternalDarkness", out var actionEntity)
+            && _actions.GetAction(actionEntity) is { } action)
+            _actions.SetToggled(action.AsNullable(), false);
+
+        if (ent.Comp2.EternalDarknessAuraEntity is { } aura && Exists(aura))
+            QueueDel(aura);
+
+        ent.Comp2.EternalDarknessAuraEntity = null;
+        RemComp<ActiveVampireEternalDarknessComponent>(ent);
+
+        if (message is not null)
+            _popup.PopupEntity(message, ent, ent);
+
+        Dirty(ent.Owner, ent.Comp2);
+    }
+
+    private void ProcessEternalDarknessEffects(EntityUid uid,
+        int tick,
+        int dropInterval,
+        float freezeRadius,
+        float targetTemp,
+        float tempDrop)
+    {
+        var vampXform = Transform(uid);
+        var center = _transform.GetWorldPosition(vampXform);
+
+        var doCoolingThisTick = (tick % dropInterval) == 0;
+        if (doCoolingThisTick)
+            ProcessTemperatureEffects(uid, vampXform, center, freezeRadius, targetTemp, tempDrop);
+    }
+
+    private void ProcessTemperatureEffects(EntityUid uid,
+        TransformComponent vampXform,
+        Vector2 center,
+        float freezeRadius,
+        float targetTemp,
+        float tempDrop)
+    {
+        foreach (var target in _lookup.GetEntitiesInRange(vampXform.Coordinates, freezeRadius))
+        {
+            if (target == uid || !HasComp<HumanoidAppearanceComponent>(target) || HasComp<VampireComponent>(target))
+                continue;
+
+            if (!TryComp<TemperatureComponent>(target, out var temp))
+                continue;
+
+            var targetXform = Transform(target);
+            var distance = (_transform.GetWorldPosition(targetXform) - center).Length();
+
+            if (distance > freezeRadius || temp.CurrentTemperature <= targetTemp)
+                continue;
+
+            var remaining = temp.CurrentTemperature - targetTemp;
+            var drop = Math.Min(tempDrop, remaining);
+
+            _temperature.ForceChangeTemperature(target, temp.CurrentTemperature - drop, temp);
+        }
+    }
+
+    private void OnShadowAnchor(Entity<VampireComponent> ent, ref VampireShadowAnchorActionEvent args)
+    {
+        if (args.Handled || !TryComp<UmbraeComponent>(ent, out var umbrae))
+            return;
+
+        if (umbrae.SpawnedShadowAnchorBeacon is not null && Exists(umbrae.SpawnedShadowAnchorBeacon))
+        {
+            ReturnToShadowAnchor((ent.Owner, umbrae));
+            args.Handled = true;
+            return;
+        }
+
+        if (umbrae.ShadowAnchorPlacementInProgress)
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (!TryComp<VampireActionComponent>(args.Action.Owner, out var vac))
+            return;
+
+        if (ent.Comp.TotalBlood < vac.BloodToUnlock)
+            return;
+
+        var bloodCost = (int)vac.BloodCost;
+        if (bloodCost > 0 && ent.Comp.DrunkBlood < bloodCost)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-not-enough-blood"), ent, ent);
+            return;
+        }
+
+        var pressedCoords = Transform(ent).Coordinates;
+        var tileCoords = pressedCoords.WithPosition(pressedCoords.Position.Floored() + new Vector2(0.5f, 0.5f));
+
+        var ev = new VampireShadowAnchorDoAfterEvent(GetNetCoordinates(tileCoords), args.BeaconPrototype, bloodCost, args.AutoReturnDelay);
+        var doAfter = new DoAfterArgs(EntityManager, ent, args.PlaceDelay, ev, ent)
+        {
+            DistanceThreshold = null,
+            BreakOnDamage = false,
+            BreakOnMove = false,
+            RequireCanInteract = false,
+            BlockDuplicate = true,
+            CancelDuplicate = true
+        };
+
+        umbrae.ShadowAnchorPlacementInProgress = true;
+
+        if (!_doAfter.TryStartDoAfter(doAfter))
+        {
+            umbrae.ShadowAnchorPlacementInProgress = false;
+            return;
+        }
+
+        args.Handled = true;
+    }
+
+    private void OnShadowAnchorDoAfter(Entity<VampireComponent> ent, ref VampireShadowAnchorDoAfterEvent args)
+    {
+        if (!TryComp<UmbraeComponent>(ent, out var umbrae))
+            return;
+
+        umbrae.ShadowAnchorPlacementInProgress = false;
+
+        if (args.Handled || args.Cancelled)
+            return;
+
+        if (!_vampire.CheckAndConsumeBloodCost(ent, null, args.BloodCost))
+            return;
+
+        if (umbrae.SpawnedShadowAnchorBeacon is not null && Exists(umbrae.SpawnedShadowAnchorBeacon))
+            return;
+
+        var coords = GetCoordinates(args.TargetCoordinates);
+        var newBeacon = EntityManager.SpawnAttachedTo(args.BeaconPrototype, coords);
+        umbrae.SpawnedShadowAnchorBeacon = newBeacon;
+        umbrae.ShadowAnchorLoopId++;
+        umbrae.ShadowAnchorAutoReturnTime = _timing.CurTime + args.AutoReturnDelay;
+        Dirty<UmbraeComponent>((ent.Owner, umbrae));
+
+        _popup.PopupEntity(Loc.GetString("action-vampire-shadow-anchor-installed"), ent, ent);
+    }
+
+    private void ProcessShadowAnchorAutoReturns(TimeSpan now)
+    {
+        var query = EntityQueryEnumerator<UmbraeComponent>();
+        while (query.MoveNext(out var uid, out var umbrae))
+        {
+            Entity<UmbraeComponent> ent = (uid, umbrae);
+
+            if (umbrae.ShadowAnchorAutoReturnTime is not { } returnTime || now < returnTime)
+                continue;
+
+            AutoReturnToShadowAnchor(ent, umbrae.ShadowAnchorLoopId);
+        }
+    }
+
+    private void AutoReturnToShadowAnchor(Entity<UmbraeComponent> ent, int expectedLoopId)
+    {
+        if (ent.Comp.ShadowAnchorLoopId != expectedLoopId)
+            return;
+
+        if (ent.Comp.SpawnedShadowAnchorBeacon is null || !Exists(ent.Comp.SpawnedShadowAnchorBeacon))
+            return;
+
+        ReturnToShadowAnchor(ent);
+    }
+
+    private void ReturnToShadowAnchor(Entity<UmbraeComponent> ent)
+    {
+        if (ent.Comp.SpawnedShadowAnchorBeacon is null || !Exists(ent.Comp.SpawnedShadowAnchorBeacon))
+        {
+            ent.Comp.SpawnedShadowAnchorBeacon = null;
+            ent.Comp.ShadowAnchorAutoReturnTime = null;
+            Dirty(ent);
+            return;
+        }
+
+        var beacon = ent.Comp.SpawnedShadowAnchorBeacon.Value;
+        var coords = Transform(beacon).Coordinates;
+        _transform.SetCoordinates(ent, coords);
+        _transform.AttachToGridOrMap(ent, Transform(ent));
+
+        QueueDel(beacon);
+        ent.Comp.SpawnedShadowAnchorBeacon = null;
+        ent.Comp.ShadowAnchorAutoReturnTime = null;
+        ent.Comp.ShadowAnchorLoopId++;
+        Dirty(ent);
+
+        _popup.PopupEntity(Loc.GetString("action-vampire-shadow-anchor-returned"), ent, ent);
+    }
+
+    private void OnShadowBoxingStartAttempt(ref VampireShadowBoxingStartAttemptEvent ev)
+    {
+        var uid = ev.Performer;
+        var target = ev.Target;
+
+        if (!HasComp<BibleUserComponent>(target))
+            return;
+
+        if (!TryComp<VampireComponent>(uid, out var vampire))
+            return;
+
+        if (vampire.FullPower)
+            return;
+
+        _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, PopupType.MediumCaution);
+        ev.Cancelled = true;
+    }
+
+    private void ProcessActiveShadowBoxing(TimeSpan now)
+    {
+        var query = EntityQueryEnumerator<ActiveVampireShadowBoxingComponent, UmbraeComponent>();
+        while (query.MoveNext(out var uid, out var active, out var umbrae))
+        {
+            if (now < active.NextTick)
+                continue;
+
+            if (now >= active.EndTime || !umbrae.ShadowBoxingActive)
+            {
+                _sharedUmbrae.StopShadowBoxing((uid, umbrae), "action-vampire-shadow-boxing-ends");
+                continue;
+            }
+
+            var target = active.Target;
+            if (!IsValidActiveShadowBoxingTarget(target))
+            {
+                active.NextTick = now + active.TickInterval;
+                continue;
+            }
+
+            var sourceXform = Transform(uid);
+            var targetXform = Transform(target);
+            if (sourceXform.MapID != targetXform.MapID)
+            {
+                active.NextTick = now + active.TickInterval;
+                continue;
+            }
+
+            var curDist = (_transform.GetWorldPosition(sourceXform) - _transform.GetWorldPosition(targetXform)).Length();
+            if (curDist <= active.Range)
+            {
+                var spec = new DamageSpecifier(_prototype.Index<DamageTypePrototype>(BluntTypeId), FixedPoint2.New(active.BrutePerTick));
+                _damageable.TryChangeDamage(target, spec, true, origin: uid);
+
+                if (active.HitSound is not null)
+                    _audio.PlayPvs(active.HitSound, target);
+
+                var punchEffect = Spawn(active.PunchEffectPrototype, Transform(target).Coordinates);
+                _transform.SetParent(punchEffect, target);
+                RaiseNetworkEvent(new VampireShadowBoxingPunchEvent(GetNetEntity(uid), GetNetEntity(target), TimeSpan.FromSeconds(0.33), "VampireShadowBoxingPunch"));
+            }
+
+            active.NextTick = now + active.TickInterval;
+        }
+    }
+
+    private bool IsValidActiveShadowBoxingTarget(EntityUid target)
+    {
+        if (!Exists(target))
+            return false;
+
+        if (!HasComp<DamageableComponent>(target))
+            return false;
+
+        if (TryComp<MobStateComponent>(target, out var mob) && mob.CurrentState == MobState.Dead)
+            return false;
+
+        return true;
+    }
+
+    private void OnFullPower(Entity<UmbraeComponent> ent, ref VampireFullPowerAchievedEvent args)
+    {
+        _eye.SetDrawFov(ent, false);
+        _popup.PopupEntity(Loc.GetString("vampire-umbrae-full-power-fov"), ent, ent, PopupType.Large);
+    }
+}

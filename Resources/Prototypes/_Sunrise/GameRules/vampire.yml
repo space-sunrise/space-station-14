@@ -1,0 +1,67 @@
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  components:
+  - type: VampireRule
+  - type: AntagObjectives
+    objectives:
+    - VampireKillRandomPersonObjective
+    - VampireDrainObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroupsStateOnly
+      maxPicks: 1
+    - groups: VampireObjectiveGroupsStealOnly
+      maxPicks: 1
+    maxDifficulty: 10
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 12
+      playerRatio: 18
+      lateJoinAdditional: true
+      allowNonHumans: True
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleVampire
+      tags:
+      - CantBecomeRevolutionary
+
+- type: entity
+  parent: Vampire
+  id: VampireLess
+  components:
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 6
+      playerRatio: 28
+      lateJoinAdditional: true
+      allowNonHumans: True
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleVampire
+      tags:
+      - CantBecomeRevolutionary
+
+- type: gamePreset
+  id: Vampire
+  alias:
+  - vamp
+  - vamps
+  - vampire
+  - vampires
+  name: vampire-gamemode-title
+  description: vampire-gamemode-description
+  showInVote: True
+  minPlayers: 50
+  rules:
+  - Vampire
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - BasicRoundstartVariation

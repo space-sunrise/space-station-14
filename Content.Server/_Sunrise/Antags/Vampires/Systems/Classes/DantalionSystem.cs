@@ -1,0 +1,1031 @@
+using System.Linq;
+using Content.Server._Sunrise.Antags.Vampires.Components;
+using Content.Server.Bible.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Effects;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Visuals;
+using Content.Shared._Sunrise.Antags.Vampires.Components.Classes;
+using Content.Shared._Starlight.Medical.Damage;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.DoAfter;
+using Content.Shared.Flash;
+using Content.Shared.FixedPoint;
+using Content.Shared.Humanoid;
+using Content.Shared.Mobs.Components;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusIcon.Components;
+using Content.Shared.Stunnable;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
+using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Chemistry.EntitySystems;
+using Robust.Shared.Prototypes;
+using Content.Server.EUI;
+using Content.Server._Sunrise.Antags.Vampires.UI;
+using Content.Shared._Sunrise.CollectiveMind;
+using Content.Server.Roles;
+
+namespace Content.Server._Sunrise.Antags.Vampires.Systems.Classes;
+
+public sealed class DantalionSystem : EntitySystem
+{
+    private const string DantalionCollectiveMind = "Dantalion";
+
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly Shared.Mind.SharedMindSystem _mind = default!;
+    [Dependency] private readonly VampireSystem _vampire = default!;
+    [Dependency] private readonly Actions.ActionsSystem _actions = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly Shared.Examine.ExamineSystemShared _examine = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedFlashSystem _flash = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly EuiManager _eui = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<DantalionComponent, VampireEnthrallActionEvent>(OnEnthrall);
+        SubscribeLocalEvent<DantalionComponent, VampireEnthrallDoAfterEvent>(OnEnthrallDoAfter);
+        SubscribeLocalEvent<VampireThrallComponent, ComponentShutdown>(OnThrallShutdown);
+
+        SubscribeLocalEvent<DantalionComponent, ComponentInit>((uid, _, _) => AddDantalionMind(uid));
+        SubscribeLocalEvent<DantalionComponent, ComponentShutdown>(OnDantalionShutdown);
+
+        SubscribeLocalEvent<DantalionComponent, VampirePacifyActionEvent>(OnPacify);
+        SubscribeLocalEvent<DantalionComponent, VampireSubspaceSwapActionEvent>(OnSubspaceSwap);
+
+        SubscribeLocalEvent<DantalionComponent, VampireRallyThrallsActionEvent>(OnRallyThralls);
+        SubscribeLocalEvent<DantalionComponent, VampireMassHysteriaActionEvent>(OnMassHysteria);
+        SubscribeLocalEvent<VampireDecoyActivatedEvent>(OnDecoyActivated);
+        SubscribeLocalEvent<VampireBloodBondStartAttemptEvent>(OnBloodBondStartAttempt);
+        SubscribeLocalEvent<VampireBloodBondStartedEvent>(OnBloodBondStarted);
+        SubscribeLocalEvent<VampireBloodBondStoppedEvent>(OnBloodBondStopped);
+
+        SubscribeLocalEvent<DantalionComponent, VampireBloodDrankEvent>(OnBloodDrank);
+
+        SubscribeLocalEvent<DantalionComponent, DamageBeforeApplyEvent>(OnDantalionDamage);
+        SubscribeLocalEvent<VampireThrallComponent, DamageBeforeApplyEvent>(OnThrallDamage);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var now = _timing.CurTime;
+
+        var query = EntityQueryEnumerator<VampireThrallComponent>();
+        while (query.MoveNext(out var uid, out var thrall))
+        {
+            if (now < thrall.NextBreakFreeCheck)
+                continue;
+
+            thrall.NextBreakFreeCheck = now + thrall.BreakFreeCheckInterval;
+            Dirty(uid, thrall);
+            CheckThrallBreakFree((uid, thrall));
+        }
+
+        ProcessActiveBloodBonds(now);
+        ProcessActiveHysteriaVision(now);
+    }
+
+    private void ProcessActiveHysteriaVision(TimeSpan now)
+    {
+        var query = EntityQueryEnumerator<HysteriaVisionComponent>();
+        while (query.MoveNext(out var uid, out var hysteria))
+        {
+            if (now < hysteria.EndTime)
+                continue;
+
+            RemComp<HysteriaVisionComponent>(uid);
+        }
+    }
+
+    private void CheckThrallBreakFree(Entity<VampireThrallComponent> ent)
+    {
+        ent.Comp.HolyWaterConsumed = _solution.GetTotalPrototypeQuantity(ent, ent.Comp.HolyWaterReagentId);
+        Dirty(ent);
+        if (ent.Comp.HolyWaterConsumed >= ent.Comp.HolyWaterToBreakFree)
+        {
+            if (TryReleaseThrall(ent))
+                _popup.PopupEntity(Loc.GetString("vampire-thrall-holy-water-freed"), ent, ent, PopupType.Medium);
+            return;
+        }
+
+        if (!HasComp<MindShieldComponent>(ent))
+            return;
+
+        if (TryReleaseThrall(ent))
+            _popup.PopupEntity(Loc.GetString("vampire-thrall-released"), ent, ent, PopupType.Medium);
+    }
+
+    private void OnBloodDrank(Entity<DantalionComponent> ent, ref VampireBloodDrankEvent args)
+    {
+        if (!TryComp<VampireComponent>(ent, out var vampire) || vampire.TotalBlood < ent.Comp.HealBloodThreshold)
+            return;
+
+        HealDantalionThralls(ent);
+    }
+
+    #region Enthrall
+
+    /// <summary>
+    /// Checks if a target can be enthralled and starts a do after if they can be
+    /// </summary>
+    private void OnEnthrall(Entity<DantalionComponent> ent, ref VampireEnthrallActionEvent args)
+    {
+        if (args.Handled || !Exists(args.Target))
+            return;
+
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        var actionEntity = args.Action.Owner;
+        if (!TryGetActionBloodCost(actionEntity, out var bloodCost))
+            return;
+
+        var target = args.Target;
+
+        if (HasComp<BibleUserComponent>(target) && vampire.FullPower != true)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (!IsValidEnthrallTarget(ent, target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-enthrall-invalid"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (HasComp<MindShieldComponent>(target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-enthrall-invalid"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (!HasThrallCapacity(vampire, ent.Comp))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-enthrall-limit"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (vampire.DrunkBlood < bloodCost)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-not-enough-blood"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        var doAfter = new DoAfterArgs(EntityManager, ent, args.ChannelTime, new VampireEnthrallDoAfterEvent { BloodCost = bloodCost }, ent, target)
+        {
+            DistanceThreshold = 2.5f,
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            BreakOnWeightlessMove = true,
+            MovementThreshold = 0.1f,
+            RequireCanInteract = true,
+            BlockDuplicate = true,
+            CancelDuplicate = true
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfter))
+            return;
+
+        args.Handled = true;
+        _popup.PopupEntity(Loc.GetString("vampire-enthrall-start", ("target", Identity.Entity(target, EntityManager))), ent, ent);
+    }
+
+    /// <summary>
+    /// double checks the target can be enthralled and subtract blood from vampire to then give the target the thrall comp, objective, mind comp, and hivemind along with triggering a pop-up to inform the player they have been enthralled
+    /// </summary>
+    private void OnEnthrallDoAfter(Entity<DantalionComponent> ent, ref VampireEnthrallDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled || args.Target is null)
+            return;
+
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        var target = args.Target.Value;
+
+        if (!IsValidEnthrallTarget(ent, target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-enthrall-invalid"), ent, ent, PopupType.SmallCaution);
+            return;
+        }
+
+        if (HasComp<MindShieldComponent>(target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-enthrall-invalid"), ent, ent, PopupType.SmallCaution);
+            return;
+        }
+
+        if (!HasThrallCapacity(vampire, ent.Comp))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-enthrall-limit"), ent, ent, PopupType.SmallCaution);
+            return;
+        }
+
+        if (!_vampire.CheckAndConsumeBloodCost((ent.Owner, vampire), null, args.BloodCost))
+            return;
+
+        Entity<VampireThrallComponent> thrall = (target, EnsureComp<VampireThrallComponent>(target));
+        EnsureComp<StatusIconComponent>(target);
+        thrall.Comp.Master = ent;
+        Dirty(thrall);
+
+        ent.Comp.Thralls.Add(thrall);
+        ent.Comp.ThrallSlotsUsed++;
+        Dirty(ent);
+
+        TryAssignThrallObeyObjective(thrall);
+
+        AddDantalionMind(thrall);
+
+        _popup.PopupEntity(Loc.GetString("vampire-enthrall-success", ("target", Identity.Entity(thrall, EntityManager))), ent, ent);
+        _popup.PopupEntity(Loc.GetString("vampire-enthrall-target"), thrall, thrall, PopupType.Medium);
+        args.Handled = true;
+    }
+
+    /// <summary>
+    /// Attempts to apply the thrall objective and gives them the pop-up if it has been applied
+    /// </summary>
+    private void TryAssignThrallObeyObjective(Entity<VampireThrallComponent> thrall)
+    {
+        if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind))
+            return;
+
+        _role.MindAddRole(thrallMindId, thrall.Comp.MindRoleId, thrallMind, true);
+        _mind.TryAddObjective(thrallMindId, thrallMind, thrall.Comp.ObeyObjectiveId);
+
+        //adds pop-up for target informing them they have been enthralled
+        if (_player.TryGetSessionById(thrallMind.UserId, out var session))
+            _eui.OpenEui(new VampireThrallEui(), session);
+    }
+
+    private void OnThrallShutdown(Entity<VampireThrallComponent> ent, ref ComponentShutdown args)
+    {
+        if (ent.Comp.Master is not { } master)
+            return;
+
+        if (!TryComp<DantalionComponent>(master, out var dantalion))
+            return;
+
+        Entity<DantalionComponent> dantalionEnt = (master, dantalion);
+        if (!dantalionEnt.Comp.Thralls.Remove(ent))
+            return;
+
+        dantalionEnt.Comp.ThrallSlotsUsed = Math.Max(0, dantalionEnt.Comp.ThrallSlotsUsed - 1);
+        Dirty(dantalionEnt);
+    }
+
+    private void OnDantalionShutdown(Entity<DantalionComponent> ent, ref ComponentShutdown args)
+        => ReleaseAllThralls(ent);
+
+    private void ReleaseAllThralls(Entity<DantalionComponent> ent)
+    {
+        if (ent.Comp.Thralls.Count == 0)
+            return;
+
+        foreach (var thrall in ent.Comp.Thralls.ToArray())
+            TryReleaseThrall(thrall);
+    }
+
+    /// <summary>
+	///     Called if a thrall is to be released from their master. Removes the antag component, objectives, role, and hivemind from the player
+	/// </summary>
+    private bool TryReleaseThrall(EntityUid thrall)
+    {
+        if (!TryComp<VampireThrallComponent>(thrall, out var comp))
+            return false;
+
+        if (_mind.TryGetMind(thrall, out var mindId, out var mind))
+        {
+            //Remove objectives
+            if (_mind.TryFindObjective((mindId, mind), comp.ObeyObjectiveId, out var objective) && objective is not null)
+                _mind.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(objective.Value));
+            //Remove role
+            _role.MindRemoveRole<VampireThrallComponent>(mindId);
+        }
+
+        if (comp.Master is { } master && TryComp<DantalionComponent>(master, out var dantalion))
+        {
+            dantalion.BloodBondLinkedThralls.Remove(thrall);
+
+            if (TryComp<VampireBloodBondBeamComponent>(master, out var beamComp) &&
+                beamComp.ActiveBeams.Remove(thrall, out var connection))
+            {
+                var removeEvent = new VampireBloodBondBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false, beamComp.VisualPrototype);
+                RaiseNetworkEvent(removeEvent);
+            }
+        }
+
+        //Remove the component
+        RemComp<VampireThrallComponent>(thrall);
+
+        RemoveDantalionMind(thrall);
+
+        //If everything worked, thrall gets stunned for a few seconds for them to register that something has changed and notice they are no longer a thrall
+        var stunTime = comp.DeconvertStunDuration;
+        _stun.TryUpdateParalyzeDuration(thrall, stunTime);
+
+        return true;
+    }
+
+    /// <summary>
+	///     Checks if the vampire has enough blood to perform the action they are trying to perform
+	/// </summary>
+    private bool TryGetActionBloodCost(EntityUid actionEntity, out int bloodCost)
+    {
+        bloodCost = 0;
+
+        if (!Exists(actionEntity) || !TryComp<VampireActionComponent>(actionEntity, out var actionComp))
+            return false;
+
+        bloodCost = (int)Math.Max(actionComp.BloodCost, 0);
+        return true;
+    }
+
+    private bool IsValidEnthrallTarget(Entity<DantalionComponent> ent, EntityUid target)
+    {
+        if (!Exists(target) || target == ent.Owner)
+            return false;
+
+        if (!HasComp<HumanoidAppearanceComponent>(target))
+            return false;
+
+        if (!TryComp<MobStateComponent>(target, out var mobState) || mobState.CurrentState == Shared.Mobs.MobState.Dead)
+            return false;
+
+        if (HasComp<VampireComponent>(target) || HasComp<VampireThrallComponent>(target))
+            return false;
+
+        return true;
+    }
+
+    private void AddDantalionMind(EntityUid uid)
+    {
+        var collectiveMind = EnsureComp<CollectiveMindComponent>(uid);
+        if (!collectiveMind.Minds.Contains(DantalionCollectiveMind))
+            collectiveMind.Minds.Add(DantalionCollectiveMind);
+    }
+
+    private void RemoveDantalionMind(EntityUid uid)
+    {
+        if (!TryComp(uid, out CollectiveMindComponent? collectiveMind))
+            return;
+
+        collectiveMind.Minds.Remove(DantalionCollectiveMind);
+        if (collectiveMind.Minds.Count == 0)
+            RemComp<CollectiveMindComponent>(uid);
+    }
+
+    private bool HasThrallCapacity(VampireComponent comp, DantalionComponent dantalion)
+        => dantalion.ThrallSlotsUsed < GetThrallLimit(comp, dantalion);
+
+    private int GetThrallLimit(VampireComponent comp, DantalionComponent dantalion)
+    {
+        var limit = dantalion.BaseThrallLimit;
+
+        if (comp.TotalBlood >= dantalion.ThrallLevel2Blood)
+            limit++;
+
+        if (comp.TotalBlood >= dantalion.ThrallLevel3Blood)
+            limit++;
+
+        if (comp.FullPower)
+            limit++;
+
+        return limit;
+    }
+
+    private IEnumerable<EntityUid> IterateAndCheckThralls(Entity<DantalionComponent> dantalion)
+    {
+        foreach (var thrall in dantalion.Comp.Thralls.ToArray())
+        {
+            var validThrall = Exists(thrall)
+                && TryComp<VampireThrallComponent>(thrall, out var thrallComp)
+                && thrallComp.Master == dantalion.Owner;
+
+            if (!validThrall)
+            {
+                dantalion.Comp.Thralls.Remove(thrall);
+                Dirty(dantalion);
+                continue;
+            }
+
+            yield return thrall;
+        }
+    }
+
+    private void HealDantalionThralls(Entity<DantalionComponent> ent)
+    {
+        var uid = ent.Owner;
+        var dantalion = ent.Comp;
+
+        if (dantalion.Thralls.Count == 0)
+            return;
+
+        foreach (var thrall in IterateAndCheckThralls(ent))
+        {
+            var healSpec = new DamageSpecifier();
+            foreach (var (groupId, amount) in dantalion.ThrallHealGroups)
+            {
+                if (amount <= 0 || !_prototype.TryIndex<DamageGroupPrototype>(groupId, out var group))
+                    continue;
+
+                healSpec += new DamageSpecifier(group, -amount);
+            }
+
+            foreach (var (typeId, amount) in dantalion.ThrallHealTypes)
+            {
+                if (amount <= 0 || !_prototype.TryIndex<DamageTypePrototype>(typeId, out var type))
+                    continue;
+
+                healSpec += new DamageSpecifier(type, -amount);
+            }
+
+            if (healSpec.Empty)
+                continue;
+
+            _damageable.TryChangeDamage(thrall, healSpec, true);
+        }
+    }
+
+    #endregion
+
+    #region Pacify
+
+    private void OnPacify(Entity<DantalionComponent> ent, ref VampirePacifyActionEvent args)
+    {
+        if (args.Handled || !Exists(args.Target))
+            return;
+
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        var target = args.Target;
+
+        if (HasComp<BibleUserComponent>(target) && vampire.FullPower != true)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (!IsValidEnthrallTarget(ent, target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-pacify-invalid"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        var duration = args.PacifyDuration;
+        if (duration <= TimeSpan.Zero)
+            return;
+
+        var actionEntity = args.Action.Owner;
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost((ent.Owner, vampire), actionEntity))
+            return;
+
+        EnsureComp<PacifiedComponent>(target);
+        var active = EnsureComp<ActiveVampirePacifyComponent>(target);
+        active.EndTime = _timing.CurTime + duration;
+
+        _popup.PopupEntity(Loc.GetString("vampire-pacify-success", ("target", Identity.Entity(target, EntityManager))), ent, ent);
+        _popup.PopupEntity(Loc.GetString("vampire-pacify-target", ("duration", Math.Round(args.PacifyDuration.TotalSeconds))), target, target, PopupType.Medium);
+        args.Handled = true;
+    }
+
+    #endregion
+
+    #region Subspace Swap
+
+    private void OnSubspaceSwap(Entity<DantalionComponent> ent, ref VampireSubspaceSwapActionEvent args)
+    {
+        if (args.Handled || !Exists(args.Target))
+            return;
+
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        Entity<VampireComponent> vampireEnt = (ent.Owner, vampire);
+        var target = args.Target;
+
+        if (HasComp<BibleUserComponent>(target) && vampire.FullPower != true)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (TryComp<VampireThrallComponent>(target, out var thrall) && thrall.Master == ent.Owner)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-subspace-swap-thrall"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (!TryComp<MobStateComponent>(target, out var targetMobState) || targetMobState.CurrentState == MobState.Dead)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-subspace-swap-dead"), ent, ent, PopupType.MediumCaution);
+            return;
+        }
+
+        if (!TryComp<MobStateComponent>(ent, out var performerMobState) || performerMobState.CurrentState == MobState.Dead)
+            return;
+
+        var actionEntity = args.Action.Owner;
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(vampireEnt, actionEntity))
+            return;
+
+        if (!_transform.SwapPositions(ent.Owner, target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-subspace-swap-failed"), ent, ent, PopupType.SmallCaution);
+            return;
+        }
+
+        var slowDuration = args.SlowDuration < TimeSpan.Zero ? TimeSpan.Zero : args.SlowDuration;
+        if (slowDuration > TimeSpan.Zero)
+        {
+            var multiplier = Math.Clamp(args.SlowMultiplier, 0.05f, 1f);
+            _movementMod.TryAddMovementSpeedModDuration(target, MovementModStatusSystem.FlashSlowdown, slowDuration, multiplier);
+        }
+
+        ApplyHysteriaVision(target, ent, args.HysteriaDuration, args.HysteriaDisguiseSprites);
+
+        _popup.PopupEntity(Loc.GetString("vampire-subspace-swap-success", ("target", Identity.Entity(target, EntityManager))), ent, ent);
+        _popup.PopupEntity(Loc.GetString("vampire-subspace-swap-target"), target, target, PopupType.Medium);
+        args.Handled = true;
+    }
+
+    #endregion
+
+    #region Decoy
+
+    private void OnDecoyActivated(ref VampireDecoyActivatedEvent ev)
+    {
+        var ent = ev.Dantalion;
+        var args = ev.Action;
+        var uid = ent.Owner;
+
+        if (ev.InvisibilityDuration > TimeSpan.Zero)
+        {
+            var active = EnsureComp<ActiveVampireInvisibilityComponent>(uid);
+            active.EndTime = _timing.CurTime + ev.InvisibilityDuration;
+            active.HadStealthComponent = ev.HadStealthComponent;
+            active.PreviousStealthEnabled = ev.PreviousStealthEnabled;
+            active.PreviousStealthVisibility = ev.PreviousStealthVisibility;
+        }
+
+        var xform = Transform(uid);
+        var spawnCoords = _transform.GetMapCoordinates(xform);
+
+        var decoy = EntityManager.Spawn("VampireDecoyEntity", spawnCoords);
+
+        if (TryComp<VampireDecoyAppearanceComponent>(decoy, out var decoyAppearance))
+        {
+            decoyAppearance.Source = uid;
+            Dirty(decoy, decoyAppearance);
+        }
+
+        var performerMeta = MetaData(ent);
+        _metaData.SetEntityName(decoy, performerMeta.EntityName);
+
+        var decoyComp = EnsureComp<VampireDecoyComponent>(decoy);
+        decoyComp.Detonated = false;
+        decoyComp.DisplayPopup = args.DecoyFlashDisplayPopup;
+        decoyComp.Probability = args.DecoyFlashProbability;
+
+        // Set lifetime
+        var life = args.DecoyDuration < TimeSpan.Zero ? TimeSpan.Zero : args.DecoyDuration;
+        if (life > TimeSpan.Zero)
+        {
+            var timed = EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(decoy);
+            timed.Lifetime = (float)life.TotalSeconds;
+        }
+    }
+
+    #endregion
+
+    #region Rally Thralls
+
+    private void OnRallyThralls(Entity<DantalionComponent> ent, ref VampireRallyThrallsActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        Entity<VampireComponent> vampireEnt = (ent.Owner, vampire);
+        var coords = Transform(ent).Coordinates;
+
+        var toRally = new List<EntityUid>();
+
+        foreach (var thrall in IterateAndCheckThralls(ent))
+        {
+            var thrallCoords = Transform(thrall).Coordinates;
+            if (!thrallCoords.TryDistance(EntityManager, _transform, coords, out var distance) || distance > args.Range)
+                continue;
+
+            toRally.Add(thrall);
+        }
+
+        if (toRally.Count == 0)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-rally-thralls-none"), ent, ent, PopupType.SmallCaution);
+            return;
+        }
+
+        var actionEntity = args.Action.Owner;
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(vampireEnt, actionEntity))
+            return;
+
+        var ralliedCount = 0;
+
+        foreach (var thrall in toRally)
+        {
+            if (!Exists(thrall))
+                continue;
+
+            // Remove stuns
+            if (HasComp<StunnedComponent>(thrall))
+                RemComp<StunnedComponent>(thrall);
+
+            _statusEffects.TryRemoveStatusEffect(thrall, SharedStunSystem.StunId);
+            _stun.TryUnstun(thrall);
+            RemComp<KnockedDownComponent>(thrall);
+
+            //Remove sleep
+            if (HasComp<SleepingComponent>(thrall))
+                RemComp<SleepingComponent>(thrall);
+
+            // Restore stamina
+            if (TryComp<StaminaComponent>(thrall, out var stamina))
+            {
+                stamina.StaminaDamage = 0f;
+                stamina.Critical = false;
+                stamina.AfterCritical = false;
+                RemComp<ActiveStaminaComponent>(thrall);
+                _statusEffects.TryRemoveStatusEffect(thrall, SharedStaminaSystem.StaminaLow);
+                Dirty(thrall, stamina);
+            }
+
+            var rallyEffect = EntityManager.SpawnAttachedTo(ent.Comp.RallyOverlayEffect, Transform(thrall).Coordinates);
+            _transform.SetParent(rallyEffect, thrall);
+
+            ralliedCount++;
+        }
+
+        _popup.PopupEntity(Loc.GetString("vampire-rally-thralls-success", ("count", ralliedCount)), ent, ent);
+
+        args.Handled = true;
+    }
+
+    #endregion
+
+    #region Blood Bond
+
+    private void OnBloodBondStartAttempt(ref VampireBloodBondStartAttemptEvent ev)
+    {
+        var ent = ev.Dantalion;
+        if (ent.Comp.Thralls.Count != 0)
+            return;
+
+        _popup.PopupEntity(Loc.GetString("vampire-blood-bond-no-thralls"), ent, ent, PopupType.MediumCaution);
+        ev.Cancelled = true;
+    }
+
+    private void OnBloodBondStarted(ref VampireBloodBondStartedEvent ev)
+    {
+        var ent = ev.Dantalion;
+        var args = ev.Action;
+        ActivateBloodBond(ent, args.Action.Owner, args.Range, args.BloodCostPerTick, args.TickInterval, args.BeamPrototype);
+    }
+
+    private void OnBloodBondStopped(ref VampireBloodBondStoppedEvent ev)
+        => DeactivateBloodBond(ev.Dantalion);
+
+    private void ActivateBloodBond(
+        Entity<DantalionComponent> ent,
+        EntityUid actionEntity,
+        float range,
+        int bloodCostPerTick,
+        TimeSpan tickInterval,
+        string beamPrototype)
+    {
+        ent.Comp.BloodBondActive = true;
+        ent.Comp.BloodBondBeamPrototype = beamPrototype;
+        ent.Comp.BloodBondLinkedThralls.Clear();
+
+        var beamComp = EnsureComp<VampireBloodBondBeamComponent>(ent);
+        beamComp.VisualPrototype = beamPrototype;
+        beamComp.ActiveBeams.Clear();
+
+        Dirty(ent);
+
+        var active = EnsureComp<ActiveVampireBloodBondComponent>(ent);
+        active.ActionEntity = actionEntity;
+        active.Range = range;
+        active.BloodCostPerTick = bloodCostPerTick;
+        active.TickInterval = tickInterval;
+        active.NextTick = _timing.CurTime;
+    }
+
+    private void DeactivateBloodBond(Entity<DantalionComponent> ent)
+    {
+        ent.Comp.BloodBondActive = false;
+        ent.Comp.BloodBondLinkedThralls.Clear();
+
+        if (TryComp<VampireBloodBondBeamComponent>(ent, out var beamComp))
+        {
+            foreach (var connection in beamComp.ActiveBeams.Values)
+            {
+                var removeEvent = new VampireBloodBondBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false, beamComp.VisualPrototype);
+                RaiseNetworkEvent(removeEvent);
+            }
+
+            beamComp.ActiveBeams.Clear();
+        }
+
+        RemComp<ActiveVampireBloodBondComponent>(ent);
+        Dirty(ent);
+    }
+
+    private void ProcessActiveBloodBonds(TimeSpan now)
+    {
+        var query = EntityQueryEnumerator<ActiveVampireBloodBondComponent, DantalionComponent>();
+        while (query.MoveNext(out var uid, out var active, out var dantalion))
+        {
+            Entity<ActiveVampireBloodBondComponent, DantalionComponent> ent = (uid, active, dantalion);
+
+            if (active.TickInterval <= TimeSpan.Zero)
+            {
+                DeactivateBloodBond((uid, dantalion));
+                continue;
+            }
+
+            while (now >= active.NextTick)
+            {
+                if (!ProcessBloodBondTick(ent))
+                    break;
+
+                active.NextTick += active.TickInterval;
+            }
+        }
+    }
+
+    private bool ProcessBloodBondTick(Entity<ActiveVampireBloodBondComponent, DantalionComponent> ent)
+    {
+        if (!ent.Comp2.BloodBondActive)
+        {
+            RemComp<ActiveVampireBloodBondComponent>(ent);
+            return false;
+        }
+
+        if (TryComp<MobStateComponent>(ent, out var mobState)
+            && mobState.CurrentState is MobState.Dead or MobState.Critical)
+        {
+            DeactivateBloodBond((ent.Owner, ent.Comp2));
+            if (Exists(ent.Comp1.ActionEntity) && _actions.GetAction(ent.Comp1.ActionEntity) is { } action)
+                _actions.SetToggled(action.AsNullable(), false);
+            return false;
+        }
+
+        if (TryComp<VampireComponent>(ent, out var vampire)
+            && vampire.DrunkBlood < ent.Comp1.BloodCostPerTick)
+        {
+            DeactivateBloodBond((ent.Owner, ent.Comp2));
+            _popup.PopupEntity(Loc.GetString("vampire-blood-bond-stop-blood"), ent, ent);
+            if (Exists(ent.Comp1.ActionEntity) && _actions.GetAction(ent.Comp1.ActionEntity) is { } action)
+                _actions.SetToggled(action.AsNullable(), false);
+            return false;
+        }
+
+        if (vampire is not null)
+            _vampire.CheckAndConsumeBloodCost((ent.Owner, vampire), null, ent.Comp1.BloodCostPerTick);
+
+        var coords = Transform(ent).Coordinates;
+        var linkedThralls = new List<EntityUid>();
+
+        Entity<DantalionComponent> dantalion = (ent.Owner, ent.Comp2);
+        foreach (var thrall in IterateAndCheckThralls(dantalion))
+        {
+            var thrallCoords = Transform(thrall).Coordinates;
+            if (!thrallCoords.TryDistance(EntityManager, _transform, coords, out var distance) || distance > ent.Comp1.Range)
+                continue;
+
+            // Prevent bond beams working through walls
+            if (!_examine.InRangeUnOccluded(ent, thrall, ent.Comp1.Range))
+                continue;
+
+            if (TryComp<MobStateComponent>(thrall, out var thrallMobState)
+                && thrallMobState.CurrentState != MobState.Dead)
+            {
+                linkedThralls.Add(thrall);
+            }
+        }
+
+        ent.Comp2.BloodBondLinkedThralls = linkedThralls;
+        Dirty(dantalion);
+        UpdateBloodBondBeamNetwork(dantalion, linkedThralls, ent.Comp1.Range);
+        return true;
+    }
+
+    private void OnDantalionDamage(Entity<DantalionComponent> ent, ref DamageBeforeApplyEvent args)
+    {
+        if (!ent.Comp.BloodBondActive || ent.Comp.BloodBondProcessingDamage)
+            return;
+
+        SplitBloodBondDamage(ent, ent, ref args);
+    }
+
+    private void OnThrallDamage(Entity<VampireThrallComponent> ent, ref DamageBeforeApplyEvent args)
+    {
+        if (ent.Comp.Master is not { } master || !TryComp<DantalionComponent>(master, out var dantalion))
+            return;
+
+        if (!dantalion.BloodBondActive || dantalion.BloodBondProcessingDamage)
+            return;
+
+        if (!dantalion.BloodBondLinkedThralls.Contains(ent))
+            return;
+
+        SplitBloodBondDamage(ent, (master, dantalion), ref args);
+    }
+
+    private void SplitBloodBondDamage(EntityUid damagedEntity, Entity<DantalionComponent> vampire, ref DamageBeforeApplyEvent args)
+    {
+        if (args.Damage.GetTotal() <= 0)
+            return;
+
+        var participants = new List<EntityUid> { vampire };
+        foreach (var thrall in vampire.Comp.BloodBondLinkedThralls)
+        {
+            if (Exists(thrall))
+                participants.Add(thrall);
+        }
+
+        if (participants.Count < 2)
+            return;
+
+        var originalTargetDamage = new DamageSpecifier();
+        var redistributedDamage = new DamageSpecifier();
+        foreach (var (type, value) in args.Damage.DamageDict)
+        {
+            if (value > 0)
+            {
+                var shared = value / participants.Count;
+                originalTargetDamage.DamageDict[type] = shared;
+                redistributedDamage.DamageDict[type] = shared;
+            }
+            else
+            {
+                originalTargetDamage.DamageDict[type] = value;
+            }
+        }
+        args.Damage = originalTargetDamage;
+
+        vampire.Comp.BloodBondProcessingDamage = true;
+
+        foreach (var other in participants)
+        {
+            if (other == damagedEntity)
+                continue;
+
+            if (!Exists(other))
+                continue;
+
+            _damageable.TryChangeDamage(other, redistributedDamage, ignoreResistances: true, origin: args.Origin);
+        }
+
+        vampire.Comp.BloodBondProcessingDamage = false;
+    }
+
+    private void UpdateBloodBondBeamNetwork(Entity<DantalionComponent> vampire, List<EntityUid> targets, float range)
+    {
+        if (!TryComp<VampireBloodBondBeamComponent>(vampire, out var beamComp))
+            return;
+
+        var requiredTargets = new HashSet<EntityUid>(targets);
+
+        var toRemove = new List<EntityUid>();
+        foreach (var (targetKey, connection) in beamComp.ActiveBeams)
+        {
+            if (connection.Source != vampire.Owner)
+            {
+                var removeLegacy = new VampireBloodBondBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false, beamComp.VisualPrototype);
+                RaiseNetworkEvent(removeLegacy);
+                toRemove.Add(targetKey);
+                continue;
+            }
+
+            if (!requiredTargets.Contains(connection.Target))
+            {
+                var removeEvent = new VampireBloodBondBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false, beamComp.VisualPrototype);
+                RaiseNetworkEvent(removeEvent);
+                toRemove.Add(targetKey);
+            }
+        }
+
+        foreach (var key in toRemove)
+            beamComp.ActiveBeams.Remove(key);
+
+        foreach (var target in requiredTargets)
+        {
+            if (!beamComp.ActiveBeams.ContainsKey(target))
+            {
+                var connection = new BloodBondBeamConnection(vampire, target, range);
+                beamComp.ActiveBeams[target] = connection;
+
+                var createEvent = new VampireBloodBondBeamEvent(GetNetEntity(vampire), GetNetEntity(target), true, beamComp.VisualPrototype);
+                RaiseNetworkEvent(createEvent);
+            }
+        }
+    }
+
+    #endregion
+
+    #region Mass Hysteria
+
+    private void OnMassHysteria(Entity<DantalionComponent> ent, ref VampireMassHysteriaActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<VampireComponent>(ent, out var vampire))
+            return;
+
+        Entity<VampireComponent> vampireEnt = (ent.Owner, vampire);
+        if (!vampire.FullPower)
+        {
+            _popup.PopupEntity(Loc.GetString("action-vampire-not-enough-power"), ent, ent);
+            args.Handled = true;
+            return;
+        }
+
+        var actionEntity = args.Action.Owner;
+        if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(vampireEnt, actionEntity))
+            return;
+
+        var coords = Transform(ent).Coordinates;
+
+        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+
+        while (query.MoveNext(out var target, out _, out var mobState, out var xform))
+        {
+            if (target == ent.Owner)
+                continue;
+
+            if (mobState.CurrentState == MobState.Dead)
+                continue;
+
+            if (!xform.Coordinates.TryDistance(EntityManager, _transform, coords, out var distance) || distance > args.Range)
+                continue;
+
+            if (HasComp<VampireThrallComponent>(target))
+                continue;
+
+            _flash.Flash(target, ent, null, args.FlashDuration, 0.8f, false);
+
+            if (TryComp<ActorComponent>(target, out var actor))
+                _audio.PlayGlobal(args.Sound, actor.PlayerSession, AudioParams.Default.WithVolume(1f));
+
+            ApplyHysteriaVision(target, ent, args.HysteriaDuration, args.HysteriaDisguiseSprites);
+        }
+
+        args.Handled = true;
+    }
+
+    private void ApplyHysteriaVision(EntityUid target, EntityUid source, TimeSpan duration, List<HysteriaDisguiseSprite> disguiseSprites)
+    {
+        var hysteria = EnsureComp<HysteriaVisionComponent>(target);
+        hysteria.EndTime = _timing.CurTime + duration;
+        hysteria.Source = source;
+        hysteria.DisguiseSprites = disguiseSprites;
+        Dirty(target, hysteria);
+    }
+
+    #endregion
+}

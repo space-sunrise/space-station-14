@@ -8,6 +8,7 @@
     energy: 0.8
     radius: 20
     softness: 20
+  - type: DarkLight
 
 - type: entity
   id: EffectNightVisionGreen

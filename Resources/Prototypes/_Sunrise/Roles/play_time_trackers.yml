@@ -164,6 +164,13 @@
   id: JobCBURNAgentEVA
 
 - type: playTimeTracker
+  id: AntagVampire
+
+- type: playTimeTracker
+  id: AntagVampireThrall
+# Sunrise-Edit start - Missing antag playTimeTrackers to prevent UnknownPrototypeExceptions
+
+- type: playTimeTracker
   id: JobCBURNLeader
 
 - type: playTimeTracker

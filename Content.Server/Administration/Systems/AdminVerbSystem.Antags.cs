@@ -1,6 +1,7 @@
 using Content.Server._Sunrise.AssaultOps;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server._Sunrise.FleshCult.GameRule;
+using Content.Server._Sunrise.Antags.Vampires.Rules.Components;
 using Content.Server._Sunrise.GameTicking.Rules.Components;
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
@@ -34,6 +35,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultRevsRule = "Revolutionary";
     private static readonly EntProtoId DefaultThiefRule = "Thief";
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
+    private static readonly EntProtoId DefaultVampireRule = "Vampire"; // Sunrise-Edit
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
@@ -187,6 +189,23 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", changelingName, Loc.GetString("admin-verb-make-changeling")),
         };
         args.Verbs.Add(changeling);
+
+        // Sunrise-Start
+        var vampireName = Loc.GetString("admin-verb-text-make-vampire");
+        Verb vampire = new()
+        {
+            Text = vampireName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Vampire/actions_vampire.rsi"), "select_class"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", vampireName, Loc.GetString("admin-verb-make-vampire")),
+        };
+        args.Verbs.Add(vampire);
+        // Sunrise-End
 
         var paradoxCloneName = Loc.GetString("admin-verb-text-make-paradox-clone");
         Verb paradox = new()

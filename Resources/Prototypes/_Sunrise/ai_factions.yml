@@ -132,3 +132,10 @@
     - Soviet
     - SpiderClan
     - UraniumCrab
+
+- type: npcFaction
+  id: Vampire
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Zombie

@@ -42,6 +42,12 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      # Sunrise-Start
+      enum.VampireClassUiKey.Key:
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key:
+        type: VampireLocateBui
+      # Sunrise-End
       # Sunrise-start
       enum.SurgeryUIKey.Key:
         type: SurgeryBui

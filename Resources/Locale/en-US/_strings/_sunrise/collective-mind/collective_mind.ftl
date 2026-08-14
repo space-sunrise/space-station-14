@@ -11,3 +11,5 @@ collective-mind-zombie = Зомби
 collective-mind-changeling = Генокрад
 collective-mind-blood-cult = Культ Крови
 collective-mind-pirate = Пираты
+
+collective-mind-dantalion = Vampires
