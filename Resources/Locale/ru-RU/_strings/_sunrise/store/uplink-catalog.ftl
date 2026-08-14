@@ -145,6 +145,7 @@ uplink-skm24-desc = Запасной вариант, если вы проигр�
 uplink-skm28-name = SKM-28
 uplink-skm28-desc = Снайперский вариант SKM-24. Имеет удлиненный тяжелый ствол, переработанную начинку и установленный оптический прицел. Калибр .308.
 uplink-weapon-syndie-laser-pistol-name = SAM-300
+uplink-weapon-syndie-laser-pistol-desc = Лазерный пистолет Синдиката, разработанный на базе пистолета капитана NT
 uplink-clothing-backpack-syndie-dl6902-name = Набор DL6902
 uplink-clothing-backpack-syndie-dl6902-desc = Включает в себя пулемёт DL6902 и один дополнительный короб.
 uplink-power-backpack-dl6902-name = DL6902 с патронным рюкзаком
