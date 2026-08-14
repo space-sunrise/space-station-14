@@ -42,8 +42,12 @@ for attempt in {1..5}; do
     git clean -fd -- Resources/Changelog/Parts
 
     arguments=(--event-path "$GITHUB_EVENT_PATH" --target-branch master)
-    if [[ -n "${PR_NUMBER:-}" ]]; then
-        arguments+=(--pr-number "$PR_NUMBER")
+    if [[ "${GITHUB_EVENT_NAME:-}" == "workflow_dispatch" ]]; then
+        if [[ -z "${MANUAL_CHANGELOG:-}" ]]; then
+            report_status error "❌" "Для ручного запуска необходимо заполнить поле чейнжлога."
+            exit 1
+        fi
+        arguments+=(--manual-changelog)
     fi
 
     python Tools/_sunrise/changelog/changelog_actions.py "${arguments[@]}"
