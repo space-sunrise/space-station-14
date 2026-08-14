@@ -108,6 +108,49 @@ lobby-art-NewYearComfort = Новогодний уют
 lobby-art-NewYearParty = Новогодняя вечеринка
 lobby-art-NewYearPine = Новогодняя ёлка
 lobby-art-NewYearExplosion = Новогодний взрыв
+
+# Арты NF
+lobby-art-SunriseNfBingGuss = Бинг Гасс
+lobby-art-SunriseNfJaniGang = Банда уборщиков
+lobby-art-SunriseNfXeeenoooossss = Ксеееноооосы
+lobby-art-SunriseNfSecRun = Забег СБ
+lobby-art-SunriseNfTheSecStealers = Похитители СБ
+lobby-art-SunriseNfHandsomeKiller = Красивый убийца
+lobby-art-SunriseNfRebirth = Перерождение
+lobby-art-SunriseNfParamedicRash = Авария парамедика
+
+# Арты Starlight
+lobby-art-SunriseStarlightPositivity = Позитив
+lobby-art-SunriseStarlightIpcSaster = Катастрофа КПБ
+lobby-art-SunriseStarlightLingKiller = Убийца генокрадов
+lobby-art-SunriseStarlightAgainstTheXeno = Против ксеноса
+lobby-art-SunriseStarlightBombDefusalBorg = Обезвреживание бомбы
+lobby-art-SunriseStarlightTurncoats = Перебежчики
+lobby-art-SunriseStarlightYouAreNotFunny = Ты не смешной
+lobby-art-SunriseStarlightTritfireDragon = Дракон Тритфайра
+lobby-art-SunriseStarlightSecurityShowdown = Разборка СБ
+lobby-art-SunriseStarlightRevClown = Клоун-революционер
+lobby-art-SunriseStarlightTheMidRoundAntagsBane = Гроза антагонистов
+lobby-art-SunriseStarlightBlackFeathers = Чёрные перья
+lobby-art-SunriseStarlightDispace = Диспейс
+lobby-art-SunriseStarlightClownChoices = Выбор клоуна
+lobby-art-SunriseStarlightHopDeskSimulator = Симулятор стола ГП
+lobby-art-SunriseStarlightKatieVsSyndie = Кэти против синдиката
+lobby-art-SunriseStarlightNoGalCom = Без галоперидола
+lobby-art-SunriseStarlightAiderThief = Находка в техах
+
+# Арты Wizards
+lobby-art-SunriseWizardsWarden = Смотритель
+lobby-art-SunriseWizardsPharmacy = Аптека
+lobby-art-SunriseWizardsSsxiv = SSXIV
+lobby-art-SunriseWizardsSusstation = Сасстейшн
+lobby-art-SunriseWizardsSkellyVsTheRev = Скелли против ревенанта
+lobby-art-SunriseWizardsDoomed = Обречённый
+lobby-art-SunriseWizardsBlueprint = Чертёж
+lobby-art-SunriseWizardsBehonker = Бехонкер
+lobby-art-SunriseWizardsJustAWeekAway = Неделя ожидания
+lobby-art-SunriseWizardsJaniShootout = Перестрелка уборщиков
+lobby-art-SunriseWizardsInvisibleWall = Невидимая стена
 # Parallaxes
 lobby-parallax-Random = Случайный
 lobby-parallax-FastSpace = Быстрый космос

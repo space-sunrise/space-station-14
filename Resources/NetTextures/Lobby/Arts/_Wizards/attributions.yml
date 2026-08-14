@@ -1,8 +1,3 @@
-- files: ["supermatter.webp", "robotics.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Veritius#2351 (257233913951289344) on discord / @Veritius on GitHub"
-  source: "https://github.com/Veritius"
-
 - files: ["warden.webp", "pharmacy.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "Solbusaur#4343 (220208697429852160) on discord"
@@ -38,11 +33,6 @@
   copyright: "InCrah on twitter / @in_crah"
   source: "https://twitter.com/in_crah"
 
-- files: ["terminalstation.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "aserovich on discord"
-  source: "https://github.com/space-wizards/space-station-14"
-
 - files: ["justaweekaway.webp"]
   license: "CC-BY-SA-3.0"
   copyright: "plantyfern on discord"
@@ -56,9 +46,4 @@
 - files: ["janishootout.webp"]
   license: "CC0-1.0"
   copyright: "psychpsyo on Github/Twitter"
-  source: "https://github.com/space-wizards/space-station-14"
-
-- files: ["reclaimer-nuke.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "GetOutMarutak,aka.Snicket on Discord/github/Cara/Ko-fi"
   source: "https://github.com/space-wizards/space-station-14"

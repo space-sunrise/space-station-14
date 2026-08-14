@@ -57,3 +57,46 @@ lobby-art-NewYearComfort = New Year Comfort
 lobby-art-NewYearParty = New Year Party
 lobby-art-NewYearPine = New Year Pine
 lobby-art-NewYearExplosion = New Year Explosion
+
+# Арты NF
+lobby-art-SunriseNfBingGuss = Bing Guss
+lobby-art-SunriseNfJaniGang = Jani Gang
+lobby-art-SunriseNfXeeenoooossss = Xeeenoooossss
+lobby-art-SunriseNfSecRun = Security Run
+lobby-art-SunriseNfTheSecStealers = Security Stealers
+lobby-art-SunriseNfHandsomeKiller = Handsome Killer
+lobby-art-SunriseNfRebirth = Rebirth
+lobby-art-SunriseNfParamedicRash = Paramedic Crash
+
+# Арты Starlight
+lobby-art-SunriseStarlightPositivity = Positivity
+lobby-art-SunriseStarlightIpcSaster = IPC Disaster
+lobby-art-SunriseStarlightLingKiller = Ling Killer
+lobby-art-SunriseStarlightAgainstTheXeno = Against the Xeno
+lobby-art-SunriseStarlightBombDefusalBorg = Bomb Defusal Borg
+lobby-art-SunriseStarlightTurncoats = Turncoats
+lobby-art-SunriseStarlightYouAreNotFunny = You Aren't Funny
+lobby-art-SunriseStarlightTritfireDragon = Tritfire Dragon
+lobby-art-SunriseStarlightSecurityShowdown = Security Showdown
+lobby-art-SunriseStarlightRevClown = Revolutionary Clown
+lobby-art-SunriseStarlightTheMidRoundAntagsBane = Mid-round Antag Bane
+lobby-art-SunriseStarlightBlackFeathers = Black Feathers
+lobby-art-SunriseStarlightDispace = Dispace
+lobby-art-SunriseStarlightClownChoices = Clown Choices
+lobby-art-SunriseStarlightHopDeskSimulator = HoP Desk Simulator
+lobby-art-SunriseStarlightKatieVsSyndie = Katie vs. Syndie
+lobby-art-SunriseStarlightNoGalCom = No GalCom
+lobby-art-SunriseStarlightAiderThief = Maintenance Discovery
+
+# Арты Wizards
+lobby-art-SunriseWizardsWarden = Warden
+lobby-art-SunriseWizardsPharmacy = Pharmacy
+lobby-art-SunriseWizardsSsxiv = SSXIV
+lobby-art-SunriseWizardsSusstation = Susstation
+lobby-art-SunriseWizardsSkellyVsTheRev = Skelly vs. Revenant
+lobby-art-SunriseWizardsDoomed = Doomed
+lobby-art-SunriseWizardsBlueprint = Blueprint
+lobby-art-SunriseWizardsBehonker = Behonker
+lobby-art-SunriseWizardsJustAWeekAway = A Week Away
+lobby-art-SunriseWizardsJaniShootout = Jani Shootout
+lobby-art-SunriseWizardsInvisibleWall = Invisible Wall

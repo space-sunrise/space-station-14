@@ -8,40 +8,15 @@
   copyright: "By TheAnaRina, Apart of @manisols.bsky.social on Bluesky"
   source: "https://bsky.app/profile/manisols.bsky.social"
 
-- files: ["trieste-nt.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Conflee / Twitter & Discord & Bluesky"
-  source: "https://bsky.app/profile/conflee.bsky.social"
-
-- files: ["reflection.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Conflee / Twitter & Discord & Bluesky"
-  source: "https://bsky.app/profile/conflee.bsky.social"
-
 - files: ["thelingkiller.webp"]
   license: "CC-BY-NC-SA-4.0"
   copyright: "By voy0099 on discord, neevoytattoo on instagram"
   source: "https://www.instagram.com/neevoytattoo/"
 
-- files: ["ntosprey.webp"]
-  license: "CC0-1.0"
-  copyright: "ItsAbby11 on Github, happymemories11 on Discord."
-  source: "https://github.com/ItsAbby11"
-
-- files: ["friendsforever.webp"]
-  license: "CC0-1.0"
-  copyright: "ItsAbby11 on Github, happymemories11 on Discord."
-  source: "https://github.com/ItsAbby11"
-
 - files: ["againstthexeno.webp"]
   license: "CC0-1.0"
   copyright: "Ramblinger on Discord/Instagram."
   source: "https://www.instagram.com/ramblinger/"
-
-- files: ["operation.webp"]
-  license: "CC0-1.0"
-  copyright: "Made by JustAdler https://github.com/ss14Starlight/space-station-14"
-  source: "https://github.com/ss14Starlight/space-station-14/pull/923"
 
 - files: ["bombdefusalborg.webp"]
   license: "CC-BY-NC-SA-4.0"
@@ -57,11 +32,6 @@
   license: "CC-BY-NC-SA-4.0"
   copyright: "prazat911(984407438230945852) on discord"
   source: "https://discord.com/channels/919301044784226385/1073603532898435183/1304517587178356909"
-
-- files: ["friendly-face-in-space.webp"]
-  license: "CC0-1.0"
-  copyright: "Ramblinger on Discord/Instagram."
-  source: "https://www.instagram.com/ramblinger/"
 
 - files: ["tritfire_dragon.webp"]
   license: "CC-BY-NC-SA-3.0"
@@ -93,20 +63,10 @@
   copyright: "m0lem4n"
   source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1428961585589911613"
 
-- files: ["FatefulShift.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "rickery"
-  source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1433725406950854727"
-
 - files: ["HoPdeskSimulator.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "swonki"
   source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1429111869813035214"
-
-- files: ["janitorial.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "wintergem18"
-  source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1433846888028835991"
 
 - files: ["KATIEVSSYNDIE.webp"]
   license: "CC-BY-NC-SA-3.0"
@@ -123,3 +83,7 @@
   copyright: "silkielol"
   source: "https://discord.com/channels/1272545509562777621/1311190248310575114/1509637617036165190"
 
+- files: ["rev-clown.webp"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Zigo, space station 13, SS13, SS-13, Космическая станция 13, Клоун-революционер из SS13"
+  source: "https://safereactor.cc/post/5752192"
