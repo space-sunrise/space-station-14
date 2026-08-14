@@ -8,26 +8,28 @@ markings-category-SnoutCover = Морда (покрытие)
 markings-category-Dreadlocks = Дреды
 markings-category-Rings = Кольца
 
--markings-selection = { $selectable ->
-    [0] Больше нельзя выбрать ни одной черты.
-    [one] Можно выбрать ещё одну черту.
-    [few] Можно выбрать ещё { $selectable } черты.
-   *[other] Можно выбрать ещё { $selectable } черт.
-}
-markings-limits = { $required ->
-    [true] { $count ->
-        [-1] Выберите хотя бы одну черту.
-        [0] Нельзя выбрать ни одной черты, но одна почему-то обязательна. Это ошибка.
-        [one] Выберите одну черту.
-       *[other] Выберите от одной до { $count } черт. { -markings-selection(selectable: $selectable) }
+-markings-selection =
+    { $selectable ->
+        [0] Больше нельзя выбрать ни одной черты.
+        [one] Можно выбрать ещё одну черту.
+        [few] Можно выбрать ещё { $selectable } черты.
+       *[other] Можно выбрать ещё { $selectable } черт.
     }
-   *[false] { $count ->
-        [-1] Можно выбрать любое количество черт.
-        [0] Нельзя выбрать ни одной черты.
-        [one] Можно выбрать не более одной черты.
-       *[other] Можно выбрать не более { $count } черт. { -markings-selection(selectable: $selectable) }
+markings-limits =
+    { $required ->
+        [true] { $count ->
+            [-1] Выберите хотя бы одну черту.
+            [0] Нельзя выбрать ни одной черты, но одна почему-то обязательна. Это ошибка.
+            [one] Выберите одну черту.
+           *[other] Выберите от одной до { $count } черт. { -markings-selection(selectable: $selectable) }
+        }
+       *[false] { $count ->
+            [-1] Можно выбрать любое количество черт.
+            [0] Нельзя выбрать ни одной черты.
+            [one] Можно выбрать не более одной черты.
+           *[other] Можно выбрать не более { $count } черт. { -markings-selection(selectable: $selectable) }
+        }
     }
-}
 markings-reorder = Изменить порядок черт
 
 humanoid-marking-modifier-respect-limits = Учитывать ограничения

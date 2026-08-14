@@ -832,7 +832,7 @@ public sealed class SunriseArrivalsSystem : EntitySystem
 
     private bool IsPlayerOnShuttle(EntityUid gridUid, EntityUid? player)
     {
-        if (player == null || !TryComp<TransformComponent>(player.Value, out var playerXform))
+        if (player == null || !TryComp(player.Value, out TransformComponent? playerXform))
             return false;
 
         return playerXform.GridUid == gridUid;
