@@ -4877,3 +4877,11 @@
   - url: https://github.com/user-attachments/assets/8085d7d7-ea13-41cd-b2ec-260e66bba021
     description: смешное видео
     change: 0
+- author: Ligyb
+  time: '2026-08-14T10:01:56.0000000+00:00'
+  changes:
+  - type: Fix
+    message: исправлено воспроизведение некоторых midi-композиций, ранее вызывающих
+      судороги
+  id: 1996
+  url: https://github.com/space-sunrise/sunrise-station/pull/4693
