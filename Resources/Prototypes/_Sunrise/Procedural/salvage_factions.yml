@@ -262,9 +262,6 @@
     - proto: MobPirateT1Spawner
       cost: 5
       prob: 0.1
-    - proto: MobPirateT1ExpeditionSpawner
-      cost: 5
-      prob: 0.1
     # range
     - proto: MobPirateT1ScrapSMG
       cost: 5
