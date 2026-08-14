@@ -56,3 +56,8 @@
   - type: WarpPoint
     follow: true
     location: Icarus beam
+  - type: RadarBlip
+    color: "#ffad2a"
+    scale: 5
+    shape: Circle
+    requireInSpace: false

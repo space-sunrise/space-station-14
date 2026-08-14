@@ -195,6 +195,7 @@
     tags:
     - WhitelistChameleon
     - FullCovered # INTERACTIONS
+    - NoPaint # Sunrise-Edit
   - type: IdentityBlocker
   - type: HideLayerClothing
     slots:
