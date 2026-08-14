@@ -203,11 +203,7 @@ public sealed partial class AtmosphereSystem
         if (!IsMixtureOxidizer(tile.Air))
             return;
 
-        // Sunrise-Edit — HyperNoblium подавляет создание hotspot.
-        if (IsSunriseReactionSuppressed(tile.Air))
-            return;
-
-        var isFlammable = IsMixtureFuel(tile.Air);
+        var isFlammable = IsMixtureIgnitable(tile.Air); // Sunrise-Edit — учитываем подавление горения HyperNoblium.
 
         if (tile.Hotspot.Valid)
         {

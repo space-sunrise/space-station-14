@@ -177,7 +177,6 @@ jobs:
         SEQUENCE_URL: ${{ steps.upload-sequences.outputs.artifact-url }}
         DUMP_URL: ${{ steps.upload-dumps.outputs.artifact-url }}
       run: bash Tools/_sunrise/ci/test_workflow.sh report-timeout
-
   ci-success:
     name: Build & Test Debug
     needs:
