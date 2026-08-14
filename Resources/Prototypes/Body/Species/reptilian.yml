@@ -281,7 +281,14 @@
     - enum.HumanoidVisualLayers.Tail
     markingData:
       layers:
-      - Back # Sunrise-Edit - сохраняем Sunrise-маркировки спины после NuBody
+      # Sunrise edit start - список заменяет унаследованный, поэтому сохраняем слои торса NuBody.
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
+      - Back
+      # Sunrise edit end
 
 - type: entity
   parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganReptilianExternal ]

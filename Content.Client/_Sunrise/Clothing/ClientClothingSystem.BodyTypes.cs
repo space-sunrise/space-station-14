@@ -37,7 +37,8 @@ public sealed partial class ClientClothingSystem
         if (!TryGetSunriseBodyTypeVisualKey(equipee, out var bodyTypeVisualKey))
             return;
 
-        clothing.ClothingVisuals.TryGetValue($"{slot}-{bodyTypeVisualKey}", out layers);
+        if (clothing.ClothingVisuals.TryGetValue($"{slot}-{bodyTypeVisualKey}", out var bodyTypeLayers))
+            layers = bodyTypeLayers;
     }
 
     private string GetSunriseBodyTypeState(EntityUid equipee, RSI rsi, string state)
@@ -94,13 +95,13 @@ public sealed partial class ClientClothingSystem
             return fallback;
 
         var displacement = sexDisplacements.GetValueOrDefault($"{slot}-{bodyTypeVisualKey}")
-                           ?? sexDisplacements.GetValueOrDefault(slot);
+                           ?? sexDisplacements.GetValueOrDefault(slot)
+                           ?? fallback;
 
         if (!_tag.HasTag(equipment, _hardsuitTag))
             return displacement;
 
         return sexDisplacements.GetValueOrDefault($"hardsuit-{bodyTypeVisualKey}")
-               ?? sexDisplacements.GetValueOrDefault(slot)
-               ?? fallback;
+               ?? displacement;
     }
 }

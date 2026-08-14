@@ -5,6 +5,14 @@
   prototype: MobDwarf
   bodyTypes: # Sunrise-Edit
   - HumanNormal
+  - HumanSlimFemale
+  - HumanSlimMale
+  - HumanGigaFemale
+  - HumanGigaMale
+  - HumanFatFemale
+  - HumanFatMale
+  - HumanDistrofikFemale
+  - HumanDistrofikMale
   dollPrototype: AppearanceDwarf
   skinColoration: HumanToned
   # Sunrise-Edit

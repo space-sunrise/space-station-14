@@ -101,10 +101,11 @@ public sealed partial class VisualBodySystem
             if (!_marking.TryGetMarking(marking, out var proto))
                 continue;
 
-            if (proto.BodyPart != layer && dependentLayers?.Contains(proto.BodyPart) != true)
+            var visualLayer = ResolveSunriseMarkingVisualLayer(proto.BodyPart);
+            if (visualLayer != layer && dependentLayers?.Contains(proto.BodyPart) != true)
                 continue;
 
-            var layerVisible = IsSunriseLayerVisible(target, proto.BodyPart, visible);
+            var layerVisible = IsSunriseLayerVisible(target, visualLayer, visible);
             foreach (var sprite in proto.Sprites)
             {
                 DebugTools.Assert(sprite is SpriteSpecifier.Rsi);
@@ -119,6 +120,37 @@ public sealed partial class VisualBodySystem
                 SetSunriseMarkingDisplacementVisible(target, layerId, layerVisible);
             }
         }
+    }
+
+    /// <summary>
+    /// Старый слой дополнительных кошачьих ушей не имеет отдельного anchor в NuBody.
+    /// Визуально он совпадает со слоем верхних частей головы.
+    /// </summary>
+    private static HumanoidVisualLayers ResolveSunriseMarkingVisualLayer(HumanoidVisualLayers layer)
+    {
+        return layer == HumanoidVisualLayers.Special
+            ? HumanoidVisualLayers.HeadTop
+            : layer;
+    }
+
+    private bool HasSunriseAliasedMarkingLayer(
+        Entity<VisualOrganMarkingsComponent> ent,
+        HumanoidVisualLayers visualLayer)
+    {
+        foreach (var markings in ent.Comp.Markings.Values)
+        {
+            foreach (var marking in markings)
+            {
+                if (_marking.TryGetMarking(marking, out var proto) &&
+                    proto.BodyPart != visualLayer &&
+                    ResolveSunriseMarkingVisualLayer(proto.BodyPart) == visualLayer)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private ShaderInstance? GetMarkingShader(
@@ -183,7 +215,8 @@ public sealed partial class VisualBodySystem
         if (!_displacement.TryAddDisplacement(displacement, sprite, layerIndex, layerId, out var displacementKey, shader))
             return;
 
-        _sprite.LayerSetVisible(sprite.Owner, displacementKey, IsSunriseLayerVisible(sprite.Owner, layer, true));
+        var visualLayer = ResolveSunriseMarkingVisualLayer(layer);
+        _sprite.LayerSetVisible(sprite.Owner, displacementKey, IsSunriseLayerVisible(sprite.Owner, visualLayer, true));
     }
 
     private DisplacementData? GetMarkingDisplacement(

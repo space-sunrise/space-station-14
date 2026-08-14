@@ -2,10 +2,12 @@ using System.IO;
 using System.Linq;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Clothing;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby.UI;
 
@@ -53,6 +55,11 @@ public sealed partial class HumanoidProfileEditor
             _playerManager.LocalSession,
             _prototypeManager,
             GetSunriseSponsorPrototypes());
+    }
+
+    private ProtoId<RoleLoadoutPrototype> GetSunriseEffectiveRoleLoadoutPrototype(string jobId)
+    {
+        return LoadoutSystem.GetEffectiveJobPrototype(jobId, _prototypeManager);
     }
 
     private string[] GetSunriseSponsorPrototypes()

@@ -526,6 +526,11 @@ public sealed partial class FleshCultSystem
             _inventory.TryUnequip(uid, args.TargetSlot, true, true);
         }
 
+        foreach (var slot in args.UnequipSlots)
+        {
+            _inventory.TryUnequip(uid, slot, true, true);
+        }
+
         var newBodyMod = Spawn(args.Prototype, Transform(uid).Coordinates);
         var equipped = _inventory.TryEquip(uid, newBodyMod, args.TargetSlot, true);
         if (!equipped)

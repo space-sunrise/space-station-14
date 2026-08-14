@@ -14,14 +14,6 @@
 - type: entity
   parent: [ OrganBaseHead, OrganFelinidExternal ]
   id: OrganFelinidHead
-  components:
-  - type: VisualOrganMarkings
-    hideableLayers:
-    - enum.HumanoidVisualLayers.Hair
-    - enum.HumanoidVisualLayers.Snout
-    markingData:
-      layers:
-      - Special
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganFelinidExternal ]

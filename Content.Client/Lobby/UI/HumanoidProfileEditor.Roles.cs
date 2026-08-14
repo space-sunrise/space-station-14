@@ -257,7 +257,8 @@ public sealed partial class HumanoidProfileEditor
                 var protoManager = collection.Resolve<IPrototypeManager>();
 
                 // If no loadout found then disabled button
-                if (!protoManager.TryIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID), out var roleLoadoutProto))
+                // Sunrise-Edit — открываем набор из активного Sunrise-пула
+                if (!protoManager.TryIndex<RoleLoadoutPrototype>(GetSunriseEffectiveRoleLoadoutPrototype(job.ID), out var roleLoadoutProto))
                 {
                     loadoutWindowBtn.Disabled = true;
                 }

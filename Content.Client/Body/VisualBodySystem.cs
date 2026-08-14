@@ -183,7 +183,8 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
             if (!_marking.TryGetMarking(marking, out var proto))
                 continue;
 
-            if (!_sprite.LayerMapTryGet(target, proto.BodyPart, out var index, true))
+            var visualLayer = ResolveSunriseMarkingVisualLayer(proto.BodyPart); // Sunrise-Edit - совместимость старого слоя Special с NuBody
+            if (!_sprite.LayerMapTryGet(target, visualLayer, out var index, true))
                 continue;
 
             for (var i = 0; i < proto.Sprites.Count; i++)
@@ -209,7 +210,7 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
                     _sprite.LayerSetColor(target, layerId, Color.White);
 
                 // Sunrise-Edit - учет скрытых Sunrise-слоев
-                _sprite.LayerSetVisible(target, layerId, IsSunriseLayerVisible(target, proto.BodyPart, true));
+                _sprite.LayerSetVisible(target, layerId, IsSunriseLayerVisible(target, visualLayer, true));
             }
 
             applied.Add(marking);
@@ -246,7 +247,8 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
 
     private void OnMarkingsChangedVisibility(Entity<VisualOrganMarkingsComponent> ent, ref BodyRelayedEvent<HumanoidLayerVisibilityChangedEvent> args)
     {
-        if (!ent.Comp.HideableLayers.Contains(args.Args.Layer))
+        if (!ent.Comp.HideableLayers.Contains(args.Args.Layer) &&
+            !HasSunriseAliasedMarkingLayer(ent, args.Args.Layer)) // Sunrise-Edit - Special визуально относится к HeadTop
             return;
 
         foreach (var markings in ent.Comp.Markings.Values)

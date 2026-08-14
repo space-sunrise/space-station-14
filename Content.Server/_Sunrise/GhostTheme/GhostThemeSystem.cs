@@ -55,16 +55,12 @@ public sealed class GhostThemeSystem : EntitySystem
         if (!_prototypeManager.TryIndex<GhostThemePrototype>(msg.SelectedGhostTheme, out var ghostThemePrototype))
             return;
 
-        if (_playerCache.TryGetCache(actorComp.PlayerSession.UserId, out var cache))
-        {
-            cache.GhostTheme = ghostThemePrototype.ID;
-            _playerCache.SetCache(actorComp.PlayerSession.UserId, cache);
-        }
-        else
-        {
+        if (!_playerCache.TryGetCache(actorComp.PlayerSession.UserId, out var cache))
             cache = new PlayerCacheData();
-            _playerCache.SetCache(actorComp.PlayerSession.UserId, cache);
-        }
+
+        cache.GhostTheme = ghostThemePrototype.ID;
+        _playerCache.SetCache(actorComp.PlayerSession.UserId, cache);
+
         var ghostTheme = EnsureComp<GhostThemeComponent>(ent);
         ghostTheme.GhostTheme = msg.SelectedGhostTheme;
         Dirty(ent, ghostTheme);
@@ -92,6 +88,8 @@ public sealed class GhostThemeSystem : EntitySystem
         if (!_prototypeManager.TryIndex<GhostThemePrototype>(ghostTheme, out var ghostThemePrototype))
             return;
 
-        EnsureComp<GhostThemeComponent>(uid).GhostTheme = ghostTheme;
+        var themeComponent = EnsureComp<GhostThemeComponent>(uid);
+        themeComponent.GhostTheme = ghostTheme;
+        Dirty(uid, themeComponent);
     }
 }
