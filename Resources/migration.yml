@@ -1083,4 +1083,7 @@ GasMinerPlasma: null
 # 2026-08-14
 ComputerTechnologyDiskTerminal: SunriseComputerTechnologyDiskTerminal
 TechDiskComputerCircuitboard: SunriseTechDiskComputerCircuitboard
+MobPirateT1ExpeditionSpawner: MobPirateT1Spawner
+MobPirateT2ExpeditionSpawner: MobPirateT2Spawner
+MobPirateT3ExpeditionSpawner: MobPirateT3Spawner
 # region Sunrise-End
