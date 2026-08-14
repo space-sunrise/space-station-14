@@ -4894,3 +4894,14 @@
     message: Исправлен двойной / неожиданный телепорт на станцию с шаттла прибытия
   id: 1997
   url: https://github.com/space-sunrise/sunrise-station/pull/4695
+- author: KaiserMaus
+  time: '2026-08-14T12:31:09.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Пираты обжили бывший комплекс синдиката. Яррр!
+  id: 1998
+  url: https://github.com/space-sunrise/sunrise-station/pull/4711
+  media:
+  - url: https://github.com/user-attachments/assets/40187d04-7022-4854-a20c-1ae70857c83e
+    description: Пиратская база
+    change: 0
