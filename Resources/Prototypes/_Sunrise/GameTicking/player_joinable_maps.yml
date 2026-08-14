@@ -1,0 +1,46 @@
+- type: playerJoinableMap
+  id: SunriseCentComm
+  displayName: player-joinable-map-centcomm
+  access: CentComm
+  spawnWhenPlayerAccessDisabled: true
+  order: 10
+  jobs:
+  - CentCommOperator
+
+- type: playerJoinableMap
+  id: SunrisePlanetPrison
+  displayName: player-joinable-map-planet-prison
+  access: PlanetPrison
+  spawnWhenPlayerAccessDisabled: false
+  load:
+    gameMap: PlanetPrison
+    environment: Planet
+    biomes:
+    - PlainGrasslands
+    - PlainLowDesert
+    - PlainSnow
+    mapComponents:
+    - type: RestrictedRange
+      range: 200
+    - type: LightCycle
+    gridComponents:
+    - type: IgnoreFtlCheck
+    ftl:
+      beaconsOnly: true
+      shuttleWhitelist:
+        components:
+        - SecurityShuttle
+        - PrisonShuttle
+        - ErtShuttle
+    announceOnLoad: true
+  canBeAntag: false
+  order: 20
+  jobs:
+  - HeadOfPrison
+  - PrisonInspector
+  - PrisonWorker
+  - PrisonEngineer
+  - PrisonScientist
+  - PrisonDoctor
+  - PrisonChef
+  - PrisonTrainee

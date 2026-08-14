@@ -28,6 +28,9 @@ public sealed partial class StationJobsSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
 
+    partial void InitializeStationJobsPortal();
+    partial void FilterJobsAvailablePortal(EntityUid station, Dictionary<ProtoId<JobPrototype>, int?> jobs, ref bool skipStation);
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -37,6 +40,7 @@ public sealed partial class StationJobsSystem : EntitySystem
         SubscribeLocalEvent<StationJobsComponent, ComponentShutdown>(OnStationDeletion);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
         Subs.CVar(_configurationManager, CCVars.GameDisallowLateJoins, _ => UpdateJobsAvailable(), true);
+        InitializeStationJobsPortal(); // Sunrise-Edit
     }
 
     private void OnInit(Entity<StationJobsComponent> ent, ref ComponentInit args)
@@ -53,12 +57,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     public override void Update(float _)
     {
-        if (_availableJobsDirty)
-        {
-            _cachedAvailableJobs = GenerateJobsAvailableEvent();
-            RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
-            _availableJobsDirty = false;
-        }
+        FlushJobsAvailable(); // Sunrise-Edit
     }
 
     private void OnStationDeletion(EntityUid uid, StationJobsComponent component, ComponentShutdown args)
@@ -500,6 +499,13 @@ public sealed partial class StationJobsSystem : EntitySystem
         {
             var netStation = GetNetEntity(station);
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
+            // Sunrise added start - портал для fork-фильтров списка latejoin ролей
+            var skipStation = false;
+            FilterJobsAvailablePortal(station, list, ref skipStation);
+            if (skipStation)
+                continue;
+            // Sunrise added end
+
             jobs.Add(netStation, list);
             stationNames.Add(netStation, Name(station));
         }
@@ -507,15 +513,32 @@ public sealed partial class StationJobsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Updates the cached available jobs. Moderately expensive.
+    /// Marks the available-jobs cache for rebuilding.
     /// </summary>
-    private void UpdateJobsAvailable()
+    public void UpdateJobsAvailable() // Sunrise-Edit
     {
         _availableJobsDirty = true;
     }
 
+    // Sunrise added start - единая точка пересборки и отправки кэша latejoin ролей
+    /// <summary>
+    /// Rebuilds and broadcasts the available-jobs cache when it is dirty.
+    /// </summary>
+    public void FlushJobsAvailable()
+    {
+        if (!_availableJobsDirty)
+            return;
+
+        _cachedAvailableJobs = GenerateJobsAvailableEvent();
+        RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
+        _availableJobsDirty = false;
+    }
+    // Sunrise added end
+
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
     {
+        FlushJobsAvailable(); // Sunrise-Edit
+
         RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
     }
 

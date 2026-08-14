@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.GameTicking.PlayerJoinableMaps;
 using Content.Server._Sunrise.Helpers;
 using Content.Server._Sunrise.Station;
 using Content.Server.Administration.Managers;
@@ -184,11 +185,23 @@ namespace Content.Server.GameTicking
             if (DummyTicker)
                 return;
 
+            // Sunrise added start - job-aware выбор station до случайного fallback
+            if (!lateJoin || !DisallowLateJoin)
+            {
+                var directSpawnStationHandled = false;
+                var joinKind = lateJoin ? PlayerJoinKind.LateJoin : PlayerJoinKind.RoundStart;
+                ResolveDirectSpawnStationPortal(player, jobId, joinKind, ref station, ref directSpawnStationHandled);
+                if (directSpawnStationHandled)
+                    return;
+            }
+            // Sunrise added end
+
             if (station == EntityUid.Invalid)
             {
-                // Sunrise edit start - фикс спавна на ЦК вместо девмапы
+                // Sunrise added start - фильтрация fallback stations для Player Joinable Maps
                 var stations = _helpers.GetSpawnableStations();
-                // Sunrise edit end
+                FilterFallbackSpawnableStationsPortal(stations);
+                // Sunrise added end
 
                 _robustRandom.Shuffle(stations);
                 if (stations.Count == 0)
@@ -203,10 +216,9 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            // Sunrise-NewLife-Start
-            _newLife.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
-            _newLife.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLife.NewLifeTimeout));
-            // Sunrise-NewLife-End
+            // Sunrise added start - запрет antag для специальной station
+            FilterCanBeAntagPortal(station, ref canBeAntag);
+            // Sunrise added end
 
             string speciesId;
             if (_randomizeCharacters)
@@ -246,6 +258,10 @@ namespace Content.Server.GameTicking
             if (bev.Handled)
             {
                 PlayerJoinGame(player, silent);
+                // Sunrise added start - фиксация NewLife после успешного внешнего spawn-handler
+                if (player.AttachedEntity is { } attachedEntity && Exists(attachedEntity))
+                    CommitSuccessfulNewLifeJoin(player);
+                // Sunrise added end
                 return;
             }
 
@@ -284,8 +300,15 @@ namespace Content.Server.GameTicking
             var spawnPointType = !lateJoin || selectedJob.AlwaysUseSpawner
                 ? SpawnPointType.Job
                 : SpawnPointType.LateJoin;
+            // Sunrise added start - выбор типа spawnpoint для Player Joinable Maps
+            SelectSpawnPointTypePortal(station, selectedJob, lateJoin, ref spawnPointType);
+            // Sunrise added end
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName, spawnPointType);
+
+            // Sunrise added start - фиксация NewLife только после успешного spawn
+            CommitSuccessfulNewLifeJoin(player);
+            // Sunrise added end
 
             if (HasComp<StationAntagsTargetsComponent>(station))
                 EnsureComp<AntagTargetComponent>(mob);
@@ -305,6 +328,7 @@ namespace Content.Server.GameTicking
                         playDefault: false,
                         colorOverride: Color.Gold);
                 }
+                // Sunrise edit start - отключение обычных latejoin-объявлений
                 // else
                 // {
                 //     _chatSystem.DispatchStationAnnouncement(station,
@@ -317,6 +341,7 @@ namespace Content.Server.GameTicking
                 //         playDefault: false,
                 //         playTts: false);
                 // }
+                // Sunrise edit end
             }
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))

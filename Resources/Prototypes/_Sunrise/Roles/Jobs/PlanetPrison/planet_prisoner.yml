@@ -8,6 +8,7 @@
     time: 36000 # 10 hrs
   startingGear: PlanetPrisonerGear
   weight: 9
+  setPreference: false
   alwaysUseSpawner: true
   canBeAntag: false
   icon: "JobIconPrisoner"
@@ -17,11 +18,8 @@
   alternativeTitles:
   - job-alt-title-convict
   special:
-    - !type:AddImplantSpecial
-      implants: [ TrackingImplant ]
-    - !type:AddComponentSpecial
-      components:
-      - type: PlanetPrisoner
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
 
 - type: startingGear
   id: PlanetPrisonerGear

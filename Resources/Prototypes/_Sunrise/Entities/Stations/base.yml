@@ -57,25 +57,6 @@
     - Tesla
 
 - type: entity
-  id: BaseStationPlanetPrison
-  abstract: true
-  components:
-  - type: PlanetPrisonStation
-    stationsModern:
-    - PlanetPrison
-    stationsOld:
-    - PlanetPrisonOld
-    biomes:
-    - PlainGrasslands
-    - PlainLowDesert
-    - PlainSnow
-    shuttleWhitelist:
-      components:
-      - SecurityShuttle
-      - PrisonShuttle
-      - ErtShuttle
-
-- type: entity
   id: PrisonStationAlertLevels
   abstract: true
   components:
@@ -129,3 +110,11 @@
   abstract: true
   components:
   - type: MainStation
+
+- type: entity
+  id: SunriseNanotrasenCentralCommand
+  parent: NanotrasenCentralCommand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PlayerJoinableMap
+    map: SunriseCentComm

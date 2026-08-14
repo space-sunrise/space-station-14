@@ -24,7 +24,6 @@
             PrisonDoctor: [ 1, 1 ]
             PrisonChef: [ 1, 1 ]
             PrisonTrainee: [ 3, 3 ]
-            PlanetPrisoner: [ 3, 3 ]
         - type: RelativeJobsCount
           jobs:
           - targetJob: PlanetPrisoner

@@ -20527,14 +20527,6 @@ entities:
       containers:
         mind_roles: !type:Container
           ents: []
-- proto: ActionToggleBlock
-  entities:
-  - uid: 8
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 7
 - proto: ActionToggleLight
   entities:
   - uid: 10
@@ -45310,14 +45302,6 @@ entities:
     - type: Transform
       pos: 32.04467,62.506115
       parent: 2
-    - type: Blocking
-      blockingToggleActionEntity: 8
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 8
 - proto: ClockworkWindow
   entities:
   - uid: 4585

@@ -643,15 +643,7 @@ namespace Content.Shared.Preferences
             }
             // Sunrise-End
 
-            string flavortext;
-            if (FlavorText.Length > maxDescLength) // Sunrise-Edit
-            {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxDescLength]; // Sunrise-Edit
-            }
-            else
-            {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
-            }
+            var flavortext = NormalizeFlavorText(FlavorText, maxDescLength); // Sunrise-Edit
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex, sponsorPrototypes);
 
@@ -770,6 +762,20 @@ namespace Content.Shared.Preferences
                 _loadouts.Remove(value);
             }
         }
+
+        // Sunrise added start - единая нормализация flavor text
+        /// <summary>
+        /// Removes markup and safely truncates flavor text to the allowed length.
+        /// </summary>
+        public static string NormalizeFlavorText(string flavorText, int maxLength)
+        {
+            var sanitized = FormattedMessage.RemoveMarkupOrThrow(flavorText);
+            maxLength = Math.Max(0, maxLength);
+            return sanitized.Length > maxLength
+                ? sanitized[..maxLength]
+                : sanitized;
+        }
+        // Sunrise added end
 
         /// <summary>
         /// Takes in an IEnumerable of traits and returns a List of the valid traits.

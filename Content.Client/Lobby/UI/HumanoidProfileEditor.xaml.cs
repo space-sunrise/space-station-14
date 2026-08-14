@@ -146,6 +146,9 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
+            // Sunrise added start - инициализация Player Joinable Maps в редакторе персонажа
+            InitializePlayerJoinableMapsPortal();
+            // Sunrise added end
 
             ImportButton.OnPressed += args =>
             {
@@ -1014,6 +1017,10 @@ namespace Content.Client.Lobby.UI
                 departments.Add(department);
             }
 
+            // Sunrise added start - скрытие пустых отделов Player Joinable Maps
+            FilterPlayerJoinableMapDepartmentsPortal(departments);
+            // Sunrise added end
+
             // Sunrise-Start
             var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
             // Sunrise-End
@@ -1027,6 +1034,10 @@ namespace Content.Client.Lobby.UI
                 ("humanoid-profile-editor-job-priority-medium-button", (int) JobPriority.Medium),
                 ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
             };
+
+            // Sunrise added start - вывод дополнительных карт перед обычными отделами
+            AddPlayerJoinableMapSectionsPortal(items, sponsorPrototypes, ref firstCategory);
+            // Sunrise added end
 
             foreach (var department in departments)
             {
@@ -1075,6 +1086,10 @@ namespace Content.Client.Lobby.UI
                 var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
                     .Where(job => job.SetPreference)
                     .ToArray();
+
+                // Sunrise added start - исключение jobs Player Joinable Maps из обычных секций
+                FilterPlayerJoinableMapJobsPortal(department, ref jobs);
+                // Sunrise added end
 
                 Array.Sort(jobs, JobUIComparer.Instance);
 
@@ -1363,6 +1378,10 @@ namespace Content.Client.Lobby.UI
             base.Dispose(disposing);
             if (!disposing)
                 return;
+
+            // Sunrise added start - завершение Player Joinable Maps в редакторе персонажа
+            ShutdownPlayerJoinableMapsPortal();
+            // Sunrise added end
 
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;

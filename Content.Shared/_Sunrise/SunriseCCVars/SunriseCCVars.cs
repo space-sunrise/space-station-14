@@ -187,19 +187,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<string> ServerName =
         CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
 
-    /*
-     * Planet Prison
-     */
-
-    public static readonly CVarDef<bool> MinPlayersEnable =
-        CVarDef.Create("planet_prison.enable", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<int> MinPlayersPlanetPrison =
-        CVarDef.Create("planet_prison.min_players", 0, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> PlanetPrisonModern =
-        CVarDef.Create("planet_prison.modern", true, CVar.SERVERONLY);
-
     /**
      * Roadmap
      */
