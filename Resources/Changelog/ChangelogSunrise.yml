@@ -4905,3 +4905,10 @@
   - url: https://github.com/user-attachments/assets/40187d04-7022-4854-a20c-1ae70857c83e
     description: Пиратская база
     change: 0
+- author: Fooksy2304Т
+  time: '2026-08-14T21:01:06.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: солидный набор за 6тк получает более солидный бронежилет
+  id: 1999
+  url: https://github.com/space-sunrise/sunrise-station/pull/4682
