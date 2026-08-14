@@ -298,6 +298,9 @@
   id: MagazineLightRiflePan
 
 - type: Tag
+  id: MagazineLightRifleImprovised
+
+- type: Tag
   id: MagazineM28
 
 - type: Tag

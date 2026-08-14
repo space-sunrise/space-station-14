@@ -18,7 +18,8 @@
   - SpeedloaderMagnumImprovTA
   - MagazinePistolImprovTA
   - MagazineSMGImprovTA
-  - MagazineLightRifleEmpty
+  - MagazineLightRifleImprovisedTA # Sunrise-Edit
+  # - MagazineLightRifleEmpty # Sunrise-Edit - заменён импровизированным магазином
   - GreatPaladinTA
   - HelmetPaladinTA
   - ShieldPaladinTA
