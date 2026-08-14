@@ -1,15 +1,4 @@
 # Tier 1
-- type: technology
-  id: AlternativeResearch
-  name: research-technology-alternative-research
-  icon:
-    sprite: Structures/Machines/tech_disk_printer.rsi
-    state: display
-  discipline: Experimental
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - SunriseTechDiskComputerCircuitboard
 
 # Tier 2
 

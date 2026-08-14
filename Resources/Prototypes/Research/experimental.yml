@@ -47,17 +47,18 @@
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
 
-# - type: technology # Moved to Sunrise/Research/experimental.yml
-#   id: AlternativeResearch
-#   name: research-technology-alternative-research
-#   icon:
-#     sprite: Structures/Machines/tech_disk_printer.rsi
-#     state: display
-#   discipline: Experimental
-#   tier: 1
-#   cost: 5000
-#   recipeUnlocks:
-#   - TechDiskComputerCircuitboard
+- type: technology
+  id: AlternativeResearch
+  name: research-technology-alternative-research
+  icon:
+    sprite: Structures/Machines/tech_disk_printer.rsi
+    state: display
+  discipline: Experimental
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - TechDiskComputerCircuitboard
+  - SunriseTechDiskComputerCircuitboard
 
 - type: technology
   id: MagnetsTech
