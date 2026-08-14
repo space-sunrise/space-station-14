@@ -67,6 +67,7 @@
   parent: SyndicateRapier
   id: SunriseSkewerRapier
   description: A thin rod of metal used to skewer just about anything and cook it.
+  suffix: Syndicate
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/skewer.rsi
