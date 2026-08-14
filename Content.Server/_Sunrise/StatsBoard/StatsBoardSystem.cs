@@ -30,6 +30,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Localization;
 using Content.Shared.Damage.Systems;
+using Robust.Shared.Toolshed.Commands.Values;
+using Robust.Shared.Utility;
+using System.Text;
 
 namespace Content.Server.StatsBoard;
 
@@ -47,12 +50,13 @@ public sealed class StatsBoardSystem : EntitySystem
     private EntityUid? _hamsterKiller;
     private int _jointCreated;
     private (EntityUid? clown, TimeSpan? time) _clownCuffed = (null, null);
-    private readonly Dictionary<EntityUid, StatisticEntry> _statisticEntries = new();
+    private readonly Dictionary<EntityUid, SharedStatisticEntry> _statisticEntries = new();
+    private static readonly ProtoId<TagPrototype> HamsterTag = "Hamster";
+    private static readonly ProtoId<TagPrototype> MouseTag = "Mouse";
 
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<ActorComponent, DamageChangedEvent>(OnDamageModify);
         SubscribeLocalEvent<ActorComponent, SlippedEvent>(OnSlippedEvent);
         SubscribeLocalEvent<ActorComponent, CreamedEvent>(OnCreamedEvent);
@@ -66,270 +70,28 @@ public sealed class StatsBoardSystem : EntitySystem
         SubscribeLocalEvent<ActorComponent, AbsorberPudleEvent>(OnAbsorbedPuddleEvent);
         SubscribeLocalEvent<ActorComponent, MindAddedMessage>(OnMindAdded);
     }
-
-    private void OnMindAdded(EntityUid uid, ActorComponent comp, MindAddedMessage ev)
-    {
-        if (_statisticEntries.ContainsKey(uid) || ev.Mind.Comp.UserId == null || HasComp<GhostComponent>(uid))
-            return;
-
-        var value = new StatisticEntry(MetaData(uid).EntityName, ev.Mind.Comp.UserId.Value);
-        _statisticEntries.Add(uid, value);
-    }
-
-    public void CleanEntries()
-    {
-        _firstMurder = (null, null, TimeSpan.Zero);
-        _hamsterKiller = null;
-        _jointCreated = 0;
-        _clownCuffed = (null, TimeSpan.Zero);
-        _statisticEntries.Clear();
-    }
-
-    private void OnAbsorbedPuddleEvent(EntityUid uid, ActorComponent comp, ref AbsorberPudleEvent ev)
-    {
-        if (!_mindSystem.TryGetMind(comp.PlayerSession, out var mindId, out var mind))
-            return;
-
-        if (_statisticEntries.TryGetValue(uid, out var value))
-        {
-            value.AbsorbedPuddleCount += 1;
-        }
-    }
-
-    private void OnCraftedEvent(EntityUid uid, ActorComponent comp, ref ItemConstructionCreated ev)
-    {
-        if (!_mindSystem.TryGetMind(comp.PlayerSession, out var mindId, out var mind))
-            return;
-
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        if (!TryComp<MetaDataComponent>(ev.Item, out var metaDataComponent))
-            return;
-
-        if (metaDataComponent.EntityPrototype == null)
-            return;
-        switch (metaDataComponent.EntityPrototype.ID)
-        {
-            case "Blunt":
-            case "Joint":
-                _jointCreated += 1;
-                break;
-        }
-    }
-
-    private void OnCuffedEvent(EntityUid uid, ActorComponent comp, ref CuffedEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        value.CuffedCount += 1;
-        if (_clownCuffed.clown != null)
-            return;
-        if (!HasComp<ClumsyComponent>(uid))
-            return;
-        _clownCuffed.clown = uid;
-        _clownCuffed.time = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-    }
-
-    private void OnItemPurchasedEvent(EntityUid uid, ActorComponent comp, ref SubtractCashEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        if (ev.Currency != "Telecrystal")
-            return;
-        if (value.SpentTk == null)
-        {
-            value.SpentTk = ev.Cost.Int();
-        }
-        else
-        {
-            value.SpentTk += ev.Cost.Int();
-        }
-    }
-
-    private void OnElectrocuted(EntityUid uid, ActorComponent comp, ElectrocutedEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        value.ElectrocutedCount += 1;
-    }
-
-    private void OnDoorEmagged(EntityUid uid, ActorComponent comp, ref DoorEmaggedEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        value.DoorEmagedCount += 1;
-    }
-
-    private void OnInteractionAttempt(EntityUid uid, ActorComponent comp, InteractionAttemptEvent args)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        if (!HasComp<ItemComponent>(args.Target))
-            return;
-        if (MetaData(args.Target.Value).EntityPrototype == null)
-            return;
-        var entityPrototype = MetaData(args.Target.Value).EntityPrototype;
-        if (entityPrototype is not { ID: "CaptainIDCard" })
-            return;
-        if (value.IsInteractedCaptainCard)
-            return;
-        value.IsInteractedCaptainCard = true;
-    }
-
-    private void OnCreamedEvent(EntityUid uid, ActorComponent comp, ref CreamedEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        value.CreamedCount += 1;
-    }
-
-    private void OnMobStateChanged(EntityUid uid, ActorComponent comp, MobStateChangedEvent args)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        switch (args.NewMobState)
-        {
-            case MobState.Dead:
-            {
-                value.DeadCount += 1;
-
-                EntityUid? origin = null;
-                if (args.Origin != null)
-                {
-                    origin = args.Origin.Value;
-                }
-
-                if (_firstMurder.victim == null && HasComp<HumanoidAppearanceComponent>(uid))
-                {
-                    _firstMurder.victim = uid;
-                    _firstMurder.killer = origin;
-                    _firstMurder.time = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                    Logger.Info($"First Murder. CurTime: {_gameTiming.CurTime}, RoundStartTimeSpan: {_gameTicker.RoundStartTimeSpan}, Substract: {_gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan)}");
-                }
-
-                if (origin != null)
-                {
-                    if (_hamsterKiller == null && _tagSystem.HasTag(uid, "Hamster"))
-                    {
-                        _hamsterKiller = origin.Value;
-                    }
-
-                    if (!_statisticEntries.TryGetValue(origin.Value, out var originEntry))
-                        return;
-
-                    if (_tagSystem.HasTag(uid, "Mouse"))
-                    {
-                        originEntry.KilledMouseCount += 1;
-                    }
-
-                    if (HasComp<HumanoidAppearanceComponent>(uid))
-                        originEntry.HumanoidKillCount += 1;
-                }
-
-                break;
-            }
-        }
-    }
-
-    private void OnDamageModify(EntityUid uid, ActorComponent comp, DamageChangedEvent ev)
-    {
-        DamageGetModify(uid, ev);
-
-        if (ev.Origin != null)
-            DamageTakeModify(ev.Origin.Value, ev);
-    }
-
-    private void DamageTakeModify(EntityUid uid, DamageChangedEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        if (ev.DamageDelta == null)
-            return;
-
-        if (ev.DamageIncreased)
-        {
-            value.TotalInflictedDamage += ev.DamageDelta.GetTotal().Int();
-        }
-        else
-        {
-            value.TotalInflictedHeal += Math.Abs(ev.DamageDelta.GetTotal().Int());
-        }
-    }
-
-    private void DamageGetModify(EntityUid uid, DamageChangedEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        if (ev.DamageDelta == null)
-            return;
-
-        if (ev.DamageIncreased)
-        {
-            value.TotalTakeDamage += ev.DamageDelta.GetTotal().Int();
-        }
-        else
-        {
-            value.TotalTakeHeal += Math.Abs(ev.DamageDelta.GetTotal().Int());
-        }
-    }
-
-    private void OnSlippedEvent(EntityUid uid, ActorComponent comp, ref SlippedEvent ev)
-    {
-        if (!_statisticEntries.TryGetValue(uid, out var value))
-            return;
-
-        if (HasComp<HumanoidAppearanceComponent>(uid))
-            value.SlippedCount += 1;
-    }
-
-    private StationBankAccountComponent? GetBankAccount(EntityUid? uid)
-    {
-        if (uid != null && TryComp<StationBankAccountComponent>(uid, out var bankAccount))
-        {
-            return bankAccount;
-        }
-        return null;
-    }
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var statsQuery = EntityQueryEnumerator<ActorComponent>();
-        while (statsQuery.MoveNext(out var ent, out var comp))
+        var deltaTime = TimeSpan.FromSeconds(frameTime);
+        var query = EntityQueryEnumerator<ActorComponent>();
+
+        while (query.MoveNext(out var uid, out _))
         {
-            if (!_statisticEntries.TryGetValue(ent, out var value))
-                return;
+            if (!_statisticEntries.TryGetValue(uid, out var stats)) continue;
 
-            if (TryComp<TransformComponent>(ent, out var transformComponent) &&
-                transformComponent.GridUid == null && HasComp<HumanoidAppearanceComponent>(ent))
-                value.SpaceTime += TimeSpan.FromSeconds(frameTime);
+            if (TryComp(uid, out TransformComponent? xform) && xform.GridUid == null && HasComp<HumanoidAppearanceComponent>(uid))
+                stats.SpaceTime += deltaTime;
 
-            if (TryComp<CuffableComponent>(ent, out var cuffableComponent) &&
-                !cuffableComponent.CanStillInteract)
-                value.CuffedTime += TimeSpan.FromSeconds(frameTime);
+            if (TryComp<CuffableComponent>(uid, out var cuffed) && !cuffed.CanStillInteract)
+                stats.CuffedTime += deltaTime;
 
-            if (HasComp<SleepingComponent>(ent))
-                value.SleepTime += TimeSpan.FromSeconds(frameTime);
+            if (HasComp<SleepingComponent>(uid))
+                stats.SleepTime += deltaTime;
         }
     }
-
-    public StatisticEntry[] GetStatisticEntries()
-    {
-        return _statisticEntries.Values.ToArray();
-    }
-
-    public SharedStatisticEntry ConvertToSharedStatisticEntry(StatisticEntry entry)
+    public SharedStatisticEntry ConvertToSharedStatisticEntry(SharedStatisticEntry entry)
     {
         return new SharedStatisticEntry(entry.Name, entry.FirstActor)
         {
@@ -353,10 +115,46 @@ public sealed class StatsBoardSystem : EntitySystem
             IsInteractedCaptainCard = entry.IsInteractedCaptainCard,
         };
     }
+    private string FormatPlayerLine(string locId, EntityUid uid, params (string, object)[] extraArgs)
+    {
+        var username = TryGetUsername(uid);
+        var name = TryGetName(uid);
+        var usernameTag = username != null ? $" ([color=gray]{username}[/color])" : "";
 
+        var allArgs = new (string, object)[2 + extraArgs.Length];
+        allArgs[0] = ("name", name);
+        allArgs[1] = ("username", usernameTag);
+
+        for (var i = 0; i < extraArgs.Length; i++) allArgs[i + 2] = extraArgs[i];
+
+        return Loc.GetString(locId, allArgs);
+    }
+    private string? TryGetUsername(EntityUid uid)
+    {
+        if (!_mindSystem.TryGetMind(uid, out _, out var mind)) return null;
+        if (!_player.TryGetSessionById(mind.UserId, out var session)) return null;
+        return session.Name;
+    }
+    private string TryGetName(EntityUid uid)
+    {
+        if (_statisticEntries.TryGetValue(uid, out var entry))
+            return entry.Name;
+        if (TryComp(uid, out MetaDataComponent? metaData))
+            return metaData.EntityName;
+        return Loc.GetString("statsentry-unknown-entity");
+    }
+    private StationBankAccountComponent? GetBankAccount(EntityUid? uid)
+    {
+        if (uid == null)
+            return null;
+        return TryComp<StationBankAccountComponent>(uid.Value, out var bankAccount) ? bankAccount : null;
+    }
+    public SharedStatisticEntry[] GetStatisticEntries()
+    {
+        return _statisticEntries.Values.ToArray();
+    }
     public string GetRoundStats()
     {
-        var result = "";
         var totalSlipped = 0;
         var totalCreampied = 0;
         var totalDamage = 0;
@@ -364,14 +162,12 @@ public sealed class StatsBoardSystem : EntitySystem
         var totalDoorEmaged = 0;
         var maxSlippedCount = 0;
         var maxDeadCount = 0;
-        var maxSpeciesCount = 0;
         var maxDoorEmagedCount = 0;
         var totalKilledMice = 0;
         var totalAbsorbedPuddle = 0;
         var maxKillsMice = 0;
         var totalCaptainCardInteracted = 0;
         var totalElectrocutedCount = 0;
-        var totalSleepTime = TimeSpan.Zero;
         var minSpentTk = int.MaxValue;
         var maxHumKillCount = 0;
         var totalCuffedCount = 0;
@@ -379,11 +175,7 @@ public sealed class StatsBoardSystem : EntitySystem
         var maxInflictedHeal = 0;
         var maxInflictedDamage = 0;
         var maxPuddleAbsorb = 0;
-        var maxCuffedTime = TimeSpan.Zero;
-        var maxSpaceTime = TimeSpan.Zero;
-        var maxSleepTime = TimeSpan.Zero;
-        string? mostPopularSpecies = null;
-        Dictionary<string, int> roundSpecies = new();
+
         EntityUid? mostSlippedCharacter = null;
         EntityUid? mostDeadCharacter = null;
         EntityUid? mostDoorEmagedCharacter = null;
@@ -398,401 +190,306 @@ public sealed class StatsBoardSystem : EntitySystem
         EntityUid? playerWithMostInflictedDamage = null;
         EntityUid? playerWithMostPuddleAbsorb = null;
 
-        foreach (var (uid, data) in _statisticEntries)
-        {
-            if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearanceComponent))
-            {
-                var speciesProto = _prototypeManager.Index<SpeciesPrototype>(humanoidAppearanceComponent.Species);
-
-                if (roundSpecies.TryGetValue(speciesProto.Name, out var count))
-                {
-                    roundSpecies[speciesProto.Name] = count + 1;
-                }
-                else
-                {
-                    roundSpecies.Add(speciesProto.Name, 1);
-                }
-            }
-
-            totalDoorEmaged += data.DoorEmagedCount;
-            totalSlipped += data.SlippedCount;
-            totalCreampied += data.CreamedCount;
-            totalDamage += data.TotalTakeDamage;
-            totalHeal += data.TotalTakeHeal;
-            totalCuffedCount += data.CuffedCount;
-            totalKilledMice += data.KilledMouseCount;
-            totalSleepTime += data.SleepTime;
-            totalAbsorbedPuddle += data.AbsorbedPuddleCount;
-            totalElectrocutedCount += data.ElectrocutedCount;
-
-            if (data.SlippedCount > maxSlippedCount)
-            {
-                maxSlippedCount = data.SlippedCount;
-                mostSlippedCharacter = uid;
-            }
-
-            if (data.DoorEmagedCount > maxDoorEmagedCount)
-            {
-                maxDoorEmagedCount = data.DoorEmagedCount;
-                mostDoorEmagedCharacter = uid;
-            }
-
-            if (data.DeadCount > maxDeadCount)
-            {
-                maxDeadCount = data.DeadCount;
-                mostDeadCharacter = uid;
-            }
-
-            if (data.KilledMouseCount > maxKillsMice)
-            {
-                maxKillsMice = data.KilledMouseCount;
-                mostKillsMiceCharacter = uid;
-            }
-
-            if (data.IsInteractedCaptainCard)
-            {
-                totalCaptainCardInteracted += 1;
-            }
-
-            if (data.SpentTk != null && data.SpentTk < minSpentTk)
-            {
-                minSpentTk = data.SpentTk.Value;
-                playerWithMinSpentTk = uid;
-            }
-
-            if (data.HumanoidKillCount > maxHumKillCount)
-            {
-                maxHumKillCount = data.HumanoidKillCount;
-                playerWithMaxHumKills = uid;
-            }
-
-            if (data.TotalTakeDamage > maxTakeDamage)
-            {
-                maxTakeDamage = data.TotalTakeDamage;
-                playerWithMaxDamage = uid;
-            }
-
-            if (data.CuffedTime > maxCuffedTime)
-            {
-                maxCuffedTime = data.CuffedTime;
-                playerWithLongestCuffedTime = uid;
-            }
-
-            if (data.SleepTime > maxSleepTime)
-            {
-                maxSleepTime = data.SleepTime;
-                playerWithLongestSleepTime = uid;
-            }
-
-            if (data.SpaceTime > maxSpaceTime)
-            {
-                maxSpaceTime = data.SpaceTime;
-                playerWithLongestSpaceTime = uid;
-            }
-
-            if (data.TotalInflictedHeal > maxInflictedHeal)
-            {
-                maxInflictedHeal = data.TotalInflictedHeal;
-                playerWithMostInflictedHeal = uid;
-            }
-
-            if (data.TotalInflictedDamage > maxInflictedDamage)
-            {
-                maxInflictedDamage = data.TotalInflictedDamage;
-                playerWithMostInflictedDamage = uid;
-            }
-
-            if (data.AbsorbedPuddleCount > maxPuddleAbsorb)
-            {
-                maxPuddleAbsorb = data.AbsorbedPuddleCount;
-                playerWithMostPuddleAbsorb = uid;
-            }
-        }
-
-        result += Loc.GetString("statsentry-species-entry-name") + "\n";
-        foreach (var speciesEntry in roundSpecies)
-        {
-            var species = speciesEntry.Key;
-            var count = speciesEntry.Value;
-
-            if (count > maxSpeciesCount)
-            {
-                maxSpeciesCount = count;
-                mostPopularSpecies = species;
-            }
-
-            result += Loc.GetString("statsentry-species-entry", ("name", Loc.GetString(species)), ("count", count)) + "\n";
-        }
-
-        if (mostPopularSpecies != null)
-        {
-            result += Loc.GetString("statsentry-mst-pop-species", ("name", Loc.GetString(mostPopularSpecies))) + "\n";
-        }
+        var totalSleepTime = TimeSpan.Zero;
+        var maxCuffedTime = TimeSpan.Zero;
+        var maxSpaceTime = TimeSpan.Zero;
+        var maxSleepTime = TimeSpan.Zero;
 
         var station = _station.GetStations().FirstOrDefault();
         var bank = GetBankAccount(station);
 
+        var sb = new StringBuilder(4096);
+
+        string? mostPopularSpecies = null;
+        Dictionary<string, int> roundSpecies = new();
+
+        foreach (var (uid, data) in _statisticEntries)
+        {
+            if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearanceComponent))
+                continue;
+            var speciesProto = _prototypeManager.Index<SpeciesPrototype>(humanoidAppearanceComponent.Species);
+            var speciesName = _prototypeManager
+                .Index<SpeciesPrototype>(humanoidAppearanceComponent.Species)
+                .Name;
+            roundSpecies[speciesName] = roundSpecies.GetValueOrDefault(speciesName) + 1;
+
+            if (data.IsInteractedCaptainCard)
+                totalCaptainCardInteracted += 1;
+            if (data.SpentTk != null && data.SpentTk < minSpentTk)
+                (minSpentTk, playerWithMinSpentTk) = (data.SpentTk.Value, uid);
+            if (data.SlippedCount > maxSlippedCount)
+                (maxSlippedCount, mostSlippedCharacter) = (data.SlippedCount, uid);
+            if (data.DoorEmagedCount > maxDoorEmagedCount)
+                (maxDoorEmagedCount, mostDoorEmagedCharacter) = (data.DoorEmagedCount, uid);
+            if (data.DeadCount > maxDeadCount)
+                (maxDeadCount, mostDeadCharacter) = (data.DeadCount, uid);
+            if (data.KilledMouseCount > maxKillsMice)
+                (maxKillsMice, mostKillsMiceCharacter) = (data.KilledMouseCount, uid);
+            if (data.HumanoidKillCount > maxHumKillCount)
+                (maxHumKillCount, playerWithMaxHumKills) = (data.HumanoidKillCount, uid);
+            if (data.TotalTakeDamage > maxTakeDamage)
+                (maxTakeDamage, playerWithMaxDamage) = (data.TotalTakeDamage, uid);
+            if (data.CuffedTime > maxCuffedTime)
+                (maxCuffedTime, playerWithLongestCuffedTime) = (data.CuffedTime, uid);
+            if (data.SleepTime > maxSleepTime)
+                (maxSpaceTime, playerWithLongestSleepTime) = (data.SleepTime, uid);
+            if (data.SpaceTime > maxSpaceTime)
+                (maxSpaceTime, playerWithLongestSpaceTime) = (data.SpaceTime, uid);
+            if (data.TotalInflictedHeal > maxInflictedHeal)
+                (maxInflictedHeal, playerWithMostInflictedHeal) = (data.TotalInflictedHeal, uid);
+            if (data.TotalInflictedDamage > maxInflictedDamage)
+                (maxInflictedDamage, playerWithMostInflictedDamage) = (data.TotalInflictedDamage, uid);
+            if (data.AbsorbedPuddleCount > maxPuddleAbsorb)
+                (maxPuddleAbsorb, playerWithMostPuddleAbsorb) = (data.AbsorbedPuddleCount, uid);
+        }
+
+        sb.AppendLine(Loc.GetString("statsentry-species-entry-name"));
+        foreach (var (species, count) in roundSpecies)
+            sb.AppendLine(Loc.GetString("statsentry-species-entry",
+                ("name", Loc.GetString(species)),
+                ("count", count)));
+
+        if (mostPopularSpecies != null)
+            sb.AppendLine(Loc.GetString("statsentry-mst-pop-species",
+                ("name", Loc.GetString(mostPopularSpecies))));
+
         if (bank != null)
         {
-            result += Loc.GetString("statsentry-bank-balance-total", ("balance", bank.Accounts.Values.Sum())) + "\n";
+            sb.AppendLine(Loc.GetString("statsentry-bank-balance-total",
+            ("balance", bank.Accounts.Values.Sum())));
+
             foreach (var (account, balance) in bank.Accounts)
-            {
-                result += Loc.GetString("statsentry-bank-balance-account", ("account", Loc.GetString(account)), ("balance", balance)) + "\n";
-            }
+                sb.AppendLine(Loc.GetString("statsentry-bank-balance-account",
+                    ("account", Loc.GetString(account)),
+                    ("balance", balance)));
         }
 
         if (_firstMurder.victim != null)
         {
-            var victimUsername = TryGetUsername(_firstMurder.victim.Value);
-            var victimName = TryGetName(_firstMurder.victim.Value);
-            var victimUsernameColor = victimUsername != null ? $" ([color=gray]{victimUsername}[/color])" : "";
-            result += Loc.GetString("statsentry-firth-murder", ("name", victimName), ("username", victimUsernameColor)) + "\n";
-            result += Loc.GetString("statsentry-firth-murder-time", ("time", _firstMurder.time.ToString("hh\\:mm\\:ss"))) + "\n";
-            if (_firstMurder.killer != null)
-            {
-                var killerUsername = TryGetUsername(_firstMurder.killer.Value);
-                var killerName = TryGetName(_firstMurder.killer.Value);
-                var killerUsernameColor = killerUsername != null ? $" ([color=gray]{killerUsername}[/color])" : "";
-                result += Loc.GetString("statsentry-firth-murder-killer", ("name", killerName), ("username", killerUsernameColor)) + "\n";
-            }
-            else
-            {
-                result += Loc.GetString("statsentry-firth-murder-killer-none") + "\n";
-            }
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-firth-murder", _firstMurder.victim.Value));
+            sb.AppendLine(Loc.GetString("statsentry-firth-murder-time",
+                ("time", _firstMurder.time.ToString("hh\\:mm\\:ss"))));
 
-        if (totalSlipped >= 1)
-        {
-            result += Loc.GetString("statsentry-total-slipped", ("count", totalSlipped)) + "\n";
+            if (_firstMurder.killer != null)
+                sb.AppendLine(FormatPlayerLine("statsentry-firth-murder-killer", _firstMurder.killer.Value));
+            else
+                sb.AppendLine(Loc.GetString("statsentry-firth-murder-killer-none"));
         }
+        if (totalSlipped >= 1)
+            sb.AppendLine(Loc.GetString("statsentry-total-slipped", ("count", totalSlipped)));
 
         if (mostSlippedCharacter != null && maxSlippedCount > 1)
-        {
-            var username = TryGetUsername(mostSlippedCharacter.Value);
-            var name = TryGetName(mostSlippedCharacter.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-most-slipped", ("name", name), ("username", usernameColor), ("count", maxSlippedCount)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-most-slipped", mostSlippedCharacter.Value, ("count", maxSlippedCount)));
 
         if (totalCreampied >= 1)
-        {
-            result += Loc.GetString("statsentry-total-creampied", ("total", totalCreampied)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-creampied", ("total", totalCreampied)));
 
         if (mostDeadCharacter != null && maxDeadCount > 1)
-        {
-            var username = TryGetUsername(mostDeadCharacter.Value);
-            var name = TryGetName(mostDeadCharacter.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-most-dead", ("name", name), ("username", usernameColor), ("count", maxDeadCount)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-most-dead", mostDeadCharacter.Value, ("count", maxDeadCount)));
 
         if (totalDoorEmaged >= 1)
-        {
-            result += Loc.GetString("statsentry-total-door-emaged", ("count", totalDoorEmaged)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-door-emaged", ("count", totalDoorEmaged)));
 
         if (mostDoorEmagedCharacter != null)
-        {
-            var username = TryGetUsername(mostDoorEmagedCharacter.Value);
-            var name = TryGetName(mostDoorEmagedCharacter.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-most-door-emaged-character", ("name", name), ("username", usernameColor), ("count", maxDoorEmagedCount)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-most-door-emaged-character", mostDoorEmagedCharacter.Value, ("count", maxDoorEmagedCount)));
 
         if (_jointCreated >= 1)
-        {
-            result += Loc.GetString("statsentry-joint-created", ("count", _jointCreated)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-joint-created", ("count", _jointCreated)));
 
         if (totalKilledMice >= 1)
-        {
-            result += Loc.GetString("statsentry-total-killed-mice", ("count", totalKilledMice)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-killed-mice", ("count", totalKilledMice)));
 
         if (mostKillsMiceCharacter != null && maxKillsMice > 1)
-        {
-            var username = TryGetUsername(mostKillsMiceCharacter.Value);
-            var name = TryGetName(mostKillsMiceCharacter.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-most-kills-mice-character", ("name", name), ("username", usernameColor), ("count", maxKillsMice)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-most-kills-mice-character", mostKillsMiceCharacter.Value, ("count", maxKillsMice)));
 
         if (_hamsterKiller != null)
-        {
-            var username = TryGetUsername(_hamsterKiller.Value);
-            var name = TryGetName(_hamsterKiller.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-hamster-killer", ("name", name), ("username", usernameColor)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-hamster-killer", _hamsterKiller.Value));
 
         if (totalCuffedCount >= 1)
-        {
-            result += Loc.GetString("statsentry-total-cuffed-count", ("count", totalCuffedCount)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-cuffed-count", ("count", totalCuffedCount)));
 
         if (playerWithLongestCuffedTime != null)
-        {
-            var username = TryGetUsername(playerWithLongestCuffedTime.Value);
-            var name = TryGetName(playerWithLongestCuffedTime.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-longest-cuffed-time", ("name", name), ("username", usernameColor), ("time", maxCuffedTime.ToString("hh\\:mm\\:ss"))) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-longest-cuffed-time", playerWithLongestCuffedTime.Value, ("time", maxCuffedTime.ToString("hh\\:mm\\:ss"))));
 
         if (totalSleepTime > TimeSpan.Zero)
-        {
-            result += Loc.GetString("statsentry-total-sleep-time", ("time", totalSleepTime.ToString("hh\\:mm\\:ss"))) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-sleep-time", ("time", totalSleepTime.ToString("hh\\:mm\\:ss"))));
 
         if (playerWithLongestSleepTime != null)
         {
-            var username = TryGetUsername(playerWithLongestSleepTime.Value);
-            var name = TryGetName(playerWithLongestSleepTime.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-longest-sleep-time", ("name", name), ("username", usernameColor)) + "\n";
-            result += Loc.GetString("statsentry-player-with-longest-sleep-time-time", ("time", maxSleepTime.ToString("hh\\:mm\\:ss"))) + "\n";
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-longest-sleep-time", playerWithLongestSleepTime.Value));
+            sb.AppendLine(Loc.GetString("statsentry-player-with-longest-sleep-time-time", ("time", maxSleepTime.ToString("hh\\:mm\\:ss"))));
         }
 
         if (playerWithLongestSpaceTime != null)
-        {
-            var username = TryGetUsername(playerWithLongestSpaceTime.Value);
-            var name = TryGetName(playerWithLongestSpaceTime.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-longest-space-time", ("name", name), ("username", usernameColor), ("time", maxSpaceTime.ToString("hh\\:mm\\:ss"))) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-longest-space-time", playerWithLongestSpaceTime.Value, ("time", maxSpaceTime.ToString("hh\\:mm\\:ss"))));
 
         if (_clownCuffed.clown != null && _clownCuffed.time != null)
-        {
-            var username = TryGetUsername(_clownCuffed.clown.Value);
-            var name = TryGetName(_clownCuffed.clown.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-clown-cuffed", ("name", name), ("username", usernameColor), ("time", _clownCuffed.time.Value.ToString("hh\\:mm\\:ss"))) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-clown-cuffed", _clownCuffed.clown.Value, ("time", _clownCuffed.time.Value.ToString("hh\\:mm\\:ss"))));
 
         if (totalHeal >= 1)
-        {
-            result += Loc.GetString("statsentry-total-heal", ("count", totalHeal)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-heal", ("count", totalHeal)));
 
         if (playerWithMostInflictedHeal != null)
-        {
-            var username = TryGetUsername(playerWithMostInflictedHeal.Value);
-            var name = TryGetName(playerWithMostInflictedHeal.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-most-infected-heal", ("name", name), ("username", usernameColor), ("count", maxInflictedHeal)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-most-infected-heal", playerWithMostInflictedHeal.Value, ("count", maxInflictedHeal)));
 
         if (totalDamage >= 1)
-        {
-            result += Loc.GetString("statsentry-total-damage", ("count", totalDamage)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-damage", ("count", totalDamage)));
 
         if (playerWithMostInflictedDamage != null)
-        {
-            var username = TryGetUsername(playerWithMostInflictedDamage.Value);
-            var name = TryGetName(playerWithMostInflictedDamage.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-most-infected-damage", ("name", name), ("username", usernameColor), ("count", maxInflictedDamage)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-most-infected-damage", playerWithMostInflictedDamage.Value, ("count", maxInflictedDamage)));
 
         if (playerWithMinSpentTk != null)
-        {
-            var username = TryGetUsername(playerWithMinSpentTk.Value);
-            var name = TryGetName(playerWithMinSpentTk.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-min-spent-tk", ("name", name), ("username", usernameColor), ("count", minSpentTk)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-min-spent-tk", playerWithMinSpentTk.Value, ("count", minSpentTk)));
 
         if (playerWithMaxHumKills != null && maxHumKillCount > 1)
         {
-            var username = TryGetUsername(playerWithMaxHumKills.Value);
-            var name = TryGetName(playerWithMaxHumKills.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-max-hum-kills", ("name", name), ("username", usernameColor)) + "\n";
-            result += Loc.GetString("statsentry-player-with-max-hum-kills-count", ("count", maxHumKillCount)) + "\n";
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-max-hum-kills", playerWithMaxHumKills.Value));
+            sb.AppendLine(Loc.GetString("statsentry-player-with-max-hum-kills-count", ("count", maxHumKillCount)));
         }
 
         if (playerWithMaxDamage != null)
-        {
-            var username = TryGetUsername(playerWithMaxDamage.Value);
-            var name = TryGetName(playerWithMaxDamage.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-max-damage", ("name", name), ("username", usernameColor), ("count", maxTakeDamage)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-max-damage", playerWithMaxDamage.Value, ("count", maxTakeDamage)));
 
         if (totalAbsorbedPuddle >= 1)
-        {
-            result += Loc.GetString("statsentry-total-absorbed-puddle", ("count", totalAbsorbedPuddle)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-absorbed-puddle", ("count", totalAbsorbedPuddle)));
 
         if (playerWithMostPuddleAbsorb != null && maxPuddleAbsorb > 1)
-        {
-            var username = TryGetUsername(playerWithMostPuddleAbsorb.Value);
-            var name = TryGetName(playerWithMostPuddleAbsorb.Value);
-            var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-most-puddle-absorb", ("name", name), ("username", usernameColor), ("count", maxPuddleAbsorb)) + "\n";
-        }
+            sb.AppendLine(FormatPlayerLine("statsentry-player-with-most-puddle-absorb", playerWithMostPuddleAbsorb.Value, ("count", maxPuddleAbsorb)));
 
         if (totalCaptainCardInteracted >= 1)
-        {
-            result += Loc.GetString("statsentry-total-captain-card-interacted", ("count", totalCaptainCardInteracted)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-captain-card-interacted", ("count", totalCaptainCardInteracted)));
 
         if (totalElectrocutedCount >= 1)
-        {
-            result += Loc.GetString("statsentry-total-electrocuted-count", ("count", totalElectrocutedCount)) + "\n";
-        }
+            sb.AppendLine(Loc.GetString("statsentry-total-electrocuted-count", ("count", totalElectrocutedCount)));
 
-        //убрал пробельчик, так как всё равно он есть при добавлении ласт строчки
-
-        return result;
+        return sb.ToString();
     }
-
-    private string? TryGetUsername(EntityUid uid)
+    public void CleanEntries()
     {
-        string? username = null;
+        _firstMurder = (null, null, TimeSpan.Zero);
+        _hamsterKiller = null;
+        _jointCreated = 0;
+        _clownCuffed = (null, TimeSpan.Zero);
+        _statisticEntries.Clear();
+    }
+    private void OnMindAdded(EntityUid uid, ActorComponent comp, MindAddedMessage ev)
+    {
+        if (ev.Mind.Comp.UserId is null || _statisticEntries.ContainsKey(uid) || HasComp<GhostComponent>(uid))
+            return;
 
-        if (_mindSystem.TryGetMind(uid, out var mindId, out var mind) && _player.TryGetSessionById(mind.UserId, out var session))
-        {
-            username = session.Name;
-        }
-
-        return username;
+        _statisticEntries[uid] = new SharedStatisticEntry(MetaData(uid).EntityName, ev.Mind.Comp.UserId.Value);
+    }
+    private void OnAbsorbedPuddleEvent(EntityUid uid, ActorComponent comp, ref AbsorberPudleEvent ev)
+    {
+        if (_statisticEntries.TryGetValue(uid, out var value)) value.AbsorbedPuddleCount++;
+    }
+    private void OnCraftedEvent(EntityUid uid, ActorComponent comp, ref ItemConstructionCreated ev)
+    {
+        if (!_statisticEntries.ContainsKey(uid)) return;
+        if (TryComp(ev.Item, out MetaDataComponent? meta) && meta.EntityPrototype?.ID is "Blunt" or "Joint") _jointCreated++;
     }
 
-    private string TryGetName(EntityUid uid)
+    private void OnCuffedEvent(EntityUid uid, ActorComponent comp, ref CuffedEvent ev)
+    {
+        if (!_statisticEntries.TryGetValue(uid, out var value)) return;
+
+        value.CuffedCount++;
+
+        if (_clownCuffed.clown is null && HasComp<ClumsyComponent>(uid))
+            _clownCuffed = (uid, _gameTiming.CurTime - _gameTicker.RoundStartTimeSpan);
+    }
+
+    private void OnItemPurchasedEvent(EntityUid uid, ActorComponent comp, ref SubtractCashEvent ev)
+    {
+        if (ev.Currency != "Telecrystal" || !_statisticEntries.TryGetValue(uid, out var value)) return;
+
+        value.SpentTk = (value.SpentTk ?? 0) + ev.Cost.Int();
+    }
+
+    private void OnElectrocuted(EntityUid uid, ActorComponent comp, ElectrocutedEvent ev)
     {
         if (_statisticEntries.TryGetValue(uid, out var value))
-            return value.Name;
-
-        if (TryComp<MetaDataComponent>(uid, out var metaDataComponent))
-            return metaDataComponent.EntityName;
-
-        return "Кто это блядь?";
+            value.ElectrocutedCount++;
     }
-}
 
-[Serializable]
-public sealed partial class StatisticEntry(string name, NetUserId userId)
-{
-    public string Name { get; set; } = name;
-    public NetUserId FirstActor { get; set; } = userId;
-    public int TotalTakeDamage { get; set; } = 0;
-    public int TotalTakeHeal { get; set; } = 0;
-    public int TotalInflictedDamage { get; set; } = 0;
-    public int TotalInflictedHeal { get; set; } = 0;
-    public int SlippedCount { get; set; } = 0;
-    public int CreamedCount { get; set; } = 0;
-    public int DoorEmagedCount { get; set; } = 0;
-    public int ElectrocutedCount { get; set; } = 0;
-    public int CuffedCount { get; set; } = 0;
-    public int AbsorbedPuddleCount { get; set; } = 0;
-    public int? SpentTk { get; set; } = null;
-    public int DeadCount { get; set; } = 0;
-    public int HumanoidKillCount { get; set; } = 0;
-    public int KilledMouseCount { get; set; } = 0;
-    public TimeSpan CuffedTime { get; set; } = TimeSpan.Zero;
-    public TimeSpan SpaceTime { get; set; } = TimeSpan.Zero;
-    public TimeSpan SleepTime { get; set; } = TimeSpan.Zero;
-    public bool IsInteractedCaptainCard { get; set; } = false;
+    private void OnDoorEmagged(EntityUid uid, ActorComponent comp, ref DoorEmaggedEvent ev)
+    {
+        if (_statisticEntries.TryGetValue(uid, out var value))
+            value.DoorEmagedCount++;
+    }
+
+    private void OnInteractionAttempt(EntityUid uid, ActorComponent comp, InteractionAttemptEvent args)
+    {
+        if (!_statisticEntries.TryGetValue(uid, out var value)
+            || value.IsInteractedCaptainCard || args.Target is not { } target)
+            return;
+        if (MetaData(args.Target.Value).EntityPrototype == null)
+            return;
+        if (HasComp<ItemComponent>(target) && MetaData(target).EntityPrototype?.ID == "CaptainIDCard")
+            value.IsInteractedCaptainCard = true;
+    }
+
+    private void OnCreamedEvent(EntityUid uid, ActorComponent comp, ref CreamedEvent ev)
+    {
+        if (_statisticEntries.TryGetValue(uid, out var value))
+            value.CreamedCount++;
+    }
+
+    private void OnMobStateChanged(EntityUid uid, ActorComponent comp, MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead || !_statisticEntries.TryGetValue(uid, out var value))
+            return;
+
+        value.DeadCount++;
+
+        var origin = args.Origin;
+        var isHumanoid = HasComp<HumanoidAppearanceComponent>(uid);
+
+        if (_firstMurder.victim is null && isHumanoid)
+        {
+            var timeSinceRoundStart = _gameTiming.CurTime - _gameTicker.RoundStartTimeSpan;
+            _firstMurder = (uid, origin, timeSinceRoundStart);
+        }
+
+        if (origin is null) return;
+
+        if (_hamsterKiller is null && _tagSystem.HasTag(uid, HamsterTag))
+            _hamsterKiller = origin.Value;
+
+        if (_statisticEntries.TryGetValue(origin.Value, out var originEntry))
+        {
+            if (_tagSystem.HasTag(uid, MouseTag)) originEntry.KilledMouseCount++;
+
+            if (isHumanoid) originEntry.HumanoidKillCount++;
+        }
+    }
+
+    private void OnSlippedEvent(EntityUid uid, ActorComponent comp, ref SlippedEvent ev)
+    {
+        if (_statisticEntries.TryGetValue(uid, out var value) && HasComp<HumanoidAppearanceComponent>(uid))
+            value.SlippedCount++;
+    }
+
+    private void OnDamageModify(EntityUid uid, ActorComponent comp, DamageChangedEvent ev)
+    {
+        ApplyDamageStats(uid, ev, isTaker: true);
+
+        if (ev.Origin is { } origin)
+            ApplyDamageStats(origin, ev, isTaker: false);
+    }
+
+    private void ApplyDamageStats(EntityUid uid, DamageChangedEvent ev, bool isTaker)
+    {
+        if (!_statisticEntries.TryGetValue(uid, out var value) || ev.DamageDelta is null)
+            return;
+
+        var amount = ev.DamageDelta.GetTotal().Int();
+
+        if (isTaker)
+            if (ev.DamageIncreased) value.TotalTakeDamage += amount;
+            else value.TotalTakeHeal += Math.Abs(amount);
+        else
+            if (ev.DamageIncreased) value.TotalInflictedDamage += amount;
+            else value.TotalInflictedHeal += Math.Abs(amount);
+    }
 }
