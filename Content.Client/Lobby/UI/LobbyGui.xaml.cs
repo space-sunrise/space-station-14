@@ -328,15 +328,18 @@ namespace Content.Client.Lobby.UI
 
             foreach (var layer in _parallaxManager.GetParallaxLayers(LobbyParallax))
             {
-                // Sunrise-Edit — лобби поддерживает процедурные shader-слои параллакса.
-                handle.UseShader(layer.Shader);
                 var tex = layer.Texture;
                 var rotation = layer.Config.Rotation; // Sunrise-Edit — вращаем геометрию слоя без UV-обрезки.
                 var texSize = new Vector2i(
-                    (int)(layer.TextureSize.X * Size.X * layer.Config.Scale.X / 1920),
-                    (int)(layer.TextureSize.Y * Size.X * layer.Config.Scale.Y / 1920)
+                    Math.Max(1, (int)(layer.TextureSize.X * Size.X * layer.Config.Scale.X / 1920)),
+                    Math.Max(1, (int)(layer.TextureSize.Y * Size.X * layer.Config.Scale.Y / 1920))
                 );
                 var ourSize = PixelSize;
+
+                // Sunrise added start - лобби использует тот же shader-контракт и безопасное восстановление state.
+                ParallaxDrawingHelpers.UpdateShaderParameters(layer, new Vector2(texSize.X, texSize.Y));
+                using var shaderScope = ParallaxDrawingHelpers.PushShader(handle, layer.Shader);
+                // Sunrise added end
 
                 var currentTime = (float) _timing.RealTime.TotalSeconds;
                 var offset = Offset + new Vector2(currentTime * 100f, currentTime * 0f);
@@ -375,9 +378,6 @@ namespace Content.Client.Lobby.UI
                         rotation);
                 }
             }
-
-            // Sunrise-Edit — не оставляем shader state активным для следующих UI-контролов.
-            handle.UseShader(null);
         }
 
         private void SetupButtonIcon(Button button, string iconPath, string tooltip)

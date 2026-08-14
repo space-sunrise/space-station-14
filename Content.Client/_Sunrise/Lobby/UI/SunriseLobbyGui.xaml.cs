@@ -272,7 +272,6 @@ public sealed partial class SunriseLobbyGui : UIScreen
 
         foreach (var layer in _parallax.GetParallaxLayers(LobbyParallax))
         {
-            handle.UseShader(layer.Shader);
             var tex = layer.Texture;
             var rotation = layer.Config.Rotation;
 
@@ -282,6 +281,9 @@ public sealed partial class SunriseLobbyGui : UIScreen
             var texSize = new Vector2i(scaledWidth, scaledHeight);
 
             var ourSize = PixelSize;
+
+            ParallaxDrawingHelpers.UpdateShaderParameters(layer, new Vector2(texSize.X, texSize.Y));
+            using var shaderScope = ParallaxDrawingHelpers.PushShader(handle, layer.Shader);
 
             var currentTime = (float) _timing.RealTime.TotalSeconds;
             var offset = Offset + new Vector2(currentTime * 100f, currentTime * 0f);
@@ -320,8 +322,6 @@ public sealed partial class SunriseLobbyGui : UIScreen
                     rotation);
             }
         }
-
-        handle.UseShader(null);
     }
 
     private void SetupButtonIcon(Button button, string iconPath, string tooltip)

@@ -21,14 +21,6 @@ public sealed partial class ParallaxLayerConfig
     [DataField("scale")]
     public Vector2 Scale { get; set; } = Vector2.One;
 
-    // Sunrise added start - поворот геометрии не обрезает изображение границами исходного прямоугольника.
-    /// <summary>
-    /// Rotation of the layer around its centre, in degrees.
-    /// </summary>
-    [DataField]
-    public Angle Rotation { get; set; }
-    // Sunrise added end
-
     /// <summary>
     /// If true, this layer is tiled as the camera scrolls around.
     /// If false, this layer only shows up around it's home position.

@@ -3,13 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Client.Parallax.Data;
 using Content.Shared.CCVar;
-using Robust.Client.Graphics; // Sunrise-Edit — шейдер слоя подготавливается один раз при загрузке параллакса.
 using Robust.Shared.Prototypes;
 using Robust.Shared.Configuration;
 
 namespace Content.Client.Parallax.Managers;
 
-// Sunrise-Edit — partial-расширение подменяет HQ-звёзды процедурными shader-слоями.
+// Sunrise-Edit — partial-расширение подготавливает и освобождает shader-ресурсы слоёв.
 public sealed partial class ParallaxManager : IParallaxManager
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -49,23 +48,16 @@ public sealed partial class ParallaxManager : IParallaxManager
 
         _sawmill.Debug($"Unloading parallax {name}");
 
-        if (_parallaxesLQ.Remove(name, out var layers))
-        {
-            foreach (var layer in layers)
-            {
-                layer.Config.Texture.Unload(_deps);
-                layer.Shader?.Dispose(); // Sunrise-Edit — prepared layer владеет уникальным shader instance.
-            }
-        }
+        var removedLq = _parallaxesLQ.Remove(name, out var layersLq);
+        var removedHq = _parallaxesHQ.Remove(name, out var layersHq);
 
-        if (_parallaxesHQ.Remove(name, out layers))
-        {
-            foreach (var layer in layers)
-            {
-                layer.Config.Texture.Unload(_deps);
-                layer.Shader?.Dispose(); // Sunrise-Edit — prepared layer владеет уникальным shader instance.
-            }
-        }
+        // Sunrise added start - общий HQ/LQ-массив владеет ресурсами только один раз.
+        if (removedLq)
+            UnloadPreparedLayers(layersLq);
+
+        if (removedHq && !ReferenceEquals(layersLq, layersHq))
+            UnloadPreparedLayers(layersHq);
+        // Sunrise added end
     }
 
     public async void LoadDefaultParallax()
@@ -123,16 +115,18 @@ public sealed partial class ParallaxManager : IParallaxManager
         catch (OperationCanceledException)
         {
             _sawmill.Verbose($"Loading parallax {name} cancelled");
-
-            foreach (var loadedLayer in loadedLayers)
-            {
-                loadedLayer.Config.Texture.Unload(_deps);
-                loadedLayer.Shader?.Dispose(); // Sunrise-Edit — освобождаем shader при отмене загрузки.
-            }
+            UnloadPreparedLayers(loadedLayers); // Sunrise-Edit — освобождаем уже подготовленные ресурсы слоя.
         }
         catch (Exception ex)
         {
-            _sawmill.Error($"Failed to loaded parallax {name}: {ex}");
+            _sawmill.Error($"Failed to load parallax {name}: {ex}");
+            UnloadPreparedLayers(loadedLayers); // Sunrise-Edit — ошибка не оставляет загруженные ресурсы и shader instances.
+        }
+        finally
+        {
+            // Sunrise-Edit — после ошибки загрузку этого параллакса можно повторить.
+            _loadingParallaxes.Remove(name);
+            token.Dispose();
         }
     }
 
@@ -156,31 +150,33 @@ public sealed partial class ParallaxManager : IParallaxManager
         List<ParallaxLayerPrepared> loadedLayers,
         CancellationToken cancel = default)
     {
-        // Sunrise added start - используем GPU-звёзды в HQ и сохраняем исходную генерацию для LQ.
-        Vector2? textureSizeOverride = null;
-        if (TryPrepareSunriseShaderLayer(config, out var shaderConfig, out var shaderTextureSize))
+        // Sunrise added start - обычные звёзды карт заменяются GPU-слоем без изменения upstream-прототипов.
+        var textureSource = ResolveLayerTextureSource(config, out var shaderId);
+        var shader = CreateLayerShader(textureSource, shaderId, out var ownsShader);
+        try
         {
-            config = shaderConfig;
-            textureSizeOverride = shaderTextureSize;
+            var texture = await textureSource.GenerateTexture(cancel);
+            var prepared = new ParallaxLayerPrepared
+            {
+                Texture = texture,
+                TextureSource = textureSource,
+                Config = config,
+                TextureSize = GetLayerTextureSize(textureSource, texture),
+                Shader = shader,
+                OwnsShader = ownsShader,
+            };
+
+            loadedLayers.Add(prepared);
+            return prepared;
+        }
+        catch
+        {
+            if (ownsShader)
+                shader?.Dispose();
+
+            throw;
         }
         // Sunrise added end
-
-        var texture = await config.Texture.GenerateTexture(cancel);
-        var prepared = new ParallaxLayerPrepared()
-        {
-            Texture = texture,
-            Config = config,
-            // Sunrise added start - не вычисляем размер и shader prototype каждый кадр.
-            TextureSize = textureSizeOverride ?? texture.Size,
-            Shader = string.IsNullOrEmpty(config.Shader)
-                ? null
-                : _prototypeManager.Index<ShaderPrototype>(config.Shader).InstanceUnique(),
-            // Sunrise added end
-        };
-
-        loadedLayers.Add(prepared);
-
-        return prepared;
     }
 }
 

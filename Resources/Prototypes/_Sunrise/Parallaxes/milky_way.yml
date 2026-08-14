@@ -3,51 +3,45 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_earth.png"
+        path: "/NetTextures/Parallaxes/MilkyWay/milky_way_earth.png"
       slowness: 0.9993
       tiled: false
       scale: "0.5, 0.5"
       rotation: 45
       shader: SunriseParallaxMilkyWayEarth
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.996625
+      shader: SunriseParallaxStarsBright
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars_dim"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.989375
+      shader: SunriseParallaxStarsDim
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars_faster"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars-2.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.987265625
+      shader: SunriseParallaxStarsBrightFar
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars_dim_faster"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.984352
+      shader: SunriseParallaxStarsDimFar
   layersLQ:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_earth.png"
+        path: "/NetTextures/Parallaxes/MilkyWay/milky_way_earth.png"
       slowness: 0.9993
       tiled: false
       scale: "0.9, 0.9"
       rotation: 45
       shader: SunriseParallaxMilkyWayEarth
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "lq_wizard_stars_dim"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.95
+      shader: SunriseParallaxStarsDim
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: ""
-        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.875
+      shader: SunriseParallaxStarsLowQuality
   layersLQUseHQ: false
 
 - type: parallax
@@ -55,49 +49,43 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_disk.png"
+        path: "/NetTextures/Parallaxes/MilkyWay/milky_way_disk.png"
       slowness: 0.9978
       tiled: false
       scale: "0.32, 0.32"
       rotation: 90
       shader: SunriseParallaxMilkyWayDisk
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.996625
+      shader: SunriseParallaxStarsBright
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars_dim"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.989375
+      shader: SunriseParallaxStarsDim
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars_faster"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars-2.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.987265625
+      shader: SunriseParallaxStarsBrightFar
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "hq_wizard_stars_dim_faster"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.984352
+      shader: SunriseParallaxStarsDimFar
   layersLQ:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallaxes/MilkyWay/milky_way_disk.png"
+        path: "/NetTextures/Parallaxes/MilkyWay/milky_way_disk.png"
       slowness: 0.9978
       tiled: false
       scale: "0.52, 0.52"
       rotation: 45
       shader: SunriseParallaxMilkyWayDisk
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: "lq_wizard_stars_dim"
-        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.95
+      shader: SunriseParallaxStarsDim
     - texture:
-        !type:GeneratedParallaxTextureSource
-        id: ""
-        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+        !type:ShaderParallaxTextureSource
       slowness: 0.875
+      shader: SunriseParallaxStarsLowQuality
   layersLQUseHQ: false

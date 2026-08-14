@@ -25,7 +25,7 @@ highp float starHash(highp vec2 value)
 
 mediump vec3 sampleStarPalette(highp float selector)
 {
-    // DarkOrange -> Orange -> OrangeRed -> LightSkyBlue -> White.
+    // Палитра: DarkOrange -> Orange -> OrangeRed -> LightSkyBlue -> White.
     mediump float palettePosition = pow(selector, 2.0) * 4.0;
     mediump vec3 paletteColor = vec3(1.0);
 

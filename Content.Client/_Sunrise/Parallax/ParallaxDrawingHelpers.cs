@@ -1,14 +1,35 @@
 using System.Numerics;
+using Content.Client.Parallax.Data;
 using Robust.Client.Graphics;
 
 #pragma warning disable IDE0130 // Пространство имён совпадает с расширяемой vanilla-подсистемой.
 namespace Content.Client.Parallax;
 
 /// <summary>
-/// Отрисовывает слой параллакса с поворотом самой геометрии, не обрезая текстуру исходным прямоугольником.
+/// Contains shared drawing operations for world and UI parallax renderers.
 /// </summary>
 internal static class ParallaxDrawingHelpers
 {
+    /// <summary>
+    /// Updates parameters whose values depend on the rendered size of a procedural layer.
+    /// </summary>
+    public static void UpdateShaderParameters(in ParallaxLayerPrepared layer, Vector2 renderedSize)
+    {
+        if (layer.Shader == null || layer.TextureSource is not ShaderParallaxTextureSource)
+            return;
+
+        var safeSize = Vector2.Max(renderedSize, Vector2.One);
+        layer.Shader.SetParameter("uvPixelSpan", Vector2.One / safeSize);
+    }
+
+    /// <summary>
+    /// Applies a shader and restores the previous drawing state when the returned scope is disposed.
+    /// </summary>
+    public static ShaderScope PushShader(DrawingHandleBase handle, ShaderInstance? shader)
+    {
+        return new ShaderScope(handle, shader);
+    }
+
     public static void DrawTextureRect(
         DrawingHandleWorld handle,
         Texture texture,
@@ -52,6 +73,24 @@ internal static class ParallaxDrawingHelpers
         finally
         {
             handle.SetTransform(oldTransform);
+        }
+    }
+
+    public readonly ref struct ShaderScope
+    {
+        private readonly DrawingHandleBase _handle;
+        private readonly ShaderInstance? _previousShader;
+
+        public ShaderScope(DrawingHandleBase handle, ShaderInstance? shader)
+        {
+            _handle = handle;
+            _previousShader = handle.GetShader();
+            handle.UseShader(shader);
+        }
+
+        public void Dispose()
+        {
+            _handle.UseShader(_previousShader);
         }
     }
 }

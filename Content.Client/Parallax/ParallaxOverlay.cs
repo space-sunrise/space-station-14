@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Client.Parallax.Data; // Sunrise-Edit — процедурному слою передаётся стабильный UV-размер экранного пикселя.
 using Content.Client.Parallax.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.Parallax.Biomes;
@@ -62,20 +61,15 @@ public sealed class ParallaxOverlay : Overlay
             // Sunrise-Edit — процедурный слой использует логический размер вместо backing texture 1x1.
             var size = (layer.TextureSize / EyeManager.PixelsPerMeter) * layer.Config.Scale;
 
-            // Sunrise added start - фиксируем размер звезды в экранных пикселях без GPU-производных.
-            if (layer.Shader != null && layer.Config.Texture is ShaderParallaxTextureSource)
-            {
-                var eyeScale = args.Viewport.Eye?.Scale ?? Vector2.One;
-                var renderedTextureSize = Vector2.Max(
-                    layer.TextureSize * layer.Config.Scale * args.Viewport.RenderScale * eyeScale,
-                    Vector2.One
-                );
-                layer.Shader.SetParameter("uvPixelSpan", Vector2.One / renderedTextureSize);
-            }
+            // Sunrise added start - размер процедурной звезды остаётся стабильным при изменении camera zoom.
+            var eyeScale = args.Viewport.Eye?.Scale ?? Vector2.One;
+            var renderedTextureSize = layer.TextureSize
+                * layer.Config.Scale
+                * args.Viewport.RenderScale
+                * eyeScale;
+            ParallaxDrawingHelpers.UpdateShaderParameters(layer, renderedTextureSize);
+            using var shaderScope = ParallaxDrawingHelpers.PushShader(worldHandle, layer.Shader);
             // Sunrise added end
-
-            // Sunrise-Edit — shader instance подготавливается при загрузке слоя.
-            worldHandle.UseShader(layer.Shader);
 
             // The "home" position is the effective origin of this layer.
             // Parallax shifting is relative to the home, and shifts away from the home and towards the Eye centre.
@@ -129,8 +123,6 @@ public sealed class ParallaxOverlay : Overlay
                     rotation);
             }
         }
-
-        worldHandle.UseShader(null);
     }
 }
 

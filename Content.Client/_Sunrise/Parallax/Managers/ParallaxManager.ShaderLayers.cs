@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Sunrise;
 using Content.Client.Parallax.Data;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
@@ -7,61 +8,93 @@ using Robust.Shared.Utility;
 #pragma warning disable IDE0130 // Пространство имён совпадает с расширяемым vanilla-менеджером.
 namespace Content.Client.Parallax.Managers;
 
-public sealed partial class ParallaxManager
+public sealed partial class ParallaxManager : IPostInjectInit
 {
-    private static readonly ResPath LowQualityStarsPath = new("/Prototypes/Parallaxes/parallax_config.toml");
-    private static readonly ResPath BrightStarsPath = new("/Prototypes/Parallaxes/parallax_config_stars.toml");
-    private static readonly ResPath DimStarsPath = new("/Prototypes/Parallaxes/parallax_config_stars_dim.toml");
-    private static readonly ResPath BrightFarStarsPath = new("/Prototypes/Parallaxes/parallax_config_stars-2.toml");
-    private static readonly ResPath DimFarStarsPath = new("/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml");
+    [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
 
-    private static readonly ProtoId<ShaderPrototype> LowQualityStarsShader = "SunriseParallaxStarsLowQuality";
-    private static readonly ProtoId<ShaderPrototype> BrightStarsShader = "SunriseParallaxStarsBright";
-    private static readonly ProtoId<ShaderPrototype> DimStarsShader = "SunriseParallaxStarsDim";
-    private static readonly ProtoId<ShaderPrototype> BrightFarStarsShader = "SunriseParallaxStarsBrightFar";
-    private static readonly ProtoId<ShaderPrototype> DimFarStarsShader = "SunriseParallaxStarsDimFar";
+    private static readonly ShaderParallaxTextureSource StarTextureSource = new();
 
-    private static readonly Vector2 ShaderTextureSize = new(1920f, 1080f);
-
-    private bool TryPrepareSunriseShaderLayer(
-        ParallaxLayerConfig config,
-        out ParallaxLayerConfig shaderConfig,
-        out Vector2 textureSize)
-    {
-        shaderConfig = default!;
-        textureSize = default;
-
-        if (config.Texture is not GeneratedParallaxTextureSource generated)
-            return false;
-
-        ProtoId<ShaderPrototype> shader;
-        if (generated.ParallaxConfigPath == LowQualityStarsPath)
-            shader = LowQualityStarsShader;
-        else if (generated.ParallaxConfigPath == BrightStarsPath)
-            shader = BrightStarsShader;
-        else if (generated.ParallaxConfigPath == DimStarsPath)
-            shader = DimStarsShader;
-        else if (generated.ParallaxConfigPath == BrightFarStarsPath)
-            shader = BrightFarStarsShader;
-        else if (generated.ParallaxConfigPath == DimFarStarsPath)
-            shader = DimFarStarsShader;
-        else
-            return false;
-
-        shaderConfig = new ParallaxLayerConfig
+    // Централизованная замена сохраняет upstream-прототипы карт без массового дублирования.
+    private static readonly IReadOnlyDictionary<ResPath, ProtoId<ShaderPrototype>> StarShaderReplacements =
+        new Dictionary<ResPath, ProtoId<ShaderPrototype>>
         {
-            Texture = new ShaderParallaxTextureSource(),
-            Scale = config.Scale,
-            Rotation = config.Rotation,
-            Tiled = config.Tiled,
-            ControlHomePosition = config.ControlHomePosition,
-            WorldHomePosition = config.WorldHomePosition,
-            WorldAdjustPosition = config.WorldAdjustPosition,
-            Slowness = config.Slowness,
-            Scrolling = config.Scrolling,
-            Shader = shader,
+            [new ResPath("/Prototypes/Parallaxes/parallax_config.toml")] = "SunriseParallaxStarsLowQuality",
+            [new ResPath("/Prototypes/Parallaxes/parallax_config_stars.toml")] = "SunriseParallaxStarsBright",
+            [new ResPath("/Prototypes/Parallaxes/parallax_config_stars_dim.toml")] = "SunriseParallaxStarsDim",
+            [new ResPath("/Prototypes/Parallaxes/parallax_config_stars-2.toml")] = "SunriseParallaxStarsBrightFar",
+            [new ResPath("/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml")] = "SunriseParallaxStarsDimFar",
         };
-        textureSize = ShaderTextureSize;
-        return true;
+
+    private static IParallaxTextureSource ResolveLayerTextureSource(
+        ParallaxLayerConfig config,
+        out string? shader)
+    {
+        shader = config.Shader;
+        if (config.Texture is not GeneratedParallaxTextureSource generated ||
+            !StarShaderReplacements.TryGetValue(generated.ParallaxConfigPath, out var replacement))
+        {
+            return config.Texture;
+        }
+
+        shader = replacement;
+        return StarTextureSource;
+    }
+
+    private ShaderInstance? CreateLayerShader(
+        IParallaxTextureSource textureSource,
+        string? shader,
+        out bool ownsShader)
+    {
+        ownsShader = false;
+        if (textureSource is ShaderParallaxTextureSource &&
+            (string.IsNullOrEmpty(shader) || string.Equals(shader, "unshaded", StringComparison.Ordinal)))
+        {
+            throw new InvalidOperationException(
+                $"{nameof(ShaderParallaxTextureSource)} requires an explicit shader prototype");
+        }
+
+        if (string.IsNullOrEmpty(shader))
+            return null;
+
+        var prototype = _prototypeManager.Index<ShaderPrototype>(shader);
+        if (textureSource is not ShaderParallaxTextureSource)
+            return prototype.Instance();
+
+        ownsShader = true;
+        return prototype.InstanceUnique();
+    }
+
+    private static Vector2 GetLayerTextureSize(IParallaxTextureSource textureSource, Texture texture)
+    {
+        return textureSource is ShaderParallaxTextureSource source
+            ? Vector2.Max(source.Size, Vector2.One)
+            : texture.Size;
+    }
+
+    private void UnloadPreparedLayers(IEnumerable<ParallaxLayerPrepared> layers)
+    {
+        foreach (var layer in layers)
+        {
+            layer.TextureSource.Unload(_deps);
+            if (layer.OwnsShader)
+                layer.Shader?.Dispose();
+        }
+    }
+
+    private void OnNetworkTexturesInvalidated()
+    {
+        var names = new HashSet<string>(_parallaxesLQ.Keys);
+        names.UnionWith(_parallaxesHQ.Keys);
+        names.UnionWith(_loadingParallaxes.Keys);
+
+        foreach (var name in names)
+        {
+            UnloadParallax(name);
+        }
+    }
+
+    void IPostInjectInit.PostInject()
+    {
+        _netTexturesManager.ResourcesInvalidated += OnNetworkTexturesInvalidated;
     }
 }

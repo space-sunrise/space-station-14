@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using Content.Client.Parallax.Data;
 using Content.Client.Parallax.Managers;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -66,15 +65,9 @@ public sealed class ParallaxControl : Control
             texSize.Y = Math.Max(texSize.Y, 1);
 
             // Sunrise added start - UI-параллакс использует явный размер пикселя вместо GPU-производных.
-            if (layer.Shader != null && layer.Config.Texture is ShaderParallaxTextureSource)
-            {
-                var renderedTextureSize = new Vector2(texSize.X, texSize.Y);
-                layer.Shader.SetParameter("uvPixelSpan", Vector2.One / renderedTextureSize);
-            }
+            ParallaxDrawingHelpers.UpdateShaderParameters(layer, new Vector2(texSize.X, texSize.Y));
+            using var shaderScope = ParallaxDrawingHelpers.PushShader(handle, layer.Shader);
             // Sunrise added end
-
-            // Sunrise-Edit — UI-параллакс поддерживает тот же shader-контракт, что и world overlay.
-            handle.UseShader(layer.Shader);
 
             if (layer.Config.Tiled)
             {
@@ -110,9 +103,6 @@ public sealed class ParallaxControl : Control
                     rotation);
             }
         }
-
-        // Sunrise-Edit — не оставляем shader state активным для следующих UI-контролов.
-        handle.UseShader(null);
     }
 }
 
