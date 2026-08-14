@@ -1139,4 +1139,10 @@ ClothingBackpackDuffelWeaponRifleAsh12: Ash12Box
 WeaponRifleM90GrenadeLauncherBiocode: WeaponRifleM90GrenadeLauncher
 ClothingOuterEliteHardsuitUSSP: null
 GasMinerPlasma: null
+# 2026-08-14
+ClothingBackpackSyndieDL6902Filled: PowerpackDL6902
+MMGKit: null
+MagazineDl6902: null
+WeaponDL6902: WeaponDL6902PowerPack
+WeaponDL6902Biocode: WeaponDL6902PowerPack
 # region Sunrise-End
