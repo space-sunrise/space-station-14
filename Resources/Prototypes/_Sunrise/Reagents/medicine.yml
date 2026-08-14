@@ -169,11 +169,12 @@
         amount: 0.2
     Bloodstream:
       effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -6
+          Brute: -10
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -6
-            Brute: -10
           types:
             Mangleness: -1
             Poison: -1
@@ -194,19 +195,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-      - !type:SatiateThirst
-        factor: 1.5
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-          inverted: true
       - !type:ModifyBloodLevel
         amount: 3
       - !type:EvenHealthChange
@@ -225,7 +220,7 @@
         key: Adrenaline
         component: IgnoreSlowOnDamage
         time: 9
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.5
@@ -306,13 +301,12 @@
           min: 1
         reagent: ChloralHydrate
         amount: -10
-    Medicine:
-      effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -3
+          Brute: -5
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -3
-            Brute: -5
           types:
             Mangleness: -0.5
             Poison: -0.5
@@ -349,9 +343,16 @@
           types:
             Asphyxiation: -1
             Poison: -0.5
-          groups:
-            Brute: -1
-            Burn: -1
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 20
+        damage:
+          Brute: -1
+          Burn: -1
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition

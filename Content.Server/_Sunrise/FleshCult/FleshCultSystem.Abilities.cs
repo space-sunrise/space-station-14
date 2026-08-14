@@ -236,7 +236,7 @@ public sealed partial class FleshCultSystem
         {
             if (TryComp(args.Args.Target.Value, out ContainerManagerComponent? container))
             {
-                foreach (var cont in container.GetAllContainers().ToArray())
+                foreach (var cont in _containerSystem.GetAllContainers(args.Args.Target.Value, container).ToArray())
                 {
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
