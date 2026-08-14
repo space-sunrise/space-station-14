@@ -1,4 +1,6 @@
-﻿- type: entity
+﻿# region base cartridges
+
+- type: entity
   id: BaseCartridgeRifleHeavy
   name: cartridge (.308)
   parent: [ BaseCartridge, BaseSecurityContraband ]
@@ -298,14 +300,12 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#65fe08"
 
+# region speedloaders
 - type: entity
-  id: SpeedLoaderHeavyRifleRFMJ
-  name: "speed loader (7.62mmR FMJ)"
+  id: BaseSpeedLoaderHeavyRifleR
   parent: [ BaseItem, BaseMinorContraband ]
+  abstract: true
   components:
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 30
   - type: Tag
     tags:
       - SpeedLoaderRifle
@@ -317,94 +317,97 @@
       tags:
         - CartridgeHeavyRifleR
     capacity: 5
-    proto: CartridgeHeavyRifleRFMJ
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/SpeedLoaders/heavy_rifle_speed_loader.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
+    - state: mag-tip-5
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#C7B458"
   - type: MagazineVisuals
     magState: mag
     steps: 6
     zeroVisible: false
   - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+        color: "#C7B458"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
+        color: "#C7B458"
+
+- type: entity
+  id: SpeedLoaderHeavyRifleRFMJ
+  name: "speed loader (7.62mmR FMJ)"
+  parent: BaseSpeedLoaderHeavyRifleR
+  components:
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRFMJ
 
 - type: entity
   id: SpeedLoaderHeavyRifleRAP
   name: "speed loader (7.62mmR AP)"
-  parent: [ BaseItem, BaseMinorContraband ]
+  parent: BaseSpeedLoaderHeavyRifleR
   components:
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 30
-  - type: Tag
-    tags:
-      - SpeedLoaderRifle
-  - type: SpeedLoader
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    fillDelay: 0.1
-    whitelist:
-      tags:
-        - CartridgeHeavyRifleR
-    capacity: 5
-    proto: CartridgeHeavyRifleRAP
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/SpeedLoaders/heavy_rifle_speed_loader.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: false
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
+    - state: mag-tip-5
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#540000"
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRAP
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+        color: "#540000"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
+        color: "#540000"
 
 - type: entity
   id: SpeedLoaderHeavyRifleRIncendiary
   name: "speed loader (7.62mmR incendiary)"
-  parent: [ BaseItem, BaseMinorContraband ]
+  parent: BaseSpeedLoaderHeavyRifleR
   components:
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 30
-  - type: Tag
-    tags:
-      - SpeedLoaderRifle
-  - type: SpeedLoader
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    fillDelay: 0.1
-    whitelist:
-      tags:
-        - CartridgeHeavyRifleR
-    capacity: 5
-    proto: CartridgeHeavyRifleRIncendiary
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/SpeedLoaders/heavy_rifle_speed_loader.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: false
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
+    - state: mag-tip-5
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#ff6e52"
+  - type: BallisticAmmoProvider
+    proto: CartridgeHeavyRifleRIncendiary
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+        color: "#ff6e52"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
+        color: "#ff6e52"

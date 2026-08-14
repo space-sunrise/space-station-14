@@ -113,13 +113,16 @@ public sealed partial class InstrumentSystem
             {
                 WindowEnd = now.Add(TimeSpan.FromSeconds(1)),
                 EventCount = 0,
+                BatchCount = 0,
             };
         }
 
         state.EventCount += eventCount;
+        state.BatchCount++;
         _sessionMidiRateLimits[userId] = state;
 
-        return state.EventCount <= MaxMidiEventsPerSecond;
+        return state.EventCount <= MaxMidiEventsPerSecond
+               && state.BatchCount <= MaxMidiBatchesPerSecond;
     }
 
     private void RaiseInstrumentMidiEvent(EntityUid uid, InstrumentMidiEventEvent msg, EntityUid? excludedUser = null)
@@ -145,6 +148,7 @@ public sealed partial class InstrumentSystem
     private struct SessionMidiRateLimitData
     {
         public TimeSpan WindowEnd;
-        public int EventCount;
+        public long EventCount;
+        public int BatchCount;
     }
 }

@@ -36,3 +36,38 @@
   - type: Sealable
   - type: StaticPrice
     price: 300
+
+- type: entity
+  parent: [DrinkVisualsAllFilled, DrinkBottleGlassBaseFull]
+  id: DrinkRedRumBottleFull
+  name: red rum bottle
+  description: A bottle of strong red rum.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: RedRum
+          Quantity: 100
+  - type: Label
+    currentLabel: reagent-name-redrum
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/rumbottle.rsi
+
+- type: entity
+  parent: [DrinkVisualsAllFilled, DrinkBottleGlassBaseFull]
+  id: DrinkDarkRedRumBottleFull
+  name: dark-red rum bottle
+  description: A bottle of dangerously strong dark red rum.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: DarkRedRum
+          Quantity: 60
+  - type: Label
+    currentLabel: reagent-name-dark-red-rum
+  - type: Sprite
+    scale: 1,0.8
+    sprite: Objects/Consumable/Drinks/rumbottle.rsi

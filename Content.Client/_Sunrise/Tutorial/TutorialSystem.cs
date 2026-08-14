@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using Content.Client._Sunrise.PlayerCache;
 using Content.Client.UserInterface.Screens;
 using Content.Client._Sunrise.Tutorial.Components;
 using Content.Client._Sunrise.Tutorial.Overlays;
@@ -5,15 +8,19 @@ using Content.Shared._Sunrise.Tutorial.Components;
 using Content.Shared._Sunrise.Tutorial.EntitySystems;
 using Content.Shared._Sunrise.Tutorial.Events;
 using Content.Shared._Sunrise.Tutorial.Prototypes;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Content.Client._Sunrise.Tutorial.TutorialBubbleControl;
+using Content.Client._Sunrise.Tutorial.UiHighlight;
 
 namespace Content.Client._Sunrise.Tutorial;
 
@@ -23,13 +30,23 @@ namespace Content.Client._Sunrise.Tutorial;
 public sealed class TutorialSystem : SharedTutorialSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IInputManager _input = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly PlayerCacheManager _playerCache = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private static readonly ProtoId<ShaderPrototype> TutorialShader = "TutorialTargetOutline";
+    private static readonly Color TargetOutlineColor = Color.FromHex("#FFF15C");
+
+    private const float TargetOutlineMinAlpha = 0.65f;
+    private const float TargetOutlineMaxAlpha = 1f;
+    private const float TargetOutlineMinWidth = 1.5f;
+    private const float TargetOutlineMaxWidth = 4f;
+    private const float HighlightPulseSpeed = 3.5f;
 
     private ShaderInstance? _shaderInstance;
     private EntityUid? _highlightedTarget;
@@ -50,12 +67,16 @@ public sealed class TutorialSystem : SharedTutorialSystem
     /// Prototype IDs of tutorial sequences completed by the local user.
     /// </summary>
     public readonly HashSet<string> CompletedTutorials = [];
+
     private EntityQuery<TutorialBubbleUiComponent> _bubbleUiQuery;
     private LayoutContainer? _tutorialBubbleRoot;
+    private TutorialUiHighlightOverlay? _uiHighlightOverlay;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _input.FirstChanceOnKeyEvent += OnFirstChanceKeyEvent;
 
         SubscribeLocalEvent<TutorialBubbleComponent, AfterAutoHandleStateEvent>(AfterAutoHandleState);
         SubscribeLocalEvent<TutorialBubbleComponent, ComponentInit>(OnComponentInit);
@@ -66,7 +87,10 @@ public sealed class TutorialSystem : SharedTutorialSystem
         SubscribeNetworkEvent<TutorialWindowDataResponseEvent>(OnWindowDataResponse);
         SubscribeNetworkEvent<TutorialStartDeniedEvent>(OnStartDenied);
 
-        _tutorialBubbleRoot = new LayoutContainer();
+        _tutorialBubbleRoot = new LayoutContainer
+        {
+            MouseFilter = Control.MouseFilterMode.Ignore,
+        };
         _bubbleUiQuery = GetEntityQuery<TutorialBubbleUiComponent>();
         _spriteQuery = GetEntityQuery<SpriteComponent>();
         _ui.OnScreenChanged += OnScreenChanged;
@@ -75,16 +99,55 @@ public sealed class TutorialSystem : SharedTutorialSystem
         _overlayManager.AddOverlay(new TutorialPathOverlay(EntityManager, _player, _timing, _transform, _proto));
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_highlightedTarget == null || _shaderInstance == null)
+            return;
+
+        var pulse = (MathF.Sin((float)_timing.RealTime.TotalSeconds * HighlightPulseSpeed) + 1f) * 0.5f;
+        var alpha = TargetOutlineMinAlpha + (TargetOutlineMaxAlpha - TargetOutlineMinAlpha) * pulse;
+        var width = TargetOutlineMinWidth + (TargetOutlineMaxWidth - TargetOutlineMinWidth) * pulse;
+        _shaderInstance.SetParameter("outline_color", TargetOutlineColor.WithAlpha(alpha));
+        _shaderInstance.SetParameter("outline_width", width);
+    }
+
+    private void OnFirstChanceKeyEvent(KeyEventArgs args, KeyEventType type)
+    {
+        if (type == KeyEventType.Up || args.Key != Keyboard.Key.Escape)
+            return;
+
+        if (_player.LocalEntity is not { } localPlayer)
+            return;
+
+        if (!TryComp(localPlayer, out TutorialPlayerComponent? tutorialPlayer))
+            return;
+
+        if (!tutorialPlayer.TutorialInitialized)
+            return;
+
+        if (!TryGetCurrentStep((localPlayer, tutorialPlayer), out var step))
+            return;
+
+        if (!step.BlockUiInteraction)
+            return;
+
+        args.Handle();
+    }
+
     private void OnScreenChanged((UIScreen? Old, UIScreen? New) ev)
     {
         if (ev.New is not InGameScreen)
         {
             SetHighlight(null);
+            ClearUiHighlight();
             _tutorialBubbleRoot?.Orphan();
             return;
         }
 
         RefreshBubbles();
+        RefreshUiHighlight();
     }
 
     private void OnStartDenied(TutorialStartDeniedEvent msg, EntitySessionEventArgs args)
@@ -103,6 +166,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
     private void OnPlayerDetached(Entity<TutorialBubbleComponent> ent, ref LocalPlayerDetachedEvent ev)
     {
         SetHighlight(null);
+        ClearUiHighlight();
         _tutorialBubbleRoot?.Orphan();
     }
 
@@ -118,6 +182,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
             SetHighlight(null);
 
         RefreshBubbles();
+        UpdateUiHighlight(ent);
     }
 
     private void SetHighlight(EntityUid? target)
@@ -208,14 +273,12 @@ public sealed class TutorialSystem : SharedTutorialSystem
         if (_ui.ActiveScreen is not InGameScreen)
             return;
 
-        var viewportContainer = _ui.ActiveScreen.FindControl<LayoutContainer>("ViewportContainer");
-
         if (_bubbleUiQuery.TryGetComponent(ent.Owner, out var uiComp) && uiComp.Bubble != null)
         {
             if (uiComp.LastInstruction == ent.Comp.Instruction)
             {
                 // Text unchanged — just ensure parenting is correct.
-                SetSpeechBubbleRoot(viewportContainer, uiComp.Bubble);
+                SetSpeechBubbleRoot(uiComp.Bubble);
                 return;
             }
 
@@ -229,17 +292,19 @@ public sealed class TutorialSystem : SharedTutorialSystem
             Loc.GetString(ent.Comp.Instruction),
             ent);
 
-        SetSpeechBubbleRoot(viewportContainer, bubble);
+        SetSpeechBubbleRoot(bubble);
 
         var bubbleUi = EnsureComp<TutorialBubbleUiComponent>(ent.Owner);
         bubbleUi.Bubble = bubble;
         bubbleUi.LastInstruction = ent.Comp.Instruction;
     }
 
-    private void SetSpeechBubbleRoot(LayoutContainer root, TutorialBubble bubble)
+    private void SetSpeechBubbleRoot(TutorialBubble bubble)
     {
         if (_tutorialBubbleRoot == null)
             return;
+
+        var root = _ui.PopupRoot;
 
         if (bubble.Parent != _tutorialBubbleRoot)
             _tutorialBubbleRoot.AddChild(bubble);
@@ -253,6 +318,79 @@ public sealed class TutorialSystem : SharedTutorialSystem
         }
 
         _tutorialBubbleRoot.SetPositionLast();
+    }
+
+    private void RefreshUiHighlight()
+    {
+        if (_player.LocalEntity is not { } localPlayer ||
+            !TryComp(localPlayer, out TutorialPlayerComponent? tutorialPlayer))
+        {
+            ClearUiHighlight();
+            return;
+        }
+
+        UpdateUiHighlight((localPlayer, tutorialPlayer));
+    }
+
+    private void UpdateUiHighlight(Entity<TutorialPlayerComponent> ent)
+    {
+        if (_player.LocalEntity != ent.Owner)
+            return;
+
+        if (!ent.Comp.TutorialInitialized ||
+            !TryGetCurrentStep(ent, out var step) ||
+            !NeedsUiOverlay(step))
+        {
+            ClearUiHighlight();
+            return;
+        }
+
+        SetUiHighlight(step.UiHighlight, step.BlockUiInteraction);
+    }
+
+    private static bool HasUiHighlight(TutorialStepPrototype step)
+    {
+        return step.UiHighlight.Count > 0;
+    }
+
+    private static bool NeedsUiOverlay(TutorialStepPrototype step)
+    {
+        return HasUiHighlight(step) || step.BlockUiInteraction;
+    }
+
+    private void SetUiHighlight(IReadOnlyList<TutorialUiHighlightSelector> selectors, bool blockInput)
+    {
+        if (_ui.ActiveScreen is not InGameScreen)
+        {
+            ClearUiHighlight();
+            return;
+        }
+
+        var resolverRoot = _ui.RootControl;
+        var overlayRoot = _ui.PopupRoot;
+        _uiHighlightOverlay ??= new TutorialUiHighlightOverlay(resolverRoot, selectors, blockInput);
+        _uiHighlightOverlay.SetTarget(resolverRoot, selectors, blockInput);
+
+        if (_uiHighlightOverlay.Parent != overlayRoot)
+        {
+            _uiHighlightOverlay.Orphan();
+            overlayRoot.AddChild(_uiHighlightOverlay);
+            LayoutContainer.SetAnchorPreset(_uiHighlightOverlay, LayoutContainer.LayoutPreset.Wide);
+        }
+
+        _uiHighlightOverlay.SetPositionLast();
+        if (_tutorialBubbleRoot?.Parent != null)
+            _tutorialBubbleRoot.SetPositionLast();
+
+        if (!blockInput)
+            return;
+
+        _ui.ControlFocused = null;
+    }
+
+    private void ClearUiHighlight()
+    {
+        _uiHighlightOverlay?.Orphan();
     }
 
     /// <summary>
@@ -279,6 +417,24 @@ public sealed class TutorialSystem : SharedTutorialSystem
         RaiseNetworkEvent(new TutorialStartRequestEvent(sequenceId));
     }
 
+    /// <summary>
+    /// Records that the local user has acted on the first-join tutorial prompt.
+    /// </summary>
+    public void MarkTutorialPromptSeen()
+    {
+        _playerCache.SetTutorialPromptSeen();
+    }
+
+    public bool IsTutorialPromptSeen()
+    {
+        return _playerCache.IsTutorialPromptSeen();
+    }
+
+    public float GetTutorialPromptSkipDelay()
+    {
+        return _cfg.GetCVar(SunriseCCVars.TutorialPromptSkipDelay);
+    }
+
     private void OnWindowDataResponse(TutorialWindowDataResponseEvent msg, EntitySessionEventArgs args)
     {
         CompletedTutorials.Clear();
@@ -289,10 +445,13 @@ public sealed class TutorialSystem : SharedTutorialSystem
 
     public override void Shutdown()
     {
+        _input.FirstChanceOnKeyEvent -= OnFirstChanceKeyEvent;
         base.Shutdown();
         SetHighlight(null);
+        ClearUiHighlight();
         _ui.OnScreenChanged -= OnScreenChanged;
         _overlayManager.RemoveOverlay<TutorialPathOverlay>();
-
+        _shaderInstance?.Dispose();
+        _shaderInstance = null;
     }
 }
