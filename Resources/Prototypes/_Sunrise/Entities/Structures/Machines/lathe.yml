@@ -149,6 +149,18 @@
     - SecurityDynamicSunrise
 
 - type: entity
+  id: PirateTechFabExpedition
+  parent: PirateTechFab
+  suffix: expedition
+  components:
+  - type: RadarBlip
+    color: "#ff3300"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false
+  - type: BlockedTool
+
+- type: entity
   id: AmmoLathe
   parent: BaseLatheLube
   name: ammo lathe
