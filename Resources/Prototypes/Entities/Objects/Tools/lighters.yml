@@ -28,6 +28,12 @@
   - type: ItemToggleSize
     activatedSize: Small
   - type: ItemToggleHot
+  # Sunrise added start - редкие искры активной зажигалки без постоянного дыма.
+  - type: ToggleParticleVisuals
+    orchestra: LighterAmbient
+    spriteLayer: flame
+    fallbackOffset: 0, 0.22
+  # Sunrise added end
   - type: Sprite
     sprite: Objects/Tools/Lighters/lighters.rsi
     layers:
@@ -166,6 +172,12 @@
   - type: ItemToggleSize
     activatedSize: Small
   - type: ItemToggleHot
+  # Sunrise added start - редкие искры активной зажигалки без постоянного дыма.
+  - type: ToggleParticleVisuals
+    orchestra: LighterAmbient
+    spriteLayer: flame
+    fallbackOffset: 0, 0.25
+  # Sunrise added end
   - type: Item
     size: Tiny
     sprite: Objects/Tools/Lighters/lighters.rsi
@@ -267,6 +279,12 @@
   - type: ItemToggleSize
     activatedSize: Small
   - type: ItemToggleHot
+  # Sunrise added start - редкие искры активной зажигалки без постоянного дыма.
+  - type: ToggleParticleVisuals
+    orchestra: LighterAmbient
+    spriteLayer: flame
+    fallbackOffset: 0, 0.25
+  # Sunrise added end
   - type: Item
     size: Tiny
   - type: Appearance

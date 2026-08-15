@@ -18,3 +18,10 @@
       posData: !type:TargetInFront
   - type: SpeakOnAction
     sentence: action-speech-spell-forcewall
+  # Sunrise added start - холодные осколки обозначают формирование магического барьера.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicBarrierCast
+  # Sunrise added end

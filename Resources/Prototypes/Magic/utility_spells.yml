@@ -15,3 +15,10 @@
       charge: 1
   - type: SpeakOnAction
     sentence: action-speech-spell-charge
+  # Sunrise added start - сходящиеся искры показывают восстановление магического заряда.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicChargeCast
+  # Sunrise added end

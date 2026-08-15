@@ -22,6 +22,13 @@
       prototype: ProjectileFireball
   - type: SpeakOnAction
     sentence: action-speech-spell-fireball
+  # Sunrise added start - огненный всплеск после успешного каста через общую систему Trigger.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicFireballCast
+  # Sunrise added end
   - type: ActionUpgrade
     effectedLevels:
       2: ActionFireballII

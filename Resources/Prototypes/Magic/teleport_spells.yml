@@ -19,6 +19,13 @@
     checkCanAccess: false
   - type: WorldTargetAction
     event: !type:TeleportSpellEvent
+  # Sunrise added start - схлопывающиеся блюспейс-частицы в точке успешного перемещения.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicBlinkCast
+  # Sunrise added end
 
 # TODO: Second level upgrade sometime that allows swapping with all objects
 - type: entity

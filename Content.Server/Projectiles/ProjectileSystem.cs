@@ -3,6 +3,7 @@ using Content.Server.Destructible;
 using Content.Server.Effects;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Camera;
+using Content.Shared._Sunrise.Particles;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -91,6 +92,18 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         var ev = new ProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
+
+        // Sunrise added start - передаём системе материалов реальную точку контакта прожектайла.
+        var particleImpactPoint = args.PointCount > 0
+            ? args.WorldPoints[0]
+            : _transformSystem.GetWorldPosition(uid);
+        var particleImpact = new ParticleDamageImpactEvent(
+            ev.Damage,
+            component.Shooter ?? uid,
+            particleImpactPoint,
+            args.OurBody.LinearVelocity);
+        RaiseLocalEvent(target, ref particleImpact);
+        // Sunrise added end
 
         var otherName = ToPrettyString(target);
         var damageRequired = _destructibleSystem.DestroyedAt(target);

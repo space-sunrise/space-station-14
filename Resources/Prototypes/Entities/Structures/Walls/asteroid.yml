@@ -10,6 +10,11 @@
   name: asteroid rock
   description: A rocky asteroid.
   components:
+  # Sunrise added start - каменные стены используют отдельные реакции частиц.
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialStone
+    useMaterialDestruction: true
+  # Sunrise added end
   - type: Transform
     noRot: true
   - type: IconSmooth

@@ -24,6 +24,10 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: HardLightBarrier
+  - type: ParticleDamageVisuals
+    impactOrchestra: EnergyBarrierImpact
+    minimumImpactDamage: 0.1
+    impactCooldown: 0.05
   - type: AmbientSound
     volume: 35
     range: 5

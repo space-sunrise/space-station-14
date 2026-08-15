@@ -10,7 +10,8 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Emp;
 
-public abstract class SharedEmpSystem : EntitySystem
+// Sunrise-Edit - расширение визуального отклика EMP вынесено в partial-класс.
+public abstract partial class SharedEmpSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -35,7 +36,6 @@ public abstract class SharedEmpSystem : EntitySystem
     }
 
     public static readonly EntProtoId EmpPulseEffectPrototype = "EffectEmpPulse";
-    public static readonly EntProtoId EmpDisabledEffectPrototype = "EffectEmpDisabled";
     public static readonly SoundSpecifier EmpSound = new SoundPathSpecifier("/Audio/Effects/Lightning/lightningbolt.ogg");
 
     /// <summary>
@@ -125,9 +125,10 @@ public abstract class SharedEmpSystem : EntitySystem
         var ev = new EmpPulseEvent(energyConsumption * strMultiplier, false, false, duration * durMultiplier, user);
         RaiseLocalEvent(uid, ref ev);
 
-        // TODO: replace with PredictedSpawn once it works with animated sprites
+        // Sunrise added start - частицы EMP привязываются к реальной поражённой сущности.
         if (ev.Affected && _net.IsServer)
-            Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
+            RaiseEmpParticleVisual(uid);
+        // Sunrise added end
 
         if (!ev.Disabled)
             return ev.Affected;

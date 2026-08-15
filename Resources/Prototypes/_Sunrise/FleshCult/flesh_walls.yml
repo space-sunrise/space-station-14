@@ -3,6 +3,9 @@
   id: WallFlesh
   name: flesh wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialOrganic
+    useMaterialDestruction: true
   - type: Appearance
   - type: Sprite
     sprite: _Sunrise/FleshCult/flesh_wall.rsi

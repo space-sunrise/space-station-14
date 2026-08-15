@@ -24,6 +24,11 @@
   id: FoodBase
   components:
   - type: SpaceGarbage
+  # Sunrise added start - еда нагревается на гриле, а горячее содержимое создаёт температурно-зависимый пар.
+  - type: Temperature
+  - type: HotSolutionParticleVisuals
+    solution: food
+  # Sunrise added end
 
 # This base type is used to cover all of the "obvious" things that should be doable to open-package food.
 # Practically this means injection.

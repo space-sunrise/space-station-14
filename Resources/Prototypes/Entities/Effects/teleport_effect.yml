@@ -10,6 +10,17 @@
       drawdepth: Effects
     - type: PointLight
       color: "#008DFE"
+    # Sunrise added start - одноразовые частицы исходящей телепортации через Trigger.
+    - type: TriggerOnSpawn
+      keyOut: particle-spawn
+    - type: ParticleOnTrigger
+      keysIn:
+      - particle-spawn
+      orchestras:
+      - orchestra: TeleportDeparture
+        colorSource: SourcePointLight
+        fallbackColor: "#008DFEFF"
+    # Sunrise added end
     - type: EmitSoundOnSpawn
       sound:
         path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg
@@ -32,6 +43,17 @@
       drawdepth: Effects
     - type: PointLight
       color: "#008DFE"
+    # Sunrise added start - одноразовые частицы входящей телепортации через Trigger.
+    - type: TriggerOnSpawn
+      keyOut: particle-spawn
+    - type: ParticleOnTrigger
+      keysIn:
+      - particle-spawn
+      orchestras:
+      - orchestra: TeleportArrival
+        colorSource: SourcePointLight
+        fallbackColor: "#008DFEFF"
+    # Sunrise added end
     - type: EmitSoundOnSpawn
       sound:
         path: /Audio/_Sunrise/Effects/electrical_short_circuit2.ogg

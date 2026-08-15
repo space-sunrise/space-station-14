@@ -3,6 +3,11 @@
   parent: BaseAnomaly
   suffix: Banana
   components:
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyBananaAmbient
+    pulseOrchestra: AnomalyBananaPulse
+    ambientIntensity: 0.58
+    pulseIntensity: 0.9
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Structures/Specific/Anomalies/banana.rsi

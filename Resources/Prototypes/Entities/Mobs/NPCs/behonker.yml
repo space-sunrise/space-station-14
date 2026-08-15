@@ -171,3 +171,9 @@
     releasedGas: 8 # Frezon. Please replace if there is a better way to specify this
     releaseOnMaxSeverity: true
     spawnRadius: 0
+  # Sunrise added start - ледяной бехонкер осыпается кристаллами при получении урона.
+  - type: ParticleDamageVisuals
+    impactOrchestra: CreatureIceImpact
+    minimumImpactDamage: 2
+    impactCooldown: 0.1
+  # Sunrise added end

@@ -4,6 +4,11 @@
   suffix: Clown
   description: It's an otherwise normal car that seems to bend the very space within it. You sense that the creatures within are coming to make you laugh at all costs...
   components:
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyClownAmbient
+    pulseOrchestra: AnomalyClownPulse
+    ambientIntensity: 0.58
+    pulseIntensity: 0.9
   - type: Anomaly
     corePrototype: AnomalyCoreClown
     coreInertPrototype: AnomalyCoreClownInert

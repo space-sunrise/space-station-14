@@ -92,6 +92,10 @@
       minds:
       - Carp
     - type: ToggleableNightVision
+    - type: ParticleDamageVisuals
+      impactOrchestra: CreatureCarpImpact
+      minimumImpactDamage: 1
+      impactCooldown: 0.1
     # Sunrise-End
 
 - type: entity

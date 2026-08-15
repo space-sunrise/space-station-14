@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.Particles;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -135,6 +136,15 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution,
                 out var solution))
             return;
+
+        // Sunrise added start - визуальный отклик на настоящий шаг по жидкости.
+        var particleEvent = new ParticleVisualRequestEvent(
+            "PuddleFootstep",
+            args.User,
+            PredictedBy: args.User,
+            ColorOverride: solution.GetColor(_prototypeManager));
+        RaiseLocalEvent(ref particleEvent);
+        // Sunrise added end
 
         var reagentId = solution.GetPrimaryReagentId();
         if (!string.IsNullOrWhiteSpace(reagentId?.Prototype)

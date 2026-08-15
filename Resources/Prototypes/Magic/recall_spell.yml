@@ -21,3 +21,10 @@
   - type: InstantAction
     event: !type:OnItemRecallActionEvent
   - type: ItemRecall
+  # Sunrise added start - арканные частицы подтверждают успешную метку или призыв предмета.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicChargeCast
+  # Sunrise added end

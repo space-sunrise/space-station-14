@@ -28,6 +28,10 @@
           volume: 10
     - type: UseDelay
     - type: ExtinguishableSetCollisionWake
+    - type: FireParticleVisuals # Sunrise-Edit - частицы появляются на фитиле без плотного дыма
+      orchestra: CandleFireAmbient
+      offset: 0, 0.3
+      fillSprite: false
     - type: Flammable
       fireSpread: false
       canResistFire: false
@@ -165,6 +169,9 @@
           color: "#e2ca90"
     - type: FireVisuals
       normalState: fire-small
+    - type: FireParticleVisuals # Sunrise-Edit - поправка положения фитиля маленькой свечи
+      orchestra: CandleSmallFireAmbient
+      offset: 0, 0.24
     - type: Flammable
       firestacksOnIgnite: 2.0
     - type: Destructible

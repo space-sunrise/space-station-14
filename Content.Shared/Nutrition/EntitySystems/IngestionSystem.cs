@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Administration.Logs;
+using Content.Shared._Sunrise.Particles;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
@@ -376,6 +377,21 @@ public sealed partial class IngestionSystem : EntitySystem
         // Everything is good to go item has been successfuly eaten
         var afterEv = new IngestedEvent(args.User, entity, split, forceFed);
         RaiseLocalEvent(food, ref afterEv);
+
+        // Sunrise added start - крошки после успешного поедания твёрдой пищи.
+        var edible = Comp<EdibleComponent>(food);
+        if (edible.Edible != Drink)
+        {
+            var particleEvent = new ParticleVisualRequestEvent(
+                "IngestionCrumbs",
+                entity,
+                Target: food,
+                PredictedBy: args.User,
+                ColorSource: ParticleVisualColorSource.TargetSpriteDominant,
+                FallbackColor: split.GetColor(_proto));
+            RaiseLocalEvent(ref particleEvent);
+        }
+        // Sunrise added end
 
         _stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse);
 

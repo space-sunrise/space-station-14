@@ -38,6 +38,13 @@
     radius: 3
     energy: 1
     netsync: false
+  # Sunrise added start - пиксельный контур подчёркивает активную поверхность обычного портала
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: PortalAmbient
+      colorSource: SourcePointLight
+      fallbackColor: "#FF4500FF"
+  # Sunrise added end
 
 - type: entity
   id: PortalBlue
@@ -51,6 +58,13 @@
     radius: 3
     energy: 1
     netsync: false
+  # Sunrise added start - пиксельный контур подчёркивает активную поверхность обычного портала
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: PortalAmbient
+      colorSource: SourcePointLight
+      fallbackColor: "#87CEFAFF"
+  # Sunrise added end
 
 - type: entity
   id: PortalArtifact
@@ -64,6 +78,13 @@
     radius: 3
     energy: 1
     netsync: false
+  # Sunrise added start - пиксельный контур подчёркивает активную поверхность обычного портала
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: PortalAmbient
+      colorSource: SourcePointLight
+      fallbackColor: "#ED85C2FF"
+  # Sunrise added end
   - type: TimedDespawn
     lifetime: 1
   - type: Portal
@@ -118,6 +139,13 @@
     radius: 3
     energy: 1
     netsync: false
+  # Sunrise added start - пиксельные частицы сохраняют нестабильный силуэт разлома
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: PortalAmbient
+      colorSource: SourcePointLight
+      fallbackColor: "#793A80DD"
+  # Sunrise added end
   - type: AmbientSound
     range: 6
     volume: -3

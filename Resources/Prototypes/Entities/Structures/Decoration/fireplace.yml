@@ -45,4 +45,7 @@
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+  - type: FireParticleVisuals # Sunrise-Edit - компактное пламя остаётся в очаге без плотного дыма
+    orchestra: FireAmbientNoSmoke
+    fillSprite: false
   - type: AlwaysHot

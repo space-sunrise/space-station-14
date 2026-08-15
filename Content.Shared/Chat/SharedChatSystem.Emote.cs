@@ -1,4 +1,5 @@
 using System.Collections.Frozen;
+using Content.Shared._Sunrise.Particles;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
 using Robust.Shared.Audio;
@@ -165,6 +166,12 @@ public abstract partial class SharedChatSystem
         // optional override params > general params for all sounds in set > individual sound params
         var param = audioParams ?? proto.GeneralParams ?? sound.Params;
         _audio.PlayPvs(sound, uid, param);
+
+        // Sunrise added start - частицы должны сопровождать только реально проигранный эмоут.
+        var particleEvent = new EmoteSoundPlayedParticleEvent(uid, emoteId);
+        RaiseLocalEvent(ref particleEvent);
+        // Sunrise added end
+
         return true;
     }
     /// <summary>

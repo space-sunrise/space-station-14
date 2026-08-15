@@ -1,0 +1,100 @@
+- type: particleMaterialReaction
+  id: ParticleMaterialMetal
+  materials:
+  - Steel
+  - Gold
+  - Silver
+  - Brass
+  - Plasteel
+  - Uranium
+  - Bananium
+  damageModifiers:
+  - StructuralMetallic
+  - StructuralMetallicStrong
+  - StrongMetallic
+  - Electronic
+  - Silicon
+  kineticImpactOrchestra: MetalKineticImpact
+  energyImpactOrchestra: MetalEnergyImpact
+  electricalImpactOrchestra: MetalElectricalImpact
+  destructionOrchestra: MetalDestruction
+
+- type: particleMaterialReaction
+  id: ParticleMaterialStone
+  materials:
+  - Coal
+  - RawIron
+  - RawGold
+  - RawSilver
+  - RawUranium
+  - RawBananium
+  - RawSalt
+  damageModifiers:
+  - Rock
+  kineticImpactOrchestra: StoneKineticImpact
+  energyImpactOrchestra: StoneEnergyImpact
+  destructionOrchestra: StoneDestruction
+
+- type: particleMaterialReaction
+  id: ParticleMaterialWood
+  materials:
+  - Wood
+  damageModifiers:
+  - Wood
+  kineticImpactOrchestra: WoodKineticImpact
+  energyImpactOrchestra: WoodEnergyImpact
+  destructionOrchestra: WoodDestruction
+
+- type: particleMaterialReaction
+  id: ParticleMaterialOrganic
+  materials:
+  - Biomass
+  - Meaterial
+  - WebSilk
+  - Bones
+  damageModifiers:
+  - Web
+  kineticImpactOrchestra: OrganicKineticImpact
+  energyImpactOrchestra: OrganicEnergyImpact
+  destructionOrchestra: OrganicDestruction
+
+- type: particleMaterialReaction
+  id: ParticleMaterialPlastic
+  materials:
+  - Plastic
+  - Cardboard
+  - Paper
+  damageModifiers:
+  - Card
+  kineticImpactOrchestra: PlasticKineticImpact
+  energyImpactOrchestra: PlasticEnergyImpact
+  destructionOrchestra: PlasticDestruction
+
+- type: particleMaterialReaction
+  id: ParticleMaterialCrystal
+  materials:
+  - Glass
+  - ReinforcedGlass
+  - PlasmaGlass
+  - ReinforcedPlasmaGlass
+  - BrassGlass
+  - UraniumGlass
+  - ReinforcedUraniumGlass
+  - Plasma
+  - Diamond
+  - RawQuartz
+  - RawDiamond
+  - RawPlasma
+  damageModifiers:
+  - Glass
+  - FlimsyGlass
+  - RGlass
+  kineticImpactOrchestra: CrystalKineticImpact
+  energyImpactOrchestra: CrystalEnergyImpact
+  destructionOrchestra: CrystalDestruction
+
+- type: particleMaterialReaction
+  id: ParticleMaterialIce
+  kineticImpactOrchestra: IceKineticImpact
+  energyImpactOrchestra: IceEnergyImpact
+  destructionOrchestra: IceDestruction

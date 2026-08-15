@@ -201,6 +201,11 @@ public sealed class ReflectSystem : EntitySystem
         else
             _adminLogger.Add(LogType.HitScanHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected hitscan from {ToPrettyString(shotSource)}");
 
+        // Sunrise added start - единое событие отражения требуется визуальным эффектам энергощитов и для hitscan-лучей.
+        var reflectedEv = new ReflectedEvent(shooter, shotSource, reflectType: hitscanReflectType);
+        RaiseLocalEvent(reflector, reflectedEv);
+        // Sunrise added end
+
         return true;
     }
 

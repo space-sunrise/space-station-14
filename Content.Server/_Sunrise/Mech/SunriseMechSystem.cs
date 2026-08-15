@@ -13,9 +13,9 @@ using PaintDoAfterEvent = Content.Shared._Sunrise.Paint.PaintDoAfterEvent;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Server.Emp;
+using Content.Server._Sunrise.Particles;
 using Robust.Shared.Timing;
 using Content.Shared._Sunrise.Mech;
-using Content.Shared.Coordinates;
 using Content.Shared.Emp;
 using Content.Shared.Damage.Systems;
 
@@ -27,12 +27,13 @@ public sealed partial class SunriseMechSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly OpenableSystem _openable = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedMechSystem _mech = default!;
+    [Dependency] private readonly ParticleOrchestraSystem _orchestra = default!;
 
 
 
@@ -71,7 +72,7 @@ public sealed partial class SunriseMechSystem : EntitySystem
 
             emp.NextEffectTime = curTime + emp.EffectInterval;
 
-            SpawnAttachedTo(comp.EffectEMP, uid.ToCoordinates());
+            _orchestra.Send(comp.EmpParticleOrchestra, uid);
 
             if (curTime > comp.NextPulseTime)
                 RemComp<MechOnEMPPulseComponent>(uid);
@@ -149,7 +150,7 @@ public sealed partial class SunriseMechSystem : EntitySystem
             return;
         }
 
-        if (_whitelistSystem.IsWhitelistFailOrNull(entity.Comp.Whitelist, target))
+        if (_whitelist.IsWhitelistFailOrNull(entity.Comp.Whitelist, target))
         {
             _popup.PopupEntity(Loc.GetString("paint-failure", ("target", args.Target)), args.User, args.User, PopupType.Medium);
             return;

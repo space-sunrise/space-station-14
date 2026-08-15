@@ -41,6 +41,15 @@
       drawdepth: Effects
     - type: PointLight
       color: "#FF0000"
+    - type: TriggerOnSpawn
+      keyOut: particle-spawn
+    - type: ParticleOnTrigger
+      keysIn:
+      - particle-spawn
+      orchestras:
+      - orchestra: TeleportArrival
+        colorSource: SourcePointLight
+        fallbackColor: "#FF0000FF"
 
 - type: entity
   id: CultTeleportOutEffect
@@ -61,6 +70,15 @@
       drawdepth: Effects
     - type: PointLight
       color: "#FF0000"
+    - type: TriggerOnSpawn
+      keyOut: particle-spawn
+    - type: ParticleOnTrigger
+      keysIn:
+      - particle-spawn
+      orchestras:
+      - orchestra: TeleportDeparture
+        colorSource: SourcePointLight
+        fallbackColor: "#FF0000FF"
 
 - type: entity
   id: CultWallGlow

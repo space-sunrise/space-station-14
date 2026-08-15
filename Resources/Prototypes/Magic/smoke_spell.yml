@@ -14,3 +14,10 @@
     event: !type:InstantSpawnSpellEvent
       prototype: WizardSmoke
       posData: !type:TargetInFront
+  # Sunrise added start - фиолетовые мотыльки предваряют появление магического дыма.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicSmokeCast
+  # Sunrise added end

@@ -1299,6 +1299,11 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#E454FFFF"
+      intensity: 1.1
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1451,6 +1456,11 @@
   name: energy bolt
   description: This'll hurt.
   components:
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#B987FFFF"
+      intensity: 1.15
   - type: Reflective
     reflective:
     - NonEnergy

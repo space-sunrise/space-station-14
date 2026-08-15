@@ -3,7 +3,8 @@ using Robust.Shared.Random;
 
 namespace Content.Client.Emp;
 
-public sealed class EmpSystem : SharedEmpSystem
+// Sunrise-Edit - визуальный отклик EMP вынесен в partial-класс.
+public sealed partial class EmpSystem : SharedEmpSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -23,13 +24,13 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<EmpDisabledComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var transform))
+        var query = EntityQueryEnumerator<EmpDisabledComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
             if (Timing.CurTime > comp.TargetTime)
             {
                 comp.TargetTime = Timing.CurTime + _random.NextFloat(0.8f, 1.2f) * comp.EffectCooldown;
-                Spawn(EmpDisabledEffectPrototype, transform.Coordinates);
+                SpawnEmpParticles(uid); // Sunrise-Edit - рисуем разряды по площади корпуса, а не в центре тайла.
             }
         }
     }

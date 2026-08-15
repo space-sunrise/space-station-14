@@ -14,6 +14,13 @@
       components:
       - MobState
     canTargetSelf: false
+  # Sunrise added start - общий арканный отклик для успешных направленных заклинаний.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicArcaneCast
+  # Sunrise added end
 
 - type: entity
   abstract: true
@@ -41,6 +48,12 @@
     sentence: action-speech-spell-smite
   - type: Magic
     requiresClothes: true
+  # Sunrise added start - карающее заклинание получает отдельный раскалённый всплеск.
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicSmiteCast
+  # Sunrise added end
 
 # For the Snail
 - type: entity

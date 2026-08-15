@@ -12,6 +12,13 @@
       state: icon
   - type: InstantAction
     event: !type:ToggleGhostVisibilityToAllEvent
+  # Sunrise added start - частицы призыва подтверждают успешное проявление призраков.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicSummonCast
+  # Sunrise added end
 
 # TODO: Add Whitelist/Blacklist and Component support to EntitySpawnLists (to avoid making huge hardcoded lists like below).
 
@@ -164,6 +171,13 @@
         orGroup: Guns
   - type: SpeakOnAction
     sentence: action-speech-spell-summon-guns
+  # Sunrise added start - единый всплеск для успешного глобального призыва.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicSummonCast
+  # Sunrise added end
 
 - type: entity
   parent: BaseAction
@@ -212,3 +226,10 @@
         orGroup: Magics
   - type: SpeakOnAction
     sentence: action-speech-spell-summon-magic
+  # Sunrise added start - единый всплеск для успешного глобального призыва.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicSummonCast
+  # Sunrise added end

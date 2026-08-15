@@ -20,3 +20,10 @@
       offset: 0, 1
   - type: SpeakOnAction
     sentence: action-speech-spell-summon-magicarp
+  # Sunrise added start - сходящиеся арканные частицы показывают успешный призыв.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicSummonCast
+  # Sunrise added end

@@ -3,6 +3,11 @@
   id: BaseBeaker
   abstract: true
   components:
+  # Sunrise added start - нагретое содержимое лабораторной посуды создаёт пар.
+  - type: Temperature
+  - type: HotSolutionParticleVisuals
+    solution: beaker
+  # Sunrise added end
   - type: Tag
     tags:
     - GlassBeaker
@@ -103,6 +108,11 @@
   id: BaseBeakerMetallic
   abstract: true
   components:
+  # Sunrise added start - нагретое содержимое металлической лабораторной посуды создаёт пар.
+  - type: Temperature
+  - type: HotSolutionParticleVisuals
+    solution: beaker
+  # Sunrise added end
   - type: Tag
     tags:
     - GlassBeaker

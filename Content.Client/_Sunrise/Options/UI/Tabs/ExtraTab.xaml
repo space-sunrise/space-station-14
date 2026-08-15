@@ -41,6 +41,7 @@
 
                 <!-- Graphics -->
                 <Label Text="{Loc 'ui-options-sunrise-general-graphics'}" StyleClasses="LabelKeyText"/>
+                <ui:OptionDropDown Name="DropDownParticleQuality" Title="{Loc 'ui-options-particles-label'}" />
                 <CheckBox Name="ChatIconsEnableCheckBox" Text="{Loc 'ui-options-chat-icons-enable'}" />
                 <CheckBox Name="ChatPointingVisualsEnableCheckBox" Text="{Loc 'ui-options-chat-pointing-visuals-enable'}" />
 

@@ -77,6 +77,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             Gun = args.Gun,
             Shooter = args.Shooter,
             HitEntity = result?.HitEntity,
+            HitPosition = result?.HitPos, // Sunrise-Edit - точная позиция нужна материал-зависимым эффектам попадания.
         };
 
         var attemptEvent = new AttemptHitscanRaycastFiredEvent { Data = data };

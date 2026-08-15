@@ -20,3 +20,10 @@
       state: repulse
   - type: InstantAction
     event: !type:RepulseAttractActionEvent
+  # Sunrise added start - расширяющаяся волна визуализирует импульс отталкивания.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicRepulseCast
+  # Sunrise added end

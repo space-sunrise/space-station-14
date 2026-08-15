@@ -80,16 +80,35 @@
     sprite: Objects/Weapons/Melee/singularityhammer.rsi
     layers:
     - state: icon
-  - type: RepulseAttract
+  # Sunrise edit start - способность молота и её частицы переведены на общий Trigger-пайплайн.
+  - type: TriggerOnMeleeSwing
+    keyOut: singularity-hammer-pulse
+  - type: UseDelayTriggerCondition
+    keys:
+    - singularity-hammer-pulse
+  - type: RepulseAttractOnTrigger
+    keysIn:
+    - singularity-hammer-pulse
+    targetUser: true
     speed: -15 #Anything above this pushes things too far away from the Wizard
     range: 5
     whitelist:
       components:
       - MobMover
       - Item
+  - type: ParticleOnTrigger
+    keysIn:
+    - singularity-hammer-pulse
+    targetUser: true
+    orchestras:
+    - orchestra: SingularityHammerPulse
+      intensity: 1.15
+  - type: UseDelayOnTrigger
+    keysIn:
+    - singularity-hammer-pulse
   - type: UseDelay
     delay: 10
-  - type: UseDelayOnMeleeHit
+  # Sunrise edit end
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:

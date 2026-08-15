@@ -18,6 +18,17 @@
     noRot: true
     layers:
     - state: "voidblink"
+  # Sunrise added start - одноразовые частицы подчёркивают обе точки обмена через пустоту.
+  - type: TriggerOnSpawn
+    keyOut: particle-spawn
+  - type: ParticleOnTrigger
+    keysIn:
+    - particle-spawn
+    orchestras:
+    - orchestra: TeleportArrival
+      colorSource: SourcePointLight
+      fallbackColor: "#8B55A6FF"
+  # Sunrise added end
   - type: TimedDespawn
     lifetime: 1
   - type: Tag

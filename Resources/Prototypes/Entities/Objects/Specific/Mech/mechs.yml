@@ -208,6 +208,11 @@
   # Sunrise-End
   - type: Damageable
     damageContainer: Mech
+  # Sunrise added start - искры от попаданий по корпусу меха.
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialMetal
+    minimumImpactDamage: 2
+  # Sunrise added end
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg

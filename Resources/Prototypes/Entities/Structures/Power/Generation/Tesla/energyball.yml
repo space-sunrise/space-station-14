@@ -114,6 +114,11 @@
       path: /Audio/Effects/tesla_collapse.ogg
       params:
         variation: 0.3
+  # Sunrise added start - составной электрический ореол делает угрозу читаемой в движении
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: TeslaEnergyBallAmbient
+  # Sunrise added end
   - type: InteractionPopup # for the brave
     successChance: 0.2
     interactSuccessString: petting-success-tesla
@@ -159,3 +164,8 @@
       shader: unshaded
   - type: Electrified
     requirePower: false
+  # Sunrise added start - облегчённый вариант ореола для малой шаровой молнии
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: TeslaMiniBallAmbient
+  # Sunrise added end

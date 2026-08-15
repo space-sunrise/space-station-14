@@ -113,6 +113,12 @@
     interactFailureString: petting-failure-bear
     interactSuccessSound:
       path: /Audio/Animals/sloth_squeak.ogg
+  # Sunrise added start - космическая шерсть распадается светящимися частицами при ударе.
+  - type: ParticleDamageVisuals
+    impactOrchestra: CreatureSpaceBearImpact
+    minimumImpactDamage: 2
+    impactCooldown: 0.1
+  # Sunrise added end
 
 - type: entity
   id: MobBearSpaceSalvage
@@ -276,6 +282,12 @@
       Unsexed: UnisexArachnid
   - type: TypingIndicator
     proto: spider
+  # Sunrise added start - попадание выбивает из космического паука светящиеся нити паутины.
+  - type: ParticleDamageVisuals
+    impactOrchestra: CreatureSpaceSpiderImpact
+    minimumImpactDamage: 1
+    impactCooldown: 0.1
+  # Sunrise added end
 
 - type: entity
   id: MobSpiderSpaceSalvage

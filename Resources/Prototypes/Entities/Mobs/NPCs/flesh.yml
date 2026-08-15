@@ -63,6 +63,12 @@
         Slash: 6
   - type: ReplacementAccent
     accent: genericAggressive
+  # Sunrise added start - повреждённая аномальная плоть выбрасывает кровь и органические фрагменты.
+  - type: ParticleDamageVisuals
+    impactOrchestra: CreatureFleshImpact
+    minimumImpactDamage: 1
+    impactCooldown: 0.1
+  # Sunrise added end
 
 - type: entity
   parent: BaseMobFlesh
@@ -266,6 +272,12 @@
   - type: ReplacementAccent
     accent: genericAggressive
   - type: SalvageMobRestrictions
+  # Sunrise added start - повреждённая аномальная плоть выбрасывает кровь и органические фрагменты.
+  - type: ParticleDamageVisuals
+    impactOrchestra: CreatureFleshImpact
+    minimumImpactDamage: 1
+    impactCooldown: 0.1
+  # Sunrise added end
 
 - type: entity
   parent: BaseMobFleshSalvage

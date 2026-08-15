@@ -1,0 +1,137 @@
+# Телепортация
+
+- type: particleEffect
+  id: TeleportDepartureRing
+  priority: Critical
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: plasma_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.25
+    value: 1
+  - time: 1
+    value: 0.2
+  particleSize: 0.18
+  sizeVariance: 0.3
+  lifetime: 0.48
+  lifetimeVariance: 0.12
+  speed: 0.45
+  speedVariance: 0.22
+  drag: 1.1
+  emissionRate: 0
+  maxCount: 18
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.42
+
+- type: particleEffect
+  id: TeleportArrivalBurst
+  priority: Critical
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.5
+    value: 0.68
+  - time: 1
+    value: 0.06
+  particleSize: 0.2
+  sizeVariance: 0.4
+  stretchFactor: 0.18
+  lifetime: 0.55
+  lifetimeVariance: 0.16
+  speed: 1.35
+  speedVariance: 0.65
+  drag: 1.1
+  noiseStrength: 0.08
+  emissionRate: 0
+  maxCount: 22
+  burst: true
+  spreadAngle: 360
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.22
+
+- type: particleEffect
+  id: TeleportResidualMotes
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.55
+  - time: 0.3
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.15
+  sizeVariance: 0.45
+  lifetime: 0.58
+  lifetimeVariance: 0.18
+  speed: 0.42
+  speedVariance: 0.25
+  gravity: -0.1
+  drag: 0.65
+  noiseStrength: 0.12
+  noiseFrequency: 1.8
+  emissionRate: 24
+  maxCount: 16
+  duration: 0.48
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.34
+
+- type: particleEffect
+  id: TeleportRiftMotes
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.55
+  - time: 0.3
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.11
+  sizeVariance: 0.45
+  lifetime: 0.75
+  lifetimeVariance: 0.22
+  speed: 0.32
+  speedVariance: 0.2
+  drag: 0.5
+  noiseStrength: 0.16
+  noiseFrequency: 2.1
+  emissionRate: 16
+  maxCount: 18
+  duration: 2.8
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.34

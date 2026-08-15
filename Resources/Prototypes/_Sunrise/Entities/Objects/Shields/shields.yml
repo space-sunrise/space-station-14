@@ -89,6 +89,14 @@
       autoRechargePauseTime: 30
     - type: EnergyShield
       energyCostPerDamage: 15
+    - type: TriggerOnReflected
+      keyOut: reflected
+    - type: ParticleOnTrigger
+      keysIn:
+      - reflected
+      orchestras:
+      - orchestra: EnergyBarrierImpact
+        intensity: 1.15
     - type: ExaminableBattery
     - type: Battery
       maxCharge: 1500

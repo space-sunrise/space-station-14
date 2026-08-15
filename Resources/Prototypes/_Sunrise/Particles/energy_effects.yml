@@ -1,0 +1,338 @@
+# Тесла и энергетические снаряды
+
+- type: particleEffect
+  id: TeslaOrbitMotes
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#E9FFFFFF"
+  endColor: "#43C7FF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.55
+  - time: 0.3
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.2
+  sizeVariance: 0.45
+  lifetime: 0.72
+  lifetimeVariance: 0.22
+  speed: 0.22
+  speedVariance: 0.15
+  drag: 0.3
+  noiseStrength: 0.18
+  noiseFrequency: 2.4
+  emissionRate: 20
+  maxCount: 18
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.68
+
+- type: particleEffect
+  id: TeslaCoronaArcs
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.18
+    color: "#96F7FFFF"
+  - time: 0.65
+    color: "#43AFFFFF"
+  - time: 1
+    color: "#2258B000"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.55
+    value: 0.7
+  - time: 1
+    value: 0.06
+  particleSize: 0.1
+  sizeVariance: 0.4
+  stretchFactor: 0.2
+  lifetime: 0.34
+  lifetimeVariance: 0.1
+  speed: 1.05
+  speedVariance: 0.5
+  drag: 1
+  noiseStrength: 0.18
+  noiseFrequency: 4
+  emissionRate: 30
+  maxCount: 20
+  spreadAngle: 360
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.48
+
+- type: particleEffect
+  id: TeslaCoreHaze
+  priority: Decorative
+  minimumQuality: Medium
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  shader: unshaded
+  startColor: "#65D9FF66"
+  endColor: "#255BFF00"
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.25
+    value: 0.7
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.55
+  - time: 1
+    value: 1.25
+  particleSize: 0.36
+  sizeVariance: 0.3
+  lifetime: 0.62
+  lifetimeVariance: 0.18
+  speed: 0.1
+  speedVariance: 0.06
+  drag: 1
+  noiseStrength: 0.08
+  emissionRate: 9
+  maxCount: 8
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.36
+
+- type: particleEffect
+  id: TeslaMiniOrbitMotes
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#E9FFFFFF"
+  endColor: "#43C7FF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.55
+  - time: 0.3
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.1
+  sizeVariance: 0.4
+  lifetime: 0.52
+  lifetimeVariance: 0.16
+  speed: 0.16
+  speedVariance: 0.1
+  drag: 0.45
+  noiseStrength: 0.1
+  noiseFrequency: 2.6
+  emissionRate: 14
+  maxCount: 10
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.24
+
+- type: particleEffect
+  id: TeslaMiniCoronaArcs
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  startColor: "#D8FCFFFF"
+  endColor: "#388DFF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.55
+    value: 0.68
+  - time: 1
+    value: 0.06
+  particleSize: 0.075
+  sizeVariance: 0.35
+  stretchFactor: 0.2
+  lifetime: 0.25
+  lifetimeVariance: 0.08
+  speed: 0.75
+  speedVariance: 0.3
+  drag: 1.2
+  noiseStrength: 0.1
+  emissionRate: 18
+  maxCount: 10
+  spreadAngle: 360
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.18
+
+- type: particleEffect
+  id: TeslaProjectileWake
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#F2FFFFFF"
+  - time: 0.2
+    color: "#73EFFFFF"
+  - time: 0.7
+    color: "#3894FFFF"
+  - time: 1
+    color: "#2450A000"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.52
+    value: 0.66
+  - time: 1
+    value: 0.06
+  particleSize: 0.18
+  sizeVariance: 0.4
+  stretchFactor: 0.16
+  lifetime: 0.28
+  lifetimeVariance: 0.09
+  speed: 0.42
+  speedVariance: 0.22
+  drag: 1.8
+  noiseStrength: 0.1
+  noiseFrequency: 3.5
+  emissionRate: 52
+  maxCount: 16
+  bursts:
+  - time: 0
+    count: 3
+  spreadAngle: 26
+  directionMode: OppositeEmitterVelocity
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: Triangle
+    triangleLength: 0.4
+    triangleHalfWidth: 0.15
+
+# Суперматерия
+
+- type: particleEffect
+  id: SupermatterOrbitMotes
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: plasma_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFD94D00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.5
+  - time: 0.3
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.17
+  sizeVariance: 0.4
+  lifetime: 0.85
+  lifetimeVariance: 0.25
+  speed: 0.3
+  speedVariance: 0.16
+  gravity: -0.08
+  drag: 0.5
+  noiseStrength: 0.16
+  noiseFrequency: 1.7
+  emissionRate: 15
+  maxCount: 15
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.38
+
+- type: particleEffect
+  id: SupermatterRadiance
+  priority: Decorative
+  minimumQuality: Medium
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: plasma_mote
+  shader: unshaded
+  startColor: "#FFF8A866"
+  endColor: "#FFB52A00"
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.25
+    value: 0.75
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.3
+  - time: 0.35
+    value: 1
+  - time: 1
+    value: 0.12
+  particleSize: 0.38
+  sizeVariance: 0.3
+  lifetime: 0.8
+  lifetimeVariance: 0.22
+  speed: 0.1
+  speedVariance: 0.05
+  drag: 0.8
+  noiseStrength: 0.08
+  emissionRate: 8
+  maxCount: 8
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.3
+
+- type: particleEffect
+  id: SupermatterSparks
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FF9F1A00"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.55
+    value: 0.7
+  - time: 1
+    value: 0.06
+  particleSize: 0.09
+  sizeVariance: 0.45
+  stretchFactor: 0.18
+  lifetime: 0.55
+  lifetimeVariance: 0.18
+  speed: 0.75
+  speedVariance: 0.4
+  gravity: -0.15
+  drag: 0.8
+  emissionRate: 6
+  maxCount: 7
+  spreadAngle: 360
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.3

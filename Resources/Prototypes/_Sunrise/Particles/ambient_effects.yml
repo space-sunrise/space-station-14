@@ -1,0 +1,181 @@
+- type: particleEffect
+  id: LighterRareSpark
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFCEBFF"
+  - time: 0.18
+    color: "#FFD35AFF"
+  - time: 0.65
+    color: "#FF7B21DD"
+  - time: 1
+    color: "#B83C0800"
+  alphaOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.7
+    value: 0.85
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.55
+    value: 0.62
+  - time: 1
+    value: 0.08
+  particleSize: 0.38
+  sizeVariance: 0.25
+  stretchFactor: 0.04
+  lifetime: 0.44
+  lifetimeVariance: 0.07
+  speed: 0.75
+  speedVariance: 0.16
+  gravity: -0.16
+  drag: 0.9
+  emissionRate: 0.9
+  maxCount: 2
+  duration: 0
+  spreadAngle: 52
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.025
+
+- type: particleEffect
+  id: HotSolutionSteam
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  startColor: "#F3F7F7A8"
+  endColor: "#DCE7E700"
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.2
+    value: 0.62
+  - time: 0.72
+    value: 0.38
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.6
+    value: 1
+  - time: 1
+    value: 0.72
+  particleSize: 0.22
+  sizeVariance: 0.3
+  lifetime: 1.35
+  lifetimeVariance: 0.3
+  speed: 0.12
+  speedVariance: 0.06
+  gravity: -0.2
+  drag: 0.42
+  noiseStrength: 0.1
+  noiseFrequency: 0.8
+  emissionRate: 2.2
+  maxCount: 5
+  duration: 0
+  spreadAngle: 38
+  startRotationVariance: 180
+  rotationSpeedVariance: 18
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.08
+
+- type: particleEffect
+  id: DecompositionGas
+  priority: Decorative
+  minimumQuality: Medium
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  startColor: "#89946E3D"
+  endColor: "#59634100"
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.22
+    value: 0.48
+  - time: 0.72
+    value: 0.32
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.5
+  - time: 0.65
+    value: 1
+  - time: 1
+    value: 0.78
+  particleSize: 0.54
+  sizeVariance: 0.38
+  lifetime: 2.35
+  lifetimeVariance: 0.5
+  speed: 0.09
+  speedVariance: 0.05
+  gravity: -0.08
+  drag: 0.35
+  noiseStrength: 0.08
+  noiseFrequency: 0.6
+  emissionRate: 1.05
+  maxCount: 5
+  duration: 0
+  spreadAngle: 360
+  startRotationVariance: 180
+  rotationSpeedVariance: 12
+  worldSpace: false
+  shape:
+    type: Box
+    boxExtents: 0.3, 0.2
+
+- type: particleEffect
+  id: DecompositionFlies
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: dot
+  colorOverLifetime:
+  - time: 0
+    color: "#1B181300"
+  - time: 0.12
+    color: "#211D16E8"
+  - time: 0.78
+    color: "#0E0C09E8"
+  - time: 1
+    color: "#09080700"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.65
+  - time: 0.18
+    value: 1
+  - time: 0.82
+    value: 0.85
+  - time: 1
+    value: 0.2
+  particleSize: 1.25
+  sizeVariance: 0.35
+  lifetime: 1.25
+  lifetimeVariance: 0.35
+  speed: 0.25
+  speedVariance: 0.14
+  drag: 0.55
+  noiseStrength: 0.32
+  noiseFrequency: 3.4
+  emissionRate: 4.2
+  maxCount: 9
+  duration: 0
+  spreadAngle: 360
+  worldSpace: false
+  shape:
+    type: Box
+    boxExtents: 0.4, 0.26

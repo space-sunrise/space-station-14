@@ -208,6 +208,10 @@
   - type: InnateItem
     instantActions:
     - HandHeldMassScannerBorg
+  - type: ParticleDamageVisuals
+    impactOrchestra: CreatureDragonImpact
+    minimumImpactDamage: 2
+    impactCooldown: 0.09
   # Sunrise-End
 
 - type: entity

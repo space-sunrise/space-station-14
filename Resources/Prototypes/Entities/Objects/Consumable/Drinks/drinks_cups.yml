@@ -217,6 +217,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
+        temperature: 345
         reagents:
         - ReagentId: HotCocoa
           Quantity: 20
@@ -241,6 +242,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
+        temperature: 348
         reagents:
         - ReagentId: Coffee
           Quantity: 20
@@ -265,6 +267,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
+        temperature: 345
         reagents:
         - ReagentId: CafeLatte
           Quantity: 20
@@ -291,6 +294,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
+        temperature: 343
         reagents:
         - ReagentId: Tea
           Quantity: 20
@@ -308,6 +312,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
+        temperature: 343
         reagents:
         - ReagentId: GreenTea
           Quantity: 20

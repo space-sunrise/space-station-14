@@ -1,3 +1,5 @@
+using Content.Shared._Sunrise.Particles;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Hitscan.Components;
@@ -28,6 +30,7 @@ public sealed class HitscanBasicDamageSystem : EntitySystem
 
         // Sunrise edit start - credit pilot player as origin for damage overlay compatibility
         var origin = args.Data.Shooter ?? args.Data.Gun;
+        RaiseParticleImpact(args.Data.HitEntity.Value, dmg, origin, args.Data);
         if(!_damage.TryChangeDamage(args.Data.HitEntity.Value, dmg, out var damageDealt, origin: origin))
             return;
         // Sunrise edit end
@@ -54,6 +57,7 @@ public sealed class HitscanBasicDamageSystem : EntitySystem
 
         // Sunrise edit start - credit pilot player as origin for damage overlay compatibility
         var origin = args.Data.Shooter ?? args.Data.Gun;
+        RaiseParticleImpact(args.Data.HitEntity.Value, dmg, origin, args.Data);
         if (!_damage.TryChangeDamage(args.Data.HitEntity.Value, dmg, out var damageDealt, origin: origin))
             return;
         // Sunrise edit end
@@ -65,6 +69,25 @@ public sealed class HitscanBasicDamageSystem : EntitySystem
         };
 
         RaiseLocalEvent(ent, ref damageEvent);
+    }
+    // Sunrise added end
+
+    // Sunrise added start - единая передача точной raycast-позиции материал-зависимым частицам.
+    private void RaiseParticleImpact(
+        EntityUid target,
+        DamageSpecifier damage,
+        EntityUid origin,
+        HitscanRaycastFiredData data)
+    {
+        if (data.HitPosition is not { } hitPosition)
+            return;
+
+        var particleImpact = new ParticleDamageImpactEvent(
+            damage,
+            origin,
+            hitPosition,
+            data.ShotDirection);
+        RaiseLocalEvent(target, ref particleImpact);
     }
     // Sunrise added end
 }

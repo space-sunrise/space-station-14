@@ -1,0 +1,282 @@
+# Короткие реакции на урон подчёркивают необычную природу существ, не перекрывая их спрайты.
+
+- type: particleEffect
+  id: BaseCreatureImpactMotes
+  abstract: true
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: cross
+  shader: unshaded
+  alphaOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.72
+    value: 0.82
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.72
+  - time: 0.2
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.9
+  sizeVariance: 0.24
+  lifetime: 0.62
+  lifetimeVariance: 0.14
+  speed: 0.88
+  speedVariance: 0.32
+  drag: 0.7
+  emissionRate: 0
+  maxCount: 8
+  burst: true
+  spreadAngle: 24
+  directionMode: RadialOutward
+  startRotationVariance: 180
+  rotationSpeedVariance: 90
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.1
+
+- type: particleEffect
+  parent: BaseCreatureImpactMotes
+  id: CreatureSpaceBearMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#F5F1FFFF"
+  - time: 0.38
+    color: "#A68CFFFF"
+  - time: 0.72
+    color: "#5EC8FFFF"
+  - time: 1
+    color: "#3150A000"
+  particleSize: 1.05
+  maxCount: 9
+  shape:
+    type: CircleFill
+    radius: 0.14
+
+- type: particleEffect
+  id: CreatureSpaceBearHaze
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot
+  shader: unshaded
+  startColor: "#8662C88A"
+  endColor: "#3A5FBC00"
+  alphaOverLifetime:
+  - time: 0
+    value: 0.75
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.35
+  - time: 0.35
+    value: 1
+  - time: 1
+    value: 1.35
+  particleSize: 0.42
+  sizeVariance: 0.25
+  lifetime: 0.48
+  lifetimeVariance: 0.1
+  speed: 0.28
+  speedVariance: 0.12
+  drag: 1.3
+  noiseStrength: 0.06
+  emissionRate: 0
+  maxCount: 3
+  burst: true
+  spreadAngle: 360
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.08
+
+- type: particleEffect
+  parent: BaseCreatureImpactMotes
+  id: CreatureSpaceSpiderSilk
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.42
+    color: "#C8F5FFFF"
+  - time: 1
+    color: "#6798C000"
+  particleSize: 0.92
+  particleScale: 0.72, 1.08
+  speed: 0.7
+  drag: 0.95
+  maxCount: 11
+  spreadAngle: 32
+  shape:
+    type: CircleFill
+    radius: 0.13
+
+- type: particleEffect
+  parent: BaseCreatureImpactMotes
+  id: CreatureCarpScales
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.3
+    color: "#72ECFFFF"
+  - time: 0.68
+    color: "#B06CFFFF"
+  - time: 1
+    color: "#4C359800"
+  particleSize: 1
+  speed: 1.05
+  gravity: 0.45
+  maxCount: 9
+  shape:
+    type: CircleFill
+    radius: 0.11
+
+- type: particleEffect
+  id: CreatureDragonEmbers
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.18
+    color: "#FFD269FF"
+  - time: 0.58
+    color: "#FF7028EE"
+  - time: 1
+    color: "#8B160000"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.7
+  - time: 0.22
+    value: 1
+  - time: 1
+    value: 0.06
+  particleSize: 0.18
+  sizeVariance: 0.4
+  lifetime: 0.72
+  lifetimeVariance: 0.18
+  speed: 1.05
+  speedVariance: 0.4
+  gravity: -0.18
+  drag: 0.65
+  emissionRate: 0
+  maxCount: 11
+  burst: true
+  spreadAngle: 28
+  directionMode: RadialOutward
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.12
+
+- type: particleEffect
+  id: CreatureShadowWisps
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#D5BCF0C8"
+  - time: 0.35
+    color: "#67417AB8"
+  - time: 0.78
+    color: "#24122F9A"
+  - time: 1
+    color: "#08040C00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.35
+  - time: 0.35
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.32
+  sizeVariance: 0.28
+  lifetime: 0.82
+  lifetimeVariance: 0.18
+  speed: 0.55
+  speedVariance: 0.2
+  drag: 1.1
+  noiseStrength: 0.1
+  noiseFrequency: 1.1
+  emissionRate: 0
+  maxCount: 7
+  burst: true
+  spreadAngle: 34
+  directionMode: RadialOutward
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.12
+
+- type: particleEffect
+  parent: BaseCreatureImpactMotes
+  id: CreatureIceCrystals
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.45
+    color: "#BDEFFFFF"
+  - time: 1
+    color: "#4A91C800"
+  particleSize: 1.08
+  lifetime: 0.76
+  speed: 0.95
+  gravity: 0.72
+  maxCount: 10
+  spreadAngle: 32
+
+- type: particleEffect
+  id: CreatureFleshDrops
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: drop
+  colorOverLifetime:
+  - time: 0
+    color: "#FFB1A8FF"
+  - time: 0.32
+    color: "#CE3345FF"
+  - time: 1
+    color: "#5B101A00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.75
+  - time: 0.2
+    value: 1
+  - time: 1
+    value: 0.12
+  particleSize: 0.72
+  sizeVariance: 0.28
+  lifetime: 0.68
+  lifetimeVariance: 0.16
+  speed: 1.05
+  speedVariance: 0.38
+  gravity: 1.8
+  drag: 0.3
+  emissionRate: 0
+  maxCount: 9
+  burst: true
+  spreadAngle: 34
+  directionMode: RadialOutward
+  alignToVelocity: true
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.11
+
+- type: particleEffect
+  parent: OrganicImpactChunks
+  id: CreatureFleshChunks
+  worldSpace: false

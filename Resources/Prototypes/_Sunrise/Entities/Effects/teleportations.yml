@@ -13,6 +13,10 @@
     state: teleportation
     scale: 0.65, 0.65
     color: "#FD009899"
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: TeleportRiftAmbient
+      colorOverride: "#FD38B0FF"
   - type: TimedDespawn
     lifetime: 5.0
 
@@ -29,6 +33,10 @@
     state: teleportation-entity
     scale: 0.65, 0.65
     color: "#FD009899"
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: TeleportRiftAmbient
+      colorOverride: "#FD38B0FF"
   - type: TimedDespawn
     lifetime: 5.0
 
@@ -49,6 +57,11 @@
     radius: 2
     energy: 1
     netsync: false
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: TeleportRiftAmbient
+      colorSource: SourcePointLight
+      fallbackColor: "#459BFFFF"
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
@@ -73,6 +86,11 @@
     radius: 2
     energy: 1
     netsync: false
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: TeleportRiftAmbient
+      colorSource: SourcePointLight
+      fallbackColor: "#FF4545FF"
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg

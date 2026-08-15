@@ -1,0 +1,445 @@
+# Удары и разрушение окружения
+
+- type: particleEffect
+  id: WallImpactDust
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot
+  startColor: "#B7AEA0CC"
+  endColor: "#766E6300"
+  alphaOverLifetime:
+  - time: 0
+    value: 0.9
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.35
+    value: 1
+  - time: 1
+    value: 1.3
+  particleSize: 0.36
+  sizeVariance: 0.35
+  lifetime: 0.48
+  lifetimeVariance: 0.14
+  speed: 1.15
+  speedVariance: 0.45
+  gravity: 0.7
+  drag: 1.3
+  noiseStrength: 0.05
+  emissionRate: 0
+  maxCount: 7
+  burst: true
+  spreadAngle: 72
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.06
+
+- type: particleEffect
+  id: WallImpactFragments
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: curl
+  shader: unshaded
+  startColor: "#FFF4D6FF"
+  endColor: "#A15B1900"
+  particleSize: 1.15
+  sizeVariance: 0.35
+  stretchFactor: 0.3
+  lifetime: 0.46
+  lifetimeVariance: 0.12
+  speed: 2.1
+  speedVariance: 0.7
+  gravity: 2.4
+  drag: 0.45
+  emissionRate: 0
+  maxCount: 7
+  burst: true
+  spreadAngle: 88
+  alignToVelocity: true
+  worldSpace: true
+
+- type: particleEffect
+  id: WallDestructionDust
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  startColor: "#B7AEA0B8"
+  endColor: "#71695F00"
+  alphaOverLifetime:
+  - time: 0
+    value: 0.75
+  - time: 0.45
+    value: 0.5
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.35
+  - time: 0.35
+    value: 1.1
+  - time: 1
+    value: 1.5
+  particleSize: 0.56
+  sizeVariance: 0.45
+  lifetime: 0.85
+  lifetimeVariance: 0.2
+  speed: 0.58
+  speedVariance: 0.35
+  gravity: -0.08
+  drag: 1.1
+  noiseStrength: 0.12
+  noiseFrequency: 1.1
+  emissionRate: 0
+  maxCount: 18
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: Box
+    boxExtents: 0.44, 0.44
+
+- type: particleEffect
+  id: WallDestructionFragments
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: curl
+  startColor: "#E0D7C8FF"
+  endColor: "#6B625700"
+  particleSize: 1.25
+  sizeVariance: 0.4
+  lifetime: 0.68
+  lifetimeVariance: 0.22
+  speed: 1.5
+  speedVariance: 0.8
+  gravity: 2.2
+  drag: 0.55
+  emissionRate: 0
+  maxCount: 14
+  burst: true
+  spreadAngle: 360
+  startRotationVariance: 180
+  rotationSpeedVariance: 180
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: Box
+    boxExtents: 0.38, 0.38
+
+- type: particleEffect
+  id: ElectronicImpactSparks
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.12
+    color: "#BFF8FFFF"
+  - time: 0.55
+    color: "#5AB9FFFF"
+  - time: 1
+    color: "#1665A000"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.5
+    value: 0.68
+  - time: 1
+    value: 0.06
+  particleSize: 0.25
+  sizeVariance: 0.3
+  stretchFactor: 0.16
+  lifetime: 0.38
+  lifetimeVariance: 0.14
+  speed: 2.7
+  speedVariance: 1
+  gravity: 1.4
+  drag: 0.5
+  emissionRate: 0
+  maxCount: 8
+  burst: true
+  spreadAngle: 78
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.04
+
+- type: particleEffect
+  id: ElectronicImpactFlash
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#E9FDFFFF"
+  endColor: "#3DAEFD00"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.4
+  - time: 0.18
+    value: 1
+  - time: 1
+    value: 0.06
+  particleSize: 0.22
+  sizeVariance: 0.25
+  lifetime: 0.22
+  lifetimeVariance: 0.06
+  speed: 0.55
+  speedVariance: 0.25
+  emissionRate: 0
+  maxCount: 3
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+
+# Электромагнитные и интерактивные разряды
+
+- type: particleEffect
+  id: EmpArcSparks
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.15
+    color: "#7DF5FFFF"
+  - time: 0.6
+    color: "#4B8FFFFF"
+  - time: 1
+    color: "#4728A000"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.52
+    value: 0.68
+  - time: 1
+    value: 0.06
+  particleSize: 0.24
+  sizeVariance: 0.35
+  stretchFactor: 0.18
+  lifetime: 0.3
+  lifetimeVariance: 0.08
+  speed: 2.3
+  speedVariance: 0.9
+  drag: 0.65
+  noiseStrength: 0.12
+  noiseFrequency: 3.2
+  emissionRate: 0
+  maxCount: 12
+  burst: true
+  spreadAngle: 360
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.22
+
+- type: particleEffect
+  id: AirlockHackPixels
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: dot
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFCE8FF"
+  - time: 0.25
+    color: "#FFE45BFF"
+  - time: 0.72
+    color: "#F2B41FFF"
+  - time: 1
+    color: "#9A650000"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.22
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 1
+  sizeVariance: 0
+  lifetime: 0.9
+  lifetimeVariance: 0.18
+  speed: 0.78
+  speedVariance: 0.24
+  drag: 1.05
+  noiseStrength: 0.04
+  noiseFrequency: 0.8
+  emissionRate: 0
+  maxCount: 14
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.14
+
+- type: particleEffect
+  id: ArtifactActivationMotes
+  priority: Critical
+  ignoreQualitySettings: true
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  renderLayer: 10
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFCE4FF"
+  - time: 0.35
+    color: "#C48BFFFF"
+  - time: 1
+    color: "#5936B000"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.3
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.55
+  sizeVariance: 0.4
+  lifetime: 1.05
+  lifetimeVariance: 0.22
+  speed: 0.95
+  speedVariance: 0.45
+  drag: 0.8
+  noiseStrength: 0.15
+  noiseFrequency: 1.8
+  emissionRate: 0
+  maxCount: 24
+  bursts:
+  - time: 0
+    count: 14
+  - time: 0.1
+    count: 7
+  - time: 0.2
+    count: 3
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.48
+
+- type: particleEffect
+  id: ArtifactActivationGlow
+  priority: Critical
+  ignoreQualitySettings: true
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: plasma_mote
+  shader: unshaded
+  renderLayer: 9
+  startColor: "#D9B6FFFF"
+  endColor: "#7135C000"
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.12
+    value: 0.85
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.25
+  - time: 0.25
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.85
+  sizeVariance: 0.15
+  lifetime: 0.68
+  lifetimeVariance: 0.08
+  speed: 0.12
+  emissionRate: 0
+  maxCount: 6
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+
+- type: particleEffect
+  id: EnergyBarrierImpactWave
+  priority: Critical
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  alphaOverLifetime:
+  - time: 0
+    value: 0.95
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.25
+  - time: 0.22
+    value: 1.1
+  - time: 1
+    value: 1.7
+  particleSize: 0.6
+  sizeVariance: 0.2
+  lifetime: 0.28
+  lifetimeVariance: 0.05
+  speed: 0.35
+  speedVariance: 0.15
+  drag: 2
+  emissionRate: 0
+  maxCount: 5
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.1
+
+- type: particleEffect
+  id: EnergyBarrierImpactSparks
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.52
+    value: 0.68
+  - time: 1
+    value: 0.06
+  particleSize: 0.2
+  sizeVariance: 0.35
+  stretchFactor: 0.18
+  lifetime: 0.4
+  lifetimeVariance: 0.12
+  speed: 1.75
+  speedVariance: 0.7
+  drag: 0.75
+  noiseStrength: 0.08
+  emissionRate: 0
+  maxCount: 10
+  burst: true
+  spreadAngle: 360
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.08
+

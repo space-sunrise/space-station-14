@@ -35,6 +35,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  # Sunrise added start - пыль от попаданий и разрушения стены.
+  - type: ParticleDamageVisuals
+    useMaterialDestruction: true
+  # Sunrise added end
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -104,6 +108,8 @@
   id: WallBrick
   name: brick wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialStone
   - type: Pierceable
     level: Metal
   - type: Ricochetable
@@ -215,6 +221,8 @@
   name: meat wall
   description: Sticky.
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialOrganic
   - type: Tag
     tags:
     - Wall
@@ -311,6 +319,8 @@
   id: WallDiamond
   name: diamond wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialCrystal
   - type: Ricochetable
     chance: 1
   - type: Sprite
@@ -396,6 +406,8 @@
   id: WallIce
   name: ice wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialIce
   - type: Sprite
     sprite: Structures/Walls/ice.rsi
   - type: Icon
@@ -422,6 +434,8 @@
   id: WallPlasma
   name: plasma wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialCrystal
   - type: Sprite
     sprite: Structures/Walls/plasma.rsi
   - type: Icon
@@ -466,6 +480,8 @@
   id: WallPlastic
   name: plastic wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialPlastic
   - type: Ricochetable
     chance: 0.1
   - type: Sprite
@@ -796,6 +812,8 @@
   id: WallSandstone
   name: sandstone wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialStone
   - type: Sprite
     sprite: Structures/Walls/sandstone.rsi
   - type: Icon
@@ -1134,6 +1152,8 @@
   id: WallSolidChitin
   name: solid chitin
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialOrganic
   - type: Ricochetable
     chance: 0.1
   - type: Tag
@@ -1181,6 +1201,8 @@
   id: WallReinforcedChitin
   name: reinforced chitin
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialOrganic
   - type: Sprite
     sprite: Structures/Walls/xeno.rsi
   - type: Icon
@@ -1338,6 +1360,8 @@
   name: wood wall
   description: The traditional assistant defense.
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialWood
   - type: Ricochetable
     chance: 0
   - type: Sprite
@@ -1433,6 +1457,8 @@
   id: WallNecropolis
   name: stone wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialStone
   - type: Sprite
     sprite: Structures/Walls/necropolis.rsi
   - type: Icon
@@ -1544,6 +1570,8 @@
   id: WallVaultRock
   name: rock vault wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialStone
   - type: Sprite
     sprite: Structures/Walls/vault.rsi
     state: rockvault
@@ -1556,6 +1584,8 @@
   id: WallVaultSandstone
   name: sandstone vault wall
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialStone
   - type: Sprite
     sprite: Structures/Walls/vault.rsi
     state: sandstonevault
@@ -1623,6 +1653,8 @@
   name: cobblestone brick wall
   description: Stone by stone, perfectly fitted together to form a wall.
   components:
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialStone
   - type: Sprite
     sprite: Structures/Walls/cobblebrick.rsi
   - type: Icon
@@ -1789,6 +1821,11 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Card
+  # Sunrise added start - картон использует лёгкие частицы без металлических искр.
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialPlastic
+    useMaterialDestruction: true
+  # Sunrise added end
   - type: Physics
     bodyType: Static
   - type: Fixtures

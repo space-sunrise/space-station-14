@@ -1,0 +1,13 @@
+- type: emoteParticleVisuals
+  id: SunriseEmoteBreath
+  emotes:
+  - Cough
+  - SevereCough
+  - Sigh
+  orchestra: EmoteBreath
+
+- type: emoteParticleVisuals
+  id: SunriseEmoteCrying
+  emotes:
+  - Crying
+  orchestra: EmoteCrying

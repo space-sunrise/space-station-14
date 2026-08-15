@@ -1,5 +1,6 @@
 using Content.Server.Actions;
 using Content.Server.Chat.Systems;
+using Content.Shared._Sunrise.Particles;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Humanoid;
@@ -104,6 +105,12 @@ public sealed class VocalSystem : EntitySystem
         if (_random.Prob(component.WilhelmProbability))
         {
             _audio.PlayPvs(component.Wilhelm, uid, component.Wilhelm.Params);
+
+            // Sunrise added start - прямой звук Вильгельма обходит общий путь эмоутов.
+            var particleEvent = new EmoteSoundPlayedParticleEvent(uid, component.ScreamId);
+            RaiseLocalEvent(ref particleEvent);
+            // Sunrise added end
+
             return true;
         }
 

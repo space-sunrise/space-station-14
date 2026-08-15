@@ -31,6 +31,9 @@
   - type: ItemToggleSize
     activatedSize: Small
   - type: ItemToggleHot
+  - type: ToggleParticleVisuals
+    orchestra: LighterAmbient
+    fallbackOffset: 0, 0.34
   - type: Item
     size: Tiny
     sprite: Objects/Tools/lighters.rsi

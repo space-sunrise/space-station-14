@@ -9,7 +9,7 @@ public sealed class EntityEffectOnTriggerSystem : XOnTriggerSystem<EntityEffectO
 
     protected override void OnTrigger(Entity<EntityEffectOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
-        _effects.ApplyEffects(target, ent.Comp.Effects, ent.Comp.Scale);
+        _effects.ApplyEffects(target, ent.Comp.Effects, ent.Comp.Scale, args.User); // Sunrise-Edit - сохраняем инициатора для предсказанных EntityEffect.
         args.Handled = true;
     }
 }

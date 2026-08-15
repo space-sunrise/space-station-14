@@ -156,6 +156,11 @@
     damage:
       types:
         Piercing: 21
+  # Sunrise added start - энергетический наконечник оставляет составной след только во время броска
+  - type: ParticleOnThrown
+    orchestras:
+    - orchestra: PlasmaSpearThrown
+  # Sunrise added end
   - type: Construction
     graph: SpearPlasma
 
@@ -178,6 +183,11 @@
       types:
         Piercing: 12
         Radiation: 9
+  # Sunrise added start - зелёный след визуально отделяет радиоактивное копьё в полёте
+  - type: ParticleOnThrown
+    orchestras:
+    - orchestra: UraniumSpearThrown
+  # Sunrise added end
   - type: Construction
     graph: SpearUranium
 

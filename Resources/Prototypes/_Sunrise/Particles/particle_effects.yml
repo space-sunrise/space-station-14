@@ -1,0 +1,790 @@
+- type: particleEffect
+  id: EnergyMotes
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.15
+    value: 1
+  - time: 0.75
+    value: 1
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.65
+  - time: 0.35
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.3
+  sizeVariance: 0.35
+  lifetime: 1.7
+  lifetimeVariance: 0.4
+  speed: 0.3
+  speedVariance: 0.18
+  drag: 0.5
+  noiseStrength: 0.2
+  noiseFrequency: 0.8
+  emissionRate: 10
+  maxCount: 24
+  spreadAngle: 360
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.75
+
+- type: particleEffect
+  id: EnergyHaze
+  priority: Decorative
+  minimumQuality: Medium
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  startColor: "#FFFFFFE6"
+  endColor: "#FFFFFF00"
+  renderLayer: -10
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.2
+    value: 0.65
+  - time: 0.75
+    value: 0.5
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.4
+  - time: 0.45
+    value: 1
+  - time: 1
+    value: 1.25
+  particleSize: 0.75
+  sizeVariance: 0.25
+  lifetime: 2.6
+  lifetimeVariance: 0.5
+  speed: 0.08
+  speedVariance: 0.05
+  drag: 0.6
+  noiseStrength: 0.06
+  noiseFrequency: 0.5
+  emissionRate: 2.5
+  maxCount: 8
+  spreadAngle: 360
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.25
+
+- type: particleEffect
+  id: ElectricSparks
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: 10
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.55
+    value: 0.72
+  - time: 1
+    value: 0.08
+  particleSize: 0.22
+  sizeVariance: 0.35
+  stretchFactor: 0.18
+  lifetime: 0.42
+  lifetimeVariance: 0.16
+  speed: 1.7
+  speedVariance: 0.9
+  drag: 1.2
+  emissionRate: 11
+  maxCount: 16
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.35
+
+- type: particleEffect
+  id: WeldingSparks
+  parent: BaseWeldingBurst
+  particleSize: 0.16
+  sizeVariance: 0.05
+  stretchFactor: 0.16
+  lifetime: 0.32
+  lifetimeVariance: 0.08
+  speed: 3.2
+  speedVariance: 0.8
+  maxCount: 12
+  gravity: 1.1
+  drag: 0.4
+  spreadAngle: 42
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.03
+
+# Параметры одной точки включения клинка вынесены из геометрического адаптера в данные.
+- type: particleEffect
+  id: EnergyBladeIgnitionGlow
+  parent: EnergyImpactGlow
+  maxCount: 1
+  particleSize: 0.24
+  sizeVariance: 0.03
+  speed: 0.03
+  speedVariance: 0.01
+  shape:
+    type: CircleFill
+    radius: 0.012
+
+- type: particleEffect
+  id: EnergyBladeIgnitionSample
+  parent: EnergyBladeIgnition
+  maxCount: 4
+  particleSize: 0.22
+  sizeVariance: 0.05
+  stretchFactor: 0.2
+  lifetime: 0.28
+  speed: 0.9
+  speedVariance: 0.22
+  shape:
+    type: CircleEdge
+    radius: 0.018
+
+- type: particleEffect
+  id: WeldingSmoke
+  priority: Decorative
+  minimumQuality: High
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  startColor: "#B8C0C077"
+  endColor: "#8A929200"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.3
+  - time: 0.45
+    value: 1
+  - time: 1
+    value: 1.35
+  particleSize: 0.25
+  sizeVariance: 0.3
+  lifetime: 0.7
+  lifetimeVariance: 0.2
+  speed: 0.35
+  speedVariance: 0.2
+  gravity: -0.2
+  drag: 0.6
+  noiseStrength: 0.08
+  noiseFrequency: 0.7
+  emissionRate: 0
+  maxCount: 5
+  burst: true
+  spreadAngle: 360
+  shape:
+    type: CircleFill
+    radius: 0.08
+
+- type: particleEffect
+  id: WeldingContactGlow
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#FFF4B8FF"
+  endColor: "#FF9A2800"
+  renderLayer: 9
+  sizeOverLifetime:
+  - time: 0
+    value: 0.25
+  - time: 0.16
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.22
+  sizeVariance: 0.03
+  lifetime: 0.16
+  lifetimeVariance: 0.02
+  speed: 0.04
+  speedVariance: 0.02
+  emissionRate: 0
+  maxCount: 2
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.02
+
+# Компактное пламя повторяет ширину большой и маленькой свечи.
+- type: particleEffect
+  id: CandleFireContinuous
+  parent: FireContinuous
+  particleSize: 0.7
+  emissionRate: 6
+  maxCount: 10
+  noiseStrength: 0.04
+  spreadAngle: 24
+  shape:
+    type: CircleFill
+    radius: 0.045
+
+- type: particleEffect
+  id: CandleSmallFireContinuous
+  parent: CandleFireContinuous
+  particleSize: 0.55
+  emissionRate: 4
+  maxCount: 8
+  shape:
+    type: CircleFill
+    radius: 0.028
+
+# Короткий мировой след для энергетических снарядов и брошенного энергооружия.
+- type: particleEffect
+  id: EnergyTrail
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: plasma_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  alphaOverLifetime:
+  - time: 0
+    value: 0.85
+  - time: 0.35
+    value: 0.6
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 1
+    value: 0.06
+  particleSize: 0.18
+  sizeVariance: 0.3
+  lifetime: 0.36
+  lifetimeVariance: 0.1
+  speed: 0.35
+  speedVariance: 0.18
+  drag: 2
+  noiseStrength: 0.08
+  noiseFrequency: 2.4
+  emissionRate: 38
+  maxCount: 18
+  bursts:
+  - time: 0
+    count: 2
+  spreadAngle: 22
+  directionMode: OppositeEmitterVelocity
+  worldSpace: true
+  shape:
+    type: Triangle
+    triangleLength: 0.48
+    triangleHalfWidth: 0.16
+
+# Пиксельные частицы по окружности портала без фонового облака.
+- type: particleEffect
+  id: PortalPixels
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: cross
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: 5
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.12
+    value: 1
+  - time: 0.78
+    value: 0.9
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.35
+  - time: 0.16
+    value: 1
+  - time: 0.72
+    value: 0.85
+  - time: 1
+    value: 0.08
+  particleSize: 1.05
+  sizeVariance: 0.25
+  lifetime: 1.3
+  lifetimeVariance: 0.3
+  speed: 0.16
+  speedVariance: 0.09
+  drag: 0.8
+  noiseStrength: 0.12
+  noiseFrequency: 0.85
+  emissionRate: 9
+  maxCount: 18
+  spreadAngle: 360
+  worldSpace: false
+  shape:
+    type: CircleEdge
+    radius: 0.68
+
+# Событийные вспышки для аномалий и энергетических мечей.
+- type: particleEffect
+  id: AnomalyPulseGlow
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: plasma_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: -5
+  alphaOverLifetime:
+  - time: 0
+    value: 0.9
+  - time: 0.25
+    value: 0.55
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.35
+    value: 1
+  - time: 1
+    value: 1.6
+  particleSize: 0.32
+  sizeVariance: 0.2
+  lifetime: 0.7
+  lifetimeVariance: 0.12
+  speed: 0.1
+  speedVariance: 0.06
+  drag: 0.8
+  emissionRate: 0
+  maxCount: 10
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.45
+
+- type: particleEffect
+  id: AnomalyPulseSparks
+  priority: Ambient
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: 10
+  alphaOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.65
+    value: 0.8
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 1
+    value: 0.06
+  particleSize: 0.22
+  sizeVariance: 0.35
+  lifetime: 0.65
+  lifetimeVariance: 0.18
+  speed: 1.4
+  speedVariance: 0.65
+  drag: 1.0
+  noiseStrength: 0.1
+  noiseFrequency: 1.2
+  emissionRate: 0
+  maxCount: 18
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.24
+
+# Компактная россыпь у рук подчёркивает включение клинка без большого облака вокруг персонажа.
+- type: particleEffect
+  id: EnergyBladeIgnition
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: spark
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: 10
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.5
+    value: 0.7
+  - time: 1
+    value: 0.08
+  particleSize: 0.22
+  sizeVariance: 0.12
+  stretchFactor: 0.18
+  lifetime: 0.22
+  lifetimeVariance: 0.05
+  speed: 0.85
+  speedVariance: 0.25
+  drag: 2.2
+  emissionRate: 0
+  maxCount: 8
+  burst: true
+  spreadAngle: 360
+  alignToVelocity: true
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.04
+
+- type: particleEffect
+  id: EnergyImpactGlow
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: 9
+  sizeOverLifetime:
+  - time: 0
+    value: 0.3
+  - time: 0.2
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.22
+  sizeVariance: 0.05
+  lifetime: 0.18
+  lifetimeVariance: 0.03
+  speed: 0.05
+  speedVariance: 0.03
+  drag: 2
+  emissionRate: 0
+  maxCount: 2
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.025
+
+- type: particleEffect
+  id: EnergyImpactHeatLineGlow
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  shader: unshaded
+  renderLayer: 9
+  colorOverLifetime:
+  - time: 0
+    color: "#FF621FFF"
+  - time: 0.18
+    color: "#FF3516FF"
+  - time: 0.65
+    color: "#D1120BFF"
+  - time: 1
+    color: "#5C0500FF"
+  alphaOverLifetime:
+  - time: 0
+    value: 0.64
+  - time: 0.1
+    value: 0.78
+  - time: 0.58
+    value: 0.48
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.92
+  - time: 0.12
+    value: 1
+  - time: 1
+    value: 0.96
+  particleSize: 0.9
+  particleScale: 1, 0.17
+  sizeVariance: 0
+  lifetime: 1.05
+  lifetimeVariance: 0
+  speed: 0
+  speedVariance: 0
+  emissionRate: 0
+  maxCount: 1
+  burst: true
+  worldSpace: false
+  shape:
+    type: Point
+
+- type: particleEffect
+  id: EnergyImpactHeatLineCore
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  shader: unshaded
+  renderLayer: 10
+  colorOverLifetime:
+  - time: 0
+    color: "#FFF7D6FF"
+  - time: 0.1
+    color: "#FFD36AFF"
+  - time: 0.38
+    color: "#FF7A24FF"
+  - time: 0.75
+    color: "#E32613FF"
+  - time: 1
+    color: "#7A0808FF"
+  alphaOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.58
+    value: 0.92
+  - time: 0.82
+    value: 0.6
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.96
+  - time: 0.1
+    value: 1
+  - time: 1
+    value: 0.9
+  particleSize: 0.84
+  particleScale: 0.96, 0.055
+  sizeVariance: 0
+  lifetime: 0.82
+  lifetimeVariance: 0
+  speed: 0
+  speedVariance: 0
+  emissionRate: 0
+  maxCount: 1
+  burst: true
+  worldSpace: false
+  shape:
+    type: Point
+
+# Короткий двухслойный всплеск при шаге по жидкости.
+- type: particleEffect
+  id: PuddleFootstepDroplets
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: drop
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: 10
+  alphaOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.7
+    value: 0.85
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.8
+  - time: 0.3
+    value: 1
+  - time: 1
+    value: 0.45
+  particleSize: 0.34
+  sizeVariance: 0.2
+  stretchFactor: 0.25
+  lifetime: 0.42
+  lifetimeVariance: 0.1
+  speed: 1.05
+  speedVariance: 0.35
+  gravity: 1.45
+  drag: 0.35
+  alignToVelocity: true
+  emissionRate: 0
+  maxCount: 6
+  burst: true
+  spreadAngle: 120
+  emitAngle: 0
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.12
+
+- type: particleEffect
+  id: PuddleFootstepSurface
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  shader: unshaded
+  startColor: "#FFFFFFC0"
+  endColor: "#FFFFFF00"
+  renderLayer: -2
+  alphaOverLifetime:
+  - time: 0
+    value: 0.7
+  - time: 0.35
+    value: 0.45
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.35
+  - time: 0.45
+    value: 1
+  - time: 1
+    value: 1.25
+  particleSize: 0.22
+  sizeVariance: 0.18
+  lifetime: 0.34
+  lifetimeVariance: 0.06
+  speed: 0.06
+  speedVariance: 0.03
+  drag: 1.2
+  emissionRate: 0
+  maxCount: 3
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.2
+
+# Пиксельные крошки, вылетающие вперёд от рта после поедания твёрдой пищи.
+- type: particleEffect
+  id: IngestionCrumbs
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: dot
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  renderLayer: 10
+  sizeOverLifetime:
+  - time: 0
+    value: 1
+  - time: 0.68
+    value: 0.78
+  - time: 1
+    value: 0.18
+  particleSize: 1.65
+  sizeVariance: 0.42
+  lifetime: 0.5
+  lifetimeVariance: 0.1
+  speed: 1.18
+  speedVariance: 0.42
+  gravity: 1.65
+  drag: 0.28
+  emissionRate: 0
+  maxCount: 7
+  burst: true
+  spreadAngle: 68
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.035
+
+# Визуальный язык звуковых эмоутов: дыхание, мелодичные сигналы и сильная волна.
+- type: particleEffect
+  id: EmoteBreathMotes
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot
+  shader: unshaded
+  startColor: "#FFFFFFB0"
+  endColor: "#FFFFFF00"
+  renderLayer: 8
+  alphaOverLifetime:
+  - time: 0
+    value: 0.7
+  - time: 0.45
+    value: 0.5
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.5
+    value: 1
+  - time: 1
+    value: 1.2
+  particleSize: 0.45
+  sizeVariance: 0.25
+  lifetime: 0.62
+  lifetimeVariance: 0.14
+  speed: 0.42
+  speedVariance: 0.18
+  gravity: -0.08
+  drag: 0.75
+  noiseStrength: 0.06
+  noiseFrequency: 0.8
+  emissionRate: 0
+  maxCount: 5
+  burst: true
+  spreadAngle: 100
+  emitAngle: 0
+  worldSpace: false
+  shape:
+    type: CircleFill
+    radius: 0.04
+
+# Небольшие круглые слёзы и низкий импульс для телесных звуков не используют общий эффект у рта.
+- type: particleEffect
+  id: EmoteTears
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  shader: unshaded
+  startColor: "#FFFFFFE8"
+  endColor: "#FFFFFF00"
+  renderLayer: 10
+  sizeOverLifetime:
+  - time: 0
+    value: 0.65
+  - time: 0.25
+    value: 1
+  - time: 1
+    value: 0.45
+  particleSize: 0.07
+  sizeVariance: 0.12
+  lifetime: 0.62
+  lifetimeVariance: 0.08
+  speed: 0.07
+  speedVariance: 0.025
+  gravity: 0.42
+  drag: 0.3
+  emissionRate: 0
+  maxCount: 1
+  burst: true
+  spreadAngle: 18
+  emitAngle: 180
+  worldSpace: false
+  shape:
+    type: Point
+

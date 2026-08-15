@@ -274,6 +274,12 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - короткий след подчёркивает направление энергетического выстрела
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#53D8FFFF"
+  # Sunrise added end
   - type: Reflective
     reflective:
     - Energy
@@ -318,6 +324,13 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - облегчённый треугольный след сохраняет читаемость тренировочного выстрела
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#71E6FFFF"
+      intensity: 0.6
+  # Sunrise added end
   - type: FlyBySound
     sound:
       collection: EnergyMiss
@@ -1158,6 +1171,13 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - короткий след сохраняет читаемость скоростной очереди
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#53D8FFFF"
+      intensity: 0.85
+  # Sunrise added end
   - type: Reflective
     reflective:
     - Energy
@@ -1202,6 +1222,12 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - универсальный след наследуется энергетическими турельными снарядами
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#B7E9FFFF"
+  # Sunrise added end
   - type: Reflective
     reflective:
     - Energy
@@ -1234,6 +1260,12 @@
   parent: BulletEnergyTurretBase
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - цвет следа соответствует летальному режиму энергетической турели
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#FF7A32FF"
+  # Sunrise added end
   - type: Ammo
     muzzleFlash: MuzzleFlashEffectHeavyLaser
   - type: Sprite
@@ -1253,6 +1285,12 @@
   parent: BulletEnergyTurretBase
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - цвет следа соответствует оглушающему режиму энергетической турели
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#53D8FFFF"
+  # Sunrise added end
   - type: Ammo
     muzzleFlash: MuzzleFlashEffectOmnilaser
   - type: Sprite
@@ -1277,6 +1315,11 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - многослойный след отличает долгоживущий снаряд Теслы
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: TeslaProjectileTrail
+  # Sunrise added end
   - type: TimedDespawn
     lifetime: 5
   - type: Sprite
@@ -1316,6 +1359,12 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - тепловой след делает быстрый лазер заметным между вспышками
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#FF6A32FF"
+  # Sunrise added end
   - type: Reflective
     reflective:
     - Energy
@@ -1355,6 +1404,13 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  # Sunrise added start - самостоятельный разрушающий лазер получает усиленный треугольный след
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#FF5A24FF"
+      intensity: 1.2
+  # Sunrise added end
   - type: FlyBySound
     sound:
       collection: EnergyMiss
@@ -1473,6 +1529,13 @@
   name: energy bolt
   description: This'll hurt.
   components:
+  # Sunrise added start - энергетический болт оставляет короткий фиолетовый шлейф
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: EnergyProjectileTrail
+      colorOverride: "#B987FFFF"
+      intensity: 0.8
+  # Sunrise added end
   - type: Reflective
     reflective:
     - NonEnergy

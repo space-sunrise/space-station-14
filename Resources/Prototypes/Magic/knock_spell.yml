@@ -16,3 +16,10 @@
     event: !type:KnockSpellEvent
   - type: SpeakOnAction
     sentence: action-speech-spell-knock
+  # Sunrise added start - золотое кольцо подчёркивает волну отпирающей магии.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicKnockCast
+  # Sunrise added end

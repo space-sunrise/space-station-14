@@ -27,6 +27,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Electronic
+  # Sunrise added start - искры от попаданий по электронике.
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialMetal
+  # Sunrise added end
   - type: Destructible
     thresholds:
     - trigger:

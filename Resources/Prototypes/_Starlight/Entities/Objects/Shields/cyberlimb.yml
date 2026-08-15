@@ -86,6 +86,16 @@
       autoRechargeRate: 75
       autoRechargePauseTime: 5
     - type: EnergyShield
+    # Sunrise added start - частицы при отражении от энергощита через общую систему Trigger.
+    - type: TriggerOnReflected
+      keyOut: reflected
+    - type: ParticleOnTrigger
+      keysIn:
+      - reflected
+      orchestras:
+      - orchestra: EnergyBarrierImpact
+        intensity: 1.15
+    # Sunrise added end
     - type: ExaminableBattery
     - type: Battery
       maxCharge: 1500

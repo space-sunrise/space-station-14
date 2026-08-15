@@ -19,6 +19,13 @@
     useDelay: 60
   - type: InstantAction
     event: !type:PolymorphActionEvent
+  # Sunrise added start - общий арканный всплеск для магических превращений.
+  - type: TriggerOnActionPerformed
+  - type: ParticleOnTrigger
+    targetUser: true
+    orchestras:
+    - orchestra: MagicArcaneCast
+  # Sunrise added end
 
 - type: entity
   parent: BaseActionPolymorph

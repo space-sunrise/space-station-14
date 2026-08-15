@@ -8,6 +8,11 @@
   components:
   - type: Sprite
     state: icon
+  # Sunrise added start - напитки можно нагревать как предметы, а горячее содержимое создаёт пар.
+  - type: Temperature
+  - type: HotSolutionParticleVisuals
+    solution: drink
+  # Sunrise added end
   - type: MeleeWeapon
     soundNoDamage:
       path: "/Audio/Effects/Fluids/splat.ogg"

@@ -37,6 +37,16 @@
         tableId: SunriseArtifactEffectsUltraFunnyTable
         weight: 1
       # Sunrise edit end
+  # Sunrise added start - одноразовая визуализация успешной активации через общую систему Trigger.
+  - type: TriggerOnArtifactActivated
+    keyOut: artifact-activated
+  - type: ParticleOnTrigger
+    keysIn:
+    - artifact-activated
+    orchestras:
+    - orchestra: ArtifactNodeActivation
+      intensity: 1.1
+  # Sunrise added end
   - type: Damageable
   - type: Actions
   - type: Physics

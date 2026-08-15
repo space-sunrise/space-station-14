@@ -147,6 +147,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StrongMetallic
+  # Sunrise added start - попадания по электронике шлюза сопровождаются направленными искрами.
+  - type: ParticleDamageVisuals
+    material: ParticleMaterialMetal
+  # Sunrise added end
   - type: RCDDeconstructable
     cost: 6
     delay: 8

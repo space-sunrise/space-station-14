@@ -85,6 +85,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 343
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -602,6 +603,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 345
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -810,6 +812,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 348
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -933,6 +936,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 343
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -994,6 +998,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 345
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1023,6 +1028,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 343
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1096,6 +1102,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 346
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1126,6 +1133,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 343
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1150,6 +1158,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 344
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1175,6 +1184,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
+        temperature: 344
         maxVol: 40
         reagents:
           - ReagentId: Nutriment

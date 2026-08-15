@@ -10,6 +10,11 @@
       collection: RadiationPulse
       params:
         volume: 5
+  # Sunrise added start - запасной профиль для новых типов аномалий; известные типы переопределяют его семантически.
+  - type: AnomalyParticleVisuals
+    ambientIntensity: 0.4
+    pulseIntensity: 0.6
+  # Sunrise added end
   - type: AmbientSound
     range: 5
     volume: -5
@@ -74,6 +79,13 @@
   parent: BaseAnomalyNew
   suffix: Pyroclastic
   components:
+  # Sunrise added start - угольки и огненный выброс пирокластической аномалии.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyPyroAmbient
+    pulseOrchestra: AnomalyPyroPulse
+    ambientIntensity: 0.62
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: AmbientSound
     volume: 5
     range: 5
@@ -138,6 +150,13 @@
   parent: BaseAnomalyNew
   suffix: Gravity
   components:
+  # Sunrise added start - орбита и схлопывание гравитационной аномалии.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyGravityAmbient
+    pulseOrchestra: AnomalyGravityPulse
+    ambientIntensity: 0.68
+    pulseIntensity: 1
+  # Sunrise added end
   - type: Anomaly
     corePrototype: AnomalyCoreGravity
     coreInertPrototype: AnomalyCoreGravityInert
@@ -179,6 +198,13 @@
   parent: BaseAnomalyNew
   suffix: Electricity
   components:
+  # Sunrise added start - поверхностные дуги электрической аномалии.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyElectricAmbient
+    pulseOrchestra: AnomalyElectricPulse
+    ambientIntensity: 0.58
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Anomaly
     corePrototype: AnomalyCoreElectricity
     coreInertPrototype: AnomalyCoreElectricityInert
@@ -210,6 +236,13 @@
   parent: BaseAnomaly
   suffix: Flesh
   components:
+  # Sunrise added start - органические капли аномалии плоти.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyFleshAmbient
+    pulseOrchestra: AnomalyFleshPulse
+    ambientIntensity: 0.58
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Anomaly
     corePrototype: AnomalyCoreFlesh
     coreInertPrototype: AnomalyCoreFleshInert
@@ -305,6 +338,13 @@
   parent: BaseAnomalyNew
   suffix: Bluespace
   components:
+  # Sunrise added start - пространственные кресты блюспейс-аномалии.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyBluespaceAmbient
+    pulseOrchestra: AnomalyBluespacePulse
+    ambientIntensity: 0.6
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Sprite
     # Sunrise-Start
     layers:
@@ -360,6 +400,13 @@
   parent: BaseAnomalyNew
   suffix: Ice
   components:
+  # Sunrise added start - ледяные блики и осколки.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyIceAmbient
+    pulseOrchestra: AnomalyIcePulse
+    ambientIntensity: 0.58
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Sprite
     # Sunrise-Start
     scale: 0.9, 0.9
@@ -423,6 +470,13 @@
   abstract: true
   suffix: Rock
   components:
+  # Sunrise added start - каменная крошка для всех рудных вариантов аномалии.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyRockAmbient
+    pulseOrchestra: AnomalyRockPulse
+    ambientIntensity: 0.56
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Anomaly
     corePrototype: AnomalyCoreRock
     coreInertPrototype: AnomalyCoreRockInert
@@ -812,6 +866,13 @@
   parent: BaseAnomaly
   suffix: Flora
   components:
+  # Sunrise added start - споры и цветущий импульс аномалии флоры.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyFloraAmbient
+    pulseOrchestra: AnomalyFloraPulse
+    ambientIntensity: 0.62
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Sprite
     drawdepth: Mobs
     sprite: Structures/Specific/Anomalies/flora_anom.rsi
@@ -913,6 +974,10 @@
   parent: BaseAnomalyNew
   suffix: Liquid
   components:
+  # Sunrise added start - у жидкостной аномалии нет читаемого назначения для частиц.
+  - type: AnomalyParticleVisuals
+    enabled: false
+  # Sunrise added end
   - type: Sprite
     # Sunrise-Start
     layers:
@@ -1038,6 +1103,13 @@
   parent: BaseAnomalyNew
   suffix: Shadow
   components:
+  # Sunrise added start - компактная теневая дымка без большого облака.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyShadowAmbient
+    pulseOrchestra: AnomalyShadowPulse
+    ambientIntensity: 0.55
+    pulseIntensity: 0.85
+  # Sunrise added end
   - type: Sprite
     # Sunrise-Start
     layers:
@@ -1107,6 +1179,13 @@
   parent: BaseAnomaly
   suffix: Tech
   components:
+  # Sunrise added start - угловатые цифровые частицы технологической аномалии.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalyTechAmbient
+    pulseOrchestra: AnomalyTechPulse
+    ambientIntensity: 0.6
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Sprite
     sprite: Structures/Specific/Anomalies/tech_anom.rsi
     layers:
@@ -1169,6 +1248,13 @@
   parent: BaseAnomaly
   suffix: Santa
   components:
+  # Sunrise added start - редкие снежные блики праздничной аномалии.
+  - type: AnomalyParticleVisuals
+    ambientOrchestra: AnomalySantaAmbient
+    pulseOrchestra: AnomalySantaPulse
+    ambientIntensity: 0.58
+    pulseIntensity: 0.9
+  # Sunrise added end
   - type: Sprite
     drawdepth: Mobs
     sprite: Structures/Specific/Anomalies/santa_anom.rsi

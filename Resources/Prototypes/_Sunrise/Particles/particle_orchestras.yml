@@ -1,0 +1,742 @@
+- type: particleOrchestra
+  id: WeldingCompletion
+  layers:
+  - effect: WeldingContactGlow
+    attach: false
+  - effect: WeldingSparks
+    attach: false
+    direction: Movement
+  - effect: WeldingSmoke
+    attach: false
+    delay: 0.08
+    minimumQuality: High
+
+- type: particleOrchestra
+  id: WeldingContinuous
+  layers:
+  - effect: WeldingSparksContinuous
+
+- type: particleOrchestra
+  id: EnergySwordHeatMark
+  layers:
+  - effect: EnergyImpactHeatLineGlow
+  - effect: EnergyImpactHeatLineCore
+
+- type: particleOrchestra
+  id: EnergySwordIgnition
+  layers:
+  - effect: EnergyBladeIgnitionGlow
+    attach: false
+    intensity: 0.75
+  - effect: EnergyBladeIgnitionSample
+    attach: false
+    direction: Movement
+    spreadAngle: 48
+    intensity: 1.05
+
+- type: particleOrchestra
+  id: PuddleFootstep
+  layers:
+  - effect: PuddleFootstepDroplets
+    anchor: Feet
+  - effect: PuddleFootstepSurface
+    anchor: Feet
+
+- type: particleOrchestra
+  id: IngestionCrumbs
+  layers:
+  - effect: IngestionCrumbs
+    anchor: Mouth
+    attach: false
+    direction: SourceFacing
+    spreadAngle: 68
+
+- type: particleOrchestra
+  id: GibMist
+  layers:
+  - effect: GibMist
+    attach: false
+
+- type: particleOrchestra
+  id: PortalAmbient
+  layers:
+  - effect: PortalPixels
+
+- type: particleOrchestra
+  id: AnomalyAmbient
+  layers:
+  - effect: EnergyMotes
+  - effect: EnergyHaze
+
+- type: particleOrchestra
+  id: AnomalyPulse
+  layers:
+  - effect: AnomalyPulseGlow
+    attach: false
+  - effect: AnomalyPulseSparks
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyPyroAmbient
+  layers:
+  - effect: FireContinuous
+  - effect: AnomalyPyroEmbers
+
+- type: particleOrchestra
+  id: AnomalyPyroPulse
+  layers:
+  - effect: AnomalyPyroBurst
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyGravityAmbient
+  layers:
+  - effect: AnomalyGravityAccretion
+
+- type: particleOrchestra
+  id: AnomalyGravityPulse
+  layers:
+  - effect: AnomalyGravityCollapse
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyElectricAmbient
+  layers:
+  - effect: AnomalyElectricArcs
+
+- type: particleOrchestra
+  id: AnomalyElectricPulse
+  layers:
+  - effect: AnomalyElectricDischarge
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyFleshAmbient
+  layers:
+  - effect: AnomalyFleshDrops
+
+- type: particleOrchestra
+  id: AnomalyFleshPulse
+  layers:
+  - effect: AnomalyFleshBurst
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyBluespaceAmbient
+  layers:
+  - effect: AnomalyBluespaceCrosses
+
+- type: particleOrchestra
+  id: AnomalyBluespacePulse
+  layers:
+  - effect: AnomalyBluespaceBurst
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyIceAmbient
+  layers:
+  - effect: AnomalyIceSnowflakes
+
+- type: particleOrchestra
+  id: AnomalyIcePulse
+  layers:
+  - effect: AnomalyIceShards
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyRockAmbient
+  layers:
+  - effect: AnomalyRockFragments
+
+- type: particleOrchestra
+  id: AnomalyRockPulse
+  layers:
+  - effect: AnomalyRockBurst
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyFloraAmbient
+  layers:
+  - effect: AnomalyFloraSpores
+
+- type: particleOrchestra
+  id: AnomalyFloraPulse
+  layers:
+  - effect: AnomalyFloraBloom
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyShadowAmbient
+  layers:
+  - effect: AnomalyShadowWisps
+  - effect: AnomalyShadowDarkCollapse
+
+- type: particleOrchestra
+  id: AnomalyShadowPulse
+  layers:
+  - effect: AnomalyShadowWave
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyTechAmbient
+  layers:
+  - effect: AnomalyTechPixels
+
+- type: particleOrchestra
+  id: AnomalyTechPulse
+  layers:
+  - effect: AnomalyTechBurst
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalySantaAmbient
+  layers:
+  - effect: AnomalySantaSparkles
+
+- type: particleOrchestra
+  id: AnomalySantaPulse
+  layers:
+  - effect: AnomalySantaBurst
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyBananaAmbient
+  layers:
+  - effect: AnomalyBananaFragments
+
+- type: particleOrchestra
+  id: AnomalyBananaPulse
+  layers:
+  - effect: AnomalyBananaBurst
+    attach: false
+
+- type: particleOrchestra
+  id: AnomalyClownAmbient
+  layers:
+  - effect: AnomalyClownConfetti
+
+- type: particleOrchestra
+  id: AnomalyClownPulse
+  layers:
+  - effect: AnomalyClownBurst
+    attach: false
+
+- type: particleOrchestra
+  id: FireAmbient
+  layers:
+  - effect: FireContinuous
+  - effect: FireSmoke
+
+- type: particleOrchestra
+  id: FireAmbientNoSmoke
+  layers:
+  - effect: FireContinuous
+
+- type: particleOrchestra
+  id: CandleFireAmbient
+  layers:
+  - effect: CandleFireContinuous
+
+- type: particleOrchestra
+  id: CandleSmallFireAmbient
+  layers:
+  - effect: CandleSmallFireContinuous
+
+- type: particleOrchestra
+  id: LighterAmbient
+  layers:
+  - effect: LighterRareSpark
+    spreadAngle: 52
+
+- type: particleOrchestra
+  id: HotSolutionSteam
+  layers:
+  - effect: HotSolutionSteam
+    anchor: Head
+
+- type: particleOrchestra
+  id: DecompositionAmbient
+  layers:
+  - effect: DecompositionGas
+    fillSourceSprite: true
+    sourceSpriteCoverage: 0.68
+  - effect: DecompositionFlies
+    fillSourceSprite: true
+    sourceSpriteCoverage: 0.78
+
+- type: particleOrchestra
+  id: EnergyProjectileTrail
+  layers:
+  - effect: EnergyTrail
+
+- type: particleOrchestra
+  id: TeslaProjectileTrail
+  layers:
+  - effect: TeslaProjectileWake
+  - effect: TeslaMiniCoronaArcs
+    intensity: 0.7
+
+- type: particleOrchestra
+  id: PlasmaSpearThrown
+  layers:
+  - effect: EnergyTrail
+    anchor: ItemTip
+    colorOverride: "#B56CFFFF"
+    intensity: 0.75
+  - effect: EnergyMotes
+    anchor: ItemTip
+    colorOverride: "#D8ADFFFF"
+    intensity: 0.5
+
+- type: particleOrchestra
+  id: UraniumSpearThrown
+  layers:
+  - effect: EnergyTrail
+    anchor: ItemTip
+    colorOverride: "#67FF4DFF"
+    intensity: 0.7
+  - effect: EnergyMotes
+    anchor: ItemTip
+    colorOverride: "#B4FF83FF"
+    intensity: 0.45
+
+- type: particleOrchestra
+  id: TeslaEnergyBallAmbient
+  layers:
+  - effect: TeslaOrbitMotes
+  - effect: TeslaCoronaArcs
+  - effect: TeslaCoreHaze
+
+- type: particleOrchestra
+  id: TeslaMiniBallAmbient
+  layers:
+  - effect: TeslaMiniOrbitMotes
+  - effect: TeslaMiniCoronaArcs
+
+- type: particleOrchestra
+  id: EmoteBreath
+  layers:
+  - effect: EmoteBreathMotes
+    anchor: Mouth
+    direction: SourceFacing
+    colorOverride: "#D9EEF2FF"
+
+- type: particleOrchestra
+  id: EmoteCrying
+  layers:
+  - effect: EmoteTears
+    anchor: Eyes
+    colorOverride: "#8DDCFFFF"
+    allowedFacings:
+    - East
+    - SouthEast
+    - SouthWest
+    - West
+  - effect: EmoteTears
+    anchor: Eyes
+    lateralOffset: -0.1
+    colorOverride: "#8DDCFFFF"
+    allowedFacings:
+    - South
+  - effect: EmoteTears
+    anchor: Eyes
+    lateralOffset: 0.1
+    colorOverride: "#8DDCFFFF"
+    allowedFacings:
+    - South
+
+- type: particleOrchestra
+  id: MetalKineticImpact
+  layers:
+  - effect: MetalKineticSparks
+    attach: false
+    direction: OppositeMovement
+  - effect: MetalKineticFlecks
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: MetalEnergyImpact
+  layers:
+  - effect: MetalEnergyFlash
+    attach: false
+  - effect: MetalEnergySparks
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: MetalElectricalImpact
+  layers:
+  - effect: ElectricalImpactFlash
+    attach: false
+  - effect: ElectricalArcSparks
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: MetalDestruction
+  layers:
+  - effect: MetalDestructionFlecks
+    attach: false
+  - effect: MetalDestructionSparks
+    attach: false
+    intensity: 0.65
+
+- type: particleOrchestra
+  id: StoneKineticImpact
+  layers:
+  - effect: StoneImpactDust
+    attach: false
+    direction: OppositeMovement
+  - effect: StoneImpactChips
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: StoneEnergyImpact
+  layers:
+  - effect: MetalEnergyFlash
+    attach: false
+    intensity: 0.65
+  - effect: StoneEnergyChips
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: StoneDestruction
+  layers:
+  - effect: StoneDestructionDust
+    attach: false
+  - effect: StoneDestructionChips
+    attach: false
+
+- type: particleOrchestra
+  id: WoodKineticImpact
+  layers:
+  - effect: WoodImpactDust
+    attach: false
+    direction: OppositeMovement
+  - effect: WoodImpactSplinters
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: WoodEnergyImpact
+  layers:
+  - effect: WoodEnergyEmbers
+    attach: false
+    direction: OppositeMovement
+  - effect: WoodEnergySmoke
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: WoodDestruction
+  layers:
+  - effect: WoodDestructionSplinters
+    attach: false
+  - effect: WoodImpactDust
+    attach: false
+    intensity: 1.4
+
+- type: particleOrchestra
+  id: OrganicKineticImpact
+  layers:
+  - effect: OrganicImpactDrops
+    attach: false
+    direction: OppositeMovement
+  - effect: OrganicImpactChunks
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: OrganicEnergyImpact
+  layers:
+  - effect: WoodEnergyEmbers
+    attach: false
+    direction: OppositeMovement
+    intensity: 0.6
+  - effect: OrganicSingeSmoke
+    attach: false
+
+- type: particleOrchestra
+  id: OrganicDestruction
+  layers:
+  - effect: GibMist
+    attach: false
+    intensity: 0.72
+    colorOverride: "#B73838FF"
+  - effect: OrganicDestructionChunks
+    attach: false
+    intensity: 1.2
+  - effect: OrganicImpactDrops
+    attach: false
+    intensity: 1.6
+
+- type: particleOrchestra
+  id: PlasticKineticImpact
+  layers:
+  - effect: PlasticImpactChips
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: PlasticEnergyImpact
+  layers:
+  - effect: PlasticMeltDrops
+    attach: false
+    direction: OppositeMovement
+  - effect: PlasticEnergySmoke
+    attach: false
+
+- type: particleOrchestra
+  id: PlasticDestruction
+  layers:
+  - effect: PlasticDestructionChips
+    attach: false
+
+- type: particleOrchestra
+  id: CrystalKineticImpact
+  layers:
+  - effect: CrystalImpactShards
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: CrystalEnergyImpact
+  layers:
+  - effect: MetalEnergyFlash
+    attach: false
+    intensity: 0.75
+  - effect: CrystalEnergyShards
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: CrystalDestruction
+  layers:
+  - effect: CrystalDestructionShards
+    attach: false
+
+- type: particleOrchestra
+  id: IceKineticImpact
+  layers:
+  - effect: IceImpactMist
+    attach: false
+    direction: OppositeMovement
+  - effect: CrystalImpactShards
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: IceEnergyImpact
+  layers:
+  - effect: IceImpactMist
+    attach: false
+    intensity: 1.35
+  - effect: CrystalEnergyShards
+    attach: false
+    direction: OppositeMovement
+
+- type: particleOrchestra
+  id: IceDestruction
+  layers:
+  - effect: IceDestructionMist
+    attach: false
+  - effect: CrystalDestructionShards
+    attach: false
+
+- type: particleOrchestra
+  id: EmpDisabledSparks
+  layers:
+  - effect: EmpSurfaceArcs
+    fillSourceSprite: true
+    sourceSpriteCoverage: 0.82
+  - effect: EmpSurfaceGlints
+    fillSourceSprite: true
+    sourceSpriteCoverage: 0.72
+
+- type: particleOrchestra
+  id: AirlockHackSparks
+  layers:
+  - effect: AirlockHackPixels
+    attach: false
+
+- type: particleOrchestra
+  id: ArtifactNodeActivation
+  layers:
+  - effect: ArtifactActivationGlow
+    attach: false
+    intensity: 1.3
+  - effect: ArtifactActivationMotes
+    attach: false
+    intensity: 1.25
+
+- type: particleOrchestra
+  id: EnergyBarrierImpact
+  layers:
+  - effect: EnergyBarrierImpactWave
+    attach: false
+    colorSource: SourcePointLight
+    fallbackColor: "#62DFFFFF"
+  - effect: EnergyBarrierImpactSparks
+    attach: false
+    colorSource: SourcePointLight
+    fallbackColor: "#A6F7FFFF"
+
+- type: particleOrchestra
+  id: SupermatterAmbient
+  layers:
+  - effect: SupermatterOrbitMotes
+    colorSource: SourcePointLight
+    fallbackColor: "#FFFB97FF"
+  - effect: SupermatterRadiance
+    colorSource: SourcePointLight
+    fallbackColor: "#FFDB63FF"
+  - effect: SupermatterSparks
+    colorSource: SourcePointLight
+    fallbackColor: "#FFF3A6FF"
+
+- type: particleOrchestra
+  id: TeleportDeparture
+  layers:
+  - effect: TeleportDepartureRing
+  - effect: TeleportResidualMotes
+
+- type: particleOrchestra
+  id: TeleportArrival
+  layers:
+  - effect: TeleportArrivalBurst
+  - effect: TeleportResidualMotes
+
+- type: particleOrchestra
+  id: TeleportRiftAmbient
+  layers:
+  - effect: TeleportRiftMotes
+
+# Реакции необычных существ на урон
+
+- type: particleOrchestra
+  id: CreatureSpaceBearImpact
+  layers:
+  - effect: CreatureSpaceBearMotes
+    attach: true
+  - effect: CreatureSpaceBearHaze
+    attach: true
+
+- type: particleOrchestra
+  id: CreatureSpaceSpiderImpact
+  layers:
+  - effect: CreatureSpaceSpiderSilk
+    attach: true
+
+- type: particleOrchestra
+  id: CreatureCarpImpact
+  layers:
+  - effect: CreatureCarpScales
+    attach: true
+
+- type: particleOrchestra
+  id: CreatureDragonImpact
+  layers:
+  - effect: CreatureDragonEmbers
+    attach: true
+
+- type: particleOrchestra
+  id: CreatureShadowImpact
+  layers:
+  - effect: CreatureShadowWisps
+    attach: true
+
+- type: particleOrchestra
+  id: CreatureIceImpact
+  layers:
+  - effect: CreatureIceCrystals
+    attach: true
+
+- type: particleOrchestra
+  id: CreatureFleshImpact
+  layers:
+  - effect: CreatureFleshDrops
+    attach: true
+  - effect: CreatureFleshChunks
+    attach: true
+    intensity: 0.65
+
+# Всплески успешного применения магии
+
+- type: particleOrchestra
+  id: MagicArcaneCast
+  layers:
+  - effect: MagicArcaneCastMotes
+    attach: false
+
+- type: particleOrchestra
+  id: MagicFireballCast
+  layers:
+  - effect: MagicFireballCastEmbers
+    attach: false
+
+- type: particleOrchestra
+  id: MagicBlinkCast
+  layers:
+  - effect: MagicBlinkCastCrosses
+    attach: false
+
+- type: particleOrchestra
+  id: MagicKnockCast
+  layers:
+  - effect: MagicKnockCastGlyphs
+    attach: false
+
+- type: particleOrchestra
+  id: MagicBarrierCast
+  layers:
+  - effect: MagicBarrierCastShards
+    attach: false
+
+- type: particleOrchestra
+  id: MagicRepulseCast
+  layers:
+  - effect: MagicRepulseCastWave
+    attach: false
+  - effect: MagicRepulseCastMotes
+    attach: false
+
+- type: particleOrchestra
+  id: MagicSummonCast
+  layers:
+  - effect: MagicSummonCastMotes
+    attach: false
+
+- type: particleOrchestra
+  id: MagicSmokeCast
+  layers:
+  - effect: MagicSmokeCastMotes
+    attach: false
+
+- type: particleOrchestra
+  id: MagicChargeCast
+  layers:
+  - effect: MagicChargeCastMotes
+    attach: false
+
+- type: particleOrchestra
+  id: MagicSmiteCast
+  layers:
+  - effect: MagicSmiteCastMotes
+    attach: false
+
+- type: particleOrchestra
+  id: MagicRuneCast
+  layers:
+  - effect: MagicRuneCastMotes
+    attach: false
+
+- type: particleOrchestra
+  id: SingularityHammerPulse
+  layers:
+  - effect: SingularityHammerGravityWave
+    attach: false
+  - effect: SingularityHammerGravityCollapse
+    attach: false

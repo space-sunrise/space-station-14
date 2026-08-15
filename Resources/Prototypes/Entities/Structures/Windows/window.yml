@@ -44,6 +44,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass
+  # Sunrise added start - окна используют материал-зависимые осколки в точке попадания и при разрушении.
+  - type: ParticleDamageVisuals
+    useMaterialDestruction: true
+  # Sunrise added end
   - type: ExaminableDamage
     messages: WindowMessages
   - type: Repairable
@@ -174,6 +178,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass
+  # Sunrise added start - направленные окна используют материал-зависимые осколки.
+  - type: ParticleDamageVisuals
+    useMaterialDestruction: true
+  # Sunrise added end
   - type: ExaminableDamage
     messages: WindowMessages
   - type: RCDDeconstructable

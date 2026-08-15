@@ -36,6 +36,11 @@
   - type: PointLight
     enabled: true
     color: "#FFFB97"
+  # Sunrise added start - многослойное свечение и искры суперматерии.
+  - type: ParticleEmitter
+    orchestras:
+    - orchestra: SupermatterAmbient
+  # Sunrise added end
   - type: Damageable
     damageModifierSet: RGlass
     damageContainer: StructuralInorganic

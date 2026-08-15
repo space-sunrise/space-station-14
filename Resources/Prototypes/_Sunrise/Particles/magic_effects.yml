@@ -1,0 +1,378 @@
+# Одноразовые всплески показывают успешный каст у мага, сохраняя отдельную визуальную семантику заклинаний.
+
+- type: particleEffect
+  id: BaseMagicCastMotes
+  abstract: true
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: cross
+  shader: unshaded
+  alphaOverLifetime:
+  - time: 0
+    value: 0
+  - time: 0.08
+    value: 1
+  - time: 0.75
+    value: 0.88
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.45
+  - time: 0.2
+    value: 1
+  - time: 1
+    value: 0.08
+  particleSize: 0.92
+  sizeVariance: 0.24
+  lifetime: 0.72
+  lifetimeVariance: 0.14
+  speed: 0.82
+  speedVariance: 0.26
+  drag: 0.58
+  emissionRate: 0
+  maxCount: 12
+  burst: true
+  spreadAngle: 22
+  directionMode: RadialOutward
+  startRotationVariance: 180
+  rotationSpeedVariance: 80
+  worldSpace: true
+  shape:
+    type: CircleEdge
+    radius: 0.2
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicArcaneCastMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.35
+    color: "#D18CFFFF"
+  - time: 0.72
+    color: "#7A48E7FF"
+  - time: 1
+    color: "#351A8500"
+
+- type: particleEffect
+  id: MagicFireballCastEmbers
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  shader: unshaded
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.18
+    color: "#FFF08AFF"
+  - time: 0.5
+    color: "#FF7A22FF"
+  - time: 1
+    color: "#9A180000"
+  sizeOverLifetime:
+  - time: 0
+    value: 0.65
+  - time: 0.22
+    value: 1
+  - time: 1
+    value: 0.06
+  particleSize: 0.2
+  sizeVariance: 0.4
+  lifetime: 0.75
+  lifetimeVariance: 0.16
+  speed: 1.05
+  speedVariance: 0.38
+  gravity: -0.22
+  drag: 0.6
+  emissionRate: 0
+  maxCount: 14
+  burst: true
+  spreadAngle: 30
+  directionMode: RadialOutward
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.15
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicBlinkCastCrosses
+  colorOverLifetime:
+  - time: 0
+    color: "#EFFFFFFF"
+  - time: 0.4
+    color: "#56DAFFFF"
+  - time: 0.72
+    color: "#765CFFFF"
+  - time: 1
+    color: "#2D38A800"
+  particleSize: 1.05
+  speed: 0.95
+  drag: 0.18
+  maxCount: 14
+  spreadAngle: 10
+  directionMode: RadialInward
+  shape:
+    type: CircleEdge
+    radius: 0.68
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicKnockCastGlyphs
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.32
+    color: "#FFE889FF"
+  - time: 0.72
+    color: "#E8A936FF"
+  - time: 1
+    color: "#8E570000"
+  particleSize: 1
+  lifetime: 0.86
+  speed: 0.66
+  maxCount: 16
+  spreadAngle: 16
+  shape:
+    type: CircleEdge
+    radius: 0.4
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicBarrierCastShards
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.4
+    color: "#8DF4FFFF"
+  - time: 0.75
+    color: "#4B9FFFFF"
+  - time: 1
+    color: "#2452B000"
+  particleSize: 1.08
+  particleScale: 0.78, 1.08
+  speed: 0.9
+  maxCount: 14
+  spreadAngle: 18
+  shape:
+    type: CircleEdge
+    radius: 0.32
+
+- type: particleEffect
+  id: MagicRepulseCastWave
+  priority: Interaction
+  sprite:
+    sprite: _Sunrise/Particles/generic.rsi
+    state: soft_dot_big
+  shader: unshaded
+  startColor: "#D9C7FF9A"
+  endColor: "#6C45C000"
+  alphaOverLifetime:
+  - time: 0
+    value: 0.85
+  - time: 1
+    value: 0
+  sizeOverLifetime:
+  - time: 0
+    value: 0.22
+  - time: 0.32
+    value: 1
+  - time: 1
+    value: 1.65
+  particleSize: 0.72
+  sizeVariance: 0.12
+  lifetime: 0.48
+  lifetimeVariance: 0.06
+  speed: 0.34
+  speedVariance: 0.08
+  drag: 1.5
+  emissionRate: 0
+  maxCount: 4
+  burst: true
+  spreadAngle: 360
+  worldSpace: true
+  shape:
+    type: CircleFill
+    radius: 0.08
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicRepulseCastMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.38
+    color: "#C6A7FFFF"
+  - time: 1
+    color: "#6541BC00"
+  speed: 1.25
+  maxCount: 14
+  spreadAngle: 20
+  shape:
+    type: CircleEdge
+    radius: 0.12
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicSummonCastMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.35
+    color: "#72E7FFFF"
+  - time: 0.68
+    color: "#C16DFFFF"
+  - time: 1
+    color: "#4B298E00"
+  particleSize: 1.02
+  lifetime: 0.92
+  speed: 0.74
+  gravity: -0.12
+  maxCount: 16
+  spreadAngle: 16
+  directionMode: RadialInward
+  shape:
+    type: CircleEdge
+    radius: 0.56
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicSmokeCastMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#F7EFFFFF"
+  - time: 0.38
+    color: "#B684D9DD"
+  - time: 1
+    color: "#543A7200"
+  particleSize: 0.88
+  speed: 0.7
+  drag: 0.9
+  noiseStrength: 0.08
+  maxCount: 11
+  spreadAngle: 34
+  shape:
+    type: CircleFill
+    radius: 0.18
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicChargeCastMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.35
+    color: "#9CEFFFFF"
+  - time: 0.7
+    color: "#FFE277FF"
+  - time: 1
+    color: "#A16E0000"
+  particleSize: 0.96
+  speed: 0.78
+  maxCount: 12
+  spreadAngle: 12
+  directionMode: RadialInward
+  shape:
+    type: CircleEdge
+    radius: 0.52
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicSmiteCastMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.3
+    color: "#FF9A72FF"
+  - time: 0.68
+    color: "#F03C42FF"
+  - time: 1
+    color: "#68101500"
+  particleSize: 1.05
+  speed: 0.98
+  gravity: -0.1
+  maxCount: 15
+  spreadAngle: 18
+  shape:
+    type: CircleEdge
+    radius: 0.28
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: MagicRuneCastMotes
+  colorOverLifetime:
+  - time: 0
+    color: "#FFFFFFFF"
+  - time: 0.38
+    color: "#D48FFFFF"
+  - time: 1
+    color: "#703CB900"
+  particleSize: 0.92
+  speed: 0.54
+  maxCount: 12
+  spreadAngle: 14
+  shape:
+    type: CircleEdge
+    radius: 0.36
+
+# Импульс молота заполняет весь радиус способности встречными волнами гравитационных частиц.
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: SingularityHammerGravityWave
+  colorOverLifetime:
+  - time: 0
+    color: "#F2EBFFFF"
+  - time: 0.38
+    color: "#B18BE7FF"
+  - time: 0.78
+    color: "#68449DDE"
+  - time: 1
+    color: "#28183F00"
+  particleSize: 1.12
+  sizeVariance: 0.18
+  lifetime: 1
+  lifetimeVariance: 0.08
+  speed: 4.55
+  speedVariance: 0.32
+  drag: 0.08
+  noiseStrength: 0.08
+  noiseFrequency: 1.8
+  maxCount: 34
+  spreadAngle: 10
+  shape:
+    type: CircleEdge
+    radius: 0.28
+
+- type: particleEffect
+  parent: BaseMagicCastMotes
+  id: SingularityHammerGravityCollapse
+  sprite:
+    sprite: _Sunrise/Particles/enhanced.rsi
+    state: glow_mote
+  colorOverLifetime:
+  - time: 0
+    color: "#21142D00"
+  - time: 0.18
+    color: "#523568D8"
+  - time: 0.72
+    color: "#A783C5EE"
+  - time: 1
+    color: "#E8D9FF00"
+  particleSize: 0.24
+  sizeVariance: 0.28
+  lifetime: 1.08
+  lifetimeVariance: 0.07
+  speed: 4.15
+  speedVariance: 0.24
+  drag: 0.06
+  noiseStrength: 0.11
+  noiseFrequency: 1.5
+  maxCount: 28
+  spreadAngle: 8
+  directionMode: RadialInward
+  shape:
+    type: CircleEdge
+    radius: 4.7
