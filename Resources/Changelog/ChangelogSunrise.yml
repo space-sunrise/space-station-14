@@ -4931,3 +4931,10 @@
     message: Исправлено отсутствие поломок у самодельного оружия
   id: 2001
   url: https://github.com/space-sunrise/sunrise-station/pull/4718
+- author: KaiserMaus
+  time: '2026-08-15T01:15:36.0000000+00:00'
+  changes:
+  - type: Fix
+    message: Исправлен дюп лазерного оружия через упаковщик.
+  id: 2002
+  url: https://github.com/space-sunrise/sunrise-station/pull/4679
