@@ -9,6 +9,7 @@ using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared._Sunrise.SecureTerminal;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -22,6 +23,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
+using Content.Shared.Silicons.StationAi;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 
@@ -56,6 +58,7 @@ namespace Content.Server.Communications
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleBroadcastMessage>(OnBroadcastMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleCallEmergencyShuttleMessage>(OnCallShuttleMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleRecallEmergencyShuttleMessage>(OnRecallShuttleMessage);
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleOpenSecureTerminalMessage>(OnOpenSecureTerminalMessage); // Sunrise-Edit: защищённый терминал
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
@@ -197,10 +200,50 @@ namespace Content.Server.Communications
                 canRelay,
                 comp.IsRelaying,
                 MathF.Max(0f, comp.RelayCooldownRemaining),
-                MathF.Max(0f, comp.RelayTimeRemaining)
+                MathF.Max(0f, comp.RelayTimeRemaining),
+                TryComp<SecureCommandTerminalConsoleComponent>(uid, out var terminal) && terminal.Enabled // Sunrise-Edit: защищённый терминал
                 // Sunrise-End
             ));
         }
+
+        // Sunrise added start - открытие защищённого терминала из консоли связи
+        private void OnOpenSecureTerminalMessage(Entity<CommunicationsConsoleComponent> ent,
+            ref CommunicationsConsoleOpenSecureTerminalMessage args)
+        {
+            TryOpenSecureTerminal(ent.AsNullable(), args.Actor);
+        }
+
+        /// <summary>
+        /// Attempts to open the Secure Command Terminal UI for a communications console.
+        /// </summary>
+        public bool TryOpenSecureTerminal(Entity<CommunicationsConsoleComponent?> ent, EntityUid user)
+        {
+            if (!CanOpenSecureTerminal(ent, user))
+                return false;
+
+            _uiSystem.TryOpenUi(ent.Owner, SecureCommandTerminalUiKey.Key, user);
+            return true;
+        }
+
+        /// <summary>
+        /// Returns whether the user may open the Secure Command Terminal UI.
+        /// </summary>
+        public bool CanOpenSecureTerminal(Entity<CommunicationsConsoleComponent?> ent, EntityUid user, bool quiet = false)
+        {
+            if (!Resolve(ent, ref ent.Comp) || !user.IsValid() ||
+                !TryComp<SecureCommandTerminalConsoleComponent>(ent, out var terminal) || !terminal.Enabled ||
+                HasComp<StationAiHeldComponent>(user))
+                return false;
+
+            if (CanUse(user, ent))
+                return true;
+
+            if (!quiet)
+                _popupSystem.PopupEntity(Loc.GetString("comms-console-permission-denied"), ent, user);
+
+            return false;
+        }
+        // Sunrise added end
 
         private static bool CanAnnounce(CommunicationsConsoleComponent comp)
         {

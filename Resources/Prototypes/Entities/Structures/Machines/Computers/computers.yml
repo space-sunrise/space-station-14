@@ -776,6 +776,10 @@
         type: CommunicationsConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      # Sunrise-Edit: интерфейс защищённого командного терминала
+      enum.SecureCommandTerminalUiKey.Key:
+        type: SecureCommandTerminalBui
+  - type: SecureCommandTerminalConsole # Sunrise-Edit: защищённый командный терминал
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight
@@ -816,6 +820,8 @@
     sound: /Audio/Announcements/war.ogg
   - type: Computer
     board: SyndicateCommsComputerCircuitboard
+  - type: SecureCommandTerminalConsole # Sunrise-Edit: терминал недоступен синдикату
+    enabled: false
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -850,6 +856,8 @@
     sound: /Audio/Announcements/war.ogg
   - type: Computer
     board: WizardCommsComputerCircuitboard
+  - type: SecureCommandTerminalConsole # Sunrise-Edit: терминал недоступен волшебнику
+    enabled: false
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -882,6 +890,8 @@
     global: true
   - type: Computer
     board: CentcommCommsComputerCircuitboard
+  - type: SecureCommandTerminalConsole # Sunrise-Edit: обычный интерфейс Центкома не управляет станцией
+    enabled: false
   - type: PointLight
     radius: 1.5
     energy: 4.0

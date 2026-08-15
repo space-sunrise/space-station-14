@@ -1,1 +1,8 @@
-All sounds in directory are taken from TauCeti github (licensed under CC-BY-SA by 3.0) at commit https://github.com/TauCetiStation/TauCetiClassic/commit/92d2767dbb39f28540f78d5055e7be1eb7acee98
+The following sounds are taken from TauCeti GitHub (licensed under CC-BY-SA 3.0) at commit https://github.com/TauCetiStation/TauCetiClassic/commit/92d2767dbb39f28540f78d5055e7be1eb7acee98:
+
+- announce_dig.ogg
+- ionstorm.ogg
+- sunrise_artillery.ogg
+- sunrise_ert_accepted.ogg
+- sunrise_ert_denied.ogg
+- sunrise_outbreak5.ogg

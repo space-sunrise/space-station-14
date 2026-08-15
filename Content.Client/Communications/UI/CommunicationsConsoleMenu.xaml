@@ -12,6 +12,28 @@
         <BoxContainer Orientation="Vertical"
                       Margin="0 2">
 
+            <!-- Sunrise added start - защищённый терминал командования -->
+            <controls:StripeBack>
+                <BoxContainer Orientation="Horizontal">
+                    <Label HorizontalExpand="True"
+                           Text="{Loc 'comms-console-menu-secure-terminal-header'}"
+                           VAlign="Center"
+                           StyleClasses="LabelHeading"
+                           Align="Center"/>
+                </BoxContainer>
+            </controls:StripeBack>
+
+            <Button Name="SecureTerminalButton"
+                    Access="Public"
+                    Visible="False"
+                    Text="{Loc 'comms-console-menu-secure-terminal-button'}"
+                    ToolTip="{Loc 'comms-console-menu-secure-terminal-button-tooltip'}"/>
+            <!-- Sunrise added end -->
+        </BoxContainer>
+
+        <BoxContainer Orientation="Vertical"
+                      Margin="0 2">
+
             <controls:StripeBack>
                 <BoxContainer Orientation="Horizontal">
                     <Label HorizontalExpand="True" Text="{Loc 'comms-console-menu-announcement-header'}"

@@ -224,7 +224,7 @@
 - type: entity
   id: WindowDirectionalRCDResistant
   parent: WindowDirectional
-  abstract: true
+  #abstract: true # Sunrise-Edit
   components:
   - type: RCDDeconstructable
     deconstructable: false
