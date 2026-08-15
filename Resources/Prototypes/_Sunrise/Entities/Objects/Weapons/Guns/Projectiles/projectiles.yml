@@ -1009,25 +1009,6 @@
     - timer
 
 - type: entity
-  id: BulletHeavyRifleArtillery
-  name: bullet (.308)
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 25
-        Structural: 15
-  - type: StaminaDamageOnCollide
-    damage: 5
-  - type: RadarBlip
-    color: "#FF6A6A"
-    scale: 0.3
-    shape: Triangle
-    requireInSpace: true
-
-- type: entity
   id: BulletArtilleryShapnel
   name: bullet
   parent: BaseBullet

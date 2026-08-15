@@ -87934,7 +87934,7 @@ entities:
     - type: Transform
       pos: 80.48647,32.56379
       parent: 2
-- proto: MagazineHIBrowning
+- proto: MagazinePistolHighCapacity
   entities:
   - uid: 11221
     mapInit: true
@@ -210126,7 +210126,7 @@ entities:
     - type: Transform
       pos: -87.24885,-12.430534
       parent: 2
-- proto: WeaponSubMachineGunMP38
+- proto: WeaponSubMachineGunForged
   entities:
   - uid: 34412
     components:

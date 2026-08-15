@@ -12038,7 +12038,7 @@ entities:
     - type: Transform
       pos: 6.229467,27.54008
       parent: 1
-- proto: WeaponPistolHIB88M4
+- proto: WeaponPistolViper
   entities:
   - uid: 1466
     components:

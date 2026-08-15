@@ -162,6 +162,7 @@ public sealed partial class GunSystem : SharedGunSystem
         RaiseLocalEvent(gunUid, new AmmoShotEvent()
         {
             FiredProjectiles = shotProjectiles,
+            Shooter = user, // Sunrise-Edit - передаём стрелка системам, реагирующим на выстрел
         });
 
         void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp)
