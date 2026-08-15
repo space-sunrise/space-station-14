@@ -165132,7 +165132,6 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-    - type: Timer
   - uid: 13143
     components:
     - rot: -1.5707963267948966 rad
@@ -169031,7 +169030,6 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-    - type: Timer
   - uid: 15370
     components:
     - pos: -55.5,-10.5
