@@ -1,4 +1,4 @@
-﻿using Content.Shared.Administration.Logs;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -16,6 +16,7 @@ public sealed partial class BypassLockSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Sunrise-Edit - Добавлено для локализации качеств инструментов
 
     public override void Initialize()
     {

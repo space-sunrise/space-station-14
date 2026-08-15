@@ -8,6 +8,7 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Robust.Shared.Localization; // Sunrise-Edit - Добавлено using для ILocalizationManager
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
@@ -20,6 +21,7 @@ public sealed class IonStormSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Sunrise-Edit - Внедрение ILocalizationManager для локализации законов шторма
 
     // funny
     private static readonly ProtoId<DatasetPrototype> Threats = "IonStormThreats";
@@ -257,6 +259,6 @@ public sealed class IonStormSystem : EntitySystem
     private string Pick(string name)
     {
         var dataset = _proto.Index<DatasetPrototype>(name);
-        return Loc.GetString(_robustRandom.Pick(dataset.Values));  // Sunrise-Edit
+        return _loc.GetString(_robustRandom.Pick(dataset.Values));  // Sunrise-Edit - Использование внедренного ILocalizationManager вместо статического Loc
     }
 }

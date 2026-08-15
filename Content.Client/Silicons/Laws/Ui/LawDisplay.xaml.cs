@@ -37,7 +37,7 @@ public sealed partial class LawDisplay : Control
         var lawIdentifierPlaintext = FormattedMessage.RemoveMarkupPermissive(lawIdentifier);
         var lawDescriptionPlaintext = FormattedMessage.RemoveMarkupPermissive(lawDescription);
 
-        // Sunrise-Edit start - Allow scramble and other tags in silicon laws
+        // Sunrise-Edit start - Разрешить scramble и другие теги в законах силиконов
         // LawNumberLabel.SetMarkup(lawIdentifier);
         // LawLabel.SetMessage(lawDescription);
         LawNumberLabel.SetMessage(FormattedMessage.FromMarkupPermissive(lawIdentifier), tagsAllowed: null);

@@ -1,5 +1,6 @@
-﻿using Content.Shared.Lock.BypassLock.Components;
+using Content.Shared.Lock.BypassLock.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Tools; // Sunrise-Edit - Добавлено для ToolQualityPrototype
 
 namespace Content.Shared.Lock.BypassLock.Systems;
 
@@ -35,7 +36,14 @@ public sealed partial class BypassLockSystem
         {
             args.ShowVerb = true;
             args.Verb.Disabled = true;
-            args.Verb.Message = Loc.GetString("bypass-lock-disabled-wrong-tool", ("quality", args.ToolQuality.ToString().ToLower()));
+            // Sunrise-Edit start - Локализация названия качества инструмента
+            var qualityName = args.ToolQuality.ToString().ToLower();
+            if (_prototypeManager.TryIndex<ToolQualityPrototype>(args.ToolQuality, out var quality))
+            {
+                qualityName = Loc.GetString(quality.Name);
+            }
+            args.Verb.Message = Loc.GetString("bypass-lock-disabled-wrong-tool", ("quality", qualityName));
+            // Sunrise-Edit end
         }
     }
 }
