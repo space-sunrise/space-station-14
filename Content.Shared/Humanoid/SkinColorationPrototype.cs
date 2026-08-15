@@ -64,12 +64,39 @@ public interface ISkinColorationStrategy
     /// </summary>
     Color EnsureVerified(Color color)
     {
-        if (VerifySkinColor(color))
+        if (VerifyClampedSkinColor(color))
         {
             return color;
         }
 
         return ClosestSkinColor(color);
+    }
+
+    /// <summary>
+    /// Returns whether the color, or any adjacent 8-bit color, is valid.
+    /// RGB serialization loses precision at strategy boundaries, so a previously validated
+    /// color must not be shifted again when the profile is validated after transmission.
+    /// </summary>
+    bool VerifyClampedSkinColor(Color color)
+    {
+        for (var i = 0; i < 8; i++)
+        {
+            var testColor = color;
+
+            if ((i & 1) != 0)
+                testColor.R = Math.Min(color.R + SkinColorationUtils.ByteQuantizationTolerance, 1f);
+
+            if ((i & 2) != 0)
+                testColor.G = Math.Min(color.G + SkinColorationUtils.ByteQuantizationTolerance, 1f);
+
+            if ((i & 4) != 0)
+                testColor.B = Math.Min(color.B + SkinColorationUtils.ByteQuantizationTolerance, 1f);
+
+            if (VerifySkinColor(testColor))
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -316,6 +343,11 @@ public sealed partial class ClampedHslColoration : ISkinColorationStrategy
 /// </summary>
 internal static class SkinColorationUtils
 {
+    /// <summary>
+    /// Maximum channel precision lost when a color is serialized as 8-bit RGB.
+    /// </summary>
+    public const float ByteQuantizationTolerance = 1f / byte.MaxValue;
+
     /// <summary>
     /// An empirically determined epsilon to account for floating-point drift during RGB -> HSL/HSV -> RGB conversions.
     /// Based on high-iteration testing (50M+ samples) which showed a max drift of ~4.9E-6 for HSL.
