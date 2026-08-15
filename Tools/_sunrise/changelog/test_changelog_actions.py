@@ -16,6 +16,8 @@ os.environ["CHANGELOG_FILE"] = "Resources/Changelog/ChangelogSunrise.yml"
 
 import actions_changelogs_since_last_run as discord_changelog
 import changelog_actions
+import changelog_targets
+import dispatch_changelogs
 import manual_changelog
 
 
@@ -23,6 +25,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 WORKFLOW_PATH = REPO_ROOT / ".github/workflows/changelog.yml"
 PUBLISH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-stable.yml"
 DISCORD_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-discord-changelog.yml"
+DISPATCH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/dispatch-discord-changelogs.yml"
 RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 
@@ -517,10 +520,11 @@ class ChangelogActionsTests(unittest.TestCase):
             parts = root / "Parts"
             parts.mkdir()
             changelog.write_text("Entries:\nOther: Значение\n", encoding="utf-8")
+            long_message = "Длинное описание без искусственного разрыва. " * 8
             for filename, author in (("z.yml", "Яна"), ("a.yml", "Алиса")):
                 (parts / filename).write_text(
                     yaml.safe_dump(
-                        {"author": author, "changes": [{"type": "Add", "message": "Рыба"}]},
+                        {"author": author, "changes": [{"type": "Add", "message": long_message}]},
                         allow_unicode=True,
                         sort_keys=False,
                     ),
@@ -546,6 +550,9 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual([1, 2], [entry["id"] for entry in document["Entries"]])
         self.assertLess(text.index("Entries:"), text.index("Other:"))
         self.assertIn("Алиса", text)
+        message_lines = [line for line in text.splitlines() if line.lstrip().startswith("message:")]
+        self.assertEqual(2, len(message_lines))
+        self.assertTrue(all(long_message in line for line in message_lines))
 
     def test_updater_ignores_existing_entry_without_id(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -576,6 +583,80 @@ class ChangelogActionsTests(unittest.TestCase):
             document = yaml.safe_load(changelog.read_text(encoding="utf-8-sig"))
 
         self.assertEqual(8, document["Entries"][-1]["id"])
+
+    def test_changelog_targets_are_sorted_and_require_complete_configuration(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            targets = repo_root / changelog_targets.TARGETS_PATH
+            changelog = repo_root / "Resources/Changelog/ChangelogSunrise.yml"
+            targets.mkdir(parents=True)
+            changelog.parent.mkdir(parents=True)
+            changelog.write_text("Entries: []\n", encoding="utf-8")
+            for target_id in ("sunrise", "fish"):
+                (targets / f"{target_id}.yml").write_text(
+                    "changelog_file: Resources/Changelog/ChangelogSunrise.yml\n"
+                    f"webhook_secret: CHANGELOG_DISCORD_WEBHOOK_{target_id.upper()}\n",
+                    encoding="utf-8",
+                )
+
+            self.assertEqual(
+                ["fish.yml", "sunrise.yml"],
+                [path.name for path in changelog_targets.target_paths(repo_root)],
+            )
+            self.assertEqual(
+                "CHANGELOG_DISCORD_WEBHOOK_SUNRISE",
+                changelog_targets.resolve_target(repo_root, "sunrise").webhook_secret,
+            )
+
+            (targets / "broken.yml").write_text(
+                "changelog_file: Resources/Changelog/ChangelogSunrise.yml\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(RuntimeError, "CHANGELOG_DISCORD_WEBHOOK"):
+                changelog_targets.resolve_target(repo_root, "broken")
+
+    def test_dispatcher_attempts_remaining_targets_after_failure(self):
+        targets = [
+            changelog_targets.ChangelogTarget(
+                "fish",
+                Path("Resources/Changelog/ChangelogFish.yml"),
+                "CHANGELOG_DISCORD_WEBHOOK_FISH",
+            ),
+            changelog_targets.ChangelogTarget(
+                "sunrise",
+                Path("Resources/Changelog/ChangelogSunrise.yml"),
+                "CHANGELOG_DISCORD_WEBHOOK_SUNRISE",
+            ),
+        ]
+        with patch.dict(
+            "os.environ",
+            {
+                "GITHUB_REPOSITORY": "space-sunrise/fish-station",
+                "GITHUB_TOKEN": "token",
+                "SOURCE_WORKFLOW_RUN_ID": "123",
+                "TARGET_WORKFLOW_REF": "master",
+            },
+        ), patch.object(
+            dispatch_changelogs,
+            "resolve_released_sha",
+            return_value="a" * 40,
+        ), patch.object(
+            dispatch_changelogs,
+            "target_paths",
+            return_value=[Path("fish.yml"), Path("sunrise.yml")],
+        ), patch.object(
+            dispatch_changelogs,
+            "load_target",
+            side_effect=targets,
+        ), patch.object(
+            dispatch_changelogs,
+            "dispatch_target",
+            side_effect=[RuntimeError("ошибка Fish"), None],
+        ) as dispatch:
+            with self.assertRaisesRegex(RuntimeError, "fish.yml"):
+                dispatch_changelogs.main()
+
+        self.assertEqual(2, dispatch.call_count)
 
     def test_reconciliation_includes_equal_timestamps_and_stops_on_older_updates(self):
         checkpoint = datetime(2026, 7, 29, 11, 16, 50, tzinfo=timezone.utc)
@@ -707,6 +788,55 @@ class ChangelogActionsTests(unittest.TestCase):
             timeout=discord_changelog.HTTP_REQUEST_TIMEOUT,
         )
 
+    def test_discord_history_uses_only_matching_target(self):
+        current = {"id": 300}
+        fish_sha = "f" * 40
+        sunrise_sha = "a" * 40
+        runs = {
+            "workflow_runs": [
+                current,
+                {
+                    "id": 250,
+                    "display_title": f"Discord changelog sunrise for {sunrise_sha}",
+                },
+                {
+                    "id": 200,
+                    "display_title": f"Discord changelog fish for {fish_sha}",
+                },
+            ],
+        }
+        with patch.object(
+            discord_changelog,
+            "get_current_run",
+            return_value=current,
+        ), patch.object(discord_changelog, "get_past_runs", return_value=runs):
+            result = discord_changelog.get_most_recent_workflow(
+                Mock(),
+                "space-sunrise/fish-station",
+                "300",
+                "fish",
+            )
+
+        self.assertEqual(200, result["id"])
+
+    def test_discord_runtime_requires_webhook(self):
+        with patch.dict(
+            "os.environ",
+            {
+                "CHANGELOG_FILE": "Resources/Changelog/ChangelogSunrise.yml",
+                "CHANGELOG_TARGET_ID": "sunrise",
+                "RELEASED_SHA": "a" * 40,
+                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_RUN_ID": "300",
+                "GITHUB_TOKEN": "token",
+                "SOURCE_WORKFLOW_RUN_ID": "200",
+                "DISCORD_WEBHOOK_URL": "",
+            },
+            clear=True,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "DISCORD_WEBHOOK_URL"):
+                discord_changelog.validate_runtime_environment()
+
     def test_first_discord_workflow_uses_previous_stable_publish(self):
         previous = {"id": 100, "head_commit": {"id": "abc"}}
 
@@ -717,6 +847,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 "GITHUB_RUN_ID": "300",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "200",
+                "CHANGELOG_TARGET_ID": "sunrise",
             },
         ), patch.object(
             discord_changelog,
@@ -731,14 +862,16 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertEqual("Entries: []", result)
         self.assertEqual("300", recent.call_args_list[0].args[2])
+        self.assertEqual("sunrise", recent.call_args_list[0].args[3])
         self.assertEqual("200", recent.call_args_list[1].args[2])
         self.assertEqual("abc", load.call_args.args[1])
+        self.assertTrue(load.call_args.kwargs["allow_missing"])
 
     def test_discord_workflow_keeps_last_successful_released_sha(self):
         sha = "a" * 40
         previous = {
             "id": 250,
-            "display_title": f"Discord changelog for {sha}",
+            "display_title": f"Discord changelog sunrise for {sha}",
             "head_commit": {"id": "default-branch-sha"},
         }
 
@@ -749,6 +882,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 "GITHUB_RUN_ID": "300",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "200",
+                "CHANGELOG_TARGET_ID": "sunrise",
             },
         ), patch.object(
             discord_changelog,
@@ -762,7 +896,9 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog.get_last_changelog(Path("Resources/Changelog/ChangelogSunrise.yml"))
 
         recent.assert_called_once()
+        self.assertEqual("sunrise", recent.call_args.args[3])
         self.assertEqual(sha, load.call_args.args[1])
+        self.assertFalse(load.call_args.kwargs["allow_missing"])
 
     def test_discord_workflow_falls_back_when_previous_title_has_no_sha(self):
         previous_discord = {"id": 250, "display_title": "Старое имя запуска"}
@@ -775,6 +911,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 "GITHUB_RUN_ID": "300",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "200",
+                "CHANGELOG_TARGET_ID": "sunrise",
             },
         ), patch.object(
             discord_changelog,
@@ -788,6 +925,7 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog.get_last_changelog(Path("Resources/Changelog/ChangelogSunrise.yml"))
 
         self.assertEqual(["300", "200"], [item.args[2] for item in recent.call_args_list])
+        self.assertEqual("sunrise", recent.call_args_list[0].args[3])
         self.assertEqual("stable-sha", load.call_args.args[1])
 
     def test_checkpoint_falls_back_to_latest_changelog_entry(self):
@@ -1368,9 +1506,11 @@ class ChangelogActionsTests(unittest.TestCase):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         publish_workflow = PUBLISH_WORKFLOW_PATH.read_text(encoding="utf-8")
         discord_workflow = DISCORD_WORKFLOW_PATH.read_text(encoding="utf-8")
+        dispatch_workflow = DISPATCH_WORKFLOW_PATH.read_text(encoding="utf-8")
         runner = RUNNER_PATH.read_text(encoding="utf-8")
         document = yaml.load(workflow, Loader=yaml.BaseLoader)
         yaml.load(discord_workflow, Loader=yaml.BaseLoader)
+        yaml.load(dispatch_workflow, Loader=yaml.BaseLoader)
 
         self.assertIn("on", document)
         self.assertIn("jobs", document)
@@ -1407,16 +1547,26 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("ACTIONS_TOKEN: ${{ github.token }}", workflow)
         self.assertIn("CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}", workflow)
         self.assertNotIn("actions_changelogs_since_last_run.py", publish_workflow)
-        self.assertIn('workflows: ["Publish Stable"]', discord_workflow)
-        self.assertIn("run-name: Discord changelog for ${{ github.event.workflow_run.head_sha }}", discord_workflow)
-        self.assertIn("branches: [stable]", discord_workflow)
-        self.assertIn("github.event.workflow_run.conclusion == 'success'", discord_workflow)
-        self.assertIn("ref: ${{ github.event.workflow_run.head_sha }}", discord_workflow)
-        self.assertIn("SOURCE_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}", discord_workflow)
-        self.assertIn("CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}", discord_workflow)
+        self.assertIn('workflows: ["Publish Stable"]', dispatch_workflow)
+        self.assertIn("branches: [stable]", dispatch_workflow)
+        self.assertIn("github.event.workflow_run.conclusion == 'success'", dispatch_workflow)
+        self.assertIn("actions: write", dispatch_workflow)
+        self.assertIn(
+            "SOURCE_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id || inputs.source_workflow_run_id }}",
+            dispatch_workflow,
+        )
+        self.assertIn("dispatch_changelogs.py", dispatch_workflow)
+        self.assertIn("workflow_dispatch:", discord_workflow)
+        self.assertIn(
+            "run-name: Discord changelog ${{ inputs.target_id }} for ${{ inputs.released_sha }}",
+            discord_workflow,
+        )
+        self.assertIn("CHANGELOG_FILE: ${{ steps.target.outputs.changelog_file }}", discord_workflow)
+        self.assertIn("DISCORD_WEBHOOK_URL: ${{ secrets[steps.target.outputs.webhook_secret] }}", discord_workflow)
         self.assertIn("GITHUB_TOKEN: ${{ github.token }}", discord_workflow)
-        self.assertIn("group: publish-discord-changelog", discord_workflow)
+        self.assertIn("group: publish-discord-changelog-${{ inputs.target_id }}", discord_workflow)
         self.assertIn("persist-credentials: false", discord_workflow)
+        self.assertIn("changelog_targets.py", discord_workflow)
         self.assertIn("actions_changelogs_since_last_run.py", discord_workflow)
         self.assertNotIn("CHANGELOG_TOKEN", workflow)
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)
