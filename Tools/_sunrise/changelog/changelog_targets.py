@@ -96,9 +96,13 @@ def write_github_outputs(target: ChangelogTarget) -> None:
     if not output_path:
         raise RuntimeError("Переменная GITHUB_OUTPUT не задана")
 
+    changelog_file = target.changelog_file.as_posix()
+    if "\n" in changelog_file or "\r" in changelog_file:
+        raise RuntimeError("Путь к чейнджлогу не может содержать перенос строки")
+
     with open(output_path, "a", encoding="utf-8") as output:
         output.write(f"target_id={target.target_id}\n")
-        output.write(f"changelog_file={target.changelog_file.as_posix()}\n")
+        output.write(f"changelog_file={changelog_file}\n")
         output.write(f"webhook_secret={target.webhook_secret}\n")
 
 

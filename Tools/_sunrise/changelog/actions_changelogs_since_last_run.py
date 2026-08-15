@@ -370,19 +370,26 @@ def get_most_recent_workflow(
     target_id: str | None = None,
 ) -> Any | None:
     workflow_run = get_current_run(sess, github_repository, github_run)
-    past_runs = get_past_runs(sess, workflow_run)
-    for run in past_runs["workflow_runs"]:
-        # Первый предыдущий успешный запуск, отличный от текущего.
-        if run["id"] == workflow_run["id"]:
-            continue
-
-        if target_id is not None:
-            title = str(run.get("display_title", ""))
-            match = DISCORD_RUN_TITLE_RE.fullmatch(title)
-            if match is None or match.group("target") != target_id:
+    page = 1
+    while True:
+        past_runs = get_past_runs(sess, workflow_run, page)
+        runs = past_runs["workflow_runs"]
+        for run in runs:
+            # Первый предыдущий успешный запуск, отличный от текущего.
+            if run["id"] == workflow_run["id"]:
                 continue
 
-        return run
+            if target_id is not None:
+                title = str(run.get("display_title", ""))
+                match = DISCORD_RUN_TITLE_RE.fullmatch(title)
+                if match is None or match.group("target") != target_id:
+                    continue
+
+            return run
+
+        if len(runs) < 100:
+            return None
+        page += 1
 
 
 def get_current_run(
@@ -396,11 +403,16 @@ def get_current_run(
     return resp.json()
 
 
-def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
+def get_past_runs(sess: requests.Session, current_run: Any, page: int = 1) -> Any:
     """
     Возвращает все успешные запуски рабочего процесса до текущего.
     """
-    params = {"status": "success", "created": f"<={current_run['created_at']}"}
+    params = {
+        "status": "success",
+        "created": f"<={current_run['created_at']}",
+        "per_page": 100,
+        "page": page,
+    }
     resp = sess.get(
         f"{current_run['workflow_url']}/runs",
         params=params,

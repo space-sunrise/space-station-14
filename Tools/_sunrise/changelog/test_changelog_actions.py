@@ -669,6 +669,20 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertEqual(2, dispatch.call_count)
 
+    def test_github_outputs_reject_changelog_path_with_line_break(self):
+        target = changelog_targets.ChangelogTarget(
+            "target",
+            Path("Resources/Changelog/Bad\nPath.yml"),
+            "WEBHOOK_SECRET",
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "output"
+            with patch.dict("os.environ", {"GITHUB_OUTPUT": str(output)}):
+                with self.assertRaisesRegex(RuntimeError, "перенос строки"):
+                    changelog_targets.write_github_outputs(target)
+
+            self.assertFalse(output.exists())
+
     def test_reconciliation_includes_equal_timestamps_and_stops_on_older_updates(self):
         checkpoint = datetime(2026, 7, 29, 11, 16, 50, tzinfo=timezone.utc)
         page = [
@@ -799,36 +813,70 @@ class ChangelogActionsTests(unittest.TestCase):
             timeout=discord_changelog.HTTP_REQUEST_TIMEOUT,
         )
 
-    def test_discord_history_uses_only_matching_target(self):
+    def test_discord_history_paginates_until_matching_target(self):
         current = {"id": 300}
         fish_sha = "f" * 40
         sunrise_sha = "a" * 40
-        runs = {
+        first_page = {
             "workflow_runs": [
-                current,
                 {
-                    "id": 250,
+                    "id": run_id,
                     "display_title": f"Discord changelog sunrise for {sunrise_sha}",
-                },
+                }
+                for run_id in range(100, 200)
+            ],
+        }
+        second_page = {
+            "workflow_runs": [
                 {
                     "id": 200,
                     "display_title": f"Discord changelog Fish_Test.v2 for {fish_sha}",
                 },
             ],
         }
+        session = Mock()
         with patch.object(
             discord_changelog,
             "get_current_run",
             return_value=current,
-        ), patch.object(discord_changelog, "get_past_runs", return_value=runs):
+        ), patch.object(
+            discord_changelog,
+            "get_past_runs",
+            side_effect=[first_page, second_page],
+        ) as past_runs:
             result = discord_changelog.get_most_recent_workflow(
-                Mock(),
+                session,
                 "space-sunrise/fish-station",
                 "300",
                 "Fish_Test.v2",
             )
 
         self.assertEqual(200, result["id"])
+        self.assertEqual(
+            [call(session, current, 1), call(session, current, 2)],
+            past_runs.call_args_list,
+        )
+
+    def test_discord_history_requests_one_hundred_runs_per_page(self):
+        session = Mock()
+        session.get.return_value.json.return_value = {"workflow_runs": []}
+        current = {
+            "created_at": "2026-08-15T00:00:00Z",
+            "workflow_url": "https://api.github.test/workflows/1",
+        }
+
+        discord_changelog.get_past_runs(session, current, 2)
+
+        session.get.assert_called_once_with(
+            "https://api.github.test/workflows/1/runs",
+            params={
+                "status": "success",
+                "created": "<=2026-08-15T00:00:00Z",
+                "per_page": 100,
+                "page": 2,
+            },
+            timeout=discord_changelog.HTTP_REQUEST_TIMEOUT,
+        )
 
     def test_discord_runtime_requires_webhook(self):
         with patch.dict(
@@ -1578,6 +1626,9 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("group: publish-discord-changelog-${{ inputs.target_id }}", discord_workflow)
         self.assertIn("persist-credentials: false", discord_workflow)
         self.assertIn("changelog_targets.py", discord_workflow)
+        self.assertIn("CHANGELOG_TARGET_ID: ${{ inputs.target_id }}", discord_workflow)
+        self.assertIn('changelog_targets.py "$CHANGELOG_TARGET_ID"', discord_workflow)
+        self.assertNotIn('changelog_targets.py "${{ inputs.target_id }}"', discord_workflow)
         self.assertIn("actions_changelogs_since_last_run.py", discord_workflow)
         self.assertNotIn("CHANGELOG_TOKEN", workflow)
         self.assertNotIn("CHANGELOG_SSH_KEY", workflow)

@@ -46,7 +46,9 @@ jobs:
 
       - name: Resolve changelog target
         id: target
-        run: python Tools/_sunrise/changelog/changelog_targets.py "${{ inputs.target_id }}"
+        env:
+          CHANGELOG_TARGET_ID: ${{ inputs.target_id }}
+        run: python Tools/_sunrise/changelog/changelog_targets.py "$CHANGELOG_TARGET_ID"
 
       - name: Publish changelog
         env:
