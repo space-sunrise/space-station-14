@@ -161,6 +161,9 @@ secure-terminal-nukerequest-desc = Запрашивает коды ядерно�
 
 secure-terminal-code-violet-name = Фиолетовый код
 secure-terminal-code-violet-desc = Повышает код угрозы станции до [color=violet]фиолетового[/color].
+
+secure-terminal-code-red-name = Красный код
+secure-terminal-code-red-desc = Повышает код угрозы станции до [color=red]красного[/color].
 secure-terminal-end-violet-name = Отмена фиолетового кода
 secure-terminal-end-violet-desc = Отменяет [color=violet]фиолетовый[/color] код и возвращает зелёный. Фиолетовый код должен действовать не менее 10 минут.
 

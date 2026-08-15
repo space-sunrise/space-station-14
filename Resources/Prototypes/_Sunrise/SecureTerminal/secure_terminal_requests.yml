@@ -29,6 +29,7 @@
   announcementColor: "#ff4444"
   activationDelaySecs: 600
   requiresWarNotDeclared: true
+  requiresAlertLevel: red
   requireReason: true
   requiresAdminApproval: true
   fee: 5000
@@ -229,6 +230,27 @@
   authGroupLabels:
     - secure-terminal-auth-group-captain-hos-cmo-rd-1
     - secure-terminal-auth-group-captain-hos-cmo-rd-2
+  cooldownSecs: 600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseCodeRed
+  name: secure-terminal-code-red-name
+  description: secure-terminal-code-red-desc
+  announcementColor: Red
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: red
+  sortOrder: 30
+  authGroups:
+    - [Captain]
+    - [HeadOfSecurity]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-1
+    - secure-terminal-auth-group-captain-hos-2
   cooldownSecs: 600
   authTimer: 30
 
