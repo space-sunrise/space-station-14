@@ -4912,3 +4912,13 @@
     message: солидный набор за 6тк получает более солидный бронежилет
   id: 1999
   url: https://github.com/space-sunrise/sunrise-station/pull/4682
+- author: KaiserMaus
+  time: '2026-08-14T23:51:11.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: полноразмерный L6 SAW переименован в L6 MAX и переведён на калибр .308.
+  - type: Tweak
+    message: Ксено вновь могут носить скафандры, но не шлема скафандров ввиду строения
+      тела.
+  id: 2000
+  url: https://github.com/space-sunrise/sunrise-station/pull/4672
