@@ -372,6 +372,25 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/skm24/Scrap/tiny.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleImprovised
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifleImprovised
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleImprovised
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
   - type: ChamberMagazineAmmoProvider
     availablePrefixes: []
   - type: WeaponDismantleOnShoot
@@ -391,7 +410,7 @@
       - id: RifleStock
         launchAngle: 180
         prob: 0.80
-      - id: MagazineLightRifleEmpty
+      - id: MagazineLightRifleImprovisedEmpty
         launchAngle: -90
         prob: 1
       - id: CartridgeLightRifleSP
@@ -434,7 +453,8 @@
         priority: 2
         whitelist:
           tags:
-          - MagazineLightRifle
+          - MagazineLightRifleImprovised
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: null

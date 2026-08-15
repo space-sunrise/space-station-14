@@ -128,3 +128,5 @@ crafting-menu-name-ASSFP = набор деталей для кузни
 crafting-menu-text-ASSFP = Небольшой набор компонентов для сборки горна на наковальне, включает воспламенитель и клапаны.
 crafting-menu-name-improvised-modular-receiver = импровизированный модульный ресивер
 crafting-menu-text-improvised-modular-receiver = Грубый, но рабочий блок ствольной коробки, собранный из подручных материалов.
+crafting-menu-name-improvised-light-rifle-magazine = импровизированный винтовочный магазин
+crafting-menu-text-improvised-light-rifle-magazine = Кустарно собранный 20-зарядный магазин для самодельных винтовочных патронов.
