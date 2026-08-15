@@ -25,7 +25,9 @@
         children:
         - id: WeaponSniperHristov
         - id: MagazineBoxAntiMateriel
+        - id: MagazineBoxAntiMateriel # Sunrise-add
         - id: MagazineBauer127Penetrator # Sunrise-add
+        - id: MagazineBauer127HP # Sunrise-add
         - id: ClothingNeckTieRed
         - id: ClothingHandsGlovesLatex
         - id: ClothingUniformJumpsuitArmouredBlack # Sunrise-edit

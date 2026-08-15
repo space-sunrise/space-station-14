@@ -11,6 +11,9 @@
   - MagazinePistolSubMachineGunCaselessExtended
   - MagazineBoxAntiMateriel
   # Sunrise-start
+  - MagazineMagnum
+  - MagazineMagnumFMJ
+  - MagazineMagnumHP
   - MagazineRifleBoxSP
   - MagazineRifleBoxFMJ
   - MagazinePistol40SubMachineGunSP
