@@ -196,7 +196,8 @@
 - type: entity
   id: SunriseGyroscopeHugeThrust
   parent: Gyroscope
-  suffix: DEBUG, 20KThrust
+  suffix: 20KThrust
+  category: DEBUG
   components:
   - type: Thruster
     thrust: 20000
@@ -204,7 +205,8 @@
 - type: entity
   id: SunriseGyroscopeSuperThrust
   parent: Gyroscope
-  suffix: DEBUG, 200KThrust
+  suffix: 200KThrust
+  category: DEBUG
   components:
   - type: Thruster
     thrust: 200000
