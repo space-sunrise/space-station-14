@@ -7,6 +7,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Parallax;
@@ -15,6 +16,7 @@ public sealed class ParallaxOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    // [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Sunrise-edit
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IParallaxManager _manager = default!;
     private readonly SharedMapSystem _mapSystem;
