@@ -39,9 +39,20 @@ def target_paths(repo_root: Path) -> list[Path]:
     if not targets_path.is_dir():
         raise RuntimeError(f"Каталог целей чейнджлога не найден: {TARGETS_PATH}")
 
-    paths = sorted(targets_path.glob("*.yml"), key=lambda path: path.name)
-    if not paths:
+    candidates = sorted(targets_path.glob("*.yml"), key=lambda path: path.name)
+    if not candidates:
         raise RuntimeError(f"В каталоге {TARGETS_PATH} нет целей чейнджлога")
+
+    paths: list[Path] = []
+    for path in candidates:
+        try:
+            if yaml.safe_load(path.read_text(encoding="utf-8-sig")) is None:
+                print(f"Пропущена пустая цель {path.name}")
+                continue
+        except yaml.YAMLError:
+            # Ошибка будет привязана к конкретной цели при полной загрузке.
+            pass
+        paths.append(path)
     return paths
 
 

@@ -598,6 +598,8 @@ class ChangelogActionsTests(unittest.TestCase):
                     f"webhook_secret: CHANGELOG_DISCORD_WEBHOOK_{target_id.upper()}\n",
                     encoding="utf-8",
                 )
+            (targets / "example.yml").write_text("# Только комментарии\n", encoding="utf-8")
+            (targets / "empty.yml").write_text("", encoding="utf-8")
 
             self.assertEqual(
                 ["fish.yml", "sunrise.yml"],
