@@ -4922,3 +4922,12 @@
       тела.
   id: 2000
   url: https://github.com/space-sunrise/sunrise-station/pull/4672
+- author: KaiserMaus
+  time: '2026-08-15T00:09:42.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Самодельный СКМ теперь имеет свой магазин на 20 патронов.
+  - type: Fix
+    message: Исправлено отсутствие поломок у самодельного оружия
+  id: 2001
+  url: https://github.com/space-sunrise/sunrise-station/pull/4718
