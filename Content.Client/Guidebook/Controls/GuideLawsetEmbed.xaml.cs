@@ -55,11 +55,8 @@ public sealed partial class GuideLawsetEmbed : Control, IDocumentTag, ISearchabl
             {
                 Margin = new(0, 5, 0, 1)
             };
-            // Sunrise-Edit start - Разрешить теги scramble в наборах законов руководства
             var locLawStatement = Loc.GetString("laws-number-wrapper", ("lawnumber", i), ("lawstring", locLawString));
-            // lawN.SetMarkup(locLawStatement);
-            lawN.SetMessage(FormattedMessage.FromMarkupPermissive(locLawStatement), tagsAllowed: null);
-            // Sunrise-Edit end
+            lawN.SetMarkup(locLawStatement);
             LawsetContainer.AddChild(lawN);
 
             i++;

@@ -6,6 +6,7 @@ using Content.Shared.Lock.BypassLock.Components;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
+using Robust.Shared.Localization; // Sunrise-Edit - Добавлено using для ILocalizationManager
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -16,7 +17,8 @@ public sealed partial class BypassLockSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Sunrise-Edit - Добавлено для локализации качеств инструментов
+    [Dependency] private readonly IPrototypeManager _prototype = default!; // Sunrise-Edit - Добавлено для локализации качеств инструментов
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Sunrise-Edit - Добавлено для локализации сообщений
 
     public override void Initialize()
     {

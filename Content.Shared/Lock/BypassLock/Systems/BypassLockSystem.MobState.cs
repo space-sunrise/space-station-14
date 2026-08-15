@@ -37,12 +37,12 @@ public sealed partial class BypassLockSystem
             args.ShowVerb = true;
             args.Verb.Disabled = true;
             // Sunrise-Edit start - Локализация названия качества инструмента
-            var qualityName = args.ToolQuality.ToString().ToLower();
-            if (_prototypeManager.TryIndex<ToolQualityPrototype>(args.ToolQuality, out var quality))
+            var qualityName = args.ToolQuality.ToString().ToLowerInvariant();
+            if (_prototype.TryIndex<ToolQualityPrototype>(args.ToolQuality, out var quality))
             {
-                qualityName = Loc.GetString(quality.Name);
+                qualityName = _loc.GetString(quality.Name);
             }
-            args.Verb.Message = Loc.GetString("bypass-lock-disabled-wrong-tool", ("quality", qualityName));
+            args.Verb.Message = _loc.GetString("bypass-lock-disabled-wrong-tool", ("quality", qualityName));
             // Sunrise-Edit end
         }
     }

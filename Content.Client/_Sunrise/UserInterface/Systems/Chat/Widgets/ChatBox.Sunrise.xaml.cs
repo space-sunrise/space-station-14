@@ -2,7 +2,6 @@
 using Content.Client._Sunrise.Messenger;
 using Content.Client._Sunrise.UserInterface.CustomControls;
 using Content.Client._Sunrise.UserInterface.RichText;
-using Content.Client.UserInterface.RichText;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Robust.Client.UserInterface.RichText;
@@ -25,7 +24,6 @@ public partial class ChatBox
         typeof(TextureTag),
         typeof(EntityTextureTag),
         typeof(RadioIconTag),
-        typeof(ScrambleTag),
     ];
 
     private static readonly Type[] TagsEmoji =
