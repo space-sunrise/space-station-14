@@ -8,19 +8,9 @@
   copyright: "Мефедрон#1144 (184388744558673920) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["jailbreak.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Much#5032 (429934855913078786) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
 - files: ["space-mudaki.webp"]
   license: "CC-BY-SA-3.0"
   copyright: "Ivan_Gochin#2016 (865932328793800724) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["kosmologistika.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Drodn#1101 (372319756180520961) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
 - files: ["lizard-bar.webp"]
@@ -97,16 +87,6 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "mrzipka(631581871179956264) on discord"
   source: "https://discord.com/channels/919301044784226385/993679919550844938/1166578120694968361"
-
-- files: ["xeno.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "_sangoro_(892329132829065276) on discord"
-  source: "https://discord.com/channels/919301044784226385/1073603532898435183/1162826046312284160"
-
-- files: ["space-nuke.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "FioDoSicH#0944(552047248200957973) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
 
 - files: ["arnold-intelligence.webp"]
   license: "CC-BY-NC-SA-3.0"
