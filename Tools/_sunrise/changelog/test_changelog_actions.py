@@ -598,12 +598,21 @@ class ChangelogActionsTests(unittest.TestCase):
                     f"webhook_secret: CHANGELOG_DISCORD_WEBHOOK_{target_id.upper()}\n",
                     encoding="utf-8",
                 )
+            (targets / "Fish_Test.v2.yml").write_text(
+                "changelog_file: Resources/Changelog/ChangelogSunrise.yml\n"
+                "webhook_secret: ANY_SECRET_NAME\n",
+                encoding="utf-8",
+            )
             (targets / "example.yml").write_text("# Только комментарии\n", encoding="utf-8")
             (targets / "empty.yml").write_text("", encoding="utf-8")
 
             self.assertEqual(
-                ["fish.yml", "sunrise.yml"],
+                ["Fish_Test.v2.yml", "fish.yml", "sunrise.yml"],
                 [path.name for path in changelog_targets.target_paths(repo_root)],
+            )
+            self.assertEqual(
+                "ANY_SECRET_NAME",
+                changelog_targets.resolve_target(repo_root, "Fish_Test.v2").webhook_secret,
             )
             self.assertEqual(
                 "CHANGELOG_DISCORD_WEBHOOK_SUNRISE",
@@ -614,7 +623,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 "changelog_file: Resources/Changelog/ChangelogSunrise.yml\n",
                 encoding="utf-8",
             )
-            with self.assertRaisesRegex(RuntimeError, "CHANGELOG_DISCORD_WEBHOOK"):
+            with self.assertRaisesRegex(RuntimeError, "webhook_secret"):
                 changelog_targets.resolve_target(repo_root, "broken")
 
     def test_dispatcher_attempts_remaining_targets_after_failure(self):
@@ -803,7 +812,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 },
                 {
                     "id": 200,
-                    "display_title": f"Discord changelog fish for {fish_sha}",
+                    "display_title": f"Discord changelog Fish_Test.v2 for {fish_sha}",
                 },
             ],
         }
@@ -816,7 +825,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 Mock(),
                 "space-sunrise/fish-station",
                 "300",
-                "fish",
+                "Fish_Test.v2",
             )
 
         self.assertEqual(200, result["id"])

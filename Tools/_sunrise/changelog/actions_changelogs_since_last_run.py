@@ -43,7 +43,7 @@ MEDIA_MAX_REDIRECTS = 3
 MEDIA_READ_CHUNK_SIZE = 64 * 1024
 MEDIA_REDIRECT_STATUSES = {300, 301, 302, 303, 307, 308}
 DISCORD_RUN_TITLE_RE = re.compile(
-    r"^Discord changelog (?P<target>[a-z0-9]+(?:-[a-z0-9]+)*) for (?P<sha>[0-9a-f]{40,64})$",
+    r"^Discord changelog (?P<target>.+) for (?P<sha>[0-9a-f]{40,64})$",
 )
 SHA_RE = re.compile(r"^[0-9a-f]{40,64}$")
 

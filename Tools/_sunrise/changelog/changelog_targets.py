@@ -2,7 +2,6 @@
 # Sunrise added start - реестр независимо публикуемых чейнджлогов
 import argparse
 import os
-import re
 from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,8 +12,6 @@ from changelog_path import validate_changelog_path
 
 
 TARGETS_PATH = Path("Tools/_sunrise/changelog/targets")
-TARGET_ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-WEBHOOK_SECRET_RE = re.compile(r"^CHANGELOG_DISCORD_WEBHOOK_[A-Z0-9_]+$")
 TARGET_FIELDS = {"changelog_file", "webhook_secret"}
 
 
@@ -26,12 +23,9 @@ class ChangelogTarget:
 
 
 def validate_target_id(value: str | None) -> str:
-    target_id = value.strip() if isinstance(value, str) else ""
-    if not TARGET_ID_RE.fullmatch(target_id):
-        raise RuntimeError(
-            "Идентификатор цели должен состоять из строчных латинских букв, цифр и одиночных дефисов",
-        )
-    return target_id
+    if not isinstance(value, str) or not value or "\n" in value or "\r" in value:
+        raise RuntimeError("Идентификатор цели не может быть пустым или содержать перенос строки")
+    return value
 
 
 def target_paths(repo_root: Path) -> list[Path]:
@@ -78,20 +72,23 @@ def load_target(path: Path, repo_root: Path) -> ChangelogTarget:
         raise RuntimeError(f"Файл цели {target_id} не найден: {changelog_file}")
 
     webhook_secret = document.get("webhook_secret")
-    if not isinstance(webhook_secret, str) or not WEBHOOK_SECRET_RE.fullmatch(webhook_secret):
-        raise RuntimeError(
-            f"Цель {target_id} должна использовать секрет CHANGELOG_DISCORD_WEBHOOK_*",
-        )
+    if (
+        not isinstance(webhook_secret, str)
+        or not webhook_secret
+        or "\n" in webhook_secret
+        or "\r" in webhook_secret
+    ):
+        raise RuntimeError(f"Цель {target_id} должна содержать имя секрета в поле webhook_secret")
 
     return ChangelogTarget(target_id, changelog_file, webhook_secret)
 
 
 def resolve_target(repo_root: Path, target_id: str) -> ChangelogTarget:
     target_id = validate_target_id(target_id)
-    target_path = repo_root / TARGETS_PATH / f"{target_id}.yml"
-    if not target_path.is_file():
-        raise RuntimeError(f"Цель чейнджлога не найдена: {target_id}")
-    return load_target(target_path, repo_root)
+    for target_path in target_paths(repo_root):
+        if target_path.stem == target_id:
+            return load_target(target_path, repo_root)
+    raise RuntimeError(f"Цель чейнджлога не найдена: {target_id}")
 
 
 def write_github_outputs(target: ChangelogTarget) -> None:
