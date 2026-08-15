@@ -2161,13 +2161,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,2.5
       parent: 1
-    - type: BodyScanner
-      tableEntity: 564
-    - type: DeviceLinkSource
-      linkedPorts:
-        564:
-        - - BodyScannerSender
-          - BodyScannerReceiver
 - proto: ComputerCrewMonitoring
   entities:
   - uid: 301
@@ -4180,8 +4173,6 @@ entities:
     - type: Transform
       pos: 0.5,1.5
       parent: 1
-    - type: OperatingTable
-      scanner: 300
 - proto: OrganArachnidHeart
   entities:
   - uid: 305
