@@ -582,8 +582,6 @@ entities:
       parent: 38
     - type: MeleeWeapon
       nextAttack: -124.7240603
-    - type: EnergyColor
-      color: '#FF6347FF'
     - type: UseDelay
       delays:
         default:
@@ -602,8 +600,6 @@ entities:
       parent: 43
     - type: MeleeWeapon
       nextAttack: -124.8630021
-    - type: EnergyColor
-      color: '#BA55D3FF'
     - type: UseDelay
       delays:
         default:
@@ -622,8 +618,6 @@ entities:
       parent: 85
     - type: MeleeWeapon
       nextAttack: -126.2885337
-    - type: EnergyColor
-      color: '#00FA9AFF'
     - type: UseDelay
       delays:
         default:
@@ -642,8 +636,6 @@ entities:
       parent: 90
     - type: MeleeWeapon
       nextAttack: -126.4153074
-    - type: EnergyColor
-      color: '#00FFFFFF'
     - type: UseDelay
       delays:
         default:
