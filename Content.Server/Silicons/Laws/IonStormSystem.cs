@@ -22,6 +22,8 @@ public sealed class IonStormSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
 
     // funny
+    // Sunrise-Edit start - Использование переведенных датасетов Sunrise вместо ванильных
+    /*
     private static readonly ProtoId<DatasetPrototype> Threats = "IonStormThreats";
     private static readonly ProtoId<DatasetPrototype> Objects = "IonStormObjects";
     private static readonly ProtoId<DatasetPrototype> Crew = "IonStormCrew";
@@ -40,6 +42,26 @@ public sealed class IonStormSystem : EntitySystem
     private static readonly ProtoId<DatasetPrototype> Concepts = "IonStormConcepts";
     private static readonly ProtoId<DatasetPrototype> Drinks = "IonStormDrinks";
     private static readonly ProtoId<DatasetPrototype> Foods = "IonStormFoods";
+    */
+    private static readonly ProtoId<DatasetPrototype> Threats = "SunriseIonStormThreats";
+    private static readonly ProtoId<DatasetPrototype> Objects = "SunriseIonStormObjects";
+    private static readonly ProtoId<DatasetPrototype> Crew = "SunriseIonStormCrew";
+    private static readonly ProtoId<DatasetPrototype> Adjectives = "SunriseIonStormAdjectives";
+    private static readonly ProtoId<DatasetPrototype> Verbs = "SunriseIonStormVerbs";
+    private static readonly ProtoId<DatasetPrototype> NumberBase = "SunriseIonStormNumberBase";
+    private static readonly ProtoId<DatasetPrototype> NumberMod = "SunriseIonStormNumberMod";
+    private static readonly ProtoId<DatasetPrototype> Areas = "SunriseIonStormAreas";
+    private static readonly ProtoId<DatasetPrototype> Feelings = "SunriseIonStormFeelings";
+    private static readonly ProtoId<DatasetPrototype> FeelingsPlural = "SunriseIonStormFeelingsPlural";
+    private static readonly ProtoId<DatasetPrototype> Musts = "SunriseIonStormMusts";
+    private static readonly ProtoId<DatasetPrototype> Requires = "SunriseIonStormRequires";
+    private static readonly ProtoId<DatasetPrototype> Actions = "SunriseIonStormActions";
+    private static readonly ProtoId<DatasetPrototype> Allergies = "SunriseIonStormAllergies";
+    private static readonly ProtoId<DatasetPrototype> AllergySeverities = "SunriseIonStormAllergySeverities";
+    private static readonly ProtoId<DatasetPrototype> Concepts = "SunriseIonStormConcepts";
+    private static readonly ProtoId<DatasetPrototype> Drinks = "SunriseIonStormDrinks";
+    private static readonly ProtoId<DatasetPrototype> Foods = "SunriseIonStormFoods";
+    // Sunrise-Edit end
 
     /// <summary>
     /// Randomly alters the laws of an individual silicon.
