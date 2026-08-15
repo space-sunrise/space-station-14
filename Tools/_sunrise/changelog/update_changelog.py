@@ -93,7 +93,13 @@ def main():
         new_data.update((key, value) for key, value in current_data.items() if key != "Entries")
 
     with open(args.changelog_file, "w", encoding="utf-8-sig") as file:
-        yaml.safe_dump(new_data, file, allow_unicode=True, sort_keys=False)
+        yaml.safe_dump(
+            new_data,
+            file,
+            allow_unicode=True,
+            sort_keys=False,
+            width=2**31 - 1,
+        )
 
 
 main()
