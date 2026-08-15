@@ -13,14 +13,12 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
-    minAngle: -2.9
-    maxAngle: -30
+    minAngle: -19
+    maxAngle: -16
   - type: Gun
-    minAngle: 3
-    maxAngle: 50
-    angleIncrease: 3
-    angleDecay: 20
-    fireRate: 10
+    minAngle: 21
+    maxAngle: 32
+    fireRate: 9
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:
@@ -262,7 +260,7 @@
     fireRate: 5.5
     selectedMode: FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+      collection: aug
     availableModes:
     - FullAuto
   - type: Wieldable
