@@ -3,6 +3,9 @@
   id: CantInteract
 
 - type: Tag
+  id: CannotBeFlatpacked
+
+- type: Tag
   id: Directional
 
 - type: Tag
