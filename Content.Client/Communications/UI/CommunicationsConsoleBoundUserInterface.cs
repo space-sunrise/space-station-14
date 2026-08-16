@@ -28,6 +28,7 @@ namespace Content.Client.Communications.UI
             _menu.OnAlertLevel += AlertLevelSelected;
             _menu.OnEmergencyLevel += EmergencyShuttleButtonPressed;
             _menu.OnToggleRelay += ToggleRelayPressed; // Sunrise-Edit
+            _menu.SecureTerminalButton.OnPressed += _ => SendMessage(new CommunicationsConsoleOpenSecureTerminalMessage()); // Sunrise-Edit: защищённый терминал
         }
 
         public void AlertLevelSelected(string level)
@@ -106,6 +107,7 @@ namespace Content.Client.Communications.UI
                 _menu.RelayCooldownRemaining = commsState.RelayCooldownRemaining;
                 _menu.RelayTimeRemaining = commsState.RelayTimeRemaining;
                 _menu.UpdateRelayUi();
+                _menu.SecureTerminalButton.Visible = commsState.HasSecureTerminal; // Sunrise-Edit: защищённый терминал
                 // Sunrise-End
             }
         }

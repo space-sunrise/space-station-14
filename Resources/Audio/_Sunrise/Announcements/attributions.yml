@@ -1,0 +1,9 @@
+- files: ["psi.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Modified by Bukkataro from xenoborg_buzz-two.ogg"
+  source: "https://github.com/space-wizards/space-station-14/pull/36867"
+
+- files: ["siren_spooky.ogg"]
+  license: "MIT"
+  copyright: "Scarlet Lightweaver and Shades"
+  source: "https://github.com/ss14Starlight/space-station-14/pull/4170"

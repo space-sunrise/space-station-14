@@ -1,0 +1,23 @@
+- type: entity
+  id: BaseStationSunriseSecureTerminal
+  abstract: true
+  components:
+  - type: SecureCommandTerminalStation
+  - type: AlertArmoryStation
+    shuttles:
+      gamma:
+        shuttle: /Maps/_Sunrise/Shuttles/SecureTerminal/Armories/GammaWeaponry.yml
+        announcement: announcement-gamma-armory
+        recallAnnouncement: announcement-gamma-armory-recall
+      psi:
+        shuttle: /Maps/_Sunrise/Shuttles/SecureTerminal/Armories/PsiArmory.yml
+        announcement: announcement-psi-armory
+        announcementColor: "#2288ff"
+        recallAnnouncement: announcement-psi-armory-recall
+        recallAnnouncementColor: "#2288ff"
+      medical:
+        shuttle: /Maps/_Sunrise/Shuttles/SecureTerminal/Armories/EmergencyMedicalPod.yml
+        announcement: announcement-med-pod
+        announcementColor: "#34c3eb"
+        recallAnnouncement: announcement-med-pod-recall
+        recallAnnouncementColor: "#34c3eb"

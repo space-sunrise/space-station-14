@@ -1,6 +1,7 @@
 - type: entity
   abstract: true
   id: BaseStationNanotrasen
+  parent: BaseStationSunriseSecureTerminal # Sunrise-Edit: защищённый терминал и аварийные арсеналы
   components:
     - type: NpcFactionMember
       factions:

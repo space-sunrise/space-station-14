@@ -1,0 +1,513 @@
+# Запросы групп быстрого реагирования
+- type: secureTerminalRequest
+  id: SunriseWaropsSecurity
+  name: secure-terminal-warops-security-name
+  description: secure-terminal-warops-security-desc
+  announcement: secure-terminal-warops-security-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 1500
+  requiresWarDeclared: true
+  fee: 8000
+  budgetPenalty: 0.1
+  actionType: GameRule
+  gameruleId: SunriseWarOpsERTSpawn
+  oneTimeUse: true
+  sortOrder: 35
+  authGroups:
+    - [Captain, HeadOfSecurity]
+    - [Captain, HeadOfSecurity]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-1
+    - secure-terminal-auth-group-captain-hos-2
+  cooldownSecs: 3600
+
+- type: secureTerminalRequest
+  id: SunriseErtSecurity
+  name: secure-terminal-ert-security-name
+  description: secure-terminal-ert-security-desc
+  announcement: secure-terminal-ert-security-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 600
+  requiresWarNotDeclared: true
+  requiresAlertLevel: red
+  requireReason: true
+  requiresAdminApproval: true
+  fee: 5000
+  budgetPenalty: 0.05
+  actionType: GameRule
+  gameruleId: SunriseERTSecSpawn
+  oneTimeUse: true
+  sortOrder: 40
+  authGroups:
+    - [Captain, HeadOfSecurity]
+    - [Captain, HeadOfSecurity]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-1
+    - secure-terminal-auth-group-captain-hos-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseErtEngineering
+  name: secure-terminal-ert-engineering-name
+  description: secure-terminal-ert-engineering-desc
+  announcement: secure-terminal-ert-engineering-announcement
+  announcementColor: "#ffaa33"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 5000
+  budgetPenalty: 0.05
+  actionType: GameRule
+  gameruleId: SunriseERTEngiSpawn
+  oneTimeUse: true
+  sortOrder: 50
+  authGroups:
+    - [Captain, ChiefEngineer]
+    - [Captain, ChiefEngineer]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-ce-1
+    - secure-terminal-auth-group-captain-ce-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseErtMedical
+  name: secure-terminal-ert-medical-name
+  description: secure-terminal-ert-medical-desc
+  announcement: secure-terminal-ert-medical-announcement
+  announcementColor: "#33ff66"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 5000
+  budgetPenalty: 0.05
+  actionType: GameRule
+  gameruleId: SunriseERTMedSpawn
+  oneTimeUse: true
+  sortOrder: 60
+  authGroups:
+    - [Captain, ChiefMedicalOfficer]
+    - [Captain, ChiefMedicalOfficer]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-cmo-1
+    - secure-terminal-auth-group-captain-cmo-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseErtJanitorial
+  name: secure-terminal-ert-janitorial-name
+  description: secure-terminal-ert-janitorial-desc
+  announcement: secure-terminal-ert-janitorial-announcement
+  announcementColor: "#aaffaa"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 5000
+  budgetPenalty: 0.05
+  actionType: GameRule
+  gameruleId: SunriseERTJaniSpawn
+  oneTimeUse: true
+  sortOrder: 70
+  authGroups:
+    - [Captain, HeadOfPersonnel]
+    - [Captain, HeadOfPersonnel]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hop-1
+    - secure-terminal-auth-group-captain-hop-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseErtChaplain
+  name: secure-terminal-ert-chaplain-name
+  description: secure-terminal-ert-chaplain-desc
+  announcement: secure-terminal-ert-chaplain-announcement
+  announcementColor: "#ddddff"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 5000
+  budgetPenalty: 0.05
+  actionType: GameRule
+  gameruleId: SunriseERTChaplainSpawn
+  oneTimeUse: true
+  sortOrder: 80
+  authGroups:
+    - [Captain, Ntrep]
+    - [Captain, Ntrep]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-ntr-1
+    - secure-terminal-auth-group-captain-ntr-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseErtCBURN
+  name: secure-terminal-ert-cburn-name
+  description: secure-terminal-ert-cburn-desc
+  announcement: secure-terminal-ert-cburn-announcement
+  announcementColor: Violet
+  activationDelaySecs: 600
+  requiresWarNotDeclared: true
+  requireReason: true
+  fee: 8000
+  budgetPenalty: 0.1
+  actionType: GameRule
+  gameruleId: SunriseERTCBURNSpawn
+  oneTimeUse: true
+  requiresAlertLevel: violet
+  sortOrder: 90
+  authGroups:
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-cmo-rd-1
+    - secure-terminal-auth-group-captain-hos-cmo-rd-2
+    - secure-terminal-auth-group-captain-hos-cmo-rd-3
+  cooldownSecs: 3600
+  authTimer: 30
+
+
+# Особые коды угрозы
+- type: secureTerminalRequest
+  id: SunriseCodeGamma
+  name: secure-terminal-code-gamma-name
+  description: secure-terminal-code-gamma-desc
+  announcement: secure-terminal-code-gamma-announcement
+  announcementColor: "#ff66cc"
+  activationDelaySecs: 5
+  requireReason: true
+  requiresAdminApproval: true
+  fee: 2500
+  budgetPenalty: 0.1
+  actionType: AlertLevel
+  alertLevel: gamma
+  sortOrder: 10
+  authGroups:
+    - [Captain, HeadOfSecurity, Ntrep]
+    - [Captain, HeadOfSecurity, Ntrep]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-ntr-1
+    - secure-terminal-auth-group-captain-hos-ntr-2
+  cooldownSecs: 900
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseCodePsi
+  name: secure-terminal-code-psi-name
+  description: secure-terminal-code-psi-desc
+  announcement: secure-terminal-code-psi-announcement
+  announcementColor: "#2288ff"
+  activationDelaySecs: 5
+  fee: 2500
+  budgetPenalty: 0.1
+  actionType: AlertLevel
+  alertLevel: psi
+  sortOrder: 20
+  authGroups:
+    - [Captain, HeadOfSecurity, ResearchDirector]
+    - [Captain, HeadOfSecurity, ResearchDirector]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-rd-1
+    - secure-terminal-auth-group-captain-hos-rd-2
+  cooldownSecs: 900
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseCodeViolet
+  name: secure-terminal-code-violet-name
+  description: secure-terminal-code-violet-desc
+  announcementColor: Violet
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: violet
+  sortOrder: 25
+  authGroups:
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-cmo-rd-1
+    - secure-terminal-auth-group-captain-hos-cmo-rd-2
+  cooldownSecs: 600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseCodeRed
+  name: secure-terminal-code-red-name
+  description: secure-terminal-code-red-desc
+  announcementColor: Red
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: red
+  sortOrder: 30
+  authGroups:
+    - [Captain]
+    - [HeadOfSecurity]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-1
+    - secure-terminal-auth-group-captain-hos-2
+  cooldownSecs: 600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseEndGamma
+  parentId: SunriseCodeGamma
+  name: secure-terminal-end-gamma-name
+  description: secure-terminal-end-gamma-desc
+  announcementColor: "#66ff99"
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: green
+  requiresAlertLevel: gamma
+  requiresAlertActiveMinutes: 15
+  sortOrder: 12
+  authGroups:
+    - [Captain, HeadOfSecurity, Ntrep]
+    - [Captain, HeadOfSecurity, Ntrep]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-ntr-1
+    - secure-terminal-auth-group-captain-hos-ntr-2
+  cooldownSecs: 0
+
+- type: secureTerminalRequest
+  id: SunriseEndViolet
+  parentId: SunriseCodeViolet
+  name: secure-terminal-end-violet-name
+  description: secure-terminal-end-violet-desc
+  announcementColor: Violet
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: green
+  requiresAlertLevel: violet
+  requiresAlertActiveMinutes: 10
+  sortOrder: 12
+  authGroups:
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-cmo-rd-1
+  cooldownSecs: 0
+
+- type: secureTerminalRequest
+  id: SunriseEndPsi
+  parentId: SunriseCodePsi
+  name: secure-terminal-end-psi-name
+  description: secure-terminal-end-psi-desc
+  announcement: secure-terminal-end-psi-announcement
+  announcementColor: "#66ff99"
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: green
+  requiresAlertLevel: psi
+  requiresAlertActiveMinutes: 15
+  sortOrder: 22
+  authGroups:
+    - [Captain, HeadOfSecurity, ResearchDirector]
+    - [Captain, HeadOfSecurity, ResearchDirector]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-rd-1
+    - secure-terminal-auth-group-captain-hos-rd-2
+  cooldownSecs: 0
+
+# Аварийные арсеналы и капсулы
+- type: secureTerminalRequest
+  id: SunriseArmoryGamma
+  name: secure-terminal-armory-gamma-name
+  description: secure-terminal-armory-gamma-desc
+  announcement: secure-terminal-armory-gamma-announcement
+  announcementColor: "#ff66cc"
+  activationDelaySecs: 60
+  requiresWarNotDeclared: true
+  fee: 5000
+  budgetPenalty: 0.08
+  actionType: Armory
+  armoryKey: gamma
+  requiresAlertLevel: gamma
+  recallMinDelaySecs: 120
+  oneTimeUse: true
+  sortOrder: 11
+  authGroups:
+    - [Captain, HeadOfSecurity, Ntrep]
+    - [Captain, HeadOfSecurity, Ntrep]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-ntr-1
+    - secure-terminal-auth-group-captain-hos-ntr-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseArmoryPsi
+  name: secure-terminal-armory-psi-name
+  description: secure-terminal-armory-psi-desc
+  announcement: secure-terminal-armory-psi-announcement
+  announcementColor: "#2288ff"
+  activationDelaySecs: 60
+  requiresWarNotDeclared: true
+  fee: 5000
+  budgetPenalty: 0.08
+  actionType: Armory
+  armoryKey: psi
+  requiresAlertLevel: psi
+  recallMinDelaySecs: 120
+  oneTimeUse: true
+  sortOrder: 21
+  authGroups:
+    - [Captain, HeadOfSecurity, ResearchDirector]
+    - [Captain, HeadOfSecurity, ResearchDirector]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-hos-rd-1
+    - secure-terminal-auth-group-captain-hos-rd-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseEmergencyMedicalPod
+  name: secure-terminal-med-pod-name
+  description: secure-terminal-med-pod-desc
+  announcement: secure-terminal-med-pod-announcement
+  announcementColor: "#33ff66"
+  activationDelaySecs: 300
+  fee: 5000
+  budgetPenalty: 0.05
+  actionType: Armory
+  armoryKey: medical
+  sortOrder: 30
+  authGroups:
+    - [Captain, ChiefMedicalOfficer]
+    - [Captain, ChiefMedicalOfficer]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-cmo-1
+    - secure-terminal-auth-group-captain-cmo-2
+  cooldownSecs: 3600
+  authTimer: 30
+
+
+# Экстренное расширение доступа
+- type: secureTerminalRequest
+  id: SunriseEmergencyMaintenanceRequest
+  name: secure-terminal-emergency-maintenance-name
+  description: secure-terminal-emergency-maintenance-desc
+  announcement: secure-terminal-emergency-maintenance-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: true
+  allowedAccesses:
+    - Maintenance
+    - External
+  sortOrder: 100
+  authGroups:
+    - [Command]
+    - [Command]
+  authGroupLabels:
+    - secure-terminal-auth-group-command-1
+    - secure-terminal-auth-group-command-2
+  cooldownSecs: 600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseEndEmergencyMaintenanceRequest
+  parentId: SunriseEmergencyMaintenanceRequest
+  name: secure-terminal-end-emergency-maintenance-name
+  description: secure-terminal-end-emergency-maintenance-desc
+  announcement: secure-terminal-end-emergency-maintenance-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: false
+  allowedAccesses:
+    - Maintenance
+    - External
+  sortOrder: 101
+  authGroups:
+    - [Command]
+  authGroupLabels:
+    - secure-terminal-auth-group-command-1
+  cooldownSecs: 0
+
+- type: secureTerminalRequest
+  id: SunriseStationEmergencyRequest
+  name: secure-terminal-emergency-station-name
+  description: secure-terminal-emergency-station-desc
+  announcement: secure-terminal-emergency-station-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: true
+  sortOrder: 120
+  authGroups:
+    - [Command]
+    - [Command]
+  authGroupLabels:
+    - secure-terminal-auth-group-command-1
+    - secure-terminal-auth-group-command-2
+  cooldownSecs: 600
+  authTimer: 30
+
+- type: secureTerminalRequest
+  id: SunriseEndStationEmergencyRequest
+  parentId: SunriseStationEmergencyRequest
+  name: secure-terminal-end-emergency-station-name
+  description: secure-terminal-end-emergency-station-desc
+  announcement: secure-terminal-end-emergency-station-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  budgetPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: false
+  sortOrder: 121
+  authGroups:
+    - [Command]
+  authGroupLabels:
+    - secure-terminal-auth-group-command-1
+  cooldownSecs: 0
+
+
+# Прочие запросы командования
+- type: secureTerminalRequest
+  id: SunriseNukeRequest
+  name: secure-terminal-nukerequest-name
+  description: secure-terminal-nukerequest-desc
+  announcementColor: Red
+  requireReason: true
+  requiresAdminApproval: true
+  bypassIfNoAdmin: false
+  activationDelaySecs: 30
+  fee: 10000
+  budgetPenalty: 1
+  actionType: NukeCodes
+  oneTimeUse: true
+  sortOrder: 500
+  authGroups:
+    - [Captain, Ntrep]
+    - [Captain, Ntrep]
+    - [Command]
+    - [Command]
+    - [Command]
+  authGroupLabels:
+    - secure-terminal-auth-group-captain-ntr-1
+    - secure-terminal-auth-group-captain-ntr-2
+    - secure-terminal-auth-group-command-3
+    - secure-terminal-auth-group-command-4
+    - secure-terminal-auth-group-command-5
+  authTimer: 30

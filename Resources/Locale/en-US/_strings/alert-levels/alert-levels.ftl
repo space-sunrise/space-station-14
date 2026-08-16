@@ -27,6 +27,12 @@ alert-level-gamma = Gamma
 alert-level-gamma-announcement = Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location.
 alert-level-gamma-instructions = All civilians are to immediately seek their nearest head for transportation to a secure location.
 
+# Sunrise added start - уровень угрозы при восстании синтетиков
+alert-level-psi = Psi
+alert-level-psi-announcement = Avoid cyborgs that do not conform to NanoTrasen specifications. Do not travel alone. Seek a head of staff for further instructions.
+alert-level-psi-instructions = Avoid hostile cyborgs.
+# Sunrise added end
+
 alert-level-delta = Delta
 alert-level-delta-announcement = The station is currently under threat of imminent destruction. Crewmembers are advised to listen to heads of staff for more information.
 alert-level-delta-instructions = Crewmembers are advised to listen to heads of staff for more information.

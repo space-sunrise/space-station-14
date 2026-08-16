@@ -23,9 +23,12 @@ namespace Content.Shared.Communications
         public readonly bool IsRelaying;
         public readonly float RelayCooldownRemaining;
         public readonly float RelayTimeRemaining;
+        // Sunrise-Edit: отображение кнопки защищённого терминала
+        /// <summary>Whether the console exposes the Secure Command Terminal entry point.</summary>
+        public readonly bool HasSecureTerminal;
         // Sunrise-End
 
-        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null, bool canRelay = false, bool isRelaying = false, float relayCooldownRemaining = 0f, float relayTimeRemaining = 0f) // Sunrise-Edit
+        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null, bool canRelay = false, bool isRelaying = false, float relayCooldownRemaining = 0f, float relayTimeRemaining = 0f, bool hasSecureTerminal = false) // Sunrise-Edit
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
@@ -39,6 +42,7 @@ namespace Content.Shared.Communications
             IsRelaying = isRelaying;
             RelayCooldownRemaining = relayCooldownRemaining;
             RelayTimeRemaining = relayTimeRemaining;
+            HasSecureTerminal = hasSecureTerminal; // Sunrise-Edit: состояние защищённого терминала
             // Sunrise-End
         }
     }
@@ -91,6 +95,14 @@ namespace Content.Shared.Communications
     public sealed class CommunicationsConsoleRecallEmergencyShuttleMessage : BoundUserInterfaceMessage
     {
     }
+
+    // Sunrise added start - открытие защищённого терминала из консоли связи
+    /// <summary>Requests opening the Secure Command Terminal interface.</summary>
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleOpenSecureTerminalMessage : BoundUserInterfaceMessage
+    {
+    }
+    // Sunrise added end
 
     [Serializable, NetSerializable]
     public enum CommunicationsConsoleUiKey

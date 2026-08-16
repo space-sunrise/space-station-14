@@ -52,6 +52,9 @@
         type: SolarControlConsoleBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
+      # Sunrise-Edit: административное одобрение запросов терминала
+      enum.SecureCommandTerminalUiKey.Key:
+        type: SecureCommandTerminalBui
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
       enum.CargoConsoleUiKey.Orders:
@@ -87,6 +90,8 @@
     delay: 10
     initialDelay: 0
     global: true
+  - type: SecureCommandTerminalConsole # Sunrise-Edit: административное одобрение запросов терминала
+    admin: true
   - type: RadarConsole
     followEntity: true
   - type: CargoOrderConsole
