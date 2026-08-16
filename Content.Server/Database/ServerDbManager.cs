@@ -404,7 +404,9 @@ namespace Content.Server.Database
         Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
 
         Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
-        Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default);
+        Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(
+            TimeSpan newAccountThreshold,
+            CancellationToken cancel = default);
         Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default);
 
         #endregion
@@ -1209,10 +1211,12 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.RemoveTutorial(player, tutorial));
         }
 
-        public Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default)
+        public Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(
+            TimeSpan newAccountThreshold,
+            CancellationToken cancel = default)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetTutorialCompletionMetricsAsync(cancel));
+            return RunDbCommand(() => _db.GetTutorialCompletionMetricsAsync(newAccountThreshold, cancel));
         }
 
         public Task<int> PruneInvalidTutorialCompletionsAsync(IEnumerable<string> validTutorialIds, CancellationToken cancel = default)

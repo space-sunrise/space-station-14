@@ -2080,6 +2080,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     PlayerUserId = player,
                     TutorialId = tutorial.Id,
                     CompletedAt = now,
+                    // Возраст фиксируется при первом прохождении и используется для исторической метрики.
                     AccountAgeDays = accountAgeDays,
                     CompletionCount = 1
                 };
@@ -2089,8 +2090,6 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             {
                 entry!.CompletedAt = now;
                 entry.CompletionCount++;
-                if (accountAgeDays != null)
-                    entry.AccountAgeDays = accountAgeDays;
             }
 
             await db.DbContext.SaveChangesAsync();
@@ -2131,10 +2130,13 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
-        public async Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default)
+        public async Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(
+            TimeSpan newAccountThreshold,
+            CancellationToken cancel = default)
         {
             await using var db = await GetDb(cancel);
             var isSqlite = db.DbContext.Database.ProviderName?.Contains("Sqlite") == true;
+            var newAccountThresholdDays = newAccountThreshold.TotalDays;
 
             if (isSqlite)
             {
@@ -2144,7 +2146,10 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     .Select(group => new
                     {
                         TutorialId = group.Key,
-                        CompletedPlayers = group.Count(),
+                        FirstTimeCompletedPlayers = group.Count(),
+                        NewAccountCompletedPlayers = group.Count(completion =>
+                            completion.AccountAgeDays >= 0 &&
+                            completion.AccountAgeDays <= newAccountThresholdDays),
                         CompletionCount = group.Sum(completion => completion.CompletionCount),
                         AccountAgeSamples = group.Count(completion => completion.AccountAgeDays != null),
                         AverageAccountAgeDays = group.Average(completion => completion.AccountAgeDays)
@@ -2169,7 +2174,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 return metrics
                     .Select(metric => new TutorialCompletionMetrics(
                         metric.TutorialId,
-                        metric.CompletedPlayers,
+                        metric.FirstTimeCompletedPlayers,
+                        metric.NewAccountCompletedPlayers,
                         metric.CompletionCount,
                         metric.AccountAgeSamples,
                         metric.AverageAccountAgeDays,
@@ -2183,6 +2189,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Select(group => new TutorialCompletionMetrics(
                     group.Key,
                     group.Count(),
+                    group.Count(w =>
+                        w.AccountAgeDays >= 0 &&
+                        w.AccountAgeDays <= newAccountThresholdDays),
                     group.Sum(w => w.CompletionCount),
                     group.Count(w => w.AccountAgeDays != null),
                     group.Average(w => w.AccountAgeDays),
