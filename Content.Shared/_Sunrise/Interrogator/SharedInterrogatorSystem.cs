@@ -1,4 +1,5 @@
 using Content.Shared.Administration.Logs;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -8,13 +9,12 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Interrogator;
 
-public abstract partial class SharedInterrogatorSystem: EntitySystem
+public abstract partial class SharedInterrogatorSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
@@ -22,7 +22,6 @@ public abstract partial class SharedInterrogatorSystem: EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -98,7 +97,7 @@ public abstract partial class SharedInterrogatorSystem: EntitySystem
         if (!Resolve(uid, ref component))
             return null;
 
-        if (component.BodyContainer.ContainedEntity is not {Valid: true} contained)
+        if (component.BodyContainer.ContainedEntity is not { Valid: true } contained)
             return null;
 
         _containerSystem.Remove(contained, component.BodyContainer);

@@ -4,7 +4,6 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Slippery;
-using Robust.Shared.Network;
 
 namespace Content.Shared._Sunrise.Abilities;
 
@@ -14,7 +13,6 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {

@@ -17,11 +17,11 @@ public sealed class RMCXenoScreechShockWaveOverlay : Overlay, IEntityEventSubscr
     public override bool RequestScreenTexture => true;
 
     private readonly ShaderInstance _shader;
-
+    private readonly string _shockWave = "RMCXenoScreechShockWave";
     public RMCXenoScreechShockWaveOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _shader = _prototypeManager.Index<ShaderPrototype>("RMCXenoScreechShockWave").Instance().Duplicate();
+        _shader = _prototypeManager.Index<ShaderPrototype>(_shockWave).Instance().Duplicate();
     }
 
     private Vector2 _position;

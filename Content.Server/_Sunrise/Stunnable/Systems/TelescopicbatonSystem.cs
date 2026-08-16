@@ -13,7 +13,6 @@ namespace Content.Server._Sunrise.Stunnable.Systems
     public sealed class TelescopicbatonSystem : SharedTelescopicbatonSystem
     {
         [Dependency] private readonly SharedItemSystem _item = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
 
         public override void Initialize()
