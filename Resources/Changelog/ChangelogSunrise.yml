@@ -4569,3 +4569,14 @@
     message: Исправлен дюп лазерного оружия через упаковщик.
   id: 2002
   url: https://github.com/space-sunrise/sunrise-station/pull/4679
+- author: kanopus7
+  time: '2026-08-16T09:16:10.0000000+00:00'
+  changes:
+  - type: Add
+    message: Апстрим от Wizden до 27 марта.
+  - type: Tweak
+    message: Дворфы снова могут пить что угодно.
+  - type: Fix
+    message: Пофикшен баг с лагами при реконнекте.
+  id: 2003
+  url: https://github.com/space-sunrise/sunrise-station/pull/4725
