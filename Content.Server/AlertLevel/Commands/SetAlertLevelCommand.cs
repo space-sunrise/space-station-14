@@ -11,8 +11,6 @@ namespace Content.Server.AlertLevel.Commands
     {
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
-        [Dependency] private readonly IEntityManager _entManager = default!; // Sunrise-Added
 
         public override string Command => "setalertlevel";
 

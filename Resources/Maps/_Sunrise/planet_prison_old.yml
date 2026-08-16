@@ -101465,7 +101465,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 23354.6766452
-    - type: Timer
   - uid: 1649
     components:
     - type: Transform
@@ -101475,7 +101474,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 23354.6766452
-    - type: Timer
   - uid: 5194
     components:
     - type: Transform

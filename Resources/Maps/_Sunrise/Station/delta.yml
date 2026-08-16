@@ -220585,7 +220585,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 30286
     components:
     - type: Transform
@@ -224649,7 +224648,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 30905
     components:
     - type: Transform
@@ -225448,7 +225446,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 87894.3
-    - type: Timer
   - uid: 31036
     components:
     - type: Transform

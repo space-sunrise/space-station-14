@@ -114949,7 +114949,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 367616.2
-    - type: Timer
   - uid: 11792
     components:
     - type: Transform
@@ -114974,7 +114973,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 367616.2
-    - type: Timer
 - proto: PoweredlightLED
   entities:
   - uid: 11800
@@ -115484,7 +115482,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 367616.2
-    - type: Timer
   - uid: 11919
     components:
     - type: Transform
@@ -116292,7 +116289,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 9343.75
-    - type: Timer
   - uid: 17825
     components:
     - type: Transform
@@ -116308,7 +116304,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 9343.75
-    - type: Timer
   - uid: 17827
     components:
     - type: Transform
@@ -116341,7 +116336,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 9343.75
-    - type: Timer
   - uid: 17943
     components:
     - type: Transform

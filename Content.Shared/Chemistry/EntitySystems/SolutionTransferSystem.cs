@@ -7,7 +7,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry.EntitySystems;
@@ -23,7 +22,6 @@ public sealed class SolutionTransferSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!; // Sunrise added
 
     private EntityQuery<RefillableSolutionComponent> _refillableQuery;
     private EntityQuery<DrainableSolutionComponent> _drainableQuery;

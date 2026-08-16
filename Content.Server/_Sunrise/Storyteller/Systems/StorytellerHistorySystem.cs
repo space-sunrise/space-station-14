@@ -30,6 +30,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Server.Bed.Cryostorage;
 using Content.Shared.Bed.Cryostorage;
@@ -45,7 +46,7 @@ namespace Content.Server._Sunrise.Storyteller.Systems;
 public sealed class StorytellerHistorySystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly SharedJobSystem _jobSystem = default!;
@@ -493,13 +494,17 @@ public sealed class StorytellerHistorySystem : EntitySystem
 
     private string GetCauseOfDeath(EntityUid target)
     {
-        if (!TryComp<DamageableComponent>(target, out var damageable) || damageable.Damage.Empty)
+        if (!TryComp<DamageableComponent>(target, out var damageable))
+            return Loc.GetString("storyteller-cause-death-unknown");
+
+        var damage = _damageableSystem.GetAllDamage((target, damageable));
+        if (damage.Empty)
             return Loc.GetString("storyteller-cause-death-unknown");
 
         var highestDamageType = "";
         var maxDamage = FixedPoint2.Zero;
 
-        foreach (var (type, amount) in damageable.Damage.DamageDict)
+        foreach (var (type, amount) in damage.DamageDict)
         {
             if (amount > maxDamage)
             {

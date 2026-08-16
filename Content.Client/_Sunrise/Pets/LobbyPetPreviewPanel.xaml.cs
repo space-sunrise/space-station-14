@@ -22,8 +22,6 @@ public sealed partial class LobbyPetPreviewPanel : Control
     private EntityUid? _previewDummy;
     private string? _currentPetSelection;
 
-    public event Action? OnChangePetRequested;
-
     public LobbyPetPreviewPanel()
     {
         RobustXamlLoader.Load(this);
@@ -95,9 +93,9 @@ public sealed partial class LobbyPetPreviewPanel : Control
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-        
+
         _playerCache.CacheChanged -= UpdateSelectedPetFromCache;
-        
+
         if (_previewDummy != null)
         {
             _entManager.DeleteEntity(_previewDummy.Value);

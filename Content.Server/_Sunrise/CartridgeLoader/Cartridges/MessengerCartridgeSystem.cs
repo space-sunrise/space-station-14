@@ -99,11 +99,6 @@ public sealed partial class MessengerCartridgeSystem : EntitySystem
         return true;
     }
 
-    private EntityUid GetEntity(NetEntity netEntity)
-    {
-        return EntityManager.GetEntity(netEntity);
-    }
-
     /// <summary>
     /// Получает частоту Messenger
     /// </summary>

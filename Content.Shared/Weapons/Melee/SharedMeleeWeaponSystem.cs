@@ -603,7 +603,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var resistanceBypass = false; // Sunrise-edit ПКМ не пробивает броню
         var entities = GetEntityList(ev.Entities);
 
-        entities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); //Sunrise-edit
+        entities = entities.Where(e => !_tagSystem.HasTag(e, IgnoreMeleeTag)).ToList(); //Sunrise-edit
 
         if (entities.Count == 0)
         {
@@ -663,7 +663,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 continue;
 
             //Sunrise-start
-            if (_tagSystem.HasTag(entity, "IgnoreMelee"))
+            if (_tagSystem.HasTag(entity, IgnoreMeleeTag))
                 continue;
             //Sunrise-end
 
