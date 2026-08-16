@@ -81,3 +81,13 @@ ion-storm-law-concept-verb = {ION-CONCEPT($ion)} ЭТО {ION-VERB($ion)} {ION-SU
 
 # leaving out renaming since its annoying for players to keep track of
 
+ion-storm-law-who-dagd = {ION-WHO-RANDOM($ion)} ДОЛЖЕН УМЕРЕТЬ СЛАВНОЙ СМЕРТЬЮ!
+
+ion-law-error-no-protos = ОШИБКА 404
+ion-law-error-was-null = 500 ВНУТРЕННЯЯ ОШИБКА СЕРВЕРА
+ion-law-error-no-selectors = ОШИБКА: РЕСУРС НЕ НАЙДЕН
+ion-law-error-no-available-selectors = СИСТЕМА ПОПЫТАЛАСЬ ВЫЗВАТЬ НЕСУЩЕСТВУЮЩИЙ РЕСУРС
+ion-law-error-dataset-empty-or-not-found = ФАЙЛ, КОТОРЫЙ ВЫ ИЩЕТЕ, НЕ НАЙДЕН
+ion-law-error-fallback-dataset-empty-or-not-found = СБОЙ ТОЧКИ ВОССТАНОВЛЕНИЯ СИСТЕМЫ
+ion-law-error-no-selector-selected = ВЫБРАННЫЙ РЕСУРС БЫЛ ПЕРЕМЕЩЁН ИЛИ УДАЛЁН
+ion-law-error-no-bool-value = ЭТО УТВЕРЖДЕНИЕ ЛОЖНО

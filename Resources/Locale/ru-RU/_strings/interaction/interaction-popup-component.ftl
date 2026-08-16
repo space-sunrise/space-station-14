@@ -51,7 +51,6 @@ petting-failure-bear = Вы думаете погладить { $target }, но 
 petting-failure-dog = Вы тянетесь погладить { $target }, но { SUBJECT($target) } рычит на вас!
 
 ## Knocking on windows
-
 petting-failure-monkey = Вы тянетесь погладить { $target }, но { $target } едва не кусает вас за пальцы!
 petting-failure-nymph = Вы тянетесь погладить { $target }, но { POSS-ADJ($target) } отодвигает свои ветви в сторону.
 petting-failure-shadow = Вы тянетесь погладить { $target }, но ваша рука проходит сквозь холодную тьму { POSS-ADJ($target) } тела.
@@ -93,3 +92,8 @@ petting-success-tesla = Вы гладите { $target }, попутно нару
 petting-failure-tesla = Вы тянетесь погладить { $target }, но разряд заставляет вас отдёрнуть руку.
 petting-success-mail-teleporter = Вы гладите { THE($target) } по { POSS-ADJ($target) } исполнительной, холодной поверхности.
 petting-failure-mail-teleporter = Вы тянетесь погладить { THE($target) }, но { SUBJECT($target) } { CONJUGATE-BE($target) } занят сортировкой почты!
+petting-success-scurret = Вы поглаживаете {THE($target)} по {POSS-ADJ($target)} чётко различимой голове.
+
+petting-failure-scurret = Вы тянетесь погладить {THE($target)}, но {SUBJECT($target)} делает сальто назад!
+
+## Petting silicons
