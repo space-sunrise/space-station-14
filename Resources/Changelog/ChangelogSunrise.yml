@@ -4580,3 +4580,12 @@
     message: Пофикшен баг с лагами при реконнекте.
   id: 2003
   url: https://github.com/space-sunrise/sunrise-station/pull/4725
+- author: kanopus7
+  time: '2026-08-16T18:58:56.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Туториалы исправлены.
+  - type: Tweak
+    message: В туториалах теперь другой ТТС.
+  id: 2004
+  url: https://github.com/space-sunrise/sunrise-station/pull/4727
