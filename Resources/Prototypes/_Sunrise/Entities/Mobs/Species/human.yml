@@ -373,6 +373,7 @@
 
 - type: entity
   parent:
+  # Sunrise-Edit: миксин должен идти перед AppearanceHuman, чтобы сохранить Sunrise displacement-карты.
   - SunriseHumanBodyTypeDisplacements
   - AppearanceHuman
   id: SunriseAppearanceHuman
