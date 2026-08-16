@@ -4,7 +4,7 @@ using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Helpers;
 using Content.Shared._Sunrise.SunriseCCVars;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Doors.Electronics;
 using Content.Shared.GameTicking;
@@ -39,7 +39,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
     private EntityQuery<DoorElectronicsComponent> _doorElectronics;
     private EntityQuery<ApcElectronicsComponent> _apcElectronics;
     private EntityQuery<OrganComponent> _organs;
-    private EntityQuery<BodyPartComponent> _bodyParts;
 
     private EntityQuery<StationRandomXenoArtifactComponent> _avaliableStations;
 
@@ -57,7 +56,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
         _doorElectronics = GetEntityQuery<DoorElectronicsComponent>();
         _apcElectronics = GetEntityQuery<ApcElectronicsComponent>();
         _organs = GetEntityQuery<OrganComponent>();
-        _bodyParts = GetEntityQuery<BodyPartComponent>();
 
         _avaliableStations = GetEntityQuery<StationRandomXenoArtifactComponent>();
     }
@@ -126,9 +124,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
             return false;
 
         if (_organs.HasComp(ent))
-            return false;
-
-        if (_bodyParts.HasComp(ent))
             return false;
 
         return true;

@@ -808,7 +808,7 @@
     delay: 10
 
 - type: entity
-  parent: BaseMobHuman
+  parent: MobHuman
   id: CombatTutorialTargetHuman
   name: training partner
   suffix: Tutorial

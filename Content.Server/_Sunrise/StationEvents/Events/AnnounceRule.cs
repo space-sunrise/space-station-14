@@ -9,7 +9,6 @@ namespace Content.Server.StationEvents.Events;
 
 public sealed class AnnounceRule : StationEventSystem<AnnounceRuleComponent>
 {
-    [Dependency] private readonly EventManagerSystem _event = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
 
     protected override void Started(EntityUid uid, AnnounceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)

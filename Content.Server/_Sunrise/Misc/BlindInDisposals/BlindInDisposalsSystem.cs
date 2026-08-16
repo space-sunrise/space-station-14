@@ -60,7 +60,7 @@ public sealed class BlindInDisposalsSystem : EntitySystem
         if (!HasComp<VentCrawlerComponent>(uid))
             return false;
 
-        if (HasComp<HumanoidAppearanceComponent>(uid))
+        if (HasComp<HumanoidProfileComponent>(uid))
             return false;
 
         return true;

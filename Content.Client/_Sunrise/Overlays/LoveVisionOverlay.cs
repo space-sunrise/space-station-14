@@ -30,11 +30,13 @@ public sealed class LoveVisionOverlay : Overlay
     private readonly ShaderInstance _loveVisionShader;
     private readonly ShaderInstance _gradient;
     private const float RiseDistance = 100f;
-    private readonly Robust.Client.Graphics.Texture _heartTexture;
+    private readonly Texture _heartTexture;
     private const string HeartTexturePath = "/Textures/_Sunrise/Interface/LoveVision/hearts.png";
 
     private readonly Vector3 _gradientColor = new(1.0f, 0.3f, 0.7f); // Розово-фиолетовый
     private readonly List<HeartData> _hearts = [];
+    private readonly string _loveVision = "LoveVision";
+    private readonly string _gradientCircleMask = "GradientCircleMask";
 
     private struct HeartData
     {
@@ -53,8 +55,8 @@ public sealed class LoveVisionOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
         _sprite = _entityManager.System<SpriteSystem>();
-        _loveVisionShader = _prototypeManager.Index<ShaderPrototype>("LoveVision").InstanceUnique();
-        _gradient = _prototypeManager.Index<ShaderPrototype>("GradientCircleMask").InstanceUnique();
+        _loveVisionShader = _prototypeManager.Index<ShaderPrototype>(_loveVision).InstanceUnique();
+        _gradient = _prototypeManager.Index<ShaderPrototype>(_gradientCircleMask).InstanceUnique();
         _heartTexture = _sprite.Frame0(new SpriteSpecifier.Texture(new ResPath(HeartTexturePath)));
     }
 

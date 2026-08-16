@@ -4,7 +4,7 @@ using Robust.Shared.Network;
 
 namespace Content.Client._Sunrise.ServersHub;
 
-public partial class ServersHubManager
+public sealed partial class ServersHubManager
 {
     [Dependency] private readonly IClientNetManager _netManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
