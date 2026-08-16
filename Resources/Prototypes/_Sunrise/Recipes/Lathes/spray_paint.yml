@@ -1,0 +1,8 @@
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SprayPaint
+  result: SprayPaint
+  materials:
+    Steel: 30
+    plastic: 20
+    Plasma: 25
