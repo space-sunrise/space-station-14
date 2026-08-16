@@ -119,9 +119,9 @@ storyteller-metadata-snailmigration-start = Медленная, но липка�
 storyteller-metadata-snailmigrationlowpop-start = Тихие коридоры наполнились шорохом раковин: зафиксирована небольшая миграция улиток.
 
 # Spawns
-storyteller-metadata-slimesspawn-start = Утечка биоопасных отходов привела к появлению агрессивных разноцветных слаймов.
-storyteller-metadata-snakespawn-start = Из заброшенных уголков станции выползли полчища ядовитых змей.
-storyteller-metadata-spiderspawn-start = Глубокие технические шахты заполнились паутиной: началось нашествие гигантских пауков.
+storyteller-metadata-slimesspawnhorde-start = Утечка биоопасных отходов привела к появлению агрессивных разноцветных слаймов.
+storyteller-metadata-snakespawnhorde-start = Из заброшенных уголков станции выползли полчища ядовитых змей.
+storyteller-metadata-spiderspawnhorde-start = Глубокие технические шахты заполнились паутиной: началось нашествие гигантских пауков.
 
 # Disasters
 storyteller-metadata-gamerulemeteorswarmsmall-start = Навигационные системы предупреждают о приближении небольшого метеоритного роя.
@@ -201,7 +201,7 @@ storyteller-metadata-assaultops-start = Прозвучал сигнал боев
 storyteller-metadata-powergridcheck-start = Инженеры объявили о начале масштабных профилактических работ в энергосети станции.
 storyteller-metadata-thief-start = В толпе экипажа скрылся ловкий карманник, нацеленный на личные вещи сотрудников.
 storyteller-metadata-terminatorspawn-start = Блюспейс-вспышка озарила отсек: из далёкого будущего прибыл безжалостный Терминатор, чтобы забрать жизнь своей цели.
-storyteller-metadata-spiderclownspawn-start = Безумный цирковой кошмар воплотился наяву: на борту материализовался ужасающий Паук-Клоун.
+storyteller-metadata-spiderclownspawnhorde-start = Безумный цирковой кошмар воплотился наяву: на борту материализовался ужасающий Паук-Клоун.
 storyteller-metadata-abductors-end = Чуждые сигналы утихли: биологическая активность Абдукторов в секторе прекратилась.
 storyteller-metadata-revolutionary-end = Волна мятежа спала, и революционный запал среди бунтовщиков сошёл на нет.
 storyteller-metadata-bloodcult-end = Тёмная скверна отступила: Кровавый культ был полностью изгнан со станции.

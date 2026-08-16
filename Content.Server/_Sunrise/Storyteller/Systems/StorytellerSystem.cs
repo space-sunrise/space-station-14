@@ -50,6 +50,7 @@ using Content.Shared.Anomaly.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos.Monitor;
@@ -96,6 +97,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -751,7 +753,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             {
                 if (TryComp<DamageableComponent>(entityUid, out var damageable))
                 {
-                    totalCrewDamage += damageable.TotalDamage.Float();
+                    totalCrewDamage += _damageableSystem.GetTotalDamage((entityUid, damageable)).Float();
                     crewWithMindCount++;
                 }
             }
@@ -1399,7 +1401,7 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     /// </summary>
     private bool IsStationCrewMob(EntityUid mob, bool excludeAntags)
     {
-        if (!HasComp<HumanoidAppearanceComponent>(mob) && !HasComp<BorgChassisComponent>(mob))
+        if (!HasComp<HumanoidProfileComponent>(mob) && !HasComp<BorgChassisComponent>(mob))
             return false;
 
         if (TryComp(mob, out TransformComponent? xform) && xform.GridUid != null)

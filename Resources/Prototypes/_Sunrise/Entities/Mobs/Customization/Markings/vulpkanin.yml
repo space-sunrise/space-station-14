@@ -4,78 +4,67 @@
   id: BaseSunriseMarkingVulpChest
   abstract: true
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpFacialHair
   abstract: true
   bodyPart: FacialHair
-  markingCategory: FacialHair
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpHair
   abstract: true
   bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpHead
   abstract: true
   bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpHeadTop
   abstract: true
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpLeftArm
   abstract: true
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpLeftLeg
   abstract: true
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpRightFootOverlay
   abstract: true
   bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpRightHandOverlay
   abstract: true
   bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpSnout
   abstract: true
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 - type: marking
   id: BaseSunriseMarkingVulpTail
   abstract: true
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Vulpkanin]
+  groupWhitelist: [ Vulpkanin ]
 
 # Ears Markings
 - type: marking
