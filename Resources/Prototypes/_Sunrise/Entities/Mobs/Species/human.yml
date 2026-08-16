@@ -373,7 +373,7 @@
 
 - type: entity
   parent:
-  - AppearanceHuman
   - SunriseHumanBodyTypeDisplacements
+  - AppearanceHuman
   id: SunriseAppearanceHuman
   name: human appearance

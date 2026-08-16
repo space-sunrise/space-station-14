@@ -482,7 +482,7 @@
           components:
           - type: DisarmMalus
             malus: 0.6
-        - type: ToggleableLightVisuals
+        - type: ToggleableVisuals
           spriteLayer: flame
         - type: RefillableSolution
           solution: Welder
@@ -725,7 +725,7 @@
           components:
           - type: DisarmMalus
             malus: 0.6
-        - type: ToggleableLightVisuals
+        - type: ToggleableVisuals
           spriteLayer: flame
         - type: RefillableSolution
           solution: Welder

@@ -1,17 +1,11 @@
 - type: entity
   parent:
-  - AppearanceHuman
   - SunriseHumanBodyTypeDisplacements # Sunrise-Edit
+  - AppearanceHuman
   id: AppearanceDwarf
   name: dwarf appearance
   components:
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+  - type: Inventory # Sunrise-Edit - карты одежды для телосложений наследуются общим набором
   - type: InitialBody
     organs:
       Torso: OrganHumanTorso
