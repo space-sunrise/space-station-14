@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.UserInterface.Systems.Info;
 
-public sealed class InfoUIController : UIController, IOnStateExited<GameplayState>
+public sealed partial class InfoUIController : UIController, IOnStateExited<GameplayState>
 {
     [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
     [Dependency] private readonly INetManager _netManager = default!;
@@ -31,6 +31,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
 
         _netManager.RegisterNetMessage<RulesAcceptedMessage>();
         _netManager.RegisterNetMessage<SendRulesInformationMessage>(OnRulesInformationMessage);
+        SunriseInitializeRulesQueue();
 
         _consoleHost.RegisterCommand("fuckrules",
             "",
@@ -44,9 +45,12 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     private void OnRulesInformationMessage(SendRulesInformationMessage message)
     {
         RulesEntryId = message.CoreRules;
+        SunriseOnRulesInformationReceived(); // Sunrise-edit
 
         if (message.ShouldShowRules)
             ShowRules(message.PopupTime);
+
+        SunriseOnRulesInformationHandled(); // Sunrise-edit
     }
 
     public void OnStateExited(GameplayState state)
@@ -83,8 +87,10 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     {
         _netManager.ClientSendMessage(new RulesAcceptedMessage());
 
+        var hadPopup = _rulesPopup != null; // Sunrise-edit
         _rulesPopup?.Orphan();
         _rulesPopup = null;
+        SunriseOnRulesAccepted(hadPopup); // Sunrise-edit
     }
 
     public GuideEntryPrototype GetCoreRuleEntry()

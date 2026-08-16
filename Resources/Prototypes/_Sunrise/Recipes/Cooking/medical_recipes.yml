@@ -360,17 +360,6 @@
   recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
-  id: RecipePenWehMedipen
-  name: Weh Medipen
-  result: WehMedipen
-  time: 10
-  solids:
-    BlankMediPen: 1
-  reagents:
-    JuiceThatMakesYouWeh: 60
-  recipeType: MedicalAssembler
-
-- type: microwaveMealRecipe
   id: RecipeBeerMedipen
   name: beer medipen
   result: BeerMedipen

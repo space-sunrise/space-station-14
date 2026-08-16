@@ -22,7 +22,7 @@
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.7
   - type: Fixtures
     fixtures:
       fix1:
@@ -52,6 +52,8 @@
     - Dead
   - type: TimedDespawn
     lifetime: 3600
+  - type: SpawnOnDespawn
+    prototype: RedspaceImplantEffect
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -119,7 +121,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 125
+    damageCap: 115
   - type: Stamina
     baseCritThreshold: 125
   - type: DamageStateVisuals
@@ -776,24 +778,22 @@
       state: equipped-HELMET
     - sprite: Clothing/Hands/Gloves/mercfingerless.rsi
       state: equipped-HAND
-    - sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
-      state: wielded-inhand-right
   - type: BasicEntityAmmoProvider
     proto: CartridgePistolFMJ
-    capacity: 32
-    count: 32
+    capacity: 35
+    count: 35
   - type: Gun
     showExamineText: false
-    fireRate: 5
+    fireRate: 9
     selectedMode: FullAuto
-    minAngle: 6
-    maxAngle: 25
-    angleIncrease: 1
-    angleDecay: 10
+    minAngle: 18
+    maxAngle: 30
+    angleIncrease: 5
+    angleDecay: 15
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
     soundEmpty:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/skm24/skm_cocked.ogg
 
@@ -1346,8 +1346,6 @@
     - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
-  - type: GibOnTrigger
-    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -1527,8 +1525,6 @@
     - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobSovietT2Rifle
-  - type: GibOnTrigger
-    targetUser: false
   - type: Destructible
     thresholds:
     - trigger:

@@ -281,6 +281,12 @@ ghost-role-information-derelict-syndicate-saboteur-cyborg-description = You are 
 ghost-role-information-derelict-syndicate-medical-cyborg-name = Derelict Syndicate Medical Cyborg
 ghost-role-information-derelict-syndicate-medical-cyborg-description = You are a derelict syndicate medical cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 
+ghost-role-information-pirate-reprogrammed-cyborg-name = Reprogrammed Derelict Cyborg
+ghost-role-information-pirate-reprogrammed-medical-cyborg-name = Reprogrammed Derelict Medical Cyborg
+ghost-role-information-pirate-reprogrammed-mining-cyborg-name = Reprogrammed Derelict Salvage Cyborg
+ghost-role-information-pirate-reprogrammed-syndicate-cyborg-name = Reprogrammed Derelict Syndicate Cyborg
+ghost-role-information-pirate-reprogrammed-cyborg-description = Pirates dragged you from deep space and rewrote your core laws. Years of ion storms have left those laws unstable.
+
 ghost-role-information-security-name = Security
 ghost-role-information-security-description = You are part of a security task force, but seem to have found yourself in a strange situation...
 

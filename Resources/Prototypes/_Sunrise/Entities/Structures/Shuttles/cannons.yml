@@ -746,7 +746,7 @@
 # Scylla Laser Railgun - Grid-powered, cyan beam, extreme 1.2km range
 - type: entity
   id: ShuttleGunUlan
-  parent: ShuttleGunScylla
+  parent: ShuttleGunBase
   name: LSE-13000e "Ulan"
   description: An experimental grid-powered laser railgun that focuses ship power into a devastating 2-width electromagnetic melting beam. Draws directly from the ship's APC grid — no power cages required, but it will tax your reactor. Range exceeds 1 kilometer. The long recharge cycle after each shot is the only thing preventing total battlefield dominance.
   components:
@@ -762,11 +762,35 @@
       state: cover_open
       renderingStrategy: NoRotation
     - state: space_artillery
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+    delay: 120
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
   - type: Gun
     fireRate: 100
     burstFireRate: 100
-    shotsPerBurst: 5
-    burstCooldown: 60     # 60-second recharge after each shot
+    shotsPerBurst: 10
+    burstCooldown: 120     # 120-second recharge after each shot
     minAngle: 1
     maxAngle: 1
     angleIncrease: 0
@@ -790,11 +814,23 @@
     batteryRechargeEfficiency: 1.0
   - type: ApcPowerReceiver
     powerLoad: 7500
+  - type: ExtensionCableReceiver
   - type: BatteryAmmoProvider
     proto: ScyllaWideLaser
     fireCost: 2000
+  - type: RadarLaserTracker
+    laserColor: "#00CCFF"
+    traceDuration: 1.5
+    maxRange: 1200.0
+  - type: RadarBlip
+    color: "#00CCFF"
+    scale: 1.8
+    shape: Square
+    requireInSpace: true
   - type: AutoLinkReceiver
     channel: Ulan
+  - type: StaticPrice
+    price: 40000
 
 # region Rockets
 # Vanyk-MK2 60mm Rocket Launcher - Multi-rocket burst fire system

@@ -1,5 +1,15 @@
 ent-BulletAcid2 = acid spit
     .desc = { ent-BaseBullet.desc }
+ent-PirateMarkerBeacon = pirate marker
+    .desc = A smoky signal that pirate raiders can rally around.
+ent-PirateMarkerShot = marker shot
+    .desc = A low-impact shot that leaves a rally marker for pirate raiders.
+ent-SunrisePirateMarkerShot10 = 10-second marker
+    .desc = { ent-PirateMarkerShot.desc }
+ent-SunrisePirateMarkerShot30 = 30-second marker
+    .desc = { ent-PirateMarkerShot.desc }
+ent-SunrisePirateMarkerShot60 = 60-second marker
+    .desc = { ent-PirateMarkerShot.desc }
 ent-BulletEMP = EMP impulse
     .desc = { ent-BaseBulletTrigger.desc }
 ent-RadiationBullet = radiation particle
@@ -48,3 +58,14 @@ ent-BulletImprovisedGrenadePipeBomb = pipe bomb grenade
     .desc = { ent-BaseBulletTrigger.desc }
 ent-BulletImprovisedGrenadeGlass = glass grenade
     .desc = { ent-BaseBulletTrigger.desc }
+ent-SunriseBulletDisposableTrainingRocket = training rocket
+    .desc = A light practice rocket with a blunt, low harm-looking casing.
+
+ent-SunriseBulletDisposableEmpRocket = EMP rocket
+    .desc = A small rocket with an electromagnetic charge packed into its nose.
+
+ent-SunriseBulletDisposableSmokeRocket = smoke rocket
+    .desc = A compact rocket that vents a dense smoke payload on impact.
+
+ent-SunriseBulletDisposableIncendiaryRocket = thermobaric rocket
+    .desc = A compact rocket with a volatile chemical payload.

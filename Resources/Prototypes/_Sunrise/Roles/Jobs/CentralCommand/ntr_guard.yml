@@ -61,10 +61,7 @@
     id: NtrLeadGuardPDA
     ears: ClothingHeadsetMagistrate
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponEnergyGunPulseRevolver
     pocket2: HandheldCriminalRecordsMonitorUnpowered
-  inhand:
-  - WeaponEnergyGunTactical
   storage:
     back:
     - ClothingOuterHardsuitNTRG

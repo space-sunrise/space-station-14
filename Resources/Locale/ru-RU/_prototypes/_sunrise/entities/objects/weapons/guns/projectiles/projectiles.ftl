@@ -1,5 +1,15 @@
 ent-BulletAcid2 = кислотный плевок
     .desc = { ent-BaseBullet.desc }
+ent-PirateMarkerBeacon = пиратская метка
+    .desc = Дымный сигнал, возле которого могут собираться пиратские налётчики.
+ent-PirateMarkerShot = сигнальная пуля
+    .desc = Слабый выстрел, оставляющий метку сбора для пиратских налётчиков.
+ent-SunrisePirateMarkerShot10 = метка на 10 секунд
+    .desc = { ent-PirateMarkerShot.desc }
+ent-SunrisePirateMarkerShot30 = метка на 30 секунд
+    .desc = { ent-PirateMarkerShot.desc }
+ent-SunrisePirateMarkerShot60 = метка на 60 секунд
+    .desc = { ent-PirateMarkerShot.desc }
 ent-BulletEMP = импульс ЭМИ
     .desc = { ent-BaseBulletTrigger.desc }
 ent-RadiationBullet = поток радиоактивных частиц
@@ -49,3 +59,14 @@ ent-BulletImprovisedGrenadePipeBomb = граната-трубчатая бомб
     .desc = { ent-BaseBulletTrigger.desc }
 ent-BulletImprovisedGrenadeGlass = стеклянная граната
     .desc = { ent-BaseBulletTrigger.desc }
+ent-SunriseBulletDisposableTrainingRocket = учебная ракета
+    .desc = Лёгкая практическая ракета с тупым, почти безобидным корпусом.
+
+ent-SunriseBulletDisposableEmpRocket = ЭМИ-ракета
+    .desc = Небольшая ракета с электромагнитным зарядом в носовой части.
+
+ent-SunriseBulletDisposableSmokeRocket = дымовая ракета
+    .desc = Компактная ракета, выпускающая плотный дымовой заряд при ударе.
+
+ent-SunriseBulletDisposableIncendiaryRocket = термобарическая ракета
+    .desc = Компактная ракета с нестабильным химическим зарядом.

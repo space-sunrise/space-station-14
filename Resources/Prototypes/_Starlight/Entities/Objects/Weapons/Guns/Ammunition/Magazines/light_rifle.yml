@@ -6,7 +6,6 @@
   - type: Tag
     tags:
       - LightRifleHeavy
-      - MagazineRPD
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
