@@ -45,7 +45,6 @@
   components:
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
     # Sunrise-start
     - NudeBottom
@@ -171,7 +170,6 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
   - type: Pierceable
     level: Metal
@@ -216,7 +214,7 @@
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband] # Sunrise-Edit
+  parent: [ClothingOuterArmorBase, AllowSuitStorageClothing, ClothingOuterStorageBase, BaseSyndicateContraband] # Sunrise-Edit
   id: ClothingOuterVestWebElite
   name: elite web vest
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.

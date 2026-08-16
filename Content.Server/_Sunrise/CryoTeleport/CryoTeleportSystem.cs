@@ -5,6 +5,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Bed.Cryostorage;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.GameTicking;
@@ -12,6 +13,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Station.Components;
 using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
@@ -37,7 +39,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerMan = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
 
     private bool _enable;
     private TimeSpan _transferDelay;
@@ -94,17 +96,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
 
             // Check if the entity has a brain - if no brain, don't teleport to cryo
             // This prevents brainless bodies (e.g., during brain transplant surgery) from being auto-teleported
-            var hasBrain = false;
-            foreach (var (organId, _) in _bodySystem.GetBodyOrgans(uid))
-            {
-                if (HasComp<BrainComponent>(organId))
-                {
-                    hasBrain = true;
-                    break;
-                }
-            }
-
-            if (!hasBrain)
+            if (!_bodySystem.TryGetOrganWithComponent<OrganBrainComponent>(uid, out _))
                 continue;
 
             var stationGrid = _stationSystem.GetLargestGrid((comp.Station.Value, stationData));

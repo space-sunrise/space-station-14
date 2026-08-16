@@ -96,7 +96,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         var damageRequired = _destructibleSystem.DestroyedAt(target);
         if (TryComp<DamageableComponent>(target, out var damageableComponent))
         {
-            damageRequired -= damageableComponent.TotalDamage;
+            damageRequired -= _damageableSystem.GetTotalDamage((target, damageableComponent));
             damageRequired = FixedPoint2.Max(damageRequired, FixedPoint2.Zero);
         }
         var deleted = Deleted(target);
@@ -119,7 +119,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             // during this physics tick.
             if (!deleted)
             {
-                if (TryComp<TransformComponent>(target, out var targetXform))
+                if (TryComp(target, out TransformComponent? targetXform))
                     _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager));
             }
 

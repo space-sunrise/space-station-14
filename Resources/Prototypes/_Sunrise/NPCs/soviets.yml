@@ -121,7 +121,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 115
   - type: Stamina
     baseCritThreshold: 125
   - type: DamageStateVisuals
@@ -450,11 +449,18 @@
     threshold: 0.9
     aliveTargets: false
     damage:
-      groups:
-        Brute: -10
-        Burn: -8
-        Airloss: -10
-        Toxin: -10
+      types:
+        Blunt: -3.33
+        Slash: -3.33
+        Piercing: -3.34
+        Heat: -2
+        Shock: -2
+        Cold: -2
+        Caustic: -2
+        Asphyxiation: -5
+        Bloodloss: -5
+        Poison: -5
+        Radiation: -5
     whitelist:
       components:
       - NpcVeteranFollower
@@ -471,11 +477,18 @@
       threshold: 0.9
       aliveTargets: false
       damage:
-        groups:
-          Brute: -10
-          Burn: -8
-          Airloss: -10
-          Toxin: -10
+        types:
+          Blunt: -3.33
+          Slash: -3.33
+          Piercing: -3.34
+          Heat: -2
+          Shock: -2
+          Cold: -2
+          Caustic: -2
+          Asphyxiation: -5
+          Bloodloss: -5
+          Poison: -5
+          Radiation: -5
       whitelist:
         components:
         - NpcVeteranFollower
@@ -1087,11 +1100,18 @@
     range: 7
     threshold: 0.9
     damage:
-      groups:
-        Brute: -15
-        Burn: -15
-        Airloss: -15
-        Toxin: -15
+      types:
+        Blunt: -5
+        Slash: -5
+        Piercing: -5
+        Heat: -3.75
+        Shock: -3.75
+        Cold: -3.75
+        Caustic: -3.75
+        Asphyxiation: -7.5
+        Bloodloss: -7.5
+        Poison: -7.5
+        Radiation: -7.5
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1107,11 +1127,18 @@
       range: 7
       threshold: 0.9
       damage:
-        groups:
-          Brute: -15
-          Burn: -15
-          Airloss: -15
-          Toxin: -15
+        types:
+          Blunt: -5
+          Slash: -5
+          Piercing: -5
+          Heat: -3.75
+          Shock: -3.75
+          Cold: -3.75
+          Caustic: -3.75
+          Asphyxiation: -7.5
+          Bloodloss: -7.5
+          Poison: -7.5
+          Radiation: -7.5
       whitelist:
         components:
         - NpcVeteranFollower
@@ -1367,7 +1394,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 350
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9
@@ -1561,7 +1587,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 450
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9

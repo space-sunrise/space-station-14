@@ -17,6 +17,9 @@ public sealed partial class DeconvertCultistEntityEffectSystem : EntityEffectSys
     [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
 
+    private readonly string _сultistTag = "Cultist";
+    private readonly string _deconvertedTag = "DeconvertedCultist";
+
     protected override void Effect(Entity<BloodCultistComponent> entity, ref EntityEffectEvent<DeconvertCultist> args)
     {
         var uid = entity.Owner;
@@ -48,8 +51,8 @@ public sealed partial class DeconvertCultistEntityEffectSystem : EntityEffectSys
         entityManager.RemoveComponent<BloodCultistComponent>(uid);
         if (entityManager.HasComponent<CultMemberComponent>(uid))
             entityManager.RemoveComponent<CultMemberComponent>(uid);
-        entityManager.System<TagSystem>().RemoveTag(uid, "Cultist");
-        entityManager.System<TagSystem>().AddTag(uid, "DeconvertedCultist");
+        entityManager.System<TagSystem>().RemoveTag(uid, _сultistTag);
+        entityManager.System<TagSystem>().AddTag(uid, _deconvertedTag);
     }
 }
 

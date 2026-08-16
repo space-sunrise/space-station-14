@@ -16,7 +16,6 @@ namespace Content.Server._Sunrise.InteractionsPanel;
 public partial class InteractionsPanel : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly INetConfigurationManager _netConfigManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;

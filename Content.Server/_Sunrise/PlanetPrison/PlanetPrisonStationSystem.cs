@@ -27,7 +27,6 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly BiomeSystem _biomeSystem = default!;

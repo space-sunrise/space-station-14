@@ -41,7 +41,6 @@ public sealed class MetricsSystem : EntitySystem
     [Dependency] private readonly ObjectivesSystem _objectives = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IMetricsManager _metricsManager = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
     [Dependency] private readonly SharedJobSystem _jobs = default!;
 
@@ -391,7 +390,7 @@ public sealed class MetricsSystem : EntitySystem
 
     private void OnCargoFulfilled(ref FulfillCargoOrderEvent args)
     {
-        CargoOrdersFulfilledTotal.WithLabels(args.Order.ProductId).Inc(args.Order.OrderQuantity);
+        CargoOrdersFulfilledTotal.WithLabels(args.Order.Product.Id).Inc(args.Order.OrderQuantity);
     }
 
     // Helpers

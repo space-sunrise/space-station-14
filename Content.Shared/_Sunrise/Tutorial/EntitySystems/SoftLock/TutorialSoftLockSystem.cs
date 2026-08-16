@@ -119,7 +119,7 @@ public sealed partial class TutorialSoftLockSystem : EntitySystem
 
     private bool HasEntitySoftLocks(EntityUid player)
     {
-        foreach (var component in EntityManager.GetComponents(player))
+        foreach (var component in AllComps(player))
         {
             if (component is ITutorialEntitySoftLockComponent)
                 return true;
