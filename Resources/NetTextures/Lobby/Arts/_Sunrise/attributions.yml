@@ -8,11 +8,6 @@
   copyright: "Мефедрон#1144 (184388744558673920) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["space-mudaki.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Ivan_Gochin#2016 (865932328793800724) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
 - files: ["lizard-bar.webp"]
   license: "CC-BY-SA-3.0"
   copyright: "mosley#6223 (498508581210161164) on discord"
@@ -43,30 +38,10 @@
   copyright: "Gasper_horned#9372 (428967480057397260) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["maintenance-clown.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Nijn#5581 (436971507923681290) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["dead-in-space.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "coffee with milk#3144 (416225940172046347) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["traitor.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "НезьныйКусь#2300 (346899091328073728) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
 - files: ["nukie-dudes.webp"]
   license: "CC-BY-SA-3.0"
   copyright: "ROBUSTyanka#3178 (1012354394181861406) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["men-at-work.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "~DreamlyJack~#2438 on discord"
-  source: "https://discord.gg/vtRtT4PD"
 
 - files: ["deathnettle.webp"]
   license: "CC-BY-NC-SA-3.0"
@@ -83,11 +58,6 @@
   copyright: "ko4erga(266899933632659456) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
-- files: ["revenant.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "mrzipka(631581871179956264) on discord"
-  source: "https://discord.com/channels/919301044784226385/993679919550844938/1166578120694968361"
-
 - files: ["arnold-intelligence.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "kawoshechka(764422772158890014) on discord"
@@ -101,11 +71,6 @@
 - files: ["nukie-war.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "slvtr455(1181587899590922260) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["engineers-vs-zombies.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "ukrainianlad on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
 - files: ["gray-tide.webp"]

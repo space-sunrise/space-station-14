@@ -1,21 +1,6 @@
-- files: ["new-year-explosion.webp"]
-  license: "CC-BY-SA-3.0"
-  copyright: "mosley#6223 (498508581210161164) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["new-year-comfort.webp", "new-year-penguins.webp"]
+- files: ["new-year-comfort.webp"]
   license: "CC-BY-SA-3.0"
   copyright: "Gasper_horned#9372 (428967480057397260) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["new-year-bar.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "ko4erga(266899933632659456) on discord"
-  source: "https://github.com/space-syndicate/space-station-14"
-
-- files: ["new-year-sec.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "davidskeleton25(622384072592982016) on discord"
   source: "https://github.com/space-syndicate/space-station-14"
 
 - files: ["new-year-pine.webp"]
