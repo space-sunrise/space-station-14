@@ -23,8 +23,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
     private EntityQuery<StatusEffectContainerComponent> _containerQuery;
     private EntityQuery<StatusEffectComponent> _effectQuery;
 
-    public static HashSet<string> StatusEffectPrototypes = [];
-    private static readonly object StatusEffectPrototypesLock = new();
+    public readonly HashSet<string> StatusEffectPrototypes = [];
 
     public override void Initialize()
     {
@@ -79,17 +78,12 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
     private void ReloadStatusEffectsCache()
     {
-        var prototypes = new HashSet<string>();
+        StatusEffectPrototypes.Clear();
 
         foreach (var ent in _proto.EnumeratePrototypes<EntityPrototype>())
         {
             if (ent.TryGetComponent<StatusEffectComponent>(out _, _factory))
-                prototypes.Add(ent.ID);
-        }
-
-        lock (StatusEffectPrototypesLock)
-        {
-            StatusEffectPrototypes = prototypes;
+                StatusEffectPrototypes.Add(ent.ID);
         }
     }
 
@@ -233,7 +227,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
         var endTime = delay == null ? _timing.CurTime + duration : _timing.CurTime + delay + duration;
         SetStatusEffectEndTime((effect.Value, effectComp), endTime);
-        var startTime = delay == null ? TimeSpan.Zero : _timing.CurTime + delay.Value;
+        var startTime = delay == null ? _timing.CurTime : _timing.CurTime + delay.Value;
         SetStatusEffectStartTime(effect.Value, startTime);
 
         TryApplyStatusEffect((statusEffect.Value, effectComp));

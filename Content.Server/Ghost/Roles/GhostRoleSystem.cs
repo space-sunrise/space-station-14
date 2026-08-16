@@ -145,7 +145,7 @@ public sealed class GhostRoleSystem : EntitySystem
         // Sunrise-End
 
         if ((session.AttachedEntity is not { Valid: true } attached ||
-             !EntityManager.HasComponent<GhostComponent>(attached)) && status != PlayerGameStatus.NotReadyToPlay) // Sunrise-Edit
+             !HasComp<GhostComponent>(attached)) && status != PlayerGameStatus.NotReadyToPlay) // Sunrise-Edit
             return;
 
         if (_openUis.ContainsKey(session))

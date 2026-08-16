@@ -369,22 +369,6 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<float> SlipDeadChance =
         CVarDef.Create("slip.dead_chance", 0.001f, CVar.SERVER | CVar.REPLICATED);
 
-    /**
-     * VigersRay
-     */
-
-    public static readonly CVarDef<bool> VigersRayJoinNotifyEveryone =
-        CVarDef.Create("vigers_ray.join_notify_everyone", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> VigersRayJoinSoundEveryone =
-        CVarDef.Create("vigers_ray.join_sound_everyone", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> VigersRayJoinShockEveryone =
-        CVarDef.Create("vigers_ray.join_shock_everyone", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<string> VigersRayVictims =
-        CVarDef.Create("vigers_ray.victims", "", CVar.SERVERONLY);
-
     /// <summary>
     /// Список имен пользователей, которых нельзя кикнуть командами kick или ghostkick.
     /// Имена пользователей разделяются запятыми.

@@ -6,8 +6,8 @@
   parent: BaseComputer
   components:
   - type: StationAiWhitelist
-  - type: ApcPowerReceiver
-    powerLoad: 350
+  - type: PowerState
+    workingPowerDraw: 350
   - type: ExtensionCableReceiver
   - type: PointLight
     radius: 1.8

@@ -38,7 +38,7 @@ public sealed class PetSpawnSystem : EntitySystem
             return;
 
         var coordinates = Transform(ev.Mob).Coordinates;
-        var spawnedPet = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, coordinates);
+        var spawnedPet = Spawn(petSelectionPrototype.PetEntity, coordinates);
 
         if (!TryComp<PettableOnInteractComponent>(spawnedPet, out var pet))
             return;
