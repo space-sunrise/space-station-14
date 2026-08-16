@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Actions.Components;
 using Content.Shared.Ghost;
+using Content.Shared.Materials;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Containers;
@@ -270,7 +271,8 @@ public sealed class ActionContainerSystem : EntitySystem
             return false;
 
         foreach (var act in actions.Container.ContainedEntities)
-            if (TryComp<MetaDataComponent>(act, out var metaData))
+            //if (TryComp<MetaDataComponent>(act, out var metaData)) //! Sunrise-edit Временный фикс
+            if (TryComp(act, out MetaDataComponent? metaData)) //! Sunrise-edit Временный фикс
                 if (TryPrototype(act, out var actProto, metaData))
                     if (pId == actProto.ID)
                         return true;

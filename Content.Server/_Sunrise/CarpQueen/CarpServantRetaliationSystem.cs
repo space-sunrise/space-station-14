@@ -76,6 +76,10 @@ public sealed class CarpServantRetaliationSystem : EntitySystem
                 Dirty(carpUid, memory);
             }
 
+            // Не агримся на носителя NoTarget.
+            if (HasComp<NoTargetComponent>(attacker))
+                continue;
+
             // Снимаем игнор и агримся на атакующего, чтобы атака стала возможна после снятия дисциплины.
             _npcFaction.UnignoreEntity((carpUid, exception), attacker);
             _npcFaction.AggroEntity((carpUid, exception), (attacker, null));

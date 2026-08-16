@@ -51,6 +51,12 @@ public sealed class NPCRetaliationSystem : EntitySystem
         if (_npcFaction.IsEntityFriendly(ent.Owner, target))
             return false;
 
+        //* Sunrise-start
+        // dont retaliate against NoTarget entities or items they carry.
+        if (HasComp<NoTargetComponent>(target))
+            return false;
+        //* Sunrise-end
+
         _npcFaction.AggroEntity(ent.Owner, target);
         if (ent.Comp.AttackMemoryLength is {} memoryLength)
             ent.Comp.AttackMemories[target] = _timing.CurTime + memoryLength;

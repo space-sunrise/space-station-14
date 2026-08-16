@@ -30,6 +30,7 @@ using Content.Shared.Atmos.Components;
 using System.Linq;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
+using Content.Shared.NPC.Components;
 
 namespace Content.Server.NPC.Systems;
 
@@ -106,6 +107,16 @@ public sealed class NPCUtilitySystem : EntitySystem
             return UtilityResult.Empty;
         }
 
+        //* Sunrise-start
+        var noTargetRemove = new List<EntityUid>();
+        foreach (var e in ents)
+        {
+            if (HasComp<NoTargetComponent>(e))
+                noTargetRemove.Add(e);
+        }
+        foreach (var e in noTargetRemove)
+            ents.Remove(e);
+        //* Sunrise-start
         var results = new Dictionary<EntityUid, float>();
         var highestScore = 0f;
 
@@ -166,6 +177,40 @@ public sealed class NPCUtilitySystem : EntitySystem
     private float GetScore(NPCBlackboard blackboard, EntityUid targetUid, UtilityConsideration consideration)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+        //* Sunrise-start
+        bool ContainsNoTargetRecursive(EntityUid uid)
+        {
+            if (HasComp<NoTargetComponent>(uid))
+                return true;
+
+            if (_inventory.TryGetContainerSlotEnumerator(uid, out var enumSlots))
+            {
+                while (enumSlots.MoveNext(out var slot))
+                {
+                    foreach (var child in slot.ContainedEntities)
+                    {
+                        if (ContainsNoTargetRecursive(child))
+                            return true;
+                    }
+                }
+            }
+
+            if (TryComp(uid, out TransformComponent? tx))
+            {
+                var childEnum = tx.ChildEnumerator;
+                while (childEnum.MoveNext(out var child))
+                {
+                    if (ContainsNoTargetRecursive(child))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        if (ContainsNoTargetRecursive(targetUid))
+            return 0f;
+        //* Sunrise-end
         switch (consideration)
         {
             case FoodValueCon:
