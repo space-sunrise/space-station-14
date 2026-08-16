@@ -314,3 +314,18 @@
     sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi
+
+- type: entity
+  parent: [ ClothingHandsGlovesColorBlack,   parent: [ ClothingHandsGlovesColorBlack, BaseScienceContraband]
+  id: SunriseClothingHandsGlovesAdvancedScience
+  name: advanced science gloves
+  description: These tactical gloves are fireproof, shock resistant, and very comfortable. However, they are a poor choice for punching. They have a purple trim, indicating advanced science department clearance.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/advanced_science_gloves.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/advanced_science_gloves.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+

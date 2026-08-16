@@ -1084,6 +1084,8 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
+  - SunriseAdvancedScienceGloves # Sunrise-Edit
+
 
 - type: loadoutGroup
   id: ScientistPDA

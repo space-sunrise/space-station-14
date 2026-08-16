@@ -1,0 +1,10 @@
+- type: loadout
+  id: SunriseAdvancedScienceGloves
+  equipment:
+    gloves: SunriseClothingHandsGlovesAdvancedScience
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Science
+      time: 100h
