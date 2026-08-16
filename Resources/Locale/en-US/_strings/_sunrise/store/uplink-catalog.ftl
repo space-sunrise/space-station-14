@@ -362,3 +362,5 @@ uplink-ecronizer-name = Ecronizer
 uplink-ecronizer-desc = A small device that can be used to bypass most scanning devices, making you and your items invisible to them.
 uplink-estoc-name = Estoc DMR
 uplink-estoc-desc = A designated marksman rifle, fitted with a mid-range optic for longer-range combat.
+uplink-syndicate-ring-name = Syndicate Ring
+uplink-syndicate-ring-desc = A black-and-red ring that serves as the coupling core for assembling a double-bladed energy sword.

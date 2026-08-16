@@ -1097,6 +1097,21 @@
   - UplinkPointless
 
 - type: listing
+  id: SunriseUplinkSyndicateRing
+  name: uplink-syndicate-ring-name
+  description: uplink-syndicate-ring-desc
+  productEntity: SunriseSyndicateRing
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkPointless
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
   id: UplinkMechPaintMaulerMeowler
   name: uplink-mechpaint-mauler-name
   description: uplink-mechpaint-mauler-desc
@@ -1695,6 +1710,12 @@
     Telecrystal: 1
   categories:
     - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkSyndicateRapier
@@ -1742,25 +1763,6 @@
     Telecrystal: 4
   categories:
   - UplinkWeaponry
-
-- type: listing
-  id: UplinkEswordNuke
-  name: uplink-esword-name
-  description: uplink-esword-desc
-  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 5
-  productEntity: EnergySwordBiocode
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 - type: listing # Starlight
   id: UplinkWeaponPistolStechkinBundle
@@ -2013,9 +2015,8 @@
   description: uplink-mech-equipment-shotgun-desc
   icon: { sprite: Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_scatter }
   productEntity: WeaponMechCombatShotgun
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 2
+  cost:
+    Telecrystal: 1
   categories:
   - UplinkMechs
   conditions:

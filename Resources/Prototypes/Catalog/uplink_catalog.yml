@@ -59,17 +59,6 @@
     Telecrystal: 8
   categories:
   - UplinkWeaponry
-  #Sunrise-start
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - AssaultOpsUplink
-      - SubdermalImplant
-      - NukeOpsUplink
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  #Sunrise-end
 
 - type: listing
   id: UplinkEnergyDagger
