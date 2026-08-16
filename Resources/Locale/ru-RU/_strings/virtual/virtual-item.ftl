@@ -1,1 +1,1 @@
-virtual-item-dropped-other = Вы выбросили { THE($dropped) }!
+virtual-item-dropped-other = Вы выбросили { $dropped }!

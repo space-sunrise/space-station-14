@@ -89,13 +89,13 @@ cargo-funding-alloc-console-label-save-fail = [bold]Распределение �
 }{$val}%)[/color]
 
 # Slip template
-cargo-acquisition-slip-body = [head=3]Детали актива[/head]
-    {"[bold]Продукт:[/bold]"} {$product}
+cargo-acquisition-slip-body = [head=3]Сведения об активе[/head]
+    {"[bold]Товар:[/bold]"} {$product}
     {"[bold]Описание:[/bold]"} {$description}
-    {"[bold]Цена за единицу:[/bold\"]} ${$unit}
+    {"[bold]Цена за единицу:[/bold"}] ${$unit}
     {"[bold]Количество:[/bold]"} {$amount}
     {"[bold]Стоимость:[/bold]"} ${$cost}
 
-    {"[head=3]Детали покупки[/head]"}
+    {"[head=3]Сведения о покупке[/head]"}
     {"[bold]Заказчик:[/bold]"} {$orderer}
     {"[bold]Причина:[/bold]"} {$reason}

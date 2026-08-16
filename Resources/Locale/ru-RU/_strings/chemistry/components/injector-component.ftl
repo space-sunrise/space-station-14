@@ -46,9 +46,9 @@ injector-component-draw-success-message-self = Вы набираете {$amount}
 injector-component-target-already-full-message-self = Вы уже полны!
 injector-component-target-is-empty-message-self = В вас ничего нет!
 injector-component-cannot-toggle-dynamic-message = Нельзя переключить динамический режим!
-injector-component-empty-message = {CAPITALIZE(THE($injector))} пуст!
+injector-component-empty-message = {CAPITALIZE($injector)} пуст!
 injector-component-blocked-user = Защитное снаряжение заблокировало вашу инъекцию!
-injector-component-blocked-other = Защитное снаряжение {THE($target)} заблокировало инъекцию {THE($user)}!
+injector-component-blocked-other = Защитное снаряжение {$target} заблокировало инъекцию {$user}!
 injector-component-cannot-transfer-message-self = Вы не можете перелить вещество в себя!
 injector-component-cannot-inject-message-self = Вы не можете ввести вещество в себя!
 injector-component-cannot-draw-message-self = Вы не можете набрать вещество из себя!
@@ -57,11 +57,11 @@ injector-component-ignore-mobs = Этот инжектор может взаим
 ## mob-inject doafter messages
 
 injector-component-needle-injecting-user = Вы начинаете вводить иглу.
-injector-component-needle-injecting-target = {CAPITALIZE(THE($user))} пытается ввести в вас иглу!
+injector-component-needle-injecting-target = {CAPITALIZE($user)} пытается ввести в вас иглу!
 injector-component-needle-drawing-user = Вы начинаете забор с помощью иглы.
-injector-component-needle-drawing-target = {CAPITALIZE(THE($user))} пытается набрать из вас жидкость с помощью иглы!
+injector-component-needle-drawing-target = {CAPITALIZE($user)} пытается набрать из вас жидкость с помощью иглы!
 injector-component-spray-injecting-user = Вы начинаете подготавливать распылитель.
-injector-component-spray-injecting-target = {CAPITALIZE(THE($user))} пытается приставить к вам распылитель!
+injector-component-spray-injecting-target = {CAPITALIZE($user)} пытается приставить к вам распылитель!
 
 ## Target Popup Success messages
 injector-component-feel-prick-message = Вы чувствуете лёгкий укол!
