@@ -58,6 +58,7 @@ food-tut-finish-chat = Watch status alerts early, choose clearly identified food
 food-tut-finish-tts = Complete! Watch your hunger and thirst, check suspicious food and drinks, and return reusable dishes after visiting a bar.
 
 food-tut-softlock-pickup-highlighted = Pick up the highlighted item now.
+food-tut-softlock-ingest-blocked = Do not consume this item yet. Pick it up first.
 food-tut-softlock-keep-drink = Do not put away or drop the glass: drink the lemonade first.
 food-tut-softlock-put-drink-down = Put the glass on the marked table now.
 food-tut-softlock-keep-meal = Do not put away or drop the food: eat it first.

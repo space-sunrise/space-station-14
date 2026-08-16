@@ -19,5 +19,5 @@ public sealed partial class TutorialIngestSoftLockComponent : Component, ITutori
     /// Сообщение при попытке употребить заблокированную сущность.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public string Popup = "tutorial-softlock-action-blocked";
+    public LocId Popup = "tutorial-softlock-action-blocked";
 }

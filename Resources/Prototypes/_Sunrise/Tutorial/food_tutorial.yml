@@ -129,7 +129,7 @@
     - type: TutorialIngestSoftLock
       targets:
       - DrinkLemonadeGlass
-      popup: food-tut-softlock-pickup-highlighted
+      popup: food-tut-softlock-ingest-blocked
   conditions:
   - !type:PickupListenedCondition
     target: DrinkLemonadeGlass
@@ -232,7 +232,7 @@
     - type: TutorialIngestSoftLock
       targets:
       - FoodMealNachos
-      popup: food-tut-softlock-pickup-highlighted
+      popup: food-tut-softlock-ingest-blocked
     - type: TutorialDropSoftLock
       popup: food-tut-softlock-keep-dishes
     - type: TutorialStorageInsertSoftLock
