@@ -36,6 +36,7 @@ public abstract partial class ServerDbBase
                 PlayerUserId = player,
                 TutorialId = tutorial.Id,
                 CompletedAt = now,
+                // Возраст фиксируется при первом прохождении и используется для исторической метрики.
                 AccountAgeDays = accountAgeDays,
                 CompletionCount = 1,
             };
@@ -45,8 +46,6 @@ public abstract partial class ServerDbBase
         {
             entry!.CompletedAt = now;
             entry.CompletionCount++;
-            if (accountAgeDays != null)
-                entry.AccountAgeDays = accountAgeDays;
         }
 
         await db.DbContext.SaveChangesAsync();
@@ -92,10 +91,12 @@ public abstract partial class ServerDbBase
     }
 
     public async Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(
+        TimeSpan newAccountThreshold,
         CancellationToken cancel = default)
     {
         await using var db = await GetDb(cancel);
         var isSqlite = db.DbContext.Database.ProviderName?.Contains("Sqlite") == true;
+        var newAccountThresholdDays = newAccountThreshold.TotalDays;
 
         if (isSqlite)
         {
@@ -105,7 +106,10 @@ public abstract partial class ServerDbBase
                 .Select(group => new
                 {
                     TutorialId = group.Key,
-                    CompletedPlayers = group.Count(),
+                    FirstTimeCompletedPlayers = group.Count(),
+                    NewAccountCompletedPlayers = group.Count(completion =>
+                        completion.AccountAgeDays >= 0 &&
+                        completion.AccountAgeDays <= newAccountThresholdDays),
                     CompletionCount = group.Sum(completion => completion.CompletionCount),
                     AccountAgeSamples = group.Count(completion => completion.AccountAgeDays != null),
                     AverageAccountAgeDays = group.Average(completion => completion.AccountAgeDays),
@@ -129,7 +133,8 @@ public abstract partial class ServerDbBase
             return metrics
                 .Select(metric => new TutorialCompletionMetrics(
                     metric.TutorialId,
-                    metric.CompletedPlayers,
+                    metric.FirstTimeCompletedPlayers,
+                    metric.NewAccountCompletedPlayers,
                     metric.CompletionCount,
                     metric.AccountAgeSamples,
                     metric.AverageAccountAgeDays,
@@ -143,6 +148,9 @@ public abstract partial class ServerDbBase
             .Select(group => new TutorialCompletionMetrics(
                 group.Key,
                 group.Count(),
+                group.Count(completion =>
+                    completion.AccountAgeDays >= 0 &&
+                    completion.AccountAgeDays <= newAccountThresholdDays),
                 group.Sum(completion => completion.CompletionCount),
                 group.Count(completion => completion.AccountAgeDays != null),
                 group.Average(completion => completion.AccountAgeDays),

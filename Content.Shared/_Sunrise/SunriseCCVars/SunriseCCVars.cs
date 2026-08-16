@@ -572,6 +572,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
         CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(5), CVar.SERVERONLY);
 
+    /// <summary>
+    /// Maximum account age at the first tutorial completion for the player to be counted as a new account.
+    /// </summary>
+    public static readonly CVarDef<TimeSpan> TutorialNewAccountThreshold =
+        CVarDef.Create("tutorial.metrics.new_account_threshold", TimeSpan.FromDays(7), CVar.SERVERONLY);
+
     public static readonly CVarDef<float> TutorialPromptSkipDelay =
         CVarDef.Create("tutorial.prompt_skip_delay", 15f, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 

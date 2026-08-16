@@ -40,7 +40,9 @@ public partial interface IServerDbManager
     Task<List<string>> GetTutorial(Guid player, CancellationToken cancel = default);
     Task<bool> IsTutorialCompleted(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
     Task<bool> RemoveTutorial(Guid player, ProtoId<TutorialSequencePrototype> tutorial);
-    Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(CancellationToken cancel = default);
+    Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(
+        TimeSpan newAccountThreshold,
+        CancellationToken cancel = default);
     Task<int> PruneInvalidTutorialCompletionsAsync(
         IEnumerable<string> validTutorialIds,
         CancellationToken cancel = default);
