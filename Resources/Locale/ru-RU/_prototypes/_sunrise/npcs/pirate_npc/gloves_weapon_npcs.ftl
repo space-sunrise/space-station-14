@@ -8,7 +8,7 @@ ent-ClothingHandsBlackAK = { ent-ClothingHandsBlackSMG }
     .suffix = АК
 ent-ClothingHandsBlackChinaLake = { ent-ClothingHandsBlackSMG }
     .desc = { ent-ClothingHandsBlackSMG.desc }
-    .suffix = China Lake
+    .suffix = Чайна Лейк
 ent-ClothingHandsBlackPirateCannon = { ent-ClothingHandsBlackSMG }
     .desc = { ent-ClothingHandsBlackSMG.desc }
     .suffix = пиратская пушка
@@ -138,7 +138,6 @@ ent-ClothingHandsWeaponPka = { ent-ClothingHandsBlackSMG }
 ent-ClothingHandsMechMaxim = { ent-ClothingHandsGlovesCombat }
     .desc = { ent-ClothingHandsGlovesCombat.desc }
     .suffix = мех Максим
-
 ent-ClothingHandsBombadaPirateT1 = { ent-ClothingHandsNoGloves }
     .desc = { ent-ClothingHandsNoGloves.desc }
     .suffix = Бомбада, Пират T1
