@@ -52,7 +52,14 @@
         variation: 0.125
   - type: Produce
     seedId: SunriseJuicyTomatoKiller
-  - type: PassiveDamage
-    damageCap: 40
   - type: StaticPrice
     price: 500
+  - type: GhostRole
+    prob: 0.15
+    makeSentient: true
+    allowSpeech: true
+    name: ghost-role-information-tomatokiller-name
+    description: ghost-role-information-tomatokiller-description
+    rules: ghost-role-information-familiar-rules
+    raffle:
+      settings: short
