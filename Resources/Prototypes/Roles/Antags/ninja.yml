@@ -21,13 +21,25 @@
     color: Green
     sound: /Audio/Misc/ninja_greeting.ogg
   components:
+  # Sunrise edit start - настройки ниндзя из событийного определения до рефакторинга антагонистов
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-ninja-name
+    description: ghost-panel-antagonist-ninja-description
+    priority: 40
+  # Sunrise edit end
   - type: SpaceNinja
   - type: NpcFactionMember
     factions:
-    - Syndicate
+    - SpiderClan # Sunrise-Edit
   - type: AutoImplant
     implants:
-    - DeathAcidifierImplant
+    # Sunrise edit start - собственный набор имплантов ниндзя
+    - RedspaceImplant
+    - MicroBombImplant
+    - StimpackImplant
+    - ReviverImplant
+    - NutrimentImplant
+    # Sunrise edit end
   - type: RandomMetadata
     nameSegments:
     - NamesNinjaTitle

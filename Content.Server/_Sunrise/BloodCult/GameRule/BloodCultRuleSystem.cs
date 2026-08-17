@@ -514,7 +514,7 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
             EnsureComp<StatusIconComponent>(cultist);
 
         if (rule.CultType == null ||
-            !_prototype.TryIndex<BloodCultPrototype>($"{rule.CultType.Value.ToString()}Cult", out var cultPrototype))
+            !Proto.TryIndex<BloodCultPrototype>($"{rule.CultType.Value.ToString()}Cult", out var cultPrototype))
             return false;
 
         cultistComponent.CultType = rule.CultType;

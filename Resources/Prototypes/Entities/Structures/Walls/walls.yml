@@ -534,8 +534,8 @@
         density: 4000
   - type: Damageable
     damageModifierSet: StructuralMetallicStrong
-    - type: InjurabledamageContainer: StructuralInorganic
-
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: RadiationBlocker
     resistance: 5
 

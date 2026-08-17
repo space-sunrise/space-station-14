@@ -16,8 +16,9 @@
   storytellerStress: 1
 
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: BaseAntagSpecifier # Sunrise-Edit — сохраняем разрешение для допустимых глав.
   id: InitialInfected
+  pickCommandStaff: true # Sunrise-Edit
   prefRoles: [ InitialInfected ]
   blacklist:
     components:
@@ -36,6 +37,17 @@
   - type: InitialInfected
   mindRoles:
   - MindRoleInitialInfected
+
+# Sunrise edit start - отдельные настройки начальных заражённых для вспышки
+- type: antagSpecifier
+  parent: InitialInfected
+  id: InitialInfectedOutbreak
+  ignoreJobRestrictions: true
+  components:
+  - type: PendingZombie
+    minInitialInfectedGrace: 300
+    maxInitialInfectedGrace: 450
+# Sunrise edit end
 
 # TODO: Make it so creating new zombies uses antag prototypes! This saves a *lot* of boilerplate for conversion antags.
 

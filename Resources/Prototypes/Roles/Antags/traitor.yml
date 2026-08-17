@@ -17,12 +17,14 @@
 
 - type: antagSpecifier
   abstract: true
-  parent: RestrictedAntag
+  parent: BaseAntagSpecifier # Sunrise-Edit — главы, которым раньше разрешал canBeAntag, могут стать предателями.
   id: BaseTraitor
 
 - type: antagSpecifier
   parent: BaseTraitor
   id: Traitor
+  pickCommandStaff: true # Sunrise-Edit
+  maxCommandStaff: 1 # Sunrise-Edit
   prefRoles:
   - Traitor
   blacklist:
@@ -49,6 +51,8 @@
   id: TraitorSleeper
   prefRoles:
   - TraitorSleeper
+  fallbackRoles: # Sunrise-Edit
+  - Traitor
   mindRoles:
   - MindRoleTraitorSleeper
 

@@ -117,8 +117,8 @@ public sealed class SunriseThrownItemDamageSystem : EntitySystem
         // Get velocity early for bounce and recoil
         var velocity = physics?.LinearVelocity ?? Vector2.Zero;
 
-        var hasDamageable = TryComp<DamageableComponent>(args.Target, out var targetDamageable);
-        var isStructure = hasDamageable && targetDamageable!.DamageContainerID?.Id.Contains("Structural") == true;
+        var isStructure = TryComp<InjurableComponent>(args.Target, out var injurable) &&
+            injurable.DamageContainer?.Id.Contains("Structural") == true;
 
         if (HasComp<MobStateComponent>(args.Target) || isStructure)
         {

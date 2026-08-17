@@ -3,7 +3,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using System.Linq;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage.Components;
@@ -101,7 +100,7 @@ public sealed class HealingSystem : EntitySystem
                 dontRepeat = true;
         }
         // Starlight start
-        else if (healing.SolutionDrain && TryComp<SolutionContainerManagerComponent>(args.Used, out var solutionManager))
+        else if (healing.SolutionDrain)
         {
             Entity<SolutionComponent>? solutionEntity = null;
             if (_solutionContainerSystem.ResolveSolution(args.Used.Value, "injector", ref solutionEntity, out var solution))
@@ -241,7 +240,7 @@ public sealed class HealingSystem : EntitySystem
         //Sunrise-End
 
         // Starlight start
-        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
+        if (healing.Comp.SolutionDrain)
         {
             Entity<SolutionComponent>? solutionEntity = null;
             if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))

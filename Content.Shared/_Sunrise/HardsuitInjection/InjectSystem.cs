@@ -10,7 +10,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Administration.Logs;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Robust.Shared.Timing;
 using Content.Shared._Sunrise.HardsuitInjection.Components;
 using Content.Shared.Clothing.EntitySystems;
@@ -51,13 +50,10 @@ public sealed partial class InjectSystem : EntitySystem
     {
         var beakerUid = GetEntity(args.BeakerUid);
 
-        if (!TryComp<SolutionContainerManagerComponent>(beakerUid, out var solutionContainerComponent)) return;
-        if (!_solutions.TryGetSolution((beakerUid, solutionContainerComponent), "beaker", out var solutionEntity, out var _)) return;
+        if (!_solutions.TryGetSolution(beakerUid, "beaker", out var solutionEntity, out _)) return;
 
         var removedSolution = _solutions.SplitSolution(solutionEntity.Value, args.ReagentTransfer.Value);
         args.RemovedReagentAmount = removedSolution;
-
-        _solutions.UpdateAppearance((solutionEntity.Value.Owner, solutionEntity.Value.Comp));
     }
 
     #endregion

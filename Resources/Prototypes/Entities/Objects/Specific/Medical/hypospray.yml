@@ -526,11 +526,12 @@
     emptySpriteName: hypovolemic_empty
   - type: Solution
     solution:
+      maxVol: 30 # Sunrise-Edit — сохранена увеличенная ёмкость космического медипена.
       reagents:
       - ReagentId: Leporazine
         Quantity: 10
       - ReagentId: BarozinePlus
-        Quantity: 10
+        Quantity: 20 # Sunrise-Edit — сохранён состав космического медипена.
 
 - type: entity
   abstract: true

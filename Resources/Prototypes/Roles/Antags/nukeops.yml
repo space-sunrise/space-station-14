@@ -65,6 +65,12 @@
   roleLoadout:
   - RoleSurvivalNukie
   components:
+  # Sunrise edit start - маркер антагониста для панели призраков
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-nukeops-name
+    description: ghost-panel-antagonist-nukeops-description
+    priority: 10
+  # Sunrise edit end
   - type: NukeOperative
   - type: NpcFactionMember
     factions:
@@ -75,6 +81,9 @@
   id: NukeopsCommander
   prefRoles:
   - NukeopsCommander
+  fallbackRoles: # Sunrise-Edit
+  - Nukeops
+  - NukeopsMedic
   spawnerPrototype: SpawnPointNukeopsCommander
   startingGear: SyndicateCommanderGearFull
   components:
@@ -90,6 +99,9 @@
   id: NukeopsMedic
   prefRoles:
   - NukeopsMedic
+  fallbackRoles: # Sunrise-Edit
+  - Nukeops
+  - NukeopsCommander
   spawnerPrototype: SpawnPointNukeopsMedic
   startingGear: SyndicateOperativeMedicFull
   components:
@@ -105,6 +117,9 @@
   id: NukeopsOperative
   prefRoles:
   - Nukeops
+  fallbackRoles: # Sunrise-Edit
+  - NukeopsCommander
+  - NukeopsMedic
   spawnerPrototype: SpawnPointNukeopsOperative
   startingGear: SyndicateOperativeGearFull
   components:
@@ -122,6 +137,12 @@
   pickPlayer: false
   startingGear: SyndicateLoneOperativeGearFull
   components:
+  # Sunrise edit start - маркер одиночного оперативника для панели призраков
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-loneops-name
+    description: ghost-panel-antagonist-loneops-description
+    priority: 20
+  # Sunrise edit end
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix

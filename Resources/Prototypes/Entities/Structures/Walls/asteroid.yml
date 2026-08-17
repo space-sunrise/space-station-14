@@ -850,9 +850,9 @@
       tags:
       - Pickaxe
   - type: Damageable
-    damageModifierSet: Metallic
+    damageModifierSet: Rock # Sunrise-Edit
   - type: Injurable
-    damageContainer: Rock #Sunrise-Edit
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:

@@ -59,8 +59,11 @@ public sealed partial class AntagSelectionSystem
         if (IsAssignedAntag(gameRule, def, player))
             return false;
 
+        if (!CanSelectSunriseCommandStaff(gameRule, player, def)) // Sunrise-Edit
+            return false;
+
         // Add player to the appropriate antag pool
-        if (checkPref && !TryGetValidAntagPreferences(player, def.PrefRoles))
+        if (checkPref && !HasSunriseAntagPreference(player, def)) // Sunrise-Edit
             return false;
 
         return true;
@@ -130,6 +133,9 @@ public sealed partial class AntagSelectionSystem
     /// <returns>True if there is nothing stopping this mind entity from being this antag.</returns>
     private bool IsMindValid([NotNullWhen(true)] EntityUid? mind, AntagSpecifierPrototype def)
     {
+        if (def.IgnoreJobRestrictions) // Sunrise-Edit
+            return true;
+
         // The jobless can always be antag!
         if (!_jobs.MindTryGetJob(mind, out var job))
             return true;

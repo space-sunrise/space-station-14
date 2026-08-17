@@ -173,6 +173,7 @@
           Blunt: 3
           Slash: 3
     - type: Damageable
+    - type: Injurable
       damageContainer: Shield
     - type: Destructible
       thresholds:

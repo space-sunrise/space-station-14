@@ -46,7 +46,7 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
     [Dependency] private readonly EntityQuery<AppearanceComponent> _appearanceQuery = default!;
     [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
-    [Dependency] private readonly EntityQuery<SolutionContainerManagerComponent> _solutionQuery = default!;
+    [Dependency] private readonly EntityQuery<SolutionManagerComponent> _solutionQuery = default!;
     [Dependency] private readonly EntityQuery<StandingStateComponent> _standingQuery = default!;
     [Dependency] private readonly EntityQuery<FootprintComponent> _footprintQuery = default!;
     [Dependency] private readonly EntityQuery<PressureProtectionComponent> _pressureQuery = default!;
@@ -67,14 +67,17 @@ public sealed class FootprintSystem : EntitySystem
 
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
-        SubscribeLocalEvent<FootprintEmitterComponent, ComponentInit>(OnFootprintEmitterInit);
+        SubscribeLocalEvent<FootprintEmitterComponent, MapInitEvent>(OnFootprintEmitterMapInit);
         SubscribeLocalEvent<FootprintComponent, ComponentStartup>(OnFootprintStartup);
     }
 
-    private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
+    private void OnFootprintEmitterMapInit(Entity<FootprintEmitterComponent> entity, ref MapInitEvent args)
     {
-        _solution.EnsureSolution(entity.Owner, entity.Comp.FootsSolutionName, out _, FixedPoint2.New(FootsVolume));
-        _solution.EnsureSolution(entity.Owner, entity.Comp.BodySurfaceSolutionName, out _, FixedPoint2.New(BodySurfaceVolume));
+        _solution.EnsureSolution(entity.Owner, entity.Comp.FootsSolutionName, out var feetSolution);
+        _solution.SetCapacity(feetSolution, FixedPoint2.New(FootsVolume));
+
+        _solution.EnsureSolution(entity.Owner, entity.Comp.BodySurfaceSolutionName, out var bodySolution);
+        _solution.SetCapacity(bodySolution, FixedPoint2.New(BodySurfaceVolume));
     }
 
     /// <summary>

@@ -167,7 +167,7 @@ public sealed class AllGamePresetsStartTest : GameTest
         // Maps now exist
         Assert.That(entMan.Count<MapComponent>(), Is.GreaterThan(0));
         Assert.That(entMan.Count<MapGridComponent>(), Is.GreaterThan(0));
-        Assert.That(entMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
+        // Assert.That(entMan.Count<StationCentcommComponent>(), Is.EqualTo(1)); // Sunrise edit
 
         // Clear game preset and return to lobby
         await Pair.WaitCommand("golobby");

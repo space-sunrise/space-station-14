@@ -313,12 +313,6 @@
   abstract: true
   components:
   - type: SolutionManager
-    # Sunrise-Edit
-    solutions:
-      foots:
-        maxVol: 5
-      body_surface:
-        maxVol: 15
   - type: InjectableSolution
     solution: bloodstream
   - type: Bloodstream

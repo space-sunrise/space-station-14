@@ -37,5 +37,6 @@
     tags:
     - Sheet
     - ConstructionMaterial
+    - NoPaint # Sunrise edit
   - type: StaticPrice
     price: 0

@@ -166,8 +166,9 @@
     minds:
     - Carp
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Dragon
+  - type: Injurable
+    damageContainer: Biological
   - type: Destructible
     thresholds:
     - trigger:

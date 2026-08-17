@@ -1,4 +1,3 @@
-using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 
@@ -39,12 +38,6 @@ public sealed partial class VoiceMaskComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId Action = "ActionChangeVoiceMask";
-
-    // Sunrise-TTS-Start
-    [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public string VoiceId = SunriseHumanoidProfileDefaults.DefaultVoice;
-    // Sunrise-TTS-End
 
     /// <summary>
     ///     Reference to the action.

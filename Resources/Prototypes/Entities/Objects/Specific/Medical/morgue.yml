@@ -45,6 +45,7 @@
   # Sunrise added start - let body bags be destroyed to stop shooting-abuse from inside
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:

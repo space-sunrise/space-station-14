@@ -30,6 +30,8 @@
   id: HeadRev
   prefRoles:
   - HeadRev
+  fallbackRoles: # Sunrise-Edit
+  - Rev
   briefing:
     text: head-rev-role-greeting
     color: CornflowerBlue
@@ -42,6 +44,26 @@
   - MindRoleHeadRevolutionary
 
 # TODO: Make it so creating new revolutionaries uses antag prototypes! This saves a *lot* of boilerplate for conversion antags.
+
+# Sunrise edit start - отдельный спецификатор обычного революционера
+- type: antagSpecifier
+  parent: BaseRev
+  id: Rev
+  prefRoles:
+  - Rev
+  fallbackRoles: # Sunrise-Edit
+  - HeadRev
+  blacklist:
+    components:
+    - CommandStaff
+    - MindShield
+  briefing:
+    text: rev-role-greeting
+    color: CornflowerBlue
+    sound: "/Audio/Ambience/Antag/headrev_start.ogg"
+  mindRoles:
+  - MindRoleRevolutionary
+# Sunrise edit end
 
 - type: antag
   id: Rev

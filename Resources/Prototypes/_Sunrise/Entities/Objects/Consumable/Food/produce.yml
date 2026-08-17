@@ -5,6 +5,7 @@
   id: ExplosiveBanana
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 0.1
@@ -203,6 +204,7 @@
       - ReagentId: Moonshine
         Quantity: 20
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 0.1

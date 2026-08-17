@@ -4212,6 +4212,7 @@
       baseWalkSpeed: 2
       baseSprintSpeed: 4
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: GorillaRampaging
+    - type: Injurable
+      damageContainer: Biological
 # Starlight-end

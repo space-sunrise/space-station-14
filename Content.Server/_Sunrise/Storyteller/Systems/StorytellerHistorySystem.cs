@@ -663,7 +663,10 @@ public sealed class StorytellerHistorySystem : EntitySystem
         if (component.AssignedMinds.Count == 0)
             return;
 
-        var names = component.AssignedMinds.Select(m => m.Item2).ToList();
+        var names = component.AssignedMinds
+            .SelectMany(entry => entry.Value)
+            .Select(assigned => assigned.name)
+            .ToList();
         var playersList = string.Join(", ", names);
 
         var key = $"storyteller-metadata-{lowercaseId}-assigned";

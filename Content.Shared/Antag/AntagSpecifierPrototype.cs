@@ -178,4 +178,3 @@ public partial struct BriefingData
     [DataField]
     public SoundSpecifier? Sound;
 }
-

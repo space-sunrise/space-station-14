@@ -11,6 +11,62 @@
   - ERTMedical
   - ERTJanitor
   - CBURN
+  # Sunrise edit start - роли, ранее защищённые общим canBeAntag
+  - BlueShieldEnsign
+  - BlueShieldOfficer
+  - BlueShieldOperative
+  - Borg
+  - Brigmedic
+  - Captain
+  - CBURNAgentEVA
+  - CBURNLeader
+  - CentCommOfficial
+  - CentCommOperator
+  - ClownBorg
+  - Detective
+  - EngineerBorg
+  - HeadOfPersonnel
+  - HeadOfPrison
+  - HeadOfSecurity
+  - IAA
+  - JanitorBorg
+  - Lawyer
+  - Magistrat
+  - MedicalBorg
+  - MedicalIntern
+  - MiningBorg
+  - NanoTrasenRepresentative
+  - NtrGuard
+  - NtrLeader
+  - NtrOfficer
+  - PeaceBorg
+  - PlanetPrisoner
+  - PrisonChef
+  - PrisonDoctor
+  - PrisonEngineer
+  - PrisonInspector
+  - PrisonPilot
+  - PrisonScientist
+  - PrisonTrainee
+  - PrisonWorker
+  - ResearchAssistant
+  - SecurityBorg
+  - SecurityCadet
+  - SecurityOfficer
+  - SecurityPilot
+  - SeniorOfficer
+  - ServiceBorg
+  - StationAi
+  - TechnicalAssistant
+  - TSFMarine
+  - USSPCaptain
+  - USSPCrew
+  - USSPOfficer
+  - USSPOfficerAlt
+  - USSPSoldier
+  - Visitor
+  - Warden
+  # Sunrise edit end
   blacklist:
     components:
     - AntagImmune

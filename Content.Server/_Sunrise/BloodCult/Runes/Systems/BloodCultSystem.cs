@@ -74,7 +74,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
         [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private readonly SharedStunSystem _stunSystem = default!;
         [Dependency] private readonly SharedStutteringSystem _stuttering = default!;

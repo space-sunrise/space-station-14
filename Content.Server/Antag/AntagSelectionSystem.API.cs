@@ -408,6 +408,9 @@ public sealed partial class AntagSelectionSystem
                 if (!comp.PreSelectedSessions.TryGetValue(antag, out var set) || !Proto.Resolve(antag.Proto, out var proto))
                     continue;
 
+                if (proto.IgnoreJobRestrictions) // Sunrise-Edit — специальные антагонисты не ограничивают выбор должности.
+                    continue;
+
                 // Check this here so we don't make a dictionary entry for a bunch of players, with empty blacklists and whitelists.
                 if (proto.JobBlacklist == null && proto.JobWhitelist == null)
                     continue;
@@ -470,6 +473,9 @@ public sealed partial class AntagSelectionSystem
                     continue;
 
                 if (!Proto.Resolve(antag.Proto, out var proto))
+                    continue;
+
+                if (proto.IgnoreJobRestrictions) // Sunrise-Edit — специальные антагонисты не ограничивают выбор должности.
                     continue;
 
                 if (proto.JobWhitelist != null)

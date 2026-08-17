@@ -57,7 +57,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
         SubscribeLocalEvent<CopyMachineComponent, CopyMachineCopyMessage>(OnCopyRequested);
         SubscribeLocalEvent<CopyMachineComponent, CopyMachineCancelJobMessage>(OnCancelJobRequested);
         SubscribeLocalEvent<CopyMachineComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<CopyMachineComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
+        SubscribeLocalEvent<CopyMachineComponent, SolutionChangedEvent>(OnSolutionChanged);
         SubscribeLocalEvent<CopyMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInsertedIntoCopySlot);
         SubscribeLocalEvent<CopyMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemovedFromCopySlot);
         SubscribeLocalEvent<CopyMachineComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
@@ -188,7 +188,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
     }
 
     private void OnUiOpened(Entity<CopyMachineComponent> ent, ref BoundUIOpenedEvent args) => UpdateUserInterface(ent);
-    private void OnSolutionChanged(Entity<CopyMachineComponent> ent, ref SolutionContainerChangedEvent args) => QueueUIUpdate(ent);
+    private void OnSolutionChanged(Entity<CopyMachineComponent> ent, ref SolutionChangedEvent args) => QueueUIUpdate(ent);
     private void OnEntityRemovedFromCopySlot(Entity<CopyMachineComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         if (args.Container.ID != CopyMachineComponent.CopySlotId)
@@ -372,7 +372,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
 
     private bool TryConsumeInkAndPaper(Entity<CopyMachineComponent> ent)
     {
-        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out _, out var solution))
+        if (!_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.Solution, out var solutionEntity, out var solution))
             return false;
 
         var inkReagentId = new ReagentId(ent.Comp.IncReagentProto, null);
@@ -383,7 +383,7 @@ public sealed partial class CopyMachineSystem : EntitySystem
         if (!_materialStorage.TryChangeMaterialAmount(ent, ent.Comp.PaperMaterial, -ent.Comp.PaperCost))
             return false;
 
-        solution.RemoveReagent(inkReagentId, ent.Comp.IncCost);
+        _solutionContainer.RemoveReagent(solutionEntity.Value, inkReagentId, ent.Comp.IncCost);
 
         return true;
     }

@@ -18,6 +18,7 @@
   parent: RestrictedAntag
   id: MothershipCore
   prefRoles: [ MothershipCore ]
+  fallbackRoles: [ Xenoborg ] # Sunrise-Edit
   spawnerPrototype: SpawnPointGhostRoleMothershipCore
   mindRoles:
   - MindRoleMothershipCore
@@ -43,6 +44,7 @@
   parent: RestrictedAntag
   id: BaseXenoborg
   prefRoles: [ Xenoborg ]
+  fallbackRoles: [ MothershipCore ] # Sunrise-Edit
   spawnerPrototype: SpawnPointGhostRoleXenoborg
   mindRoles:
   - MindRoleXenoborg

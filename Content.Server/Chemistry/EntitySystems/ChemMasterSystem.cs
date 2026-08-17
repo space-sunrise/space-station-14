@@ -21,7 +21,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared.Chemistry.Components.SolutionManager;
 
 namespace Content.Server.Chemistry.EntitySystems
 {
@@ -393,14 +392,11 @@ namespace Content.Server.Chemistry.EntitySystems
                 return null;
 
             var name = Name(container.Value);
-            // Sunrise-Edit start - Safely check SolutionContainerManagerComponent on output container to avoid ComponentNotFoundException
-            if (HasComp<SolutionContainerManagerComponent>(container.Value))
+            // Sunrise-Edit start - безопасно получаем раствор без привязки к конкретному компоненту контейнера
+            if (_solutionContainerSystem.TryGetSolution(
+                    container.Value, SharedChemMaster.BottleSolutionName, out _, out var solution))
             {
-                if (_solutionContainerSystem.TryGetSolution(
-                        container.Value, SharedChemMaster.BottleSolutionName, out _, out var solution))
-                {
-                    return BuildContainerInfo(name, solution);
-                }
+                return BuildContainerInfo(name, solution);
             }
             // Sunrise-Edit end
 
@@ -412,15 +408,13 @@ namespace Content.Server.Chemistry.EntitySystems
             // Sunrise-Edit end
             var pills = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>) (pill =>
             {
-                // Sunrise-Edit start - Safely check SolutionContainerManagerComponent on contained entities to avoid ComponentNotFoundException
-                if (HasComp<SolutionContainerManagerComponent>(pill) &&
-                    _solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PillSolutionName, out _, out var solution))
+                // Sunrise-Edit start - безопасно получаем растворы таблеток и пластырей без привязки к компоненту контейнера
+                if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PillSolutionName, out _, out var solution))
                 {
                     var quantity = solution?.Volume ?? FixedPoint2.Zero;
                     return (Name(pill), quantity);
                 }
-                else if (HasComp<SolutionContainerManagerComponent>(pill) &&
-                         _solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PatchSolutionName, out _, out var patchSolution))
+                else if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PatchSolutionName, out _, out var patchSolution))
                 {
                     var patchQuantity = patchSolution?.Volume ?? FixedPoint2.Zero;
                     return (Name(pill), patchQuantity);

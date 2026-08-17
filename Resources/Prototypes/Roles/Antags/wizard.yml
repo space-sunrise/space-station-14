@@ -34,6 +34,12 @@
     #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
   # TODO: WizardComp as needed
   components:
+  # Sunrise edit start - маркер мага для панели призраков
+  - type: GhostPanelAntagonistMarker
+    name: ghost-panel-antagonist-wizard-name
+    description: ghost-panel-antagonist-wizard-description
+    priority: 5
+  # Sunrise edit end
   - type: NpcFactionMember
     factions:
     - Wizard

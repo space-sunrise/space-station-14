@@ -73,11 +73,10 @@ public sealed partial class VoiceMaskSystem : EntitySystem
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskToggleMessage>(OnToggle);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskAccentToggleMessage>(OnAccentToggle);
         SubscribeLocalEvent<VoiceMaskComponent, ClothingGotEquippedEvent>(OnEquip);
-        SubscribeLocalEvent<VoiceMaskComponent, ClothingGotUnequippedEvent>(OnUnequip);
         SubscribeLocalEvent<VoiceMaskSetNameEvent>(OpenUI);
         SubscribeLocalEvent<VoiceMaskComponent, MapInitEvent>(OnMapInit);
 
-        InitializeTTS(); // Sunrise-TTS
+        InitializeSunriseVoiceMask(); // Sunrise-Edit: подключаем TTS-расширение маски голоса.
 
         Subs.CVar(_cfgManager, CCVars.MaxNameLength, value => _maxNameLength = value, true);
     }
@@ -256,14 +255,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
 
         component.Active = false;
         _actions.AddAction(args.Wearer, ref component.ActionEntity, component.Action, uid);
-        EnsureComp<VoiceMaskerComponent>(args.Wearer, out var maskerComponent);
-        maskerComponent.VoiceId = component.VoiceId;
-    }
-
-
-    private void OnUnequip(Entity<VoiceMaskComponent> ent, ref ClothingGotUnequippedEvent args)
-    {
-        RemCompDeferred<VoiceMaskerComponent>(args.Wearer);
+        OnSunriseVoiceMaskEquipped(args.Wearer, component); // Sunrise-Edit
     }
 
     private void OpenUI(VoiceMaskSetNameEvent ev)
@@ -283,7 +275,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     private void UpdateUI(Entity<VoiceMaskComponent> entity)
     {
         if (_uiSystem.HasUi(entity, VoiceMaskUIKey.Key))
-            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(GetCurrentVoiceName(entity), entity.Comp.VoiceId, entity.Comp.VoiceMaskSpeechVerb, entity.Comp.Active, entity.Comp.AccentHide, entity.Comp.TitleText));
+            _uiSystem.SetUiState(entity.Owner, VoiceMaskUIKey.Key, CreateSunriseVoiceMaskBuiState(entity)); // Sunrise-Edit
     }
     #endregion
 
@@ -303,4 +295,3 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     }
     #endregion
 }
-

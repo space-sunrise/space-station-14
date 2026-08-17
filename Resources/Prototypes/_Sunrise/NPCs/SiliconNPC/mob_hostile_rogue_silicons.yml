@@ -52,8 +52,9 @@
   suffix: AI, Rogue silicon
   components:
   - type: Damageable
-    damageContainer: Silicon
     damageModifierSet: MobRogueSilicon
+  - type: Injurable
+    damageContainer: Silicon
   - type: Insulated
   - type: NpcFactionMember
     factions:
@@ -836,8 +837,9 @@
   suffix: AI, Syndicate
   components:
   - type: Damageable
-    damageContainer: Silicon
     damageModifierSet: MobRogueSilicon
+  - type: Injurable
+    damageContainer: Silicon
   - type: Insulated
   - type: NpcFactionMember
     factions:
