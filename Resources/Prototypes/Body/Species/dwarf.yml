@@ -3,6 +3,7 @@
   - AppearanceHuman
   - SunriseHumanBodyTypeDisplacements # Sunrise-Edit
   id: AppearanceDwarf
+  categories: [ HideSpawnMenu ]
   name: dwarf appearance
   components:
   - type: Inventory

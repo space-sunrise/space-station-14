@@ -15,6 +15,7 @@ store-category-job = Job
 store-category-wearables = Wearables
 store-category-armor-protection = Armor protection
 store-category-pointless = Pointless
+store-category-objective = Objective
 store-discounted-items = Discounts
 
 # Revenant

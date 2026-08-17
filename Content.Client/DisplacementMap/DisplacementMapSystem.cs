@@ -2,14 +2,18 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.DisplacementMap;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 
 namespace Content.Client.DisplacementMap;
 
 public sealed class DisplacementMapSystem : EntitySystem
 {
-    [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly ISerializationManager _serialization = null!;
+    [Dependency] private readonly SpriteSystem _sprite = null!;
+
+    //needs to be replaced later: see comment on line 48
+    private static readonly ProtoId<ShaderPrototype> UnshadedID = "unshaded";
 
     private static string? BuildDisplacementLayerKey(object key)
     {
@@ -50,7 +54,12 @@ public sealed class DisplacementMapSystem : EntitySystem
                 sprite.Comp.LayerSetShader(index, shaderOverride);
             }
             else
-                sprite.Comp.LayerSetShader(index, data.ShaderOverride);
+            {
+                sprite.Comp.LayerSetShader(index,
+                    (sprite.Comp[index] is SpriteComponent.Layer layer && layer.ShaderPrototype == UnshadedID)
+                        ? data.ShaderOverrideUnshaded
+                        : data.ShaderOverride);
+            }
         }
         // Sunrise edit end
 

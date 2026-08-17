@@ -17,7 +17,7 @@
     - UplinkWearables
     - UplinkJob
     - UplinkPointless
-    - UplinkObjectives
+    - UplinkObjective
     - UplinkLootBoxes # Sunrise-Edit
     - UplinkMechs #Sunrise-added
     - UplinkShuttle #Sunrise-added
@@ -55,3 +55,10 @@
     - ChangelingAbilities
     currencyWhitelist:
     - ChangelingDNA
+
+- type: entity
+  parent: StorePresetUplink
+  id: StorePresetRemoteUplink
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RingerAccessUplink

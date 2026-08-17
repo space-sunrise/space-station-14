@@ -757,10 +757,15 @@
     - FloorSteelTilesStatic
     - FloorWhiteTilesStatic
     - FloorMaintsTilesStatic
+    - FloorIndustrialTilesStatic
     - FloorWoodTilesStatic
     - FloorConcreteTilesStatic
     - CircuitFloorsStatic
     - FloorMarbleTilesStatic
+    - FloorShuttleTilesStatic
+    - PlasticTilesStatic
+    - CarpetTilesStatic
+    - PreciousTilesStatic
     - SunriseFloorTilesStatic # Sunrise-Edit
     dynamicPacks:
     - FauxTiles

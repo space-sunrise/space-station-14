@@ -94,6 +94,11 @@
   name: store-category-objectives
   priority: 13 # Sunrise-Edit
 
+- type: storeCategory
+  id: UplinkObjective
+  name: store-category-objective
+  priority: 11
+
 #nukie delivery
 
 - type: storeCategory
