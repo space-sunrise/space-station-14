@@ -11,15 +11,15 @@
               doAfter: 1
         - to: double
           steps:
-            - tag: EnergySword
-              name: ent-EnergySword
-              doAfter: 2
             - tag: SunriseSyndicateRing # Sunrise-Edit - кольцо Синдиката требуется для сборки двойного энергетического меча
               name: ent-SunriseSyndicateRing
               icon:
                 sprite: _Sunrise/Clothing/Hands/Rings.rsi
                 state: ring
               doAfter: 1
+            - tag: EnergySword
+              name: ent-EnergySword
+              doAfter: 2
     - node: toy
       entity: ToySwordFake
       edges:
@@ -43,6 +43,8 @@
         - !type:GivePrototype
           prototype: EnergySwordBiocode
           amount: 2
+        - !type:GivePrototype
+          prototype: SunriseSyndicateRing
         - !type:DeleteEntity
     - node: doubletoy
       entity: ToySwordDoubledFake

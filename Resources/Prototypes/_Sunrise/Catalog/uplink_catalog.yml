@@ -56,10 +56,11 @@
   id: UplinkPouchExplosive
   icon: { sprite: _RMC14/Objects/Clothing/Pouches/large_explosive.rsi, state: icon }
   productEntity: PouchExplosive
-  cost:
-    Telecrystal: 1
   categories:
   - UplinkWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: UplinkClothingEyesHudSyndicateMech
@@ -825,9 +826,17 @@
   productEntity: SyndicateVisceratorClusterGrenade
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
+  categories:
+  - UplinkExplosives
+
+- type: listing
+  id: UplinkEnergyDomeGrenadeSyndie
+  productEntity: SunriseEnergyDomeGrenadeSyndie
+  cost:
+    Telecrystal: 6
   categories:
   - UplinkExplosives
 
@@ -1440,9 +1449,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 8
   cost:
-    Telecrystal: 10
+    Telecrystal: 12
   categories:
   - UplinkWearables
   conditions:
@@ -1461,9 +1470,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 8
   cost:
-    Telecrystal: 10
+    Telecrystal: 12
   categories:
   - UplinkWearables
   restockTime: 1800
@@ -2526,7 +2535,7 @@
   discountDownTo:
     Telecrystal: 12
   cost:
-    Telecrystal: 18
+    Telecrystal: 14
   categories:
   - UplinkExplosives
   conditions:
@@ -3493,6 +3502,7 @@
   name: uplink-SyndieBreachingHammer-name
   description: uplink-SyndieBreachingHammer-desc
   productEntity: SyndieBreachingHammer
+  icon: { sprite: _Sunrise/Objects/Weapons/Melee/syndie_breaching_hammer.rsi, state: icon }
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 5
@@ -3549,6 +3559,23 @@
     Telecrystal: 2
   categories:
   - UplinkWearables
+
+- type: listing
+  id: UplinkGrenadeBelt
+  name: uplink-grenade-belt-name
+  description: uplink-grenade-belt-desc
+  icon: { sprite: _Sunrise/Clothing/Belt/grenadebelt.rsi, state: icon }
+  productEntity: ClothingBeltMilitaryBeltGrenade
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
 
 - type: listing
   id: UplinkClothingOuterElegantArmorRaidNuke

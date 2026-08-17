@@ -962,6 +962,18 @@
     stock: 2
 
 - type: listing
+  id: ERTUplinkEnergyDomeGrenade
+  productEntity: SunriseEnergyDomeGrenadeERT
+  icon: { sprite: _Sunrise/Objects/Tools/EnergyDome/nanotrasen_back.rsi, state: icon }
+  cost:
+    Crystallite: 10
+  categories:
+  - NTexplosive
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+
+- type: listing
   id: ERTUplinkBoxFlashbang
   productEntity: BoxFlashbang
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_flashbangs }

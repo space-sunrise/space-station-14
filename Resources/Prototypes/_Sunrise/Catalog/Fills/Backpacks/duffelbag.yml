@@ -611,26 +611,22 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70
-  name: L70 grenade launcher bundle
-  description: "GL70 grenade launcher bundled with 11 rounds of various destruction capability."
+  name: GL-70 grenade launcher bundle
+  description: An automatic GL-70 grenade launcher bundled with 17 grenades, two grenade pouches, and a packaged grenade belt.
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
         - id: WeaponGrenadeLauncherGL70
+        - id: PouchExplosiveGrenadeFragTimerFilled
+        - id: PouchExplosiveGrenadeFragContactFilled
+        - id: ClothingBeltMilitaryBeltGrenadeBox
+        - id: SmokeGrenade
         - id: GrenadeBlast
-          amount: 1
-        - id: GrenadeFrag
-          amount: 1
-        - id: GrenadeEMP
-          amount: 1
         - id: GrenadeBlastTimer
-          amount: 2
-        - id: GrenadeFragTimer
-          amount: 2
         - id: GrenadeEMPTimer
-          amount: 2
+        - id: GrenadeEMP
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

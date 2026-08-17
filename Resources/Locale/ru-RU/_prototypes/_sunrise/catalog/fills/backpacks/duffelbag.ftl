@@ -68,3 +68,5 @@ ent-ClothingBackpackDuffelMilitaryBundlePirateEva = пиратский EVA на�
     .desc = Содержит старый пиратский EVA костюм.
 ent-ClothingBackpackDuffelMilitaryBundleScaf = набор Scaf
     .desc = Содержит старый боевой EVA костюм.
+ent-ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70 = набор «GL-70»
+    .desc = Автоматический гранатомёт GL-70 с 17 гранатами, двумя гранатными подсумками и упакованным гранатным поясом.

@@ -57,3 +57,5 @@ ent-ClothingBackpackDuffelMilitaryBundlePirateEva = Pirate EVA bundle
     .desc = Contains the old pirate EVA suit.
 ent-ClothingBackpackDuffelMilitaryBundleScaf = Scaf bundle
     .desc = Contains the old combat EVA suit.
+ent-ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70 = GL-70 grenade launcher bundle
+    .desc = An automatic GL-70 grenade launcher bundled with 17 grenades, two grenade pouches, and a packaged grenade belt.

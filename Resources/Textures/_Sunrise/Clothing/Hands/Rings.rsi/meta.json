@@ -9,9 +9,6 @@
     "states": [
       {
         "name": "ring"
-      },
-      {
-        "name": "gem"
       }
     ]
   }

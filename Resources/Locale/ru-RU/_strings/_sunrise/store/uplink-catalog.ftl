@@ -123,6 +123,8 @@ uplink-clothing-belt-syndicate-utility-name = Пояс для инструмен
 uplink-clothing-belt-syndicate-utility-desc = Пояс для инструментов, который проходит беглый взгляд, но в руке ощущается слишком продуманным.
 uplink-clothing-belt-syndicate-utility-chameleon-name = Хамелеонский пояс для инструментов Синдиката
 uplink-clothing-belt-syndicate-utility-chameleon-desc = Пояс для агентов, предпочитающих, чтобы снаряжение выглядело обычным ровно до нужного момента.
+uplink-grenade-belt-name = Гранатный пояс
+uplink-grenade-belt-desc = Пустой тактический пояс для ручных гранат и гранатных магазинов. Его можно носить на поясе или закрепить на скафандре.
 uplink-syndie-maid-raid-name = рейдерка горничной
 uplink-syndie-maid-raid-desc = синдикат разработал это специально для агентов женского пола, но носят это почему-то одни мужики
 ## Weapon
@@ -175,6 +177,8 @@ uplink-grenade-launcher-m79-name = М79
 uplink-grenade-launcher-m79-desc = Старый однозарядный гранатомёт с тремя таймер-гранатами против пехоты.
 uplink-grenade-launcher-m79-bundle-name = Набор M79
 uplink-grenade-launcher-m79-bundle-desc = Набор однозарядного гранатомёта вместе с сумкой запасных снарядов, чтобы начать гранатомётную вечеринку в джунглях.
+uplink-grenade-launcher-gl70-name = Набор «GL-70»
+uplink-grenade-launcher-gl70-desc = Автоматический гранатомёт GL-70, два подсумка с 12 осколочными гранатами, пять дополнительных гранат разных типов и упакованный гранатный пояс.
 uplink-l6-sawmax-bundle-name = Набор L6 MAX
 uplink-l6-sawmax-bundle-desc = Утяжелённый пулемёт L6 MAX с тремя коробами .308. Усиленный ствол превращает укрытия в щепки, но расплачиваться приходится громоздкостью и низкой мобильностью.
 uplink-pizza-bomb-name = самая бомбезная пицца
