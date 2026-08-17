@@ -42,7 +42,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
 
         SubscribeLocalEvent<AbsorbentComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<AbsorbentComponent, UserActivateInWorldEvent>(OnActivateInWorld);
-        SubscribeLocalEvent<AbsorbentComponent, SolutionContainerChangedEvent>(OnAbsorbentSolutionChange);
+        SubscribeLocalEvent<AbsorbentComponent, SolutionChangedEvent>(OnAbsorbentSolutionChange);
     }
 
     private void OnActivateInWorld(Entity<AbsorbentComponent> ent, ref UserActivateInWorldEvent args)
@@ -151,10 +151,6 @@ public abstract class SharedAbsorbentSystem : EntitySystem
                 _audio.PlayPvs(absorber.PickupSound, footstepUid);
             }
 
-            // Без этой хуйни некоторые лужи будут пустыми и не будут удаляться
-            var ev = new SolutionContainerChangedEvent(targetStepSolution, comp.ContainerName);
-            RaiseLocalEvent(footstepUid, ref ev);
-
             // Sunrise-Start
             var absorberEv = new AbsorberFootPrintEvent(user);
             RaiseLocalEvent(user, ref absorberEv);
@@ -185,7 +181,7 @@ public abstract class SharedAbsorbentSystem : EntitySystem
             _useDelay.TryResetDelay((used, useDelay));
     }
     // Sunrise-End
-    private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionContainerChangedEvent args)
+    private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionChangedEvent args)
     {
         // The changes are already networked as part of the same game state.
         if (_timing.ApplyingState)

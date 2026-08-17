@@ -60,7 +60,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
             return;
         }
 
-        _window.UpdateState(cast.Name, cast.Voice, cast.Verb, cast.Active, cast.AccentHide); // Sunrise-Edit
+        _window.UpdateState(cast.Name, cast.Voice, cast.Verb, cast.Active, cast.AccentHide, cast.TitleText); // Sunrise-Edit
     }
 
     protected override void Dispose(bool disposing)

@@ -222,7 +222,7 @@ public sealed partial class MarkingManager
                     continue;
                 }
 
-                counts[marking.BodyPart] = counts.GetValueOrDefault(marking.BodyPart) + 1;
+                counts[marking.BodyPart] = count + 1;
             }
         }
 
