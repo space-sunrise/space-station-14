@@ -30,7 +30,6 @@
         - id: MagazineBauer127HP # Sunrise-add
         - id: ClothingNeckTieRed
         - id: ClothingHandsGlovesLatex
-        - id: ClothingUniformJumpsuitArmouredBlack # Sunrise-edit
         - id: BarberScissors
 
 - type: entity

@@ -41,8 +41,8 @@
         variation: 0.125
     activatedDamage:
       types:
-        Slash: 15
-        Heat: 15
+        Slash: 20 # Sunrise-Edit
+        Heat: 20 # Sunrise-Edit
         Structural: 20
   - type: MeleeWeapon
     wideAnimationRotation: -135

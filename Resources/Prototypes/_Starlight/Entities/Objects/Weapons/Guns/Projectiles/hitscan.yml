@@ -41,13 +41,17 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
-    armorPenetration: 0.35
+    armorPenetration: 0.8
     damage:
       types:
         Piercing: 75
-        Structural: 113
+        Structural: 220
   - type: StaminaDamageOnCollide
     damage: 35
+  - type: StunOnCollide
+    knockdownAmount: 3.0
+    slowdownAmount: 3.0
+    drop: false
   - type: ProjectilePierce
     chance: 0.95
     pierceLevel: Rock
