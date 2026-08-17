@@ -123,7 +123,7 @@
 
 - type: entity
   name: BR-40c "Turtle"
-  description: A two-handed and heavy energy barrier with extremely low passive energy consumption. Can be tethered with a multitool.
+  description: A heavy, two-handed energy barrier with extremely low passive energy consumption. Can be tethered with a multitool.
   id: EnergyDomeDirectionalTurtle
   parent: BaseItem
   components:

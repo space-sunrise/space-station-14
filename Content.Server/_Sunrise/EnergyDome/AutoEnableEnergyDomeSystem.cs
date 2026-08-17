@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Server.EnergyDome;
 using Content.Shared.PowerCell;
 
@@ -27,14 +28,28 @@ public sealed class AutoEnableEnergyDomeSystem : EntitySystem
             TryEnable(ent);
     }
 
-    private void TryEnable(Entity<AutoEnableEnergyDomeComponent> ent)
+    public bool TryEnable(Entity<AutoEnableEnergyDomeComponent> ent)
     {
-        // Стартовая батарея может быть вставлена ItemSlots после MapInit этого компонента.
-        if (!_powerCell.TryGetBatteryFromSlot(ent.Owner, out _) ||
-            !TryComp<EnergyDomeGeneratorComponent>(ent, out var generator) ||
-            generator.Enabled)
-            return;
+        if (!CanEnable(ent, out var generator))
+            return false;
 
-        _energyDome.AttemptToggle((ent, generator), true);
+        return DoEnable((ent.Owner, generator));
+    }
+
+    public bool CanEnable(
+        Entity<AutoEnableEnergyDomeComponent> ent,
+        [NotNullWhen(true)] out EnergyDomeGeneratorComponent? generator)
+    {
+        generator = null;
+
+        // Стартовая батарея может быть вставлена ItemSlots после MapInit этого компонента.
+        return _powerCell.TryGetBatteryFromSlot(ent.Owner, out _) &&
+               TryComp(ent.Owner, out generator) &&
+               !generator.Enabled;
+    }
+
+    private bool DoEnable(Entity<EnergyDomeGeneratorComponent> ent)
+    {
+        return _energyDome.AttemptToggle(ent, true);
     }
 }

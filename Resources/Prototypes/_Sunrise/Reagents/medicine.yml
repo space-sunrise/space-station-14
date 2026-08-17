@@ -192,7 +192,7 @@
     probability: 0.025
 
 - type: entityEffect
-  id: SunriseDarkRedRumOverdoseLight
+  id: SunriseDarkRedRumSideEffect
   effects:
   - !type:HealthChange
     damage:
@@ -425,7 +425,7 @@
         reagent: DarkRedRum
         amount: -1
       - !type:NestedEffect
-        proto: SunriseDarkRedRumOverdoseLight
+        proto: SunriseDarkRedRumSideEffect
         conditions:
         - !type:ReagentCondition
           reagent: DarkRedRum
