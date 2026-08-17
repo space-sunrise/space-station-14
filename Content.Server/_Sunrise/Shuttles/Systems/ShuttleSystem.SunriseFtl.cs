@@ -23,12 +23,7 @@ public sealed partial class ShuttleSystem
     private const float SunriseFtlThrowForce = 20f;
     private const float SunriseArrivalsFtlOffset = 10000f;
 
-    private EntityQuery<MovedByPressureComponent> _movedByPressureQuery;
-
-    private void InitializeSunriseFtl()
-    {
-        _movedByPressureQuery = GetEntityQuery<MovedByPressureComponent>();
-    }
+    [Dependency] private readonly EntityQuery<MovedByPressureComponent> _movedByPressureQuery = default!;
 
     private void ClearSunriseFtlReservations(Entity<FTLComponent> ent)
     {
@@ -271,7 +266,6 @@ public sealed partial class ShuttleSystem
                     throwDirection * SunriseFtlThrowForce,
                     physics,
                     Transform(child),
-                    _projQuery,
                     SunriseFtlThrowForce,
                     playSound: false);
             }

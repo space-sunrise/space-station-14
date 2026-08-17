@@ -28,7 +28,6 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
     [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
 
     [Dependency] private readonly EntityQuery<SleepingComponent> _sleepingQuery = default!;
-    [Dependency] private readonly EntityQuery<BedHealModifierClothingComponent> _bedHealModifierClothingQuery = default!; // Sunrise-edit
 
     public override void Initialize()
     {

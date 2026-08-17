@@ -16,7 +16,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
 
     private const float MinimumMovementDistance = 0.005f;
 
-    private EntityQuery<EdgeConnectionComponent> _edgeQuery;
+    [Dependency] private readonly EntityQuery<EdgeConnectionComponent> _edgeQuery = default!;
 
     public override void Initialize()
     {
@@ -27,7 +27,6 @@ public sealed class EdgeConnectionSystem : EntitySystem
         SubscribeLocalEvent<EdgeConnectionComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<EdgeConnectionComponent, MoveEvent>(OnMove);
 
-        _edgeQuery = GetEntityQuery<EdgeConnectionComponent>();
     }
 
     private void OnInit(Entity<EdgeConnectionComponent> ent, ref ComponentInit args)

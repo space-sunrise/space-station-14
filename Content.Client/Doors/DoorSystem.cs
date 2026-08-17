@@ -200,6 +200,10 @@ public sealed class DoorSystem : SharedDoorSystem
         if (!target.TryGetComponent(out SpriteComponent? targetSprite, _componentFactory))
             return;
 
-        _sprite.SetBaseRsi(sprite.AsNullable(), targetSprite.BaseRSI);
+        // Sunrise-Edit: Не обнулять базовый RSI при покраске прототипом со спрайтами на слоях.
+        if (targetSprite.BaseRSI is not { } baseRsi)
+            return;
+
+        _sprite.SetBaseRsi(sprite.AsNullable(), baseRsi);
     }
 }

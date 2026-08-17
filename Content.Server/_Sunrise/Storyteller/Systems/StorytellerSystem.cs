@@ -116,6 +116,8 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
+    [Dependency] private readonly EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
     private readonly List<TimeSpan> _joinTimestamps = new();
     private readonly List<TimeSpan> _leaveTimestamps = new();
@@ -1435,17 +1437,14 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     private int CountCrewWeapons()
     {
         var armedMobs = new HashSet<EntityUid>();
-        var xformQuery = GetEntityQuery<TransformComponent>();
-        var mobQuery = GetEntityQuery<MobStateComponent>();
-
         var gunQuery = EntityQueryEnumerator<GunComponent>();
         while (gunQuery.MoveNext(out var uid, out _))
         {
             if (IsToyWeapon(uid))
                 continue;
 
-            var mob = FindCarryingMob(uid, xformQuery, mobQuery);
-            if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+            var mob = FindCarryingMob(uid);
+            if (mob != null && _mobStateQuery.TryGetComponent(mob.Value, out var mobState))
             {
                 if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
                 {
@@ -1462,8 +1461,8 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         {
             if (IsFirearm(uid))
             {
-                var mob = FindCarryingMob(uid, xformQuery, mobQuery);
-                if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+                var mob = FindCarryingMob(uid);
+                if (mob != null && _mobStateQuery.TryGetComponent(mob.Value, out var mobState))
                 {
                     if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
                     {
@@ -1479,8 +1478,8 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (melee.Damage.GetTotal().Float() <= 15) // TODO: Магическое число должно быть обьявлено переменной
                 continue;
 
-            var mob2 = FindCarryingMob(uid, xformQuery, mobQuery);
-            if (mob2 != null && mobQuery.TryGetComponent(mob2.Value, out var mobState2))
+            var mob2 = FindCarryingMob(uid);
+            if (mob2 != null && _mobStateQuery.TryGetComponent(mob2.Value, out var mobState2))
             {
                 if (mobState2.CurrentState == MobState.Alive || mobState2.CurrentState == MobState.Critical)
                 {
@@ -1497,17 +1496,14 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
     private float CountArmedCrewNotAntags()
     {
         var mobWeights = new Dictionary<EntityUid, float>();
-        var xformQuery = GetEntityQuery<TransformComponent>();
-        var mobQuery = GetEntityQuery<MobStateComponent>();
-
         var gunQuery = EntityQueryEnumerator<GunComponent>();
         while (gunQuery.MoveNext(out var uid, out _))
         {
             if (IsToyWeapon(uid))
                 continue;
 
-            var mob = FindCarryingMob(uid, xformQuery, mobQuery);
-            if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+            var mob = FindCarryingMob(uid);
+            if (mob != null && _mobStateQuery.TryGetComponent(mob.Value, out var mobState))
             {
                 if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
                 {
@@ -1526,8 +1522,8 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
             if (IsFirearm(uid))
                 continue;
 
-            var mob = FindCarryingMob(uid, xformQuery, mobQuery);
-            if (mob != null && mobQuery.TryGetComponent(mob.Value, out var mobState))
+            var mob = FindCarryingMob(uid);
+            if (mob != null && _mobStateQuery.TryGetComponent(mob.Value, out var mobState))
             {
                 if (mobState.CurrentState == MobState.Alive || mobState.CurrentState == MobState.Critical)
                 {
@@ -1582,18 +1578,18 @@ public sealed partial class StorytellerSystem : GameRuleSystem<StorytellerRuleCo
         return false;
     }
 
-    private EntityUid? FindCarryingMob(EntityUid uid, EntityQuery<TransformComponent> xformQuery, EntityQuery<MobStateComponent> mobQuery)
+    private EntityUid? FindCarryingMob(EntityUid uid)
     {
         var current = uid;
         while (true)
         {
-            if (!xformQuery.TryGetComponent(current, out var xform))
+            if (!_xformQuery.TryGetComponent(current, out var xform))
                 break;
 
             if (!xform.ParentUid.Valid)
                 break;
 
-            if (mobQuery.HasComponent(xform.ParentUid))
+            if (_mobStateQuery.HasComponent(xform.ParentUid))
                 return xform.ParentUid;
 
             current = xform.ParentUid;

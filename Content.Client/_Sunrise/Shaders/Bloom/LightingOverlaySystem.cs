@@ -19,7 +19,7 @@ public sealed class LightingOverlaySystem : EntitySystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    private EntityQuery<PointLightComponent> _pointLightQuery;
+    [Dependency] private readonly EntityQuery<PointLightComponent> _pointLightQuery = default!;
     private PointLightingOverlay? _bloomOverlay;
     private float _bloomStrength = 0.7f;
 
@@ -27,7 +27,6 @@ public sealed class LightingOverlaySystem : EntitySystem
     {
         base.Initialize();
 
-        _pointLightQuery = GetEntityQuery<PointLightComponent>();
         Subs.CVar(_configuration, SunriseCCVars.LightBloomEnabled, OnBloomEnabledChanged, true);
         Subs.CVar(_configuration, SunriseCCVars.LightBloomStrength, OnBloomStrengthChanged, true);
     }

@@ -49,8 +49,8 @@ public abstract partial class SharedJumpSystem : EntitySystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
 
 
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<FixturesComponent> _fixturesQuery;
+    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private readonly EntityQuery<FixturesComponent> _fixturesQuery = default!;
 
     private static readonly EntProtoId JumpStatusEffectKey = "StatusEffectJump";
     private static readonly ProtoId<EmotePrototype> EmoteJumpProto = "Jump";
@@ -69,9 +69,6 @@ public abstract partial class SharedJumpSystem : EntitySystem
         SubscribeLocalEvent<BunnyHopComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMoveSpeed);
         SubscribeLocalEvent<EmoteAnimationComponent, BeforeEmoteEvent>(CheckEmote);
         SubscribeLocalEvent<JumpStatusEffectComponent, StatusEffectRelayedEvent<TryStandDoAfterEvent>>(OnStandAttempt);
-
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _fixturesQuery = GetEntityQuery<FixturesComponent>();
 
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpEnable, OnJumpEnableChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopEnable, OnBunnyHopEnableChanged, true);

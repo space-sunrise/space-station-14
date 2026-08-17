@@ -85,7 +85,6 @@ public sealed partial class ShuttleSystem
         _immuneQuery = GetEntityQuery<FTLSmashImmuneComponent>();
         _statusQuery = GetEntityQuery<StatusEffectsComponent>();
 
-        InitializeSunriseFtl(); // Sunrise-Edit - инициализируем состояние расширения FTL из partial-класса.
 
         _cfg.OnValueChanged(CCVars.FTLStartupTime, time => DefaultStartupTime = time, true);
         _cfg.OnValueChanged(CCVars.FTLTravelTime, time => DefaultTravelTime = time, true);

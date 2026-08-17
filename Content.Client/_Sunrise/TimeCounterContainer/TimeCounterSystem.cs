@@ -13,7 +13,7 @@ public sealed class TimeCounterSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    private EntityQuery<TimeCounterUiComponent> _timeCounterUiQuery;
+    [Dependency] private readonly EntityQuery<TimeCounterUiComponent> _timeCounterUiQuery = default!;
     private LayoutContainer _timeCounterRoot = default!;
     /// <summary>
     /// Why? The in-game screen hierarchy is recreated after OnScreenChanged.
@@ -30,7 +30,6 @@ public sealed class TimeCounterSystem : EntitySystem
         SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
 
-        _timeCounterUiQuery = GetEntityQuery<TimeCounterUiComponent>();
         _timeCounterRoot = new LayoutContainer();
         _ui.OnScreenChanged += OnScreenChanged;
     }

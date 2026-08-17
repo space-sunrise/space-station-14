@@ -30,9 +30,9 @@ public sealed partial class NpcSleepSystem : EntitySystem
     private TimeSpan _nextCheckTime = TimeSpan.Zero;
     private static readonly TimeSpan CheckCooldown = TimeSpan.FromSeconds(5);
 
-    private EntityQuery<ActorComponent> _actorQuery;
-    private EntityQuery<ActiveNPCComponent> _activeQuery;
-    private EntityQuery<GhostComponent> _ghostQuery;
+    [Dependency] private readonly EntityQuery<ActorComponent> _actorQuery = default!;
+    [Dependency] private readonly EntityQuery<ActiveNPCComponent> _activeQuery = default!;
+    [Dependency] private readonly EntityQuery<GhostComponent> _ghostQuery = default!;
 
     private readonly HashSet<Entity<ActorComponent>> _players = [];
 
@@ -44,9 +44,6 @@ public sealed partial class NpcSleepSystem : EntitySystem
         Subs.CVar(_configuration, SunriseCCVars.NpcDisableWithoutPlayers, obj => DisableWithoutPlayers = obj, true);
         Subs.CVar(_configuration, SunriseCCVars.NpcDisableDistance, obj => DisableDistance = obj, true);
 
-        _actorQuery = GetEntityQuery<ActorComponent>();
-        _activeQuery = GetEntityQuery<ActiveNPCComponent>();
-        _ghostQuery = GetEntityQuery<GhostComponent>();
     }
 
     public override void Update(float frameTime)

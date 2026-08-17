@@ -157,14 +157,11 @@
 #          task: PickupAmmoCompound
 
     # Pickup gun with ammo if we have no ammo
-    -  preconditions:
-         - !type:ActiveHandComponentPrecondition
-           components:
-             - type: Gun
-           invert: true
-       tasks:
-         - !type:HTNCompoundTask
-           task: PickupGunCompound
+    - preconditions:
+        - !type:ActiveHandFreePrecondition
+      tasks:
+        - !type:HTNCompoundTask
+          task: PickupGunCompound
 
     # Discard gun if no ammo
     - preconditions:

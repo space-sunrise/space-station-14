@@ -24,7 +24,7 @@ public abstract class SharedFlipSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    private EntityQuery<FixturesComponent> _fixturesQuery;
+    [Dependency] private readonly EntityQuery<FixturesComponent> _fixturesQuery = default!;
 
     [ValidatePrototypeId<StatusEffectPrototype>]
     private const string FlipStatusEffectKey = "Flip";
@@ -42,7 +42,6 @@ public abstract class SharedFlipSystem : EntitySystem
 
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.FlipDeadChance, OnFlipDeadChanseChanged, true);
 
-        _fixturesQuery = GetEntityQuery<FixturesComponent>();
     }
 
     private void OnFlipDeadChanseChanged(float deadChanse)

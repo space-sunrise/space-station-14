@@ -1112,8 +1112,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
                 return false;
             }
 
-            var xformQuery = GetEntityQuery<TransformComponent>();
-            var xform = xformQuery.GetComponent(rune);
+            var xform = _xformQuery.GetComponent(rune);
 
             var projectileCount =
                 (int)MathF.Round(MathHelper.Lerp(component.MinProjectiles, component.MaxProjectiles, severity));
@@ -1148,10 +1147,9 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
             while (projectileCount > 0)
             {
                 var target = _random.Pick(list);
-                var targetCoords = xformQuery.GetComponent(target).Coordinates.Offset(_random.NextVector2(0.5f));
-                var flammable = GetEntityQuery<FlammableComponent>();
+                var targetCoords = _xformQuery.GetComponent(target).Coordinates.Offset(_random.NextVector2(0.5f));
 
-                if (!flammable.TryGetComponent(target, out var fl))
+                if (!_flammableQuery.TryGetComponent(target, out var fl))
                     continue;
 
                 fl.FireStacks += _random.Next(1, 3);

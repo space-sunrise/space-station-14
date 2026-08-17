@@ -90,8 +90,8 @@ public sealed partial class FleshCultSystem
     {
         if (args.Slot != "mask")
             return;
-        component.EquipedOn = args.Equipee;
-        EnsureComp<TemporaryBlindnessComponent>(args.Equipee);
+        component.EquipedOn = args.EquipTarget;
+        EnsureComp<TemporaryBlindnessComponent>(args.EquipTarget);
         EnsureComp<PacifiedComponent>(uid);
     }
 
@@ -113,7 +113,7 @@ public sealed partial class FleshCultSystem
         if (HasComp<PacifiedComponent>(uid))
             RemComp<PacifiedComponent>(uid);
         if (HasComp<TemporaryBlindnessComponent>(component.EquipedOn))
-            RemComp<TemporaryBlindnessComponent>(args.Equipee);
+            RemComp<TemporaryBlindnessComponent>(args.EquipTarget);
         _stunSystem.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(3));
         component.EquipedOn = new EntityUid();
     }

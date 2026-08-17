@@ -1,5 +1,5 @@
 ---
-name: SS14 ECS Systems
+name: ss14-ecs-systems
 description: Architecture guide for EntitySystem in Space Station 14 — lifecycle, events, queries, networking, prediction, and partial class decomposition patterns
 ---
 
@@ -23,7 +23,7 @@ public sealed class MySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        // Event Subscriptions, EntityQuery Caching
+        // Event subscriptions and EntityQuery dependencies
     }
 
     public override void Shutdown()
@@ -208,20 +208,45 @@ RaiseLocalEvent(ev);
 RaiseLocalEvent(uid, ref ev, broadcast: true);
 ```
 
-## EntityQuery - efficient access to components
+## EntityQuery — эффективный доступ к компонентам
 
-### Caching in Initialize
+### Dependency в EntitySystem
+
+`EntityQuery<T>` регистрируется лениво в `EntitySystemManager.SystemDependencyCollection`.
+Внутри `EntitySystem`, включая `GameRuleSystem` и partial-файлы системы, объявлять его как
+dependency и не инициализировать вручную в `Initialize()`:
 
 ```csharp
-private EntityQuery<TransformComponent> _xformQuery;
-private EntityQuery<PhysicsComponent> _physicsQuery;
+[Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
+[Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+```
 
-public override void Initialize()
+Перед добавлением query проверить другие partial-файлы: для одного типа компонента нужно
+переиспользовать одно поле системы.
+
+### Граница системной dependency-коллекции
+
+Не добавлять `[Dependency] EntityQuery<T>` в `IConsoleCommand`, HTN-операторы, UI-контролы,
+оверлеи и helper-классы. Глобальная IoC-коллекция не содержит эту регистрацию.
+
+Для единичных проверок использовать методы `IEntityManager`. Если вручную создаваемому объекту
+нужен часто используемый query, получить его через `IEntityManager.GetEntityQuery<T>()` в месте
+создания или передать готовый query из системы через конструктор.
+
+```csharp
+public sealed class MyCommand : IConsoleCommand
 {
-    _xformQuery = GetEntityQuery<TransformComponent>();
-    _physicsQuery = GetEntityQuery<PhysicsComponent>();
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+
+    private bool IsGrid(EntityUid uid)
+    {
+        return _entityManager.HasComponent<MapGridComponent>(uid);
+    }
 }
 ```
+
+Здесь `[Dependency] EntityQuery<MapGridComponent>` был бы ошибкой: команда инъектируется не из
+`SystemDependencyCollection`.
 
 ### Usage
 
@@ -384,11 +409,11 @@ public abstract partial class SharedMySystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    private EntityQuery<MyComponent> _query;
+    [Dependency] private readonly EntityQuery<MyComponent> _query = default!;
 
     public override void Initialize()
     {
-        _query = GetEntityQuery<MyComponent>();
+        base.Initialize();
         InitializeActions();     // from Actions.cs
         InitializeTargets();     // from Target.cs
     }

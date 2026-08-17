@@ -5,11 +5,13 @@ using Robust.Client.GameObjects;
 using Content.Client.UserInterface.Systems.Sandbox;
 using Content.Shared._Sunrise.Misc.Events;
 using Content.Shared.Access.Components;
+using Content.Shared.Containers;
 using Content.Shared.Administration;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Client._Sunrise.Sandbox.Access.Systems;
 /// <summary>
@@ -26,6 +28,8 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IResourceCache _resource = default!;
+    [Dependency] private readonly EntityQuery<ContainerFillComponent> _containerFillQuery = default!;
+    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     private MappingAccessOverlay? _overlay;
     private MappingAccessOutlineOverlay? _outlineOverlay;
@@ -182,11 +186,11 @@ public sealed class MappingAccessOverlaySystem : EntitySystem
 
         if (enabled)
         {
-            _readerResolver = new(EntityManager, _prototype);
+            _readerResolver = new(EntityManager, _prototype, _containerFillQuery);
             _readerResolver.MarkAccessReaderLookupDirty();
             _tightBounds = new(_clickMap);
-            _overlay = new(EntityManager, _lookup, _sprite, _prototype, Loc, _resource, _ui, _readerResolver, _tightBounds);
-            _outlineOverlay = new(EntityManager, _sprite, _prototype, _clyde, _readerResolver, _tightBounds);
+            _overlay = new(EntityManager, _lookup, _sprite, _prototype, Loc, _resource, _ui, _readerResolver, _tightBounds, _physicsQuery);
+            _outlineOverlay = new(EntityManager, _sprite, _prototype, _clyde, _readerResolver, _tightBounds, _physicsQuery);
             _overlay.BodyFilter = BodyFilter;
             _overlay.ElectronicsOnly = ElectronicsOnly;
             _outlineOverlay.BodyFilter = BodyFilter;

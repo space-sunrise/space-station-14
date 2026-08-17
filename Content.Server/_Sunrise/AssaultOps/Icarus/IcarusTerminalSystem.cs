@@ -38,6 +38,7 @@ public sealed class IcarusTerminalSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
+    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
 
     public override void Initialize()
     {
@@ -267,10 +268,9 @@ public sealed class IcarusTerminalSystem : EntitySystem
     /// <returns>Box of all station grids</returns>
     private Box2 GetStationArea()
     {
-        var xformQuery = GetEntityQuery<TransformComponent>();
         var areas = _stationSystem.GetStations().SelectMany(s =>
             Comp<StationDataComponent>(s).Grids.Select(g =>
-                xformQuery.GetComponent(g).WorldMatrix.TransformBox(Comp<MapGridComponent>(g).LocalAABB))).ToArray();
+                _xformQuery.GetComponent(g).WorldMatrix.TransformBox(Comp<MapGridComponent>(g).LocalAABB))).ToArray();
 
         var stationArea = areas[0];
         for (var i = 1; i < areas.Length; i++)

@@ -24,13 +24,11 @@ public abstract class SharedItemSwitchSystem : EntitySystem
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly ClothingSystem _clothing = default!;
 
-    private EntityQuery<ItemSwitchComponent> _query;
+    [Dependency] private readonly EntityQuery<ItemSwitchComponent> _itemSwitchQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _query = GetEntityQuery<ItemSwitchComponent>();
 
         SubscribeLocalEvent<ItemSwitchComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ItemSwitchComponent, UseInHandEvent>(OnUseInHand);
@@ -121,7 +119,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
     /// <returns>Same as <see cref="TrySetActive"/></returns>
     public bool Switch(Entity<ItemSwitchComponent?> ent, string key, EntityUid? user = null, bool predicted = true)
     {
-        if (!_query.Resolve(ent, ref ent.Comp, false) || !ent.Comp.States.TryGetValue(key, out var state))
+        if (!_itemSwitchQuery.Resolve(ent, ref ent.Comp, false) || !ent.Comp.States.TryGetValue(key, out var state))
             return false;
 
         var uid = ent.Owner;

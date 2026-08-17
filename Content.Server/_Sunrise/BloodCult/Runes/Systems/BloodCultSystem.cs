@@ -17,6 +17,7 @@ using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._Sunrise.BloodCult.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Alert;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
@@ -87,6 +88,8 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly NavMapSystem _navMap = default!;
         [Dependency] private readonly PullingSystem _pulling = default!;
         [Dependency] private readonly KillCultistTargetsConditionSystem _cultistTargetsConditionSystem = default!;
+        [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
+        [Dependency] private readonly EntityQuery<FlammableComponent> _flammableQuery = default!;
 
         [ValidatePrototypeId<StackPrototype>]
         private static string SteelStackPrototypeId = "Steel";

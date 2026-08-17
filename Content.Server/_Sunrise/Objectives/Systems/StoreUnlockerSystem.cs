@@ -8,11 +8,10 @@ namespace Content.Server.Objectives.Systems;
 /// </summary>
 public sealed class StoreUnlockerSystem : EntitySystem
 {
-    private EntityQuery<StoreUnlockerComponent> _query;
+    [Dependency] private readonly EntityQuery<StoreUnlockerComponent> _storeUnlockerQuery = default!;
 
     public override void Initialize()
     {
-        _query = GetEntityQuery<StoreUnlockerComponent>();
     }
 
     /// <summary>
@@ -22,7 +21,7 @@ public sealed class StoreUnlockerSystem : EntitySystem
     {
         foreach (var obj in mind.Objectives)
         {
-            if (!_query.TryComp(obj, out var comp))
+            if (!_storeUnlockerQuery.TryComp(obj, out var comp))
                 continue;
 
             if (comp.Listings.Contains(id))

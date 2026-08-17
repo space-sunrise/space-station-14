@@ -21,19 +21,14 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
     [Dependency] private readonly AirtightSystem _airtight = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    private EntityQuery<AirtightComponent> _airtightQuery;
-    private EntityQuery<DoorComponent> _doorQuery;
-    private EntityQuery<MapGridComponent> _gridQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
+    [Dependency] private readonly EntityQuery<AirtightComponent> _airtightQuery = default!;
+    [Dependency] private readonly EntityQuery<DoorComponent> _doorQuery = default!;
+    [Dependency] private readonly EntityQuery<MapGridComponent> _gridQuery = default!;
+    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _airtightQuery = GetEntityQuery<AirtightComponent>();
-        _doorQuery = GetEntityQuery<DoorComponent>();
-        _gridQuery = GetEntityQuery<MapGridComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SunriseMultiTileAirtightComponent, ComponentShutdown>(OnShutdown);

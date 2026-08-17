@@ -11,11 +11,9 @@ namespace Content.Shared._Sunrise.Clothing.EntitySystems;
 
 public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-
-    private EntityQuery<InputMoverComponent> _inputMover;
+    [Dependency] private readonly EntityQuery<InputMoverComponent> _inputMoverQuery = default!;
 
     public const float MinDistanceSprinting = 1.5f;
     public const float MinDistanceWaling = 2f;
@@ -23,8 +21,6 @@ public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        _inputMover = _entMan.GetEntityQuery<InputMoverComponent>();
-
         SubscribeLocalEvent<EmitSoundOnWearerMoveComponent, GotEquippedEvent>(OnEquipped);
     }
 
@@ -47,7 +43,7 @@ public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
                        emitSoundOnMoveComponent.IsValidSlot;
 
             var coords = Transform(wearer).Coordinates;
-            var dist = (worn && _inputMover.TryGetComponent(wearer, out var mover) && mover.Sprinting)
+            var dist = (worn && _inputMoverQuery.TryGetComponent(wearer, out var mover) && mover.Sprinting)
                 ? MinDistanceSprinting
                 : MinDistanceWaling;
             if (!coords.TryDistance(EntityManager, emitSoundOnMoveComponent.LastPosition, out var distance) ||

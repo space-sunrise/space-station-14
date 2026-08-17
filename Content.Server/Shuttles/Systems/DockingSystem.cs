@@ -428,7 +428,7 @@ namespace Content.Server.Shuttles.Systems
 
                 // Sunrise-Start
                 if (TryComp(dockUid, out AirlockComponent? airlockComp))
-                    _airlockSystem.UpdateAutoClose(dockUid, airlockComp, door);
+                    _airlockSystem.UpdateAutoClose((dockUid, airlockComp, door));
 
                 if (TryComp<AirtightComponent>(dockUid, out var airtight))
                 {

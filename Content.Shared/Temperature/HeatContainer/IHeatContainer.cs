@@ -32,4 +32,3 @@ public interface IHeatContainer
     /// </summary>
     float InternalEnergy => Temperature * HeatCapacity;
 }
-

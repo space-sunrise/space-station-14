@@ -19,6 +19,7 @@ namespace Content.Server._Sunrise.VentCraw
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly SharedMoverController _mover = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly EntityQuery<VentCrawHolderComponent> _holderQuery = default!;
 
         public override void Initialize()
         {
@@ -185,10 +186,9 @@ namespace Content.Server._Sunrise.VentCraw
 
             tube.Connected = false;
 
-            var query = GetEntityQuery<VentCrawHolderComponent>();
             foreach (var entity in tube.Contents.ContainedEntities.ToArray())
             {
-                if (query.TryGetComponent(entity, out var holder))
+                if (_holderQuery.TryGetComponent(entity, out var holder))
                 {
                     var Exitev = new VentCrawExitEvent();
                     RaiseLocalEvent(entity, ref Exitev);

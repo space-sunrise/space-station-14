@@ -38,7 +38,7 @@ public sealed partial class ResearchSystem
     private float? _roundPopulationModifier;
     private TimeSpan? _populationScalingRoundStartedAt;
     private TimeSpan? _populationModifierCalculateAt;
-    private EntityQuery<GhostComponent> _ghostQuery;
+    [Dependency] private readonly EntityQuery<GhostComponent> _ghostQuery = default!;
 
     private void InitializePopulationScaling()
     {
@@ -47,8 +47,6 @@ public sealed partial class ResearchSystem
         _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMinModifier, value => _minimumPopulationModifier = value, true);
         _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMaxModifier, value => _maximumPopulationModifier = value, true);
         _cfg.OnValueChanged(SunriseCCVars.ResearchPointScalingMultiplier, value => _populationScalingMultiplier = value, true);
-
-        _ghostQuery = GetEntityQuery<GhostComponent>();
 
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);

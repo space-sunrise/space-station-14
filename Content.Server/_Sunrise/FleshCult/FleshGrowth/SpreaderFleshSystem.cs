@@ -33,18 +33,15 @@ public sealed class SpreaderFleshSystem : EntitySystem
 
     private float _accumulatedFrameTime;
     private readonly HashSet<EntityUid> _edgeGrowths = new();
-    private EntityQuery<SpreaderFleshComponent> _spreaderQuery;
-    private EntityQuery<TransformComponent> _transformQuery;
-    private EntityQuery<MapGridComponent> _gridQuery;
+    [Dependency] private readonly EntityQuery<SpreaderFleshComponent> _spreaderQuery = default!;
+    [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
+    [Dependency] private readonly EntityQuery<MapGridComponent> _gridQuery = default!;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<SpreaderFleshComponent, ComponentAdd>(SpreaderAddHandler);
         SubscribeLocalEvent<AirtightChanged>(OnAirtightChanged);
 
-        _spreaderQuery = GetEntityQuery<SpreaderFleshComponent>();
-        _transformQuery = GetEntityQuery<TransformComponent>();
-        _gridQuery = GetEntityQuery<MapGridComponent>();
     }
 
     private void OnAirtightChanged(ref AirtightChanged ev)

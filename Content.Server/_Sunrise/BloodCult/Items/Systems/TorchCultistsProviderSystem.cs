@@ -34,6 +34,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     public override void Initialize()
     {
@@ -212,11 +213,10 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
             }
 
             // don't spawn inside of solid objects
-            var physQuery = GetEntityQuery<PhysicsComponent>();
             var valid = true;
             foreach (var ent in gridComp.GetAnchoredEntities(tile))
             {
-                if (!physQuery.TryGetComponent(ent, out var body))
+                if (!_physicsQuery.TryGetComponent(ent, out var body))
                     continue;
 
                 if (body.BodyType != BodyType.Static ||

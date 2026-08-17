@@ -51,7 +51,7 @@ public abstract class BiocodeDeactivationSystem : EntitySystem
             return;
 
         // Check if the picker is authorized
-        if (_biocodeSystem.CanUse(args.Equipee, biocodeComponent.Factions))
+        if (_biocodeSystem.CanUse(args.EquipTarget, biocodeComponent.Factions))
             return;
 
         // Picker is not authorized, deactivate the item

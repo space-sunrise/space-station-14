@@ -13,8 +13,8 @@ public sealed class StationDontSellingSystems : EntitySystem
 
     private readonly HashSet<Entity<StaticPriceComponent>> _entities = [];
 
-    private EntityQuery<ContainerManagerComponent> _containerQuery;
-    private EntityQuery<StationDontSellingGridComponent> _stationQuery;
+    [Dependency] private readonly EntityQuery<ContainerManagerComponent> _containerQuery = default!;
+    [Dependency] private readonly EntityQuery<StationDontSellingGridComponent> _stationQuery = default!;
 
     public override void Initialize()
     {
@@ -25,8 +25,6 @@ public sealed class StationDontSellingSystems : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<DontSellComponent, PriceCalculationEvent>(OnCalculatePrice);
 
-        _containerQuery = GetEntityQuery<ContainerManagerComponent>();
-        _stationQuery = GetEntityQuery<StationDontSellingGridComponent>();
     }
 
     #region Event handlers

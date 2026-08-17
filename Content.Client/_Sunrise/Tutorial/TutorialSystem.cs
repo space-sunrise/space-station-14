@@ -51,7 +51,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
     private ShaderInstance? _shaderInstance;
     private EntityUid? _highlightedTarget;
     private uint? _highlightedTargetRenderOrder;
-    private EntityQuery<SpriteComponent> _spriteQuery;
+    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
 
     /// <summary>
     /// Raised after the server sends the list of completed tutorial sequences.
@@ -68,7 +68,7 @@ public sealed class TutorialSystem : SharedTutorialSystem
     /// </summary>
     public readonly HashSet<string> CompletedTutorials = [];
 
-    private EntityQuery<TutorialBubbleUiComponent> _bubbleUiQuery;
+    [Dependency] private readonly EntityQuery<TutorialBubbleUiComponent> _bubbleUiQuery = default!;
     private LayoutContainer? _tutorialBubbleRoot;
     private TutorialUiHighlightOverlay? _uiHighlightOverlay;
 
@@ -91,8 +91,6 @@ public sealed class TutorialSystem : SharedTutorialSystem
         {
             MouseFilter = Control.MouseFilterMode.Ignore,
         };
-        _bubbleUiQuery = GetEntityQuery<TutorialBubbleUiComponent>();
-        _spriteQuery = GetEntityQuery<SpriteComponent>();
         _ui.OnScreenChanged += OnScreenChanged;
 
         _shaderInstance = _proto.Index(TutorialShader).InstanceUnique();

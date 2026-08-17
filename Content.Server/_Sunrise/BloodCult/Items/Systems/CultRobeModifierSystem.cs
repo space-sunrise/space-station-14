@@ -24,26 +24,26 @@ public sealed class CultRobeModifierSystem : EntitySystem
 
     private void OnEquip(EntityUid uid, CultRobeModifierComponent component, GotEquippedEvent args)
     {
-        if (!HasComp<BloodCultistComponent>(args.Equipee))
+        if (!HasComp<BloodCultistComponent>(args.EquipTarget))
             return;
 
         if (args.Slot != "outerClothing")
             return;
 
-        ModifySpeed(args.Equipee, component, true);
-        ModifyDamage(args.Equipee, component, true);
+        ModifySpeed(args.EquipTarget, component, true);
+        ModifyDamage(args.EquipTarget, component, true);
     }
 
     private void OnUnequip(EntityUid uid, CultRobeModifierComponent component, GotUnequippedEvent args)
     {
-        if (!HasComp<BloodCultistComponent>(args.Equipee))
+        if (!HasComp<BloodCultistComponent>(args.EquipTarget))
             return;
 
         if (args.Slot != "outerClothing")
             return;
 
-        ModifySpeed(args.Equipee, component, false);
-        ModifyDamage(args.Equipee, component, false);
+        ModifySpeed(args.EquipTarget, component, false);
+        ModifyDamage(args.EquipTarget, component, false);
     }
 
     private void ModifySpeed(EntityUid uid, CultRobeModifierComponent comp, bool increase)

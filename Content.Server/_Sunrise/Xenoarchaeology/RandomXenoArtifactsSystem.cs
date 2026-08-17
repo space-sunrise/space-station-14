@@ -34,13 +34,13 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
     private static readonly EntProtoId BaseParent = "BaseRandomItemXenoArtifactComponents";
     private static EntityPrototype? _baseParentPrototype;
 
-    private EntityQuery<TransformComponent> _xform;
+    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
 
-    private EntityQuery<DoorElectronicsComponent> _doorElectronics;
-    private EntityQuery<ApcElectronicsComponent> _apcElectronics;
-    private EntityQuery<OrganComponent> _organs;
+    [Dependency] private readonly EntityQuery<DoorElectronicsComponent> _doorElectronicsQuery = default!;
+    [Dependency] private readonly EntityQuery<ApcElectronicsComponent> _apcElectronicsQuery = default!;
+    [Dependency] private readonly EntityQuery<OrganComponent> _organQuery = default!;
 
-    private EntityQuery<StationRandomXenoArtifactComponent> _avaliableStations;
+    [Dependency] private readonly EntityQuery<StationRandomXenoArtifactComponent> _availableStationQuery = default!;
 
     public override void Initialize()
     {
@@ -51,13 +51,6 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
 
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
 
-        _xform = GetEntityQuery<TransformComponent>();
-
-        _doorElectronics = GetEntityQuery<DoorElectronicsComponent>();
-        _apcElectronics = GetEntityQuery<ApcElectronicsComponent>();
-        _organs = GetEntityQuery<OrganComponent>();
-
-        _avaliableStations = GetEntityQuery<StationRandomXenoArtifactComponent>();
     }
 
     private void OnRoundStarted(RoundStartedEvent ev)
@@ -105,25 +98,25 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
     /// </summary>
     private bool IsAppropriate(Entity<TransformComponent?> ent)
     {
-        if (!_xform.Resolve(ref ent))
+        if (!_xformQuery.Resolve(ref ent))
             return false;
 
         var station = _station.GetOwningStation(ent, ent.Comp);
 
-        if (!_avaliableStations.HasComp(station))
+        if (!_availableStationQuery.HasComp(station))
             return false;
 
         // Блеклист компонентов, которые не должны становиться артефактами.
         // Все это какие-то предметы, внутри других предметов, которые достаются через жопу.
         // Поэтому делать их артефактами ну такое себе
 
-        if (_doorElectronics.HasComp(ent))
+        if (_doorElectronicsQuery.HasComp(ent))
             return false;
 
-        if (_apcElectronics.HasComp(ent))
+        if (_apcElectronicsQuery.HasComp(ent))
             return false;
 
-        if (_organs.HasComp(ent))
+        if (_organQuery.HasComp(ent))
             return false;
 
         return true;

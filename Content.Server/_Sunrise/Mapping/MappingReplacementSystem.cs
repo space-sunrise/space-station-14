@@ -17,21 +17,10 @@ public sealed class MappingReplacementSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly EntityQuery<MapGridComponent> _mapGridQuery = default!;
+    [Dependency] private readonly EntityQuery<MappingReplacementComponent> _replacementQuery = default!;
 
     private readonly List<EntityUid> _anchoredEntities = [];
-    private EntityQuery<MapGridComponent> _mapGridQuery;
-    private EntityQuery<MappingReplacementComponent> _replacementQuery;
-
-    /// <summary>
-    /// Caches the component queries used by mapping replacement handling.
-    /// </summary>
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _mapGridQuery = GetEntityQuery<MapGridComponent>();
-        _replacementQuery = GetEntityQuery<MappingReplacementComponent>();
-    }
 
     /// <summary>
     /// Removes entities approved by content replacement rules and then allows placement to continue.

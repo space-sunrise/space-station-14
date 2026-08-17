@@ -14,7 +14,7 @@ public sealed class ContainerInteractionAnimationVisualsSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    private EntityQuery<SpriteComponent> _spriteQuery;
+    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
 
     /// <summary>
     /// Минимальный скейл, который будет у спрайта при анимации.
@@ -31,7 +31,6 @@ public sealed class ContainerInteractionAnimationVisualsSystem : EntitySystem
         SubscribeLocalEvent<ContainerInteractionAnimationVisualsComponent, EntInsertedIntoContainerMessage>(HandleEvent);
         SubscribeLocalEvent<ContainerInteractionAnimationVisualsComponent, EntRemovedFromContainerMessage>(HandleEvent);
 
-        _spriteQuery = GetEntityQuery<SpriteComponent>();
     }
 
     private void HandleEvent<T>(Entity<ContainerInteractionAnimationVisualsComponent> ent, ref T args)

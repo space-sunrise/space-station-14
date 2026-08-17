@@ -12,16 +12,13 @@ public sealed class EnsureLawBoundEntitiesHaveNoLawsConditionSystem : EntitySyst
 {
     [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    private EntityQuery<ActorComponent> _actorQuery;
-    private EntityQuery<SiliconLawBoundComponent> _lawBoundQuery;
-    private EntityQuery<SiliconLawProviderComponent> _lawProviderQuery;
+    [Dependency] private readonly EntityQuery<ActorComponent> _actorQuery = default!;
+    [Dependency] private readonly EntityQuery<SiliconLawBoundComponent> _lawBoundQuery = default!;
+    [Dependency] private readonly EntityQuery<SiliconLawProviderComponent> _lawProviderQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        _actorQuery = GetEntityQuery<ActorComponent>();
-        _lawBoundQuery = GetEntityQuery<SiliconLawBoundComponent>();
-        _lawProviderQuery = GetEntityQuery<SiliconLawProviderComponent>();
         SubscribeLocalEvent<EnsureLawBoundEntitiesHaveNoLawsConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
     }
 

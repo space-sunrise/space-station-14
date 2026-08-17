@@ -13,18 +13,14 @@ public sealed partial class AtmosphereSystem
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!;
 
-    private EntityQuery<ApcPowerReceiverComponent> _powerReceiverQuery;
-    private EntityQuery<MobStateComponent> _mobQuery;
-    private EntityQuery<BatteryComponent> _batteryQuery;
-    private EntityQuery<ChargedElectrovaeAffectedComponent> _chargedElectrovaeQuery;
+    [Dependency] private readonly EntityQuery<ApcPowerReceiverComponent> _powerReceiverQuery = default!;
+    [Dependency] private readonly EntityQuery<MobStateComponent> _mobQuery = default!;
+    [Dependency] private readonly EntityQuery<BatteryComponent> _batteryQuery = default!;
+    [Dependency] private readonly EntityQuery<ChargedElectrovaeAffectedComponent> _chargedElectrovaeQuery = default!;
 
     private void InitializeChargedElectrovaeSunrise()
     {
         InitializeChargedElectrovae();
 
-        _powerReceiverQuery = GetEntityQuery<ApcPowerReceiverComponent>();
-        _mobQuery = GetEntityQuery<MobStateComponent>();
-        _batteryQuery = GetEntityQuery<BatteryComponent>();
-        _chargedElectrovaeQuery = GetEntityQuery<ChargedElectrovaeAffectedComponent>();
     }
 }

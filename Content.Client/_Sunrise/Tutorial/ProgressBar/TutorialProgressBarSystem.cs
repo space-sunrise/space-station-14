@@ -20,7 +20,7 @@ public sealed class TutorialProgressBarSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    private EntityQuery<ProgressBarUiComponent> _progressUiQuery;
+    [Dependency] private readonly EntityQuery<ProgressBarUiComponent> _progressUiQuery = default!;
     private LayoutContainer? _progressBarRoot;
     private bool _pendingRefresh;
 
@@ -34,7 +34,6 @@ public sealed class TutorialProgressBarSystem : EntitySystem
         SubscribeLocalEvent<TutorialProgressBarComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<TutorialProgressBarComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
 
-        _progressUiQuery = GetEntityQuery<ProgressBarUiComponent>();
         _progressBarRoot = new LayoutContainer();
         _ui.OnScreenChanged += OnScreenChanged;
     }

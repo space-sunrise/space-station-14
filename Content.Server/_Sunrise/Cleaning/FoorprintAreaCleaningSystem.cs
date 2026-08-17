@@ -13,8 +13,8 @@ namespace Content.Server._Sunrise.Cleaning;
 public sealed class FoorprintAreaCleaningSystem : EntitySystem
 {
     #region Entity Queries
-    private EntityQuery<TransformComponent> _transformQuery;
-    private EntityQuery<PhysicsComponent> _physicsQuery;
+    [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
+    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
     #endregion
 
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
@@ -28,9 +28,6 @@ public sealed class FoorprintAreaCleaningSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _transformQuery = GetEntityQuery<TransformComponent>();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-
         SubscribeLocalEvent<FootprintAreaCleanerComponent, MoveEvent>(OnEntityMove);
     }
 

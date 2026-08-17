@@ -25,8 +25,13 @@ public abstract partial class SharedStoreSystem
         if (!Resolve(storeEnt, ref component))
             return;
 
-        if (remoteAccess != null && !Resolve(remoteAccess.Value, ref remoteComponent) && remoteComponent!.Store != storeEnt)
+        // Sunrise-Edit start - проверяем и наличие RemoteStore, и соответствие привязанного магазина.
+        if (remoteAccess != null &&
+            (!Resolve(remoteAccess.Value, ref remoteComponent) || remoteComponent.Store != storeEnt))
+        {
             return;
+        }
+        // Sunrise-Edit end
 
         if (!TryComp<ActorComponent>(user, out var actor))
             return;

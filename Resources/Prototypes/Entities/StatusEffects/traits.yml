@@ -15,4 +15,3 @@
   parent: [ PainNumbnessStatusEffectBase, TraitStatusEffectBase ]
   id: TraitStatusEffectPainNumbness
   name: pain numbness
-

@@ -27,6 +27,7 @@ public sealed class CultBloodSpearSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
 
 
     public override void Initialize()
@@ -74,12 +75,10 @@ public sealed class CultBloodSpearSystem : EntitySystem
 
     private Vector2? CalculateDirection(EntityUid pinUid, EntityUid trgUid)
     {
-        var xformQuery = GetEntityQuery<TransformComponent>();
-
         // check if entities have transform component
-        if (!xformQuery.TryGetComponent(pinUid, out var pin))
+        if (!_xformQuery.TryGetComponent(pinUid, out var pin))
             return null;
-        if (!xformQuery.TryGetComponent(trgUid, out var trg))
+        if (!_xformQuery.TryGetComponent(trgUid, out var trg))
             return null;
 
         // check if they are on same map
@@ -87,7 +86,7 @@ public sealed class CultBloodSpearSystem : EntitySystem
             return null;
 
         // get world direction vector
-        var dir = _transform.GetWorldPosition(trg, xformQuery) - _transform.GetWorldPosition(pin, xformQuery);
+        var dir = _transform.GetWorldPosition(trg, _xformQuery) - _transform.GetWorldPosition(pin, _xformQuery);
         return dir;
     }
 

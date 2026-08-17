@@ -386,14 +386,13 @@ public sealed partial class FleshCultSystem
         var tilerefs = grid.GetLocalTilesIntersecting(
             new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
         _random.Shuffle(tilerefs);
-        var physQuery = GetEntityQuery<PhysicsComponent>();
         var amountCounter = 0;
         foreach (var tileref in tilerefs)
         {
             var valid = true;
             foreach (var ent in grid.GetAnchoredEntities(tileref.GridIndices))
             {
-                if (!physQuery.TryGetComponent(ent, out var body))
+                if (!_physicsQuery.TryGetComponent(ent, out var body))
                     continue;
                 if (body.BodyType != BodyType.Static ||
                     !body.Hard ||

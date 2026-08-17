@@ -43,13 +43,13 @@ public sealed class FootprintSystem : EntitySystem
 
     #region Entity Queries
 
-    private EntityQuery<TransformComponent> _transformQuery;
-    private EntityQuery<AppearanceComponent> _appearanceQuery;
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
-    private EntityQuery<StandingStateComponent> _standingQuery;
-    private EntityQuery<FootprintComponent> _footprintQuery;
-    private EntityQuery<PressureProtectionComponent> _pressureQuery;
+    [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
+    [Dependency] private readonly EntityQuery<AppearanceComponent> _appearanceQuery = default!;
+    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private readonly EntityQuery<SolutionContainerManagerComponent> _solutionQuery = default!;
+    [Dependency] private readonly EntityQuery<StandingStateComponent> _standingQuery = default!;
+    [Dependency] private readonly EntityQuery<FootprintComponent> _footprintQuery = default!;
+    [Dependency] private readonly EntityQuery<PressureProtectionComponent> _pressureQuery = default!;
 
     #endregion
 
@@ -64,14 +64,6 @@ public sealed class FootprintSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        _transformQuery = GetEntityQuery<TransformComponent>();
-        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _solutionQuery = GetEntityQuery<SolutionContainerManagerComponent>();
-        _standingQuery = GetEntityQuery<StandingStateComponent>();
-        _footprintQuery = GetEntityQuery<FootprintComponent>();
-        _pressureQuery = GetEntityQuery<PressureProtectionComponent>();
 
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);

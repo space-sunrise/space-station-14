@@ -18,13 +18,13 @@ public sealed class SharedFleshHuggerSystem : EntitySystem
     {
         if (args.Slot != "mask")
             return;
-        if (component.EquipedOn != args.Unequipee)
+        if (component.EquipedOn != args.UnEquipTarget)
             return;
-        if (HasComp<FleshCultistComponent>(args.Unequipee))
+        if (HasComp<FleshCultistComponent>(args.UnEquipTarget))
             return;
         _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-hugger-try-unequip"),
-            args.Unequipee,
-            args.Unequipee,
+            args.UnEquipTarget,
+            args.UnEquipTarget,
             PopupType.Large);
         args.Cancel();
     }

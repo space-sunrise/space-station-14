@@ -66,13 +66,13 @@ public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // По�
     {
         if (comp.IsAuthorized == true)
         {
-            if (TryComp(args.Equipee, out DnaComponent? PersonNDA) && comp.DNA == PersonNDA.DNA)
+            if (TryComp(args.EquipTarget, out DnaComponent? PersonNDA) && comp.DNA == PersonNDA.DNA)
             {
-                _popupSystem.PopupClient("biocode-equip-failure", args.Equipee, args.Equipee, PopupType.MediumCaution);     
-                return;    
+                _popupSystem.PopupClient("biocode-equip-failure", args.EquipTarget, args.EquipTarget, PopupType.MediumCaution);
+                return;
             }
 
-            _inventory.TryUnequip(args.Equipee, "outerClothing", true, true);
+            _inventory.TryUnequip(args.EquipTarget, "outerClothing", true, true);
         }
 
     }
@@ -81,7 +81,7 @@ public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // По�
     {
         if (args.Handled)
             return;
-        
+
         if (!comp.BreakAble)
             return;
 

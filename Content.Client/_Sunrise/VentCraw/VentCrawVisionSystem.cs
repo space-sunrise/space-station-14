@@ -10,6 +10,7 @@ public sealed class VentCrawSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SubFloorHideSystem _subFloorHideSystem = default!;
+    [Dependency] private readonly EntityQuery<VentCrawlerComponent> _ventCrawlerQuery = default!;
 
     public override void Update(float frameTime)
     {
@@ -20,9 +21,7 @@ public sealed class VentCrawSystem : EntitySystem
 
         var player = _player.LocalPlayer?.ControlledEntity;
 
-        var ventCraslerQuery = GetEntityQuery<VentCrawlerComponent>();
-
-        if (!ventCraslerQuery.TryGetComponent(player, out var playerVentCrawlerComponent))
+        if (!_ventCrawlerQuery.TryGetComponent(player, out var playerVentCrawlerComponent))
             return;
 
         _subFloorHideSystem.ShowVentPipe = playerVentCrawlerComponent.InTube;

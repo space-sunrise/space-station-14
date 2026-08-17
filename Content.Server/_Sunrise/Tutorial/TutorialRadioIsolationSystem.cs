@@ -5,8 +5,8 @@ namespace Content.Server._Sunrise.Tutorial;
 
 public sealed class TutorialRadioIsolationSystem : EntitySystem
 {
-    private EntityQuery<TutorialPlayerComponent> _tutorialPlayerQuery;
-    private EntityQuery<TransformComponent> _transformQuery;
+    [Dependency] private readonly EntityQuery<TutorialPlayerComponent> _tutorialPlayerQuery = default!;
+    [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
 
     public override void Initialize()
     {
@@ -14,8 +14,6 @@ public sealed class TutorialRadioIsolationSystem : EntitySystem
 
         SubscribeLocalEvent<RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
 
-        _tutorialPlayerQuery = GetEntityQuery<TutorialPlayerComponent>();
-        _transformQuery = GetEntityQuery<TransformComponent>();
     }
 
     private void OnRadioReceiveAttempt(ref RadioReceiveAttemptEvent args)

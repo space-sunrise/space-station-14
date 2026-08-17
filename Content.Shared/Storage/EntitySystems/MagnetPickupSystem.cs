@@ -20,7 +20,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
-    [Dependency] private readonly EntityQuery<BorgChassisComponent> _borgQuery; // Sunrise Edit
+    [Dependency] private readonly EntityQuery<BorgChassisComponent> _borgQuery = default!; // Sunrise Edit
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 

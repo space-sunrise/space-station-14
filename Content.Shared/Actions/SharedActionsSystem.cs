@@ -1,11 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._Sunrise.Antags.Abductor;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Charges.Components;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
@@ -38,7 +36,6 @@ public abstract partial class SharedActionsSystem : EntitySystem
     [Dependency] private readonly EntityQuery<ActionComponent> _actionQuery = default!;
     [Dependency] private readonly EntityQuery<ActionsComponent> _actionsQuery = default!;
     [Dependency] private readonly EntityQuery<MindComponent> _mindQuery = default!;
-    [Dependency] private readonly EntityQuery<TargetActionComponent> _targetQuery = default!; // Sunrise
 
     public override void Initialize()
     {
@@ -433,10 +430,11 @@ public abstract partial class SharedActionsSystem : EntitySystem
 
         if (user == target)
             return comp.CanTargetSelf;
-        // Sunrise-start
-        if (HasComp<AbductorComponent>(target))
+
+        // Sunrise-Edit: Абдукторов можно выбирать целью без дополнительных проверок доступности.
+        if (CanSunriseBypassEntityTargetValidation(target))
             return true;
-        // Sunrise-end
+
         var targetAction = Comp<TargetActionComponent>(uid);
 
         // not using the ValidateBaseTarget logic since its raycast fails if the target is e.g. a wall
@@ -448,10 +446,9 @@ public abstract partial class SharedActionsSystem : EntitySystem
             && !_transform.InRange(user, target, targetAction.Range))
             return false;
 
-        // Sunrise-Start
-        if (targetAction.IgnoreContainer)
+        // Sunrise-Edit: Некоторые действия Sunrise разрешают цели внутри контейнеров.
+        if (CanSunriseIgnoreContainer(targetAction))
             return true;
-        // Sunrise-End
 
         // If checkCanAccess isn't set, we allow targeting things in containers
         return _interaction.IsAccessible(user, target);
@@ -469,10 +466,10 @@ public abstract partial class SharedActionsSystem : EntitySystem
         if (comp.CheckCanAccess)
             return _interaction.InRangeUnobstructed(user, coords, range: comp.Range);
 
-        // Sunrise-start
-        if (HasComp<AbductorAgentComponent>(user) || HasComp<AbductorScientistComponent>(user))
+        // Sunrise-Edit: Целевые действия абдукторов не ограничиваются обычной дальностью.
+        if (CanSunriseBypassWorldTargetValidation(user))
             return true;
-        // Sunrise-end
+
         // even if we don't check for obstructions, we may still need to check the range.
         var xform = Transform(user);
         if (xform.MapID != _transform.GetMapId(coords))
@@ -867,28 +864,6 @@ public abstract partial class SharedActionsSystem : EntitySystem
             QueueDel(ent);
     }
 
-    // Starlight-Abductor-start
-    public EntityUid[] HideActions(EntityUid performer, ActionsComponent? comp = null)
-    {
-        if (!Resolve(performer, ref comp, false))
-            return [];
-
-        var actions = comp.Actions.ToArray();
-        comp.Actions.Clear();
-        Dirty(performer, comp);
-        return actions;
-    }
-    public void UnHideActions(EntityUid performer, EntityUid[] actions, ActionsComponent? comp = null)
-    {
-        if (!Resolve(performer, ref comp, false))
-            return;
-
-        foreach (var action in actions)
-            comp.Actions.Add(action);
-        Dirty(performer, comp);
-    }
-    // Starlight-Abductor-end
-
     /// <summary>
     /// This method gets called after an action got removed.
     /// </summary>
@@ -1027,24 +1002,6 @@ public abstract partial class SharedActionsSystem : EntitySystem
         DirtyField(ent, ent.Comp, nameof(ActionComponent.IconOn));
     }
 
-    public void SetItemIconStyle(Entity<ActionComponent?> ent, ItemActionIconStyle itemIconStyle)
-    {
-        if (!_actionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.ItemIconStyle == itemIconStyle)
-            return;
-
-        ent.Comp.ItemIconStyle = itemIconStyle;
-        DirtyField(ent, ent.Comp, nameof(ActionComponent.ItemIconStyle));
-    }
-
-    public void SetPriority(Entity<ActionComponent?> ent, int priority)
-    {
-        if (!_actionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.Priority == priority)
-            return;
-
-        ent.Comp.Priority = priority;
-        DirtyField(ent, ent.Comp, nameof(ActionComponent.Priority));
-    }
-
     public void SetIconColor(Entity<ActionComponent?> ent, Color color)
     {
         if (!_actionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.IconColor == color)
@@ -1052,33 +1009,6 @@ public abstract partial class SharedActionsSystem : EntitySystem
 
         ent.Comp.IconColor = color;
         DirtyField(ent, ent.Comp, nameof(ActionComponent.IconColor));
-    }
-
-    public void SetCheckCanInteract(Entity<ActionComponent?> ent, bool value)
-    {
-        if (!_actionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.CheckCanInteract == value)
-            return;
-
-        ent.Comp.CheckCanInteract = value;
-        DirtyField(ent, ent.Comp, nameof(ActionComponent.CheckCanInteract));
-    }
-
-    public void SetCheckCanAccess(Entity<TargetActionComponent?> ent, bool value)
-    {
-        if (!_targetActionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.CheckCanAccess == value)
-            return;
-
-        ent.Comp.CheckCanAccess = value;
-        DirtyField(ent, ent.Comp, nameof(TargetActionComponent.CheckCanAccess));
-    }
-
-    public void SetIgnoreContainer(Entity<TargetActionComponent?> ent, bool value)
-    {
-        if (!_targetActionQuery.Resolve(ent, ref ent.Comp) || ent.Comp.IgnoreContainer == value)
-            return;
-
-        ent.Comp.IgnoreContainer = value;
-        DirtyField(ent, ent.Comp, nameof(TargetActionComponent.IgnoreContainer));
     }
 
     /// <summary>

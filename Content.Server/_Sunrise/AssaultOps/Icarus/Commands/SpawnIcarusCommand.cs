@@ -10,6 +10,8 @@ namespace Content.Server._Sunrise.AssaultOps.Icarus.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class SpawnIcarusCommand : IConsoleCommand
 {
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+
     public string Command => "spawnicarus";
     public string Description => "Spawn Icarus beam and direct to specified grid center.";
     public string Help => "spawnicarus <gridId>";
@@ -28,19 +30,17 @@ public sealed class SpawnIcarusCommand : IConsoleCommand
             return;
         }
 
-        var entityManager = IoCManager.Resolve<IEntityManager>();
-        if (!entityManager.EntityExists(uid))
+        if (!_entityManager.EntityExists(uid))
         {
             shell.WriteError("That grid does not exist.");
             return;
         }
 
-        var xformQuery = entityManager.GetEntityQuery<TransformComponent>();
-
-        if (entityManager.TryGetComponent<MapGridComponent>(uid, out var grid))
+        if (_entityManager.TryGetComponent<MapGridComponent>(uid, out var grid) &&
+            _entityManager.TryGetComponent<TransformComponent>(uid, out var xform))
         {
-            var icarusSystem = IoCManager.Resolve<IEntityManager>().System<IcarusTerminalSystem>();
-            var coords = icarusSystem.FireBeam(xformQuery.GetComponent(uid).WorldMatrix.TransformBox(grid.LocalAABB));
+            var icarusSystem = _entityManager.System<IcarusTerminalSystem>();
+            var coords = icarusSystem.FireBeam(xform.WorldMatrix.TransformBox(grid.LocalAABB));
             shell.WriteLine($"Icarus was spawned: {coords.ToString()}");
         }
         else

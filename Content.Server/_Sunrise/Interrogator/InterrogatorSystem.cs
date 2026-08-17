@@ -33,6 +33,7 @@ namespace Content.Server._Sunrise.Interrogator
         [Dependency] private readonly SharedPointLightSystem _light = default!;
         [Dependency] private readonly SharedXenoArtifactSystem _xenoArtifactSystem = default!;
         [Dependency] private readonly SharedActionsSystem _actions = default!;
+        [Dependency] private readonly EntityQuery<SubdermalImplantComponent> _implantQuery = default!;
 
         public override void Initialize()
         {
@@ -169,14 +170,12 @@ namespace Content.Server._Sunrise.Interrogator
             }
             if (_container.TryGetContainer(target, ImplanterComponent.ImplantSlotId, out var implantContainer))
             {
-                var implantCompQuery = GetEntityQuery<SubdermalImplantComponent>();
-
                 // Create a copy of the ContainedEntities list
                 var implants = implantContainer.ContainedEntities.ToList();
 
                 foreach (var implant in implants)
                 {
-                    if (!implantCompQuery.TryGetComponent(implant, out var implantComp))
+                    if (!_implantQuery.TryGetComponent(implant, out var implantComp))
                         continue;
 
                     // Don't remove a permanent implant and look for the next that can be drawn
