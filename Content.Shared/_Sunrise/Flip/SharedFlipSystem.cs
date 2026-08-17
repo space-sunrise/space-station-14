@@ -5,7 +5,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -20,7 +19,6 @@ public abstract class SharedFlipSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly INetManager _net = default!;

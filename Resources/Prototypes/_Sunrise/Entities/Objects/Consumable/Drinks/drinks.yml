@@ -64,7 +64,7 @@
 
 - type: entity
   parent: DrinkGlass
-  id: DrinkDarkAndStormyGlass
+  id: DrinkDarkAndStormySunriseGlass
   suffix: dark and stormy
   components:
   - type: SolutionContainerManager
@@ -72,7 +72,7 @@
       drink:
         maxVol: 30
         reagents:
-        - ReagentId: DarkAndStormy
+        - ReagentId: DarkandStormy
           Quantity: 30
   - type: Icon
     sprite: _Sunrise/Objects/Consumable/Drinks/dark_and_stormy.rsi

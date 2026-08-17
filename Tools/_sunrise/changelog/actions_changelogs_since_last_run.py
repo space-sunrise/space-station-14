@@ -25,6 +25,7 @@ import yaml
 from typing import Any, Iterable
 
 from changelog_path import validate_changelog_path
+from changelog_targets import validate_target_id
 
 DEBUG = False
 DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
@@ -41,7 +42,10 @@ MEDIA_MAX_REQUEST_SIZE = 24 * 1024 * 1024
 MEDIA_MAX_REDIRECTS = 3
 MEDIA_READ_CHUNK_SIZE = 64 * 1024
 MEDIA_REDIRECT_STATUSES = {300, 301, 302, 303, 307, 308}
-DISCORD_RUN_TITLE_RE = re.compile(r"^Discord changelog for ([0-9a-f]{40,64})$")
+DISCORD_RUN_TITLE_RE = re.compile(
+    r"^Discord changelog (?P<target>.+) for (?P<sha>[0-9a-f]{40,64})$",
+)
+SHA_RE = re.compile(r"^[0-9a-f]{40,64}$")
 
 # https://discord.com/developers/docs/resources/webhook
 DISCORD_SPLIT_LIMIT = 2000
@@ -310,39 +314,82 @@ def report_media_warning(url: str, reason: str) -> None:
     print(f"::warning::{escaped}")
 
 
+def require_environment(name: str) -> str:
+    value = os.environ.get(name, "").strip()
+    if not value:
+        raise RuntimeError(f"Переменная {name} не задана")
+    return value
+
+
+def validate_runtime_environment() -> tuple[Path, str, str]:
+    global CHANGELOG_FILE, DISCORD_WEBHOOK_URL
+
+    DISCORD_WEBHOOK_URL = require_environment("DISCORD_WEBHOOK_URL")
+    CHANGELOG_FILE = require_environment("CHANGELOG_FILE")
+    target_id = validate_target_id(require_environment("CHANGELOG_TARGET_ID"))
+    released_sha = require_environment("RELEASED_SHA")
+    if not SHA_RE.fullmatch(released_sha):
+        raise RuntimeError("Переменная RELEASED_SHA должна содержать SHA коммита")
+
+    for name in (
+        "GITHUB_REPOSITORY",
+        "GITHUB_RUN_ID",
+        "GITHUB_TOKEN",
+        "SOURCE_WORKFLOW_RUN_ID",
+    ):
+        require_environment(name)
+
+    return validate_changelog_path(CHANGELOG_FILE), target_id, released_sha
+
+
 def main():
-    if not DISCORD_WEBHOOK_URL:
-        return
-    changelog_file = validate_changelog_path(CHANGELOG_FILE)
+    changelog_file, _target_id, released_sha = validate_runtime_environment()
 
     if DEBUG:
         # Для локальной отладки можно использовать отдельный файл
         # в качестве предыдущего чейнджлога.
         last_changelog_stream = DEBUG_CHANGELOG_FILE_OLD.read_text()
+        current_changelog_stream = changelog_file.read_text(encoding="utf-8-sig")
     else:
-        # При обычном запуске через GitHub Actions предыдущий
-        # чейнджлог загружается через GitHub API.
+        # Обе версии загружаются через GitHub API, чтобы публикация всегда
+        # использовала актуальный скрипт из основной ветки.
         last_changelog_stream = get_last_changelog(changelog_file)
+        current_changelog_stream = get_released_changelog(changelog_file, released_sha)
 
     last_changelog = yaml.safe_load(last_changelog_stream)
-    with changelog_file.open("r") as f:
-        cur_changelog = yaml.safe_load(f)
+    cur_changelog = yaml.safe_load(current_changelog_stream)
 
     diff = diff_changelog(last_changelog, cur_changelog)
     send_to_discord(diff)
 
 
 def get_most_recent_workflow(
-    sess: requests.Session, github_repository: str, github_run: str
+    sess: requests.Session,
+    github_repository: str,
+    github_run: str,
+    target_id: str | None = None,
 ) -> Any | None:
     workflow_run = get_current_run(sess, github_repository, github_run)
-    past_runs = get_past_runs(sess, workflow_run)
-    for run in past_runs["workflow_runs"]:
-        # Первый предыдущий успешный запуск, отличный от текущего.
-        if run["id"] == workflow_run["id"]:
-            continue
+    page = 1
+    while True:
+        past_runs = get_past_runs(sess, workflow_run, page)
+        runs = past_runs["workflow_runs"]
+        for run in runs:
+            # Первый предыдущий успешный запуск, отличный от текущего.
+            if run["id"] == workflow_run["id"]:
+                continue
 
-        return run
+            if target_id is not None:
+                title = str(run.get("display_title", ""))
+                match = DISCORD_RUN_TITLE_RE.fullmatch(title)
+                if match is None or match.group("target") != target_id:
+                    continue
+
+            return run
+
+        if len(runs) < 100:
+            return None
+        page += 1
 
 
 def get_current_run(
@@ -356,11 +403,16 @@ def get_current_run(
     return resp.json()
 
 
-def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
+def get_past_runs(sess: requests.Session, current_run: Any, page: int = 1) -> Any:
     """
     Возвращает все успешные запуски рабочего процесса до текущего.
     """
-    params = {"status": "success", "created": f"<={current_run['created_at']}"}
+    params = {
+        "status": "success",
+        "created": f"<={current_run['created_at']}",
+        "per_page": 100,
+        "page": page,
+    }
     resp = sess.get(
         f"{current_run['workflow_url']}/runs",
         params=params,
@@ -374,25 +426,32 @@ def get_last_changelog(changelog_file: Path | None = None) -> str:
     changelog_file = validate_changelog_path(
         str(changelog_file) if changelog_file else CHANGELOG_FILE,
     )
-    github_repository = os.environ["GITHUB_REPOSITORY"]
-    github_run = os.environ["GITHUB_RUN_ID"]
-    github_token = os.environ["GITHUB_TOKEN"]
+    github_repository = require_environment("GITHUB_REPOSITORY")
+    github_run = require_environment("GITHUB_RUN_ID")
+    github_token = require_environment("GITHUB_TOKEN")
+    target_id = validate_target_id(require_environment("CHANGELOG_TARGET_ID"))
 
     session = requests.Session()
     session.headers["Authorization"] = f"Bearer {github_token}"
     session.headers["Accept"] = "application/vnd.github+json"
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
-    source_run = os.environ.get("SOURCE_WORKFLOW_RUN_ID")
-    most_recent = get_most_recent_workflow(session, github_repository, github_run)
+    source_run = require_environment("SOURCE_WORKFLOW_RUN_ID")
+    most_recent = get_most_recent_workflow(
+        session,
+        github_repository,
+        github_run,
+        target_id,
+    )
+    target_checkpoint_found = most_recent is not None
     last_sha = None
     if most_recent is not None:
         title = str(most_recent.get("display_title", ""))
         match = DISCORD_RUN_TITLE_RE.fullmatch(title)
         if match is not None:
-            last_sha = match.group(1)
+            last_sha = match.group("sha")
 
-    if last_sha is None and source_run:
+    if last_sha is None:
         most_recent = get_most_recent_workflow(session, github_repository, source_run)
         head_commit = most_recent.get("head_commit") if isinstance(most_recent, Mapping) else None
         last_sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
@@ -402,7 +461,11 @@ def get_last_changelog(changelog_file: Path | None = None) -> str:
 
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog_stream = get_last_changelog_by_sha(
-        session, last_sha, github_repository, changelog_file
+        session,
+        last_sha,
+        github_repository,
+        changelog_file,
+        allow_missing=not target_checkpoint_found,
     )
 
     return last_changelog_stream
@@ -413,6 +476,8 @@ def get_last_changelog_by_sha(
     sha: str,
     github_repository: str,
     changelog_file: Path | None = None,
+    *,
+    allow_missing: bool = False,
 ) -> str:
     """
     Получает предыдущую версию YAML-чейнджлога через GitHub API, поскольку Actions использует неглубокий клон.
@@ -432,8 +497,26 @@ def get_last_changelog_by_sha(
         params=params,
         timeout=HTTP_REQUEST_TIMEOUT,
     )
+    if allow_missing and resp.status_code == 404:
+        return "Entries: []\n"
     resp.raise_for_status()
     return resp.text
+
+
+def get_released_changelog(changelog_file: Path, released_sha: str) -> str:
+    github_repository = require_environment("GITHUB_REPOSITORY")
+    github_token = require_environment("GITHUB_TOKEN")
+
+    session = requests.Session()
+    session.headers["Authorization"] = f"Bearer {github_token}"
+    session.headers["Accept"] = "application/vnd.github+json"
+    session.headers["X-GitHub-Api-Version"] = "2022-11-28"
+    return get_last_changelog_by_sha(
+        session,
+        released_sha,
+        github_repository,
+        changelog_file,
+    )
 
 
 def diff_changelog(
@@ -772,8 +855,7 @@ def send_media_batch(
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
-        print("No discord webhook URL found, skipping discord send")
-        return
+        raise RuntimeError("Переменная DISCORD_WEBHOOK_URL не задана")
 
     deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
     for entry in entries:

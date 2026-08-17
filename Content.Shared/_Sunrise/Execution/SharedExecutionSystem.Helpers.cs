@@ -90,10 +90,10 @@ public abstract partial class SharedExecutionSystem
         if (!TryComp<GunComponent>(weapon, out var gun) || !_gunSystem.CanShoot(gun))
             return false;
 
-        if (TryComp<DamageableComponent>(victim, out var damageable))
+        if (HasComp<DamageableComponent>(victim))
         {
             if (TryComp<BatteryAmmoProviderComponent>(weapon, out var battery) &&
-                !PrototypeHasLethalEffect(damageable, battery.Prototype))
+                !PrototypeHasLethalEffect(battery.Prototype))
                 return false;
 
             if (HasNonLethalAmmoPrototype(weapon))
@@ -136,7 +136,7 @@ public abstract partial class SharedExecutionSystem
         return false;
     }
 
-    private bool PrototypeHasLethalEffect(DamageableComponent damageable, EntProtoId ammoPrototype)
+    private bool PrototypeHasLethalEffect(EntProtoId ammoPrototype)
     {
         var proto = _prototypeManager.Index(ammoPrototype);
 
@@ -155,7 +155,7 @@ public abstract partial class SharedExecutionSystem
 
         foreach (var (type, value) in damage.DamageDict)
         {
-            if (value > FixedPoint2.Zero && damageable.Damage.DamageDict.ContainsKey(type))
+            if (type != StructuralDamageType && value > FixedPoint2.Zero)
                 return true;
         }
 

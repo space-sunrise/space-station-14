@@ -66,6 +66,11 @@
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
+- files: [ "steel_vertical_slats_bordered.png", "steel_slats_continuous.png", "steel_horizontal_slats_bordered.png", "dark_vertical_slats_bordered.png", "dark_slats_continuous.png", "dark_horizontal_slats_bordered.png", "white_vertical_slats_bordered.png", "white_slats_continuous.png", "white_horizontal_slats_bordered.png" ]
+  license: "CC0-1.0"
+  copyright: "created by SeaWyrm (github Aearo-Deepwater)"
+  source: "https://github.com/space-wizards/space-station-14/pull/37832"
+
 - files: [ "steel_dirty.png" ]
   license: "CC-BY-SA-3.0"
   copyright: "Originally created by github user @moonheart08, then modified by @Flareguy, then modified again by github user @moomoobeef."

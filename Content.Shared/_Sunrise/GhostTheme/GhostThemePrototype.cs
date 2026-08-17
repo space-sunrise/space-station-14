@@ -23,6 +23,12 @@ public sealed partial class GhostThemePrototype : IPrototype
     [DataField("sprite", required: true)]
     public SpriteSpecifier Sprite { get; private set; } = default!;
 
+    /// <summary>
+    /// Оставляет базовый слой призрака под управлением апстримной системы причины смерти.
+    /// </summary>
+    [DataField]
+    public bool UseUpstreamSprite;
+
     [DataField]
     public bool SponsorOnly;
 }
