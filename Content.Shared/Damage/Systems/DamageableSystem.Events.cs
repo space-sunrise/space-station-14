@@ -24,9 +24,6 @@ public sealed partial class DamageableSystem
         SubscribeLocalEvent<DamageableComponent, ComponentHandleState>(DamageableHandleState);
         SubscribeLocalEvent<DamageableComponent, ComponentGetState>(DamageableGetState);
 
-        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
-        _damageableQuery = GetEntityQuery<DamageableComponent>();
-
         _config.OnValueChanged(SunriseCCVars.DamagePositiveVariance, UpdatePositiveVariance, true); // Sunrise-Edit
         _config.OnValueChanged(SunriseCCVars.DamageNegativeVariance, UpdateNegativeVariance, true); // Sunrise-Edit
         _config.OnValueChanged(SunriseCCVars.DamageModifier, UpdateDamageModifier, true); // Sunrise-Edit

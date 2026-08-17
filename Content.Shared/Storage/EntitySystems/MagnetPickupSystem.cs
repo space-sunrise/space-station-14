@@ -3,7 +3,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
-using Content.Shared.Silicons.Borgs.Components; // Sunrise Edit
+using Content.Shared.Silicons.Borgs.Components;
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -19,17 +19,14 @@ public sealed class MagnetPickupSystem : EntitySystem
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
+    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private readonly EntityQuery<BorgChassisComponent> _borgQuery; // Sunrise Edit
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
-
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<BorgChassisComponent> _borgQuery; // Sunrise Edit
 
     public override void Initialize()
     {
         base.Initialize();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _borgQuery = GetEntityQuery<BorgChassisComponent>(); // Sunrise Edit
         SubscribeLocalEvent<MagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
     }
 

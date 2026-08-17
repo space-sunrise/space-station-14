@@ -102,7 +102,7 @@ public abstract class SharedNinjaSuitSystem : EntitySystem
     /// </summary>
     private void OnUnequipped(Entity<NinjaSuitComponent> ent, ref GotUnequippedEvent args)
     {
-        var user = args.Equipee;
+        var user = args.EquipTarget;
         if (_ninja.NinjaQuery.TryComp(user, out var ninja))
             UserUnequippedSuit(ent, (user, ninja));
     }

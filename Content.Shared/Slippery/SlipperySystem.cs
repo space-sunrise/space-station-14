@@ -48,17 +48,13 @@ public sealed class SlipperySystem : EntitySystem
     private static ProtoId<EmotePrototype> EmoteFallOnNeckProto = "FallOnNeck";
     // Sunrise-End
 
-    private EntityQuery<KnockedDownComponent> _knockedDownQuery;
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<SlidingComponent> _slidingQuery;
+    [Dependency] private readonly EntityQuery<KnockedDownComponent> _knockedDownQuery = default!;
+    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private readonly EntityQuery<SlidingComponent> _slidingQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _knockedDownQuery = GetEntityQuery<KnockedDownComponent>();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _slidingQuery = GetEntityQuery<SlidingComponent>();
 
         SubscribeLocalEvent<SlipperyComponent, StepTriggerAttemptEvent>(HandleAttemptCollide);
         SubscribeLocalEvent<SlipperyComponent, StepTriggeredOffEvent>(HandleStepTrigger);

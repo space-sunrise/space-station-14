@@ -102,7 +102,7 @@ public sealed class StickySystem : EntitySystem
 
     private void OnStickyDoAfter(Entity<StickyComponent> ent, ref StickyDoAfterEvent args)
     {
-        // target is the sticky item when unsticking and the surface when sticking, it will never be null
+        // target is the surface when sticking/unsticking, it will never be null
         if (args.Handled || args.Cancelled || args.Args.Target is not {} target)
             return;
 
@@ -141,8 +141,7 @@ public sealed class StickySystem : EntitySystem
         }
 
         // start unsticking object
-        // Use the surface we are stuck to as the target for range/access checks; the sticky item itself is in a container and fails accessibility checks.
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, comp.UnstickDelay, new StickyDoAfterEvent(), uid, target: stuckTo) // Sunrise-Add
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, comp.UnstickDelay, new StickyDoAfterEvent(), uid, target: stuckTo)
         {
             BreakOnMove = true,
             NeedHand = true,

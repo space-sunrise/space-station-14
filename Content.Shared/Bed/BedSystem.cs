@@ -27,8 +27,8 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
 
-    private EntityQuery<SleepingComponent> _sleepingQuery;
-    private EntityQuery<BedHealModifierClothingComponent> _bedHealModifierClothingQuery; // Sunrise-edit
+    [Dependency] private readonly EntityQuery<SleepingComponent> _sleepingQuery = default!;
+    [Dependency] private readonly EntityQuery<BedHealModifierClothingComponent> _bedHealModifierClothingQuery = default!; // Sunrise-edit
 
     public override void Initialize()
     {
@@ -49,9 +49,6 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
         SubscribeLocalEvent<StasisBedComponent, GotEmaggedEvent>(OnStasisEmagged);
         SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<StasisBedBuckledComponent, GetMetabolicMultiplierEvent>(OnStasisGetMetabolicMultiplier);
-
-        _sleepingQuery = GetEntityQuery<SleepingComponent>();
-        _bedHealModifierClothingQuery = GetEntityQuery<BedHealModifierClothingComponent>(); // Sunrise-edit
     }
 
     // Sunrise-Start

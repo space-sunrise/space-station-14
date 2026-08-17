@@ -20,7 +20,7 @@ namespace Content.IntegrationTests.Tests
     [TestOf(typeof(EntityUid))]
     public sealed class EntityTest : GameTest
     {
-        private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
+        private static readonly HashSet<ProtoId<EntityCategoryPrototype>> IgnoredCategories = ["Spawner", "Debug"];
 
         public override PoolSettings PoolSettings => new()
         {
@@ -279,7 +279,7 @@ namespace Content.IntegrationTests.Tests
                 // Sunrise added start - явно пропускаем известные entity-spawner компоненты, которые намеренно нарушают этот тестовый инвариант.
                 .Where(p => !spawnLeakExcluded.Any(p.Components.ContainsKey))
                 // Sunrise added end
-                .Where(p => p.Categories.All(x => x.ID != SpawnerCategory))
+                .Where(p => p.Categories.All(x => !IgnoredCategories.Contains(x.ID)))
                 .Select(p => p.ID)
                 .ToList();
 

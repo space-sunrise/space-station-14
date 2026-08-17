@@ -1515,7 +1515,10 @@
       - Passive
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: MonkeyCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
   - type: IdExaminable
   - type: Tag
     tags:
@@ -2762,7 +2765,6 @@
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
-  - type: ForceAttack
 
 - type: entity
   name: tarantula
