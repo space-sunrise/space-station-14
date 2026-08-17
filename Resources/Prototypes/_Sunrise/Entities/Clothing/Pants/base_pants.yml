@@ -32,15 +32,17 @@
   parent: ClothingPantsBase
   id: ClothingPantsStorageBase
   components:
-  - type: Storage
-    grid:
-    - 0,0,0,0
-    maxItemSize: Tiny
+  - type: ItemSlots
+    slots:
+      storagebase:
+        insertSound:
+          collection: EquipSounds
+          params:
+            maxDistance: 3
+        whitelist:
+          sizes:
+          - Tiny
+          - Small
   - type: ContainerContainer
     containers:
-      storagebase: !type:Container
-        ents: []
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+      storagebase: !type:ContainerSlot
