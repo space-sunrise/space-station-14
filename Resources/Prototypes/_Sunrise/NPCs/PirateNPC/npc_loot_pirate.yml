@@ -2460,9 +2460,6 @@
     - id: BriefcaseWeaponM79Filled
       prob: 0.25
       orGroup: Grenadier
-    - id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-      prob: 0.1
-      orGroup: Grenadier
     # Items
     - id: GrenadeBlastTimer
       amount: 2

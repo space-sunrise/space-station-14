@@ -1164,7 +1164,7 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 8
+    Telecrystal: 9
   categories:
   - UplinkWeaponry
   conditions:
@@ -1354,7 +1354,7 @@
   id: UplinkClothingBackpackSyndieSIAR52Filled
   name: uplink-clothing-backpack-syndie-siar52-name
   productEntity: ClothingBackpackSyndieSIAR52Filled
-  description: uplink-clothing-backpack-syndie-siar52-name
+  description: uplink-clothing-backpack-syndie-siar52-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/iar_52.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
@@ -1756,7 +1756,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 6
+    Telecrystal: 8
   categories:
   - UplinkWeaponry
 
@@ -2955,26 +2955,6 @@
       - AssaultOpsUplink
 
 - type: listing
-  id: UplinkGrenadeLauncherM79Bundle
-  name: uplink-grenade-launcher-m79-bundle-name
-  description: uplink-grenade-launcher-m79-bundle-desc
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/Launchers/m79/big.rsi, state: base }
-  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 10 # Good morning Vietnam!
-  cost:
-    Telecrystal: 14
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
   id: UplinkGrenadeLauncherGL70
   name: uplink-grenade-launcher-gl70-name
   description: uplink-grenade-launcher-gl70-desc
@@ -3507,7 +3487,7 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 6
+    Telecrystal: 7
   categories:
   - UplinkWeaponry
 

@@ -33,8 +33,7 @@
       storagebase: !type:AllSelector
         children:
         - id: SunriseWeaponSubMachineGunUzi
-        - id: MagazinePistolSubMachineGun
-          amount: 2
+        - id: SMGAmmoKit
 
 - type: entity
   id: BriefcaseWeaponSIAR52Filled
@@ -67,9 +66,9 @@
         children:
         - id: WeaponSniperDragunov
         - id: MagazineDragunovIncendiary
-        - id: MagazineDragunovSP
         - id: MagazineDragunovHP
-        - id: MagazineDragunovFMJ
+        - id: DragunovAmmoKit
+        - id: DragunovAmmoKit
 
 - type: entity
   id: BriefcaseWeaponDMRFilled
@@ -110,7 +109,7 @@
         children:
         - id: WeaponLauncherM79
         - id: GrenadeFragTimer
-          amount: 2
+          amount: 3
         - id: GrenadeEMPTimer
 
 - type: entity
@@ -125,6 +124,8 @@
         - id: WeaponRifleSKM24Syndi
         - id: MagazineLightRifleSP
           amount: 2
+        - id: MagazineLightRifleFMJ
+          amount: 2
 
 - type: entity
   id: BriefcaseWeaponSKM28Filled
@@ -137,7 +138,7 @@
         children:
         - id: WeaponRifleSKM28Syndi
         - id: MagazineRifleHeavySP
-          amount: 2
+          amount: 4
         - id: MagazineRifleHeavyHP
         - id: MagazineRifleHeavyFMJ
 

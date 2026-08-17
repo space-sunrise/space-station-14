@@ -441,7 +441,7 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponShotgunMinotaurBiocode
-        - id: MagazineShotgunXL
+        - id: ShotGunKitLarge
         - id: MagazineShotgunBreach
 
 - type: entity
@@ -586,30 +586,6 @@
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79
-  name: M79 grenade launcher bundle
-  description: "An old m79 grenade launcher bundled with 11 rounds of various destruction capability."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponLauncherM79
-        - id: GrenadeBlast
-          amount: 1
-        - id: GrenadeFrag
-          amount: 1
-        - id: GrenadeEMP
-          amount: 1
-        - id: GrenadeBlastTimer
-          amount: 2
-        - id: GrenadeFragTimer
-          amount: 2
-        - id: GrenadeEMPTimer
-          amount: 2
-
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70
   name: GL-70 grenade launcher bundle
   description: An automatic GL-70 grenade launcher bundled with 17 grenades, two grenade pouches, and a packaged grenade belt.
@@ -640,10 +616,11 @@
         children:
         - id: WeaponSubMachineGunC40rBiocode
         - id: MagazinePistol40SubMachineGunSP
-          amount: 2
+          amount: 6
         - id: MagazinePistol40SubMachineGunFMJ
-          amount: 2
+          amount: 4
         - id: MagazinePistol40SubMachineGunHP
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -658,3 +635,4 @@
         - id: WeaponLightMachineGunL6MaxBiocode
         - id: RifleHeavyMagazineSP
           amount: 3
+        - id: RifleHeavyMagazineFMJ
