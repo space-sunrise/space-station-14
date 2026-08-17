@@ -582,7 +582,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingOuterHardsuitMurmillo
+      - id: SunriseClothingShoesBootsMagPirateMurmilloActive
 
 - type: entity
   parent: CratePiratePrivateSecure
