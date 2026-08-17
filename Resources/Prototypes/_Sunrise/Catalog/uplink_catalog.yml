@@ -1209,6 +1209,8 @@
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
       - AssaultOpsUplink
 
 - type: listing
@@ -1221,7 +1223,7 @@
   discountDownTo:
     Telecrystal: 8
   cost:
-    Telecrystal: 11
+    Telecrystal: 13
   categories:
   - UplinkWeaponry
   conditions:
@@ -1340,7 +1342,7 @@
   discountDownTo:
     Telecrystal: 8
   cost:
-    Telecrystal: 9
+    Telecrystal: 11
   categories:
   - UplinkWeaponry
   conditions:
@@ -1349,6 +1351,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkClothingBackpackSyndieSIAR52Filled
@@ -1369,6 +1372,7 @@
       tags:
       - NukeOpsUplink
       - LoneOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkWeaponLaserMinigun
