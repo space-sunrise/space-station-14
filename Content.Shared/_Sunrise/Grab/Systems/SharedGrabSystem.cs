@@ -20,6 +20,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Verbs;
 using Content.Shared._Sunrise.Grab.Components;
 using Content.Shared._Sunrise.Grab.Events;
+using Content.Shared._Sunrise.Movement.Pulling;
 using Content.Shared._Sunrise.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -42,6 +43,7 @@ public sealed partial class SharedGrabSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
@@ -57,6 +59,7 @@ public sealed partial class SharedGrabSystem : EntitySystem
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<PullableComponent> _pullableQuery;
     private EntityQuery<PullerComponent> _pullerQuery;
+    private EntityQuery<ActivePullingAnimationComponent> _pullingAnimationQuery;
     private EntityQuery<VirtualItemComponent> _virtualQuery;
 
     public override void Initialize()
@@ -68,6 +71,7 @@ public sealed partial class SharedGrabSystem : EntitySystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _pullableQuery = GetEntityQuery<PullableComponent>();
         _pullerQuery = GetEntityQuery<PullerComponent>();
+        _pullingAnimationQuery = GetEntityQuery<ActivePullingAnimationComponent>();
         _virtualQuery = GetEntityQuery<VirtualItemComponent>();
 
         SubscribeLocalEvent<PullableComponent, PullToggleAttemptEvent>(OnPullToggleAttempt);
@@ -222,7 +226,7 @@ public sealed partial class SharedGrabSystem : EntitySystem
             return true;
         }
 
-        var nextStage = (GrabStage) ((byte) currentStage + 1);
+        var nextStage = (GrabStage)((byte)currentStage + 1);
         if (TrySetGrabStage((grabberUid, grabber), (grabbedUid, grabbed), nextStage, GrabStageChangeCause.Tighten))
             return true;
 
@@ -339,7 +343,7 @@ public sealed partial class SharedGrabSystem : EntitySystem
 
         var nextStage = grabber.Stage <= GrabStage.Soft
             ? GrabStage.No
-            : (GrabStage) ((byte) grabber.Stage - 1);
+            : (GrabStage)((byte)grabber.Stage - 1);
 
         return TrySetGrabStage((grabberUid, grabber), (grabbedUid, grabbed), nextStage, cause, predictedSelfPopup);
     }
@@ -402,6 +406,8 @@ public sealed partial class SharedGrabSystem : EntitySystem
         Dirty(grabber);
         Dirty(grabbed);
 
+        UpdateGrabEffectVisuals(grabbed.Owner, stage);
+
         _alerts.ShowAlert(grabber.Owner, grabber.Comp.GrabbingAlert, GetSeverity(stage));
         _alerts.ShowAlert(grabbed.Owner, grabbed.Comp.GrabbedAlert, GetSeverity(stage));
         _blocker.UpdateCanMove(grabbed.Owner);
@@ -412,7 +418,13 @@ public sealed partial class SharedGrabSystem : EntitySystem
         if (cause == GrabStageChangeCause.Tighten)
         {
             _audio.PlayPredicted(GrabSound, grabbed.Owner, grabber.Owner);
-            _color.RaiseEffect(Color.Yellow, new List<EntityUid> { grabbed.Owner }, Filter.Pvs(grabbed.Owner, entityManager: EntityManager));
+            var flashColor = stage switch
+            {
+                GrabStage.Hard => Color.FromHex("#FF8080"),
+                GrabStage.Suffocate => Color.Red,
+                _ => Color.Yellow,
+            };
+            _color.RaiseEffect(flashColor, new List<EntityUid> { grabbed.Owner }, Filter.Pvs(grabbed.Owner, entityManager: EntityManager));
         }
 
         return true;
@@ -456,6 +468,14 @@ public sealed partial class SharedGrabSystem : EntitySystem
         grabbed.Comp.EscapeChanceBonus = 0f;
         grabbed.Comp.NextEscapeAttempt = TimeSpan.Zero;
         Dirty(grabbed);
+
+        UpdateGrabEffectVisuals(grabbed.Owner, GrabStage.No);
+    }
+
+    public void UpdateGrabEffectVisuals(EntityUid grabbedUid, GrabStage stage)
+    {
+        if (_pullingAnimationQuery.TryComp(grabbedUid, out var anim) && anim.Effect is { } effect)
+            _appearance.SetData(effect, GrabVisuals.Stage, stage);
     }
 
     private static float GetEscapeChance(GrabberComponent grabber, GrabStage stage)
@@ -470,7 +490,7 @@ public sealed partial class SharedGrabSystem : EntitySystem
 
     private static short GetSeverity(GrabStage stage)
     {
-        return (short) stage;
+        return (short)stage;
     }
 
     private static string GetStageSuffix(GrabStage stage)
