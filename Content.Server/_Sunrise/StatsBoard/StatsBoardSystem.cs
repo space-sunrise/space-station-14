@@ -22,6 +22,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Slippery;
 using Content.Shared.Tag;
 using Robust.Shared.Network;

@@ -90,11 +90,6 @@
   priority: 12 # Sunrise-Edit
 
 - type: storeCategory
-  id: UplinkObjectives
-  name: store-category-objectives
-  priority: 13 # Sunrise-Edit
-
-- type: storeCategory
   id: UplinkObjective
   name: store-category-objective
   priority: 11

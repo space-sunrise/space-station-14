@@ -183,7 +183,7 @@ public sealed class HijackBeaconSystem : EntitySystem
         //global announcement
         var sender = Loc.GetString("hijack-beacon-announcement-sender");
         var message = Loc.GetString("hijack-beacon-announcement-activated", ("time", GetRemainingTime((ent.Owner, activeComp))));
-        _chat.DispatchGlobalAnnouncement(message, sender, true, AnnounceSound, Color.Yellow);
+        _chat.DispatchGlobalAnnouncement(message, sender, true, AnnounceSound, colorOverride: Color.Yellow);
 
         //Anchor. Anchoring is tied to activation.
         Anchor(ent);
@@ -206,7 +206,7 @@ public sealed class HijackBeaconSystem : EntitySystem
         //global announcement
         var sender = Loc.GetString("hijack-beacon-announcement-sender");
         var message = Loc.GetString("hijack-beacon-announcement-deactivated");
-        _chat.DispatchGlobalAnnouncement(message, sender, true, DeactivateSound, Color.Green);
+        _chat.DispatchGlobalAnnouncement(message, sender, true, DeactivateSound, colorOverride: Color.Green);
 
         // Unanchor. we want anchoring to be tied to activation here so we just call this.
         Unanchor(ent);
@@ -253,7 +253,7 @@ public sealed class HijackBeaconSystem : EntitySystem
         //global announcement
         var sender = Loc.GetString("hijack-beacon-announcement-sender");
         var message = Loc.GetString("hijack-beacon-announcement-success", ("fine", ev.Total));
-        _chat.DispatchGlobalAnnouncement(message, sender, true, AnnounceSound, Color.Red);
+        _chat.DispatchGlobalAnnouncement(message, sender, true, AnnounceSound, colorOverride: Color.Red);
 
         // Unanchoring must occur after updating the status, or it will disarm the beacon
         Unanchor(ent, beaconXForm);

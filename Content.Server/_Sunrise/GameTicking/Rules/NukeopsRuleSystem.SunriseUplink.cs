@@ -82,7 +82,7 @@ public sealed partial class NukeopsRuleSystem
         if (uplink == null)
             return null;
 
-        _uplinkSystem.SetUplink(user, uplink.Value, balance, giveDiscounts);
+        _uplinkSystem.SetSunriseUplink(user, uplink.Value, balance, giveDiscounts);
         return uplink;
     }
 }

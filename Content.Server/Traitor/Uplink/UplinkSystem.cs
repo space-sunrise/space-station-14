@@ -11,12 +11,11 @@ using Content.Shared.PDA;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Robust.Shared.Map;
-using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Traitor.Uplink;
 
-public sealed class UplinkSystem : EntitySystem
+public sealed partial class UplinkSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
@@ -25,13 +24,11 @@ public sealed class UplinkSystem : EntitySystem
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly RingerSystem _ringer = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public static readonly EntProtoId<StoreComponent> TraitorUplinkStore = "StorePresetRemoteUplink";
     public static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly EntProtoId FallbackUplinkImplant = "UplinkImplant";
     private static readonly ProtoId<ListingPrototype> FallbackUplinkCatalog = "UplinkUplinkImplanter";
-    private static readonly ProtoId<TagPrototype> SunriseUplinkTag = "SunriseUplink";
 
     public override void Initialize()
     {
@@ -136,7 +133,7 @@ public sealed class UplinkSystem : EntitySystem
     /// <summary>
     /// Configure TC for the uplink
     /// </summary>
-    public void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts)
+    private void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts)
     {
         if (!_mind.TryGetMind(user, out var mind, out _))
             return;
@@ -199,14 +196,8 @@ public sealed class UplinkSystem : EntitySystem
             while (containerSlotEnumerator.MoveNext(out var containerSlot))
             {
                 var pdaUid = containerSlot.ContainedEntity;
-                // Sunrtise-Start
-
-                if (pdaUid == null)
+                if (ShouldSkipSunriseUplink(pdaUid)) // Sunrise-Edit - спонсорский магазин не должен становиться аплинком предателя
                     continue;
-
-                if (_tagSystem.HasTag(pdaUid.Value, SunriseUplinkTag))
-                    continue;
-                // Sunrtise-End
 
                 if (HasComp<PdaComponent>(pdaUid) && HasComp<RemoteStoreComponent>(pdaUid))
                     return pdaUid.Value;
@@ -216,10 +207,8 @@ public sealed class UplinkSystem : EntitySystem
         // Also check hands
         foreach (var item in _handsSystem.EnumerateHeld(user))
         {
-            // Sunrtise-Start
-            if (_tagSystem.HasTag(item, SunriseUplinkTag))
+            if (ShouldSkipSunriseUplink(item)) // Sunrise-Edit - спонсорский магазин не должен становиться аплинком предателя
                 continue;
-            // Sunrtise-End
 
             if (HasComp<PdaComponent>(item) && HasComp<RemoteStoreComponent>(item))
                 return item;
@@ -227,32 +216,6 @@ public sealed class UplinkSystem : EntitySystem
 
         return null;
     }
-
-    // Sunrtise-Start
-    public EntityUid? FindUplinkByTag(EntityUid user, string tag)
-    {
-        // Try to find PDA in inventory
-        if (_inventorySystem.TryGetContainerSlotEnumerator(user, out var containerSlotEnumerator))
-        {
-            while (containerSlotEnumerator.MoveNext(out var uplinkUid))
-            {
-                if (!uplinkUid.ContainedEntity.HasValue) continue;
-
-                if (_tagSystem.HasTag(uplinkUid.ContainedEntity.Value, tag))
-                    return uplinkUid.ContainedEntity.Value;
-            }
-        }
-
-        // Also check hands
-        foreach (var item in _handsSystem.EnumerateHeld(user))
-        {
-            if (_tagSystem.HasTag(item, tag))
-                return item;
-        }
-
-        return null;
-    }
-    // Sunrtise-End
 }
 
 public enum AddUplinkResult

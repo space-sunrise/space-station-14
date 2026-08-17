@@ -62,8 +62,6 @@ ent-MobRogueSiliconBossGuardian = юнит-страж
     .desc = Продвинутый охранный силикон, обычно используемый для защиты высокосекретных зон вроде хранилищ и серверных. После взлома исполняет волю ренегатского ИИ.
 ent-MobRogueSiliconBoss = одинокий зведец
     .desc = Автономный боевой мех, обычно применяемый для наступательных операций. Теперь это элитный страж ренегатского ИИ. Оснащён ракетными установками, крайне опасен.
-ent-MobRogueSiliconT3Terminator = НТ-800 "экстерминатор"
-    .desc = Захваченный эндоскелет НТ-800, перепрофилированный ренегатским силиконовым роем. Чрезвычайно живучий и неумолимый.
 ent-MobRogueSiliconBossSkullHouse = скул хаус
     .desc = Искаженный мех на базе «Дюранда» с тяжелой броней и грубым пулеметом. Внутри все еще гудит злобное зеленое ядро.
 ent-MobRogueSiliconT1DerelictBorg = заброшенный боевой киборг-ренегат
@@ -111,7 +109,6 @@ ent-SpawnMobRogueSiliconT1VisceratorSquad = спавнер отряда висц
 ent-SpawnMobRogueSiliconBoss = спавнер юнита «Одинокий звездец»
 ent-SpawnMobRogueSiliconBossGuardian = спавнер юнита-стража
 ent-SpawnMobRogueSiliconBossGuardianLCG = спавнер юнита-стража LCG
-ent-SpawnMobRogueSiliconT3Terminator = спавнер юнита «Экстерминатор»
 
 ent-ClothingBackpackRogueSiliconDerelictBorg = набор заброшенного киборга
     .suffix = Rogue Silicon, Боец

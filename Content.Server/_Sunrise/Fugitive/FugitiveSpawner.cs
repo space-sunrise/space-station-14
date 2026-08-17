@@ -94,7 +94,7 @@ namespace Content.Server._Sunrise.Fugitive
                     {
                         if (!TryComp<StoreComponent>(containedEntity, out var storeComponent))
                             continue;
-                        _uplinkSystem.SetUplink(fugitive, containedEntity, _random.Next(5, 10), true);
+                        _uplinkSystem.SetSunriseUplink(fugitive, containedEntity, _random.Next(5, 10), true);
                         _tagSystem.AddTag(containedEntity, FugitiveUplinkTag);
                     }
                 }

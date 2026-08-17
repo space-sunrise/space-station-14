@@ -2,7 +2,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Fluids;
 using Content.Shared.IdentityManagement;
-using Content.Shared._Sunrise.Mood;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
@@ -16,7 +15,7 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public abstract class SharedCreamPieSystem : EntitySystem
+public abstract partial class SharedCreamPieSystem : EntitySystem
 {
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -104,12 +103,7 @@ public abstract class SharedCreamPieSystem : EntitySystem
         Dirty(ent);
 
         _appearance.SetData(ent.Owner, CreamPiedVisuals.Creamed, value);
-        // Sunrise start
-        if (value)
-            RaiseLocalEvent(ent, new MoodEffectEvent("Creampied"));
-        else
-            RaiseLocalEvent(ent, new MoodRemoveEffectEvent("Creampied"));
-        // Sunrise end
+        OnCreamPiedChanged(ent.Owner, value); // Sunrise-Edit - эффекты настроения от состояния кремового пирога.
     }
 
     private void OnCreamPieLand(Entity<CreamPieComponent> ent, ref LandEvent args)
@@ -135,6 +129,8 @@ public abstract class SharedCreamPieSystem : EntitySystem
         // TODO: Make the popup API sane.
         if (_net.IsClient)
             return;
+
+        RaiseSunriseCreamedEvent(creamPied.Owner); // Sunrise-Edit - статистика попаданий кремовым пирогом.
 
         // Shown only to the player that was hit.
         _popup.PopupEntity(

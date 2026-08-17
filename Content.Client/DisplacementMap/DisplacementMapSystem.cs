@@ -7,7 +7,7 @@ using Robust.Shared.Serialization.Manager;
 
 namespace Content.Client.DisplacementMap;
 
-public sealed class DisplacementMapSystem : EntitySystem
+public sealed partial class DisplacementMapSystem : EntitySystem
 {
     [Dependency] private readonly ISerializationManager _serialization = null!;
     [Dependency] private readonly SpriteSystem _sprite = null!;
@@ -35,7 +35,7 @@ public sealed class DisplacementMapSystem : EntitySystem
         int index,
         object key,
         [NotNullWhen(true)] out string? displacementKey,
-        ShaderInstance? shaderOverride = null // Sunrise edit
+        ShaderInstance? shaderOverride = null // Sunrise-Edit - шейдер градиента, совмещённый с displacement map.
     )
     {
         displacementKey = BuildDisplacementLayerKey(key);
@@ -44,24 +44,18 @@ public sealed class DisplacementMapSystem : EntitySystem
 
         EnsureDisplacementIsNotOnSprite(sprite, key);
 
-        // Sunrise edit start - градиенты
-        if (data.ShaderOverride is not null)
+        var hasSunriseShaderOverride = TryApplySunriseShaderOverride(sprite, index, shaderOverride); // Sunrise-Edit - совмещаем градиент с displacement map.
+        if (!hasSunriseShaderOverride && data.ShaderOverride is not null)
         {
-            if (shaderOverride is not null)
-            {
-                shaderOverride.SetParameter("useDisplacement", true);
-                shaderOverride.SetParameter("displacementSize", 127f);
-                sprite.Comp.LayerSetShader(index, shaderOverride);
-            }
-            else
-            {
-                sprite.Comp.LayerSetShader(index,
-                    (sprite.Comp[index] is SpriteComponent.Layer layer && layer.ShaderPrototype == UnshadedID)
-                        ? data.ShaderOverrideUnshaded
-                        : data.ShaderOverride);
-            }
+            //TODO : this is a kinda janky workaround for the fact that the current rendering pipeline does not have
+            //proper support for multiple shaders on a given layer (or an ubershader to handle stacking all of the effects well)
+            //should be replaced by an engine-level solution, but this is an adequate temporary solution.
+            //what's that phrase about temporary solutions?
+            sprite.Comp.LayerSetShader(index,
+                (sprite.Comp[index] is SpriteComponent.Layer layer && layer.ShaderPrototype == UnshadedID)
+                    ? data.ShaderOverrideUnshaded
+                    : data.ShaderOverride);
         }
-        // Sunrise edit end
 
         //allows you not to write it every time in the YML
         foreach (var pair in data.SizeMaps)

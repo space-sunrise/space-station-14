@@ -159,7 +159,7 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
         if (uplink == null)
             return null;
 
-        _uplinkSystem.SetUplink(user, uplink.Value, 0, true);
+        _uplinkSystem.SetSunriseUplink(user, uplink.Value, 0, true);
         return uplink;
     }
 

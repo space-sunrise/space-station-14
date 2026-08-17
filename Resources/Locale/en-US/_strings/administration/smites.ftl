@@ -51,7 +51,6 @@ admin-smite-lung-removal-name = Lungs Removal
 admin-smite-disarm-prone-name = Disarm Prone
 admin-smite-super-bonk-name = Super Bonk
 admin-smite-super-bonk-lite-name = Super Bonk Lite
-admin-smite-terminate-name = Terminate
 admin-smite-super-slip-name = Super Slip
 admin-smite-creampie-name = Cream
 admin-smite-vomit-organs-name = Vomit Organs

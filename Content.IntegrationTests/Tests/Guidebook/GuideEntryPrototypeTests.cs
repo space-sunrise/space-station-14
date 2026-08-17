@@ -2,12 +2,10 @@ using Content.Client.Guidebook;
 using Content.Client.Guidebook.Richtext;
 using Content.IntegrationTests.Fixtures;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Content.IntegrationTests.Utility;
 using Content.Shared.Guidebook;
 using Robust.Shared.Localization;
-using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Tests.Guidebook;
 

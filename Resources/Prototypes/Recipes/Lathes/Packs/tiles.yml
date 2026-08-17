@@ -106,7 +106,6 @@
   recipes:
   - FloorTileItemWhiteMarble
   - FloorTileItemDarkMarble
-  - FloorTileItemTechmaintDark # Sunrise edit
   - FloorTileItemUraniumMarble
   - FloorTileItemPlasmaMarble
 
