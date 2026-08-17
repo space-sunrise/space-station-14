@@ -44,8 +44,8 @@
     range: 0.95
     damage:
       types:
-        Blunt: 12
-    bluntStaminaDamageFactor: 2.5
+        Blunt: 8
+    bluntStaminaDamageFactor: 2.0
     soundHit:
       collection: MetalThud
   - type: AltFireMelee

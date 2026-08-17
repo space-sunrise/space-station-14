@@ -100,12 +100,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-  # Sunrise-start
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
-  # Sunrise-end
 
 - type: listing
   id: UplinkThrowingKnivesKit
@@ -718,7 +712,7 @@
   description: uplink-ammo-bundle-desc
   productEntity: ClothingBackpackDuffelSyndicateAmmoFilled
   cost:
-    Telecrystal: 9 # Sunrise-Edit
+    Telecrystal: 15
   categories:
   - UplinkAmmo
   conditions:
@@ -1814,7 +1808,6 @@
     blacklist:
       tags:
       - AssaultOpsUplink
-      - NukeOpsUplink
   #Sunrise-end
 
 - type: listing
@@ -1835,7 +1828,6 @@
     blacklist:
       tags:
       - AssaultOpsUplink
-      - NukeOpsUplink
   #Sunrise-end
 
 - type: listing

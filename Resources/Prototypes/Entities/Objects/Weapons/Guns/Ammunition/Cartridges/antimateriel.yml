@@ -9,7 +9,7 @@
     - Cartridge # Sunrise-Edit
     - CartridgeAntiMateriel
   - type: CartridgeAmmo
-    proto: AntiMaterielBulletTrace # Sunrise-Edit
+    proto: BulletAntiMaterielTracked # Sunrise-Edit
   - type: Sprite
     scale: 0.8,0.8 # Sunrise-Edit
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi # Sunrise-Edit
