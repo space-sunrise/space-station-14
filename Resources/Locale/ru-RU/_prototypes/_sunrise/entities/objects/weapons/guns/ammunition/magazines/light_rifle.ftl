@@ -7,3 +7,5 @@ ent-MagazineLightRifleImprovised = магазин (7,62 самодельный)
 ent-MagazineLightRifleImprovisedEmpty = { ent-MagazineLightRifleImprovised }
     .suffix = Пустой
     .desc = { ent-MagazineLightRifleImprovised.desc }
+ent-MagazineVP70 = магазин вп70
+    .desc = { ent-BaseItem.desc }
