@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Stellar Stories" width="650" src="https://i.ibb.co/hFNRC29W/image.png" />
+  <img alt="Stellar Stories" src="Resources/NetTextures/Logo/logo_hq.png" />
 </p>
 
 
