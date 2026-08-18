@@ -58,8 +58,10 @@ ent-ClothingBackpackDuffelSyndicateFilledGrenadeLauncher = набор "чайн�
     .desc = Старый гранатомет Чайна-Лейк, снабженный 9 гранатами различной поражающей способности.
 ent-ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79 = набор "M79"
     .desc = Старый гранатомет M79, снабженный 9 гранатами различной поражающей способности.
-ent-ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70 = набор "GL70"
-    .desc = Гранатомет GL70, снабженный 9 гранатами различной поражающей способности.
+# Sunrise edit start - локализация GL-70 перенесена вместе с прототипом в каталог Sunrise
+# ent-ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70 = набор "GL70"
+#     .desc = Гранатомет GL70, снабженный 9 гранатами различной поражающей способности.
+# Sunrise edit end
 ent-ClothingBackpackDuffelSyndicateRaidBundle = набор рейдерского костюма Синдиката
     .desc = Содержит прочный рейдерский бронекостюм Синдиката.
 ent-ClothingBackpackDuffelCBURNFilled = { ent-ClothingBackpackDuffelCBURN }
