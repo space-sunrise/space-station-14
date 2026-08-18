@@ -4589,3 +4589,14 @@
     message: В туториалах теперь другой ТТС.
   id: 2004
   url: https://github.com/makura-games/sunrise-station/pull/4727
+- author: ThereDrD
+  time: '2026-08-18T09:35:18.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Ребрендинг Sunrise в Stellar Stories. Изменена иконка приложения, лого и пара названий
+  id: 2005
+  url: https://github.com/makura-games/sunrise-station/pull/4738
+  media:
+  - url: https://github.com/user-attachments/assets/1593817d-658c-43ca-a0cb-b756025ab2c0
+    description: Новое лого
+    change: 0
