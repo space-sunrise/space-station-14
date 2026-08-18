@@ -74,10 +74,8 @@
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
-      # Sunrise edit start - radial active equipment selector
       enum.MechEquipmentSelectUiKey.Key:
         type: MechEquipmentSelectBoundUserInterface
-      # Sunrise edit end
   - type: Puller
     needsHands: false
   - type: InputMover
@@ -197,7 +195,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - CombatMech
@@ -272,7 +270,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -308,16 +306,6 @@
     whitelist:
       tags:
       - Ore
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-      enum.MechUiKey.Key:
-        type: MechBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: [ ]
   - type: Speech
     speechSounds: Borg
   - type: TTS
@@ -388,7 +376,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -475,7 +463,7 @@
     #siren: true # Todo: port siren system from starlight
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -534,7 +522,6 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/clarke.rsi
-    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: bigbrother
@@ -547,11 +534,11 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.0
+    mechToPilotDamageMultiplier: 0.05
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -573,11 +560,11 @@
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseSprintSpeed: 3.6
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -599,7 +586,7 @@
     speed: 0
     distance: 0
   - type: AccessReader
-    access: [["NuclearOperative"]]
+    access: [["Pirate"]]
 
 - type: entity
   id: MechBigYarrkeBattery
@@ -640,7 +627,7 @@
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 2.5
     speed: 15
@@ -727,7 +714,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -800,7 +787,7 @@
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 4
     speed: 18
@@ -884,7 +871,7 @@
     maxEquipmentAmount: 2
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 4
     speed: 18

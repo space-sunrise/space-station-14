@@ -213,3 +213,31 @@
       map: ["enum.VendingMachineVisualLayers.Base"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachine
+  id: InstrumentsMate
+  name: InstrumentsMate
+  description: Add some music in your life.
+  components:
+  - type: VendingMachine
+    pack: InstrumentsMateInventory
+    offState: off
+    normalState: normal-unshaded
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: InstrumentsMateAds
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/instrumentsmate.rsi
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "normal-unshaded"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#aa97cf"

@@ -22,7 +22,6 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 {
     [Dependency] private readonly BorgSystem _borgSystem = default!;
     [Dependency] private readonly ServerInventorySystem _inventorySystem = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
     [Dependency] private readonly StationRecordsSystem _record = default!;
     [Dependency] private readonly MessengerServerSystem _messenger = default!;
     [Dependency] private readonly StationSystem _station = default!;

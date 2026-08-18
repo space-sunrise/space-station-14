@@ -3,3 +3,7 @@ ent-BriefcaseIAAFilled = { ent-BriefcaseBrown }
     .desc = { ent-BriefcaseBrown.desc }
 ent-BriefcaseWeaponUziFilled = secure Uzi case
     .desc = { ent-BriefcaseWeaponSmall.desc }
+ent-BriefcaseWeaponType88AMRFilled = secure Type 88 case
+    .desc = { ent-BriefcaseWeapon.desc }
+ent-BriefcaseWeaponGarandFilled = secure Garand case
+    .desc = A secure weapon case containing an M1 Garand, a spare .308 clip, and a blueprint for producing more clips.

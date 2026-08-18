@@ -63,28 +63,28 @@
       id: OrganHumanBrain
       prob: 0.01
     - !type:EntSelector
-      id: LeftArmHuman
+      id: OrganHumanArmLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightArmHuman
+      id: OrganHumanArmRight
       prob: 0.01
     - !type:EntSelector
-      id: LeftHandHuman
+      id: OrganHumanHandLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightHandHuman
+      id: OrganHumanHandRight
       prob: 0.01
     - !type:EntSelector
-      id: LeftLegHuman
+      id: OrganHumanLegLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightLegHuman
+      id: OrganHumanLegRight
       prob: 0.01
     - !type:EntSelector
-      id: LeftFootHuman
+      id: OrganHumanFootLeft
       prob: 0.01
     - !type:EntSelector
-      id: RightFootHuman
+      id: OrganHumanFootRight
       prob: 0.01
     - !type:EntSelector
       id: ScrapMedkit
@@ -131,7 +131,7 @@
   - type: Damageable
     damageModifierSet: MobPirateT1
   - type: ExplosionResistance
-    damageCoefficient: 0.25
+    damageCoefficient: 0.8
   - type: Fixtures
     fixtures:
       fix1:
@@ -161,6 +161,8 @@
     - Dead
   - type: TimedDespawn
     lifetime: 3600
+  - type: SpawnOnDespawn
+    prototype: RedspaceImplantEffect
   - type: RemoveComponentsOnTrigger
     triggerOnce: true
     components:
@@ -230,7 +232,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 125
   - type: Stamina
     baseCritThreshold: 150
   - type: DamageStateVisuals
@@ -304,7 +305,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 95
   - type: Stamina
     baseCritThreshold: 100
   - type: Butcherable
@@ -551,6 +551,12 @@
       - MobPirateT1SMG
       - MobPirateT1Flintlock
     rarePrototypes:
+      - PirateSquadT1LMG
+      - PirateSquadT1Breach
+      - PirateSquadT1Assault
+      - PirateSquadT1Heavy
+      - PirateSquadT1Infiltrator
+      - PirateSquadT1Monkey
       - MobPirateT1MonkeyFireBomb
       - MobPirateT1MonkeyEDagger
       - MobPirateT1Hunter
@@ -567,7 +573,7 @@
       - MobPirateT1BorgAssault
       - MobPirateT1BorgMining
       - MobPirateT1BorgDerelict
-    rareChance: 0.2
+    rareChance: 0.15
 
 - type: entity
   name: pirate T2 spawner
@@ -609,8 +615,10 @@
       - MobPirateT2Mech
       - MobPirateT2Juggernaut
       - MobPirateT2JuggernautMG
+      - MobPirateT1BorgAssault
       - MobPirateT2BorgAssault
-    rareChance: 0.2
+      - MobPirateT1BorgMining
+    rareChance: 0.15
 
 - type: entity
   name: pirate T3 spawner
@@ -646,7 +654,8 @@
       - MobPirateT3Grenadier
       - MobPirateT3Infiltrator
       - MobPirateT3Sniper
-    rareChance: 0.2
+      - MobPirateT1BorgAssault
+    rareChance: 0.15
 
 # mixed all tiers spawner
 - type: entity
@@ -1133,9 +1142,10 @@
     count: 1
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -30
       types:
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
         Heat: -10
         Bloodloss: -5
         Mangleness: -5
@@ -1204,9 +1214,10 @@
     count: 1
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -30
       types:
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
         Heat: -10
         Bloodloss: -5
         Mangleness: -5
@@ -1439,10 +1450,16 @@
     threshold: 0.9
     aliveTargets: false
     damage:
-      groups:
-        Brute: -20
-        Burn: -10
-        Airloss: -5
+      types:
+        Blunt: -6.67
+        Slash: -6.67
+        Piercing: -6.66
+        Heat: -2.5
+        Shock: -2.5
+        Cold: -2.5
+        Caustic: -2.5
+        Asphyxiation: -2.5
+        Bloodloss: -2.5
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1459,10 +1476,16 @@
       threshold: 0.9
       aliveTargets: false
       damage:
-        groups:
-          Brute: -20
-          Burn: -10
-          Airloss: -5
+        types:
+          Blunt: -6.67
+          Slash: -6.67
+          Piercing: -6.66
+          Heat: -2.5
+          Shock: -2.5
+          Cold: -2.5
+          Caustic: -2.5
+          Asphyxiation: -2.5
+          Bloodloss: -2.5
       whitelist:
         components:
         - NpcVeteranFollower
@@ -1525,10 +1548,16 @@
     threshold: 0.9
     aliveTargets: false
     damage:
-      groups:
-        Brute: -20
-        Burn: -10
-        Airloss: -5
+      types:
+        Blunt: -6.67
+        Slash: -6.67
+        Piercing: -6.66
+        Heat: -2.5
+        Shock: -2.5
+        Cold: -2.5
+        Caustic: -2.5
+        Asphyxiation: -2.5
+        Bloodloss: -2.5
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1545,10 +1574,16 @@
       threshold: 0.9
       aliveTargets: false
       damage:
-        groups:
-          Brute: -20
-          Burn: -10
-          Airloss: -5
+        types:
+          Blunt: -6.67
+          Slash: -6.67
+          Piercing: -6.66
+          Heat: -2.5
+          Shock: -2.5
+          Cold: -2.5
+          Caustic: -2.5
+          Asphyxiation: -2.5
+          Bloodloss: -2.5
       whitelist:
         components:
         - NpcVeteranFollower
@@ -1618,10 +1653,16 @@
     threshold: 0.9
     aliveTargets: false
     damage:
-      groups:
-        Brute: -30
-        Burn: -20
-        Airloss: -10
+      types:
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
+        Heat: -5
+        Shock: -5
+        Cold: -5
+        Caustic: -5
+        Asphyxiation: -5
+        Bloodloss: -5
     whitelist:
       components:
       - NpcVeteranFollower
@@ -1638,10 +1679,16 @@
       threshold: 0.9
       aliveTargets: false
       damage:
-        groups:
-          Brute: -30
-          Burn: -20
-          Airloss: -10
+        types:
+          Blunt: -10
+          Slash: -10
+          Piercing: -10
+          Heat: -5
+          Shock: -5
+          Cold: -5
+          Caustic: -5
+          Asphyxiation: -5
+          Bloodloss: -5
       whitelist:
         components:
         - NpcVeteranFollower
@@ -2521,8 +2568,6 @@
     - Dead
   - type: SpawnOnTrigger
     proto: MobPirateT2RevolverCutlass
-  - type: GibOnTrigger
-    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -2544,7 +2589,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 400
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 1.1
@@ -2632,24 +2676,22 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 250
   - type: SlowOnDamage
     speedModifierThresholds:
-      25: 1.1
-      75: 1.15
+      50: 1.1
       100: 1.2
       125: 1.3
       150: 1.4
       175: 1.5
       200: 1.6
       215: 1.8
-      225: 2
+      225: 1.9
   - type: Stamina
     baseCritThreshold: 500
   - type: HellSpawnInvincibility
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.75
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepCyborgLegs
@@ -2669,10 +2711,10 @@
     count: 1
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -45
       types:
-        Piercing: -10
+        Blunt: -10
+        Slash: -10
+        Piercing: -25
         Heat: -5
         Bloodloss: -5
         Mangleness: -5
@@ -2682,7 +2724,7 @@
     damage:
       types:
         Blunt: 8
-        Slash: 12
+        Slash: 8
         Structural: 40
     bluntStaminaDamageFactor: 1
     soundHit:
@@ -2699,7 +2741,7 @@
     netsync: false
     radius: 1.75
     energy: 1.5
-    mask: /Textures/Effects/LightMasks/soft_cone.png
+    mask: /Textures/Effects/LightMasks/triple.png
     color: "#8cff00"
   - type: AmbientSound
     range: 4
@@ -2743,7 +2785,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 250
   - type: Stamina
     baseCritThreshold: 500
   - type: FootstepModifier
@@ -3475,7 +3516,7 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 2
   - type: BatteryAmmoProvider
-    proto: CartridgeHeavyRifleRFMJ
+    proto: CartridgeHeavyRifleRSP
     fireCost: 1
   - type: BatterySelfRecharger
     autoRechargePauseTime: 9
@@ -4288,8 +4329,6 @@
     - type: RadarBlip
   - type: SpawnOnTrigger
     proto: MobPirateT3Revolver
-  - type: GibOnTrigger
-    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -4311,7 +4350,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 450
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9

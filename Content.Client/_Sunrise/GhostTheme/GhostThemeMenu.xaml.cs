@@ -1,4 +1,4 @@
-// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
 
 using System.Linq;
 using System.Numerics;
@@ -85,6 +85,7 @@ public sealed partial class GhostThemeMenu : DefaultWindow
     private void UpdateButtons()
     {
         var currentlyPreviewedTheme = _previewedTheme;
+        var buttonGroup = new ButtonGroup();
 
         ClearButtons();
 
@@ -100,14 +101,17 @@ public sealed partial class GhostThemeMenu : DefaultWindow
                 !ghostTheme.ToLowerInvariant().Contains(_searchText.ToLowerInvariant()))
                 continue;
 
-            var button = new Button
+            var button = new ContainerButton
             {
                 MinHeight = 50,
                 HorizontalExpand = true,
+                Group = buttonGroup,
                 ToggleMode = true,
+                Mode = BaseButton.ActionMode.Press,
                 Pressed = ghostTheme == currentlyPreviewedTheme,
                 Disabled = !ghostThemeInfo.IsAvailable
             };
+            button.AddStyleClass(ContainerButton.StyleClassButton);
 
             var panel = new PanelContainer
             {
@@ -159,13 +163,6 @@ public sealed partial class GhostThemeMenu : DefaultWindow
                 if (!ghostThemeInfo.IsAvailable)
                     return;
 
-                foreach (var child in ButtonContainer.Children)
-                {
-                    if (child is Button otherButton && otherButton != button)
-                        otherButton.Pressed = false;
-                }
-
-                button.Pressed = true;
                 _previewedTheme = ghostTheme;
 
                 UpdatePreview(ghostTheme);

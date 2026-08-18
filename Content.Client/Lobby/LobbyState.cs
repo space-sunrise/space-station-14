@@ -50,7 +50,6 @@ namespace Content.Client.Lobby
     // TODO: Полностью скопировать в папку санрайза, это сбросить до состояния оффов или закоментировать
     public sealed class LobbyState : Robust.Client.State.State
     {
-        [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
@@ -344,7 +343,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = false;
                 Lobby!.ReadyButton.Pressed = false;
                 Lobby!.ObserveButton.Disabled = false;
-                Lobby!.GhostRolesButton.Disabled = false;
+                // Lobby!.GhostRolesButton.Disabled = false; // Sunrise-edit
             }
             else
             {
@@ -354,7 +353,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ObserveButton.Disabled = true;
-                Lobby!.GhostRolesButton.Disabled = true;
+                // Lobby!.GhostRolesButton.Disabled = true; // Sunrise-edit
             }
 
             if (_gameTicker.ServerInfoBlob != null)

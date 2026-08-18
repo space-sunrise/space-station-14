@@ -2,6 +2,7 @@ using Content.Shared._Sunrise.Dice;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
@@ -84,7 +85,7 @@ public abstract class SharedDiceSystem : EntitySystem
 
     private void Roll(Entity<DiceComponent> entity, EntityUid? user = null)
     {
-        var rand = new System.Random((int)_timing.CurTick.Value);
+        var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(entity));
 
         // Sunrise-Edit
         var roll = rand.Next(entity.Comp.StartFromSide, entity.Comp.Sides + 1);

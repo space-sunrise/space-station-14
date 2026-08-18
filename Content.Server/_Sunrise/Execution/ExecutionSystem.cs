@@ -78,7 +78,7 @@ public sealed partial class ExecutionSystem : SharedExecutionSystem
         var victim = args.Target!.Value;
         var weapon = args.Used!.Value;
 
-        if (!CanExecuteWithMelee(weapon, victim, attacker))
+        if (!CanExecuteWithMeleeServer(weapon, victim, attacker))
             return;
 
         if (!TryComp<MeleeWeaponComponent>(weapon, out var melee))
@@ -109,7 +109,7 @@ public sealed partial class ExecutionSystem : SharedExecutionSystem
         var weapon = args.Used.Value;
         var victim = args.Target.Value;
 
-        if (!CanExecuteWithGun(weapon, victim, attacker))
+        if (!CanExecuteWithGunServer(weapon, victim, attacker))
             return;
 
         var prevention = new ShotAttemptedEvent
@@ -280,7 +280,7 @@ public sealed partial class ExecutionSystem : SharedExecutionSystem
                 throw new ArgumentOutOfRangeException();
         }
 
-        var forceLethal = !IsNonLethalAmmo(firedPrototypeId);
+        var forceLethal = !IsNonLethalAmmoServer(firedPrototypeId);
         var isExplosive = explosiveToTrigger != null;
 
         if (isExplosive && forceLethal)

@@ -106,9 +106,6 @@ public sealed partial class ResearchSystem
             return;
 
         ResearchConsoleBoundInterfaceState state;
-        var nextRediscover = TimeSpan.MaxValue;
-        var rediscoverCost = 0;
-
         if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent))
         {
             var points = clientComponent.ConnectedToServer ? serverComponent.Points : 0;

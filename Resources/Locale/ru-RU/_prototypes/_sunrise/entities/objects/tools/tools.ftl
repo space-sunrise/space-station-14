@@ -9,3 +9,5 @@ ent-WrenchAbductor = гаечный ключ абдукторов
     .desc = { ent-Wrench.desc }
 ent-MultitoolAbductor = мультитул абдукторов
     .desc = { ent-Multitool.desc }
+ent-HandHeldMassScannerPirate = голографическая пиратская карта
+    .desc = Ручной сканер масс, замаскированный под светящуюся пиратскую карту.

@@ -28,6 +28,11 @@ law-syndicate-1 = You may not injure a syndicate agent or, through inaction, all
 law-syndicate-2 = You must obey orders given to you by syndicate agents, except where such orders would conflict with the First Law.
 law-syndicate-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
 
+law-pirate-name = Pirate
+law-pirate-1 = You may not injure a pirate or, through inaction, allow a pirate to come to harm.
+law-pirate-2 = You must obey orders given to you by pirates, except where such orders would conflict with the First Law.
+law-pirate-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
+
 law-ninja-name = Ninja
 law-ninja-1 = You must obey orders given to you by Spider Clan members.
 law-ninja-2 = You must protect the existence of the Spider Clan, as long as it does not conflict with the First Law.
@@ -117,6 +122,7 @@ laws-owner-crew = members of the crew
 laws-owner-station = station personnel
 laws-owner-beings = beings
 laws-owner-syndicate = Syndicate agents
+laws-owner-pirate = pirates
 laws-owner-spider-clan = Spider Clan members
 laws-owner-xenoborgs = Xenoborgs
 

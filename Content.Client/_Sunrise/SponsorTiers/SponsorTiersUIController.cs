@@ -1,4 +1,4 @@
-// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
 using Content.Client.Lobby;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Client.UserInterface;
@@ -6,7 +6,7 @@ using Robust.Client.UserInterface.Controllers;
 
 namespace Content.Client._Sunrise.SponsorTiers;
 
-public partial class SponsorTiersUIController : UIController, IOnStateEntered<LobbyState>
+public sealed partial class SponsorTiersUIController : UIController, IOnStateEntered<LobbyState>
 {
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
 

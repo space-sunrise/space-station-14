@@ -17,13 +17,14 @@ public sealed class SaturationScaleOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     private readonly ShaderInstance _shader;
     private const float Saturation = 0.5f;
+    private static readonly ProtoId<ShaderPrototype> SaturationScaleShader = "SaturationScale";
 
 
     public SaturationScaleOverlay()
     {
         IoCManager.InjectDependencies(this);
 
-        _shader = _prototypeManager.Index<ShaderPrototype>("SaturationScale").Instance().Duplicate();
+        _shader = _prototypeManager.Index(SaturationScaleShader).Instance().Duplicate();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)

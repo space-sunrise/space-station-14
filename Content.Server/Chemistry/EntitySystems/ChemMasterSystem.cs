@@ -11,6 +11,7 @@ using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Storage;
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -43,6 +44,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
 
         private static readonly EntProtoId PillPrototypeId = "Pill";
+        private static readonly ProtoId<TagPrototype> PatchPackTag = "PatchPack";
 
         public override void Initialize()
         {
@@ -432,7 +434,7 @@ namespace Content.Server.Chemistry.EntitySystems
             })).ToList();
 
             // Sunrise-Edit start - patch pack container info override
-            if (tagSystem.HasTag(container.Value, "PatchPack"))
+            if (tagSystem.HasTag(container.Value, PatchPackTag))
             {
                 return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)) / 2, storage.Grid.GetArea() / 2)
                 {
