@@ -103,8 +103,6 @@
     alternateState: Standing
   - type: FlashImmunity
     showInExamine: false
-  - type: FlashbangVulnerable # Sunrise-Edit
-    effectMultiplier: 0.5
   # Sunrise-Start
   - type: ToggleableNightVision
     effect: EffectNightVisionPirate

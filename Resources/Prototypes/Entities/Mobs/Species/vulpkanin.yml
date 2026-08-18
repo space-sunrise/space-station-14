@@ -342,9 +342,6 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: outer
-  - type: FlashbangVulnerable # Sunrise-Edit
-    effectMultiplier: 1.33
-    bypassProtection: false
 # SUNRISE EDIT
 
 - type: entity

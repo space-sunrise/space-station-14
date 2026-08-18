@@ -149,9 +149,6 @@
   - type: ToggleableNightVision
     effect: EffectNightVisioSpecies
   # Sunrise-end
-  - type: FlashbangVulnerable # Sunrise-Edit
-    effectMultiplier: 0.5
-    bypassProtection: false
 
 - type: entity
   parent: BaseSpeciesDummy
