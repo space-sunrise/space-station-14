@@ -317,7 +317,7 @@ class ChangelogActionsTests(unittest.TestCase):
             categories = {"Main": "ChangelogSunrise.yml", "Admin": "Admin.yml"}
             body = ":ci: Иван\n- add: Рыба\nADMIN:\n- fix: Команда"
             environment = {
-                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_REPOSITORY": "makura-games/sunrise-station",
                 "GITHUB_RUN_ID": "123456",
             }
             with patch.dict("os.environ", environment):
@@ -329,7 +329,7 @@ class ChangelogActionsTests(unittest.TestCase):
             self.assertNotIn("category", main_part)
             self.assertEqual("Admin", admin_part["category"])
             self.assertEqual(
-                "https://github.com/space-sunrise/sunrise-station/actions/runs/123456",
+                "https://github.com/makura-games/sunrise-station/actions/runs/123456",
                 main_part["url"],
             )
 
@@ -367,7 +367,7 @@ class ChangelogActionsTests(unittest.TestCase):
                     "\t-\tadd:\u00a0ТЕКСТ\n"
                     " - fix: ТЕКСТ\ufeff\n"
                 ),
-                "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/123",
                 "user": {"login": "Tester"},
                 "base": {"ref": "master"},
             }
@@ -389,7 +389,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 "merged": True,
                 "merged_at": "2026-08-08T12:00:00Z",
                 "body": "Изменение без чейнджлога",
-                "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/123",
                 "user": {"login": "Tester"},
                 "base": {"ref": "master"},
             }
@@ -411,7 +411,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 "merged": True,
                 "merged_at": "2026-08-08T12:00:00Z",
                 "body": ":cl: Tester\n- add:",
-                "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/123",
                 "user": {"login": "Tester"},
                 "base": {"ref": "master"},
             }
@@ -487,7 +487,7 @@ class ChangelogActionsTests(unittest.TestCase):
                     "- add: Added\n"
                     "media: ![Рыба](https://example.org/fish.png)"
                 ),
-                "html_url": "https://github.com/space-sunrise/sunrise-station/pull/123",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/123",
                 "user": {"login": "Fallback"},
                 "base": {"ref": "master"},
             }
@@ -642,7 +642,7 @@ class ChangelogActionsTests(unittest.TestCase):
         with patch.dict(
             "os.environ",
             {
-                "GITHUB_REPOSITORY": "space-sunrise/fish-station",
+                "GITHUB_REPOSITORY": "makura-games/fish-station",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "123",
                 "TARGET_WORKFLOW_REF": "master",
@@ -698,7 +698,7 @@ class ChangelogActionsTests(unittest.TestCase):
             },
         ]
 
-        with patch.dict("os.environ", {"GITHUB_REPOSITORY": "space-sunrise/sunrise-station"}), patch.object(
+        with patch.dict("os.environ", {"GITHUB_REPOSITORY": "makura-games/sunrise-station"}), patch.object(
             changelog_actions,
             "github_request",
             return_value=page,
@@ -758,7 +758,7 @@ class ChangelogActionsTests(unittest.TestCase):
         with patch.dict(
             "os.environ",
             {
-                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_REPOSITORY": "makura-games/sunrise-station",
                 "GITHUB_RUN_ID": "200",
             },
         ), patch.object(changelog_actions, "github_request", side_effect=request_response) as request:
@@ -768,17 +768,17 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual(
             [
                 call(
-                    "/repos/space-sunrise/sunrise-station/actions/workflows/changelog.yml/runs",
+                    "/repos/makura-games/sunrise-station/actions/workflows/changelog.yml/runs",
                     {"status": "success", "per_page": 100},
                     token_environment="ACTIONS_TOKEN",
                 ),
                 call(
-                    "/repos/space-sunrise/sunrise-station/actions/runs/125/jobs",
+                    "/repos/makura-games/sunrise-station/actions/runs/125/jobs",
                     {"per_page": 100},
                     token_environment="ACTIONS_TOKEN",
                 ),
                 call(
-                    "/repos/space-sunrise/sunrise-station/actions/runs/100/jobs",
+                    "/repos/makura-games/sunrise-station/actions/runs/100/jobs",
                     {"per_page": 100},
                     token_environment="ACTIONS_TOKEN",
                 ),
@@ -791,7 +791,7 @@ class ChangelogActionsTests(unittest.TestCase):
 
         with patch.object(discord_changelog, "CHANGELOG_FILE", "../outside.yml"):
             with self.assertRaisesRegex(RuntimeError, "относительным путём внутри репозитория"):
-                discord_changelog.get_last_changelog_by_sha(session, "abc", "space-sunrise/repo")
+                discord_changelog.get_last_changelog_by_sha(session, "abc", "makura-games/repo")
 
         session.get.assert_not_called()
 
@@ -801,12 +801,12 @@ class ChangelogActionsTests(unittest.TestCase):
         discord_changelog.get_last_changelog_by_sha(
             session,
             "abc",
-            "space-sunrise/repo",
+            "makura-games/repo",
             Path("Resources/Changelog/Changelog?test.yml"),
         )
 
         session.get.assert_called_once_with(
-            "https://api.github.com/repos/space-sunrise/repo/contents/"
+            "https://api.github.com/repos/makura-games/repo/contents/"
             "Resources/Changelog/Changelog%3Ftest.yml",
             headers={"Accept": "application/vnd.github.raw"},
             params={"ref": "abc"},
@@ -846,7 +846,7 @@ class ChangelogActionsTests(unittest.TestCase):
         ) as past_runs:
             result = discord_changelog.get_most_recent_workflow(
                 session,
-                "space-sunrise/fish-station",
+                "makura-games/fish-station",
                 "300",
                 "Fish_Test.v2",
             )
@@ -885,7 +885,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 "CHANGELOG_FILE": "Resources/Changelog/ChangelogSunrise.yml",
                 "CHANGELOG_TARGET_ID": "sunrise",
                 "RELEASED_SHA": "a" * 40,
-                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_REPOSITORY": "makura-games/sunrise-station",
                 "GITHUB_RUN_ID": "300",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "200",
@@ -902,7 +902,7 @@ class ChangelogActionsTests(unittest.TestCase):
         with patch.dict(
             "os.environ",
             {
-                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_REPOSITORY": "makura-games/sunrise-station",
                 "GITHUB_RUN_ID": "300",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "200",
@@ -937,7 +937,7 @@ class ChangelogActionsTests(unittest.TestCase):
         with patch.dict(
             "os.environ",
             {
-                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_REPOSITORY": "makura-games/sunrise-station",
                 "GITHUB_RUN_ID": "300",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "200",
@@ -966,7 +966,7 @@ class ChangelogActionsTests(unittest.TestCase):
         with patch.dict(
             "os.environ",
             {
-                "GITHUB_REPOSITORY": "space-sunrise/sunrise-station",
+                "GITHUB_REPOSITORY": "makura-games/sunrise-station",
                 "GITHUB_RUN_ID": "300",
                 "GITHUB_TOKEN": "token",
                 "SOURCE_WORKFLOW_RUN_ID": "200",
@@ -999,7 +999,7 @@ class ChangelogActionsTests(unittest.TestCase):
 
             with patch.dict(
                 "os.environ",
-                {"GITHUB_REPOSITORY": "space-sunrise/sunrise-station"},
+                {"GITHUB_REPOSITORY": "makura-games/sunrise-station"},
             ), patch.object(
                 changelog_actions,
                 "github_request",
