@@ -11,7 +11,7 @@ uplink-magazine-shotgun-flechette-desc = Барабан с бронебойны�
 uplink-breaching-magazine-desc = Барабанный магазин, заряженный пробивными-патронами для пробития шлюзов, окон и стен. Менее эффективен против людей.
 uplink-magazine-bulldog-incendiary-desc = Барабанный магазин на 8 патронов зажигательной дроби, легко превращает гражданских в горящие спички.
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
-uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".
+uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6 SAW".
 uplink-grenade-frag-timer-name = кассета осколочных гранат с таймером
 uplink-grenade-frag-timer-desc = Кассета на 5 осколочных гранат. Совместима с «Чайна-Лейк» и «ГЛ-70». Взрываются через 2 секунды после выстрела.
 uplink-grenade-blast-timer-name = кассета фугасных гранат с таймером
@@ -345,13 +345,13 @@ uplink-grenade-launcher-emp-ammo-name = Картридж ЭМИ
 uplink-grenade-launcher-emp-ammo-desc = Картридж на 5 выстрелов ЭМИ. Совместим только со стационарными пушками «Френдшип» и «Дастер».
 
 uplink-ammo-lmgkit-name = Набор боеприпасов ЛМГ
-uplink-ammo-lmgkit-desc = Перезарядка! Содержит 8 магазинов для Л6 Сау.
+uplink-ammo-lmgkit-desc = Перезарядка! Содержит 8 магазинов для L6 SAW.
 
 uplink-ammo-lmgincendiarykit-name = Набор зажигательных боеприпасов ЛМГ
-uplink-ammo-lmgincendiarykit-desc = Перезарядка! Содержит 8 зажигательных магазинов для Л6 Сау.
+uplink-ammo-lmgincendiarykit-desc = Перезарядка! Содержит 8 зажигательных магазинов для L6 SAW.
 
 uplink-ammo-lmguraniumkit-name = Набор урановых боеприпасов ЛМГ
-uplink-ammo-lmguraniumkit-desc = Перезарядка! Содержит 8 урановых магазинов для Л6 Сау.
+uplink-ammo-lmguraniumkit-desc = Перезарядка! Содержит 8 урановых магазинов для L6 SAW.
 
 uplink-marriage-axe-name = Свадебный топор
 uplink-marriage-axe-desc = Обворожительный, утончённый инструмент хаоса — идеален для тех случаев, когда дипломатия не помогает. Кричит, как банши, режет, как демон, и превращает людей в печальные воспоминания. Обращайся с энтузиазмом.
