@@ -2,7 +2,6 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Content.Shared.Storage;
-using Content.Shared.StationEvents.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Shared.Holopad;
