@@ -29,7 +29,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunWt550
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: wt550 }
   cost:
-    Bluecrystal: 10
+    Bluecrystal: 12
   categories:
     - NTAutoGun
   conditions:
@@ -42,7 +42,7 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: p90 }
   cost:
-    Bluecrystal: 24
+    Bluecrystal: 25
   categories:
   - NTAutoGun
   conditions:
@@ -126,7 +126,7 @@
   productEntity: ClothingBackpackDuffelWeaponRifleSKM28Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: skm28nano }
   cost:
-    Bluecrystal: 19
+    Bluecrystal: 20
   categories:
   - NTAutoGun
   conditions:
@@ -170,6 +170,22 @@
       - ERTRed
 
 - type: listing
+  id: ERTUplinkWeaponLightMachineGunM492Gamma
+  productEntity: ClothingBackpackDuffelWeaponLightMachineGunM492
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m492 }
+  cost:
+    Bluecrystal: 30
+  categories:
+    - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTGamma
+
+- type: listing
   id: ERTUplinkWeaponLightMachineGunM492CBURN
   productEntity: ClothingBackpackDuffelWeaponLightMachineGunM492CBURN
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m492cburn }
@@ -190,7 +206,7 @@
   productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
   cost:
-    Bluecrystal: 32
+    Bluecrystal: 38
   categories:
     - NTAutoGun
   conditions:
@@ -226,7 +242,7 @@
   productEntity: PowerpackMinigunMG100
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg_100 }
   cost:
-    Bluecrystal: 35
+    Bluecrystal: 40
   categories:
     - NTAutoGun
   conditions:
@@ -244,7 +260,7 @@
   productEntity: ClothingBackpackDuffelWeaponRifleM52Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: m52 }
   cost:
-    Bluecrystal: 25
+    Bluecrystal: 30
   categories:
   - NTAutoGun
   conditions:
@@ -262,7 +278,7 @@
   productEntity: ClothingBackpackDuffelWeaponSniperHristovFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: hristov }
   cost:
-    Bluecrystal: 28
+    Bluecrystal: 30
   categories:
   - NTAutoGun
   conditions:
@@ -279,7 +295,7 @@
   productEntity: ClothingBackpackDuffelWeaponShotgunCycler
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cycler }
   cost:
-    Bluecrystal: 17
+    Bluecrystal: 20
   categories:
   - NTAutoGun
   conditions:

@@ -126,7 +126,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponSubMachineGunWt550
+        - id: WeaponSubMachineGunWt550g
         - id: MagazinePistolSubMachineGunTopMounted
           amount: 3
         - id: MagazinePistolSubMachineGunTopMountedHP

@@ -2233,19 +2233,6 @@
       - SurplusBundle
 
 - type: listing
-  id: UplinkPirateBorgModuleUtility
-  productEntity: BorgModulePirateUtility
-  cost:
-    Doubloon: 5
-  categories:
-  - UplinkPirateAllies
-  conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
   id: UplinkPirateBorgSyndicateDerelict
   productEntity: PlayerBorgSyndicateDerelictGhostRole
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec_derelict }
