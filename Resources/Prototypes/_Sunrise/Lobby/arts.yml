@@ -67,6 +67,10 @@
   background: /NetTextures/Lobby/Arts/space-mudaki.webp
 
 - type: lobbyArt
+  id: TajarmaParty
+  background: /NetTextures/Lobby/Arts/tajarmaparty.webp
+
+- type: lobbyArt
   id: Traitor
   background: /NetTextures/Lobby/Arts/traitor.webp
 

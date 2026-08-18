@@ -231,7 +231,6 @@
     layers:
     - state: fax-machine
   - type: Flatpack
-    allowUnpackOnTables: true
     entity: FaxMachineBase
 
 - type: entity
@@ -262,7 +261,6 @@
     layers:
     - state: microwave
   - type: Flatpack
-    allowUnpackOnTables: true
     entity: KitchenMicrowave
 
 - type: entity

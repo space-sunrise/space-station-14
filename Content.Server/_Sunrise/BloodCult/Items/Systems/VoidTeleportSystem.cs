@@ -63,7 +63,7 @@ public sealed class VoidTeleportSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<TransformComponent>(args.User, out var transform))
+        if (!TryComp(args.User, out TransformComponent? transform))
             return;
 
         var oldCoords = transform.Coordinates;
@@ -103,7 +103,7 @@ public sealed class VoidTeleportSystem : EntitySystem
             _xform.SetCoordinates(pulled.Value, coords);
             _pulling.TryStopPull(pulled.Value.Owner, pulled.Value.Comp);
 
-            if (TryComp<TransformComponent>(pulled.Value, out var pulledTransform))
+            if (TryComp(pulled.Value, out TransformComponent? pulledTransform))
                 pulledTransform.AttachToGridOrMap();
         }
 

@@ -7,7 +7,7 @@
   flavor: medicine
   color: "#8b0b47"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:ModifyBleed
         amount: -4
@@ -36,15 +36,13 @@
   flavor: medicine
   color: "#bd020284"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:HealthChange
           damage:
             types:
               Radiation: -3
               Mangleness: 0.45 # Sunrise-Edit # 15% of 3 radiation healing
-    Poison:
-      effects:
         - !type:ModifyStatusEffect
           effectProto: StatusEffectSeeingRainbow
           type: Update
@@ -59,7 +57,7 @@
   flavor: medicine
   color: "#ff867d"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         probability: 0.3

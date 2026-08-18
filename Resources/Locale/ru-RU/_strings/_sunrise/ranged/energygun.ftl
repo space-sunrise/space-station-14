@@ -4,3 +4,6 @@ energy-gun-disable = обезоруживание
 energy-gun-special = специальный
 energy-gun-shotgun-spread = широкий лазерный обстрел
 energy-gun-shotgun-spread-narrow = узкий лазерный залп
+lasgun-fire-mode-low = малый
+lasgun-fire-mode-standard = боевой
+lasgun-fire-mode-overcharge = перегруз

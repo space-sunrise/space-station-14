@@ -247,12 +247,17 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 600
     damage:
-      groups:
-        Brute: -0.75
-        Burn: -0.75
-        Airloss: -1
+      types:
+        Blunt: -0.25
+        Slash: -0.25
+        Piercing: -0.25
+        Heat: -0.19
+        Shock: -0.19
+        Cold: -0.19
+        Caustic: -0.18
+        Asphyxiation: -0.5
+        Bloodloss: -0.5
 
 - type: entity
   parent:
@@ -736,7 +741,6 @@
   id: MobRogueSiliconT1Viscerator
   name: viscerator unit
   description: Small, quick, and nimble, these drones are designed to chase its targets through narrow areas and incapacitate those it catches. Often accompanies catcher units.
-
   components:
   - type: Tag
     tags:
@@ -766,8 +770,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      15: Critical
-      80: Dead
+      10: Critical
+      50: Dead
   - type: Fixtures
     fixtures:
       fix1:
@@ -810,12 +814,12 @@
     solutions:
       melee:
         reagents:
-        - ReagentId: Warfarin
+        - ReagentId: Heparin
           Quantity: 90
         maxVol: 90
   - type: MeleeChemicalInjector
     solution: melee
-    transferAmount: 2
+    transferAmount: 1
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -869,7 +873,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      20: Critical
+      15: Critical
       50: Dead
   - type: Fixtures
     fixtures:
@@ -924,7 +928,7 @@
     solutions:
       melee:
         reagents:
-        - ReagentId: Warfarin
+        - ReagentId: Heparin
           Quantity: 90
         maxVol: 90
   - type: MeleeChemicalInjector
@@ -1601,8 +1605,6 @@
         id: RogueAiNode
   - type: SpawnOnTrigger
     proto: ClothingBackpackRogueSiliconT4
-  - type: GibOnTrigger
-    targetUser: true
   - type: Destructible
     thresholds:
     - trigger:
@@ -1624,7 +1626,6 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 450
   - type: SlowOnDamage
     speedModifierThresholds:
       150: 0.9

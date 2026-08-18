@@ -1,13 +1,13 @@
-ent-MagazinePistolSubMachineGunImprovised = Импровизированный магазин ПП (.35 auto)
+ent-MagazinePistolSubMachineGunImprovised = импровизированный магазин пп (.35 авто)
     .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
-ent-MagazinePistolSubMachineGunImprovisedFilled = Импровизированный магазин ПП (.35 auto)
+ent-MagazinePistolSubMachineGunImprovisedFilled = импровизированный магазин пп (.35 авто)
     .suffix = Заполненный
     .desc = { ent-MagazinePistolSubMachineGunImprovised.desc }
 ent-MagazinePistolSubMachineGunPPSH = Магазин ППШ
     .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
 ent-MagazinePistol40Base = Пистолетный магазин (.40)
     .desc = { ent-BaseMagazinePistol.desc }
-ent-MagazinePistol40Empty = Пистолетный магазин (.40 any)
+ent-MagazinePistol40Empty = пистолетный магазин (.40)
     .suffix = Пустой
     .desc = { ent-MagazinePistol40Base.desc }
 ent-MagazinePistol40SP = Пистолетный магазин (.40 SP)

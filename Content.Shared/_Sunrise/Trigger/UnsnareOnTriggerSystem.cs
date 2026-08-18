@@ -6,7 +6,6 @@ using Content.Shared.Trigger.Systems;
 using Content.Shared._Sunrise.Trigger;
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 
 namespace Content.Shared._Sunrise.Trigger;
 
@@ -14,8 +13,6 @@ public sealed class UnsnareOnTriggerSystem : EntitySystem
 {
     [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
 
     public override void Initialize()
     {

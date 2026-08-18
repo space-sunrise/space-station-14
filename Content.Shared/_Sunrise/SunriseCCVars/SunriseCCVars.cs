@@ -182,10 +182,10 @@ public sealed partial class SunriseCCVars : CVars
     /// Ссылка на повторы для показа в меню.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksReplays =
-        CVarDef.Create("infolinks.replays", "https://t.me/ss14_replays", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.replays", "https://replays.ss14.org", CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServerName =
-        CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("lobby.server_name", "Stellar Stories", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
@@ -266,6 +266,12 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<bool> ShowMapVotes = CVarDef.Create("vote.show_map_votes", true);
 
+    /// <summary>
+    ///     Makes preset votes ignore player count limits. Intended for local development.
+    /// </summary>
+    public static readonly CVarDef<bool> IgnorePresetPlayerLimits =
+        CVarDef.Create("vote.ignore_preset_player_limits", false, CVar.SERVERONLY);
+
     public static readonly CVarDef<bool> RunMapVoteAfterRestart =
         CVarDef.Create("vote.run_map_vote_after_restart", false);
 
@@ -337,6 +343,12 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> BunnyHopEnable =
         CVarDef.Create("bunny_hop.enable", true, CVar.SERVER | CVar.REPLICATED);
 
+    public static readonly CVarDef<float> BunnyHopSpeedUpPerJump =
+        CVarDef.Create("bunny_hop.speed_up_per_jump", 0.005f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopSpeedLimit =
+        CVarDef.Create("bunny_hop.speed_limit", 2.0f, CVar.SERVER | CVar.REPLICATED);
+
     public static readonly CVarDef<float> BunnyHopMinSpeedThreshold =
         CVarDef.Create("bunny_hop.min_speed_threshold", 4.0f, CVar.SERVER | CVar.REPLICATED);
 
@@ -356,22 +368,6 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<float> SlipDeadChance =
         CVarDef.Create("slip.dead_chance", 0.001f, CVar.SERVER | CVar.REPLICATED);
-
-    /**
-     * VigersRay
-     */
-
-    public static readonly CVarDef<bool> VigersRayJoinNotifyEveryone =
-        CVarDef.Create("vigers_ray.join_notify_everyone", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> VigersRayJoinSoundEveryone =
-        CVarDef.Create("vigers_ray.join_sound_everyone", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> VigersRayJoinShockEveryone =
-        CVarDef.Create("vigers_ray.join_shock_everyone", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<string> VigersRayVictims =
-        CVarDef.Create("vigers_ray.victims", "", CVar.SERVERONLY);
 
     /// <summary>
     /// Список имен пользователей, которых нельзя кикнуть командами kick или ghostkick.
@@ -574,8 +570,18 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("tutorial.max_active", 10, CVar.SERVERONLY);
 
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
-        CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(15), CVar.SERVERONLY);
+        CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(5), CVar.SERVERONLY);
 
-    public static readonly CVarDef<bool> LyingAnimationEnabled =
-        CVarDef.Create("lying.animation_enabled", false, CVar.REPLICATED | CVar.ARCHIVE);
+    /// <summary>
+    /// Maximum account age at the first tutorial completion for the player to be counted as a new account.
+    /// </summary>
+    public static readonly CVarDef<TimeSpan> TutorialNewAccountThreshold =
+        CVarDef.Create("tutorial.metrics.new_account_threshold", TimeSpan.FromDays(7), CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> TutorialPromptSkipDelay =
+        CVarDef.Create("tutorial.prompt_skip_delay", 15f, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> TutorialPromptSeen =
+        CVarDef.Create("tutorial.prompt_seen", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
 }

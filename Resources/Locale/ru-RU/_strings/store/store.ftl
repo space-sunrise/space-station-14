@@ -14,3 +14,6 @@ store-preset-name-spellbook = Книга заклинаний
 store-preset-name-ntuplink = Визионер
 store-preset-name-exchanger = Обменник
 store-preset-name-blackmarket = Чёртный рынок
+store-preset-name-nukie-delivery = Ядерная блюспейс доставка
+store-preset-name-changeling = ДНК магазин
+store-ui-refund-text = Возврат

@@ -8,7 +8,7 @@
   color: "#cc1a79"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       metabolismRate: 1.0
       effects:
       - !type:HealthChange
@@ -29,7 +29,7 @@
   color: "#8A2BE2"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       metabolismRate: 1.0
       effects:
       - !type:HealthChange
@@ -50,7 +50,7 @@
   color: "#FFFF00"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       metabolismRate: 1.0
       effects:
       - !type:HealthChange
@@ -58,8 +58,10 @@
         - !type:TemperatureCondition
           max: 213.0
         damage:
-          groups:
-            Brute: -6
+          types:
+            Blunt: -2
+            Slash: -2
+            Piercing: -2
 
 - type: reagent
   id: Celliminol
@@ -71,7 +73,7 @@
   color: "#81eb81"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:HealthChange
           conditions:
@@ -92,7 +94,7 @@
   color: "#cfc434ff"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:ModifyBloodLevel
           amount: 1
@@ -126,17 +128,257 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -4
-            Brute: -4
+          types:
+            Heat: -1
+            Shock: -1
+            Cold: -1
+            Caustic: -1
+            Blunt: -1.33
+            Slash: -1.33
+            Piercing: -1.34
+
+- type: reagent
+  id: RedRum
+  parent: Vodkizine
+  name: reagent-name-redrum
+  desc: reagent-desc-redrum
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: rum
+  color: "#f07c42"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/rumglass.rsi
+    state: icon_empty
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    Bloodstream:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -6
+          Brute: -10
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: -1
+            Poison: -1
+
+- type: reagent
+  id: DarkRedRum
+  parent: RedRum
+  name: reagent-name-dark-red-rum
+  desc: reagent-desc-dark-red-rum
+  physicalDesc: reagent-physical-desc-strong-smelling
+  contrabandSeverity: Syndicate
+  flavor: rum
+  color: "#700a0a"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/rumglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+      - !type:ModifyBloodLevel
+        amount: 3
+      - !type:EvenHealthChange
+        damage:
+          Burn: -2
+          Brute: -3
+          Toxin: -2
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -1
+            Asphyxiation: -1
+      - !type:ModifyBleed
+        amount: -1.5
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 9
+    Bloodstream:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.5
+        sprintSpeedModifier: 1.5
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina
+        time: 3
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 3.5
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 3.5
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Remove
+      - !type:Jitter
+      - !type:Emote
+        emote: Scream
+        showInChat: true
+        force: true
+        probability: 0.05
+      - !type:Emote
+        emote: Growl
+        showInChat: true
+        force: true
+        probability: 0.05
+      - !type:Emote
+        emote: Laugh
+        showInChat: true
+        probability: 0.05
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 5
+      - !type:Emote
+        emote: Whistle
+        showInChat: true
+        probability: 0.05
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 5
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages:
+        - "psicodine-effect-fearless"
+        - "psicodine-effect-anxieties-wash-away"
+        - "psicodine-effect-at-peace"
+        probability: 0.1
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 10
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          min: 10
+        damage:
+          types:
+            Mangleness: 1.5
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Haloperidol
+          max: 0.01
+        effectProto: StatusEffectDrowsiness
+        time: 10
+        type: Remove
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+      - !type:EvenHealthChange
+        damage:
+          Burn: -3
+          Brute: -5
+      - !type:HealthChange
+        damage:
+          types:
+            Mangleness: -0.5
+            Poison: -0.5
+      - !type:ModifyBleed
+        amount: -1.5
+      - !type:EvenHealthChange
+        damage:
+          Burn: -0.5
+          Brute: -0.5
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -2
+      - !type:ResetNarcolepsy
+      - !type:SatiateHunger
+        factor: 1
+      - !type:SatiateThirst
+        factor: 1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Histamine
+          min: 45
+        reagent: Histamine
+        amount: -5
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -1
+            Poison: -0.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          max: 20
+        damage:
+          Brute: -1
+          Burn: -1
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkRedRum
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 1
+      - !type:AdjustReagent
+        reagent: HeartbreakerToxin
+        amount: -2
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: DarkRedRum
+        amount: -1
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 0.75
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 0.75
+        type: Remove
+      - !type:CleanBloodstream
+        excluded: DarkRedRum
+        cleanseRate: 3

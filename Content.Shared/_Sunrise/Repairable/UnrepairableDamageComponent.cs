@@ -1,4 +1,6 @@
+using Content.Shared.Damage.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Repairable;
@@ -11,5 +13,5 @@ namespace Content.Shared.Repairable;
 public sealed partial class UnrepairableDamageComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public HashSet<string> Types = new() { "Mangleness", "Deterioration" };
+    public HashSet<ProtoId<DamageTypePrototype>> Types = new() { "Mangleness", "Deterioration" };
 }

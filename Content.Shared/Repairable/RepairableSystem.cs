@@ -2,11 +2,13 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
-using Content.Shared.FixedPoint;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Damage.Prototypes; // Sunrise-Edit
+using Content.Shared.FixedPoint; // Sunrise-Edit
 using Content.Shared.Tools.Systems;
+using Robust.Shared.Prototypes; // Sunrise-Edit
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Repairable;
@@ -29,7 +31,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!TryComp(ent.Owner, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
+        if (!TryComp(ent.Owner, out DamageableComponent? damageable))
+            return;
+
+        var totalDamage = _damageableSystem.GetTotalDamage((ent.Owner, damageable));
+        if (totalDamage == 0)
             return;
 
         if (ent.Comp.DamageValue != null)
@@ -39,7 +45,9 @@ public sealed partial class RepairableSystem : EntitySystem
         else
             RepairAllDamage((ent, damageable), args.User);
 
-        args.Repeat = ent.Comp.AutoDoAfter && damageable.TotalDamage > 0;
+        totalDamage = _damageableSystem.GetTotalDamage((ent.Owner, damageable));
+
+        args.Repeat = ent.Comp.AutoDoAfter && totalDamage > 0;
         args.Args.Event.Repeat = args.Repeat;
         args.Handled = true;
 
@@ -95,12 +103,14 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Handled)
             return;
 
+        var damage = _damageableSystem.GetAllDamage(ent.Owner);
+
         // Only try repair the target if it is damaged
-        if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
+        if (damage.GetTotal() == 0)
             return;
 
         // Sunrise-start - check unrepairable component
-        if (!CanRepair(ent.Owner, damageable.Damage.DamageDict, ent.Comp))
+        if (!CanRepair(ent.Owner, damage.DamageDict, ent.Comp))
             return;
         // Sunrise-end
 
@@ -119,38 +129,38 @@ public sealed partial class RepairableSystem : EntitySystem
         args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairDoAfterEvent(), ent.Comp.FuelCost);
     }
 
-        // Sunrise-start - use unrepairable types from component
-        private bool CanRepair(EntityUid uid, Dictionary<string, FixedPoint2> damage, RepairableComponent component)
+    // Sunrise-start - use unrepairable types from component
+    private bool CanRepair(EntityUid uid, Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damage, RepairableComponent component)
+    {
+        var unrepairableTypes = new HashSet<ProtoId<DamageTypePrototype>>();
+        if (TryComp<UnrepairableDamageComponent>(uid, out var unrepairable))
         {
-            var unrepairableTypes = new HashSet<string>();
-            if (TryComp<UnrepairableDamageComponent>(uid, out var unrepairable))
-            {
-                unrepairableTypes = unrepairable.Types;
-            }
+            unrepairableTypes = unrepairable.Types;
+        }
 
-            if (component.Damage == null)
+        if (component.Damage == null)
+        {
+            foreach (var type in damage)
             {
-                foreach (var type in damage)
-                {
-                    if (type.Value > 0 && !unrepairableTypes.Contains(type.Key))
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-
-            foreach (var type in component.Damage.DamageDict)
-            {
-                if (damage.TryGetValue(type.Key, out var value) && value > 0 && !unrepairableTypes.Contains(type.Key))
+                if (type.Value > 0 && !unrepairableTypes.Contains(type.Key))
                 {
                     return true;
                 }
             }
-
             return false;
         }
-        // Sunrise-end
+
+        foreach (var type in component.Damage.DamageDict)
+        {
+            if (damage.TryGetValue(type.Key, out var value) && value > 0 && !unrepairableTypes.Contains(type.Key))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // Sunrise-end
 }
 
 /// <summary>

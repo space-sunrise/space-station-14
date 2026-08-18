@@ -85,9 +85,10 @@
     - Synth
     - Mech
     damage:
-      groups:
-        Brute: -10
       types:
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
         Deterioration: -5
     healingBeginSound:
       path: /Audio/Machines/airlock_creaking.ogg

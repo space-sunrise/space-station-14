@@ -569,11 +569,11 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatteryAmmoProvider
-    proto: 20mmBullet
+    proto: CartridgeRifleHeavy127mm
     fireCost: 1
   - type: Battery
-    maxCharge: 50
-    startingCharge: 50
+    maxCharge: 80
+    startingCharge: 80
     netsync: false
   - type: ApcPowerReceiverBattery
     idleLoad: 100

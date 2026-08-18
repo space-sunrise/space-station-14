@@ -120,5 +120,6 @@
         - id: CableApcStack1
         - id: RemoteSignaller
         - id: Multitool
-        - id: MagazineBoxAntiMateriel
-          amount: 4
+        - id: MagazineBoxBelt127Artillery
+          amount: 2
+        - id: MagazineBoxBelt127

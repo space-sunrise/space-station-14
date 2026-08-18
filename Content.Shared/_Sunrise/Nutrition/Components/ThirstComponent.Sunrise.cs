@@ -8,7 +8,7 @@ namespace Content.Shared.Nutrition.Components;
 public sealed partial class ThirstComponent
 {
     // Sunrise-Start
-    [DataField, AutoNetworkedField]
+    [DataField]
     public DamageSpecifier? DehydrationDamage;
 
     /// <summary>
