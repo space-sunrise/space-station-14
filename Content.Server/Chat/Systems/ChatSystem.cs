@@ -10,9 +10,9 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Antags.Abductor;
+using Content.Shared._Sunrise.Chat;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -66,10 +66,9 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeaker = default!;
 
-    public const string DefaultAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
+    public const string DefaultSunriseAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -361,7 +360,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (playDefault && announcementSound == null)
             {
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
             }
 
             // Send announcement to all stations through their speaker networks
@@ -400,7 +399,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playTts && (playDefault || announcementSound != null))
         {
             if (playDefault && announcementSound == null)
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
 
             var resolvedSound = announcementSound != null ? _audio.ResolveSound(announcementSound) : null;
 
@@ -459,7 +458,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playTts)
         {
             if (playDefault && announcementSound == null)
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
 
             // Send announcement to this specific station's speaker network
             _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
@@ -685,6 +684,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(ChatChannel.Emotes, action, wrappedMessage, source, false, session.Channel);
             }
         } // sunrise-end
+
+        // Sunrise added start - событие для произвольных эмоций в туториалах
+        var ev = new EntityEmotedEvent(source, action);
+        RaiseLocalEvent(source, ref ev, true);
+        // Sunrise added end
 
         if (hideLog)
             return;

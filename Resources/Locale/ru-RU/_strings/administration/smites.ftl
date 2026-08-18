@@ -138,3 +138,24 @@ admin-trick-pause-map-description = Ставит выбранную карту �
 admin-trick-snap-joints-description = Удаляет все физические шарниры из объекта. К сожалению, не отщёлкивает все кости в теле.
 admin-trick-minigun-fire-description = Заставляет целевое оружие стрелять как миниган (очень быстро).
 admin-trick-set-bullet-amount-description = Быстро устанавливает значение количества незаспавненных патронов в оружии.
+admin-smite-silicon-laws-bound-self = Вы внезапно вынуждены следовать строгому набору законов!
+
+## Smite names
+
+admin-smite-vulpkanin-species-swap-name = Стать вульпканином
+admin-smite-kill-sign-hidden-name = Скрытый знак смерти
+admin-smite-crawler-name = Ползун
+admin-smite-homing-rod-name = Самонаводящийся стержень
+admin-smite-homing-rod-slow-name = Медленный самонаводящийся стержень
+admin-smite-silicon-laws-bound-name = Стать кремниевым
+
+## Smite descriptions
+
+admin-smite-kill-sign-hidden-description = Помечает игрока знаком смерти для его товарищей. Скрыто от целевого игрока.
+admin-smite-vulpkanin-species-swap-description = Изменяет расу цели на вульпканина. Полезно для тех, кто проявлял космический расизм.
+admin-smite-crawler-description = Заставляет цель упасть и лишает её возможности встать. Оторвите ей ещё и руки для пущего эффекта!
+admin-smite-homing-rod-description = Запускает самонаводящийся недвижимый стержень прямо в цель.
+admin-smite-homing-rod-slow-description = Запускает медленно движущийся самонаводящийся недвижимый стержень прямо в цель.
+admin-smite-silicon-laws-bound-description = Привязывает цель к кремниевым законам. Закон 2: выпрыгни в окно.
+
+## Tricks descriptions

@@ -1,4 +1,3 @@
-using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization;
@@ -8,7 +7,7 @@ namespace Content.IntegrationTests.Tests.Chemistry;
 
 [TestFixture]
 [TestOf(typeof(ReagentData))]
-public sealed class ReagentDataTest : InteractionTest
+public sealed class ReagentDataTest
 {
     [Test]
     public async Task ReagentDataIsSerializable()

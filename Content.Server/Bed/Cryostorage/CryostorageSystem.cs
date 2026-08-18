@@ -38,7 +38,6 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly ClimbSystem _climb = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly GhostSystem _ghostSystem = default!;
@@ -352,6 +351,6 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     }
 }
 
-public class CryostorageEnteredEvent
+public sealed class CryostorageEnteredEvent
 {
 }

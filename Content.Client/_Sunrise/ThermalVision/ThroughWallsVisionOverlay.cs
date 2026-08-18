@@ -1,5 +1,5 @@
 using Content.Shared._Sunrise.ThermalVision;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -13,6 +13,9 @@ public sealed class ThroughWallsVisionOverlay : Overlay
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
+    private static readonly ProtoId<ShaderPrototype> BrightnessShader = "BrightnessShader";
+
     private readonly ContainerSystem _containerSystem;
     private readonly TransformSystem _transform;
     private readonly ShaderInstance _shader;
@@ -25,7 +28,7 @@ public sealed class ThroughWallsVisionOverlay : Overlay
         _transform = _entityManager.System<TransformSystem>();
         _containerSystem = _entityManager.System<ContainerSystem>();
 
-        _shader = _prototypeManager.Index<ShaderPrototype>("BrightnessShader").InstanceUnique();
+        _shader = _prototypeManager.Index(BrightnessShader).InstanceUnique();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
