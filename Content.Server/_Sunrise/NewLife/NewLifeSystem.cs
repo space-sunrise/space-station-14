@@ -199,7 +199,7 @@ public sealed class NewLifeSystem : SharedNewLifeSystem
 
     private bool TryGetRespawnUiData(
         ICommonSession session,
-        [NotNullWhen(true)] out IReadOnlyDictionary<int, ICharacterProfile>? characterProfiles,
+        [NotNullWhen(true)] out IReadOnlyDictionary<int, HumanoidCharacterProfile>? characterProfiles,
         [NotNullWhen(true)] out Dictionary<NetEntity, string>? stationsList,
         [NotNullWhen(true)] out Dictionary<NetEntity, List<(JobPrototype, int?)>>? jobsDict,
         out TimeSpan nextAllowRespawn,
@@ -307,7 +307,7 @@ public sealed class NewLifeSystem : SharedNewLifeSystem
         }
     }
 
-    public List<NewLifeCharacterInfo> GetCharactersInfo(IReadOnlyDictionary<int, ICharacterProfile> characterProfiles)
+    public List<NewLifeCharacterInfo> GetCharactersInfo(IReadOnlyDictionary<int, HumanoidCharacterProfile> characterProfiles)
     {
         var characters = new List<NewLifeCharacterInfo>();
 

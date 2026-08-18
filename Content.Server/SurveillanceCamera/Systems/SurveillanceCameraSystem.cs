@@ -21,7 +21,7 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-
+    [Dependency] private readonly SurveillanceCameraMapSystem _cameraMapSystem = default!;
 
     // Pings a surveillance camera subnet. All cameras will always respond
     // with a data message if they are on the same subnet.
@@ -47,10 +47,8 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
     public const string CameraSubnetDisconnectMessage = "surveillance_camera_subnet_disconnect";
 
     public const string CameraAddressData = "surveillance_camera_data_origin";
-    public const string CameraUid = "surveillance_camera_data_uid"; // Sunrise-edit
     public const string CameraNameData = "surveillance_camera_data_name";
     public const string CameraSubnetData = "surveillance_camera_data_subnet";
-    public const string CameraSubnetColor = "surveillance_camera_color_subnet"; // Sunrise-edit
 
     public const int CameraNameLimit = 32;
 
@@ -84,9 +82,7 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
                 { DeviceNetworkConstants.Command, string.Empty },
                 { CameraAddressData, deviceNet.Address },
                 { CameraNameData, component.UseEntityNameAsCameraId ? MetaData(uid).EntityName : component.CameraId },
-                { CameraSubnetData, string.Empty },
-                { CameraSubnetColor, new Color() }, // Sunrise-edit
-                { CameraUid, uid.ToString() } // Sunrise-edit
+                { CameraSubnetData, string.Empty }
             };
 
             var dest = string.Empty;
@@ -117,17 +113,8 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
                         return;
                     }
 
-                    // Sunrise-start
-                    if (!args.Data.TryGetValue(CameraSubnetColor, out Color color))
-                    {
-                        return;
-                    }
-                    // Sunrise-end
-
                     dest = args.SenderAddress;
                     payload[CameraSubnetData] = subnet;
-                    payload[CameraSubnetColor] = color; // Sunrise-edit
-                    payload[CameraUid] = uid.ToString(); // Sunrise-edit
                     payload[DeviceNetworkConstants.Command] = CameraDataMessage;
                     break;
             }
@@ -283,6 +270,8 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
         }
 
         UpdateVisuals(camera, component);
+
+        _cameraMapSystem.UpdateCameraMarker((camera, component));
     }
 
     public void AddActiveViewer(EntityUid camera, EntityUid player, EntityUid? monitor = null, SurveillanceCameraComponent? component = null, ActorComponent? actor = null)

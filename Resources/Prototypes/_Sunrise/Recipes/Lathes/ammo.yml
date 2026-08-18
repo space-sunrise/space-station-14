@@ -7,6 +7,17 @@
     Steel: 250
     Glass: 50
     Plasma: 25
+    Gold: 25
+
+- type: latheRecipe
+  id: MagazineBatteryLr60
+  parent: BaseAmmoRecipe
+  result: MagazineBatteryLr60
+  materials:
+    Steel: 500
+    Glass: 100
+    Plasma: 50
+    Gold: 50
 
 # Blueprints
 - type: latheRecipe
@@ -632,6 +643,13 @@
 
 # Heavy .308
 - type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineGarand
+  result: MagazineGarand
+  materials:
+    Steel: 320
+
+- type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineRifleHeavyEmpty
   result: MagazineRifleHeavyEmpty
@@ -945,13 +963,6 @@
     Plastic: 1875
     Gold: 560
 
-# .308 belt box
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: RifleHeavyMagazineArtillery
-  result: RifleHeavyMagazineArtillery
-  materials:
-    Steel: 750
 # Moved from ammo.yml
 # Base prototypes
 
@@ -1094,16 +1105,6 @@
     Plastic: 140
     Uranium: 100
 
-####
-- type: latheRecipe
-  id: MagazineNewVector
-  result: MagazineNewVector
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
 - type: latheRecipe
   id: MagazineMP5
   result: MagazineMP5
@@ -1133,15 +1134,6 @@
     Plastic: 100
 
 - type: latheRecipe
-  id: MagazineScorpion
-  result: MagazineScorpion
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 835
-
-- type: latheRecipe
   id: MagazineDragunovSP
   result: MagazineDragunovSP
   categories:
@@ -1167,24 +1159,6 @@
   completetime: 5
   materials:
     Steel: 850
-
-- type: latheRecipe
-  id: MagazineHIBrowning
-  result: MagazineHIBrowning
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 250
-
-- type: latheRecipe
-  id: MagazineDeagle
-  result: MagazineDeagle
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 220
 
 #
 #- type: latheRecipe  # Отдельной технологией

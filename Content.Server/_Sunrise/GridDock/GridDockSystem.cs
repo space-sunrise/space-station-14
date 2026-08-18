@@ -30,7 +30,7 @@ public sealed class GridDockSystem : EntitySystem
         if (component.Grids.Count == 0)
             return;
 
-        var ftlMap = _shuttles.EnsureFTLMap();
+        var ftlMap = _shuttles.EnsureSunriseFtlMap();
         var xformMap = Transform(ftlMap);
 
         if (!TryComp<StationDataComponent>(uid, out var stationData))
@@ -90,7 +90,7 @@ public sealed class GridDockSystem : EntitySystem
                     usedGridDocks.Add(pair.DockBUid);
                 }
 
-                _shuttles.FTLToDockСonfig(
+                _shuttles.FTLToDockConfig(
                     rootUid.Value.Owner,
                     shuttleComp,
                     chosenConfig,
@@ -101,7 +101,7 @@ public sealed class GridDockSystem : EntitySystem
             }
             else
             {
-                if (_shuttles.TryGetFTLProximity(rootUid.Value.Owner, new EntityCoordinates(target.Value, Vector2.Zero), out var coords, out var targAngle))
+                if (_shuttles.TryGetSunriseFtlProximity(rootUid.Value.Owner, new EntityCoordinates(target.Value, Vector2.Zero), out var coords, out var targAngle))
                 {
                     _shuttles.FTLToCoordinates(rootUid.Value.Owner,
                         shuttleComp,

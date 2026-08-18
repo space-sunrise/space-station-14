@@ -3,19 +3,13 @@ name: Automatic Changelog
 on:
   pull_request_target:
     types: [closed]
-  push:
     branches: [master]
-    paths:
-      - "Resources/Changelog/Parts/*.yml"
-      - "Resources/Changelog/Parts/**/*.yml"
   workflow_dispatch:
     inputs:
-      pr_number:
-        description: "Номер PR для ручного восстановления. Оставьте пустым для обычной сверки."
-        required: false
-        type: number
-  schedule:
-    - cron: "17 * * * *"
+      changelog:
+        description: "Текст: :ci: Автор; add/fix/remove/tweak/media. Много строк — через gh/API"
+        required: true
+        type: string
 
 permissions:
   actions: read
@@ -26,7 +20,7 @@ concurrency:
 
 jobs:
   update:
-    if: github.event_name != 'pull_request_target' || github.event.pull_request.merged == true
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -62,5 +56,5 @@ jobs:
           CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE }}
           ACTIONS_TOKEN: ${{ github.token }}
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || '' }}
+          MANUAL_CHANGELOG: ${{ inputs.changelog }}
         run: bash Tools/_sunrise/changelog/run.sh

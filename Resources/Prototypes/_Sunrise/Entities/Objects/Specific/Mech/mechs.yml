@@ -74,10 +74,8 @@
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
-      # Sunrise edit start - radial active equipment selector
       enum.MechEquipmentSelectUiKey.Key:
         type: MechEquipmentSelectBoundUserInterface
-      # Sunrise edit end
   - type: Puller
     needsHands: false
   - type: InputMover
@@ -197,7 +195,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - CombatMech
@@ -272,7 +270,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -308,16 +306,6 @@
     whitelist:
       tags:
       - Ore
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-      enum.MechUiKey.Key:
-        type: MechBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: [ ]
   - type: Speech
     speechSounds: Borg
   - type: TTS
@@ -388,7 +376,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -475,7 +463,7 @@
     #siren: true # Todo: port siren system from starlight
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -550,7 +538,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -639,7 +627,7 @@
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 2.5
     speed: 15
@@ -726,7 +714,7 @@
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -799,7 +787,7 @@
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 4
     speed: 18
@@ -883,7 +871,7 @@
     maxEquipmentAmount: 2
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
     distance: 4
     speed: 18

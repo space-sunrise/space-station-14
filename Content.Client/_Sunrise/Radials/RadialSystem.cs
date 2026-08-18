@@ -216,7 +216,7 @@ public sealed class RadialSystem : SharedRadialSystem
         if (radial.ClientExclusive || IsClientSide(target))
             ExecuteRadial(radial, user.Value, target);
         else
-            EntityManager.RaisePredictiveEvent(new ExecuteRadialEvent(GetNetEntity(target), radial));
+            RaisePredictiveEvent(new ExecuteRadialEvent(GetNetEntity(target), radial));
     }
 
     private void HandleRadialsResponse(RadialsResponseEvent msg)

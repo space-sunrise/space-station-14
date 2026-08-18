@@ -363,16 +363,16 @@
   components:
   - type: RandomSpawner
     prototypes:
-    - TorsoHuman
-    - HeadHuman
-    - LeftArmHuman
-    - RightArmHuman
-    - LeftHandHuman
-    - RightHandHuman
-    - LeftLegHuman
-    - RightLegHuman
-    - LeftFootHuman
-    - RightFootHuman
+    - OrganHumanTorso
+    - OrganHumanHead
+    - OrganHumanArmLeft
+    - OrganHumanArmRight
+    - OrganHumanHandLeft
+    - OrganHumanHandRight
+    - OrganHumanLegLeft
+    - OrganHumanLegRight
+    - OrganHumanFootLeft
+    - OrganHumanFootRight
     chance: 1.0
     offset: 0.0
 
