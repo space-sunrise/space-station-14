@@ -16,6 +16,7 @@ research-technology-phazon = Фазон
 research-technology-cargo-bluespace-equipment = Блюспейс экипировка карго
 research-technology-medical-hyposprays = Гипоспреи
 research-technology-armor-penetration = Пробитие брони
+research-technology-full-metal-jacket-ammunition = Боеприпасы повышенной пробиваемости
 research-technology-basic-eye-implants = Базовые глазные импланты
 research-technology-functional-cyberlimbs = Функциональные киберконечности
 research-technology-jani-cyberlimbs = Киберруки-пылесосы
