@@ -24,7 +24,7 @@ public sealed partial class RadialButton : Control
         get => Controller.ToolTip;
     }
 
-    public float? TooltipDelay
+    public float? RadialTooltipDelay
     {
         set => Controller.TooltipDelay = value;
         get => Controller.TooltipDelay;

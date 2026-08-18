@@ -2,6 +2,8 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
+using Content.Shared._Sunrise.Humanoid;
+using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -11,9 +13,11 @@ namespace Content.Server.GameTicking.Rules;
 
 public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
 {
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
@@ -34,7 +38,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
 
         if (profile?.Species is not { } speciesId || !_proto.Resolve(speciesId, out var species))
         {
-            species = _proto.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
+            species = _proto.Index<SpeciesPrototype>(HumanoidCharacterProfile.DefaultSpecies);
         }
 
         if (ent.Comp.SpeciesOverride != null
@@ -44,6 +48,11 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         }
 
         args.Entity = Spawn(species.Prototype);
-        _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
+        if (profile?.WithSpecies(species.ID) is { } humanoidProfile)
+        {
+            _visualBody.ApplyProfileTo(args.Entity.Value, humanoidProfile);
+            _humanoidProfile.ApplyProfileTo(args.Entity.Value, humanoidProfile);
+            _sunriseProfile.ApplyProfileTo(args.Entity.Value, humanoidProfile); // Sunrise-Edit
+        }
     }
 }

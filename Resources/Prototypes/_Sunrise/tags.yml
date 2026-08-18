@@ -3,6 +3,9 @@
   id: CantInteract
 
 - type: Tag
+  id: CannotBeFlatpacked
+
+- type: Tag
   id: Directional
 
 - type: Tag
@@ -244,9 +247,6 @@
   id: HeavyAmmoBelt127
 
 - type: Tag
-  id: MagazineACP14
-
-- type: Tag
   id: MagazineAR18
 
 - type: Tag
@@ -259,9 +259,6 @@
   id: MagazineBoxL6Cap
 
 - type: Tag
-  id: MagazineBR64
-
-- type: Tag
   id: MagazineCannonBallMini
 
 - type: Tag
@@ -271,31 +268,22 @@
   id: MagazineChainGun
 
 - type: Tag
-  id: MagazineDeagle
-
-- type: Tag
-  id: MagazineDl6902
-
-- type: Tag
   id: MagazineDragunov
 
 - type: Tag
-  id: MagazineGlock22
-
-- type: Tag
-  id: MagazineGlock22Metus
+  id: MagazineGarand
 
 - type: Tag
   id: MagazineHeavyRifle
-
-- type: Tag
-  id: MagazineHIBrowning
 
 - type: Tag
   id: MagazineLightMachineGunMG60
 
 - type: Tag
   id: MagazineLightRiflePan
+
+- type: Tag
+  id: MagazineLightRifleImprovised
 
 - type: Tag
   id: MagazineM28
@@ -313,13 +301,7 @@
   id: MagazineMP7
 
 - type: Tag
-  id: MagazineNewVector
-
-- type: Tag
   id: MagazineP90
-
-- type: Tag
-  id: MagazinePistolCaselessRifleTec9
 
 - type: Tag
   id: MagazinePistolDPSubMachineGun
@@ -329,15 +311,6 @@
 
 - type: Tag
   id: MagazinePistolSubMachineGunCap
-
-- type: Tag
-  id: MagazineRPD
-
-- type: Tag
-  id: MagazineScorpion
-
-- type: Tag
-  id: MagazineVP78
 
 # region Weapons
 
@@ -404,6 +377,9 @@
 
 - type: Tag
   id: UpgradeLecter
+
+- type: Tag
+  id: UpgradeLecterMk3
 
 - type: Tag
   id: UpgradeWebVest

@@ -91,7 +91,6 @@
     templateId: reaper
   - type: InventorySlots
   - type: Body
-    prototype: Reaper
   - type: Hands
     showInHands: true
   - type: Loadout
@@ -165,8 +164,6 @@
       tags:
       - BorgModuleERT
       - BorgModuleSecurity
-      - BorgModuleSyndicate
-      - BorgModuleSyndicateAssault
     hasMindState: ert_borg_e
     noMindState: ert_borg_e_r
   - type: IntrinsicRadioTransmitter
@@ -362,6 +359,8 @@
       tags:
       - BorgModuleGeneric
       - BorgModuleSecurity
+      - BorgModuleMedical
+      - BorgModuleEngineering
       - BorgModuleSyndicate
     hasMindState: spider_e
     noMindState: spider_e_r

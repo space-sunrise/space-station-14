@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Sunrise.Helpers;
 using Content.Shared.Humanoid;
 using Content.Shared.Whitelist;
@@ -19,7 +19,7 @@ public sealed class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelis
 
     protected override void OnActivated(Entity<ArtifactWhitelistSwapComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
-        var humans = _helpers.GetAll<HumanoidAppearanceComponent, TransformComponent>().ToList();
+        var humans = _helpers.GetAll<HumanoidProfileComponent, TransformComponent>().ToList();
         if (humans.Count == 0)
             return;
 
@@ -37,7 +37,7 @@ public sealed class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelis
     }
 
     private bool IsAllowedTarget(Entity<TransformComponent> target,
-        Entity<HumanoidAppearanceComponent, TransformComponent> player,
+        Entity<HumanoidProfileComponent, TransformComponent> player,
         Entity<ArtifactWhitelistSwapComponent> artifact)
     {
         if (!IsAllowedMap(target, player, artifact))
@@ -50,7 +50,7 @@ public sealed class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelis
     }
 
     private bool IsAllowedMap(Entity<TransformComponent> target,
-        Entity<HumanoidAppearanceComponent, TransformComponent> player,
+        Entity<HumanoidProfileComponent, TransformComponent> player,
         Entity<ArtifactWhitelistSwapComponent> artifact)
     {
         if (target.Comp.MapID == MapId.Nullspace)

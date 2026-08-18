@@ -11,7 +11,6 @@ public sealed class NavigatorCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
 
     public override void Initialize()
     {

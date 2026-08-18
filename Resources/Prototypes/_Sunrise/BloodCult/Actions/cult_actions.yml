@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseAction
   id: ActionCultTwistedConstruction
   categories: [ HideSpawnMenu ]
@@ -66,7 +66,7 @@
     canTargetSelf: false
     whitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
       - BorgChassis
     event: !type:CultStunTargetActionEvent
   - type: LimitedCharges
@@ -158,7 +158,7 @@
       canTargetSelf: true
       whitelist:
         components:
-        - HumanoidAppearance
+        - HumanoidProfile
         - BloodCultist
       event: !type:CultSummonCombatEquipmentTargetActionEvent
     - type: LimitedCharges

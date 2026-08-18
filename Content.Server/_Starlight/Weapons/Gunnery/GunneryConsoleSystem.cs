@@ -375,7 +375,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
         if (!TryGetConsoleGrid(consoleUid, out var consoleGrid))
             return false;
 
-        if (!TryComp<TransformComponent>(cannon, out var cannonXform) || cannonXform.GridUid != consoleGrid)
+        if (!TryComp(cannon, out TransformComponent? cannonXform) || cannonXform.GridUid != consoleGrid)
             return false;
 
         if (!TryGetConsoleMap(consoleUid, out var consoleMapCoords))

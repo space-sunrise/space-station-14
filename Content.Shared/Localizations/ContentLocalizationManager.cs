@@ -55,7 +55,8 @@ namespace Content.Shared.Localizations
 
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
-            _loc.AddFunction(cultureEn, "NATURALFIXED", FormatNaturalFixed);
+            _loc.AddFunction(cultureEn, "NATURALFIXED", FormatNaturalFixed); // Sunrise-Edit — функция используется в en-US guidebook.
+            _loc.AddFunction(cultureEn, "NATURALPERCENT", FormatNaturalPercent); // Sunrise-Edit — функция используется в en-US guidebook.
             _loc.AddFunction(cultureEn, "LOC", FormatLoc);
         }
 

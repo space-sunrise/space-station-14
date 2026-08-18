@@ -47,7 +47,7 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly BloodCultRuleSystem _bloodCultRuleSystem = default!;
         [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-        [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
+        [Dependency] private readonly GibbingSystem _gibbing = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly CuffableSystem _cuffable = default!;
@@ -60,7 +60,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly EuiManager _euiManager = default!;
         [Dependency] private readonly FlammableSystem _flammableSystem = default!;
         [Dependency] private readonly FlashSystem _flashSystem = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly GunSystem _gunSystem = default!;
         [Dependency] private readonly HandsSystem _handsSystem = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
@@ -83,7 +82,6 @@ namespace Content.Server._Sunrise.BloodCult.Runes.Systems
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly TurfSystem _turf = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
-        [Dependency] private readonly CultistWordGeneratorManager _wordGenerator = default!;
         [Dependency] private readonly SharedTransformSystem _xform = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!;

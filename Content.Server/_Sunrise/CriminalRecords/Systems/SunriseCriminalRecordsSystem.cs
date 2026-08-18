@@ -148,7 +148,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         if (msg.Reason?.Length > MaxStatusReasonLength)
             return;
 
-        var name = EntityManager.GetComponent<MetaDataComponent>(msg.Actor).EntityName;
+        var name = Comp<MetaDataComponent>(msg.Actor).EntityName;
         _criminalRecords.TryChangeStatus(component.SelectedKey.Value, msg.Status, msg.Reason, initiatorName: name);
         UpdateUserInterface(uid, component);
     }

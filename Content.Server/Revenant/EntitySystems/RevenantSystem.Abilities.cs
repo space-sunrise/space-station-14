@@ -81,7 +81,7 @@ public sealed partial class RevenantSystem
             return;
         }
 
-        if (!HasComp<MobStateComponent>(target) || !HasComp<HumanoidAppearanceComponent>(target) || HasComp<RevenantComponent>(target))
+        if (!HasComp<MobStateComponent>(target) || !HasComp<HumanoidProfileComponent>(target) || HasComp<RevenantComponent>(target))
             return;
 
         args.Handled = true;
@@ -382,7 +382,7 @@ public sealed partial class RevenantSystem
             var damage = new DamageSpecifier();
             damage.DamageDict.Add(component.DrainDamageType, amount);
 
-            if (_damage.TryChangeDamage(target, damage, origin: uid) != null)
+            if (_damage.TryChangeDamage(target, damage, origin: uid))
                 totalEssence += amount;
         }
 

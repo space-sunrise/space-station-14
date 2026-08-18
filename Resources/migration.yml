@@ -8,8 +8,6 @@
 # WallSolid: Window
 # Table: null
 
-
-
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic
 ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic
@@ -733,6 +731,9 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 # 2025-08-29
 PrefilledSyringe: Syringe
 
+# 2025-09-12
+BaseChemistryEmptyVial: ChemistryEmptyVial
+
 # 2025-10-6
 BibleTanakh: null
 BibleSatanic: null
@@ -771,12 +772,79 @@ FigureSpawner: MechFigurineSpawner50
 ToySpawner: PlushieSpawner50
 SpacemenFigureSpawner: SpacemenFigurineSpawner90
 
+# 2026-01-14
+HeadHuman: OrganHumanHead
+HeadArachnid: OrganArachnidHead # Sunrise-Edit
+HeadVox: OrganVoxHead # Sunrise-Edit
+HeadVulpkanin: OrganVulpkaninHead # Sunrise-Edit
+HeadSkeleton: OrganSkeletonPersonHead
+TailTajaran: null # Sunrise-Edit
+LeftArmHuman: OrganHumanArmLeft
+LeftArmSkeleton: OrganSkeletonPersonArmLeft
+LeftHandSkeleton: OrganSkeletonPersonHandLeft
+LeftFootHuman: OrganHumanFootLeft # Sunrise-Edit
+LeftFootMoth: OrganMothFootLeft # Sunrise-Edit
+LeftFootReptilian: OrganReptilianFootLeft # Sunrise-Edit
+LeftLegHuman: OrganHumanLegLeft
+LeftLegSkeleton: OrganSkeletonPersonLegLeft
+RightArmHuman: OrganHumanArmRight
+RightHandVulpkanin: OrganVulpkaninHandRight # Sunrise-Edit
+RightHandSkeleton: OrganSkeletonPersonHandRight
+RightLegReptilian: OrganReptilianLegRight # Sunrise-Edit
+RightLegHuman: OrganHumanLegRight
+TorsoSkeleton: OrganSkeletonPersonTorso
+RightArmSkeleton: OrganSkeletonPersonArmRight
+
 # 2026-01-07
 HandheldHealthAnalyzerUnpowered: HandheldHealthAnalyzer
 HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
 
 #2026-01-09
 BorgModuleAdvancedChemical: BorgModuleAdvancedTopical
+
+# 2026-01-19
+TowelColorPurple: null
+TowelColorRed: null
+TowelColorBlue: null
+TowelColorDarkBlue: null
+TowelColorLightBlue: null
+TowelColorTeal: null
+TowelColorBrown: null
+TowelColorLightBrown: null
+TowelColorGray: null
+TowelColorGreen: null
+TowelColorDarkGreen: null
+TowelColorGold: null
+TowelColorOrange: null
+TowelColorBlack: null
+TowelColorPink: null
+TowelColorYellow: null
+TowelColorMaroon: null
+TowelColorSilver: null
+TowelColorMime: null
+
+# 2026-02-18
+# Replace cargo order crates which contain exactly one item with the item, parcel wrapped.
+CrateVendingMachineRestockBoozeFilled: VendingMachineRestockBooze
+CrateVendingMachineRestockChefvendFilled: VendingMachineRestockChefvend
+CrateVendingMachineRestockClothesFilled: VendingMachineRestockClothes
+CrateVendingMachineRestockAutoDrobeFilled: VendingMachineRestockCostumes
+CrateVendingMachineRestockCondimentStationFilled: VendingMachineRestockCondimentStation
+CrateVendingMachineRestockDinnerwareFilled: VendingMachineRestockDinnerware
+CrateVendingMachineRestockGamesFilled: VendingMachineRestockGames
+CrateVendingMachineRestockPTechFilled: VendingMachineRestockPTech
+CrateVendingMachineRestockSalvageEquipmentFilled: VendingMachineRestockSalvageEquipment
+CrateVendingMachineRestockVendomatFilled: VendingMachineRestockVendomat
+CrateVendingMachineRestockTankDispenserFilled: VendingMachineRestockTankDispenser
+# The crates below contained _two_ of the restock items, so these are technically not direct migrations. But eh.
+CrateVendingMachineRestockHotDrinksFilled: VendingMachineRestockHotDrinks
+CrateVendingMachineRestockRobustSoftdrinksFilled: VendingMachineRestockRobustSoftdrinks
+CrateVendingMachineRestockSmokesFilled: VendingMachineRestockSmokes
+CrateVendingMachineRestockHappyHonkFilled: VendingMachineRestockHappyHonk
+CrateVendingMachineRestockGetmoreChocolateCorpFilled: VendingMachineRestockGetmoreChocolateCorp
+CrateVendingMachineRestockChangFilled: VendingMachineRestockChang
+CrateVendingMachineRestockDiscountDansFilled: VendingMachineRestockDiscountDans
+CrateVendingMachineRestockDonutFilled: VendingMachineRestockDonut
 
 # region Sunrise-Start
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
@@ -848,8 +916,8 @@ ScienceTechFab: null
 ReverseEngineeringMachine: null
 ScienceTechFabCircuitboard: null
 EngineeringTechFabCircuitboard: null
-MagazineDeagle: null
-MagazineMagnum: null
+MagazineDeagle: MagazineMagnum
+MagazineDeagleExtended: MagazineMagnum
 SpawnPointBlueShield: SpawnPointBlueShieldOfficer
 PoweredLightBlueInterior: null
 RandomItem: null
@@ -875,7 +943,6 @@ SupermatterSliver: null
 CartridgePistol: null
 AtmosDeviceFanTinyDev: AtmosDeviceFanTiny
 AtmosDeviceFanDirectionalDev: AtmosDeviceFanDirectional
-GasMinerPlasma: null # Temporary Sunrise migration entry until GasMinerPlasma is removed from all maps.
 MagazineBR64Extended: null
 MagazineBR64: null
 MagazineAR18Extended: null
@@ -953,7 +1020,7 @@ WeaponEnergyGunMultiphase: WeaponMultiphaseGun
 ClothingBeltAssaultFilled: null
 MagazinePistolSubMachineGunCaseless: BaseMagazinePistolCaselessRifleExtended
 SyndicateCircuitBoard: SyndimovCircuitBoard
-WeaponRifleAKM: WeaponRifleAKMU
+WeaponRifleAKM: WeaponRifleSKM24
 CrateArmoryAKMS: null
 SpawnPointPrisonGuard: null
 # 2025-12-21
@@ -1075,6 +1142,78 @@ JugDexalinPlusSunrise: JugDexalinPlus
 JugDyloveneSunrise: JugDylovene
 JugSalineSunrise: JugSaline
 JugDexalinSunrise: null
+CratePirateChestSun: null
+SunriseAirlockSyndicateGlassPirateAccessLocked: SunriseAirlockPirateGlassLocked
 # 2026-06-29
 ClothingBackpackMessengerPirateBundleSKM24Scrap: CratePirateAkScrap
+# 2026-07-30
+RifleHeavyMagazineArtillery: RifleHeavyMagazineSP
+RifleHeavyMagazineArtilleryLarge: RifleHeavyMagazineFMJ
+RifleHeavyMagazineArtilleryLargeExtra: RifleHeavyMagazineAP
+MagazineRPD: MagazineLightRifleBeltBoxFMJ
+CartridgeRifleHeavyArtillery: CartridgeRifleHeavySP
+WeaponRevolverSpearheadBlack: WeaponRevolverSpearhead
+WeaponPistolHIB88M4: WeaponPistolViper
+WeaponPistolACP14: WeaponPistolM1984
+WeaponRifleAKMU: WeaponRifleSKM24
+MagazineHIBrowning: MagazinePistolHighCapacity
+MagazineACP14: MagazinePistol40SP
+ACP14Box: MK58Box
+GunSafePistolACP14: GunSafePistolM1984
+GunSafeRifleAKMU: GunSafeRifleSKM24
+WeaponPistolDeagleMetus: WeaponPistolDeagle
+WeaponSubMachineGunMP38: WeaponSubMachineGunForged
+MagazineGlock22Metus: MagazinePistolHighCapacityRubber
+WeaponPistolTec9: WeaponPistolCobra
+WeaponRifleBR64: WeaponRifleSKM28Nano
+ClothingBackpackDuffelWeaponRifleBR64Filled: ClothingBackpackDuffelWeaponRifleSKM28Filled
+WeaponShotgunMakeshift: WeaponShotgunImprovised
+MagazineVP78: MagazinePistol40FMJ
+MagazineNewVector: MagazinePistolHighCapacitySP
+WeaponShotgunSPAS12: WeaponShotgunCombat
+WeaponShotgunSPAS12Rubber: WeaponShotgunCombat
+GunSafeShotgunSPAS12: GunSafeShotgunCombat
+# 2026-08-02
+WeaponDominator: WeaponMiniEnergyGun
+WeaponEnergyGunPistolSecurity: WeaponEnergyGunPistol
+WeaponEnergyGunTactical: null
+WeaponEnergyGun: null
+WeaponEnergyGunPulseRevolver: null
+WeaponPDW9: WeaponEnergyGunPistol
+WeaponPistolStechkin: SunriseWeaponPistolAPS
+WeaponAMS-42: WeaponRifleLecterMk3
+ClothingBackpackDuffelWeaponAMS42Filled: ClothingBackpackDuffelWeaponLecterMk3Filled
+WeaponSubMachineGunMP7: WeaponSubMachineGunMP5
+ClothingBackpackDuffelWeaponSubMachineGunMP7Filled: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
+GunSafeEnergyGunPistolSecurity: null
+GunSafeEnergyGun: null
+GunSafeEnergyGunSMG: null
+GunSafeSubMachineGunMP7: GunSafeSubMachineGunMP5
+# 2026-08-03
+WeaponRifleFamas: WeaponRifleLecter
+WeaponRifleG36: WeaponRifleLeikha
+ClothingBackpackDuffelWeaponRifleG36Filled: ClothingBackpackDuffelWeaponRifleLeikhaFilled
+GunSafeRifleFamas: null
+GunSafeWeaponRifleG36: null
+WeaponRifleAK514: WeaponRifleSKM24
+GunSafeEnergyPistolDominator: GunSafeEnergyGunMini
+GunSafeSubMachineGunSkorpion: GunSafeSubMachineGunWt550
+WeaponSubMachineGunSkorpion: WeaponSubMachineGunWt550
+MagazineScorpion: MagazinePistolSubMachineGunTopMounted
+BlueprintMagAsh12Slug: BlueprintMagAsh12Basic
+BlueprintMagAsh12Beanbag: null
+BlueprintMagAsh12Flare: null
+ClothingBackpackDuffelWeaponRifleAsh12: Ash12Box
+WeaponRifleM90GrenadeLauncherBiocode: WeaponRifleM90GrenadeLauncher
+ClothingOuterEliteHardsuitUSSP: null
+GasMinerPlasma: null
+# 2026-08-14
+ClothingBackpackSyndieDL6902Filled: PowerpackDL6902
+MMGKit: null
+MagazineDl6902: null
+WeaponDL6902: WeaponDL6902PowerPack
+WeaponDL6902Biocode: WeaponDL6902PowerPack
+MobPirateT1ExpeditionSpawner: MobPirateT1Spawner
+MobPirateT2ExpeditionSpawner: MobPirateT2Spawner
+MobPirateT3ExpeditionSpawner: MobPirateT3Spawner
 # region Sunrise-End
