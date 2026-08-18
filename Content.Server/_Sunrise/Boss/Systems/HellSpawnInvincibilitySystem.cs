@@ -11,7 +11,6 @@ namespace Content.Server._Sunrise.Boss.Systems;
 public sealed class HellSpawnInvincibilitySystem : SharedHellSpawnInvincibilitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {

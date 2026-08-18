@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.FleshCult.GameRule;
+using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
@@ -83,12 +83,12 @@ public sealed partial class FleshCultSystem
                     {
                         // SUNRISE-TODO: Сделать это внутри системы майншилда
                         _popup.PopupEntity("Активация самоуничтожения импланта защиты разума", uid, PopupType.LargeCaution);
-                        _gibbingSystem.Gib(uid, true);
+                        _gibbing.Gib(uid, true);
                         _explosionSystem.QueueExplosion(uid, "Default", 50, 5, 30, canCreateVacuum: false);
                         break;
                     }
 
-                    if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearance))
+                    if (!TryComp<HumanoidProfileComponent>(uid, out var humanoidAppearance))
                         break;
 
                     if (!_speciesWhitelist.Contains(humanoidAppearance.Species))

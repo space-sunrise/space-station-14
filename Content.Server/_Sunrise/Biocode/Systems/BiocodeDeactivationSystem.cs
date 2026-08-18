@@ -27,7 +27,7 @@ public sealed class ServerBiocodeDeactivationSystem : BiocodeDeactivationSystem
         if (TryComp<PinpointerComponent>(uid, out var pinpointer))
         {
             // Always ensure the pinpointer is deactivated
-            _pinpointerSystem.SetActive(uid, false, pinpointer);
+            _pinpointerSystem.SetActive((uid, pinpointer), false);
 
             // Force update appearance to ensure visual state is correct
             if (TryComp<AppearanceComponent>(uid, out var appearance))

@@ -60,7 +60,7 @@ public sealed class KillCultistTargetsConditionSystem : EntitySystem
         KillCultistTargetsConditionComponent component,
         ref ObjectiveAssignedEvent args)
     {
-        var cultistRule = EntityManager.EntityQuery<BloodCultRuleComponent>().FirstOrDefault();
+        var cultistRule = EntityQuery<BloodCultRuleComponent>().FirstOrDefault();
 
         if (cultistRule == null)
             return;
@@ -70,7 +70,7 @@ public sealed class KillCultistTargetsConditionSystem : EntitySystem
 
     private float KillCultistTargetsProgress()
     {
-        var cultistRule = EntityManager.EntityQuery<BloodCultRuleComponent>().FirstOrDefault();
+        var cultistRule = EntityQuery<BloodCultRuleComponent>().FirstOrDefault();
         Debug.Assert(cultistRule != null, nameof(cultistRule) + " != null");
         var cultTargets = cultistRule.CultTargets;
 

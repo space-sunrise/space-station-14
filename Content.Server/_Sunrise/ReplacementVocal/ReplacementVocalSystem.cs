@@ -68,7 +68,7 @@ public sealed class ReplacementVocalSystem : EntitySystem
 
     private void LoadEmotes(EntityUid uid, VocalComponent vocalComponent)
     {
-        var sex = CompOrNull<HumanoidAppearanceComponent>(uid)?.Sex ?? Sex.Unsexed;
+        var sex = CompOrNull<HumanoidProfileComponent>(uid)?.Sex ?? Sex.Unsexed;
 
         if (vocalComponent.Sounds == null)
             return;

@@ -209,6 +209,18 @@ public sealed partial class DockingSystem
         var shuttleFixturesComp = Comp<FixturesComponent>(shuttleUid);
         var shuttleAABB = _gridQuery.GetComponent(shuttleUid).LocalAABB;
 
+        // Sunrise edit start - учитываем площадь летящих к гриду шаттлов
+        var reservedAreas = new List<Box2>();
+        foreach (var dock in gridDocks)
+        {
+            if (TryComp<FtlReservationComponent>(dock.Owner, out var reservation) &&
+                reservation.ReservedBy != shuttleUid)
+            {
+                reservedAreas.Add(reservation.Area);
+            }
+        }
+        // Sunrise edit end
+
         var isMap = HasComp<MapComponent>(targetGrid);
 
         var dockCache = new ConcurrentDictionary<(EntityUid, EntityUid), (bool Success, Matrix3x2 Matty, Box2 AABB, Angle Angle)>();
@@ -284,6 +296,24 @@ public sealed partial class DockingSystem
                     };
 
                     cacheDockedAABB = cacheDockedAABB.Rounded(DockRoundingDigits);
+
+                    // Sunrise edit start - смотрим пересекаются ли резервированные области
+                    var overlapsReservation = false;
+                    if (!ignored)
+                    {
+                        foreach (var area in reservedAreas)
+                        {
+                            if (Box2.Area(area.Intersect(cacheDockedAABB)) <= 0f)
+                                continue;
+
+                            overlapsReservation = true;
+                            break;
+                        }
+                    }
+
+                    if (overlapsReservation)
+                        continue;
+                    // Sunrise edit end
 
                     foreach (var (otherUid, other) in shuttleDocks)
                     {
