@@ -118,6 +118,9 @@ storyteller-metadata-spiderspawnhorde-start = Глубокие техничес�
 storyteller-metadata-gamerulemeteorswarmsmall-start = Навигационные системы предупреждают о приближении небольшого метеоритного роя.
 storyteller-metadata-gamerulemeteorswarmmedium-start = Внимание: станция входит в зону плотного метеоритного потока. Возможно повреждение обшивки.
 storyteller-metadata-gamerulemeteorswarmlarge-start = Критическая метеоритная угроза! Крупный астероидный рой обрушился на станцию!
+storyteller-metadata-RadiationOutburst-start = Показания счетчика Гейгера зашкаливают! некоторые вещи на станции получили небольшой радиционый фон!
+storyteller-metadata-RadiationStorm-start = Показания счетчика Гейгера зашкаливают! в коридорах станции появляется радиационный осадок!
+
 
 # Antagonists & Threats (Literary starting events)
 storyteller-metadata-bloodcult-start = Древнее зло зашептало во тьме: среди экипажа зародились фанатичные последователи [color=#8B0000]Кровавого культа[/color].
