@@ -449,7 +449,7 @@ namespace Content.Server.GameTicking
             }
 
             // Sunrise-Start
-            if (_cfg.GetCVar(SunriseCCVars.ExcludePresets) && CurrentPreset != null && !_Sunrise.Storyteller.StorytellerPresetHelper.ShouldBypassExclusion(CurrentPreset.ID))
+            if (_cfg.GetCVar(SunriseCCVars.ExcludePresets) && CurrentPreset != null)
                 AddExcludedPreset(CurrentPreset.ID);
             // Sunrise-End
 

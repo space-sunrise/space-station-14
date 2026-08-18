@@ -62,3 +62,16 @@ ent-PosterLegitOpenGift = open gift
 ent-PosterLegitRedLight = red garland
     .desc = New Year's poster with a garland. For those who didn't have enough money for a real garland.
     .suffix = NewYear
+
+ent-PosterJapanese1 = Sunset over Torii
+    .desc = Japanese-style poster.
+ent-PosterJapanese2 = Spring cherry blossom scroll
+    .desc = { ent-PosterJapanese1.desc }
+ent-PosterJapanese3 = PuckDitTea
+    .desc = { ent-PosterJapanese1.desc }
+ent-PosterJapanese4 = Pisces of mind and feelings
+    .desc = You ask... Why reason? Why feelings? And you shouldn't give a damn.
+ent-PosterJapanese5 = Fvudtdcy Mountain
+    .desc = { ent-PosterJapanese1.desc }
+ent-PosterJapanese6 = Keto demon
+    .desc = { ent-PosterJapanese1.desc }

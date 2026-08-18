@@ -20,6 +20,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Medical.Healing;
 
@@ -105,9 +106,10 @@ public sealed class HealingSystem : EntitySystem
                 var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
                 foreach(var reagent in solution.Contents)
                 {
-                    var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
-                    if (solutionEntity != null && drainReagent != null)
-                        reagentsToRemove.Add((reagent, drainReagent.Quantity));
+                    var drainReagent = healing.ReagentsToDrain.FirstOrNull(drain =>
+                        drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
+                    if (solutionEntity != null && drainReagent is { } drain)
+                        reagentsToRemove.Add((reagent, drain.Quantity));
                 }
 
                 foreach (var (reagent, amount) in reagentsToRemove)
@@ -156,11 +158,13 @@ public sealed class HealingSystem : EntitySystem
 
     private bool HasDamage(Entity<HealingComponent> healing, Entity<DamageableComponent> target)
     {
-        var damageableDict = target.Comp.Damage.DamageDict;
+        var damageableDict = _damageable.GetAllDamage(target.AsNullable()).DamageDict;
         var healingDict = healing.Comp.Damage.DamageDict;
         foreach (var type in healingDict)
         {
-            if (damageableDict.TryGetValue(type.Key, out var damageValue) && damageValue.Value > 0 && (type.Key != "Mangleness" || type.Value < 0)) //Sunrise-edit: fix server crashes
+            if (damageableDict.TryGetValue(type.Key, out var amount)
+                && amount > 0
+                && (type.Key != "Mangleness" || type.Value < 0)) // Sunrise-Edit — Mangleness нельзя наносить лечебным предметом
             {
                 return true;
             }
@@ -294,7 +298,7 @@ public sealed class HealingSystem : EntitySystem
         if (!_mobThresholdSystem.TryGetThresholdForState(ent, MobState.Critical, out var amount, ent.Comp2))
             return 1;
 
-        var percentDamage = (float)(ent.Comp1.TotalDamage / amount);
+        var percentDamage = (float)(_damageable.GetTotalDamage(ent) / amount);
         //basically make it scale from 1 to the multiplier.
 
         var output = percentDamage * (mod - 1) + 1;
@@ -310,7 +314,7 @@ public sealed class HealingSystem : EntitySystem
         if (!_mobThresholdSystem.TryGetThresholdForState(user, MobState.Critical, out var amount, mobThreshold))
             return 1;
 
-        var percentDamage = (float)(damageable.TotalDamage / amount);
+        var percentDamage = (float)(_damageable.GetTotalDamage((user, damageable)) / amount);
         //basically make it scale from 1 to the multiplier.
         var modifier = percentDamage * (healing.Comp.SelfHealPenaltyMultiplier - 1) + 1;
         return Math.Max(modifier, 1.5f);

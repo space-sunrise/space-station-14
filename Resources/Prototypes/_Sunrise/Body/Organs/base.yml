@@ -1,5 +1,11 @@
 - type: entity
-  id: BaseOrganBrain
+  id: SunriseOrganHuman
+  parent: OrganHuman
+  abstract: true
+
+- type: entity
+  id: SunriseOrganBaseBrain
+  parent: OrganBaseBrain
   abstract: true
   components:
   - type: OrganBrain
@@ -7,7 +13,8 @@
     blockInteraction: false
 
 - type: entity
-  id: BaseOrganEyes
+  id: SunriseOrganBaseEyes
+  parent: OrganBaseEyes
   abstract: true
   components:
   - type: OrganEyes
@@ -23,10 +30,13 @@
     damageContainer: Biological
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobHumanoidEyes
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
 
 - type: entity
-  id: BaseOrganTongue
+  id: SunriseOrganBaseTongue
+  parent: OrganBaseTongue
   abstract: true
   components:
   - type: OrganTongue
@@ -42,7 +52,8 @@
     damageContainer: Biological
 
 - type: entity
-  id: BaseOrganAppendix
+  id: SunriseOrganBaseAppendix
+  parent: OrganBaseAppendix
   abstract: true
   components:
   - type: OrganAppendix
@@ -57,7 +68,8 @@
     damageContainer: Biological
 
 - type: entity
-  id: BaseOrganEars
+  id: SunriseOrganBaseEars
+  parent: OrganBaseEars
   abstract: true
   components:
   - type: OrganEars
@@ -66,10 +78,11 @@
     damageContainer: Biological
 
 - type: entity
-  id: BaseOrganLungs
+  id: SunriseOrganBaseLungs
+  parent: OrganBaseLungs
   abstract: true
   components:
-  - type: OrganLungs
+  - type: Lung
   - type: OrganDamage
     damage:
       types:
@@ -81,7 +94,8 @@
     damageContainer: Biological
 
 - type: entity
-  id: BaseOrganHeart
+  id: SunriseOrganBaseHeart
+  parent: OrganBaseHeart
   abstract: true
   components:
   - type: OrganHeart
@@ -97,7 +111,8 @@
     damageContainer: Biological
 
 - type: entity
-  id: BaseOrganStomach
+  id: SunriseOrganBaseStomach
+  parent: OrganBaseStomach
   abstract: true
   components:
   - type: OrganStomach
@@ -113,7 +128,8 @@
     damageContainer: Biological
 
 - type: entity
-  id: BaseOrganLiver
+  id: SunriseOrganBaseLiver
+  parent: OrganBaseLiver
   abstract: true
   components:
   - type: OrganLiver
@@ -129,7 +145,8 @@
     damageContainer: Biological
 
 - type: entity
-  id: BaseOrganKidneys
+  id: SunriseOrganBaseKidneys
+  parent: OrganBaseKidneys
   abstract: true
   components:
   - type: OrganKidneys

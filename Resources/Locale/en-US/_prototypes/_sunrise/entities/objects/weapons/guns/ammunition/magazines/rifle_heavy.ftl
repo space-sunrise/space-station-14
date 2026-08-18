@@ -17,3 +17,5 @@ ent-MagazineRifleHeavyPractice = магазин (.308 учебные)
     .desc = { ent-BaseMagazineRifleHeavy.desc }
 ent-MagazineRifleHeavyUranium = магазин (.308 урановые)
     .desc = { ent-BaseMagazineRifleHeavy.desc }
+ent-MagazineGarand = M1 Garand clip (.308 FMJ)
+    .desc = An eight-round en-bloc clip for the M1 Garand, loaded with .308 FMJ cartridges.

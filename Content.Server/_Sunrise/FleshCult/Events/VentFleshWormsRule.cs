@@ -25,7 +25,7 @@ public sealed class VentFleshWormsRule : StationEventSystem<VentFleshWormsRuleCo
             return;
         }
 
-        var spawnLocations = EntityManager.EntityQuery<VentCritterSpawnLocationComponent, TransformComponent>().ToList();
+        var spawnLocations = EntityQuery<VentCritterSpawnLocationComponent, TransformComponent>().ToList();
 
         var grids = data.Grids.ToHashSet();
         spawnLocations.RemoveAll(
