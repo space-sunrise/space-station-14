@@ -62,6 +62,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot
+      item: !type:ContainerSlot
   - type: Modsuit
     isActivated: true
 
@@ -85,6 +86,7 @@
     containers:
       toggleable-clothing: !type:ContainerSlot
       modsuit_core: !type:ContainerSlot
+      item: !type:ContainerSlot
 
 - type: entity
   parent: SunriseClothingShoesBootsMagPirateMurmillo
