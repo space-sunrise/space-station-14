@@ -55,14 +55,11 @@ public sealed class ArrivalsSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ActorSystem _actor = default!;
-    [Dependency] private readonly BiomeSystem _biomes = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
@@ -505,7 +502,7 @@ public sealed class ArrivalsSystem : EntitySystem
                 if (xform.MapUid != arrivalsXform.MapUid)
                 {
                     if (arrivals.IsValid())
-                        _shuttles.FTLToDock(uid, shuttle, arrivals, priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
+                        _shuttles.FTLToDockSunrise(uid, shuttle, arrivals, priorityTag: "DockArrivals", ignored: true, deleteObstacles: true); // Sunrise-Edit - используем FTL-расширение из partial-класса.
 
                     comp.NextArrivalsTime = _timing.CurTime + TimeSpan.FromSeconds(tripTime);
                 }
@@ -515,7 +512,7 @@ public sealed class ArrivalsSystem : EntitySystem
                     var targetGrid = _station.GetLargestGrid(comp.Station);
 
                     if (targetGrid != null)
-                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value, priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
+                        _shuttles.FTLToDockSunrise(uid, shuttle, targetGrid.Value, priorityTag: "DockArrivals", ignored: true, deleteObstacles: true); // Sunrise-Edit - используем FTL-расширение из partial-класса.
 
                     // The ArrivalsCooldown includes the trip there, so we only need to add the time taken for
                     // the trip back.
@@ -692,8 +689,8 @@ public sealed class ArrivalsSystem : EntitySystem
             EnsureComp<ProtectedGridComponent>(shuttle.Value); // Sunrise-Edit
             EnsureComp<UnbuildableGridComponent>(shuttle.Value); // Sunrise-edit
             EnsureComp<ImmortalGridComponent>(shuttle.Value); // Sunrise-edit
-            _shuttles.FTLToDock(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration,
-                priorityTag: "DockArrivals", ignored: true, deletedTrash: true); // Sunrise-Edit
+            _shuttles.FTLToDockSunrise(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration,
+                priorityTag: "DockArrivals", ignored: true, deleteObstacles: true); // Sunrise-Edit - используем FTL-расширение из partial-класса.
             arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
 

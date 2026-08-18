@@ -36,6 +36,7 @@ public sealed class WiresSystem : SharedWiresSystem
 
     private static readonly ProtoId<ToolQualityPrototype> CuttingQuality = "Cutting";
     private static readonly ProtoId<ToolQualityPrototype> PulsingQuality = "Pulsing";
+    private static readonly ProtoId<TagPrototype> ShowWiresTag = "ShowWires";
 
     // This is where all the wire layouts are stored.
     [ViewVariables] private readonly Dictionary<string, WireLayout> _layouts = new();
@@ -451,7 +452,7 @@ public sealed class WiresSystem : SharedWiresSystem
             if (TryComp(args.User, out ActorComponent? actor))
             {
                 // Starlight-abductor start
-                if (_tags.HasTag(args.Used, "ShowWires"))
+                if (_tags.HasTag(args.Used, ShowWiresTag))
                     component.viewWires = true;
                 else
                     component.viewWires = false;

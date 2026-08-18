@@ -413,6 +413,7 @@
 - type: entity
   parent: JetInjector
   id: JetInjectorSyndicate
+  suffix: Syndicate
   name: jet injector
   description: A sterile injector for convenient administration of drugs to patients.
   components:

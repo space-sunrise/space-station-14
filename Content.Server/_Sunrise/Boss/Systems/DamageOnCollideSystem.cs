@@ -26,6 +26,7 @@ public sealed class DamageOnCollideSystem : SharedDamageOnCollideSystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        base.Initialize();
         _sawmill = _log.GetSawmill("damageoncollide");
 
         SubscribeLocalEvent<DamageOnCollideComponent, ComponentStartup>(OnInit);

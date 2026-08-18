@@ -20,7 +20,6 @@ namespace Content.Server._Sunrise.Boss.Systems;
 public sealed class HellSpawnRushSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;

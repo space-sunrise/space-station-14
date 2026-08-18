@@ -11,7 +11,15 @@
   abstract: true
   components:
     - type: Body
-      prototype: Animal
+    - type: EntityTableContainerFill
+      containers:
+        body_organs: !type:AllSelector
+          children:
+          - id: OrganAnimalLungs
+          - id: OrganAnimalHeart
+          - id: OrganAnimalStomach
+          - id: OrganAnimalLiver
+          - id: OrganAnimalKidneys
     - type: Climbing 
     - type: Reactive
       groups:

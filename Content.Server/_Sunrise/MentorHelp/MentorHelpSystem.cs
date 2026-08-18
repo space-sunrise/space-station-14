@@ -31,7 +31,6 @@ namespace Content.Server._Sunrise.MentorHelp
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
