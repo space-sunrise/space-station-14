@@ -19,6 +19,7 @@ using Content.Shared.Buckle.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Content.Shared._Sunrise.Movement.Carrying.Slowdown;
+using Content.Shared.Revenant.Components;
 
 namespace Content.Shared._Sunrise.Movement.Carrying;
 
@@ -105,6 +106,9 @@ public abstract partial class SharedCarryingSystem : EntitySystem
             return;
 
         if (!CanCarry(args.User, ent.AsNullable()))
+            return;
+
+        if (HasComp<RevenantComponent>(ent))
             return;
 
         var user = args.User;
