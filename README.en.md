@@ -10,18 +10,17 @@
 
 <div class="header" align="center">
 
-[![Discord](https://img.shields.io/discord/831352358520725506?label=Discord&logo=discord&logoColor=white)](https://discord.gg/ssJTANEa)
-[![Wiki](https://img.shields.io/badge/Wiki-SS14%20SUNRISE-blue)](https://sunrise14.top/wiki/)
-[![Steam](https://img.shields.io/badge/Steam-SS14%20SUNRISE-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
-[![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
-[![GitHub](https://img.shields.io/github/stars/space-sunrise/space-station-14?style=social)](https://github.com/space-sunrise/sunrise-station)
+[![Discord](https://img.shields.io/discord/831352358520725506?label=Discord&logo=discord&logoColor=white)](https://discord.gg/VTBCu2MSS8)
+[![Wiki](https://img.shields.io/badge/Wiki-SS14%20SUNRISE-blue)](https://last.makura.wiki)
+[![Steam](https://img.shields.io/badge/Steam-SS14%20SUNRISE-blue)](https://store.steampowered.com/app/4813970/Stellar_Stories/)
+[![GitHub](https://img.shields.io/github/stars/space-sunrise/sunrise-station?style=social)](https://github.com/space-sunrise/sunrise-station)
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/space-sunrise/sunrise-station?utm_source=oss&utm_medium=github&utm_campaign=space-sunrise%2Fsunrise-station&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 # Stellar Stories
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/space-sunrise/space-station-14)
-![GitHub Issues](https://img.shields.io/github/issues/space-sunrise/space-station-14)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/space-sunrise/space-station-14)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/space-sunrise/sunrise-station)
+![GitHub Issues](https://img.shields.io/github/issues/space-sunrise/sunrise-station)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/space-sunrise/sunrise-station)
 
 </div>
 
@@ -45,7 +44,7 @@ CHANGE THIS TO YOUR API FROM repobeats.axiom.co  RIGHT NOW THIS IS STATS OF MY R
 
 List of people who have contributed to the project:
 
-[![Contributors](https://contrib.rocks/image?repo=space-sunrise/space-station-14)](https://github.com/space-sunrise/sunrise-station/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=space-sunrise/sunrise-station)](https://github.com/space-sunrise/sunrise-station/graphs/contributors)
 
 ---
 
@@ -73,5 +72,5 @@ List of people who have contributed to the project:
 <details>
 <summary><a href="#"><img src="https://img.shields.io/badge/licence-CLA-orange?style=for-the-badge" alt="CLA"></a></summary>
 
->All code and assets from MakuraGames Studio are covered by the [CLA](https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt) license.
+>All code and assets from MakuraGames Studio are covered by the [CLA](https://github.com/space-sunrise/sunrise-station/blob/master/CLA.txt) license.
 </details>
