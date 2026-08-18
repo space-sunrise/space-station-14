@@ -192,6 +192,16 @@ public sealed partial class BedSystem : EntitySystem // Sunrise-edit Добав�
 
                 damage *= GetSunriseHealingMultiplier(healedEntity); // Sunrise-edit уменьшаем хил если одет скафандр и т.д борьба с кроватью в космосе.
                 _damageableSystem.TryChangeDamage(healedEntity, damage, true, origin: uid);
+
+                // Sunrise-Edit-Start
+                if (!_sleepingQuery.HasComp(healedEntity))
+                {
+                    if (bedComponent.SleepAction != null)
+                        _actionsSystem.RemoveAction(healedEntity, bedComponent.SleepAction);
+
+                    _actionsSystem.AddAction(healedEntity, ref bedComponent.SleepAction, SleepingSystem.SleepActionId, uid);
+                }
+                // Sunrise-Edit-End
             }
         }
     }
