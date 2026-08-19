@@ -72,7 +72,6 @@ public sealed class HolopadCrittersRule : StationEventSystem<HolopadCrittersRule
                 }
             }
 
-            // Spawn on each selected holopad
             foreach (var holopad in targetHolopads)
             {
                 foreach (var spawn in specialSpawns)
@@ -102,8 +101,6 @@ public sealed class HolopadCrittersRule : StationEventSystem<HolopadCrittersRule
             var holopads = EntityQueryEnumerator<HolopadComponent>();
             while (holopads.MoveNext(out var holopadUid, out _))
             {
-                // You can disable the holopad here
-                // For example, remove the spawn marker or disable the holopad component
                 RemComp<HolopadComponent>(holopadUid);
             }
         }
