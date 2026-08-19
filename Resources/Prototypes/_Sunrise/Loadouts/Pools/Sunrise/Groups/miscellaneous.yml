@@ -21,7 +21,6 @@
   - EmergencyOxygenClown
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasClown
-  - EmergencyDwarfClown
 
 - type: loadoutGroup
   id: SunriseSurvivalMime
@@ -34,7 +33,6 @@
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasMime
-  - EmergencyDwarfMime
 
 - type: loadoutGroup
   id: SunriseSurvivalExtended
@@ -46,7 +44,6 @@
   - EmergencyOxygenExtended
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasExtended
-  - EmergencyDwarfExtended
 
 - type: loadoutGroup
   id: SunriseSurvivalSecurity
@@ -58,7 +55,6 @@
   - EmergencyOxygenSecurity
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasSecurity
-  - EmergencyDwarfSecurity
 
 - type: loadoutGroup
   id: SunriseSurvivalMedical
@@ -70,7 +66,6 @@
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasMedical
-  - EmergencyDwarfMedical
 
 - type: loadoutGroup
   id: SunriseSurvivalSyndicate
@@ -82,7 +77,6 @@
   - SunriseEmergencyOxygenSyndicate
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasSyndicate
-  - EmergencyDwarfSyndicate
 
 - type: loadoutGroup
   id: SunriseTrinkets
