@@ -54,7 +54,11 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             if (target == component.Shooter || target == component.Weapon)
                 return;
 
-            if (component.Shooter != null && TryComp<Content.Shared.Mech.Components.MechPilotComponent>(component.Shooter.Value, out var pilot) && target == pilot.Mech)
+            if (component.Shooter is { } shooter
+                && shooter.IsValid()
+                && TryComp<Content.Shared.Mech.Components.MechPilotComponent>(shooter, out var pilot)
+                && pilot.Mech.IsValid()
+                && target == pilot.Mech)
                 return;
         }
 
