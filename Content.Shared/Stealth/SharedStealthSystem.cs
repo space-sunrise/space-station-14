@@ -4,10 +4,11 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Stealth.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
+using Content.Shared.NPC.Components;
 
 namespace Content.Shared.Stealth;
 
-public abstract class SharedStealthSystem : EntitySystem
+public abstract partial class SharedStealthSystem : EntitySystem //* Sunrise-Edit
 {
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -25,6 +26,7 @@ public abstract class SharedStealthSystem : EntitySystem
         SubscribeLocalEvent<StealthComponent, ExamineAttemptEvent>(OnExamineAttempt);
         SubscribeLocalEvent<StealthComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<StealthComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<StealthComponent, ComponentShutdown>(OnShutdown); //* Sunrise-Edit
     }
 
     private void OnExamineAttempt(EntityUid uid, StealthComponent component, ExamineAttemptEvent args)
@@ -58,6 +60,7 @@ public abstract class SharedStealthSystem : EntitySystem
             return;
 
         component.Enabled = value;
+        UpdateNoTarget(uid, value); //* Sunrise-Edit
         Dirty(uid, component);
     }
 
@@ -90,8 +93,12 @@ public abstract class SharedStealthSystem : EntitySystem
 
     protected virtual void OnInit(EntityUid uid, StealthComponent component, ComponentInit args)
     {
+        UpdateNoTarget(uid, component.Enabled); //* Sunrise-Edit
+
         if (component.LastUpdated != null || Paused(uid))
+        {
             return;
+        }
 
         component.LastUpdated = _timing.CurTime;
     }

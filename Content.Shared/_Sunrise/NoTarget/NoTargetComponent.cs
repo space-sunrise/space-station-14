@@ -1,5 +1,3 @@
-using Robust.Shared.GameObjects;
-
 namespace Content.Shared.NPC.Components
 {
     /// <summary>
@@ -7,7 +5,6 @@ namespace Content.Shared.NPC.Components
     /// NPC systems should treat entities with this component as non-targetable.
     /// </summary>
     [RegisterComponent]
-    public sealed partial class NoTargetComponent : Component
-    {
-    }
+    public sealed partial class NoTargetComponent : Component;
+
 }
