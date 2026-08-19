@@ -46,9 +46,11 @@
   - MagazineBoxPistol40FMJ
   - MagazineBoxRifleFMJ
   - MagazineBoxHeavyRifleFMJ
+  - BoxShotgunFlechette
   - MagazineLightRifleBeltBoxFMJ
   - MagazineLightRifleFMJ
   - SpeedLoaderMagnumFMJ
+  - SpeedLoaderShotgunFlechette
   - MagazinePistolFMJ
   - MagazinePistol40FMJ
   - MagazinePistolSubMachineGunFMJ
@@ -122,8 +124,6 @@
   - MagazinePistolHighCapacityAP
   - MagazineBoxHeavyRifleAP
   - MagazineRifleHeavyAP
-  - BoxShotgunFlechette
-  - SpeedLoaderShotgunFlechette
   radioChannels:
   - Security
 
