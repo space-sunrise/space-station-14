@@ -46,6 +46,9 @@ public abstract partial class SharedGunSystem
         }
     }
 
+    /// <summary>
+    /// Returns armor penetration for a projectile or hitscan prototype.
+    /// </summary>
     public float? GetProjectileArmorPenetration(EntProtoId proto)
     {
         if (!ProtoManager.TryIndex(proto, out var entityProto))
