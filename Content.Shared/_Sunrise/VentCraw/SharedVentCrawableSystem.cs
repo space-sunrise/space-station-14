@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared._Sunrise.VentCraw.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Emoting;
 using Content.Shared.Interaction.Events;
@@ -83,7 +84,7 @@ public abstract class SharedVentCrawableSystem : EntitySystem
     /// <param name="args">The MoveInputEvent arguments.</param>
     private void OnMoveInput(EntityUid uid, VentCrawHolderComponent holder, ref MoveInputEvent args)
     {
-        if (!EntityManager.EntityExists(holder.CurrentTube))
+        if (!Exists(holder.CurrentTube))
         {
             var ev = new VentCrawExitEvent();
             RaiseLocalEvent(uid, ref ev);
@@ -241,7 +242,7 @@ public abstract class SharedVentCrawableSystem : EntitySystem
 
                 if (nextTube != null)
                 {
-                    if (!EntityManager.EntityExists(holder.CurrentTube))
+                    if (!Exists(holder.CurrentTube))
                     {
                         var ev = new VentCrawExitEvent();
                         RaiseLocalEvent(uid, ref ev);

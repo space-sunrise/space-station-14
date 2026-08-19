@@ -11134,7 +11134,7 @@ entities:
     - type: Transform
       pos: 5.6260986,45.23195
       parent: 2
-- proto: HeadHuman
+- proto: OrganHumanHead
   entities:
   - uid: 1669
     components:
@@ -11155,7 +11155,7 @@ entities:
     - type: Transform
       pos: 3.4219832,45.190285
       parent: 2
-- proto: HeadReptilian
+- proto: OrganReptilianHead
   entities:
   - uid: 1670
     components:
@@ -11169,7 +11169,7 @@ entities:
     - type: Transform
       pos: 4.0886497,45.384727
       parent: 2
-- proto: HeadSlime
+- proto: OrganSlimePersonHead
   entities:
   - uid: 1672
     components:

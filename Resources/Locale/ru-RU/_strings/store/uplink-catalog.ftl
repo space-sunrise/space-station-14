@@ -27,8 +27,6 @@ uplink-c20r-name = C-20r
 uplink-c20r-desc = Старая добрая: классический пистолет-пулемёт C-20r.
 uplink-bulldog-name = Бульдог
 uplink-bulldog-desc = Простой и надёжный: содержит популярный дробовик Бульдог.
-uplink-estoc-name = Эсток
-uplink-estoc-desc = Марксманская винтовка Эсток с прицелом средней дальности для ведения боя на дистанции.
 uplink-grenade-launcher-name = China-Lake
 uplink-grenade-launcher-desc = Старый гранатомёт China-Lake с пятью патронами для борьбы с личным составом.
 uplink-estoc-bundle-name = Набор «Эсток»
@@ -392,3 +390,22 @@ uplink-interdyne-defibrillator-desc = Превосходный дефибрил�
 
 uplink-energycrossbow-name = Мини-энергетический арбалет
 uplink-energycrossbow-desc = Главное оружие оперативника, предпочитающего неподвижные цели. Стреляет регенерирующими токсичными болтами, мгновенно валящими жертву на пол.
+
+uplink-syndicate-id-card-name = ID-карта Синдиката
+uplink-syndicate-id-card-desc = ID-карта Синдиката с доступом Синдиката. Вряд ли будет полезна сама по себе, но отлично подойдёт для перенастроенных шлюзов. Не имеет функции копирования доступа.
+
+uplink-grenade-launcher-bundle-name = Набор China-Lake
+uplink-grenade-launcher-bundle-desc = Старый гранатомёт China-Lake в комплекте с 11 выстрелами различной разрушительной силы.
+
+uplink-starter-kit-name = Базовый набор оперативника
+uplink-starter-kit-desc = Содержит базовое снаряжение оперативника на 40 телекристаллов. Для тех оперативников, кто просто не знает, что купить.
+
+# Tools
+
+uplink-saw-advanced-name = Продвинутая дисковая пила
+uplink-saw-advanced-desc = Новейший хирургический инструмент, созданный для разрезания как плоти, так и костей.
+
+# Armor
+
+uplink-acolyte-armor-name = Броня аколита
+uplink-acolyte-armor-desc = Обязательный атрибут любого уважающего себя лидера культа. Зловещего вида броня, сделанная из костей и на удивление устойчивая к повреждениям.

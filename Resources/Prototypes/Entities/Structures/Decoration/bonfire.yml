@@ -44,6 +44,7 @@
   - type: IgnitionSource
     temperature: 700
     ignited: true
+  - type: RequireProjectileTarget
   # Sunrise-start
   - type: Tag
     tags:
@@ -76,8 +77,7 @@
     offset: "0, 0.5"
   - type: Strap
     position: Stand
-    buckleOffsets:
-    - "0, 0.5"
+    buckleOffset: "0, 0.4"
     buckleDoafterTime: 5
   - type: IgniteOnBuckle
   - type: Construction

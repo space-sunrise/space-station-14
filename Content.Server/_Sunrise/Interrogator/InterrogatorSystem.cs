@@ -153,7 +153,7 @@ namespace Content.Server._Sunrise.Interrogator
                     foreach (var actionId in actionsComp.Actions)
                     {
                         if (_actions.GetAction(actionId) is { } actionEnt &&
-                            TryComp<MetaDataComponent>(actionEnt.Owner, out var meta) &&
+                            TryComp(actionEnt.Owner, out MetaDataComponent? meta) &&
                             meta.EntityPrototype?.ID != null &&
                             meta.EntityPrototype.ID == artifactComp.SelfActivateAction)
                         {

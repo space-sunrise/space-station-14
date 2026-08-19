@@ -72,6 +72,19 @@
         - id: MagazineDragunovFMJ
 
 - type: entity
+  id: BriefcaseWeaponDMRFilled
+  parent: BriefcaseWeapon
+  name: secure estoc case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleEstoc
+        - id: MagazineRifle
+        - id: MagazineRifleAP
+
+- type: entity
   id: BriefcaseWeaponType88AMRFilled
   parent: BriefcaseWeapon
   name: secure Type 88 case

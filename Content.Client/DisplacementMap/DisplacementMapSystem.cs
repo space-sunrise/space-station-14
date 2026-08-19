@@ -46,7 +46,7 @@ public sealed class DisplacementMapSystem : EntitySystem
             if (shaderOverride is not null)
             {
                 shaderOverride.SetParameter("useDisplacement", true);
-                shaderOverride.SetParameter("displacementSize", 127);
+                shaderOverride.SetParameter("displacementSize", 127f);
                 sprite.Comp.LayerSetShader(index, shaderOverride);
             }
             else
