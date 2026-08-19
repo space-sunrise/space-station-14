@@ -67,7 +67,7 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 60
+    radius: 3
     netsync: false
   - type: Appearance
   - type: StaticPrice
