@@ -61,6 +61,8 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Mech/mecha_mg.rsi
     state: mecha_mg
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: Gun
     minAngle: -15
     maxAngle: 40

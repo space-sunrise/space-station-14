@@ -132,7 +132,7 @@
     - FullAuto
     - SemiAuto
     soundGunshot:
-      collection: aug # Sunrise-Edit
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: MagazineVisuals

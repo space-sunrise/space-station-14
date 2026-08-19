@@ -185,7 +185,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("infolinks.replays", "https://replays.ss14.org", CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServerName =
-        CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("lobby.server_name", "Stellar Stories", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
